@@ -7,12 +7,3 @@
 
 ### Shuaiqing Luo
 I am doing the frontend development.
-
-### Sarah:
-Sarah is developing the backend.
-
-### Katelyn Designer
-
-## Sophia Park -- Designer
-
-## Nick LoCastro
