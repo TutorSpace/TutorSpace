@@ -6,13 +6,6 @@
 
 
 ### Sarah:
-Sarah is developing the backend.
-
-### Katelyn Designer
-
-## Sophia Park -- Designer
-
-## Nick LoCastro
-
+Sarah is developing the backend
 
 
