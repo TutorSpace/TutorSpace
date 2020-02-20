@@ -1,6 +1,6 @@
 # itp460-Bravo
 
-### Development Steps:
+## Development Steps:
 1. Run "npm install" (if have not already installed NPM, please install it first)
 2. Run "npm run start" and then go to localhost:8001 to see the web pages. (just save the css/scss files and the web page will be updated automatically, np need to refresh the pages)
 
@@ -14,8 +14,9 @@
 
 ### Sophia Park
 
+<br /><br />
 
-# Git Process:
+## Git Process:
 1. Always work on our own branches when developing. (use ```git checkout <your branch name>``` in your project directory)<br /> 
     **Don't** directly work on the "master" branch or the "develop" branch.
 2. After fully testing your code, use the following steps to push to your branch remotely on github so that others can integrate your code into their own branches
