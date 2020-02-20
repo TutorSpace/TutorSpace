@@ -5,8 +5,11 @@
 2. Run "npm run start" and then go to localhost:8001 to see the web pages. (just save the css/scss files and the web page will be updated automatically, np need to refresh the pages)
 
 
+### Sophia Park -- Designer
+
 ### Katelyn Designer
 
 ### Shuaiqing Luo
 I am doing the frontend development.
+
 
