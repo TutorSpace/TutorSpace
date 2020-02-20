@@ -8,4 +8,11 @@
 ### Sarah:
 Sarah is developing the backend
 
+### Sophia Park -- Designer
+
+### Katelyn Designer
+
+### Shuaiqing Luo
+I am doing the frontend development.
+
 
