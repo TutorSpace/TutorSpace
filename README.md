@@ -7,8 +7,3 @@
 
 ### Katelyn Designer
 
-## Sophia Park -- Designer
-
-## Nick LoCastro
-
-
