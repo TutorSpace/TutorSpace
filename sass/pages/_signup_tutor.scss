@@ -1,0 +1,86 @@
+.signup- {
+    &container {
+        // background-color: green;
+        height: calc(100vh - #{$navbar-height});
+        position: relative;
+
+        & label {
+            display: block;
+        }
+
+        & .form__group {
+            margin-bottom: 3rem;
+        }
+       
+        &__form {
+            @include absCenter;
+            // background-color: green;
+            width: 75%;
+            font-size: 1rem;
+
+            & label, & input, &__btn {
+                font-size: 2.5em !important;
+            }
+
+            & input {
+                border: none;
+                border-bottom: 3px solid black;
+                
+                // transition: all 1s;
+               
+
+
+                width: 100%;
+                &:focus {
+                    outline: none;
+                    border: none;
+                    box-shadow: 0 1rem 2rem rgba(black, .1);
+                    border-bottom: 3px solid green;
+                    background-color: white;
+                }
+                
+                &:focus:invalid {
+                    border-bottom: 3px solid red;
+                }
+
+                &::-webkit-input-placeholder {
+                    color: grey;
+                }
+                
+            }
+
+            // select label
+            input:placeholder-shown + label{
+                // opacity: 0;
+                // visibility: hidden;
+                // transform: translateY(-5rem);
+            }
+
+            & label {
+                text-align: left;
+                // transition: all 3s;
+            }
+
+
+            &__header {
+                text-align: center;
+                margin-bottom: 5rem;
+                font-size: 5em;
+            }
+
+
+            &__btn {
+                width: 100%;
+            }
+
+
+            
+            
+        }
+
+
+
+
+    }
+
+}

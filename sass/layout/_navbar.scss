@@ -1,0 +1,36 @@
+.navbar--style {
+    background-color: $color-primary;
+    height: $navbar-height;
+    color: white !important;
+    position: relative;
+
+    
+    // select all children element
+    & * {
+        color: $color-white !important;
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+
+    &__brand {
+        font-weight: 700;
+        font-size: 3.5rem !important;
+        margin-left: 1.5rem;
+    }
+
+    &__buttons {
+        position: absolute;
+        right: 7.5rem;
+        
+        & * {
+            font-size: 1.7rem !important;
+        }
+
+        &--right {
+            border: $color-white 1px solid !important;
+            border-radius: 5px !important;
+        }
+    }
+}
+
+
