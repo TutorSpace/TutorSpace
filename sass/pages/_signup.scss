@@ -4,33 +4,52 @@
         height: calc(100vh - #{$navbar-height});
         position: relative;
 
-        & label {
-            display: block;
-        }
+        $line-height: 2em;
 
-        & .form__group {
-            margin-bottom: 3rem;
-        }
-       
         &__form {
             @include absCenter;
-            // background-color: green;
+
             width: 75%;
             font-size: 1rem;
 
-            & label, & input, &__btn {
+
+            &__group {
+                margin-bottom: 4rem;
+            }
+
+            & label,
+            & input,
+            &__btn {
                 font-size: 2.5em !important;
+                line-height: $line-height;
+            }
+
+            & label {
+                margin-bottom: 0;
+                display: block;
+                text-align: left;
+
+                position: relative;
+                top: calc(-#{$line-height} - 3px);
+                
+
+                transition: all .5s;
             }
 
             & input {
                 border: none;
                 border-bottom: 3px solid black;
-                
-                // transition: all 1s;
-               
-
-
                 width: 100%;
+                margin-bottom: 0;
+                transition: all .5s;
+
+                position: relative;
+                top: $line-height;
+
+                display: block;
+                
+
+
                 &:focus {
                     outline: none;
                     border: none;
@@ -38,28 +57,35 @@
                     border-bottom: 3px solid green;
                     background-color: white;
                 }
-                
+
                 &:focus:invalid {
                     border-bottom: 3px solid red;
                 }
 
+                &:focus:valid {
+                    border-bottom: 3px solid greenyellow;
+                }
+
+
                 &::-webkit-input-placeholder {
                     color: grey;
                 }
-                
+
             }
+
+
+            
 
             // select label
-            input:placeholder-shown + label{
-                // opacity: 0;
-                // visibility: hidden;
-                // transform: translateY(-5rem);
+            input:placeholder-shown+label {
+                opacity: 0;
+                transform: translateY(calc(#{$line-height} + 3px));
+                visibility: hidden;
             }
 
-            & label {
-                text-align: left;
-                // transition: all 3s;
-            }
+            
+
+            
 
 
             &__header {
@@ -74,8 +100,8 @@
             }
 
 
-            
-            
+
+
         }
 
 

@@ -56,9 +56,14 @@ body {
     right: 7.5rem; }
     .navbar--style__buttons * {
       font-size: 1.7rem !important; }
+    .navbar--style__buttons--left {
+      margin-right: 2rem; }
     .navbar--style__buttons--right {
       border: #e9e3e3 1px solid !important;
       border-radius: 5px !important; }
+      .navbar--style__buttons--right:hover {
+        background-color: #e9e3e3;
+        color: rgba(55, 189, 246, 0.8) !important; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - 8rem);
@@ -96,10 +101,6 @@ body {
 .signup-container {
   height: calc(100vh - 8rem);
   position: relative; }
-  .signup-container label {
-    display: block; }
-  .signup-container .form__group {
-    margin-bottom: 3rem; }
   .signup-container__form {
     position: absolute;
     top: 50%;
@@ -107,12 +108,28 @@ body {
     transform: translate(-50%, -50%);
     width: 75%;
     font-size: 1rem; }
-    .signup-container__form label, .signup-container__form input, .signup-container__form__btn {
-      font-size: 2.5em !important; }
+    .signup-container__form__group {
+      margin-bottom: 4rem; }
+    .signup-container__form label,
+    .signup-container__form input, .signup-container__form__btn {
+      font-size: 2.5em !important;
+      line-height: 2em; }
+    .signup-container__form label {
+      margin-bottom: 0;
+      display: block;
+      text-align: left;
+      position: relative;
+      top: calc(-2em - 3px);
+      transition: all .5s; }
     .signup-container__form input {
       border: none;
       border-bottom: 3px solid black;
-      width: 100%; }
+      width: 100%;
+      margin-bottom: 0;
+      transition: all .5s;
+      position: relative;
+      top: 2em;
+      display: block; }
       .signup-container__form input:focus {
         outline: none;
         border: none;
@@ -121,10 +138,14 @@ body {
         background-color: white; }
       .signup-container__form input:focus:invalid {
         border-bottom: 3px solid red; }
+      .signup-container__form input:focus:valid {
+        border-bottom: 3px solid greenyellow; }
       .signup-container__form input::-webkit-input-placeholder {
         color: grey; }
-    .signup-container__form label {
-      text-align: left; }
+    .signup-container__form input:placeholder-shown + label {
+      opacity: 0;
+      transform: translateY(calc(2em + 3px));
+      visibility: hidden; }
     .signup-container__form__header {
       text-align: center;
       margin-bottom: 5rem;
