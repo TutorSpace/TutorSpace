@@ -1,7 +1,7 @@
 .navbar--style {
-    background-color: $color-primary;
+    background-color: $color-blue-light;
     height: $navbar-height;
-    color: white !important;
+    color: $color-white !important;
     position: relative;
 
     
@@ -36,7 +36,7 @@
 
             &:hover {
                 background-color: $color-white;
-                color: $color-primary !important;
+                color: $color-blue-light !important;
             }
         }
     }

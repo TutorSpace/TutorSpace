@@ -38,13 +38,35 @@ html {
 body {
   box-sizing: border-box; }
 
+body {
+  color: #f7fbfd;
+  background-color: #f7fbfd !important; }
+
+svg {
+  z-index: -100; }
+
+button {
+  color: #f7fbfd !important; }
+  button.btn-bg-blue-light {
+    background-color: #97d2fb; }
+    button.btn-bg-blue-light:hover {
+      background-color: #97d2fb !important; }
+  button.btn-bg-blue-dark {
+    background-color: #2c86c4; }
+    button.btn-bg-blue-dark:hover {
+      background-color: #2c86c4 !important; }
+  button.btn-outline-primary {
+    color: #2c86c4 !important; }
+    button.btn-outline-primary:hover {
+      color: #f7fbfd !important; }
+
 .navbar--style {
-  background-color: rgba(55, 189, 246, 0.8);
+  background-color: #97d2fb;
   height: 8rem;
-  color: white !important;
+  color: #f7fbfd !important;
   position: relative; }
   .navbar--style * {
-    color: #e9e3e3 !important;
+    color: #f7fbfd !important;
     font-size: 1.5rem;
     font-weight: 300; }
   .navbar--style__brand {
@@ -59,11 +81,11 @@ body {
     .navbar--style__buttons--left {
       margin-right: 2rem; }
     .navbar--style__buttons--right {
-      border: #e9e3e3 1px solid !important;
+      border: #f7fbfd 1px solid !important;
       border-radius: 5px !important; }
       .navbar--style__buttons--right:hover {
-        background-color: #e9e3e3;
-        color: rgba(55, 189, 246, 0.8) !important; }
+        background-color: #f7fbfd;
+        color: #97d2fb !important; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - 8rem);
@@ -76,20 +98,19 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
-  font-size: 1rem;
   padding: 5rem; }
   .index-left-container__box > *:not(:last-child) {
     margin-bottom: 6rem; }
   .index-left-container__box-1 {
-    font-size: 4em; }
+    font-size: 6rem; }
   .index-left-container__box-2 {
-    font-size: 2em; }
+    font-size: 3rem; }
   .index-left-container__box-3 {
     width: 100%;
     display: flex;
     justify-content: space-evenly; }
     .index-left-container__box-3 button {
-      font-size: 2em; }
+      font-size: 3rem; }
 
 .index-right-container__img {
   width: 100%;
@@ -106,13 +127,12 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 75%;
-    font-size: 1rem; }
+    width: 75%; }
     .signup-container__form__group {
-      margin-bottom: 4rem; }
+      margin-bottom: 5rem; }
     .signup-container__form label,
     .signup-container__form input, .signup-container__form__btn {
-      font-size: 2.5em !important;
+      font-size: 3rem !important;
       line-height: 2em; }
     .signup-container__form label {
       margin-bottom: 0;
@@ -129,17 +149,16 @@ body {
       transition: all .5s;
       position: relative;
       top: 2em;
-      display: block; }
+      display: block;
+      background-color: #f7fbfd !important; }
       .signup-container__form input:focus {
         outline: none;
         border: none;
-        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-        border-bottom: 3px solid green;
-        background-color: white; }
+        background-color: #f7fbfd !important; }
       .signup-container__form input:focus:invalid {
         border-bottom: 3px solid red; }
       .signup-container__form input:focus:valid {
-        border-bottom: 3px solid greenyellow; }
+        border-bottom: 3px solid #2c86c4; }
       .signup-container__form input::-webkit-input-placeholder {
         color: grey; }
     .signup-container__form input:placeholder-shown + label {
@@ -148,8 +167,8 @@ body {
       visibility: hidden; }
     .signup-container__form__header {
       text-align: center;
-      margin-bottom: 5rem;
-      font-size: 5em; }
+      margin-bottom: 6rem;
+      font-size: 6rem; }
     .signup-container__form__btn {
       width: 100%; }
   .signup-container__flag {
@@ -159,6 +178,69 @@ body {
     width: 100%; }
     .signup-container__flag svg {
       position: relative; }
-  .signup-container__flag {
+  .signup-container__header {
+    width: 100%;
     text-align: center;
-    position: absolute; }
+    position: absolute;
+    font-size: 6rem;
+    margin-top: 8rem; }
+  .signup-container__box {
+    position: relative;
+    height: 100%; }
+    .signup-container__box--tutor, .signup-container__box--student {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid black;
+      padding: 3rem 5rem;
+      z-index: 100;
+      box-shadow: -2px 2px 5px 3px #97d2fb; }
+      .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
+        font-size: 6rem;
+        text-align: center;
+        margin-bottom: 2rem; }
+      .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
+        font-size: 3rem;
+        margin-bottom: 1rem; }
+      .signup-container__box--tutor button, .signup-container__box--student button {
+        margin-top: 1.5rem;
+        margin-bottom: .5rem;
+        font-size: 3rem !important;
+        text-align: center; }
+
+.login-container {
+  height: calc(100vh - 8rem);
+  width: 100%; }
+  .login-container__img {
+    position: relative;
+    height: 30%; }
+    .login-container__img svg {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0%); }
+  .login-container__content {
+    height: 70%;
+    width: 100%; }
+    .login-container__content__form {
+      margin: 2rem auto;
+      width: 30%;
+      font-size: 3rem; }
+      .login-container__content__form .password {
+        margin-bottom: 0;
+        position: relative; }
+      .login-container__content__form * {
+        width: 100%;
+        margin-bottom: 3rem; }
+      .login-container__content__form .login-btn {
+        margin-bottom: 2rem; }
+      .login-container__content__form input, .login-container__content__form button {
+        font-size: 3rem;
+        display: block; }
+      .login-container__content__form .forget-password {
+        font-size: calc(3rem / 2);
+        color: grey;
+        text-align: right; }
+      .login-container__content__form__header {
+        font-size: 6rem; }
