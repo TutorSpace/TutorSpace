@@ -209,6 +209,39 @@ button {
         font-size: 3rem !important;
         text-align: center; }
 
+.fgpwd-outerbox {
+  height: calc(100vh - 8rem);
+  position: relative; }
+
+.fgpwd-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%; }
+  .fgpwd-container__header {
+    font-size: 6rem; }
+  .fgpwd-container__header-2 {
+    font-size: 3rem; }
+  .fgpwd-container__inputs {
+    width: 100%;
+    margin: 5rem 0 15rem 0;
+    text-align: center; }
+    .fgpwd-container__inputs__email {
+      width: 75%;
+      font-size: 3rem;
+      background-color: #f7fbfd;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid black; }
+  .fgpwd-container__button-container {
+    width: 100%;
+    text-align: center; }
+    .fgpwd-container__button-container button {
+      width: 75%;
+      margin-bottom: 1rem;
+      font-size: 3rem; }
+
 .login-container {
   height: calc(100vh - 8rem);
   width: 100%; }
@@ -238,9 +271,16 @@ button {
       .login-container__content__form input, .login-container__content__form button {
         font-size: 3rem;
         display: block; }
+      .login-container__content__form input {
+        padding: 3px 5px;
+        background-color: #f7fbfd;
+        border: none;
+        border-bottom: 1px solid black;
+        outline: none; }
       .login-container__content__form .forget-password {
         font-size: calc(3rem / 2);
-        color: grey;
         text-align: right; }
+        .login-container__content__form .forget-password a {
+          color: grey; }
       .login-container__content__form__header {
         font-size: 6rem; }

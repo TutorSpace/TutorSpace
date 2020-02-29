@@ -42,12 +42,21 @@
                 font-size: $font-2;
                 display: block;
             }
+            & input {
+                padding: 3px 5px;
+                background-color: $color-white;
+                border: none;
+                border-bottom: 1px solid black;
+                outline: none;
+            }
             
             & .forget-password {
                 font-size: calc(#{$font-2} / 2);
-                color: grey;
                 text-align: right;
                 
+                & a {
+                    color: grey;
+                }
             }
     
             &__header {
