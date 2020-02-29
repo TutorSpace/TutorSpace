@@ -1,7 +1,6 @@
 .navbar--style {
     background-color: $color-blue-light;
     height: $navbar-height;
-    color: $color-white !important;
     position: relative;
 
     
@@ -43,3 +42,45 @@
 }
 
 
+.navbar--style-white {
+    background-color: $color-white;
+    height: $navbar-height;
+    position: relative;
+
+    
+    // select all children element
+    & * {
+        color: $color-blue-light !important;
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+
+    &__brand {
+        font-weight: 700;
+        font-size: 3.5rem !important;
+        margin-left: 1.5rem;
+    }
+
+    // &__buttons {
+    //     position: absolute;
+    //     right: 7.5rem;
+        
+    //     & * {
+    //         font-size: 1.7rem !important;
+    //     }
+
+    //     &--left {
+    //         margin-right: 2rem;
+    //     }
+
+    //     &--right {
+    //         border: $color-white 1px solid !important;
+    //         border-radius: 5px !important;
+
+    //         &:hover {
+    //             background-color: $color-white;
+    //             color: $color-blue-light !important;
+    //         }
+    //     }
+    // }
+}

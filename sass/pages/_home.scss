@@ -1,0 +1,105 @@
+.home__container {
+    height: calc(100vh - #{$navbar-height});
+    // background-color: orangered;
+    
+    &__header {
+        background-color: $color-blue-light-trans;
+        height: 20%;
+    
+    
+        &__content {
+            
+
+            &__text {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+
+                &__header {
+                    font-size: 4.5rem;
+                }
+
+                &__descriptor {
+                    font-size: 2rem;
+                }
+
+            }
+
+            &__img {
+                
+            }
+
+        }
+    }
+
+
+
+    &__notifications {
+        min-height: 20%;
+
+        &__title {
+            font-size: $font-2;
+        }
+
+        &__text {
+            font-size: 1.5rem;
+        }
+
+
+        &__tutors {
+            margin-top: 5rem;
+
+            
+        }
+
+        &__sessions {
+            margin-top: 5rem;
+        }
+    }
+
+
+    &__help-center {
+        margin-top: 5rem;
+        
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            &__text {
+                font-size: $font-2;
+            }
+            & button {
+                font-size: 2rem;
+            }
+        }
+
+        &__table {
+            margin-top: 2rem;
+            font-size: 2rem;
+            background-color: #ffffff;
+            max-height: 60vh;
+
+            display: block;
+            overflow: scroll;
+
+            & tr {
+                height: 10rem;
+            }
+
+            // selects all direct child of tr
+            tr > * {
+                vertical-align: middle !important;
+            }
+            // tr selects all direct children, and then :nth-child means itself is nth child
+            tr > :nth-child(1) {
+                white-space: nowrap;
+            }
+            tr > :nth-child(2) {
+                white-space: nowrap;
+            }
+        }
+    }
+
+
+    
+}

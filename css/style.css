@@ -63,7 +63,6 @@ button {
 .navbar--style {
   background-color: #97d2fb;
   height: 8rem;
-  color: #f7fbfd !important;
   position: relative; }
   .navbar--style * {
     color: #f7fbfd !important;
@@ -86,6 +85,19 @@ button {
       .navbar--style__buttons--right:hover {
         background-color: #f7fbfd;
         color: #97d2fb !important; }
+
+.navbar--style-white {
+  background-color: #f7fbfd;
+  height: 8rem;
+  position: relative; }
+  .navbar--style-white * {
+    color: #97d2fb !important;
+    font-size: 1.5rem;
+    font-weight: 300; }
+  .navbar--style-white__brand {
+    font-weight: 700;
+    font-size: 3.5rem !important;
+    margin-left: 1.5rem; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - 8rem);
@@ -284,3 +296,52 @@ button {
           color: grey; }
       .login-container__content__form__header {
         font-size: 6rem; }
+
+.home__container {
+  height: calc(100vh - 8rem); }
+  .home__container__header {
+    background-color: rgba(151, 210, 251, 0.25);
+    height: 20%; }
+    .home__container__header__content__text {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center; }
+      .home__container__header__content__text__header {
+        font-size: 4.5rem; }
+      .home__container__header__content__text__descriptor {
+        font-size: 2rem; }
+  .home__container__notifications {
+    min-height: 20%; }
+    .home__container__notifications__title {
+      font-size: 3rem; }
+    .home__container__notifications__text {
+      font-size: 1.5rem; }
+    .home__container__notifications__tutors {
+      margin-top: 5rem; }
+    .home__container__notifications__sessions {
+      margin-top: 5rem; }
+  .home__container__help-center {
+    margin-top: 5rem; }
+    .home__container__help-center__header {
+      display: flex;
+      justify-content: space-between; }
+      .home__container__help-center__header__text {
+        font-size: 3rem; }
+      .home__container__help-center__header button {
+        font-size: 2rem; }
+    .home__container__help-center__table {
+      margin-top: 2rem;
+      font-size: 2rem;
+      background-color: #ffffff;
+      max-height: 60vh;
+      display: block;
+      overflow: scroll; }
+      .home__container__help-center__table tr {
+        height: 10rem; }
+      .home__container__help-center__table tr > * {
+        vertical-align: middle !important; }
+      .home__container__help-center__table tr > :nth-child(1) {
+        white-space: nowrap; }
+      .home__container__help-center__table tr > :nth-child(2) {
+        white-space: nowrap; }
