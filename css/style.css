@@ -60,6 +60,15 @@ button {
     button.btn-outline-primary:hover {
       color: #f7fbfd !important; }
 
+.profile-nav {
+  margin-top: 3rem; }
+  .profile-nav a {
+    font-size: 3rem;
+    color: black;
+    margin-right: 7rem; }
+    .profile-nav a.active {
+      border-bottom: 5px solid #2c86c4; }
+
 .navbar--style {
   background-color: #97d2fb;
   height: 8rem;
@@ -334,7 +343,7 @@ button {
       margin-top: 2rem;
       font-size: 2rem;
       background-color: #ffffff;
-      max-height: 60vh;
+      max-height: 50rem;
       display: block;
       overflow: scroll; }
       .home__container__help-center__table tr {
@@ -345,3 +354,89 @@ button {
         white-space: nowrap; }
       .home__container__help-center__table tr > :nth-child(2) {
         white-space: nowrap; }
+
+.about__information {
+  height: 30rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center; }
+  .about__information__img {
+    flex: 0 0 25%; }
+    .about__information__img img {
+      width: 100%;
+      border-radius: 50%;
+      padding: 2rem; }
+  .about__information__content {
+    flex: 0 0 75%; }
+    .about__information__content .descriptor {
+      color: grey;
+      font-size: 1.5rem; }
+    .about__information__content .text {
+      font-size: 2rem; }
+    .about__information__content .name {
+      font-size: 3rem;
+      font-weight: 500; }
+    .about__information__content .major-minor-container {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      line-height: 1; }
+      .about__information__content .major-minor-container span {
+        width: 50%;
+        height: 2rem;
+        background-color: 0; }
+    .about__information__content .graduating-container .descriptor {
+      margin-top: 2rem;
+      display: block; }
+    .about__information__content button {
+      margin-top: 2rem;
+      font-size: 2rem;
+      width: 50%; }
+
+.about__subjects__header,
+.about__courses__header,
+.about__characteristics__header {
+  margin-top: 3.5rem;
+  font-size: 3rem; }
+
+.about__content {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative; }
+  .about__content svg {
+    position: absolute;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+    fill: grey;
+    z-index: 1000; }
+
+.about__input {
+  width: 60%;
+  font-size: 2rem;
+  background-color: #f7fbfd;
+  border: 1px solid grey;
+  padding: .5rem 4rem;
+  outline: none; }
+
+.about__buttons__container {
+  display: flex;
+  flex-wrap: wrap; }
+  .about__buttons__container button {
+    border: 1px solid black;
+    font-size: 2rem;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-top: 10px; }
+    .about__buttons__container button svg {
+      width: 2rem;
+      height: 2rem; }
+    .about__buttons__container button .name {
+      color: black; }
+    .about__buttons__container button:focus {
+      box-shadow: none; }

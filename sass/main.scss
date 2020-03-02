@@ -9,6 +9,8 @@
 
 
 @import "components/button";
+@import "components/profile_nav";
+
 
 @import "layout/navbar";
 
@@ -18,3 +20,4 @@
 @import "pages/forget_password";
 @import "pages/login";
 @import "pages/home";
+@import "pages/profile";
