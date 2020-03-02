@@ -1,0 +1,32 @@
+button {
+
+    color: $color-white !important;
+
+    &.btn-bg {
+        &-blue-light {
+            background-color: $color-blue-light;
+            &:hover {
+                background-color: $color-blue-light !important;
+            }
+        }
+    
+        &-blue-dark {
+            background-color: $color-blue-dark;
+
+            &:hover {
+                background-color: $color-blue-dark !important;
+            }
+        }
+    }
+
+    &.btn-outline-primary {
+        color: $color-blue-dark !important;
+
+        &:hover {
+            color: $color-white !important;
+        }
+    }
+}
+
+
+

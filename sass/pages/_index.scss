@@ -20,21 +20,21 @@
     
             // background-color: orangered;
             width: 100%;
-            font-size: 1rem;
+            
             padding: $_padding;
             
             // select direct children except for the last one
             &>*:not(:last-child) {
-                margin-bottom: 6rem;
+                margin-bottom: $font-1;
             }
     
             &-1 {
-                font-size: 4em;
+                font-size: $font-1;
                 
             }
     
             &-2 {
-                font-size: 2em;
+                font-size: $font-2;
             }
     
             &-3 {
@@ -43,7 +43,7 @@
                 justify-content: space-evenly;
     
                 & button {
-                    font-size: 2em;
+                    font-size: $font-2;
     
                 }
             }

@@ -1,0 +1,72 @@
+.login-container {
+    height: calc(100vh - #{$navbar-height});
+    width: 100%;
+    &__img {
+        position: relative;
+        height: 30%;
+        & svg {
+            // @include absCenter;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+    }
+
+    &__content {
+        // background-color: blue;
+        height: 70%;
+        
+        width: 100%;
+        &__form {
+            margin: 2rem auto;
+            width: 30%;
+            font-size: $font-2;
+
+            & .password {
+                margin-bottom: 0;
+                position: relative;
+                
+            }
+
+            & * {
+                width: 100%;
+                margin-bottom: 3rem;
+            }
+
+            & .login-btn {
+                margin-bottom: 2rem;
+            }
+
+            & input, & button {
+                font-size: $font-2;
+                display: block;
+            }
+            & input {
+                padding: 3px 5px;
+                background-color: $color-white;
+                border: none;
+                border-bottom: 1px solid black;
+                outline: none;
+            }
+            
+            & .forget-password {
+                font-size: calc(#{$font-2} / 2);
+                text-align: right;
+                
+                & a {
+                    color: grey;
+                }
+            }
+    
+            &__header {
+                font-size: $font-1;
+                
+            }
+            
+
+        }
+        
+        
+    }
+}
