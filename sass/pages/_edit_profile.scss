@@ -1,0 +1,61 @@
+.edit-profile__container {
+    & .back-button {
+        margin-top: 2rem;
+        border: 1px solid black;
+        font-size: 2rem;
+        color: black !important;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+
+}
+
+.edit-profile__form {
+    & button {
+        font-size: 2rem;
+    }
+    
+    &__header {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & span {
+            font-size: $font-2;
+        }
+        & button:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-wrap: wrap;
+
+        & * {
+            width: 40%;
+        }
+
+        & input {
+            font-size: 2rem;
+            background-color: $color-white;
+            border: 1px solid grey;
+            padding: .5rem 1rem;
+            outline: none;
+            margin-right: 1.5rem;
+            
+        }
+        & span {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            color: grey;
+            margin-right: 1.5rem;
+        }
+    }
+
+
+}
