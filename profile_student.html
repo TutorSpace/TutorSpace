@@ -38,144 +38,165 @@
 
     <div class="container">
         <nav class="nav profile-nav">
-            <a class="nav-link active" href="#">About You</a>
-            <a class="nav-link" href="#">Sessions</a>
-            <a class="nav-link" href="#">Saved</a>
-            <a class="nav-link" href="#">Reviews</a>
+            <a class="nav-link active" href="#" id="nav-about">About You</a>
+            <a class="nav-link" href="#" id="nav-sessions">Sessions</a>
+            <a class="nav-link" href="#" id="nav-saved">Saved</a>
+            <a class="nav-link" href="#" id="nav-reviews">Reviews</a>
         </nav>
 
-        <div class="about__information">
-            <div class="about__information__img">
-                <img src="assets/mj.jpg" alt="profile_img">
+        <div class="about__container" id="profile-1">
+            <div class="about__information">
+                <div class="about__information__img">
+                    <img src="assets/mj.jpg" alt="profile_img">
+                </div>
+
+                <div class="about__information__content">
+                    <div class="name">Jamie Chang</div>
+                    <div class="major-minor-container">
+                        <span class="descriptor">Major</span>
+                        <span class="descriptor">Minor</span>
+                        <span class="text">B.S. Astronautical Engineering</span>
+                        <span class="text">Web Development and Applications</span>
+                    </div>
+                    <div class="graduating-container">
+                        <span class="descriptor">Graduating</span>
+                        <span class="text">December 2021</span>
+                    </div>
+                    <button class="btn btn-lg btn-primary">Edit Profile</button>
+                </div>
             </div>
 
-            <div class="about__information__content">
-                <div class="name">Jamie Chang</div>
-                <div class="major-minor-container">
-                    <span class="descriptor">Major</span>
-                    <span class="descriptor">Minor</span>
-                    <span class="text">B.S. Astronautical Engineering</span>
-                    <span class="text">Web Development and Applications</span>
+            <div class="row">
+                <div class="col-5">
+                    <div class="about__subjects">
+                        <div class="about__subjects__header">Subjects</div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Subjects" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Calculus</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Math</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Ling</span>
+                        </button>
+                    </div>
+
+                    <div class="about__courses">
+                        <div class="about__courses__header">
+                            Courses
+                        </div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Courses" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">EALC</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">CSCI</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">COMM</span>
+                        </button>
+                    </div>
+
+                    <div class="about__characteristics">
+                        <div class="about__characteristics__header">
+                            Characteristics
+                        </div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Characteristics" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Friendly</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Patient</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Hospital</span>
+                        </button>
+                    </div>
+
                 </div>
-                <div class="graduating-container">
-                    <span class="descriptor">Graduating</span>
-                    <span class="text">December 2021</span>
+                <div class="col-7 reviews">
+
                 </div>
-                <button class="btn btn-lg btn-primary">Edit Profile</button>
+
             </div>
         </div>
-        
-        <div class="row">
-            <div class="col-5">
-                <div class="about__subjects">
-                    <div class="about__subjects__header">Subjects</div>
-                    <div class="about__content">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
-                        </svg>
-                        <input type="text" placeholder="Add Subjects" class="about__input">
-                    </div>
-                </div>
 
-                <div class="about__buttons__container">
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Calculus</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Math</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Ling</span>
-                    </button>
+        <div class="sessions__container">
+            <div class="upcoming-sessions">
+                <div class="upcoming-sessions__header">
+                    Upcoming Tutoring Sessions
                 </div>
-
-                <div class="about__courses">
-                    <div class="about__courses__header">
-                        Courses
-                    </div>
-                    <div class="about__content">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
-                        </svg>
-                        <input type="text" placeholder="Add Courses" class="about__input">
-                    </div>
+                <div class="upcoming-sessions__header--sub">
+                    Remember to start the session timer to confirm that both tutor and student are present. A $5 holding fee will be charged to the student when the timer is started.
                 </div>
-
-                <div class="about__buttons__container">
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">EALC</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">CSCI</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">COMM</span>
-                    </button>
-                </div>
-
-                <div class="about__characteristics">
-                    <div class="about__characteristics__header">
-                        Characteristics
-                    </div>
-                    <div class="about__content">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
-                        </svg>
-                        <input type="text" placeholder="Add Characteristics" class="about__input">
-                    </div>
-                </div>
-
-                <div class="about__buttons__container">
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Friendly</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Patient</span>
-                    </button>
-                    <button class="btn btn-lg">
-                        <svg>
-                            <use xlink:href="assets/sprite.svg#icon-cross"></use>
-                        </svg>
-                        <span class="name">Hospital</span>
-                    </button>
-                </div>
-
             </div>
-            <div class="col-7 reviews">
+        </div>
 
-            </div>
+
+        <div class="saved__container">
 
         </div>
-        
+        <div class="reviews__container">
+
+        </div>
+
 
     </div>
-    
-    
-    
+
+
+
 
 
 
@@ -190,10 +211,10 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-            
+
     <!-- defined javascript -->
     <script src="js/profile.js"></script>
-    
+
 
 </body>
 
