@@ -35,8 +35,35 @@
 
     </nav>
 
-    <div class="container signup-container">
-        
+    <div class="container report-container">
+        <button type="button" class="btn btn-outline-dark">Back to Student Profile</button>
+
+        <h2>Report Student</h2>
+
+        <p class="labels">Name</p>
+        <p class="body-copy">Jamie Chang</p>
+
+        <p class="labels">Reason for Report</p>
+
+        <select id="report-reason">
+       		<option value="select-reason">Select Reason</option>
+			<option value="inappropiate-language">Inappropiate Language</option>
+			<option value="saab">Inappropriate Physical Contact</option>
+			<option value="mercedes">Offensive Comments</option>
+			<option value="audi">Other</option>
+		</select>
+
+		<p class="body-copy">Write Report</p>
+
+		<textarea rows="6" placeholder="Please be as specific as possible as to what is causing you to report this person."></textarea>
+
+
+		<!-- button class should be changed to btn-blue for the dark blue color -->
+		
+		<button type="button" class="btn btn-outline-dark">Cancel</button>
+
+		<button type="button" class="btn btn-dark">Report</button>
+
 
     </div>
 
