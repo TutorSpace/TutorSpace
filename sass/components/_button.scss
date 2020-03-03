@@ -28,5 +28,13 @@ button {
     }
 }
 
+.dark-button {
+    color: black !important;
+    font-size: 2rem !important;
+    &:hover {
+        color: white !important;
+    }
+    
+}
 
 

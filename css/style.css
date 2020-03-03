@@ -60,6 +60,12 @@ button {
     button.btn-outline-primary:hover {
       color: #f7fbfd !important; }
 
+.dark-button {
+  color: black !important;
+  font-size: 2rem !important; }
+  .dark-button:hover {
+    color: white !important; }
+
 .profile-nav {
   margin-top: 3rem; }
   .profile-nav a {
@@ -218,16 +224,16 @@ button {
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
-        font-size: 6rem;
+        font-size: 4rem;
         text-align: center;
         margin-bottom: 2rem; }
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
-        font-size: 3rem;
+        font-size: 2rem;
         margin-bottom: 1rem; }
       .signup-container__box--tutor button, .signup-container__box--student button {
         margin-top: 1.5rem;
         margin-bottom: .5rem;
-        font-size: 3rem !important;
+        font-size: 2rem !important;
         text-align: center; }
 
 .fgpwd-outerbox {
@@ -330,6 +336,35 @@ button {
       margin-top: 5rem; }
     .home__container__notifications__sessions {
       margin-top: 5rem; }
+    .home__container__notifications__session__container {
+      background-color: white;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1rem;
+      box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2); }
+      .home__container__notifications__session__container:not(:first-child) {
+        margin-top: 1.5rem; }
+      .home__container__notifications__session__container .title {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 500; }
+      .home__container__notifications__session__container .text {
+        font-size: 1.5rem; }
+      .home__container__notifications__session__container .descriptor {
+        margin-top: 1rem; }
+      .home__container__notifications__session__container button {
+        margin-top: 1rem; }
+      .home__container__notifications__session__container :not(:first-child) {
+        width: 49%; }
+    .home__container__notifications__calendar {
+      width: 100%;
+      min-height: 30rem;
+      margin-top: 2rem;
+      background-color: orangered;
+      color: white;
+      font-size: 6rem; }
   .home__container__help-center {
     margin-top: 5rem; }
     .home__container__help-center__header {
@@ -354,6 +389,36 @@ button {
         white-space: nowrap; }
       .home__container__help-center__table tr > :nth-child(2) {
         white-space: nowrap; }
+
+.home__tutor-requests {
+  margin-top: 2rem;
+  min-height: 15rem; }
+  .home__tutor-requests__header {
+    font-size: 3rem; }
+  .home__tutor-requests__content {
+    font-size: 1.5rem; }
+
+.tutor-requests-table {
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-color: #ffffff;
+  max-height: 50rem;
+  overflow: scroll; }
+  .tutor-requests-table tr {
+    height: 10rem; }
+  .tutor-requests-table tr > * {
+    vertical-align: middle !important; }
+  .tutor-requests-table tr > :nth-child(1) {
+    white-space: nowrap; }
+  .tutor-requests-table tr > :nth-child(2) {
+    white-space: nowrap; }
+  .tutor-requests-table td > :nth-child(1) {
+    color: grey;
+    font-size: 1.5rem; }
+  .tutor-requests-table td button {
+    font-size: 1.5rem; }
+    .tutor-requests-table td button:not(:last-child) {
+      margin-right: 5px; }
 
 .about__information {
   height: 30rem;
@@ -441,6 +506,25 @@ button {
     .about__buttons__container button:focus {
       box-shadow: none; }
 
+.sessions__container-1 {
+  min-height: 40rem;
+  margin-top: 5rem; }
+
+.sessions__header {
+  font-size: 3rem; }
+  .sessions__header--sub {
+    font-size: 1.5rem; }
+
+.sessions__info {
+  margin-top: 1rem; }
+
+.reviews__container {
+  margin-top: 5rem; }
+  .reviews__container .reviews__header {
+    font-size: 3rem; }
+  .reviews__container .reviews {
+    font-size: 1.5rem; }
+
 .edit-profile__container .back-button {
   margin-top: 2rem;
   border: 1px solid black;
@@ -479,3 +563,40 @@ button {
     margin-top: 1.5rem;
     color: grey;
     margin-right: 1.5rem; }
+
+#back-button {
+  margin-top: 5rem; }
+
+.report-container__header {
+  margin-top: 3rem;
+  font-size: 3rem; }
+
+.report-container .labels {
+  font-size: 1.5rem;
+  color: grey;
+  margin-bottom: 0;
+  margin-top: 3rem; }
+
+.report-container .body-copy {
+  font-size: 2rem; }
+
+.report-container .report-reason__select {
+  flex: 0 0 20rem !important;
+  font-size: 2rem; }
+  .report-container .report-reason__select:focus {
+    box-shadow: none; }
+  .report-container .report-reason__select option {
+    font-size: 3rem; }
+
+.report-buttons {
+  margin-top: 1.5rem;
+  text-align: right; }
+  .report-buttons button {
+    font-size: 2rem; }
+  .report-buttons button:first-child {
+    margin-right: 1rem; }
+
+.report-textarea {
+  font-size: 2rem !important;
+  height: 30rem !important;
+  border-radius: 2rem; }
