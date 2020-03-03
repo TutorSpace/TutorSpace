@@ -330,6 +330,28 @@ button {
       margin-top: 5rem; }
     .home__container__notifications__sessions {
       margin-top: 5rem; }
+    .home__container__notifications__session__container {
+      background-color: white;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 1rem;
+      box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2); }
+      .home__container__notifications__session__container:not(:first-child) {
+        margin-top: 1.5rem; }
+      .home__container__notifications__session__container .title {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 500; }
+      .home__container__notifications__session__container .text {
+        font-size: 1.5rem; }
+      .home__container__notifications__session__container .descriptor {
+        margin-top: 1rem; }
+      .home__container__notifications__session__container button {
+        margin-top: 1rem; }
+      .home__container__notifications__session__container :not(:first-child) {
+        width: 49%; }
     .home__container__notifications__calendar {
       width: 100%;
       min-height: 30rem;
@@ -375,7 +397,6 @@ button {
   font-size: 2rem;
   background-color: #ffffff;
   max-height: 50rem;
-  display: block;
   overflow: scroll; }
   .tutor-requests-table tr {
     height: 10rem; }
@@ -385,6 +406,13 @@ button {
     white-space: nowrap; }
   .tutor-requests-table tr > :nth-child(2) {
     white-space: nowrap; }
+  .tutor-requests-table td > :nth-child(1) {
+    color: grey;
+    font-size: 1.5rem; }
+  .tutor-requests-table td button {
+    font-size: 1.5rem; }
+    .tutor-requests-table td button:not(:last-child) {
+      margin-right: 5px; }
 
 .about__information {
   height: 30rem;
