@@ -7,7 +7,7 @@
 4. [signup page (tutor)](http://www.joinme.us/test_bravo/signup_tutor.html)
 5. [report tutor page](http://www.joinme.us/test_bravo/report_tutor.html)
 6. [profile page (student)](http://www.joinme.us/test_bravo/profile_student.html)
-7. [profile page (tutor)](http://www.joinme.us/test_bravo/profile_tutor.html)
+7. [login (tutor + student)](http://www.joinme.us/test_bravo/login.html)
 8. [edit profile page (student)](http://www.joinme.us/test_bravo/edit_profile_student.html)
 9. [home page (student)](http://www.joinme.us/test_bravo/home_student.html)
 10. [home page (tutor)](http://www.joinme.us/test_bravo/home_tutor.html)

@@ -224,16 +224,16 @@ button {
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
-        font-size: 6rem;
+        font-size: 4rem;
         text-align: center;
         margin-bottom: 2rem; }
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
-        font-size: 3rem;
+        font-size: 2rem;
         margin-bottom: 1rem; }
       .signup-container__box--tutor button, .signup-container__box--student button {
         margin-top: 1.5rem;
         margin-bottom: .5rem;
-        font-size: 3rem !important;
+        font-size: 2rem !important;
         text-align: center; }
 
 .fgpwd-outerbox {
