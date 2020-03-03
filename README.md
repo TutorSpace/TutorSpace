@@ -1,5 +1,20 @@
 # itp460-Bravo
 
+## Created Frontend Pages
+1. [index page](http://www.joinme.us/test_bravo/)
+2. [signup page (tutor + student)](http://www.joinme.us/test_bravo/signup_user.html)
+3. [signup page (student)](http://www.joinme.us/test_bravo/signup_student.html)
+4. [signup page (tutor)](http://www.joinme.us/test_bravo/signup_tutor.html)
+5. [report tutor page](http://www.joinme.us/test_bravo/report_tutor.html)
+6. [profile page (student)](http://www.joinme.us/test_bravo/profile_student.html)
+7. [profile page (tutor)](http://www.joinme.us/test_bravo/profile_tutor.html)
+8. [edit profile page (student)](http://www.joinme.us/test_bravo/edit_profile_student.html)
+9. [home page (student)](http://www.joinme.us/test_bravo/home_student.html)
+10. [home page (tutor)](http://www.joinme.us/test_bravo/home_tutor.html)
+11. [forget password page](http://www.joinme.us/test_bravo/forget_password.html)
+
+
+
 ## Development Steps:
 1. Run "npm install" (if have not already installed NPM, please install it first)
 2. Run "npm run start" and then go to localhost:8001 to see the web pages. (just save the css/scss files and the web page will be updated automatically, np need to refresh the pages)
