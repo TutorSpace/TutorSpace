@@ -1,0 +1,58 @@
+#back-button {
+    margin-top: 5rem;
+}
+
+.report-container {
+    
+    &__header {
+        margin-top: 3rem;
+        font-size: $font-2;
+    }
+
+    & .labels {
+        font-size: 1.5rem;
+        color: grey;
+        margin-bottom: 0;
+        margin-top: 3rem;
+    }
+
+    & .body-copy {
+        font-size: 2rem;
+    }
+
+    .report-reason__select {
+        flex: 0 0 20rem !important;
+        
+        
+        font-size: 2rem;
+        &:focus {
+            // border: black;
+            box-shadow: none;
+        }
+        & option {
+            font-size: $font-2;
+        }
+    }
+    
+}
+
+.report-buttons {
+    margin-top: 1.5rem;
+    text-align: right;
+
+    & button {
+        font-size: 2rem;
+    }
+
+    & button:first-child {
+        margin-right: 1rem;
+    }
+}
+
+.report-textarea {
+    font-size: 2rem !important;
+    height: 30rem !important;
+    border-radius: 2rem;
+}
+
+
