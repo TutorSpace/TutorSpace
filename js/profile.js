@@ -1,4 +1,7 @@
-let showed_id = 0;
+$('.sessions__container').hide();
+$('.saved__container').hide();
+$('.reviews__container').hide();
+
 $('.profile-nav > .nav-link').click(function() {
     for(let i = 0; i < $('.profile-nav').children().length; i++) {
         $('.profile-nav').children().eq(i).removeClass('active');

@@ -330,6 +330,13 @@ button {
       margin-top: 5rem; }
     .home__container__notifications__sessions {
       margin-top: 5rem; }
+    .home__container__notifications__calendar {
+      width: 100%;
+      min-height: 30rem;
+      margin-top: 2rem;
+      background-color: orangered;
+      color: white;
+      font-size: 6rem; }
   .home__container__help-center {
     margin-top: 5rem; }
     .home__container__help-center__header {
@@ -354,6 +361,30 @@ button {
         white-space: nowrap; }
       .home__container__help-center__table tr > :nth-child(2) {
         white-space: nowrap; }
+
+.home__tutor-requests {
+  margin-top: 2rem;
+  min-height: 15rem; }
+  .home__tutor-requests__header {
+    font-size: 3rem; }
+  .home__tutor-requests__content {
+    font-size: 1.5rem; }
+
+.tutor-requests-table {
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-color: #ffffff;
+  max-height: 50rem;
+  display: block;
+  overflow: scroll; }
+  .tutor-requests-table tr {
+    height: 10rem; }
+  .tutor-requests-table tr > * {
+    vertical-align: middle !important; }
+  .tutor-requests-table tr > :nth-child(1) {
+    white-space: nowrap; }
+  .tutor-requests-table tr > :nth-child(2) {
+    white-space: nowrap; }
 
 .about__information {
   height: 30rem;
@@ -440,6 +471,25 @@ button {
       color: black; }
     .about__buttons__container button:focus {
       box-shadow: none; }
+
+.sessions__container-1 {
+  min-height: 40rem;
+  margin-top: 5rem; }
+
+.sessions__header {
+  font-size: 3rem; }
+  .sessions__header--sub {
+    font-size: 1.5rem; }
+
+.sessions__info {
+  margin-top: 1rem; }
+
+.reviews__container {
+  margin-top: 5rem; }
+  .reviews__container .reviews__header {
+    font-size: 3rem; }
+  .reviews__container .reviews {
+    font-size: 1.5rem; }
 
 .edit-profile__container .back-button {
   margin-top: 2rem;

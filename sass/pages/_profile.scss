@@ -130,6 +130,23 @@
 
 
 // ======================= Sessions ================
+.sessions__container-1 {
+    min-height: 40rem;
+    margin-top: 5rem;
+}
+.sessions__header {
+    font-size: $font-2;
+
+    &--sub {
+        font-size: 1.5rem;
+    }
+
+}
+
+.sessions__info {
+    margin-top: 1rem;
+}
+
 
 
 
@@ -149,3 +166,14 @@
 
 
 // ======================== Reviews ===================
+
+.reviews__container {
+    margin-top: 5rem;
+    & .reviews__header {
+        font-size: $font-2;
+    }
+
+    & .reviews {
+        font-size: 1.5rem;
+    }
+}
