@@ -1,0 +1,97 @@
+.reviews-table {
+    margin-top: 2rem;
+    font-size: 2rem;
+    background-color: #ffffff;
+
+    display: block;
+    
+
+    & tr {
+        height: 10rem;
+    }
+
+    // selects all direct child of tr
+    tr > * {
+        vertical-align: middle !important;
+    }
+    // tr selects all direct children, and then :nth-child means itself is nth child
+    // tr > :nth-child(1) {
+    //     white-space: nowrap;
+    // }
+    tr > :nth-child(2) {
+        white-space: nowrap;
+        
+    }
+ 
+    & .time-sent {
+        margin-left: 1.5rem;
+    }
+
+    & .review-content__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & .review-content {
+        max-height: 20rem;
+        overflow: scroll;
+    }
+    
+    .review-star__container {
+        display: flex;
+        
+        justify-content: center;
+        align-items: center;
+        
+        & svg {
+            width: 2rem;
+            height: 2rem;
+            z-index: 1;
+            
+            fill: $color-blue-dark;    
+        }
+        
+        
+    }
+}
+
+.reviews__container__sub {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-star__container__header {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    
+    svg {
+        width: 2rem;
+        height: 2rem;
+        z-index: 1;
+        
+        fill: $color-blue-dark;    
+    }
+    
+    >:first-child {
+        display: flex;
+        align-items: center;
+
+        >:first-child {
+            font-size: 2rem;
+        
+            color: $color-blue-dark;
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+    }
+    
+}
+
+
+
+//  icon-star-outlined
+//  icon-star
