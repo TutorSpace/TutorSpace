@@ -133,6 +133,7 @@
                 padding: 3rem 5rem;
                 z-index: 100;
                 box-shadow: -2px 2px 5px 3px $color-blue-light;
+                font-weight: 400 !important;
 
                 & :nth-child(1) {
                     font-size: 4rem;
@@ -150,6 +151,10 @@
                     margin-bottom: .5rem;
                     font-size: 2rem !important;
                     text-align: center;
+                }
+
+                h5 {
+                    font-weight: 400;
                 }
 
                 

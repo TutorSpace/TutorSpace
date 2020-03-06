@@ -1,18 +1,18 @@
 .navbar--style {
-    background-color: $color-blue-dark-nav !important;
+    background-color: $color-blue-light-trans !important;
     height: $navbar-height;
     position: relative;
 
     
     // select all children element
     & * {
-        color: $color-white !important;
+        color: $color-blue-dark !important;
         font-size: 1.5rem;
         font-weight: 300;
     }
 
     &__brand {
-        font-weight: 700;
+        font-weight: 600;
         font-size: 3.5rem !important;
         margin-left: 1.5rem;
     }
@@ -30,12 +30,12 @@
         }
 
         &--right {
-            border: $color-white 1px solid !important;
+            border: $color-blue-dark 1px solid !important;
             border-radius: 5px !important;
 
             &:hover {
-                background-color: $color-white;
-                color: $color-blue-light !important;
+                background-color: $color-blue-dark;
+                color: $color-white !important;
             }
         }
     }
