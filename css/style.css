@@ -45,7 +45,6 @@ body {
 svg {
   z-index: -100; }
 
-<<<<<<< HEAD
 h1 {
   font-size: 4.8rem !important; }
 
@@ -76,11 +75,10 @@ small {
 .message-preview {
   font-size: 1.2rem;
   color: #9a9a9a; }
-=======
+
 .grey-text {
   color: grey;
   font-size: 1.5rem; }
->>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
 
 button {
   color: #f7fbfd !important;
@@ -113,7 +111,7 @@ button {
 .profile-nav {
   margin-top: 3rem; }
   .profile-nav a {
-    font-size: 3rem;
+    font-size: 2.2rem;
     color: black;
     margin-right: 7rem; }
     .profile-nav a.active {
@@ -358,28 +356,16 @@ button {
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
-<<<<<<< HEAD
-        font-size: 5.5rem;
-        text-align: center;
-        margin-bottom: 2rem; }
-      .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
-        font-size: 2.2rem;
-=======
         font-size: 4rem;
         text-align: center;
         margin-bottom: 2rem; }
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
         font-size: 2rem;
->>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
         margin-bottom: 1rem; }
       .signup-container__box--tutor button, .signup-container__box--student button {
         margin-top: 1.5rem;
         margin-bottom: .5rem;
-<<<<<<< HEAD
-        font-size: 2.2rem !important;
-=======
         font-size: 2rem !important;
->>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
         text-align: center; }
 
 .fgpwd-outerbox {
@@ -456,10 +442,7 @@ button {
         .login-container__content__form .forget-password a {
           color: grey; }
       .login-container__content__form__header {
-<<<<<<< HEAD
         font-size: 5.5rem; }
-=======
-        font-size: 6rem; }
 
 .home__container {
   height: calc(100vh - 8rem); }
@@ -478,7 +461,7 @@ button {
   .home__container__notifications {
     min-height: 20%; }
     .home__container__notifications__title {
-      font-size: 3rem; }
+      font-size: 2.2rem; }
     .home__container__notifications__text {
       font-size: 1.5rem; }
     .home__container__notifications__tutors {
@@ -491,14 +474,14 @@ button {
       margin-top: 2rem;
       background-color: orangered;
       color: white;
-      font-size: 6rem; }
+      font-size: 5.5rem; }
   .home__container__help-center {
     margin-top: 5rem; }
     .home__container__help-center__header {
       display: flex;
       justify-content: space-between; }
       .home__container__help-center__header__text {
-        font-size: 3rem; }
+        font-size: 2.2rem; }
       .home__container__help-center__header button {
         font-size: 2rem; }
     .home__container__help-center__table {
@@ -521,7 +504,7 @@ button {
   margin-top: 2rem;
   min-height: 15rem; }
   .home__tutor-requests__header {
-    font-size: 3rem; }
+    font-size: 2.2rem; }
   .home__tutor-requests__content {
     font-size: 1.5rem; }
 
@@ -566,7 +549,7 @@ button {
     .about__information__content .text {
       font-size: 2rem; }
     .about__information__content .name {
-      font-size: 3rem;
+      font-size: 2.2rem;
       font-weight: 500; }
     .about__information__content .major-minor-container {
       margin-top: 1rem;
@@ -589,7 +572,7 @@ button {
 .about__courses__header,
 .about__characteristics__header {
   margin-top: 3.5rem;
-  font-size: 3rem; }
+  font-size: 2.2rem; }
 
 .about__content {
   display: flex;
@@ -638,7 +621,7 @@ button {
   margin-top: 5rem; }
 
 .sessions__header {
-  font-size: 3rem; }
+  font-size: 2.2rem; }
   .sessions__header--sub {
     font-size: 1.5rem; }
 
@@ -648,7 +631,7 @@ button {
 .reviews__container {
   margin-top: 5rem; }
   .reviews__container .reviews__header {
-    font-size: 3rem; }
+    font-size: 2.2rem; }
   .reviews__container .reviews {
     font-size: 1.5rem; }
 
@@ -657,7 +640,7 @@ button {
 
 .report-container__header {
   margin-top: 3rem;
-  font-size: 3rem; }
+  font-size: 2.2rem; }
 
 .report-container .labels {
   font-size: 1.5rem;
@@ -674,7 +657,7 @@ button {
   .report-container .report-reason__select:focus {
     box-shadow: none; }
   .report-container .report-reason__select option {
-    font-size: 3rem; }
+    font-size: 2.2rem; }
 
 .report-buttons {
   margin-top: 1.5rem;
@@ -706,7 +689,7 @@ button {
   align-items: center;
   justify-content: space-between; }
   .edit-profile__form__header span {
-    font-size: 3rem; }
+    font-size: 2.2rem; }
   .edit-profile__form__header button:not(:last-child) {
     margin-right: 1rem; }
 
@@ -727,4 +710,3 @@ button {
     margin-top: 1.5rem;
     color: grey;
     margin-right: 1.5rem; }
->>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
