@@ -7,3 +7,56 @@ body {
 svg {
     z-index: -100;
 }
+
+// Home page
+$font-1: 5.5rem;
+$font-2: 2.2rem;
+
+// Mostly used in Login and Sign up pages
+h1 {
+	font-size: 4.8rem !important;
+}
+
+// Page or section titles
+h2 {
+	font-size: 4rem !important;
+}
+
+// Profile, popover titles
+h3 {
+	font-size: 3.2rem !important;
+}
+
+// Own profile subnav
+h4 {
+	font-size: 2.6rem !important;
+}
+
+// Subheads, buttons, section info
+h5 {
+	font-size: 2.2rem !important;
+	font-weight: 400 !important;
+}
+
+// Names on Dashboard posts, messages, 
+h6 {
+	font-size: 2rem;
+}
+
+// Labels
+.labels {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: $color-gray;
+}
+
+// Buttons, labels, section info, messages
+small {
+	font-size: 1.6rem !important;
+}
+
+// Message previews
+.message-preview {
+	font-size: 1.2rem;
+	color: $color-gray;
+}

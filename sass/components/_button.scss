@@ -1,10 +1,12 @@
 button {
 
     color: $color-white !important;
+    border-radius: 8px !important;
 
     &.btn-bg {
         &-blue-light {
             background-color: $color-blue-light;
+            // font-size: $font-2;
             &:hover {
                 background-color: $color-blue-light !important;
             }
@@ -12,6 +14,7 @@ button {
     
         &-blue-dark {
             background-color: $color-blue-dark;
+            // font-size: $font-2;
 
             &:hover {
                 background-color: $color-blue-dark !important;
@@ -21,10 +24,20 @@ button {
 
     &.btn-outline-primary {
         color: $color-blue-dark !important;
+        // font-size: $font-2;
+        border-width: 2px;
+        border-color: $color-blue-dark !important;
 
         &:hover {
             color: $color-white !important;
+            background-color: $color-blue-dark !important;
         }
+    }
+
+    &.btn-primary {
+        background-color: $color-blue-dark !important;
+        border-color: $color-blue-dark !important;
+
     }
 }
 
