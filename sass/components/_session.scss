@@ -1,0 +1,52 @@
+.session__container {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 1px 2px 1px 1px rgba($color: grey, $alpha: .2);
+
+    &:not(:first-child) {
+        margin-top: 1.5rem;
+    }
+
+    & .title {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    & .text {
+        font-size: 1.5rem;
+    }
+
+    & .descriptor {
+        margin-top: 1rem;
+    }
+
+    & button {
+        margin-top: 1rem;
+    }
+
+    & :not(:first-child) {
+        width: 49%;
+    }
+    
+}
+
+
+.sessions__info {
+    display: flex;
+    
+    // flex: 0 0 ;
+    flex-wrap: nowrap;
+    overflow: auto;
+    & .session__container {
+        margin-top: 1rem;
+        min-width: 45%;
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}

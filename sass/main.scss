@@ -9,6 +9,10 @@
 
 
 @import "components/button";
+@import "components/profile_nav";
+@import "components/review";
+@import "components/session";
+@import "components/pagination";
 
 @import "layout/navbar";
 
@@ -17,4 +21,7 @@
 @import "pages/signup";
 @import "pages/forget_password";
 @import "pages/login";
+@import "pages/home";
+@import "pages/profile";
 @import "pages/report";
+@import "pages/edit_profile";

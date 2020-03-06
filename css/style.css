@@ -45,6 +45,7 @@ body {
 svg {
   z-index: -100; }
 
+<<<<<<< HEAD
 h1 {
   font-size: 4.8rem !important; }
 
@@ -75,6 +76,11 @@ small {
 .message-preview {
   font-size: 1.2rem;
   color: #9a9a9a; }
+=======
+.grey-text {
+  color: grey;
+  font-size: 1.5rem; }
+>>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
 
 button {
   color: #f7fbfd !important;
@@ -98,10 +104,114 @@ button {
     background-color: #2c86c4 !important;
     border-color: #2c86c4 !important; }
 
+.dark-button {
+  color: black !important;
+  font-size: 2rem !important; }
+  .dark-button:hover {
+    color: white !important; }
+
+.profile-nav {
+  margin-top: 3rem; }
+  .profile-nav a {
+    font-size: 3rem;
+    color: black;
+    margin-right: 7rem; }
+    .profile-nav a.active {
+      border-bottom: 5px solid #2c86c4; }
+
+.reviews-table {
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-color: #ffffff;
+  display: block; }
+  .reviews-table tr {
+    height: 10rem; }
+  .reviews-table tr > * {
+    vertical-align: middle !important; }
+  .reviews-table tr > :nth-child(2) {
+    white-space: nowrap; }
+  .reviews-table .time-sent {
+    margin-left: 1.5rem; }
+  .reviews-table .review-content__container {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .reviews-table .review-content {
+    max-height: 20rem;
+    overflow: scroll; }
+  .reviews-table .review-star__container {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .reviews-table .review-star__container svg {
+      width: 2rem;
+      height: 2rem;
+      z-index: 1;
+      fill: #2c86c4; }
+
+.reviews__container__sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.review-star__container__header {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .review-star__container__header svg {
+    width: 2rem;
+    height: 2rem;
+    z-index: 1;
+    fill: #2c86c4; }
+  .review-star__container__header > :first-child {
+    display: flex;
+    align-items: center; }
+    .review-star__container__header > :first-child > :first-child {
+      font-size: 2rem;
+      color: #2c86c4;
+      margin-bottom: 0;
+      margin-right: 1rem; }
+
+.session__container {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2); }
+  .session__container:not(:first-child) {
+    margin-top: 1.5rem; }
+  .session__container .title {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 500; }
+  .session__container .text {
+    font-size: 1.5rem; }
+  .session__container .descriptor {
+    margin-top: 1rem; }
+  .session__container button {
+    margin-top: 1rem; }
+  .session__container :not(:first-child) {
+    width: 49%; }
+
+.sessions__info {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto; }
+  .sessions__info .session__container {
+    margin-top: 1rem;
+    min-width: 45%; }
+    .sessions__info .session__container:not(:last-child) {
+      margin-right: 1rem; }
+
+._pagination {
+  width: fit-content;
+  margin: 5rem auto; }
+
 .navbar--style {
   background-color: rgba(44, 134, 196, 0.25) !important;
   height: 8rem;
-  color: #f7fbfd !important;
   position: relative; }
   .navbar--style * {
     color: #f7fbfd !important;
@@ -124,6 +234,19 @@ button {
       .navbar--style__buttons--right:hover {
         background-color: #f7fbfd;
         color: #97d2fb !important; }
+
+.navbar--style-white {
+  background-color: #f7fbfd;
+  height: 8rem;
+  position: relative; }
+  .navbar--style-white * {
+    color: #97d2fb !important;
+    font-size: 1.5rem;
+    font-weight: 300; }
+  .navbar--style-white__brand {
+    font-weight: 700;
+    font-size: 3.5rem !important;
+    margin-left: 1.5rem; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - 8rem);
@@ -235,16 +358,28 @@ button {
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
+<<<<<<< HEAD
         font-size: 5.5rem;
         text-align: center;
         margin-bottom: 2rem; }
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
         font-size: 2.2rem;
+=======
+        font-size: 4rem;
+        text-align: center;
+        margin-bottom: 2rem; }
+      .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
+        font-size: 2rem;
+>>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
         margin-bottom: 1rem; }
       .signup-container__box--tutor button, .signup-container__box--student button {
         margin-top: 1.5rem;
         margin-bottom: .5rem;
+<<<<<<< HEAD
         font-size: 2.2rem !important;
+=======
+        font-size: 2rem !important;
+>>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a
         text-align: center; }
 
 .fgpwd-outerbox {
@@ -321,4 +456,275 @@ button {
         .login-container__content__form .forget-password a {
           color: grey; }
       .login-container__content__form__header {
+<<<<<<< HEAD
         font-size: 5.5rem; }
+=======
+        font-size: 6rem; }
+
+.home__container {
+  height: calc(100vh - 8rem); }
+  .home__container__header {
+    background-color: rgba(151, 210, 251, 0.25);
+    height: 20%; }
+    .home__container__header__content__text {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center; }
+      .home__container__header__content__text__header {
+        font-size: 4.5rem; }
+      .home__container__header__content__text__descriptor {
+        font-size: 2rem; }
+  .home__container__notifications {
+    min-height: 20%; }
+    .home__container__notifications__title {
+      font-size: 3rem; }
+    .home__container__notifications__text {
+      font-size: 1.5rem; }
+    .home__container__notifications__tutors {
+      margin-top: 5rem; }
+    .home__container__notifications__sessions {
+      margin-top: 5rem; }
+    .home__container__notifications__calendar {
+      width: 100%;
+      min-height: 30rem;
+      margin-top: 2rem;
+      background-color: orangered;
+      color: white;
+      font-size: 6rem; }
+  .home__container__help-center {
+    margin-top: 5rem; }
+    .home__container__help-center__header {
+      display: flex;
+      justify-content: space-between; }
+      .home__container__help-center__header__text {
+        font-size: 3rem; }
+      .home__container__help-center__header button {
+        font-size: 2rem; }
+    .home__container__help-center__table {
+      margin-top: 2rem;
+      font-size: 2rem;
+      background-color: #ffffff;
+      max-height: 50rem;
+      display: block;
+      overflow: scroll; }
+      .home__container__help-center__table tr {
+        height: 10rem; }
+      .home__container__help-center__table tr > * {
+        vertical-align: middle !important; }
+      .home__container__help-center__table tr > :nth-child(1) {
+        white-space: nowrap; }
+      .home__container__help-center__table tr > :nth-child(2) {
+        white-space: nowrap; }
+
+.home__tutor-requests {
+  margin-top: 2rem;
+  min-height: 15rem; }
+  .home__tutor-requests__header {
+    font-size: 3rem; }
+  .home__tutor-requests__content {
+    font-size: 1.5rem; }
+
+.tutor-requests-table {
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-color: #ffffff;
+  max-height: 50rem;
+  overflow: scroll; }
+  .tutor-requests-table tr {
+    height: 10rem; }
+  .tutor-requests-table tr > * {
+    vertical-align: middle !important; }
+  .tutor-requests-table tr > :nth-child(1) {
+    white-space: nowrap; }
+  .tutor-requests-table tr > :nth-child(2) {
+    white-space: nowrap; }
+  .tutor-requests-table td > :nth-child(1) {
+    color: grey;
+    font-size: 1.5rem; }
+  .tutor-requests-table td button {
+    font-size: 1.5rem; }
+    .tutor-requests-table td button:not(:last-child) {
+      margin-right: 5px; }
+
+.about__information {
+  height: 30rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center; }
+  .about__information__img {
+    flex: 0 0 25%; }
+    .about__information__img img {
+      width: 100%;
+      border-radius: 50%;
+      padding: 2rem; }
+  .about__information__content {
+    flex: 0 0 75%; }
+    .about__information__content .descriptor {
+      color: grey;
+      font-size: 1.5rem; }
+    .about__information__content .text {
+      font-size: 2rem; }
+    .about__information__content .name {
+      font-size: 3rem;
+      font-weight: 500; }
+    .about__information__content .major-minor-container {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      line-height: 1; }
+      .about__information__content .major-minor-container span {
+        width: 50%;
+        height: 2rem;
+        background-color: 0; }
+    .about__information__content .graduating-container .descriptor {
+      margin-top: 2rem;
+      display: block; }
+    .about__information__content button {
+      margin-top: 2rem;
+      font-size: 2rem;
+      width: 50%; }
+
+.about__subjects__header,
+.about__courses__header,
+.about__characteristics__header {
+  margin-top: 3.5rem;
+  font-size: 3rem; }
+
+.about__content {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative; }
+  .about__content svg {
+    position: absolute;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+    fill: grey;
+    z-index: 1000; }
+
+.about__input {
+  width: 60%;
+  font-size: 2rem;
+  background-color: #f7fbfd;
+  border: 1px solid grey;
+  padding: .5rem 4rem;
+  outline: none; }
+
+.about__buttons__container {
+  display: flex;
+  flex-wrap: wrap; }
+  .about__buttons__container button {
+    border: 1px solid black;
+    font-size: 2rem;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    margin-top: 10px; }
+    .about__buttons__container button svg {
+      width: 2rem;
+      height: 2rem; }
+    .about__buttons__container button .name {
+      color: black; }
+    .about__buttons__container button:focus {
+      box-shadow: none; }
+
+.sessions__container-1 {
+  min-height: 40rem;
+  margin-top: 5rem; }
+
+.sessions__header {
+  font-size: 3rem; }
+  .sessions__header--sub {
+    font-size: 1.5rem; }
+
+.sessions__info {
+  margin-top: 1rem; }
+
+.reviews__container {
+  margin-top: 5rem; }
+  .reviews__container .reviews__header {
+    font-size: 3rem; }
+  .reviews__container .reviews {
+    font-size: 1.5rem; }
+
+#back-button {
+  margin-top: 5rem; }
+
+.report-container__header {
+  margin-top: 3rem;
+  font-size: 3rem; }
+
+.report-container .labels {
+  font-size: 1.5rem;
+  color: grey;
+  margin-bottom: 0;
+  margin-top: 3rem; }
+
+.report-container .body-copy {
+  font-size: 2rem; }
+
+.report-container .report-reason__select {
+  flex: 0 0 20rem !important;
+  font-size: 2rem; }
+  .report-container .report-reason__select:focus {
+    box-shadow: none; }
+  .report-container .report-reason__select option {
+    font-size: 3rem; }
+
+.report-buttons {
+  margin-top: 1.5rem;
+  text-align: right; }
+  .report-buttons button {
+    font-size: 2rem; }
+  .report-buttons button:first-child {
+    margin-right: 1rem; }
+
+.report-textarea {
+  font-size: 2rem !important;
+  height: 30rem !important;
+  border-radius: 2rem; }
+
+.edit-profile__container .back-button {
+  margin-top: 2rem;
+  border: 1px solid black;
+  font-size: 2rem;
+  color: black !important; }
+  .edit-profile__container .back-button:focus {
+    box-shadow: none; }
+
+.edit-profile__form button {
+  font-size: 2rem; }
+
+.edit-profile__form__header {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .edit-profile__form__header span {
+    font-size: 3rem; }
+  .edit-profile__form__header button:not(:last-child) {
+    margin-right: 1rem; }
+
+.edit-profile__form__content {
+  display: flex;
+  flex-wrap: wrap; }
+  .edit-profile__form__content * {
+    width: 40%; }
+  .edit-profile__form__content input {
+    font-size: 2rem;
+    background-color: #f7fbfd;
+    border: 1px solid grey;
+    padding: .5rem 1rem;
+    outline: none;
+    margin-right: 1.5rem; }
+  .edit-profile__form__content span {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    color: grey;
+    margin-right: 1.5rem; }
+>>>>>>> 0e1aa4b191ffa039fcf9d127ffd623091ce9aa1a

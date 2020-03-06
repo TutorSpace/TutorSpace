@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <title>Profile - student</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light navbar--style">
+        <a class="navbar-brand navbar--style__brand" href="#">Tutor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul> -->
+        </div>
+        <!-- <div class="navbar--style__buttons">
+            <button class="btn btn-lg navbar--style__buttons--left">Log in</button>
+            <button class="btn btn-lg navbar--style__buttons--right">Sign up</button>
+        </div> -->
+
+    </nav>
+
+    <div class="container">
+        <nav class="nav profile-nav">
+            <a class="nav-link active" href="#" id="nav-about">About You</a>
+            <a class="nav-link" href="#" id="nav-sessions">Sessions</a>
+            <a class="nav-link" href="#" id="nav-saved">Saved</a>
+            <a class="nav-link" href="#" id="nav-reviews">Reviews</a>
+        </nav>
+
+        <div class="about__container">
+            <div class="about__information">
+                <div class="about__information__img">
+                    <img src="assets/mj.jpg" alt="profile_img">
+                </div>
+
+                <div class="about__information__content">
+                    <div class="name">Jamie Chang</div>
+                    <div class="major-minor-container">
+                        <span class="descriptor">Major</span>
+                        <span class="descriptor">Minor</span>
+                        <span class="text">B.S. Astronautical Engineering</span>
+                        <span class="text">Web Development and Applications</span>
+                    </div>
+                    <div class="graduating-container">
+                        <span class="descriptor">Graduating</span>
+                        <span class="text">December 2021</span>
+                    </div>
+                    <button class="btn btn-lg btn-primary">Edit Profile</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="about__subjects">
+                        <div class="about__subjects__header">Subjects</div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Subjects" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Calculus</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Math</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Ling</span>
+                        </button>
+                    </div>
+
+                    <div class="about__courses">
+                        <div class="about__courses__header">
+                            Courses
+                        </div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Courses" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">EALC</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">CSCI</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">COMM</span>
+                        </button>
+                    </div>
+
+                    <div class="about__characteristics">
+                        <div class="about__characteristics__header">
+                            Characteristics
+                        </div>
+                        <div class="about__content">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                            </svg>
+                            <input type="text" placeholder="Add Characteristics" class="about__input">
+                        </div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Friendly</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Patient</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Hospital</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-7 reviews">
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="sessions__container">
+            <div class="sessions__container-1">
+                <div class="sessions__header">
+                    Upcoming Tutoring Sessions
+                </div>
+                <div class="sessions__header--sub">
+                    Remember to start the session timer to confirm that both tutor and student are present. A $5 holding
+                    fee will be charged to the student when the timer is started.
+                </div>
+                <div class="sessions__info">
+                    <div class="sessions__info">
+                        <div class="session__container">
+                            <span class="title">Jamie Chang</span>
+                            <span class="descriptor">Date</span>
+                            <span class="descriptor">Course</span>
+                            <span class="text">02/20/2020</span>
+                            <span class="text">ITP 104</span>
+                            <span class="descriptor">Time</span>
+                            <span class="descriptor">Hourly Rate</span>
+                            <span class="text">5 - 6pm</span>
+                            <span class="text">$16 / hr</span>
+                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                            <button class="btn btn-lg btn-primary">View Session</button>
+                        </div>
+                        <div class="session__container">
+                            <span class="title">Jamie Chang</span>
+                            <span class="descriptor">Date</span>
+                            <span class="descriptor">Course</span>
+                            <span class="text">02/20/2020</span>
+                            <span class="text">ITP 104</span>
+                            <span class="descriptor">Time</span>
+                            <span class="descriptor">Hourly Rate</span>
+                            <span class="text">5 - 6pm</span>
+                            <span class="text">$16 / hr</span>
+                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                            <button class="btn btn-lg btn-primary">View Session</button>
+                        </div>
+                        <div class="session__container">
+                            <span class="title">Jamie Chang</span>
+                            <span class="descriptor">Date</span>
+                            <span class="descriptor">Course</span>
+                            <span class="text">02/20/2020</span>
+                            <span class="text">ITP 104</span>
+                            <span class="descriptor">Time</span>
+                            <span class="descriptor">Hourly Rate</span>
+                            <span class="text">5 - 6pm</span>
+                            <span class="text">$16 / hr</span>
+                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                            <button class="btn btn-lg btn-primary">View Session</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sessions__container-2">
+                <div class="sessions__header">
+                    Upcoming Tutoring Sessions
+                </div>
+                <div class="sessions__header--sub">
+                    Remember to start the session timer to confirm that both tutor and student are present. A $5 holding
+                    fee will be charged to the student when the timer is started.
+                </div>
+                <div class="sessions__info">
+                    <div class="session__container">
+                        <span class="title">Jamie Chang</span>
+                        <span class="descriptor">Date</span>
+                        <span class="descriptor">Course</span>
+                        <span class="text">02/20/2020</span>
+                        <span class="text">ITP 104</span>
+                        <span class="descriptor">Time</span>
+                        <span class="descriptor">Hourly Rate</span>
+                        <span class="text">5 - 6pm</span>
+                        <span class="text">$16 / hr</span>
+                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                        <button class="btn btn-lg btn-primary">View Session</button>
+                    </div>
+                    <div class="session__container">
+                        <span class="title">Jamie Chang</span>
+                        <span class="descriptor">Date</span>
+                        <span class="descriptor">Course</span>
+                        <span class="text">02/20/2020</span>
+                        <span class="text">ITP 104</span>
+                        <span class="descriptor">Time</span>
+                        <span class="descriptor">Hourly Rate</span>
+                        <span class="text">5 - 6pm</span>
+                        <span class="text">$16 / hr</span>
+                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                        <button class="btn btn-lg btn-primary">View Session</button>
+                    </div>
+                    <div class="session__container">
+                        <span class="title">Jamie Chang</span>
+                        <span class="descriptor">Date</span>
+                        <span class="descriptor">Course</span>
+                        <span class="text">02/20/2020</span>
+                        <span class="text">ITP 104</span>
+                        <span class="descriptor">Time</span>
+                        <span class="descriptor">Hourly Rate</span>
+                        <span class="text">5 - 6pm</span>
+                        <span class="text">$16 / hr</span>
+                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                        <button class="btn btn-lg btn-primary">View Session</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="saved__container">
+
+        </div>
+
+
+        <div class="reviews__container">
+            <div class="reviews__container__sub">
+                <div class="reviews__header">
+                    Reviews You Wrote
+                </div>
+
+                <div class="review-star__container__header">
+                    <div>
+                        <p>12</p>
+                        <svg>
+                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                        </svg>
+                        <svg>
+                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                        </svg>
+                        <svg>
+                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                        </svg>
+                        <svg>
+                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                        </svg>
+                        <svg>
+                            <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-right grey-text">102 Reviews</p>
+
+            <div class="reviews">
+                <table class="table table-hover reviews-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Sophia Park </th>
+                            <td>
+                                <div class="grey-text">Session Subject(s)</div>
+                                <div>ITP 104</div>
+                            </td>
+                            <td class="review-content__container">
+                                <p class="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequatt, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequatt, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequatt<span class="grey-text time-sent">14
+                                        days ago</span></p>
+
+                            </td>
+                            <td>
+                                <div class="review-star__container">
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                    </svg>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover reviews-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Sophia Park </th>
+                            <td>
+                                <div class="grey-text">Session Subject(s)</div>
+                                <div>ITP 104</div>
+                            </td>
+                            <td class="review-content__container">
+                                <p class="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequatt, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequatt, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                    laboris nisi ut aliquip ex ea commodo consequatt<span class="grey-text time-sent">14
+                                        days ago</span></p>
+
+                            </td>
+                            <td>
+                                <div class="review-star__container">
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                    </svg>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover reviews-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Sophia Park </th>
+                            <td>
+                                <div class="grey-text">Session Subject(s)</div>
+                                <div>ITP 104</div>
+                            </td>
+                            <td class="review-content__container">
+                                <p class="review-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequatrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequatt<span class="grey-text time-sent">14 days ago</span></p>
+
+                            </td>
+                            <td>
+                                <div class="review-star__container">
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                    </svg>
+                                    <svg>
+                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                    </svg>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <nav aria-label="..." class="_pagination">
+                <ul class="pagination pagination-lg">
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active">
+                        <span class="page-link">
+                            2
+                            <span class="sr-only">(current)</span>
+                        </span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Bootstrap required (jQuery, Popper.js, Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+
+    <!-- defined javascript -->
+    <script src="js/profile.js"></script>
+
+
+</body>
+
+</html>
