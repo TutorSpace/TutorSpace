@@ -59,14 +59,14 @@ h4 {
 
 h5 {
   font-size: 2.2rem !important;
-  font-weight: 400 !important; }
+  font-weight: 400; }
 
 h6 {
   font-size: 2rem; }
 
 .labels {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 600;
   color: #9a9a9a; }
 
 small {
@@ -82,7 +82,10 @@ small {
 
 button {
   color: #f7fbfd !important;
-  border-radius: 8px !important; }
+  border-radius: 8px !important;
+  font-size: 2.2rem; }
+  button.button--small {
+    font-size: 1.6rem !important; }
   button.btn-bg-blue-light {
     background-color: #97d2fb; }
     button.btn-bg-blue-light:hover {
@@ -208,15 +211,15 @@ button {
   margin: 5rem auto; }
 
 .navbar--style {
-  background-color: rgba(44, 134, 196, 0.25) !important;
+  background-color: rgba(151, 210, 251, 0.25) !important;
   height: 8rem;
   position: relative; }
   .navbar--style * {
-    color: #f7fbfd !important;
+    color: #2c86c4 !important;
     font-size: 1.5rem;
     font-weight: 300; }
   .navbar--style__brand {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 3.5rem !important;
     margin-left: 1.5rem; }
   .navbar--style__buttons {
@@ -227,11 +230,11 @@ button {
     .navbar--style__buttons--left {
       margin-right: 2rem; }
     .navbar--style__buttons--right {
-      border: #f7fbfd 1px solid !important;
+      border: #2c86c4 1px solid !important;
       border-radius: 5px !important; }
       .navbar--style__buttons--right:hover {
-        background-color: #f7fbfd;
-        color: #97d2fb !important; }
+        background-color: #2c86c4;
+        color: #f7fbfd !important; }
 
 .navbar--style-white {
   background-color: #f7fbfd;
@@ -354,7 +357,8 @@ button {
       border: 1px solid black;
       padding: 3rem 5rem;
       z-index: 100;
-      box-shadow: -2px 2px 5px 3px #97d2fb; }
+      box-shadow: -2px 2px 5px 3px #97d2fb;
+      font-weight: 400 !important; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
         font-size: 4rem;
         text-align: center;
@@ -367,6 +371,8 @@ button {
         margin-bottom: .5rem;
         font-size: 2rem !important;
         text-align: center; }
+      .signup-container__box--tutor h5, .signup-container__box--student h5 {
+        font-weight: 400; }
 
 .fgpwd-outerbox {
   height: calc(100vh - 8rem);
@@ -448,7 +454,7 @@ button {
   height: calc(100vh - 8rem); }
   .home__container__header {
     background-color: rgba(151, 210, 251, 0.25);
-    height: 20%; }
+    height: 50%; }
     .home__container__header__content__text {
       display: flex;
       flex-direction: column;
@@ -461,7 +467,8 @@ button {
   .home__container__notifications {
     min-height: 20%; }
     .home__container__notifications__title {
-      font-size: 2.2rem; }
+      font-size: 2.2rem;
+      font-weight: 600; }
     .home__container__notifications__text {
       font-size: 1.5rem; }
     .home__container__notifications__tutors {
@@ -680,33 +687,37 @@ button {
   .edit-profile__container .back-button:focus {
     box-shadow: none; }
 
-.edit-profile__form button {
-  font-size: 2rem; }
-
-.edit-profile__form__header {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; }
-  .edit-profile__form__header span {
-    font-size: 2.2rem; }
-  .edit-profile__form__header button:not(:last-child) {
-    margin-right: 1rem; }
-
-.edit-profile__form__content {
-  display: flex;
-  flex-wrap: wrap; }
-  .edit-profile__form__content * {
-    width: 40%; }
-  .edit-profile__form__content input {
-    font-size: 2rem;
-    background-color: #f7fbfd;
-    border: 1px solid grey;
-    padding: .5rem 1rem;
-    outline: none;
-    margin-right: 1.5rem; }
-  .edit-profile__form__content span {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
-    color: grey;
-    margin-right: 1.5rem; }
+.edit-profile__form {
+  margin-bottom: 10rem; }
+  .edit-profile__form button {
+    font-size: 2rem; }
+  .edit-profile__form__header {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .edit-profile__form__header span {
+      font-size: 2.2rem; }
+    .edit-profile__form__header button:not(:last-child) {
+      margin-right: 1rem; }
+  .edit-profile__form__content {
+    display: flex;
+    flex-wrap: wrap; }
+    .edit-profile__form__content * {
+      width: 40%; }
+    .edit-profile__form__content input {
+      font-size: 2rem;
+      background-color: #f7fbfd;
+      border: 1px solid #9a9a9a;
+      padding: .5rem 1rem;
+      outline: none;
+      margin-right: 1.5rem;
+      border-radius: 8px; }
+    .edit-profile__form__content input::-webkit-input-placeholder {
+      color: #9a9a9a; }
+    .edit-profile__form__content span {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      color: #9a9a9a;
+      margin-right: 1.5rem;
+      margin-bottom: 4px; }

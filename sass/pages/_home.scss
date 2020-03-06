@@ -3,7 +3,7 @@
     
     &__header {
         background-color: $color-blue-light-trans;
-        height: 20%;
+        height: 50%;
     
     
         &__content {
@@ -39,6 +39,7 @@
 
         &__title {
             font-size: $font-2;
+            font-weight: 600;
         }
 
         &__text {

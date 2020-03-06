@@ -14,6 +14,8 @@
 }
 
 .edit-profile__form {
+    margin-bottom: 10rem;
+
     & button {
         font-size: 2rem;
     }
@@ -43,17 +45,24 @@
         & input {
             font-size: 2rem;
             background-color: $color-white;
-            border: 1px solid grey;
+            border: 1px solid $color-gray;
             padding: .5rem 1rem;
             outline: none;
             margin-right: 1.5rem;
+            border-radius: 8px;
             
         }
+
+        & input::-webkit-input-placeholder {
+            color: $color-gray;
+        }
+
         & span {
             font-size: 1.5rem;
             margin-top: 1.5rem;
-            color: grey;
+            color: $color-gray;
             margin-right: 1.5rem;
+            margin-bottom: 4px;
         }
     }
 
