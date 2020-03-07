@@ -210,6 +210,17 @@ button {
   width: fit-content;
   margin: 5rem auto; }
 
+.search-card-container {
+  margin-top: 2rem; }
+  .search-card-container .search-card-flex-container .search-card {
+    text-align: center;
+    padding: 1rem;
+    background-color: white;
+    margin-top: 2rem; }
+    .search-card-container .search-card-flex-container .search-card img {
+      width: 10rem;
+      border-radius: 50%; }
+
 .navbar--style {
   background-color: rgba(151, 210, 251, 0.25) !important;
   height: 8rem;
@@ -721,3 +732,39 @@ button {
       color: #9a9a9a;
       margin-right: 1.5rem;
       margin-bottom: 4px; }
+
+.search-container {
+  margin-top: 3rem; }
+  .search-container .search__box {
+    margin-top: 2rem;
+    border: 1px solid #9a9a9a;
+    font-size: 3.2rem;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    width: 75%; }
+    .search-container .search__box svg {
+      width: 3.2rem;
+      height: 3.2rem;
+      fill: #9a9a9a;
+      margin-left: 1rem;
+      margin-right: 1rem; }
+    .search-container .search__box input {
+      border: none;
+      outline: none;
+      background-color: inherit;
+      padding: 5px 0; }
+  .search-container .labels {
+    font-size: 2rem;
+    margin-top: 2rem; }
+  .search-container .filter-container {
+    display: inline-flex;
+    border: 1px solid black;
+    margin-right: 1rem;
+    margin-top: 1rem; }
+    .search-container .filter-container h5 {
+      display: flex;
+      align-items: center;
+      padding: 1rem 3rem;
+      vertical-align: middle;
+      margin: 0; }

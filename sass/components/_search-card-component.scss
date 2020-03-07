@@ -1,0 +1,29 @@
+.search-card-container {
+    margin-top: 2rem;
+    // display: flex;
+
+    // & > * {
+    //     flex: 0 0 25%;
+    // }
+
+
+    .search-card-flex-container {
+        
+
+        .search-card {
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            margin-top: 2rem;
+            @include boxShadow;
+
+            img {
+                width: 10rem;
+                border-radius: 50%;
+            }
+        }
+
+        
+
+    }
+}
