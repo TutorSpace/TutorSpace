@@ -86,7 +86,8 @@ button {
   font-size: 2.2rem;
   font-weight: 400; }
   button.button--small {
-    font-size: 1.6rem !important; }
+    font-size: 1.6rem !important;
+    white-space: nowrap; }
   button.btn-bg-blue-light {
     background-color: #97d2fb; }
     button.btn-bg-blue-light:hover {
@@ -270,10 +271,10 @@ button {
     font-size: 2.2rem; }
   .index-left-container__box-3 {
     width: 100%;
-    display: flex;
-    justify-content: space-evenly; }
+    display: flex; }
     .index-left-container__box-3 button {
-      font-size: 2.2rem; }
+      font-size: 2.2rem;
+      margin-right: 16px; }
 
 .index-right-container__img {
   width: 100%;
@@ -498,6 +499,9 @@ button {
       font-size: 2rem;
       background-color: #ffffff;
       max-height: 50rem;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
       display: block;
       overflow: scroll; }
       .home__container__help-center__table tr {

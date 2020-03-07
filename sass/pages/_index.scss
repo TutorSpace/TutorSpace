@@ -40,10 +40,10 @@
             &-3 {
                 width: 100%;
                 display: flex;
-                justify-content: space-evenly;
     
                 & button {
                     font-size: $font-2;
+                    margin-right: 16px;
     
                 }
             }

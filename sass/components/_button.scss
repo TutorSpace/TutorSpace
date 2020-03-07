@@ -7,6 +7,7 @@ button {
 
   &.button--small {
         font-size: $font-3 !important;
+        white-space: nowrap;
     }
 
     &.btn-bg {

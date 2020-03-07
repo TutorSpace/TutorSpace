@@ -129,6 +129,9 @@
             font-size: 2rem;
             background-color: #ffffff;
             max-height: 50rem;
+            padding: 2rem;
+            border-radius: 2rem;
+            @include boxShadow;
 
             display: block;
             overflow: scroll;
