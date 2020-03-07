@@ -94,7 +94,7 @@ h4 {
 /* line 37, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h5 {
   font-size: 2.2rem !important;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 /* line 43, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
@@ -131,59 +131,60 @@ button {
   color: #f7fbfd !important;
   border-radius: 8px !important;
   font-size: 2.2rem;
+  font-weight: 400;
 }
 
-/* line 7, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 8, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.button--small {
   font-size: 1.6rem !important;
 }
 
-/* line 12, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 13, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-bg-blue-light {
   background-color: #97d2fb;
 }
 
-/* line 15, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 16, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-bg-blue-light:hover {
   background-color: #97d2fb !important;
 }
 
-/* line 20, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 21, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-bg-blue-dark {
   background-color: #2c86c4;
 }
 
-/* line 23, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 24, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-bg-blue-dark:hover {
   background-color: #2c86c4 !important;
 }
 
-/* line 29, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 30, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-outline-primary {
   color: #2c86c4 !important;
   border-width: 2px;
   border-color: #2c86c4 !important;
 }
 
-/* line 34, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 35, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-outline-primary:hover {
   color: #f7fbfd !important;
   background-color: #2c86c4 !important;
 }
 
-/* line 40, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 41, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 button.btn-primary {
   background-color: #2c86c4 !important;
   border-color: #2c86c4 !important;
 }
 
-/* line 47, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 48, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 .dark-button {
   color: black !important;
   font-size: 2rem !important;
 }
 
-/* line 50, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
+/* line 51, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_button.scss */
 .dark-button:hover {
   color: white !important;
 }
