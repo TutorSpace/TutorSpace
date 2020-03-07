@@ -386,11 +386,12 @@ button {
   width: 50%; }
   .fgpwd-container__header {
     font-size: 5.5rem; }
-  .fgpwd-container__header-2 {
-    font-size: 2.2rem; }
+  h5 .fgpwd-container__header-2 {
+    font-size: 2.2rem;
+    font-weight: 400 !important; }
   .fgpwd-container__inputs {
     width: 100%;
-    margin: 5rem 0 15rem 0;
+    margin: 5rem 0 5rem 0;
     text-align: center; }
     .fgpwd-container__inputs__email {
       width: 75%;
