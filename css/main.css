@@ -305,56 +305,52 @@ button.btn-primary {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1rem;
-  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
+  padding: 2.2rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* line 10, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 11, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container:not(:first-child) {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
-/* line 14, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 15, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container .title {
   width: 100%;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
-/* line 20, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 21, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container .text {
   font-size: 1.5rem;
 }
 
-/* line 24, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
-.session__container .descriptor {
-  margin-top: 1rem;
-}
-
-/* line 28, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 25, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container button {
   margin-top: 1rem;
 }
 
-/* line 32, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 29, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container :not(:first-child) {
   width: 49%;
 }
 
-/* line 39, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 36, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .sessions__info {
   display: flex;
   flex-wrap: nowrap;
   overflow: auto;
 }
 
-/* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 42, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .sessions__info .session__container {
   margin-top: 1rem;
   min-width: 45%;
 }
 
-/* line 48, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
+/* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .sessions__info .session__container:not(:last-child) {
   margin-right: 1rem;
 }
@@ -819,7 +815,7 @@ button.btn-primary {
 /* line 40, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__notifications__title {
   font-size: 2.2rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
@@ -941,12 +937,6 @@ button.btn-primary {
 /* line 193, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table tr > :nth-child(2) {
   white-space: nowrap;
-}
-
-/* line 197, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
-.tutor-requests-table td > :nth-child(1) {
-  color: grey;
-  font-size: 1.5rem;
 }
 
 /* line 203, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */

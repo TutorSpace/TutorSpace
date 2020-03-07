@@ -180,18 +180,17 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1rem;
-  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2); }
+  padding: 2.2rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08); }
   .session__container:not(:first-child) {
-    margin-top: 1.5rem; }
+    margin-top: 2rem; }
   .session__container .title {
     width: 100%;
     font-size: 1.5rem;
     font-weight: 500; }
   .session__container .text {
     font-size: 1.5rem; }
-  .session__container .descriptor {
-    margin-top: 1rem; }
   .session__container button {
     margin-top: 1rem; }
   .session__container :not(:first-child) {
@@ -469,7 +468,7 @@ button {
     min-height: 20%; }
     .home__container__notifications__title {
       font-size: 2.2rem;
-      font-weight: 600; }
+      font-weight: 500; }
     .home__container__notifications__text {
       font-size: 1.5rem; }
     .home__container__notifications__tutors {
@@ -530,9 +529,6 @@ button {
     white-space: nowrap; }
   .tutor-requests-table tr > :nth-child(2) {
     white-space: nowrap; }
-  .tutor-requests-table td > :nth-child(1) {
-    color: grey;
-    font-size: 1.5rem; }
   .tutor-requests-table td button {
     font-size: 1.5rem; }
     .tutor-requests-table td button:not(:last-child) {

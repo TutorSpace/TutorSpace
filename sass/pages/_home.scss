@@ -39,7 +39,7 @@
 
         &__title {
             font-size: $font-2;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         &__text {
@@ -194,10 +194,10 @@
         white-space: nowrap;
     }
 
-    td > :nth-child(1) {
-        color: grey;
-        font-size: 1.5rem;
-    }
+    // td > :nth-child(1) {
+    //     color: grey;
+    //     font-size: 1.5rem;
+    // }
 
     
     & td button {
