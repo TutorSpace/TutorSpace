@@ -1248,7 +1248,7 @@ button.btn-primary {
 
 /* line 41, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_edit_profile.scss */
 .edit-profile__form__content * {
-  width: 40%;
+  width: 46%;
 }
 
 /* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_edit_profile.scss */
@@ -1274,6 +1274,17 @@ button.btn-primary {
   color: #9a9a9a;
   margin-right: 1.5rem;
   margin-bottom: 4px;
+}
+
+/* line 68, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_edit_profile.scss */
+.edit-profile__form__bank {
+  background-color: white;
+  border-radius: 17px;
+  padding: 3rem;
+  padding-top: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+  width: 50%;
 }
 
 /*# sourceMappingURL=../css/main.map */

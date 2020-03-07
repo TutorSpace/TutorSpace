@@ -14,6 +14,9 @@
     transform: translate(-50%, -50%);
 }
 
+@mixin boxShadow {
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+}
 // MEDIA QUERY MANAGER
 /*
 0 - 600px: phone

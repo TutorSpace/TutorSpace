@@ -59,7 +59,7 @@ h4 {
 
 h5 {
   font-size: 2.2rem !important;
-  font-weight: 400; }
+  font-weight: 400 !important; }
 
 h6 {
   font-size: 2rem; }
@@ -83,7 +83,8 @@ small {
 button {
   color: #f7fbfd !important;
   border-radius: 8px !important;
-  font-size: 2.2rem; }
+  font-size: 2.2rem;
+  font-weight: 400; }
   button.button--small {
     font-size: 1.6rem !important; }
   button.btn-bg-blue-light {
@@ -704,7 +705,7 @@ button {
     display: flex;
     flex-wrap: wrap; }
     .edit-profile__form__content * {
-      width: 40%; }
+      width: 46%; }
     .edit-profile__form__content input {
       font-size: 2rem;
       background-color: #f7fbfd;
@@ -721,3 +722,11 @@ button {
       color: #9a9a9a;
       margin-right: 1.5rem;
       margin-bottom: 4px; }
+  .edit-profile__form__bank {
+    background-color: white;
+    border-radius: 17px;
+    padding: 3rem;
+    padding-top: 1.2rem;
+    margin-top: 1rem;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    width: 50%; }
