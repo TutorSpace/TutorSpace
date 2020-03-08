@@ -1,0 +1,71 @@
+.search-card-container {
+    margin-top: 2rem;
+
+
+    .search-card-flex-container {
+        
+
+        .search-card {
+            position: relative;
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            margin-top: 2rem;
+            // @include boxShadow;
+
+            $font-size: 1.5rem;
+        
+            font-size: $font-size;
+
+
+            .bookmark {
+                position: absolute;
+                width: calc(2 * #{$font-size});
+                height: calc(2 * #{$font-size});
+                z-index: inherit;
+                right: 1rem;
+                top: 1rem;
+                fill: $color-gray;
+
+                &-marked {
+                    // fill: none;
+                    // stroke: black;
+                    // stroke-width: 2;
+                    fill: $color-bookmark;
+                    
+                }
+            }
+
+            img {
+                width: 10rem;
+                border-radius: 50%;
+            }
+
+            .star-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 0;
+                position: relative;
+                height: 2rem;
+
+                .star {
+                    width: $font-size;
+                    position: relative;
+                    z-index: inherit;
+                    margin-left: 3px;
+
+                    position: relative;
+                    height: 110%;
+                }
+            }
+            
+
+        }
+
+        
+
+        
+
+    }
+}
