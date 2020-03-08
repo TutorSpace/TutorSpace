@@ -3,7 +3,7 @@
     
     &__header {
         background-color: $color-blue-light-trans;
-        height: 50%;
+        height: 30rem;
     
     
         &__content {
@@ -40,6 +40,10 @@
         &__title {
             font-size: $font-2;
             font-weight: 600;
+            margin-top: 2rem;
+            span {
+                font-weight: 700;
+            }
         }
 
         &__text {
@@ -47,54 +51,57 @@
         }
 
 
-        &__tutors {
+        &__tutors, &__students {
             margin-top: 5rem;
-
-            
         }
 
         &__sessions {
             margin-top: 5rem;
-
-
         }
 
-        // &__session__container {
-        //     background-color: white;
-        //     width: 100%;
-        //     display: flex;
-        //     flex-wrap: wrap;
-        //     justify-content: space-between;
-        //     padding: 1rem;
-        //     box-shadow: 1px 2px 1px 1px rgba($color: grey, $alpha: .2);
-
-        //     &:not(:first-child) {
-        //         margin-top: 1.5rem;
-        //     }
-
-        //     & .title {
-        //         width: 100%;
-        //         font-size: 1.5rem;
-        //         font-weight: 500;
-        //     }
-
-        //     & .text {
-        //         font-size: 1.5rem;
-        //     }
-
-        //     & .descriptor {
-        //         margin-top: 1rem;
-        //     }
-
-        //     & button {
-        //         margin-top: 1rem;
-        //     }
-
-        //     & :not(:first-child) {
-        //         width: 49%;
-        //     }
+        .recommended__tutors {
             
-        // }
+            font-size: 2rem;
+            background-color: #ffffff;
+            
+            
+            overflow: scroll;
+
+            tr {
+                display: flex;
+                
+                * {
+                    border: none;
+                }
+
+                & > :first-child {
+                    
+                    display: flex;
+                    align-items: center;
+                }
+                & > :nth-child(2) {
+                    flex: 1;
+
+                    > :first-child {
+                        color: $color-gray;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .bookmark {
+                fill: $color-gray;
+                width: 2rem;
+                height: 2rem;
+                &-marked {
+                    // fill: none;
+                    // stroke: black;
+                    // stroke-width: 2;
+                    fill: $color-bookmark;
+                    
+                }
+            }
+        }
 
         // for tutor only
         &__calendar {
@@ -116,8 +123,11 @@
         &__header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
+
             &__text {
                 font-size: $font-2;
+                margin: 0;
             }
             & button {
                 font-size: 2rem;
@@ -144,8 +154,24 @@
             // tr selects all direct children, and then :nth-child means itself is nth child
             tr > :nth-child(1) {
                 white-space: nowrap;
+                text-align: center;
+                
             }
             tr > :nth-child(2) {
+                text-align: center;
+
+                p {
+                    margin-bottom: 0;
+                    font-size: 1rem;
+                    color: $color-gray;
+                }
+
+                span {
+                    white-space: nowrap;
+                }
+            }
+
+            button {
                 white-space: nowrap;
             }
         }
@@ -163,6 +189,8 @@
 
     &__header {
         font-size: $font-2;
+        
+       
     }
     &__content {
         font-size: 1.5rem;
@@ -185,6 +213,7 @@
     // selects all direct child of tr
     tr > * {
         vertical-align: middle !important;
+        border: none !important;
     }
     // tr selects all direct children, and then :nth-child means itself is nth child
     tr > :nth-child(1) {
@@ -202,8 +231,19 @@
     
     & td button {
         font-size: 1.5rem;
+
         &:not(:last-child) {
             margin-right: 5px;
         }
+    }
+}
+
+table {
+    img {
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 5px;
     }
 }

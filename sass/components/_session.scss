@@ -30,7 +30,7 @@
     }
 
     & :not(:first-child) {
-        width: 49%;
+        flex: 0 0 49%;
     }
     
 }

@@ -194,7 +194,7 @@ button {
   .session__container button {
     margin-top: 1rem; }
   .session__container :not(:first-child) {
-    width: 49%; }
+    flex: 0 0 49%; }
 
 .sessions__info {
   display: flex;
@@ -246,6 +246,43 @@ button {
         margin-left: 3px;
         position: relative;
         height: 110%; }
+
+.tutor-container {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
+  margin-top: 1.5rem; }
+  .tutor-container .img-container {
+    flex: 0 0 25%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .tutor-container .img-container img {
+      width: 100%;
+      border-radius: 50%; }
+  .tutor-container .bookmark-container {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 25%; }
+    .tutor-container .bookmark-container svg {
+      fill: #ffdc60;
+      z-index: 100;
+      width: 2rem;
+      height: 2rem; }
+  .tutor-container .tutor__info {
+    flex: 0 0 50%;
+    padding-left: 2rem; }
+    .tutor-container .tutor__info > :first-child {
+      font-size: 1.5rem;
+      font-weight: 500; }
+  .tutor-container button {
+    margin-top: 1rem;
+    width: 49%; }
 
 .navbar--style {
   background-color: rgba(151, 210, 251, 0.25) !important;
@@ -491,7 +528,7 @@ button {
   height: calc(100vh - 8rem); }
   .home__container__header {
     background-color: rgba(151, 210, 251, 0.25);
-    height: 50%; }
+    height: 30rem; }
     .home__container__header__content__text {
       display: flex;
       flex-direction: column;
@@ -505,13 +542,38 @@ button {
     min-height: 20%; }
     .home__container__notifications__title {
       font-size: 2.2rem;
-      font-weight: 600; }
+      font-weight: 600;
+      margin-top: 2rem; }
+      .home__container__notifications__title span {
+        font-weight: 700; }
     .home__container__notifications__text {
       font-size: 1.5rem; }
-    .home__container__notifications__tutors {
+    .home__container__notifications__tutors, .home__container__notifications__students {
       margin-top: 5rem; }
     .home__container__notifications__sessions {
       margin-top: 5rem; }
+    .home__container__notifications .recommended__tutors {
+      font-size: 2rem;
+      background-color: #ffffff;
+      overflow: scroll; }
+      .home__container__notifications .recommended__tutors tr {
+        display: flex; }
+        .home__container__notifications .recommended__tutors tr * {
+          border: none; }
+        .home__container__notifications .recommended__tutors tr > :first-child {
+          display: flex;
+          align-items: center; }
+        .home__container__notifications .recommended__tutors tr > :nth-child(2) {
+          flex: 1; }
+          .home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
+            color: #9a9a9a;
+            font-size: 1rem; }
+      .home__container__notifications .recommended__tutors .bookmark {
+        fill: #9a9a9a;
+        width: 2rem;
+        height: 2rem; }
+        .home__container__notifications .recommended__tutors .bookmark-marked {
+          fill: #ffdc60; }
     .home__container__notifications__calendar {
       width: 100%;
       min-height: 30rem;
@@ -523,9 +585,11 @@ button {
     margin-top: 5rem; }
     .home__container__help-center__header {
       display: flex;
-      justify-content: space-between; }
+      justify-content: space-between;
+      align-items: center; }
       .home__container__help-center__header__text {
-        font-size: 2.2rem; }
+        font-size: 2.2rem;
+        margin: 0; }
       .home__container__help-center__header button {
         font-size: 2rem; }
     .home__container__help-center__table {
@@ -540,8 +604,17 @@ button {
       .home__container__help-center__table tr > * {
         vertical-align: middle !important; }
       .home__container__help-center__table tr > :nth-child(1) {
-        white-space: nowrap; }
+        white-space: nowrap;
+        text-align: center; }
       .home__container__help-center__table tr > :nth-child(2) {
+        text-align: center; }
+        .home__container__help-center__table tr > :nth-child(2) p {
+          margin-bottom: 0;
+          font-size: 1rem;
+          color: #9a9a9a; }
+        .home__container__help-center__table tr > :nth-child(2) span {
+          white-space: nowrap; }
+      .home__container__help-center__table button {
         white-space: nowrap; }
 
 .home__tutor-requests {
@@ -561,7 +634,8 @@ button {
   .tutor-requests-table tr {
     height: 10rem; }
   .tutor-requests-table tr > * {
-    vertical-align: middle !important; }
+    vertical-align: middle !important;
+    border: none !important; }
   .tutor-requests-table tr > :nth-child(1) {
     white-space: nowrap; }
   .tutor-requests-table tr > :nth-child(2) {
@@ -573,6 +647,13 @@ button {
     font-size: 1.5rem; }
     .tutor-requests-table td button:not(:last-child) {
       margin-right: 5px; }
+
+table img {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 5px; }
 
 .about__information {
   height: 30rem;
