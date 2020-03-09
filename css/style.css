@@ -300,42 +300,10 @@ button {
     width: 49%; }
 
 .navbar--style {
-  z-index: 0;
-  position: absolute; }
-  .navbar--style * {
-    color: #2c86c4 !important;
-    font-size: 1.5rem;
-    font-weight: 300; }
-  .navbar--style__brand {
-    font-weight: 600;
-    font-size: 3.5rem !important;
-    margin-left: 1.5rem; }
-  .navbar--style__buttons {
-    position: absolute;
-    right: 7.5rem; }
-    .navbar--style__buttons * {
-      font-size: 1.7rem !important; }
-    .navbar--style__buttons--left {
-      margin-right: 2rem; }
-    .navbar--style__buttons--right {
-      border: #2c86c4 1px solid !important;
-      border-radius: 5px !important; }
-      .navbar--style__buttons--right:hover {
-        background-color: #2c86c4;
-        color: #f7fbfd !important; }
+  height: 8rem; }
 
 .navbar--style-white {
-  background-color: #f7fbfd;
-  height: 8rem;
-  position: relative; }
-  .navbar--style-white * {
-    color: #97d2fb !important;
-    font-size: 1.5rem;
-    font-weight: 300; }
-  .navbar--style-white__brand {
-    font-weight: 700;
-    font-size: 3.5rem !important;
-    margin-left: 1.5rem; }
+  height: 8rem; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - 8rem);
