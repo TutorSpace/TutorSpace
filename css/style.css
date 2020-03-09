@@ -266,7 +266,8 @@ button {
   .index-left-container__box > *:not(:last-child) {
     margin-bottom: 5.5rem; }
   .index-left-container__box-1 {
-    font-size: 5.5rem; }
+    font-size: 5.5rem;
+    line-height: 6rem; }
   .index-left-container__box-2 {
     font-size: 2.2rem; }
   .index-left-container__box-3 {
@@ -292,12 +293,12 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 75%; }
-    .signup-container__form__group {
-      margin-bottom: 5rem; }
     .signup-container__form label,
     .signup-container__form input, .signup-container__form__btn {
       font-size: 2.2rem !important;
-      line-height: 2em; }
+      line-height: 2em;
+      padding-top: 10px;
+      margin-top: 10px; }
     .signup-container__form label {
       margin-bottom: 0;
       display: block;
@@ -307,7 +308,7 @@ button {
       transition: all .5s; }
     .signup-container__form input {
       border: none;
-      border-bottom: 3px solid black;
+      border-bottom: 2px solid black;
       width: 100%;
       margin-bottom: 0;
       transition: all .5s;
@@ -356,11 +357,11 @@ button {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border: 1px solid black;
-      padding: 3rem 5rem;
+      padding: 3rem 3rem;
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb;
-      font-weight: 400 !important; }
+      font-weight: 400 !important;
+      border-radius: 2rem; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
         font-size: 4rem;
         text-align: center;
@@ -369,7 +370,7 @@ button {
         font-size: 2rem;
         margin-bottom: 1rem; }
       .signup-container__box--tutor button, .signup-container__box--student button {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         margin-bottom: .5rem;
         font-size: 2rem !important;
         text-align: center; }
@@ -447,7 +448,8 @@ button {
         outline: none; }
       .login-container__content__form .forget-password {
         font-size: calc(2.2rem / 2);
-        text-align: right; }
+        text-align: left;
+        margin-top: 1rem; }
         .login-container__content__form .forget-password a {
           color: grey; }
       .login-container__content__form__header {
@@ -607,7 +609,8 @@ button {
   background-color: #f7fbfd;
   border: 1px solid grey;
   padding: .5rem 4rem;
-  outline: none; }
+  outline: none;
+  border-radius: 7px; }
 
 .about__buttons__container {
   display: flex;
@@ -618,10 +621,10 @@ button {
     width: 40%;
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-right: 10px;
     margin-top: 10px; }
     .about__buttons__container button svg {
+      margin-right: 0.75rem;
       width: 2rem;
       height: 2rem; }
     .about__buttons__container button .name {
