@@ -45,21 +45,21 @@
 .messages-table-left {
     
     
-    tr {
+    &-1 {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
 
         .name {
-            flex: 0 0 50%;
+            
         }
     
         .request-pending {
-            flex: 0 0 50%;
+            
         }
 
         .time {
-            align-self: flex-end;
+            
         }
 
         * {

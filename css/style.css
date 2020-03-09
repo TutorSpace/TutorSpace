@@ -930,15 +930,9 @@ table img {
     fill: grey;
     z-index: 1000; }
 
-.messages-table-left tr {
+.messages-table-left-1 {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; }
-  .messages-table-left tr .name {
-    flex: 0 0 50%; }
-  .messages-table-left tr .request-pending {
-    flex: 0 0 50%; }
-  .messages-table-left tr .time {
-    align-self: flex-end; }
-  .messages-table-left tr * {
+  flex-wrap: nowrap; }
+  .messages-table-left-1 * {
     border: none !important; }
