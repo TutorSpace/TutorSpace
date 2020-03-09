@@ -8,7 +8,7 @@
     .search__box {
         margin-top: 2rem;
         border: 1px solid $color-gray;
-        font-size: 3.2rem;
+        font-size: $font-2;
         display: flex;
         align-items: center;
         border-radius: 8px;
@@ -28,25 +28,38 @@
             outline: none;
             background-color: inherit;
             padding: 5px 0;
+            width: 400px;
         }
 
     }
+
+    .year {
+        font-size: $font-3;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        color: $color-gray;
+    }
     
 
-    .labels {
-        font-size: 2rem;
-        margin-top: 2rem;
+    // .labels {
+    //     font-size: $font-3;
+    //     font-weight: 400;
+    //     margin-bottom: 2rem;
+    // }
+    .bold {
+        font-weight: 500;
     }
 
     .filter-container {
         display: inline-flex;
         border: 1px solid black;
+        border-radius: 8px;
         margin-right: 1rem;
         margin-top: 1rem;
         h5 {
             display: flex;
             align-items: center;
-            padding: 1rem 3rem;
+            padding: 0.5rem 3rem;
             vertical-align: middle;
             margin: 0;
         }
