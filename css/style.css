@@ -906,7 +906,7 @@ table img {
   justify-content: space-between;
   align-items: center; }
 
-.m-left-container {
+.m-left-container, .m-right-container {
   margin-top: 1rem; }
 
 .search-messages-container {
@@ -921,7 +921,8 @@ table img {
     background-color: transparent;
     font-size: 1.5rem;
     border: 1px solid grey;
-    padding: .5rem 4rem; }
+    padding: .5rem 4rem;
+    border-radius: 5px; }
   .search-messages-container svg {
     position: absolute;
     left: 1rem;
@@ -930,9 +931,121 @@ table img {
     fill: grey;
     z-index: 1000; }
 
-.messages-table-left-1 {
+/* width */
+.messages-table-left {
+  display: block;
+  max-height: 75vh;
+  overflow: scroll;
+  width: 100%; }
+  .messages-table-left tbody {
+    display: block;
+    width: 100%; }
+    .messages-table-left tbody tr {
+      display: block;
+      width: 100%; }
+      .messages-table-left tbody tr td {
+        display: block;
+        border-left: 0.5rem solid #2c86c4 !important; }
+    .messages-table-left tbody .first-td {
+      margin-top: 1rem;
+      border-top: none !important; }
+  .messages-table-left-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 1.5rem;
+    white-space: nowrap; }
+    .messages-table-left-top .request-pending {
+      color: #2c86c4;
+      font-size: 1rem; }
+    .messages-table-left-top * {
+      border: none !important; }
+  .messages-table-left .time {
+    display: block;
+    text-align: right; }
+
+.m-right-container {
+  width: 100%;
+  border: 1px solid #9a9a9a;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: nowrap; }
-  .messages-table-left-1 * {
-    border: none !important; }
+  flex-direction: column; }
+  .m-right-container .header {
+    display: flex;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #9a9a9a; }
+    .m-right-container .header img {
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      margin-right: 5px; }
+  .m-right-container .message-alert {
+    margin-top: 1rem;
+    background-color: rgba(44, 134, 196, 0.25);
+    align-items: center;
+    display: flex;
+    font-size: 1.2rem;
+    padding: 1rem; }
+    .m-right-container .message-alert-content {
+      margin-right: auto; }
+    .m-right-container .message-alert button:last-child {
+      margin-left: 1rem;
+      white-space: nowrap; }
+    .m-right-container .message-alert > :first-child {
+      margin-right: 1rem;
+      white-space: nowrap; }
+      .m-right-container .message-alert > :first-child * {
+        margin-bottom: 0; }
+      .m-right-container .message-alert > :first-child > :first-child {
+        font-weight: 600; }
+
+.messages-container {
+  margin-top: 1rem;
+  flex: 1;
+  overflow: scroll;
+  max-height: -webkit-fill-available;
+  margin-bottom: 1rem;
+  font-size: 1.2rem; }
+  .messages-container > .message-other {
+    width: 45%; }
+  .messages-container .message-other, .messages-container .message-self {
+    padding: 1rem;
+    border-radius: 5px; }
+    .messages-container .message-other:not(:last-child), .messages-container .message-self:not(:last-child) {
+      margin-bottom: 1rem; }
+  .messages-container .message-other {
+    background-color: #c4c4c4; }
+  .messages-container .message-self-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 1rem; }
+    .messages-container .message-self-container p {
+      margin-bottom: 0;
+      flex: 0 0 45%;
+      background-color: #a3a3a3; }
+
+.message-input-container {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .message-input-container .message-input {
+    width: 95%;
+    border: 1px solid #9a9a9a;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    border: 1px solid grey;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    display: inline;
+    margin-right: 1rem; }
+    .message-input-container .message-input + button {
+      width: 5%;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #2c86c4 !important;
+      border: none !important;
+      background-color: transparent !important; }
