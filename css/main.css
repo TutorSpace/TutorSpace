@@ -71,64 +71,65 @@ svg {
   z-index: -100;
 }
 
-/* line 17, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 18, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h1 {
   font-size: 4.8rem !important;
 }
 
-/* line 22, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 23, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h2 {
   font-size: 4rem !important;
 }
 
-/* line 27, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 28, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h3 {
   font-size: 3.2rem !important;
 }
 
-/* line 32, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 33, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h4 {
   font-size: 2.6rem !important;
 }
 
-/* line 37, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 38, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h5 {
   font-size: 2.2rem !important;
   font-weight: 400 !important;
 }
 
-/* line 43, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 44, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 h6 {
-  font-size: 2rem;
+  font-size: 2rem !important;
+  font-weight: 400 !important;
 }
 
-/* line 48, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 51, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 .labels {
   font-size: 1.2rem;
   font-weight: 600;
   color: #9a9a9a;
 }
 
-/* line 53, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 56, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 .bold {
   font-weight: 700;
 }
 
-/* line 58, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 61, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 small {
   font-size: 1.6rem !important;
-  line-height: 2;
+  line-height: 1;
 }
 
-/* line 64, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 67, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 .message-preview {
   font-size: 1.2rem;
   color: #9a9a9a;
 }
 
-/* line 70, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
+/* line 73, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/base/_typography.scss */
 .grey-text {
-  color: grey;
+  color: #9a9a9a;
   font-size: 1.5rem;
 }
 
@@ -341,7 +342,7 @@ button.btn-primary {
 
 /* line 29, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
 .session__container :not(:first-child) {
-  width: 49%;
+  flex: 0 0 49%;
 }
 
 /* line 36, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_session.scss */
@@ -366,6 +367,138 @@ button.btn-primary {
 ._pagination {
   width: fit-content;
   margin: 5rem auto;
+}
+
+/* line 1, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container {
+  margin-top: 2rem;
+}
+
+/* line 8, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card {
+  position: relative;
+  text-align: center;
+  padding: 3rem;
+  background-color: white;
+  margin-top: 2rem;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  font-size: 1.6rem;
+}
+
+/* line 23, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card .bookmark {
+  position: absolute;
+  width: calc(2 * 1.6rem);
+  height: calc(2 * 1.6rem);
+  z-index: inherit;
+  right: 1rem;
+  top: 1rem;
+  fill: #9a9a9a;
+}
+
+/* line 32, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card .bookmark-marked {
+  fill: #ffdc60;
+}
+
+/* line 40, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card p {
+  margin-bottom: 0;
+}
+
+/* line 44, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card img {
+  width: 10rem;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* line 50, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card .star-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  height: 2rem;
+}
+
+/* line 58, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card .star-container .star {
+  width: 1.6rem;
+  position: relative;
+  z-index: inherit;
+  margin-left: 3px;
+  color: #9a9a9a;
+  position: relative;
+  height: 110%;
+}
+
+/* line 69, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_search-card.scss */
+.search-card-container .search-card-flex-container .search-card .courses {
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+/* line 1, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
+  margin-top: 1.5rem;
+}
+
+/* line 11, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .img-container {
+  flex: 0 0 25%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* line 19, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .img-container img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+/* line 27, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .bookmark-container {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 25%;
+}
+
+/* line 33, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .bookmark-container svg {
+  fill: #ffdc60;
+  z-index: 100;
+  width: 2rem;
+  height: 2rem;
+}
+
+/* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .tutor__info {
+  flex: 0 0 50%;
+  padding-left: 2rem;
+}
+
+/* line 49, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container .tutor__info > :first-child {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* line 55, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/components/_tutor-card.scss */
+.tutor-container button {
+  margin-top: 1rem;
+  width: 49%;
 }
 
 /* line 1, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/layout/_navbar.scss */
@@ -463,26 +596,27 @@ button.btn-primary {
 /* line 31, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
 .index-left-container__box-1 {
   font-size: 5.5rem;
+  line-height: 6rem;
 }
 
-/* line 36, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
+/* line 37, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
 .index-left-container__box-2 {
   font-size: 2.2rem;
 }
 
-/* line 40, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
+/* line 41, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
 .index-left-container__box-3 {
   width: 100%;
   display: flex;
 }
 
-/* line 44, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
+/* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
 .index-left-container__box-3 button {
   font-size: 2.2rem;
   margin-right: 16px;
 }
 
-/* line 58, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
+/* line 59, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_index.scss */
 .index-right-container__img {
   width: 100%;
   height: 100%;
@@ -506,19 +640,16 @@ button.btn-primary {
   width: 75%;
 }
 
-/* line 16, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
-.signup-container__form__group {
-  margin-bottom: 5rem;
-}
-
 /* line 20, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form label,
 .signup-container__form input, .signup-container__form__btn {
   font-size: 2.2rem !important;
   line-height: 2em;
+  padding-top: 10px;
+  margin-top: 10px;
 }
 
-/* line 27, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 29, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form label {
   margin-bottom: 0;
   display: block;
@@ -528,10 +659,10 @@ button.btn-primary {
   transition: all .5s;
 }
 
-/* line 39, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 41, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input {
   border: none;
-  border-bottom: 3px solid black;
+  border-bottom: 2px solid black;
   width: 100%;
   margin-bottom: 0;
   transition: all .5s;
@@ -541,48 +672,48 @@ button.btn-primary {
   background-color: #f7fbfd !important;
 }
 
-/* line 54, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 56, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input:focus {
   outline: none;
   border: none;
   background-color: #f7fbfd !important;
 }
 
-/* line 62, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 64, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input:focus:invalid {
   border-bottom: 3px solid red;
 }
 
-/* line 66, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 68, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input:focus:valid {
   border-bottom: 3px solid #2c86c4;
 }
 
-/* line 71, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 73, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input::-webkit-input-placeholder {
   color: grey;
 }
 
-/* line 81, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 83, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form input:placeholder-shown + label {
   opacity: 0;
   transform: translateY(calc(2em + 3px));
   visibility: hidden;
 }
 
-/* line 92, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 94, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form__header {
   text-align: center;
   margin-bottom: 5.5rem;
   font-size: 5.5rem;
 }
 
-/* line 99, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 101, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__form__btn {
   width: 100%;
 }
 
-/* line 106, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 108, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__flag {
   position: absolute;
   bottom: 0;
@@ -590,12 +721,12 @@ button.btn-primary {
   width: 100%;
 }
 
-/* line 112, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 114, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__flag svg {
   position: relative;
 }
 
-/* line 118, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 120, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__header {
   width: 100%;
   text-align: center;
@@ -604,47 +735,47 @@ button.btn-primary {
   margin-top: 8rem;
 }
 
-/* line 126, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 128, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box {
   position: relative;
   height: 100%;
 }
 
-/* line 129, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 131, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box--tutor, .signup-container__box--student {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1px solid black;
-  padding: 3rem 5rem;
+  padding: 3rem 3rem;
   z-index: 100;
   box-shadow: -2px 2px 5px 3px #97d2fb;
   font-weight: 400 !important;
+  border-radius: 2rem;
 }
 
-/* line 138, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 141, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
   font-size: 4rem;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* line 144, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 147, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-/* line 149, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 152, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box--tutor button, .signup-container__box--student button {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: .5rem;
   font-size: 2rem !important;
   text-align: center;
 }
 
-/* line 156, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
+/* line 159, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_signup.scss */
 .signup-container__box--tutor h5, .signup-container__box--student h5 {
   font-weight: 400;
 }
@@ -773,15 +904,16 @@ h5 .fgpwd-container__header-2 {
 /* line 53, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_login.scss */
 .login-container__content__form .forget-password {
   font-size: calc(2.2rem / 2);
-  text-align: right;
+  text-align: left;
+  margin-top: 1rem;
 }
 
-/* line 57, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_login.scss */
+/* line 58, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_login.scss */
 .login-container__content__form .forget-password a {
   color: grey;
 }
 
-/* line 62, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_login.scss */
+/* line 63, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_login.scss */
 .login-container__content__form__header {
   font-size: 5.5rem;
 }
@@ -794,7 +926,7 @@ h5 .fgpwd-container__header-2 {
 /* line 4, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__header {
   background-color: rgba(151, 210, 251, 0.25);
-  height: 50%;
+  height: 30rem;
 }
 
 /* line 12, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
@@ -823,25 +955,77 @@ h5 .fgpwd-container__header-2 {
 /* line 40, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__notifications__title {
   font-size: 2.2rem;
+  margin-top: 2rem;
   font-weight: 500;
 }
 
-/* line 45, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 44, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications__title span {
+  font-weight: 700;
+}
+
+/* line 50, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__notifications__text {
   font-size: 1.5rem;
 }
 
-/* line 50, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
-.home__container__notifications__tutors {
+/* line 55, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications__tutors, .home__container__notifications__students {
   margin-top: 5rem;
 }
 
-/* line 56, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 59, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__notifications__sessions {
   margin-top: 5rem;
 }
 
-/* line 100, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 63, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors {
+  font-size: 2rem;
+  background-color: #ffffff;
+  overflow: scroll;
+}
+
+/* line 71, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors tr {
+  display: flex;
+}
+
+/* line 74, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors tr * {
+  border: none;
+}
+
+/* line 78, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors tr > :first-child {
+  display: flex;
+  align-items: center;
+}
+
+/* line 83, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors tr > :nth-child(2) {
+  flex: 1;
+}
+
+/* line 86, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
+  color: #9a9a9a;
+  font-size: 1rem;
+}
+
+/* line 93, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors .bookmark {
+  fill: #9a9a9a;
+  width: 2rem;
+  height: 2rem;
+}
+
+/* line 97, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__notifications .recommended__tutors .bookmark-marked {
+  fill: #ffdc60;
+}
+
+/* line 108, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__notifications__calendar {
   width: 100%;
   min-height: 30rem;
@@ -851,79 +1035,104 @@ h5 .fgpwd-container__header-2 {
   font-size: 5.5rem;
 }
 
-/* line 113, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 121, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center {
   margin-top: 5rem;
 }
 
-/* line 116, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 124, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-/* line 119, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 129, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__header__text {
   font-size: 2.2rem;
+  margin: 0;
   font-weight: 500 !important;
 }
 
-/* line 123, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 134, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__header button {
   font-size: 2rem;
 }
 
-/* line 128, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 139, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__table {
   margin-top: 2rem;
   font-size: 2rem;
   background-color: #ffffff;
   max-height: 50rem;
-  padding: 3rem;
+  padding: 0 3rem 3rem 3rem;
   border-radius: 2rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   display: block;
   overflow: scroll;
 }
 
-/* line 140, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 154, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__help-center__table tr:first-child * {
+  border-top: none !important;
+}
+
+/* line 160, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__table tr {
   height: 10rem;
 }
 
-/* line 145, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 166, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__table tr > * {
   vertical-align: middle !important;
 }
 
-/* line 149, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 170, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__table tr > :nth-child(1) {
   white-space: nowrap;
+  text-align: center;
 }
 
-/* line 152, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 175, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__container__help-center__table tr > :nth-child(2) {
+  text-align: center;
+}
+
+/* line 178, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__help-center__table tr > :nth-child(2) p {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #9a9a9a;
+}
+
+/* line 184, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__help-center__table tr > :nth-child(2) span {
   white-space: nowrap;
 }
 
-/* line 164, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 189, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+.home__container__help-center__table button {
+  white-space: nowrap;
+}
+
+/* line 201, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__tutor-requests {
   margin-top: 10rem;
   min-height: 15rem;
 }
 
-/* line 168, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 205, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__tutor-requests__header {
   font-size: 2.2rem;
   font-weight: 600 !important;
 }
 
-/* line 172, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 209, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .home__tutor-requests__content {
   font-size: 1.5rem;
 }
 
-/* line 177, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 214, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table {
   margin-top: 2rem;
   font-size: 2rem;
@@ -935,33 +1144,43 @@ h5 .fgpwd-container__header-2 {
   overflow: scroll;
 }
 
-/* line 188, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 225, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table tr {
   height: 10rem;
 }
 
-/* line 194, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 231, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table tr > * {
   vertical-align: middle !important;
+  border: none !important;
 }
 
-/* line 198, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 236, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table tr > :nth-child(1) {
   white-space: nowrap;
 }
 
-/* line 201, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 239, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table tr > :nth-child(2) {
   white-space: nowrap;
 }
 
-/* line 211, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 249, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table td button {
   font-size: 1.6rem;
 }
 
-/* line 213, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+/* line 251, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
 .tutor-requests-table td button:not(:last-child) {
+  margin-right: 5px;
+}
+
+/* line 258, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_home.scss */
+table img {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+  border-radius: 50%;
   margin-right: 5px;
 }
 
@@ -1070,74 +1289,75 @@ h5 .fgpwd-container__header-2 {
   border: 1px solid grey;
   padding: .5rem 4rem;
   outline: none;
+  border-radius: 7px;
 }
 
-/* line 99, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 100, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .about__buttons__container {
   display: flex;
   flex-wrap: wrap;
 }
 
-/* line 103, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 104, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .about__buttons__container button {
   border: 1px solid black;
   font-size: 2rem;
   width: 40%;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-right: 10px;
   margin-top: 10px;
 }
 
-/* line 112, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 113, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .about__buttons__container button svg {
+  margin-right: 0.75rem;
   width: 2rem;
   height: 2rem;
 }
 
-/* line 117, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 119, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .about__buttons__container button .name {
   color: black;
 }
 
-/* line 121, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 123, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .about__buttons__container button:focus {
   box-shadow: none;
 }
 
-/* line 133, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 135, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .sessions__container-1 {
   min-height: 40rem;
   margin-top: 5rem;
 }
 
-/* line 137, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 139, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .sessions__header {
   font-size: 2.2rem;
 }
 
-/* line 140, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 142, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .sessions__header--sub {
   font-size: 1.5rem;
 }
 
-/* line 146, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 148, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .sessions__info {
   margin-top: 1rem;
 }
 
-/* line 170, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 172, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .reviews__container {
   margin-top: 5rem;
 }
 
-/* line 172, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 174, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .reviews__container .reviews__header {
   font-size: 2.2rem;
 }
 
-/* line 176, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
+/* line 178, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_profile.scss */
 .reviews__container .reviews {
   font-size: 1.5rem;
 }
@@ -1291,6 +1511,140 @@ h5 .fgpwd-container__header-2 {
   margin-top: 1rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   width: 50%;
+}
+
+/* line 1, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container {
+  margin-top: 3rem;
+}
+
+/* line 8, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .search__box {
+  margin-top: 2rem;
+  border: 1px solid #9a9a9a;
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  width: 75%;
+}
+
+/* line 18, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .search__box svg {
+  width: 3.2rem;
+  height: 3.2rem;
+  fill: #9a9a9a;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* line 26, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .search__box input {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  padding: 5px 0;
+  width: 400px;
+}
+
+/* line 36, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .year {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  color: #9a9a9a;
+}
+
+/* line 49, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .bold {
+  font-weight: 500;
+}
+
+/* line 53, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .filter-container {
+  display: inline-flex;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+/* line 59, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_search.scss */
+.search-container .filter-container h5 {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 3rem;
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* line 1, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.m-header-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* line 8, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.m-left-container {
+  margin-top: 1rem;
+}
+
+/* line 14, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.search-messages-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* line 21, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.search-messages-container .search-messages {
+  width: 100%;
+  border: 1px solid #9a9a9a;
+  outline: none;
+  background-color: transparent;
+  font-size: 1.5rem;
+  border: 1px solid grey;
+  padding: .5rem 4rem;
+}
+
+/* line 34, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.search-messages-container svg {
+  position: absolute;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  fill: grey;
+  z-index: 1000;
+}
+
+/* line 48, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.messages-table-left tr {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* line 53, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.messages-table-left tr .name {
+  flex: 0 0 50%;
+}
+
+/* line 57, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.messages-table-left tr .request-pending {
+  flex: 0 0 50%;
+}
+
+/* line 61, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.messages-table-left tr .time {
+  align-self: flex-end;
+}
+
+/* line 65, /Users/sophiapark1/Documents/SPRING20/ITP 460/ITP460teambravo/sass/pages/_messages.scss */
+.messages-table-left tr * {
+  border: none !important;
 }
 
 /*# sourceMappingURL=../css/main.map */

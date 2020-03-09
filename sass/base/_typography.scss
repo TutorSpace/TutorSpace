@@ -12,6 +12,7 @@ svg {
 $font-1: 5.5rem;
 $font-2: 2.2rem;
 $font-3: 1.6rem;
+$font-4: 1.2rem;
 
 // Mostly used in Login and Sign up pages
 h1 {
@@ -41,7 +42,9 @@ h5 {
 
 // Names on Dashboard posts, messages, 
 h6 {
-	font-size: 2rem;
+	font-size: 2rem !important;
+	font-weight: 400 !important;
+	
 }
 
 // Labels
@@ -57,7 +60,7 @@ h6 {
 // Buttons, labels, section info, messages
 small {
 	font-size: 1.6rem !important;
-	line-height: 2
+	line-height: 1;
 }
 
 // Message previews
@@ -68,6 +71,6 @@ small {
 }
 
 .grey-text {
-    color: grey;
+    color: $color-gray;
     font-size: 1.5rem;
 }

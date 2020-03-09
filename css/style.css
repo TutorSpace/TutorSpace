@@ -62,7 +62,8 @@ h5 {
   font-weight: 400 !important; }
 
 h6 {
-  font-size: 2rem; }
+  font-size: 2rem !important;
+  font-weight: 400 !important; }
 
 .labels {
   font-size: 1.2rem;
@@ -74,14 +75,14 @@ h6 {
 
 small {
   font-size: 1.6rem !important;
-  line-height: 2; }
+  line-height: 1; }
 
 .message-preview {
   font-size: 1.2rem;
   color: #9a9a9a; }
 
 .grey-text {
-  color: grey;
+  color: #9a9a9a;
   font-size: 1.5rem; }
 
 button {
@@ -220,37 +221,46 @@ button {
   .search-card-container .search-card-flex-container .search-card {
     position: relative;
     text-align: center;
-    padding: 1rem;
+    padding: 3rem;
     background-color: white;
     margin-top: 2rem;
-    font-size: 1.5rem; }
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    font-size: 1.6rem; }
     .search-card-container .search-card-flex-container .search-card .bookmark {
       position: absolute;
-      width: calc(2 * 1.5rem);
-      height: calc(2 * 1.5rem);
+      width: calc(2 * 1.6rem);
+      height: calc(2 * 1.6rem);
       z-index: inherit;
       right: 1rem;
       top: 1rem;
       fill: #9a9a9a; }
       .search-card-container .search-card-flex-container .search-card .bookmark-marked {
         fill: #ffdc60; }
+    .search-card-container .search-card-flex-container .search-card p {
+      margin-bottom: 0; }
     .search-card-container .search-card-flex-container .search-card img {
       width: 10rem;
-      border-radius: 50%; }
+      border-radius: 50%;
+      margin-bottom: 1rem; }
     .search-card-container .search-card-flex-container .search-card .star-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 0;
+      margin-bottom: 1rem;
       position: relative;
       height: 2rem; }
       .search-card-container .search-card-flex-container .search-card .star-container .star {
-        width: 1.5rem;
+        width: 1.6rem;
         position: relative;
         z-index: inherit;
         margin-left: 3px;
+        color: #9a9a9a;
         position: relative;
         height: 110%; }
+    .search-card-container .search-card-flex-container .search-card .courses {
+      font-size: 1.2rem;
+      line-height: 1.2; }
 
 .tutor-container {
   background-color: white;
@@ -871,7 +881,7 @@ table img {
   .search-container .search__box {
     margin-top: 2rem;
     border: 1px solid #9a9a9a;
-    font-size: 3.2rem;
+    font-size: 2.2rem;
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -886,19 +896,25 @@ table img {
       border: none;
       outline: none;
       background-color: inherit;
-      padding: 5px 0; }
-  .search-container .labels {
-    font-size: 2rem;
-    margin-top: 2rem; }
+      padding: 5px 0;
+      width: 400px; }
+  .search-container .year {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: #9a9a9a; }
+  .search-container .bold {
+    font-weight: 500; }
   .search-container .filter-container {
     display: inline-flex;
     border: 1px solid black;
+    border-radius: 8px;
     margin-right: 1rem;
     margin-top: 1rem; }
     .search-container .filter-container h5 {
       display: flex;
       align-items: center;
-      padding: 1rem 3rem;
+      padding: 0.5rem 3rem;
       vertical-align: middle;
       margin: 0; }
 

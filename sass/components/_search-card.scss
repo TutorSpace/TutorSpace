@@ -7,13 +7,15 @@
 
         .search-card {
             position: relative;
+            // width: 00px;
             text-align: center;
-            padding: 1rem;
+            padding: 3rem;
             background-color: white;
             margin-top: 2rem;
-            // @include boxShadow;
+            @include boxShadow;
+            border-radius: 10px;
 
-            $font-size: 1.5rem;
+            $font-size: $font-3;
         
             font-size: $font-size;
 
@@ -35,17 +37,21 @@
                     
                 }
             }
+            p {
+                margin-bottom: 0;
+            }
 
             img {
                 width: 10rem;
                 border-radius: 50%;
+                margin-bottom: 1rem;
             }
 
             .star-container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                margin-bottom: 0;
+                margin-bottom: 1rem;
                 position: relative;
                 height: 2rem;
 
@@ -54,10 +60,15 @@
                     position: relative;
                     z-index: inherit;
                     margin-left: 3px;
+                    color: $color-gray;
 
                     position: relative;
                     height: 110%;
                 }
+            }
+            .courses {
+                font-size: $font-4;
+                line-height: 1.2;
             }
             
 
