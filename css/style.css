@@ -836,24 +836,26 @@ table img {
       margin-right: 1rem; }
   .edit-profile__form__content {
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    justify-content: space-between; }
     .edit-profile__form__content * {
-      width: 46%; }
+      flex: 0 0 46%; }
     .edit-profile__form__content input {
       font-size: 2rem;
       background-color: #f7fbfd;
       border: 1px solid #9a9a9a;
       padding: .5rem 1rem;
       outline: none;
-      margin-right: 1.5rem;
       border-radius: 8px; }
+    .edit-profile__form__content select {
+      background-color: #f7fbfd;
+      font-size: 2rem; }
     .edit-profile__form__content input::-webkit-input-placeholder {
       color: #9a9a9a; }
     .edit-profile__form__content span {
       font-size: 1.5rem;
       margin-top: 1.5rem;
       color: #9a9a9a;
-      margin-right: 1.5rem;
       margin-bottom: 4px; }
   .edit-profile__form__bank {
     background-color: white;
@@ -862,7 +864,7 @@ table img {
     padding-top: 1.2rem;
     margin-top: 1rem;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-    width: 50%; }
+    width: 75%; }
 
 .search-container {
   margin-top: 3rem; }
@@ -1067,7 +1069,47 @@ table img {
     .session-details-container .session-details > * {
       flex: 0 0 50%; }
     .session-details-container .session-details select {
-      background-color: transparent; }
+      background-color: transparent;
+      font-size: 2.2rem !important;
+      font-weight: 400 !important; }
 
 .session-timer-container {
   margin-top: 3rem; }
+  .session-timer-container .session-timer {
+    width: 70%;
+    display: flex;
+    margin: 5rem auto;
+    background-color: white;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 2rem;
+    min-height: 15rem; }
+    .session-timer-container .session-timer .session-timer-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly; }
+      .session-timer-container .session-timer .session-timer-left button {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 2rem; }
+    .session-timer-container .session-timer .session-timer-right {
+      font-size: 7.5rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+
+.notes-for-student textarea {
+  font-size: 2rem !important;
+  height: 30rem !important;
+  padding: 1rem;
+  border-radius: 2rem; }
+
+.notes-for-student-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem; }
+  .notes-for-student-buttons button:last-child {
+    margin-left: 1rem; }
+  .notes-for-student-buttons button {
+    font-size: 2rem;
+    margin-bottom: 5rem; }

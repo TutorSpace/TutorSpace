@@ -21,6 +21,9 @@
 
         select {
             background-color: transparent;
+            font-size: 2.2rem !important;
+            font-weight: 400 !important;
+          
         }
         
     }
@@ -30,6 +33,68 @@
 // used by several pages
 .session-timer-container {
     margin-top: 3rem;
+    
+
+    .session-timer {
+        width: 70%;
+        display: flex;
+        margin: 5rem auto;
+
+        background-color: white;
+        @include boxShadow;
+        border-radius: 2rem;
+
+        min-height: 15rem;
+
+        .session-timer-left {
+            // background-color: green;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            
+            button {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+                font-size: 2rem;
+            }
+            
+        }
+
+        .session-timer-right {
+            font-size: 7.5rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    }
+}
 
 
+.notes-for-student {
+
+
+    textarea {
+        font-size: 2rem !important;
+        height: 30rem !important;
+        padding: 1rem;
+        border-radius: 2rem;
+    }
+
+    &-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+
+        button:last-child {
+            margin-left: 1rem;
+            
+        }
+        button {
+            font-size: 2rem;
+            margin-bottom: 5rem;
+        }
+    }
 }
