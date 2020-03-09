@@ -944,7 +944,8 @@ table img {
       display: block;
       width: 100%; }
       .messages-table-left tbody tr td {
-        display: block;
+        display: block; }
+      .messages-table-left tbody tr td.unread {
         border-left: 0.5rem solid #ffc077 !important; }
     .messages-table-left tbody .first-td {
       margin-top: 1rem;

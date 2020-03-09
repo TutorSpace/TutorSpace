@@ -64,10 +64,12 @@
             width: 100%;
 
             td {
-                display: block;
-                border-left: .5rem solid $color-pending-request !important;    
+                display: block;  
             }
 
+            td.unread {
+                border-left: .5rem solid $color-pending-request !important;    
+            }
             
         }
 
