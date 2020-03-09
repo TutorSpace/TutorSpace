@@ -1,8 +1,11 @@
 .navbar--style {
-    background-color: $color-blue-light-trans !important;
-    height: $navbar-height;
-    position: relative;
+    // background-color: $color-blue-light-trans !important;
+    // height: $navbar-height;
+    // position: relative;
 
+    z-index: 0;
+    // overflow: hidden;
+    position: absolute;
     
     // select all children element
     & * {
@@ -61,4 +64,8 @@
         margin-left: 1.5rem;
     }
 
+
+    #wavy-background {
+        
+    }
 }

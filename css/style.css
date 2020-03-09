@@ -300,9 +300,8 @@ button {
     width: 49%; }
 
 .navbar--style {
-  background-color: rgba(151, 210, 251, 0.25) !important;
-  height: 8rem;
-  position: relative; }
+  z-index: 0;
+  position: absolute; }
   .navbar--style * {
     color: #2c86c4 !important;
     font-size: 1.5rem;
@@ -434,8 +433,7 @@ button {
     width: 100%;
     text-align: center;
     position: absolute;
-    font-size: 5.5rem;
-    margin-top: 8rem; }
+    font-size: 5.5rem; }
   .signup-container__box {
     position: relative;
     height: 100%; }
