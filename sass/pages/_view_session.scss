@@ -1,0 +1,35 @@
+.view-tutor-session__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+// used by several pages
+.session-details-container {
+    margin-top: 2rem;
+    width: 50%;
+
+    .session-details {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        > * {
+            flex: 0 0 50%;
+        }
+
+        select {
+            background-color: transparent;
+        }
+        
+    }
+}
+
+
+// used by several pages
+.session-timer-container {
+    margin-top: 3rem;
+
+
+}

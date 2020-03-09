@@ -813,13 +813,13 @@ table img {
   height: 30rem !important;
   border-radius: 2rem; }
 
-.edit-profile__container .back-button {
-  margin-top: 2rem;
-  border: 1px solid black;
-  font-size: 2rem;
+.back-button {
+  margin-top: 2rem !important;
+  border: 1px solid black !important;
+  font-size: 2rem !important;
   color: black !important; }
-  .edit-profile__container .back-button:focus {
-    box-shadow: none; }
+  .back-button:focus {
+    box-shadow: none !important; }
 
 .edit-profile__form {
   margin-bottom: 10rem; }
@@ -945,7 +945,7 @@ table img {
       width: 100%; }
       .messages-table-left tbody tr td {
         display: block;
-        border-left: 0.5rem solid #2c86c4 !important; }
+        border-left: 0.5rem solid #ffc077 !important; }
     .messages-table-left tbody .first-td {
       margin-top: 1rem;
       border-top: none !important; }
@@ -1049,3 +1049,24 @@ table img {
       color: #2c86c4 !important;
       border: none !important;
       background-color: transparent !important; }
+
+.view-tutor-session__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem; }
+
+.session-details-container {
+  margin-top: 2rem;
+  width: 50%; }
+  .session-details-container .session-details {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; }
+    .session-details-container .session-details > * {
+      flex: 0 0 50%; }
+    .session-details-container .session-details select {
+      background-color: transparent; }
+
+.session-timer-container {
+  margin-top: 3rem; }
