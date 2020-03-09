@@ -138,13 +138,14 @@
             margin-top: 2rem;
             font-size: 2rem;
             background-color: #ffffff;
-            max-height: 50rem;
-
+            max-height: 40rem;
+            
             display: block;
             overflow: scroll;
 
             & tr {
                 height: 10rem;
+                
             }
 
             // selects all direct child of tr

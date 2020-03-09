@@ -596,7 +596,7 @@ button {
       margin-top: 2rem;
       font-size: 2rem;
       background-color: #ffffff;
-      max-height: 50rem;
+      max-height: 40rem;
       display: block;
       overflow: scroll; }
       .home__container__help-center__table tr {
@@ -875,3 +875,46 @@ table img {
       padding: 1rem 3rem;
       vertical-align: middle;
       margin: 0; }
+
+.m-header-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.m-left-container {
+  margin-top: 1rem; }
+
+.search-messages-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center; }
+  .search-messages-container .search-messages {
+    width: 100%;
+    border: 1px solid #9a9a9a;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    border: 1px solid grey;
+    padding: .5rem 4rem; }
+  .search-messages-container svg {
+    position: absolute;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+    fill: grey;
+    z-index: 1000; }
+
+.messages-table-left tr {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
+  .messages-table-left tr .name {
+    flex: 0 0 50%; }
+  .messages-table-left tr .request-pending {
+    flex: 0 0 50%; }
+  .messages-table-left tr .time {
+    align-self: flex-end; }
+  .messages-table-left tr * {
+    border: none !important; }
