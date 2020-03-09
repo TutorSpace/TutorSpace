@@ -118,6 +118,7 @@
             justify-content: space-between;
             &__text {
                 font-size: $font-2;
+                font-weight: 500 !important;
             }
             & button {
                 font-size: 2rem;
@@ -129,7 +130,7 @@
             font-size: 2rem;
             background-color: #ffffff;
             max-height: 50rem;
-            padding: 2rem;
+            padding: 3rem;
             border-radius: 2rem;
             @include boxShadow;
 
@@ -161,11 +162,12 @@
 
 // the following are for tutors only
 .home__tutor-requests {
-    margin-top: 2rem;
+    margin-top: 10rem;
     min-height: 15rem;
 
     &__header {
         font-size: $font-2;
+        font-weight: 600 !important;
     }
     &__content {
         font-size: 1.5rem;
@@ -177,6 +179,9 @@
     font-size: 2rem;
     background-color: #ffffff;
     max-height: 50rem;
+    border-radius: 14px;
+    padding: 3rem;
+    @include boxShadow;
 
     overflow: scroll;
 
@@ -204,7 +209,7 @@
 
     
     & td button {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         &:not(:last-child) {
             margin-right: 5px;
         }

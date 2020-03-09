@@ -69,8 +69,12 @@ h6 {
   font-weight: 600;
   color: #9a9a9a; }
 
+.bold {
+  font-weight: 700; }
+
 small {
-  font-size: 1.6rem !important; }
+  font-size: 1.6rem !important;
+  line-height: 2; }
 
 .message-preview {
   font-size: 1.2rem;
@@ -490,7 +494,8 @@ button {
       display: flex;
       justify-content: space-between; }
       .home__container__help-center__header__text {
-        font-size: 2.2rem; }
+        font-size: 2.2rem;
+        font-weight: 500 !important; }
       .home__container__help-center__header button {
         font-size: 2rem; }
     .home__container__help-center__table {
@@ -498,7 +503,7 @@ button {
       font-size: 2rem;
       background-color: #ffffff;
       max-height: 50rem;
-      padding: 2rem;
+      padding: 3rem;
       border-radius: 2rem;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
       display: block;
@@ -513,10 +518,11 @@ button {
         white-space: nowrap; }
 
 .home__tutor-requests {
-  margin-top: 2rem;
+  margin-top: 10rem;
   min-height: 15rem; }
   .home__tutor-requests__header {
-    font-size: 2.2rem; }
+    font-size: 2.2rem;
+    font-weight: 600 !important; }
   .home__tutor-requests__content {
     font-size: 1.5rem; }
 
@@ -525,6 +531,9 @@ button {
   font-size: 2rem;
   background-color: #ffffff;
   max-height: 50rem;
+  border-radius: 14px;
+  padding: 3rem;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   overflow: scroll; }
   .tutor-requests-table tr {
     height: 10rem; }
@@ -535,7 +544,7 @@ button {
   .tutor-requests-table tr > :nth-child(2) {
     white-space: nowrap; }
   .tutor-requests-table td button {
-    font-size: 1.5rem; }
+    font-size: 1.6rem; }
     .tutor-requests-table td button:not(:last-child) {
       margin-right: 5px; }
 
@@ -672,7 +681,7 @@ button {
   margin-top: 1.5rem;
   text-align: right; }
   .report-buttons button {
-    font-size: 2rem; }
+    font-size: 2.2rem; }
   .report-buttons button:first-child {
     margin-right: 1rem; }
 

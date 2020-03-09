@@ -50,10 +50,14 @@ h6 {
 	font-weight: 600;
 	color: $color-gray;
 }
+.bold {
+	font-weight: 700;
+}
 
 // Buttons, labels, section info, messages
 small {
 	font-size: 1.6rem !important;
+	line-height: 2
 }
 
 // Message previews
