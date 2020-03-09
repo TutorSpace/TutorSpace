@@ -142,12 +142,20 @@
             background-color: #ffffff;
             
             max-height: 50rem;
-            padding: 3rem;
+            padding: 0 3rem 3rem 3rem;
             border-radius: 2rem;
             @include boxShadow;
 
             display: block;
             overflow: scroll;
+
+            tr:first-child {
+
+                * {
+                    border-top: none !important;
+                }
+                
+            }
 
             & tr {
                 height: 10rem;

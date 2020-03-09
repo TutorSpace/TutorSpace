@@ -548,14 +548,10 @@ button {
     min-height: 20%; }
     .home__container__notifications__title {
       font-size: 2.2rem;
-<<<<<<< HEAD
-      font-weight: 600;
-      margin-top: 2rem; }
+      margin-top: 2rem;
+      font-weight: 500; }
       .home__container__notifications__title span {
         font-weight: 700; }
-=======
-      font-weight: 500; }
->>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
     .home__container__notifications__text {
       font-size: 1.5rem; }
     .home__container__notifications__tutors, .home__container__notifications__students {
@@ -599,27 +595,22 @@ button {
       align-items: center; }
       .home__container__help-center__header__text {
         font-size: 2.2rem;
-<<<<<<< HEAD
-        margin: 0; }
-=======
+        margin: 0;
         font-weight: 500 !important; }
->>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
       .home__container__help-center__header button {
         font-size: 2rem; }
     .home__container__help-center__table {
       margin-top: 2rem;
       font-size: 2rem;
       background-color: #ffffff;
-<<<<<<< HEAD
-      max-height: 40rem;
-=======
       max-height: 50rem;
-      padding: 3rem;
+      padding: 0 3rem 3rem 3rem;
       border-radius: 2rem;
       box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
->>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
       display: block;
       overflow: scroll; }
+      .home__container__help-center__table tr:first-child * {
+        border-top: none !important; }
       .home__container__help-center__table tr {
         height: 10rem; }
       .home__container__help-center__table tr > * {
@@ -861,7 +852,14 @@ table img {
       color: #9a9a9a;
       margin-right: 1.5rem;
       margin-bottom: 4px; }
-<<<<<<< HEAD
+  .edit-profile__form__bank {
+    background-color: white;
+    border-radius: 17px;
+    padding: 3rem;
+    padding-top: 1.2rem;
+    margin-top: 1rem;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    width: 50%; }
 
 .search-container {
   margin-top: 3rem; }
@@ -941,13 +939,3 @@ table img {
     align-self: flex-end; }
   .messages-table-left tr * {
     border: none !important; }
-=======
-  .edit-profile__form__bank {
-    background-color: white;
-    border-radius: 17px;
-    padding: 3rem;
-    padding-top: 1.2rem;
-    margin-top: 1rem;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-    width: 50%; }
->>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
