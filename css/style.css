@@ -936,7 +936,7 @@ table img {
   display: block;
   max-height: 75vh;
   overflow: scroll;
-  width: 100%; }
+  margin-bottom: 0 !important; }
   .messages-table-left tbody {
     display: block;
     width: 100%; }
