@@ -59,7 +59,7 @@ h4 {
 
 h5 {
   font-size: 2.2rem !important;
-  font-weight: 400; }
+  font-weight: 400 !important; }
 
 h6 {
   font-size: 2rem; }
@@ -69,8 +69,12 @@ h6 {
   font-weight: 600;
   color: #9a9a9a; }
 
+.bold {
+  font-weight: 700; }
+
 small {
-  font-size: 1.6rem !important; }
+  font-size: 1.6rem !important;
+  line-height: 2; }
 
 .message-preview {
   font-size: 1.2rem;
@@ -83,9 +87,11 @@ small {
 button {
   color: #f7fbfd !important;
   border-radius: 8px !important;
-  font-size: 2.2rem; }
+  font-size: 2.2rem;
+  font-weight: 400; }
   button.button--small {
-    font-size: 1.6rem !important; }
+    font-size: 1.6rem !important;
+    white-space: nowrap; }
   button.btn-bg-blue-light {
     background-color: #97d2fb; }
     button.btn-bg-blue-light:hover {
@@ -179,18 +185,17 @@ button {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1rem;
-  box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2); }
+  padding: 2.2rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08); }
   .session__container:not(:first-child) {
-    margin-top: 1.5rem; }
+    margin-top: 2rem; }
   .session__container .title {
     width: 100%;
     font-size: 1.5rem;
     font-weight: 500; }
   .session__container .text {
     font-size: 1.5rem; }
-  .session__container .descriptor {
-    margin-top: 1rem; }
   .session__container button {
     margin-top: 1rem; }
   .session__container :not(:first-child) {
@@ -343,10 +348,10 @@ button {
     font-size: 2.2rem; }
   .index-left-container__box-3 {
     width: 100%;
-    display: flex;
-    justify-content: space-evenly; }
+    display: flex; }
     .index-left-container__box-3 button {
-      font-size: 2.2rem; }
+      font-size: 2.2rem;
+      margin-right: 16px; }
 
 .index-right-container__img {
   width: 100%;
@@ -460,11 +465,12 @@ button {
   width: 50%; }
   .fgpwd-container__header {
     font-size: 5.5rem; }
-  .fgpwd-container__header-2 {
-    font-size: 2.2rem; }
+  h5 .fgpwd-container__header-2 {
+    font-size: 2.2rem;
+    font-weight: 400 !important; }
   .fgpwd-container__inputs {
     width: 100%;
-    margin: 5rem 0 15rem 0;
+    margin: 5rem 0 5rem 0;
     text-align: center; }
     .fgpwd-container__inputs__email {
       width: 75%;
@@ -542,10 +548,14 @@ button {
     min-height: 20%; }
     .home__container__notifications__title {
       font-size: 2.2rem;
+<<<<<<< HEAD
       font-weight: 600;
       margin-top: 2rem; }
       .home__container__notifications__title span {
         font-weight: 700; }
+=======
+      font-weight: 500; }
+>>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
     .home__container__notifications__text {
       font-size: 1.5rem; }
     .home__container__notifications__tutors, .home__container__notifications__students {
@@ -589,14 +599,25 @@ button {
       align-items: center; }
       .home__container__help-center__header__text {
         font-size: 2.2rem;
+<<<<<<< HEAD
         margin: 0; }
+=======
+        font-weight: 500 !important; }
+>>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
       .home__container__help-center__header button {
         font-size: 2rem; }
     .home__container__help-center__table {
       margin-top: 2rem;
       font-size: 2rem;
       background-color: #ffffff;
+<<<<<<< HEAD
       max-height: 40rem;
+=======
+      max-height: 50rem;
+      padding: 3rem;
+      border-radius: 2rem;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+>>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b
       display: block;
       overflow: scroll; }
       .home__container__help-center__table tr {
@@ -618,10 +639,11 @@ button {
         white-space: nowrap; }
 
 .home__tutor-requests {
-  margin-top: 2rem;
+  margin-top: 10rem;
   min-height: 15rem; }
   .home__tutor-requests__header {
-    font-size: 2.2rem; }
+    font-size: 2.2rem;
+    font-weight: 600 !important; }
   .home__tutor-requests__content {
     font-size: 1.5rem; }
 
@@ -630,6 +652,9 @@ button {
   font-size: 2rem;
   background-color: #ffffff;
   max-height: 50rem;
+  border-radius: 14px;
+  padding: 3rem;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   overflow: scroll; }
   .tutor-requests-table tr {
     height: 10rem; }
@@ -640,11 +665,8 @@ button {
     white-space: nowrap; }
   .tutor-requests-table tr > :nth-child(2) {
     white-space: nowrap; }
-  .tutor-requests-table td > :nth-child(1) {
-    color: grey;
-    font-size: 1.5rem; }
   .tutor-requests-table td button {
-    font-size: 1.5rem; }
+    font-size: 1.6rem; }
     .tutor-requests-table td button:not(:last-child) {
       margin-right: 5px; }
 
@@ -788,7 +810,7 @@ table img {
   margin-top: 1.5rem;
   text-align: right; }
   .report-buttons button {
-    font-size: 2rem; }
+    font-size: 2.2rem; }
   .report-buttons button:first-child {
     margin-right: 1rem; }
 
@@ -822,7 +844,7 @@ table img {
     display: flex;
     flex-wrap: wrap; }
     .edit-profile__form__content * {
-      width: 40%; }
+      width: 46%; }
     .edit-profile__form__content input {
       font-size: 2rem;
       background-color: #f7fbfd;
@@ -839,6 +861,7 @@ table img {
       color: #9a9a9a;
       margin-right: 1.5rem;
       margin-bottom: 4px; }
+<<<<<<< HEAD
 
 .search-container {
   margin-top: 3rem; }
@@ -918,3 +941,13 @@ table img {
     align-self: flex-end; }
   .messages-table-left tr * {
     border: none !important; }
+=======
+  .edit-profile__form__bank {
+    background-color: white;
+    border-radius: 17px;
+    padding: 3rem;
+    padding-top: 1.2rem;
+    margin-top: 1rem;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    width: 50%; }
+>>>>>>> 9d04e24b4572564f61e6041e605f6581a9b57d8b

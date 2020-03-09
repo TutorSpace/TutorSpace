@@ -39,11 +39,12 @@
 
         &__title {
             font-size: $font-2;
-            font-weight: 600;
+            
             margin-top: 2rem;
             span {
                 font-weight: 700;
             }
+            font-weight: 500;
         }
 
         &__text {
@@ -128,6 +129,7 @@
             &__text {
                 font-size: $font-2;
                 margin: 0;
+                font-weight: 500 !important;
             }
             & button {
                 font-size: 2rem;
@@ -138,8 +140,12 @@
             margin-top: 2rem;
             font-size: 2rem;
             background-color: #ffffff;
-            max-height: 40rem;
             
+            max-height: 50rem;
+            padding: 3rem;
+            border-radius: 2rem;
+            @include boxShadow;
+
             display: block;
             overflow: scroll;
 
@@ -185,13 +191,12 @@
 
 // the following are for tutors only
 .home__tutor-requests {
-    margin-top: 2rem;
+    margin-top: 10rem;
     min-height: 15rem;
 
     &__header {
         font-size: $font-2;
-        
-       
+        font-weight: 600 !important;
     }
     &__content {
         font-size: 1.5rem;
@@ -203,6 +208,9 @@
     font-size: 2rem;
     background-color: #ffffff;
     max-height: 50rem;
+    border-radius: 14px;
+    padding: 3rem;
+    @include boxShadow;
 
     overflow: scroll;
 
@@ -224,15 +232,14 @@
         white-space: nowrap;
     }
 
-    td > :nth-child(1) {
-        color: grey;
-        font-size: 1.5rem;
-    }
+    // td > :nth-child(1) {
+    //     color: grey;
+    //     font-size: 1.5rem;
+    // }
 
     
     & td button {
-        font-size: 1.5rem;
-
+        font-size: 1.6rem;
         &:not(:last-child) {
             margin-right: 5px;
         }
