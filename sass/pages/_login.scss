@@ -52,7 +52,8 @@
             
             & .forget-password {
                 font-size: calc(#{$font-2} / 2);
-                text-align: right;
+                text-align: left;
+                margin-top: 1rem;
                 
                 & a {
                     color: grey;

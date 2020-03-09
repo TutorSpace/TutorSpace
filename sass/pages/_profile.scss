@@ -94,6 +94,7 @@
     border: 1px solid grey;
     padding: .5rem 4rem;
     outline: none;
+    border-radius: 7px;
 }
 
 .about__buttons__container {
@@ -106,10 +107,11 @@
         width: 40%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        // justify-content: center;
         margin-right: 10px;
         margin-top: 10px;
         & svg {
+            margin-right: 0.75rem;
             width: 2rem;
             height: 2rem;
         }
