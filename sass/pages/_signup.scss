@@ -3,11 +3,13 @@
         // background-color: green;
         height: calc(100vh - #{$navbar-height});
         position: relative;
+        min-height: 500px;
 
         $line-height: 2em;
 
         &__form {
             @include absCenter;
+            transform: translate(-50%, -60%);
 
             width: 75%;
             
@@ -22,8 +24,12 @@
             &__btn {
                 font-size: $font-2 !important;
                 line-height: $line-height;
-                padding-top: 10px;
-                margin-top: 10px;
+                padding-top: 1rem;
+                margin-top: 1rem;
+            }
+
+            &__btn {
+                margin-top: 4rem;
             }
 
             & label {
@@ -117,11 +123,17 @@
             }
         }
 
+        #header {
+            
+            margin-top: 3rem;
+        }
+
         &__header {
             width: 100%;
             text-align: center;
             position: absolute;
             font-size: $font-1;
+            // margin-top: 3rem;
             // margin-top: 8rem;
         }
 
@@ -149,7 +161,7 @@
                     margin-bottom: 1rem;
                 }
 
-                & button {
+                & a {
                     margin-top: 2rem;
                     margin-bottom: .5rem;
                     font-size: 2rem !important;
@@ -168,4 +180,9 @@
 
     }
 
+}
+
+
+#signup_tutor_container {
+    min-height: 700px;
 }

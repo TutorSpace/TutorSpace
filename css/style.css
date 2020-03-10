@@ -38,6 +38,12 @@ html {
 body {
   box-sizing: border-box; }
 
+html, body {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden; }
+
 body {
   color: #f7fbfd;
   background-color: #f7fbfd !important; }
@@ -85,30 +91,30 @@ small {
   color: #9a9a9a;
   font-size: 1.5rem; }
 
-button {
+button, a.btn {
   color: #f7fbfd !important;
   border-radius: 8px !important;
   font-size: 2.2rem;
   font-weight: 400; }
-  button.button--small {
+  button.button--small, a.btn.button--small {
     font-size: 1.6rem !important;
     white-space: nowrap; }
-  button.btn-bg-blue-light {
+  button.btn-bg-blue-light, a.btn.btn-bg-blue-light {
     background-color: #97d2fb; }
-    button.btn-bg-blue-light:hover {
+    button.btn-bg-blue-light:hover, a.btn.btn-bg-blue-light:hover {
       background-color: #97d2fb !important; }
-  button.btn-bg-blue-dark {
+  button.btn-bg-blue-dark, a.btn.btn-bg-blue-dark {
     background-color: #2c86c4; }
-    button.btn-bg-blue-dark:hover {
+    button.btn-bg-blue-dark:hover, a.btn.btn-bg-blue-dark:hover {
       background-color: #2c86c4 !important; }
-  button.btn-outline-primary {
+  button.btn-outline-primary, a.btn.btn-outline-primary {
     color: #2c86c4 !important;
     border-width: 2px;
     border-color: #2c86c4 !important; }
-    button.btn-outline-primary:hover {
+    button.btn-outline-primary:hover, a.btn.btn-outline-primary:hover {
       color: #f7fbfd !important;
       background-color: #2c86c4 !important; }
-  button.btn-primary {
+  button.btn-primary, a.btn.btn-primary {
     background-color: #2c86c4 !important;
     border-color: #2c86c4 !important; }
 
@@ -147,6 +153,8 @@ button {
   .reviews-table .review-content {
     max-height: 20rem;
     overflow: scroll; }
+    .reviews-table .review-content::-webkit-scrollbar {
+      display: none; }
   .reviews-table .review-star__container {
     display: flex;
     justify-content: center;
@@ -308,19 +316,86 @@ button {
   .svg-nav .st0 {
     fill: #97D2FB;
     fill-opacity: 0.25; }
+  .svg-nav .st0-white {
+    fill: #f7fbfd !important;
+    fill-opacity: 1 !important; }
+
+.nav-white {
+  background-color: rgba(151, 210, 251, 0.25);
+  width: 100%;
+  height: calc(75vw / 14);
+  position: absolute;
+  z-index: -2000; }
 
 .nav {
   height: calc(75vw / 14);
   width: 100vw; }
   .nav .svg-logo-container {
     height: 80%;
-    background-color: orangered;
     display: flex;
     align-items: center; }
     .nav .svg-logo-container .svg-logo {
-      margin-left: 2rem;
-      width: 7rem;
-      z-index: 100; }
+      margin-left: 7rem;
+      margin-right: 7rem;
+      width: 10rem;
+      z-index: 100;
+      transition: transform .4s; }
+      .nav .svg-logo-container .svg-logo:hover {
+        cursor: pointer;
+        transform: scale(1.3); }
+  .nav-not-login .nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; }
+    .nav-not-login .nav-container .button-container {
+      height: 80%;
+      display: flex;
+      align-items: center; }
+      .nav-not-login .nav-container .button-container * {
+        margin-right: 3rem; }
+  .nav-login .nav-container {
+    width: 100%;
+    display: flex; }
+    .nav-login .nav-container .button-container {
+      height: 80%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      font-size: 2rem; }
+      .nav-login .nav-container .button-container a {
+        color: #2c86c4 !important; }
+      .nav-login .nav-container .button-container *:not(:last-child) {
+        margin-right: 3rem; }
+      .nav-login .nav-container .button-container .search-box {
+        border: 3px solid #2c86c4;
+        display: flex;
+        align-items: center;
+        border-radius: 8px; }
+        .nav-login .nav-container .button-container .search-box svg {
+          width: 2rem;
+          height: 2rem;
+          fill: #2c86c4;
+          margin-left: 1rem;
+          margin-right: 1rem;
+          z-index: 100; }
+        .nav-login .nav-container .button-container .search-box input {
+          border: none;
+          outline: none;
+          background-color: inherit;
+          padding: .2rem 0;
+          padding-right: 1.5rem;
+          color: #2c86c4; }
+          .nav-login .nav-container .button-container .search-box input::placeholder, .nav-login .nav-container .button-container .search-box input::-webkit-input-placeholder {
+            color: rgba(44, 134, 197, 0.54); }
+    .nav-login .nav-container .user-photo-container {
+      height: 80%;
+      display: flex;
+      align-items: center; }
+      .nav-login .nav-container .user-photo-container img {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 50%;
+        margin-right: 5rem; }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - calc(75vw / 14));
@@ -344,7 +419,7 @@ button {
   .index-left-container__box-3 {
     width: 100%;
     display: flex; }
-    .index-left-container__box-3 button {
+    .index-left-container__box-3 a {
       font-size: 2.2rem;
       margin-right: 16px; }
 
@@ -357,19 +432,23 @@ button {
 
 .signup-container {
   height: calc(100vh - calc(75vw / 14));
-  position: relative; }
+  position: relative;
+  min-height: 500px; }
   .signup-container__form {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
     width: 75%; }
     .signup-container__form label,
     .signup-container__form input, .signup-container__form__btn {
       font-size: 2.2rem !important;
       line-height: 2em;
-      padding-top: 10px;
-      margin-top: 10px; }
+      padding-top: 1rem;
+      margin-top: 1rem; }
+    .signup-container__form__btn {
+      margin-top: 4rem; }
     .signup-container__form label {
       margin-bottom: 0;
       display: block;
@@ -414,6 +493,8 @@ button {
     width: 100%; }
     .signup-container__flag svg {
       position: relative; }
+  .signup-container #header {
+    margin-top: 3rem; }
   .signup-container__header {
     width: 100%;
     text-align: center;
@@ -439,13 +520,16 @@ button {
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
         font-size: 2rem;
         margin-bottom: 1rem; }
-      .signup-container__box--tutor button, .signup-container__box--student button {
+      .signup-container__box--tutor a, .signup-container__box--student a {
         margin-top: 2rem;
         margin-bottom: .5rem;
         font-size: 2rem !important;
         text-align: center; }
       .signup-container__box--tutor h5, .signup-container__box--student h5 {
         font-weight: 400; }
+
+#signup_tutor_container {
+  min-height: 700px; }
 
 .fgpwd-outerbox {
   height: calc(100vh - calc(75vw / 14));
@@ -525,104 +609,105 @@ button {
       .login-container__content__form__header {
         font-size: 5.5rem; }
 
-.home__container {
-  height: calc(100vh - calc(75vw / 14)); }
-  .home__container__header {
-    background-color: rgba(151, 210, 251, 0.25);
-    height: 30rem; }
-    .home__container__header__content__text {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      justify-content: center; }
-      .home__container__header__content__text__header {
-        font-size: 4.5rem; }
-      .home__container__header__content__text__descriptor {
-        font-size: 2rem; }
-  .home__container__notifications {
-    min-height: 20%; }
-    .home__container__notifications__title {
-      font-size: 2.2rem;
-      margin-top: 2rem;
-      font-weight: 500; }
-      .home__container__notifications__title span {
-        font-weight: 700; }
-    .home__container__notifications__text {
-      font-size: 1.5rem; }
-    .home__container__notifications__tutors, .home__container__notifications__students {
-      margin-top: 5rem; }
-    .home__container__notifications__sessions {
-      margin-top: 5rem; }
-    .home__container__notifications .recommended__tutors {
-      font-size: 2rem;
-      background-color: #ffffff;
-      overflow: scroll; }
-      .home__container__notifications .recommended__tutors tr {
-        display: flex; }
-        .home__container__notifications .recommended__tutors tr * {
-          border: none; }
-        .home__container__notifications .recommended__tutors tr > :first-child {
-          display: flex;
-          align-items: center; }
-        .home__container__notifications .recommended__tutors tr > :nth-child(2) {
-          flex: 1; }
-          .home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
-            color: #9a9a9a;
-            font-size: 1rem; }
-      .home__container__notifications .recommended__tutors .bookmark {
-        fill: #9a9a9a;
-        width: 2rem;
-        height: 2rem; }
-        .home__container__notifications .recommended__tutors .bookmark-marked {
-          fill: #ffdc60; }
-    .home__container__notifications__calendar {
-      width: 100%;
-      min-height: 30rem;
-      margin-top: 2rem;
-      background-color: orangered;
-      color: white;
-      font-size: 5.5rem; }
-  .home__container__help-center {
+.home__container__header {
+  background-color: rgba(151, 210, 251, 0.25);
+  height: 30rem; }
+  .home__container__header__content__text {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center; }
+    .home__container__header__content__text__header {
+      font-size: 4.5rem; }
+    .home__container__header__content__text__descriptor {
+      font-size: 2rem; }
+
+.home__container__notifications {
+  min-height: 20%; }
+  .home__container__notifications__title {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    font-weight: 500; }
+    .home__container__notifications__title span {
+      font-weight: 700; }
+  .home__container__notifications__text {
+    font-size: 1.5rem; }
+  .home__container__notifications__tutors, .home__container__notifications__students {
     margin-top: 5rem; }
-    .home__container__help-center__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center; }
-      .home__container__help-center__header__text {
-        font-size: 2.2rem;
-        margin: 0;
-        font-weight: 500 !important; }
-      .home__container__help-center__header button {
-        font-size: 2rem; }
-    .home__container__help-center__table {
-      margin-top: 2rem;
-      font-size: 2rem;
-      background-color: #ffffff;
-      max-height: 50rem;
-      padding: 0 3rem 3rem 3rem;
-      border-radius: 2rem;
-      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-      display: block;
-      overflow: scroll; }
-      .home__container__help-center__table tr:first-child * {
-        border-top: none !important; }
-      .home__container__help-center__table tr {
-        height: 10rem; }
-      .home__container__help-center__table tr > * {
-        vertical-align: middle !important; }
-      .home__container__help-center__table tr > :nth-child(1) {
-        white-space: nowrap;
-        text-align: center; }
-      .home__container__help-center__table tr > :nth-child(2) {
-        text-align: center; }
-        .home__container__help-center__table tr > :nth-child(2) p {
-          margin-bottom: 0;
-          font-size: 1rem;
-          color: #9a9a9a; }
-        .home__container__help-center__table tr > :nth-child(2) span {
-          white-space: nowrap; }
-      .home__container__help-center__table button {
+  .home__container__notifications__sessions {
+    margin-top: 5rem; }
+  .home__container__notifications .recommended__tutors {
+    font-size: 2rem;
+    background-color: #ffffff;
+    overflow: scroll; }
+    .home__container__notifications .recommended__tutors tr {
+      display: flex; }
+      .home__container__notifications .recommended__tutors tr * {
+        border: none; }
+      .home__container__notifications .recommended__tutors tr > :first-child {
+        display: flex;
+        align-items: center; }
+      .home__container__notifications .recommended__tutors tr > :nth-child(2) {
+        flex: 1; }
+        .home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
+          color: #9a9a9a;
+          font-size: 1rem; }
+    .home__container__notifications .recommended__tutors .bookmark {
+      fill: #9a9a9a;
+      width: 2rem;
+      height: 2rem; }
+      .home__container__notifications .recommended__tutors .bookmark-marked {
+        fill: #ffdc60; }
+  .home__container__notifications__calendar {
+    width: 100%;
+    min-height: 30rem;
+    margin-top: 2rem;
+    color: #9a9a9a;
+    font-size: 5.5rem; }
+
+.home__container__help-center {
+  margin-top: 5rem; }
+  .home__container__help-center__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .home__container__help-center__header__text {
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: 500 !important; }
+    .home__container__help-center__header button {
+      font-size: 2rem; }
+  .home__container__help-center__table {
+    margin-top: 2rem;
+    font-size: 2rem;
+    background-color: #ffffff;
+    max-height: 50rem;
+    padding: 0 1rem;
+    border-radius: 2rem;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+    display: block;
+    overflow: scroll; }
+    .home__container__help-center__table::-webkit-scrollbar {
+      display: none; }
+    .home__container__help-center__table tr:first-child * {
+      border-top: none !important; }
+    .home__container__help-center__table tr {
+      height: 10rem; }
+    .home__container__help-center__table tr > * {
+      vertical-align: middle !important; }
+    .home__container__help-center__table tr > :nth-child(1) {
+      white-space: nowrap;
+      text-align: center; }
+    .home__container__help-center__table tr > :nth-child(2) {
+      text-align: center; }
+      .home__container__help-center__table tr > :nth-child(2) p {
+        margin-bottom: 0;
+        font-size: 1rem;
+        color: #9a9a9a; }
+      .home__container__help-center__table tr > :nth-child(2) span {
         white-space: nowrap; }
+    .home__container__help-center__table a {
+      white-space: nowrap; }
 
 .home__tutor-requests {
   margin-top: 10rem;
@@ -880,7 +965,7 @@ table img {
       outline: none;
       background-color: inherit;
       padding: 5px 0;
-      width: 400px; }
+      width: 40rem; }
   .search-container .filters-label {
     margin-top: 2rem; }
   .search-container .year, .search-container .price {

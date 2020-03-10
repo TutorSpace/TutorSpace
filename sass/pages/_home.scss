@@ -1,5 +1,5 @@
 .home__container {
-    height: calc(100vh - #{$navbar-height});
+    // height: calc(100vh - #{$navbar-height});
     
     &__header {
         background-color: $color-blue-light-trans;
@@ -65,6 +65,10 @@
             font-size: 2rem;
             background-color: #ffffff;
             
+
+            // border-radius: 14px;
+            // padding: 3rem;
+            // @include boxShadow;
             
             overflow: scroll;
 
@@ -109,10 +113,10 @@
             width: 100%;
             min-height: 30rem;
             margin-top: 2rem;
-
+            color: $color-gray;
             // for testing only
-            background-color: orangered;
-            color: white;
+            // background-color: orangered;
+            // color: white;
             font-size: $font-1;
         }
     }
@@ -142,7 +146,14 @@
             background-color: #ffffff;
             
             max-height: 50rem;
-            padding: 0 3rem 3rem 3rem;
+            
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            padding: 0 1rem;
+
             border-radius: 2rem;
             @include boxShadow;
 
@@ -186,7 +197,7 @@
                 }
             }
 
-            button {
+            a {
                 white-space: nowrap;
             }
         }
@@ -263,3 +274,5 @@ table {
         margin-right: 5px;
     }
 }
+
+
