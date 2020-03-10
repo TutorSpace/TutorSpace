@@ -27,8 +27,62 @@
         <div class="labels filters-label">Filters</div>
 
         <div class="filter-container">
-            <button class="btn btn-lg btn-outline-primary">Year</button>
-            <button class="btn btn-lg btn-outline-primary">Rating</button>
+            <div class="filter-box">
+                <button class="btn btn-lg btn-outline-primary">Year</button>
+                <div class="filter">
+                    <div class="form-check filter-year">
+                        <input class="form-check-input" type="checkbox" value="" id="freshman">
+                        <label class="form-check-label" for="freshman">
+                            Freshman
+                        </label>
+                    </div>
+                    <div class="form-check filter-year">
+                        <input class="form-check-input" type="checkbox" value="" id="sophomore">
+                        <label class="form-check-label" for="sophomore">
+                            Sophomore
+                        </label>
+                    </div>
+                    <div class="form-check filter-year">
+                        <input class="form-check-input" type="checkbox" value="" id="junior">
+                        <label class="form-check-label" for="junior">
+                            Junior
+                        </label>
+                    </div>
+                    <div class="form-check filter-year">
+                        <input class="form-check-input" type="checkbox" value="" id="senior">
+                        <label class="form-check-label" for="senior">
+                            Senior
+                        </label>
+                    </div>
+                    <div class="form-check filter-year">
+                        <input class="form-check-input" type="checkbox" value="" id="graduate">
+                        <label class="form-check-label" for="graduate">
+                            Graduate
+                        </label>
+                    </div>
+                    <div class="button-container">
+                        <button class="btn btn-outline-primary" id="clear-year">Clear</button>
+                        <button class="btn btn-primary" id="save-year">Save</button>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
+            <div class="filter-box">
+                <button class="btn btn-lg btn-outline-primary">Rating</button>
+                <div class="filter">
+                    <label for="rating-range-low">Low: <span id="rating-range-low-value">1</span></label>
+                    <input type="range" class="custom-range rating-range" min="0" max="2" id="rating-range-low">
+
+                    <label for="rating-range-high">High: <span id="rating-range-high-value">4</span></label>
+                    <input type="range" class="custom-range rating-range" min="3" max="5" id="rating-range-high">
+                    <div class="button-container">
+                        <button class="btn btn-outline-primary" id="clear-rating">Clear</button>
+                        <button class="btn btn-primary" id="save-rating">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
         
 
@@ -141,6 +195,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
+
+    <!-- defined javascript -->
+    <script src="js/search.js"></script>
 </body>
 
 </html>
