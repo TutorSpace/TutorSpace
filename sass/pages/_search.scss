@@ -33,7 +33,13 @@
 
     }
 
-    .year {
+
+
+    .filters-label {
+        margin-top: 2rem;
+    }
+
+    .year, .price {
         font-size: $font-3;
         font-weight: 400;
         margin-bottom: 2rem;
@@ -41,27 +47,20 @@
     }
     
 
-    // .labels {
-    //     font-size: $font-3;
-    //     font-weight: 400;
-    //     margin-bottom: 2rem;
-    // }
     .bold {
         font-weight: 500;
     }
 
     .filter-container {
-        display: inline-flex;
-        border: 1px solid black;
-        border-radius: 8px;
-        margin-right: 1rem;
-        margin-top: 1rem;
-        h5 {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 3rem;
-            vertical-align: middle;
-            margin: 0;
+        display: flex;
+        margin-top: .5rem;
+
+        button {
+            padding: .5rem 2rem;
+        }
+
+        button:not(:last-child) {
+            margin-right: 1rem;
         }
     }
     

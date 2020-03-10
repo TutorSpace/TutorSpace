@@ -249,7 +249,8 @@ button {
       align-items: center;
       margin-bottom: 1rem;
       position: relative;
-      height: 2rem; }
+      height: 2rem;
+      white-space: nowrap; }
       .search-card-container .search-card-flex-container .search-card .star-container .star {
         width: 1.6rem;
         position: relative;
@@ -257,7 +258,9 @@ button {
         margin-left: 3px;
         color: #9a9a9a;
         position: relative;
-        height: 110%; }
+        height: 110%;
+        fill: transparent;
+        stroke: #9a9a9a; }
     .search-card-container .search-card-flex-container .search-card .courses {
       font-size: 1.2rem;
       line-height: 1.2; }
@@ -864,7 +867,9 @@ table img {
       background-color: inherit;
       padding: 5px 0;
       width: 400px; }
-  .search-container .year {
+  .search-container .filters-label {
+    margin-top: 2rem; }
+  .search-container .year, .search-container .price {
     font-size: 1.6rem;
     font-weight: 400;
     margin-bottom: 2rem;
@@ -872,17 +877,12 @@ table img {
   .search-container .bold {
     font-weight: 500; }
   .search-container .filter-container {
-    display: inline-flex;
-    border: 1px solid black;
-    border-radius: 8px;
-    margin-right: 1rem;
-    margin-top: 1rem; }
-    .search-container .filter-container h5 {
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 3rem;
-      vertical-align: middle;
-      margin: 0; }
+    display: flex;
+    margin-top: .5rem; }
+    .search-container .filter-container button {
+      padding: .5rem 2rem; }
+    .search-container .filter-container button:not(:last-child) {
+      margin-right: 1rem; }
 
 .m-header-container {
   margin-top: 2rem;
@@ -1095,3 +1095,73 @@ table img {
   .notes-for-student-buttons button {
     font-size: 2rem;
     margin-bottom: 5rem; }
+
+.session-after-container {
+  display: flex; }
+  .session-after-container .session-duration {
+    margin-top: 2rem;
+    margin-left: 5rem; }
+    .session-after-container .session-duration .duration {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      background-color: white;
+      border-radius: 2rem;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08); }
+
+.total-fee-container {
+  margin-top: 3rem; }
+  .total-fee-container .calculation {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    flex-wrap: wrap; }
+    .total-fee-container .calculation .results {
+      font-weight: 700; }
+    .total-fee-container .calculation + div {
+      width: 50%;
+      margin-top: 1rem;
+      text-align: right; }
+
+.session-notes-header {
+  margin-top: 3rem; }
+
+.session-notes-container {
+  margin-top: 1rem;
+  font-size: 2rem;
+  height: 20rem;
+  overflow: scroll;
+  border: 1px solid black;
+  border-radius: 2rem;
+  padding: 1rem; }
+
+.session-review-header {
+  margin-top: 3rem; }
+
+.session-post-review-container {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  .session-post-review-container textarea {
+    font-size: 2rem !important;
+    height: 30rem !important;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: transparent; }
+    .session-post-review-container textarea + div {
+      margin-top: 1rem;
+      text-align: right; }
+
+.share-notes-tutor {
+  font-size: 2rem !important;
+  height: 30rem !important;
+  padding: 1rem;
+  border-radius: 2rem !important;
+  background-color: transparent !important; }
+  .share-notes-tutor + div {
+    margin-top: 1rem;
+    text-align: right; }
+    .share-notes-tutor + div button:first-child {
+      margin-left: 1rem; }
