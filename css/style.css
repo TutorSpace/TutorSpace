@@ -302,14 +302,28 @@ button {
     margin-top: 1rem;
     width: 49%; }
 
-.navbar--style {
-  height: 8rem; }
+.svg-nav {
+  position: absolute;
+  z-index: -1000; }
+  .svg-nav .st0 {
+    fill: #97D2FB;
+    fill-opacity: 0.25; }
 
-.navbar--style-white {
-  height: 8rem; }
+.nav {
+  height: calc(75vw / 14);
+  width: 100vw; }
+  .nav .svg-logo-container {
+    height: 80%;
+    background-color: orangered;
+    display: flex;
+    align-items: center; }
+    .nav .svg-logo-container .svg-logo {
+      margin-left: 2rem;
+      width: 7rem;
+      z-index: 100; }
 
 .index-left-container, .index-right-container {
-  height: calc(100vh - 8rem);
+  height: calc(100vh - calc(75vw / 14));
   min-height: 500px;
   position: relative; }
 
@@ -342,7 +356,7 @@ button {
   bottom: 0; }
 
 .signup-container {
-  height: calc(100vh - 8rem);
+  height: calc(100vh - calc(75vw / 14));
   position: relative; }
   .signup-container__form {
     position: absolute;
@@ -434,7 +448,7 @@ button {
         font-weight: 400; }
 
 .fgpwd-outerbox {
-  height: calc(100vh - 8rem);
+  height: calc(100vh - calc(75vw / 14));
   position: relative; }
 
 .fgpwd-container {
@@ -468,7 +482,7 @@ button {
       font-size: 2.2rem; }
 
 .login-container {
-  height: calc(100vh - 8rem);
+  height: calc(100vh - calc(75vw / 14));
   width: 100%; }
   .login-container__img {
     position: relative;
@@ -512,7 +526,7 @@ button {
         font-size: 5.5rem; }
 
 .home__container {
-  height: calc(100vh - 8rem); }
+  height: calc(100vh - calc(75vw / 14)); }
   .home__container__header {
     background-color: rgba(151, 210, 251, 0.25);
     height: 30rem; }

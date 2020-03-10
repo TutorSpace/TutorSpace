@@ -1,10 +1,29 @@
-.navbar--style {
-    height: $navbar-height;
+.svg-nav {
+    position: absolute;
+    z-index: -1000;
 
+    .st0 {
+        fill:#97D2FB;fill-opacity:0.25;
+    }
 }
 
-
-.navbar--style-white {
+.nav {
     height: $navbar-height;
+    width: 100vw;
+    
+    
+
+    .svg-logo-container {
+        height: 80%;
+        background-color: orangered;
+        display: flex;
+        align-items: center;
+
+        .svg-logo {
+            margin-left: 2rem;
+            width: 7rem;
+            z-index: 100;
+        }
+    }
     
 }
