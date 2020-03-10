@@ -65,15 +65,13 @@
             font-size: 2rem;
             background-color: #ffffff;
             
-
-            // border-radius: 14px;
-            // padding: 3rem;
-            // @include boxShadow;
-            
             overflow: scroll;
-
+            border-radius: 14px;
+            @include boxShadow;
+            
             tr {
                 display: flex;
+                padding: 1rem;
                 
                 * {
                     border: none;

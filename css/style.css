@@ -639,9 +639,12 @@ button, a.btn {
   .home__container__notifications .recommended__tutors {
     font-size: 2rem;
     background-color: #ffffff;
-    overflow: scroll; }
+    overflow: scroll;
+    border-radius: 14px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08); }
     .home__container__notifications .recommended__tutors tr {
-      display: flex; }
+      display: flex;
+      padding: 1rem; }
       .home__container__notifications .recommended__tutors tr * {
         border: none; }
       .home__container__notifications .recommended__tutors tr > :first-child {
