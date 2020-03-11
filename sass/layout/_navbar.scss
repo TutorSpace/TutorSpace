@@ -128,6 +128,7 @@
                         padding-right: 1.5rem;
                         color: $color-blue-dark;
                         width: 25rem;
+                        transition: width .5s;
 
 
                         &::placeholder,
@@ -135,6 +136,9 @@
                             color: rgba($color: #2C86C5, $alpha: .54)
                         }
 
+                        &:focus {
+                            width: 30rem;
+                        }
                         
                     }
                 }
