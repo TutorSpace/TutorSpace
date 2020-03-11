@@ -12,7 +12,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-    <title>Profile - student</title>
+    <title>View Session After - tutor</title>
 </head>
 
 <body>
@@ -76,12 +76,12 @@
 
 
     <div class="container">
-        <button class="btn btn-lg back-button btn-outline-dark dark-button">
+        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
             Back to Profile
-        </button>
+        </a>
         <div class="view-tutor-session__header">
             <h2>Completed Tutoring Session with Jeffrey</h2>
-            <button class="btn btn-lg btn-outline-primary">Report a Problem</button>
+            <!-- <button class="btn btn-lg btn-outline-primary">Report a Problem</button> -->
         </div>
 
         <div class="session-after-container">
@@ -96,14 +96,12 @@
                     <span class="labels">Hourly Rate</span>
                     <h5>5pm - 6pm</h5>
                     <h5>$16</h5>
-                    <span class="labels">Location</span>
-                    <span class="labels">Payment Account</span>
-                    <h5>OHE 215</h5>
-                    <select class="form-control form-control-lg">
-                        <option selected>****-****-4732</option>
-                        <option>Ketchup</option>
-                        <option>Relish</option>
-                      </select>
+                    <div>
+                        <span class="labels">Location</span>
+                        <h5>OHE 215</h5>
+                    </div>
+                    
+                    
                       
                 </div>
             </div>
@@ -120,7 +118,7 @@
         placeholder="The notes will be shared with the student at the end of the session."></textarea>
         <div>
             <button class="btn btn-lg btn-outline-primary">Reset</button>
-            <button class="btn btn-lg btn-primary">Post Review</button>
+            <button class="btn btn-lg btn-primary">Share Notes</button>
         </div>
             
        
@@ -158,7 +156,6 @@
 
 
     <!-- defined javascript -->
-    <script src="js/search.js"></script>
     <script src="js/nav.js"></script>
     
 

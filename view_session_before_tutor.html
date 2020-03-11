@@ -12,7 +12,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-    <title>Profile - student</title>
+    <title>View Session Before - tutor</title>
 </head>
 
 <body>
@@ -76,9 +76,9 @@
     
 
     <div class="container">
-        <button class="btn btn-lg back-button btn-outline-dark dark-button">
+        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
             Back to Profile
-        </button>
+        </a>
         <div class="view-tutor-session__header">
             <h2>Tutoring Session with Jeffrey</h2>
             
@@ -95,14 +95,12 @@
                 <span class="labels">Hourly Rate</span>
                 <h5>5pm - 6pm</h5>
                 <h5>$16</h5>
-                <span class="labels">Location</span>
-                <span class="labels">Payment Account</span>
-                <h5>OHE 215</h5>
-                <select class="form-control form-control-lg">
-                    <option selected>****-****-4732</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
-                  </select>
+                <div>
+                    <span class="labels">Location</span>
+                    <h5>OHE 215</h5>
+                </div>
+                
+                
                   
             </div>
         </div>
@@ -125,7 +123,7 @@
         </div>
 
 
-        <div class="notes-for-student">
+        <!-- <div class="notes-for-student">
             <h4>Notes for Student</h4>
             <textarea rows="6" class="form-control report-textarea" 
             placeholder="Write down any notes or feedback you have for your student. They will receive them at the end of the tutoring session."></textarea>
@@ -134,7 +132,7 @@
                 <button class="btn btn-lg btn-primary">Share Notes</button>
             </div>
             
-        </div>
+        </div> -->
 
     </div>
 
@@ -157,7 +155,6 @@
 
     <!-- defined javascript -->
     <script src="js/timer.js"></script>
-    <script src="js/search.js"></script>
     <script src="js/nav.js"></script>
     
 
