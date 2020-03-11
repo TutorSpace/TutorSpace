@@ -1,0 +1,253 @@
+.m-header-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.m-left-container, .m-right-container {
+    margin-top: 1rem;
+
+}
+
+.search-messages-container {
+    width: 100%;
+    
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .search-messages {
+        width: 100%;
+        border: 1px solid $color-gray;
+        outline: none;
+        background-color: transparent;
+        
+        font-size: 1.5rem;
+        border: 1px solid grey;
+        padding: .5rem 4rem;
+
+        border-radius: 5px;
+        
+    }
+
+    svg {
+        position: absolute;
+        left: 1rem;
+        width: 2rem;
+        height: 2rem;
+        fill: grey;
+        z-index: 1000;
+    }
+}
+
+/* width */
+// ::-webkit-scrollbar {
+//     width: 5px;    
+// }
+  
+
+
+.messages-table-left {
+    display: block;
+    max-height: 75vh;
+    overflow: scroll;
+    margin-bottom: 0 !important;
+    
+
+    tbody {
+        display: block;
+        width: 100%;
+
+        tr {
+            display: block;
+            width: 100%;
+
+            td {
+                display: block;  
+            }
+
+            td.unread {
+                border-left: .5rem solid $color-pending-request !important;    
+            }
+            
+        }
+
+        .first-td {
+            margin-top: 1rem;
+            border-top: none !important;
+        }
+    }
+
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        font-size: 1.5rem;
+        white-space: nowrap;
+
+        .name {
+            // font-size: 1.5rem;
+        }
+    
+        .request-pending {
+            color: $color-blue-dark;
+            font-size: 1rem;
+        }
+
+        * {
+            border: none !important;
+        }
+    }
+
+    .time {
+        display: block;
+        text-align: right;
+    }
+
+
+
+    
+}
+
+
+
+.m-right-container {
+    width: 100%;
+    border: 1px solid $color-gray;
+    display: flex;
+    flex-direction: column;
+    
+
+    .header {
+        display: flex;
+        margin-top: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $color-gray;
+        
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            margin-right: 5px;
+            
+        }
+    }
+
+    .message-alert {
+        margin-top: 1rem;
+        background-color: $color-blue-dark-nav;
+        align-items: center;
+        display: flex;
+        font-size: 1.2rem;
+        padding: 1rem;
+
+        &-content {
+            margin-right: auto;
+        }
+
+        button:last-child {
+            margin-left: 1rem;
+            // margin-right: 1rem;
+            white-space: nowrap;
+        }
+
+        > :first-child {
+            margin-right: 1rem;
+            white-space: nowrap;
+            * {
+                margin-bottom: 0;
+                
+            }
+            > :first-child {
+                font-weight: 600;
+            }
+        }
+
+    }
+
+
+}
+
+
+.messages-container {
+    margin-top: 1rem;
+    
+    // to occupy the all available space
+    flex: 1;
+    
+    overflow: scroll;
+    max-height: -webkit-fill-available;
+    margin-bottom: 1rem;
+
+    font-size: 1.2rem;
+    > .message-other {
+        width: 45%;
+    }
+    
+
+    .message-other, .message-self {
+        padding: 1rem;
+        border-radius: 5px;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+        
+    }
+
+    .message-other {
+        background-color: $color-message-other;
+        
+    }
+
+    .message-self-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin-bottom: 1rem;
+        // margin-right: 10rem;
+
+        p {
+            margin-bottom: 0;
+            flex: 0 0 45%;
+            background-color: $color-message-self;
+        }
+    }
+}
+
+
+.message-input-container {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .message-input {
+        width: 95%;
+        border: 1px solid $color-gray;
+        outline: none;
+        background-color: transparent;
+        
+        font-size: 1.2rem;
+        border: 1px solid grey;
+        padding: .5rem 1rem;
+    
+        border-radius: 5px;
+        display: inline;
+        margin-right: 1rem;
+    
+        + button {
+            width: 5%;
+            
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: $color-blue-dark !important;
+            border: none !important;
+            background-color: transparent !important;
+        }
+    }
+    
+    
+}
