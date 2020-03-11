@@ -26,3 +26,23 @@ $('.profile-nav > .nav-link').click(function() {
         $('.reviews__container').show();
     }
 });
+
+
+// select all "view session button" from the upcoming section
+$('.sessions__container-1 .session__container > button:last-child').click(function() {
+    window.location.href = '/view_session_before_student.html';
+});
+
+
+// select all "view session button" from the past section
+$('.sessions__container-2 .session__container > button:last-child').click(function() {
+    window.location.href = '/view_session_after_student.html';
+});
+
+
+$('.session__container button').click(function() {
+    if($(this)[0].innerHTML === "Cancel Session") {
+        alert("session cancelled!");
+    }
+   
+});

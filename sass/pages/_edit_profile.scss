@@ -1,4 +1,10 @@
+#back-button {
+    color: black !important;
 
+    &:hover {
+        color: $color-white !important;
+    }
+}
 
 .back-button {
     margin-top: 2rem !important;

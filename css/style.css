@@ -125,7 +125,8 @@ button, a.btn {
     color: white !important; }
 
 .profile-nav {
-  margin-top: 3rem; }
+  margin-top: 2rem;
+  height: unset !important; }
   .profile-nav a {
     font-size: 2.2rem;
     color: black;
@@ -788,7 +789,7 @@ table img {
     .about__information__content .graduating-container .descriptor {
       margin-top: 2rem;
       display: block; }
-    .about__information__content button {
+    .about__information__content a {
       margin-top: 2rem;
       font-size: 2rem;
       width: 50%; }
@@ -897,6 +898,11 @@ table img {
   font-size: 2rem !important;
   height: 30rem !important;
   border-radius: 2rem; }
+
+#back-button {
+  color: black !important; }
+  #back-button:hover {
+    color: #f7fbfd !important; }
 
 .back-button {
   margin-top: 2rem !important;
