@@ -396,7 +396,11 @@ button, a.btn {
         height: 5rem;
         width: 5rem;
         border-radius: 50%;
-        margin-right: 5rem; }
+        margin-right: 5rem;
+        transition: transform .4s; }
+        .nav-login .nav-container .user-photo-container img:hover {
+          cursor: pointer;
+          transform: scale(1.2); }
 
 .index-left-container, .index-right-container {
   height: calc(100vh - calc(75vw / 14));
@@ -863,7 +867,7 @@ table img {
     font-size: 1.5rem; }
 
 #back-button {
-  margin-top: 5rem; }
+  margin-top: 3rem; }
 
 .report-container__header {
   margin-top: 3rem;
@@ -888,10 +892,11 @@ table img {
 
 .report-buttons {
   margin-top: 1.5rem;
-  text-align: right; }
-  .report-buttons button {
+  text-align: right;
+  margin-bottom: 3rem; }
+  .report-buttons button, .report-buttons a {
     font-size: 2.2rem; }
-  .report-buttons button:first-child {
+  .report-buttons :first-child {
     margin-right: 1rem; }
 
 .report-textarea {
