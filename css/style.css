@@ -44,6 +44,13 @@ html, body {
   padding: 0px;
   overflow-x: hidden; }
 
+.btn-animated--up {
+  transition: transform .2s !important; }
+  .btn-animated--up:hover {
+    transform: translateY(-0.3rem); }
+  .btn-animated--up:active {
+    transform: translateY(-0.5rem); }
+
 body {
   color: #f7fbfd;
   background-color: #f7fbfd !important; }
@@ -90,6 +97,17 @@ small {
 .grey-text {
   color: #9a9a9a;
   font-size: 1.5rem; }
+
+.heading-color {
+  background-image: linear-gradient(to right, #97d2fb, #2c86c4);
+  display: inline-block;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: transform 0.2s; }
+  .heading-color:hover {
+    transform: skewY(2deg) skewX(7deg) scale(1.1);
+    text-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.2);
+    font-weight: 600; }
 
 button, a.btn {
   color: #f7fbfd !important;
@@ -419,7 +437,7 @@ button, a.btn {
     margin-bottom: 5.5rem; }
   .index-left-container__box-1 {
     font-size: 5.5rem;
-    line-height: 6rem; }
+    line-height: 5.5rem; }
   .index-left-container__box-2 {
     font-size: 2.2rem; }
   .index-left-container__box-3 {
@@ -500,6 +518,7 @@ button, a.btn {
     .signup-container__flag svg {
       position: relative; }
   .signup-container #header {
+    z-index: 1;
     margin-top: 3rem; }
   .signup-container__header {
     width: 100%;

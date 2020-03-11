@@ -74,3 +74,26 @@ small {
     color: $color-gray;
     font-size: 1.5rem;
 }
+
+
+.heading-color {
+	// font-size: 3.5rem;
+	// text-transform: uppercase;
+	// font-weight: 700;
+
+	// give text some color
+	background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
+
+	display: inline-block;
+	-webkit-background-clip: text;
+	color: transparent;
+
+	// letter-spacing: 2px;
+	transition: transform 0.2s;
+
+	&:hover {
+		transform: skewY(2deg) skewX(7deg) scale(1.1);
+		text-shadow: 1rem 2rem 4rem rgba(black, .2);
+		font-weight: 600;
+	}
+}
