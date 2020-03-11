@@ -11,14 +11,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-    <title>View Session After - tutor</title>
+    <title>Expanded View - student</title>
 </head>
 
 <body>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px" y="0px" viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve"
-        class="svg-nav">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve" class="svg-nav">
         <g>
             <path class="st0" d="M0,61.54l77.78,4.12c77.78,3.96,233.33,12.42,388.89,8.19s311.11-20.38,466.67-22.58
             c155.56-2.04,311.11,10.27,388.89,16.42l77.78,6.15V0h-77.78c-77.78,0-233.33,0-388.89,0S622.22,0,466.67,0S155.56,0,77.78,0H0
@@ -58,7 +56,7 @@
             <div class="button-container">
                 <a href="/home_tutor.html">Home</a>
                 <a href="/messages.html">Messages</a>
-                <form class="search-box" action="/search-for-student.html">
+                <form class="search-box" action="/search-for-tutor.html">
                     <svg>
                         <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
                     </svg>
@@ -66,77 +64,139 @@
                 </form>
             </div>
             <div class="user-photo-container">
-                <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">    
+                <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">
             </div>
-            
+
         </div>
 
 
     </nav>
 
 
-    <div class="container">
-        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
-            Back to Profile
-        </a>
-        <div class="view-tutor-session__header">
-            <h2>Completed Tutoring Session with Jeffrey</h2>
-            <!-- <button class="btn btn-lg btn-outline-primary">Report a Problem</button> -->
-        </div>
 
-        <div class="session-after-container">
-            <div class="session-details-container">
-                <h4>Session Details</h4>
-                <div class="session-details">
-                    <span class="labels">Date</span>
-                    <span class="labels">Course/Subject</span>
-                    <h5>02-20-2020</h5>
-                    <h5>ITP 104</h5>
-                    <span class="labels">Time</span>
-                    <span class="labels">Hourly Rate</span>
-                    <h5>5pm - 6pm</h5>
-                    <h5>$16</h5>
-                    <div>
-                        <span class="labels">Location</span>
-                        <h5>OHE 215</h5>
+    <div class="container">
+        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/home_tutor.html">
+            Back to Home
+        </a>
+
+        <div class="about__container">
+            <div class="about__information">
+                <div class="about__information__img">
+                    <img src="assets/mj.jpg" alt="profile_img">
+                </div>
+
+                <div class="about__information__content">
+                    <div class="name">Jamie Chang</div>
+                    <div class="major-minor-container">
+                        <span class="descriptor">Major</span>
+                        <span class="descriptor">Minor</span>
+                        <span class="text">B.S. Astronautical Engineering</span>
+                        <span class="text">Web Development and Applications</span>
                     </div>
-                    
-                    
-                      
+                    <div class="graduating-container">
+                        <span class="descriptor">Graduating</span>
+                        <span class="text">December 2021</span>
+                    </div>
+                    <a class="btn btn-lg btn-primary" href="/messages.html">Message</a>
                 </div>
             </div>
-    
-            <div class="session-duration">
-                <h4>Session Duration</h4>
-                <div class="duration">01:04:08</div>
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="about__subjects">
+                        <div class="about__subjects__header">Subjects</div>
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Calculus</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Math</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Ling</span>
+                        </button>
+                    </div>
+
+                    <div class="about__courses">
+                        <div class="about__courses__header">
+                            Courses
+                        </div>
+
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">EALC</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">CSCI</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">COMM</span>
+                        </button>
+                    </div>
+
+                    <div class="about__characteristics">
+                        <div class="about__characteristics__header">
+                            Characteristics
+                        </div>
+
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Friendly</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Patient</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Hospital</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-7 reviews">
+
+                </div>
+
             </div>
         </div>
-
-        <h4 class="session-notes-header">Notes For Student</h4>
-       
-        <textarea rows="3" class="form-control share-notes-tutor" 
-        placeholder="The notes will be shared with the student at the end of the session."></textarea>
-        <div>
-            <button class="btn btn-lg btn-outline-primary">Reset</button>
-            <button class="btn btn-lg btn-primary">Share Notes</button>
-        </div>
-            
-       
-
-
-        <h4 class="session-review-header">Review Jeffrey</h4>
-        <div class="session-post-review-container">
-            <textarea rows="3" class="form-control" 
-            placeholder="What do you think about your tutor? Your review will appear on their profile along with your name."></textarea>
-            <div>
-                <button class="btn btn-lg btn-primary">Post Review</button>
-            </div>
-        </div>
-        
-
-        
-
     </div>
+    
+
+
+
+
 
 
 
@@ -154,10 +214,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-
     <!-- defined javascript -->
     <script src="js/nav.js"></script>
-    
 
 </body>
 

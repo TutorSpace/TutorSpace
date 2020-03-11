@@ -3,5 +3,14 @@ $('#logo').click(function() {
 });
 
 $('nav.nav .user-photo-container>img').click(function() {
-    window.location.href = '/profile_student.html';
+    // should account for id="tutor-profile-photo"
+    if($(this).attr('id') === 'tutor-profile-photo') {
+        window.location.href = '/profile_tutor.html';
+    }
+
+    else {
+        window.location.href = '/profile_student.html';
+    }
+        
+    
 });

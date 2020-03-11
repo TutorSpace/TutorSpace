@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Edit Profile - student</title>
+    <title>Edit Profile - tutor</title>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
             </svg>
         </div>
         <div class="button-container">
-            <a href="/home_student.html">Home</a>
+            <a href="/home_tutor.html">Home</a>
             <a href="/messages.html">Messages</a>
             <form class="search-box" action="/search-for-student.html">
                 <svg>
@@ -64,7 +64,7 @@
             </form>
         </div>
         <div class="user-photo-container">
-            <img src="assets/sophia.png" alt="user photo">
+            <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">
         </div>
 
     </div>
@@ -74,7 +74,7 @@
 
     <div class="container edit-profile__container">
         <div>
-            <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_student.html.html">
+            <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
                 Back to Profile
             </a>
         </div>
@@ -94,13 +94,18 @@
                 <input type="text" value="May 2020">
                 <span class="labels">Major *</span>
                 <span class="labels">Minor</span>
-                <input type="text" value="B.S. Astronautical Engineering">
+                <input type="text" value="B.S. Chemical Engineering">
                 <input type="text" value="Web Technologies and Application">
+                <span class="labels">GPA *</span>
+                <span class="labels">Hourly Rate</span>
+                <input type="text" value="3.8">
+                <input type="text" value="$16">
+                <small>*All input fields with an asterisk must be filled out</small>
             </div>
 
         </form>
 
-        <form action="" class="edit-profile__form">
+        <!-- <form action="" class="edit-profile__form">
             <div class="edit-profile__form__header">
                 <h2>Edit Bank Information</h2>
                 <div class="buttons">
@@ -115,7 +120,7 @@
                     <span class="labels">Name on Account *</span>
                     <span class="labels">Account Type *</span>
                     <input type="text" value="Jamie Chang">
-                    <!-- <input type="text" placeholder="Savings"> -->
+                    
                     <select>
                         <option value="">Choose an option</option>
                         <option value="checkings">Checkings</option>
@@ -128,7 +133,7 @@
                 </div>
             </div>
 
-        </form>
+        </form> -->
 
         
     </div>
@@ -150,7 +155,7 @@
     </script>
 
     <!-- defined javascript -->
-    <script src="js/edit_profile_student.js"></script>
+    <script src="js/edit_profile_tutor.js"></script>
     <script src="js/nav.js"></script>
 </body>
 
