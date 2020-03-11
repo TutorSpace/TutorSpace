@@ -5,11 +5,11 @@ $("#start-timer").click(() => {
 
 
 $("#stop-timer").click(() => {
-    // clearInterval(startTiming);
-    // secondLabel.innerHTML = "00";
-    // minuteLabel.innerHTML = "00";
-    // hourLabel.innerHTML = "00";
-    // totalSeconds = 0;
+    clearInterval(startTiming);
+    secondLabel.innerHTML = "00";
+    minuteLabel.innerHTML = "00";
+    hourLabel.innerHTML = "00";
+    totalSeconds = 0;
 });
 
 

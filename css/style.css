@@ -1188,6 +1188,8 @@ table img {
   justify-content: space-between;
   align-items: center;
   margin-top: 2rem; }
+  .view-tutor-session__header #report-button {
+    font-size: 1.5rem; }
 
 .session-details-container {
   margin-top: 2rem;
