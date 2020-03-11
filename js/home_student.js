@@ -13,7 +13,7 @@ $('.home__container__notifications__sessions .session__container > button:not(:l
 
 // select view profile
 $('.home__container__notifications__sessions .tutor-container > button:last-child').click(function () {
-    alert('view profile');
+    window.location.href = '/expanded_view_tutor.html';
 });
 
 // select past session
