@@ -533,25 +533,29 @@ button, a.btn {
 
 .fgpwd-outerbox {
   height: calc(100vh - calc(75vw / 14));
-  position: relative; }
+  position: relative;
+  min-height: 700px; }
 
 .fgpwd-container {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transform: translate(-50%, -60%);
   width: 50%; }
   .fgpwd-container__header {
-    font-size: 5.5rem; }
+    font-size: 5.5rem;
+    margin-bottom: 2rem; }
   h5 .fgpwd-container__header-2 {
     font-size: 2.2rem;
     font-weight: 400 !important; }
   .fgpwd-container__inputs {
     width: 100%;
-    margin: 5rem 0 5rem 0;
-    text-align: center; }
+    margin: 8rem 0 5rem 0;
+    display: flex;
+    justify-content: center; }
     .fgpwd-container__inputs__email {
-      width: 75%;
+      width: 60%;
       font-size: 2.2rem;
       background-color: #f7fbfd;
       border: none;
@@ -561,7 +565,7 @@ button, a.btn {
     width: 100%;
     text-align: center; }
     .fgpwd-container__button-container button {
-      width: 75%;
+      width: 60%;
       margin-bottom: 1rem;
       font-size: 2.2rem; }
 
