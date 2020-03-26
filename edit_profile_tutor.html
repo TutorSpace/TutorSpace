@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Forget password</title>
+    <title>Edit Profile - tutor</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 </svg>
 
 
-<nav class="nav nav-not-login">
+<nav class="nav nav-login">
     <div class="nav-container">
         <div class="svg-logo-container" id="logo">
             <svg width="106" height="33" viewBox="0 0 106 33" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -54,32 +54,92 @@
             </svg>
         </div>
         <div class="button-container">
-            <a class="btn btn-lg btn-outline-primary" href="/login.html">Log In</a>
-            <a class="btn btn-lg btn-primary" href='/signup_user.html'>Sign Up</a>
+            <a href="/home_tutor.html">Home</a>
+            <a href="/messages.html">Messages</a>
+            <form class="search-box" action="/search-for-student.html">
+                <svg>
+                    <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                </svg>
+                <input type="text" placeholder="Search a course or name">
+            </form>
         </div>
+        <div class="user-photo-container">
+            <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">
+        </div>
+
     </div>
+
 
 </nav>
 
-    <!-- fgpwd => forget password -->
-    <div class="container-fluid fgpwd-outerbox">
-        <div class="fgpwd-container">
-            <div class="fgpwd-container__header text-center"><h1>Forgot Your Password?</h1></div>
-            <div class="fgpwd-container__header-2 text-center"><h5>We'll send you a Reset Password link to the email you provide us!</h5>
-            
-            </div>
-            <div class="fgpwd-container__inputs">
-                <input type="email" class="fgpwd-container__inputs__email" placeholder="USC Email">
-            </div>
-            
-            <div class="fgpwd-container__button-container">
-                <button class="btn btn-lg btn-primary">Send Reset Password link</button>
-                <button class="btn btn-lg btn-outline-primary">Go Back Home</button>
-            </div>
-
+    <div class="container edit-profile__container">
+        <div>
+            <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
+                Back to Profile
+            </a>
         </div>
 
+        <form action="" class="edit-profile__form">
+            <div class="edit-profile__form__header">
+                <h2>Edit Profile</h2>
+                <div class="buttons">
+                    <button class="btn btn-lg btn-outline-primary">Cancel</button>
+                    <button class="btn btn-lg btn-primary">Save Changes</button>
+                </div>
+            </div>
+            <div class="w-75 edit-profile__form__content">
+                <span class="labels">Full Name *</span>
+                <span class="labels">Graduating *</span>
+                <input type="text" value="Jamie Chang">
+                <input type="text" value="May 2020">
+                <span class="labels">Major *</span>
+                <span class="labels">Minor</span>
+                <input type="text" value="B.S. Chemical Engineering">
+                <input type="text" value="Web Technologies and Application">
+                <span class="labels">GPA *</span>
+                <span class="labels">Hourly Rate</span>
+                <input type="text" value="3.8">
+                <input type="text" value="$16">
+                <small>*All input fields with an asterisk must be filled out</small>
+            </div>
+
+        </form>
+
+        <!-- <form action="" class="edit-profile__form">
+            <div class="edit-profile__form__header">
+                <h2>Edit Bank Information</h2>
+                <div class="buttons">
+                    <button class="btn btn-lg btn-outline-primary">Cancel</button>
+                    <button class="btn btn-lg btn-primary">Save Changes</button>
+                </div>
+            </div>
+
+            <h5>Account 1</h5>
+            <div class="edit-profile__form__bank">
+                <div class="edit-profile__form__content">
+                    <span class="labels">Name on Account *</span>
+                    <span class="labels">Account Type *</span>
+                    <input type="text" value="Jamie Chang">
+                    
+                    <select>
+                        <option value="">Choose an option</option>
+                        <option value="checkings">Checkings</option>
+                        <option value="savings">Savings</option>
+                    </select>
+                    <span class="labels">Bank Transit Number *</span>
+                    <span class="labels">Bank Account Number *</span>
+                    <input type="text" value="110000498">
+                    <input type="text" value="********1683">
+                </div>
+            </div>
+
+        </form> -->
+
+        
     </div>
+    
+    
+    
 
 
 
@@ -95,9 +155,8 @@
     </script>
 
     <!-- defined javascript -->
+    <script src="js/edit_profile_tutor.js"></script>
     <script src="js/nav.js"></script>
-    <script src="js/forget_password.js"></script>
-
 </body>
 
 </html>

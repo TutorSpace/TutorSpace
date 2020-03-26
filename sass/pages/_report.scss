@@ -1,9 +1,9 @@
 #back-button {
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .report-container {
-    
+    // height: calc(100vh - #{$nav-height});
     &__header {
         margin-top: 3rem;
         font-size: $font-2;
@@ -39,12 +39,12 @@
 .report-buttons {
     margin-top: 1.5rem;
     text-align: right;
-
-    & button {
+    margin-bottom: 3rem;
+    & button, & a {
         font-size: $font-2;
     }
 
-    & button:first-child {
+    & :first-child {
         margin-right: 1rem;
     }
 }

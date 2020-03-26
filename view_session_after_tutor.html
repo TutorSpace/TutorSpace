@@ -11,12 +11,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>sign up student</title>
+
+    <title>View Session After - tutor</title>
 </head>
 
 <body>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve" class="svg-nav">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve"
+        class="svg-nav">
         <g>
             <path class="st0" d="M0,61.54l77.78,4.12c77.78,3.96,233.33,12.42,388.89,8.19s311.11-20.38,466.67-22.58
             c155.56-2.04,311.11,10.27,388.89,16.42l77.78,6.15V0h-77.78c-77.78,0-233.33,0-388.89,0S622.22,0,466.67,0S155.56,0,77.78,0H0
@@ -25,7 +27,7 @@
     </svg>
 
 
-    <nav class="nav nav-not-login">
+    <nav class="nav nav-login">
         <div class="nav-container">
             <div class="svg-logo-container" id="logo">
                 <svg width="106" height="33" viewBox="0 0 106 33" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -54,58 +56,90 @@
                 </svg>
             </div>
             <div class="button-container">
-                <a class="btn btn-lg btn-outline-primary" href="/login.html">Log In</a>
-                <a class="btn btn-lg btn-primary" href='/signup_user.html'>Sign Up</a>
+                <a href="/home_tutor.html">Home</a>
+                <a href="/messages.html">Messages</a>
+                <form class="search-box" action="/search-for-student.html">
+                    <svg>
+                        <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                    <input type="text" placeholder="Search a course or name">
+                </form>
             </div>
+            <div class="user-photo-container">
+                <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">    
+            </div>
+            
         </div>
+
+
     </nav>
 
 
-    <div class="container signup-container">
-        <form action="#" class="signup-container__form text-center">
-            <div class="signup-container__form__header">
-                <h1 class="heading-color">Sign up to be a Student</h1>
-            </div>
+    <div class="container">
+        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/profile_tutor.html">
+            Back to Profile
+        </a>
+        <div class="view-tutor-session__header">
+            <h2>Completed Tutoring Session with Jeffrey</h2>
+            <!-- <button class="btn btn-lg btn-outline-primary">Report a Problem</button> -->
+        </div>
 
-            <div class="row row-cols-2">
-                <div class="col">
-                    <div class="signup-container__form__group">
-                        <input type="text" id="fullName" name="fullName" placeholder="Full Name *" required>
-                        <label for="fullName"><small>Full Name *</small></label>
+        <div class="session-after-container">
+            <div class="session-details-container">
+                <h4>Session Details</h4>
+                <div class="session-details">
+                    <span class="labels">Date</span>
+                    <span class="labels">Course/Subject</span>
+                    <h5>02-20-2020</h5>
+                    <h5>ITP 104</h5>
+                    <span class="labels">Time</span>
+                    <span class="labels">Hourly Rate</span>
+                    <h5>5pm - 6pm</h5>
+                    <h5>$16</h5>
+                    <div>
+                        <span class="labels">Location</span>
+                        <h5>OHE 215</h5>
                     </div>
-
-                    <div class="signup-container__form__group">
-                        <input type="text" id="major" name="major" placeholder="Major *" required>
-                        <label for="major"><small>Major *</small></label>
-                    </div>
-
-
-                </div>
-
-                <div class="col">
-                    <div class="signup-container__form__group">
-                        <input type="text" id="graduatingYear" name="graduatingYear" placeholder="Graduting Year *"
-                            required>
-                        <label for="graduatingYear"><small>Graduting Year *</small></label>
-                    </div>
-
-
-                    <div class="signup-container__form__group">
-                        <input type="text" id="minor" name="minor" placeholder="Minor *" required>
-                        <label for="minor"><small>Minor *</small></label>
-                    </div>
-
+                    
+                    
+                      
                 </div>
             </div>
+    
+            <div class="session-duration">
+                <h4>Session Duration</h4>
+                <div class="duration">01:04:08</div>
+            </div>
+        </div>
 
-            <a type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up" href="/profile_student.html">
-                <h5>Create Account</h5>
-            </a>
+        <h4 class="session-notes-header">Notes For Student</h4>
+       
+        <textarea rows="3" class="form-control share-notes-tutor" 
+        placeholder="The notes will be shared with the student at the end of the session."></textarea>
+        <div>
+            <button class="btn btn-lg btn-outline-primary">Reset</button>
+            <button class="btn btn-lg btn-primary">Share Notes</button>
+        </div>
+            
+       
 
 
-        </form>
+        <h4 class="session-review-header">Review Jeffrey</h4>
+        <div class="session-post-review-container">
+            <textarea rows="3" class="form-control" 
+            placeholder="What do you think about your tutor? Your review will appear on their profile along with your name."></textarea>
+            <div>
+                <button class="btn btn-lg btn-primary">Post Review</button>
+            </div>
+        </div>
+        
+
+        
 
     </div>
+
+
+
 
 
 
@@ -120,9 +154,10 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <!-- defined js -->
+
+    <!-- defined javascript -->
     <script src="js/nav.js"></script>
-    <script src="js/signup.js"></script>
+    
 
 </body>
 

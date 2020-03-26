@@ -1,5 +1,5 @@
 .profile-nav {
-    margin-top: 3rem;
+    margin-top: 2rem;
     & a{
         font-size: $font-2;
         color: black;
@@ -9,4 +9,6 @@
             border-bottom: 5px solid $color-blue-dark;
         }
     }
+
+    height: unset !important;
 }

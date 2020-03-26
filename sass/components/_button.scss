@@ -1,11 +1,11 @@
-button {
+button, a.btn {
 
     color: $color-white !important;
     border-radius: 8px !important;
     font-size: $font-2;
     font-weight: 400;
 
-  &.button--small {
+    &.button--small {
         font-size: $font-3 !important;
         white-space: nowrap;
     }

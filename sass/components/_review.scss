@@ -36,6 +36,9 @@
     & .review-content {
         max-height: 20rem;
         overflow: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
     
     .review-star__container {

@@ -12,7 +12,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-    <title>Profile - student</title>
+    <title>Profile - tutor</title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
                 </svg>
             </div>
             <div class="button-container">
-                <a href="/home_student.html">Home</a>
+                <a href="/home_tutor.html">Home</a>
                 <a href="/messages.html">Messages</a>
                 <form class="search-box" action="/search-for-tutor.html">
                     <svg>
@@ -66,7 +66,7 @@
                 </form>
             </div>
             <div class="user-photo-container">
-                <img src="assets/sophia.png" alt="user photo">    
+                <img src="assets/sophia.png" alt="user photo" id="tutor-profile-photo">    
             </div>
             
         </div>
@@ -80,7 +80,6 @@
         <nav class="nav profile-nav">
             <a class="nav-link active" href="#" id="nav-about">About You</a>
             <a class="nav-link" href="#" id="nav-sessions">Sessions</a>
-            <a class="nav-link" href="#" id="nav-saved">Saved</a>
             <a class="nav-link" href="#" id="nav-reviews">Reviews</a>
         </nav>
 
@@ -102,7 +101,9 @@
                         <span class="descriptor">Graduating</span>
                         <span class="text">December 2021</span>
                     </div>
-                    <a class="btn btn-lg btn-primary" href="/edit_profile_student.html">Edit Profile</a>
+
+                    <a class="btn btn-lg btn-primary" href="/edit_profile_tutor.html">Edit Profile</a>
+                    <a class="btn btn-lg btn-outline-primary" href="/edit_availability.html">Edit Availability</a>
                 </div>
             </div>
 
@@ -600,7 +601,7 @@
 
 
     <!-- defined javascript -->
-    <script src="js/profile_student.js"></script>
+    <script src="js/profile_tutor.js"></script>
     <script src="js/nav.js"></script>
 
 

@@ -53,10 +53,12 @@
             }
         }
 
-        & button {
+        & a {
+            display: inline-block;
             margin-top: 2rem;
             font-size: 2rem;
-            width: 50%;
+            width: 40%;
+            margin-right: 9%;
         }
 
     }
@@ -123,6 +125,8 @@
         &:focus {
             box-shadow: none;
         }
+
+
         
     }
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>sign up student</title>
+    <title>Expanded View - tutor</title>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     </svg>
 
 
-    <nav class="nav nav-not-login">
+    <nav class="nav nav-login">
         <div class="nav-container">
             <div class="svg-logo-container" id="logo">
                 <svg width="106" height="33" viewBox="0 0 106 33" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -54,58 +54,152 @@
                 </svg>
             </div>
             <div class="button-container">
-                <a class="btn btn-lg btn-outline-primary" href="/login.html">Log In</a>
-                <a class="btn btn-lg btn-primary" href='/signup_user.html'>Sign Up</a>
+                <a href="/home_student.html">Home</a>
+                <a href="/messages.html">Messages</a>
+                <form class="search-box" action="/search-for-tutor.html">
+                    <svg>
+                        <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                    </svg>
+                    <input type="text" placeholder="Search a course or name">
+                </form>
             </div>
+            <div class="user-photo-container">
+                <img src="assets/sophia.png" alt="user photo">
+            </div>
+
         </div>
+
+
     </nav>
 
 
-    <div class="container signup-container">
-        <form action="#" class="signup-container__form text-center">
-            <div class="signup-container__form__header">
-                <h1 class="heading-color">Sign up to be a Student</h1>
-            </div>
 
-            <div class="row row-cols-2">
-                <div class="col">
-                    <div class="signup-container__form__group">
-                        <input type="text" id="fullName" name="fullName" placeholder="Full Name *" required>
-                        <label for="fullName"><small>Full Name *</small></label>
-                    </div>
+    <div class="container">
+        <a class="btn btn-lg back-button btn-outline-dark dark-button" id="back-button" href="/home_student.html">
+            Back to Home
+        </a>
 
-                    <div class="signup-container__form__group">
-                        <input type="text" id="major" name="major" placeholder="Major *" required>
-                        <label for="major"><small>Major *</small></label>
-                    </div>
-
-
+        <div class="about__container">
+            <div class="about__information">
+                <div class="about__information__img">
+                    <img src="assets/mj.jpg" alt="profile_img">
                 </div>
 
-                <div class="col">
-                    <div class="signup-container__form__group">
-                        <input type="text" id="graduatingYear" name="graduatingYear" placeholder="Graduting Year *"
-                            required>
-                        <label for="graduatingYear"><small>Graduting Year *</small></label>
+                <div class="about__information__content">
+                    <div class="name">Jamie Chang</div>
+                    <div class="major-minor-container">
+                        <span class="descriptor">Major</span>
+                        <span class="descriptor">Minor</span>
+                        <span class="text">B.S. Astronautical Engineering</span>
+                        <span class="text">Web Development and Applications</span>
                     </div>
-
-
-                    <div class="signup-container__form__group">
-                        <input type="text" id="minor" name="minor" placeholder="Minor *" required>
-                        <label for="minor"><small>Minor *</small></label>
+                    <div class="graduating-container">
+                        <span class="descriptor">Graduating</span>
+                        <span class="text">December 2021</span>
                     </div>
-
+                    <a class="btn btn-lg btn-primary" href="/messages.html">Message</a>
                 </div>
             </div>
 
-            <a type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up" href="/profile_student.html">
-                <h5>Create Account</h5>
-            </a>
+            <div class="row">
+                <div class="col-5">
+                    <div class="about__subjects">
+                        <div class="about__subjects__header">Subjects</div>
+                    </div>
 
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Calculus</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Math</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Ling</span>
+                        </button>
+                    </div>
 
-        </form>
+                    <div class="about__courses">
+                        <div class="about__courses__header">
+                            Courses
+                        </div>
 
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">EALC</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">CSCI</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">COMM</span>
+                        </button>
+                    </div>
+
+                    <div class="about__characteristics">
+                        <div class="about__characteristics__header">
+                            Characteristics
+                        </div>
+
+                    </div>
+
+                    <div class="about__buttons__container">
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Friendly</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Patient</span>
+                        </button>
+                        <button class="btn btn-lg">
+                            <svg>
+                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                            </svg>
+                            <span class="name">Hospital</span>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-7 reviews">
+
+                </div>
+
+            </div>
+        </div>
     </div>
+    
+
+
+
+
+
+
+
 
 
 
@@ -120,9 +214,8 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
-    <!-- defined js -->
+    <!-- defined javascript -->
     <script src="js/nav.js"></script>
-    <script src="js/signup.js"></script>
 
 </body>
 

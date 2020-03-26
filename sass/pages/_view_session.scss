@@ -3,12 +3,17 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
+
+    #report-button {
+        font-size: 1.5rem;
+    }
 }
 
 // used by several pages
 .session-details-container {
     margin-top: 2rem;
     width: 50%;
+    
 
     .session-details {
         display: flex;
@@ -95,6 +100,109 @@
         button {
             font-size: 2rem;
             margin-bottom: 5rem;
+        }
+    }
+}
+
+.session-after-container {
+    display: flex;
+
+
+    .session-duration {
+        margin-top: 2rem;
+        margin-left: 5rem;
+
+        .duration {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            background-color: white;
+            border-radius: 2rem;
+            @include boxShadow;
+        }
+    }
+}
+
+
+.total-fee-container {
+    margin-top: 3rem;
+
+
+
+    .calculation {
+        font-size: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%;
+        flex-wrap: wrap;
+
+        .results {
+            font-weight: 700;
+        }
+
+        +div {
+            width: 50%;
+            margin-top: 1rem;
+            text-align: right;
+        }
+    }
+
+}
+
+.session-notes-header {
+    margin-top: 3rem;
+}
+
+.session-notes-container {
+    margin-top: 1rem;
+    font-size: 2rem;
+    height: 20rem;
+    overflow: scroll;
+    border: 1px solid black;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+.session-review-header {
+    margin-top: 3rem;
+}
+
+.session-post-review-container {
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+    textarea {
+        font-size: 2rem !important;
+        height: 30rem !important;
+        padding: 1rem;
+        border-radius: 2rem;
+        background-color: transparent;
+
+        +div {
+            margin-top: 1rem;
+            text-align: right;
+        }
+    }
+
+
+
+}
+
+
+.share-notes-tutor {
+    font-size: 2rem !important;
+    height: 30rem !important;
+    padding: 1rem;
+    border-radius: 2rem !important;
+    background-color: transparent !important;
+
+    +div {
+        margin-top: 1rem;
+        text-align: right;
+
+        button:first-child {
+            margin-left: 1rem;
         }
     }
 }

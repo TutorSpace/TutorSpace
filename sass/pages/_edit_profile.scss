@@ -1,4 +1,10 @@
+#back-button {
+    color: black !important;
 
+    &:hover {
+        color: $color-white !important;
+    }
+}
 
 .back-button {
     margin-top: 2rem !important;
@@ -80,5 +86,10 @@
 
     }
 
+    small {
+        font-size: 1rem !important;
+        margin-top: .5rem;
+        color: $color-gray;
+    }
 
 }

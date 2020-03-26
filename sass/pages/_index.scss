@@ -16,7 +16,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -60%);
     
             // background-color: orangered;
             width: 100%;
@@ -30,19 +30,20 @@
     
             &-1 {
                 font-size: $font-1;
-                line-height: 6rem;
+                line-height: 5.5rem;
                 
             }
     
             &-2 {
                 font-size: $font-2;
+                color: black;
             }
     
             &-3 {
                 width: 100%;
                 display: flex;
     
-                & button {
+                & a {
                     font-size: $font-2;
                     margin-right: 16px;
     
