@@ -39,7 +39,7 @@
 
                 position: relative;
                 top: calc(-#{$line-height} - 3px);
-                
+                color: black;
 
                 transition: all .5s;
             }
@@ -149,6 +149,7 @@
                 box-shadow: -2px 2px 5px 3px $color-blue-light;
                 font-weight: 400 !important;
                 border-radius: 2rem;
+                color: black;
 
                 & :nth-child(1) {
                     font-size: 4rem;

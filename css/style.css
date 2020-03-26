@@ -442,7 +442,8 @@ button, a.btn {
     font-size: 5.5rem;
     line-height: 5.5rem; }
   .index-left-container__box-2 {
-    font-size: 2.2rem; }
+    font-size: 2.2rem;
+    color: black; }
   .index-left-container__box-3 {
     width: 100%;
     display: flex; }
@@ -482,6 +483,7 @@ button, a.btn {
       text-align: left;
       position: relative;
       top: calc(-2em - 3px);
+      color: black;
       transition: all .5s; }
     .signup-container__form input {
       border: none;
@@ -540,7 +542,8 @@ button, a.btn {
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb;
       font-weight: 400 !important;
-      border-radius: 2rem; }
+      border-radius: 2rem;
+      color: black; }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
         font-size: 4rem;
         text-align: center;
