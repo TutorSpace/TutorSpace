@@ -1,79 +1,47 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# itp460-Bravo
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Created Frontend Pages
+1. [index page](http://www.joinme.us/test_bravo/)
+2. [signup page (tutor + student)](http://www.joinme.us/test_bravo/signup_user.html)
+3. [signup page (student)](http://www.joinme.us/test_bravo/signup_student.html)
+4. [signup page (tutor)](http://www.joinme.us/test_bravo/signup_tutor.html)
+5. [report tutor page](http://www.joinme.us/test_bravo/report_tutor.html)
+6. [profile page (student)](http://www.joinme.us/test_bravo/profile_student.html)
+7. [login (tutor + student)](http://www.joinme.us/test_bravo/login.html)
+8. [edit profile page (student)](http://www.joinme.us/test_bravo/edit_profile_student.html)
+9. [home page (student)](http://www.joinme.us/test_bravo/home_student.html)
+10. [home page (tutor)](http://www.joinme.us/test_bravo/home_tutor.html)
+11. [forget password page](http://www.joinme.us/test_bravo/forget_password.html)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Development Steps:
+1. Run "npm install" (if have not already installed NPM, please install it first)
+2. Run "npm run start" and then go to localhost:8001 to see the web pages. (just save the css/scss files and the web page will be updated automatically, np need to refresh the pages)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+##### Shuaiqing Luo
 
-## Learning Laravel
+##### Nick LoCastro
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+##### Katelyn Designer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+##### Sarah Selke
 
-## Laravel Sponsors
+##### Sophia Park
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<br /><br />
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [云软科技](http://www.yunruan.ltd/)
+## Git Process:
+1. Always work on our own branches when developing. (use ```git checkout <your branch name>``` in your project directory)<br /> 
+    **Don't** directly work on the "master" branch or the "develop" branch.
+2. After fully testing your code, use the following steps to push to your branch remotely on github so that others can integrate your code into their own branches
+    - ```git add .``` 
+    <br />**or**
+     <br /> ```git add <filenames of the files that you newly created, such as index.html>```)
+    - ```git commit -m <some description about why you are pushing these files to the remote branch so that others can understand what you are doing in this update, and it would also be helpful if we later want to reset to this update>```
+    - ```git push origin <your branch name, such as Shuaiqing-frontend>```
+    - Tell others on Slack that you just pushed your code on your branch, so that someone can merge it into "develop" branch (Shuaiqing will probably take care of it)
+    - After Shuaiqing merge it into the **"develop"** branch, please use ```git pull origin develop``` to integrate the updated part into your project.
+3. If we want to test the project, we can test it on the **"develop"** branch. 
+4. If everything goes well on the **"develop"** branch, and we implemented/improved/modified some important functionalities (such as if we created the login page, created the searching functionality, or created the payment functionality), then we can create a new branch called ```release-<version number>``` and merge it to the **"master"** branch. This makes it easier for us to go back to a version if we find something goes wrong in the future development.
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
