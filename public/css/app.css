@@ -31,7 +31,7 @@ html {
       font-size: 50%; } }
   @media only screen and (max-width: 40.625em) {
     html {
-      font-size: 30%; } }
+      font-size: 35%; } }
   @media only screen and (min-width: 112.5em) {
     html {
       font-size: 75%; } }
@@ -55,13 +55,14 @@ html, body {
 body {
   color: #f7fbfd;
   background-color: #f7fbfd !important;
-  font-family: 'Work Sans', sans-serif; }
+  font-family: 'Work Sans', sans-serif !important;
+  overflow: hidden !important; }
 
 svg {
   z-index: -100; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Crimson Text', serif; }
+  font-family: 'Crimson Text', serif !important; }
 
 h1 {
   font-size: 4.8rem !important; }
@@ -474,6 +475,9 @@ button, a.btn {
     @media only screen and (max-width: 40.625em) {
       .index-left-container__box-1 {
         font-size: 5.5rem !important; } }
+    @media only screen and (max-width: 25em) {
+      .index-left-container__box-1 {
+        font-size: 4.5rem !important; } }
   .index-left-container__box-2 {
     color: black; }
     @media only screen and (max-width: 56.25em) {
@@ -482,6 +486,9 @@ button, a.btn {
     @media only screen and (max-width: 40.625em) {
       .index-left-container__box-2 h5 {
         font-size: 2.2rem !important; } }
+    @media only screen and (max-width: 25em) {
+      .index-left-container__box-2 h5 {
+        font-size: 1.8rem !important; } }
   .index-left-container__box-3 {
     width: 100%;
     display: flex; }
@@ -494,6 +501,9 @@ button, a.btn {
       @media only screen and (max-width: 40.625em) {
         .index-left-container__box-3 a {
           font-size: 2.2rem !important; } }
+      @media only screen and (max-width: 25em) {
+        .index-left-container__box-3 a {
+          font-size: 1.8rem !important; } }
 
 .index-right-container__img {
   width: 100%;
@@ -505,7 +515,11 @@ button, a.btn {
 .signup-container {
   height: calc(100vh - calc(75vw / 14));
   position: relative;
-  min-height: 500px; }
+  padding: 0;
+  min-height: 750px; }
+  @media only screen and (max-width: 40.625em) {
+    .signup-container {
+      min-height: 500px; } }
   .signup-container__form {
     position: absolute;
     top: 50%;
@@ -566,6 +580,15 @@ button, a.btn {
     width: 100%; }
     .signup-container__flag svg {
       position: relative; }
+    @media only screen and (max-height: 50em) {
+      .signup-container__flag {
+        height: 60%; } }
+    @media only screen and (max-width: 40.625em) {
+      .signup-container__flag {
+        transform: scale(0.7); } }
+    @media only screen and (max-width: 34.375em) {
+      .signup-container__flag {
+        transform: scale(0.5); } }
   .signup-container #header {
     z-index: 1;
     margin-top: 3rem; }
@@ -582,26 +605,54 @@ button, a.btn {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 3rem 3rem;
+      padding: 3rem;
       z-index: 100;
       box-shadow: -2px 2px 5px 3px #97d2fb;
       font-weight: 400 !important;
       border-radius: 2rem;
-      color: black; }
+      color: black;
+      width: 60%; }
+      @media only screen and (max-width: 34.375em) {
+        .signup-container__box--tutor, .signup-container__box--student {
+          width: 70%;
+          padding: 1rem; }
+          .signup-container__box--tutor h3, .signup-container__box--student h3 {
+            font-size: 2.8rem !important; }
+          .signup-container__box--tutor h5, .signup-container__box--student h5 {
+            font-size: 1.8rem !important; } }
       .signup-container__box--tutor :nth-child(1), .signup-container__box--student :nth-child(1) {
         font-size: 4rem;
         text-align: center;
         margin-bottom: 2rem; }
       .signup-container__box--tutor :not(:first-child), .signup-container__box--student :not(:first-child) {
         font-size: 2rem;
-        margin-bottom: 1rem; }
+        margin-bottom: 1.5rem; }
+      .signup-container__box--tutor > :nth-last-child(2), .signup-container__box--student > :nth-last-child(2) {
+        margin-bottom: 3.5rem; }
       .signup-container__box--tutor a, .signup-container__box--student a {
         margin-top: 2rem;
         margin-bottom: .5rem;
         font-size: 2rem !important;
         text-align: center; }
-      .signup-container__box--tutor h5, .signup-container__box--student h5 {
-        font-weight: 400; }
+        @media only screen and (max-width: 34.375em) {
+          .signup-container__box--tutor a, .signup-container__box--student a {
+            font-size: 1.5rem !important; } }
+    .signup-container__box--tutor {
+      left: 40%; }
+      @media only screen and (max-width: 56.25em) {
+        .signup-container__box--tutor {
+          left: 35%; } }
+      @media only screen and (max-width: 34.375em) {
+        .signup-container__box--tutor {
+          left: 45%; } }
+    .signup-container__box--student {
+      left: 60%; }
+      @media only screen and (max-width: 56.25em) {
+        .signup-container__box--student {
+          left: 65%; } }
+      @media only screen and (max-width: 34.375em) {
+        .signup-container__box--student {
+          width: 55%; } }
 
 #signup_tutor_container {
   min-height: 700px; }
