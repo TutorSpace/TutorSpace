@@ -3,8 +3,10 @@
 
 @section('content')
     
+
 <div class="container signup-container" id="signup_tutor_container">
-    <form action="#" class="signup-container__form text-center">
+    <form action="/signup_tutor" method="POST" class="signup-container__form text-center">
+        @csrf
         <div class="signup-container__form__header">
             <h1 class="heading-color">Sign up to be a Tutor</h1>
         </div>
@@ -17,7 +19,7 @@
                 </div>
 
                 <div class="signup-container__form__group">
-                    <input type="text" id="email" name="email" placeholder="USC Email *" required>
+                    <input type="email" id="email" name="email" placeholder="USC Email *" required>
                     <label for="email"><small>USC Email *</small></label>
                 </div>
 
@@ -30,6 +32,11 @@
                     <input type="text" id="gpa" name="gpa" placeholder="GPA *" required>
                     <label for="gpa"><small>GPA *</small></label>
                 </div>
+
+                <div class="signup-container__form__group">
+                    <input type="password" id="password-1" name="password" placeholder="Password *" required>
+                    <label for="password"><small>Password *</small></label>
+                </div>
             </div>
 
             <div class="col">
@@ -39,8 +46,8 @@
                 </div>
 
                 <div class="signup-container__form__group">
-                    <input type="text" id="year" name="year" placeholder="Year *" required>
-                    <label for="year"><small>Year *</small></label>
+                    <input type="text" id="schoolYear" name="schoolYear" placeholder="School Year *" required>
+                    <label for="schoolYear"><small>School Year *</small></label>
                 </div>
 
 
@@ -56,15 +63,21 @@
                     <span class="error error-right">Please check your inputs</span>
                 </div>
 
+                <div class="signup-container__form__group">
+                    <input type="password" id="password-check" name="password-check" placeholder="Check Password *" required>
+                    <label for="password-check"><small>Check Password *</small></label>
+                    <span class="error error-right">Please check your inputs</span>
+                </div>
+
             </div>
         </div>
 
-        <a type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up"
-            href="/profile_tutor.html">Create Account</a>
+        <button type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up">Create Account</a>
 
     </form>
 
 </div>
+
 @endsection
 
 @section('js')

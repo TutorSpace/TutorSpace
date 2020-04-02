@@ -25,22 +25,23 @@
     </div>
 
     <div class="row login-container__content">
-        <form action="/home_student.html" class="login-container__content__form">
-
+        <form action="#" class="login-container__content__form">
+            @csrf
             <div class="login-container__content__form__header text-center">
                 <h1 class="heading-color">Log In</h1>
             </div>
             
 
             <div class="login-container__content__form__group">
-                <input type="text" id="email" name="email" placeholder="USC Email" required>
+                <input type="email" id="email" name="email" placeholder="USC Email" required>
                 <label for="email"><small>USC Email</small></label>
-                <span class="error">Please check your inputs</span>
+                
             </div>
 
             <div class="login-container__content__form__group">
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <label for="password"><small>Password</small></label>
+                <span class="error">Please check your inputs</span>
                 <a href="/forget_password.html" class="forget-password">Forgot Password</a>
             </div>
 

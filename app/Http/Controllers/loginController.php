@@ -10,7 +10,7 @@ class loginController extends Controller
         return view('authenticate.show_login');
     }
 
-    public function authenticate() {
-        dd('authenticating');
+    public function login() {
+        
     }
 }
