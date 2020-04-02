@@ -115,6 +115,18 @@ small {
     text-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.2);
     font-weight: 500; }
 
+.error {
+  color: red;
+  position: absolute;
+  left: 0;
+  font-size: calc(2.2rem / 2);
+  margin-top: 3px; }
+
+.error-right {
+  right: 0;
+  left: unset;
+  margin-right: 15px; }
+
 button, a.btn {
   color: #f7fbfd !important;
   border-radius: 8px !important;
@@ -147,16 +159,6 @@ button, a.btn {
   font-size: 2rem !important; }
   .dark-button:hover {
     color: white !important; }
-
-.profile-nav {
-  margin-top: 2rem;
-  height: unset !important; }
-  .profile-nav a {
-    font-size: 2.2rem;
-    color: black;
-    margin-right: 7rem; }
-    .profile-nav a.active {
-      border-bottom: 5px solid #2c86c4; }
 
 .reviews-table {
   margin-top: 2rem;
@@ -355,12 +357,12 @@ button, a.btn {
 .nav-white {
   background-color: rgba(151, 210, 251, 0.25);
   width: 100%;
-  height: calc(75vw / 14);
+  height: calc(100vw / 14.4);
   position: absolute;
   z-index: -2000; }
 
 .nav {
-  height: calc(75vw / 14);
+  height: calc(100vw / 14.4);
   width: 100vw;
   min-height: 35px; }
   .nav .svg-logo-container {
@@ -448,8 +450,18 @@ button, a.btn {
           cursor: pointer;
           transform: scale(1.2); }
 
+.profile-nav {
+  margin-top: 2rem;
+  height: unset !important; }
+  .profile-nav a {
+    font-size: 2.2rem;
+    color: black;
+    margin-right: 7rem; }
+    .profile-nav a.active {
+      border-bottom: 5px solid #2c86c4; }
+
 .index-left-container, .index-right-container {
-  height: calc(100vh - calc(75vw / 14));
+  height: calc(100vh - calc(100vw / 14.4));
   min-height: 500px;
   position: relative; }
   @media only screen and (min-width: 112.5em) {
@@ -513,7 +525,7 @@ button, a.btn {
   bottom: 0; }
 
 .signup-container {
-  height: calc(100vh - calc(75vw / 14));
+  height: calc(100vh - calc(100vw / 14.4));
   position: relative;
   padding: 0;
   min-height: 750px; }
@@ -530,33 +542,31 @@ button, a.btn {
     .signup-container__form label,
     .signup-container__form input, .signup-container__form__btn {
       font-size: 2.2rem !important;
-      line-height: 2em;
-      padding-top: 1rem;
-      margin-top: 1rem; }
+      line-height: 2em; }
     .signup-container__form__btn {
-      margin-top: 4rem; }
+      margin-top: 4rem;
+      width: 100%; }
     .signup-container__form label {
       margin-bottom: 0;
       display: block;
       text-align: left;
       position: relative;
-      top: calc(-2em - 3px);
+      transform: translateY(calc(-2.2rem - 3px));
       color: black;
-      transition: all .5s; }
+      transition: all .35s; }
+      .signup-container__form label small {
+        transition: all .35s; }
     .signup-container__form input {
       border: none;
-      border-bottom: 2px solid black;
+      border-bottom: 3px solid black;
       width: 100%;
       margin-bottom: 0;
-      transition: all .5s;
+      transition: border-bottom .5s;
       position: relative;
       top: 2em;
       display: block;
-      background-color: #f7fbfd !important; }
-      .signup-container__form input:focus {
-        outline: none;
-        border: none;
-        background-color: #f7fbfd !important; }
+      background-color: #f7fbfd !important;
+      outline: none; }
       .signup-container__form input:focus:invalid {
         border-bottom: 3px solid red; }
       .signup-container__form input:focus:valid {
@@ -565,14 +575,14 @@ button, a.btn {
         color: grey; }
     .signup-container__form input:placeholder-shown + label {
       opacity: 0;
-      transform: translateY(calc(2em + 3px));
+      transform: translateY(-3px);
       visibility: hidden; }
+      .signup-container__form input:placeholder-shown + label small {
+        font-size: 2.2rem !important; }
     .signup-container__form__header {
       text-align: center;
       margin-bottom: 5.5rem;
       font-size: 5.5rem; }
-    .signup-container__form__btn {
-      width: 100%; }
   .signup-container__flag {
     position: absolute;
     bottom: 0;
@@ -611,6 +621,7 @@ button, a.btn {
       font-weight: 400 !important;
       border-radius: 2rem;
       color: black;
+      background-color: white;
       width: 60%; }
       @media only screen and (max-width: 34.375em) {
         .signup-container__box--tutor, .signup-container__box--student {
@@ -656,11 +667,17 @@ button, a.btn {
 
 #signup_tutor_container {
   min-height: 700px; }
+  @media only screen and (max-width: 40.625em) {
+    #signup_tutor_container {
+      min-height: 500px; } }
 
 .fgpwd-outerbox {
-  height: calc(100vh - calc(75vw / 14));
+  height: calc(100vh - calc(100vw / 14.4));
   position: relative;
-  min-height: 700px; }
+  min-height: 600px; }
+  @media only screen and (max-width: 40.625em) {
+    .fgpwd-outerbox {
+      min-height: 400px; } }
 
 .fgpwd-container {
   position: absolute;
@@ -669,9 +686,13 @@ button, a.btn {
   transform: translate(-50%, -50%);
   transform: translate(-50%, -60%);
   width: 50%; }
+  @media only screen and (max-width: 40.625em) {
+    .fgpwd-container {
+      width: 75%; } }
   .fgpwd-container__header {
     font-size: 5.5rem;
-    margin-bottom: 2rem; }
+    margin-bottom: 2rem;
+    white-space: nowrap; }
   h5 .fgpwd-container__header-2 {
     font-size: 2.2rem;
     font-weight: 400 !important; }
@@ -679,26 +700,43 @@ button, a.btn {
     width: 100%;
     margin: 8rem 0 5rem 0;
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    position: relative; }
     .fgpwd-container__inputs__email {
+      padding: .5rem 0rem;
       width: 60%;
       font-size: 2.2rem;
       background-color: #f7fbfd;
       border: none;
       outline: none;
       border-bottom: 1px solid black; }
+      @media only screen and (max-width: 56.25em) {
+        .fgpwd-container__inputs__email {
+          width: 100%; } }
+    .fgpwd-container__inputs .error {
+      top: 100%;
+      left: 20%; }
+      @media only screen and (max-width: 56.25em) {
+        .fgpwd-container__inputs .error {
+          left: 0; } }
   .fgpwd-container__button-container {
     width: 100%;
     text-align: center; }
     .fgpwd-container__button-container button {
       width: 60%;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       font-size: 2.2rem; }
+      @media only screen and (max-width: 56.25em) {
+        .fgpwd-container__button-container button {
+          width: 100%; } }
 
 .login-container {
   min-height: 700px;
-  height: calc(100vh - calc(75vw / 14));
+  height: calc(100vh - calc(100vw / 14.4));
   width: 100%; }
+  @media only screen and (max-width: 40.625em) {
+    .login-container {
+      min-height: 650px; } }
   .login-container__img {
     position: relative;
     height: 30%; }
@@ -707,37 +745,63 @@ button, a.btn {
       bottom: 0;
       left: 50%;
       transform: translate(-50%, 0%); }
+    @media only screen and (max-width: 40.625em) {
+      .login-container__img {
+        transform: scale(0.75); } }
   .login-container__content {
     width: 100%; }
     .login-container__content__form {
       margin: 0rem auto;
       width: 30%;
       font-size: 2.2rem; }
+      @media only screen and (max-width: 56.25em) {
+        .login-container__content__form {
+          width: 45%; } }
+      @media only screen and (max-width: 40.625em) {
+        .login-container__content__form {
+          width: 60%; } }
       .login-container__content__form .password {
         margin-bottom: 0;
         position: relative; }
       .login-container__content__form * {
-        width: 100%;
-        margin-bottom: 3rem; }
+        width: 100%; }
       .login-container__content__form .login-btn {
         margin-bottom: 2rem; }
       .login-container__content__form input, .login-container__content__form button {
         font-size: 2.2rem;
         display: block; }
       .login-container__content__form input {
-        padding: 3px 5px;
+        padding: 3px 0;
         background-color: #f7fbfd;
         border: none;
         border-bottom: 1px solid black;
         outline: none; }
-      .login-container__content__form .forget-password {
-        font-size: calc(2.2rem / 2);
-        text-align: left;
-        margin-top: 1rem; }
-        .login-container__content__form .forget-password a {
-          color: grey; }
       .login-container__content__form__header {
-        font-size: 5.5rem; }
+        font-size: 5.5rem;
+        margin-bottom: 3rem; }
+      .login-container__content__form__group {
+        position: relative;
+        margin-bottom: 1rem; }
+        .login-container__content__form__group label {
+          font-size: 2.2rem !important;
+          transform: translateY(calc(-150% - 7px - .75rem));
+          transition: all .35s; }
+          .login-container__content__form__group label small {
+            transition: all .35s; }
+        .login-container__content__form__group input:placeholder-shown + label {
+          opacity: 0;
+          transform: translateY(calc(-100% - 4px));
+          visibility: hidden; }
+          .login-container__content__form__group input:placeholder-shown + label small {
+            font-size: 2.2rem !important; }
+        .login-container__content__form__group .forget-password {
+          position: absolute;
+          font-size: calc(2.2rem / 2);
+          width: 100%;
+          text-align: right;
+          bottom: calc(50% - (2.2rem / 2) - 1rem);
+          right: 0;
+          color: grey; }
 
 .home__container__header {
   background-color: rgba(151, 210, 251, 0.25);

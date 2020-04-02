@@ -21,13 +21,12 @@
 
 <body class="animsition">
 
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve" class="svg-nav">
-        <g>
-            <path class="st0" d="M0,61.54l77.78,4.12c77.78,3.96,233.33,12.42,388.89,8.19s311.11-20.38,466.67-22.58
-c155.56-2.04,311.11,10.27,388.89,16.42l77.78,6.15V0h-77.78c-77.78,0-233.33,0-388.89,0S622.22,0,466.67,0S155.56,0,77.78,0H0
-V61.54z" />
-        </g>
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1440 320" style="enable-background:new 0 0 1440 320;" xml:space="preserve"
+        class="svg-nav">
+
+        <path class="st0" d="M0,82l80,5.5c80,5.3,240,16.6,400,10.9s320-27.2,480-30.1c160-2.7,320,13.7,400,21.9l80,8.2V0h-80
+   c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
     </svg>
 
 

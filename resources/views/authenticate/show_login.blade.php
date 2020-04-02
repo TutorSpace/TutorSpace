@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <div class="container-fluid login-container">
     <div class="row login-container__img">
         <svg width="215" height="199" viewBox="0 0 215 199" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,19 +25,28 @@
     </div>
 
     <div class="row login-container__content">
-        <form action="/login" class="login-container__content__form" method="post">
-            @csrf
+        <form action="/home_student.html" class="login-container__content__form">
+
             <div class="login-container__content__form__header text-center">
-                <h1 class="heading-color">Log in</h1>
+                <h1 class="heading-color">Log In</h1>
             </div>
             
-            <input type="email" name="email" placeholder="USC Email" class="">
-            <input type="password" name="password" placeholder="Password" class="password">
-            <div class="forget-password">
-                <a href="/forget_password">Forgot Password</a>
+
+            <div class="login-container__content__form__group">
+                <input type="text" id="email" name="email" placeholder="USC Email" required>
+                <label for="email"><small>USC Email</small></label>
+                <span class="error">Please check your inputs</span>
             </div>
-            <button class="btn btn-lg btn-primary login-btn btn-animated--up" type="submit">Log in</button>
-            <button class="btn btn-lg btn-outline-primary btn-animated--up">Sign up</button>
+
+            <div class="login-container__content__form__group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <label for="password"><small>Password</small></label>
+                <a href="/forget_password.html" class="forget-password">Forgot Password</a>
+            </div>
+
+            
+            <button class="btn btn-lg btn-primary login-btn btn-animated--up">Log In</button>
+            <button class="btn btn-lg btn-outline-primary btn-animated--up">Sign Up</button>
         </form>
 
     </div>
@@ -44,6 +54,7 @@
 
 
 </div>
+
 
 @endsection
 
