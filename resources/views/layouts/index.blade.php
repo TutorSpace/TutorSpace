@@ -8,7 +8,7 @@
 
     
 
-    <!-- my css for all pages-->
+    <!-- my css for all pages, including bootstrap-->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
 
 
