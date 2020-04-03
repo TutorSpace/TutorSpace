@@ -1,0 +1,276 @@
+.home__container {
+    // height: calc(100vh - #{$navbar-height});
+    
+    &__header {
+        background-color: $color-blue-light-trans;
+        height: 30rem;
+    
+    
+        &__content {
+            
+
+            &__text {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+
+                &__header {
+                    font-size: 4.5rem;
+                }
+
+                &__descriptor {
+                    font-size: 2rem;
+                }
+
+            }
+
+            &__img {
+                
+            }
+
+        }
+    }
+
+
+
+    &__notifications {
+        min-height: 20%;
+
+        &__title {
+            font-size: $font-2;
+            
+            margin-top: 2rem;
+            span {
+                font-weight: 700;
+            }
+            font-weight: 500;
+        }
+
+        &__text {
+            font-size: 1.5rem;
+        }
+
+
+        &__tutors, &__students {
+            margin-top: 5rem;
+        }
+
+        &__sessions {
+            margin-top: 5rem;
+        }
+
+        .recommended__tutors {
+            
+            font-size: 2rem;
+            background-color: #ffffff;
+            
+            overflow: scroll;
+            border-radius: 14px;
+            @include boxShadow;
+            
+            tr {
+                display: flex;
+                padding: 1rem;
+                
+                * {
+                    border: none;
+                }
+
+                & > :first-child {
+                    
+                    display: flex;
+                    align-items: center;
+                }
+                & > :nth-child(2) {
+                    flex: 1;
+
+                    > :first-child {
+                        color: $color-gray;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .bookmark {
+                fill: $color-gray;
+                width: 2rem;
+                height: 2rem;
+                &-marked {
+                    // fill: none;
+                    // stroke: black;
+                    // stroke-width: 2;
+                    fill: $color-bookmark;
+                    
+                }
+            }
+        }
+
+        // for tutor only
+        &__calendar {
+            width: 100%;
+            min-height: 30rem;
+            margin-top: 2rem;
+            color: $color-gray;
+            // for testing only
+            // background-color: orangered;
+            // color: white;
+            font-size: $font-1;
+        }
+    }
+
+
+    &__help-center {
+        margin-top: 5rem;
+        
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &__text {
+                font-size: $font-2;
+                margin: 0;
+                font-weight: 500 !important;
+            }
+            & button {
+                font-size: 2rem;
+            }
+        }
+
+        &__table {
+            margin-top: 2rem;
+            font-size: 2rem;
+            background-color: #ffffff;
+            
+            max-height: 50rem;
+            
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            padding: 0 1rem;
+
+            border-radius: 2rem;
+            @include boxShadow;
+
+            display: block;
+            overflow: scroll;
+
+            tr:first-child {
+
+                * {
+                    border-top: none !important;
+                }
+                
+            }
+
+            & tr {
+                height: 10rem;
+                
+            }
+
+            // selects all direct child of tr
+            tr > * {
+                vertical-align: middle !important;
+            }
+            // tr selects all direct children, and then :nth-child means itself is nth child
+            tr > :nth-child(1) {
+                white-space: nowrap;
+                text-align: center;
+                
+            }
+            tr > :nth-child(2) {
+                text-align: center;
+
+                p {
+                    margin-bottom: 0;
+                    font-size: 1rem;
+                    color: $color-gray;
+                }
+
+                span {
+                    white-space: nowrap;
+                }
+            }
+
+            a {
+                white-space: nowrap;
+            }
+        }
+    }
+
+
+    
+}
+
+
+// the following are for tutors only
+.home__tutor-requests {
+    margin-top: 10rem;
+    min-height: 15rem;
+
+    &__header {
+        font-size: $font-2;
+        font-weight: 600 !important;
+    }
+    &__content {
+        font-size: 1.5rem;
+    }
+}
+
+.tutor-requests-table {
+    margin-top: 2rem;
+    font-size: 2rem;
+    background-color: #ffffff;
+    max-height: 50rem;
+    border-radius: 14px;
+    padding: 3rem;
+    @include boxShadow;
+
+    overflow: scroll;
+
+    & tr {
+        height: 10rem;
+        
+    }
+
+    // selects all direct child of tr
+    tr > * {
+        vertical-align: middle !important;
+        border: none !important;
+    }
+    // tr selects all direct children, and then :nth-child means itself is nth child
+    tr > :nth-child(1) {
+        white-space: nowrap;
+    }
+    tr > :nth-child(2) {
+        white-space: nowrap;
+    }
+
+    // td > :nth-child(1) {
+    //     color: grey;
+    //     font-size: 1.5rem;
+    // }
+
+    
+    & td button {
+        font-size: 1.6rem;
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}
+
+table {
+    img {
+        width: 4rem;
+        height: 4rem;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+}
+
+

@@ -1,0 +1,48 @@
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    
+}
+
+html {
+    // This defines what 1rem is (10px in this case)
+    font-size: 62.5%;
+
+    @include respond(tab-land) {
+        font-size: 56.25%; //to make 1 rem = 9px
+    }
+
+    @include respond(tab-port) {
+        font-size: 50%; //to make 1 rem = 8px
+    }
+
+    @include respond(phone) {
+        font-size: 35%; //to make 1 rem = 5.6px
+    }
+
+    @include respond(big-desktop) {
+        font-size: 75%; //to make 1 rem = 12px
+    }
+    
+
+}
+
+body {
+    box-sizing: border-box;
+}
+
+
+::selection {
+    // define the color you want when select text
+    // background-color: $color-primary;
+    // color: $color-white;
+}
+
+html,body
+{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}

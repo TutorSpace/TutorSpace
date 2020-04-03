@@ -36,4 +36,8 @@ class User extends Authenticatable
     // protected $casts = [
     //     'created_at' => 'updated_at',
     // ];
+
+    public function major() {
+        return $this->belongsTo('App\Major');
+    }
 }

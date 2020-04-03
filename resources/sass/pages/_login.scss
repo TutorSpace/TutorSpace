@@ -1,0 +1,129 @@
+.login-container {
+    min-height: 700px;
+    height: calc(100vh - #{$navbar-height});
+    width: 100%;
+
+    @include respond(phone) {
+        min-height: 650px;
+    }
+
+    &__img {
+        position: relative;
+        height: 30%;
+        & svg {
+            // @include absCenter;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        @include respond(phone) {
+            transform: scale(0.75);
+            
+        }
+    }
+
+    &__content {
+        // background-color: blue;
+        // height: 70%;
+        
+        width: 100%;
+        &__form {
+            margin: 0rem auto;
+            
+            width: 30%;
+            font-size: $font-2;
+
+            @include respond(tab-port) {
+                width: 45%;
+            }
+
+            @include respond(phone) {
+                width: 60%;
+            }
+
+            & .password {
+                margin-bottom: 0;
+                position: relative;
+                
+            }
+
+            & * {
+                width: 100%;
+            }
+
+            & .login-btn {
+                margin-bottom: 2rem;
+            }
+
+            & input, & button {
+                font-size: $font-2;
+                display: block;
+            }
+            
+            & input {
+                padding: 3px 0;
+                background-color: $color-white;
+                border: none;
+                border-bottom: 1px solid black;
+                outline: none;
+            }
+            
+
+    
+            &__header {
+                font-size: $font-1;
+                margin-bottom: 3rem;
+            }
+
+
+            &__group {
+                position: relative;
+                margin-bottom: 1rem;
+
+                label {
+                    
+                    font-size: $font-2 !important;
+
+                    transform: translateY(calc(-150% - 7px - .75rem));
+                    
+                    transition: all .35s;
+
+                    small {
+                        transition: all .35s;
+                    }
+                }
+
+                input:placeholder-shown+label {
+                    opacity: 0;
+                    
+                    transform: translateY(calc(-100% - 4px));
+                    visibility: hidden;
+    
+                    small {
+                        font-size: $font-2 !important;
+                    }
+                }
+
+                & .forget-password {
+                    position: absolute;
+                    font-size: calc(#{$font-2} / 2);
+                    width: 100%;
+                    text-align: right;
+                    bottom: calc(50% - (#{$font-2} / 2) - 1rem);
+                    right: 0;
+                    
+                    color: grey;
+                    
+                    
+                }
+               
+            }
+            
+
+        }
+        
+        
+    }
+}

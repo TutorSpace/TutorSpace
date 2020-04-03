@@ -1,0 +1,60 @@
+button, a.btn {
+
+    color: $color-white !important;
+    border-radius: 8px !important;
+    font-size: $font-2;
+    font-weight: 400;
+
+    &.button--small {
+        font-size: $font-3 !important;
+        white-space: nowrap;
+    }
+
+
+    // important buttons
+    &.btn-bg {
+        &-blue-light {
+            background-color: $color-blue-light;
+
+            &:hover {
+                background-color: $color-blue-light !important;
+            }
+        }
+    
+        &-blue-dark {
+            background-color: $color-blue-dark;
+
+            &:hover {
+                background-color: $color-blue-dark !important;
+            }
+        }
+    }
+
+    &.btn-outline-primary {
+        color: $color-blue-dark !important;
+        border-width: 2px;
+        border-color: $color-blue-dark !important;
+
+        &:hover {
+            color: $color-white !important;
+            background-color: $color-blue-dark !important;
+        }
+    }
+
+    &.btn-primary {
+        background-color: $color-blue-dark !important;
+        border-color: $color-blue-dark !important;
+
+    }
+}
+
+.dark-button {
+    color: black !important;
+    font-size: 2rem !important;
+    &:hover {
+        color: white !important;
+    }
+    
+}
+
+

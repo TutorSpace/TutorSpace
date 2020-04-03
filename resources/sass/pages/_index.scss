@@ -1,0 +1,125 @@
+.index- {
+    &left-container, &right-container {
+        height: calc(100vh - #{$navbar-height});
+        min-height: 500px;
+        position: relative;
+
+
+        
+
+        @include respond(big-desktop) {
+            min-height: 700px;
+        }
+    
+    }
+
+
+    &left-container {
+    
+        &__box {
+            $_padding: 5rem;
+    
+            // center the element
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+    
+            // background-color: orangered;
+            width: 100%;
+            
+            padding: $_padding;
+            
+            // select direct children except for the last one
+            &>*:not(:last-child) {
+                margin-bottom: $font-1;
+            }
+    
+            &-1 {
+                font-size: $font-1;
+                line-height: $font-1;
+                font-family: 'Crimson Text', serif;
+
+                @include respond(tab-port) {
+                    font-size: 4rem;
+                }
+
+                @include respond(phone) {
+                    font-size: $font-1 !important;
+                }
+
+                @media only screen and (max-width: 25em) { //400px
+                    font-size: 4.5rem !important;
+                    
+                };
+                
+            }
+    
+            &-2 {
+                color: black;
+
+                h5 {
+                    
+
+
+                    @include respond(tab-port) {
+                        font-size: 1.8rem !important;
+                    }
+
+                    @include respond(phone) {
+                        font-size: 2.2rem !important;
+                    }
+
+                    @media only screen and (max-width: 25em) { //400px
+                        font-size: 1.8rem !important;
+                        
+                    };
+                }
+                
+            }
+    
+            &-3 {
+                width: 100%;
+                display: flex;
+    
+                & a {
+                    font-size: $font-2;
+                    margin-right: 16px;
+
+                    @include respond(tab-port) {
+                        font-size: 1.8rem !important;
+                    }
+
+                    @include respond(phone) {
+                        font-size: $font-2 !important;
+                    }
+
+                    @media only screen and (max-width: 25em) { //400px
+                        font-size: 1.8rem !important;
+                        
+                    };
+
+                    
+    
+                }
+            }
+        }
+    
+    }
+    
+    
+    &right-container {
+        
+        // background-color: green;
+        &__img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    }
+}
+
+
+

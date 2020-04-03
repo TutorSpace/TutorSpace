@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use Hash;
 use Auth;
-use App\user;
+use App\User;
 use App\School_year;
+use App\Major;
 
 
 class signupController extends Controller
@@ -26,15 +27,31 @@ class signupController extends Controller
 
 
     public function signupStudent(Request $request) {
-        // TODO: major should exist, year should exist, password should be the same
-        // $request->validate([
-        //     'firstName' => 'required',
-        //     'email' => 'required',
-        //     'major' => 'required',
-        //     'lastName' => 'required',
-        //     'year' => 'required',
-        //     'password' => 'required'
-        // ]);
+        
+
+        // TODO: password should be the same
+        $request->validate([
+            'firstName' => ['required'],
+            'lastName' => ['required'],
+            'email' => [
+                'required',
+                'email:rfc'
+            ],
+            
+            'schoolYear' => [
+                'required', 
+                'exists:school_years,school_year'
+            ],
+            'major' => [
+                'required', 
+                'exists:majors,major'
+            ], 
+            'password-check' => [
+                'required',
+                'same:password'
+            ],
+            'minor' => ['nullable']
+        ]);
 
         
 
@@ -42,14 +59,17 @@ class signupController extends Controller
         $user->first_name = $request->input('firstName');
         $user->last_name = $request->input('lastName');
         $user->email = $request->input('email');
-        $user->major = $request->input('major');
+
+        
         $user->minor = $request->input('minor');
         $user->is_tutor = false;
         $user->password = Hash::make($request->input('password')); // bcrypt
         
-        
+        $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
+
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
         
+
         $user->save();
 
         

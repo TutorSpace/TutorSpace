@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+Route::get('/test', 'testController@test');
+
+
+
+
 Route::get('/', function () {
     return view('index');
 });
@@ -32,3 +39,4 @@ Route::post('/signup_tutor', 'signupController@signupTutor');
 // profile
 Route::get('/profile_student', 'profileController@showStudent')->name('profile_student');
 Route::get('/profile_tutor', 'profileController@showTutor')->name('profile_tutor');
+

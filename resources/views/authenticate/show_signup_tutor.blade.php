@@ -22,6 +22,11 @@
                     <input type="email" id="email" name="email" placeholder="USC Email *" required>
                     <label for="email"><small>USC Email *</small></label>
                 </div>
+                
+                <div class="signup-container__form__group">
+                    <input type="password" id="password-1" name="password" placeholder="Password *" required>
+                    <label for="password"><small>Password *</small></label>
+                </div>
 
                 <div class="signup-container__form__group">
                     <input type="text" id="major" name="major" placeholder="Major *" required>
@@ -33,10 +38,7 @@
                     <label for="gpa"><small>GPA *</small></label>
                 </div>
 
-                <div class="signup-container__form__group">
-                    <input type="password" id="password-1" name="password" placeholder="Password *" required>
-                    <label for="password"><small>Password *</small></label>
-                </div>
+
             </div>
 
             <div class="col">
@@ -50,6 +52,12 @@
                     <label for="schoolYear"><small>School Year *</small></label>
                 </div>
 
+                <div class="signup-container__form__group">
+                    <input type="password" id="password-check" name="password-check" placeholder="Check Password *" required>
+                    <label for="password-check"><small>Check Password *</small></label>
+                    
+                </div>
+
 
                 <div class="signup-container__form__group">
                     <input type="text" id="minor" name="minor" placeholder="Minor *" required>
@@ -60,14 +68,9 @@
                 <div class="signup-container__form__group">
                     <input type="text" id="hourlyRate" name="hourlyRate" placeholder="Hourly Rate *" required>
                     <label for="hourlyRate"><small>Hourly Rate *</small></label>
-                    <span class="error error-right">Please check your inputs</span>
+                    <span class="error error-right" >Please check your inputs</span>
                 </div>
 
-                <div class="signup-container__form__group">
-                    <input type="password" id="password-check" name="password-check" placeholder="Check Password *" required>
-                    <label for="password-check"><small>Check Password *</small></label>
-                    <span class="error error-right">Please check your inputs</span>
-                </div>
 
             </div>
         </div>
