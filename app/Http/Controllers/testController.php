@@ -9,6 +9,10 @@ use App\User;
 class testController extends Controller
 {
     public function test() {
-        return User::find(3)->major;
+        $email = "safsa@afs";
+        $isTutor = User::where('email', '=', $email)->first()->is_tutor;
+        if($isTutor)
+            return redirect()->route('profile_tutor');
+        return redirect()->route('profile_student');
     }
 }

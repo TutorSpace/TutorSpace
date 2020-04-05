@@ -25,7 +25,7 @@
     </div>
 
     <div class="row login-container__content">
-        <form action="#" class="login-container__content__form">
+        <form action="/login" method="POST" class="login-container__content__form">
             @csrf
             <div class="login-container__content__form__header text-center">
                 <h1 class="heading-color">Log In</h1>
@@ -33,16 +33,23 @@
             
 
             <div class="login-container__content__form__group">
-                <input type="email" id="email" name="email" placeholder="USC Email" required>
-                <label for="email"><small>USC Email</small></label>
-                
+            <input type="email" id="email" name="email" placeholder="Email" value="{{session('email')}}" required>
+                <label for="email"><small>Email</small></label>
+                @error('email')
+                <span class="error">This email has not been signed up yet.</span>
+                @enderror
             </div>
 
             <div class="login-container__content__form__group">
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <label for="password"><small>Password</small></label>
-                <span class="error">Please check your inputs</span>
-                <a href="/forget_password.html" class="forget-password">Forgot Password</a>
+                @error('password')
+                <span class="error">Please enter the correct password.</span>
+                @enderror
+                @if (session('loginError'))
+                <span class="error">{{session('loginError')}}</span>
+                @endif
+                <a href="/forget_password" class="forget-password">Forgot Password</a>
             </div>
 
             

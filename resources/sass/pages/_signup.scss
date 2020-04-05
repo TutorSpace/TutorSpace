@@ -284,14 +284,14 @@
 
 
 #signup_tutor_container {
-    min-height: 800px;
+    min-height: 710px;
 
     @include respond(big-desktop) {
-        min-height: 900px;
+        min-height: 850px;
     }
 
     @include respond(phone) {
-        min-height: 500px;
+        min-height: 430px;
     }
 }
 

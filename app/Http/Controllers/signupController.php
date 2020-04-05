@@ -58,8 +58,9 @@ class signupController extends Controller
             ]
         ]);
 
+        // email can not exist in table for student nor tutor
         $request->validate([
-            'email' => [new NotExistStudent],
+            'email' => [new NotExistStudent, new NotExistTutor],
         ]);
 
 
@@ -145,8 +146,9 @@ class signupController extends Controller
             ]
         ]);
 
+        // email can not exist in table for student nor tutor
         $request->validate([
-            'email' => [new NotExistTutor],
+            'email' => [new NotExistStudent, new NotExistTutor],
         ]);
 
 

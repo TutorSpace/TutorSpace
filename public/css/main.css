@@ -11941,18 +11941,18 @@ a.btn.btn-primary {
 }
 
 #signup_tutor_container {
-  min-height: 800px;
+  min-height: 710px;
 }
 
 @media only screen and (min-width: 112.5em) {
   #signup_tutor_container {
-    min-height: 900px;
+    min-height: 850px;
   }
 }
 
 @media only screen and (max-width: 40.625em) {
   #signup_tutor_container {
-    min-height: 500px;
+    min-height: 430px;
   }
 }
 
@@ -12198,22 +12198,24 @@ h5 .fgpwd-container__header-2 {
 
 .login-container__content__form__header {
   font-size: 5.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 .login-container__content__form__group {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .login-container__content__form__group label {
   font-size: 2.2rem !important;
-  transform: translateY(calc(-150% - 7px - .75rem));
+  transform: translateY(calc(-150% - 1rem - .75rem));
   transition: all 0.35s;
+  color: black;
 }
 
 .login-container__content__form__group label small {
   transition: all 0.35s;
+  font-size: 2rem !important;
 }
 
 .login-container__content__form__group input:placeholder-shown + label {
