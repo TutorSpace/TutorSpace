@@ -11061,6 +11061,10 @@ small {
   margin-right: 15px;
 }
 
+.hidden {
+  display: none !important;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11683,7 +11687,7 @@ a.btn.btn-primary {
   height: calc(100vh - calc(100vw / 14.4));
   position: relative;
   padding: 0;
-  min-height: 770px;
+  min-height: 600px;
 }
 
 @media only screen and (max-width: 40.625em) {
@@ -11706,6 +11710,8 @@ a.btn.btn-primary {
 .signup-container__form__btn {
   font-size: 2.2rem !important;
   line-height: 2em;
+  padding-top: 1rem;
+  margin-top: 1rem;
 }
 
 .signup-container__form__btn {
@@ -11718,13 +11724,14 @@ a.btn.btn-primary {
   display: block;
   text-align: left;
   position: relative;
-  transform: translateY(calc(-2.2rem - 3px));
+  transform: translateY(calc(-2.2rem - 3px - 2.5rem));
   color: black;
   transition: all 0.35s;
 }
 
 .signup-container__form label small {
   transition: all 0.35s;
+  font-size: 2rem !important;
 }
 
 .signup-container__form input {
@@ -11754,7 +11761,7 @@ a.btn.btn-primary {
 
 .signup-container__form input:placeholder-shown + label {
   opacity: 0;
-  transform: translateY(-3px);
+  transform: translateY(calc(-2.2rem - 3px));
   visibility: hidden;
 }
 
@@ -11927,6 +11934,77 @@ a.btn.btn-primary {
   #signup_tutor_container {
     min-height: 500px;
   }
+}
+
+.file-input-group {
+  position: relative;
+}
+
+.file-input-group input[type=file] {
+  height: 100%;
+  flex: 0 0 15rem;
+  border: 3px solid black;
+  margin: 0;
+  padding: 0;
+  visibility: hidden;
+}
+
+.file-input-group label {
+  position: absolute;
+  bottom: calc(-100% + 4px);
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  transform: none;
+  margin: 0;
+  padding: 0;
+}
+
+.file-input-group label:first-child {
+  margin-right: 2rem;
+}
+
+.file-input-group label.label-upload {
+  flex: 1;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.file-input-group label.label-upload:hover {
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.file-input-group label.label-upload:hover:before {
+  transform: translateX(0);
+  background-color: #97d2fb;
+  color: white;
+}
+
+.file-input-group label.label-upload:hover span {
+  transform: translateX(100%);
+}
+
+.file-input-group label.label-upload span {
+  display: block;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.file-input-group label.label-upload:before {
+  content: "Upload Now!";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fgpwd-outerbox {

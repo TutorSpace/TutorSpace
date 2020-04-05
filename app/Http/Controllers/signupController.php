@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 use Hash;
 use Auth;
@@ -21,23 +22,48 @@ class signupController extends Controller
         return view('authenticate.show_signup_student');
     }
 
+    public function showStudent_2 () {
+
+        return view('authenticate.show_signup_student_2');
+    }
+
     public function showTutor() {
         return view('authenticate.show_signup_tutor');
     }
 
 
-    public function signupStudent(Request $request) {
-        
 
-        // TODO: password should be the same
+    public function signupStudent(Request $request) {
+        // checking for empty inputs, different passwords, wrong email formats, and existed email
         $request->validate([
-            'firstName' => ['required'],
-            'lastName' => ['required'],
+            'fullName' => ['
+                required'
+            ],
             'email' => [
                 'required',
-                'email:rfc'
+                'email:rfc',
+                !Rule::exists('users,email')
             ],
-            
+            'password-check' => [
+                'required',
+                'same:password'
+            ]
+        ]);
+
+        // $request->session()->put('email', $input['email']);
+        // $request->session()->put('password', $input['password']);
+        // $request->session()->put('fullName', $input['fullName']);
+
+        return redirect()
+                ->route('signup_2');
+
+
+
+    }
+
+    public function signupStudent_2(Request $request) {
+        // TODO: check for profile image
+        $request->validate([
             'schoolYear' => [
                 'required', 
                 'exists:school_years,school_year'
@@ -46,25 +72,26 @@ class signupController extends Controller
                 'required', 
                 'exists:majors,major'
             ], 
-            'password-check' => [
-                'required',
-                'same:password'
-            ],
-            'minor' => ['nullable']
+            'minor' => [
+                'nullable'
+            ]
         ]);
 
-        
+        $email = $request->session()->get('email');
+        $password = $request->session()->get('password');
+        $fullName = $request->session()->get('fullName');
+                
+        if(!isset($email) || empty($email) || !isset($password) || empty($password) || !isset($fullName) || empty($fullName)) {
+            return redirect()->route('signup');
+        }
 
         $user = new User();        
-        $user->first_name = $request->input('firstName');
-        $user->last_name = $request->input('lastName');
-        $user->email = $request->input('email');
-
-        
         $user->minor = $request->input('minor');
+        $user->email = $email;
+        $user->password = Hash::make($password);
+        $user->full_name = $fullName;
         $user->is_tutor = false;
-        $user->password = Hash::make($request->input('password')); // bcrypt
-        
+
         $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
 
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
@@ -76,6 +103,7 @@ class signupController extends Controller
         
 
         Auth::login($user);
+        $request->session()->flush();
 
         return redirect()->route('profile_student');
     }

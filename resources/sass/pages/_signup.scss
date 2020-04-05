@@ -3,38 +3,36 @@
         // background-color: green;
         height: calc(100vh - #{$navbar-height});
         position: relative;
-        
+
         padding: 0;
 
-        
-        min-height: 770px;
-        
+
+        min-height: 600px;
+
         @include respond(phone) {
             min-height: 500px;
         }
 
         $line-height: 2em;
-        
+
 
         &__form {
             @include absCenter;
             transform: translate(-50%, -60%);
 
             width: 75%;
-            
 
 
-            &__group {
-                
-            }
+
+            &__group {}
 
             & label,
             & input,
             &__btn {
                 font-size: $font-2 !important;
                 line-height: $line-height;
-                // padding-top: 1rem;
-                // margin-top: 1rem;
+                padding-top: 1rem;
+                margin-top: 1rem;
             }
 
             &__btn {
@@ -49,20 +47,22 @@
                 text-align: left;
 
                 position: relative;
-                transform: translateY(calc(-#{$font-2} - 3px));
-                
-                
+                transform: translateY(calc(-#{$font-2} - 3px - 2.5rem));
+
+
                 color: black;
 
                 transition: all .35s;
 
                 small {
                     transition: all .35s;
+                    font-size: 2rem !important;
+
                 }
             }
 
             & input {
-                
+
                 border: none;
                 border-bottom: 3px solid black;
                 width: 100%;
@@ -93,13 +93,14 @@
             }
 
 
-            
+
 
             // select label
             input:placeholder-shown+label {
                 opacity: 0;
-                // transform: translateY(calc(#{$font-2} + 3px));
-                transform: translateY(-3px);
+
+
+                transform: translateY(calc(-#{$font-2} - 3px));
                 visibility: hidden;
 
                 small {
@@ -107,9 +108,10 @@
                 }
             }
 
-            
 
-            
+
+
+
 
 
             &__header {
@@ -128,25 +130,31 @@
             bottom: 0;
             text-align: center;
             width: 100%;
-            
+
 
             & svg {
                 position: relative;
-                
+
             }
 
-            @media only screen and (max-height: 50em) { //800px
+            @media only screen and (max-height: 50em) {
+                //800px
                 height: 60%;
-              
-            };
+
+            }
+
+            ;
 
             @include respond(phone) {
                 transform: scale(.7);
             }
 
-            @media only screen and (max-width: 34.375em) { //550px
+            @media only screen and (max-width: 34.375em) {
+                //550px
                 transform: scale(.5);
-            };
+            }
+
+            ;
         }
 
         #header {
@@ -166,7 +174,9 @@
         &__box {
             position: relative;
             height: 100%;
-            &--tutor, &--student {
+
+            &--tutor,
+            &--student {
                 @include absCenter;
                 // background-color: orangered;
                 // border: 1px solid black;
@@ -181,7 +191,8 @@
                 width: 60%;
 
 
-                @media only screen and (max-width: 34.375em) { //550px
+                @media only screen and (max-width: 34.375em) {
+                    //550px
                     width: 70%;
                     padding: 1rem;
 
@@ -189,10 +200,13 @@
                     h3 {
                         font-size: 2.8rem !important;
                     }
+
                     h5 {
                         font-size: 1.8rem !important;
                     }
-                };
+                }
+
+                ;
 
                 & :nth-child(1) {
                     font-size: 4rem;
@@ -205,7 +219,7 @@
                     margin-bottom: 1.5rem;
                 }
 
-                & > :nth-last-child(2) {
+                &> :nth-last-child(2) {
                     margin-bottom: 3.5rem;
                 }
 
@@ -216,14 +230,15 @@
                     font-size: 2rem !important;
                     text-align: center;
 
-                    @media only screen and (max-width: 34.375em) { //550px
+                    @media only screen and (max-width: 34.375em) {
+                        //550px
                         font-size: 1.5rem !important;
                     }
                 }
 
 
             }
-            
+
             &--tutor {
                 left: 40%;
 
@@ -231,11 +246,15 @@
                     left: 35%;
                 }
 
-                @media only screen and (max-width: 34.375em) { //550px
+                @media only screen and (max-width: 34.375em) {
+                    //550px
                     left: 45%;
-                };                
-                
+                }
+
+                ;
+
             }
+
             &--student {
                 left: 60%;
 
@@ -243,9 +262,12 @@
                     left: 65%;
                 }
 
-                @media only screen and (max-width: 34.375em) { //550px
+                @media only screen and (max-width: 34.375em) {
+                    //550px
                     width: 55%;
-                };
+                }
+
+                ;
 
             }
 
@@ -264,8 +286,92 @@
     @include respond(big-desktop) {
         min-height: 900px;
     }
+
     @include respond(phone) {
         min-height: 500px;
     }
 }
 
+
+.file-input-group {
+
+    position: relative;
+
+    input[type="file"] {
+        height: 100%;
+        flex: 0 0 15rem;
+        border: 3px solid black;
+        margin: 0;
+        padding: 0;
+        visibility: hidden;
+    }
+
+
+
+    label {
+        position: absolute;
+        bottom: calc(-100% + 4px);
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        transform: none;
+        margin: 0;
+        padding: 0;
+
+        &:first-child {
+            margin-right: 2rem;
+        }
+
+        &.label-upload {
+            flex: 1;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            overflow: hidden;
+            // transition: all .3s;
+            &:hover {
+                cursor: pointer;
+                border: 1px solid transparent;
+            
+                &:before {
+                    transform: translateX(0);
+                    background-color: $color-blue-light;
+                    color: white;
+                }
+
+                span {
+                    transform: translateX(100%);
+                }
+                
+                
+            }
+            span {
+                display: block;
+                width: 100%;
+                transition: all .3s;
+            }
+            &:before {
+                content: "Upload Now!";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                transition: all .3s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+            }
+
+            
+        }
+
+
+    }
+
+
+
+
+}

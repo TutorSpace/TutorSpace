@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class profileController extends Controller
 {
-    public function showStudent() {
+    public function showStudent(Request $request) {
+        dd($request->session()->all());
+
+
         return view('profile.profile_student');
     }
 

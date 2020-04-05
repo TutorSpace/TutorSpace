@@ -3,29 +3,33 @@
 
 @section('content')
 
-
 <div class="container signup-container ">
-    <form action="/signup_student" method="POST" class="signup-container__form text-center">
+    <form action="/signup_student_2" method="POST" class="signup-container__form text-center">
         @csrf
+        
         <div class="signup-container__form__header">
             <h1 class="heading-color">Sign up to be a Student</h1>
         </div>
 
         <div class="row row-cols-2">
             <div class="col">
+                    
+                
+
                 <div class="signup-container__form__group">
-                    <input type="text" id="fullName" name="fullName" placeholder="Full Name *"
-                        value="{{ old('fullName') }}" required>
-                    <label for="fullName"><small>Full Name *</small></label>
-                    @error('fullName')
+                    <input type="text" id="major" name="major" placeholder="Major *" value="{{ old('major') }}"
+                        required>
+                    <label for="major"><small>Major *</small></label>
+                    @error('major')
                     <span class="error error-right">{{$message}}</span>
                     @enderror
                 </div>
 
                 <div class="signup-container__form__group">
-                    <input type="password" id="password" name="password" placeholder="Password *" required> 
-                    <label for="password"><small>Password *</small></label>
-                    @error('password')
+                    <input type="text" id="schoolYear" name="schoolYear" placeholder="School Year *"
+                        value="{{ old('schoolYear') }}" required>
+                    <label for="schoolYear"><small>School Year *</small></label>
+                    @error('schoolYear')
                     <span class="error error-right">{{$message}}</span>
                     @enderror
                 </div>
@@ -33,23 +37,26 @@
             </div>
 
             <div class="col">
+
                 <div class="signup-container__form__group">
-                    <input type="email" id="email" name="email" placeholder="USC Email *" value="{{ old('email') }}"
-                        required>
-                    <label for="email"><small>USC Email *</small></label>
-                    @error('email')
+                    <input type="text" id="minor" name="minor" placeholder="Minor" value="{{ old('minor') }}">
+                    <label for="minor"><small>Minor</small></label>
+                    @error('minor')
+                    <span class="error error-right">{{{$message}}}</span>
+                    @enderror
+                </div>
+
+                
+                <div class="file-input-group">
+                    <label for="profile-pic" class="label-upload"><span>Upload Profile Image</span></label>
+                    
+                    <input type="file" id="profile-pic" name="profile-pic" placeholder="Upload Profile Picture">
+                    
+                    @error('profile-pic')
                     <span class="error error-right">{{$message}}</span>
                     @enderror
                 </div>
 
-                <div class="signup-container__form__group">
-                    <input type="password" id="password-check" name="password-check" placeholder="Check Password *"
-                        required>
-                    <label for="password-check"><small>Check Password *</small></label>
-                    @error('password-check')
-                    <span class="error error-right">Passwords do not match.</span>
-                    @enderror
-                </div>    
             </div>
         </div>
 
