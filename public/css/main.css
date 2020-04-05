@@ -11839,6 +11839,7 @@ a.btn.btn-primary {
 .signup-container__box {
   position: relative;
   height: 100%;
+  padding: 0 1rem;
 }
 
 .signup-container__box--tutor,
@@ -12030,7 +12031,14 @@ a.btn.btn-primary {
 .fgpwd-outerbox {
   height: calc(100vh - calc(100vw / 14.4));
   position: relative;
+  color: black;
   min-height: 600px;
+}
+
+@media only screen and (min-width: 112.5em) {
+  .fgpwd-outerbox {
+    min-height: 750px;
+  }
 }
 
 @media only screen and (max-width: 40.625em) {
@@ -12056,7 +12064,7 @@ a.btn.btn-primary {
 
 .fgpwd-container__header {
   font-size: 5.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   white-space: nowrap;
 }
 
@@ -12067,9 +12075,10 @@ h5 .fgpwd-container__header-2 {
 
 .fgpwd-container__inputs {
   width: 100%;
-  margin: 8rem 0 5rem 0;
+  margin: 6rem 0 5rem 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   position: relative;
 }
 
@@ -12081,6 +12090,10 @@ h5 .fgpwd-container__header-2 {
   border: none;
   outline: none;
   border-bottom: 1px solid black;
+}
+
+.fgpwd-container__inputs__email:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 @media only screen and (max-width: 56.25em) {

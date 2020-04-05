@@ -42,8 +42,13 @@ Route::get('/signup_tutor_2', 'signupController@showTutor_2')->name('signup_tuto
 Route::post('/signup_tutor', 'signupController@signupTutor');
 Route::post('/signup_tutor_2', 'signupController@signupTutor_2');
 
+// forget password
+Route::get('/forget_password', 'forgetPasswordController@show');
+Route::post('/forget_password_send', 'forgetPasswordController@send');
 
 // profile
 Route::get('/profile_student', 'profileController@showStudent')->name('profile_student');
 Route::get('/profile_tutor', 'profileController@showTutor')->name('profile_tutor');
+
+
 
