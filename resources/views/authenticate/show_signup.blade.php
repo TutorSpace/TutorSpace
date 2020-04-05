@@ -63,6 +63,5 @@
 @endsection
 
 @section('js')
-<script src="{{asset('js/signup.js')}}"></script>
 
 @endsection

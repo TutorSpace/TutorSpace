@@ -19,12 +19,15 @@
         &__form {
             @include absCenter;
             transform: translate(-50%, -60%);
+            
 
             width: 75%;
 
 
 
-            &__group {}
+            &__group {
+                position: relative;
+            }
 
             & label,
             & input,

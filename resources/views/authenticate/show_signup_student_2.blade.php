@@ -6,15 +6,13 @@
 <div class="container signup-container ">
     <form action="/signup_student_2" method="POST" class="signup-container__form text-center">
         @csrf
-        
+
         <div class="signup-container__form__header">
             <h1 class="heading-color">Sign up to be a Student</h1>
         </div>
 
         <div class="row row-cols-2">
             <div class="col">
-                    
-                
 
                 <div class="signup-container__form__group">
                     <input type="text" id="major" name="major" placeholder="Major *" value="{{ old('major') }}"
@@ -36,7 +34,7 @@
 
             </div>
 
-            <div class="col">
+            <div class="col p-relative">
 
                 <div class="signup-container__form__group">
                     <input type="text" id="minor" name="minor" placeholder="Minor" value="{{ old('minor') }}">
@@ -46,16 +44,17 @@
                     @enderror
                 </div>
 
-                
+
                 <div class="file-input-group">
                     <label for="profile-pic" class="label-upload"><span>Upload Profile Image</span></label>
-                    
+
                     <input type="file" id="profile-pic" name="profile-pic" placeholder="Upload Profile Picture">
-                    
-                    @error('profile-pic')
-                    <span class="error error-right">{{$message}}</span>
-                    @enderror
+
+
                 </div>
+                @error('profile-pic')
+                <span class="error error-right error-input-file">{{$message}}</span>
+                @enderror
 
             </div>
         </div>

@@ -11058,11 +11058,27 @@ small {
 .error-right {
   right: 0;
   left: unset;
-  margin-right: 15px;
+  bottom: 0;
 }
 
 .hidden {
   display: none !important;
+}
+
+.error-input-file {
+  font-size: calc(2.2rem / 2);
+  position: absolute;
+  color: red;
+  bottom: 0;
+  right: 15px;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.ui-menu-item {
+  font-size: 1.6rem;
 }
 
 button,
@@ -11703,6 +11719,10 @@ a.btn.btn-primary {
   transform: translate(-50%, -50%);
   transform: translate(-50%, -60%);
   width: 75%;
+}
+
+.signup-container__form__group {
+  position: relative;
 }
 
 .signup-container__form label,

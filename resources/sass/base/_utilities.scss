@@ -9,9 +9,28 @@
 .error-right {
     right: 0;
     left: unset;
-    margin-right: 15px;
+    // margin-right: 15px;
+    bottom: 0;
 }
 
 .hidden {
     display: none !important;
+}
+
+.error-input-file {
+    font-size: calc(#{$font-2} / 2);
+    position: absolute;
+    color: red;
+    bottom: 0;
+    right: 15px;
+}
+
+.p-relative {
+    position: relative;
+}
+
+
+// for auto-complete
+.ui-menu-item {
+    font-size: $font-3;
 }
