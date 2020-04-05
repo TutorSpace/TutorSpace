@@ -172,6 +172,14 @@ class signupController extends Controller
             ], 
             'minor' => [
                 'nullable'
+            ],
+            'hourlyRate' => [
+                'required',
+                'numeric'
+            ],
+            'gpa' => [
+                'nullable',
+                'numeric'
             ]
         ]);
 
@@ -188,7 +196,12 @@ class signupController extends Controller
         $user->email = $email;
         $user->password = Hash::make($password);
         $user->full_name = $fullName;
-        $user->is_tutor = false;
+        $user->is_tutor = true;
+        $user->hourly_rate = substr($request->input('hourlyRate'), 0, 4);
+        $user->gpa = substr($request->input('gpa'), 0, 4);
+
+        
+
 
         $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
 
@@ -203,7 +216,7 @@ class signupController extends Controller
         Auth::login($user);
         $request->session()->flush();
 
-        return redirect()->route('profile_student');
+        return redirect()->route('profile_tutor');
     }
 
 

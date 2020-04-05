@@ -44,7 +44,6 @@
                     @enderror
                 </div>
 
-
                 <div class="file-input-group">
                     <label for="profile-pic" class="label-upload"><span>Upload Profile Image</span></label>
 

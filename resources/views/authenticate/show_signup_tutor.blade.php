@@ -32,17 +32,6 @@
                     @enderror
                 </div>
 
-                {{-- <div class="signup-container__form__group">
-                    <input type="text" id="major" name="major" placeholder="Major *" required>
-                    <label for="major"><small>Major *</small></label>
-                </div> --}}
-
-                {{-- <div class="signup-container__form__group">
-                    <input type="text" id="gpa" name="gpa" placeholder="GPA *" required>
-                    <label for="gpa"><small>GPA *</small></label>
-                </div> --}}
-
-
             </div>
 
             <div class="col">
@@ -65,33 +54,10 @@
                     <span class="error error-right">Passwords do not match.</span>
                     @enderror
                 </div>   
-                
-
-                {{-- <div class="signup-container__form__group">
-                    <input type="text" id="schoolYear" name="schoolYear" placeholder="School Year *" required>
-                    <label for="schoolYear"><small>School Year *</small></label>
-                </div> --}}
-
-                
-
-
-                {{-- <div class="signup-container__form__group">
-                    <input type="text" id="minor" name="minor" placeholder="Minor *" required>
-                    <label for="mino"><small>Minor *</small></label>
-                </div> --}}
-
-
-                {{-- <div class="signup-container__form__group">
-                    <input type="text" id="hourlyRate" name="hourlyRate" placeholder="Hourly Rate *" required>
-                    <label for="hourlyRate"><small>Hourly Rate *</small></label>
-                    <span class="error error-right" >Please check your inputs</span>
-                </div> --}}
-
-
             </div>
         </div>
 
-        <button type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up">Create Account</a>
+        <button type="submit" class="btn btn-lg btn-primary signup-container__form__btn btn-animated--up">Create Account</button>
 
     </form>
 
