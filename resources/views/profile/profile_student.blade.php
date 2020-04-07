@@ -1,4 +1,4 @@
-@extends('layouts.loggedin')
+@extends('layouts.loggedIn')
 @section('title', 'profile - student')
 
 @section('content')
@@ -14,7 +14,7 @@
         <div class="about__container">
             <div class="about__information">
                 <div class="about__information__img">
-                    <img src="{{asset("mj.jpg")}}" alt="profile_img">
+                    <img src="{{asset("assets/mj.jpg")}}" alt="profile_img">
                 </div>
 
                 <div class="about__information__content">
@@ -39,7 +39,7 @@
                         <div class="about__subjects__header">Subjects</div>
                         <div class="about__content">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
                             <input type="text" placeholder="Add Subjects" class="about__input">
                         </div>
@@ -48,19 +48,19 @@
                     <div class="about__buttons__container">
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Calculus</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Math</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Ling</span>
                         </button>
@@ -81,19 +81,19 @@
                     <div class="about__buttons__container">
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">EALC</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">CSCI</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">COMM</span>
                         </button>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="about__content">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
                             <input type="text" placeholder="Add Characteristics" class="about__input">
                         </div>
@@ -114,19 +114,19 @@
                     <div class="about__buttons__container">
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
                             <span class="name">Friendly</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
                             <span class="name">Patient</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="assets/sprite.svg#icon-cross"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
                             <span class="name">Hospital</span>
                         </button>
@@ -149,7 +149,7 @@
                     Remember to start the session timer to confirm that both tutor and student are present. A $5 holding
                     fee will be charged to the student when the timer is started.
                 </div>
-                <div class="sessions__info">
+                {{-- <div class="sessions__info"> --}}
                     <div class="sessions__info">
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
@@ -191,7 +191,7 @@
                             <button class="btn btn-lg btn-primary">View Session</button>
                         </div>
                     </div>
-                </div>
+                {{-- </div> --}}
             </div>
 
             <div class="sessions__container-2">
@@ -255,12 +255,12 @@
                         <svg class="bookmark bookmark-marked">
                             <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                         </svg>
-                        <img src="assets/mj.jpg" alt="user photo">
+                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
                         <p>Jeffrey M.</p>
                         <p>B.S. Chemical Engineering</p>
                         <p class="star-container">$16/hr | 4.5
                             <svg class="star">
-                                <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
                         <p>Courses: ITP 104, CRIT 350, DES 302...</p>
@@ -270,14 +270,14 @@
                 <div class="search-card-flex-container col-3">
                     <div class="search-card">
                         <svg class="bookmark ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark')}}"></use>
                         </svg>
-                        <img src="assets/mj.jpg" alt="user photo">
+                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
                         <p>Jeffrey M.</p>
                         <p>B.S. Chemical Engineering</p>
                         <p class="star-container">$16/hr | 4.5
                             <svg class="star">
-                                <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
                         <p>Courses: ITP 104, CRIT 350, DES 302...</p>
@@ -287,14 +287,14 @@
                 <div class="search-card-flex-container col-3">
                     <div class="search-card">
                         <svg class="bookmark bookmark-marked">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark')}}"></use>
                         </svg>
                         <img src="assets/mj.jpg" alt="user photo">
                         <p>Jeffrey M.</p>
                         <p>B.S. Chemical Engineering</p>
                         <p class="star-container">$16/hr | 4.5
                             <svg class="star">
-                                <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
                         <p>Courses: ITP 104, CRIT 350, DES 302...</p>
@@ -304,14 +304,14 @@
                 <div class="search-card-flex-container col-3">
                     <div class="search-card">
                         <svg class="bookmark ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark')}}"></use>
                         </svg>
                         <img src="assets/mj.jpg" alt="user photo">
                         <p>Jeffrey M.</p>
                         <p>B.S. Chemical Engineering</p>
                         <p class="star-container">$16/hr | 4.5
                             <svg class="star">
-                                <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
                         <p>Courses: ITP 104, CRIT 350, DES 302...</p>
@@ -321,14 +321,14 @@
                 <div class="search-card-flex-container col-3">
                     <div class="search-card">
                         <svg class="bookmark bookmark-marked">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark')}}"></use>
                         </svg>
                         <img src="assets/mj.jpg" alt="user photo">
                         <p>Jeffrey M.</p>
                         <p>B.S. Chemical Engineering</p>
                         <p class="star-container">$16/hr | 4.5
                             <svg class="star">
-                                <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
                         <p>Courses: ITP 104, CRIT 350, DES 302...</p>
@@ -352,19 +352,19 @@
                     <div>
                         <p>12</p>
                         <svg>
-                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                         </svg>
                         <svg>
-                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                         </svg>
                         <svg>
-                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                         </svg>
                         <svg>
-                            <use xlink:href="assets/sprite.svg#icon-star"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                         </svg>
                         <svg>
-                            <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                         </svg>
                     </div>
                 </div>
@@ -389,19 +389,19 @@
                             <td>
                                 <div class="review-star__container">
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                                     </svg>
                                 </div>
 
@@ -426,19 +426,19 @@
                             <td>
                                 <div class="review-star__container">
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                                     </svg>
                                 </div>
 
@@ -456,25 +456,26 @@
                                 <div>ITP 104</div>
                             </td>
                             <td class="review-content__container">
-                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14 days ago</span></p>
+                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14
+                                        days ago</span></p>
 
                             </td>
                             <td>
                                 <div class="review-star__container">
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                                     </svg>
                                     <svg>
-                                        <use xlink:href="assets/sprite.svg#icon-star-outlined"></use>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                                     </svg>
                                 </div>
 
@@ -505,9 +506,13 @@
                 </ul>
             </nav> -->
         </div>
-
-
     </div>
+
+@endsection
+
+@section('js')
+
+<script src="{{asset('js/profile_student.js')}}"></script>
 
 @endsection
 

@@ -19,6 +19,15 @@
 
 <body class="animsition">
 
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1440 320" style="enable-background:new 0 0 1440 320;" xml:space="preserve"
+        class="svg-nav">
+
+        <path class="st0" d="M0,82l80,5.5c80,5.3,240,16.6,400,10.9s320-27.2,480-30.1c160-2.7,320,13.7,400,21.9l80,8.2V0h-80
+   c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
+    </svg>
+
+
     <nav class="nav nav-login">
         <div class="nav-container">
             <div class="svg-logo-container" id="logo">
@@ -48,19 +57,18 @@
                 </svg>
             </div>
             <div class="button-container">
-                <a href="/home_student">Home</a>
+                <a href="/home_tutor">Home</a>
                 <a href="/messages">Messages</a>
                 <form class="search-box" action="/search-for-tutor">
                     <svg>
-                        <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                     </svg>
                     <input type="text" placeholder="Search a course or name">
                 </form>
             </div>
             <div class="user-photo-container">
-                <img src="assets/sophia.png" alt="user photo">    
+                <img src="{{asset('assets/sophia.png')}}" alt="user photo" id="tutor-profile-photo">    
             </div>
-            
         </div>
     </nav>
 
