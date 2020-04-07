@@ -47,17 +47,17 @@ Route::get('/forget_password', 'forgetPasswordController@show')->middleware(['ch
 Route::post('/forget_password_send', 'forgetPasswordController@send');
 
 // profile
-Route::get('/profile_student', 'profileController@showStudent')->name('profile_student')->middleware(['checkLoginStudent']);
-Route::get('/profile_tutor', 'profileController@showTutor')->name('profile_tutor')->middleware(['checkLoginTutor']);
+Route::get('/profile', 'profileController@show')->name('profile')->middleware(['checkLogin']);
+
 
 // home page
 Route::get('/home_student', function() {
     return "<h1>home student page</h1>";
-})->name('home_student')->middleware(['checkLoginStudent']);
+})->name('home_student')->middleware(['checkLogin']);
 
 Route::get('/home_tutor', function() {
     return "<h1>home tutor page</h1>";
-})->name('home_tutor')->middleware(['checkLoginTutor']);;
+})->name('home_tutor')->middleware(['checkLogin']);;
 
 
 

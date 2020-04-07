@@ -515,6 +515,6 @@
 
 @section('js')
 
-<script src="{{asset('js/profile_tutor.js')}}"></script>
+<script src="{{asset('js/profile.js')}}"></script>
 
 @endsection

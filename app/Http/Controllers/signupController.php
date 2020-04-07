@@ -120,7 +120,7 @@ class signupController extends Controller
         Auth::login($user);
         $request->session()->flush();
 
-        return redirect()->route('profile_student');
+        return redirect()->route('profile');
     }
 
 
@@ -218,7 +218,7 @@ class signupController extends Controller
         Auth::login($user);
         $request->session()->flush();
 
-        return redirect()->route('profile_tutor');
+        return redirect()->route('profile');
     }
 
 

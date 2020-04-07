@@ -30,13 +30,13 @@ $('.profile-nav > .nav-link').click(function() {
 
 // select all "view session button" from the upcoming section
 $('.sessions__container-1 .session__container > button:last-child').click(function() {
-    window.location.href = '/view_session_before_tutor.html';
+    window.location.href = '/view_session_before';
 });
 
 
 // select all "view session button" from the past section
 $('.sessions__container-2 .session__container > button:last-child').click(function() {
-    window.location.href = '/view_session_after_tutor.html';
+    window.location.href = '/view_session_after';
 });
 
 

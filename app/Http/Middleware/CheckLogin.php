@@ -5,7 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckLoginStudent
+
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -18,13 +19,11 @@ class CheckLoginStudent
     {
         // check whether the use is logged in. If not, the user will redirect to the login page
         if(Auth::check()) {
-            $user = Auth::user();
-            if(!$user->is_tutor)
-                return $next($request);
-            return redirect()->route('login');
+            return $next($request);
         }
         else {
             return redirect()->route('login');
         }
+        
     }
 }

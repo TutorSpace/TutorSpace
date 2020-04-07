@@ -30,10 +30,7 @@ class loginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            $isTutor = User::where('email', '=', $request->input('email'))->first()->is_tutor;
-            if($isTutor)
-                return redirect()->route('profile_tutor');
-            return redirect()->route('profile_student');
+            return redirect()->route('profile');
         }
         else {
             return redirect()->route('login')->with(

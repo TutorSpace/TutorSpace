@@ -512,7 +512,7 @@
 
 @section('js')
 
-<script src="{{asset('js/profile_student.js')}}"></script>
+<script src="{{asset('js/profile.js')}}"></script>
 
 @endsection
 
