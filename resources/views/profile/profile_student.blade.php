@@ -1,4 +1,4 @@
-@extends('layouts.loggedIn')
+@extends('layouts.loggedin')
 @section('title', 'profile - student')
 
 @section('content')
