@@ -11427,6 +11427,27 @@ a.btn.btn-primary {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 48em) {
+  .nav .svg-logo-container .svg-logo {
+    margin-right: 5rem;
+    margin-left: 5rem;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .nav .svg-logo-container .svg-logo {
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  .nav .svg-logo-container .svg-logo {
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+}
+
 .nav-not-login .nav-container {
   width: 100%;
   display: flex;
@@ -11483,8 +11504,14 @@ a.btn.btn-primary {
   margin-right: 3rem;
 }
 
+@media only screen and (max-width: 25em) {
+  .nav-login .nav-container .button-container *:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
+
 .nav-login .nav-container .button-container .search-box {
-  border: 3px solid #2c86c4;
+  border: 2px solid #2c86c4;
   display: flex;
   align-items: center;
   border-radius: 8px;
@@ -11523,6 +11550,30 @@ a.btn.btn-primary {
   width: 30rem;
 }
 
+@media only screen and (max-width: 48em) {
+  .nav-login .nav-container .button-container .search-box input {
+    padding: 0;
+    font-size: 1.8rem;
+  }
+}
+
+@media only screen and (max-width: 40.625em) {
+  .nav-login .nav-container .button-container .search-box input {
+    padding: 0.2rem 0;
+    padding-right: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .nav-login .nav-container .button-container .search-box input {
+    width: 22rem;
+  }
+
+  .nav-login .nav-container .button-container .search-box input:focus {
+    width: 22rem;
+  }
+}
+
 .nav-login .nav-container .user-photo-container {
   height: 80%;
   display: flex;
@@ -11535,6 +11586,18 @@ a.btn.btn-primary {
   border-radius: 50%;
   margin-right: 5rem;
   transition: transform 0.4s;
+}
+
+@media only screen and (max-width: 48em) {
+  .nav-login .nav-container .user-photo-container img {
+    margin-right: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .nav-login .nav-container .user-photo-container img {
+    margin-right: 0.5rem;
+  }
 }
 
 .nav-login .nav-container .user-photo-container img:hover {
