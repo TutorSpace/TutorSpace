@@ -1,7 +1,9 @@
 body {
     color: $color-white;
 	background-color: $color-white !important;
-	font-family: 'Work Sans', sans-serif !important;
+
+	// shuaiqing 
+	// font-family: 'Work Sans', sans-serif !important;
 	overflow: hidden !important;
 }
 
@@ -16,8 +18,10 @@ $font-2: 2.2rem;
 $font-3: 1.6rem;
 $font-4: 1.2rem;
 
+
+// shuaiqing
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Crimson Text', serif !important;
+	// font-family: 'Crimson Text', serif !important;
 }
 
 // Mostly used in Login and Sign up pages
@@ -82,24 +86,25 @@ small {
 }
 
 
+// shuaiqing
 .heading-color {
-	// font-size: 3.5rem;
-	// text-transform: uppercase;
-	// font-weight: 700;
+	
+	// background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
 
-	// give text some color
-	background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
+	// display: inline-block;
+	// -webkit-background-clip: text;
+	// color: transparent;
 
-	display: inline-block;
-	-webkit-background-clip: text;
-	color: transparent;
+	// transition: transform 0.3s;
 
-	// letter-spacing: 2px;
-	transition: transform 0.3s;
+	// &:hover {
+	// 	transform: skewY(2deg) skewX(5deg) scale(1.1);
+	// 	text-shadow: 1rem 2rem 4rem rgba(black, .2);
+	// 	font-weight: 500;
+	// }
+}
 
-	&:hover {
-		transform: skewY(2deg) skewX(5deg) scale(1.1);
-		text-shadow: 1rem 2rem 4rem rgba(black, .2);
-		font-weight: 500;
-	}
+// to be removed for shuaiqing's style
+.heading-color {
+	color: black;
 }

@@ -2,7 +2,12 @@
 $(function () {
     var majorTags = [
         'Computer Science',
-        'Business'
+        'Business',
+        'Economics',
+        'International Relations',
+        'Mathematics',
+        'CSBA',
+        'Physics'
     ];
     $("#major").autocomplete({
         source: majorTags

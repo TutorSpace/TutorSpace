@@ -10950,36 +10950,14 @@ body {
   overflow-x: hidden;
 }
 
-.btn-animated--up {
-  transition: transform 0.2s !important;
-}
-
-.btn-animated--up:hover {
-  transform: translateY(-0.3rem);
-}
-
-.btn-animated--up:active {
-  transform: translateY(-0.5rem);
-}
-
 body {
   color: #f7fbfd;
   background-color: #f7fbfd !important;
-  font-family: "Work Sans", sans-serif !important;
   overflow: hidden !important;
 }
 
 svg {
   z-index: -100;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Crimson Text", serif !important;
 }
 
 h1 {
@@ -11034,17 +11012,7 @@ small {
 }
 
 .heading-color {
-  background-image: linear-gradient(to right, #97d2fb, #2c86c4);
-  display: inline-block;
-  -webkit-background-clip: text;
-  color: transparent;
-  transition: transform 0.3s;
-}
-
-.heading-color:hover {
-  transform: skewY(2deg) skewX(5deg) scale(1.1);
-  text-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.2);
-  font-weight: 500;
+  color: black;
 }
 
 .error {
@@ -11457,7 +11425,6 @@ a.btn.btn-primary {
 
 .nav .svg-logo-container .svg-logo:hover {
   cursor: pointer;
-  transform: scale(1.3);
 }
 
 .nav-not-login .nav-container {
