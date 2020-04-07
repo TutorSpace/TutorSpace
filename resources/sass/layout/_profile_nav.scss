@@ -1,0 +1,14 @@
+.profile-nav {
+    margin-top: 2rem;
+    & a{
+        font-size: $font-2;
+        color: black;
+        margin-right: 7rem;
+        
+        &.active {
+            border-bottom: 5px solid $color-blue-dark;
+        }
+    }
+
+    height: unset !important;
+}

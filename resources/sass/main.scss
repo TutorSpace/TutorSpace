@@ -1,0 +1,36 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "base/base";
+@import "base/animations";
+@import "base/typography";
+@import "base/utilities";
+
+
+@import "components/button";
+
+@import "components/review";
+@import "components/session";
+@import "components/pagination";
+@import "components/search-card";
+@import "components/tutor-card";
+
+
+@import "layout/navbar";
+@import "layout/profile_nav";
+
+
+@import "pages/index";
+@import "pages/signup";
+@import "pages/forget_password";
+@import "pages/login";
+@import "pages/home";
+@import "pages/profile";
+@import "pages/report";
+@import "pages/edit_profile";
+@import "pages/search";
+@import "pages/messages";
+@import "pages/view_session";

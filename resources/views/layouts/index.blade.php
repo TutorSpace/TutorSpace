@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title')</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
 
-    <!-- my css for all pages-->
-    <link rel="stylesheet" href="{{asset('css/app.css')}}" />
+    <!-- my css for all pages, including bootstrap-->
+    <link rel="stylesheet" href="{{asset('css/main.css')}}" />
 
 
     @yield('links-in-head')
@@ -21,13 +19,12 @@
 
 <body class="animsition">
 
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 1400 300" style="enable-background:new 0 0 1400 300;" xml:space="preserve" class="svg-nav">
-        <g>
-            <path class="st0" d="M0,61.54l77.78,4.12c77.78,3.96,233.33,12.42,388.89,8.19s311.11-20.38,466.67-22.58
-c155.56-2.04,311.11,10.27,388.89,16.42l77.78,6.15V0h-77.78c-77.78,0-233.33,0-388.89,0S622.22,0,466.67,0S155.56,0,77.78,0H0
-V61.54z" />
-        </g>
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1440 320" style="enable-background:new 0 0 1440 320;" xml:space="preserve"
+        class="svg-nav">
+
+        <path class="st0" d="M0,82l80,5.5c80,5.3,240,16.6,400,10.9s320-27.2,480-30.1c160-2.7,320,13.7,400,21.9l80,8.2V0h-80
+   c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
     </svg>
 
 
@@ -70,23 +67,20 @@ V61.54z" />
     @yield('content')
 
 
-    @yield('js')
-    <!-- Bootstrap required (jQuery, Popper.js, Bootstrap JS) -->
+    
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+    
 
+    {{-- my js for bootstrap --}}
+    <script src="{{asset('js/app.js')}}"></script>
 
     {{-- my js for nav --}}
     <script src="{{asset('js/nav.js')}}"></script>
 
-
+    @yield('js')
 
 </body>
 

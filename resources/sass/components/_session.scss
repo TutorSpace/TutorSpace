@@ -1,0 +1,49 @@
+.session__container {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2.2rem;
+    border-radius: 10px;
+    @include boxShadow;
+
+    &:not(:first-child) {
+        margin-top: 2rem;
+    }
+
+    & .title {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    & .text {
+        font-size: 1.5rem;
+    }
+
+    & button {
+        margin-top: 1rem;
+    }
+
+    & :not(:first-child) {
+        flex: 0 0 49%;
+    }
+    
+}
+
+
+.sessions__info {
+    display: flex;
+    
+    // flex: 0 0 ;
+    flex-wrap: nowrap;
+    overflow: auto;
+    & .session__container {
+        margin-top: 1rem;
+        min-width: 45%;
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+}

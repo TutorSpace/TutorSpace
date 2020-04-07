@@ -1,0 +1,61 @@
+.tutor-container {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem;
+    box-shadow: 1px 2px 1px 1px rgba($color: grey, $alpha: .2);
+    margin-top: 1.5rem;
+
+    .img-container {
+        flex: 0 0 25%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // margin-right: 1rem;
+
+        img {
+            width: 100%;
+            border-radius: 50%;
+            
+        }
+
+    }
+
+    .bookmark-container {
+        display: flex;
+        justify-content: flex-end;
+        
+        flex: 0 0 25%;
+        
+        svg {
+            fill: $color-bookmark;
+            z-index: 100;
+            width: 2rem;
+            height: 2rem;
+            
+            
+            
+        }
+    
+    }
+    
+    .tutor__info {
+        flex: 0 0 50%;
+        padding-left: 2rem;
+        
+        > :first-child {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    }
+
+    button {
+        margin-top: 1rem;
+        width: 49%;
+
+    }
+    
+}

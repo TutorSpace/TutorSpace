@@ -3,6 +3,7 @@
 
 @section('content')
 
+
 <div class="container-fluid login-container">
     <div class="row login-container__img">
         <svg width="215" height="199" viewBox="0 0 215 199" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,19 +25,36 @@
     </div>
 
     <div class="row login-container__content">
-        <form action="/login" class="login-container__content__form" method="post">
+        <form action="/login" method="POST" class="login-container__content__form">
             @csrf
             <div class="login-container__content__form__header text-center">
-                <h1 class="heading-color">Log in</h1>
+                <h1 class="heading-color">Log In</h1>
             </div>
             
-            <input type="email" name="email" placeholder="USC Email" class="">
-            <input type="password" name="password" placeholder="Password" class="password">
-            <div class="forget-password">
-                <a href="/forget_password">Forgot Password</a>
+
+            <div class="login-container__content__form__group">
+            <input type="email" id="email" name="email" placeholder="Email" value="{{session('email')}}" required>
+                <label for="email"><small>Email</small></label>
+                @error('email')
+                <span class="error">This email has not been signed up yet.</span>
+                @enderror
             </div>
-            <button class="btn btn-lg btn-primary login-btn btn-animated--up" type="submit">Log in</button>
-            <button class="btn btn-lg btn-outline-primary btn-animated--up">Sign up</button>
+
+            <div class="login-container__content__form__group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <label for="password"><small>Password</small></label>
+                @error('password')
+                <span class="error">Please enter the correct password.</span>
+                @enderror
+                @if (session('loginError'))
+                <span class="error">{{session('loginError')}}</span>
+                @endif
+                <a href="/forget_password" class="forget-password">Forgot Password</a>
+            </div>
+
+            
+            <button class="btn btn-lg btn-primary login-btn btn-animated--up">Log In</button>
+            <button class="btn btn-lg btn-outline-primary btn-animated--up">Sign Up</button>
         </form>
 
     </div>
@@ -44,6 +62,7 @@
 
 
 </div>
+
 
 @endsection
 
