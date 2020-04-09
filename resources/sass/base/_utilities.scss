@@ -33,4 +33,11 @@
 // for auto-complete
 .ui-menu-item {
     font-size: $font-3;
+    position: relative;
+    z-index: 1000;
+}
+
+
+.invisible {
+    visibility: hidden;
 }

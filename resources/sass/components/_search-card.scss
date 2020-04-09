@@ -14,6 +14,7 @@
             margin-top: 2rem;
             @include boxShadow;
             border-radius: 10px;
+            padding-bottom: 1.5rem;
 
             $font-size: $font-3;
         
@@ -36,6 +37,10 @@
                     fill: $color-bookmark;
                     
                 }
+
+                &:hover {
+                    cursor: pointer;
+                }
             }
             p {
                 margin-bottom: 0;
@@ -56,6 +61,8 @@
                 height: 2rem;
                 white-space: nowrap;
 
+                letter-spacing: 1px;
+
                 .star {
                     width: $font-size;
                     position: relative;
@@ -64,7 +71,7 @@
                     color: $color-gray;
 
                     position: relative;
-                    height: 110%;
+                    height: 100%;
                     fill: transparent;
                     stroke: $color-gray;
                 }
@@ -72,13 +79,35 @@
 
             }
 
-            .courses {
+            .courses, .subjects {
                 font-size: $font-4;
-                line-height: 1.2;
-
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 
+                line-height: 1.2;
+            }
+
+
+            
+            .name, .major, .star-container {
+                font-size: $font-3;
+            }
+
+            .name {
+                font-weight: 500;
+            }
+
+            .subjects {
+                margin-top: 1rem;
+            }
+
+            .star-container {
+                color: $color-gray;
             }
             
+
             
 
         }

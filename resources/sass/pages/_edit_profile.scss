@@ -1,24 +1,8 @@
-#back-button {
-    color: black !important;
 
-    &:hover {
-        color: $color-white !important;
-    }
-}
-
-.back-button {
-    margin-top: 2rem !important;
-    border: 1px solid black !important;
-    font-size: 2rem !important;
-    color: black !important;
-
-    &:focus {
-        box-shadow: none !important;
-    }
-}
 
 .edit-profile__form {
     margin-bottom: 10rem;
+    color: black;
 
     & button {
         font-size: 2rem;
@@ -43,7 +27,7 @@
         flex-wrap: wrap;
         justify-content: space-between;
 
-        & * {
+        & > * {
             flex: 0 0 46%;
         }
 

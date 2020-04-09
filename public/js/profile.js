@@ -1,6 +1,44 @@
-$('.sessions__container').hide();
-$('.saved__container').hide();
-$('.reviews__container').hide();
+// The tags do not need to be in the database. The autocomplete is just for recommendation
+$(function () {
+    var subjectTags = [
+        'Calculus',
+        'Mathematics',
+        'Ling',
+        'Business',
+        'Accounting',
+        'Computer Science',
+        'Physics'
+    ];
+    $("#subject").autocomplete({
+        source: subjectTags
+    });
+
+
+    var courseTags = [
+        'EALC',
+        'CSCI',
+        'COMM',
+        'BUAD'
+    ];
+    $("#course").autocomplete({
+        source: courseTags
+    });
+
+    var characteristicTags = [
+        'Friendly',
+        'Patient',
+        'Hospital',
+        'Lovely',
+        'Cute'
+    ];
+    $("#characteristic").autocomplete({
+        source: characteristicTags
+    });
+
+});
+
+
+
 
 $('.profile-nav > .nav-link').click(function() {
     for(let i = 0; i < $('.profile-nav').children().length; i++) {
@@ -42,7 +80,31 @@ $('.sessions__container-2 .session__container > button:last-child').click(functi
 
 $('.session__container button').click(function() {
     if($(this)[0].innerHTML === "Cancel Session") {
-        alert("session cancelled!");
+        alert("TODO: session cancelled!");
     }
    
 });
+
+$('.btn-write-review').click(function() {
+    alert('TODO: go to write review page');
+});
+
+
+$( ".about__content .about__input" ).focusin(function() {
+    $(this).prev().css('fill', '#2C86C4');
+});
+
+$( ".about__content .about__input" ).focusout(function() {
+    $(this).prev().css('fill', 'grey');
+});
+
+
+$('svg.bookmark').click(function() {
+    alert('TODO: remove from bookmarked');
+});
+
+$('.about__buttons__container button svg').click(function() {
+    alert('TODO: remove from subjects/courses/characteristics');
+});
+
+

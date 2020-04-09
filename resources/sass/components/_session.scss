@@ -24,6 +24,7 @@
 
     & button {
         margin-top: 1rem;
+        font-size: 1.5rem;
     }
 
     & :not(:first-child) {
@@ -36,7 +37,7 @@
 .sessions__info {
     display: flex;
     
-    // flex: 0 0 ;
+    
     flex-wrap: nowrap;
     overflow: auto;
     & .session__container {
@@ -45,5 +46,15 @@
         &:not(:last-child) {
             margin-right: 1rem;
         }
+    }
+    
+    .shadow-container {
+        top: 2rem;
+        right: 0;
+        width: 20rem;
+        height: calc(100% - 2rem);
+        position: absolute;
+        // background-color: grey;
+        opacity: .1;
     }
 }

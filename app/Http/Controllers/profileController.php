@@ -18,5 +18,15 @@ class profileController extends Controller
         
     }
 
+    public function showEdit() {
+        $user = Auth::user();
+        if($user->is_tutor) {
+            return view('profile.edit_profile_tutor');
+        }
+        else {
+            return view('profile.edit_profile_student');
+        }
+    }
+
     
 }

@@ -48,13 +48,19 @@ button, a.btn {
     }
 }
 
-.dark-button {
-    color: black !important;
+
+.btn.back-button {
+    margin-top: 2rem !important;
+    border: 1px solid black !important;
     font-size: 2rem !important;
+    color: black !important;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
     &:hover {
+        background-color: $color-dark !important;
         color: white !important;
     }
-    
 }
-
-

@@ -11047,6 +11047,12 @@ small {
 
 .ui-menu-item {
   font-size: 1.6rem;
+  position: relative;
+  z-index: 1000;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 button,
@@ -11102,12 +11108,19 @@ a.btn.btn-primary {
   border-color: #2c86c4 !important;
 }
 
-.dark-button {
-  color: black !important;
+.btn.back-button {
+  margin-top: 2rem !important;
+  border: 1px solid black !important;
   font-size: 2rem !important;
+  color: black !important;
 }
 
-.dark-button:hover {
+.btn.back-button:focus {
+  box-shadow: none !important;
+}
+
+.btn.back-button:hover {
+  background-color: #343a40 !important;
   color: white !important;
 }
 
@@ -11220,6 +11233,7 @@ a.btn.btn-primary {
 
 .session__container button {
   margin-top: 1rem;
+  font-size: 1.5rem;
 }
 
 .session__container :not(:first-child) {
@@ -11241,6 +11255,15 @@ a.btn.btn-primary {
   margin-right: 1rem;
 }
 
+.sessions__info .shadow-container {
+  top: 2rem;
+  right: 0;
+  width: 20rem;
+  height: calc(100% - 2rem);
+  position: absolute;
+  opacity: 0.1;
+}
+
 ._pagination {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -11260,6 +11283,7 @@ a.btn.btn-primary {
   margin-top: 2rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
+  padding-bottom: 1.5rem;
   font-size: 1.6rem;
 }
 
@@ -11275,6 +11299,10 @@ a.btn.btn-primary {
 
 .search-card-container .search-card-flex-container .search-card .bookmark-marked {
   fill: #ffdc60;
+}
+
+.search-card-container .search-card-flex-container .search-card .bookmark:hover {
+  cursor: pointer;
 }
 
 .search-card-container .search-card-flex-container .search-card p {
@@ -11295,6 +11323,7 @@ a.btn.btn-primary {
   position: relative;
   height: 2rem;
   white-space: nowrap;
+  letter-spacing: 1px;
 }
 
 .search-card-container .search-card-flex-container .search-card .star-container .star {
@@ -11304,14 +11333,37 @@ a.btn.btn-primary {
   margin-left: 3px;
   color: #9a9a9a;
   position: relative;
-  height: 110%;
+  height: 100%;
   fill: transparent;
   stroke: #9a9a9a;
 }
 
-.search-card-container .search-card-flex-container .search-card .courses {
+.search-card-container .search-card-flex-container .search-card .courses,
+.search-card-container .search-card-flex-container .search-card .subjects {
   font-size: 1.2rem;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 1.2;
+}
+
+.search-card-container .search-card-flex-container .search-card .name,
+.search-card-container .search-card-flex-container .search-card .major,
+.search-card-container .search-card-flex-container .search-card .star-container {
+  font-size: 1.6rem;
+}
+
+.search-card-container .search-card-flex-container .search-card .name {
+  font-weight: 500;
+}
+
+.search-card-container .search-card-flex-container .search-card .subjects {
+  margin-top: 1rem;
+}
+
+.search-card-container .search-card-flex-container .search-card .star-container {
+  color: #9a9a9a;
 }
 
 .tutor-container {
@@ -11603,21 +11655,6 @@ a.btn.btn-primary {
 .nav-login .nav-container .user-photo-container img:hover {
   cursor: pointer;
   transform: scale(1.2);
-}
-
-.profile-nav {
-  margin-top: 2rem;
-  height: unset !important;
-}
-
-.profile-nav a {
-  font-size: 2.2rem;
-  color: black;
-  margin-right: 7rem;
-}
-
-.profile-nav a.active {
-  border-bottom: 5px solid #2c86c4;
 }
 
 .index-left-container,
@@ -12506,8 +12543,29 @@ table img {
   margin-right: 5px;
 }
 
+.profile-nav {
+  width: 100%;
+  height: unset !important;
+}
+
+.profile-nav a {
+  font-size: 2.2rem;
+  color: black;
+  flex: 25%;
+  text-align: center;
+}
+
+.profile-nav a.active {
+  border-bottom: 5px solid #2c86c4;
+}
+
 .about__container {
   color: black;
+}
+
+#profile-container {
+  margin-top: 2rem;
+  overflow: scroll;
 }
 
 .about__information {
@@ -12530,11 +12588,14 @@ table img {
 .about__information__content {
   flex: 0 0 75%;
   color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 .about__information__content .descriptor {
   color: grey;
   font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .about__information__content .text {
@@ -12554,11 +12615,14 @@ table img {
 }
 
 .about__information__content .major-minor-container span {
-  width: 50%;
-  height: 2rem;
+  flex: 50%;
 }
 
-.about__information__content .graduating-container .descriptor {
+.about__information__content .year-container {
+  line-height: 1;
+}
+
+.about__information__content .year-container .descriptor {
   margin-top: 2rem;
   display: block;
 }
@@ -12592,17 +12656,33 @@ table img {
   width: 2rem;
   height: 2rem;
   fill: grey;
-  z-index: 1000;
+  z-index: 100;
+}
+
+.about__content .add-btn {
+  font-size: 2rem;
+  position: absolute;
+  left: calc(70% + 1.5rem);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .about__input {
-  width: 60%;
+  width: 70%;
   font-size: 2rem;
   background-color: #f7fbfd;
-  border: 1px solid grey;
+  border: 0.1rem solid grey;
   padding: 0.5rem 4rem;
   outline: none;
   border-radius: 7px;
+  padding-right: 1rem;
+  color: black;
+}
+
+.about__input:focus {
+  border-color: #2c86c4;
+  box-shadow: 1px 1px #2c86c4;
 }
 
 .about__buttons__container {
@@ -12613,7 +12693,6 @@ table img {
 .about__buttons__container button {
   border: 1px solid black;
   font-size: 2rem;
-  width: 40%;
   display: flex;
   align-items: center;
   margin-right: 10px;
@@ -12624,6 +12703,8 @@ table img {
   margin-right: 0.75rem;
   width: 2rem;
   height: 2rem;
+  position: relative;
+  z-index: 100;
 }
 
 .about__buttons__container button .name {
@@ -12632,6 +12713,15 @@ table img {
 
 .about__buttons__container button:focus {
   box-shadow: none;
+}
+
+.about__buttons__container button:hover {
+  cursor: default;
+}
+
+.about__buttons__container button svg:hover {
+  cursor: pointer;
+  transform: scale(1.3);
 }
 
 .sessions__container {
@@ -12657,6 +12747,12 @@ table img {
 
 .saved__container {
   color: black;
+  margin-top: 5rem;
+}
+
+.saved__container .scroll-container {
+  height: 70vh;
+  overflow: scroll;
 }
 
 .reviews__container {
@@ -12670,10 +12766,38 @@ table img {
 
 .reviews__container .reviews {
   font-size: 1.5rem;
+  height: 70vh;
+  overflow: scroll;
 }
 
-#back-button {
-  margin-top: 3rem;
+.reviews__container img {
+  margin-right: 0;
+  width: 7rem;
+  height: 7rem;
+}
+
+.reviews__container .name {
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 28.125em) {
+  .reviews__container .name {
+    white-space: normal !important;
+  }
+}
+
+.reviews__container .subject-container {
+  text-align: center;
+}
+
+.reviews__container .subject-container * {
+  white-space: nowrap;
+}
+
+.sessions__container,
+.saved__container,
+.reviews__container {
+  display: none;
 }
 
 .report-container__header {
@@ -12726,27 +12850,9 @@ table img {
   border-radius: 2rem;
 }
 
-#back-button {
-  color: black !important;
-}
-
-#back-button:hover {
-  color: #f7fbfd !important;
-}
-
-.back-button {
-  margin-top: 2rem !important;
-  border: 1px solid black !important;
-  font-size: 2rem !important;
-  color: black !important;
-}
-
-.back-button:focus {
-  box-shadow: none !important;
-}
-
 .edit-profile__form {
   margin-bottom: 10rem;
+  color: black;
 }
 
 .edit-profile__form button {
@@ -12774,7 +12880,7 @@ table img {
   justify-content: space-between;
 }
 
-.edit-profile__form__content * {
+.edit-profile__form__content > * {
   flex: 0 0 46%;
 }
 

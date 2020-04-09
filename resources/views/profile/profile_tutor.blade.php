@@ -24,9 +24,9 @@
                         <span class="text">B.S. Astronautical Engineering</span>
                         <span class="text">Web Development and Applications</span>
                     </div>
-                    <div class="graduating-container">
-                        <span class="descriptor">Graduating</span>
-                        <span class="text">December 2021</span>
+                    <div class="year-container">
+                        <span class="descriptor">Year</span>
+                        <span class="text">Senior</span>
                     </div>
 
                     <a class="btn btn-lg btn-primary" href="/edit_profile_tutor.html">Edit Profile</a>

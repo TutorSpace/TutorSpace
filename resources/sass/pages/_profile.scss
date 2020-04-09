@@ -1,7 +1,35 @@
+// ================== Profile Nav ================
+.profile-nav {
+    width: 100%;
+    & a {
+        font-size: $font-2;
+        color: black;
+        flex: 25%;
+        text-align: center;
+        // margin-right: 7rem;
+        
+        &.active {
+            border-bottom: 5px solid $color-blue-dark;
+        }
+    }
+
+    height: unset !important;
+}
+
+
 // ================== About ==================
 .about__container {
     color: black;
 }
+
+#profile-container {
+    margin-top: 2rem;
+    overflow: scroll;
+}
+
+
+$about-input-width: 70%;
+
 .about__information {
     // background-color: red;
     height: 30rem;
@@ -22,10 +50,13 @@
     &__content {
         flex: 0 0 75%;
         color: black;
+        display: flex;
+        flex-direction: column;
 
         & .descriptor {
             color: grey;
             font-size: 1.5rem;
+            margin-bottom: .5rem;
         }
         & .text {
             font-size: 2rem;
@@ -43,13 +74,15 @@
             line-height: 1;
 
             & span {
-                width: 50%;
-                height: 2rem;
+                flex: 50%;
+                // height: 2rem;
             }
 
         }
 
-        & .graduating-container {
+        & .year-container {
+            line-height: 1;
+
             & .descriptor {
                 margin-top: 2rem;
                 display: block;
@@ -88,18 +121,33 @@
         width: 2rem;
         height: 2rem;
         fill: grey;
-        z-index: 1000;
+        z-index: 100;
+    }
+
+    .add-btn {
+        font-size: 2rem;
+        position: absolute;
+        left: calc(#{$about-input-width} + 1.5rem);
+        width: fit-content;
     }
 }
 
+
 .about__input {
-    width: 60%;
+    width: $about-input-width;
     font-size: 2rem;
     background-color: $color-white;
-    border: 1px solid grey;
+    border: .1rem solid grey;
     padding: .5rem 4rem;
     outline: none;
     border-radius: 7px;
+    padding-right: 1rem;
+    color: black;
+
+    &:focus {
+        border-color: $color-blue-dark;
+        box-shadow: 1px 1px $color-blue-dark;
+    }
 }
 
 .about__buttons__container {
@@ -109,7 +157,7 @@
     & button {
         border: 1px solid black;
         font-size: 2rem;
-        width: 40%;
+        // min-width: 40%;
         display: flex;
         align-items: center;
         // justify-content: center;
@@ -119,6 +167,8 @@
             margin-right: 0.75rem;
             width: 2rem;
             height: 2rem;
+            position: relative;
+            z-index: 100;
         }
 
         .name {
@@ -129,9 +179,17 @@
             box-shadow: none;
         }
 
+        &:hover {
+            cursor: default;
+        }
 
-        
+        svg:hover {
+            cursor: pointer;
+            transform: scale(1.3);
+        }
     }
+
+    
 }
 
 
@@ -166,11 +224,13 @@
 // ======================= Saved ===================
 .saved__container {
     color: black;
+    margin-top: 5rem;
+
+    .scroll-container {
+        height: 70vh;
+        overflow: scroll;
+    }
 }
-
-
-
-
 
 
 
@@ -191,5 +251,36 @@
 
     & .reviews {
         font-size: 1.5rem;
+        height: 70vh;
+        overflow: scroll;
+        
     }
+
+    img {
+        margin-right: 0;
+        width: 7rem;
+        height: 7rem;
+    }
+
+    .name {
+        white-space: nowrap;
+
+        @media only screen and (max-width: 28.125em) {
+            // 450px
+            white-space: normal !important;
+        }
+    }
+    .subject-container {
+        text-align: center;
+        * {
+            white-space: nowrap;
+        }
+    }
+}
+
+
+.sessions__container,
+.saved__container,
+.reviews__container {
+    display: none;
 }
