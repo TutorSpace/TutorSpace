@@ -10,6 +10,8 @@ use Hash;
 
 class profileController extends Controller
 {
+
+    // TODO: fill in the data of the user into subjects/characteristics/courses, sessions, saved, and reviews
     public function show(Request $request) {
         $user = Auth::user();
         if($user->is_tutor) {
@@ -21,13 +23,14 @@ class profileController extends Controller
         
     }
 
+    // TODO: fill in the data of the user into inputs
     public function showEdit() {
         $user = Auth::user();
         if($user->is_tutor) {
             return view('profile.edit_profile_tutor');
         }
         else {
-            // TODO: fill in the data of the user into inputs
+            
             return view('profile.edit_profile_student');
         }
     }
@@ -68,6 +71,8 @@ class profileController extends Controller
             $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
 
             $user->save();
+
+            return redirect()->route('edit_profile')->with('success', 'Your profile is updated successfully!');
         }
     }
 

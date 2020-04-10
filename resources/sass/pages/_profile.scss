@@ -25,6 +25,10 @@
 #profile-container {
     margin-top: 2rem;
     overflow: scroll;
+
+    .search-card-container {
+        margin-top: 0;
+    }
 }
 
 
@@ -208,7 +212,7 @@ $about-input-width: 70%;
         font-size: $font-2;
     
         &--sub {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
         }
     
     }

@@ -1,10 +1,12 @@
-.error {
+.error, .success {
     color: red;
     position: absolute;
     left: 0;
     font-size: calc(#{$font-2} / 2);
     margin-top: 3px;
 }
+
+
 
 .error-right {
     right: 0;

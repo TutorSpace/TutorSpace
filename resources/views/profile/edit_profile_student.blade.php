@@ -14,7 +14,7 @@
     <form action="edit_profile" class="edit-profile__form" method="POST">
         @csrf
         <div class="edit-profile__form__header">
-            <h2>Edit Profile</h2>
+            <h3>Edit Profile</h3>
             <div class="buttons">
                 <button class="btn btn-lg btn-outline-primary" id="cancel-edit-profile">Cancel</button>
                 <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
@@ -43,6 +43,9 @@
             </div>
             @if(session('errors'))
                 <div class="error">{{$errors->first()}}</div>
+            @endif
+            @if(session('success'))
+                <div class="success text-success">{{session('success')}}</div>
             @endif
             
         </div>

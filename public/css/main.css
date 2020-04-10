@@ -10960,8 +10960,18 @@ svg {
   z-index: -100;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
 h1 {
   font-size: 4.8rem !important;
+  margin-bottom: 0;
 }
 
 h2 {
@@ -11015,7 +11025,8 @@ small {
   color: black;
 }
 
-.error {
+.error,
+.success {
   color: red;
   position: absolute;
   left: 0;
@@ -12568,6 +12579,10 @@ table img {
   overflow: scroll;
 }
 
+#profile-container .search-card-container {
+  margin-top: 0;
+}
+
 .about__information {
   height: 30rem;
   margin-top: 3rem;
@@ -12738,7 +12753,7 @@ table img {
 }
 
 .sessions__container .sessions__header--sub {
-  font-size: 1.5rem;
+  font-size: 2.2rem;
 }
 
 .sessions__container .sessions__info {
@@ -12945,7 +12960,8 @@ table img {
   cursor: pointer;
 }
 
-.edit-profile__form__content .error {
+.edit-profile__form__content .error,
+.edit-profile__form__content .success {
   text-align: right;
   width: 46%;
   top: 100%;

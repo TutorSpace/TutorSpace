@@ -59,11 +59,11 @@
             <div class="button-container">
                 <a href="/home_tutor">Home</a>
                 <a href="/messages">Messages</a>
-                <form class="search-box" action="/search-for-tutor">
+                <form class="search-box" action="/search" method="GET">
                     <svg>
                         <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                     </svg>
-                    <input type="text" placeholder="Search a course or name">
+                    <input type="text" placeholder="Search a course or name" type="submit">
                 </form>
             </div>
             <div class="user-photo-container">
