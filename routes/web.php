@@ -51,6 +51,7 @@ Route::get('/profile', 'profileController@show')->name('profile')->middleware(['
 
 // edit profile 
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['checkLogin']);
+Route::post('/edit_profile', 'profileController@editProfile');
 
 // home page
 Route::get('/home_student', function() {

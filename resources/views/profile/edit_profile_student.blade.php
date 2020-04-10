@@ -16,35 +16,37 @@
         <div class="edit-profile__form__header">
             <h2>Edit Profile</h2>
             <div class="buttons">
-                <button class="btn btn-lg btn-outline-primary">Cancel</button>
-                <button class="btn btn-lg btn-primary">Save Changes</button>
+                <button class="btn btn-lg btn-outline-primary" id="cancel-edit-profile">Cancel</button>
+                <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
             </div>
         </div>
         <div class="w-75 edit-profile__form__content">
             <span class="labels">Full Name *</span>
-            <span class="labels">Email *</span>
-            <input type="text" value="Jamie Chang">
-            <input type="email" value="jamiec@usc.edu" class="disable">
+            <span class="labels disabled">Email *</span>
+            <input type="text" value="Jamie Chang" name="fullName">
+            <input type="email" value="jamiec@usc.edu" disabled>
             <span class="labels">Password *</span>
             <span class="labels">Year *</span>
-            <input type="password" value="123">
-            <input type="text" value="Freshman">
+            <input type="password" value="123" name="password">
+            <input type="text" value="Freshman" name="schoolYear" id="schoolYear">
             <span class="labels">Major *</span>
             <span class="labels">Minor</span>
-            <input type="text" value="B.S. Astronautical Engineering">
-            <input type="text" value="Web Technologies and Application">
+            <input type="text" value="B.S. Astronautical Engineering" name="major" id="major">
+            <input type="text" value="Web Technologies and Application" name="minor">
             <span class="labels">Upload Profile Picture *</span>
             <span class="labels invisible">hidden span</span>
             <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="input-photo-label">Upload</span>
-                </div>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="input-photo" aria-describedby="input-photo-label">
+                  <input type="file" class="custom-file-input" id="input-photo" name="profilePhoto">
                   <label class="custom-file-label" for="input-photo">Choose file</label>
                 </div>
-              </div>
+            </div>
+            @if(session('errors'))
+                <div class="error">{{$errors->first()}}</div>
+            @endif
+            
         </div>
+        
 
     </form>
 
@@ -86,7 +88,10 @@
 @endsection
 
 @section('js')
-
+<!-- for autocomplete -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{asset('js/edit_profile.js')}}"></script>
 
 @endsection

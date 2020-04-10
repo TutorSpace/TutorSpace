@@ -20,11 +20,11 @@ class signupController extends Controller
         return view('authenticate.show_signup');
     }
 
-    public function showStudent() {
+    public function showStudent(Request $request) {
         return view('authenticate.show_signup_student');
     }
 
-    public function showStudent_2 () {
+    public function showStudent_2 (Request $request) {
         return view('authenticate.show_signup_student_2');
     }
 
@@ -40,7 +40,7 @@ class signupController extends Controller
 
     public function signupStudent(Request $request) {
         // checking for empty inputs, different passwords, wrong email formats, and existed email
-
+        
         $request->validate([
             'fullName' => ['
                 required'

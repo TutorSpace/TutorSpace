@@ -331,7 +331,7 @@
             border: 1px solid black;
             border-radius: 5px;
             overflow: hidden;
-            // transition: all .3s;
+            
             &:hover {
                 cursor: pointer;
                 border: 1px solid transparent;
@@ -353,6 +353,7 @@
                 width: 100%;
                 transition: all .3s;
             }
+
             &:before {
                 content: "Upload Now!";
                 position: absolute;

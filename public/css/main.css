@@ -12878,6 +12878,13 @@ table img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  position: relative;
+}
+
+@media only screen and (max-width: 40.625em) {
+  .edit-profile__form__content {
+    width: 100% !important;
+  }
 }
 
 .edit-profile__form__content > * {
@@ -12907,6 +12914,41 @@ table img {
   margin-top: 1.5rem;
   color: #9a9a9a;
   margin-bottom: 4px;
+}
+
+.edit-profile__form__content .custom-file {
+  font-size: 2rem;
+}
+
+.edit-profile__form__content .custom-file input {
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+}
+
+.edit-profile__form__content .custom-file input:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.edit-profile__form__content .custom-file input:hover {
+  cursor: pointer;
+}
+
+.edit-profile__form__content .custom-file label {
+  background-color: transparent;
+}
+
+.edit-profile__form__content .custom-file label:hover {
+  cursor: pointer;
+}
+
+.edit-profile__form__content .error {
+  text-align: right;
+  width: 46%;
+  top: 100%;
 }
 
 .edit-profile__form__bank {
