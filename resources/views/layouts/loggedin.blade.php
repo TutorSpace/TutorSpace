@@ -67,7 +67,19 @@
                 </form>
             </div>
             <div class="user-photo-container">
-                <img src="{{asset('assets/sophia.png')}}" alt="user photo" id="tutor-profile-photo">    
+                <div class="p-relative">
+                    <img src="{{asset('assets/sophia.png')}}" alt="user photo" id="tutor-profile-photo">    
+                    <div class="nav__dropdown-container">
+                        <p class="name">Jamie Chang</p>
+                        <div class="profile-container">
+                            <span class="profile">Profile</span>
+                        </div>
+                        <div class="log-out-container">
+                            <span class="log-out">Log Out</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </nav>

@@ -22,7 +22,7 @@ Route::get('/test', 'testController@test');
 
 Route::get('/', function () {
     return view('index');
-})->middleware(['checkLogout']);
+})->name('index')->middleware(['checkLogout']);
 
 // login
 Route::get('/login', 'loginController@show')->name('login')->middleware(['checkLogout']);
@@ -57,13 +57,12 @@ Route::post('/edit_profile', 'profileController@editProfile');
 Route::get('/home_student', function() {
     return "<h1>home student page</h1>";
 })->name('home_student')->middleware(['checkLogin']);
-
 Route::get('/home_tutor', function() {
     return "<h1>home tutor page</h1>";
 })->name('home_tutor')->middleware(['checkLogin']);;
 
 
-
+Route::get('/logout', 'loginController@logout')->name('logout')->middleware(['checkLogin']);
 
 
 

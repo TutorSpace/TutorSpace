@@ -11641,31 +11641,82 @@ a.btn.btn-primary {
   height: 80%;
   display: flex;
   align-items: center;
+  margin-right: 5rem;
+}
+
+@media only screen and (max-width: 48em) {
+  .nav-login .nav-container .user-photo-container {
+    margin-right: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 31.25em) {
+  .nav-login .nav-container .user-photo-container {
+    margin-right: 0.5rem;
+  }
 }
 
 .nav-login .nav-container .user-photo-container img {
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
-  margin-right: 5rem;
   transition: transform 0.4s;
-}
-
-@media only screen and (max-width: 48em) {
-  .nav-login .nav-container .user-photo-container img {
-    margin-right: 1.5rem;
-  }
-}
-
-@media only screen and (max-width: 31.25em) {
-  .nav-login .nav-container .user-photo-container img {
-    margin-right: 0.5rem;
-  }
 }
 
 .nav-login .nav-container .user-photo-container img:hover {
   cursor: pointer;
-  transform: scale(1.2);
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 1rem;
+  border-radius: 8px;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container > * {
+  padding: 0.5rem 1rem;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .name {
+  background-color: #2c86c4;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  white-space: nowrap;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .profile,
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .log-out {
+  text-decoration: none;
+  color: black;
+  font-size: 1.6rem;
+  white-space: nowrap;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .profile:hover,
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .log-out:hover {
+  border: none;
+  color: white;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .profile-container,
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .log-out-container {
+  background-color: white;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .profile-container:hover,
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .log-out-container:hover {
+  background-color: #2c86c4;
+  cursor: pointer;
+}
+
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .profile-container:hover span,
+.nav-login .nav-container .user-photo-container .nav__dropdown-container .log-out-container:hover span {
+  color: white;
 }
 
 .index-left-container,

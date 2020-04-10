@@ -3,14 +3,25 @@ $('#logo').click(function() {
 });
 
 $('nav.nav .user-photo-container>img').click(function() {
-    // should account for id="tutor-profile-photo"
-    if($(this).attr('id') === 'tutor-profile-photo') {
-        window.location.href = '/profile_tutor.html';
-    }
+    window.location.href = '/profile';
+});
 
-    else {
-        window.location.href = '/profile_student.html';
-    }
-        
+let dropdownShowed = false;
+$('nav .user-photo-container img').click(() => {
+    if(dropdownShowed)
+        $('.nav__dropdown-container').hide();
+    else
+        $('.nav__dropdown-container').show();
+
+    dropdownShowed = !dropdownShowed;
     
+});
+
+
+$('nav .user-photo-container .profile-container').click(() => {
+    window.location.href = '/profile';
+});
+
+$('nav .user-photo-container .log-out-container').click(() => {
+    window.location.href = '/logout';
 });

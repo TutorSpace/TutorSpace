@@ -221,31 +221,83 @@
 
             .user-photo-container {
                 height: 80%;
-                // background-color: yellow;
                 display: flex;
                 align-items: center;
+                
+
+                margin-right: 5rem;
+
+                @media only screen and (max-width: 48em) {
+                    // 768px
+                    margin-right: 1.5rem;
+                }
+
+                @media only screen and (max-width: 31.25em) {
+                    margin-right: .5rem;
+                }
 
                 img {
                     height: 5rem;
                     width: 5rem;
                     border-radius: 50%;
-                    margin-right: 5rem;
                     transition: transform .4s;
-
-                    @media only screen and (max-width: 48em) {
-                        // 768px
-                        margin-right: 1.5rem;
-                    }
-
-                    @media only screen and (max-width: 31.25em) {
-                        margin-right: .5rem;
-                    }
 
                     &:hover {
                         cursor: pointer;
-                        transform: scale(1.2);
                     }
+
+
                 }
+
+                .nav__dropdown-container {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    
+                    margin-top: 1rem;
+                    border-radius: 8px;
+
+                    > * {
+                        padding: .5rem 1rem;
+                    }
+
+                    .name {
+                        background-color: $color-blue-dark;
+                        margin-bottom: 0;
+                        font-size: $font-3;
+                        white-space: nowrap;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                    }
+
+                    .profile, .log-out {
+                        text-decoration: none;
+                        color: black;
+                        font-size: $font-3;
+                        white-space: nowrap;
+
+                        &:hover {
+                            border: none;
+                            color: white;
+                        }
+                    } 
+
+                    .profile-container, .log-out-container {
+                        background-color: white;
+                        &:hover {
+                            background-color: $color-blue-dark;
+                            cursor: pointer;
+                        }
+
+                        &:hover span {
+                            color: white;
+
+                        }
+                    }
+
+                }
+
             }
             
         }
