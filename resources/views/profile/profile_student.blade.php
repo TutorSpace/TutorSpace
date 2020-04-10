@@ -105,6 +105,7 @@
                     </div>
 
                     <form class="about__characteristics" method="POST" action="#">
+                        @csrf
                         <div class="about__characteristics__header">
                             Characteristics
                         </div>
