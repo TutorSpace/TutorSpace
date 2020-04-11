@@ -5,7 +5,7 @@
     color: black;
     
 
-    & button {
+    button, a {
         font-size: 2rem;
     }
     
@@ -15,10 +15,10 @@
         align-items: center;
         justify-content: space-between;
 
-        & span {
+        span {
             font-size: $font-2;
         }
-        & button:not(:last-child) {
+        button:not(:last-child), a:not(:last-child) {
             margin-right: 1rem;
         }
     }
@@ -100,11 +100,16 @@
             }
         }
 
-        .error, .success{
+        .error {
             text-align: right;
             width: 46%;
             top: 100%;
-            
+        }
+
+        .success {
+            top: 100%;
+            width: 100%;
+            text-align: right;
         }
     }
 

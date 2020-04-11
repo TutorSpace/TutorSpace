@@ -121,19 +121,19 @@
                     <div class="about__buttons__container">
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Friendly</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Patient</span>
                         </button>
                         <button class="btn btn-lg">
                             <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
                             <span class="name">Hospital</span>
                         </button>

@@ -1,5 +1,6 @@
 $('#cancel-edit-profile').click(function() {
-    alert('TODO: cancel should update the form with all the data that is inside the database. Use AJAX for this.');
+    window.location.href = "/edit_profile";
+
 })
 
 // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
@@ -29,3 +30,6 @@ $(function () {
         source: schoolYearTags
     });
 });
+
+
+

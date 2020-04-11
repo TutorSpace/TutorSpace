@@ -16,36 +16,33 @@
         <div class="edit-profile__form__header">
             <h3>Edit Profile</h3>
             <div class="buttons">
-                <button class="btn btn-lg btn-outline-primary" id="cancel-edit-profile">Cancel</button>
+                <a class="btn btn-lg btn-outline-primary" id="cancel-edit-profile" href="/edit_profile">Cancel</a>
                 <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>
             </div>
         </div>
         <div class="w-75 edit-profile__form__content">
             <span class="labels">Full Name *</span>
             <span class="labels disabled">Email *</span>
-            <input type="text" value="Jamie Chang" name="fullName">
-            <input type="email" value="jamiec@usc.edu" disabled>
-            <span class="labels">Password *</span>
-            <span class="labels">Year *</span>
-            <input type="password" value="123" name="password">
-            <input type="text" value="Freshman" name="schoolYear" id="schoolYear">
+            <input type="text" value="{{$fullName}}" name="fullName" required>
+            <input type="email" value="{{$email}}" disabled>
             <span class="labels">Major *</span>
             <span class="labels">Minor</span>
-            <input type="text" value="B.S. Astronautical Engineering" name="major" id="major">
-            <input type="text" value="Web Technologies and Application" name="minor">
-            <span class="labels">Upload Profile Picture *</span>
-            <span class="labels invisible">hidden span</span>
-            <div class="input-group">
+            <input type="text" value="{{$major}}" name="major" id="major" required>
+            <input type="text" value="{{$minor}}" name="minor">
+            <span class="labels">Upload Profile Picture</span>
+            <span class="labels">Year *</span>
+             <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="input-photo" name="profilePhoto">
                   <label class="custom-file-label" for="input-photo">Choose file</label>
                 </div>
             </div>
+            <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
             @if(session('errors'))
-                <div class="error">{{$errors->first()}}</div>
+                <div class="error error-right">{{$errors->first()}}</div>
             @endif
             @if(session('success'))
-                <div class="success text-success">{{session('success')}}</div>
+                <div class="success text-success ">{{session('success')}}</div>
             @endif
             
         </div>

@@ -30,8 +30,20 @@ class profileController extends Controller
             return view('profile.edit_profile_tutor');
         }
         else {
+            $fullName = $user->full_name;
+            $email = $user->email;
+            $major = Major::where('id', '=', $user->major_id)->first()->major;
+            $minor = $user->minor;
+            $year = School_year::where('id', '=', $user->school_year_id)->first()->school_year;
+
             
-            return view('profile.edit_profile_student');
+            return view('profile.edit_profile_student', [
+                'fullName' => $fullName,
+                'email' => $email,
+                'major' => $major,
+                'minor' => $minor,
+                'year' => $year
+                ]);
         }
     }
 
@@ -45,9 +57,6 @@ class profileController extends Controller
             $request->validate([
                 'fullName' => ['
                     required'
-                ],
-                'password' => [
-                    'required'
                 ],
                 'schoolYear' => [
                     'required', 

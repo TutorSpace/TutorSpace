@@ -18,4 +18,16 @@ class User extends Authenticatable
     public function major() {
         return $this->belongsTo('App\Major');
     }
+
+    public function subjects() {
+        return $this->belongsToMany('App\Subject');
+    }
+
+    public function courses() {
+        return $this->belongsToMany('App\Course');
+    }
+
+    public function characteristics() {
+        return $this->belongsToMany('App\Characteristic');
+    }
 }

@@ -12921,7 +12921,8 @@ table img {
   color: black;
 }
 
-.edit-profile__form button {
+.edit-profile__form button,
+.edit-profile__form a {
   font-size: 2rem;
 }
 
@@ -12936,7 +12937,8 @@ table img {
   font-size: 2.2rem;
 }
 
-.edit-profile__form__header button:not(:last-child) {
+.edit-profile__form__header button:not(:last-child),
+.edit-profile__form__header a:not(:last-child) {
   margin-right: 1rem;
 }
 
@@ -13011,11 +13013,16 @@ table img {
   cursor: pointer;
 }
 
-.edit-profile__form__content .error,
-.edit-profile__form__content .success {
+.edit-profile__form__content .error {
   text-align: right;
   width: 46%;
   top: 100%;
+}
+
+.edit-profile__form__content .success {
+  top: 100%;
+  width: 100%;
+  text-align: right;
 }
 
 .edit-profile__form__bank {

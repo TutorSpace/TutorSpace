@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestamps extends Migration
+class AddTimestampsCharacteristics extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddTimestamps extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('characteristics', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -25,7 +25,7 @@ class AddTimestamps extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('characteristics', function (Blueprint $table) {
             //
         });
     }
