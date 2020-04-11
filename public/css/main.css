@@ -11237,7 +11237,7 @@ a.btn.btn-primary {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 2.2rem;
+  padding: 1rem 2rem;
   border-radius: 10px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 }
@@ -11248,17 +11248,16 @@ a.btn.btn-primary {
 
 .session__container .title {
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
 
 .session__container .text {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .session__container button {
   margin-top: 1rem;
-  font-size: 1.5rem;
 }
 
 .session__container :not(:first-child) {
@@ -11401,9 +11400,9 @@ a.btn.btn-primary {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 2rem;
   box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
   border-radius: 10px;
 }
 
@@ -11439,8 +11438,12 @@ a.btn.btn-primary {
 }
 
 .tutor-container .tutor__info > :first-child {
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+}
+
+.tutor-container .tutor__info > :not(:first-child) {
   font-size: 1.5rem;
-  font-weight: 500;
 }
 
 .tutor-container button {
@@ -12572,8 +12575,30 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem;
 }
 
+.home__container__help-center .btn-search {
+  margin-left: 2rem;
+  font-size: 1.6rem;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 25em) {
+  .home__container__help-center .btn-search {
+    margin-left: 0;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+
 .home__container__help-center__filter-container {
   display: flex;
+  margin-top: 0.5rem;
+}
+
+@media only screen and (max-width: 25em) {
+  .home__container__help-center__filter-container .select-container {
+    width: 22rem;
+  }
 }
 
 .home__container__help-center__filter-container .filter-post {
@@ -12589,6 +12614,13 @@ h5 .fgpwd-container__header-2 {
   width: -moz-fit-content;
   width: fit-content;
   margin-right: 2rem;
+}
+
+@media only screen and (max-width: 25em) {
+  .home__container__help-center__filter-container .filter-post:first-child {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .home__container__help-center__filter-container .filter-post:nth-child(2) {

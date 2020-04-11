@@ -270,20 +270,31 @@
         <div class="row home__container__help-center">
             <div class="col">
                 <div class="home__container__help-center__header">
-                    <h5 class="home__container__help-center__header__text">Dashboard</h5>
-                    <button class="btn btn-lg btn-outline-primary">Add Post +</button>
+                    <div>
+                        <h5 class="home__container__help-center__header__text">Dashboard</h5>
+                        <form class="home__container__help-center__filter-container" id="filter-form" method="GET" action="/home_filter">
+                            <div class="select-container">
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-courses-subjects">
+                                    <option value="all-courses-subjects" selected>All Courses / Subjects</option>
+                                    <option value="my-courses-subjects">My Courses / Subjects</option>
+                                </select>
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-posts">
+                                    <option selected>All Posts</option>
+                                    <option value="tutor-posts">Tutor Posts</option>
+                                    <option value="student-posts">Student Posts</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-primary btn-search" id="btn-search" type="submit">Search</button>
+                        </form>
+                    </div>
+                    
+                    <div>
+                        <button class="btn btn-lg btn-outline-primary" id="add-post">Add Post +</button>
+                        
+                    </div>
+                    
                 </div>
-                {{-- <form class="home__container__help-center__filter-container">
-                    <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-courses-subjects">
-                        <option value="all-courses-subjects" selected>All Courses / Subjects</option>
-                        <option value="my-courses-subjects">My Courses / Subjects</option>
-                    </select>
-                    <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-posts">
-                        <option selected>All Posts</option>
-                        <option value="tutor-posts">Tutor Posts</option>
-                        <option value="student-posts">Student Posts</option>
-                    </select>
-                </form> --}}
                 <table class="table table-hover home__container__help-center__table">
                     <tbody>
                         <tr>

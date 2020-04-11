@@ -19,3 +19,5 @@ $('.tutor-requests-table button:last-child').click(function() {
 $('.tutor-requests-table button:not(:last-child)').click(function() {
     alert('declined tutor request');
 });
+
+

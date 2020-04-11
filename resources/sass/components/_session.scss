@@ -4,7 +4,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2.2rem;
+    padding: 1rem 2rem;
     border-radius: 10px;
     @include boxShadow;
 
@@ -14,17 +14,16 @@
 
     & .title {
         width: 100%;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 500;
     }
 
     & .text {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     & button {
         margin-top: 1rem;
-        font-size: 1.5rem;
     }
 
     & :not(:first-child) {
