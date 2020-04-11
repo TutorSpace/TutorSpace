@@ -157,9 +157,6 @@
             min-height: 30rem;
             margin-top: 2rem;
             color: $color-gray;
-            // for testing only
-            // background-color: orangered;
-            // color: white;
             font-size: $font-1;
         }
     }
@@ -181,6 +178,36 @@
             }
             & button {
                 font-size: 2rem;
+            }
+        }
+
+        &__filter-container {
+            // background-color: orangered;
+            display: flex;
+            // flex-wrap: wrap;
+
+
+            .filter-post {
+                outline: none;
+                border-color: $color-gray;
+                font-size: 1.6rem;
+                padding-right: 2rem;
+                border-radius: 10px;
+                
+                
+            }
+
+            .filter-post:first-child {
+                // flex: 0 0 30%;
+                // min-width: 22rem;
+                width: fit-content;
+                margin-right: 2rem;
+            }
+
+            .filter-post:nth-child(2) {
+                width: fit-content;
+                // flex: 0 0 30%;
+                // min-width: 22rem;
             }
         }
 
@@ -226,6 +253,10 @@
                 white-space: nowrap;
                 text-align: center;
                 
+                @media only screen and (max-width: 31.25em) { //500px
+                    white-space: normal;
+                };
+
             }
             tr > :nth-child(2) {
                 text-align: center;
@@ -241,8 +272,12 @@
                 }
             }
 
-            a {
+            button {
                 white-space: nowrap;
+                
+                @media only screen and (max-width: 31.25em) { //500px
+                    white-space: normal;
+                };
             }
         }
     }

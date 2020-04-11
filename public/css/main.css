@@ -12572,6 +12572,31 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem;
 }
 
+.home__container__help-center__filter-container {
+  display: flex;
+}
+
+.home__container__help-center__filter-container .filter-post {
+  outline: none;
+  border-color: #9a9a9a;
+  font-size: 1.6rem;
+  padding-right: 2rem;
+  border-radius: 10px;
+}
+
+.home__container__help-center__filter-container .filter-post:first-child {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 2rem;
+}
+
+.home__container__help-center__filter-container .filter-post:nth-child(2) {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .home__container__help-center__table {
   margin-top: 2rem;
   font-size: 2rem;
@@ -12605,6 +12630,12 @@ h5 .fgpwd-container__header-2 {
   text-align: center;
 }
 
+@media only screen and (max-width: 31.25em) {
+  .home__container__help-center__table tr > :nth-child(1) {
+    white-space: normal;
+  }
+}
+
 .home__container__help-center__table tr > :nth-child(2) {
   text-align: center;
 }
@@ -12619,8 +12650,14 @@ h5 .fgpwd-container__header-2 {
   white-space: nowrap;
 }
 
-.home__container__help-center__table a {
+.home__container__help-center__table button {
   white-space: nowrap;
+}
+
+@media only screen and (max-width: 31.25em) {
+  .home__container__help-center__table button {
+    white-space: normal;
+  }
 }
 
 .home__tutor-requests {
