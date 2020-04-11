@@ -18,6 +18,7 @@
                 </div>
 
                 <div class="about__information__content">
+                    {{-- SARAH: you can do  <h3>{{$fullName}}</h3> here to use the $fullName you get from the show() function in profileController --}}
                     <div class="name"><h3>Jamie Chang</h3></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>

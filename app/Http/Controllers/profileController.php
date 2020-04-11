@@ -18,7 +18,13 @@ class profileController extends Controller
             return view('profile.profile_tutor');
         }
         else {
+            // SARAH: get the student information and put it into the profile_student page. Let's first try getting the user's name.
+            
+
+
             return view('profile.profile_student');
+
+            // Sarah: instead of 'return view('profile.profile_student');', you can refer to the return statement in function showEdit(). it is returning an array of variables. So in this way, you can pass the username to 'profile_student.blade.php'. Please refer to my notes in 'profile_student.blade.php'
         }
         
     }
