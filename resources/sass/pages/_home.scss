@@ -1,19 +1,23 @@
 .home__container {
     // height: calc(100vh - #{$navbar-height});
-    
+
     &__header {
         background-color: $color-blue-light-trans;
         height: 30rem;
-    
+        
     
         &__content {
-            
+            position: relative; 
 
             &__text {
                 display: flex;
                 flex-direction: column;
                 height: 100%;
                 justify-content: center;
+                color: black;
+                position: relative;
+                z-index: 2;
+                
 
                 &__header {
                     font-size: 4.5rem;
@@ -26,7 +30,15 @@
             }
 
             &__img {
-                
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+
+                svg {
+                    width: 25rem;
+                    height: 15rem;
+                }
             }
 
         }
@@ -36,10 +48,11 @@
 
     &__notifications {
         min-height: 20%;
+        color: black;
 
         &__title {
             font-size: $font-2;
-            
+            margin-bottom: 2rem;
             margin-top: 2rem;
             span {
                 font-weight: 700;
@@ -52,12 +65,44 @@
         }
 
 
+        $mt-notification: 2.5rem;
         &__tutors, &__students {
-            margin-top: 5rem;
+            margin-top: $mt-notification;
+            // margin-bottom: 2rem;
         }
 
         &__sessions {
-            margin-top: 5rem;
+            margin-top: $mt-notification;
+            display: flex;
+            flex-wrap: wrap;
+
+            @media only screen and (max-width: 575px) { //576px
+                padding-left: 0;
+                padding-right: 0;
+
+                > div:first-child {
+                    padding-left: 15px;
+                    padding-right: 5px;
+                }
+
+                > div:nth-child(2) {
+                    padding-left: 5px;
+                    padding-right: 15px;
+                }
+            };
+
+
+            @media only screen and (max-width: 26.875em) { //430px
+                > div:first-child {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+
+                > div:nth-child(2) {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+            };
         }
 
         .recommended__tutors {
@@ -129,9 +174,10 @@
             align-items: center;
 
             &__text {
+                color: black;
                 font-size: $font-2;
                 margin: 0;
-                font-weight: 500 !important;
+                font-weight: 700 !important;
             }
             & button {
                 font-size: 2rem;

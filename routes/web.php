@@ -53,16 +53,13 @@ Route::get('/profile', 'profileController@show')->name('profile')->middleware(['
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['checkLogin']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
-// home page
-Route::get('/home_student', function() {
-    return "<h1>home student page</h1>";
-})->name('home_student')->middleware(['checkLogin']);
-Route::get('/home_tutor', function() {
-    return "<h1>home tutor page</h1>";
-})->name('home_tutor')->middleware(['checkLogin']);;
 
 
+// log out
 Route::get('/logout', 'loginController@logout')->name('logout')->middleware(['checkLogin']);
 
+
+// home page
+Route::get('/home', 'homeController@show')->name('home_student')->middleware(['checkLogin']);
 
 

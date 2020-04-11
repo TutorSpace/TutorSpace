@@ -11066,6 +11066,20 @@ small {
   visibility: hidden;
 }
 
+._col-extra-small-12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media only screen and (max-width: 26.875em) {
+  ._col-extra-small-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11251,6 +11265,10 @@ a.btn.btn-primary {
   flex: 0 0 49%;
 }
 
+.session__container .descriptor {
+  margin-top: 0.5rem;
+}
+
 .sessions__info {
   display: flex;
   flex-wrap: nowrap;
@@ -11386,6 +11404,7 @@ a.btn.btn-primary {
   padding: 1rem;
   box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
   margin-top: 1.5rem;
+  border-radius: 10px;
 }
 
 .tutor-container .img-container {
@@ -11456,6 +11475,10 @@ a.btn.btn-primary {
   .svg-nav + .nav .nav-container {
     align-items: center;
   }
+
+  .svg-nav + .nav-container-white {
+    background-color: #f7fbfd !important;
+  }
 }
 
 .nav-white {
@@ -11473,7 +11496,7 @@ a.btn.btn-primary {
 }
 
 .nav .svg-logo-container {
-  height: 80%;
+  height: 70%;
   display: flex;
   align-items: center;
 }
@@ -11490,7 +11513,7 @@ a.btn.btn-primary {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 48em) {
+@media only screen and (max-width: 767px) {
   .nav .svg-logo-container .svg-logo {
     margin-right: 5rem;
     margin-left: 5rem;
@@ -11518,7 +11541,7 @@ a.btn.btn-primary {
 }
 
 .nav-not-login .nav-container .button-container {
-  height: 80%;
+  height: 70%;
   display: flex;
   align-items: center;
 }
@@ -11552,7 +11575,7 @@ a.btn.btn-primary {
 }
 
 .nav-login .nav-container .button-container {
-  height: 80%;
+  height: 70%;
   flex: 1;
   display: flex;
   align-items: center;
@@ -11613,7 +11636,7 @@ a.btn.btn-primary {
   width: 30rem;
 }
 
-@media only screen and (max-width: 48em) {
+@media only screen and (max-width: 767px) {
   .nav-login .nav-container .button-container .search-box input {
     padding: 0;
     font-size: 1.8rem;
@@ -11638,13 +11661,13 @@ a.btn.btn-primary {
 }
 
 .nav-login .nav-container .user-photo-container {
-  height: 80%;
+  height: 70%;
   display: flex;
   align-items: center;
   margin-right: 5rem;
 }
 
-@media only screen and (max-width: 48em) {
+@media only screen and (max-width: 767px) {
   .nav-login .nav-container .user-photo-container {
     margin-right: 1.5rem;
   }
@@ -12385,11 +12408,18 @@ h5 .fgpwd-container__header-2 {
   height: 30rem;
 }
 
+.home__container__header__content {
+  position: relative;
+}
+
 .home__container__header__content__text {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
+  color: black;
+  position: relative;
+  z-index: 2;
 }
 
 .home__container__header__content__text__header {
@@ -12400,12 +12430,26 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem;
 }
 
+.home__container__header__content__img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.home__container__header__content__img svg {
+  width: 25rem;
+  height: 15rem;
+}
+
 .home__container__notifications {
   min-height: 20%;
+  color: black;
 }
 
 .home__container__notifications__title {
   font-size: 2.2rem;
+  margin-bottom: 2rem;
   margin-top: 2rem;
   font-weight: 500;
 }
@@ -12420,11 +12464,42 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__notifications__tutors,
 .home__container__notifications__students {
-  margin-top: 5rem;
+  margin-top: 2.5rem;
 }
 
 .home__container__notifications__sessions {
-  margin-top: 5rem;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 575px) {
+  .home__container__notifications__sessions {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .home__container__notifications__sessions > div:first-child {
+    padding-left: 15px;
+    padding-right: 5px;
+  }
+
+  .home__container__notifications__sessions > div:nth-child(2) {
+    padding-left: 5px;
+    padding-right: 15px;
+  }
+}
+
+@media only screen and (max-width: 26.875em) {
+  .home__container__notifications__sessions > div:first-child {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .home__container__notifications__sessions > div:nth-child(2) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .home__container__notifications .recommended__tutors {
@@ -12487,9 +12562,10 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__help-center__header__text {
+  color: black;
   font-size: 2.2rem;
   margin: 0;
-  font-weight: 500 !important;
+  font-weight: 700 !important;
 }
 
 .home__container__help-center__header button {
@@ -12734,6 +12810,12 @@ table img {
   width: fit-content;
 }
 
+@media only screen and (max-width: 575px) {
+  .about__content .add-btn {
+    left: calc(50% + 1.5rem);
+  }
+}
+
 .about__input {
   width: 70%;
   font-size: 2rem;
@@ -12749,6 +12831,12 @@ table img {
 .about__input:focus {
   border-color: #2c86c4;
   box-shadow: 1px 1px #2c86c4;
+}
+
+@media only screen and (max-width: 575px) {
+  .about__input {
+    width: 50%;
+  }
 }
 
 .about__buttons__container {

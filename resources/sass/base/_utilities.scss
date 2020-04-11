@@ -6,8 +6,6 @@
     margin-top: 3px;
 }
 
-
-
 .error-right {
     right: 0;
     left: unset;
@@ -42,4 +40,18 @@
 
 .invisible {
     visibility: hidden;
+}
+
+// customized bootstrap class
+._col-extra-small-12 {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    @media only screen and (max-width: 26.875em) { //430px
+        flex: 0 0 100%;
+        max-width: 100%;    
+    };
+    
 }

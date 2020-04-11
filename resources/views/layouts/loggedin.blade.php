@@ -23,13 +23,14 @@
         x="0px" y="0px" viewBox="0 0 1440 320" style="enable-background:new 0 0 1440 320;" xml:space="preserve"
         class="svg-nav">
 
-        <path class="st0" d="M0,82l80,5.5c80,5.3,240,16.6,400,10.9s320-27.2,480-30.1c160-2.7,320,13.7,400,21.9l80,8.2V0h-80
+        <path class="st0 @yield('st0-white')" d="M0,82l80,5.5c80,5.3,240,16.6,400,10.9s320-27.2,480-30.1c160-2.7,320,13.7,400,21.9l80,8.2V0h-80
    c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
     </svg>
 
 
-    <nav class="nav nav-login">
+    <nav class="nav nav-login @yield('nav-container-white')">
         <div class="nav-container">
+            @yield('nav-white')
             <div class="svg-logo-container" id="logo">
                 <svg width="106" height="33" viewBox="0 0 106 33" fill="none" xmlns="http://www.w3.org/2000/svg"
                     class="svg-logo">
@@ -57,7 +58,7 @@
                 </svg>
             </div>
             <div class="button-container">
-                <a href="/home_tutor">Home</a>
+                <a href="/home">Home</a>
                 <a href="/messages">Messages</a>
                 <form class="search-box" action="/search" method="GET">
                     <svg>

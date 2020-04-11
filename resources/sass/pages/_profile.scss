@@ -133,6 +133,10 @@ $about-input-width: 70%;
         position: absolute;
         left: calc(#{$about-input-width} + 1.5rem);
         width: fit-content;
+
+        @media only screen and (max-width: 575px) { //576px
+            left: calc(50% + 1.5rem);
+        };
     }
 }
 
@@ -152,6 +156,11 @@ $about-input-width: 70%;
         border-color: $color-blue-dark;
         box-shadow: 1px 1px $color-blue-dark;
     }
+
+    @media only screen and (max-width: 575px) { //576px
+        width: 50%;
+    };
+    
 }
 
 .about__buttons__container {

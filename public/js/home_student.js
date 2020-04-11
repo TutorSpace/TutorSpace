@@ -1,6 +1,6 @@
 // select view session
 $('.home__container__notifications__sessions .session__container > button:last-child').click(function () {
-    window.location.href = '/view_session_before_student.html';
+    window.location.href = '/view_session_before';
 });
 
 
@@ -13,10 +13,10 @@ $('.home__container__notifications__sessions .session__container > button:not(:l
 
 // select view profile
 $('.home__container__notifications__sessions .tutor-container > button:last-child').click(function () {
-    window.location.href = '/expanded_view_tutor.html';
+    window.location.href = '/expanded_view';
 });
 
 // select past session
 $('.home__container__notifications__sessions .tutor-container > button:not(:last-child)').click(function () {
-    window.location.href = '/view_session_after_student.html';
+    window.location.href = '/view_session_after';
 });

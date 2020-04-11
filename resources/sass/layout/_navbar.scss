@@ -23,14 +23,15 @@
                 align-items: center;
             }
         }
+
+        + .nav-container-white {
+            background-color: $color-white !important;
+        }
         
     }
-        
-        
-        
-    
-
 }
+
+
 
 .nav-white {
     background-color: $color-blue-light-trans;
@@ -41,7 +42,7 @@
 }
 
 
-
+$nav-height-percent: 70%;
 .nav {
     height: $navbar-height;
     width: 100vw;
@@ -49,7 +50,7 @@
     
 
     .svg-logo-container {
-        height: 80%;
+        height: $nav-height-percent;
         // background-color: orangered;
         display: flex;
         align-items: center;
@@ -71,7 +72,7 @@
 
             }
 
-            @media only screen and (max-width: 48em) {
+            @media only screen and (max-width: 767px) {
                 // 768px
                 margin-right: 5rem;
                 margin-left: 5rem;
@@ -98,7 +99,7 @@
             justify-content: space-between;
 
             .button-container {
-                height: 80%;
+                height: 70%;
                 display: flex;
                 align-items: center;
 
@@ -134,7 +135,7 @@
             display: flex;
 
             .button-container {
-                height: 80%;
+                height: 70%;
                 flex: 1;
                 display: flex;
                 align-items: center;
@@ -193,7 +194,7 @@
                             width: 30rem;
                         }
 
-                        @media only screen and (max-width: 48em) {
+                        @media only screen and (max-width: 767px) {
                             // 768px
                             padding: 0;
                             font-size: 1.8rem;
@@ -220,14 +221,14 @@
 
 
             .user-photo-container {
-                height: 80%;
+                height: 70%;
                 display: flex;
                 align-items: center;
                 
 
                 margin-right: 5rem;
 
-                @media only screen and (max-width: 48em) {
+                @media only screen and (max-width: 767px) {
                     // 768px
                     margin-right: 1.5rem;
                 }

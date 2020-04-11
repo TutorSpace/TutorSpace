@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-                <div class="col-5">
+                <div class="col-sm-5 col-12">
                     <form class="about__subjects" method="POST" action="#">
                         @csrf
                         <div class="about__subjects__header">Subjects</div>
@@ -140,7 +140,7 @@
                     </div>
 
                 </div>
-                <div class="col-7 reviews">
+                <div class="col-sm-7 col-12 reviews">
 
                 </div>
 

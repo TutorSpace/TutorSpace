@@ -29,15 +29,16 @@
             <span class="labels">Minor</span>
             <input type="text" value="{{$major}}" name="major" id="major" required>
             <input type="text" value="{{$minor}}" name="minor">
-            <span class="labels">Upload Profile Picture</span>
+            
             <span class="labels">Year *</span>
-             <div class="input-group">
+            <span class="labels">Upload Profile Picture</span>
+            <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
+            <div class="input-group">
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="input-photo" name="profilePhoto">
                   <label class="custom-file-label" for="input-photo">Choose file</label>
                 </div>
             </div>
-            <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
             @if(session('errors'))
                 <div class="error error-right">{{$errors->first()}}</div>
             @endif
