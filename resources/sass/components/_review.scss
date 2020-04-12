@@ -1,6 +1,6 @@
 .reviews-table {
     margin-top: 2rem;
-    font-size: 2rem;
+    font-size: 1.6rem;
     background-color: #ffffff;
 
     display: block;
@@ -27,6 +27,14 @@
         margin-left: 1.5rem;
     }
 
+    .grey-text {
+        font-size: 1.2rem;
+
+        + * {
+            font-size: 1.5rem;
+        }
+    }
+
     & .review-content__container {
         display: flex;
         justify-content: center;
@@ -34,8 +42,11 @@
     }
 
     & .review-content {
-        max-height: 20rem;
+        max-height: 10rem;
         overflow: scroll;
+        font-size: 1.5rem;
+        margin-bottom: 0;
+
         &::-webkit-scrollbar {
             display: none;
         }

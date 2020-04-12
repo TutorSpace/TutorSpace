@@ -3,19 +3,19 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    
     padding: 1rem 2rem;
     box-shadow: 1px 2px 1px 1px rgba($color: grey, $alpha: .2);
     margin-top: 1.6rem;
     border-radius: 10px;
 
     .img-container {
-        flex: 0 0 25%;
+        flex: 0 0 15%;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        // margin-right: 1rem;
+        
 
         img {
             width: 100%;
@@ -29,7 +29,7 @@
         display: flex;
         justify-content: flex-end;
         
-        flex: 0 0 25%;
+        
         
         svg {
             fill: $color-bookmark;
@@ -44,8 +44,8 @@
     }
     
     .tutor__info {
-        flex: 0 0 50%;
-        padding-left: 2rem;
+        flex: 1;
+        padding-left: 1.5rem;
         
         
         > :first-child {
@@ -58,10 +58,19 @@
         }
     }
 
-    button {
+    .btn-container {
+        flex: 0 0 100%;
+        display: flex;
         margin-top: 1rem;
-        width: 49%;
+        justify-content: space-between;
 
+        button {
+            
+            flex: 0 0 49%;
+    
+        }
     }
+
+    
     
 }

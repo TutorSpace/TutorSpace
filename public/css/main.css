@@ -11151,7 +11151,7 @@ a.btn.btn-primary {
 
 .reviews-table {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   display: block;
 }
@@ -11172,6 +11172,14 @@ a.btn.btn-primary {
   margin-left: 1.5rem;
 }
 
+.reviews-table .grey-text {
+  font-size: 1.2rem;
+}
+
+.reviews-table .grey-text + * {
+  font-size: 1.5rem;
+}
+
 .reviews-table .review-content__container {
   display: flex;
   justify-content: center;
@@ -11179,8 +11187,10 @@ a.btn.btn-primary {
 }
 
 .reviews-table .review-content {
-  max-height: 20rem;
+  max-height: 10rem;
   overflow: scroll;
+  font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
 .reviews-table .review-content::-webkit-scrollbar {
@@ -11266,6 +11276,7 @@ a.btn.btn-primary {
 
 .session__container .descriptor {
   margin-top: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .sessions__info {
@@ -11399,7 +11410,6 @@ a.btn.btn-primary {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 1rem 2rem;
   box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
   margin-top: 1.6rem;
@@ -11407,7 +11417,7 @@ a.btn.btn-primary {
 }
 
 .tutor-container .img-container {
-  flex: 0 0 25%;
+  flex: 0 0 15%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -11422,7 +11432,6 @@ a.btn.btn-primary {
 .tutor-container .bookmark-container {
   display: flex;
   justify-content: flex-end;
-  flex: 0 0 25%;
 }
 
 .tutor-container .bookmark-container svg {
@@ -11433,8 +11442,8 @@ a.btn.btn-primary {
 }
 
 .tutor-container .tutor__info {
-  flex: 0 0 50%;
-  padding-left: 2rem;
+  flex: 1;
+  padding-left: 1.5rem;
 }
 
 .tutor-container .tutor__info > :first-child {
@@ -11446,9 +11455,15 @@ a.btn.btn-primary {
   font-size: 1.5rem;
 }
 
-.tutor-container button {
+.tutor-container .btn-container {
+  flex: 0 0 100%;
+  display: flex;
   margin-top: 1rem;
-  width: 49%;
+  justify-content: space-between;
+}
+
+.tutor-container .btn-container button {
+  flex: 0 0 49%;
 }
 
 .svg-nav {
@@ -12506,7 +12521,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__notifications .recommended__tutors {
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   overflow: scroll;
   border-radius: 14px;
@@ -12533,7 +12548,11 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
   color: #9a9a9a;
-  font-size: 1rem;
+  font-size: 1.2rem;
+}
+
+.home__container__notifications .recommended__tutors tr > :nth-child(2) > :nth-child(2) {
+  font-size: 1.5rem;
 }
 
 .home__container__notifications .recommended__tutors .bookmark {
@@ -12631,7 +12650,7 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   max-height: 50rem;
   padding: 0 1rem;
@@ -12660,6 +12679,7 @@ h5 .fgpwd-container__header-2 {
 .home__container__help-center__table tr > :nth-child(1) {
   white-space: nowrap;
   text-align: center;
+  font-size: 1.6rem;
 }
 
 @media only screen and (max-width: 31.25em) {
@@ -12674,12 +12694,17 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table tr > :nth-child(2) p {
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #9a9a9a;
 }
 
 .home__container__help-center__table tr > :nth-child(2) span {
+  font-size: 1.5rem;
   white-space: nowrap;
+}
+
+.home__container__help-center__table tr > :nth-child(3) {
+  font-size: 1.5rem;
 }
 
 .home__container__help-center__table button {

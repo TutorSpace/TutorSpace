@@ -243,9 +243,11 @@
                                 <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                             </svg>
                         </div>
-
-                        <button class="btn btn-lg btn-outline-primary">Past Session</button>
-                        <button class="btn btn-lg btn-primary">View Profile</button>
+                        <div class="btn-container">
+                            <button class="btn btn-lg btn-outline-primary">Past Session</button>
+                            <button class="btn btn-lg btn-primary">View Profile</button>
+                        </div>
+                        
                     </div>
                     <div class="tutor-container">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
@@ -259,9 +261,10 @@
                                 <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                             </svg>
                         </div>
-
-                        <button class="btn btn-lg btn-outline-primary">Past Session</button>
-                        <button class="btn btn-lg btn-primary">View Profile</button>
+                        <div class="btn-container">
+                            <button class="btn btn-lg btn-outline-primary">Past Session</button>
+                            <button class="btn btn-lg btn-primary">View Profile</button>
+                        </div>
                     </div>
                 </div>
             </div>
