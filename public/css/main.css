@@ -11084,6 +11084,18 @@ svg.bookmark:hover {
   cursor: pointer;
 }
 
+.pl-0 {
+  padding-left: 0;
+}
+
+.pr-0 {
+  padding-right: 0;
+}
+
+.min-width-450 {
+  min-width: 450px;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11281,6 +11293,7 @@ a.btn.btn-primary {
 .session__container .descriptor {
   margin-top: 0.5rem;
   font-size: 1.2rem;
+  color: #9a9a9a;
 }
 
 .sessions__info {
@@ -11454,6 +11467,7 @@ a.btn.btn-primary {
 .tutor-container .tutor__info > :first-child {
   font-size: 1.6rem !important;
   font-weight: 500 !important;
+  margin-bottom: 0.5rem;
 }
 
 .tutor-container .tutor__info > :not(:first-child) {
@@ -12497,20 +12511,20 @@ h5 .fgpwd-container__header-2 {
 }
 
 @media only screen and (max-width: 767px) {
-  .home__container__notifications__sessions {
+  .home__container__notifications__sessions.change-student {
     padding-left: 0;
     padding-right: 0;
   }
 }
 
 @media only screen and (max-width: 575px) {
-  .home__container__notifications__sessions > div:first-child {
+  .home__container__notifications__sessions.change-student > div:first-child {
     padding-left: 15px;
-    padding-right: 5px;
+    padding-right: 15px;
   }
 
-  .home__container__notifications__sessions > div:nth-child(2) {
-    padding-left: 5px;
+  .home__container__notifications__sessions.change-student > div:nth-child(2) {
+    padding-left: 15px;
     padding-right: 15px;
   }
 }
@@ -12731,11 +12745,15 @@ h5 .fgpwd-container__header-2 {
 .home__tutor-requests {
   margin-top: 10rem;
   min-height: 15rem;
+  color: black;
 }
 
-.home__tutor-requests__header {
-  font-size: 2.2rem;
-  font-weight: 600 !important;
+.home__tutor-requests tr:hover {
+  cursor: pointer;
+}
+
+.home__tutor-requests__header h5 {
+  font-weight: 700 !important;
 }
 
 .home__tutor-requests__content {
@@ -12763,10 +12781,6 @@ h5 .fgpwd-container__header-2 {
 }
 
 .tutor-requests-table tr > :nth-child(1) {
-  white-space: nowrap;
-}
-
-.tutor-requests-table tr > :nth-child(2) {
   white-space: nowrap;
 }
 

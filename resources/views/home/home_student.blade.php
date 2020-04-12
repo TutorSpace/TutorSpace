@@ -16,7 +16,7 @@
     <div class="add-post-bottom">
         <select class="custom-select custom-select-lg " name="add-post-course-subject" id="add-post-course-subject">
             <option selected="true" disabled="disabled">Select</option>
-            <option value="ITP 104" >ITP 104</option>
+            <option value="ITP 104">ITP 104</option>
             <option value="Calculus">Calculus</option>
         </select>
         <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
@@ -27,7 +27,7 @@
 @endsection
 
 @section('content')
-<div class="container-fluid home__container" >
+<div class="container-fluid home__container">
 
     <div class="row home__container__header">
         <div class="container home__container__header__content">
@@ -36,7 +36,7 @@
                     <h2>Welcome Jamie!</h2>
                 </div>
                 <div class="home__container__header__content__text__descriptor">
-                    <small>You have X unread message & Y Tutor Request(s)</small>
+                    <small>You have X unread message(s)</small>
                 </div>
             </div>
             <div class="home__container__header__content__img">
@@ -77,8 +77,7 @@
         </div>
     </div>
 
-    <div class="container" >
-
+    <div class="container">
         <div class="row home__container__notifications">
             <div class="col-12 col-sm-7 home__container__notifications__students">
                 <!-- the commented div is to display when there is no recommended tutors -->
@@ -209,7 +208,7 @@
 
 
             </div>
-            <div class="col-12 col-sm-5 home__container__notifications__sessions">
+            <div class="col-12 col-sm-5 home__container__notifications__sessions change-student">
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     <!-- <div class="home__container__notifications__title">
                         <h5>No Upcoming Sessions</h5>
@@ -221,9 +220,9 @@
                         <h5><span>Upcoming Sessions</span></h5>
                     </div>
                     <div class="session__container">
-                        <span class="title">Jamie Chang</span>
+                        <span class="title">Tutor Name</span>
                         <span class="descriptor">Date</span>
-                        <span class="descriptor">Course</span>
+                        <span class="descriptor">Subject / Course</span>
                         <span class="text">02/20/2020</span>
                         <span class="text">ITP 104</span>
                         <span class="descriptor">Time</span>
@@ -234,9 +233,9 @@
                         <button class="btn btn-lg btn-primary">View Session</button>
                     </div>
                     <div class="session__container">
-                        <span class="title">Jamie Chang</span>
+                        <span class="title">Tutor Name</span>
                         <span class="descriptor">Date</span>
-                        <span class="descriptor">Course</span>
+                        <span class="descriptor">Subject / Course</span>
                         <span class="text">02/20/2020</span>
                         <span class="text">ITP 104</span>
                         <span class="descriptor">Time</span>
@@ -254,7 +253,7 @@
                     <div class="tutor-container">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
                         <div class="tutor__info">
-                            <div>Jeffrey Smith</div>
+                            <div>Tutor Name</div>
                             <div>Last Session: 00/00/00</div>
                             <div>Total Sessions: <span>5</span></div>
                         </div>
@@ -267,12 +266,12 @@
                             <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
                             <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
                         </div>
-                        
+
                     </div>
                     <div class="tutor-container">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
                         <div class="tutor__info">
-                            <div>Jeffrey Smith</div>
+                            <div>Tutor Name</div>
                             <div>Last Session: 00/00/00</div>
                             <div>Total Sessions: <span>5</span></div>
                         </div>
@@ -295,33 +294,36 @@
                 <div class="home__container__help-center__header">
                     <div>
                         <h5 class="home__container__help-center__header__text">Dashboard</h5>
-                        <form class="home__container__help-center__filter-container" id="filter-form" method="GET" action="/home_filter">
+                        <form class="home__container__help-center__filter-container" id="filter-form" method="GET"
+                            action="/home_filter">
                             <div class="select-container">
-                                <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-courses-subjects">
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                    id="search-courses-subjects">
                                     <option value="all-courses-subjects" selected>All Courses / Subjects</option>
                                     <option value="my-courses-subjects">My Courses / Subjects</option>
                                 </select>
-                                <select class="custom-select custom-select-lg filter-post" name="filter-post" id="search-posts">
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                    id="search-posts">
                                     <option selected>All Posts</option>
                                     <option value="tutor-posts">Tutor Posts</option>
                                     <option value="student-posts">Student Posts</option>
                                 </select>
                             </div>
-                            
+
                             <button class="btn btn-primary btn-search" id="btn-search" type="submit">Search</button>
                         </form>
                     </div>
-                    
+
                     <div>
                         <button class="btn btn-lg btn-outline-primary" id="add-post">Add Post +</button>
-                        
+
                     </div>
-                    
+
                 </div>
                 <table class="table table-hover home__container__help-center__table">
                     <tbody>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -330,7 +332,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -339,7 +341,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -348,7 +350,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -357,7 +359,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -366,7 +368,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -375,7 +377,7 @@
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
                         <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
                             <td>
                                 <p>00/00/00</p><span>ITP 104</span>
                             </td>
@@ -394,7 +396,7 @@
 
 
 </div>
-</div>
+
 
 @endsection
 
@@ -402,5 +404,6 @@
 
 <!-- defined javascript -->
 <script src="js/home_student.js"></script>
+<script src="js/home_common.js"></script>
 
 @endsection

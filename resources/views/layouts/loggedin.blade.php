@@ -17,7 +17,7 @@
 
 </head>
 
-<body class="animsition">
+<body class="animsition @yield('body-class')">
     <div id="background-cover">
         @yield('add-post-container')
     </div>

@@ -1,23 +1,12 @@
-// select view session
-$('.home__container__notifications__sessions .session__container > button:last-child').click(function () {
-    window.location.href = '/view_session_before_tutor.html';
-});
-
-
-// select cancel session
-$('.home__container__notifications__sessions .session__container > button:not(:last-child)').click(function () {
-    alert('session cancelled');
-});
-
-
-
-
 $('.tutor-requests-table button:last-child').click(function() {
-    alert('accepted tutor request');
+    alert('TODO: accepted tutor request');
 });
 
 $('.tutor-requests-table button:not(:last-child)').click(function() {
-    alert('declined tutor request');
+    alert('TODO: declined tutor request');
 });
 
 
+$('.home__tutor-requests tr').click(() => {
+    alert('TODO: go to messages page and view the request');
+});
