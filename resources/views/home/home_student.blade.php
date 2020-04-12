@@ -8,8 +8,27 @@
 </div>
 @endsection
 
+@section('add-post-container')
+<div id="add-post-container">
+    <h3>Write a Post</h3>
+    <textarea name="post-content" id="post-content" placeholder="Begin typing post here."></textarea>
+    <small class="subject-course">Subject / Course</small>
+    <div class="add-post-bottom">
+        <select class="custom-select custom-select-lg " name="add-post-course-subject" id="add-post-course-subject">
+            <option selected="true" disabled="disabled">Select</option>
+            <option value="ITP 104" >ITP 104</option>
+            <option value="Calculus">Calculus</option>
+        </select>
+        <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
+        <button class="btn btn-lg btn-primary btn-post">Post</button>
+    </div>
+
+</div>
+@endsection
+
 @section('content')
-<div class="container-fluid home__container">
+<div class="container-fluid home__container" >
+
     <div class="row home__container__header">
         <div class="container home__container__header__content">
             <div class="home__container__header__content__text">
@@ -17,7 +36,7 @@
                     <h2>Welcome Jamie!</h2>
                 </div>
                 <div class="home__container__header__content__text__descriptor">
-                    <small>We will let you know if you have any new messages or tutor session requests here.</small>
+                    <small>You have X unread message & Y Tutor Request(s)</small>
                 </div>
             </div>
             <div class="home__container__header__content__img">
@@ -58,7 +77,8 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" >
+
         <div class="row home__container__notifications">
             <div class="col-12 col-sm-7 home__container__notifications__students">
                 <!-- the commented div is to display when there is no recommended tutors -->
@@ -76,7 +96,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -94,7 +114,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -112,7 +132,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -136,7 +156,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -154,7 +174,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -172,7 +192,7 @@
                         <tr>
                             <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
                             <td>
-                                <div>May 2021</div>
+                                <div>Freshman</div>
                                 <div>B.S. Chemical Engineering</div>
                             </td>
                             <td>
@@ -244,8 +264,8 @@
                             </svg>
                         </div>
                         <div class="btn-container">
-                            <button class="btn btn-lg btn-outline-primary">Past Session</button>
-                            <button class="btn btn-lg btn-primary">View Profile</button>
+                            <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
+                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
                         </div>
                         
                     </div>
@@ -262,8 +282,8 @@
                             </svg>
                         </div>
                         <div class="btn-container">
-                            <button class="btn btn-lg btn-outline-primary">Past Session</button>
-                            <button class="btn btn-lg btn-primary">View Profile</button>
+                            <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
+                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
                         </div>
                     </div>
                 </div>

@@ -11080,6 +11080,10 @@ small {
   }
 }
 
+svg.bookmark:hover {
+  cursor: pointer;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11422,6 +11426,7 @@ a.btn.btn-primary {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 5.5rem;
 }
 
 .tutor-container .img-container img {
@@ -12491,12 +12496,14 @@ h5 .fgpwd-container__header-2 {
   flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 767px) {
   .home__container__notifications__sessions {
     padding-left: 0;
     padding-right: 0;
   }
+}
 
+@media only screen and (max-width: 575px) {
   .home__container__notifications__sessions > div:first-child {
     padding-left: 15px;
     padding-right: 5px;
@@ -12553,6 +12560,10 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__notifications .recommended__tutors tr > :nth-child(2) > :nth-child(2) {
   font-size: 1.5rem;
+}
+
+.home__container__notifications .recommended__tutors tr > :nth-child(2):hover {
+  cursor: pointer;
 }
 
 .home__container__notifications .recommended__tutors .bookmark {
@@ -12773,6 +12784,62 @@ table img {
   display: inline-block;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+#background-cover {
+  display: none;
+  position: absolute;
+  z-index: 5000;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+#background-cover #add-post-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 50%;
+  background-color: white;
+  padding: 2rem 4rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+#background-cover #add-post-container textarea {
+  display: block;
+  font-size: 2.2rem;
+  outline: none;
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  flex: 1;
+}
+
+#background-cover #add-post-container .subject-course {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+#background-cover #add-post-container .add-post-bottom {
+  display: flex;
+}
+
+#background-cover #add-post-container .add-post-bottom * {
+  font-size: 2.2rem;
+}
+
+#background-cover #add-post-container .add-post-bottom select {
+  margin-right: auto;
+  width: 15rem;
+  border-radius: 10px;
+}
+
+#background-cover #add-post-container .add-post-bottom .btn-cancel {
+  margin-right: 2rem;
 }
 
 .profile-nav {

@@ -75,10 +75,16 @@
             margin-top: $mt-notification;
             display: flex;
             flex-wrap: wrap;
-
-            @media only screen and (max-width: 575px) { //576px
+            
+            @media only screen and (max-width: 767px) { // 768px
                 padding-left: 0;
                 padding-right: 0;
+            }
+
+
+            @media only screen and (max-width: 575px) { //576px
+                // padding-left: 0;
+                // padding-right: 0;
 
                 > div:first-child {
                     padding-left: 15px;
@@ -138,7 +144,14 @@
                     > :nth-child(2) {
                         font-size: 1.5rem;
                     }
+
+                    &:hover {
+                        // TODO: clicking on the tutors should direct the user to view the tutor's profile
+                        cursor: pointer;
+                    }
                 }
+
+                
             }
 
             .bookmark {
@@ -153,6 +166,8 @@
                     
                 }
             }
+
+
         }
 
         // for tutor only
@@ -395,3 +410,77 @@ table {
 }
 
 
+// body {
+//     position: relative;
+//     background-color: red;
+
+//     .add-post-container {
+//         position: absolute;
+//     }
+// }
+
+
+
+#background-cover {
+    display: none;
+    position: absolute;
+    z-index: 5000;
+    background-color: rgba($color: #000000, $alpha: .63);
+    
+
+    
+
+
+
+    #add-post-container {
+        @include absCenter;
+        
+        border-radius: 10px;
+        width: 50%;
+
+        background-color: white;
+        padding: 2rem 4rem;
+        color: black;
+
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+            display: block;
+            font-size: 2.2rem;
+            outline: none;
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+
+            flex: 1;
+        }
+
+        .subject-course {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .add-post-bottom {
+            display: flex;
+            
+            * {
+                font-size: 2.2rem;
+            }
+
+            select {
+                margin-right: auto;
+                width: 15rem;
+                border-radius: 10px;
+            }
+
+            .btn-cancel {
+                margin-right: 2rem;
+            }
+        }
+
+    }
+
+}

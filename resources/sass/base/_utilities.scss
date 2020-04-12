@@ -55,3 +55,10 @@
     };
     
 }
+
+svg.bookmark {
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
