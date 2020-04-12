@@ -11,6 +11,8 @@ use App\Characteristic;
 class testController extends Controller
 {
     public function test() {
+
+        // Sarah: dd() is laravel's way of php's dump. In your browser, go to localhost:8000/test and then this function will run. Whenever you want to test syntax, the easiest way would be go to 'localhost:8000/test', and run your test inside this function. Use this function to play around with the Database syntax
         dd(Characteristic::find(1)->users);
     }
 }
