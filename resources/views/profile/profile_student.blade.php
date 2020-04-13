@@ -49,17 +49,6 @@
 
                     <div class="about__buttons__container">
 
-<<<<<<< HEAD
-                        @foreach ($subjects as $subject)
-                            <button class="btn btn-lg">
-                                <svg>
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                                </svg>
-                                <span class="name">{{$subject->subject}}</span>
-                            </button>
-                        @endforeach
-                        
-=======
                     @foreach ($subjects as $subject)
                         <button class="btn btn-lg">
                             <svg>
@@ -68,7 +57,6 @@
                             <span class="name">{{$subject->subject}}</span>
                         </button>
                     @endforeach
->>>>>>> 8647435eb001f50b6545dfbc7c467844bc231cd7
                         
                     </div>
 
