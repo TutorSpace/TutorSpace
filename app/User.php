@@ -46,7 +46,12 @@ class User extends Authenticatable
     }
 
     public function bookmarks() {
-        
+        return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
+    }
+
+    // return users that are bookmarked
+    public function users() {
+        return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
     public function upcomingSessions($num) {
