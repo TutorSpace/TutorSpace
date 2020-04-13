@@ -20,9 +20,11 @@ class profileController extends Controller
         else {
             // SARAH: get the student information and put it into the profile_student page. Let's first try getting the user's name.
             
+            $subjects = $user->subjects;
 
-
-            return view('profile.profile_student');
+            return view('profile.profile_student', [
+                'subjects' => $subjects
+            ]);
 
             // Sarah: instead of 'return view('profile.profile_student');', you can refer to the return statement in function showEdit(). it is returning an array of variables. So in this way, you can pass the username to 'profile_student.blade.php'. Please refer to my notes in 'profile_student.blade.php'
         }

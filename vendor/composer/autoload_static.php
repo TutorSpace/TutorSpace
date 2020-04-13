@@ -478,10 +478,14 @@ class ComposerStaticInit7f5fb03b7048f839e503312b707ed32a
     );
 
     public static $classMap = array (
+        'App\\Bookmark' => __DIR__ . '/../..' . '/app/Bookmark.php',
+        'App\\Characteristic' => __DIR__ . '/../..' . '/app/Characteristic.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Course' => __DIR__ . '/../..' . '/app/Course.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\forgetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/forgetPasswordController.php',
+        'App\\Http\\Controllers\\homeController' => __DIR__ . '/../..' . '/app/Http/Controllers/homeController.php',
         'App\\Http\\Controllers\\loginController' => __DIR__ . '/../..' . '/app/Http/Controllers/loginController.php',
         'App\\Http\\Controllers\\profileController' => __DIR__ . '/../..' . '/app/Http/Controllers/profileController.php',
         'App\\Http\\Controllers\\signupController' => __DIR__ . '/../..' . '/app/Http/Controllers/signupController.php',
@@ -506,6 +510,7 @@ class ComposerStaticInit7f5fb03b7048f839e503312b707ed32a
         'App\\Rules\\NotExistTutor' => __DIR__ . '/../..' . '/app/Rules/NotExistTutor.php',
         'App\\Rules\\ValidateLogin' => __DIR__ . '/../..' . '/app/Rules/ValidateLogin.php',
         'App\\School_year' => __DIR__ . '/../..' . '/app/School_year.php',
+        'App\\Session' => __DIR__ . '/../..' . '/app/Session.php',
         'App\\Subject' => __DIR__ . '/../..' . '/app/Subject.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',

@@ -49,24 +49,16 @@
                     </form>
 
                     <div class="about__buttons__container">
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Calculus</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Math</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Ling</span>
-                        </button>
+
+                        @foreach ($subjects as $subject)
+                            <button class="btn btn-lg">
+                                <svg>
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
+                                </svg>
+                                <span class="name">{{$subject->subject}}</span>
+                            </button>
+                        @endforeach
+                        
                         
                     </div>
 

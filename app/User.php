@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Session;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -29,5 +31,21 @@ class User extends Authenticatable
 
     public function characteristics() {
         return $this->belongsToMany('App\Characteristic');
+    }
+
+    public function sessions() {
+        if($this->is_tutor)
+            return $this->hasMany('App\Session', 'tutor_id');
+        else 
+            return $this->hasMany('App\Session', 'student_id');
+    }
+
+    public function upcomingSessions() {
+        $sessions = Session::join('users', $this->id, '=', 'users.id')
+                ->where('student_id', $this->id)
+                ->orWhere('tutor_id', $this->id)
+                ->get();
+
+        return $sessions;
     }
 }

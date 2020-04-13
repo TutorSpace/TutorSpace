@@ -6,10 +6,14 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Bookmark' => $baseDir . '/app/Bookmark.php',
+    'App\\Characteristic' => $baseDir . '/app/Characteristic.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Course' => $baseDir . '/app/Course.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\forgetPasswordController' => $baseDir . '/app/Http/Controllers/forgetPasswordController.php',
+    'App\\Http\\Controllers\\homeController' => $baseDir . '/app/Http/Controllers/homeController.php',
     'App\\Http\\Controllers\\loginController' => $baseDir . '/app/Http/Controllers/loginController.php',
     'App\\Http\\Controllers\\profileController' => $baseDir . '/app/Http/Controllers/profileController.php',
     'App\\Http\\Controllers\\signupController' => $baseDir . '/app/Http/Controllers/signupController.php',
@@ -34,6 +38,7 @@ return array(
     'App\\Rules\\NotExistTutor' => $baseDir . '/app/Rules/NotExistTutor.php',
     'App\\Rules\\ValidateLogin' => $baseDir . '/app/Rules/ValidateLogin.php',
     'App\\School_year' => $baseDir . '/app/School_year.php',
+    'App\\Session' => $baseDir . '/app/Session.php',
     'App\\Subject' => $baseDir . '/app/Subject.php',
     'App\\User' => $baseDir . '/app/User.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',

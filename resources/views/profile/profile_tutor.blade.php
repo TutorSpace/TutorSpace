@@ -154,9 +154,9 @@
                 <div class="sessions__header">
                     <h4>Upcoming Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info p-relative">
                 
                     <div class="sessions__info">
@@ -210,9 +210,9 @@
                 <div class="sessions__header">
                     <h4>Past Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info">
                     <div class="session__container">
                         <span class="title">Jamie Chang</span>

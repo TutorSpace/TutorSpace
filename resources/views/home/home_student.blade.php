@@ -80,71 +80,75 @@
     <div class="container">
         <div class="row home__container__notifications">
             <div class="col-12 col-sm-7 home__container__notifications__students">
-                <!-- the commented div is to display when there is no recommended tutors -->
-                <!-- <div class="home__container__notifications__title">
-                        <h5>No Recommended Tutors</h5>
+                {{-- @if(count($recommendations) == 0) --}}
+                @if(false)
+                    <!-- the commented div is to display when there is no recommended tutors -->
+                    <div class="home__container__notifications__title">
+                        <h5><span>No Recommended Tutors</span></h5>
                     </div>
                     <div class="home__container__notifications__text">
                         Add subjects or courses you want help in on Your Profile to receive tutor recommendations.
-                    </div> -->
-                <div class="home__container__notifications__title">
-                    <h5><span>Recommended Tutors</span> for ITP 104</h5>
-                </div>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
+                    </div>
+                @else
+                    
+                    <div class="home__container__notifications__title">
+                        <h5><span>Recommended Tutors</span> for ITP 104</h5>
+                    </div>
+                    <table class="table table-hover recommended__tutors">
+                        <tbody>
+                            <tr>
+                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
+                                <td>
+                                    <div>Freshman</div>
+                                    <div>B.S. Chemical Engineering</div>
+                                </td>
+                                <td>
+                                    <svg class="bookmark">
+                                        <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                                    </svg>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                    </tbody>
-                </table>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover recommended__tutors">
+                        <tbody>
+                            <tr>
+                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
+                                <td>
+                                    <div>Freshman</div>
+                                    <div>B.S. Chemical Engineering</div>
+                                </td>
+                                <td>
+                                    <svg class="bookmark">
+                                        <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                                    </svg>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                    </tbody>
-                </table>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark bookmark-marked">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
+                        </tbody>
+                    </table>
+                    <table class="table table-hover recommended__tutors">
+                        <tbody>
+                            <tr>
+                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
+                                <td>
+                                    <div>Freshman</div>
+                                    <div>B.S. Chemical Engineering</div>
+                                </td>
+                                <td>
+                                    <svg class="bookmark bookmark-marked">
+                                        <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                                    </svg>
+                                </td>
 
-                        </tr>
+                            </tr>
 
-                    </tbody>
-                </table>
-
+                        </tbody>
+                    </table>
+                
 
 
                 <div class="home__container__notifications__title">
@@ -205,7 +209,7 @@
                     </tbody>
                 </table>
 
-
+                @endif
 
             </div>
             <div class="col-12 col-sm-5 home__container__notifications__sessions change-student">
