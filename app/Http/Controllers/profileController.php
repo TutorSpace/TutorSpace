@@ -14,19 +14,40 @@ class profileController extends Controller
     // TODO: fill in the data of the user into subjects/characteristics/courses, sessions, saved, and reviews
     public function show(Request $request) {
         $user = Auth::user();
+        $fullName = $user->full_name;
+        $email = $user->email;
+        $major = Major::where('id', '=', $user->major_id)->first()->major;
+        $minor = $user->minor;
+        $year = School_year::where('id', '=', $user->school_year_id)->first()->school_year;
+        $subjects = $user->subjects;
+        $courses = $user->courses;
+        $characteristics = $user->characteristics;
+
+
         if($user->is_tutor) {
-            return view('profile.profile_tutor');
+            return view('profile.profile_tutor', [
+                'fullName' => $fullName,
+                'email' => $email,
+                'major' => $major,
+                'minor' => $minor,
+                'year' => $year,
+                'subjects' => $subjects,
+                'courses' => $courses,
+                'characteristics' => $characteristics
+            ]);
         }
         else {
-            // SARAH: get the student information and put it into the profile_student page. Let's first try getting the user's name.
-            
-            $subjects = $user->subjects;
 
             return view('profile.profile_student', [
-                'subjects' => $subjects
+                'fullName' => $fullName,
+                'email' => $email,
+                'major' => $major,
+                'minor' => $minor,
+                'year' => $year,
+                'subjects' => $subjects,
+                'courses' => $courses,
+                'characteristics' => $characteristics,
             ]);
-
-            // Sarah: instead of 'return view('profile.profile_student');', you can refer to the return statement in function showEdit(). it is returning an array of variables. So in this way, you can pass the username to 'profile_student.blade.php'. Please refer to my notes in 'profile_student.blade.php'
         }
         
     }
