@@ -216,7 +216,7 @@
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     @if(count($upcomingSessions) == 0)
                     <div class="home__container__notifications__title">
-                        <h4><span>No Upcoming Sessions</span></h4>
+                        <h5><span>No Upcoming Sessions</span></h5>
                     </div>
                     <div class="home__container__notifications__text">
                         Scheduled sessions between you and a tutor will appear below.
@@ -241,10 +241,9 @@
                             <span class="descriptor">Time</span>
                             <span class="descriptor">Hourly Rate</span>
                             <span class="text">
-                                {{date('m/d/Y', strtotime($upcomingSession->date))}}
-                                5 - 6pm
+                                {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
                             </span>
-                            <span class="text">$16 / hr</span>
+                            <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
                             <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
                             <button class="btn btn-lg btn-primary">View Session</button>
                         </div>
@@ -262,27 +261,48 @@
                         <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
                         <button class="btn btn-lg btn-primary">View Session</button>
                     </div>
-                    <div class="session__container">
-                        <span class="title">Tutor Name</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Subject / Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div> --}}
+                    --}}
                     @endif
                 </div>
 
                 <div class="col-sm-12 col-6 _col-extra-small-12">
+                    @if(count($pastTutors) == 0)
                     <div class="home__container__notifications__title">
-                        <h5><span>Your Tutors</span></h5>
+                        <h5><span>No Past Tutors</span></h5>
                     </div>
+                    <div class="home__container__notifications__text">
+                        The last two tutors will appear below.
+                    </div>
+                    @else
+                    <div class="home__container__notifications__title">
+                        <h5><span>Past Tutors</span></h5>
+                    </div>
+                    @foreach ($pastTutors as $pastTutor)
                     <div class="tutor-container">
+                        <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
+                        <div class="tutor__info">
+                            <div>{{$pastTutor->full_name}}</div>
+                            <div>Last Session: 
+                                {{date('m/d/Y', strtotime($pastTutor->date))}}
+                            </div>
+                            <div>Total Sessions: 
+                                <span>{{$pastTutor->count}}</span>
+                            </div>
+                        </div>
+                        <div class="bookmark-container">
+                            <svg class="bookmark">
+                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            </svg>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
+                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
+                        </div>
+
+                    </div>
+                    @endforeach
+
+                    {{-- <div class="tutor-container">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
                         <div class="tutor__info">
                             <div>Tutor Name</div>
@@ -299,24 +319,8 @@
                             <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
                         </div>
 
-                    </div>
-                    <div class="tutor-container">
-                        <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
-                        <div class="tutor__info">
-                            <div>Tutor Name</div>
-                            <div>Last Session: 00/00/00</div>
-                            <div>Total Sessions: <span>5</span></div>
-                        </div>
-                        <div class="bookmark-container">
-                            <svg class="bookmark">
-                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                            </svg>
-                        </div>
-                        <div class="btn-container">
-                            <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
-                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
-                        </div>
-                    </div>
+                    </div> --}}
+                    @endif
                 </div>
             </div>
         </div>
