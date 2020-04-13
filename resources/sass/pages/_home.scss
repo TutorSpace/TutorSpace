@@ -50,12 +50,14 @@
         min-height: 20%;
         color: black;
 
+        
+
         &__title {
             font-size: $font-2;
             margin-bottom: 2rem;
             margin-top: 2rem;
             span {
-                font-weight: 700;
+                font-weight: 600;
             }
             font-weight: 500;
         }
@@ -75,19 +77,31 @@
             margin-top: $mt-notification;
             display: flex;
             flex-wrap: wrap;
-
-            @media only screen and (max-width: 575px) { //576px
-                padding-left: 0;
-                padding-right: 0;
-
-                > div:first-child {
-                    padding-left: 15px;
-                    padding-right: 5px;
+            
+            &.change-student {
+                @media only screen and (max-width: 767px) { // 768px
+                    padding-left: 0;
+                    padding-right: 0;
                 }
+            }
 
-                > div:nth-child(2) {
-                    padding-left: 5px;
-                    padding-right: 15px;
+
+            &.change-student {
+                @media only screen and (max-width: 575px) { //576px
+                    // padding-left: 0;
+                    // padding-right: 0;
+
+                    > div:first-child {
+                        padding-left: 15px;
+                        // padding-right: 5px;
+                        padding-right: 15px;
+                    }
+
+                    > div:nth-child(2) {
+                        // padding-left: 5px;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
                 }
             };
 
@@ -107,7 +121,7 @@
 
         .recommended__tutors {
             
-            font-size: 2rem;
+            font-size: 1.6rem;
             background-color: #ffffff;
             
             overflow: scroll;
@@ -132,9 +146,20 @@
 
                     > :first-child {
                         color: $color-gray;
-                        font-size: 1rem;
+                        font-size: 1.2rem;
+                    }
+
+                    > :nth-child(2) {
+                        font-size: 1.5rem;
+                    }
+
+                    &:hover {
+                        // TODO: clicking on the tutors should direct the user to view the tutor's profile
+                        cursor: pointer;
                     }
                 }
+
+                
             }
 
             .bookmark {
@@ -149,6 +174,8 @@
                     
                 }
             }
+
+
         }
 
         // for tutor only
@@ -174,7 +201,7 @@
                 color: black;
                 font-size: $font-2;
                 margin: 0;
-                font-weight: 700 !important;
+                font-weight: 600 !important;
             }
             & button {
                 font-size: 2rem;
@@ -243,7 +270,7 @@
 
         &__table {
             margin-top: 2rem;
-            font-size: 2rem;
+            font-size: 1.6rem;
             background-color: #ffffff;
             
             max-height: 50rem;
@@ -282,6 +309,7 @@
             tr > :nth-child(1) {
                 white-space: nowrap;
                 text-align: center;
+                font-size: 1.6rem;
                 
                 @media only screen and (max-width: 31.25em) { //500px
                     white-space: normal;
@@ -293,13 +321,18 @@
 
                 p {
                     margin-bottom: 0;
-                    font-size: 1rem;
+                    font-size: 1.2rem;
                     color: $color-gray;
                 }
 
                 span {
+                    font-size: 1.5rem;
                     white-space: nowrap;
                 }
+            }
+
+            tr > :nth-child(3) {
+                font-size: 1.5rem;
             }
 
             button {
@@ -321,10 +354,20 @@
 .home__tutor-requests {
     margin-top: 10rem;
     min-height: 15rem;
+    color: black;
+
+    tr {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
     &__header {
-        font-size: $font-2;
-        font-weight: 600 !important;
+        
+        
+        h5 {
+            font-weight: 600 !important;
+        }
     }
     &__content {
         font-size: 1.5rem;
@@ -356,8 +399,10 @@
     tr > :nth-child(1) {
         white-space: nowrap;
     }
+
+    // date can wrap
     tr > :nth-child(2) {
-        white-space: nowrap;
+        // white-space: nowrap;
     }
 
     // td > :nth-child(1) {
@@ -385,3 +430,77 @@ table {
 }
 
 
+// body {
+//     position: relative;
+//     background-color: red;
+
+//     .add-post-container {
+//         position: absolute;
+//     }
+// }
+
+
+
+#background-cover {
+    display: none;
+    position: absolute;
+    z-index: 5000;
+    background-color: rgba($color: #000000, $alpha: .63);
+    
+
+    
+
+
+
+    #add-post-container {
+        @include absCenter;
+        
+        border-radius: 10px;
+        width: 50%;
+
+        background-color: white;
+        padding: 2rem 4rem;
+        color: black;
+
+        display: flex;
+        flex-direction: column;
+
+        textarea {
+            display: block;
+            font-size: 2.2rem;
+            outline: none;
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+
+            flex: 1;
+        }
+
+        .subject-course {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .add-post-bottom {
+            display: flex;
+            
+            * {
+                font-size: 2.2rem;
+            }
+
+            select {
+                margin-right: auto;
+                width: 15rem;
+                border-radius: 10px;
+            }
+
+            .btn-cancel {
+                margin-right: 2rem;
+            }
+        }
+
+    }
+
+}

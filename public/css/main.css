@@ -11080,6 +11080,22 @@ small {
   }
 }
 
+svg.bookmark:hover {
+  cursor: pointer;
+}
+
+.pl-0 {
+  padding-left: 0;
+}
+
+.pr-0 {
+  padding-right: 0;
+}
+
+.min-width-450 {
+  min-width: 450px;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11151,7 +11167,7 @@ a.btn.btn-primary {
 
 .reviews-table {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   display: block;
 }
@@ -11172,6 +11188,14 @@ a.btn.btn-primary {
   margin-left: 1.5rem;
 }
 
+.reviews-table .grey-text {
+  font-size: 1.2rem;
+}
+
+.reviews-table .grey-text + * {
+  font-size: 1.5rem;
+}
+
 .reviews-table .review-content__container {
   display: flex;
   justify-content: center;
@@ -11179,8 +11203,10 @@ a.btn.btn-primary {
 }
 
 .reviews-table .review-content {
-  max-height: 20rem;
+  max-height: 10rem;
   overflow: scroll;
+  font-size: 1.5rem;
+  margin-bottom: 0;
 }
 
 .reviews-table .review-content::-webkit-scrollbar {
@@ -11266,6 +11292,8 @@ a.btn.btn-primary {
 
 .session__container .descriptor {
   margin-top: 0.5rem;
+  font-size: 1.2rem;
+  color: #9a9a9a;
 }
 
 .sessions__info {
@@ -11308,7 +11336,7 @@ a.btn.btn-primary {
   text-align: center;
   padding: 3rem;
   background-color: white;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   padding-bottom: 1.5rem;
@@ -11399,7 +11427,6 @@ a.btn.btn-primary {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   padding: 1rem 2rem;
   box-shadow: 1px 2px 1px 1px rgba(128, 128, 128, 0.2);
   margin-top: 1.6rem;
@@ -11407,11 +11434,12 @@ a.btn.btn-primary {
 }
 
 .tutor-container .img-container {
-  flex: 0 0 25%;
+  flex: 0 0 15%;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 5.5rem;
 }
 
 .tutor-container .img-container img {
@@ -11422,7 +11450,6 @@ a.btn.btn-primary {
 .tutor-container .bookmark-container {
   display: flex;
   justify-content: flex-end;
-  flex: 0 0 25%;
 }
 
 .tutor-container .bookmark-container svg {
@@ -11433,22 +11460,29 @@ a.btn.btn-primary {
 }
 
 .tutor-container .tutor__info {
-  flex: 0 0 50%;
-  padding-left: 2rem;
+  flex: 1;
+  padding-left: 1.5rem;
 }
 
 .tutor-container .tutor__info > :first-child {
   font-size: 1.6rem !important;
   font-weight: 500 !important;
+  margin-bottom: 0.5rem;
 }
 
 .tutor-container .tutor__info > :not(:first-child) {
   font-size: 1.5rem;
 }
 
-.tutor-container button {
+.tutor-container .btn-container {
+  flex: 0 0 100%;
+  display: flex;
   margin-top: 1rem;
-  width: 49%;
+  justify-content: space-between;
+}
+
+.tutor-container .btn-container button {
+  flex: 0 0 49%;
 }
 
 .svg-nav {
@@ -12458,7 +12492,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__notifications__title span {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .home__container__notifications__text {
@@ -12476,19 +12510,21 @@ h5 .fgpwd-container__header-2 {
   flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 575px) {
-  .home__container__notifications__sessions {
+@media only screen and (max-width: 767px) {
+  .home__container__notifications__sessions.change-student {
     padding-left: 0;
     padding-right: 0;
   }
+}
 
-  .home__container__notifications__sessions > div:first-child {
+@media only screen and (max-width: 575px) {
+  .home__container__notifications__sessions.change-student > div:first-child {
     padding-left: 15px;
-    padding-right: 5px;
+    padding-right: 15px;
   }
 
-  .home__container__notifications__sessions > div:nth-child(2) {
-    padding-left: 5px;
+  .home__container__notifications__sessions.change-student > div:nth-child(2) {
+    padding-left: 15px;
     padding-right: 15px;
   }
 }
@@ -12506,7 +12542,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__notifications .recommended__tutors {
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   overflow: scroll;
   border-radius: 14px;
@@ -12533,7 +12569,15 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__notifications .recommended__tutors tr > :nth-child(2) > :first-child {
   color: #9a9a9a;
-  font-size: 1rem;
+  font-size: 1.2rem;
+}
+
+.home__container__notifications .recommended__tutors tr > :nth-child(2) > :nth-child(2) {
+  font-size: 1.5rem;
+}
+
+.home__container__notifications .recommended__tutors tr > :nth-child(2):hover {
+  cursor: pointer;
 }
 
 .home__container__notifications .recommended__tutors .bookmark {
@@ -12568,7 +12612,7 @@ h5 .fgpwd-container__header-2 {
   color: black;
   font-size: 2.2rem;
   margin: 0;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 .home__container__help-center__header button {
@@ -12631,7 +12675,7 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table {
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.6rem;
   background-color: #ffffff;
   max-height: 50rem;
   padding: 0 1rem;
@@ -12660,6 +12704,7 @@ h5 .fgpwd-container__header-2 {
 .home__container__help-center__table tr > :nth-child(1) {
   white-space: nowrap;
   text-align: center;
+  font-size: 1.6rem;
 }
 
 @media only screen and (max-width: 31.25em) {
@@ -12674,12 +12719,17 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table tr > :nth-child(2) p {
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #9a9a9a;
 }
 
 .home__container__help-center__table tr > :nth-child(2) span {
+  font-size: 1.5rem;
   white-space: nowrap;
+}
+
+.home__container__help-center__table tr > :nth-child(3) {
+  font-size: 1.5rem;
 }
 
 .home__container__help-center__table button {
@@ -12695,10 +12745,14 @@ h5 .fgpwd-container__header-2 {
 .home__tutor-requests {
   margin-top: 10rem;
   min-height: 15rem;
+  color: black;
 }
 
-.home__tutor-requests__header {
-  font-size: 2.2rem;
+.home__tutor-requests tr:hover {
+  cursor: pointer;
+}
+
+.home__tutor-requests__header h5 {
   font-weight: 600 !important;
 }
 
@@ -12730,10 +12784,6 @@ h5 .fgpwd-container__header-2 {
   white-space: nowrap;
 }
 
-.tutor-requests-table tr > :nth-child(2) {
-  white-space: nowrap;
-}
-
 .tutor-requests-table td button {
   font-size: 1.6rem;
 }
@@ -12748,6 +12798,62 @@ table img {
   display: inline-block;
   border-radius: 50%;
   margin-right: 5px;
+}
+
+#background-cover {
+  display: none;
+  position: absolute;
+  z-index: 5000;
+  background-color: rgba(0, 0, 0, 0.63);
+}
+
+#background-cover #add-post-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 50%;
+  background-color: white;
+  padding: 2rem 4rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+#background-cover #add-post-container textarea {
+  display: block;
+  font-size: 2.2rem;
+  outline: none;
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  flex: 1;
+}
+
+#background-cover #add-post-container .subject-course {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+#background-cover #add-post-container .add-post-bottom {
+  display: flex;
+}
+
+#background-cover #add-post-container .add-post-bottom * {
+  font-size: 2.2rem;
+}
+
+#background-cover #add-post-container .add-post-bottom select {
+  margin-right: auto;
+  width: 15rem;
+  border-radius: 10px;
+}
+
+#background-cover #add-post-container .add-post-bottom .btn-cancel {
+  margin-right: 2rem;
 }
 
 .profile-nav {
@@ -12781,7 +12887,6 @@ table img {
 
 .about__information {
   height: 30rem;
-  margin-top: 3rem;
   display: flex;
   align-items: center;
 }
@@ -12849,8 +12954,12 @@ table img {
 .about__subjects__header,
 .about__courses__header,
 .about__characteristics__header {
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   font-size: 2.2rem;
+}
+
+.about__subjects__header {
+  margin-top: 0;
 }
 
 .about__content {
@@ -12952,8 +13061,8 @@ table img {
 }
 
 .sessions__container .sessions__container-1 {
-  min-height: 40rem;
-  margin-top: 5rem;
+  min-height: 35rem;
+  margin-top: 3rem;
 }
 
 .sessions__container .sessions__header {
@@ -12970,7 +13079,7 @@ table img {
 
 .saved__container {
   color: black;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .saved__container .scroll-container {
@@ -12978,8 +13087,12 @@ table img {
   overflow: scroll;
 }
 
+.saved__container > :first-child {
+  margin-bottom: 2rem;
+}
+
 .reviews__container {
-  margin-top: 5rem;
+  margin-top: 3rem;
   color: black;
 }
 
@@ -12991,6 +13104,10 @@ table img {
   font-size: 1.5rem;
   height: 70vh;
   overflow: scroll;
+}
+
+.reviews__container .reviews > :first-child {
+  margin-top: 0;
 }
 
 .reviews__container img {

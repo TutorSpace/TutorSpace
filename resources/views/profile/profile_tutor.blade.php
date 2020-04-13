@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="about__information__content">
-                    <div class="name"><h3>Jamie Chang</h3></div>
+                    <div class="name"><h4>Jamie Chang</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
@@ -152,11 +152,11 @@
         <div class="sessions__container">
             <div class="sessions__container-1">
                 <div class="sessions__header">
-                    <h3>Upcoming Tutoring Sessions</h3>
+                    <h4>Upcoming Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info p-relative">
                 
                     <div class="sessions__info">
@@ -208,11 +208,11 @@
 
             <div class="sessions__container-2">
                 <div class="sessions__header">
-                    <h3>Past Tutoring Sessions</h4>
+                    <h4>Past Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info">
                     <div class="session__container">
                         <span class="title">Jamie Chang</span>
@@ -263,7 +263,7 @@
         <div class="reviews__container">
             <div class="reviews__container__sub">
                 <div class="reviews__header">
-                    <h3>Reviews You Wrote</h3>
+                    <h4>Reviews You Wrote</h4>
                 </div>
 
                 <div class="review-star__container__header">

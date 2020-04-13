@@ -37,7 +37,7 @@ $about-input-width: 70%;
 .about__information {
     // background-color: red;
     height: 30rem;
-    margin-top: 3rem;
+    // margin-top: 3rem;
     display: flex;
     align-items: center;
 
@@ -109,8 +109,12 @@ $about-input-width: 70%;
 .about__subjects__header, 
 .about__courses__header, 
 .about__characteristics__header {
-    margin-top: 3.5rem;
+    margin-top: 2rem;
     font-size: $font-2;
+}
+
+.about__subjects__header {
+    margin-top: 0;
 }
 
 .about__content {
@@ -208,14 +212,14 @@ $about-input-width: 70%;
 
 
 
-
+$margin-top: 3rem;
 // ======================= Sessions ================
 .sessions__container {
     color: black;
 
     .sessions__container-1 {
-        min-height: 40rem;
-        margin-top: 5rem;
+        min-height: 35rem;
+        margin-top: $margin-top;
     }
     .sessions__header {
         font-size: $font-2;
@@ -237,11 +241,15 @@ $about-input-width: 70%;
 // ======================= Saved ===================
 .saved__container {
     color: black;
-    margin-top: 5rem;
+    margin-top: $margin-top;
 
     .scroll-container {
         height: 70vh;
         overflow: scroll;
+    }
+
+    > :first-child {
+        margin-bottom: 2rem;
     }
 }
 
@@ -255,7 +263,7 @@ $about-input-width: 70%;
 // ======================== Reviews ===================
 
 .reviews__container {
-    margin-top: 5rem;
+    margin-top: $margin-top;
     color: black;
 
     & .reviews__header {
@@ -267,6 +275,9 @@ $about-input-width: 70%;
         height: 70vh;
         overflow: scroll;
         
+        > :first-child {
+            margin-top: 0;
+        }
     }
 
     img {
@@ -288,6 +299,10 @@ $about-input-width: 70%;
         * {
             white-space: nowrap;
         }
+    }
+
+    p {
+        // margin-bottom: 0;
     }
 }
 
