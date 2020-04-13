@@ -14,7 +14,7 @@
     <form action="edit_profile" class="edit-profile__form" method="POST">
         @csrf
         <div class="edit-profile__form__header">
-            <h3>Edit Profile</h3>
+            <h4>Edit Profile</h4>
             <div class="buttons">
                 <a class="btn btn-lg btn-outline-primary" id="cancel-edit-profile" href="/edit_profile">Cancel</a>
                 <button class="btn btn-lg btn-primary" type="submit">Save Changes</button>

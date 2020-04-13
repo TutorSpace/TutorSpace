@@ -18,8 +18,8 @@
                 </div>
 
                 <div class="about__information__content">
-                    {{-- SARAH: you can do  <h3>{{$fullName}}</h3> here to use the $fullName you get from the show() function in profileController --}}
-                    <div class="name"><h3>Jamie Chang</h3></div>
+                    {{-- SARAH: you can do  <h4>{{$fullName}}</h4> here to use the $fullName you get from the show() function in profileController --}}
+                    <div class="name"><h4>Jamie Chang</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
@@ -151,11 +151,11 @@
         <div class="sessions__container">
             <div class="sessions__container-1">
                 <div class="sessions__header">
-                    <h3>Upcoming Tutoring Sessions</h3>
+                    <h4>Upcoming Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info p-relative">
                 
                     <div class="sessions__info">
@@ -207,11 +207,11 @@
 
             <div class="sessions__container-2">
                 <div class="sessions__header">
-                    <h3>Past Tutoring Sessions</h4>
+                    <h4>Past Tutoring Sessions</h4>
                 </div>
-                <div class="sessions__header--sub">
+                {{-- <div class="sessions__header--sub">
                     Some description here
-                </div>
+                </div> --}}
                 <div class="sessions__info">
                     <div class="session__container">
                         <span class="title">Jamie Chang</span>
@@ -259,7 +259,7 @@
 
 
         <div class="saved__container">
-            <h3>Tutors You Saved</h3>
+            <h4>Tutors You Saved</h4>
             <div class="scroll-container">
             <div class="search-card-container row">
                 <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
@@ -493,7 +493,7 @@
         <div class="reviews__container">
             <div class="reviews__container__sub">
                 <div class="reviews__header">
-                    <h3>Reviews You Wrote</h3>
+                    <h4>Reviews You Wrote</h4>
                 </div>
 
                 <div class="review-star__container__header">

@@ -11336,7 +11336,7 @@ a.btn.btn-primary {
   text-align: center;
   padding: 3rem;
   background-color: white;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   padding-bottom: 1.5rem;
@@ -12492,7 +12492,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__notifications__title span {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .home__container__notifications__text {
@@ -12612,7 +12612,7 @@ h5 .fgpwd-container__header-2 {
   color: black;
   font-size: 2.2rem;
   margin: 0;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 .home__container__help-center__header button {
@@ -12753,7 +12753,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__tutor-requests__header h5 {
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 .home__tutor-requests__content {
@@ -12887,7 +12887,6 @@ table img {
 
 .about__information {
   height: 30rem;
-  margin-top: 3rem;
   display: flex;
   align-items: center;
 }
@@ -12955,8 +12954,12 @@ table img {
 .about__subjects__header,
 .about__courses__header,
 .about__characteristics__header {
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   font-size: 2.2rem;
+}
+
+.about__subjects__header {
+  margin-top: 0;
 }
 
 .about__content {
@@ -13058,8 +13061,8 @@ table img {
 }
 
 .sessions__container .sessions__container-1 {
-  min-height: 40rem;
-  margin-top: 5rem;
+  min-height: 35rem;
+  margin-top: 3rem;
 }
 
 .sessions__container .sessions__header {
@@ -13076,7 +13079,7 @@ table img {
 
 .saved__container {
   color: black;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .saved__container .scroll-container {
@@ -13084,8 +13087,12 @@ table img {
   overflow: scroll;
 }
 
+.saved__container > :first-child {
+  margin-bottom: 2rem;
+}
+
 .reviews__container {
-  margin-top: 5rem;
+  margin-top: 3rem;
   color: black;
 }
 
@@ -13097,6 +13104,10 @@ table img {
   font-size: 1.5rem;
   height: 70vh;
   overflow: scroll;
+}
+
+.reviews__container .reviews > :first-child {
+  margin-top: 0;
 }
 
 .reviews__container img {

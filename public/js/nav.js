@@ -25,3 +25,6 @@ $('nav .user-photo-container .profile-container').click(() => {
 $('nav .user-photo-container .log-out-container').click(() => {
     window.location.href = '/logout';
 });
+
+
+
