@@ -17,16 +17,16 @@
                 </div>
 
                 <div class="about__information__content">
-                    <div class="name"><h3>Jamie Chang</h3></div>
+                    <div class="name"><h3>{{$fullName}}</h3></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
-                        <span class="text">B.S. Astronautical Engineering</span>
-                        <span class="text">Web Development and Applications</span>
+                        <span class="text">{{$major}}</span>
+                        <span class="text">{{$minor}}</span>
                     </div>
                     <div class="year-container">
                         <span class="descriptor">Year</span>
-                        <span class="text">Senior</span>
+                        <span class="text">{{$year}}</span>
                     </div>
                     <div class="btn-container">
                         <a class="btn btn-lg btn-primary" href="/edit_profile">Edit Profile</a>
@@ -50,25 +50,16 @@
                     </form>
 
                     <div class="about__buttons__container">
+
+                        @foreach ($subjects as $subject)
                         <button class="btn btn-lg">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
-                            <span class="name">Calculus</span>
+                            <span class="name">{{$subject->subject}}</span>
                         </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Math</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Ling</span>
-                        </button>
-                        
+                        @endforeach
+
                     </div>
 
                     <form class="about__courses" method="POST" action="#">
@@ -86,24 +77,16 @@
                     </form>
 
                     <div class="about__buttons__container">
+
+                        @foreach ($courses as $course)
                         <button class="btn btn-lg">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
-                            <span class="name">EALC</span>
+                            <span class="name">{{$course->course}}</span>
                         </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">CSCI</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">COMM</span>
-                        </button>
+                        @endforeach
+                        
                     </div>
 
                     <form class="about__characteristics" method="POST" action="#">
@@ -121,24 +104,16 @@
                     </form>
 
                     <div class="about__buttons__container">
+
+                        @foreach ($characteristics as $characteristic)
                         <button class="btn btn-lg">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
-                            <span class="name">Friendly</span>
+                            <span class="name">{{$characteristic->characteristic}}</span>
                         </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Patient</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Hospital</span>
-                        </button>
+                        @endforeach
+
                     </div>
 
                 </div>
