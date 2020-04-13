@@ -21,6 +21,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Major');
     }
 
+    public function school_year() {
+        return $this->belongsTo('App\School_year');
+    }
+
     public function subjects() {
         return $this->belongsToMany('App\Subject');
     }
@@ -41,11 +45,24 @@ class User extends Authenticatable
     }
 
     public function upcomingSessions() {
-        $sessions = Session::join('users', $this->id, '=', 'users.id')
-                ->where('student_id', $this->id)
-                ->orWhere('tutor_id', $this->id)
+        if($this->is_tutor) {
+            // the returned information is about the student
+            $sessions = Session::join('users', 'sessions.student_id', '=', 'users.id')
+                ->where('tutor_id', $this->id)
                 ->get();
-
-        return $sessions;
+            
+            return $sessions;
+        }
+        else {
+            // the returned information is about the tutor
+            $sessions = Session::join('users', 'sessions.tutor_id', '=', 'users.id')
+            ->where('student_id', $this->id)
+            ->get();
+        
+            return $sessions;
+        }
+        
+        
+        
     }
 }

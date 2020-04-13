@@ -214,16 +214,42 @@
             </div>
             <div class="col-12 col-sm-5 home__container__notifications__sessions change-student">
                 <div class="col-sm-12 col-6 _col-extra-small-12">
-                    <!-- <div class="home__container__notifications__title">
-                        <h5>No Upcoming Sessions</h5>
+                    @if(count($upcomingSessions) == 0)
+                    <div class="home__container__notifications__title">
+                        <h4><span>No Upcoming Sessions</span></h4>
                     </div>
                     <div class="home__container__notifications__text">
                         Scheduled sessions between you and a tutor will appear below.
-                    </div> -->
+                    </div>
+                    @else
                     <div class="home__container__notifications__title">
                         <h5><span>Upcoming Sessions</span></h5>
                     </div>
-                    <div class="session__container">
+                    @foreach ($upcomingSessions as $upcomingSession)
+                        <div class="session__container">
+                            <span class="title">{{$upcomingSession->full_name}}</span>
+                            <span class="descriptor">Date</span>
+                            <span class="descriptor">Subject / Course</span>
+                            <span class="text">
+                                {{date('m/d/Y', strtotime($upcomingSession->date))}}
+                            </span>
+                            @if($upcomingSession->is_course)
+                                <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
+                            @else 
+                                <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
+                            @endif
+                            <span class="descriptor">Time</span>
+                            <span class="descriptor">Hourly Rate</span>
+                            <span class="text">
+                                {{date('m/d/Y', strtotime($upcomingSession->date))}}
+                                5 - 6pm
+                            </span>
+                            <span class="text">$16 / hr</span>
+                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                            <button class="btn btn-lg btn-primary">View Session</button>
+                        </div>
+                    @endforeach
+                    {{-- <div class="session__container">
                         <span class="title">Tutor Name</span>
                         <span class="descriptor">Date</span>
                         <span class="descriptor">Subject / Course</span>
@@ -248,8 +274,10 @@
                         <span class="text">$16 / hr</span>
                         <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
                         <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
+                    </div> --}}
+                    @endif
                 </div>
+
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     <div class="home__container__notifications__title">
                         <h5><span>Your Tutors</span></h5>
