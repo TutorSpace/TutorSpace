@@ -199,7 +199,7 @@ class signupController extends Controller
         $user->password = Hash::make($password);
         $user->full_name = $fullName;
         $user->is_tutor = true;
-        $user->hourly_rate = substr($request->input('hourlyRate'), 0, 4);
+        $user->hourly_rate = substr($request->input('hourlyRate'), 0, 2);
         $user->gpa = substr($request->input('gpa'), 0, 4);
 
         

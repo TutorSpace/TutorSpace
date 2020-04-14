@@ -40,17 +40,19 @@ class homeController extends Controller
             
     
 
-            // TODO: get upcoming sessions (at most 2)
-            $upcomingSessions = $user->upcomingSessions();
-            // dd($upcomingSessions);
+            // get upcoming sessions (at most 2)
+            $upcomingSessions = $user->upcomingSessions(2);
 
             // TODO: get tutors of the past sessions (at most 2)
+            $pastTutors = $user->pastTutors(2);
+
 
             // TODO: get data of the dashboard
 
             return view('home.home_student', [
                 // 'recommendations' => $recommendations,
-                'upcomingSessions' => $upcomingSessions
+                'upcomingSessions' => $upcomingSessions,
+                'pastTutors' => $pastTutors
             ]);
         }
     }
