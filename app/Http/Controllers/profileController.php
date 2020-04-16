@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\School_year;
 use App\Major;
+use App\User;
 use Hash;
 
 class profileController extends Controller
@@ -22,9 +23,15 @@ class profileController extends Controller
         $subjects = $user->subjects;
         $courses = $user->courses;
         $characteristics = $user->characteristics;
-
-
+        $upcomingSessions = $user->upcomingSessions(10000);
+        $pastSessions = $user->pastSessions();
+        $bookmarks = $user->bookmarks;
+        // foreach ($bookmarks as $bookmark) {
+            // dd(User::find($bookmark->id)->courses[0]->course);
+        // }
         if($user->is_tutor) {
+            $gpa = $user->gpa;
+            $hourlyRate = $user->hourly_rate;
             return view('profile.profile_tutor', [
                 'fullName' => $fullName,
                 'email' => $email,
@@ -33,7 +40,10 @@ class profileController extends Controller
                 'year' => $year,
                 'subjects' => $subjects,
                 'courses' => $courses,
-                'characteristics' => $characteristics
+                'characteristics' => $characteristics,
+                'upcomingSessions' => $upcomingSessions,
+                'pastSessions' => $pastSessions,
+                'hourlyRate' => $hourlyRate
             ]);
         }
         else {
@@ -47,9 +57,11 @@ class profileController extends Controller
                 'subjects' => $subjects,
                 'courses' => $courses,
                 'characteristics' => $characteristics,
+                'upcomingSessions' => $upcomingSessions,
+                'pastSessions' => $pastSessions,
+                'bookmarks' => $bookmarks
             ]);
         }
-        
     }
 
     // TODO: fill in the data of the user's photo

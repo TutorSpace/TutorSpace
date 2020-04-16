@@ -16,8 +16,10 @@ class testController extends Controller
 
         // Sarah: dd() is laravel's way of php's dump. In your browser, go to localhost:8000/test and then this function will run. Whenever you want to test syntax, the easiest way would be go to 'localhost:8000/test', and run your test inside this function. Use this function to play around with the Database syntax
 
-
-        dd(User::find(5)->users);
+    	// dd(User::find(2)->bookmarks);
+        // dd(User::find(5)->users);
+         dd(User::find(2)->courses);
+        // dd(User::find(2)->subjects);
         // dd(User::find(2)->upcomingSessions());
 
         
