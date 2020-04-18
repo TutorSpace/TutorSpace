@@ -13,7 +13,7 @@ class loginController extends Controller
     }
 
     public function login(Request $request) {
-        
+
         $request->validate([
             'email' => [
                 'required',
@@ -38,7 +38,7 @@ class loginController extends Controller
                 "Please check your email and password."
             )->with('email', $request->input('email'));
         }
-        
+
     }
 
     public function logout() {

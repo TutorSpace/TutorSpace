@@ -40,7 +40,7 @@ class signupController extends Controller
 
     public function signupStudent(Request $request) {
         // checking for empty inputs, different passwords, wrong email formats, and existed email
-        
+
         $request->validate([
             'fullName' => ['
                 required'
@@ -50,7 +50,9 @@ class signupController extends Controller
                 'email:rfc'
             ],
             'password' => [
-                'required'
+                'required',
+                'min:6',
+                'alpha_num'
             ],
             'password-confirm' => [
                 'required',
@@ -80,13 +82,13 @@ class signupController extends Controller
         // TODO: check for profile image
         $request->validate([
             'schoolYear' => [
-                'required', 
+                'required',
                 'exists:school_years,school_year'
             ],
             'major' => [
-                'required', 
+                'required',
                 'exists:majors,major'
-            ], 
+            ],
             'minor' => [
                 'nullable'
             ]
@@ -95,12 +97,12 @@ class signupController extends Controller
         $email = $request->session()->get('email');
         $password = $request->session()->get('password');
         $fullName = $request->session()->get('fullName');
-                
+
         if(!isset($email) || empty($email) || !isset($password) || empty($password) || !isset($fullName) || empty($fullName)) {
             return redirect()->route('signup');
         }
 
-        $user = new User();        
+        $user = new User();
         $user->minor = $request->input('minor');
         $user->email = $email;
         $user->password = Hash::make($password);
@@ -110,15 +112,12 @@ class signupController extends Controller
         $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
 
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
-        
+
 
         $user->save();
 
-        
-        
-
-        Auth::login($user);
         $request->session()->flush();
+        Auth::login($user);
 
         return redirect()->route('profile');
     }
@@ -138,7 +137,9 @@ class signupController extends Controller
                 'email:rfc'
             ],
             'password' => [
-                'required'
+                'required',
+                'min:6',
+                'alpha_num'
             ],
             'password-confirm' => [
                 'required',
@@ -165,13 +166,13 @@ class signupController extends Controller
         // TODO: check for profile image
         $request->validate([
             'schoolYear' => [
-                'required', 
+                'required',
                 'exists:school_years,school_year'
             ],
             'major' => [
-                'required', 
+                'required',
                 'exists:majors,major'
-            ], 
+            ],
             'minor' => [
                 'nullable'
             ],
@@ -188,12 +189,12 @@ class signupController extends Controller
         $email = $request->session()->get('email');
         $password = $request->session()->get('password');
         $fullName = $request->session()->get('fullName');
-                
+
         if(!isset($email) || empty($email) || !isset($password) || empty($password) || !isset($fullName) || empty($fullName)) {
             return redirect()->route('signup_tutor');
         }
 
-        $user = new User();        
+        $user = new User();
         $user->minor = $request->input('minor');
         $user->email = $email;
         $user->password = Hash::make($password);
@@ -202,21 +203,18 @@ class signupController extends Controller
         $user->hourly_rate = substr($request->input('hourlyRate'), 0, 2);
         $user->gpa = substr($request->input('gpa'), 0, 4);
 
-        
+
 
 
         $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
 
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
-        
+
 
         $user->save();
 
-        
-        
-
-        Auth::login($user);
         $request->session()->flush();
+        Auth::login($user);
 
         return redirect()->route('profile');
     }

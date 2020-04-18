@@ -166,7 +166,7 @@
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>
@@ -179,7 +179,7 @@
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>
@@ -192,7 +192,7 @@
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>

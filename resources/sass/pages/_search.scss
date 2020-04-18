@@ -1,10 +1,10 @@
 .search-container {
-    margin-top: 3rem;
+    // margin-top: 3rem;
 
     .search__header {
 
     }
-    
+
     .search__box {
         margin-top: 2rem;
         border: 1px solid $color-gray;
@@ -45,7 +45,7 @@
         margin-bottom: 2rem;
         color: $color-gray;
     }
-    
+
 
     .bold {
         font-weight: 500;
@@ -54,6 +54,8 @@
     .filter-container {
         display: flex;
         margin-top: .5rem;
+        color: black;
+
 
         .filter-box {
             position: relative;
@@ -73,15 +75,15 @@
                 border-radius: 2rem;
 
                 display: none;
-                
-                
+
+
 
                 .filter-year {
                     display: flex;
                     align-items: center;
                     font-size: 1.5rem;
                     margin-bottom: 1rem;
-    
+
                     input {
                         margin: 0;
                         align-self: center;
@@ -98,27 +100,27 @@
                     display: flex;
                     justify-content: space-between;
                     margin-top: 1rem;
-                    
-                    
+
+
                     button {
-                        
+
                     }
                 }
 
                 label {
                     font-size: 1.5rem;
                 }
-                
+
                 input.price-range {
-                    
+
                 }
 
 
             }
 
-            
 
-            
+
+
         }
         button {
             padding: .5rem 2rem;
@@ -129,7 +131,7 @@
             margin-right: 1rem;
         }
     }
-    
+
 
 }
 

@@ -3,11 +3,11 @@
 
 
     .search-card-flex-container {
-        
+
 
         .search-card {
             position: relative;
-            // width: 00px;
+
             text-align: center;
             padding: 3rem;
             background-color: white;
@@ -16,8 +16,10 @@
             border-radius: 10px;
             padding-bottom: 1.5rem;
 
+            color: black;
+
             $font-size: $font-3;
-        
+
             font-size: $font-size;
 
 
@@ -35,7 +37,7 @@
                     // stroke: black;
                     // stroke-width: 2;
                     fill: $color-bookmark;
-                    
+
                 }
 
                 &:hover {
@@ -85,12 +87,12 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                
+
                 line-height: 1.2;
             }
 
 
-            
+
             .name, .major, .star-container {
                 font-size: $font-3;
             }
@@ -106,15 +108,15 @@
             .star-container {
                 color: $color-gray;
             }
-            
 
-            
+
+
 
         }
 
-        
 
-        
+
+
 
     }
 }

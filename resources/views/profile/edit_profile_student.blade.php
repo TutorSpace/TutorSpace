@@ -29,7 +29,7 @@
             <span class="labels">Minor</span>
             <input type="text" value="{{$major}}" name="major" id="major" required>
             <input type="text" value="{{$minor}}" name="minor">
-            
+
             <span class="labels">Year *</span>
             <span class="labels">Upload Profile Picture</span>
             <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
@@ -45,9 +45,9 @@
             @if(session('success'))
                 <div class="success text-success ">{{session('success')}}</div>
             @endif
-            
+
         </div>
-        
+
 
     </form>
 
@@ -81,7 +81,7 @@
 
     </form> --}}
 
-    
+
 </div>
 
 

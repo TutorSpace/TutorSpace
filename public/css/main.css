@@ -11340,6 +11340,7 @@ a.btn.btn-primary {
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
   padding-bottom: 1.5rem;
+  color: black;
   font-size: 1.6rem;
 }
 
@@ -13315,10 +13316,6 @@ table img {
   color: #9a9a9a;
 }
 
-.search-container {
-  margin-top: 3rem;
-}
-
 .search-container .search__box {
   margin-top: 2rem;
   border: 1px solid #9a9a9a;
@@ -13364,6 +13361,7 @@ table img {
 .search-container .filter-container {
   display: flex;
   margin-top: 0.5rem;
+  color: black;
 }
 
 .search-container .filter-container .filter-box {

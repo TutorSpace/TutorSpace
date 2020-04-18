@@ -49,7 +49,7 @@ Route::post('/forget_password_send', 'forgetPasswordController@send');
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['checkLogin']);
 
-// edit profile 
+// edit profile
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['checkLogin']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
@@ -61,5 +61,9 @@ Route::get('/logout', 'loginController@logout')->name('logout')->middleware(['ch
 
 // home page
 Route::get('/home', 'homeController@show')->name('home_student')->middleware(['checkLogin']);
+
+
+// search page
+Route::get('/search', 'searchController@show')->name('search')->middleware(['checkLogin']);
 
 

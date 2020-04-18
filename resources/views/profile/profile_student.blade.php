@@ -58,8 +58,8 @@
                                 <span class="name">{{$subject->subject}}</span>
                             </button>
                         @endforeach
-                        
-                        
+
+
                     </div>
 
                     <form class="about__courses" method="POST" action="#">
@@ -149,15 +149,15 @@
                     Some description here
                 </div> --}}
                 <div class="sessions__info p-relative">
-                
+
                     <div class="sessions__info">
                         <div class="shadow-container">
-                            
+
                         </div>
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>
@@ -170,7 +170,7 @@
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>
@@ -183,7 +183,7 @@
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
-                            <span class="descriptor">Course</span>
+                            <span class="descriptor">Subject / Course</span>
                             <span class="text">02/20/2020</span>
                             <span class="text">ITP 104</span>
                             <span class="descriptor">Time</span>
@@ -704,7 +704,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
     </div>
 

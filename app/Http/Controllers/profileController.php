@@ -19,7 +19,7 @@ class profileController extends Controller
         }
         else {
             // SARAH: get the student information and put it into the profile_student page. Let's first try getting the user's name.
-            
+
             $subjects = $user->subjects;
 
             return view('profile.profile_student', [
@@ -28,7 +28,7 @@ class profileController extends Controller
 
             // Sarah: instead of 'return view('profile.profile_student');', you can refer to the return statement in function showEdit(). it is returning an array of variables. So in this way, you can pass the username to 'profile_student.blade.php'. Please refer to my notes in 'profile_student.blade.php'
         }
-        
+
     }
 
     // TODO: fill in the data of the user's photo
@@ -73,11 +73,11 @@ class profileController extends Controller
                     required'
                 ],
                 'schoolYear' => [
-                    'required', 
+                    'required',
                     'exists:school_years,school_year'
                 ],
                 'major' => [
-                    'required', 
+                    'required',
                     'exists:majors,major'
                 ],
                 'minor' => [
@@ -94,7 +94,6 @@ class profileController extends Controller
             ]);
 
             $user->full_name = $request->input('fullName');
-            $user->password = Hash::make($request->input('password'));
             $user->minor = $request->input('minor');
 
             $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;
@@ -115,11 +114,11 @@ class profileController extends Controller
                     required'
                 ],
                 'schoolYear' => [
-                    'required', 
+                    'required',
                     'exists:school_years,school_year'
                 ],
                 'major' => [
-                    'required', 
+                    'required',
                     'exists:majors,major'
                 ],
                 'minor' => [
@@ -141,5 +140,5 @@ class profileController extends Controller
         }
     }
 
-    
+
 }
