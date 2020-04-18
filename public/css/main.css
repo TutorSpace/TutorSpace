@@ -12550,6 +12550,11 @@ h5 .fgpwd-container__header-2 {
   }
 }
 
+.home__container__notifications__sessions-tutor {
+  display: block;
+  flex-wrap: nowrap;
+}
+
 .home__container__notifications .recommended__tutors {
   font-size: 1.6rem;
   background-color: #ffffff;

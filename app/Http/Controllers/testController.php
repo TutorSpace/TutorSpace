@@ -50,9 +50,12 @@ class testController extends Controller
         //                 ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
         //                 ->get();
 
-        $interestedCourses = $user->courses;
+        // $interestedCourses = $user->courses;
 
-        dd($interestedCourses);
+        // dd($interestedCourses);
+
+
+        dd($tutorRequests);
 
     }
 }

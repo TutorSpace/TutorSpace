@@ -7,6 +7,7 @@ use Auth;
 use App\Session;
 use App\Course;
 use App\Subject;
+use App\User;
 use App\Dashboard_post;
 
 
@@ -16,8 +17,36 @@ class homeController extends Controller
         $user = Auth::user();
 
 
+        // get data of the dashboard
+        $posts = Dashboard_post::select('dashboard_posts.id as post_id', 'user_id', 'course_id', 'post_message', 'subject_id', 'is_course_post', 'dashboard_posts.created_at as post_created_time', 'users.*', 'courses.*', 'subjects.*')
+        ->join('users', 'users.id', '=', 'user_id')
+        ->leftJoin('courses', 'course_id', '=', 'courses.id')
+        ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
+        ->where('user_id', '!=', $user->id)
+        ->get();
+
+        // get all the subjects and posts that the user is interested in
+        $interestedCourses = $user->courses;
+        $interestedSubjects = $user->subjects;
+
+
         if($user->is_tutor) {
-            return view('home.home_tutor');
+            // get upcoming sessions (at most 4)
+            $upcomingSessions = $user->upcomingSessions(4);
+
+            // TODO: get tutor requests
+            // $tutorRequests = User::with(['tutor_requests', 'courses']);
+
+
+            // TODO: build availability calendar
+
+
+            return view('home.home_tutor', [
+                'upcomingSessions' => $upcomingSessions,
+                'posts' => $posts,
+                'interestedCourses' => $interestedCourses,
+                'interestedSubjects' => $interestedSubjects
+            ]);
         }
         else {
             // choose randomly from subjects and courses the user is interested in, and display all of them. (If there is no courses/subjects the user interested, show nothing for that specific one)
@@ -47,26 +76,14 @@ class homeController extends Controller
                                 ->get();
 
 
-
             // get upcoming sessions (at most 2)
             $upcomingSessions = $user->upcomingSessions(2);
-
 
             // get tutors of the past sessions (at most 2)
             $pastTutors = $user->pastTutors(2);
 
 
-            // get data of the dashboard
-            $posts = Dashboard_post::select('dashboard_posts.id as post_id', 'user_id', 'course_id', 'post_message', 'subject_id', 'is_course_post', 'dashboard_posts.created_at as post_created_time', 'users.*', 'courses.*', 'subjects.*')
-                    ->join('users', 'users.id', '=', 'user_id')
-                    ->leftJoin('courses', 'course_id', '=', 'courses.id')
-                    ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
-                    ->where('user_id', '!=', $user->id)
-                    ->get();
 
-            // get all the subjects and posts that the user is interested in
-            $interestedCourses = $user->courses;
-            $interestedSubjects = $user->subjects;
 
 
             return view('home.home_student', [

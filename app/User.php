@@ -49,6 +49,17 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
     }
 
+    public function tutor_requests() {
+        if($this->is_tutor) {
+            return $this->hasMany('App\Tutor_request', 'tutor_id');
+        }
+        else {
+            return $this->hasMany('App\Tutor_request', 'student_id');
+        }
+
+    }
+
+
     // return users that are bookmarked
     public function users() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');

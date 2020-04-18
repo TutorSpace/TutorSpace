@@ -14,21 +14,29 @@ min-width-450
 
 
 @section('add-post-container')
-<div id="add-post-container">
+<form id="add-post-container">
     <h3>Write a Post</h3>
     <textarea name="post-content" id="post-content" placeholder="Begin typing post here."></textarea>
     <small class="subject-course">Subject / Course</small>
     <div class="add-post-bottom">
         <select class="custom-select custom-select-lg " name="add-post-course-subject" id="add-post-course-subject">
             <option selected="true" disabled="disabled">Select</option>
-            <option value="ITP 104">ITP 104</option>
-            <option value="Calculus">Calculus</option>
+            @if(count($interestedCourses) === 0 && count($interestedSubjects) === 0)
+                <option disabled="disabled">Please first add interested courses/subjects in profile page.</option>
+            @else
+                @foreach ($interestedCourses as $interestedCourse)
+                    <option value="course-{{$interestedCourse->id}}">{{$interestedCourse->course}}</option>
+                @endforeach
+                @foreach ($interestedSubjects as $interestedSubject)
+                    <option value="subject-{{$interestedSubject->id}}">{{$interestedSubject->subject}}</option>
+                @endforeach
+            @endif
         </select>
         <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
-        <button class="btn btn-lg btn-primary btn-post">Post</button>
+        <button class="btn btn-lg btn-primary btn-post" type="submit">Post</button>
     </div>
 
-</div>
+</form>
 @endsection
 
 @section('content')
@@ -37,7 +45,7 @@ min-width-450
             <div class="container home__container__header__content">
                 <div class="home__container__header__content__text">
                     <div class="home__container__header__content__text__header">
-                        <h2>Welcome Jeffrey!</h2>
+                        <h2>Welcome {{Auth::user()->full_name}}!</h2>
                     </div>
                     <div class="home__container__header__content__text__descriptor">
                         <small>You have X unread message & Y Tutor Request(s)</small>
@@ -94,36 +102,43 @@ min-width-450
                         Calendar functionality is coming soon!
                     </div>
                 </div>
-                <div class="col-12 col-sm-5 home__container__notifications__sessions">
-                    <div class="home__container__notifications__title pl-0 pr-0 mb-0">
-                        <h5><span>Upcoming Sessions</span></h5>
-                    </div>
-                    <div class="session__container">
-                        <span class="title">Student Name</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Subject / Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
-                    <div class="session__container">
-                        <span class="title">Student Name</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Subject / Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
+                <div class="col-12 col-sm-5 home__container__notifications__sessions home__container__notifications__sessions-tutor">
+                    @if(count($upcomingSessions) == 0)
+                        <div class="home__container__notifications__title pl-0 pr-0 mb-0">
+                            <h5><span>No Upcoming Sessions</span></h5>
+                        </div>
+                        <div class="home__container__notifications__text">
+                            Scheduled sessions between you and a tutor will appear below.
+                        </div>
+                    @else
+                        <div class="home__container__notifications__title pl-0 pr-0 mb-0">
+                            <h5><span>Upcoming Sessions</span></h5>
+                        </div>
+                        @foreach ($upcomingSessions as $upcomingSession)
+                            <div class="session__container" data-user-id="{{$upcomingSession->session_id}}">
+                                <span class="title">{{$upcomingSession->full_name}}</span>
+                                <span class="descriptor">Date</span>
+                                <span class="descriptor">Subject / Course</span>
+                                <span class="text">
+                                    {{date('m/d/Y', strtotime($upcomingSession->date))}}
+                                </span>
+                                @if($upcomingSession->is_course)
+                                    <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
+                                @else
+                                    <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
+                                @endif
+                                <span class="descriptor">Time</span>
+                                <span class="descriptor">Hourly Rate</span>
+                                <span class="text">
+                                    {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
+                                </span>
+                                <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
+                                <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                                <button class="btn btn-lg btn-primary">View Session</button>
+                            </div>
+
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
@@ -192,7 +207,6 @@ min-width-450
                     </tbody>
                 </table>
 
-
             </div>
 
             <div class="row home__container__help-center">
@@ -210,9 +224,10 @@ min-width-450
                                     </select>
                                     <select class="custom-select custom-select-lg filter-post" name="filter-post-tutor-student"
                                         id="search-posts">
-                                        <option selected>All Posts</option>
+                                        <option value="tutor-student-posts" selected>Tutor & Student Posts</option>
                                         <option value="tutor-posts">Tutor Posts</option>
                                         <option value="student-posts">Student Posts</option>
+                                        <option value="my-posts">My Posts</option>
                                     </select>
                                 </div>
 
@@ -228,75 +243,39 @@ min-width-450
                     </div>
                     <table class="table table-hover home__container__help-center__table">
                         <tbody>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                            @foreach ($posts as $post)
+                            <tr data-post-id="{{$post->post_id}}">
+                                <th scope="row">
+                                    <img src="assets/mj.jpg" alt="tutor pic">
+                                    {{$post->full_name}}
+                                </th>
                                 <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
+                                    <p>
+                                        {{$post->post_created_time}}
+                                    </p>
+                                    <span>
+                                        @if($post->is_course_post)
+                                        {{$post->course}}
+                                        @else
+                                        {{$post->subject}}
+                                        @endif
+                                    </span>
                                 </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
+                                <td class="post-message">
+                                    {{$post->post_message}}
+                                </td>
                                 <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
+                                    <button class="btn btn-lg btn-primary button--small" data-post-id="{{$post->post_id}}">
+                                        Send Message
+                                    </button>
                                 </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                             </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
-                                <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
-                                </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
-                                <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
-                                </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
-                                <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
-                                </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
-                                <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
-                                </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Jeffrey Miller </th>
-                                <td>
-                                    <p>00/00/00</p><span>ITP 104</span>
-                                </td>
-                                <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                    me this weekend?</td>
-                                <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
                 </div>
             </div>
-
         </div>
 
 

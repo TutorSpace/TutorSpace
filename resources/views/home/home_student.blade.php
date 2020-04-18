@@ -38,7 +38,6 @@
 
 @section('content')
 <div class="container-fluid home__container">
-
     <div class="row home__container__header">
         <div class="container home__container__header__content">
             <div class="home__container__header__content__text">
@@ -164,40 +163,39 @@
             <div class="col-12 col-sm-5 home__container__notifications__sessions change-student">
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     @if(count($upcomingSessions) == 0)
-                    <div class="home__container__notifications__title">
-                        <h5><span>No Upcoming Sessions</span></h5>
-                    </div>
-                    <div class="home__container__notifications__text">
-                        Scheduled sessions between you and a tutor will appear below.
-                    </div>
-                    @else
-                    <div class="home__container__notifications__title">
-                        <h5><span>Upcoming Sessions</span></h5>
-                    </div>
-                    @foreach ($upcomingSessions as $upcomingSession)
-                        <div class="session__container" data-user-id="{{$upcomingSession->session_id}}">
-                            <span class="title">{{$upcomingSession->full_name}}</span>
-                            <span class="descriptor">Date</span>
-                            <span class="descriptor">Subject / Course</span>
-                            <span class="text">
-                                {{date('m/d/Y', strtotime($upcomingSession->date))}}
-                            </span>
-                            @if($upcomingSession->is_course)
-                                <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
-                            @else
-                                <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
-                            @endif
-                            <span class="descriptor">Time</span>
-                            <span class="descriptor">Hourly Rate</span>
-                            <span class="text">
-                                {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
-                            </span>
-                            <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
-                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                            <button class="btn btn-lg btn-primary">View Session</button>
+                        <div class="home__container__notifications__title">
+                            <h5><span>No Upcoming Sessions</span></h5>
                         </div>
-                    @endforeach
-
+                        <div class="home__container__notifications__text">
+                            Scheduled sessions between you and a tutor will appear below.
+                        </div>
+                    @else
+                        <div class="home__container__notifications__title">
+                            <h5><span>Upcoming Sessions</span></h5>
+                        </div>
+                        @foreach ($upcomingSessions as $upcomingSession)
+                            <div class="session__container" data-user-id="{{$upcomingSession->session_id}}">
+                                <span class="title">{{$upcomingSession->full_name}}</span>
+                                <span class="descriptor">Date</span>
+                                <span class="descriptor">Subject / Course</span>
+                                <span class="text">
+                                    {{date('m/d/Y', strtotime($upcomingSession->date))}}
+                                </span>
+                                @if($upcomingSession->is_course)
+                                    <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
+                                @else
+                                    <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
+                                @endif
+                                <span class="descriptor">Time</span>
+                                <span class="descriptor">Hourly Rate</span>
+                                <span class="text">
+                                    {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
+                                </span>
+                                <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
+                                <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
+                                <button class="btn btn-lg btn-primary">View Session</button>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
 

@@ -1,8 +1,10 @@
-$('.tutor-requests-table button:last-child').click(function() {
+$('.tutor-requests-table button:last-child').click(function(e) {
+    e.stopPropagation();
     alert('TODO: accepted tutor request');
 });
 
-$('.tutor-requests-table button:not(:last-child)').click(function() {
+$('.tutor-requests-table button:not(:last-child)').click(function(e) {
+    e.stopPropagation();
     alert('TODO: declined tutor request');
 });
 
