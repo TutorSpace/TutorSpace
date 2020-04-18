@@ -22,26 +22,40 @@ $('#add-post-container .btn-cancel').click(() => {
     $('#background-cover').hide();
 });
 
-// save button for 
+// save button for
 $('#add-post-container .btn-post').click(() => {
     alert('TODO: add the post to the database!');
-    
+
 });
 
 
-$('#filter-form').submit((e) => {
+$('#filter-form').submit(function(e) {
     e.preventDefault();
-    
-    alert('TODO: use AJAX to put the corresponding posts into the dashboard');
+
+    let inputCourseSubject = $('#search-courses-subjects option:selected').val();
+    let inputTutorStudent = $('#search-posts option:selected').val();
+
+    console.log(inputCourseSubject);
+    console.log(inputTutorStudent);
+    $.ajax({
+        type:'GET',
+        url: '/dashboard',
+        data: {
+            courseSubject: inputCourseSubject,
+            tutorStudent: inputTutorStudent
+        },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+        },
+        error: function(error) {
+            toastr.error(error);
+        }
+    });
+
 });
 
-$('svg.bookmark').click(() => {
-    alert('TODO: ADD/REMOVE tutor to/from bookmarked table, and use AJAX to update the page');
-})
 
-
-// console.log(document.documentElement.scrollHeight);
-// console.log($(window).height());
 
 
 function showAddPost() {
@@ -50,11 +64,15 @@ function showAddPost() {
     $('#background-cover').show();
 
     let centerOffset = (document.documentElement.scrollHeight - $(window).height()) / 2;
-    $('html,body').animate({ 
+    $('html,body').animate({
             scrollTop: centerOffset
-        }, 
+        },
         'slow'
     );
 
     $('#add-post-container').height($(window).height() / 2);
 }
+
+
+
+

@@ -8,7 +8,7 @@
 </div>
 @endsection
 
-@section('body-class') 
+@section('body-class')
 min-width-450
 @endsection
 
@@ -76,7 +76,7 @@ min-width-450
                             d="M131 2L135.289 7.89732C136.309 9.29992 136.309 11.2001 135.289 12.6027L132.711 16.1473C131.691 17.5499 131.691 19.4501 132.711 20.8527L135.289 24.3973C136.309 25.7999 136.309 27.7001 135.289 29.1027L131 35"
                             stroke="#FFC077" stroke-width="4" stroke-linecap="round" />
                     </svg>
-    
+
                 </div>
             </div>
         </div>
@@ -201,30 +201,30 @@ min-width-450
                         <div>
                             <h5 class="home__container__help-center__header__text">Dashboard</h5>
                             <form class="home__container__help-center__filter-container" id="filter-form" method="GET"
-                                action="/home_filter">
+                                action="#">
                                 <div class="select-container">
-                                    <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                    <select class="custom-select custom-select-lg filter-post" name="filter-post-course-subject"
                                         id="search-courses-subjects">
                                         <option value="all-courses-subjects" selected>All Courses / Subjects</option>
                                         <option value="my-courses-subjects">My Courses / Subjects</option>
                                     </select>
-                                    <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                    <select class="custom-select custom-select-lg filter-post" name="filter-post-tutor-student"
                                         id="search-posts">
                                         <option selected>All Posts</option>
                                         <option value="tutor-posts">Tutor Posts</option>
                                         <option value="student-posts">Student Posts</option>
                                     </select>
                                 </div>
-    
+
                                 <button class="btn btn-primary btn-search" id="btn-search" type="submit">Search</button>
                             </form>
                         </div>
-    
+
                         <div>
                             <button class="btn btn-lg btn-outline-primary" id="add-post">Add Post +</button>
-    
+
                         </div>
-    
+
                     </div>
                     <table class="table table-hover home__container__help-center__table">
                         <tbody>
@@ -293,7 +293,7 @@ min-width-450
                             </tr>
                         </tbody>
                     </table>
-    
+
                 </div>
             </div>
 
@@ -309,10 +309,9 @@ min-width-450
     @endsection
 
     @section('js')
-    
+
     <!-- defined javascript -->
     <script src="js/home_tutor.js"></script>
     <script src="js/home_common.js"></script>
-    
+
     @endsection
-    

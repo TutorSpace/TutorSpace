@@ -8,6 +8,8 @@
 </div>
 @endsection
 
+
+
 @section('add-post-container')
 <div id="add-post-container">
     <h3>Write a Post</h3>
@@ -33,7 +35,7 @@
         <div class="container home__container__header__content">
             <div class="home__container__header__content__text">
                 <div class="home__container__header__content__text__header">
-                    <h2>Welcome Jamie!</h2>
+                    <h2>Welcome {{Auth::user()->full_name}}!</h2>
                 </div>
                 <div class="home__container__header__content__text__descriptor">
                     <small>You have X unread message(s)</small>
@@ -80,8 +82,7 @@
     <div class="container">
         <div class="row home__container__notifications">
             <div class="col-12 col-sm-7 home__container__notifications__students">
-                {{-- @if(count($recommendations) == 0) --}}
-                @if(false)
+                @if(count($recommendedCourses) === 0 && count($recommendedSubjects) === 0)
                     <!-- the commented div is to display when there is no recommended tutors -->
                     <div class="home__container__notifications__title">
                         <h5><span>No Recommended Tutors</span></h5>
@@ -89,126 +90,66 @@
                     <div class="home__container__notifications__text">
                         Add subjects or courses you want help in on Your Profile to receive tutor recommendations.
                     </div>
-                @else
-
+                @endif
+                @if(count($recommendedCourses) !== 0)
+                    @foreach($recommendedCourses as $recommendedCourse)
                     <div class="home__container__notifications__title">
-                        <h5><span>Recommended Tutors</span> for ITP 104</h5>
+                        <h5>
+                            <span>Recommended Tutors</span> for {{$recommendedCourse->course}}
+                        </h5>
                     </div>
-                    <table class="table table-hover recommended__tutors">
+                    <table class="table table-hover recommended__tutors"
+                    data-user-id="{{$recommendedCourse->id}}">
                         <tbody>
                             <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
+                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">{{$recommendedCourse->full_name}}</th>
                                 <td>
-                                    <div>Freshman</div>
-                                    <div>B.S. Chemical Engineering</div>
+                                    <div>{{App\User::find($recommendedCourse->id)->school_year->first()->school_year}}</div>
+                                    <div>{{App\User::find($recommendedCourse->id)->major->first()->major}}</div>
                                 </td>
                                 <td>
-                                    <svg class="bookmark">
+                                    @if(Auth::user()->bookmarked($recommendedCourse->id))
+                                    <svg class="bookmark bookmark-marked" data-user-id="{{$recommendedCourse->id}}">
+                                    @else
+                                    <svg class="bookmark" data-user-id="{{$recommendedCourse->id}}">
+                                    @endif
                                         <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                                     </svg>
                                 </td>
-
                             </tr>
-
                         </tbody>
                     </table>
-                    <table class="table table-hover recommended__tutors">
+                    @endforeach
+                @endif
+                @if(count($recommendedSubjects) !== 0)
+                    @foreach($recommendedSubjects as $recommendedSubject)
+                    <div class="home__container__notifications__title">
+                        <h5>
+                            <span>Recommended Tutors</span> for {{$recommendedSubject->subject}}
+                        </h5>
+                    </div>
+                    <table class="table table-hover recommended__tutors"
+                    data-user-id="{{$recommendedSubject->id}}">
                         <tbody>
                             <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
+                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">{{$recommendedSubject->full_name}}</th>
                                 <td>
-                                    <div>Freshman</div>
-                                    <div>B.S. Chemical Engineering</div>
+                                    <div>{{App\User::find($recommendedSubject->id)->school_year->first()->school_year}}</div>
+                                    <div>{{App\User::find($recommendedSubject->id)->major->first()->major}}</div>
                                 </td>
                                 <td>
-                                    <svg class="bookmark">
+                                    @if(Auth::user()->bookmarked($recommendedSubject->id))
+                                    <svg class="bookmark bookmark-marked" data-user-id="{{$recommendedSubject->id}}">
+                                    @else
+                                    <svg class="bookmark" data-user-id="{{$recommendedSubject->id}}">
+                                    @endif
                                         <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                                     </svg>
                                 </td>
-
                             </tr>
-
                         </tbody>
                     </table>
-                    <table class="table table-hover recommended__tutors">
-                        <tbody>
-                            <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                                <td>
-                                    <div>Freshman</div>
-                                    <div>B.S. Chemical Engineering</div>
-                                </td>
-                                <td>
-                                    <svg class="bookmark bookmark-marked">
-                                        <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                    </svg>
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-
-
-
-                <div class="home__container__notifications__title">
-                    <h5><span>Recommended Tutors</span> for CRIT 310</h5>
-                </div>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark bookmark-marked">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-                </table>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark bookmark-marked">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-                </table>
-                <table class="table table-hover recommended__tutors">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">Jeffrey M. </th>
-                            <td>
-                                <div>Freshman</div>
-                                <div>B.S. Chemical Engineering</div>
-                            </td>
-                            <td>
-                                <svg class="bookmark">
-                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                                </svg>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-                </table>
-
+                    @endforeach
                 @endif
 
             </div>
@@ -226,7 +167,7 @@
                         <h5><span>Upcoming Sessions</span></h5>
                     </div>
                     @foreach ($upcomingSessions as $upcomingSession)
-                        <div class="session__container" id="upcoming-session-{{$upcomingSession->session_id}}">
+                        <div class="session__container" data-user-id="{{$upcomingSession->session_id}}">
                             <span class="title">{{$upcomingSession->full_name}}</span>
                             <span class="descriptor">Date</span>
                             <span class="descriptor">Subject / Course</span>
@@ -252,7 +193,7 @@
                     @endif
                 </div>
 
-                <div class="col-sm-12 col-6 _col-extra-small-12">
+                <div class="col-sm-12 col-6 _col-extra-small-12 mt-4">
                     @if(count($pastTutors) == 0)
                     <div class="home__container__notifications__title">
                         <h5><span>No Past Tutors</span></h5>
@@ -265,7 +206,7 @@
                         <h5><span>Past Tutors</span></h5>
                     </div>
                     @foreach($pastTutors as $pastTutor)
-                    <div class="tutor-container" id="past-tutor-{{$pastTutor->tutor_id}}">
+                    <div class="tutor-container" data-user-id="{{$pastTutor->tutor_id}}">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
                         <div class="tutor__info">
                             <div>{{$pastTutor->full_name}}</div>
@@ -278,9 +219,9 @@
                         </div>
                         <div class="bookmark-container">
                             @if(Auth::user()->bookmarked($pastTutor->tutor_id))
-                            <svg class="bookmark bookmark-marked">
+                            <svg class="bookmark bookmark-marked" data-user-id="{{$pastTutor->tutor_id}}">
                             @else
-                            <svg class="bookmark">
+                            <svg class="bookmark" data-user-id="{{$pastTutor->tutor_id}}">
                             @endif
                                 <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                             </svg>
@@ -305,16 +246,16 @@
                     <div>
                         <h5 class="home__container__help-center__header__text">Dashboard</h5>
                         <form class="home__container__help-center__filter-container" id="filter-form" method="GET"
-                            action="/home_filter">
+                            action="#">
                             <div class="select-container">
-                                <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post-course-subject"
                                     id="search-courses-subjects">
                                     <option value="all-courses-subjects" selected>All Courses / Subjects</option>
                                     <option value="my-courses-subjects">My Courses / Subjects</option>
                                 </select>
-                                <select class="custom-select custom-select-lg filter-post" name="filter-post"
+                                <select class="custom-select custom-select-lg filter-post" name="filter-post-tutor-student"
                                     id="search-posts">
-                                    <option selected>All Posts</option>
+                                    <option value="tutor-student-posts" selected>Tutor & Student Posts</option>
                                     <option value="tutor-posts">Tutor Posts</option>
                                     <option value="student-posts">Student Posts</option>
                                 </select>
@@ -341,60 +282,6 @@
                                 me this weekend?</td>
                             <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
                         </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
-                            <td>
-                                <p>00/00/00</p><span>ITP 104</span>
-                            </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
-                        </tr>
                     </tbody>
                 </table>
 
@@ -411,6 +298,7 @@
 @endsection
 
 @section('js')
+
 
 <!-- defined javascript -->
 <script src="js/home_student.js"></script>

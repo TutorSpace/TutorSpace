@@ -67,3 +67,10 @@ Route::get('/home', 'homeController@show')->name('home_student')->middleware(['c
 Route::get('/search', 'searchController@show')->name('search')->middleware(['checkLogin']);
 
 
+// bookmark (no need for login middleware)
+Route::get('/bookmark_remove', 'generalController@removeBookmark');
+Route::get('/bookmark_add', 'generalController@addBookmark');
+
+
+// dashboard
+Route::get('/dashboard', 'generalController@getDashboardPosts');
