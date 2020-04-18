@@ -7,6 +7,7 @@ use Auth;
 use App\Session;
 use App\Course;
 use App\Subject;
+use App\Dashboard_post;
 
 
 class homeController extends Controller
@@ -55,16 +56,27 @@ class homeController extends Controller
             $pastTutors = $user->pastTutors(2);
 
 
-            // TODO: get data of the dashboard
+            // get data of the dashboard
+            $posts = Dashboard_post::select('dashboard_posts.id as post_id', 'user_id', 'course_id', 'post_message', 'subject_id', 'is_course_post', 'dashboard_posts.created_at as post_created_time', 'users.*', 'courses.*', 'subjects.*')
+                    ->join('users', 'users.id', '=', 'user_id')
+                    ->leftJoin('courses', 'course_id', '=', 'courses.id')
+                    ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
+                    ->where('user_id', '!=', $user->id)
+                    ->get();
 
-
+            // get all the subjects and posts that the user is interested in
+            $interestedCourses = $user->courses;
+            $interestedSubjects = $user->subjects;
 
 
             return view('home.home_student', [
                 'recommendedCourses' => $recommendedCourses,
                 'recommendedSubjects' => $recommendedSubjects,
                 'upcomingSessions' => $upcomingSessions,
-                'pastTutors' => $pastTutors
+                'pastTutors' => $pastTutors,
+                'posts' => $posts,
+                'interestedCourses' => $interestedCourses,
+                'interestedSubjects' => $interestedSubjects
             ]);
         }
     }

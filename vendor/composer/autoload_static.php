@@ -478,16 +478,18 @@ class ComposerStaticInit7f5fb03b7048f839e503312b707ed32a
     );
 
     public static $classMap = array (
-        'App\\Bookmark' => __DIR__ . '/../..' . '/app/Bookmark.php',
         'App\\Characteristic' => __DIR__ . '/../..' . '/app/Characteristic.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Course' => __DIR__ . '/../..' . '/app/Course.php',
+        'App\\Dashboard_post' => __DIR__ . '/../..' . '/app/Dashboard_post.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\forgetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/forgetPasswordController.php',
+        'App\\Http\\Controllers\\generalController' => __DIR__ . '/../..' . '/app/Http/Controllers/generalController.php',
         'App\\Http\\Controllers\\homeController' => __DIR__ . '/../..' . '/app/Http/Controllers/homeController.php',
         'App\\Http\\Controllers\\loginController' => __DIR__ . '/../..' . '/app/Http/Controllers/loginController.php',
         'App\\Http\\Controllers\\profileController' => __DIR__ . '/../..' . '/app/Http/Controllers/profileController.php',
+        'App\\Http\\Controllers\\searchController' => __DIR__ . '/../..' . '/app/Http/Controllers/searchController.php',
         'App\\Http\\Controllers\\signupController' => __DIR__ . '/../..' . '/app/Http/Controllers/signupController.php',
         'App\\Http\\Controllers\\testController' => __DIR__ . '/../..' . '/app/Http/Controllers/testController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',

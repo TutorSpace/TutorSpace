@@ -68,9 +68,11 @@ Route::get('/search', 'searchController@show')->name('search')->middleware(['che
 
 
 // bookmark (no need for login middleware)
-Route::get('/bookmark_remove', 'generalController@removeBookmark');
-Route::get('/bookmark_add', 'generalController@addBookmark');
+Route::get('/bookmark_remove', 'generalController@removeBookmark')->middleware(['checkLogin']);
+Route::get('/bookmark_add', 'generalController@addBookmark')->middleware(['checkLogin']);
 
 
-// dashboard
-Route::get('/dashboard', 'generalController@getDashboardPosts');
+// dashboard (no need for login middleware)
+Route::get('/dashboard', 'generalController@getDashboardPosts')->middleware(['checkLogin']);
+Route::get('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['checkLogin']);
+

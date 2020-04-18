@@ -11096,6 +11096,10 @@ svg.bookmark:hover {
   min-width: 450px;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -12704,11 +12708,11 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table tr > * {
   vertical-align: middle !important;
+  white-space: nowrap;
 }
 
 .home__container__help-center__table tr > :nth-child(1) {
   white-space: nowrap;
-  text-align: center;
   font-size: 1.6rem;
 }
 
@@ -12716,10 +12720,6 @@ h5 .fgpwd-container__header-2 {
   .home__container__help-center__table tr > :nth-child(1) {
     white-space: normal;
   }
-}
-
-.home__container__help-center__table tr > :nth-child(2) {
-  text-align: center;
 }
 
 .home__container__help-center__table tr > :nth-child(2) p {
@@ -12735,6 +12735,11 @@ h5 .fgpwd-container__header-2 {
 
 .home__container__help-center__table tr > :nth-child(3) {
   font-size: 1.5rem;
+}
+
+.home__container__help-center__table .post-message {
+  width: 99%;
+  white-space: normal;
 }
 
 .home__container__help-center__table button {

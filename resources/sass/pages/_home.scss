@@ -304,11 +304,12 @@
             // selects all direct child of tr
             tr > * {
                 vertical-align: middle !important;
+                white-space: nowrap;
             }
             // tr selects all direct children, and then :nth-child means itself is nth child
             tr > :nth-child(1) {
                 white-space: nowrap;
-                text-align: center;
+
                 font-size: 1.6rem;
 
                 @media only screen and (max-width: 31.25em) { //500px
@@ -317,7 +318,6 @@
 
             }
             tr > :nth-child(2) {
-                text-align: center;
 
                 p {
                     margin-bottom: 0;
@@ -333,6 +333,17 @@
 
             tr > :nth-child(3) {
                 font-size: 1.5rem;
+
+                // max-height: 10rem;
+                // height: 10rem;
+                // overflow: scroll;
+                // display: flex;
+                // align-items: center;
+            }
+
+            .post-message {
+                width: 99%;
+                white-space: normal;
             }
 
             button {

@@ -11,21 +11,29 @@
 
 
 @section('add-post-container')
-<div id="add-post-container">
+<form id="add-post-container">
     <h3>Write a Post</h3>
     <textarea name="post-content" id="post-content" placeholder="Begin typing post here."></textarea>
     <small class="subject-course">Subject / Course</small>
     <div class="add-post-bottom">
         <select class="custom-select custom-select-lg " name="add-post-course-subject" id="add-post-course-subject">
             <option selected="true" disabled="disabled">Select</option>
-            <option value="ITP 104">ITP 104</option>
-            <option value="Calculus">Calculus</option>
+            @if(count($interestedCourses) === 0 && count($interestedSubjects) === 0)
+                <option disabled="disabled">Please first add interested courses/subjects in profile page.</option>
+            @else
+                @foreach ($interestedCourses as $interestedCourse)
+                    <option value="course-{{$interestedCourse->id}}">{{$interestedCourse->course}}</option>
+                @endforeach
+                @foreach ($interestedSubjects as $interestedSubject)
+                    <option value="subject-{{$interestedSubject->id}}">{{$interestedSubject->subject}}</option>
+                @endforeach
+            @endif
         </select>
         <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
-        <button class="btn btn-lg btn-primary btn-post">Post</button>
+        <button class="btn btn-lg btn-primary btn-post" type="submit">Post</button>
     </div>
 
-</div>
+</form>
 @endsection
 
 @section('content')
@@ -258,6 +266,7 @@
                                     <option value="tutor-student-posts" selected>Tutor & Student Posts</option>
                                     <option value="tutor-posts">Tutor Posts</option>
                                     <option value="student-posts">Student Posts</option>
+                                    <option value="my-posts">My Posts</option>
                                 </select>
                             </div>
 
@@ -273,15 +282,34 @@
                 </div>
                 <table class="table table-hover home__container__help-center__table">
                     <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"> Tutor Name </th>
+                        @foreach ($posts as $post)
+                        <tr data-post-id="{{$post->post_id}}">
+                            <th scope="row">
+                                <img src="assets/mj.jpg" alt="tutor pic">
+                                {{$post->full_name}}
+                            </th>
                             <td>
-                                <p>00/00/00</p><span>ITP 104</span>
+                                <p>
+                                    {{$post->post_created_time}}
+                                </p>
+                                <span>
+                                    @if($post->is_course_post)
+                                    {{$post->course}}
+                                    @else
+                                    {{$post->subject}}
+                                    @endif
+                                </span>
                             </td>
-                            <td>I have an upcoming midterm for ITP 104 next Tuesday. Would anyone be available to help
-                                me this weekend?</td>
-                            <td><button class="btn btn-lg btn-primary button--small">Send Message</button></td>
+                            <td class="post-message">
+                                {{$post->post_message}}
+                            </td>
+                            <td>
+                                <button class="btn btn-lg btn-primary button--small" data-post-id="{{$post->post_id}}">
+                                    Send Message
+                                </button>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
