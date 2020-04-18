@@ -90,7 +90,7 @@
                         Add subjects or courses you want help in on Your Profile to receive tutor recommendations.
                     </div>
                 @else
-                    
+
                     <div class="home__container__notifications__title">
                         <h5><span>Recommended Tutors</span> for ITP 104</h5>
                     </div>
@@ -148,7 +148,7 @@
 
                         </tbody>
                     </table>
-                
+
 
 
                 <div class="home__container__notifications__title">
@@ -226,7 +226,7 @@
                         <h5><span>Upcoming Sessions</span></h5>
                     </div>
                     @foreach ($upcomingSessions as $upcomingSession)
-                        <div class="session__container">
+                        <div class="session__container" id="upcoming-session-{{$upcomingSession->session_id}}">
                             <span class="title">{{$upcomingSession->full_name}}</span>
                             <span class="descriptor">Date</span>
                             <span class="descriptor">Subject / Course</span>
@@ -235,7 +235,7 @@
                             </span>
                             @if($upcomingSession->is_course)
                                 <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
-                            @else 
+                            @else
                                 <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
                             @endif
                             <span class="descriptor">Time</span>
@@ -248,20 +248,7 @@
                             <button class="btn btn-lg btn-primary">View Session</button>
                         </div>
                     @endforeach
-                    {{-- <div class="session__container">
-                        <span class="title">Tutor Name</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Subject / Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
-                    --}}
+
                     @endif
                 </div>
 
@@ -277,20 +264,24 @@
                     <div class="home__container__notifications__title">
                         <h5><span>Past Tutors</span></h5>
                     </div>
-                    @foreach ($pastTutors as $pastTutor)
-                    <div class="tutor-container">
+                    @foreach($pastTutors as $pastTutor)
+                    <div class="tutor-container" id="past-tutor-{{$pastTutor->tutor_id}}">
                         <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
                         <div class="tutor__info">
                             <div>{{$pastTutor->full_name}}</div>
-                            <div>Last Session: 
+                            <div>Last Session:
                                 {{date('m/d/Y', strtotime($pastTutor->date))}}
                             </div>
-                            <div>Total Sessions: 
+                            <div>Total Sessions:
                                 <span>{{$pastTutor->count}}</span>
                             </div>
                         </div>
                         <div class="bookmark-container">
+                            @if(Auth::user()->bookmarked($pastTutor->tutor_id))
+                            <svg class="bookmark bookmark-marked">
+                            @else
                             <svg class="bookmark">
+                            @endif
                                 <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                             </svg>
                         </div>
@@ -302,24 +293,7 @@
                     </div>
                     @endforeach
 
-                    {{-- <div class="tutor-container">
-                        <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
-                        <div class="tutor__info">
-                            <div>Tutor Name</div>
-                            <div>Last Session: 00/00/00</div>
-                            <div>Total Sessions: <span>5</span></div>
-                        </div>
-                        <div class="bookmark-container">
-                            <svg class="bookmark">
-                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                            </svg>
-                        </div>
-                        <div class="btn-container">
-                            <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
-                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
-                        </div>
 
-                    </div> --}}
                     @endif
                 </div>
             </div>

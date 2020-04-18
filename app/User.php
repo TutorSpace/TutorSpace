@@ -41,7 +41,7 @@ class User extends Authenticatable
     public function sessions() {
         if($this->is_tutor)
             return $this->hasMany('App\Session', 'tutor_id');
-        else 
+        else
             return $this->hasMany('App\Session', 'student_id');
     }
 
@@ -57,22 +57,26 @@ class User extends Authenticatable
     public function upcomingSessions($num) {
         if($this->is_tutor) {
             // the returned information is about the student
-            $sessions = Session::join('users', 'sessions.student_id', '=', 'users.id')
+            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+                ->join('users', 'sessions.student_id', '=', 'users.id')
                 ->where('tutor_id', $this->id)
                 ->where('is_upcoming', 1)
+                ->where('is_canceled', 0)
                 ->limit($num)
                 ->get();
-            
+
             return $sessions;
         }
         else {
             // the returned information is about the tutor
-            $sessions = Session::join('users', 'sessions.tutor_id', '=', 'users.id')
+            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+            ->join('users', 'sessions.tutor_id', '=', 'users.id')
             ->where('student_id', $this->id)
             ->where('is_upcoming', 1)
+            ->where('is_canceled', 0)
             ->limit($num)
             ->get();
-        
+
             return $sessions;
         }
     }
@@ -80,28 +84,30 @@ class User extends Authenticatable
     public function pastSessions() {
         if($this->is_tutor) {
             // the returned information is about the student
-            $sessions = Session::join('users', 'sessions.student_id', '=', 'users.id')
+            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+                ->join('users', 'sessions.student_id', '=', 'users.id')
                 ->where('tutor_id', $this->id)
                 ->where('is_upcoming', 0)
                 ->where('is_canceled', 0)
                 ->get();
-            
+
             return $sessions;
         }
         else {
             // the returned information is about the tutor
-            $sessions = Session::join('users', 'sessions.tutor_id', '=', 'users.id')
+            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+                ->join('users', 'sessions.tutor_id', '=', 'users.id')
                 ->where('student_id', $this->id)
                 ->where('is_upcoming', 0)
                 ->where('is_canceled', 0)
                 ->get();
-        
+
             return $sessions;
         }
     }
 
     public function pastTutors($num) {
-        $sessions = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
+        $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
                 ->join('users', 'sessions.tutor_id', '=', 'users.id')
                 ->where('student_id', $this->id)
                 ->where('is_upcoming', 0)
@@ -111,8 +117,13 @@ class User extends Authenticatable
                 ->orderBy('date', 'DESC')
                 ->get();
 
-        return $sessions;
+        return $pastTutors;
     }
 
-    
+    // check whether the user with $user_id is bookmarked by the current user
+    public function bookmarked($user_id) {
+        return $this->bookmarks()->where('id', '=', $user_id)->count() === 1;
+    }
+
+
 }

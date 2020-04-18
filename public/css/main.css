@@ -11454,10 +11454,14 @@ a.btn.btn-primary {
 }
 
 .tutor-container .bookmark-container svg {
-  fill: #ffdc60;
+  fill: #9a9a9a;
   z-index: 100;
   width: 2rem;
   height: 2rem;
+}
+
+.tutor-container .bookmark-container svg.bookmark-marked {
+  fill: #ffdc60;
 }
 
 .tutor-container .tutor__info {

@@ -12,39 +12,24 @@ class homeController extends Controller
     public function show() {
         $user = Auth::user();
 
-        
+
         if($user->is_tutor) {
             return view('home.home_tutor');
         }
         else {
-            // TODO: choose randomly from subjects and courses you user is interested in, and display three for each
-            // $courses = $user->courses->toArray();
-            // $subjects = $user->subjects->toArray();
+            // TODO: choose randomly from subjects and courses the user is interested in, and display three for each. (If there is no courses/subjects the user interested, show nothing for that specific one)
 
-            // $courses_subjects = array_merge($courses, $subjects);
-            // $numRandom = count($courses_subjects);
-            // // if there is > 2 courses_subjects, choose only two
-            // if(count($courses_subjects) > 2)
-            //     $numRandom = 2;
-
-            // $rand_keys = array_rand($courses_subjects, $numRandom);
-            // $recommendations = array();
-            // for($i = 0; $i < $numRandom; $i++) {
-            //     array_push($recommendations, $courses_subjects[$i]);
-            // }
-            // foreach($recommendations as $recommendation) {
-
-            // }
-
-            // dd($recommendations);
-            
-    
 
             // get upcoming sessions (at most 2)
             $upcomingSessions = $user->upcomingSessions(2);
 
-            // TODO: get tutors of the past sessions (at most 2)
+
+            // get tutors of the past sessions (at most 2)
             $pastTutors = $user->pastTutors(2);
+
+
+            $user->bookmarked($pastTutors[1]->tutor_id);
+
 
 
             // TODO: get data of the dashboard

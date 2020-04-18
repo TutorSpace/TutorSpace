@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    
+
     padding: 1rem 2rem;
     box-shadow: 1px 2px 1px 1px rgba($color: grey, $alpha: .2);
     margin-top: 1.6rem;
@@ -20,7 +20,7 @@
         img {
             width: 100%;
             border-radius: 50%;
-            
+
         }
 
     }
@@ -28,26 +28,28 @@
     .bookmark-container {
         display: flex;
         justify-content: flex-end;
-        
-        
-        
+
+
+
         svg {
-            fill: $color-bookmark;
+            fill: $color-gray;
             z-index: 100;
             width: 2rem;
             height: 2rem;
-            
-            
-            
+
+            &.bookmark-marked {
+                fill: $color-bookmark
+            }
+
         }
-    
+
     }
-    
+
     .tutor__info {
         flex: 1;
         padding-left: 1.5rem;
-        
-        
+
+
         > :first-child {
             font-size: 1.6rem !important;
             font-weight: 500 !important;
@@ -66,12 +68,12 @@
         justify-content: space-between;
 
         button {
-            
+
             flex: 0 0 49%;
-    
+
         }
     }
 
-    
-    
+
+
 }

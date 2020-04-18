@@ -4,10 +4,10 @@
     &__header {
         background-color: $color-blue-light-trans;
         height: 30rem;
-        
-    
+
+
         &__content {
-            position: relative; 
+            position: relative;
 
             &__text {
                 display: flex;
@@ -17,7 +17,7 @@
                 color: black;
                 position: relative;
                 z-index: 2;
-                
+
 
                 &__header {
                     font-size: 4.5rem;
@@ -50,7 +50,7 @@
         min-height: 20%;
         color: black;
 
-        
+
 
         &__title {
             font-size: $font-2;
@@ -77,7 +77,7 @@
             margin-top: $mt-notification;
             display: flex;
             flex-wrap: wrap;
-            
+
             &.change-student {
                 @media only screen and (max-width: 767px) { // 768px
                     padding-left: 0;
@@ -120,24 +120,24 @@
         }
 
         .recommended__tutors {
-            
+
             font-size: 1.6rem;
             background-color: #ffffff;
-            
+
             overflow: scroll;
             border-radius: 14px;
             @include boxShadow;
-            
+
             tr {
                 display: flex;
                 padding: 1rem;
-                
+
                 * {
                     border: none;
                 }
 
                 & > :first-child {
-                    
+
                     display: flex;
                     align-items: center;
                 }
@@ -159,7 +159,7 @@
                     }
                 }
 
-                
+
             }
 
             .bookmark {
@@ -171,7 +171,7 @@
                     // stroke: black;
                     // stroke-width: 2;
                     fill: $color-bookmark;
-                    
+
                 }
             }
 
@@ -191,7 +191,7 @@
 
     &__help-center {
         margin-top: 5rem;
-        
+
         &__header {
             display: flex;
             justify-content: space-between;
@@ -229,16 +229,16 @@
             @media only screen and (max-width: 25em) { //400px
                 // flex-direction: column;
             };
-            
 
-            
+
+
 
             .select-container {
 
                 @media only screen and (max-width: 25em) { //400px
                     width: 22rem;
                 };
-                
+
             }
 
             .filter-post {
@@ -247,10 +247,10 @@
                 font-size: $font-size;
                 padding-right: 2rem;
                 border-radius: 10px;
-                
+
             }
 
-            
+
             .filter-post:first-child {
                 width: fit-content;
                 margin-right: $margin;
@@ -272,9 +272,9 @@
             margin-top: 2rem;
             font-size: 1.6rem;
             background-color: #ffffff;
-            
+
             max-height: 50rem;
-            
+
 
             &::-webkit-scrollbar {
                 display: none;
@@ -293,12 +293,12 @@
                 * {
                     border-top: none !important;
                 }
-                
+
             }
 
             & tr {
                 height: 10rem;
-                
+
             }
 
             // selects all direct child of tr
@@ -310,7 +310,7 @@
                 white-space: nowrap;
                 text-align: center;
                 font-size: 1.6rem;
-                
+
                 @media only screen and (max-width: 31.25em) { //500px
                     white-space: normal;
                 };
@@ -337,7 +337,7 @@
 
             button {
                 white-space: nowrap;
-                
+
                 @media only screen and (max-width: 31.25em) { //500px
                     white-space: normal;
                 };
@@ -346,7 +346,7 @@
     }
 
 
-    
+
 }
 
 
@@ -363,8 +363,8 @@
     }
 
     &__header {
-        
-        
+
+
         h5 {
             font-weight: 600 !important;
         }
@@ -387,7 +387,7 @@
 
     & tr {
         height: 10rem;
-        
+
     }
 
     // selects all direct child of tr
@@ -410,7 +410,7 @@
     //     font-size: 1.5rem;
     // }
 
-    
+
     & td button {
         font-size: 1.6rem;
         &:not(:last-child) {
@@ -446,15 +446,15 @@ table {
     position: absolute;
     z-index: 5000;
     background-color: rgba($color: #000000, $alpha: .63);
-    
 
-    
+
+
 
 
 
     #add-post-container {
         @include absCenter;
-        
+
         border-radius: 10px;
         width: 50%;
 
@@ -485,7 +485,7 @@ table {
 
         .add-post-bottom {
             display: flex;
-            
+
             * {
                 font-size: 2.2rem;
             }
