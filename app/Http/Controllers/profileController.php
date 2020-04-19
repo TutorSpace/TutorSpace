@@ -29,6 +29,7 @@ class profileController extends Controller
         // foreach ($bookmarks as $bookmark) {
             // dd(User::find($bookmark->id)->courses[0]->course);
         // }
+
         if($user->is_tutor) {
             $gpa = $user->gpa;
             $hourlyRate = $user->hourly_rate;

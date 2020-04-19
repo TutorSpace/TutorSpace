@@ -268,7 +268,8 @@
                                 <div>ITP 104</div>
                             </td>
                             <td class="review-content__container">
-                                <p class="review-content">The consultant was incredibly helpful and I left feeling very optimistic about my paper. When I was stuck at a couple transitions she was able to suggest a tweak in order to fit what I was feeling but not able to say. Really just great<span class="grey-text time-sent">14
+                                <p class="review-content">
+                                The consultant was incredibly helpful and I left feeling very optimistic about my paper. When I was stuck at a couple transitions she was able to suggest a tweak in order to fit what I was feeling but not able to say. Really just great.<span class="grey-text time-sent">14
                                         days ago</span></p>
 
                             </td>
