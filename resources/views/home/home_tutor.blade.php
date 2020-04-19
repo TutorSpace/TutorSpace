@@ -48,7 +48,7 @@ min-width-450
                         <h2>Welcome {{Auth::user()->full_name}}!</h2>
                     </div>
                     <div class="home__container__header__content__text__descriptor">
-                        <small>You have X unread message & Y Tutor Request(s)</small>
+                        <small>You have X unread message & {{count($tutorRequests)}} Tutor Request(s)</small>
                     </div>
                 </div>
                 <div class="home__container__header__content__img">
@@ -144,69 +144,74 @@ min-width-450
             </div>
 
             <div class="home__tutor-requests home__container__notifications__title">
+                @if(count($tutorRequests) === 0)
+                    <div class="home__tutor-requests__header">
+                        <h5>Tutor Requests <span class="home__tutor-requests__header--num"></span></h5>
+                    </div>
+                    <div class="home__tutor-requests__content ">
+                        There is no tutor requests currently. Add a post to make more people know you!
+                    </div>
+                @else
                 <div class="home__tutor-requests__header">
-                    <h5>Tutor Requests <span class="home__tutor-requests__header--num">(2)</h5></span>
+                    <h5>Tutor Requests <span class="home__tutor-requests__header--num">({{count($tutorRequests)}})</span></h5>
                 </div>
                 <div class="home__tutor-requests__content">
                     Click on the panel if you want to view the request in Messages.
                 </div>
 
-                <table class="table table-hover tutor-requests-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"><small class="bold">Student Name</small></th>
-
-                            <td>
-                                <div class="labels">Date</div>
-                                <small class="bold">Wednesday, March 15, 2020</small>
-                            </td>
-                            <td>
-                                <div class="labels">Subject / Course</div>
-                                <small class="bold">ITP 104</small>
-                            </td>
-                            <td>
-                                <div class="labels">Start Time</div>
-                                <small class="bold">4:30pm</small>
-                            </td>
-                            <td>
-                                <div class="labels">End Time</div>
-                                <small class="bold">6:00pm</small>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-lg btn-outline-primary"><small>Decline</small></button>
-                                <button class="btn btn-lg btn-primary"><small>Accept</small></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover tutor-requests-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="assets/mj.jpg" alt="tutor pic"><small class="bold">Student Name</small></th>
-                            <td>
-                                <div class="labels">Date</div>
-                                <small class="bold">Wednesday, March 15, 2020</small>
-                            </td>
-                            <td>
-                                <div class="labels">Subject / Course</div>
-                                <small class="bold">ITP 104</small>
-                            </td>
-                            <td>
-                                <div class="labels">Start Time</div>
-                                <small class="bold">4:30pm</small>
-                            </td>
-                            <td>
-                                <div class="labels">End Time</div>
-                                <small class="bold">6:00pm</small>
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-lg btn-outline-primary"><small>Decline</small></button>
-                                <button class="btn btn-lg btn-primary"><small>Accept</small></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                    @foreach ($tutorRequests as $tutorRequest)
+                        <table class="table table-hover tutor-requests-table" data-tutor-request-id='{{$tutorRequest->tutor_request_id}}'>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        <img src="assets/mj.jpg" alt="tutor pic">
+                                        <small class="bold">{{$tutorRequest->full_name}}</small>
+                                    </th>
+                                    <td>
+                                        <div class="labels">Date</div>
+                                        <small class="bold">
+                                            {{
+                                                date('m/d/Y', strtotime($tutorRequest->tutor_session_date))
+                                            }}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <div class="labels">Subject / Course</div>
+                                        @if($tutorRequest->is_course_request)
+                                            <small class="bold">
+                                                {{$tutorRequest->course}}
+                                            </small>
+                                        @else
+                                            <small class="bold">
+                                                {{$tutorRequest->subject}}
+                                            </small>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <div class="labels">Start Time</div>
+                                        <small class="bold">
+                                            {{$tutorRequest->start_time}}
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <div class="labels">End Time</div>
+                                        <small class="bold">
+                                            {{$tutorRequest->end_time}}
+                                        </small>
+                                    </td>
+                                    <td class="text-center">
+                                        <button class="btn btn-lg btn-outline-primary" data-tutor-request-id='{{$tutorRequest->tutor_request_id}}'>
+                                            <small>Decline</small>
+                                        </button>
+                                        <button class="btn btn-lg btn-primary" data-tutor-request-id='{{$tutorRequest->tutor_request_id}}'>
+                                            <small>Accept</small>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endforeach
+                @endif
             </div>
 
             <div class="row home__container__help-center">

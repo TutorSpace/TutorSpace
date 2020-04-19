@@ -9,6 +9,7 @@ use App\Course;
 use App\Subject;
 use App\User;
 use App\Dashboard_post;
+use App\Tutor_request;
 
 
 class homeController extends Controller
@@ -35,7 +36,13 @@ class homeController extends Controller
             $upcomingSessions = $user->upcomingSessions(4);
 
             // TODO: get tutor requests
-            // $tutorRequests = User::with(['tutor_requests', 'courses']);
+            $tutorRequests = Tutor_request::select('tutor_requests.id as tutor_request_id', 'student_id', 'tutor_id', 'course_id', 'is_accepted', 'subject_id', 'is_course_request', 'start_time', 'end_time', 'tutor_session_date', 'users.*', 'courses.*', 'subjects.*')
+                            ->join('users', 'users.id', '=', 'tutor_requests.student_id')
+                            ->leftJoin('courses', 'tutor_requests.course_id', '=', 'courses.id')
+                            ->leftJoin('subjects', 'tutor_requests.subject_id', '=', 'subjects.id')
+                            ->where('tutor_id', '=', $user->id)
+                            ->where('is_accepted', '=', 0)
+                            ->get();
 
 
             // TODO: build availability calendar
@@ -45,8 +52,10 @@ class homeController extends Controller
                 'upcomingSessions' => $upcomingSessions,
                 'posts' => $posts,
                 'interestedCourses' => $interestedCourses,
-                'interestedSubjects' => $interestedSubjects
+                'interestedSubjects' => $interestedSubjects,
+                'tutorRequests' =>$tutorRequests
             ]);
+
         }
         else {
             // choose randomly from subjects and courses the user is interested in, and display all of them. (If there is no courses/subjects the user interested, show nothing for that specific one)
