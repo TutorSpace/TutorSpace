@@ -20,11 +20,11 @@ class homeController extends Controller
 
         // get data of the dashboard
         $posts = Dashboard_post::select('dashboard_posts.id as post_id', 'user_id', 'course_id', 'post_message', 'subject_id', 'is_course_post', 'dashboard_posts.created_at as post_created_time', 'users.*', 'courses.*', 'subjects.*')
-        ->join('users', 'users.id', '=', 'user_id')
-        ->leftJoin('courses', 'course_id', '=', 'courses.id')
-        ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
-        ->where('user_id', '!=', $user->id)
-        ->get();
+                ->join('users', 'users.id', '=', 'user_id')
+                ->leftJoin('courses', 'course_id', '=', 'courses.id')
+                ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
+                ->where('user_id', '!=', $user->id)
+                ->get();
 
         // get all the subjects and posts that the user is interested in
         $interestedCourses = $user->courses;
@@ -35,13 +35,12 @@ class homeController extends Controller
             // get upcoming sessions (at most 4)
             $upcomingSessions = $user->upcomingSessions(4);
 
-            // TODO: get tutor requests
-            $tutorRequests = Tutor_request::select('tutor_requests.id as tutor_request_id', 'student_id', 'tutor_id', 'course_id', 'is_accepted', 'subject_id', 'is_course_request', 'start_time', 'end_time', 'tutor_session_date', 'users.*', 'courses.*', 'subjects.*')
+            // get tutor requests
+            $tutorRequests = Tutor_request::select('tutor_requests.id as tutor_request_id', 'student_id', 'tutor_id', 'course_id', 'subject_id', 'is_course_request', 'start_time', 'end_time', 'tutor_session_date', 'users.*', 'courses.*', 'subjects.*')
                             ->join('users', 'users.id', '=', 'tutor_requests.student_id')
                             ->leftJoin('courses', 'tutor_requests.course_id', '=', 'courses.id')
                             ->leftJoin('subjects', 'tutor_requests.subject_id', '=', 'subjects.id')
                             ->where('tutor_id', '=', $user->id)
-                            ->where('is_accepted', '=', 0)
                             ->get();
 
 

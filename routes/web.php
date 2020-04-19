@@ -60,19 +60,23 @@ Route::get('/logout', 'loginController@logout')->name('logout')->middleware(['ch
 
 
 // home page
-Route::get('/home', 'homeController@show')->name('home_student')->middleware(['checkLogin']);
+Route::get('/home', 'homeController@show')->name('home')->middleware(['checkLogin']);
 
 
 // search page
 Route::get('/search', 'searchController@show')->name('search')->middleware(['checkLogin']);
 
 
-// bookmark (no need for login middleware)
+// bookmark
 Route::get('/bookmark_remove', 'generalController@removeBookmark')->middleware(['checkLogin']);
 Route::get('/bookmark_add', 'generalController@addBookmark')->middleware(['checkLogin']);
 
 
-// dashboard (no need for login middleware)
+// dashboard
 Route::get('/dashboard', 'generalController@getDashboardPosts')->middleware(['checkLogin']);
 Route::get('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['checkLogin']);
+
+// tutor requests
+Route::get('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['checkLogin']);
+Route::get('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
 

@@ -21,7 +21,8 @@ $('#add-post').click(() => {
 });
 
 // cancel button for post
-$('#add-post-container .btn-cancel').click(() => {
+$('#add-post-container .btn-cancel').click((e) => {
+    e.preventDefault();
     $('#background-cover').hide();
 });
 
@@ -158,5 +159,6 @@ function showAddPost() {
 }
 
 
-
-
+function success(successMsg) {
+    toastr.success(successMsg);
+}

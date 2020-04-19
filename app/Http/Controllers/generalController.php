@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Dashboard_post;
+use App\Tutor_request;
+use App\Session;
 
 class generalController extends Controller
 {
@@ -182,5 +184,42 @@ class generalController extends Controller
             ]
         );
     }
+
+    public function acceptTutorRequest(Request $request) {
+
+        $tutorRequestId = $request->input('tutor_request_id');
+
+        $tutorRequest = Tutor_request::find($tutorRequestId);
+
+        $session = new Session();
+        $session->tutor_id = $tutorRequest->tutor_id;
+        $session->student_id = $tutorRequest->student_id;
+        $session->is_course = $tutorRequest->is_course_request;
+        $session->course_id = $tutorRequest->course_id;
+        $session->subject_id = $tutorRequest->subject_id;
+        $session->start_time = $tutorRequest->start_time;
+        $session->end_time = $tutorRequest->end_time;
+        $session->date = $tutorRequest->tutor_session_date;
+        $session->is_upcoming = 1;
+        $session->save();
+
+        Tutor_request::find($tutorRequestId)->delete();
+
+        return redirect()
+                ->route('home')
+                ->with('successMsg', 'Successfully accepted the tutor request!');
+    }
+
+    public function rejectTutorRequest(Request $request) {
+        $tutorRequestId = $request->input('tutor_request_id');
+
+        Tutor_request::find($tutorRequestId)->delete();
+
+        return redirect()
+                ->route('home')
+                ->with('successMsg', 'Successfully rejected the tutor request!');
+    }
+
+
 
 }
