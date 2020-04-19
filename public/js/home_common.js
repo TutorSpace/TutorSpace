@@ -6,12 +6,34 @@ $('.home__container__notifications__sessions .session__container > button:last-c
 
 // select cancel session
 $('.home__container__notifications__sessions .session__container > button:not(:last-child)').click(function () {
-    alert('TODO: cancel session');
+    let sessionId = $(this).attr('data-session-id');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type:'POST',
+        url: `/session_cancel`,
+        data: {
+            session_id: sessionId
+        },
+        success: (data) => {
+            $(this).parent().remove();
+            let { successMsg } = data;
+            toastr.success(successMsg);
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
 
 
 
 });
-
 
 
 
@@ -25,6 +47,7 @@ $('#add-post-container .btn-cancel').click((e) => {
     e.preventDefault();
     $('#background-cover').hide();
 });
+
 
 // add post
 $('#add-post-container').submit((e) => {
@@ -42,8 +65,15 @@ $('#add-post-container').submit((e) => {
         toastr.warning('Please select which course/subject your post is about!');
         return;
     }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $.ajax({
-        type:'GET',
+        type:'POST',
         url: '/dashboard_add',
         data: {
             postMsg: postMsg,
@@ -162,3 +192,6 @@ function showAddPost() {
 function success(successMsg) {
     toastr.success(successMsg);
 }
+
+
+

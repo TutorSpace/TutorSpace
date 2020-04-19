@@ -205,9 +205,12 @@ class generalController extends Controller
 
         Tutor_request::find($tutorRequestId)->delete();
 
-        return redirect()
-                ->route('home')
-                ->with('successMsg', 'Successfully accepted the tutor request!');
+        return response()->json(
+            [
+                'successMsg' => 'Successfully accepted the tutor request!'
+            ]
+        );
+
     }
 
     public function rejectTutorRequest(Request $request) {
@@ -215,11 +218,23 @@ class generalController extends Controller
 
         Tutor_request::find($tutorRequestId)->delete();
 
-        return redirect()
-                ->route('home')
-                ->with('successMsg', 'Successfully rejected the tutor request!');
+        return response()->json(
+            [
+                'successMsg' => 'Successfully rejected the tutor request!'
+            ]
+        );
     }
 
+    public function cancelSession(Request $request) {
+        $sessionId = $request->input('session_id');
+        Session::find($sessionId)->delete();
+
+        return response()->json(
+            [
+                'successMsg' => 'Successfully cancelled the tutor session!'
+            ]
+        );
+    }
 
 
 }

@@ -74,9 +74,11 @@ Route::get('/bookmark_add', 'generalController@addBookmark')->middleware(['check
 
 // dashboard
 Route::get('/dashboard', 'generalController@getDashboardPosts')->middleware(['checkLogin']);
-Route::get('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['checkLogin']);
+Route::post('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['checkLogin']);
 
 // tutor requests
-Route::get('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['checkLogin']);
-Route::get('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
+Route::post('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['checkLogin']);
+Route::post('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
+
+Route::post('/session_cancel', 'generalController@cancelSession')->middleware(['checkLogin']);
 

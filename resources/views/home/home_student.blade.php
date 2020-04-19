@@ -174,7 +174,7 @@
                             <h5><span>Upcoming Sessions</span></h5>
                         </div>
                         @foreach ($upcomingSessions as $upcomingSession)
-                            <div class="session__container" data-user-id="{{$upcomingSession->session_id}}">
+                            <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
                                 <span class="title">{{$upcomingSession->full_name}}</span>
                                 <span class="descriptor">Date</span>
                                 <span class="descriptor">Subject / Course</span>
@@ -192,8 +192,8 @@
                                     {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
                                 </span>
                                 <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
-                                <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                                <button class="btn btn-lg btn-primary">View Session</button>
+                                <button class="btn btn-lg btn-outline-primary" data-session-id="{{$upcomingSession->session_id}}">Cancel Session</button>
+                                <button class="btn btn-lg btn-primary" data-session-id="{{$upcomingSession->session_id}}">View Session</button>
                             </div>
                         @endforeach
                     @endif

@@ -21,14 +21,7 @@ class CheckLogout
             return $next($request);
         }
         else {
-            $user = Auth::user();
-            if($user->is_tutor) {
-                return redirect()->route('home_tutor');
-            }
-            else {
-                return redirect()->route('home_student');
-            }
-            
+            return redirect()->route('home');
         }
     }
 }
