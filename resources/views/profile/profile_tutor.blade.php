@@ -13,7 +13,9 @@
         <div class="about__container">
             <div class="about__information">
                 <div class="about__information__img">
-                    <img src="{{asset('assets/mj.jpg')}}" alt="profile_img">
+                    <div class="img-container">
+                        <img src="{{$userPhotoUrl}}" alt="profile_img">
+                    </div>
                 </div>
 
                 <div class="about__information__content">

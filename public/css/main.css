@@ -12908,12 +12908,20 @@ table img {
 
 .about__information__img {
   flex: 0 0 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.about__information__img img {
+.about__information__img .img-container {
   width: 100%;
-  border-radius: 50%;
   padding: 2rem;
+}
+
+.about__information__img .img-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .about__information__content {

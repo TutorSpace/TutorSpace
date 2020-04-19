@@ -14,19 +14,23 @@ class profileController extends Controller
     // TODO: fill in the data of the user into subjects/characteristics/courses, sessions, saved, and reviews
     public function show(Request $request) {
         $user = Auth::user();
+
+
+        $userPhotoUrl = $user->profile_pic_url;
+
         if($user->is_tutor) {
             return view('profile.profile_tutor');
         }
         else {
-            // SARAH: get the student information and put it into the profile_student page. Let's first try getting the user's name.
+
 
             $subjects = $user->subjects;
 
             return view('profile.profile_student', [
-                'subjects' => $subjects
+                'subjects' => $subjects,
+                'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}")
             ]);
 
-            // Sarah: instead of 'return view('profile.profile_student');', you can refer to the return statement in function showEdit(). it is returning an array of variables. So in this way, you can pass the username to 'profile_student.blade.php'. Please refer to my notes in 'profile_student.blade.php'
         }
 
     }

@@ -14,11 +14,12 @@
         <div class="about__container">
             <div class="about__information">
                 <div class="about__information__img">
-                    <img src="{{asset("assets/mj.jpg")}}" alt="profile_img">
+                    <div class="img-container">
+                        <img src="{{$userPhotoUrl}}" alt="profile_img">
+                    </div>
                 </div>
 
                 <div class="about__information__content">
-                    {{-- SARAH: you can do  <h4>{{$fullName}}</h4> here to use the $fullName you get from the show() function in profileController --}}
                     <div class="name"><h4>Jamie Chang</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>

@@ -82,7 +82,7 @@ $('.session__container button').click(function() {
     if($(this)[0].innerHTML === "Cancel Session") {
         alert("TODO: session cancelled!");
     }
-   
+
 });
 
 $('.btn-write-review').click(function() {
@@ -107,4 +107,18 @@ $('.about__buttons__container button svg').click(function() {
     alert('TODO: remove from subjects/courses/characteristics');
 });
 
+function fitProfileImgHeight() {
+    let imgContainer = $('.about__information__img .img-container');
+    var currentWidth = imgContainer.width();
+    imgContainer.height(currentWidth);
+
+    // let profileImg = $('.about__information__img img');
+    // var currentWidth = profileImg.width();
+    // profileImg.height(currentWidth);
+
+}
+
+$(document).ready(fitProfileImgHeight);
+
+var $window = $(window).on('resize', fitProfileImgHeight).trigger('resize'); //on page load
 

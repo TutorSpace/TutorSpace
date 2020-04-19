@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="animsition @yield('body-class')">
+<body class="animsition @yield('body-class')" onload="">
     <div id="background-cover">
         @yield('add-post-container')
     </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="user-photo-container">
                     <div class="p-relative">
-                        <img src="{{asset('assets/sophia.png')}}" alt="user photo" id="tutor-profile-photo">
+                        <img src="{{$userPhotoUrl}}" alt="user photo" id="tutor-profile-photo">
                         <div class="nav__dropdown-container">
                             <p class="name">Jamie Chang</p>
                             <div class="profile-container">

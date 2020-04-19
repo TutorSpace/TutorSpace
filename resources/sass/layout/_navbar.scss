@@ -13,7 +13,7 @@
     }
 
     @include respond(phone) {
-                        
+
         display: none;
 
         + .nav {
@@ -27,7 +27,7 @@
         + .nav-container-white {
             background-color: $color-white !important;
         }
-        
+
     }
 }
 
@@ -47,21 +47,21 @@ $nav-height-percent: 70%;
     height: $navbar-height;
     width: 100vw;
     min-height: 35px;
-    
+
 
     .svg-logo-container {
         height: $nav-height-percent;
         // background-color: orangered;
         display: flex;
         align-items: center;
-        
+
 
         .svg-logo {
             margin-left: 7rem;
             margin-right: 7rem;
             width: 10rem;
             z-index: 100;
-            
+
             transition: transform .4s;
 
             &:hover {
@@ -90,8 +90,8 @@ $nav-height-percent: 70%;
 
         }
     }
-    
-    
+
+
     &-not-login {
         .nav-container {
             width: 100%;
@@ -107,7 +107,7 @@ $nav-height-percent: 70%;
                     margin-right: 3rem;
 
                     @media only screen and (max-width: 93.75em) { //1500px
-                        font-size: 1.7rem; 
+                        font-size: 1.7rem;
                     };
 
                     @include respond(tab-land) {
@@ -121,7 +121,7 @@ $nav-height-percent: 70%;
                 }
 
 
-                
+
 
             }
         }
@@ -144,13 +144,13 @@ $nav-height-percent: 70%;
 
                 a {
                     color: $color-blue-dark !important;
-                    
+
                 }
 
                 *:not(:last-child){
                     margin-right: 3rem;
 
-                    @media only screen and (max-width: 25em) { 
+                    @media only screen and (max-width: 25em) {
                         margin-right: 1.5rem;
                     }
                 }
@@ -158,11 +158,11 @@ $nav-height-percent: 70%;
 
                 .search-box {
                     border: 2px solid $color-blue-dark;
-                    
+
                     display: flex;
                     align-items: center;
                     border-radius: 8px;
-                    
+
 
 
                     svg {
@@ -213,7 +213,7 @@ $nav-height-percent: 70%;
                                 width: 22rem;
                             }
                         }
-                        
+
                     }
                 }
 
@@ -224,7 +224,7 @@ $nav-height-percent: 70%;
                 height: 70%;
                 display: flex;
                 align-items: center;
-                
+
 
                 margin-right: 5rem;
 
@@ -255,7 +255,7 @@ $nav-height-percent: 70%;
                     position: absolute;
                     top: 100%;
                     right: 0;
-                    
+
                     margin-top: 1rem;
                     border-radius: 8px;
 
@@ -282,7 +282,7 @@ $nav-height-percent: 70%;
                             border: none;
                             color: white;
                         }
-                    } 
+                    }
 
                     .profile-container, .log-out-container {
                         background-color: white;
@@ -300,7 +300,7 @@ $nav-height-percent: 70%;
                 }
 
             }
-            
+
         }
     }
 }
