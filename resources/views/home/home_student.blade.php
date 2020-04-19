@@ -288,7 +288,7 @@
                             </th>
                             <td>
                                 <p>
-                                    {{$post->post_created_time}}
+                                    {{date('m/d/Y', strtotime($post->post_created_time))}}
                                 </p>
                                 <span>
                                     @if($post->is_course_post)

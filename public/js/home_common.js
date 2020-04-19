@@ -4,7 +4,7 @@ $('.home__container__notifications__sessions .session__container > button:last-c
 });
 
 
-// select cancel session
+// cancel session
 $('.home__container__notifications__sessions .session__container > button:not(:last-child)').click(function () {
     let sessionId = $(this).attr('data-session-id');
 
@@ -21,9 +21,9 @@ $('.home__container__notifications__sessions .session__container > button:not(:l
             session_id: sessionId
         },
         success: (data) => {
-            $(this).parent().remove();
             let { successMsg } = data;
             toastr.success(successMsg);
+            window.location.href = '/home';
         },
         error: function(error) {
             console.log(error);
@@ -125,7 +125,7 @@ $('#filter-form').submit(function(e) {
             posts.forEach(post => {
                 let imgUrl = 'assets/mj.jpg';
                 let fullName = post.full_name;
-                let dateCreated = post.post_created_time;
+
                 let courseSubjectName;
                 if(post.is_course_post)
                     courseSubjectName = post.course;
@@ -134,6 +134,10 @@ $('#filter-form').submit(function(e) {
 
                 let postMsg = post.post_message;
                 let postId = post.post_id;
+
+                let dateCreated = post.post_created_time;
+                dateCreated = $.datepicker.formatDate('mm/dd/yy', new Date(dateCreated));
+
 
                 let element = `
                     <tr data-post-id="${postId}">

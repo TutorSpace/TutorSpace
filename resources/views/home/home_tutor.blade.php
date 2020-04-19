@@ -175,7 +175,7 @@ min-width-450
                         <td>
                             <div class="labels">Date</div>
                             <small class="bold">
-                                {{date('m/d/Y', strtotime($tutorRequest->tutor_session_date))}}
+                                {{date('l, F d, Y', strtotime($tutorRequest->tutor_session_date))}}
                             </small>
                         </td>
                         <td>
@@ -262,7 +262,7 @@ min-width-450
                             </th>
                             <td>
                                 <p>
-                                    {{$post->post_created_time}}
+                                    {{date('m/d/Y', strtotime($post->post_created_time))}}
                                 </p>
                                 <span>
                                     @if($post->is_course_post)
@@ -295,9 +295,17 @@ min-width-450
 
 @section('js')
 
+{{-- jqueryUI --}}
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
+
 <!-- defined javascript -->
 <script src="js/home_tutor.js"></script>
 <script src="js/home_common.js"></script>
+
 
 @if(session('successMsg'))
 <script>

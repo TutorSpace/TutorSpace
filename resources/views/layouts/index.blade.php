@@ -8,8 +8,6 @@
 
     <title>@yield('title')</title>
 
-    
-
     <!-- my css for all pages, including bootstrap-->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
 
@@ -69,12 +67,12 @@
     @yield('content')
 
 
-    
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
-    
+
 
     {{-- my js for bootstrap --}}
     <script src="{{asset('js/app.js')}}"></script>

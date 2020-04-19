@@ -8,10 +8,9 @@
     <title>@yield('title')</title>
 
 
-
     <!-- my css for all pages, including bootstrap-->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
-    {{-- cs for toastr --}}
+    {{-- css for toastr --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 
     @yield('links-in-head')
@@ -97,8 +96,10 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
 
+
     {{-- js for toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
 
     {{-- my js for bootstrap --}}
     <script src="{{asset('js/app.js')}}"></script>

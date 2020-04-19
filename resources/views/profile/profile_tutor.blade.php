@@ -68,7 +68,7 @@
                             </svg>
                             <span class="name">Ling</span>
                         </button>
-                        
+
                     </div>
 
                     <form class="about__courses" method="POST" action="#">
@@ -158,10 +158,10 @@
                     Some description here
                 </div> --}}
                 <div class="sessions__info p-relative">
-                
+
                     <div class="sessions__info">
                         <div class="shadow-container">
-                            
+
                         </div>
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
@@ -482,7 +482,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
         </div>
 
 
@@ -496,6 +496,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="{{asset('js/profile.js')}}"></script>
 
 @endsection

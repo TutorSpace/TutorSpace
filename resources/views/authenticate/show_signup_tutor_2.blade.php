@@ -42,11 +42,11 @@
                     @enderror
                 </div>
 
-                
+
             </div>
 
             <div class="col p-relative">
-               
+
                 <div class="signup-container__form__group">
                     <input type="text" id="minor" name="minor" placeholder="Minor" value="{{ old('minor') }}">
                     <label for="minor"><small>Minor</small></label>
@@ -76,7 +76,7 @@
                 <span class="error error-right error-input-file">{{$message}}</span>
                 @enderror
 
-                
+
 
             </div>
         </div>
@@ -98,6 +98,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="{{asset('js/signup.js')}}"></script>
 
 @endsection
