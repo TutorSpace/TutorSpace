@@ -5,7 +5,7 @@
 
 
 <div class="container signup-container" id="signup_tutor_container">
-    <form action="/signup_tutor_2" method="POST" class="signup-container__form text-center">
+    <form action="/signup_tutor_2" method="POST" class="signup-container__form text-center" enctype="multipart/form-data">
         @csrf
         <div class="signup-container__form__header">
             <h1 class="heading-color">Sign up to be a Tutor</h1>
@@ -66,9 +66,9 @@
                 </div>
 
                 <div class="file-input-group">
-                    <label for="profile-pic" class="label-upload"><span>Upload Profile Image</span></label>
+                    <label for="profile-pic" class="label-upload"><span id="file-input-text">Upload Profile Image</span></label>
 
-                    <input type="file" id="profile-pic" name="profile-pic" placeholder="Upload Profile Picture">
+                    <input type="file" id="profile-pic" name="profile-pic" accept="image/*" placeholder="Upload Profile Picture">
 
 
                 </div>

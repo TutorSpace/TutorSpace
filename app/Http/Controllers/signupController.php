@@ -91,6 +91,10 @@ class signupController extends Controller
             ],
             'minor' => [
                 'nullable'
+            ],
+            'profile-pic' => [
+                'file',
+                'mimes:jpeg,bmp,png'
             ]
         ]);
 
@@ -113,6 +117,8 @@ class signupController extends Controller
 
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
 
+        $this->saveProfilePic($request, $user);
+
 
         $user->save();
 
@@ -120,6 +126,18 @@ class signupController extends Controller
         Auth::login($user);
 
         return redirect()->route('profile');
+    }
+
+
+    private function saveProfilePic(&$request, &$user) {
+        // if user uploaded the file
+        if($request->file('profile-pic')) {
+            $imgURL = $request->file('profile-pic')->store('');
+            $user->profile_pic_url = $imgURL;
+        }
+        else {
+            $user->profile_pic_url = 'placeholder.png';
+        }
     }
 
 
@@ -183,6 +201,10 @@ class signupController extends Controller
             'gpa' => [
                 'nullable',
                 'numeric'
+            ],
+            'profile-pic' => [
+                'file',
+                'mimes:jpeg,bmp,png'
             ]
         ]);
 
@@ -210,6 +232,7 @@ class signupController extends Controller
 
         $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
 
+        $this->saveProfilePic($request, $user);
 
         $user->save();
 
