@@ -167,6 +167,17 @@ class User extends Authenticatable
                     ->avg('star_rating');
 
         return round($avg, 2);
-
     }
+
+    // get the rating of the user as the reviewer
+    public function getRatingAsReviewer() {
+        $avg = User::join('reviews', 'reviewer_id', '=', 'users.id')
+                    ->where('users.id', '=', $this->id)
+                    ->avg('star_rating');
+
+        return round($avg, 2);
+    }
+
+
+
 }

@@ -319,220 +319,86 @@
 
                 <div class="review-star__container__header">
                     <div>
-                        <p>12</p>
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                        </svg>
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                        </svg>
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                        </svg>
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                        </svg>
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
-                        </svg>
+                        @if(count($reviews) === 0)
+                            <p class="mr-0">No Written Reviews yet</p>
+                        @else
+                            <p>{{$reviewTotalRating}}</p>
+                            @for ($i = 0; $i < floor($reviewTotalRating); $i++)
+                                <svg>
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                </svg>
+                            @endfor
+                            @for ($i = floor($reviewTotalRating); $i < 5; $i++)
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                            </svg>
+                            @endfor
+                        @endif
                     </div>
                 </div>
             </div>
 
-            <p class="text-right grey-text">102 Reviews</p>
+            <p class="text-right grey-text">{{count($reviews)}} Review(s)</p>
 
             <div class="reviews">
+                @foreach ($reviews as $review)
+                @php
+                    $user = App\User::find($review->reviewee_id);
+                    $session = App\Session::find($review->session_id);
+
+                    // did not use created at, because the review might be updated. By defulat, it should equal to created time when created initially
+                    $earlier = new DateTime($review->updated_at);
+                    $later =  new DateTime(date('m/d/Y', time()));
+
+                    $diff = $later->diff($earlier)->format("%a");
+
+                @endphp
                 <table class="table table-hover reviews-table">
                     <tbody>
                         <tr>
-                            <th scope="row"><img src="{{asset('assets/mj.jpg')}}" alt="user photo"></th>
-                            <td class="name">Sophia Park </td>
+                            <th scope="row">
+                                <img src="{{asset("user_photos/{$user->profile_pic_url}")}}" alt="reviewee photo">
+                            </th>
+                            <td class="name">{{$user->full_name}}</td>
                             <td class="subject-container">
-                                <div class="grey-text">Session Subject(s)</div>
-                                <div>ITP 104</div>
+                                <div class="grey-text">Subject / Course</div>
+                                <div>{{$session->courseSubject()}}</div>
                             </td>
                             <td class="review-content__container">
                                 <p class="review-content">
-                                The consultant was incredibly helpful and I left feeling very optimistic about my paper. When I was stuck at a couple transitions she was able to suggest a tweak in order to fit what I was feeling but not able to say. Really just great.<span class="grey-text time-sent">14
-                                        days ago</span></p>
+                                    {{$review->review}}
 
+                                    {{-- $diff is string, dont use === here --}}
+                                    @if($diff == 0)
+                                    <span class="grey-text time-sent">
+                                        Today
+                                    </span>
+                                    @else
+                                    <span class="grey-text time-sent">
+                                        {{$diff}} days ago
+                                     </span>
+                                    @endif
+                                </p>
                             </td>
                             <td>
                                 <div class="review-star__container">
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
+                                    @for ($i = 0; $i < floor($review->star_rating); $i++)
+                                        <svg>
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                        </svg>
+                                    @endfor
+                                    @for ($i = floor($review->star_rating); $i < 5; $i++)
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                                     </svg>
+                                    @endfor
                                 </div>
-
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-hover reviews-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="{{asset('assets/mj.jpg')}}" alt="user photo"></th>
-                            <td class="name">Sophia Park </td>
-                            <td class="subject-container">
-                                <div class="grey-text">Session Subject(s)</div>
-                                <div>ITP 104</div>
-                            </td>
-                            <td class="review-content__container">
-                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14
-                                        days ago</span></p>
+                @endforeach
 
-                            </td>
-                            <td>
-                                <div class="review-star__container">
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
-                                    </svg>
-                                </div>
-
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover reviews-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="{{asset('assets/mj.jpg')}}" alt="user photo"></th>
-                            <td class="name">Sophia Park </td>
-                            <td class="subject-container">
-                                <div class="grey-text">Session Subject(s)</div>
-                                <div>ITP 104</div>
-                            </td>
-                            <td class="review-content__container">
-                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14
-                                        days ago</span></p>
-
-                            </td>
-                            <td>
-                                <div class="review-star__container">
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
-                                    </svg>
-                                </div>
-
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover reviews-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="{{asset('assets/mj.jpg')}}" alt="user photo"></th>
-                            <td class="name">Sophia Park </td>
-                            <td class="subject-container">
-                                <div class="grey-text">Session Subject(s)</div>
-                                <div>ITP 104</div>
-                            </td>
-                            <td class="review-content__container">
-                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14
-                                        days ago</span></p>
-
-                            </td>
-                            <td>
-                                <div class="review-star__container">
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
-                                    </svg>
-                                </div>
-
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover reviews-table">
-                    <tbody>
-                        <tr>
-                            <th scope="row"><img src="{{asset('assets/mj.jpg')}}" alt="user photo"></th>
-                            <td class="name">Sophia Park </td>
-                            <td class="subject-container">
-                                <div class="grey-text">Session Subject(s)</div>
-                                <div>ITP 104</div>
-                            </td>
-                            <td class="review-content__container">
-                                <p class="review-content">I didn't know what to expect going in, but it turned out to be very effective and informative. Speaking to someone who has so much writing expertise is an amazing experience. Very helpful. The environment is very homey and welcoming. The open windows and friendliness of the staff allow good ideas to come to mind. I really appreciate everything. Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you!  Thank you! Thank you! Thank you! <span class="grey-text time-sent">14
-                                        days ago</span></p>
-
-                            </td>
-                            <td>
-                                <div class="review-star__container">
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                                    </svg>
-                                    <svg>
-                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
-                                    </svg>
-                                </div>
-
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
             </div>
 
         </div>

@@ -310,10 +310,12 @@ $margin-top: 3rem;
         }
     }
     .subject-container {
-        text-align: center;
         * {
             white-space: nowrap;
         }
+        min-width: 15%;
+        display: block;
+        text-align: center;
     }
 
     p {

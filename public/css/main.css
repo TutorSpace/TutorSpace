@@ -11173,11 +11173,24 @@ a.btn.btn-primary {
   margin-top: 2rem;
   font-size: 1.6rem;
   background-color: #ffffff;
+  border-radius: 10px;
   display: block;
+}
+
+.reviews-table * {
+  border-top: none !important;
+}
+
+.reviews-table tbody,
+.reviews-table tr {
+  display: flex;
+  flex: 1;
 }
 
 .reviews-table tr {
   height: 10rem;
+  align-items: center;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .reviews-table tr > * {
@@ -11186,6 +11199,9 @@ a.btn.btn-primary {
 
 .reviews-table tr > :nth-child(2) {
   white-space: nowrap;
+  min-width: 15%;
+  display: block;
+  text-align: center;
 }
 
 .reviews-table .time-sent {
@@ -11204,6 +11220,7 @@ a.btn.btn-primary {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 .reviews-table .review-content {
@@ -11211,10 +11228,8 @@ a.btn.btn-primary {
   overflow: scroll;
   font-size: 1.5rem;
   margin-bottom: 0;
-}
-
-.reviews-table .review-content::-webkit-scrollbar {
-  display: none;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .reviews-table .review-star__container {
@@ -13193,6 +13208,8 @@ table img {
 }
 
 .reviews__container .subject-container {
+  min-width: 15%;
+  display: block;
   text-align: center;
 }
 

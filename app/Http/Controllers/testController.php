@@ -11,6 +11,7 @@ use App\Bookmark;
 use App\Dashboard_post;
 use Auth;
 use App\Tutor_request;
+use App\Session;
 
 
 class testController extends Controller
@@ -55,7 +56,8 @@ class testController extends Controller
 
         // dd($interestedCourses);
 
-        dd(User::find(8)->getRating());
+        // dd(User::find(8)->getRating());
+        dd(Session::find(3)->courseSubject());
 
     }
 }

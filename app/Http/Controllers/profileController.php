@@ -25,7 +25,12 @@ class profileController extends Controller
 
 
 
+
         if($user->is_tutor) {
+            // get reviews the user is being reviewed
+            $reviews = $user->being_reviews;
+            $reviewTotalRating = $user->getRating();
+
             return view('profile.profile_tutor', [
                 'user' => $user,
                 'subjects' => $subjects,
@@ -33,13 +38,18 @@ class profileController extends Controller
                 'characteristics' => $characteristics,
                 'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}"),
                 'upcomingSessions' => $upcomingSessions,
-                'pastSessions' => $pastSessions
+                'pastSessions' => $pastSessions,
+                'reviews' => $reviews,
+                'reviewTotalRating' => $reviewTotalRating
             ]);
         }
         else {
             // get bookmarked tutors
             $bookmarks = $user->bookmarks;
 
+            // get reviews the user wrote
+            $reviews = $user->written_reviews;
+            $reviewTotalRating = $user->getRatingAsReviewer();
 
             return view('profile.profile_student', [
                 'user' => $user,
@@ -49,7 +59,9 @@ class profileController extends Controller
                 'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}"),
                 'upcomingSessions' => $upcomingSessions,
                 'pastSessions' => $pastSessions,
-                'bookmarks' => $bookmarks
+                'bookmarks' => $bookmarks,
+                'reviews' => $reviews,
+                'reviewTotalRating' => $reviewTotalRating
             ]);
         }
     }
