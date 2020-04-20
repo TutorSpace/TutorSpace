@@ -112,7 +112,10 @@ min-width-450
                     data-user-id="{{$recommendedCourse->id}}">
                         <tbody>
                             <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">{{$recommendedCourse->full_name}}</th>
+                                <th scope="row">
+                                    <img src="{{asset("user_photos/{$recommendedCourse->profile_pic_url}")}}" alt="tutor pic">
+                                    {{$recommendedCourse->full_name}}
+                                </th>
                                 <td>
                                     <div>{{App\User::find($recommendedCourse->id)->school_year->first()->school_year}}</div>
                                     <div>{{App\User::find($recommendedCourse->id)->major->first()->major}}</div>
@@ -142,7 +145,10 @@ min-width-450
                     data-user-id="{{$recommendedSubject->id}}">
                         <tbody>
                             <tr>
-                                <th scope="row"><img src="assets/mj.jpg" alt="tutor pic">{{$recommendedSubject->full_name}}</th>
+                                <th scope="row">
+                                    <img src="{{asset("user_photos/{$recommendedSubject->profile_pic_url}")}}" alt="tutor pic">
+                                    {{$recommendedSubject->full_name}}
+                                </th>
                                 <td>
                                     <div>{{App\User::find($recommendedSubject->id)->school_year->first()->school_year}}</div>
                                     <div>{{App\User::find($recommendedSubject->id)->major->first()->major}}</div>
@@ -216,7 +222,9 @@ min-width-450
                     </div>
                     @foreach($pastTutors as $pastTutor)
                     <div class="tutor-container" data-user-id="{{$pastTutor->tutor_id}}">
-                        <div class="img-container"><img src="assets/mj.jpg" alt="tutor pic"></div>
+                        <div class="img-container">
+                            <img src="{{asset("user_photos/{$pastTutor->profile_pic_url}")}}" alt="tutor pic">
+                        </div>
                         <div class="tutor__info">
                             <div>{{$pastTutor->full_name}}</div>
                             <div>Last Session:
@@ -286,7 +294,7 @@ min-width-450
                         @foreach ($posts as $post)
                         <tr data-post-id="{{$post->post_id}}">
                             <th scope="row">
-                                <img src="assets/mj.jpg" alt="tutor pic">
+                                <img src="{{asset("user_photos/{$post->profile_pic_url}")}}" alt="tutor pic">
                                 {{$post->full_name}}
                             </th>
                             <td>

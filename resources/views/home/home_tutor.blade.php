@@ -171,7 +171,7 @@ min-width-450
                 <tbody>
                     <tr>
                         <th scope="row">
-                            <img src="assets/mj.jpg" alt="tutor pic">
+                            <img src="{{asset("user_photos/{$tutorRequest->profile_pic_url}")}}" alt="tutor pic">
                             <small class="bold">{{$tutorRequest->full_name}}</small>
                         </th>
                         <td>
@@ -259,7 +259,7 @@ min-width-450
                         @foreach ($posts as $post)
                         <tr data-post-id="{{$post->post_id}}">
                             <th scope="row">
-                                <img src="assets/mj.jpg" alt="tutor pic">
+                                <img src="{{asset("user_photos/{$post->profile_pic_url}")}}" alt="tutor pic">
                                 {{$post->full_name}}
                             </th>
                             <td>
