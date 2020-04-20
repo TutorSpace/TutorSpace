@@ -96,4 +96,7 @@ Route::post('/add_fav_course', 'courseController@addFavCourse')->middleware(['ch
 Route::post('/remove_characteristic', 'characteristicController@removeCharacteristic')->middleware(['checkLogin']);
 Route::post('/add_characteristic', 'characteristicController@addCharacteristic')->middleware(['checkLogin']);
 
+// reviews
+Route::post('/post_review', 'reviewController@postReview')->middleware(['checkLogin']);
+
 

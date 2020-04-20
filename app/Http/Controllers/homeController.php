@@ -52,7 +52,8 @@ class homeController extends Controller
                 'posts' => $posts,
                 'interestedCourses' => $interestedCourses,
                 'interestedSubjects' => $interestedSubjects,
-                'tutorRequests' =>$tutorRequests
+                'tutorRequests' =>$tutorRequests,
+                'user' => $user
             ]);
 
         }
@@ -101,7 +102,8 @@ class homeController extends Controller
                 'pastTutors' => $pastTutors,
                 'posts' => $posts,
                 'interestedCourses' => $interestedCourses,
-                'interestedSubjects' => $interestedSubjects
+                'interestedSubjects' => $interestedSubjects,
+                'user' => $user
             ]);
         }
     }

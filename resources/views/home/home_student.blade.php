@@ -8,6 +8,9 @@
 </div>
 @endsection
 
+@section('body-class')
+min-width-450
+@endsection
 
 
 @section('add-post-container')

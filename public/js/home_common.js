@@ -94,8 +94,6 @@ $('#add-post-container').submit((e) => {
             toastr.error(error);
         }
     });
-
-
 });
 
 

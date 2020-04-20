@@ -91,9 +91,7 @@ $('.sessions__container-2 .session__container > button:last-child').click(functi
 });
 
 
-$('.btn-write-review').click(function() {
-    alert('TODO: go to write review page');
-});
+
 
 
 $( ".about__content .about__input" ).focusin(function() {
@@ -259,4 +257,78 @@ $('.sessions__container-1 .session__container > button:not(:last-child)').click(
         }
     });
 
+});
+
+
+// for writing review
+$('.btn-write-review').click(function() {
+    $('#background-cover').height(document.documentElement.scrollHeight);
+    $('#background-cover').width(document.documentElement.scrollWidth);
+    $('#background-cover').show();
+
+    let centerOffset = (document.documentElement.scrollHeight - $(window).height()) / 2;
+    $('html,body').animate({
+            scrollTop: centerOffset
+        },
+        'slow'
+    );
+
+    $('#write-review-container').height($(window).height() / 2);
+});
+
+
+// cancel button for post
+$('#write-review-container .btn-cancel').click((e) => {
+    e.preventDefault();
+    $('#background-cover').hide();
+});
+
+
+// add post
+$('#write-review-container').submit((e) => {
+    e.preventDefault();
+
+    let reviewMsg = $('#review-content').val();
+
+    if(!reviewMsg || reviewMsg.trim().length === 0) {
+        toastr.warning('Please enter review content!');
+        return;
+    }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type:'POST',
+        url: '/post_review',
+        data: {
+            reviewMsg: reviewMsg,
+        },
+        success: (data) => {
+            console.log(data);
+            let { successMsg } = data;
+            toastr.success(successMsg);
+
+            $('#background-cover').hide();
+
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
+});
+
+
+let starFilled = $('#star-filled > use').attr('xlink:href');
+let starOutlined = $('#star-outlined > use').attr('xlink:href');
+
+// adding effects on the star ratings
+$('.star-rating-container svg').hover(function() {
+    $(this).find('use').attr('xlink:href', starFilled);
+    $(this).prevAll().find('use').attr('xlink:href', starFilled);
+    $(this).nextAll().find('use').attr('xlink:href', starOutlined);
 });

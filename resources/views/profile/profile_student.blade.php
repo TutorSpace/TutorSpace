@@ -1,8 +1,65 @@
 @extends('layouts.loggedin')
 @section('title', 'profile - student')
 
-@section('content')
+@section('write-review-container')
+<svg id="star-outlined" class="hidden">
+    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+</svg>
+<svg id="star-filled" class="hidden">
+    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+</svg>
 
+<form id="write-review-container">
+    <h3 class="title">Write a Review</h3>
+    <div class="info-container">
+        <div class="info-row">
+            <small class="descriptor">Tutor Name</small>
+            <small class="descriptor">Student Name</small>
+            <span class="text">Jeffrey Miller</span>
+            <span class="text">Jamie Smith</span>
+        </div>
+        <div class="info-row">
+            <small class="descriptor">Date</small>
+            <small class="descriptor">Subject / Course</small>
+            <span class="text">Wednesday, March 15, 2020</span>
+            <span class="text">ITP 104</span>
+        </div>
+        <div class="star-rating-container">
+            <small class="descriptor">Star Rating</small>
+            <div class="star-container">
+                <svg id="star-1">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-2">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-3">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-4">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-5">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="review-content-container">
+        <h5>Review Jamie:</h5>
+        <textarea name="review-content" id="review-content"></textarea>
+    </div>
+    <div class="btn-container">
+        <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
+        <button class="btn btn-lg btn-primary btn-post" type="submit">Post</button>
+    </div>
+
+</form>
+@endsection
+
+@section('content')
     <div class="container" id="profile-container">
         <nav class="nav profile-nav">
             <a class="nav-link active" href="#" id="nav-about">About You</a>
@@ -51,7 +108,7 @@
 
                     <div class="about__buttons__container">
                         @foreach ($subjects as $subject)
-                            <button class="btn btn-lg" data-subject-id="{{$subject->id}}>
+                            <button class="btn btn-lg" data-subject-id="{{$subject->id}}">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                                 </svg>

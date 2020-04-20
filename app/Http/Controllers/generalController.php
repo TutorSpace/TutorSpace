@@ -185,6 +185,7 @@ class generalController extends Controller
         );
     }
 
+    // TODO: add validation
     public function acceptTutorRequest(Request $request) {
 
         $tutorRequestId = $request->input('tutor_request_id');
@@ -213,6 +214,7 @@ class generalController extends Controller
 
     }
 
+    // TODO: add validation
     public function rejectTutorRequest(Request $request) {
         $tutorRequestId = $request->input('tutor_request_id');
 
@@ -225,6 +227,7 @@ class generalController extends Controller
         );
     }
 
+    // TODO: add validation
     public function cancelSession(Request $request) {
         $sessionId = $request->input('session_id');
         $session = Session::find($sessionId);

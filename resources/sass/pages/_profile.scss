@@ -327,3 +327,109 @@ $margin-top: 3rem;
 .reviews__container {
     display: none;
 }
+
+
+
+#background-cover {
+
+    #write-review-container {
+        @include absCenter;
+
+        border-radius: 10px;
+        width: 50%;
+
+        background-color: white;
+        padding: 2rem 4rem;
+        color: black;
+
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            margin-bottom: 1rem;
+        }
+
+        .info-container {
+
+            .info-row {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 1rem;
+
+                > * {
+                    flex: 50%;
+                }
+
+                .descriptor {
+                    color: $color-gray;
+                }
+
+                .text {
+                    font-weight: 500;
+                    font-size: $font-2;
+                }
+            }
+        }
+
+        .star-rating-container {
+            width: 50%;
+            margin-bottom: 1rem;
+
+            .descriptor {
+                color: $color-gray;
+            }
+
+            .star-container {
+                display: flex;
+                align-items: center;
+
+
+
+                svg {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    fill: $color-blue-dark;
+                    z-index: 1;
+                    margin-right: .5rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+            }
+        }
+
+        .review-content-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2rem;
+
+            textarea {
+                display: block;
+                font-size: 2.2rem;
+                outline: none;
+                width: 100%;
+                margin-top: 1rem;
+                border-radius: 10px;
+                padding: 1rem 2rem;
+                flex: 1;
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+
+            * {
+                font-size: 2rem;
+            }
+
+            .btn-cancel {
+                margin-right: 2rem;
+            }
+        }
+
+    }
+}
