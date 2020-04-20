@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="container" id="profile-container">
+    <div class="container" id="profile-container" data-is-tutor="{{$user->is_tutor}}">
         <nav class="nav profile-nav">
             <a class="nav-link active" href="#" id="nav-about">About You</a>
             <a class="nav-link" href="#" id="nav-sessions">Sessions</a>
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="about__information__content">
-                    <div class="name"><h4>{{$user->full_name}}</h4></div>
+                    <div class="name"><h4 id="currentUserName">{{$user->full_name}}</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
@@ -140,11 +140,11 @@
 
                         </div>
                         @if(count($upcomingSessions) === 0)
-                        <h5>There is no upcoming sessions yet</h5>
+                        <h5>There are no upcoming sessions yet</h5>
                         @else
                             @foreach ($upcomingSessions as $upcomingSession)
                                 <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
-                                    <span class="title">{{$upcomingSession->full_name}}</span>
+                                    <span class="title name">{{$upcomingSession->full_name}}</span>
                                     <span class="descriptor">Date</span>
                                     <span class="descriptor">Subject / Course</span>
                                     <span class="text">
@@ -181,27 +181,27 @@
                 </div> --}}
                 <div class="sessions__info">
                     @if(count($pastSessions) === 0)
-                        <h5>There is no past sessions yet</h5>
+                        <h5>There are no past sessions yet</h5>
                     @else
                         @foreach ($pastSessions as $pastSession)
-                            <div class="session__container">
+                            <div class="session__container" data-session-id="{{$pastSession->session_id}}">
                                 <span class="title">{{$pastSession->full_name}}</span>
                                 <span class="descriptor">Date</span>
-                                <span class="descriptor">Course</span>
-                                <span class="text">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
+                                <span class="descriptor">Subject / Course</span>
+                                <span class="text date">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
                                 @if($pastSession->is_course)
-                                <span class="text">{{App\Course::find($pastSession->course_id)->course}}</span>
+                                <span class="text subject-course">{{App\Course::find($pastSession->course_id)->course}}</span>
                                 @else
-                                <span class="text">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
+                                <span class="text subject-course">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
                                 @endif
                                 <span class="descriptor">Time</span>
-                                <span class="descriptor">Location</span>
+                                <span class="descriptor">Hourly Rate</span>
                                 <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
                                 <span class="text">
-                                    {{$pastSession->location ?? 'On Campus'}}
+                                    ${{$pastSession->hourly_rate}} / hr
                                 </span>
-                                <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
-                                <button class="btn btn-lg btn-primary">View Session</button>
+                                <button class="btn btn-lg btn-outline-primary btn-write-review" data-session-id="{{$pastSession->session_id}}">Write a review +</button>
+                                <button class="btn btn-lg btn-primary" data-session-id="{{$pastSession->session_id}}">View Session</button>
                             </div>
                         @endforeach
                     @endif

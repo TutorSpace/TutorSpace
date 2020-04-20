@@ -346,7 +346,7 @@ $margin-top: 3rem;
         flex-direction: column;
 
         .title {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .info-container {
@@ -373,7 +373,7 @@ $margin-top: 3rem;
 
         .star-rating-container {
             width: 50%;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
 
             .descriptor {
                 color: $color-gray;
@@ -396,6 +396,7 @@ $margin-top: 3rem;
                         cursor: pointer;
                     }
                 }
+
 
             }
         }

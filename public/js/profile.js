@@ -247,7 +247,7 @@ $('.sessions__container-1 .session__container > button:not(:last-child)').click(
             $(this).parent().remove();
             // because there is a "shadow-container always inside"
             if($('.upcoming-sessions-container').children().length === 1) {
-                $('.upcoming-sessions-container').append('<h5>There is no upcoming sessions yet</h5>');
+                $('.upcoming-sessions-container').append('<h5>There are no upcoming sessions yet</h5>');
             }
 
         },
@@ -259,6 +259,8 @@ $('.sessions__container-1 .session__container > button:not(:last-child)').click(
 
 });
 
+let sessionId;
+let sessionContainer;
 
 // for writing review
 $('.btn-write-review').click(function() {
@@ -274,6 +276,34 @@ $('.btn-write-review').click(function() {
     );
 
     $('#write-review-container').height($(window).height() / 2);
+
+    sessionId = $(this).attr('data-session-id');
+
+    let reviewContainer = $('#write-review-container');
+
+    let isTutor = $('#profile-container').attr('data-is-tutor');
+    let currentUserName = $('#currentUserName').html();
+    let selectedUserName = $(this).parent().find('.name').html();
+
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    let date = new Date($(this).parent().find('.date').html());
+    date = new Intl.DateTimeFormat('en-US', options).format(date);
+
+    let subjectCourse = $(this).parent().find('.subject-course').html();
+
+    if(isTutor) {
+        reviewContainer.find('.tutor-name').html(currentUserName);
+        reviewContainer.find('.student-name').html(selectedUserName);
+    }
+    else {
+        reviewContainer.find('.tutor-name').html(selectedUserName);
+        revviewContainer.find('.student-name').html(currentUserName);
+    }
+    reviewContainer.find('.review-header').html('Review ' + selectedUserName + ': ');
+    reviewContainer.find('.date').html(date);
+    reviewContainer.find('.subject-course').html(subjectCourse);
+
+    sessionContainer = $(this).parent();
 });
 
 
@@ -284,11 +314,18 @@ $('#write-review-container .btn-cancel').click((e) => {
 });
 
 
-// add post
+// add review
 $('#write-review-container').submit((e) => {
     e.preventDefault();
 
     let reviewMsg = $('#review-content').val();
+    let rating = 0;
+    $('#write-review-container .star-container').children().each(function() {
+        console.log($(this)[0]);
+        let use = $(this).find('use');
+        if(use.attr('xlink:href') === starFilled)
+            rating += 1
+    });
 
     if(!reviewMsg || reviewMsg.trim().length === 0) {
         toastr.warning('Please enter review content!');
@@ -301,11 +338,14 @@ $('#write-review-container').submit((e) => {
         }
     });
 
+
     $.ajax({
         type:'POST',
         url: '/post_review',
         data: {
             reviewMsg: reviewMsg,
+            rating: rating,
+            sessionId: sessionId
         },
         success: (data) => {
             console.log(data);
@@ -314,6 +354,11 @@ $('#write-review-container').submit((e) => {
 
             $('#background-cover').hide();
 
+            sessionContainer.remove();
+
+            if($('.sessions__container-2 .sessions__info').children().length === 0) {
+                $('.sessions__container-2 .sessions__info').append('<h5>There are no past sessions yet</h5>');
+            }
         },
         error: function(error) {
             console.log(error);
@@ -329,6 +374,8 @@ let starOutlined = $('#star-outlined > use').attr('xlink:href');
 // adding effects on the star ratings
 $('.star-rating-container svg').hover(function() {
     $(this).find('use').attr('xlink:href', starFilled);
+
     $(this).prevAll().find('use').attr('xlink:href', starFilled);
+
     $(this).nextAll().find('use').attr('xlink:href', starOutlined);
 });

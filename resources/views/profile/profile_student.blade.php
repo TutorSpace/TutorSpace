@@ -15,14 +15,14 @@
         <div class="info-row">
             <small class="descriptor">Tutor Name</small>
             <small class="descriptor">Student Name</small>
-            <span class="text">Jeffrey Miller</span>
-            <span class="text">Jamie Smith</span>
+            <span class="text tutor-name"></span>
+            <span class="text student-name"></span>
         </div>
         <div class="info-row">
             <small class="descriptor">Date</small>
             <small class="descriptor">Subject / Course</small>
-            <span class="text">Wednesday, March 15, 2020</span>
-            <span class="text">ITP 104</span>
+            <span class="text date"></span>
+            <span class="text subject-course"></span>
         </div>
         <div class="star-rating-container">
             <small class="descriptor">Star Rating</small>
@@ -43,12 +43,11 @@
                     <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
                 </svg>
 
-
             </div>
         </div>
     </div>
     <div class="review-content-container">
-        <h5>Review Jamie:</h5>
+        <h5 class="review-header"></h5>
         <textarea name="review-content" id="review-content"></textarea>
     </div>
     <div class="btn-container">
@@ -60,7 +59,7 @@
 @endsection
 
 @section('content')
-    <div class="container" id="profile-container">
+    <div class="container" id="profile-container" data-is-tutor="{{$user->is_tutor}}">
         <nav class="nav profile-nav">
             <a class="nav-link active" href="#" id="nav-about">About You</a>
             <a class="nav-link" href="#" id="nav-sessions">Sessions</a>
@@ -77,7 +76,7 @@
                 </div>
 
                 <div class="about__information__content">
-                    <div class="name"><h4>{{$user->full_name}}</h4></div>
+                    <div class="name"><h4 id="currentUserName">{{$user->full_name}}</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
@@ -195,7 +194,7 @@
 
                         </div>
                         @if(count($upcomingSessions) === 0)
-                            <h5>There is no upcoming sessions yet</h5>
+                            <h5>There are no upcoming sessions yet</h5>
                         @else
                             @foreach ($upcomingSessions as $upcomingSession)
                                 <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
@@ -236,18 +235,18 @@
                 </div> --}}
                 <div class="sessions__info">
                     @if(count($pastSessions) === 0)
-                        <h5>There is no past sessions yet</h5>
+                        <h5>There are no past sessions yet</h5>
                     @else
                         @foreach ($pastSessions as $pastSession)
-                            <div class="session__container">
-                                <span class="title">{{$pastSession->full_name}}</span>
+                            <div class="session__container" data-session-id="{{$pastSession->session_id}}">
+                                <span class="title name">{{$pastSession->full_name}}</span>
                                 <span class="descriptor">Date</span>
-                                <span class="descriptor">Course</span>
-                                <span class="text">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
+                                <span class="descriptor">Subject / Course</span>
+                                <span class="text date">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
                                 @if($pastSession->is_course)
-                                <span class="text">{{App\Course::find($pastSession->course_id)->course}}</span>
+                                <span class="text subject-course">{{App\Course::find($pastSession->course_id)->course}}</span>
                                 @else
-                                <span class="text">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
+                                <span class="text subject-course">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
                                 @endif
                                 <span class="descriptor">Time</span>
                                 <span class="descriptor">Hourly Rate</span>
@@ -255,8 +254,8 @@
                                 <span class="text">
                                     ${{$pastSession->hourly_rate}} / hr
                                 </span>
-                                <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
-                                <button class="btn btn-lg btn-primary">View Session</button>
+                                <button class="btn btn-lg btn-outline-primary btn-write-review" data-session-id="{{$pastSession->session_id}}">Write a review +</button>
+                                <button class="btn btn-lg btn-primary" data-session-id="{{$pastSession->session_id}}">View Session</button>
                             </div>
                         @endforeach
                     @endif
