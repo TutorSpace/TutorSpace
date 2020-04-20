@@ -141,7 +141,12 @@ class User extends Authenticatable
         return $this->subjects()->where('id', '=', $subject_id)->count() > 0;
     }
 
-    // check whether the subject with $subject_id is already faved by the current user
+    // check whether the course with $course_id is already faved by the current user
+    public function favedCourse($course_id) {
+        return $this->courses()->where('id', '=', $course_id)->count() > 0;
+    }
+
+    // check whether the characteristic with $characteristic_id is already faved by the current user
     public function favedCharacteristic($characteristic_id) {
         return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
     }

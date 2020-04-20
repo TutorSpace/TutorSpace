@@ -26,10 +26,12 @@ $(function () {
 
 
     var courseTags = [
-        'EALC',
-        'CSCI',
-        'COMM',
-        'BUAD'
+        'EALC 150',
+        'CSCI 103',
+        'COMM 201',
+        'BUAD 304',
+        'ECON 351',
+        'ECON 352'
     ];
     $("#course").autocomplete({
         source: courseTags
