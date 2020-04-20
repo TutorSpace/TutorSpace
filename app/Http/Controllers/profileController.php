@@ -70,7 +70,8 @@ class profileController extends Controller
                 'minor' => $minor,
                 'year' => $year,
                 'gpa' => $gpa,
-                'hourlyRate' => $hourlyRate
+                'hourlyRate' => $hourlyRate,
+                'user' => $user
             ]);
         }
         else {
@@ -79,7 +80,8 @@ class profileController extends Controller
                 'email' => $email,
                 'major' => $major,
                 'minor' => $minor,
-                'year' => $year
+                'year' => $year,
+                'user' => $user
             ]);
         }
     }
@@ -110,7 +112,12 @@ class profileController extends Controller
                 'gpa' => [
                     'nullable',
                     'numeric'
+                ],
+                'profile-pic' => [
+                    'file',
+                    'mimes:jpeg,bmp,png'
                 ]
+
             ]);
 
             $user->full_name = $request->input('fullName');
@@ -122,6 +129,8 @@ class profileController extends Controller
 
             $user->hourly_rate = substr($request->input('hourlyRate'), 0, 4);
             $user->gpa = substr($request->input('gpa'), 0, 4);
+
+            $this->saveProfilePic($request, $user);
 
             $user->save();
 
@@ -143,6 +152,10 @@ class profileController extends Controller
                 ],
                 'minor' => [
                     'nullable'
+                ],
+                'profile-pic' => [
+                    'file',
+                    'mimes:jpeg,bmp,png'
                 ]
             ]);
 
@@ -154,11 +167,23 @@ class profileController extends Controller
 
             $user->school_year_id = School_year::where('school_year', '=', $request->input('schoolYear'))->first()->id;
 
+            $this->saveProfilePic($request, $user);
+
             $user->save();
 
             return redirect()->route('edit_profile')->with('success', 'Your profile is updated successfully!');
         }
     }
 
+    private function saveProfilePic(&$request, &$user) {
+        // if user uploaded the file
+        if($request->file('profile-pic')) {
+            $imgURL = $request->file('profile-pic')->store('');
+            $user->profile_pic_url = $imgURL;
+        }
+        else {
+            $user->profile_pic_url = 'placeholder.png';
+        }
+    }
 
 }

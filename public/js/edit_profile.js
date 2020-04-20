@@ -32,4 +32,12 @@ $(function () {
 });
 
 
+$("input[type=file]").change(function() {
+    var fileInput = $(this)[0];
+    var filename = fileInput.files[0].name;
+
+    $('#file-input-text').html(filename);
+});
+
+
 

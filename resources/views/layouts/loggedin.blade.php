@@ -73,9 +73,9 @@
                 </div>
                 <div class="user-photo-container">
                     <div class="p-relative">
-                        <img src="{{$userPhotoUrl}}" alt="user photo" id="tutor-profile-photo">
+                        <img src="{{asset("user_photos/{$user->profile_pic_url}"),}}" alt="user photo" id="tutor-profile-photo">
                         <div class="nav__dropdown-container">
-                            <p class="name">Jamie Chang</p>
+                            <p class="name">{{$user->full_name}}</p>
                             <div class="profile-container">
                                 <span class="profile">Profile</span>
                             </div>

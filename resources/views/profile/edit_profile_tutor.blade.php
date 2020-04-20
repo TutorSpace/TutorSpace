@@ -11,7 +11,7 @@
         </a>
     </div>
 
-    <form action="edit_profile" class="edit-profile__form" method="POST">
+    <form action="edit_profile" class="edit-profile__form" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="edit-profile__form__header">
             <h4>Edit Profile</h4>
@@ -34,14 +34,16 @@
             <span class="labels">Hourly Rate</span>
             <input type="text" value="{{$gpa}}" name="gpa" id="gpa" required>
             <input type="text" value="{{$hourlyRate}}" name="hourlyRate">
-            
+
             <span class="labels">Year *</span>
             <span class="labels">Upload Profile Picture</span>
             <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
             <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="input-photo" name="profilePhoto">
-                  <label class="custom-file-label" for="input-photo">Choose file</label>
+                  <input type="file" class="custom-file-input" id="input-photo" name="profile-pic">
+                  <label class="custom-file-label" for="input-photo" id="file-input-text">
+                        Choose file
+                    </label>
                 </div>
             </div>
             @if(session('errors'))
@@ -50,9 +52,9 @@
             @if(session('success'))
                 <div class="success text-success ">{{session('success')}}</div>
             @endif
-            
+
         </div>
-        
+
 
     </form>
 
@@ -86,7 +88,7 @@
 
     </form> --}}
 
-    
+
 </div>
 
 
