@@ -26,7 +26,6 @@ class profileController extends Controller
 
 
         if($user->is_tutor) {
-
             return view('profile.profile_tutor', [
                 'user' => $user,
                 'subjects' => $subjects,
@@ -38,6 +37,9 @@ class profileController extends Controller
             ]);
         }
         else {
+            // get bookmarked tutors
+            $bookmarks = $user->bookmarks;
+
 
             return view('profile.profile_student', [
                 'user' => $user,
@@ -46,12 +48,15 @@ class profileController extends Controller
                 'characteristics' => $characteristics,
                 'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}"),
                 'upcomingSessions' => $upcomingSessions,
-                'pastSessions' => $pastSessions
+                'pastSessions' => $pastSessions,
+                'bookmarks' => $bookmarks
             ]);
         }
     }
 
-    // TODO: fill in the data of the user's photo
+
+
+
     public function showEdit() {
         $user = Auth::user();
         $fullName = $user->full_name;
@@ -89,7 +94,6 @@ class profileController extends Controller
     public function editProfile(Request $request) {
         $user = Auth::user();
         if($user->is_tutor) {
-            // TODO: check for profile image
             $request->validate([
                 'fullName' => ['
                     required'
@@ -137,7 +141,6 @@ class profileController extends Controller
             return redirect()->route('edit_profile')->with('success', 'Your profile is updated successfully!');
         }
         else {
-            // TODO: check for profile image
             $request->validate([
                 'fullName' => ['
                     required'

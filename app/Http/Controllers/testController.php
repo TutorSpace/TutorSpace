@@ -55,15 +55,7 @@ class testController extends Controller
 
         // dd($interestedCourses);
 
-        $tutorRequests = Tutor_request::select('tutor_requests.id as tutor_request_id', 'student_id', 'tutor_id', 'course_id', 'is_accepted', 'subject_id', 'is_course_request', 'start_time', 'end_time', 'tutor_session_date', 'users.*', 'courses.*', 'subjects.*')
-        ->join('users', 'users.id', '=', 'tutor_requests.student_id')
-        ->leftJoin('courses', 'tutor_requests.course_id', '=', 'courses.id')
-        ->leftJoin('subjects', 'tutor_requests.subject_id', '=', 'subjects.id')
-        ->where('tutor_id', '=', $user->id)
-        ->where('is_accepted', '=', 0)
-        ->get();
-
-        dd($tutorRequests);
+        dd(User::find(8)->getRating());
 
     }
 }

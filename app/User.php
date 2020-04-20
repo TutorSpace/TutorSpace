@@ -56,14 +56,23 @@ class User extends Authenticatable
         else {
             return $this->hasMany('App\Tutor_request', 'student_id');
         }
-
     }
-
 
     // return users that are bookmarked
     public function users() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
+
+    // return all the reviews written by the current user
+    public function written_reviews() {
+        return $this->hasMany('App\Review', 'reviewer_id');
+    }
+
+    // return all the reviews about the current user
+    public function being_reviews() {
+        return $this->hasMany('App\Review', 'reviewee_id');
+    }
+
 
     public function upcomingSessions($num) {
         if($this->is_tutor) {
@@ -151,4 +160,13 @@ class User extends Authenticatable
         return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
     }
 
+    // get the rating of the user as the reviewee
+    public function getRating() {
+        $avg = User::join('reviews', 'reviewee_id', '=', 'users.id')
+                    ->where('users.id', '=', $this->id)
+                    ->avg('star_rating');
+
+        return round($avg, 2);
+
+    }
 }

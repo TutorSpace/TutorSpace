@@ -308,6 +308,8 @@ min-width-450
 <script src="js/home_tutor.js"></script>
 <script src="js/home_common.js"></script>
 
+{{-- my js for bookmark --}}
+<script src="{{asset('js/bookmark.js')}}"></script>
 
 @if(session('successMsg'))
 <script>

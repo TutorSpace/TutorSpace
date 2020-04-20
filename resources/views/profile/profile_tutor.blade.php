@@ -135,7 +135,7 @@
                 </div> --}}
                 <div class="sessions__info p-relative">
 
-                    <div class="sessions__info">
+                    <div class="sessions__info upcoming-sessions-container">
                         <div class="shadow-container">
 
                         </div>

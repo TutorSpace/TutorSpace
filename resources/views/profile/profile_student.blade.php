@@ -133,12 +133,12 @@
                 </div> --}}
                 <div class="sessions__info p-relative">
 
-                    <div class="sessions__info">
+                    <div class="sessions__info upcoming-sessions-container">
                         <div class="shadow-container">
 
                         </div>
                         @if(count($upcomingSessions) === 0)
-                        <h5>There is no upcoming sessions yet</h5>
+                            <h5>There is no upcoming sessions yet</h5>
                         @else
                             @foreach ($upcomingSessions as $upcomingSession)
                                 <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
@@ -213,31 +213,42 @@
             <h4>Tutors You Saved</h4>
             <div class="scroll-container">
             <div class="search-card-container row">
-                {{-- @foreach ($bookmarks as $bookmark)
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">{{$bookmark->full_name}}</p>
-                        <p class="major">{{App\Major::find($bookmark->major_id)->major}}</p>
-                        <p class="star-container">${{$bookmark->hourly_rate}} / hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses:
-                        @foreach (App\User::find($bookmark->id)->courses as $course)
-                        {{$course->course}}</p>
-                        @endforeach
-                        <p class="subjects">Subjects:
-                        @foreach (App\User::find($bookmark->id)->subjects as $subject)
-                        {{$subject->subject}}</p>
-                        @endforeach
-                    </div>
-                </div>
-                @endforeach --}}
+                @if(count($bookmarks) === 0)
+                    <h5>You have not saved any tutors yet</h5>
+                @else
+                    @foreach ($bookmarks as $bookmark)
+                        <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6" data-user-id="{{$bookmark->id}}">
+                            <div class="search-card">
+                                <svg class="bookmark bookmark-marked" data-user-id="{{$bookmark->id}}">
+                                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                                </svg>
+                                <img src="{{asset("user_photos/{$bookmark->profile_pic_url}")}}" alt="user photo">
+                                <p class="name">{{$bookmark->full_name}}</p>
+                                <p class="major">{{App\Major::find($bookmark->major_id)->major}}</p>
+                                <p class="star-container">${{$bookmark->hourly_rate}} / hr |
+                                    @if($bookmark->getRating())
+                                        {{$bookmark->getRating()}}
+                                        <svg class="star">
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                        </svg>
+                                    @else
+                                    No Rating
+                                    @endif
+                                </p>
+                                <p class="courses">Courses:
+                                    @foreach ($bookmark->courses as $course)
+                                        {{$course->course}}
+                                    @endforeach
+                                </p>
+                                <p class="subjects">Subjects:
+                                    @foreach ($bookmark->subjects as $subject)
+                                        {{$subject->subject}}
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
 

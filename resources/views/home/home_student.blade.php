@@ -330,4 +330,7 @@
 <script src="js/home_student.js"></script>
 <script src="js/home_common.js"></script>
 
+{{-- my js for bookmark --}}
+<script src="{{asset('js/bookmark.js')}}"></script>
+
 @endsection

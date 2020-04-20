@@ -91,13 +91,6 @@ $('.sessions__container-2 .session__container > button:last-child').click(functi
 });
 
 
-$('.session__container button').click(function() {
-    if($(this)[0].innerHTML === "Cancel Session") {
-        alert("TODO: session cancelled!");
-    }
-
-});
-
 $('.btn-write-review').click(function() {
     alert('TODO: go to write review page');
 });
@@ -111,10 +104,6 @@ $( ".about__content .about__input" ).focusout(function() {
     $(this).prev().css('fill', 'grey');
 });
 
-
-$('svg.bookmark').click(function() {
-    alert('TODO: remove from bookmarked');
-});
 
 $('#about__buttons__container--subjects button svg').click(removeSubject);
 $('#about__buttons__container--courses button svg').click(removeCourse);
@@ -204,3 +193,70 @@ function removeCharacteristic() {
 }
 
 
+// for bookmarks
+$('svg.bookmark').click(function() {
+    let url;
+    // if the user is bookmarked
+    if($(this).hasClass('bookmark-marked')) {
+        url = '/bookmark_remove';
+    }
+    else {
+        url = '/bookmark_add';
+    }
+
+    $.ajax({
+        type:'GET',
+        url: url,
+        data: {
+            user_id: $(this).attr('data-user-id')
+        },
+        success: (data) => {
+            $(this).toggleClass('bookmark-marked');
+            let { successMsg } = data;
+            toastr.success(successMsg);
+            $(this).parent().parent().remove();
+
+            if($('.search-card-container').children().length === 0) {
+                $('.search-card-container').append('<h5>You have not saved any tutors yet</h5>');
+            }
+        },
+        error: function(error) {
+            toastr.error(error);
+        }
+    });
+});
+
+
+// cancel session
+$('.sessions__container-1 .session__container > button:not(:last-child)').click(function () {
+    let sessionId = $(this).attr('data-session-id');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type:'POST',
+        url: `/session_cancel`,
+        data: {
+            session_id: sessionId
+        },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+            $(this).parent().remove();
+            // because there is a "shadow-container always inside"
+            if($('.upcoming-sessions-container').children().length === 1) {
+                $('.upcoming-sessions-container').append('<h5>There is no upcoming sessions yet</h5>');
+            }
+
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
+
+});

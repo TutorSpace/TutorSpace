@@ -107,9 +107,6 @@
     {{-- my js for nav --}}
     <script src="{{asset('js/nav.js')}}"></script>
 
-    {{-- my js for bookmark --}}
-    <script src="{{asset('js/bookmark.js')}}"></script>
-
 
     @yield('js')
 

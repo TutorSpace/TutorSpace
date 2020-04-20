@@ -227,7 +227,9 @@ class generalController extends Controller
 
     public function cancelSession(Request $request) {
         $sessionId = $request->input('session_id');
-        Session::find($sessionId)->delete();
+        $session = Session::find($sessionId);
+        $session->is_canceled = 1;
+        $session->save();
 
         return response()->json(
             [

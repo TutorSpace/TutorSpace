@@ -1,6 +1,7 @@
 .search-card-container {
     margin-top: 2rem;
-
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 
     .search-card-flex-container {
 
@@ -63,7 +64,7 @@
                 height: 2rem;
                 white-space: nowrap;
 
-                letter-spacing: 1px;
+                // letter-spacing: 1px;
 
                 .star {
                     width: $font-size;
@@ -77,8 +78,6 @@
                     fill: transparent;
                     stroke: $color-gray;
                 }
-
-
             }
 
             .courses, .subjects {
@@ -99,6 +98,11 @@
 
             .name {
                 font-weight: 500;
+                margin-bottom: 1rem;
+            }
+
+            .name, .major {
+                white-space: nowrap;
             }
 
             .subjects {

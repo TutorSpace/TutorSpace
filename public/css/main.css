@@ -11333,6 +11333,8 @@ a.btn.btn-primary {
 
 .search-card-container {
   margin-top: 2rem;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .search-card-container .search-card-flex-container .search-card {
@@ -11384,7 +11386,6 @@ a.btn.btn-primary {
   position: relative;
   height: 2rem;
   white-space: nowrap;
-  letter-spacing: 1px;
 }
 
 .search-card-container .search-card-flex-container .search-card .star-container .star {
@@ -11417,6 +11418,12 @@ a.btn.btn-primary {
 
 .search-card-container .search-card-flex-container .search-card .name {
   font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.search-card-container .search-card-flex-container .search-card .name,
+.search-card-container .search-card-flex-container .search-card .major {
+  white-space: nowrap;
 }
 
 .search-card-container .search-card-flex-container .search-card .subjects {

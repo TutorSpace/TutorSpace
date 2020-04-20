@@ -31,8 +31,6 @@ $('.home__container__notifications__sessions .session__container > button:not(:l
         }
     });
 
-
-
 });
 
 
@@ -196,6 +194,7 @@ function showAddPost() {
 function success(successMsg) {
     toastr.success(successMsg);
 }
+
 
 
 
