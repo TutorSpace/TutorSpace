@@ -11736,6 +11736,34 @@ a.btn.btn-primary {
   cursor: pointer;
 }
 
+@media only screen and (max-width: 68.75em) {
+  .nav-login .nav-container .user-photo-container img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+}
+
+@media only screen and (max-width: 56.25em) {
+  .nav-login .nav-container .user-photo-container img {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+@media only screen and (max-width: 46.875em) {
+  .nav-login .nav-container .user-photo-container img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media only screen and (max-width: 40.625em) {
+  .nav-login .nav-container .user-photo-container img {
+    height: 3.2rem;
+    width: 3.2rem;
+  }
+}
+
 .nav-login .nav-container .user-photo-container .nav__dropdown-container {
   display: none;
   position: absolute;
@@ -12972,6 +13000,10 @@ table img {
   font-size: 2rem;
   width: 40%;
   margin-right: 9%;
+}
+
+.about__information + div {
+  margin-bottom: 5rem;
 }
 
 .about__subjects__header,

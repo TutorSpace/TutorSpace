@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\School_year;
 use App\Major;
+use App\User;
 use Hash;
 
 class profileController extends Controller
@@ -15,24 +16,39 @@ class profileController extends Controller
     public function show(Request $request) {
         $user = Auth::user();
 
-
         $userPhotoUrl = $user->profile_pic_url;
+        $subjects = $user->subjects;
+        $courses = $user->courses;
+        $characteristics = $user->characteristics;
+        $upcomingSessions = $user->upcomingSessions(10000);
+        $pastSessions = $user->pastSessions();
+
+
 
         if($user->is_tutor) {
-            return view('profile.profile_tutor');
+
+            return view('profile.profile_tutor', [
+                'user' => $user,
+                'subjects' => $subjects,
+                'courses' => $courses,
+                'characteristics' => $characteristics,
+                'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}"),
+                'upcomingSessions' => $upcomingSessions,
+                'pastSessions' => $pastSessions
+            ]);
         }
         else {
 
-
-            $subjects = $user->subjects;
-
             return view('profile.profile_student', [
+                'user' => $user,
                 'subjects' => $subjects,
-                'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}")
+                'courses' => $courses,
+                'characteristics' => $characteristics,
+                'userPhotoUrl' => asset("user_photos/{$userPhotoUrl}"),
+                'upcomingSessions' => $upcomingSessions,
+                'pastSessions' => $pastSessions
             ]);
-
         }
-
     }
 
     // TODO: fill in the data of the user's photo

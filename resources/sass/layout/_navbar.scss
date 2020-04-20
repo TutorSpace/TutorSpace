@@ -247,7 +247,27 @@ $nav-height-percent: 70%;
                         cursor: pointer;
                     }
 
+                    @media only screen and (max-width: 68.75em) {
+                        // 1100px
+                        width: 4.5rem;
+                        height: 4.5rem;
+                    }
 
+                    @include respond(tab-port) {
+                        height: 4rem;
+                        width: 4rem;
+                    }
+
+                    @media only screen and (max-width: 46.875em) {
+                        // 750px
+                        width: 3.5rem;
+                        height: 3.5rem;
+                    }
+
+                    @include respond(phone) {
+                        height: 3.2rem;
+                        width: 3.2rem;
+                    }
                 }
 
                 .nav__dropdown-container {

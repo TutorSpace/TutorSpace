@@ -20,16 +20,16 @@
                 </div>
 
                 <div class="about__information__content">
-                    <div class="name"><h4>Jamie Chang</h4></div>
+                    <div class="name"><h4>{{$user->full_name}}</h4></div>
                     <div class="major-minor-container">
                         <span class="descriptor">Major</span>
                         <span class="descriptor">Minor</span>
-                        <span class="text">B.S. Astronautical Engineering</span>
-                        <span class="text">Web Development and Applications</span>
+                        <span class="text">{{$user->major['major']}}</span>
+                        <span class="text">{{$user->minor ?? 'None'}}</span>
                     </div>
                     <div class="year-container">
                         <span class="descriptor">Year</span>
-                        <span class="text">Freshman</span>
+                        <span class="text">{{$user->school_year['school_year']}}</span>
                     </div>
                     <a class="btn btn-lg btn-primary" href="/edit_profile">Edit Profile</a>
                 </div>
@@ -37,22 +37,21 @@
 
             <div class="row">
                 <div class="col-sm-5 col-12">
-                    <form class="about__subjects" method="POST" action="#">
+                    <form class="about__subjects" method="POST" action="/addFavSubject">
                         @csrf
                         <div class="about__subjects__header">Subjects</div>
                         <div class="about__content">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                             </svg>
-                            <input type="text" placeholder="Add Subjects" class="about__input" name="subject" id="subject">
+                            <input type="text" placeholder="Add Subjects" class="about__input" name="subject" id="subject" value="{{old('subject')}}">
                             <button class="btn btn-primary btn-lg add-btn" type="submit">Add +</button>
                         </div>
                     </form>
 
                     <div class="about__buttons__container">
-
                         @foreach ($subjects as $subject)
-                            <button class="btn btn-lg">
+                            <button class="btn btn-lg" data-subject-id="{{$subject->id}}>
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                                 </svg>
@@ -63,7 +62,7 @@
 
                     </div>
 
-                    <form class="about__courses" method="POST" action="#">
+                    <form class="about__courses" method="POST" action="/add_fav_course">
                         @csrf
                         <div class="about__courses__header">
                             Courses
@@ -77,28 +76,21 @@
                         </div>
                     </form>
 
-                    <div class="about__buttons__container">
-                        <button class="btn btn-lg">
+                    <div class="about__buttons__container about__buttons__container--courses" id="about__buttons__container--courses">
+
+                        @foreach ($courses as $course)
+                        <button class="btn btn-lg" data-course-id="{{$course->id}}">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
-                            <span class="name">EALC</span>
+                            <span class="name">{{$course->course}}</span>
                         </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">CSCI</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">COMM</span>
-                        </button>
+                        @endforeach
+
                     </div>
 
-                    <form class="about__characteristics" method="POST" action="#">
+
+                    <form class="about__characteristics" method="POST" action="/add_characteristic">
                         @csrf
                         <div class="about__characteristics__header">
                             Characteristics
@@ -112,25 +104,15 @@
                         </div>
                     </form>
 
-                    <div class="about__buttons__container">
-                        <button class="btn btn-lg">
+                    <div class="about__buttons__container" id="about__buttons__container--characteristics">
+                        @foreach ($characteristics as $characteristic)
+                        <button class="btn btn-lg" data-characteristic-id="{{$characteristic->id}}">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
                             </svg>
-                            <span class="name">Friendly</span>
+                            <span class="name">{{$characteristic->characteristic}}</span>
                         </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Patient</span>
-                        </button>
-                        <button class="btn btn-lg">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-cross')}}"></use>
-                            </svg>
-                            <span class="name">Hospital</span>
-                        </button>
+                        @endforeach
                     </div>
 
                 </div>
@@ -155,6 +137,7 @@
                         <div class="shadow-container">
 
                         </div>
+                        {{-- @foreach ($upcomingSessions as $upcomingSession)
                         <div class="session__container">
                             <span class="title">Jamie Chang</span>
                             <span class="descriptor">Date</span>
@@ -194,6 +177,7 @@
                             <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
                             <button class="btn btn-lg btn-primary">View Session</button>
                         </div>
+                          @endforeach --}}
                     </div>
                 </div>
             </div>
@@ -206,45 +190,25 @@
                     Some description here
                 </div> --}}
                 <div class="sessions__info">
+                    {{-- @foreach ($pastSessions as $pastSession)
                     <div class="session__container">
-                        <span class="title">Jamie Chang</span>
+                        <span class="title">{{$pastSession->full_name}}</span>
                         <span class="descriptor">Date</span>
                         <span class="descriptor">Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
+                        <span class="text">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
+                        @if($pastSession->is_course)
+                        <span class="text">{{App\Course::find($pastSession->course_id)->course}}</span>
+                        @else
+                        <span class="text">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
+                        @endif
                         <span class="descriptor">Time</span>
                         <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
+                        <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
+                        <span class="text">${{$pastSession->hourly_rate}} / hr</span>
                         <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
                         <button class="btn btn-lg btn-primary">View Session</button>
                     </div>
-                    <div class="session__container">
-                        <span class="title">Jamie Chang</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
-                    <div class="session__container">
-                        <span class="title">Jamie Chang</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Course</span>
-                        <span class="text">02/20/2020</span>
-                        <span class="text">ITP 104</span>
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">5 - 6pm</span>
-                        <span class="text">$16 / hr</span>
-                        <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
+                    @endforeach --}}
                 </div>
             </div>
 
@@ -255,228 +219,31 @@
             <h4>Tutors You Saved</h4>
             <div class="scroll-container">
             <div class="search-card-container row">
+                {{-- @foreach ($bookmarks as $bookmark)
                 <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
                     <div class="search-card">
                         <svg class="bookmark bookmark-marked">
                             <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                         </svg>
                         <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
+                        <p class="name">{{$bookmark->full_name}}</p>
+                        <p class="major">{{App\Major::find($bookmark->major_id)->major}}</p>
+                        <p class="star-container">${{$bookmark->hourly_rate}} / hr | 4.5
                             <svg class="star">
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                             </svg>
                         </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
+                        <p class="courses">Courses:
+                        @foreach (App\User::find($bookmark->id)->courses as $course)
+                        {{$course->course}}</p>
+                        @endforeach
+                        <p class="subjects">Subjects:
+                        @foreach (App\User::find($bookmark->id)->subjects as $subject)
+                        {{$subject->subject}}</p>
+                        @endforeach
                     </div>
                 </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$ 16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-                    <div class="search-card">
-                        <svg class="bookmark bookmark-marked ">
-                            <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                        </svg>
-                        <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                        <p class="name">Jeffrey Miller</p>
-                        <p class="major">Chemical Engineering</p>
-                        <p class="star-container">$16/hr | 4.5
-                            <svg class="star">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                            </svg>
-                        </p>
-                        <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                        <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-                    </div>
-                </div>
-
+                @endforeach --}}
             </div>
         </div>
 
@@ -524,7 +291,8 @@
                                 <div>ITP 104</div>
                             </td>
                             <td class="review-content__container">
-                                <p class="review-content">The consultant was incredibly helpful and I left feeling very optimistic about my paper. When I was stuck at a couple transitions she was able to suggest a tweak in order to fit what I was feeling but not able to say. Really just great<span class="grey-text time-sent">14
+                                <p class="review-content">
+                                The consultant was incredibly helpful and I left feeling very optimistic about my paper. When I was stuck at a couple transitions she was able to suggest a tweak in order to fit what I was feeling but not able to say. Really just great.<span class="grey-text time-sent">14
                                         days ago</span></p>
 
                             </td>
@@ -719,6 +487,20 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="{{asset('js/profile.js')}}"></script>
+
+@if(session('errors'))
+<script>
+    toastr.error("{{session('errors')->first()}}");
+</script>
+@elseif(session('success'))
+<script>
+    toastr.success("{{session('success')}}");
+</script>
+@elseif(session('error'))
+<script>
+    toastr.error("{{session('error')}}");
+</script>
+@endif
 
 @endsection
 

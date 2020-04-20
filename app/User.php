@@ -132,9 +132,18 @@ class User extends Authenticatable
     }
 
     // check whether the user with $user_id is bookmarked by the current user
-    public function bookmarked($user_id) {
-        return $this->bookmarks()->where('id', '=', $user_id)->count() === 1;
+    public function bookmarked($userId) {
+        return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
     }
 
+    // check whether the subject with $subject_id is already faved by the current user
+    public function favedSubject($subject_id) {
+        return $this->subjects()->where('id', '=', $subject_id)->count() > 0;
+    }
+
+    // check whether the subject with $subject_id is already faved by the current user
+    public function favedCharacteristic($characteristic_id) {
+        return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
+    }
 
 }

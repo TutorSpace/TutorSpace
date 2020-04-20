@@ -1,3 +1,14 @@
+function fitProfileImgHeight() {
+    let imgContainer = $('.about__information__img .img-container');
+    var currentWidth = imgContainer.width();
+    imgContainer.height(currentWidth);
+
+}
+
+$(document).ready(fitProfileImgHeight);
+
+var $window = $(window).on('resize', fitProfileImgHeight).trigger('resize'); //on page load
+
 // The tags do not need to be in the database. The autocomplete is just for recommendation
 $(function () {
     var subjectTags = [
@@ -103,22 +114,91 @@ $('svg.bookmark').click(function() {
     alert('TODO: remove from bookmarked');
 });
 
-$('.about__buttons__container button svg').click(function() {
-    alert('TODO: remove from subjects/courses/characteristics');
-});
+$('#about__buttons__container--subjects button svg').click(removeSubject);
+$('#about__buttons__container--courses button svg').click(removeCourse);
+$('#about__buttons__container--characteristics button svg').click(removeCharacteristic);
 
-function fitProfileImgHeight() {
-    let imgContainer = $('.about__information__img .img-container');
-    var currentWidth = imgContainer.width();
-    imgContainer.height(currentWidth);
 
-    // let profileImg = $('.about__information__img img');
-    // var currentWidth = profileImg.width();
-    // profileImg.height(currentWidth);
 
+function removeSubject() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    let subjectId = $(this).parent().attr('data-subject-id');
+
+    $.ajax({
+        type:'POST',
+        url: `/remove_fav_subject`,
+        data: {
+            subject_id: subjectId
+        },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+            $(this).parent().remove();
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
 }
 
-$(document).ready(fitProfileImgHeight);
+function removeCourse() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-var $window = $(window).on('resize', fitProfileImgHeight).trigger('resize'); //on page load
+    let courseId = $(this).parent().attr('data-course-id');
+
+    $.ajax({
+        type:'POST',
+        url: `/remove_fav_course`,
+        data: {
+            course_id: courseId
+        },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+            $(this).parent().remove();
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
+}
+
+function removeCharacteristic() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    let characteristicId = $(this).parent().attr('data-characteristic-id');
+
+    $.ajax({
+        type:'POST',
+        url: `/remove_characteristic`,
+        data: {
+            characteristic_id: characteristicId
+        },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+            $(this).parent().remove();
+        },
+        error: function(error) {
+            console.log(error);
+            toastr.error(error);
+        }
+    });
+}
+
 
