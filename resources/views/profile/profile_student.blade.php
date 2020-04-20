@@ -105,7 +105,7 @@
                         </div>
                     </form>
 
-                    <div class="about__buttons__container">
+                    <div class="about__buttons__container" id="about__buttons__container--subjects">
                         @foreach ($subjects as $subject)
                             <button class="btn btn-lg" data-subject-id="{{$subject->id}}">
                                 <svg>
@@ -132,7 +132,7 @@
                         </div>
                     </form>
 
-                    <div class="about__buttons__container about__buttons__container--courses" id="about__buttons__container--courses">
+                    <div class="about__buttons__container" id="about__buttons__container--courses">
 
                         @foreach ($courses as $course)
                         <button class="btn btn-lg" data-course-id="{{$course->id}}">

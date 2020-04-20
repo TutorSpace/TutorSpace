@@ -78,7 +78,7 @@
                         </div>
                     </form>
 
-                    <div class="about__buttons__container about__buttons__container--courses" id="about__buttons__container--courses">
+                    <div class="about__buttons__container" id="about__buttons__container--courses">
 
                         @foreach ($courses as $course)
                         <button class="btn btn-lg" data-course-id="{{$course->id}}">
