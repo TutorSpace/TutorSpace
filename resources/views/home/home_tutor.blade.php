@@ -131,11 +131,13 @@ min-width-450
                     <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
                     @endif
                     <span class="descriptor">Time</span>
-                    <span class="descriptor">Hourly Rate</span>
+                    <span class="descriptor">Location</span>
                     <span class="text">
                         {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
                     </span>
-                    <span class="text">${{$upcomingSession->hourly_rate}} / hr</span>
+                    <span class="text">
+                        {{$upcomingSession->location ?? 'On Campus'}}
+                    </span>
                     <button class="btn btn-lg btn-outline-primary" data-session-id="{{$upcomingSession->session_id}}">Cancel Session</button>
                     <button class="btn btn-lg btn-primary" data-session-id="{{$upcomingSession->session_id}}">View Session</button>
                 </div>

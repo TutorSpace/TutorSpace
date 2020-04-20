@@ -37,7 +37,7 @@
 
             <div class="row">
                 <div class="col-sm-5 col-12">
-                    <form class="about__subjects" method="POST" action="/addFavSubject">
+                    <form class="about__subjects" method="POST" action="/add_fav_subject">
                         @csrf
                         <div class="about__subjects__header">Subjects</div>
                         <div class="about__content">
@@ -137,47 +137,35 @@
                         <div class="shadow-container">
 
                         </div>
-                        {{-- @foreach ($upcomingSessions as $upcomingSession)
-                        <div class="session__container">
-                            <span class="title">Jamie Chang</span>
-                            <span class="descriptor">Date</span>
-                            <span class="descriptor">Subject / Course</span>
-                            <span class="text">02/20/2020</span>
-                            <span class="text">ITP 104</span>
-                            <span class="descriptor">Time</span>
-                            <span class="descriptor">Hourly Rate</span>
-                            <span class="text">5 - 6pm</span>
-                            <span class="text">$16 / hr</span>
-                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                            <button class="btn btn-lg btn-primary">View Session</button>
-                        </div>
-                        <div class="session__container">
-                            <span class="title">Jamie Chang</span>
-                            <span class="descriptor">Date</span>
-                            <span class="descriptor">Subject / Course</span>
-                            <span class="text">02/20/2020</span>
-                            <span class="text">ITP 104</span>
-                            <span class="descriptor">Time</span>
-                            <span class="descriptor">Hourly Rate</span>
-                            <span class="text">5 - 6pm</span>
-                            <span class="text">$16 / hr</span>
-                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                            <button class="btn btn-lg btn-primary">View Session</button>
-                        </div>
-                        <div class="session__container">
-                            <span class="title">Jamie Chang</span>
-                            <span class="descriptor">Date</span>
-                            <span class="descriptor">Subject / Course</span>
-                            <span class="text">02/20/2020</span>
-                            <span class="text">ITP 104</span>
-                            <span class="descriptor">Time</span>
-                            <span class="descriptor">Hourly Rate</span>
-                            <span class="text">5 - 6pm</span>
-                            <span class="text">$16 / hr</span>
-                            <button class="btn btn-lg btn-outline-primary">Cancel Session</button>
-                            <button class="btn btn-lg btn-primary">View Session</button>
-                        </div>
-                          @endforeach --}}
+                        @if(count($upcomingSessions) === 0)
+                        <h5>There is no upcoming sessions yet</h5>
+                        @else
+                            @foreach ($upcomingSessions as $upcomingSession)
+                                <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
+                                    <span class="title">{{$upcomingSession->full_name}}</span>
+                                    <span class="descriptor">Date</span>
+                                    <span class="descriptor">Subject / Course</span>
+                                    <span class="text">
+                                        {{date('m/d/Y', strtotime($upcomingSession->date))}}
+                                    </span>
+                                    @if($upcomingSession->is_course)
+                                        <span class="text">{{App\Course::find($upcomingSession->course_id)->course}}</span>
+                                    @else
+                                        <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
+                                    @endif
+                                    <span class="descriptor">Time</span>
+                                    <span class="descriptor">Hourly Rate</span>
+                                    <span class="text">
+                                        {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
+                                    </span>
+                                    <span class="text">
+                                        ${{$upcomingSession->hourly_rate}} / hr
+                                    </span>
+                                    <button class="btn btn-lg btn-outline-primary" data-session-id="{{$upcomingSession->session_id}}">Cancel Session</button>
+                                    <button class="btn btn-lg btn-primary" data-session-id="{{$upcomingSession->session_id}}">View Session</button>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -190,25 +178,31 @@
                     Some description here
                 </div> --}}
                 <div class="sessions__info">
-                    {{-- @foreach ($pastSessions as $pastSession)
-                    <div class="session__container">
-                        <span class="title">{{$pastSession->full_name}}</span>
-                        <span class="descriptor">Date</span>
-                        <span class="descriptor">Course</span>
-                        <span class="text">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
-                        @if($pastSession->is_course)
-                        <span class="text">{{App\Course::find($pastSession->course_id)->course}}</span>
-                        @else
-                        <span class="text">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
-                        @endif
-                        <span class="descriptor">Time</span>
-                        <span class="descriptor">Hourly Rate</span>
-                        <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
-                        <span class="text">${{$pastSession->hourly_rate}} / hr</span>
-                        <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
-                        <button class="btn btn-lg btn-primary">View Session</button>
-                    </div>
-                    @endforeach --}}
+                    @if(count($pastSessions) === 0)
+                        <h5>There is no past sessions yet</h5>
+                    @else
+                        @foreach ($pastSessions as $pastSession)
+                            <div class="session__container">
+                                <span class="title">{{$pastSession->full_name}}</span>
+                                <span class="descriptor">Date</span>
+                                <span class="descriptor">Course</span>
+                                <span class="text">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
+                                @if($pastSession->is_course)
+                                <span class="text">{{App\Course::find($pastSession->course_id)->course}}</span>
+                                @else
+                                <span class="text">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
+                                @endif
+                                <span class="descriptor">Time</span>
+                                <span class="descriptor">Hourly Rate</span>
+                                <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
+                                <span class="text">
+                                    ${{$pastSession->hourly_rate}} / hr
+                                </span>
+                                <button class="btn btn-lg btn-outline-primary btn-write-review">Write a review +</button>
+                                <button class="btn btn-lg btn-primary">View Session</button>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 

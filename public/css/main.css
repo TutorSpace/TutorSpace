@@ -13132,6 +13132,10 @@ table img {
   margin-top: 1rem;
 }
 
+.sessions__container .session__container {
+  max-width: 50%;
+}
+
 .saved__container {
   color: black;
   margin-top: 3rem;
