@@ -12,7 +12,7 @@
 
 .search-messages-container {
     width: 100%;
-    
+
     position: relative;
     display: flex;
     align-items: center;
@@ -22,13 +22,13 @@
         border: 1px solid $color-gray;
         outline: none;
         background-color: transparent;
-        
+
         font-size: 1.5rem;
         border: 1px solid grey;
         padding: .5rem 4rem;
 
         border-radius: 5px;
-        
+
     }
 
     svg {
@@ -43,9 +43,9 @@
 
 /* width */
 // ::-webkit-scrollbar {
-//     width: 5px;    
+//     width: 5px;
 // }
-  
+
 
 
 .messages-table-left {
@@ -53,7 +53,7 @@
     max-height: 75vh;
     overflow: scroll;
     margin-bottom: 0 !important;
-    
+
 
     tbody {
         display: block;
@@ -64,13 +64,13 @@
             width: 100%;
 
             td {
-                display: block;  
+                display: block;
             }
 
             td.unread {
-                border-left: .5rem solid $color-pending-request !important;    
+                border-left: .5rem solid $color-pending-request !important;
             }
-            
+
         }
 
         .first-td {
@@ -90,7 +90,7 @@
         .name {
             // font-size: 1.5rem;
         }
-    
+
         .request-pending {
             color: $color-blue-dark;
             font-size: 1rem;
@@ -108,7 +108,7 @@
 
 
 
-    
+
 }
 
 
@@ -118,20 +118,20 @@
     border: 1px solid $color-gray;
     display: flex;
     flex-direction: column;
-    
+
 
     .header {
         display: flex;
         margin-top: 1rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid $color-gray;
-        
+
         img {
             width: 3.5rem;
             height: 3.5rem;
             border-radius: 50%;
-            margin-right: 5px;
-            
+            margin-right: .5rem;
+
         }
     }
 
@@ -158,7 +158,7 @@
             white-space: nowrap;
             * {
                 margin-bottom: 0;
-                
+
             }
             > :first-child {
                 font-weight: 600;
@@ -173,10 +173,10 @@
 
 .messages-container {
     margin-top: 1rem;
-    
+
     // to occupy the all available space
     flex: 1;
-    
+
     overflow: scroll;
     max-height: -webkit-fill-available;
     margin-bottom: 1rem;
@@ -185,7 +185,7 @@
     > .message-other {
         width: 45%;
     }
-    
+
 
     .message-other, .message-self {
         padding: 1rem;
@@ -194,12 +194,12 @@
         &:not(:last-child) {
             margin-bottom: 1rem;
         }
-        
+
     }
 
     .message-other {
         background-color: $color-message-other;
-        
+
     }
 
     .message-self-container {
@@ -229,18 +229,18 @@
         border: 1px solid $color-gray;
         outline: none;
         background-color: transparent;
-        
+
         font-size: 1.2rem;
         border: 1px solid grey;
         padding: .5rem 1rem;
-    
+
         border-radius: 5px;
         display: inline;
         margin-right: 1rem;
-    
+
         + button {
             width: 5%;
-            
+
             font-size: 1.5rem;
             font-weight: 500;
             color: $color-blue-dark !important;
@@ -248,6 +248,6 @@
             background-color: transparent !important;
         }
     }
-    
-    
+
+
 }

@@ -1,10 +1,17 @@
-// show/hide 
-$('.filter-box>button').click(function() {
-    $(this).next().toggle();
 
-    $(this).next().find('button:last-child').click(() => {
-        $(this).next().css('display', 'none');
-    });
+// show/hide filter
+$('.filter-box > button:first-child').click(function() {
+    $('.filter-box > button:first-child').each((idx, e) => {
+        if($(this)[0] !== e) {
+            $(e).next().hide();
+        }
+    })
+    $(this).next().toggle();
+});
+
+// save button
+$('.filter-box .button-container > button:last-child').click(function() {
+    $(this).parent().parent().hide();
 });
 
 
@@ -32,16 +39,16 @@ $('#clear-year').click(function() {
 });
 
 $('#clear-price').click(function() {
-    $('#price-range-low-value').html('20');
-    $('#price-range-high-value').html('45');
-    $('#price-range-low').val(20);
-    $('#price-range-high').val(45);
+    $('#price-range-low-value').html('10');
+    $('#price-range-high-value').html('25');
+    $('#price-range-low').val(10);
+    $('#price-range-high').val(25);
 });
 
 $('#clear-rating').click(function() {
-    $('#rating-range-low-value').html('1');
+    $('#rating-range-low-value').html('2');
     $('#rating-range-high-value').html('4');
-    $('#rating-range-low').val(1);
+    $('#rating-range-low').val(2);
     $('#rating-range-high').val(4);
 });
 

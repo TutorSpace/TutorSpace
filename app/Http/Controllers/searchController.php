@@ -14,10 +14,14 @@ class searchController extends Controller
         $user = Auth::user();
 
         if($user->is_tutor) {
-            return view('search.search_for_student');
+            return view('search.search_for_student', [
+                'user' => $user
+            ]);
         }
         else {
-            return view('search.search_for_tutor');
+            return view('search.search_for_tutor', [
+                'user' => $user
+            ]);
         }
     }
 }

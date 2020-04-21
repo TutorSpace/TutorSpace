@@ -99,4 +99,5 @@ Route::post('/add_characteristic', 'characteristicController@addCharacteristic')
 // reviews
 Route::post('/post_review', 'reviewController@postReview')->middleware(['checkLogin']);
 
-
+// search
+Route::get('/search', 'searchController@show')->middleware(['checkLogin']);

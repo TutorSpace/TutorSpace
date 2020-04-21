@@ -430,20 +430,12 @@
     & td button {
         font-size: 1.6rem;
         &:not(:last-child) {
-            margin-right: 5px;
+            margin-right: .5rem;
         }
     }
 }
 
-table {
-    img {
-        width: 4rem;
-        height: 4rem;
-        display: inline-block;
-        border-radius: 50%;
-        margin-right: 5px;
-    }
-}
+
 
 
 // body {

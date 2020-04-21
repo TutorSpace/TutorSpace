@@ -11100,6 +11100,14 @@ svg.bookmark:hover {
   flex: 1;
 }
 
+table img {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -11687,7 +11695,7 @@ a.btn.btn-primary {
   padding: 0.2rem 0;
   padding-right: 1.5rem;
   color: #2c86c4;
-  width: 25rem;
+  width: 30rem;
   transition: width 0.5s;
 }
 
@@ -12854,15 +12862,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .tutor-requests-table td button:not(:last-child) {
-  margin-right: 5px;
-}
-
-table img {
-  width: 4rem;
-  height: 4rem;
-  display: inline-block;
-  border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 0.5rem;
 }
 
 #background-cover {
@@ -13492,6 +13492,14 @@ table img {
   color: #9a9a9a;
 }
 
+.search-container {
+  margin-top: 3rem;
+}
+
+.search-container .search__header {
+  color: black;
+}
+
 .search-container .search__box {
   margin-top: 2rem;
   border: 1px solid #9a9a9a;
@@ -13519,7 +13527,8 @@ table img {
 }
 
 .search-container .filters-label {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .search-container .year,
@@ -13548,12 +13557,11 @@ table img {
   position: absolute;
   left: 0;
   top: 4rem;
-  width: 200%;
   z-index: 2000;
   background-color: white;
-  padding: 1rem 0.5rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   border-radius: 2rem;
+  padding: 1rem 2rem;
   display: none;
 }
 
@@ -13705,7 +13713,7 @@ table img {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  margin-right: 5px;
+  margin-right: 0.5rem;
 }
 
 .m-right-container .message-alert {

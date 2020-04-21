@@ -1,8 +1,8 @@
 .search-container {
-    // margin-top: 3rem;
+    margin-top: 3rem;
 
     .search__header {
-
+        color: black;
     }
 
     .search__box {
@@ -36,7 +36,8 @@
 
 
     .filters-label {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .year, .price {
@@ -59,20 +60,16 @@
 
         .filter-box {
             position: relative;
-            // display: flex;
-            // flex-direction: column;
-
 
             .filter {
                 position: absolute;
                 left: 0;
                 top: 4rem;
-                width: 200%;
                 z-index: 2000;
                 background-color: white;
-                padding: 1rem .5rem;
                 @include boxShadow;
                 border-radius: 2rem;
+                padding: 1rem 2rem;
 
                 display: none;
 
