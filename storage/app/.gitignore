@@ -1,3 +1,4 @@
 *
 !public/
+!public_user_photos/
 !.gitignore
