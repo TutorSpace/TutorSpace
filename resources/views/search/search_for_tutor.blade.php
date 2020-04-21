@@ -95,7 +95,7 @@
 
 
 
-    <div class="search-card-container row">
+    <div class="search-card-container row mb-5">
         @if(count($results) === 0)
             <h5 class="black">
                 There is no matched searching results.
@@ -147,6 +147,7 @@
 
 
     </div>
+
 </form>
 
 

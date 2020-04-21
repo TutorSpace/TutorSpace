@@ -72,94 +72,59 @@
         </div>
     </div>
 
-
     <div class="search-card-container row mb-5">
-        <div class="search-card-flex-container col-4 col-xl-3">
-            <div class="search-card">
-                <img src="assets/jamie.png" alt="user photo">
-                <p class="bold">Jamie C.</p>
-                <p>B.S. Astronautical Engineering</p>
-                <p class="star-container year">Dec 2021 | 4.5
-                    <svg class="star">
-                        <use xlink:href="assets/sprite.svg#icon-star" ></use>
-                    </svg>
-                </p>
-                <p class="labels">Courses</p>
-                <p class="courses">ITP 104, MATH 210, ASTRO 340...</p>
-                <p class="labels">Subjects</p>
-                <p class="courses"> Calculus 2, HTML/CSS...</p>
-            </div>
-        </div>
+        @if(count($results) === 0)
+            <h5 class="black">
+                There is no matched searching results.
+            </h5>
+        @else
+            @foreach ($results as $result)
+                @php
+                    $resultUser = App\User::find($result->id);
+                @endphp
+                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6" data-user-id="{{$result->id}}">
+                    <div class="search-card">
+                        @if($user->bookmarked($result->id))
+                            <svg class="bookmark bookmark-marked" data-user-id="{{$result->id}}">
+                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            </svg>
+                        @else
+                            <svg class="bookmark" data-user-id="{{$result->id}}">
+                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            </svg>
+                        @endif
+                        <img src="{{asset("user_photos/{$result->profile_pic_url}")}}" alt="user photo">
+                        <p class="name">{{$result->full_name}}</p>
+                        <p class="major">{{$result->major['major']}}</p>
 
-        <div class="search-card-flex-container col-4 col-xl-3">
-            <div class="search-card">
-                <img src="assets/sophia.png" alt="user photo">
-                <p class="bold">Sophia P.</p>
-                <p>B.A. Design</p>
-                <p class="star-container year">May 2020 | 4.8
-                    <svg class="star">
-                        <use xlink:href="assets/sprite.svg#icon-star" ></use>
-                    </svg>
-                </p>
-                <p class="labels">Courses</p>
-                <p class="courses">ITP 310, CRIT 350, ART 130...</p>
-                <p class="labels">Subjects</p>
-                <p class="courses">Art History, HTML/CSS...</p>
-            </div>
-        </div>
+                        <p class="star-container">${{$result->hourly_rate}} / hr |
+                            @if($resultUser->getRating())
+                                {{$resultUser->getRating()}}
+                                <svg class="star">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                </svg>
+                            @else
+                            No Rating
+                            @endif
+                        </p>
+                        <p class="courses">Courses:
+                            @foreach ($resultUser->courses as $course)
+                                {{$course->course}}
+                            @endforeach
+                        </p>
+                        <p class="subjects">Subjects:
+                            @foreach ($resultUser->subjects as $subject)
+                                {{$subject->subject}}
+                            @endforeach
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        @endif
 
-        <div class="search-card-flex-container col-4 col-xl-3">
-            <div class="search-card">
-                <img src="assets/mj.jpg" alt="user photo">
-                <p class="bold">Jeffrey C.</p>
-                <p>B.S. Electrical Engineering</p>
-                <p class="star-container year">Dec 2021 | 4.5
-                    <svg class="star">
-                        <use xlink:href="assets/sprite.svg#icon-star" ></use>
-                    </svg>
-                </p>
-                <p class="labels">Courses</p>
-                <p class="courses">ITP 104, CRIT 350, DES 302...</p>
-                <p class="labels">Subjects</p>
-                <p class="courses">Art History, HTML/CSS...</p>
-            </div>
-        </div>
-
-        <div class="search-card-flex-container col-4 col-xl-3">
-            <div class="search-card">
-                <img src="assets/mj.jpg" alt="user photo">
-                <p class="bold">Jeffrey C.</p>
-                <p>B.S. Business Administration</p>
-                <p class="star-container year">Dec 2021 | 4.5
-                    <svg class="star">
-                        <use xlink:href="assets/sprite.svg#icon-star" ></use>
-                    </svg>
-                </p>
-                <p class="labels">Courses</p>
-                <p class="courses">ITP 104, CRIT 350, DES 302...</p>
-                <p class="labels">Subjects</p>
-                <p class="courses">Art History, HTML/CSS...</p>
-            </div>
-        </div>
-
-        <div class="search-card-flex-container col-4 col-xl-3">
-            <div class="search-card">
-                <img src="assets/mj.jpg" alt="user photo">
-                <p class="bold">Jeffrey C.</p>
-                <p>M.S. Sculpture</p>
-                <p class="star-container year">Dec 2021 | 4.5
-                    <svg class="star">
-                        <use xlink:href="assets/sprite.svg#icon-star" ></use>
-                    </svg>
-                </p>
-                <p class="labels">Courses</p>
-                <p class="courses">ITP 104, CRIT 350, DES 302...</p>
-                <p class="labels">Subjects</p>
-                <p class="courses">Art History, HTML/CSS...</p>
-            </div>
-        </div>
 
     </div>
+
 </form>
 
 
