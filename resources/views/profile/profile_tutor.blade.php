@@ -243,7 +243,7 @@
             <div class="reviews">
                 @foreach ($reviews as $review)
                 @php
-                    $user = App\User::find($review->reviewer_id);
+                    $reviewer = App\User::find($review->reviewer_id);
                     $session = App\Session::find($review->session_id);
 
                     // did not use created at, because the review might be updated. By defulat, it should equal to created time when created initially
@@ -257,9 +257,9 @@
                     <tbody>
                         <tr>
                             <th scope="row">
-                                <img src="{{asset("user_photos/{$user->profile_pic_url}")}}" alt="reviewee photo">
+                                <img src="{{asset("user_photos/{$reviewer->profile_pic_url}")}}" alt="reviewee photo">
                             </th>
-                            <td class="name">{{$user->full_name}}</td>
+                            <td class="name">{{$reviewer->full_name}}</td>
                             <td class="subject-container">
                                 <div class="grey-text">Subject / Course</div>
                                 <div>{{$session->courseSubject()}}</div>
