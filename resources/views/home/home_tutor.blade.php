@@ -108,7 +108,7 @@ min-width-450
                 class="col-12 col-sm-5 home__container__notifications__sessions home__container__notifications__sessions-tutor">
                 @if(count($upcomingSessions) == 0)
                 <div class="home__container__notifications__title pl-0 pr-0 mb-0">
-                    <h5><span>No Upcoming Sessions</span></h5>
+                    <h5><span>Upcoming Sessions</span></h5>
                 </div>
                 <div class="home__container__notifications__text">
                     Scheduled sessions between you and a tutor will appear below.
@@ -303,6 +303,10 @@ min-width-450
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
 
+
+<script>
+    let assetsURL = "{{asset("user_photos/")}}";
+</script>
 
 <!-- defined javascript -->
 <script src="js/home_tutor.js"></script>

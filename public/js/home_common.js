@@ -119,7 +119,7 @@ $('#filter-form').submit(function(e) {
 
 
             posts.forEach(post => {
-                let imgUrl = 'assets/mj.jpg';
+                let imgUrl = assetsURL + '/' + post.profile_pic_url;
                 let fullName = post.full_name;
 
                 let courseSubjectName;
@@ -132,6 +132,9 @@ $('#filter-form').submit(function(e) {
                 let postId = post.post_id;
 
                 let dateCreated = post.post_created_time;
+
+
+
                 dateCreated = $.datepicker.formatDate('mm/dd/yy', new Date(dateCreated));
 
 

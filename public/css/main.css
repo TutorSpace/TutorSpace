@@ -11117,6 +11117,10 @@ label {
   overflow: hidden;
 }
 
+.f-14 {
+  font-size: 1.4rem;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -12569,7 +12573,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .home__container__notifications__title span {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .home__container__notifications__text {
@@ -12759,6 +12763,7 @@ h5 .fgpwd-container__header-2 {
   margin-top: 2rem;
   font-size: 1.6rem;
   background-color: #ffffff;
+  margin-bottom: 5rem;
   max-height: 50rem;
   padding: 0 1rem;
   border-radius: 2rem;
@@ -13085,7 +13090,7 @@ h5 .fgpwd-container__header-2 {
   width: 70%;
   font-size: 2rem;
   background-color: #f7fbfd;
-  border: 0.1rem solid grey;
+  border: 1.5px solid grey;
   padding: 0.5rem 4rem;
   outline: none;
   border-radius: 7px;
@@ -13095,7 +13100,6 @@ h5 .fgpwd-container__header-2 {
 
 .about__input:focus {
   border-color: #2c86c4;
-  box-shadow: 1px 1px #2c86c4;
 }
 
 @media only screen and (max-width: 575px) {

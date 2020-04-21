@@ -96,6 +96,9 @@
                     <form class="about__subjects" method="POST" action="/add_fav_subject">
                         @csrf
                         <div class="about__subjects__header">Subjects</div>
+                        <div class="f-14">
+                            Add Subjects that you want help in
+                        </div>
                         <div class="about__content">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
@@ -122,6 +125,9 @@
                         @csrf
                         <div class="about__courses__header">
                             Courses
+                        </div>
+                        <div class="f-14">
+                            Add Courses you are currently taking and need help in
                         </div>
                         <div class="about__content">
                             <svg>
@@ -150,6 +156,9 @@
                         @csrf
                         <div class="about__characteristics__header">
                             Characteristics
+                        </div>
+                        <div class="f-14">
+                            Add Characteristics that help define you to potential tutors
                         </div>
                         <div class="about__content">
                             <svg>
@@ -194,7 +203,7 @@
 
                         </div>
                         @if(count($upcomingSessions) === 0)
-                            <h5>There are no upcoming sessions yet</h5>
+                            <h5>Scheduled sessions between you and a student will appear below.</h5>
                         @else
                             @foreach ($upcomingSessions as $upcomingSession)
                                 <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">

@@ -111,7 +111,7 @@ class generalController extends Controller
                         ->join('users', 'users.id', '=', 'user_id')
                         ->leftJoin('courses', 'course_id', '=', 'courses.id')
                         ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
-                        ->where(function($query) {
+                        ->where(function($query) use($course_ids, $subject_ids) {
                             $query->whereIn('course_id', $course_ids)
                                 ->orWhereIn('subject_id', $subject_ids);
                         })
@@ -125,7 +125,7 @@ class generalController extends Controller
                         ->leftJoin('courses', 'course_id', '=', 'courses.id')
                         ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
                         ->where('users.is_tutor', 1)
-                        ->where(function($query) {
+                        ->where(function($query) use($course_ids, $subject_ids) {
                             $query->whereIn('course_id', $course_ids)
                                 ->orWhereIn('subject_id', $subject_ids);
                         })
@@ -139,7 +139,7 @@ class generalController extends Controller
                         ->leftJoin('courses', 'course_id', '=', 'courses.id')
                         ->leftJoin('subjects', 'subject_id', '=', 'subjects.id')
                         ->where('users.is_tutor', 0)
-                        ->where(function($query) {
+                        ->where(function($query) use($course_ids, $subject_ids) {
                             $query->whereIn('course_id', $course_ids)
                                 ->orWhereIn('subject_id', $subject_ids);
                         })

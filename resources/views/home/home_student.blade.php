@@ -95,7 +95,7 @@ min-width-450
                 @if(count($recommendedCourses) === 0 && count($recommendedSubjects) === 0)
                     <!-- the commented div is to display when there is no recommended tutors -->
                     <div class="home__container__notifications__title">
-                        <h5><span>No Recommended Tutors</span></h5>
+                        <h5><span>Recommended Tutors</span></h5>
                     </div>
                     <div class="home__container__notifications__text">
                         Add subjects or courses you want help in on Your Profile to receive tutor recommendations.
@@ -173,7 +173,7 @@ min-width-450
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     @if(count($upcomingSessions) == 0)
                         <div class="home__container__notifications__title">
-                            <h5><span>No Upcoming Sessions</span></h5>
+                            <h5><span>Upcoming Sessions</span></h5>
                         </div>
                         <div class="home__container__notifications__text">
                             Scheduled sessions between you and a tutor will appear below.
@@ -336,6 +336,16 @@ min-width-450
 
 @section('js')
 
+{{-- jqueryUI --}}
+<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+
+
+<script>
+    let assetsURL = "{{asset("user_photos/")}}";
+</script>
 
 <!-- defined javascript -->
 <script src="js/home_student.js"></script>

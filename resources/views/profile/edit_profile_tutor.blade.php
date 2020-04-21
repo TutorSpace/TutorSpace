@@ -40,7 +40,7 @@
             <input type="text" value="{{$year}}" name="schoolYear" id="schoolYear" required>
             <div class="input-group">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="input-photo" name="profile-pic">
+                  <input type="file" class="custom-file-input" id="input-photo" name="profile-pic" accept="image/*">
                   <label class="custom-file-label" for="input-photo" id="file-input-text">
                         Choose file
                     </label>

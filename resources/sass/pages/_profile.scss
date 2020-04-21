@@ -161,7 +161,7 @@ $about-input-width: 70%;
     width: $about-input-width;
     font-size: 2rem;
     background-color: $color-white;
-    border: .1rem solid grey;
+    border: 1.5px solid grey;
     padding: .5rem 4rem;
     outline: none;
     border-radius: 7px;
@@ -170,7 +170,7 @@ $about-input-width: 70%;
 
     &:focus {
         border-color: $color-blue-dark;
-        box-shadow: 1px 1px $color-blue-dark;
+        // box-shadow: 1px 1px $color-blue-dark;
     }
 
     @media only screen and (max-width: 575px) { //576px

@@ -247,7 +247,7 @@ $('.sessions__container-1 .session__container > button:not(:last-child)').click(
             $(this).parent().remove();
             // because there is a "shadow-container always inside"
             if($('.upcoming-sessions-container').children().length === 1) {
-                $('.upcoming-sessions-container').append('<h5>There are no upcoming sessions yet</h5>');
+                $('.upcoming-sessions-container').append('<h5>Scheduled sessions between you and a student will appear below.</h5>');
             }
 
         },

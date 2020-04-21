@@ -170,6 +170,8 @@ class profileController extends Controller
                 ]
             ]);
 
+
+
             $user->full_name = $request->input('fullName');
             $user->minor = $request->input('minor');
 
@@ -181,6 +183,7 @@ class profileController extends Controller
 
             $user->save();
 
+            dd('here');
             return redirect()->route('edit_profile')->with('success', 'Your profile is updated successfully!');
         }
     }

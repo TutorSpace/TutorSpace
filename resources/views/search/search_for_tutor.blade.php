@@ -98,7 +98,7 @@
     <div class="search-card-container row mb-5">
         @if(count($results) === 0)
             <h5 class="black">
-                There is no matched searching results.
+                There are no matching search results.
             </h5>
         @else
             @foreach ($results as $result)
