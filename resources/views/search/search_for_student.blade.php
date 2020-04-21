@@ -19,31 +19,31 @@
             <button class="btn btn-lg btn-outline-primary" type="button">Year</button>
             <div class="filter">
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="freshman" id="freshman" name="year">
+                    <input class="form-check-input" type="checkbox" value="freshman" id="freshman" name="year[]" checked>
                     <label class="form-check-label" for="freshman">
                         Freshman
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="sophomore" id="sophomore" name="year">
+                    <input class="form-check-input" type="checkbox" value="sophomore" id="sophomore" name="year[]" checked>
                     <label class="form-check-label" for="sophomore">
                         Sophomore
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="junior" id="junior" name="year">
+                    <input class="form-check-input" type="checkbox" value="junior" id="junior" name="year[]" checked>
                     <label class="form-check-label" for="junior">
                         Junior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="senior" id="senior" name="year">
+                    <input class="form-check-input" type="checkbox" value="senior" id="senior" name="year[]" checked>
                     <label class="form-check-label" for="senior">
                         Senior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="graduate" id="graduate" name="year">
+                    <input class="form-check-input" type="checkbox" value="graduate" id="graduate" name="year[]" checked>
                     <label class="form-check-label" for="graduate">
                         Graduate
                     </label>
@@ -135,5 +135,5 @@
 @section('js')
 
 <script src="{{asset('js/search.js')}}"></script>
-
+<script src="{{asset('js/bookmark.js')}}"></script>
 @endsection
