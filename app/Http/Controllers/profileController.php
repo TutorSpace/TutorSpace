@@ -11,8 +11,6 @@ use Hash;
 
 class profileController extends Controller
 {
-
-    // TODO: fill in the data of the user into subjects/characteristics/courses, sessions, saved, and reviews
     public function show(Request $request) {
         $user = Auth::user();
 
@@ -22,9 +20,6 @@ class profileController extends Controller
         $characteristics = $user->characteristics;
         $upcomingSessions = $user->upcomingSessions(10000);
         $pastSessions = $user->pastSessions();
-
-
-
 
         if($user->is_tutor) {
             // get reviews the user is being reviewed

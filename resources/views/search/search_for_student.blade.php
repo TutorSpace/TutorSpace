@@ -4,70 +4,69 @@
 @section('content')
 
 
-<div class="container search-container">
+<form class="container search-container" method="GET" action="/search">
     <h2 class="search__header">Search Results</h2>
     <div class="search__box">
         <svg>
             <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
         </svg>
-        <input type="text" placeholder="Search Names, Courses, Subjects" class="">
+        <input type="text" placeholder="Search Names, Courses, Subjects" class="" name="searchInput">
     </div>
     <div class="labels filters-label">Filters</div>
 
     <div class="filter-container">
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Year</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Year</button>
             <div class="filter">
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="freshman">
+                    <input class="form-check-input" type="checkbox" value="freshman" id="freshman" name="year">
                     <label class="form-check-label" for="freshman">
                         Freshman
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="sophomore">
+                    <input class="form-check-input" type="checkbox" value="sophomore" id="sophomore" name="year">
                     <label class="form-check-label" for="sophomore">
                         Sophomore
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="junior">
+                    <input class="form-check-input" type="checkbox" value="junior" id="junior" name="year">
                     <label class="form-check-label" for="junior">
                         Junior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="senior">
+                    <input class="form-check-input" type="checkbox" value="senior" id="senior" name="year">
                     <label class="form-check-label" for="senior">
                         Senior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="graduate">
+                    <input class="form-check-input" type="checkbox" value="graduate" id="graduate" name="year">
                     <label class="form-check-label" for="graduate">
                         Graduate
                     </label>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" id="clear-year">Clear</button>
-                    <button class="btn btn-primary" id="save-year">Save</button>
+                    <button class="btn btn-outline-primary" id="clear-year" type="button">Clear</button>
+                    <button class="btn btn-primary" id="save-year" type="button">Save</button>
                 </div>
-
             </div>
         </div>
 
 
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Rating</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Rating</button>
             <div class="filter">
-                <label for="rating-range-low">Low: <span id="rating-range-low-value">1</span></label>
-                <input type="range" class="custom-range rating-range" min="0" max="2" id="rating-range-low">
+                <label for="rating-range-low">Low: <span id="rating-range-low-value">2</span></label>
+                <input type="range" class="custom-range rating-range" min="0" max="3" id="rating-range-low" name="rating-range-low">
 
                 <label for="rating-range-high">High: <span id="rating-range-high-value">4</span></label>
-                <input type="range" class="custom-range rating-range" min="3" max="5" id="rating-range-high">
+                <input type="range" class="custom-range rating-range" min="3" max="5" id="rating-range-high" name="rating-range-high">
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" id="clear-rating">Clear</button>
-                    <button class="btn btn-primary" id="save-rating">Save</button>
+                    <button class="btn btn-outline-primary" id="clear-rating" type="button">Clear</button>
+                    <button class="btn btn-primary" id="save-rating" type="button">Save</button>
                 </div>
             </div>
         </div>
@@ -161,7 +160,7 @@
         </div>
 
     </div>
-</div>
+</form>
 
 
 

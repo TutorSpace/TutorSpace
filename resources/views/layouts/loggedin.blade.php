@@ -69,7 +69,7 @@
                         <svg>
                             <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                         </svg>
-                        <input type="text" placeholder="Search name, course, or subject" type="submit">
+                        <input type="text" name="navInput" placeholder="Search name, course, or subject" type="submit">
                     </form>
                 </div>
                 <div class="user-photo-container">

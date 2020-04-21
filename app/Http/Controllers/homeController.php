@@ -58,8 +58,6 @@ class homeController extends Controller
 
         }
         else {
-            // choose randomly from subjects and courses the user is interested in, and display all of them. (If there is no courses/subjects the user interested, show nothing for that specific one)
-
             // get all the courses that users are interested in
             $course_ids = $user->courses()->pluck('id');
 

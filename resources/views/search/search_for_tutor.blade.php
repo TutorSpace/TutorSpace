@@ -4,92 +4,89 @@
 @section('content')
 
 
-<div class="container search-container">
+<form class="container search-container" method="GET" action="/search">
     <h2 class="search__header">Search Results</h2>
     <div class="search__box">
         <svg>
             <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
         </svg>
-        <input type="text" placeholder="Search Names, Courses, Subjects" class="">
+        <input type="text" placeholder="Search Names, Courses, Subjects" class="" name="searchInput">
     </div>
     <div class="labels filters-label">Filters</div>
 
     <div class="filter-container">
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Year</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Year</button>
             <div class="filter">
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="freshman">
+                    <input class="form-check-input" type="checkbox" value="freshman" id="freshman" name="year">
                     <label class="form-check-label" for="freshman">
                         Freshman
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="sophomore">
+                    <input class="form-check-input" type="checkbox" value="sophomore" id="sophomore" name="year">
                     <label class="form-check-label" for="sophomore">
                         Sophomore
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="junior">
+                    <input class="form-check-input" type="checkbox" value="junior" id="junior" name="year">
                     <label class="form-check-label" for="junior">
                         Junior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="senior">
+                    <input class="form-check-input" type="checkbox" value="senior" id="senior" name="year">
                     <label class="form-check-label" for="senior">
                         Senior
                     </label>
                 </div>
                 <div class="form-check filter-year">
-                    <input class="form-check-input" type="checkbox" value="" id="graduate">
+                    <input class="form-check-input" type="checkbox" value="graduate" id="graduate" name="year">
                     <label class="form-check-label" for="graduate">
                         Graduate
                     </label>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" id="clear-year">Clear</button>
-                    <button class="btn btn-primary" id="save-year">Save</button>
+                    <button class="btn btn-outline-primary" id="clear-year" type="button">Clear</button>
+                    <button class="btn btn-primary" id="save-year" type="button">Save</button>
                 </div>
-
             </div>
         </div>
 
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Price</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Price</button>
             <div class="filter">
                 <label for="price-range-low">Low: <span id="price-range-low-value">10</span></label>
-                <input type="range" class="custom-range price-range" min="0" max="20" id="price-range-low">
+                <input type="range" class="custom-range price-range" min="0" max="20" id="price-range-low" name="price-range-low">
 
                 <label for="price-range-high">High: <span id="price-range-high-value">25</span></label>
-                <input type="range" class="custom-range price-range" min="10" max="40" id="price-range-high">
+                <input type="range" class="custom-range price-range" min="10" max="40" id="price-range-high" name="price-range-high">
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" id="clear-price">Clear</button>
-                    <button class="btn btn-primary" id="save-price">Save</button>
+                    <button class="btn btn-outline-primary" id="clear-price" type="button">Clear</button>
+                    <button class="btn btn-primary" id="save-price" type="button">Save</button>
                 </div>
             </div>
-
-
         </div>
 
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Rating</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Rating</button>
             <div class="filter">
                 <label for="rating-range-low">Low: <span id="rating-range-low-value">2</span></label>
-                <input type="range" class="custom-range rating-range" min="0" max="3" id="rating-range-low">
+                <input type="range" class="custom-range rating-range" min="0" max="3" id="rating-range-low" name="rating-range-low">
 
                 <label for="rating-range-high">High: <span id="rating-range-high-value">4</span></label>
-                <input type="range" class="custom-range rating-range" min="3" max="5" id="rating-range-high">
+                <input type="range" class="custom-range rating-range" min="3" max="5" id="rating-range-high" name="rating-range-high">
                 <div class="button-container">
-                    <button class="btn btn-outline-primary" id="clear-rating">Clear</button>
-                    <button class="btn btn-primary" id="save-rating">Save</button>
+                    <button class="btn btn-outline-primary" id="clear-rating" type="button">Clear</button>
+                    <button class="btn btn-primary" id="save-rating" type="button">Save</button>
                 </div>
             </div>
         </div>
 
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary">Availability</button>
+            <button class="btn btn-lg btn-outline-primary" type="button">Availability</button>
             <div class="filter">
                 <span class="text-danger" style="font-size: 2rem;">The Availability Functionality is coming soon!</span>
             </div>
@@ -99,44 +96,58 @@
 
 
     <div class="search-card-container row">
-        <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-            <div class="search-card">
-                <svg class="bookmark bookmark-marked">
-                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                </svg>
-                <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                <p class="name">Jeffrey Miller</p>
-                <p class="major">Chemical Engineering</p>
-                <p class="star-container">$16/hr | 4.5
-                    <svg class="star">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                    </svg>
-                </p>
-                <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-            </div>
-        </div>
-        <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6">
-            <div class="search-card">
-                <svg class="bookmark bookmark-marked">
-                    <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
-                </svg>
-                <img src="{{asset('assets/mj.jpg')}}" alt="user photo">
-                <p class="name">Jeffrey Miller</p>
-                <p class="major">Chemical Engineering</p>
-                <p class="star-container">$16/hr | 4.5
-                    <svg class="star">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-                    </svg>
-                </p>
-                <p class="courses">Courses: ITP 104, CRIT 350, DES 302,  ITP 104, CRIT 350, DES 302</p>
-                <p class="subjects">Subjects: Art History, HTML/CSS, HTML/CSS. HTML/CSS. HTML/CSS,HTML/CSS</p>
-            </div>
-        </div>
+        @if(count($results) === 0)
+            <h5 class="black">
+                There is no matched searching results.
+            </h5>
+        @else
+            @foreach ($results as $result)
+                @php
+                    $resultUser = App\User::find($result->id);
+                @endphp
+                <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6" data-user-id="{{$result->id}}">
+                    <div class="search-card">
+                        @if($user->bookmarked($result->id))
+                            <svg class="bookmark bookmark-marked" data-user-id="{{$result->id}}">
+                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            </svg>
+                        @else
+                            <svg class="bookmark" data-user-id="{{$result->id}}">
+                                <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
+                            </svg>
+                        @endif
+                        <img src="{{asset("user_photos/{$result->profile_pic_url}")}}" alt="user photo">
+                        <p class="name">{{$result->full_name}}</p>
+                        <p class="major">{{$result->major['major']}}</p>
+
+                        <p class="star-container">${{$result->hourly_rate}} / hr |
+                            @if($resultUser->getRating())
+                                {{$resultUser->getRating()}}
+                                <svg class="star">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                </svg>
+                            @else
+                            No Rating
+                            @endif
+                        </p>
+                        <p class="courses">Courses:
+                            @foreach ($resultUser->courses as $course)
+                                {{$course->course}}
+                            @endforeach
+                        </p>
+                        <p class="subjects">Subjects:
+                            @foreach ($resultUser->subjects as $subject)
+                                {{$subject->subject}}
+                            @endforeach
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        @endif
 
 
     </div>
-</div>
+</form>
 
 
 

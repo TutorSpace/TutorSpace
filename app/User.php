@@ -58,7 +58,7 @@ class User extends Authenticatable
         }
     }
 
-    // return users that are bookmarked
+    // return users who bookmarked the current user
     public function users() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
@@ -166,7 +166,7 @@ class User extends Authenticatable
                     ->where('users.id', '=', $this->id)
                     ->avg('star_rating');
 
-        return round($avg, 2);
+        return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
     // get the rating of the user as the reviewer
@@ -175,7 +175,7 @@ class User extends Authenticatable
                     ->where('users.id', '=', $this->id)
                     ->avg('star_rating');
 
-        return round($avg, 2);
+        return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
 

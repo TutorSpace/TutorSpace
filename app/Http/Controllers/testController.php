@@ -12,6 +12,7 @@ use App\Dashboard_post;
 use Auth;
 use App\Tutor_request;
 use App\Session;
+use App\Course;
 
 
 class testController extends Controller
@@ -57,7 +58,57 @@ class testController extends Controller
         // dd($interestedCourses);
 
         // dd(User::find(8)->getRating());
-        dd(Session::find(3)->courseSubject());
+        // dd(Session::find(3)->courseSubject());
+        $navInput = "";
+        // $nameResults = User::where('full_name', 'like', "%{$navInput}%")->get();
+        // dd($nameResults);
 
+        // $navInput = "it";
+        // $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
+        // dd($course_ids);
+
+
+        // get all the courses with matched input
+        $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
+
+        // get all the users who are interested in those courses
+        $courseUserResults = Course::select('users.*')
+                            ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+                            ->join('users', 'users.id', '=', 'course_user.user_id')
+                            ->where('is_tutor', '=', '0')
+                            ->whereIn('courses.id', $course_ids)
+                            ->get();
+        // dd($courseUserResults);
+
+        $nameUserResults = User::where('full_name', 'like', "%{$navInput}%")
+        ->where('is_tutor', '=', !$user->is_tutor)
+        ->get();
+
+        // 2. course
+        // get all the courses with matched input
+        $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
+
+        // get all the users who are interested in those courses
+        $courseUserResults = Course::select('users.*')
+                    ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+                    ->join('users', 'users.id', '=', 'course_user.user_id')
+                    ->where('is_tutor', '=', !$user->is_tutor)
+                    ->whereIn('courses.id', $course_ids)
+                    ->get();
+
+        // 3. subject
+        // get all the subjects with matched input
+        $subject_ids = Subject::where('subject', 'like', "%{$navInput}%")->pluck('id');
+
+        // get all the users who are interested in those subjects
+        $subjectUserResults = Subject::select('users.*')
+                    ->join('subject_user', 'subject_user.subject_id', '=', 'subjects.id')
+                    ->join('users', 'users.id', '=', 'subject_user.user_id')
+                    ->where('is_tutor', '=', !$user->is_tutor)
+                    ->whereIn('subjects.id', $subject_ids)
+                    ->get();
+
+        $test = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
+        dd($test);
     }
 }
