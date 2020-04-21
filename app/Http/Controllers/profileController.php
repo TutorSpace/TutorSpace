@@ -141,6 +141,7 @@ class profileController extends Controller
             $user->hourly_rate = substr($request->input('hourlyRate'), 0, 4);
             $user->gpa = substr($request->input('gpa'), 0, 4);
 
+
             $this->saveProfilePic($request, $user);
 
             $user->save();
@@ -170,7 +171,6 @@ class profileController extends Controller
             ]);
 
             $user->full_name = $request->input('fullName');
-            $user->password = Hash::make($request->input('password'));
             $user->minor = $request->input('minor');
 
             $user->major_id = Major::where('major', '=', $request->input('major'))->first()->id;

@@ -2,7 +2,7 @@ body {
     color: $color-white;
 	background-color: $color-white !important;
 
-	// shuaiqing 
+	// shuaiqing
 	// font-family: 'Work Sans', sans-serif !important;
 	overflow: hidden !important;
 }
@@ -28,7 +28,8 @@ h1, h2, h3, h4, h5, h6 {
 // Mostly used in Login and Sign up pages
 h1 {
 	font-size: 4.8rem !important;
-	margin-bottom: 0;
+    margin-bottom: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 // Page or section titles
@@ -52,11 +53,11 @@ h5 {
 	font-weight: 400 !important;
 }
 
-// Names on Dashboard posts, messages, 
+// Names on Dashboard posts, messages,
 h6 {
 	font-size: 2rem !important;
 	font-weight: 400 !important;
-	
+
 }
 
 // Labels
@@ -90,7 +91,7 @@ small {
 
 // shuaiqing
 .heading-color {
-	
+
 	// background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
 
 	// display: inline-block;

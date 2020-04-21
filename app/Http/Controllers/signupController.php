@@ -125,7 +125,7 @@ class signupController extends Controller
         $request->session()->flush();
         Auth::login($user);
 
-        return redirect()->route('profile');
+        return redirect()->route('home');
     }
 
 
@@ -239,7 +239,7 @@ class signupController extends Controller
         $request->session()->flush();
         Auth::login($user);
 
-        return redirect()->route('profile');
+        return redirect()->route('home');
     }
 
 

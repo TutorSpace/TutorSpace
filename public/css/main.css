@@ -10972,6 +10972,7 @@ h6 {
 h1 {
   font-size: 4.8rem !important;
   margin-bottom: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 h2 {
@@ -11110,6 +11111,10 @@ table img {
   display: inline-block;
   border-radius: 50%;
   margin-right: 1rem;
+}
+
+label {
+  overflow: hidden;
 }
 
 button,

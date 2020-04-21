@@ -8,10 +8,10 @@
     <div class="col index-left-container">
         <div class="index-left-container__box">
             <div class="index-left-container__box-1">
-                <span class="heading-color">The one-stop shop to find or be the perfect tutor!</span>
+                <h1 class="heading-color">The one-stop shop to find or be the perfect tutor!</h1>
             </div>
             <div class="index-left-container__box-2">
-                <h5>Whether it's a USC-specific class or a general subject, find a tutor who can accomodate to
+                <h5>Whether it's a USC-specific class or a general subject, find a tutor who can accommodate to
                     your busy schedule and be within your budget!</h5>
             </div>
             <div class="index-left-container__box-3">

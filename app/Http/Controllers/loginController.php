@@ -30,7 +30,7 @@ class loginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->route('profile');
+            return redirect()->route('home');
         }
         else {
             return redirect()->route('login')->with(
