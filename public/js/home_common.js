@@ -130,7 +130,7 @@ $('#filter-form').submit(function(e) {
 
                 let postMsg = post.post_message;
                 let postId = post.post_id;
-
+                let userId = post.user_id;
                 let dateCreated = post.post_created_time;
 
 
@@ -140,7 +140,7 @@ $('#filter-form').submit(function(e) {
 
                 let element = `
                     <tr data-post-id="${postId}">
-                        <th scope="row"><img src="${imgUrl}" alt="tutor pic">${fullName}</th>
+                        <th scope="row"  onclick="viewProfile(${userId})"><img src="${imgUrl}" alt="tutor pic">${fullName}</th>
                         <td>
                             <p>${dateCreated}</p><span>${courseSubjectName}</span>
                         </td>
@@ -152,7 +152,7 @@ $('#filter-form').submit(function(e) {
                 if(inputTutorStudent === 'my-posts') {
                     element = `
                         <tr data-post-id="${postId}">
-                            <th scope="row"><img src="${imgUrl}" alt="tutor pic">${fullName}</th>
+                            <th scope="row" onclick="viewProfile(${userId})"><img src="${imgUrl}" alt="tutor pic">${fullName}</th>
                             <td>
                                 <p>${dateCreated}</p><span>${courseSubjectName}</span>
                             </td>
@@ -207,6 +207,10 @@ function showSignupWizard() {
 
 function success(successMsg) {
     toastr.success(successMsg);
+}
+
+function viewProfile(id) {
+    window.location.href = '/view_profile/' + id + '?from=home';
 }
 
 

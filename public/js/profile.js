@@ -383,3 +383,8 @@ $('.star-rating-container svg').hover(function() {
 
     $(this).nextAll().find('use').attr('xlink:href', starOutlined);
 });
+
+
+$('.reviews-table img').click(function() {
+    window.location.href = '/view_profile/' + $(this).attr('data-user-id') + '?from=profile';
+});

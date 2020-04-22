@@ -316,8 +316,11 @@
             // tr selects all direct children, and then :nth-child means itself is nth child
             tr > :nth-child(1) {
                 white-space: nowrap;
-
                 font-size: 1.6rem;
+
+                &:hover {
+                    cursor: pointer;
+                }
 
                 @media only screen and (max-width: 31.25em) { //500px
                     white-space: normal;

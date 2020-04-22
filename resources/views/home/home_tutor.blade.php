@@ -566,7 +566,7 @@ min-width-450
                     <tbody>
                         @foreach ($posts as $post)
                         <tr data-post-id="{{$post->post_id}}">
-                            <th scope="row">
+                            <th scope="row" onclick="viewProfile({{$post->user_id}})">
                                 <img src="{{asset("user_photos/{$post->profile_pic_url}")}}" alt="tutor pic">
                                 {{$post->full_name}}
                             </th>

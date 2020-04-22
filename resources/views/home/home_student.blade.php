@@ -418,7 +418,7 @@ min-width-450
                     <table class="table table-hover recommended__tutors"
                     data-user-id="{{$recommendedCourse->id}}">
                         <tbody>
-                            <tr>
+                            <tr data-user-id="{{$recommendedCourse->id}}">
                                 <th scope="row">
                                     <img src="{{asset("user_photos/{$recommendedCourse->profile_pic_url}")}}" alt="tutor pic">
                                     {{$recommendedCourse->full_name}}
@@ -451,7 +451,7 @@ min-width-450
                     <table class="table table-hover recommended__tutors"
                     data-user-id="{{$recommendedSubject->id}}">
                         <tbody>
-                            <tr>
+                            <tr data-user-id="{{$recommendedSubject->id}}">
                                 <th scope="row">
                                     <img src="{{asset("user_photos/{$recommendedSubject->profile_pic_url}")}}" alt="tutor pic">
                                     {{$recommendedSubject->full_name}}
@@ -552,7 +552,7 @@ min-width-450
                         </div>
                         <div class="btn-container">
                             <button class="btn btn-lg btn-outline-primary btn-view-past-session">Past Session</button>
-                            <button class="btn btn-lg btn-primary btn-view-profile">View Profile</button>
+                            <button class="btn btn-lg btn-primary btn-view-profile" data-user-id="{{$pastTutor->tutor_id}}">View Profile</button>
                         </div>
 
                     </div>
@@ -600,7 +600,7 @@ min-width-450
                     <tbody>
                         @foreach ($posts as $post)
                         <tr data-post-id="{{$post->post_id}}">
-                            <th scope="row">
+                            <th scope="row" onclick="viewProfile({{$post->user_id}})">
                                 <img src="{{asset("user_photos/{$post->profile_pic_url}")}}" alt="tutor pic">
                                 {{$post->full_name}}
                             </th>

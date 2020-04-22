@@ -366,7 +366,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">
-                                <img src="{{asset("user_photos/{$reviewee->profile_pic_url}")}}" alt="reviewee photo">
+                                <img src="{{asset("user_photos/{$reviewee->profile_pic_url}")}}" alt="reviewee photo" data-user-id="{{$reviewee->id}}">
                             </th>
                             <td class="name">{{$reviewee->full_name}}</td>
                             <td class="subject-container">

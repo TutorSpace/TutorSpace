@@ -11280,6 +11280,10 @@ a.btn.btn-primary {
   fill: #2c86c4;
 }
 
+.reviews-table img:hover {
+  cursor: pointer;
+}
+
 .reviews__container__sub {
   display: flex;
   justify-content: space-between;
@@ -11510,7 +11514,8 @@ a.btn.btn-primary {
 }
 
 .tutor-container .img-container img {
-  width: 100%;
+  width: 5.5rem;
+  height: 5.5rem;
   border-radius: 50%;
 }
 
@@ -12811,6 +12816,10 @@ h5 .fgpwd-container__header-2 {
 .home__container__help-center__table tr > :nth-child(1) {
   white-space: nowrap;
   font-size: 1.6rem;
+}
+
+.home__container__help-center__table tr > :nth-child(1):hover {
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 31.25em) {

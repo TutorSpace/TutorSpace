@@ -201,8 +201,14 @@ class profileController extends Controller
     }
 
     public function viewProfile(Request $request, $viewUserId) {
+        $from = $request->input('from');
+
         $currentUser = Auth::user();
         $viewUser = User::find($viewUserId);
+
+        // if($currentUser->is_tutor == $viewUser->is_tutor) {
+        //     return redirect()->route('home');
+        // }
 
         $subjects = $viewUser->subjects;
         $courses = $viewUser->courses;
@@ -215,6 +221,7 @@ class profileController extends Controller
         if(!$viewUser->is_tutor) {
 
             return view('profile.view_student_profile', [
+                'from' => $from,
                 'user' => $currentUser,
                 'viewUser' => $viewUser,
                 'subjects' => $subjects,
@@ -227,6 +234,7 @@ class profileController extends Controller
         else {
 
             return view('profile.view_tutor_profile', [
+                'from' => $from,
                 'user' => $currentUser,
                 'viewUser' => $viewUser,
                 'subjects' => $subjects,

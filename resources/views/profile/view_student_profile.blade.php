@@ -5,8 +5,8 @@
 @section('content')
     <div class="container" id="profile-container">
         <div>
-            <a class="btn btn-lg back-button" id="back-button" href="/profile">
-                Back to Profile
+            <a class="btn btn-lg back-button" id="back-button" href="/{{$from}}">
+                Back to {{ucwords($from)}}
             </a>
         </div>
         <div class="about__container">
