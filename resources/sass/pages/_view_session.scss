@@ -13,7 +13,7 @@
 .session-details-container {
     margin-top: 2rem;
     width: 50%;
-    
+
 
     .session-details {
         display: flex;
@@ -28,9 +28,9 @@
             background-color: transparent;
             font-size: 2.2rem !important;
             font-weight: 400 !important;
-          
+
         }
-        
+
     }
 }
 
@@ -38,7 +38,7 @@
 // used by several pages
 .session-timer-container {
     margin-top: 3rem;
-    
+
 
     .session-timer {
         width: 70%;
@@ -57,13 +57,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            
+
             button {
                 margin-top: 1rem;
                 margin-bottom: 1rem;
                 font-size: 2rem;
             }
-            
+
         }
 
         .session-timer-right {
@@ -95,7 +95,7 @@
 
         button:last-child {
             margin-left: 1rem;
-            
+
         }
         button {
             font-size: 2rem;
@@ -184,8 +184,6 @@
             text-align: right;
         }
     }
-
-
 
 }
 

@@ -192,10 +192,21 @@ function showAddPost() {
 }
 
 
+function showSignupWizard() {
+    $('#background-cover-2').height(document.documentElement.scrollHeight);
+    $('#background-cover-2').width(document.documentElement.scrollWidth);
+    $('#background-cover-2').show();
+
+    let centerOffset = (document.documentElement.scrollHeight - $(window).height()) / 2;
+    $('html,body').animate({
+            scrollTop: centerOffset
+        },
+        'slow'
+    );
+}
+
 function success(successMsg) {
     toastr.success(successMsg);
 }
-
-
 
 

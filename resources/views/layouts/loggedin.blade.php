@@ -19,11 +19,13 @@
 </head>
 
 <body class="animsition @yield('body-class')" onload="">
-    <div id="background-cover">
+    <div id="background-cover" class="background-cover">
         @yield('add-post-container')
         @yield('write-review-container')
     </div>
-
+    <div id="background-cover-2" class="background-cover">
+        @yield('signup-wizard-container')
+    </div>
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             x="0px" y="0px" viewBox="0 0 1440 320" style="enable-background:new 0 0 1440 320;" xml:space="preserve"
             class="svg-nav">

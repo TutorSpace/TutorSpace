@@ -17,6 +17,10 @@
     display: none !important;
 }
 
+.show {
+    display: block !important;
+}
+
 .error-input-file {
     font-size: calc(#{$font-2} / 2);
     position: absolute;
@@ -100,4 +104,11 @@ label {
 
 .f-14 {
     font-size: 1.4rem;
+}
+
+.background-cover {
+    display: none;
+    position: absolute;
+    z-index: 5000;
+    background-color: rgba($color: #000000, $alpha: .63);
 }
