@@ -5,9 +5,15 @@
 @section('content')
     <div class="container" id="profile-container">
         <div>
-            <a class="btn btn-lg back-button" id="back-button" href="/{{$from}}">
-                Back to {{ucwords($from)}}
-            </a>
+            @if($from == 'search')
+                <a class="btn btn-lg back-button" id="back-button" href="/search?navInput=">
+                    Back to Search
+                </a>
+            @else
+                <a class="btn btn-lg back-button" id="back-button" href="/{{$from}}">
+                    Back to {{ucwords($from)}}
+                </a>
+            @endif
         </div>
         <div class="about__container">
             <div class="about__information">
@@ -42,13 +48,19 @@
                         <div class="about__subjects__header">Subjects</div>
                     </div>
 
-                    <div class="about__buttons__container" id="about__buttons__container--subjects">
-                        @foreach ($subjects as $subject)
-                            <button class="btn btn-lg" data-subject-id="{{$subject->id}}">
-                                <span class="name">{{$subject->subject}}</span>
-                            </button>
-                        @endforeach
-                    </div>
+                    @if(count($subjects) === 0)
+                        <div>
+                            <span class="f-16">This user has not added any interested subjects yet.</span>
+                        </div>
+                    @else
+                        <div class="about__buttons__container" id="about__buttons__container--subjects">
+                            @foreach ($subjects as $subject)
+                                <button class="btn btn-lg" data-subject-id="{{$subject->id}}">
+                                    <span class="name">{{$subject->subject}}</span>
+                                </button>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <div class="about__courses">
                         <div class="about__courses__header">
@@ -56,14 +68,19 @@
                         </div>
                     </div>
 
-                    <div class="about__buttons__container" id="about__buttons__container--courses">
-                        @foreach ($courses as $course)
-                        <button class="btn btn-lg" data-course-id="{{$course->id}}">
-                            <span class="name">{{$course->course}}</span>
-                        </button>
-                        @endforeach
-
-                    </div>
+                    @if(count($courses) === 0)
+                        <div>
+                            <span class="f-16">This user has not added any interested courses yet.</span>
+                        </div>
+                    @else
+                        <div class="about__buttons__container" id="about__buttons__container--courses">
+                            @foreach ($courses as $course)
+                            <button class="btn btn-lg" data-course-id="{{$course->id}}">
+                                <span class="name">{{$course->course}}</span>
+                            </button>
+                            @endforeach
+                        </div>
+                    @endif
 
 
                     <div class="about__characteristics">
@@ -72,13 +89,19 @@
                         </div>
                     </div>
 
-                    <div class="about__buttons__container mb-5" id="about__buttons__container--characteristics">
-                        @foreach ($characteristics as $characteristic)
-                        <button class="btn btn-lg" data-characteristic-id="{{$characteristic->id}}">
-                            <span class="name">{{$characteristic->characteristic}}</span>
-                        </button>
-                        @endforeach
-                    </div>
+                    @if(count($characteristics) === 0)
+                        <div>
+                            <span class="f-16">This user has not added any characteristics yet.</span>
+                        </div>
+                    @else
+                        <div class="about__buttons__container" id="about__buttons__container--characteristics">
+                            @foreach ($characteristics as $characteristic)
+                            <button class="btn btn-lg" data-characteristic-id="{{$characteristic->id}}">
+                                <span class="name">{{$characteristic->characteristic}}</span>
+                            </button>
+                            @endforeach
+                        </div>
+                    @endif
 
                 </div>
                 <div class="col-sm-6 col-12 about__reviews">
@@ -86,7 +109,7 @@
                         <div class="header">Reviews</div>
                         <div class="review-rating">
                             @if(count($reviews) === 0)
-                                <p class="mr-0">No Written Reviews yet</p>
+                                <p class="mr-0">No reviews of the user yet</p>
                             @else
                                 <p>{{$reviewTotalRating}}</p>
                                 @for ($i = 0; $i < floor($reviewTotalRating); $i++)

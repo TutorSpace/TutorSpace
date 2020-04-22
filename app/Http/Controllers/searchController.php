@@ -27,6 +27,7 @@ class searchController extends Controller
             // 1. name
             $nameUserResults = User::where('full_name', 'like', "%{$searchInput}%")
                             ->where('is_tutor', '=', !$user->is_tutor)
+                            ->where('users.id', '!=', $user->id)
                             ->get();
 
             // 2. course
@@ -39,6 +40,7 @@ class searchController extends Controller
                                 ->join('users', 'users.id', '=', 'course_user.user_id')
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('courses.id', $course_ids)
+                                ->where('users.id', '!=', $user->id)
                                 ->get();
 
             // 3. subject
@@ -51,6 +53,7 @@ class searchController extends Controller
                                 ->join('users', 'users.id', '=', 'subject_user.user_id')
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('subjects.id', $subject_ids)
+                                ->where('users.id', '!=', $user->id)
                                 ->get();
 
             $results = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
@@ -84,6 +87,7 @@ class searchController extends Controller
                                 ->whereIn('school_years.school_year', $yearInputs)
                                 ->where('users.full_name', 'like', "%{$searchInput}%")
                                 ->where('users.is_tutor', '=', !$user->is_tutor)
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 
@@ -101,6 +105,7 @@ class searchController extends Controller
                                 ->whereIn('school_years.school_year', $yearInputs)
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('courses.id', $course_ids)
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 
@@ -117,6 +122,7 @@ class searchController extends Controller
                                 ->whereIn('school_years.school_year', $yearInputs)
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('subjects.id', $subject_ids)
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 
@@ -156,6 +162,7 @@ class searchController extends Controller
                                 ->where('users.full_name', 'like', "%{$searchInput}%")
                                 ->where('users.is_tutor', '=', !$user->is_tutor)
                                 ->whereBetween('users.hourly_rate', [$priceRangeLow, $priceRangeHigh])
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 
@@ -174,6 +181,7 @@ class searchController extends Controller
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('courses.id', $course_ids)
                                 ->whereBetween('users.hourly_rate', [$priceRangeLow, $priceRangeHigh])
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 
@@ -192,6 +200,7 @@ class searchController extends Controller
                                 ->where('is_tutor', '=', !$user->is_tutor)
                                 ->whereIn('subjects.id', $subject_ids)
                                 ->whereBetween('users.hourly_rate', [$priceRangeLow, $priceRangeHigh])
+                                ->where('users.id', '!=', $user->id)
                                 ->groupby('users.id')
                                 ->get();
 

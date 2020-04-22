@@ -1,6 +1,7 @@
 @extends('layouts.loggedin')
 @section('title', 'search for student')
 
+
 @section('content')
 
 
@@ -93,7 +94,7 @@
                                 <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                             </svg>
                         @endif
-                        <img src="{{asset("user_photos/{$result->profile_pic_url}")}}" alt="user photo">
+                        <img src="{{asset("user_photos/{$result->profile_pic_url}")}}" alt="user photo" data-user-id="{{$result->id}}">
                         <p class="name">{{$result->full_name}}</p>
                         <p class="major">{{$result->major['major']}}</p>
 

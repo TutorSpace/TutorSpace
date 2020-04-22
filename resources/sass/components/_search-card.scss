@@ -3,6 +3,10 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
 
+    > h5:first-child {
+        min-height: 50rem;
+    }
+
     .search-card-flex-container {
 
 

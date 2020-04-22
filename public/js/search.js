@@ -52,3 +52,8 @@ $('#clear-rating').click(function() {
     $('#rating-range-high').val(4);
 });
 
+
+
+$('.search-card-flex-container img').click(function() {
+    window.location.href = '/view_profile/' + $(this).attr('data-user-id') + '?from=search';
+})

@@ -11391,6 +11391,10 @@ a.btn.btn-primary {
   margin-right: 0 !important;
 }
 
+.search-card-container > h5:first-child {
+  min-height: 50rem;
+}
+
 .search-card-container .search-card-flex-container .search-card {
   position: relative;
   text-align: center;
