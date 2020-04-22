@@ -208,17 +208,23 @@ class profileController extends Controller
         $courses = $viewUser->courses;
         $characteristics = $viewUser->characteristics;
 
+        // get reviews the user is being reviewed
+        $reviews = $viewUser->being_reviews;
+        $reviewTotalRating = $viewUser->getRating();
+
         if($currentUser->is_tutor) {
-            dd('here');
-            return view('profile.view_student_profile');
+
+            return view('profile.view_student_profile', [
+                'user' => $currentUser,
+                'viewUser' => $viewUser,
+                'subjects' => $subjects,
+                'courses' => $courses,
+                'characteristics' => $characteristics,
+                'reviews' => $reviews,
+                'reviewTotalRating' => $reviewTotalRating
+            ]);
         }
         else {
-            // get reviews the user is being reviewed
-            $reviews = $viewUser->being_reviews;
-            $reviewTotalRating = $viewUser->getRating();
-
-
-
 
             return view('profile.view_tutor_profile', [
                 'user' => $currentUser,
