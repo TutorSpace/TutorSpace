@@ -20,7 +20,7 @@ button, a.btn {
                 background-color: $color-blue-light !important;
             }
         }
-    
+
         &-blue-dark {
             background-color: $color-blue-dark;
 
@@ -54,6 +54,9 @@ button, a.btn {
     border: 1px solid black !important;
     font-size: 2rem !important;
     color: black !important;
+    display: flex;
+    align-items: center;
+    width: fit-content;
 
     &:focus {
         box-shadow: none !important;
@@ -62,5 +65,18 @@ button, a.btn {
     &:hover {
         background-color: $color-dark !important;
         color: white !important;
+
+        svg {
+            position: relative;
+            fill: white;
+            z-index: 1000;
+        }
+    }
+
+    svg {
+        width: 3rem;
+        height: 3rem;
+
     }
 }
+

@@ -7,6 +7,9 @@
 <div class="container edit-profile__container">
     <div>
         <a class="btn btn-lg back-button" id="back-button" href="/profile">
+            <svg>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-chevron-small-left')}}"></use>
+            </svg>
             Back to Profile
         </a>
     </div>

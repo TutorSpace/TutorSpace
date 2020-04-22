@@ -4,12 +4,16 @@ $("#start-timer").click(() => {
 });
 
 
-$("#stop-timer").click(() => {
+$("#clear-timer").click(() => {
     clearInterval(startTiming);
     secondLabel.innerHTML = "00";
     minuteLabel.innerHTML = "00";
     hourLabel.innerHTML = "00";
     totalSeconds = 0;
+});
+
+$("#stop-timer").click(() => {
+    clearInterval(startTiming);
 });
 
 
@@ -36,4 +40,14 @@ function pad(val) {
     } else {
         return valString;
     }
+}
+
+
+if($('.notes-for-student')[0]) {
+    $('#btn-reset').click(function() {
+        $('.notes-for-student > textarea').val('');
+    });
+    $('#btn-share-notes').click(function() {
+        alert('The sharing notes and ending session functionality is coming soon!');
+    });
 }

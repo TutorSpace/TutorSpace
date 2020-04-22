@@ -1,6 +1,6 @@
 // select view session
 $('.home__container__notifications__sessions .session__container > button:last-child').click(function () {
-    window.location.href = '/view_session_before';
+    window.location.href = '/view_session';
 });
 
 

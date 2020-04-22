@@ -227,19 +227,7 @@ class generalController extends Controller
         );
     }
 
-    // TODO: add validation
-    public function cancelSession(Request $request) {
-        $sessionId = $request->input('session_id');
-        $session = Session::find($sessionId);
-        $session->is_canceled = 1;
-        $session->save();
 
-        return response()->json(
-            [
-                'successMsg' => 'Successfully cancelled the tutor session!'
-            ]
-        );
-    }
 
 
 }

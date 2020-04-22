@@ -82,7 +82,8 @@ Route::post('/tutor_request_reject', 'generalController@rejectTutorRequest')->mi
 Route::post('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
 
 // sessions
-Route::post('/session_cancel', 'generalController@cancelSession')->middleware(['checkLogin']);
+Route::post('/session_cancel', 'sessionController@cancelSession')->middleware(['checkLogin']);
+Route::get('/view_session/{session}', 'sessionController@viewSession')->middleware(['checkLogin']);
 
 
 // subjects
@@ -102,3 +103,6 @@ Route::post('/post_review', 'reviewController@postReview')->middleware(['checkLo
 
 // search
 Route::get('/search', 'searchController@show')->middleware(['checkLogin']);
+
+// reports
+Route::get('/report/{reportee}', 'reportController@postReport')->middleware(['checkLogin']);

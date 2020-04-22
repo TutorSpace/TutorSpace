@@ -24,6 +24,11 @@
             flex: 0 0 50%;
         }
 
+        h5 {
+            font-size: 2rem !important;
+            margin-bottom: .5rem;
+        }
+
         select {
             background-color: transparent;
             font-size: 2.2rem !important;
@@ -39,6 +44,9 @@
 .session-timer-container {
     margin-top: 3rem;
 
+    h5 {
+        font-size: 2rem !important;
+    }
 
     .session-timer {
         width: 70%;
@@ -59,9 +67,9 @@
             justify-content: space-evenly;
 
             button {
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-                font-size: 2rem;
+                margin-top: .5rem;
+                margin-bottom: .5rem;
+                font-size: 1.6rem;
             }
 
         }
@@ -85,7 +93,7 @@
         font-size: 2rem !important;
         height: 30rem !important;
         padding: 1rem;
-        border-radius: 2rem;
+        border-radius: 1rem;
     }
 
     &-buttons {

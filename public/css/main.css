@@ -11193,6 +11193,11 @@ a.btn.btn-primary {
   border: 1px solid black !important;
   font-size: 2rem !important;
   color: black !important;
+  display: flex;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .btn.back-button:focus {
@@ -11202,6 +11207,17 @@ a.btn.btn-primary {
 .btn.back-button:hover {
   background-color: #343a40 !important;
   color: white !important;
+}
+
+.btn.back-button:hover svg {
+  position: relative;
+  fill: white;
+  z-index: 1000;
+}
+
+.btn.back-button svg {
+  width: 3rem;
+  height: 3rem;
 }
 
 .reviews-table {
@@ -14030,6 +14046,11 @@ h5 .fgpwd-container__header-2 {
   flex: 0 0 50%;
 }
 
+.session-details-container .session-details h5 {
+  font-size: 2rem !important;
+  margin-bottom: 0.5rem;
+}
+
 .session-details-container .session-details select {
   background-color: transparent;
   font-size: 2.2rem !important;
@@ -14038,6 +14059,10 @@ h5 .fgpwd-container__header-2 {
 
 .session-timer-container {
   margin-top: 3rem;
+}
+
+.session-timer-container h5 {
+  font-size: 2rem !important;
 }
 
 .session-timer-container .session-timer {
@@ -14057,9 +14082,9 @@ h5 .fgpwd-container__header-2 {
 }
 
 .session-timer-container .session-timer .session-timer-left button {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-size: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
 }
 
 .session-timer-container .session-timer .session-timer-right {
@@ -14074,7 +14099,7 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem !important;
   height: 30rem !important;
   padding: 1rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .notes-for-student-buttons {

@@ -5,12 +5,25 @@
 @section('content')
     <div class="container" id="profile-container">
         <div>
-            @if($from == 'search')
+            @if(!$from)
+                <a class="btn btn-lg back-button" id="back-button" href="/home">
+                    <svg>
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-chevron-small-left')}}"></use>
+                    </svg>
+                    Back to Home
+                </a>
+            @elseif($from == 'search')
                 <a class="btn btn-lg back-button" id="back-button" href="/search?navInput=">
+                    <svg>
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-chevron-small-left')}}"></use>
+                    </svg>
                     Back to Search
                 </a>
             @else
                 <a class="btn btn-lg back-button" id="back-button" href="/{{$from}}">
+                    <svg>
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-chevron-small-left')}}"></use>
+                    </svg>
                     Back to {{ucwords($from)}}
                 </a>
             @endif
