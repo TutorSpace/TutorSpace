@@ -401,7 +401,7 @@ min-width-450
             <div class="col-12 col-sm-7 home__container__notifications__students">
                 @if(count($recommendedCourses) === 0 && count($recommendedSubjects) === 0)
                     <!-- the commented div is to display when there is no recommended tutors -->
-                    <div class="home__container__notifications__title">
+                    <div class="home__container__notifications__title mb-2">
                         <h5><span>Recommended Tutors</span></h5>
                     </div>
                     <div class="home__container__notifications__text">
@@ -479,7 +479,7 @@ min-width-450
             <div class="col-12 col-sm-5 home__container__notifications__sessions change-student">
                 <div class="col-sm-12 col-6 _col-extra-small-12">
                     @if(count($upcomingSessions) == 0)
-                        <div class="home__container__notifications__title">
+                        <div class="home__container__notifications__title mb-2">
                             <h5><span>Upcoming Sessions</span></h5>
                         </div>
                         <div class="home__container__notifications__text">
@@ -517,7 +517,7 @@ min-width-450
 
                 <div class="col-sm-12 col-6 _col-extra-small-12 mt-4">
                     @if(count($pastTutors) == 0)
-                    <div class="home__container__notifications__title">
+                    <div class="home__container__notifications__title mb-2">
                         <h5><span>No Past Tutors</span></h5>
                     </div>
                     <div class="home__container__notifications__text">

@@ -418,7 +418,7 @@ min-width-450
                 <div class="home__container__notifications__title pl-0 pr-0 mb-0">
                     <h5><span>Upcoming Sessions</span></h5>
                 </div>
-                <div class="home__container__notifications__text">
+                <div class="home__container__notifications__text mt-2">
                     Scheduled sessions between you and a tutor will appear below.
                 </div>
                 @else
@@ -439,12 +439,12 @@ min-width-450
                     <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
                     @endif
                     <span class="descriptor">Time</span>
-                    <span class="descriptor">Location</span>
+                    <span class="descriptor">Hourly Rate</span>
                     <span class="text">
                         {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
                     </span>
                     <span class="text">
-                        {{$upcomingSession->location ?? 'On Campus'}}
+                        ${{$user->hourly_rate}} / hr
                     </span>
                     <button class="btn btn-lg btn-outline-primary" data-session-id="{{$upcomingSession->session_id}}">Cancel Session</button>
                     <button class="btn btn-lg btn-primary" data-session-id="{{$upcomingSession->session_id}}">View Session</button>
@@ -461,7 +461,7 @@ min-width-450
             <div class="home__tutor-requests__header">
                 <h5>Tutor Requests <span class="home__tutor-requests__header--num"></span></h5>
             </div>
-            <div class="home__tutor-requests__content ">
+            <div class="home__tutor-requests__content mt-2">
                 There is no tutor request currently. Add a post to make more people know you!
             </div>
             @else

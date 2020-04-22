@@ -11125,6 +11125,10 @@ label {
   font-size: 1.4rem;
 }
 
+.f-16 {
+  font-size: 1.6rem;
+}
+
 .background-cover {
   display: none;
   position: absolute;

@@ -203,7 +203,7 @@
 
                         </div>
                         @if(count($upcomingSessions) === 0)
-                            <h5>Scheduled sessions between you and a student will appear below.</h5>
+                            <span class="f-16">Scheduled sessions between you and a student will appear below.</span>
                         @else
                             @foreach ($upcomingSessions as $upcomingSession)
                                 <div class="session__container" data-session-id="{{$upcomingSession->session_id}}">
@@ -244,7 +244,7 @@
                 </div> --}}
                 <div class="sessions__info">
                     @if(count($pastSessions) === 0)
-                        <h5>There are no past sessions yet</h5>
+                        <span class="f-16">There are no past sessions yet</span>
                     @else
                         @foreach ($pastSessions as $pastSession)
                             <div class="session__container" data-session-id="{{$pastSession->session_id}}">
