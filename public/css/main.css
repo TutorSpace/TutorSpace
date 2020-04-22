@@ -13532,12 +13532,11 @@ h5 .fgpwd-container__header-2 {
   margin-top: 3rem;
 }
 
-.report-container .body-copy {
-  font-size: 2rem;
-}
-
 .report-container .report-reason__select {
-  flex: 0 0 20rem !important;
+  flex: unset !important;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
   font-size: 2rem;
 }
 
@@ -13566,8 +13565,8 @@ h5 .fgpwd-container__header-2 {
 
 .report-textarea {
   font-size: 2rem !important;
-  height: 30rem !important;
-  border-radius: 2rem;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
 .edit-profile__form {
@@ -14071,7 +14070,7 @@ h5 .fgpwd-container__header-2 {
   margin: 5rem auto;
   background-color: white;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-  border-radius: 2rem;
+  border-radius: 1rem;
   min-height: 15rem;
 }
 
@@ -14098,7 +14097,7 @@ h5 .fgpwd-container__header-2 {
 .notes-for-student textarea {
   font-size: 2rem !important;
   height: 30rem !important;
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
 }
 
@@ -14132,7 +14131,7 @@ h5 .fgpwd-container__header-2 {
   font-weight: 600;
   padding: 1rem 2rem;
   background-color: white;
-  border-radius: 2rem;
+  border-radius: 1rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 }
 
@@ -14169,8 +14168,8 @@ h5 .fgpwd-container__header-2 {
   height: 20rem;
   overflow: scroll;
   border: 1px solid black;
-  border-radius: 2rem;
-  padding: 1rem;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
 .session-review-header {
@@ -14185,8 +14184,8 @@ h5 .fgpwd-container__header-2 {
 .session-post-review-container textarea {
   font-size: 2rem !important;
   height: 30rem !important;
-  padding: 1rem;
-  border-radius: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
   background-color: transparent;
 }
 
@@ -14198,8 +14197,8 @@ h5 .fgpwd-container__header-2 {
 .share-notes-tutor {
   font-size: 2rem !important;
   height: 30rem !important;
-  padding: 1rem;
-  border-radius: 2rem !important;
+  padding: 1rem 2rem;
+  border-radius: 1rem !important;
   background-color: transparent !important;
 }
 

@@ -105,4 +105,5 @@ Route::post('/post_review', 'reviewController@postReview')->middleware(['checkLo
 Route::get('/search', 'searchController@show')->middleware(['checkLogin']);
 
 // reports
-Route::get('/report/{reportee}', 'reportController@postReport')->middleware(['checkLogin']);
+Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['checkLogin']);
+Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['checkLogin']);

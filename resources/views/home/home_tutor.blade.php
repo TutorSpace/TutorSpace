@@ -652,4 +652,11 @@ min-width-450
 </script>
 @endif
 
+@if(session('reportSuccess'))
+<script>
+    toastr.success('{{session('reportSuccess')}}');
+
+</script>
+@endif
+
 @endsection

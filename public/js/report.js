@@ -1,3 +1,5 @@
-$('#report-button').click(function() {
-    alert('Report Success!');
+$('#btn-reset').click(function() {
+    $('textarea').val('');
 });
+
+

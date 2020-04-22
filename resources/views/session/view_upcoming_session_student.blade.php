@@ -27,7 +27,8 @@
     @endif
     <div class="view-tutor-session__header">
         <h2>Tutoring Session with {{$tutor->full_name}}</h2>
-        <a class="btn btn-lg btn-outline-primary" id="report-button" href="/report/{{$tutor->id}}">Report a Problem</a>
+        {{-- direct to home page after reporting a problem --}}
+        <a class="btn btn-lg btn-outline-primary" id="report-button" href="/report/{{$tutor->id}}?from=home">Report a Problem</a>
     </div>
 
     <div class="session-details-container">

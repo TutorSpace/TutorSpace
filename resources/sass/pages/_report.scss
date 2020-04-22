@@ -12,24 +12,22 @@
         margin-top: 3rem;
     }
 
-    & .body-copy {
-        font-size: 2rem;
-    }
 
     .report-reason__select {
-        flex: 0 0 20rem !important;
-        
-        
+        flex: unset !important;
+        width: fit-content !important;
+
+
         font-size: 2rem;
         &:focus {
-            // border: black;
+
             box-shadow: none;
         }
         & option {
             font-size: $font-2;
         }
     }
-    
+
 }
 
 .report-buttons {
@@ -47,8 +45,9 @@
 
 .report-textarea {
     font-size: 2rem !important;
-    height: 30rem !important;
-    border-radius: 2rem;
+    // height: 30rem !important;
+    border-radius: 1rem;
+    padding: 1rem 2rem;
 }
 
 
