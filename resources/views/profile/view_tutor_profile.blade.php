@@ -82,8 +82,74 @@
 
                 </div>
                 <div class="col-sm-6 col-12 about__reviews">
-                    <div class="header">Reviews</div>
-                    
+                    <div class="top-container">
+                        <div class="header">Reviews</div>
+                        <div class="review-rating">
+                            @if(count($reviews) === 0)
+                                <p class="mr-0">No Written Reviews yet</p>
+                            @else
+                                <p>{{$reviewTotalRating}}</p>
+                                @for ($i = 0; $i < floor($reviewTotalRating); $i++)
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                    </svg>
+                                @endfor
+                                @for ($i = floor($reviewTotalRating); $i < 5; $i++)
+                                <svg>
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                                </svg>
+                                @endfor
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="reviews-container">
+                        @for ($i = 0; $i < min(count($reviews), 3); $i++)
+                            @php
+                                $review = $reviews[$i];
+                                $fullName = App\User::find($review->id)->full_name;
+                                $session = App\Session::find($review->session_id);
+                                $courseSubject;
+                                if($session->is_course) {
+                                    $courseSubject = App\Course::find($session->course_id)->course;
+                                }
+                                else {
+                                    $courseSubject = App\Subject::find($session->subject_id)->subject;
+                                }
+                            @endphp
+                            <div class="review-container">
+                                <div class="review-container--left">
+                                    @for ($j = 0; $j < floor($reviews[$i]->star_rating); $j++)
+                                        <svg>
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                                        </svg>
+                                    @endfor
+                                    @for ($j = floor($reviews[$i]->star_rating); $j < 5; $j++)
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                                    </svg>
+                                    @endfor
+                                </div>
+                                <div class="review-container--right">
+                                    <div class="header">
+                                        {{$fullName}} &middot; {{$courseSubject}}
+                                    </div>
+                                    <div class="review-content">
+                                        {{$reviews[$i]->review}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+
+
+                    </div>
+
+                    <div class="bottom-container">
+                        <a class="btn btn-lg btn-outline-primary btn-read-more" href="/reviews">
+                            Read More
+                        </a>
+                    </div>
+
                 </div>
 
             </div>

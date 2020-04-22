@@ -13040,7 +13040,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .profile-nav a.active {
-  border-bottom: 5px solid #2c86c4;
+  border-bottom: 0.5rem solid #2c86c4;
 }
 
 .about__container {
@@ -13186,7 +13186,7 @@ h5 .fgpwd-container__header-2 {
   border: 1.5px solid grey;
   padding: 0.5rem 4rem;
   outline: none;
-  border-radius: 7px;
+  border-radius: 0.7rem;
   padding-right: 1rem;
   color: black;
 }
@@ -13211,8 +13211,8 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem;
   display: flex;
   align-items: center;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-right: 1rem;
+  margin-top: 1rem;
 }
 
 .about__buttons__container button svg {
@@ -13335,7 +13335,7 @@ h5 .fgpwd-container__header-2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 1rem;
   width: 50%;
   background-color: white;
   padding: 2rem 4rem;
@@ -13406,7 +13406,7 @@ h5 .fgpwd-container__header-2 {
   outline: none;
   width: 100%;
   margin-top: 1rem;
-  border-radius: 10px;
+  border-radius: 1rem;
   padding: 1rem 2rem;
   flex: 1;
 }
@@ -13424,8 +13424,71 @@ h5 .fgpwd-container__header-2 {
   margin-right: 2rem;
 }
 
-.about__reviews .header {
+.about__reviews .top-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about__reviews .top-container .header {
   font-size: 2.2rem;
+}
+
+.about__reviews .top-container .review-rating {
+  display: flex;
+  align-items: center;
+}
+
+.about__reviews .top-container .review-rating p {
+  font-size: 2rem;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+  color: #2c86c4;
+}
+
+.about__reviews .top-container .review-rating svg {
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+  fill: #2c86c4;
+}
+
+.about__reviews .reviews-container .review-container {
+  margin-top: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.about__reviews .reviews-container .review-container--left {
+  display: flex;
+  align-items: center;
+  margin-top: 0.6rem;
+  margin-right: 1.5rem;
+}
+
+.about__reviews .reviews-container .review-container--left svg {
+  width: 2rem;
+  height: 2rem;
+  z-index: 1;
+  fill: #2c86c4;
+}
+
+.about__reviews .reviews-container .review-container--right .header {
+  display: flex;
+  font-size: 2.2rem;
+}
+
+.about__reviews .reviews-container .review-container--right .review-content {
+  font-size: 1.4rem;
+}
+
+.about__reviews .bottom-container {
+  text-align: right;
+  margin-top: 2rem;
+}
+
+.about__reviews .bottom-container button,
+.about__reviews .bottom-container a {
+  font-size: 2rem;
 }
 
 .report-container__header {

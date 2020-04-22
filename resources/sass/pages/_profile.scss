@@ -9,7 +9,7 @@
         // margin-right: 7rem;
 
         &.active {
-            border-bottom: 5px solid $color-blue-dark;
+            border-bottom: .5rem solid $color-blue-dark;
         }
     }
 
@@ -165,7 +165,7 @@ $about-input-width: 70%;
     border: 1.5px solid grey;
     padding: .5rem 4rem;
     outline: none;
-    border-radius: 7px;
+    border-radius: .7rem;
     padding-right: 1rem;
     color: black;
 
@@ -191,8 +191,8 @@ $about-input-width: 70%;
         display: flex;
         align-items: center;
         // justify-content: center;
-        margin-right: 10px;
-        margin-top: 10px;
+        margin-right: 1rem;
+        margin-top: 1rem;
         & svg {
             margin-right: 0.75rem;
             width: 2rem;
@@ -338,7 +338,7 @@ $margin-top: 3rem;
     #write-review-container {
         @include absCenter;
 
-        border-radius: 10px;
+        border-radius: 1rem;
         width: 50%;
 
         background-color: white;
@@ -416,7 +416,7 @@ $margin-top: 3rem;
                 outline: none;
                 width: 100%;
                 margin-top: 1rem;
-                border-radius: 10px;
+                border-radius: 1rem;
                 padding: 1rem 2rem;
                 flex: 1;
             }
@@ -442,7 +442,85 @@ $margin-top: 3rem;
 // view others' profile
 .about__reviews {
 
-    .header {
-        font-size: $font-2;
+    .top-container {
+        display: flex;
+        justify-content: space-between;
+
+
+        .header {
+            font-size: $font-2;
+        }
+
+        .review-rating {
+            display: flex;
+            align-items: center;
+
+
+            p {
+                font-size: 2rem;
+                margin-bottom: 0;
+                margin-right: .5rem;
+                color: $color-blue-dark;
+            }
+
+            svg {
+                width: 2rem;
+                height: 2rem;
+                z-index: 1;
+
+                fill: $color-blue-dark;
+            }
+        }
     }
+
+    .reviews-container {
+
+        .review-container {
+            margin-top: 1rem;
+            display: flex;
+            align-items: flex-start;
+
+            &--left {
+                display: flex;
+                align-items: center;
+                margin-top: .6rem;
+                margin-right: 1.5rem;
+
+                svg {
+                    width: 2rem;
+                    height: 2rem;
+                    z-index: 1;
+                    fill: $color-blue-dark;
+                }
+
+            }
+
+            &--right {
+
+
+                .header {
+                    display: flex;
+                    font-size: $font-2;
+                }
+
+                .review-content {
+                    font-size: 1.4rem;
+                }
+            }
+
+        }
+
+    }
+
+    .bottom-container {
+        text-align: right;
+        margin-top: 2rem;
+
+        button, a {
+            font-size: 2rem;
+        }
+    }
+
+
+
 }

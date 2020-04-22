@@ -8,6 +8,7 @@ use App\School_year;
 use App\Major;
 use App\User;
 use Hash;
+use App\Review;
 
 class profileController extends Controller
 {
@@ -212,13 +213,21 @@ class profileController extends Controller
             return view('profile.view_student_profile');
         }
         else {
+            // get reviews the user is being reviewed
+            $reviews = $viewUser->being_reviews;
+            $reviewTotalRating = $viewUser->getRating();
+
+
+
 
             return view('profile.view_tutor_profile', [
                 'user' => $currentUser,
                 'viewUser' => $viewUser,
                 'subjects' => $subjects,
                 'courses' => $courses,
-                'characteristics' => $characteristics
+                'characteristics' => $characteristics,
+                'reviews' => $reviews,
+                'reviewTotalRating' => $reviewTotalRating
             ]);
         }
     }
