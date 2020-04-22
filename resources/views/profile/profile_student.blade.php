@@ -279,7 +279,7 @@
             <div class="scroll-container">
             <div class="search-card-container row">
                 @if(count($bookmarks) === 0)
-                    <h5>You have not saved any tutors yet</h5>
+                    <span class="f-16">You have not saved any tutors yet</span>
                 @else
                     @foreach ($bookmarks as $bookmark)
                         <div class="search-card-flex-container col-lg-3 col-md-4 col-sm-4 col-6" data-user-id="{{$bookmark->id}}">
@@ -287,7 +287,7 @@
                                 <svg class="bookmark bookmark-marked" data-user-id="{{$bookmark->id}}">
                                     <use xlink:href="assets/sprite.svg#icon-bookmark"></use>
                                 </svg>
-                                <img src="{{asset("user_photos/{$bookmark->profile_pic_url}")}}" alt="user photo">
+                                <img src="{{asset("user_photos/{$bookmark->profile_pic_url}")}}" alt="user photo" data-user-id="{{$bookmark->id}}">
                                 <p class="name">{{$bookmark->full_name}}</p>
                                 <p class="major">{{App\Major::find($bookmark->major_id)->major}}</p>
                                 <p class="star-container">${{$bookmark->hourly_rate}} / hr |

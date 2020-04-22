@@ -215,13 +215,17 @@ $('svg.bookmark').click(function() {
             $(this).parent().parent().remove();
 
             if($('.search-card-container').children().length === 0) {
-                $('.search-card-container').append('<h5>You have not saved any tutors yet</h5>');
+                $('.search-card-container').append('<span class="f-16">You have not saved any tutors yet</span>');
             }
         },
         error: function(error) {
             toastr.error(error);
         }
     });
+});
+
+$('.search-card img').click(function() {
+    window.location.href = '/view_profile/' + $(this).attr('data-user-id');
 });
 
 
@@ -247,7 +251,7 @@ $('.sessions__container-1 .session__container > button:not(:last-child)').click(
             $(this).parent().remove();
             // because there is a "shadow-container always inside"
             if($('.upcoming-sessions-container').children().length === 1) {
-                $('.upcoming-sessions-container').append('<h5>Scheduled sessions between you and a student will appear below.</h5>');
+                $('.upcoming-sessions-container').append('<span class="f-16">Scheduled sessions between you and a student will appear below.</span>');
             }
 
         },
@@ -357,7 +361,7 @@ $('#write-review-container').submit((e) => {
             sessionContainer.remove();
 
             if($('.sessions__container-2 .sessions__info').children().length === 0) {
-                $('.sessions__container-2 .sessions__info').append('<h5>There are no past sessions yet</h5>');
+                $('.sessions__container-2 .sessions__info').append('<span class="f-16">There are no past sessions yet</span>');
             }
         },
         error: function(error) {

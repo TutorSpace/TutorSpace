@@ -199,4 +199,28 @@ class profileController extends Controller
         }
     }
 
+    public function viewProfile(Request $request, $viewUserId) {
+        $currentUser = Auth::user();
+        $viewUser = User::find($viewUserId);
+
+        $subjects = $viewUser->subjects;
+        $courses = $viewUser->courses;
+        $characteristics = $viewUser->characteristics;
+
+        if($currentUser->is_tutor) {
+            dd('here');
+            return view('profile.view_student_profile');
+        }
+        else {
+
+            return view('profile.view_tutor_profile', [
+                'user' => $currentUser,
+                'viewUser' => $viewUser,
+                'subjects' => $subjects,
+                'courses' => $courses,
+                'characteristics' => $characteristics
+            ]);
+        }
+    }
+
 }

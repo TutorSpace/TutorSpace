@@ -10972,7 +10972,6 @@ h6 {
 h1 {
   font-size: 4.8rem !important;
   margin-bottom: 0;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 h2 {
@@ -11428,6 +11427,10 @@ a.btn.btn-primary {
   border-radius: 50%;
   margin-bottom: 1rem;
   height: 10rem;
+}
+
+.search-card-container .search-card-flex-container .search-card img:hover {
+  cursor: pointer;
 }
 
 .search-card-container .search-card-flex-container .search-card .star-container {
@@ -11895,17 +11898,12 @@ a.btn.btn-primary {
   left: 50%;
   transform: translate(-50%, -60%);
   width: 100%;
-  padding: 5rem;
-}
-
-.index-left-container__box > *:not(:last-child) {
-  margin-bottom: 5.5rem;
+  padding-left: 3rem;
 }
 
 .index-left-container__box-1 {
   font-size: 5.5rem;
-  line-height: 5.5rem;
-  font-family: "Crimson Text", serif;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 56.25em) {
@@ -11928,22 +11926,24 @@ a.btn.btn-primary {
 
 .index-left-container__box-2 {
   color: black;
+  margin-bottom: 6rem;
+  font-size: 2rem;
 }
 
 @media only screen and (max-width: 56.25em) {
-  .index-left-container__box-2 h5 {
+  .index-left-container__box-2 {
     font-size: 1.8rem !important;
   }
 }
 
 @media only screen and (max-width: 40.625em) {
-  .index-left-container__box-2 h5 {
+  .index-left-container__box-2 {
     font-size: 2.2rem !important;
   }
 }
 
 @media only screen and (max-width: 25em) {
-  .index-left-container__box-2 h5 {
+  .index-left-container__box-2 {
     font-size: 1.8rem !important;
   }
 }
@@ -12076,7 +12076,7 @@ a.btn.btn-primary {
 
 .signup-container__form__header {
   text-align: center;
-  margin-bottom: 5.5rem;
+  margin-bottom: 4rem;
   font-size: 5.5rem;
 }
 
@@ -12416,7 +12416,7 @@ h5 .fgpwd-container__header-2 {
 }
 
 .login-container {
-  min-height: 700px;
+  min-height: 600px;
   height: calc(100vh - calc(100vw / 14.4));
   width: 100%;
 }
@@ -12496,12 +12496,12 @@ h5 .fgpwd-container__header-2 {
 
 .login-container__content__form__header {
   font-size: 5.5rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .login-container__content__form__group {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .login-container__content__form__group label {
@@ -13122,12 +13122,14 @@ h5 .fgpwd-container__header-2 {
   display: block;
 }
 
-.about__information__content a {
+.about__information__content a,
+.about__information__content button {
   display: inline-block;
   margin-top: 2rem;
   font-size: 2rem;
   width: 40%;
   margin-right: 9%;
+  text-align: center;
 }
 
 .about__information + div {
@@ -13420,6 +13422,10 @@ h5 .fgpwd-container__header-2 {
 
 #background-cover #write-review-container .btn-container .btn-cancel {
   margin-right: 2rem;
+}
+
+.about__reviews .header {
+  font-size: 2.2rem;
 }
 
 .report-container__header {

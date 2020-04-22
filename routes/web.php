@@ -48,6 +48,7 @@ Route::post('/forget_password_send', 'forgetPasswordController@send');
 
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['checkLogin']);
+Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middleware(['checkLogin']);
 
 // edit profile
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['checkLogin']);

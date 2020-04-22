@@ -4,15 +4,15 @@
 @section('content')
 
 <div class="container-fluid">
-<div class="row row-cols-2">
-    <div class="col index-left-container">
+<div class="row">
+    <div class="col-6 index-left-container">
         <div class="index-left-container__box">
             <div class="index-left-container__box-1">
                 <h1 class="heading-color">The one-stop shop to find or be the perfect tutor!</h1>
             </div>
             <div class="index-left-container__box-2">
-                <h5>Whether it's a USC-specific class or a general subject, find a tutor who can accommodate to
-                    your busy schedule and be within your budget!</h5>
+                Whether it's a USC-specific class or a general subject, find a tutor who can accommodate to
+                    your busy schedule and be within your budget!
             </div>
             <div class="index-left-container__box-3">
                 <a type="button" class="btn btn-lg btn-bg-blue-dark btn-animated--up" href="/signup_tutor">I want to
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <div class="col index-right-container">
+    <div class="col-6 index-right-container">
         <svg width="827" height="697" viewBox="0 0 827 697" fill="none" xmlns="http://www.w3.org/2000/svg"
             class="index-right-container__img">
             <path opacity="0.1"

@@ -19,7 +19,7 @@
         &__form {
             @include absCenter;
             transform: translate(-50%, -60%);
-            
+
 
             width: 75%;
 
@@ -112,14 +112,9 @@
             }
 
 
-
-
-
-
-
             &__header {
                 text-align: center;
-                margin-bottom: $font-1;
+                margin-bottom: 4rem;
                 font-size: $font-1;
             }
 
@@ -331,11 +326,11 @@
             border: 1px solid black;
             border-radius: 5px;
             overflow: hidden;
-            
+
             &:hover {
                 cursor: pointer;
                 border: 1px solid transparent;
-            
+
                 &:before {
                     transform: translateX(0);
                     background-color: $color-blue-light;
@@ -345,8 +340,8 @@
                 span {
                     transform: translateX(100%);
                 }
-                
-                
+
+
             }
             span {
                 display: block;
@@ -366,10 +361,10 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
+
             }
 
-            
+
         }
 
 

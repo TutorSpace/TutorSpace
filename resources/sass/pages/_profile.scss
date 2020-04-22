@@ -102,12 +102,13 @@ $about-input-width: 70%;
             }
         }
 
-        & a {
+        a, button {
             display: inline-block;
             margin-top: 2rem;
             font-size: 2rem;
             width: 40%;
             margin-right: 9%;
+            text-align: center;
         }
 
     }
@@ -434,5 +435,14 @@ $margin-top: 3rem;
             }
         }
 
+    }
+}
+
+
+// view others' profile
+.about__reviews {
+
+    .header {
+        font-size: $font-2;
     }
 }
