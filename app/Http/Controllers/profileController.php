@@ -212,7 +212,7 @@ class profileController extends Controller
         $reviews = $viewUser->being_reviews;
         $reviewTotalRating = $viewUser->getRating();
 
-        if($currentUser->is_tutor) {
+        if(!$viewUser->is_tutor) {
 
             return view('profile.view_student_profile', [
                 'user' => $currentUser,
