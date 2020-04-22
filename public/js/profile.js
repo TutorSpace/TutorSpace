@@ -81,13 +81,13 @@ $('.profile-nav > .nav-link').click(function() {
 
 // select all "view session button" from the upcoming section
 $('.sessions__container-1 .session__container > button:last-child').click(function() {
-    window.location.href = '/view_session';
+    window.location.href = `/view_session/${$(this).attr('data-session-id')}?from=profile`;
 });
 
 
 // select all "view session button" from the past section
 $('.sessions__container-2 .session__container > button:last-child').click(function() {
-    window.location.href = '/view_session';
+    window.location.href = `/view_session/${$(this).attr('data-session-id')}?from=profile`;
 });
 
 
