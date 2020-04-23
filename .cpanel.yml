@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/joinmeus/public_html/tutor_laravel/
+    - export DEPLOYPATH=/home/joinmeus/public_html/tutor/
     - /bin/rm -rf $DEPLOYPATH
     - /bin/mkdir $DEPLOYPATH
     - /bin/cp -r .* $DEPLOYPATH
