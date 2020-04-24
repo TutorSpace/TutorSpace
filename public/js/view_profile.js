@@ -1,4 +1,5 @@
-$('.btn-read-more').click(() => {
+$('.btn-read-more').click((e) => {
+    e.preventDefault();
     alert('TODO: lead to the review page');
 });
 
@@ -10,3 +11,10 @@ function fitProfileImgHeight() {
     imgContainer.height(currentWidth);
 
 }
+
+
+$('.btn-request-tutor-session').click(function() {
+
+    window.location.href = "/tutor_request/" + $(this).attr('data-tutor-id') + "?from=home";
+
+});

@@ -10954,6 +10954,7 @@ body {
   color: #f7fbfd;
   background-color: #f7fbfd !important;
   overflow: hidden !important;
+  color: black;
 }
 
 svg {
@@ -12986,7 +12987,7 @@ h5 .fgpwd-container__header-2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 1rem;
   width: 50%;
   background-color: white;
   color: black;
@@ -14209,5 +14210,67 @@ h5 .fgpwd-container__header-2 {
 
 .share-notes-tutor + div button:first-child {
   margin-left: 1rem;
+}
+
+.edit-availability-container {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+#calendar {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+#calendar h2 {
+  font-size: 2.2rem !important;
+}
+
+#calendar button {
+  background-color: #97d2fb !important;
+  border-color: #97d2fb !important;
+  color: black !important;
+}
+
+.fc-ltr .fc-axis {
+  text-align: center !important;
+}
+
+.fc-time-grid .fc-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-view-container {
+  background-color: white;
+}
+
+.fc-content {
+  font-size: 1.4rem !important;
+}
+
+#background-cover-3 #confirm-time-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  width: 50%;
+  background-color: white;
+  color: black;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#background-cover-3 #confirm-time-container .bottom-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#background-cover-3 #confirm-time-container .bottom-container button {
+  font-size: 1.6rem;
 }
 

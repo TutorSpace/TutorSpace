@@ -32,7 +32,7 @@
                     </div>
                     <div class="btn-container">
                         <a class="btn btn-lg btn-primary" href="/edit_profile">Edit Profile</a>
-                        <a class="btn btn-lg btn-outline-primary" href="/edit_availability">Edit Availability</a>
+                        <a class="btn btn-lg btn-outline-primary" href="/edit_availability?from=profile">Edit Availability</a>
                     </div>
                 </div>
             </div>

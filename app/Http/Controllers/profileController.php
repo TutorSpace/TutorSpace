@@ -206,9 +206,9 @@ class profileController extends Controller
         $currentUser = Auth::user();
         $viewUser = User::find($viewUserId);
 
-        // if($currentUser->is_tutor == $viewUser->is_tutor) {
-        //     return redirect()->route('home');
-        // }
+        if($currentUser->is_tutor == $viewUser->is_tutor) {
+            return redirect()->route('home');
+        }
 
         $subjects = $viewUser->subjects;
         $courses = $viewUser->courses;

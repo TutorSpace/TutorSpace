@@ -107,3 +107,8 @@ Route::get('/search', 'searchController@show')->middleware(['checkLogin']);
 // reports
 Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['checkLogin']);
 Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['checkLogin']);
+
+// tutor requests
+Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['checkLogin']);
+Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['checkLogin']);
+Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['checkLogin']);

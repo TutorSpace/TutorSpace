@@ -1,0 +1,81 @@
+.edit-availability-container {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+#calendar {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+
+    text-align: center;
+
+    h2 {
+        font-size: 2.2rem !important;
+    }
+
+    button {
+        background-color: rgb(151, 210, 251) !important;
+        border-color: rgb(151, 210, 251) !important;
+        color: black !important;
+    }
+}
+
+.fc-ltr .fc-axis {
+    text-align: center !important;
+}
+
+.fc-today {
+    // background: #FFF !important;
+}
+
+
+.fc-time-grid .fc-event {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // font-size: 1.6rem;
+}
+
+.fc-view-container {
+    background-color: white;
+}
+
+.fc-content {
+    font-size: 1.4rem !important;
+}
+
+
+
+// don't set the size on the container. let the content fill the div
+#background-cover-3 {
+
+    #confirm-time-container {
+        @include absCenter;
+
+        border-radius: 1rem;
+        width: 50%;
+        background-color: white;
+        color: black;
+        padding: 2rem 4rem;
+
+        display: flex;
+        flex-direction: column;
+
+
+
+        .bottom-container {
+
+            display: flex;
+            justify-content: flex-end;
+
+            button {
+                font-size: 1.6rem;
+
+            }
+        }
+
+    }
+
+}
+
+

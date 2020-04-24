@@ -50,7 +50,6 @@
                     </div>
                     <div class="btn-container">
                         <a class="btn btn-lg btn-primary" href="/message">Message</a>
-
                     </div>
                 </div>
             </div>
@@ -177,7 +176,7 @@
                     </div>
 
                     <div class="bottom-container">
-                        <a class="btn btn-lg btn-outline-primary btn-read-more" href="/reviews">
+                        <a class="btn btn-lg btn-outline-primary btn-read-more" href="#">
                             Read More
                         </a>
                     </div>

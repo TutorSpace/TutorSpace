@@ -50,7 +50,8 @@
                     </div>
                     <div class="btn-container">
                         <a class="btn btn-lg btn-primary" href="/message">Message</a>
-                        <button class="btn btn-lg btn-outline-primary btn-request-tutor-session">Request Tutoring Session</button>
+                        <button class="btn btn-lg btn-outline-primary btn-request-tutor-session mr-0" data-tutor-id="{{$viewUser->id}}">Request Tutoring Session</button>
+
                     </div>
                 </div>
             </div>
@@ -181,7 +182,7 @@
                     </div>
 
                     <div class="bottom-container">
-                        <a class="btn btn-lg btn-outline-primary btn-read-more" href="/reviews">
+                        <a class="btn btn-lg btn-outline-primary btn-read-more" href="#">
                             Read More
                         </a>
                     </div>
