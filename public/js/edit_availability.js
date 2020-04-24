@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function () {
             right: 'timeGridDay, timeGridWeek, dayGridMonth'
         },
         // contentHeight: 800,
-        events: [{
+        events: [
+            {
                 title: 'testing event',
                 start: '2020-04-23T12:30:00',
                 end: '2020-04-23T13:30:00',
@@ -54,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
         eventMouseLeave: function (mouseLeaveInfo) {
 
         },
-
 
         allDaySlot: false,
         minTime: "06:00:00",
@@ -186,7 +186,9 @@ $('.btn-submit').click(function() {
         success: (data) => {
             let { successMsg } = data;
             toastr.success(successMsg);
-            calendar.render();
+
+            // window.location.href = "/edit_availability";
+
         },
         error: function(error) {
             console.log(error);

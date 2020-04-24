@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\User;
+use App\Available_time;
 
 class tutorRequestController extends Controller
 {
@@ -33,10 +34,14 @@ class tutorRequestController extends Controller
             return redirect()->route('home');
         }
 
+        $times = $user->available_times;
+
+
         $from = $request->input('from');
         return view('tutor_request.show_edit_availability', [
             "user" => $user,
-            'from' => $from
+            'from' => $from,
+            'times' => $times
         ]);
     }
 
@@ -44,6 +49,15 @@ class tutorRequestController extends Controller
         $startTime = $request->input('startTime');
         $endTime = $request->input('endTime');
 
+        $availableTime = new Available_time();
+        $availableTime->user_id = Auth::user()->id;
+        $availableTime->available_time_start = $startTime;
+        $availableTime->available_time_end = $endTime;
+        $availableTime->save();
+
+        return response()->json([
+            'successMsg' => 'Successfully added this time slot to your available time!'
+        ]);
 
     }
 
