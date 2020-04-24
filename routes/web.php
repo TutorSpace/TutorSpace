@@ -112,3 +112,4 @@ Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['c
 Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['checkLogin']);
 Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['checkLogin']);
 Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['checkLogin']);
+Route::post('/tutor_request', 'tutorRequestController@makeTutorRequest')->middleware(['checkLogin']);

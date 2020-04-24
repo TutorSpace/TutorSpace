@@ -60,12 +60,11 @@
             @endif
     </div>
 
-    <form action="" class="edit-availability-container" method="POST">
-        @csrf
+    <div class="edit-availability-container">
         <h4>Edit Your Availability</h4>
         <div id='calendar'></div>
 
-    </form>
+    </div>
 
 
 </div>

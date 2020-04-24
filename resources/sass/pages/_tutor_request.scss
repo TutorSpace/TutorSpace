@@ -76,6 +76,30 @@
 
     }
 
+    .info-container {
+
+        .info-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+
+            > * {
+                flex: 50%;
+            }
+
+            .descriptor {
+                color: $color-gray;
+            }
+
+            .text {
+                font-weight: 500;
+                font-size: $font-2;
+            }
+
+
+        }
+    }
+
 }
 
 

@@ -14271,3 +14271,22 @@ h5 .fgpwd-container__header-2 {
   font-size: 1.6rem;
 }
 
+#background-cover-3 .info-container .info-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+#background-cover-3 .info-container .info-row > * {
+  flex: 50%;
+}
+
+#background-cover-3 .info-container .info-row .descriptor {
+  color: #9a9a9a;
+}
+
+#background-cover-3 .info-container .info-row .text {
+  font-weight: 500;
+  font-size: 2.2rem;
+}
+

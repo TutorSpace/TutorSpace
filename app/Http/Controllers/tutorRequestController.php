@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Available_time;
+use App\Tutor_request;
 
 class tutorRequestController extends Controller
 {
@@ -18,12 +19,29 @@ class tutorRequestController extends Controller
         }
 
         $from = $request->input('from');
+        $times = $tutor->available_times;
+        $interestedCourses = $user->courses;
+        $interestedSubjects = $user->subjects;
 
         return view('tutor_request.show_request_session', [
             "user" => $user,
             "tutor" => $tutor,
-            "from" => $from
+            "from" => $from,
+            "times" => $times,
+            "interestedCourses" => $interestedCourses,
+            "interestedSubjects" => $interestedSubjects
         ]);
+    }
+
+    public function makeTutorRequest(Request $request) {
+        $startTime = $request->input('start_time');
+        $endTime = $request->input('end_time');
+        $date = $request->input('tutor_session_date');
+        $tutorId = $request->input('tutor_id');
+
+        $tutorRequest = new Tutor_request();
+        $tutorRequest->tutor_id = $tutorId;
+
 
     }
 

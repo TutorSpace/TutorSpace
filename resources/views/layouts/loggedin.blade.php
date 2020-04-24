@@ -83,7 +83,7 @@ c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
                     <img src="{{asset("user_photos/{$user->profile_pic_url}"),}}" alt="user photo"
                         id="tutor-profile-photo">
                     <div class="nav__dropdown-container">
-                        <p class="name">{{$user->full_name}}</p>
+                        <p class="name text-white">{{$user->full_name}}</p>
                         <div class="profile-container">
                             <span class="profile">Profile</span>
                         </div>
