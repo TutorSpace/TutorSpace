@@ -1,5 +1,5 @@
 @extends('layouts.loggedin')
-@section('title', 'make tutor request')
+@section('title', 'edit availability')
 
 @section('links-in-head')
 
@@ -75,8 +75,6 @@
 @endsection
 
 @section('js')
-
-{{-- <script src="{{asset('js/edit_availability.js')}}"></script> --}}
 
 <script>
 
@@ -169,13 +167,8 @@ document.addEventListener('DOMContentLoaded', function () {
             //     toastr.error("Please select the time range of the same day!");
             // }
 
-
             showForm(selectionInfo);
-            calendar.addEvent({
-                title: 'Available',
-                start: startTime,
-                end: endTime
-            });
+
 
         },
         unselect: function (jsEvent, view) {
@@ -202,11 +195,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return usDate;
         },
         allDayDefault: false,
-
-
-
-
-
     });
 
     calendar.render();
@@ -225,14 +213,11 @@ function getMinutesFormat(date) {
 }
 
 function showForm(info) {
-
     startTime = startTime.yyyymmdd() + " " + startTime.getHours() + ":" + getMinutesFormat(startTime);
     endTime = endTime.yyyymmdd() + " " + endTime.getHours() + ":" + getMinutesFormat(endTime);
 
     $('#start-time').html(startTime);
     $('#end-time').html(endTime);
-
-
 
     $('#background-cover-3').height(document.documentElement.scrollHeight);
     $('#background-cover-3').width(document.documentElement.scrollWidth);
@@ -244,28 +229,18 @@ function showForm(info) {
         },
         'slow'
     );
-
-
-
 }
 
 $('.btn-cancel').click(function() {
     $('#background-cover-3').hide();
 });
 
-
-
-
-
-
 $('.btn-submit').click(function() {
-
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
 
     $.ajax({
         type:'POST',
@@ -278,23 +253,15 @@ $('.btn-submit').click(function() {
             let { successMsg } = data;
             toastr.success(successMsg);
 
-            $('#background-cover-3').hide();
-            // calendar.render();
-
-            // window.location.href = "/edit_availability";
-
+            // $('#background-cover-3').hide();
+            window.location.href = "/edit_availability";
         },
         error: function(error) {
             console.log(error);
             toastr.error(error);
         }
     });
-
-
 });
-
-
-
 
 </script>
 

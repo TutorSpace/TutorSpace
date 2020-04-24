@@ -45,7 +45,7 @@ class homeController extends Controller
 
 
             // TODO: build availability calendar
-
+            $times = $user->available_times;
 
             return view('home.home_tutor', [
                 'upcomingSessions' => $upcomingSessions,
@@ -53,7 +53,8 @@ class homeController extends Controller
                 'interestedCourses' => $interestedCourses,
                 'interestedSubjects' => $interestedSubjects,
                 'tutorRequests' =>$tutorRequests,
-                'user' => $user
+                'user' => $user,
+                'times' => $times
             ]);
 
         }
