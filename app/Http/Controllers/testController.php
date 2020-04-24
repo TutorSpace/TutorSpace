@@ -14,6 +14,10 @@ use App\Tutor_request;
 use App\Session;
 use App\Course;
 
+use Carbon\Carbon;
+
+
+
 
 class testController extends Controller
 {
@@ -68,47 +72,63 @@ class testController extends Controller
         // dd($course_ids);
 
 
-        // get all the courses with matched input
-        $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
+        // // get all the courses with matched input
+        // $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
 
-        // get all the users who are interested in those courses
-        $courseUserResults = Course::select('users.*')
-                            ->join('course_user', 'course_user.course_id', '=', 'courses.id')
-                            ->join('users', 'users.id', '=', 'course_user.user_id')
-                            ->where('is_tutor', '=', '0')
-                            ->whereIn('courses.id', $course_ids)
-                            ->get();
-        // dd($courseUserResults);
+        // // get all the users who are interested in those courses
+        // $courseUserResults = Course::select('users.*')
+        //                     ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+        //                     ->join('users', 'users.id', '=', 'course_user.user_id')
+        //                     ->where('is_tutor', '=', '0')
+        //                     ->whereIn('courses.id', $course_ids)
+        //                     ->get();
+        // // dd($courseUserResults);
 
-        $nameUserResults = User::where('full_name', 'like', "%{$navInput}%")
-        ->where('is_tutor', '=', !$user->is_tutor)
-        ->get();
+        // $nameUserResults = User::where('full_name', 'like', "%{$navInput}%")
+        // ->where('is_tutor', '=', !$user->is_tutor)
+        // ->get();
 
-        // 2. course
-        // get all the courses with matched input
-        $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
+        // // 2. course
+        // // get all the courses with matched input
+        // $course_ids = Course::where('course', 'like', "%{$navInput}%")->pluck('id');
 
-        // get all the users who are interested in those courses
-        $courseUserResults = Course::select('users.*')
-                    ->join('course_user', 'course_user.course_id', '=', 'courses.id')
-                    ->join('users', 'users.id', '=', 'course_user.user_id')
-                    ->where('is_tutor', '=', !$user->is_tutor)
-                    ->whereIn('courses.id', $course_ids)
-                    ->get();
+        // // get all the users who are interested in those courses
+        // $courseUserResults = Course::select('users.*')
+        //             ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+        //             ->join('users', 'users.id', '=', 'course_user.user_id')
+        //             ->where('is_tutor', '=', !$user->is_tutor)
+        //             ->whereIn('courses.id', $course_ids)
+        //             ->get();
 
-        // 3. subject
-        // get all the subjects with matched input
-        $subject_ids = Subject::where('subject', 'like', "%{$navInput}%")->pluck('id');
+        // // 3. subject
+        // // get all the subjects with matched input
+        // $subject_ids = Subject::where('subject', 'like', "%{$navInput}%")->pluck('id');
 
-        // get all the users who are interested in those subjects
-        $subjectUserResults = Subject::select('users.*')
-                    ->join('subject_user', 'subject_user.subject_id', '=', 'subjects.id')
-                    ->join('users', 'users.id', '=', 'subject_user.user_id')
-                    ->where('is_tutor', '=', !$user->is_tutor)
-                    ->whereIn('subjects.id', $subject_ids)
-                    ->get();
+        // // get all the users who are interested in those subjects
+        // $subjectUserResults = Subject::select('users.*')
+        //             ->join('subject_user', 'subject_user.subject_id', '=', 'subjects.id')
+        //             ->join('users', 'users.id', '=', 'subject_user.user_id')
+        //             ->where('is_tutor', '=', !$user->is_tutor)
+        //             ->whereIn('subjects.id', $subject_ids)
+        //             ->get();
 
-        $test = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
-        dd($test);
+        // $test = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
+        // dd($test);
+
+        // $mytime = Carbon::now();
+        // // dd($mytime->toDateTimeString());
+
+        // $outdatedSessions = Session::where('is_upcoming', 1)
+        //             ->where('is_canceled', 0)
+        //             ->get();
+
+        // foreach($outdatedSessions as $outdatedSession) {
+        //     $sessionTime = User::getTime($outdatedSession->date, $outdatedSession->start_time);
+        //     if($sessionTime <= $mytime) {
+        //         $outdatedSession->delete();
+        //     }
+        // }
+
+        User::find(5)->tutor_requests;
     }
 }

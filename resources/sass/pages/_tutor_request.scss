@@ -18,6 +18,10 @@
         border-color: rgb(151, 210, 251) !important;
         color: black !important;
     }
+
+    * {
+        white-space: unset !important;
+    }
 }
 
 .fc-ltr .fc-axis {

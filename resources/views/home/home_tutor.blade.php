@@ -726,8 +726,7 @@ min-width-450
 
 
 <script>
-    let assetsURL = "{{asset("
-    user_photos / ")}}";
+    let assetsURL = "{{asset("user_photos/")}}";
 
 </script>
 

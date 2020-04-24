@@ -14238,6 +14238,10 @@ h5 .fgpwd-container__header-2 {
   color: black !important;
 }
 
+#calendar * {
+  white-space: unset !important;
+}
+
 .fc-ltr .fc-axis {
   text-align: center !important;
 }
