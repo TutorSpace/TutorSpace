@@ -9,17 +9,17 @@
 
             <div class="fgpwd-container__header text-center"><h1>Forgot Your Password?</h1></div>
             <div class="fgpwd-container__header-2 text-center"><h5>We'll send you an Authorization Code to the email you provide us!</h5>
-            
+
             </div>
             <div class="fgpwd-container__inputs">
                 <input type="email" class="fgpwd-container__inputs__email" name="email" placeholder="Email" id="email">
                 <input type="text" class="fgpwd-container__inputs__email" id="Code" name="code" placeholder="Code">
                 <input type="password" class="fgpwd-container__inputs__email" name="password" id="password" placeholder="Password">
             </div>
-            
+
             <div class="fgpwd-container__button-container">
                 <button class="btn btn-lg btn-primary btn-animated--up" id="btn-send">Send Authentication Code</button>
-                <button class="btn btn-lg btn-outline-primary btn-animated--up" id="btn-back">Go Back Home</button>
+                <button class="btn btn-lg btn-outline-primary btn-animated--up" id="btn-back">Go Back</button>
             </div>
 
         </div>

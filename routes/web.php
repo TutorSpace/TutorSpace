@@ -77,9 +77,7 @@ Route::get('/bookmark_add', 'generalController@addBookmark')->middleware(['check
 Route::get('/dashboard', 'generalController@getDashboardPosts')->middleware(['checkLogin']);
 Route::post('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['checkLogin']);
 
-// tutor requests
-Route::post('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['checkLogin']);
-Route::post('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
+
 
 // sessions
 Route::post('/session_cancel', 'sessionController@cancelSession')->middleware(['checkLogin']);
@@ -109,6 +107,8 @@ Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['ch
 Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['checkLogin']);
 
 // tutor requests
+Route::post('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['checkLogin']);
+Route::post('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['checkLogin']);
 Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['checkLogin']);
 Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['checkLogin']);
 Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['checkLogin']);

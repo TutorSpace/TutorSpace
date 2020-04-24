@@ -17,8 +17,14 @@ $('.tutor-requests-table button:last-child').click(function(e) {
             tutor_request_id: tutorRequestId
         },
         success: (data) => {
-            toastr.success(data.successMsg);
+            if(data.errorMsg) {
+                toastr.error(data.errorMsg);
+            }
+            else {
+                toastr.success(data.successMsg);
+            }
             window.location.href = '/home';
+
         },
         error: function(error) {
             console.log(error);
