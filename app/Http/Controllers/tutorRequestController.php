@@ -23,26 +23,70 @@ class tutorRequestController extends Controller
         $interestedCourses = $user->courses;
         $interestedSubjects = $user->subjects;
 
+        $upcomingSessions = $tutor->upcomingSessions(10000);
+
         return view('tutor_request.show_request_session', [
             "user" => $user,
             "tutor" => $tutor,
             "from" => $from,
             "times" => $times,
             "interestedCourses" => $interestedCourses,
-            "interestedSubjects" => $interestedSubjects
+            "interestedSubjects" => $interestedSubjects,
+            "upcomingSessions" => $upcomingSessions
         ]);
     }
 
     public function makeTutorRequest(Request $request) {
+        $request->validate([
+            'start_time' => ['
+                required'
+            ],
+            'end_time' => [
+                'required'
+            ],
+            'tutor_session_date' => [
+                'required'
+            ],
+            'tutor_id' => [
+                'required'
+            ],
+            'subjectCourse' => [
+                'required'
+            ],
+            'message' => [
+                'required'
+            ]
+        ]);
         $startTime = $request->input('start_time');
         $endTime = $request->input('end_time');
         $date = $request->input('tutor_session_date');
         $tutorId = $request->input('tutor_id');
+        $inputCourseSubject = $request->input('subjectCourse');
+        $isCourse = explode("-", $inputCourseSubject)[0] === 'course';
+        $courseSubjectId = explode("-", $inputCourseSubject)[1];
+        $message = $request->input('message');
+
 
         $tutorRequest = new Tutor_request();
         $tutorRequest->tutor_id = $tutorId;
+        $tutorRequest->student_id = Auth::user()->id;
+        if($isCourse) {
+            $tutorRequest->is_course_request = 1;
+            $tutorRequest->course_id = $courseSubjectId;
+        }
+        else {
+            $tutorRequest->is_course_request = 0;
+            $tutorRequest->subject_id = $courseSubjectId;
+        }
+        $tutorRequest->tutor_session_date = $date;
+        $tutorRequest->message_to_tutor = $message;
+        $tutorRequest->start_time = $startTime;
+        $tutorRequest->end_time = $endTime;
+        $tutorRequest->save();
 
-
+        return response()->json([
+            'successMsg' => 'Successfully make the tutor request!'
+        ]);
     }
 
 
@@ -54,12 +98,15 @@ class tutorRequestController extends Controller
 
         $times = $user->available_times;
 
+        $upcomingSessions = $user->upcomingSessions(10000);
+
 
         $from = $request->input('from');
         return view('tutor_request.show_edit_availability', [
             "user" => $user,
             'from' => $from,
-            'times' => $times
+            'times' => $times,
+            'upcomingSessions' => $upcomingSessions
         ]);
     }
 

@@ -806,12 +806,29 @@ min-width-450
             },
             contentHeight: 600,
             events: [
-                @foreach($times as $time) {
+                @foreach($times as $time)
+                {
                     title: 'Available',
                     start: '{{$time->available_time_start}}',
                     end: '{{$time->available_time_end}}',
-                    description: ""
-                    // classNames: ['test']
+                    description: "",
+                    classNames: ['color-blue-light']
+                },
+                @endforeach
+                @foreach($upcomingSessions as $upcomingSession)
+                {
+                    @php
+                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
+                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
+
+                    @endphp
+                    title: 'Scheduled',
+                    // start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T10:00:00',
+                    start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
+                    // start: '2020-04-25T12:30:00',
+                    end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+                    description: "",
+                    classNames: ['orange-red']
                 },
                 @endforeach
             ],

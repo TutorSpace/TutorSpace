@@ -11136,6 +11136,14 @@ label {
   background-color: rgba(0, 0, 0, 0.63);
 }
 
+.orange-red {
+  background-color: orangered !important;
+}
+
+.color-blue-light {
+  background-color: #97d2fb !important;
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -14288,5 +14296,22 @@ h5 .fgpwd-container__header-2 {
 #background-cover-3 .info-container .info-row .text {
   font-weight: 500;
   font-size: 2.2rem;
+}
+
+#background-cover-3 .info-container .info-row select {
+  font-size: 1.4rem;
+}
+
+#background-cover-3 .message-content-container {
+  margin-bottom: 1rem;
+}
+
+#background-cover-3 .message-content-container textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  outline: none;
 }
 

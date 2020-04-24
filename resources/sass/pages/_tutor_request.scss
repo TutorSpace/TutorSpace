@@ -96,7 +96,25 @@
                 font-size: $font-2;
             }
 
+            select {
+                font-size: 1.4rem;
 
+            }
+
+        }
+    }
+
+
+    .message-content-container {
+        margin-bottom: 1rem;
+
+        textarea {
+            width: 100%;
+            margin-top: .5rem;
+            font-size: 1.6rem;
+            padding: .5rem 1rem;
+            border-radius: 1rem;
+            outline: none;
         }
     }
 

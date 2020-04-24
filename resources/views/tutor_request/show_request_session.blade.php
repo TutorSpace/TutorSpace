@@ -55,9 +55,15 @@
         <div class="info-row">
             <small class="descriptor">Hourly Rate</small>
             <small class="descriptor"></small>
-            <span class="text hourly-rate">{{$tutor->hourly_rate}}</span>
+            <span class="text hourly-rate">${{$tutor->hourly_rate}} / hr</span>
             <span class="text"></span>
         </div>
+    </div>
+    <div class="message-content-container">
+        <h5 class="message-header">Message to Tutor</h5>
+        <textarea name="message" id="message" placeholder="Add a short message to the tutor about the session or yourself" rows="3">
+
+        </textarea>
     </div>
     <div class="bottom-container">
         <button class="btn btn-lg btn-outline-primary btn-cancel mr-3" type="button">Cancel</button>
@@ -147,8 +153,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 start: '{{$time->available_time_start}}',
                 end: '{{$time->available_time_end}}',
                 description: "",
-                rendering: 'background'
-                // classNames: ['test']
+                rendering: 'background',
+                classNames: ['color-blue-light']
+            },
+            @endforeach
+            @foreach($upcomingSessions as $upcomingSession)
+            {
+                @php
+                    $startTime = date("H:i", strtotime($upcomingSession->start_time));
+                    $endTime = date("H:i", strtotime($upcomingSession->end_time));
+
+                @endphp
+                title: 'Not Available',
+                // start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T10:00:00',
+                start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
+                // start: '2020-04-25T12:30:00',
+                end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+                description: "",
+                classNames: ['orange-red']
             },
             @endforeach
         ],
@@ -157,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         },
         eventPositioned: function (info) {
-            console.log("the event is placed!");
+            // console.log("the event is placed!");
 
         },
         eventClick: function (eventClickInfo) {
@@ -180,8 +202,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // called each time a day is rendered! (including week(7 days) and month!)
         dayRender: function (dayInfo) {
             // alert("here");
-            console.log("the day is rendered!");
-            console.log(dayInfo);
+            // console.log("the day is rendered!");
+            // console.log(dayInfo);
         },
         validRange: function (nowDate) {
             return {
@@ -198,15 +220,29 @@ document.addEventListener('DOMContentLoaded', function () {
             startTime.setHours( startTime.getHours() + 7 );
             endTime.setHours( endTime.getHours() + 7 );
 
-            // we don't need to check same day for edit availability!
+            // we need to check same day for edit availability!
             if(startTime.getDate() !== endTime.getDate() || startTime.getMonth() != endTime.getMonth() || startTime.getYear() != endTime.getYear()) {
                 toastr.error("Please select the time range of the same day!");
                 return;
             }
 
-            // TODO: add more validation logic. Cannot select a time that is before the current time. The tutor requests that are outdated needs to be declined automatically in the home page.
+            // Must select a time that is at least 30 minutes > current time!
+            var now = new Date();
+            now.setMinutes(now.getMinutes() + 30);
+            if(startTime < now) {
+                toastr.error("Please select a starting time that is at least 30 minutes after the current time!");
+                calendar.unselect();
+                return;
+            }
 
-
+            // Must select a time that is within two weeks!
+            now = new Date();
+            now.setDate(now.getDate() + 14);
+            if(startTime > now) {
+                toastr.error("Please make a tutor request that is within two weeks in the future!");
+                calendar.unselect();
+                return;
+            }
 
             showForm(selectionInfo);
 
@@ -347,6 +383,17 @@ $('.btn-submit').click(function() {
         }
     });
 
+    let inputCourseSubject = $('#course-subject option:selected').val();
+    if(inputCourseSubject === 'Select') {
+        toastr.warning('Please select which subject/course your want to be tutored in!');
+        return;
+    }
+    let message = $('#message').val();
+    if($.trim(message) == '') {
+        toastr.warning("Please enter a message!")
+        return;
+    }
+
     $.ajax({
         type:'POST',
         url: `/tutor_request`,
@@ -354,7 +401,9 @@ $('.btn-submit').click(function() {
             tutor_session_date: date,
             start_time: start_time,
             end_time: end_time,
-            tutor_id: {{$tutor->id}}
+            tutor_id: {{$tutor->id}},
+            subjectCourse: inputCourseSubject,
+            message: message
         },
         success: (data) => {
             let { successMsg } = data;
@@ -362,9 +411,12 @@ $('.btn-submit').click(function() {
 
             location.reload();
         },
-        error: function(error) {
-            console.log(error);
-            toastr.error(error);
+        error: function(data) {
+            console.log(data);
+            if(data.status === 422) {
+                let { message } = data.responseJSON;
+                toastr.error(message);
+            }
         }
     });
 });

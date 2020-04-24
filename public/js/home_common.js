@@ -54,7 +54,7 @@ $('#add-post-container').submit((e) => {
     let postMsg = $('#post-content').val();
     let inputCourseSubject = $('#add-post-course-subject option:selected').val();
 
-    console.log(inputCourseSubject);
+
     if(!postMsg || postMsg.trim().length === 0) {
         toastr.warning('Please enter post content!');
         return;
