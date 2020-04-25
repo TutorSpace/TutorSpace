@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
     calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: ['timeGrid', 'dayGrid', 'interaction', 'bootstrap'],
+        plugins: ['timeGrid', 'interaction', 'bootstrap'],
 
         // default time should be los angeles' time
         timeZone: 'PDT',
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
         header: {
             left: 'prev, next today',
             center: 'title',
-            right: 'timeGridDay, timeGridWeek, dayGridMonth'
+            right: 'timeGridDay, timeGridWeek'
         },
         // contentHeight: 800,
         events: [
