@@ -14319,3 +14319,11 @@ h5 .fgpwd-container__header-2 {
   outline: none;
 }
 
+#confirm-time-container {
+  width: 70% !important;
+}
+
+#calendar .fc-cancelButton-button.fc-button.fc-button-primary {
+  margin-left: 1rem !important;
+}
+

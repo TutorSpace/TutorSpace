@@ -129,6 +129,7 @@ class searchController extends Controller
                 $results = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
             }
             else {
+
                 $yearInputs = $request->input('year');
                 if(!$yearInputs)
                     $yearInputs = array();
@@ -207,6 +208,54 @@ class searchController extends Controller
 
                 $results = $nameUserResults->merge($courseUserResults)->merge($subjectUserResults);
 
+
+                // select tutors of the available time
+                $startTime = $request->input('startTime');
+                $endTime = $request->input('endTime');
+
+                // if the user does not search for any available time, do not consider time
+                if($startTime && $endTime) {
+                    $startTime = date('Y-m-d h:i:s', strtotime($startTime));
+                    $endTime = date('Y-m-d h:i:s', strtotime($endTime));
+
+                    foreach($results as $key => $item) {
+                        $result = $results[$key];
+                        $availableTimes = User::find($result->id)->available_times;
+
+                        $keep = false;
+                        // iterate through all the available time of the user
+                        foreach($availableTimes as $availableTime) {
+                            $availableTimeStart = $availableTime->available_time_start;
+                            $availableTimeEnd = $availableTime->available_time_end;
+
+                            // if intersects, then possible to return it
+                            if(($startTime >= $availableTimeStart && $startTime <= $availableTimeEnd) || ($endTime >= $availableTimeStart && $endTime <= $availableTimeEnd)) {
+                                // check whether this user has time conflict with any scheduled sessions
+                                // Must not accept the tutor request if it conflicts with a scheduled session
+                                $upcomingSessions = User::find($result->id)->upcomingSessions(1000);
+                                $conflict = false;
+                                foreach($upcomingSessions as $upcomingSession) {
+                                    $upcomingSessionStartTime = User::getTime($upcomingSession->date, $upcomingSession->start_time);
+                                    $upcomingSessionEndTime = User::getTime($upcomingSession->date, $upcomingSession->end_time);
+
+                                    // if conflicts
+                                    if(($startTime >= $upcomingSessionStartTime && $startTime <= $upcomingSessionEndTime) || ($endTime >= $upcomingSessionStartTime && $endTime <= $upcomingSessionEndTime)) {
+                                        $conflict = true;
+                                        break;
+                                    }
+                                }
+
+                                if(!$conflict) {
+                                    $keep = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if(!$keep) {
+                            $results->forget($key);
+                        }
+                    };
+                }
             }
         }
         else {

@@ -1,10 +1,29 @@
 @extends('layouts.loggedin')
 @section('title', 'search for tutor')
 
+@section('links-in-head')
+
+<link href='{{asset('packages/core/main.css')}}' rel='stylesheet' />
+<link href='{{asset('packages/daygrid/main.css')}}' rel='stylesheet' />
+<link href='{{asset('packages/timegrid/main.css')}}' rel='stylesheet' />
+<link href='{{asset('packages/bootstrap/main.css')}}' rel='stylesheet' />
+
+
+<script src='{{asset('packages/core/main.js')}}'></script>
+<script src='{{asset('packages/daygrid/main.js')}}'></script>
+<script src='{{asset('packages/timegrid/main.js')}}'></script>
+<script src='{{asset('packages/interaction/main.js')}}'></script>
+<script src='{{asset('packages/bootstrap/main.js')}}'></script>
+
+@endsection
+
+@section('confirm-time-container')
+<div id="confirm-time-container" class="calendar-container">
+    <div id='calendar'></div>
+</div>
+@endsection
 
 @section('content')
-
-
 <form class="container search-container" method="GET" action="/search">
     <h2 class="search__header">Search Results</h2>
     <div class="search__box">
@@ -87,10 +106,9 @@
         </div>
 
         <div class="filter-box">
-            <button class="btn btn-lg btn-outline-primary" type="button">Availability</button>
-            <div class="filter">
-                <span class="text-danger" style="font-size: 2rem;">The Availability Functionality is coming soon!</span>
-            </div>
+            <button class="btn btn-lg btn-outline-primary" type="button" id="btn-show-calendar">Availability</button>
+            <input type="text" id="startTime" name="startTime" class="hidden">
+            <input type="text" id="endTime" name="endTime" class="hidden">
         </div>
     </div>
 
