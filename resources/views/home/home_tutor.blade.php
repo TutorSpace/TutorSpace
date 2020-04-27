@@ -516,11 +516,9 @@ min-width-450
                 <div class="home__container__notifications__title mb-0">
                     <h5><span>Availability Calendar</span></h5>
                 </div>
-                {{-- <div class="home__container__notifications__text">
-                        Click or drag on time slots you are free to tutor throughout the week. Update this calendar as
-                        frequently as needed. Students will be requesting tutoring sessions with you based on your
-                        availability that is noted here. You can also edit this calendar on your Profile page.
-                    </div> --}}
+                <div class="home__container__notifications__text mt-4">
+                    Click or drag on time slots you are free to tutor throughout the week. Update this calendar as frequently as needed. Students will be requesting tutoring sessions with you based on your availability that is noted here. You can also edit this calendar on your Profile page.
+                    </div>
                 <div class="home__container__notifications__calendar">
                     <div id='calendar'></div>
                 </div>

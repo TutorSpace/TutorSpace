@@ -62,26 +62,25 @@ class searchController extends Controller
         else if($request->has('searchInput')){
             $searchInput = trim($request->input('searchInput'));
 
+            $ratingRangeLow = $request->input('rating-range-low');
+            $ratingRangeHigh = $request->input('rating-range-high');
+
+            // make suer low is really lower than high for rating
+            if($ratingRangeHigh < $ratingRangeLow) {
+                $temp = $ratingRangeHigh;
+                $ratingRangeHigh = $ratingRangeLow;
+                $ratingRangeLow = $temp;
+            }
+
             if($user->is_tutor) {
                 $yearInputs = $request->input('year');
                 if(!$yearInputs)
                     $yearInputs = array();
 
-                $ratingRangeLow = $request->input('rating-range-low');
-                $ratingRangeHigh = $request->input('rating-range-high');
-
-                // make suer low is really lower than high for rating
-                if($ratingRangeHigh < $ratingRangeLow) {
-                    $temp = $ratingRangeHigh;
-                    $ratingRangeHigh = $ratingRangeLow;
-                    $ratingRangeLow = $temp;
-                }
-
-
                 // get students/tutors that match the navInput in name, course, and subjects
                 // 1. name
                 // not left join, so if users don't have reviews yet, I will not display them in the search results
-                $nameUserResults = User::select("users.*", DB::raw("AVG(reviews.star_rating)"))
+                $nameUserResults = User::select("users.*", DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
                                 ->join('reviews', 'users.id', '=', 'reviews.reviewee_id')
                                 ->whereIn('school_years.school_year', $yearInputs)
@@ -97,7 +96,7 @@ class searchController extends Controller
                 $course_ids = Course::where('course', 'like', "%{$searchInput}%")->pluck('id');
 
                 // get all the users who are interested in those courses
-                $courseUserResults = Course::select('users.*', DB::raw("AVG(reviews.star_rating)"))
+                $courseUserResults = Course::select('users.*', DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('course_user', 'course_user.course_id', '=', 'courses.id')
                                 ->join('users', 'users.id', '=', 'course_user.user_id')
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
@@ -114,7 +113,7 @@ class searchController extends Controller
                 $subject_ids = Subject::where('subject', 'like', "%{$searchInput}%")->pluck('id');
 
                 // get all the users who are interested in those subjects
-                $subjectUserResults = Subject::select('users.*', DB::raw("AVG(reviews.star_rating)"))
+                $subjectUserResults = Subject::select('users.*', DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('subject_user', 'subject_user.subject_id', '=', 'subjects.id')
                                 ->join('users', 'users.id', '=', 'subject_user.user_id')
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
@@ -136,27 +135,20 @@ class searchController extends Controller
 
                 $priceRangeLow = $request->input('price-range-low');
                 $priceRangeHigh = $request->input('price-range-high');
-                $ratingRangeLow = $request->input('rating-range-low');
-                $ratingRangeHigh = $request->input('rating-range-high');
 
-                // // make suer low is really lower than high for price
+
+                // make suer low is really lower than high for price
                 if($priceRangeHigh < $priceRangeLow) {
                     $temp = $priceRangeHigh;
                     $priceRangeHigh = $priceRangeLow;
                     $priceRangeLow = $temp;
-                }
-                // // make suer low is really lower than high for rating
-                if($ratingRangeHigh < $ratingRangeLow) {
-                    $temp = $ratingRangeHigh;
-                    $ratingRangeHigh = $ratingRangeLow;
-                    $ratingRangeLow = $temp;
                 }
 
 
                 // get students/tutors that match the navInput in name, course, and subjects
                 // 1. name
                 // not left join, so if users don't have reviews yet, I will not display them in the search results
-                $nameUserResults = User::select("users.*", DB::raw("AVG(reviews.star_rating)"))
+                $nameUserResults = User::select("users.*", DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
                                 ->join('reviews', 'users.id', '=', 'reviews.reviewee_id')
                                 ->whereIn('school_years.school_year', $yearInputs)
@@ -173,7 +165,7 @@ class searchController extends Controller
                 $course_ids = Course::where('course', 'like', "%{$searchInput}%")->pluck('id');
 
                 // get all the users who are interested in those courses
-                $courseUserResults = Course::select('users.*', DB::raw("AVG(reviews.star_rating)"))
+                $courseUserResults = Course::select('users.*', DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('course_user', 'course_user.course_id', '=', 'courses.id')
                                 ->join('users', 'users.id', '=', 'course_user.user_id')
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
@@ -192,7 +184,7 @@ class searchController extends Controller
                 $subject_ids = Subject::where('subject', 'like', "%{$searchInput}%")->pluck('id');
 
                 // get all the users who are interested in those subjects
-                $subjectUserResults = Subject::select('users.*', DB::raw("AVG(reviews.star_rating)"))
+                $subjectUserResults = Subject::select('users.*', DB::raw("AVG(reviews.star_rating) as rating"))
                                 ->join('subject_user', 'subject_user.subject_id', '=', 'subjects.id')
                                 ->join('users', 'users.id', '=', 'subject_user.user_id')
                                 ->join('school_years', 'school_years.id', '=', 'users.school_year_id')
@@ -255,6 +247,14 @@ class searchController extends Controller
                             $results->forget($key);
                         }
                     };
+                }
+            }
+
+            // select users with the correct rating
+            foreach($results as $key => $item) {
+                $result = $results[$key];
+                if($result->rating < $ratingRangeLow || $result->rating > $ratingRangeHigh)  {
+                    $results->forget($key);
                 }
             }
         }

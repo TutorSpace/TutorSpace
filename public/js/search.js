@@ -209,7 +209,7 @@ $('#btn-show-calendar').click(function() {
 })
 
 
-$('input').on("keyup", function(e) {
+$('.search__box input').on("keyup", function(e) {
     if (e.keyCode == 13) {
         $('form').submit();
     }

@@ -22,6 +22,50 @@
     * {
         white-space: unset !important;
     }
+
+    button.fc-next-button, button.fc-prev-button {
+
+        // background-color: transparent !important;
+        // transform: scale(1.5);
+        // border-color: transparent !important;
+        // outline: none;
+
+        // &:hover {
+        //     cursor: pointer;
+        // }
+
+        // &:focus {
+        //     outline: none !important;
+        // }
+
+        // *:focus {
+        //     outline: none !important;
+        // }
+    }
+
+    button.fc-timeGridDay-button, button.fc-timeGridWeek-button {
+        border-color: $color-blue-dark !important;
+        color: $color-blue-dark !important;
+        background-color: transparent !important;
+
+        &:hover {
+            border-color: $color-blue-dark !important;
+            color: white !important;
+            background-color: $color-blue-dark !important;
+        }
+    }
+
+    .fc-center {
+        flex: 1 !important;
+    }
+
+    button {
+        border-radius: .5rem !important;
+    }
+}
+
+th.fc-widget-header:not(.fc-axis) {
+    padding: .5rem 1rem !important;
 }
 
 .fc-ltr .fc-axis {

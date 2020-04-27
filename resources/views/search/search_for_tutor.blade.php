@@ -137,7 +137,7 @@
                         @endif
                         <img src="{{asset("user_photos/{$result->profile_pic_url}")}}" alt="user photo" data-user-id="{{$result->id}}">
                         <p class="name">{{$result->full_name}}</p>
-                        <p class="major">{{$result->major['major']}}</p>
+                        <p class="major">{{$resultUser->major['major']}}</p>
 
                         <p class="star-container">${{$result->hourly_rate}} / hr |
                             @if($resultUser->getRating())
