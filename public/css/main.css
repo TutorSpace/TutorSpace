@@ -12060,7 +12060,13 @@ a.btn.btn-primary {
 
 .signup-container__form__btn {
   margin-top: 4rem;
+  padding: 0.5rem 1rem !important;
   width: 100%;
+}
+
+.signup-container__form .py-4 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
 }
 
 .signup-container__form label {
@@ -14075,14 +14081,27 @@ h5 .fgpwd-container__header-2 {
   font-size: 1.2rem;
 }
 
-.messages-container > .message-other {
+.messages-container .message-other {
   width: 45%;
+}
+
+.messages-container .message-other-container {
+  display: flex;
+}
+
+.messages-container .message-other-container .time {
+  align-self: flex-end;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #9a9a9a;
 }
 
 .messages-container .message-other,
 .messages-container .message-self {
-  padding: 1rem;
-  border-radius: 5px;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
 }
 
 .messages-container .message-other:not(:last-child),

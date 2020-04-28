@@ -40,8 +40,13 @@
 
             &__btn {
                 margin-top: 4rem;
-
+                padding: .5rem 1rem !important;
                 width: 100%;
+            }
+
+            .py-4 {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
             }
 
             & label {

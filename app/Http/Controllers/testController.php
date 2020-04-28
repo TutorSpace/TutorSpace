@@ -16,8 +16,7 @@ use App\Course;
 
 use Carbon\Carbon;
 
-
-
+use App\NewMessage;
 
 class testController extends Controller
 {
@@ -129,6 +128,7 @@ class testController extends Controller
         //     }
         // }
 
-        User::find(5)->tutor_requests;
+
+        event(new NewMessage('hi!'));
     }
 }

@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Available_time' => $baseDir . '/app/Available_time.php',
     'App\\Characteristic' => $baseDir . '/app/Characteristic.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Course' => $baseDir . '/app/Course.php',
@@ -13,6 +14,7 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\characteristicController' => $baseDir . '/app/Http/Controllers/characteristicController.php',
+    'App\\Http\\Controllers\\chatController' => $baseDir . '/app/Http/Controllers/chatController.php',
     'App\\Http\\Controllers\\courseController' => $baseDir . '/app/Http/Controllers/courseController.php',
     'App\\Http\\Controllers\\forgetPasswordController' => $baseDir . '/app/Http/Controllers/forgetPasswordController.php',
     'App\\Http\\Controllers\\generalController' => $baseDir . '/app/Http/Controllers/generalController.php',
@@ -26,6 +28,7 @@ return array(
     'App\\Http\\Controllers\\signupController' => $baseDir . '/app/Http/Controllers/signupController.php',
     'App\\Http\\Controllers\\subjectController' => $baseDir . '/app/Http/Controllers/subjectController.php',
     'App\\Http\\Controllers\\testController' => $baseDir . '/app/Http/Controllers/testController.php',
+    'App\\Http\\Controllers\\tutorRequestController' => $baseDir . '/app/Http/Controllers/tutorRequestController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -3232,6 +3235,11 @@ return array(
     'Psy\\VersionUpdater\\GitHubChecker' => $vendorDir . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
     'Psy\\VersionUpdater\\IntervalChecker' => $vendorDir . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
     'Psy\\VersionUpdater\\NoopChecker' => $vendorDir . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+    'Pusher\\Pusher' => $vendorDir . '/pusher/pusher-php-server/src/Pusher.php',
+    'Pusher\\PusherCrypto' => $vendorDir . '/pusher/pusher-php-server/src/PusherCrypto.php',
+    'Pusher\\PusherException' => $vendorDir . '/pusher/pusher-php-server/src/PusherException.php',
+    'Pusher\\PusherInstance' => $vendorDir . '/pusher/pusher-php-server/src/PusherInstance.php',
+    'Pusher\\Webhook' => $vendorDir . '/pusher/pusher-php-server/src/Webhook.php',
     'Ramsey\\Collection\\AbstractArray' => $vendorDir . '/ramsey/collection/src/AbstractArray.php',
     'Ramsey\\Collection\\AbstractCollection' => $vendorDir . '/ramsey/collection/src/AbstractCollection.php',
     'Ramsey\\Collection\\AbstractSet' => $vendorDir . '/ramsey/collection/src/AbstractSet.php',

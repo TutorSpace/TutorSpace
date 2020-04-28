@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-lg btn-bg-blue-light signup-container__form__btn btn-animated--up">
+        <button type="submit" class="btn btn-lg btn-bg-blue-light signup-container__form__btn btn-animated--up py-4">
             <h5>Create Account</h5>
         </button>
 

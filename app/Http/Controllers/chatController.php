@@ -17,4 +17,9 @@ class chatController extends Controller
         ]);
 
     }
+
+    public function sendMessage() {
+
+
+    }
 }

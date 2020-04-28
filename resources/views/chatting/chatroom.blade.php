@@ -28,7 +28,7 @@
                                 <span class="name">Jamie C.</span>
                                 <span class="request-pending">Request Pending</span>
                             </div>
-                            <span class="time">3:27pm</span>
+                            {{-- <span class="time">3:27pm</span> --}}
                         </td>
                     </tr>
                     <tr>
@@ -37,7 +37,7 @@
                                 <span class="name">Jamie C.</span>
 
                             </div>
-                            <span class="time">3:27pm</span>
+                            {{-- <span class="time">3:27pm</span> --}}
                         </td>
                     </tr>
                     <tr>
@@ -46,7 +46,7 @@
                                 <span class="name">Jamie C.</span>
                                 <span class="request-pending">Request Pending</span>
                             </div>
-                            <span class="time">3:27pm</span>
+                            {{-- <span class="time">3:27pm</span> --}}
                         </td>
                     </tr>
                 </tbody>
@@ -93,10 +93,15 @@
             </div> --}}
 
             <div class="messages-container">
-                <div class="message-other">
-                    Thank you for reaching out! I would
-                    love to tutor you in ARCH 110
+                <div class="message-other-container">
+                    <div class="message-other">
+                        Thank you for reaching out! I would
+                        love to tutor you in ARCH 110
+                    </div>
+                    <span class="time">time</span>
                 </div>
+
+
                 <div class="message-self-container">
                     <p class="message-self"> That sounds great! I’ll check your
                         calendar and see when we can
@@ -163,17 +168,10 @@
 
 
 <!-- defined javascript -->
-<script src="js/messages.js"></script>
+<script src="{{asset("js/messages.js")}}"></script>
 
 @endsection
 
-@section('js')
-
-
-
-
-
-@endsection
 
 
 
