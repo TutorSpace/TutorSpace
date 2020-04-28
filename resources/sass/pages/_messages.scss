@@ -3,11 +3,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .m-left-container, .m-right-container {
     margin-top: 1rem;
-
+    margin-bottom: 3rem;
 }
 
 .search-messages-container {
@@ -49,10 +50,13 @@
 
 
 .messages-table-left {
+
     display: block;
     max-height: 75vh;
+    min-height: 75vh;
     overflow: scroll;
     margin-bottom: 0 !important;
+    margin-top: 1rem;
 
 
     tbody {
@@ -68,13 +72,16 @@
             }
 
             td.unread {
-                border-left: .5rem solid $color-pending-request !important;
+                border-left: .5rem solid $color-message-unread !important;
             }
 
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         .first-td {
-            margin-top: 1rem;
+
             border-top: none !important;
         }
     }
@@ -141,30 +148,72 @@
         align-items: center;
         display: flex;
         font-size: 1.2rem;
-        padding: 1rem;
+        padding: .5rem 1rem;
 
-        &-content {
-            margin-right: auto;
-        }
 
-        button:last-child {
-            margin-left: 1rem;
-            // margin-right: 1rem;
-            white-space: nowrap;
-        }
 
-        > :first-child {
-            margin-right: 1rem;
-            white-space: nowrap;
-            * {
-                margin-bottom: 0;
-
+        &--post {
+            &-content {
+                margin-right: auto;
             }
+
+            button:last-child {
+                margin-left: 1rem;
+                // margin-right: 1rem;
+                white-space: nowrap;
+            }
+
             > :first-child {
-                font-weight: 600;
+                margin-right: 1rem;
+                white-space: nowrap;
+                * {
+                    margin-bottom: 0;
+
+                }
+                > :first-child {
+                    font-weight: 600;
+                }
             }
         }
 
+        &--request {
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            > div {
+                // display: flex;
+                // flex-wrap: wrap;
+                margin-right: .5rem;
+
+                > * {
+                    display: block;
+                    // width: fit-content;
+                    white-space: nowrap;
+                }
+
+                > span:first-child {
+                    font-size: 1.2rem;
+                    color: $color-gray;
+                }
+
+                > span:last-child {
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                }
+
+            }
+
+            .btn-container {
+                display: flex;
+
+                button {
+                    font-size: 1.4rem;
+                }
+            }
+
+
+
+        }
     }
 
 
@@ -230,11 +279,11 @@
         outline: none;
         background-color: transparent;
 
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         border: 1px solid grey;
         padding: .5rem 1rem;
 
-        border-radius: 5px;
+        border-radius: .5rem;
         display: inline;
         margin-right: 1rem;
 

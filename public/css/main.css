@@ -13892,6 +13892,7 @@ h5 .fgpwd-container__header-2 {
 .m-left-container,
 .m-right-container {
   margin-top: 1rem;
+  margin-bottom: 3rem;
 }
 
 .search-messages-container {
@@ -13926,8 +13927,10 @@ h5 .fgpwd-container__header-2 {
 .messages-table-left {
   display: block;
   max-height: 75vh;
+  min-height: 75vh;
   overflow: scroll;
   margin-bottom: 0 !important;
+  margin-top: 1rem;
 }
 
 .messages-table-left tbody {
@@ -13948,8 +13951,11 @@ h5 .fgpwd-container__header-2 {
   border-left: 0.5rem solid #ffc077 !important;
 }
 
+.messages-table-left tbody tr:hover {
+  cursor: pointer;
+}
+
 .messages-table-left tbody .first-td {
-  margin-top: 1rem;
   border-top: none !important;
 }
 
@@ -14003,29 +14009,61 @@ h5 .fgpwd-container__header-2 {
   align-items: center;
   display: flex;
   font-size: 1.2rem;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
-.m-right-container .message-alert-content {
+.m-right-container .message-alert--post-content {
   margin-right: auto;
 }
 
-.m-right-container .message-alert button:last-child {
+.m-right-container .message-alert--post button:last-child {
   margin-left: 1rem;
   white-space: nowrap;
 }
 
-.m-right-container .message-alert > :first-child {
+.m-right-container .message-alert--post > :first-child {
   margin-right: 1rem;
   white-space: nowrap;
 }
 
-.m-right-container .message-alert > :first-child * {
+.m-right-container .message-alert--post > :first-child * {
   margin-bottom: 0;
 }
 
-.m-right-container .message-alert > :first-child > :first-child {
+.m-right-container .message-alert--post > :first-child > :first-child {
   font-weight: 600;
+}
+
+.m-right-container .message-alert--request {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.m-right-container .message-alert--request > div {
+  margin-right: 0.5rem;
+}
+
+.m-right-container .message-alert--request > div > * {
+  display: block;
+  white-space: nowrap;
+}
+
+.m-right-container .message-alert--request > div > span:first-child {
+  font-size: 1.2rem;
+  color: #9a9a9a;
+}
+
+.m-right-container .message-alert--request > div > span:last-child {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.m-right-container .message-alert--request .btn-container {
+  display: flex;
+}
+
+.m-right-container .message-alert--request .btn-container button {
+  font-size: 1.4rem;
 }
 
 .messages-container {
@@ -14081,10 +14119,10 @@ h5 .fgpwd-container__header-2 {
   border: 1px solid #9a9a9a;
   outline: none;
   background-color: transparent;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   border: 1px solid grey;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   display: inline;
   margin-right: 1rem;
 }
