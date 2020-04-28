@@ -54,9 +54,7 @@
     <p class="labels mb-2">Write Report</p>
 
     <textarea rows="6" class="form-control report-textarea"
-        placeholder="Please be as specific as possible as to what is causing you to report this person." name="report-content">
-        {{old('report-content') ?? ''}}
-    </textarea>
+        placeholder="Please be as specific as possible as to what is causing you to report this person." name="report-content">{{old('report-content') ?? ''}}</textarea>
     @error('report-content')
         <p class="text-danger mt-1">Please enter your report.</p>
     @enderror

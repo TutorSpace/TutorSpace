@@ -2,12 +2,29 @@
 $(function () {
     var majorTags = [
         'Computer Science',
-        'Business',
+        'Business Administration',
         'Economics',
         'International Relations',
         'Mathematics',
-        'CSBA',
-        'Physics'
+        'Chemistry',
+        'Physics',
+        'Biology',
+        'Linguistics',
+        'Electrical Engineering',
+        'Mechanical Engineering',
+        'Astronautical Engineering',
+        'Chemical Engineering',
+        'Human Biology',
+        'Design',
+        'English',
+        'Communication',
+        'French',
+        'Italian',
+        'Screenwriting',
+        'Narrative Studies',
+        'Classics',
+        'Psychology',
+        'Cognitive Science'
     ];
     $("#major").autocomplete({
         source: majorTags

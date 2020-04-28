@@ -144,7 +144,7 @@
                         @for ($i = 0; $i < min(count($reviews), 3); $i++)
                             @php
                                 $review = $reviews[$i];
-                                $fullName = App\User::find($review->id)->full_name;
+                                $fullName = App\User::find($review->reviewer_id)->full_name;
                                 $session = App\Session::find($review->session_id);
                                 $courseSubject;
                                 if($session->is_course) {

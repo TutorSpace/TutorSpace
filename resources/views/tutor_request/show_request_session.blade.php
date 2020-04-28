@@ -61,9 +61,7 @@
     </div>
     <div class="message-content-container">
         <h5 class="message-header">Message to Tutor</h5>
-        <textarea name="message" id="message" placeholder="Add a short message to the tutor about the session or yourself" rows="3">
-
-        </textarea>
+        <textarea name="message" id="message" placeholder="Add a short message to the tutor about the session or yourself" rows="3"></textarea>
     </div>
     <div class="bottom-container">
         <button class="btn btn-lg btn-outline-primary btn-cancel mr-3" type="button">Cancel</button>
