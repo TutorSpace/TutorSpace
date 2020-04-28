@@ -1,5 +1,4 @@
 $('.recommended__tutors tr >:not(:last-child)').click(function() {
-    alert()
     window.location.href = '/view_profile/' + $(this).parent().attr('data-user-id') + '?from=home';
 });
 

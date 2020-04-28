@@ -310,12 +310,20 @@ min-width-450
                     </div>
                 @endif
                 @if(count($recommendedCourses) !== 0)
+                    @php
+                        $prevCourse = "";
+                    @endphp
                     @foreach($recommendedCourses as $recommendedCourse)
-                    <div class="home__container__notifications__title">
-                        <h5>
-                            <span>Recommended Tutors</span> for {{$recommendedCourse->course}}
-                        </h5>
-                    </div>
+                        @if($recommendedCourse->course != $prevCourse)
+                        <div class="home__container__notifications__title">
+                            <h5>
+                                <span>Recommended Tutors</span> for {{$recommendedCourse->course}}
+                            </h5>
+                        </div>
+                        @endif
+                        @php
+                            $prevCourse = $recommendedCourse->course;
+                        @endphp
                     <table class="table table-hover recommended__tutors"
                     data-user-id="{{$recommendedCourse->id}}">
                         <tbody>
@@ -325,8 +333,8 @@ min-width-450
                                     {{$recommendedCourse->full_name}}
                                 </th>
                                 <td>
-                                    <div>{{App\User::find($recommendedCourse->id)->school_year->first()->school_year}}</div>
-                                    <div>{{App\User::find($recommendedCourse->id)->major->first()->major}}</div>
+                                    <div>{{App\User::find($recommendedCourse->id)->school_year['school_year']}}</div>
+                                    <div>{{App\User::find($recommendedCourse->id)->major['major']}}</div>
                                 </td>
                                 <td>
                                     @if(Auth::user()->bookmarked($recommendedCourse->id))
@@ -343,12 +351,20 @@ min-width-450
                     @endforeach
                 @endif
                 @if(count($recommendedSubjects) !== 0)
+                    @php
+                        $prevSubject = "";
+                    @endphp
                     @foreach($recommendedSubjects as $recommendedSubject)
-                    <div class="home__container__notifications__title">
-                        <h5>
-                            <span>Recommended Tutors</span> for {{$recommendedSubject->subject}}
-                        </h5>
-                    </div>
+                    @if($recommendedSubject->subject != $prevSubject)
+                        <div class="home__container__notifications__title">
+                            <h5>
+                                <span>Recommended Tutors</span> for {{$recommendedSubject->subject}}
+                            </h5>
+                        </div>
+                    @endif
+                    @php
+                        $prevSubject = $recommendedSubject->subject;
+                    @endphp
                     <table class="table table-hover recommended__tutors"
                     data-user-id="{{$recommendedSubject->id}}">
                         <tbody>
