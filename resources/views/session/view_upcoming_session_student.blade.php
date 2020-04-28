@@ -48,12 +48,12 @@
             <h5>
                 ${{$tutor->hourly_rate}}
             </h5>
-            <div>
+            {{-- <div>
                 <span class="labels">Location</span>
                 <h5>
                     {{$session->location ?? 'On Campus'}}
                 </h5>
-            </div>
+            </div> --}}
 
             {{-- <span class="labels">Location</span>
             <span class="labels">Payment Account</span>

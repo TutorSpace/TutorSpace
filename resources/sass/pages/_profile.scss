@@ -49,7 +49,7 @@ $about-input-width: 70%;
 
         .img-container {
             width: 100%;
-            padding: 2rem;
+            padding: 2.5rem;
 
             img {
                 width: 100%;
@@ -58,10 +58,19 @@ $about-input-width: 70%;
             }
         }
 
+        @media only screen and (max-width: 1800px) {
+            flex: 0 0 20%;
+        };
+
+        @media only screen and (max-width: 1200px) {
+            flex: 0 0 22%;
+        };
+
+
     }
 
     &__content {
-        flex: 0 0 75%;
+        flex: 1;
         color: black;
         display: flex;
         flex-direction: column;
@@ -70,14 +79,39 @@ $about-input-width: 70%;
             color: grey;
             font-size: 1.5rem;
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: 1000px) {
+                font-size: 1.4rem;
+            };
+
+            @media only screen and (max-width: 767px) {
+                font-size: 1.2rem;
+            };
         }
         & .text {
             font-size: 2rem;
+
+            @media only screen and (max-width: 1000px) {
+                font: 1.6rem;
+            };
+
+
+            @media only screen and (max-width: 767px) {
+                font-size: 1.4rem;
+            };
         }
 
         & .name {
             font-size: $font-2;
             font-weight: 500;
+
+            @media only screen and (max-width: 1000px) {
+                font-size: 1.4rem;
+            };
+
+            @media only screen and (max-width: 767px) {
+                font-size: 1.2rem;
+            };
         }
 
         & .major-minor-container {
@@ -105,10 +139,19 @@ $about-input-width: 70%;
         a, button {
             display: inline-block;
             margin-top: 2rem;
-            font-size: 2rem;
+            font-size: 1.8rem;
             width: 40%;
             margin-right: 9%;
             text-align: center;
+
+            @media only screen and (max-width: 1000px) {
+                font-size: 1.6rem;
+            };
+
+
+            @media only screen and (max-width: 767px) {
+                font-size: 1.4rem;
+            };
         }
 
 
@@ -443,6 +486,11 @@ $margin-top: 3rem;
 
 // view others' profile
 .about__reviews {
+
+
+    @media only screen and (max-width: 575px) {
+        margin-top: 3rem;
+    };
 
     .top-container {
         display: flex;

@@ -13111,7 +13111,7 @@ h5 .fgpwd-container__header-2 {
 
 .about__information__img .img-container {
   width: 100%;
-  padding: 2rem;
+  padding: 2.5rem;
 }
 
 .about__information__img .img-container img {
@@ -13120,8 +13120,20 @@ h5 .fgpwd-container__header-2 {
   border-radius: 50%;
 }
 
+@media only screen and (max-width: 1800px) {
+  .about__information__img {
+    flex: 0 0 20%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .about__information__img {
+    flex: 0 0 22%;
+  }
+}
+
 .about__information__content {
-  flex: 0 0 75%;
+  flex: 1;
   color: black;
   display: flex;
   flex-direction: column;
@@ -13133,13 +13145,49 @@ h5 .fgpwd-container__header-2 {
   margin-bottom: 0.5rem;
 }
 
+@media only screen and (max-width: 1000px) {
+  .about__information__content .descriptor {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .about__information__content .descriptor {
+    font-size: 1.2rem;
+  }
+}
+
 .about__information__content .text {
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about__information__content .text {
+    font: 1.6rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .about__information__content .text {
+    font-size: 1.4rem;
+  }
 }
 
 .about__information__content .name {
   font-size: 2.2rem;
   font-weight: 500;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about__information__content .name {
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .about__information__content .name {
+    font-size: 1.2rem;
+  }
 }
 
 .about__information__content .major-minor-container {
@@ -13166,10 +13214,24 @@ h5 .fgpwd-container__header-2 {
 .about__information__content button {
   display: inline-block;
   margin-top: 2rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   width: 40%;
   margin-right: 9%;
   text-align: center;
+}
+
+@media only screen and (max-width: 1000px) {
+  .about__information__content a,
+  .about__information__content button {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .about__information__content a,
+  .about__information__content button {
+    font-size: 1.4rem;
+  }
 }
 
 .about__information + div {
@@ -13462,6 +13524,12 @@ h5 .fgpwd-container__header-2 {
 
 #background-cover #write-review-container .btn-container .btn-cancel {
   margin-right: 2rem;
+}
+
+@media only screen and (max-width: 575px) {
+  .about__reviews {
+    margin-top: 3rem;
+  }
 }
 
 .about__reviews .top-container {

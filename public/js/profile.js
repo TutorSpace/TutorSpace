@@ -225,7 +225,7 @@ $('svg.bookmark').click(function() {
 });
 
 $('.search-card img').click(function() {
-    window.location.href = '/view_profile/' + $(this).attr('data-user-id');
+    window.location.href = '/view_profile/' + $(this).attr('data-user-id') + '?from=profile';
 });
 
 

@@ -15,10 +15,10 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $casts = [
-        'created_at' => 'datetime:Y-m-d H:00',
-        'updated_at' => 'datetime:Y-m-d H:00'
-    ];
+    // protected $casts = [
+    //     'created_at' => 'datetime:Y-m-d H:00',
+    //     'updated_at' => 'datetime:Y-m-d H:00'
+    // ];
 
     public static function getTime($date, $startTime) {
         $startTime = date("H:i", strtotime($startTime));

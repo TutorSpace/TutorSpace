@@ -165,12 +165,12 @@
                                         <span class="text">{{App\Subject::find($upcomingSession->subject_id)->subject}}</span>
                                     @endif
                                     <span class="descriptor">Time</span>
-                                    <span class="descriptor">Hourly Rate</span>
+                                    <span class="descriptor">Year</span>
                                     <span class="text">
                                         {{$upcomingSession->start_time}} - {{$upcomingSession->end_time}}
                                     </span>
                                     <span class="text">
-                                        ${{$user->hourly_rate}} / hr
+                                        {{App\School_year::find($upcomingSession->school_year_id)->school_year}}
                                     </span>
                                     <button class="btn btn-lg btn-outline-primary" data-session-id="{{$upcomingSession->session_id}}">Cancel Session</button>
                                     <button class="btn btn-lg btn-primary" data-session-id="{{$upcomingSession->session_id}}">View Session</button>
@@ -204,10 +204,10 @@
                                 <span class="text subject-course">{{App\Subject::find($pastSession->subject_id)->subject}}</span>
                                 @endif
                                 <span class="descriptor">Time</span>
-                                <span class="descriptor">Hourly Rate</span>
+                                <span class="descriptor">Year</span>
                                 <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
                                 <span class="text">
-                                    ${{$user->hourly_rate}} / hr
+                                    {{App\School_year::find($upcomingSession->school_year_id)->school_year}}
                                 </span>
                                 <button class="btn btn-lg btn-outline-primary btn-write-review" data-session-id="{{$pastSession->session_id}}">Write a review +</button>
                                 <button class="btn btn-lg btn-primary" data-session-id="{{$pastSession->session_id}}">View Session</button>
