@@ -1,6 +1,9 @@
 @extends('layouts.loggedin')
 @section('title', 'chatting room')
 
+@section('links-in-head')
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+@endsection
 
 @section('content')
 <div class="container">
