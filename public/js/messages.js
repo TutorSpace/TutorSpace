@@ -168,6 +168,8 @@ function sendMessage() {
 
     $('.messages-container').append(msg);
     $('.messages-table-left tr[data-user-id="' + receiverId + '"] .time').html(time);
+    $('#msg-to-send').val('');
+    scrollToBottom();
 
     // sending message here
     let datastr = "receiver_id=" + receiverId + "&message=" + message;
@@ -178,7 +180,7 @@ function sendMessage() {
         data: datastr,
         cache: false,
         success: function(data) {
-            $('#msg-to-send').val('');
+            // $('#msg-to-send').val('');
 
         },
         error: function(jqXHR, status, err) {
@@ -186,7 +188,7 @@ function sendMessage() {
         },
         complete: function() {
             // scroll to the bottom
-            scrollToBottom();
+            // scrollToBottom();
         }
     });
 
