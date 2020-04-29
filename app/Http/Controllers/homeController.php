@@ -95,14 +95,11 @@ class homeController extends Controller
                                 ->get();
 
 
-            // get upcoming sessions (at most 2)
-            $upcomingSessions = $user->upcomingSessions(2);
+            // get upcoming sessions (at most 3)
+            $upcomingSessions = $user->upcomingSessions(3);
 
             // get tutors of the past sessions (at most 2)
             $pastTutors = $user->pastTutors(2);
-
-
-
 
 
             return view('home.home_student', [

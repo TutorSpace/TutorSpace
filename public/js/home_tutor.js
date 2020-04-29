@@ -31,9 +31,6 @@ $('.tutor-requests-table button:last-child').click(function(e) {
             toastr.error(error);
         }
     });
-
-
-
 });
 
 // reject tutor request

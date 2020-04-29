@@ -11144,6 +11144,10 @@ label {
   background-color: #97d2fb !important;
 }
 
+.hover-background {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
 button,
 a.btn {
   color: #f7fbfd !important;
@@ -13951,6 +13955,7 @@ h5 .fgpwd-container__header-2 {
 
 .messages-table-left tbody tr td {
   display: block;
+  border-left: 1px solid #9a9a9a;
 }
 
 .messages-table-left tbody tr td.unread {
@@ -13961,8 +13966,12 @@ h5 .fgpwd-container__header-2 {
   cursor: pointer;
 }
 
-.messages-table-left tbody .first-td {
+.messages-table-left tbody tr:first-child td {
   border-top: none !important;
+}
+
+.messages-table-left tbody tr:last-child td {
+  border-bottom: 1px solid #9a9a9a !important;
 }
 
 .messages-table-left-top {
@@ -13971,7 +13980,10 @@ h5 .fgpwd-container__header-2 {
   align-items: center;
   flex-wrap: nowrap;
   font-size: 1.5rem;
-  white-space: nowrap;
+}
+
+.messages-table-left-top .name {
+  margin-right: 0.3rem;
 }
 
 .messages-table-left-top .request-pending {
@@ -14081,21 +14093,28 @@ h5 .fgpwd-container__header-2 {
   font-size: 1.2rem;
 }
 
-.messages-container .message-other {
+.messages-container .message-other,
+.messages-container .message-self {
   width: 45%;
 }
 
-.messages-container .message-other-container {
+.messages-container .message-other-container,
+.messages-container .message-self-container {
   display: flex;
 }
 
-.messages-container .message-other-container .time {
+.messages-container .message-other-container .time,
+.messages-container .message-self-container .time {
   align-self: flex-end;
   margin-bottom: 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
   font-size: 1rem;
   color: #9a9a9a;
+}
+
+.messages-container .message-self-container {
+  flex-direction: row-reverse;
 }
 
 .messages-container .message-other,
@@ -14113,20 +14132,12 @@ h5 .fgpwd-container__header-2 {
   background-color: #c4c4c4;
 }
 
-.messages-container .message-self-container {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.messages-container .message-self-container p {
-  margin-bottom: 0;
-  flex: 0 0 45%;
+.messages-container .message-self {
   background-color: #a3a3a3;
 }
 
 .message-input-container {
+  margin-top: auto;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
@@ -14153,6 +14164,7 @@ h5 .fgpwd-container__header-2 {
   color: #2c86c4 !important;
   border: none !important;
   background-color: transparent !important;
+  outline: none;
 }
 
 .view-tutor-session__header {

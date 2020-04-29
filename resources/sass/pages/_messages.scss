@@ -67,8 +67,10 @@
             display: block;
             width: 100%;
 
+
             td {
                 display: block;
+                border-left: 1px solid $color-gray;
             }
 
             td.unread {
@@ -80,9 +82,16 @@
             }
         }
 
-        .first-td {
+        tr:first-child {
+            td {
+                border-top: none !important;
+            }
+        }
 
-            border-top: none !important;
+        tr:last-child {
+            td {
+                border-bottom: 1px solid $color-gray !important;
+            }
         }
     }
 
@@ -92,10 +101,10 @@
         align-items: center;
         flex-wrap: nowrap;
         font-size: 1.5rem;
-        white-space: nowrap;
+        // white-space: nowrap;
 
         .name {
-            // font-size: 1.5rem;
+            margin-right: .3rem;
         }
 
         .request-pending {
@@ -111,6 +120,7 @@
     .time {
         display: block;
         text-align: right;
+
     }
 
 
@@ -208,6 +218,7 @@
 
                 button {
                     font-size: 1.4rem;
+
                 }
             }
 
@@ -232,11 +243,11 @@
 
     font-size: 1.2rem;
 
-    .message-other {
+    .message-other, .message-self {
         width: 45%;
     }
 
-    .message-other-container {
+    .message-other-container, .message-self-container {
         display: flex;
 
         .time {
@@ -247,6 +258,10 @@
             font-size: 1rem;
             color: $color-gray;
         }
+    }
+
+    .message-self-container {
+        flex-direction: row-reverse;
     }
 
 
@@ -261,26 +276,18 @@
 
     .message-other {
         background-color: $color-message-other;
-
     }
 
-    .message-self-container {
-        display: flex;
-        justify-content: flex-end;
-        width: 100%;
-        margin-bottom: 1rem;
-        // margin-right: 10rem;
-
-        p {
-            margin-bottom: 0;
-            flex: 0 0 45%;
-            background-color: $color-message-self;
-        }
+    .message-self {
+        background-color: $color-message-self;
     }
+
+
 }
 
 
 .message-input-container {
+    margin-top: auto;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -308,6 +315,7 @@
             color: $color-blue-dark !important;
             border: none !important;
             background-color: transparent !important;
+            outline: none;
         }
     }
 
