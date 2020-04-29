@@ -48,7 +48,7 @@
     </div>
     <div class="review-content-container">
         <h5 class="review-header"></h5>
-        <textarea name="review-content" id="review-content"></textarea>
+        <textarea name="review-content" id="review-content" rows="6"></textarea>
     </div>
     <div class="btn-container">
         <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>

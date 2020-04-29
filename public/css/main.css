@@ -12783,7 +12783,7 @@ h5 .fgpwd-container__header-2 {
 .home__container__help-center .btn-search {
   margin-left: 2rem;
   font-size: 1.6rem;
-  border-radius: 8px;
+  border-radius: 0.8rem;
 }
 
 @media only screen and (max-width: 25em) {
@@ -12932,7 +12932,7 @@ h5 .fgpwd-container__header-2 {
   font-size: 2rem;
   background-color: #ffffff;
   max-height: 50rem;
-  border-radius: 14px;
+  border-radius: 1rem;
   padding: 3rem;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
   overflow: scroll;
@@ -12964,7 +12964,7 @@ h5 .fgpwd-container__header-2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 1rem;
   width: 50%;
   background-color: white;
   padding: 2rem 4rem;
@@ -12975,11 +12975,11 @@ h5 .fgpwd-container__header-2 {
 
 #background-cover #add-post-container textarea {
   display: block;
-  font-size: 2rem;
+  font-size: 1.6rem;
   outline: none;
   width: 100%;
   margin-top: 2rem;
-  border-radius: 10px;
+  border-radius: 1rem;
   padding: 1rem 2rem;
   flex: 1;
 }
@@ -13001,7 +13001,7 @@ h5 .fgpwd-container__header-2 {
 #background-cover #add-post-container .add-post-bottom select {
   margin-right: auto;
   width: 15rem;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 #background-cover #add-post-container .add-post-bottom .btn-cancel {
@@ -13524,7 +13524,7 @@ h5 .fgpwd-container__header-2 {
 
 #background-cover #write-review-container .review-content-container textarea {
   display: block;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   outline: none;
   width: 100%;
   margin-top: 1rem;
@@ -14029,6 +14029,10 @@ h5 .fgpwd-container__header-2 {
   height: 3.5rem;
   border-radius: 50%;
   margin-right: 0.5rem;
+}
+
+.m-right-container .header img:hover {
+  cursor: pointer;
 }
 
 .m-right-container .message-alert {

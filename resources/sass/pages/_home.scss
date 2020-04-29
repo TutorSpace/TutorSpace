@@ -220,7 +220,7 @@
         .btn-search {
             margin-left: $margin;
             font-size: $font-size;
-            border-radius: 8px;
+            border-radius: .8rem;
 
             @media only screen and (max-width: 25em) { //400px
                 margin-left: 0;
@@ -399,7 +399,7 @@
     font-size: 2rem;
     background-color: #ffffff;
     max-height: 50rem;
-    border-radius: 14px;
+    border-radius: 1rem;
     padding: 3rem;
     @include boxShadow;
 
@@ -458,7 +458,7 @@
     #add-post-container {
         @include absCenter;
 
-        border-radius: 10px;
+        border-radius: 1rem;
         width: 50%;
 
         background-color: white;
@@ -470,11 +470,11 @@
 
         textarea {
             display: block;
-            font-size: 2rem;
+            font-size: 1.6rem;
             outline: none;
             width: 100%;
             margin-top: 2rem;
-            border-radius: 10px;
+            border-radius: 1rem;
             padding: 1rem 2rem;
 
             flex: 1;
@@ -496,7 +496,7 @@
             select {
                 margin-right: auto;
                 width: 15rem;
-                border-radius: 10px;
+                border-radius: 1rem;
             }
 
             .btn-cancel {

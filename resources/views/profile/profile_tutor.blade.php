@@ -49,7 +49,7 @@
     </div>
     <div class="review-content-container">
         <h5 class="review-header"></h5>
-        <textarea name="review-content" id="review-content"></textarea>
+        <textarea name="review-content" id="review-content" rows="6"></textarea>
     </div>
     <div class="btn-container">
         <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
@@ -266,7 +266,7 @@
                                 <span class="descriptor">Year</span>
                                 <span class="text">{{$pastSession->start_time}} - {{$pastSession->end_time}}</span>
                                 <span class="text">
-                                    {{App\School_year::find($upcomingSession->school_year_id)->school_year}}
+                                    {{App\School_year::find($pastSession->school_year_id)->school_year}}
                                 </span>
                                 <button class="btn btn-lg btn-outline-primary btn-write-review" data-session-id="{{$pastSession->session_id}}">Write a review +</button>
                                 <button class="btn btn-lg btn-primary" data-session-id="{{$pastSession->session_id}}">View Session</button>

@@ -342,7 +342,7 @@ $('.btn-write-review').click(function() {
         'slow'
     );
 
-    $('#write-review-container').height($(window).height() / 2);
+    // $('#write-review-container').height($(window).height() / 2);
 
     sessionId = $(this).attr('data-session-id');
 
@@ -378,6 +378,7 @@ $('.btn-write-review').click(function() {
 $('#write-review-container .btn-cancel').click((e) => {
     e.preventDefault();
     $('#background-cover').hide();
+    $('textarea').val('');
 });
 
 

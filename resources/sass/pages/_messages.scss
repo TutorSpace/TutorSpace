@@ -149,6 +149,9 @@
             border-radius: 50%;
             margin-right: .5rem;
 
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 
@@ -318,6 +321,4 @@
             outline: none;
         }
     }
-
-
 }

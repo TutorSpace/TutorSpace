@@ -195,6 +195,11 @@ function sendMessage() {
 
 }
 
+function viewUserProfile(userId) {
+    window.location.href = '/view_profile/' + userId + '?from=messages';
+}
+
+
 function sendMessageEnter(e) {
     if (e.keyCode == 13) {
         sendMessage();
@@ -238,9 +243,9 @@ function acceptRequest(e) {
             }
             else {
                 toastr.success(data.successMsg);
-                $('.message-alert[data-request-id="' + requestId + '"]').remove();
-                $('.request-pending[data-request-id="' + requestId + '"]').remove();
             }
+            $('.message-alert[data-request-id="' + requestId + '"]').remove();
+            $('.request-pending[data-request-id="' + requestId + '"]').remove();
         },
         error: function(error) {
             console.log(error);

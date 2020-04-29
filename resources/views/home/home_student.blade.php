@@ -18,7 +18,7 @@ min-width-450
 @section('add-post-container')
 <form id="add-post-container">
     <h3>Write a Post</h3>
-    <textarea name="post-content" id="post-content" placeholder="Begin typing post here."></textarea>
+    <textarea name="post-content" id="post-content" placeholder="Begin typing post here." rows="6"></textarea>
     <small class="subject-course">Subject / Course</small>
     <div class="add-post-bottom">
         <select class="custom-select custom-select-lg " name="add-post-course-subject" id="add-post-course-subject">

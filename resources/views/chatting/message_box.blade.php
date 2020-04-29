@@ -1,5 +1,5 @@
 <div class="header">
-    <img src="{{asset("user_photos/{$otherUser->profile_pic_url}")}}" alt="the other user's photo">
+    <img src="{{asset("user_photos/{$otherUser->profile_pic_url}")}}" alt="the other user's photo" onclick="viewUserProfile({{$otherUser->id}})">
     <h4>{{$otherUser->full_name}}</h4>
 </div>
 

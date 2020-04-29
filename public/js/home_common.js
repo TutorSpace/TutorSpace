@@ -87,7 +87,7 @@ $('#add-post-container').submit((e) => {
                 $('#filter-form').submit();
             }
             $('#background-cover').hide();
-
+            $('textarea').val('');
         },
         error: function(error) {
             console.log(error);
@@ -192,7 +192,7 @@ function showAddPost() {
         'slow'
     );
 
-    $('#add-post-container').height($(window).height() / 2);
+    // $('#add-post-container').height($(window).height() / 2);
 }
 
 
