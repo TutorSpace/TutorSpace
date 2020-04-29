@@ -63,8 +63,9 @@ $('.tutor-requests-table button:not(:last-child)').click(function(e) {
 });
 
 
-$('.home__tutor-requests tr').click(() => {
-    alert('TODO: go to messages page and view the request');
+$('.home__tutor-requests tr').click(function() {
+    let studentId = $(this).parent().parent().attr('data-student-id');
+    window.location.href = "/messages/" + studentId;
 });
 
 

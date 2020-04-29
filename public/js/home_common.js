@@ -145,7 +145,11 @@ $('#filter-form').submit(function(e) {
                             <p>${dateCreated}</p><span>${courseSubjectName}</span>
                         </td>
                         <td class="post-message">${postMsg}</td>
-                        <td><button class="btn btn-lg btn-primary button--small" data-post-id="${postId}">Send Message</button></td>
+                        <td>
+                            <button class="btn btn-lg btn-primary button--small" data-post-id="${postId}" onclick="message(${userId})">
+                                Send Message
+                            </button>
+                        </td>
                     </tr>
                 `;
 
@@ -213,4 +217,7 @@ function viewProfile(id) {
     window.location.href = '/view_profile/' + id + '?from=home';
 }
 
+function message(userId) {
+    window.location.href = '/messages/' + userId;
+}
 

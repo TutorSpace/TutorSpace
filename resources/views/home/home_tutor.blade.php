@@ -590,7 +590,7 @@ min-width-450
 
             @foreach ($tutorRequests as $tutorRequest)
             <table class="table table-hover tutor-requests-table"
-                data-tutor-request-id='{{$tutorRequest->tutor_request_id}}'>
+                data-tutor-request-id='{{$tutorRequest->tutor_request_id}}' data-student-id="{{$tutorRequest->student_id}}">
                 <tbody>
                     <tr>
                         <th scope="row">
@@ -701,7 +701,7 @@ min-width-450
                                 {{$post->post_message}}
                             </td>
                             <td>
-                                <button class="btn btn-lg btn-primary button--small" data-post-id="{{$post->post_id}}">
+                                <button class="btn btn-lg btn-primary button--small" data-post-id="{{$post->post_id}}" onclick="message({{$post->user_id}})">
                                     Send Message
                                 </button>
                             </td>
