@@ -358,13 +358,13 @@ $('.btn-write-review').click(function() {
 
     let subjectCourse = $(this).parent().find('.subject-course').html();
 
-    if(isTutor) {
+    if(isTutor == 1) {
         reviewContainer.find('.tutor-name').html(currentUserName);
         reviewContainer.find('.student-name').html(selectedUserName);
     }
     else {
         reviewContainer.find('.tutor-name').html(selectedUserName);
-        revviewContainer.find('.student-name').html(currentUserName);
+        reviewContainer.find('.student-name').html(currentUserName);
     }
     reviewContainer.find('.review-header').html('Review ' + selectedUserName + ': ');
     reviewContainer.find('.date').html(date);
@@ -421,6 +421,7 @@ $('#write-review-container').submit((e) => {
             toastr.success(successMsg);
 
             $('#background-cover').hide();
+            $('textarea').val('');
 
             // dont remove the past session after reviewing it!
 
