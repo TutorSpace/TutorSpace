@@ -12,13 +12,29 @@ var $window = $(window).on('resize', fitProfileImgHeight).trigger('resize'); //o
 // The tags do not need to be in the database. The autocomplete is just for recommendation
 $(function () {
     var subjectTags = [
+        'HTML/CSS',
         'Calculus',
-        'Mathematics',
-        'Ling',
-        'Business',
-        'Accounting',
+        'Algebra',
+        'Chemistry',
+        'Biology',
         'Computer Science',
-        'Physics'
+        'Computer Security',
+        'Writing',
+        'French',
+        'Economics',
+        'International Relations',
+        'Art History',
+        'Psychology',
+        'Linguistics',
+        'Design',
+        'Mathematics',
+        'UX/UI Design',
+        'Korean',
+        'DSP',
+        'Backend',
+        'Backend Development',
+        'Robotics',
+        'Python'
     ];
     $("#subject").autocomplete({
         source: subjectTags
@@ -26,12 +42,50 @@ $(function () {
 
 
     var courseTags = [
-        'EALC 150',
+        'ITP 104',
+        'ITP 115',
+        'ITP 125',
+        'ITP 301',
+        'ITP 304',
+        'ITP 325',
         'CSCI 103',
-        'COMM 201',
+        'CSCI 104',
+        'MATH 125',
+        'MATH 225',
+        'MATH 245',
+        'ECON 203',
+        'ECON 205',
+        'WRIT 150',
+        'WRIT 340',
+        'PSYC 100',
+        'MUSC 255',
+        'LING 210',
+        'LING 115',
+        'FREN 220',
+        'DES 302',
+        'IR 210',
+        'AHIS 230',
+        'BISC 120',
+        'BISC 220',
+        'CRIT 150',
+        'CTWR 412',
+        'COMM 104',
+        'AME 201',
+        'AME 301',
+        'SFA 111',
+        'EALC 150',
+        'CTWR 411',
+        'DES 102',
+        'CRIT 350',
+        'EE 243',
+        'MATH 114',
         'BUAD 304',
-        'ECON 351',
-        'ECON 352'
+        'ITP 303',
+        'CSCI 201',
+        'CSCI 360',
+        'ITP 380',
+        'CSCI 170',
+        'CSCI 270'
     ];
     $("#course").autocomplete({
         source: courseTags
@@ -42,7 +96,16 @@ $(function () {
         'Patient',
         'Hospital',
         'Lovely',
-        'Cute'
+        'Cute',
+        'Attentive',
+        'Enthusiastic',
+        'Responsible',
+        'Hilarious',
+        'Caring',
+        'Outgoing',
+        'Lovely Boy!',
+        'Extroverted',
+        'Hardworking'
     ];
     $("#characteristic").autocomplete({
         source: characteristicTags
