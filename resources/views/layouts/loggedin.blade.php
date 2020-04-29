@@ -70,7 +70,11 @@ c-80,0-240,0-400,0S640,0,480,0S160,0,80,0H0V82z" />
             </div>
             <div class="button-container">
                 <a href="/home">Home</a>
-                <a href="/messages">Messages</a>
+                <a href="/messages" class="nav-messages-container">
+                    Messages
+                    @yield('haveUnreadMsgs')
+
+                </a>
                 <form class="search-box" action="/search" method="GET">
                     <svg>
                         <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>

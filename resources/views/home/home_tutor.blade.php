@@ -29,6 +29,8 @@ min-width-450
 @endsection
 
 
+
+
 @section('confirm-time-container')
 <div id="confirm-time-container">
     <h4 class="mb-3">Confirm Available Time</h4>
@@ -469,7 +471,7 @@ min-width-450
                     <h2>Welcome {{Auth::user()->full_name}}!</h2>
                 </div>
                 <div class="home__container__header__content__text__descriptor">
-                    <small>You have X unread message & {{count($tutorRequests)}} Tutor Request(s)</small>
+                    <small>You have {{$numUnreadMsgs}} unread message & {{count($tutorRequests)}} Tutor Request(s)</small>
                 </div>
             </div>
             <div class="home__container__header__content__img">

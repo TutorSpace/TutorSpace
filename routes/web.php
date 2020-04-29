@@ -119,3 +119,5 @@ Route::post('/tutor_request', 'tutorRequestController@makeTutorRequest')->middle
 Route::get('/messages', 'chatController@show')->name('chatroom')->middleware(['checkLogin']);
 Route::post('/messages', 'chatController@sendMessage')->middleware(['checkLogin']);
 Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['checkLogin']);
+Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['checkLogin']);
+

@@ -25,18 +25,54 @@ class chatController extends Controller
                     })
                     ->get();
 
-        // if($user->is_tutor) {
-            return view('chatting.chatroom_tutor', [
-                'user' => $user,
-                'chatrooms' => $chatrooms
-            ]);
-        // }
-        // else {
+        return view('chatting.chatroom', [
+            'user' => $user,
+            'chatrooms' => $chatrooms
+        ]);
+    }
 
-        // }
+    public function showChat(Request $request, User $otherUser) {
+        // make sure there is such conversation
+        $user = Auth::user();
+        $myId = Auth::id();
 
+        if($myId == $otherUser->id){
+            return redirect()->route('home');
+        }
 
+        $otherUserId = $otherUser->id;
 
+        $haveChatroom = Chatroom::where(function($query) use($myId, $otherUserId) {
+                        $query->where('user_id_1', $myId)->where('user_id_2', '=', $otherUserId);
+                    })
+                    ->orWhere(function($query) use($myId, $otherUserId) {
+                        $query->where('user_id_2', $myId)->where('user_id_1', '=', $otherUserId);
+                    })
+                    ->count() != 0;
+
+        // if no chatting room, create one
+        if(!$haveChatroom) {
+            $chatroom = new Chatroom();
+            $chatroom->user_id_1 = $myId;
+            $chatroom->user_id_2 = $otherUserId;
+            $chatroom->save();
+        }
+
+        $chatrooms = Chatroom::where(function($query) use($myId) {
+            $query->where('user_id_1', $myId)->where('user_id_2', '!=', $myId);
+        })
+        ->orWhere(function($query) use($myId) {
+            $query->where('user_id_2', $myId)->where('user_id_1', '!=', $myId);
+        })
+        ->get();
+
+        $request->session()->flash('showChatUserId', $otherUserId);
+
+        return view('chatting.chatroom', [
+                    'user' => $user,
+                    'chatrooms' => $chatrooms
+                ])
+                ->with('showChatUserId', $otherUserId);
     }
 
     public function sendMessage(Request $request) {
@@ -83,16 +119,11 @@ class chatController extends Controller
         ->get();
 
 
-        // if(Auth::user()->is_tutor) {
-            return view('chatting.message_box_tutor', [
-                'messages' => $messages,
-                'otherUser' => User::find($otherUserId),
-                'user' => Auth::user()
-            ]);
-        // }
-        // else {
-
-        // }
+        return view('chatting.message_box', [
+            'messages' => $messages,
+            'otherUser' => User::find($otherUserId),
+            'user' => Auth::user()
+        ]);
 
 
     }

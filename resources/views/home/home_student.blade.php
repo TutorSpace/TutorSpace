@@ -13,6 +13,8 @@ min-width-450
 @endsection
 
 
+
+
 @section('add-post-container')
 <form id="add-post-container">
     <h3>Write a Post</h3>
@@ -256,7 +258,7 @@ min-width-450
                     <h2>Welcome {{Auth::user()->full_name}}!</h2>
                 </div>
                 <div class="home__container__header__content__text__descriptor">
-                    <small>You have X unread message(s)</small>
+                    <small>You have {{$numUnreadMsgs}} unread message(s)</small>
                 </div>
             </div>
             <div class="home__container__header__content__img">

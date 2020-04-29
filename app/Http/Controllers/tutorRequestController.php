@@ -8,6 +8,9 @@ use Auth;
 use App\User;
 use App\Available_time;
 use App\Tutor_request;
+use App\NewMessage;
+use App\Chatroom;
+use App\Message;
 
 class tutorRequestController extends Controller
 {
@@ -35,6 +38,7 @@ class tutorRequestController extends Controller
             "upcomingSessions" => $upcomingSessions
         ]);
     }
+
 
     public function makeTutorRequest(Request $request) {
         $request->validate([
@@ -66,7 +70,6 @@ class tutorRequestController extends Controller
         $courseSubjectId = explode("-", $inputCourseSubject)[1];
         $message = $request->input('message');
 
-
         $tutorRequest = new Tutor_request();
         $tutorRequest->tutor_id = $tutorId;
         $tutorRequest->student_id = Auth::user()->id;
@@ -83,6 +86,47 @@ class tutorRequestController extends Controller
         $tutorRequest->start_time = $startTime;
         $tutorRequest->end_time = $endTime;
         $tutorRequest->save();
+
+        // sending the message to the tutor
+        $user = Auth::user();
+        $myId = $user->id;
+
+        $haveChattingRoom = Chatroom::where(function($query) use($myId, $tutorId) {
+            $query->where('user_id_1', $myId)->where('user_id_2', '=', $tutorId);
+        })
+        ->orWhere(function($query) use($myId, $tutorId) {
+            $query->where('user_id_2', $myId)->where('user_id_1', '=', $tutorId);
+        })
+        ->count() != 0;
+
+        // if there's no chatting room between the student and the tutor yet, create a room
+        if(!$haveChattingRoom) {
+            $chatroom = new Chatroom();
+            $chatroom->user_id_1 = $user->id;
+            $chatroom->user_id_2 = $tutorId;
+            $chatroom->save();
+        }
+
+
+        // save message to the database
+        $data = new Message();
+        $data->from = $user->id;
+        $data->to = $tutorId;
+        $data->message = $message;
+        $data->is_read = 0;
+        $data->save();
+
+
+        // sending the message
+        $msg = [
+            'from' => $data->from,
+            'to' => $data->to,
+            'msg' => $message,
+            'time' => $data->created_at,
+            'newTutorRequest' => true
+        ];
+        event(new NewMessage($msg));
+
 
         return response()->json([
             'successMsg' => 'Successfully make the tutor request!'

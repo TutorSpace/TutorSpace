@@ -38,30 +38,37 @@ $( document ).ready(function() {
 
         // if I am the sender
         if(myId == data.from) {
+            let d = new Date(data.time);
+            let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
+
             // if I am currently in this window, push the message to the window. We don't care about it if it is not the current window
             if(receiverId && receiverId == data.to) {
-                let d = new Date(data.time);
-                let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
 
-                let msg = `<div class="message-self-container">
-                    <div class="message-self">
-                    ${data.msg}
-                    </div>
-                    <span class="time">
-                    ${time}
-                    </span>
-                </div>`;
+                // now I decide not to push the message after receiving it, because I think it will make the delay longer
 
-                $('.messages-container').append(msg);
+                // let msg = `<div class="message-self-container">
+                //     <div class="message-self">
+                //     ${data.msg}
+                //     </div>
+                //     <span class="time">
+                //     ${time}
+                //     </span>
+                // </div>`;
+
+                // $('.messages-container').append(msg);
             }
+
+            // update the time on the left
+            // $('.messages-table-left tr[data-user-id="' + data.to + '"] .time').html(time);
+
         }
         // if receiving a message
         else if(myId == data.to) {
+            let d = new Date(data.time);
+            let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
+
             // if receiver is selected, push the data to the window
             if(receiverId && receiverId == data.from) {
-                let d = new Date(data.time);
-                let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
-
                 let msg = `<div class="message-other-container">
                     <div class="message-other">
                     ${data.msg}
@@ -73,14 +80,27 @@ $( document ).ready(function() {
 
                 $('.messages-container').append(msg);
                 scrollToBottom();
+
             }
             // if not selected, update there is unread message!
             else {
-                $($('.messages-table-left tr[data-user-id="' + data.from + '"] td')).addClass('unread');
+                $('.messages-table-left tr[data-user-id="' + data.from + '"] td').addClass('unread');
+            }
+
+            // update the time on the left
+            $('.messages-table-left tr[data-user-id="' + data.from + '"] .time').html(time);
+
+            // if is new tutor request, reload the page with the current conversation box!
+            if(data.newTutorRequest) {
+                if(receiverId)
+                    window.location.href = '/messages/' + receiverId;
+                else
+                    window.location.href = '/messages';
             }
         }
         else {
-            toastr.error("oh no!");
+            // toastr.error("oh no!");
+            console.log('this message is not for me');
         }
     });
 
@@ -126,11 +146,28 @@ function sendMessage() {
     let message = $('#msg-to-send').val();
 
     let validMsg = message && message.trim().length !== 0 && receiverId;
-        // if is valid message and have clicked on someone to send the message
+    // if is valid message and have clicked on someone to send the message
     if(!validMsg) {
         alert("You must select a chatbox and input a valid message!");
         return;
     }
+
+
+    // directly push this message to the chatbox!
+    let d = new Date();
+    let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
+
+    let msg = `<div class="message-self-container">
+                    <div class="message-self">
+                    ${message}
+                    </div>
+                    <span class="time">
+                    ${time}
+                    </span>
+                </div>`;
+
+    $('.messages-container').append(msg);
+    $('.messages-table-left tr[data-user-id="' + receiverId + '"] .time').html(time);
 
     // sending message here
     let datastr = "receiver_id=" + receiverId + "&message=" + message;
@@ -152,6 +189,8 @@ function sendMessage() {
             scrollToBottom();
         }
     });
+
+
 }
 
 function sendMessageEnter(e) {

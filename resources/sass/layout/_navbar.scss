@@ -148,7 +148,6 @@ $nav-height-percent: 80%;
 
                 a {
                     color: $color-blue-dark !important;
-
                 }
 
                 *:not(:last-child){
@@ -156,6 +155,16 @@ $nav-height-percent: 80%;
 
                     @media only screen and (max-width: 25em) {
                         margin-right: 1.5rem;
+                    }
+                }
+
+                .nav-messages-container {
+                    display: flex;
+
+                    svg {
+                        align-self: flex-start;
+                        margin-left: .2rem;
+                        margin-top: .2rem;
                     }
                 }
 

@@ -18,7 +18,7 @@
         <div class="col-4 m-left-container">
             <form class="search-messages-container" method="GET" action="#" id="form-search-message">
                 <svg>
-                    <use xlink:href="assets/sprite.svg#icon-magnifying-glass"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
                 </svg>
                 <input type="text" class="search-messages" placeholder="Search Messages">
             </form>
@@ -45,7 +45,6 @@
                                     @endif
                                 </div>
                                 {{-- for displaying time --}}
-                                {{-- <span class="time">{{$chatroom->getLatestMessageTime() ?? 'No Messages'}}</span> --}}
                                 <span class="time">{{$chatroom->getLatestMessageTime() ? date('Y-m-d h:i', strtotime($chatroom->getLatestMessageTime())) : 'No Messages'}}</span>
                             </td>
                         </tr>
@@ -72,9 +71,17 @@
 @section('js')
 <!-- defined javascript -->
 <script src="{{asset("js/messages.js")}}"></script>
-<script>
 
+
+@if(session('showChatUserId'))
+<script>
+receiverId = '{{session('showChatUserId')}}';
+$('.messages-table-left tr[data-user-id="' + receiverId + '"]').addClass('hover-background');
+showAllMsg(receiverId);
 </script>
+@endif
+
+
 @endsection
 
 

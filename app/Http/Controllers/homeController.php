@@ -40,6 +40,17 @@ class homeController extends Controller
             }
         }
 
+
+        // get total # of unread messages
+        $numUnreadMsgs = User::leftJoin('messages', 'users.id', '=', 'messages.from')
+        ->where('is_read', 0)
+        ->where('to', $user->id)
+        ->where('messages.from', '!=', $user->id)
+        ->count();
+
+
+
+
         if($user->is_tutor) {
             // get upcoming sessions (at most 4)
             $upcomingSessions = $user->upcomingSessions(4);
@@ -65,7 +76,8 @@ class homeController extends Controller
                 'tutorRequests' =>$tutorRequests,
                 'user' => $user,
                 'times' => $times,
-                'upcomingSessions' => $upcomingSessions
+                'upcomingSessions' => $upcomingSessions,
+                'numUnreadMsgs' => $numUnreadMsgs
             ]);
 
         }
@@ -110,7 +122,8 @@ class homeController extends Controller
                 'posts' => $posts,
                 'interestedCourses' => $interestedCourses,
                 'interestedSubjects' => $interestedSubjects,
-                'user' => $user
+                'user' => $user,
+                'numUnreadMsgs' => $numUnreadMsgs
             ]);
         }
     }

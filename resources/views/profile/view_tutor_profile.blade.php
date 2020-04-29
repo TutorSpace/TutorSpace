@@ -49,7 +49,7 @@
                         <span class="text">{{$viewUser->school_year['school_year']}}</span>
                     </div>
                     <div class="btn-container">
-                        <a class="btn btn-lg btn-primary" href="/message">Message</a>
+                        <a class="btn btn-lg btn-primary" href="/messages/{{$viewUser->id}}">Message</a>
                         <button class="btn btn-lg btn-outline-primary btn-request-tutor-session mr-0" data-tutor-id="{{$viewUser->id}}">Request Tutoring Session</button>
 
                     </div>
