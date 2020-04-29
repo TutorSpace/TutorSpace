@@ -421,11 +421,13 @@ $('#write-review-container').submit((e) => {
 
             $('#background-cover').hide();
 
-            sessionContainer.remove();
+            // dont remove the past session after reviewing it!
 
-            if($('.sessions__container-2 .sessions__info').children().length === 0) {
-                $('.sessions__container-2 .sessions__info').append('<span class="f-16">There are no past sessions yet</span>');
-            }
+            // sessionContainer.remove();
+
+            // if($('.sessions__container-2 .sessions__info').children().length === 0) {
+            //     $('.sessions__container-2 .sessions__info').append('<span class="f-16">There are no past sessions yet</span>');
+            // }
         },
         error: function(error) {
             console.log(error);

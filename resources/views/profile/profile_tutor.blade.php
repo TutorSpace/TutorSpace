@@ -1,6 +1,65 @@
 @extends('layouts.loggedin')
 @section('title', 'profile - tutor')
 
+
+@section('write-review-container')
+<svg id="star-outlined" class="hidden">
+    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+</svg>
+<svg id="star-filled" class="hidden">
+    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+</svg>
+
+<form id="write-review-container">
+    <h3 class="title">Write a Review</h3>
+    <div class="info-container">
+        <div class="info-row">
+            <small class="descriptor">Tutor Name</small>
+            <small class="descriptor">Student Name</small>
+            <span class="text tutor-name"></span>
+            <span class="text student-name"></span>
+        </div>
+        <div class="info-row">
+            <small class="descriptor">Date</small>
+            <small class="descriptor">Subject / Course</small>
+            <span class="text date"></span>
+            <span class="text subject-course"></span>
+        </div>
+        <div class="star-rating-container">
+            <small class="descriptor">Star Rating</small>
+            <div class="star-container">
+                <svg id="star-1">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-2">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-3">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-4">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+                <svg id="star-5">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                </svg>
+
+            </div>
+        </div>
+    </div>
+    <div class="review-content-container">
+        <h5 class="review-header"></h5>
+        <textarea name="review-content" id="review-content"></textarea>
+    </div>
+    <div class="btn-container">
+        <button class="btn btn-lg btn-outline-primary btn-cancel">Cancel</button>
+        <button class="btn btn-lg btn-primary btn-post" type="submit">Post</button>
+    </div>
+
+</form>
+@endsection
+
+
 @section('content')
 
     <div class="container" id="profile-container" data-is-tutor="{{$user->is_tutor}}">
@@ -194,7 +253,7 @@
                     @else
                         @foreach ($pastSessions as $pastSession)
                             <div class="session__container" data-session-id="{{$pastSession->session_id}}">
-                                <span class="title">{{$pastSession->full_name}}</span>
+                                <span class="title name">{{$pastSession->full_name}}</span>
                                 <span class="descriptor">Date</span>
                                 <span class="descriptor">Subject / Course</span>
                                 <span class="text date">{{date('m/d/Y', strtotime($pastSession->date))}}</span>
