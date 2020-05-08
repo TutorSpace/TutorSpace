@@ -16,6 +16,7 @@
 
 @php
 // only for tutor
+// TODO: think about when there are multiple tutor requests
 $tutorRequest = App\Tutor_request::where('tutor_id', '=', $user->id)
                                     ->where('student_id', '=', $otherUser->id)->first();
 

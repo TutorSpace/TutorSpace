@@ -38,27 +38,29 @@ $( document ).ready(function() {
 
         // if I am the sender
         if(myId == data.from) {
-            let d = new Date(data.time);
-            let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
 
-            // if I am currently in this window, push the message to the window. We don't care about it if it is not the current window
-            if(receiverId && receiverId == data.to) {
+            // now I decide not to push the message after receiving it, because I think it will make the delay longer
 
-                // now I decide not to push the message after receiving it, because I think it will make the delay longer
 
-                // let msg = `<div class="message-self-container">
-                //     <div class="message-self">
-                //     ${data.msg}
-                //     </div>
-                //     <span class="time">
-                //     ${time}
-                //     </span>
-                // </div>`;
+            // let d = new Date(data.time);
+            // let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
 
-                // $('.messages-container').append(msg);
-            }
+            // // if I am currently in this window, push the message to the window. We don't care about it if it is not the current window
+            // if(receiverId && receiverId == data.to) {
 
-            // update the time on the left
+            //     let msg = `<div class="message-self-container">
+            //         <div class="message-self">
+            //         ${data.msg}
+            //         </div>
+            //         <span class="time">
+            //         ${time}
+            //         </span>
+            //     </div>`;
+
+            //     $('.messages-container').append(msg);
+            // }
+
+            // // update the time on the left
             // $('.messages-table-left tr[data-user-id="' + data.to + '"] .time').html(time);
 
         }
@@ -83,6 +85,7 @@ $( document ).ready(function() {
 
             }
             // if not selected, update there is unread message!
+            // TODO: if there is no chatting box in the current window, remember to create a new window!!!
             else {
                 $('.messages-table-left tr[data-user-id="' + data.from + '"] td').addClass('unread');
             }
@@ -98,8 +101,8 @@ $( document ).ready(function() {
                     window.location.href = '/messages';
             }
         }
+        // if this message has nothing to do with the current user( neither to nor from)
         else {
-            // toastr.error("oh no!");
             console.log('this message is not for me');
         }
     });
@@ -113,7 +116,7 @@ $( document ).ready(function() {
             return;
         }
 
-        // if there was a chatbox, make it to normal
+        // if there was a chatbox, make it to normal state
         if($('.messages-table-left tr[data-user-id="' + receiverId + '"]')[0]) {
             $('.messages-table-left tr[data-user-id="' + receiverId + '"]').removeClass('hover-background');
         }
@@ -153,7 +156,7 @@ function sendMessage() {
     }
 
 
-    // directly push this message to the chatbox!
+    // IMPORTANT: directly push this message to the chatbox, instead of pushing it to the window after receiving the event!
     let d = new Date();
     let time = d.yyyymmdd() + " " + d.getHours() + ":" + getMinutesFormat(d);
 
@@ -171,6 +174,8 @@ function sendMessage() {
     $('#msg-to-send').val('');
     scrollToBottom();
 
+
+    // TODO: make it to json data
     // sending message here
     let datastr = "receiver_id=" + receiverId + "&message=" + message;
 
