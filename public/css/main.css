@@ -14448,7 +14448,7 @@ th.fc-widget-header:not(.fc-axis) {
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 1rem;
-  width: 50%;
+  width: 70% !important;
   background-color: white;
   color: black;
   padding: 2rem 4rem;
@@ -14499,10 +14499,6 @@ th.fc-widget-header:not(.fc-axis) {
   padding: 0.5rem 1rem;
   border-radius: 1rem;
   outline: none;
-}
-
-#confirm-time-container {
-  width: 70% !important;
 }
 
 #calendar .fc-cancelButton-button.fc-button.fc-button-primary {

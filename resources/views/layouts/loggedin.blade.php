@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="animsition @yield('body-class')" onload="">
+<body class="@yield('body-class')">
     <div id="background-cover" class="background-cover">
         @yield('add-post-container')
         @yield('write-review-container')
