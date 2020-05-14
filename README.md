@@ -1,47 +1,96 @@
-# itp460-Bravo
+# TutorSpace
 
-## Created Frontend Pages
-1. [index page](http://www.joinme.us/test_bravo/)
-2. [signup page (tutor + student)](http://www.joinme.us/test_bravo/signup_user.html)
-3. [signup page (student)](http://www.joinme.us/test_bravo/signup_student.html)
-4. [signup page (tutor)](http://www.joinme.us/test_bravo/signup_tutor.html)
-5. [report tutor page](http://www.joinme.us/test_bravo/report_tutor.html)
-6. [profile page (student)](http://www.joinme.us/test_bravo/profile_student.html)
-7. [login (tutor + student)](http://www.joinme.us/test_bravo/login.html)
-8. [edit profile page (student)](http://www.joinme.us/test_bravo/edit_profile_student.html)
-9. [home page (student)](http://www.joinme.us/test_bravo/home_student.html)
-10. [home page (tutor)](http://www.joinme.us/test_bravo/home_tutor.html)
-11. [forget password page](http://www.joinme.us/test_bravo/forget_password.html)
+## Website: https://tutor.joinme.us/
 
+## Sample Tutor Account:
+```
+Email: sophiap@usc.edu
+Password: 123
+```
 
+## Sample Student Account:
+```
+Email: shuaiqin@usc.edu
+Password: 123
+```
 
-## Development Steps:
-1. Run "npm install" (if have not already installed NPM, please install it first)
-2. Run "npm run start" and then go to localhost:8001 to see the web pages. (just save the css/scss files and the web page will be updated automatically, np need to refresh the pages)
+## Screenshots
+### 1. Index Page:
+![Schema Picture](screenshots/index.png)
 
-##### Shuaiqing Luo
+### 2. Singup Wizard:
+![Schema Picture](screenshots/signup_wizard.png)
 
-##### Nick LoCastro
+### 3. Home Page (Student):
+![Schema Picture](screenshots/home_student.png)
 
-##### Katelyn Designer
+### 4. Home Page (Tutor):
+![Schema Picture](screenshots/home_tutor.png)
 
-##### Sarah Selke
+### 5. Chatting Page:
+![Schema Picture](screenshots/messages.png)
 
-##### Sophia Park
+### 6. Edit Availability Page (Tutor):
+![Schema Picture](screenshots/edit_availability.png)
 
-<br /><br />
+### 7. Profile Page (about you):
+![Schema Picture](screenshots/profile.png)
 
-## Git Process:
-1. Always work on our own branches when developing. (use ```git checkout <your branch name>``` in your project directory)<br /> 
-    **Don't** directly work on the "master" branch or the "develop" branch.
-2. After fully testing your code, use the following steps to push to your branch remotely on github so that others can integrate your code into their own branches
-    - ```git add .``` 
-    <br />**or**
-     <br /> ```git add <filenames of the files that you newly created, such as index.html>```)
-    - ```git commit -m <some description about why you are pushing these files to the remote branch so that others can understand what you are doing in this update, and it would also be helpful if we later want to reset to this update>```
-    - ```git push origin <your branch name, such as Shuaiqing-frontend>```
-    - Tell others on Slack that you just pushed your code on your branch, so that someone can merge it into "develop" branch (Shuaiqing will probably take care of it)
-    - After Shuaiqing merge it into the **"develop"** branch, please use ```git pull origin develop``` to integrate the updated part into your project.
-3. If we want to test the project, we can test it on the **"develop"** branch. 
-4. If everything goes well on the **"develop"** branch, and we implemented/improved/modified some important functionalities (such as if we created the login page, created the searching functionality, or created the payment functionality), then we can create a new branch called ```release-<version number>``` and merge it to the **"master"** branch. This makes it easier for us to go back to a version if we find something goes wrong in the future development.
+### 8. Profile Page (bookmarks):
+![Schema Picture](screenshots/bookmarks.png)
 
+### 9. Profile Page (reviews):
+![Schema Picture](screenshots/reviews.png)
+
+### 10. Profile Page (write reviews):
+![Schema Picture](screenshots/write_review.png)
+
+### 11. Profile Page (sessions):
+![Schema Picture](screenshots/upcoming_session_profile.png)
+
+### 12. Write Post:
+![Schema Picture](screenshots/write_post.png)
+
+### 13. Search Page:
+![Schema Picture](screenshots/search.png)
+
+### 14. Report Tutor Page:
+![Schema Picture](screenshots/report_tutor.png)
+
+## Completed functionalities:
+1. Login / Signup 
+2. Q&A Dashboards
+    * Post Filter
+    * Adding new posts
+3. Edit availability in Calendar (Tutor)
+4. View tutor’s availability and make tutor requests (Student)
+5. Accept/Decline tutor requests (Tutor)
+    * Accepted tutor requests will become upcoming sessions
+6. Searching
+    * Search with Filters
+        * Year
+        * Rating
+        * Price
+        * Availability
+    * Search by Keyword
+        * Name
+        * Course
+        * Subject
+7. Messaging
+    * Sending messages
+    * Unread messages notification
+    * Pending tutor requests notification
+8. Get recommended tutors for interested subjects/courses (Student)
+9. Bookmark/Unbookmark users
+10. View/Cancel Upcoming Tutor Sessions
+    * Outdated upcoming sessions will become Past Tutor Sessions
+11. Write reviews for past sessions
+12. Edit Profile
+    * Change basic information
+    * Upload/Change profile photo
+    * Add/Remove interested subjects, courses, characteristics
+    * Getting all the reviews from others (Tutor)
+    * Getting all the written reviews about others (Student)
+13. See Past Tutors
+14. Report tutors
+15. View others’ profile
