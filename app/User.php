@@ -2,14 +2,15 @@
 
 namespace App;
 
+use DB;
+use App\Session;
+use Carbon\Carbon;
+
+use App\Tutor_request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-
-use App\Session;
-use DB;
-use App\Tutor_request;
-use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -53,6 +54,11 @@ class User extends Authenticatable
     //     else
     //         return $this->hasMany('App\Session', 'student_id');
     // }
+
+
+    public function deleteImage() {
+        Storage::delete($this->profile_pic_url);
+    }
 
     public function bookmarks() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');

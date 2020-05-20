@@ -12,9 +12,6 @@
 min-width-450
 @endsection
 
-
-
-
 @section('add-post-container')
 <form id="add-post-container">
     <h3>Write a Post</h3>
@@ -303,7 +300,6 @@ min-width-450
         <div class="row home__container__notifications">
             <div class="col-12 col-sm-7 home__container__notifications__students">
                 @if(count($recommendedCourses) === 0 && count($recommendedSubjects) === 0)
-                    <!-- the commented div is to display when there is no recommended tutors -->
                     <div class="home__container__notifications__title mb-2">
                         <h5><span>Recommended Tutors</span></h5>
                     </div>
@@ -553,8 +549,6 @@ min-width-450
 
     </div>
 
-
-
 </div>
 
 
@@ -568,17 +562,9 @@ min-width-450
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
 
-
 <script>
     let assetsURL = "{{asset("user_photos/")}}";
 </script>
-
-<!-- defined javascript -->
-<script src="js/home_student.js"></script>
-<script src="js/home_common.js"></script>
-
-{{-- my js for bookmark --}}
-<script src="{{asset('js/bookmark.js')}}"></script>
 
 @if(session('signupSuccess'))
 <script>
@@ -606,8 +592,14 @@ min-width-450
 @if(session('reportSuccess'))
 <script>
     toastr.success('{{session('reportSuccess')}}');
-
 </script>
 @endif
+
+<!-- defined javascript -->
+<script src="js/home_student.js"></script>
+<script src="js/home_common.js"></script>
+
+{{-- my js for bookmark --}}
+<script src="{{asset('js/bookmark.js')}}"></script>
 
 @endsection

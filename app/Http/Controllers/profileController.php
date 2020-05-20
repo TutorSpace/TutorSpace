@@ -84,7 +84,8 @@ class profileController extends Controller
                 'year' => $year,
                 'gpa' => $gpa,
                 'hourlyRate' => $hourlyRate,
-                'user' => $user
+                'user' => $user,
+                'majors' => Major::all()
             ]);
         }
         else {
@@ -94,7 +95,8 @@ class profileController extends Controller
                 'major' => $major,
                 'minor' => $minor,
                 'year' => $year,
-                'user' => $user
+                'user' => $user,
+                'majors' => Major::all()
             ]);
         }
     }
@@ -189,9 +191,11 @@ class profileController extends Controller
         }
     }
 
+    // we must delete the already stored profile photo before uploading to server
     private function saveProfilePic(&$request, &$user) {
         // if user uploaded the file
         if($request->file('profile-pic')) {
+            $user->deleteImage();
             $imgURL = $request->file('profile-pic')->store('');
             $user->profile_pic_url = $imgURL;
         }

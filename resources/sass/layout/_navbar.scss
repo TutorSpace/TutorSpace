@@ -256,6 +256,7 @@ $nav-height-percent: 80%;
                     width: 5rem;
                     border-radius: 50%;
                     transition: transform .4s;
+                    object-fit: cover;
 
                     &:hover {
                         cursor: pointer;

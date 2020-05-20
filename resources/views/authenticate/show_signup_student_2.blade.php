@@ -66,10 +66,25 @@
     </form>
 </div>
 
-
 @endsection
 
 @section('js')
+<script>
+// getting all the majors in the database
+let schoolYearTags = [
+        'Freshman',
+        'Sophomore',
+        'Junior',
+        'Senior',
+        'Graduate'
+    ];
+
+let majorTags = [
+    @foreach($majors as $major)
+    "{{ $major->major }}",
+    @endforeach
+];
+</script>
 
 <!-- for autocomplete -->
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

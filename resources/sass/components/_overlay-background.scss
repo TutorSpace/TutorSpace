@@ -1,0 +1,11 @@
+// common class for every background-cover
+.background-cover {
+    display: none;
+    position: absolute;
+    z-index: 5000;
+    background-color: rgba($color: #000000, $alpha: .63);
+}
+
+
+
+

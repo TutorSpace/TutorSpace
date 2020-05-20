@@ -9,7 +9,6 @@
 .error-right {
     right: 0;
     left: unset;
-    // margin-right: 15px;
     bottom: 0;
 }
 
@@ -26,7 +25,7 @@
     position: absolute;
     color: red;
     bottom: 0;
-    right: 15px;
+    right: 1.5rem;
 }
 
 .p-relative {
@@ -34,38 +33,11 @@
 }
 
 
-// for auto-complete
-.ui-menu-item {
-    font-size: $font-3;
-    position: relative;
-    z-index: 1000;
-}
-
-
 .invisible {
     visibility: hidden;
 }
 
-// customized bootstrap class
-._col-extra-small-12 {
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
 
-    @media only screen and (max-width: 26.875em) { //430px
-        flex: 0 0 100%;
-        max-width: 100%;
-    };
-
-}
-
-svg.bookmark {
-
-    &:hover {
-        cursor: pointer;
-    }
-}
 
 .pl-0 {
     padding-left: 0;
@@ -88,20 +60,6 @@ svg.bookmark {
     color: black;
 }
 
-table {
-    img {
-        width: 4rem;
-        height: 4rem;
-        display: inline-block;
-        border-radius: 50%;
-        margin-right: 1rem;
-    }
-}
-
-label {
-    overflow: hidden;
-}
-
 .f-14 {
     font-size: 1.4rem;
 }
@@ -109,22 +67,3 @@ label {
     font-size: 1.6rem;
 }
 
-// common class for every background-cover
-.background-cover {
-    display: none;
-    position: absolute;
-    z-index: 5000;
-    background-color: rgba($color: #000000, $alpha: .63);
-}
-
-.orange-red {
-    background-color: orangered !important;
-}
-
-.color-blue-light {
-    background-color: $color-blue-light !important;
-}
-
-.hover-background {
-    background-color: rgba(0, 0, 0, 0.075);
-}

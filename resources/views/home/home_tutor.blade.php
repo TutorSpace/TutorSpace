@@ -29,8 +29,6 @@ min-width-450
 @endsection
 
 
-
-
 @section('confirm-time-container')
 <div id="confirm-time-container">
     <h4 class="mb-3">Confirm Available Time</h4>
@@ -724,24 +722,10 @@ min-width-450
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
-
-<script>
-    let assetsURL = "{{asset("user_photos/")}}";
-
-</script>
-
-<!-- defined javascript -->
-<script src="js/home_tutor.js"></script>
-<script src="js/home_common.js"></script>
-
-{{-- my js for bookmark --}}
-<script src="{{asset('js/bookmark.js')}}"></script>
-
 @if(session('successMsg'))
 <script>
     success('{{session('
         successMsg ')}}');
-
 </script>
 @endif
 
@@ -772,22 +756,11 @@ min-width-450
 <script>
     toastr.success('{{session('
         reportSuccess ')}}');
-
 </script>
 @endif
 
 <script>
-    Date.prototype.yyyymmdd = function () {
-        var mm = this.getMonth() + 1; // getMonth() is zero-based
-        var dd = this.getDate();
-
-        return [this.getFullYear(),
-            (mm > 9 ? '' : '0') + mm,
-            (dd > 9 ? '' : '0') + dd
-        ].join('-');
-    };
-
-    let calendar;
+    let assetsURL = "{{asset("user_photos/")}}";
 
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
@@ -822,7 +795,6 @@ min-width-450
 
                     @endphp
                     title: 'Scheduled',
-                    // start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T10:00:00',
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
                     // start: '2020-04-25T12:30:00',
                     end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
@@ -913,72 +885,14 @@ min-width-450
 
         calendar.render();
     });
-
-
-    let startTime;
-    let endTime;
-    let date;
-
-    function getMinutesFormat(date) {
-        if (date.getMinutes() < 10) {
-            return "0" + date.getMinutes();
-        }
-        return date.getMinutes();
-    }
-
-    function showForm(info) {
-        startTime = startTime.yyyymmdd() + " " + startTime.getHours() + ":" + getMinutesFormat(startTime);
-        endTime = endTime.yyyymmdd() + " " + endTime.getHours() + ":" + getMinutesFormat(endTime);
-
-        $('#start-time').html(startTime);
-        $('#end-time').html(endTime);
-
-        $('#background-cover-3').height(document.documentElement.scrollHeight);
-        $('#background-cover-3').width(document.documentElement.scrollWidth);
-        $('#background-cover-3').show();
-
-        let centerOffset = (document.documentElement.scrollHeight - $(window).height()) / 2;
-        $('html,body').animate({
-                scrollTop: centerOffset
-            },
-            'slow'
-        );
-    }
-
-    $('.btn-cancel').click(function () {
-        $('#background-cover-3').hide();
-    });
-
-    $('.btn-submit').click(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: `/edit_availability`,
-            data: {
-                startTime: startTime,
-                endTime: endTime
-            },
-            success: (data) => {
-                let {
-                    successMsg
-                } = data;
-                toastr.success(successMsg);
-
-                window.location.href = '/home';
-            },
-            error: function (error) {
-                console.log(error);
-                toastr.error(error);
-            }
-        });
-    });
-
 </script>
+
+<!-- defined javascript -->
+<script src="js/home_tutor.js"></script>
+<script src="js/home_common.js"></script>
+
+{{-- my js for bookmark --}}
+<script src="{{asset('js/bookmark.js')}}"></script>
 
 
 @endsection

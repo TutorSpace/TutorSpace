@@ -25,7 +25,9 @@ class signupController extends Controller
     }
 
     public function showStudent_2 (Request $request) {
-        return view('authenticate.show_signup_student_2');
+        return view('authenticate.show_signup_student_2', [
+            'majors' => Major::all()
+        ]);
     }
 
     public function showTutor() {
@@ -33,7 +35,9 @@ class signupController extends Controller
     }
 
     public function showTutor_2 () {
-        return view('authenticate.show_signup_tutor_2');
+        return view('authenticate.show_signup_tutor_2', [
+            'majors' => Major::all()
+        ]);
     }
 
 

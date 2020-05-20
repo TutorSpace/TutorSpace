@@ -14,11 +14,7 @@ svg {
     z-index: -100;
 }
 
-// Home page
-$font-1: 5.5rem;
-$font-2: 2.2rem;
-$font-3: 1.6rem;
-$font-4: 1.2rem;
+
 
 
 // shuaiqing
@@ -31,7 +27,6 @@ h1, h2, h3, h4, h5, h6 {
 // Mostly used in Login and Sign up pages
 h1 {
 	font-size: 4.8rem !important;
-    margin-bottom: 0;
 }
 
 // Page or section titles
@@ -59,7 +54,6 @@ h5 {
 h6 {
 	font-size: 2rem !important;
 	font-weight: 400 !important;
-
 }
 
 // Labels
@@ -76,13 +70,6 @@ h6 {
 small {
 	font-size: 1.6rem !important;
 	line-height: 1;
-}
-
-// Message previews
-.message-preview {
-	font-size: 1.2rem;
-	color: $color-gray;
-
 }
 
 .grey-text {
@@ -112,4 +99,12 @@ small {
 // to be removed for shuaiqing's style
 .heading-color {
 	color: black;
+}
+
+.orange-red {
+    background-color: orangered !important;
+}
+
+.color-blue-light {
+    background-color: $color-blue-light !important;
 }

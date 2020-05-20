@@ -5,44 +5,10 @@ $('#cancel-edit-profile').click(function() {
 
 // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 $(function () {
-    var majorTags = [
-        'Computer Science',
-        'Business Administration',
-        'Economics',
-        'International Relations',
-        'Mathematics',
-        'Chemistry',
-        'Physics',
-        'Biology',
-        'Linguistics',
-        'Electrical Engineering',
-        'Mechanical Engineering',
-        'Astronautical Engineering',
-        'Chemical Engineering',
-        'Human Biology',
-        'Design',
-        'English',
-        'Communication',
-        'French',
-        'Italian',
-        'Screenwriting',
-        'Narrative Studies',
-        'Classics',
-        'Psychology',
-        'Cognitive Science'
-    ];
     $("#major").autocomplete({
         source: majorTags
     });
 
-
-    var schoolYearTags = [
-        'Freshman',
-        'Sophomore',
-        'Junior',
-        'Senior',
-        'Graduate'
-    ];
     $("#schoolYear").autocomplete({
         source: schoolYearTags
     });
