@@ -1,5 +1,5 @@
 @extends('layouts.loggedin')
-@section('title', 'home - tutor')
+@section('title', 'Home - Tutor')
 @section('st0-white', 'st0-white')
 @section('nav-container-white', 'nav-container-white')
 

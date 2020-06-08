@@ -17,7 +17,6 @@ class homeController extends Controller
     public function show() {
         $user = Auth::user();
 
-
         // get data of the dashboard
         $posts = Dashboard_post::select('dashboard_posts.id as post_id', 'user_id', 'course_id', 'post_message', 'subject_id', 'is_course_post', 'dashboard_posts.created_at as post_created_time', 'users.*', 'courses.*', 'subjects.*')
                 ->join('users', 'users.id', '=', 'user_id')

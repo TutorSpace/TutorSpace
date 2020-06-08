@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', 'testController@test');
 
 
-
-
 Route::get('/', function () {
     return view('index');
 })->name('index')->middleware(['checkLogout']);
@@ -27,6 +25,7 @@ Route::get('/', function () {
 // login
 Route::get('/login', 'loginController@show')->name('login')->middleware(['checkLogout']);
 Route::post('/login', 'loginController@login');
+
 
 
 // signup
