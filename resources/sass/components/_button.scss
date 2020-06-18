@@ -1,81 +1,13 @@
-// button, a.btn {
+.button--next {
+    position: relative;
+    width: 5.5rem;
+    height: 5.5rem;
+    background-color: $color-blue-primary;
+    border-radius: 50%;
 
-//     color: $color-white !important;
-//     border-radius: .75rem !important;
-//     font-size: $font-2;
-//     font-weight: 400;
+    .next {
+        @include absCenter;
+        width: 3rem;
 
-//     &.button--small {
-//         font-size: $font-3 !important;
-//         white-space: nowrap;
-//     }
-
-//     // important buttons
-//     &.btn-bg {
-//         &-blue-light {
-//             background-color: $color-blue-light;
-
-//             &:hover {
-//                 background-color: $color-blue-light !important;
-//             }
-//         }
-
-//         &-blue-dark {
-//             background-color: $color-blue-dark;
-
-//             &:hover {
-//                 background-color: $color-blue-dark !important;
-//             }
-//         }
-//     }
-
-//     &.btn-outline-primary {
-//         color: $color-blue-dark !important;
-//         border-width: 2px;
-//         border-color: $color-blue-dark !important;
-
-//         &:hover {
-//             color: $color-white !important;
-//             background-color: $color-blue-dark !important;
-//         }
-//     }
-
-//     &.btn-primary {
-//         background-color: $color-blue-dark !important;
-//         border-color: $color-blue-dark !important;
-
-//     }
-// }
-
-
-// .btn.back-button {
-//     margin-top: 2rem !important;
-//     border: 1px solid black !important;
-//     font-size: 2rem !important;
-//     color: black !important;
-//     display: flex;
-//     align-items: center;
-//     width: fit-content;
-
-//     &:focus {
-//         box-shadow: none !important;
-//     }
-
-//     &:hover {
-//         background-color: $color-dark !important;
-//         color: white !important;
-
-//         svg {
-//             position: relative;
-//             fill: white;
-//             z-index: 1000;
-//         }
-//     }
-
-//     svg {
-//         width: 3rem;
-//         height: 3rem;
-
-//     }
-// }
-
+    }
+}

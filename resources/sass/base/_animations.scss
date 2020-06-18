@@ -1,15 +1,25 @@
+@keyframes bg-shape-animation-1 {
+    from {
+        transform: rotate(0deg) translate(0, 0);
 
-// shuaiqing
-.btn-animated--up {
-    // transition: transform .2s !important;
-    // // transform: transitionY(0);
-
-    // &:hover {
-    //     transform: translateY(-.3rem);
-    // }
-
-    // &:active {
-    //     transform: translateY(-0.5rem);
-    // }   
-
+    }
+    50% {
+        transform: rotate(10deg) translate(3rem, 2rem);
+    }
+    to {
+        transform: rotate(0deg) translate(0, 0);
+    }
 }
+
+@keyframes bg-shape-animation-2 {
+    from {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(-3rem);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+

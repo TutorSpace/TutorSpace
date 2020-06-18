@@ -1,53 +1,53 @@
-.report-container {
-    // height: calc(100vh - #{$nav-height});
-    &__header {
-        margin-top: 3rem;
-        font-size: $font-2;
-    }
+// .report-container {
+//     // height: calc(100vh - #{$nav-height});
+//     &__header {
+//         margin-top: 3rem;
+//         font-size: $font-2;
+//     }
 
-    & .labels {
-        font-size: 1.5rem;
-        color: grey;
-        margin-bottom: 0;
-        margin-top: 3rem;
-    }
-
-
-    .report-reason__select {
-        flex: unset !important;
-        width: fit-content !important;
+//     & .labels {
+//         font-size: 1.5rem;
+//         color: grey;
+//         margin-bottom: 0;
+//         margin-top: 3rem;
+//     }
 
 
-        font-size: 2rem;
-        &:focus {
+//     .report-reason__select {
+//         flex: unset !important;
+//         width: fit-content !important;
 
-            box-shadow: none;
-        }
-        & option {
-            font-size: $font-2;
-        }
-    }
 
-}
+//         font-size: 2rem;
+//         &:focus {
 
-.report-buttons {
-    margin-top: 1.5rem;
-    text-align: right;
-    margin-bottom: 3rem;
-    & button, & a {
-        font-size: $font-2;
-    }
+//             box-shadow: none;
+//         }
+//         & option {
+//             font-size: $font-2;
+//         }
+//     }
 
-    & :first-child {
-        margin-right: 1rem;
-    }
-}
+// }
 
-.report-textarea {
-    font-size: 2rem !important;
-    // height: 30rem !important;
-    border-radius: 1rem;
-    padding: 1rem 2rem;
-}
+// .report-buttons {
+//     margin-top: 1.5rem;
+//     text-align: right;
+//     margin-bottom: 3rem;
+//     & button, & a {
+//         font-size: $font-2;
+//     }
+
+//     & :first-child {
+//         margin-right: 1rem;
+//     }
+// }
+
+// .report-textarea {
+//     font-size: 2rem !important;
+//     // height: 30rem !important;
+//     border-radius: 1rem;
+//     padding: 1rem 2rem;
+// }
 
 

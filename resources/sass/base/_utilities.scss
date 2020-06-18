@@ -1,43 +1,14 @@
-.error, .success {
-    color: red;
-    position: absolute;
-    left: 0;
-    font-size: calc(#{$font-2} / 2);
-    margin-top: 3px;
-}
-
-.error-right {
-    right: 0;
-    left: unset;
-    bottom: 0;
-}
-
 .hidden {
     display: none !important;
-}
-
-.show {
-    display: block !important;
-}
-
-.error-input-file {
-    font-size: calc(#{$font-2} / 2);
-    position: absolute;
-    color: red;
-    bottom: 0;
-    right: 1.5rem;
 }
 
 .p-relative {
     position: relative;
 }
 
-
 .invisible {
     visibility: hidden;
 }
-
-
 
 .pl-0 {
     padding-left: 0;
@@ -47,23 +18,10 @@
     padding-right: 0;
 }
 
-
-.min-width-450 {
-    min-width: 450px;
+.bg-grey-light {
+    background-color: $color-grey-light;
 }
 
-.flex-1 {
-    flex: 1;
+.fill-color-blue-secondary {
+    fill: $color-blue-secondary !important;
 }
-
-.black {
-    color: black;
-}
-
-.f-14 {
-    font-size: 1.4rem;
-}
-.f-16 {
-    font-size: 1.6rem;
-}
-

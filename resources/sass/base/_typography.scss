@@ -1,110 +1,39 @@
-body {
-    color: $color-white;
-	background-color: $color-white !important;
-
-	// shuaiqing
-	// font-family: 'Work Sans', sans-serif !important;
-    overflow: hidden !important;
-
-    color: black;
-}
 
 
-svg {
-    z-index: -100;
-}
-
-
-
-
-// shuaiqing
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 0;
-    // shuaiqing
-	// font-family: 'Crimson Text', serif !important;
+
 }
 
-// Mostly used in Login and Sign up pages
 h1 {
-	font-size: 4.8rem !important;
+    font-size: 4.8rem;
 }
 
 // Page or section titles
 h2 {
-	font-size: 4rem !important;
+    font-size: 4rem;
 }
 
 // Profile, popover titles
 h3 {
-	font-size: 3.2rem !important;
+
 }
 
 // Own profile subnav
 h4 {
-	font-size: 2.6rem !important;
+
 }
 
 // Subheads, buttons, section info
 h5 {
-	font-size: 2.2rem !important;
-	font-weight: 400 !important;
+
 }
 
 // Names on Dashboard posts, messages,
 h6 {
-	font-size: 2rem !important;
-	font-weight: 400 !important;
+
 }
 
 // Labels
-.labels {
-	font-size: 1.2rem;
-	font-weight: 600;
-	color: $color-gray;
-}
-.bold {
-	font-weight: 700;
-}
+label {
 
-// Buttons, labels, section info, messages
-small {
-	font-size: 1.6rem !important;
-	line-height: 1;
-}
-
-.grey-text {
-    color: $color-gray;
-    font-size: 1.5rem;
-}
-
-
-// shuaiqing
-.heading-color {
-
-	// background-image: linear-gradient(to right, $color-blue-light, $color-blue-dark);
-
-	// display: inline-block;
-	// -webkit-background-clip: text;
-	// color: transparent;
-
-	// transition: transform 0.3s;
-
-	// &:hover {
-	// 	transform: skewY(2deg) skewX(5deg) scale(1.1);
-	// 	text-shadow: 1rem 2rem 4rem rgba(black, .2);
-	// 	font-weight: 500;
-	// }
-}
-
-// to be removed for shuaiqing's style
-.heading-color {
-	color: black;
-}
-
-.orange-red {
-    background-color: orangered !important;
-}
-
-.color-blue-light {
-    background-color: $color-blue-light !important;
 }
