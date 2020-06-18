@@ -33,10 +33,10 @@ class testController extends Controller
         // dd(Dashboard_post::with('user')->first());
         // dd(Dashboard_post::join('users', 'users.id', '=', 'user_id')->where('users.is_tutor', 1)->get());
 
-        $user = Auth::user();
+        // $user = Auth::user();
         // get all the interested courses and subjects of the users
-        $course_ids = $user->courses()->pluck('id');
-        $subject_ids = $user->subjects()->pluck('id');
+        // $course_ids = $user->courses()->pluck('id');
+        // $subject_ids = $user->subjects()->pluck('id');
 
 
         // $posts = Dashboard_post::join('users', 'users.id', '=', 'user_id')
@@ -62,7 +62,7 @@ class testController extends Controller
 
         // dd(User::find(8)->getRating());
         // dd(Session::find(3)->courseSubject());
-        $navInput = "";
+        // $navInput = "";
         // $nameResults = User::where('full_name', 'like', "%{$navInput}%")->get();
         // dd($nameResults);
 
@@ -129,6 +129,8 @@ class testController extends Controller
         // }
 
 
-        event(new NewMessage('hi!'));
+        // event(new NewMessage('hi!'));
+
+        return view('')
     }
 }
