@@ -27,12 +27,11 @@
         + .nav-container-white {
             background-color: $color-white !important;
         }
-
     }
 }
 
 
-
+// white nav bar
 .nav-white {
     background-color: $color-blue-light-trans;
     width: 100%;
@@ -132,8 +131,6 @@ $nav-height-percent: 80%;
     }
 
     &-login {
-
-
         .nav-container {
             width: 100%;
             display: flex;

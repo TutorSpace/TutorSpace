@@ -131,6 +131,6 @@ class testController extends Controller
 
         // event(new NewMessage('hi!'));
 
-        return view('')
+        return view('test');
     }
 }

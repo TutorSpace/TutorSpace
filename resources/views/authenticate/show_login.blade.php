@@ -1,9 +1,7 @@
-@extends('layouts.index')
-@section('title', 'login page')
+@extends('layouts.notLoggedIn')
+@section('title', 'Login')
 
 @section('content')
-
-
 <div class="container-fluid login-container">
     <div class="row login-container__img">
         <svg width="215" height="199" viewBox="0 0 215 199" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +28,7 @@
             <div class="login-container__content__form__header text-center">
                 <h1 class="heading-color">Log In</h1>
             </div>
-            
+
 
             <div class="login-container__content__form__group">
             <input type="email" id="email" name="email" placeholder="Email" value="{{session('email')}}" required>
@@ -52,7 +50,7 @@
                 <a href="/forget_password" class="forget-password">Forgot Password</a>
             </div>
 
-            
+
             <button class="btn btn-lg btn-primary login-btn btn-animated--up">Log In</button>
             <button class="btn btn-lg btn-outline-primary btn-animated--up">Sign Up</button>
         </form>
@@ -63,10 +61,5 @@
 
 </div>
 
-
-@endsection
-
-@section('js')
-<script src="{{asset('js/login.js')}}"></script>
 
 @endsection

@@ -10950,38 +10950,6 @@ body {
   overflow-x: hidden;
 }
 
-table img {
-  width: 4rem;
-  height: 4rem;
-  display: inline-block;
-  border-radius: 50%;
-  margin-right: 1rem;
-}
-
-svg.bookmark:hover {
-  cursor: pointer;
-}
-
-.ui-menu-item {
-  font-size: 1.6rem;
-  position: relative;
-  z-index: 1000;
-}
-
-._col-extra-small-12 {
-  position: relative;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-
-@media only screen and (max-width: 26.875em) {
-  ._col-extra-small-12 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
 body {
   color: #f7fbfd;
   background-color: #f7fbfd !important;
@@ -11127,89 +11095,24 @@ small {
   font-size: 1.6rem;
 }
 
-button,
-a.btn {
-  color: #f7fbfd !important;
-  border-radius: 0.75rem !important;
-  font-size: 2.2rem;
-  font-weight: 400;
-}
-
-button.button--small,
-a.btn.button--small {
-  font-size: 1.6rem !important;
-  white-space: nowrap;
-}
-
-button.btn-bg-blue-light,
-a.btn.btn-bg-blue-light {
-  background-color: #97d2fb;
-}
-
-button.btn-bg-blue-light:hover,
-a.btn.btn-bg-blue-light:hover {
-  background-color: #97d2fb !important;
-}
-
-button.btn-bg-blue-dark,
-a.btn.btn-bg-blue-dark {
-  background-color: #2c86c4;
-}
-
-button.btn-bg-blue-dark:hover,
-a.btn.btn-bg-blue-dark:hover {
-  background-color: #2c86c4 !important;
-}
-
-button.btn-outline-primary,
-a.btn.btn-outline-primary {
-  color: #2c86c4 !important;
-  border-width: 2px;
-  border-color: #2c86c4 !important;
-}
-
-button.btn-outline-primary:hover,
-a.btn.btn-outline-primary:hover {
-  color: #f7fbfd !important;
-  background-color: #2c86c4 !important;
-}
-
-button.btn-primary,
-a.btn.btn-primary {
-  background-color: #2c86c4 !important;
-  border-color: #2c86c4 !important;
-}
-
-.btn.back-button {
-  margin-top: 2rem !important;
-  border: 1px solid black !important;
-  font-size: 2rem !important;
-  color: black !important;
-  display: flex;
-  align-items: center;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.btn.back-button:focus {
-  box-shadow: none !important;
-}
-
-.btn.back-button:hover {
-  background-color: #343a40 !important;
-  color: white !important;
-}
-
-.btn.back-button:hover svg {
+.ui-menu-item {
+  font-size: 1.6rem;
   position: relative;
-  fill: white;
   z-index: 1000;
 }
 
-.btn.back-button svg {
-  width: 3rem;
-  height: 3rem;
+._col-extra-small-12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media only screen and (max-width: 26.875em) {
+  ._col-extra-small-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
 .background-cover {
@@ -11571,6 +11474,18 @@ a.btn.btn-primary {
 
 .tutor-container .btn-container button {
   flex: 0 0 49%;
+}
+
+table img {
+  width: 4rem;
+  height: 4rem;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+svg.bookmark:hover {
+  cursor: pointer;
 }
 
 .svg-nav {

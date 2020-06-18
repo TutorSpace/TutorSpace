@@ -1,5 +1,5 @@
-@extends('layouts.index')
-@section('title', 'signup page - student')
+@extends('layouts.notLoggedIn')
+@section('title', 'Sign Up - Student')
 
 @section('content')
 

@@ -8,6 +8,8 @@
 @import "base/animations";
 @import "base/typography";
 @import "base/utilities";
+@import "base/autocomplete";
+@import "base/bootstrap_overwrite";
 
 
 
@@ -18,7 +20,8 @@
 @import "components/pagination";
 @import "components/search-card";
 @import "components/tutor-card";
-
+@import "components/table";
+@import "components/bookmark";
 
 @import "layout/navbar";
 

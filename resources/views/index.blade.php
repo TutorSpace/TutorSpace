@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.notLoggedIn')
 @section('title', 'index page')
 
 @section('content')
