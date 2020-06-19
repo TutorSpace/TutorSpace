@@ -16,7 +16,13 @@
     display: flex;
     @include absCenter;
 
-
+    // overwriting bootstrap container breakpoints
+    @include respond(mb-13) {
+        width: 920px;
+    }
+    @include respond(extra-sm) {
+        width: 100%;
+    }
 
     .signup__heading {
         text-align: center;
@@ -29,15 +35,13 @@
 
         .signup__heading {
             color: $color-white;
-            margin-top: 5rem;
+            margin-top: 4rem;
             padding: 0 7rem;
 
-            @include respond(lg) {
+            @include respond(mb-13) {
                 padding: 0 4rem;
             }
         }
-
-
 
         @include respond(md) {
             display: none;
@@ -60,7 +64,7 @@
 
         .signup__heading {
             color: $color-blue-secondary;
-            margin-top: 5rem;
+            margin-top: 3.5rem;
         }
     }
 
@@ -72,7 +76,6 @@
         padding: 3rem 7rem;
 
         > *:not(:first-child) {
-            // margin-top: 5rem;
             margin-top: 4rem;
         }
 

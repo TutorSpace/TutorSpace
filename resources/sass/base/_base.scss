@@ -8,8 +8,12 @@ html {
     // This defines what 1rem is (10px in this case)
     font-size: 62.5%;
 
-    @include respond(md) {
+    @include respond(mb-13) {
         font-size: 56.25%; //to make 1 rem = 9px
+    }
+
+    @include respond(md) {
+        font-size: 53.125%; //to make 1 rem = 8.5px
     }
 
     @include respond(sm) {

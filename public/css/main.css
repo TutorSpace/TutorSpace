@@ -10913,9 +10913,15 @@ html {
   font-size: 62.5%;
 }
 
-@media only screen and (max-width: 61.99em) {
+@media only screen and (max-width: 90em) {
   html {
     font-size: 56.25%;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  html {
+    font-size: 53.125%;
   }
 }
 
@@ -11259,6 +11265,69 @@ svg.bookmark:hover {
   }
 }
 
+.index-left-container,
+.index-right-container {
+  height: calc(100vh - 10rem);
+  min-height: 500px;
+  position: relative;
+}
+
+.index-left-container__box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 100%;
+  padding-left: 5rem;
+}
+
+.index-left-container__box-1 {
+  font-size: 5.5rem;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 25em) {
+  .index-left-container__box-1 {
+    font-size: 4.5rem !important;
+  }
+}
+
+.index-left-container__box-2 {
+  color: black;
+  margin-bottom: 6rem;
+  font-size: 2rem;
+}
+
+@media only screen and (max-width: 25em) {
+  .index-left-container__box-2 {
+    font-size: 1.8rem !important;
+  }
+}
+
+.index-left-container__box-3 {
+  width: 100%;
+  display: flex;
+}
+
+.index-left-container__box-3 a {
+  font-size: 4rem;
+  margin-right: 16px;
+}
+
+@media only screen and (max-width: 25em) {
+  .index-left-container__box-3 a {
+    font-size: 1.8rem !important;
+  }
+}
+
+.index-right-container__img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 .body-signup {
   position: relative;
   height: 100vh;
@@ -11285,6 +11354,18 @@ svg.bookmark:hover {
   transform: translate(-50%, -50%);
 }
 
+@media only screen and (max-width: 90em) {
+  .signup {
+    width: 920px;
+  }
+}
+
+@media only screen and (max-width: 35.99rem) {
+  .signup {
+    width: 100%;
+  }
+}
+
 .signup .signup__heading {
   text-align: center;
   white-space: nowrap;
@@ -11297,11 +11378,11 @@ svg.bookmark:hover {
 
 .signup--left .signup__heading {
   color: #FFFFFF;
-  margin-top: 5rem;
+  margin-top: 4rem;
   padding: 0 7rem;
 }
 
-@media only screen and (max-width: 74.99em) {
+@media only screen and (max-width: 90em) {
   .signup--left .signup__heading {
     padding: 0 4rem;
   }
@@ -11334,7 +11415,7 @@ svg.bookmark:hover {
 
 .signup--right .signup__heading {
   color: #0075E0;
-  margin-top: 5rem;
+  margin-top: 3.5rem;
 }
 
 .signup form {

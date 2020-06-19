@@ -28,6 +28,10 @@ $('#btn-google-signup').click(function(e) {
     e.preventDefault();
 });
 
+
+
+
+
 // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 // $(function () {
 
