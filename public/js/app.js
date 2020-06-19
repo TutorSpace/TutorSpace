@@ -37328,52 +37328,6 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! ./authenticate/login */ "./resources/js/authenticate/login.js");
-
-__webpack_require__(/*! ./authenticate/signup */ "./resources/js/authenticate/signup.js");
-
-/***/ }),
-
-/***/ "./resources/js/authenticate/login.js":
-/*!********************************************!*\
-  !*** ./resources/js/authenticate/login.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./resources/js/authenticate/signup.js":
-/*!*********************************************!*\
-  !*** ./resources/js/authenticate/signup.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-$('input').on('input', function () {
-  if ($(this).val()) {
-    console.log($(this).val());
-    $(this).next().addClass('fill-color-blue-secondary');
-  } else {
-    $(this).next().removeClass('fill-color-blue-secondary');
-  }
-}); // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
-// $(function () {
-//     $("#major").autocomplete({
-//         source: majorTags
-//     });
-//     $("#schoolYear").autocomplete({
-//         source: schoolYearTags
-//     });
-// });
-// $("input[type=file]").change(function() {
-//     var fileInput = $(this)[0];
-//     var filename = fileInput.files[0].name;
-//     $('#file-input-text').html(filename);
-// });
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

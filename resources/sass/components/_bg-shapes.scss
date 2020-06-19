@@ -7,6 +7,14 @@
         overflow: visible;
         animation: bg-shape-animation-1 12s infinite;
         animation-timing-function: linear;
+
+        @include respond(md) {
+            animation: bg-shape-animation-1-md 8s infinite;
+        }
+
+        @include respond(extra-sm) {
+            animation: bg-shape-animation-1-extra-sm 12s infinite;
+        }
     }
 }
 
@@ -20,6 +28,15 @@
     svg {
         transform-origin: bottom;
         animation: bg-shape-animation-2 8s infinite;
+
+        @include respond(md) {
+            animation: bg-shape-animation-2-md 8s infinite;
+        }
+
+
+        @include respond(extra-sm) {
+            animation: bg-shape-animation-2-extra-sm 8s infinite;
+        }
     }
 }
 

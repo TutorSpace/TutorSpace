@@ -6,40 +6,38 @@ bg-grey-light body-signup
 @endsection
 
 @section('content')
-
-<div class="yellow-triangle" style="width: 1rem;">
-    <svg width="495" height="401" viewBox="0 0 495 401" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path opacity="0.8" d="M266.249 -51.0411C279.026 -58.4863 295.185 -49.9695 296.265 -35.221L326.075 371.966C327.222 387.628 310.696 398.441 296.803 391.119L-85.765 189.483C-99.658 182.161 -100.078 162.417 -86.5089 154.51L266.249 -51.0411Z" fill="#FFBC00" fill-opacity="0.8"/>
-    </svg>
-</div>
-<div class="purple-circle">
-    <svg width="465" height="319" viewBox="0 0 465 319" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="232.5" cy="232.5" r="232.5" fill="#6749DF" fill-opacity="0.8"/>
-    </svg>
-</div>
 <div class="signup container">
     <div class="signup--left">
-        <h2 class="signup__heading">Hello, Student</h2>
+        <h2 class="signup__heading">Hello, Student!</h2>
     </div>
     <div class="signup--right">
         <h2 class="signup__heading">Create Account</h2>
         <form action="#">
-            <div class="form-group p-relative">
-                <input type="text" class="signup-form-input form-control" placeholder="Full Name">
-                <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
-                </svg>
+            <div class="form-group-2">
+                <div class="form-group p-relative">
+                    <input type="text" class="signup-form-input form-control" placeholder="First Name" required>
+                    <svg class="input-icon">
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
+                    </svg>
+                </div>
+
+                <div class="form-group p-relative">
+                    <input type="text" class="signup-form-input form-control" placeholder="Last Name" required>
+                    <svg class="input-icon">
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
+                    </svg>
+                </div>
             </div>
 
             <div class="form-group p-relative">
-                <input type="email" class="signup-form-input form-control" placeholder="Email">
+                <input type="email" class="signup-form-input form-control" placeholder="Email" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
             </div>
 
             <div class="form-group p-relative">
-                <input type="password" class="signup-form-input form-control" placeholder="Password">
+                <input type="password" class="signup-form-input form-control" placeholder="Password" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
@@ -50,11 +48,11 @@ bg-grey-light body-signup
             </div>
 
             <div class="text-center">
-                <button class="btn btn-lg btn-primary">This is a placeholder button for google signup</button>
+                <button class="btn btn-lg btn-primary" id="btn-google-signup">This is a placeholder button for google signup</button>
             </div>
 
             <div class="container-bottom">
-                <button class="btn button-next">
+                <button class="btn button-next bg-grey">
                     <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow-next">
                         <rect width="37" height="37" fill="url(#pattern0)"/>
                         <defs>
@@ -72,7 +70,22 @@ bg-grey-light body-signup
 
     </div>
 </div>
+<div class="yellow-triangle" style="width: 1rem;">
+    <svg width="495" height="401" viewBox="0 0 495 401" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.8" d="M266.249 -51.0411C279.026 -58.4863 295.185 -49.9695 296.265 -35.221L326.075 371.966C327.222 387.628 310.696 398.441 296.803 391.119L-85.765 189.483C-99.658 182.161 -100.078 162.417 -86.5089 154.51L266.249 -51.0411Z" fill="#FFBC00" fill-opacity="0.8"/>
+    </svg>
+</div>
+<div class="purple-circle">
+    <svg width="465" height="319" viewBox="0 0 465 319" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="232.5" cy="232.5" r="232.5" fill="#6749DF" fill-opacity="0.8"/>
+    </svg>
+</div>
 
 
 
+
+@endsection
+
+@section('js')
+<script src="{{ asset('js/signup.js') }}"></script>
 @endsection

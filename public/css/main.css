@@ -10977,6 +10977,62 @@ body {
   }
 }
 
+@-webkit-keyframes bg-shape-animation-1-md {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem) scale(0.75);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+}
+
+@keyframes bg-shape-animation-1-md {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem) scale(0.75);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+}
+
+@-webkit-keyframes bg-shape-animation-1-extra-sm {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(2rem, 1rem) scale(0.6);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+}
+
+@keyframes bg-shape-animation-1-extra-sm {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(2rem, 1rem) scale(0.6);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+}
+
 @-webkit-keyframes bg-shape-animation-2 {
   from {
     transform: translateX(0);
@@ -11005,31 +11061,87 @@ body {
   }
 }
 
-@-webkit-keyframes button-animation-1 {
+@-webkit-keyframes bg-shape-animation-2-md {
   from {
-    transform: translateX(0.3rem);
+    transform: translateX(0) scale(0.8);
   }
 
   50% {
-    transform: translateX(0.7rem);
+    transform: translateX(-3rem) scale(0.75);
   }
 
   to {
-    transform: translateX(0.3rem);
+    transform: translateX(0) scale(0.8);
+  }
+}
+
+@keyframes bg-shape-animation-2-md {
+  from {
+    transform: translateX(0) scale(0.8);
+  }
+
+  50% {
+    transform: translateX(-3rem) scale(0.75);
+  }
+
+  to {
+    transform: translateX(0) scale(0.8);
+  }
+}
+
+@-webkit-keyframes bg-shape-animation-2-extra-sm {
+  from {
+    transform: translateX(0) scale(0.5);
+  }
+
+  50% {
+    transform: translateX(8rem) scale(0.52);
+  }
+
+  to {
+    transform: translateX(0) scale(0.5);
+  }
+}
+
+@keyframes bg-shape-animation-2-extra-sm {
+  from {
+    transform: translateX(0) scale(0.5);
+  }
+
+  50% {
+    transform: translateX(8rem) scale(0.52);
+  }
+
+  to {
+    transform: translateX(0) scale(0.5);
+  }
+}
+
+@-webkit-keyframes button-animation-1 {
+  from {
+    transform: translateX(0.7rem);
+  }
+
+  50% {
+    transform: translateX(1.2rem);
+  }
+
+  to {
+    transform: translateX(0.7rem);
   }
 }
 
 @keyframes button-animation-1 {
   from {
-    transform: translateX(0.3rem);
-  }
-
-  50% {
     transform: translateX(0.7rem);
   }
 
+  50% {
+    transform: translateX(1.2rem);
+  }
+
   to {
-    transform: translateX(0.3rem);
+    transform: translateX(0.7rem);
   }
 }
 
@@ -11059,7 +11171,11 @@ h2 {
 }
 
 .bg-grey-light {
-  background-color: #E5E5E5;
+  background-color: #E5E5E5 !important;
+}
+
+.bg-grey {
+  background-color: #A0A0A0 !important;
 }
 
 .fill-color-blue-secondary {
@@ -11067,8 +11183,6 @@ h2 {
 }
 
 .button-next {
-  width: 5.5rem;
-  height: 5.5rem;
   background-color: #1F7AFF;
   border-radius: 50%;
   display: flex;
@@ -11076,19 +11190,14 @@ h2 {
   align-items: center;
 }
 
-.button-next:hover {
+.button-next-animation:hover {
   background-color: #0075E0;
   cursor: pointer;
 }
 
-.button-next:hover .arrow-next {
+.button-next-animation:hover .arrow-next {
   -webkit-animation: button-animation-1 1.5s infinite;
           animation: button-animation-1 1.5s infinite;
-}
-
-.button-next .arrow-next {
-  width: 3rem;
-  height: 3rem;
 }
 
 svg.bookmark:hover {
@@ -11109,6 +11218,20 @@ svg.bookmark:hover {
           animation-timing-function: linear;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .yellow-triangle svg {
+    -webkit-animation: bg-shape-animation-1-md 8s infinite;
+            animation: bg-shape-animation-1-md 8s infinite;
+  }
+}
+
+@media only screen and (max-width: 35.99rem) {
+  .yellow-triangle svg {
+    -webkit-animation: bg-shape-animation-1-extra-sm 12s infinite;
+            animation: bg-shape-animation-1-extra-sm 12s infinite;
+  }
+}
+
 .purple-circle {
   position: absolute;
   z-index: -1;
@@ -11122,6 +11245,38 @@ svg.bookmark:hover {
           animation: bg-shape-animation-2 8s infinite;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .purple-circle svg {
+    -webkit-animation: bg-shape-animation-2-md 8s infinite;
+            animation: bg-shape-animation-2-md 8s infinite;
+  }
+}
+
+@media only screen and (max-width: 35.99rem) {
+  .purple-circle svg {
+    -webkit-animation: bg-shape-animation-2-extra-sm 8s infinite;
+            animation: bg-shape-animation-2-extra-sm 8s infinite;
+  }
+}
+
+.body-signup {
+  position: relative;
+  height: 100vh;
+  min-height: 900px;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .body-signup {
+    min-height: 700px;
+  }
+}
+
+@media only screen and (max-width: 35.99rem) {
+  .body-signup {
+    min-height: 600px;
+  }
+}
+
 .signup {
   display: flex;
   position: absolute;
@@ -11130,72 +11285,127 @@ svg.bookmark:hover {
   transform: translate(-50%, -50%);
 }
 
-.signup--left {
-  flex: 0 0 30%;
-  background-color: #1F7AFF;
-}
-
-.signup--left .signup__heading {
-  color: #FFFFFF;
-  margin-top: 5rem;
-  padding: 0 6rem;
-  white-space: nowrap;
-  font-family: "Baloo Bhai 2", cursive;
-}
-
-.signup--right {
-  flex: 1;
-  background-color: #F4F4F4;
-}
-
-.signup--right .signup__heading {
-  color: #0075E0;
-  margin-top: 3rem;
+.signup .signup__heading {
   text-align: center;
   white-space: nowrap;
   font-family: "Baloo Bhai 2", cursive;
 }
 
-.signup form {
-  padding: 3.5rem 5rem;
+.signup--left {
+  background-color: rgba(31, 122, 255, 0.8);
 }
 
-.signup form > * {
-  margin-top: 3rem;
+.signup--left .signup__heading {
+  color: #FFFFFF;
+  margin-top: 8rem;
+  padding: 0 7rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .signup--left .signup__heading {
+    padding: 0 4rem;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup--left {
+    display: none;
+  }
+}
+
+.signup--right {
+  flex: 1;
+  box-shadow: 0px 10px 100px 0px rgba(0, 0, 0, 0.25);
+  background-color: #F4F4F4;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup--right {
+    border-radius: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 35.99rem) {
+  .signup--right {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}
+
+.signup--right .signup__heading {
+  color: #0075E0;
+  margin-top: 7rem;
+}
+
+.signup form {
+  padding: 4rem 7rem;
+}
+
+.signup form > *:not(:first-child) {
+  margin-top: 5rem;
 }
 
 .signup form hr {
-  border: 1px solid #0075E0;
+  border: 1.5px solid #0075E0;
   width: 8rem;
+}
+
+.signup .form-group-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup .form-group-2 > .form-group {
+  flex: 0 0 calc(50% - 1rem);
 }
 
 .signup-form-input {
   font-family: Avenir;
   outline: none;
-  border: 2px solid #0075E0;
-  font-size: 2rem;
-  padding-left: 4rem;
-  color: #0075E0;
-  border-radius: 0.8rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  border: 3px solid #0075E0;
+  font-size: 2.4rem;
+  border-radius: 1.2rem;
+  background-color: transparent;
+  height: 7rem;
+  padding-left: 4.3rem;
 }
 
 .signup-form-input:focus {
   box-shadow: none;
-  border-color: #1F7AFF;
+  background-color: transparent;
+  border-color: #0075E0;
 }
 
 .signup-form-input:focus + svg {
   fill: #0075E0;
 }
 
+.signup-form-input::-webkit-input-placeholder {
+  color: #A0A0A0;
+}
+
+.signup-form-input::-moz-placeholder {
+  color: #A0A0A0;
+}
+
+.signup-form-input:-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.signup-form-input::-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.signup-form-input::placeholder {
+  color: #A0A0A0;
+}
+
 .signup .input-icon {
   position: absolute;
-  width: 2.5rem;
-  height: 2.5rem;
-  left: 0.8rem;
-  top: calc(50% - 2.5rem / 2);
+  width: 2.6rem;
+  height: 2.6rem;
+  left: 1.2rem;
+  top: calc(50% - 2.6rem / 2);
   fill: #A0A0A0;
 }
 
@@ -11207,5 +11417,13 @@ svg.bookmark:hover {
 .signup .container-bottom .button-next {
   position: relative;
   right: -2rem;
+  width: 8rem;
+  height: 8rem;
+}
+
+.signup .container-bottom .button-next .arrow-next {
+  width: 4rem;
+  height: 4rem;
+  transform: translateX(0.3rem);
 }
 

@@ -1,6 +1,5 @@
 $('input').on('input', function() {
     if($(this).val()) {
-        console.log($(this).val());
         $(this).next().addClass('fill-color-blue-secondary');
     }
     else {
@@ -8,6 +7,26 @@ $('input').on('input', function() {
     }
 });
 
+$('input').filter('[required]').on('input', function() {
+    let allFilled = true;
+    $.each($('input').filter('[required]'), (idx, el) => {
+        if(!$(el).val())
+            allFilled = false;
+    });
+    // alert(allFilled);
+    if(allFilled) {
+        $('.button-next').addClass('button-next-animation');
+        $('.button-next').removeClass('bg-grey');
+    }
+    else {
+        $('.button-next').removeClass('button-next-animation');
+        $('.button-next').addClass('bg-grey');
+    }
+});
+
+$('#btn-google-signup').click(function(e) {
+    e.preventDefault();
+});
 
 // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 // $(function () {

@@ -18,10 +18,11 @@
     padding-right: 0;
 }
 
-.bg-grey-light {
-    background-color: $color-grey-light;
-}
+.bg-grey-light { background-color: $color-grey-light !important; }
+
+.bg-grey { background-color: $color-grey !important; }
 
 .fill-color-blue-secondary {
     fill: $color-blue-secondary !important;
 }
+
