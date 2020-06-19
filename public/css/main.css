@@ -10913,25 +10913,25 @@ html {
   font-size: 62.5%;
 }
 
-@media only screen and (max-width: 75em) {
+@media only screen and (max-width: 61.99em) {
   html {
     font-size: 56.25%;
   }
 }
 
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 47.99em) {
   html {
     font-size: 50%;
   }
 }
 
-@media only screen and (max-width: 40.625em) {
+@media only screen and (max-width: 35.99rem) {
   html {
-    font-size: 35%;
+    font-size: 37.5%;
   }
 }
 
-@media only screen and (min-width: 112.5em) {
+@media only screen and (min-width: 160em) {
   html {
     font-size: 75%;
   }
@@ -11005,12 +11005,37 @@ body {
   }
 }
 
-h1 {
-  font-size: 4.8rem;
+@-webkit-keyframes button-animation-1 {
+  from {
+    transform: translateX(0.3rem);
+  }
+
+  50% {
+    transform: translateX(0.7rem);
+  }
+
+  to {
+    transform: translateX(0.3rem);
+  }
+}
+
+@keyframes button-animation-1 {
+  from {
+    transform: translateX(0.3rem);
+  }
+
+  50% {
+    transform: translateX(0.7rem);
+  }
+
+  to {
+    transform: translateX(0.3rem);
+  }
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 4.8rem;
+  font-weight: 700;
 }
 
 .hidden {
@@ -11041,20 +11066,29 @@ h2 {
   fill: #0075E0 !important;
 }
 
-.button--next {
-  position: relative;
+.button-next {
   width: 5.5rem;
   height: 5.5rem;
   background-color: #1F7AFF;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.button--next .next {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.button-next:hover {
+  background-color: #0075E0;
+  cursor: pointer;
+}
+
+.button-next:hover .arrow-next {
+  -webkit-animation: button-animation-1 1.5s infinite;
+          animation: button-animation-1 1.5s infinite;
+}
+
+.button-next .arrow-next {
   width: 3rem;
+  height: 3rem;
 }
 
 svg.bookmark:hover {
@@ -11097,6 +11131,7 @@ svg.bookmark:hover {
 }
 
 .signup--left {
+  flex: 0 0 30%;
   background-color: #1F7AFF;
 }
 
@@ -11109,7 +11144,7 @@ svg.bookmark:hover {
 }
 
 .signup--right {
-  width: 50rem;
+  flex: 1;
   background-color: #F4F4F4;
 }
 
@@ -11122,9 +11157,7 @@ svg.bookmark:hover {
 }
 
 .signup form {
-  padding: 0 5rem;
-  margin-top: 3.5rem;
-  padding-bottom: 3rem;
+  padding: 3.5rem 5rem;
 }
 
 .signup form > * {
@@ -11166,11 +11199,13 @@ svg.bookmark:hover {
   fill: #A0A0A0;
 }
 
-.signup .next-button-container {
-  text-align: right;
+.signup .container-bottom {
+  display: flex;
+  justify-content: flex-end;
 }
 
-.signup .next-button-container .button--next {
-  right: -3rem;
+.signup .container-bottom .button-next {
+  position: relative;
+  right: -2rem;
 }
 

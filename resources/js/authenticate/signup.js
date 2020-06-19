@@ -3,6 +3,9 @@ $('input').on('input', function() {
         console.log($(this).val());
         $(this).next().addClass('fill-color-blue-secondary');
     }
+    else {
+        $(this).next().removeClass('fill-color-blue-secondary');
+    }
 });
 
 

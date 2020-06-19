@@ -37356,6 +37356,8 @@ $('input').on('input', function () {
   if ($(this).val()) {
     console.log($(this).val());
     $(this).next().addClass('fill-color-blue-secondary');
+  } else {
+    $(this).next().removeClass('fill-color-blue-secondary');
   }
 }); // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 // $(function () {

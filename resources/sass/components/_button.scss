@@ -1,13 +1,24 @@
-.button--next {
-    position: relative;
+.button-next {
     width: 5.5rem;
     height: 5.5rem;
     background-color: $color-blue-primary;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .next {
-        @include absCenter;
+    &:hover {
+        background-color: $color-blue-secondary;
+        cursor: pointer;
+
+        .arrow-next {
+            animation: button-animation-1 1.5s infinite;
+        }
+    }
+
+    .arrow-next {
         width: 3rem;
-
+        height: 3rem;
     }
 }
+

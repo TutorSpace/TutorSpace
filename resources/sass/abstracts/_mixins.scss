@@ -37,26 +37,32 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 */
 @mixin respond($breakpoint) {
-    @if $breakpoint == phone {
-        @media only screen and (max-width: 40.625em) { //600px
+    @if $breakpoint == extra-sm {
+        @media only screen and (max-width: 35.99rem) { //576px
             // @content can pass content into a mixin
             @content
         };
     }
-    @if $breakpoint == tab-port {
-        @media only screen and (max-width: 56.25em) { //900px
+    @if $breakpoint == sm {
+        @media only screen and (max-width: 47.99em) { //768px
             // @content can pass content into a mixin
             @content
         };
     }
-    @if $breakpoint == tab-land {
-        @media only screen and (max-width: 75em) { //1200px
+    @if $breakpoint == md {
+        @media only screen and (max-width: 61.99em) { //992px
             // @content can pass content into a mixin
             @content
         };
     }
-    @if $breakpoint == big-desktop {
-        @media only screen and (min-width: 112.5em) { //1800px
+    @if $breakpoint == lg {
+        @media only screen and (max-width: 74.99em) { //1200px
+            // @content can pass content into a mixin
+            @content
+        };
+    }
+    @if $breakpoint == extra-lg {
+        @media only screen and (min-width: 160em) { //2560px
             // @content can pass content into a mixin
             @content
         };

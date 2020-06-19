@@ -1,9 +1,13 @@
+.body-signup {
+
+}
+
 .signup {
     display: flex;
     @include absCenter;
 
     &--left {
-        // flex: 0 0 40rem;
+        flex: 0 0 30%;
         background-color: $color-blue-primary;
 
         .signup__heading {
@@ -16,7 +20,7 @@
     }
 
     &--right {
-        width: 50rem;
+        flex: 1;
         background-color: $color-white-dark;
 
         .signup__heading {
@@ -33,8 +37,7 @@
     $icon-left-space: .8rem;
 
     form {
-        padding: 0 5rem;
-        margin-top: 3.5rem;
+        padding: 3.5rem 5rem;
 
         > * {
             margin-top: 3rem;
@@ -45,7 +48,6 @@
             width: 8rem;
         }
 
-        padding-bottom: 3rem;
     }
 
     &-form-input {
@@ -69,7 +71,6 @@
         }
     }
 
-
     .input-icon {
         position: absolute;
         width: $icon-size;
@@ -79,11 +80,13 @@
         fill: $color-grey;
     }
 
-    .next-button-container {
-        text-align: right;
+    .container-bottom {
+        display: flex;
+        justify-content: flex-end;
 
-        .button--next {
-            right: -3rem;
+        .button-next {
+            position: relative;
+            right: -2rem;
         }
     }
 

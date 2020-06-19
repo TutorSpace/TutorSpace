@@ -8,19 +8,19 @@ html {
     // This defines what 1rem is (10px in this case)
     font-size: 62.5%;
 
-    @include respond(tab-land) {
+    @include respond(md) {
         font-size: 56.25%; //to make 1 rem = 9px
     }
 
-    @include respond(tab-port) {
+    @include respond(sm) {
         font-size: 50%; //to make 1 rem = 8px
     }
 
-    @include respond(phone) {
-        font-size: 35%; //to make 1 rem = 5.6px
+    @include respond(extra-sm) {
+        font-size: 37.5%; //to make 1 rem = 6px
     }
 
-    @include respond(big-desktop) {
+    @include respond(extra-lg) {
         font-size: 75%; //to make 1 rem = 12px
     }
 }

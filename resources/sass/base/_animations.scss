@@ -23,3 +23,14 @@
     }
 }
 
+@keyframes button-animation-1 {
+    from {
+        transform: translateX(.3rem);
+    }
+    50% {
+        transform: translateX(.7rem);
+    }
+    to {
+        transform: translateX(.3rem);
+    }
+}

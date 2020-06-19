@@ -2,12 +2,12 @@
 @section('title', 'Sign Up - Student')
 
 @section('body-class')
-bg-grey-light
+bg-grey-light body-signup
 @endsection
 
 @section('content')
 
-<div class="yellow-triangle">
+<div class="yellow-triangle" style="width: 1rem;">
     <svg width="495" height="401" viewBox="0 0 495 401" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.8" d="M266.249 -51.0411C279.026 -58.4863 295.185 -49.9695 296.265 -35.221L326.075 371.966C327.222 387.628 310.696 398.441 296.803 391.119L-85.765 189.483C-99.658 182.161 -100.078 162.417 -86.5089 154.51L266.249 -51.0411Z" fill="#FFBC00" fill-opacity="0.8"/>
     </svg>
@@ -17,7 +17,7 @@ bg-grey-light
         <circle cx="232.5" cy="232.5" r="232.5" fill="#6749DF" fill-opacity="0.8"/>
     </svg>
 </div>
-<div class="signup">
+<div class="signup container">
     <div class="signup--left">
         <h2 class="signup__heading">Hello, Student</h2>
     </div>
@@ -53,9 +53,9 @@ bg-grey-light
                 <button class="btn btn-lg btn-primary">This is a placeholder button for google signup</button>
             </div>
 
-            <div class="next-button-container">
-                <button class="button--next btn btn-primary">
-                    <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="next">
+            <div class="container-bottom">
+                <button class="btn button-next">
+                    <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow-next">
                         <rect width="37" height="37" fill="url(#pattern0)"/>
                         <defs>
                         <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
