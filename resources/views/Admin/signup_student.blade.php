@@ -95,16 +95,40 @@ bg-grey-light body-signup
 <script>
 
 // ===================== Google Admin ==========================
+$(window).resize(function() {
+    adjustGoogleBtnSize();
+    renderButton();
+});
+
+let googleBtnWidth = 240, googleBtnHeight = 50;
+adjustGoogleBtnSize();
+
+
 function renderButton() {
     gapi.signin2.render('btn-google-signup', {
         'scope': 'profile email',
-        'width': 240,
-        'height': 50,
+        'width': googleBtnWidth,
+        'height': googleBtnHeight,
         'longtitle': true,
         'theme': 'dark',
         'onsuccess': onSuccess,
         'onfailure': onFailure
     });
+}
+
+function adjustGoogleBtnSize() {
+    if($( window ).width() < 400) {
+        googleBtnWidth = 160;
+        googleBtnHeight = 30;
+    }
+    else if($( window ).width() < 576) {
+        googleBtnWidth = 200;
+        googleBtnHeight = 40;
+    }
+    else {
+        googleBtnWidth = 240;
+        googleBtnHeight = 50;
+    }
 }
 
 function onSuccess(googleUser) {

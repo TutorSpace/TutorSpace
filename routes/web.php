@@ -22,8 +22,6 @@ Route::group([
 });
 
 
-
-
 // login
 Route::get('/login', 'loginController@show')->name('login')->middleware(['checkLogout']);
 Route::post('/login', 'loginController@login');
