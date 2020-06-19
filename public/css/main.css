@@ -11262,10 +11262,10 @@ svg.bookmark:hover {
 .body-signup {
   position: relative;
   height: 100vh;
-  min-height: 900px;
+  min-height: 750px;
 }
 
-@media only screen and (max-width: 47.99em) {
+@media only screen and (max-width: 61.99em) {
   .body-signup {
     min-height: 700px;
   }
@@ -11297,7 +11297,7 @@ svg.bookmark:hover {
 
 .signup--left .signup__heading {
   color: #FFFFFF;
-  margin-top: 8rem;
+  margin-top: 5rem;
   padding: 0 7rem;
 }
 
@@ -11334,15 +11334,15 @@ svg.bookmark:hover {
 
 .signup--right .signup__heading {
   color: #0075E0;
-  margin-top: 7rem;
+  margin-top: 5rem;
 }
 
 .signup form {
-  padding: 4rem 7rem;
+  padding: 3rem 7rem;
 }
 
 .signup form > *:not(:first-child) {
-  margin-top: 5rem;
+  margin-top: 4rem;
 }
 
 .signup form hr {
@@ -11366,7 +11366,7 @@ svg.bookmark:hover {
   font-size: 2.4rem;
   border-radius: 1.2rem;
   background-color: transparent;
-  height: 7rem;
+  height: 6.8rem;
   padding-left: 4.3rem;
 }
 

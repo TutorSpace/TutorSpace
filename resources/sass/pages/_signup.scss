@@ -1,9 +1,9 @@
 .body-signup {
     position: relative;
     height: 100vh;
-    min-height: 900px;
+    min-height: 750px;
 
-    @include respond(sm) {
+    @include respond(md) {
         min-height: 700px;
     }
 
@@ -29,7 +29,7 @@
 
         .signup__heading {
             color: $color-white;
-            margin-top: 8rem;
+            margin-top: 5rem;
             padding: 0 7rem;
 
             @include respond(lg) {
@@ -60,7 +60,7 @@
 
         .signup__heading {
             color: $color-blue-secondary;
-            margin-top: 7rem;
+            margin-top: 5rem;
         }
     }
 
@@ -69,10 +69,11 @@
     $icon-left-space: 1.2rem;
 
     form {
-        padding: 4rem 7rem;
+        padding: 3rem 7rem;
 
         > *:not(:first-child) {
-            margin-top: 5rem;
+            // margin-top: 5rem;
+            margin-top: 4rem;
         }
 
         hr {
@@ -99,7 +100,7 @@
         font-size: 2.4rem;
         border-radius: 1.2rem;
         background-color: transparent;
-        height: 7rem;
+        height: 6.8rem;
 
         padding-left: 4.3rem;
 

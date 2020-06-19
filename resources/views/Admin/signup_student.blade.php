@@ -43,11 +43,11 @@ bg-grey-light body-signup
                 </svg>
             </div>
 
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center mt-5">
                 <hr>
             </div>
 
-            <div class="text-center">
+            <div class="text-center mt-5">
                 <button class="btn btn-lg btn-primary" id="btn-google-signup">This is a placeholder button for google signup</button>
             </div>
 
