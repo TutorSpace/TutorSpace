@@ -11380,6 +11380,26 @@ svg.bookmark:hover {
   fill: #0075E0;
 }
 
+.signup-form-input:focus::-webkit-input-placeholder {
+  visibility: hidden;
+}
+
+.signup-form-input:focus::-moz-placeholder {
+  visibility: hidden;
+}
+
+.signup-form-input:focus:-ms-input-placeholder {
+  visibility: hidden;
+}
+
+.signup-form-input:focus::-ms-input-placeholder {
+  visibility: hidden;
+}
+
+.signup-form-input:focus::placeholder {
+  visibility: hidden;
+}
+
 .signup-form-input::-webkit-input-placeholder {
   color: #A0A0A0;
 }

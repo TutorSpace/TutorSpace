@@ -111,6 +111,10 @@
             + svg {
                 fill: $color-blue-secondary;
             }
+
+            &::placeholder {
+                visibility: hidden;
+            }
         }
 
         &::placeholder {
