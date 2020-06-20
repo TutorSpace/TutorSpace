@@ -11732,6 +11732,55 @@ svg.bookmark:hover {
   }
 }
 
+.signup-form-input-select-container {
+  overflow: hidden;
+  border: 3px solid;
+  border-radius: 1.2rem;
+  height: 6.2rem;
+}
+
+.signup-form-input-select-container select {
+  font-size: 2.4rem;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  overflow: hidden;
+}
+
+.signup-form-input-select-container select:focus {
+  box-shadow: none;
+  outline: none;
+  border-color: currentColor;
+}
+
+.signup-form-input-select-container .input-group-append {
+  margin-left: -8rem;
+  width: 6rem;
+  background-color: #0075E0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form-input-select-container .input-group-append :first-child {
+  width: 6rem;
+  height: 6rem;
+  fill: #FFFFFF;
+}
+
+.signup-form-input-select-container .input-group-append :first-child:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .signup-form-input-select-container {
+    font-size: 1.8rem;
+    height: 6rem;
+  }
+}
+
 .signup .input-icon {
   position: absolute;
   width: 2.6rem;

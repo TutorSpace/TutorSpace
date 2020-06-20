@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -240,7 +240,10 @@ $('input').filter('[required]').on('input', function () {
       return pre + valString + suffix;
     }
   }
-})(); // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
+})(); // ======================== register student 3 ====================
+
+
+(function () {})(); // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 // $(function () {
 //     $("#major").autocomplete({
 //         source: majorTags
@@ -257,7 +260,7 @@ $('input').filter('[required]').on('input', function () {
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**********************************************!*\
   !*** multi ./resources/js/admin/register.js ***!
   \**********************************************/

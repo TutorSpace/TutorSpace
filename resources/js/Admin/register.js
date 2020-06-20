@@ -177,8 +177,10 @@ $('input').filter('[required]').on('input', function () {
 })();
 
 
+// ======================== register student 3 ====================
+(function () {
 
-
+})();
 
 // // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
 // $(function () {

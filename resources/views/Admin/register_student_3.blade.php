@@ -29,14 +29,32 @@ bg-grey-light body-signup
             </p>
 
             <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Major">
+                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Major" id="input-major">
             </div>
             <div class="p-relative">
                 <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Second Major (optional)">
             </div>
-            <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Class Standing">
-            </div>
+            <div class="input-group signup-form-input-select-container">
+                {{-- <select class="custom-select pl-4">
+                  <option selected disabled class="fc-grey">Class Standing</option>
+                  <option value="1">Freshman</option>
+                  <option value="2">Sophomore</option>
+                  <option value="3">Junior</option>
+                  <option value="4">Senior</option>
+                  <option value="5">Graduate</option>
+                </select> --}}
+
+                <select class="js-example-basic-single" name="state">
+                    <option value="AL">Alabama</option>
+                      ...
+                    <option value="WY">Wyoming</option>
+                  </select>
+                <div class="input-group-append">
+                    <svg>
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                    </svg>
+                </div>
+              </div>
 
             <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
                 <a href="/test" class="btn btn-link-student p-relative left-n-2 inline-grid" id="btn-skip">Skip</a>
