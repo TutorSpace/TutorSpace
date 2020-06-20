@@ -20,17 +20,17 @@ bg-grey-light body-signup
             </p>
 
             <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Major (optional)">
+                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Major">
             </div>
             <div class="p-relative">
                 <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Second Major (optional)">
             </div>
             <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Class Standing (optional)">
+                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Class Standing">
             </div>
 
             <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
-                <a href="/test" class="btn btn-link p-relative left-n-2" id="btn-skip">Skip</a>
+                <a href="/test" class="btn btn-link-student p-relative left-n-2" id="btn-skip">Skip</a>
                 {{-- btn-next --}}
                 <button class="btn btn-next btn-next-animation btn-student ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +52,8 @@ bg-grey-light body-signup
 
     </div>
 </div>
+
+
 
 {{-- bg shapes for students --}}
 @include('admin.templates.bg_shapes_student')

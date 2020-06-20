@@ -16,18 +16,31 @@
 }
 
 .btn-student {
+    color: $color-white;
     background-color: $color-blue-primary;
 
     &:hover {
+        color: $color-white;
         background-color: $color-blue-secondary;
     }
 }
 
+// for buttons, use btn,btn-link,btn-link-*  || for anchors, use btn-link-*
 .btn-link-student {
-    color: $color-blue-primary;
+    font-size: 2rem;
+    font-weight: 500;
+    color: $color-blue-secondary;
 
     &:hover {
-        color: $color-blue-secondary;
+        color: $color-blue-tertiary;
+    }
+}
+
+.btn-animation-y {
+    transition: all .2s;
+
+    &:hover {
+        transform: translateY(-2px);
     }
 }
 

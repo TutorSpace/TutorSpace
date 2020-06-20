@@ -50,7 +50,7 @@ class RegisterController extends Controller
     }
 
     public function storeStudent3() {
-        // TODO: validate the information and stores in the session
+        // TODO: validate the information and create the user
         if(true) {
             dd('success');
         }

@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     public function indexStudent() {
-
+        return view('admin.login_student');
     }
 
     // public function show() {

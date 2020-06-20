@@ -19,13 +19,10 @@
 @import "components/bookmark";
 @import "components/bg-shapes";
 
-@import "layout/navbar";
-
-
 @import "pages/index";
-@import "pages/signup";
-@import "pages/forget_password";
+@import "pages/register";
 @import "pages/login";
+@import "pages/forget_password";
 @import "pages/home";
 @import "pages/profile";
 @import "pages/report";

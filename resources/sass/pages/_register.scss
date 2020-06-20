@@ -30,13 +30,16 @@
 
     &--left {
         .signup__heading {
-            color: $color-white;
             margin-top: 4rem;
             padding: 0 7rem;
 
             @include respond(mb-13) {
                 padding: 0 4rem;
             }
+        }
+
+        .signup__heading {
+            color: $color-white;
         }
 
         &-student {
