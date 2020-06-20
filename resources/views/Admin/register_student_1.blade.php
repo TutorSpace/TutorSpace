@@ -7,7 +7,6 @@
 
 @endsection
 
-
 @section('body-class')
 bg-grey-light body-signup
 @endsection
@@ -33,14 +32,14 @@ bg-grey-light body-signup
             <div class="form-group-2">
                 @csrf
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="First Name" name="first-name" required>
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="First Name" name="first-name" value="{{ old('first-name') }}" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
                 </div>
 
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="Last Name" name="last-name" required>
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="Last Name" name="last-name" value="{{ old('last-name') }}"required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
@@ -48,14 +47,14 @@ bg-grey-light body-signup
             </div>
 
             <div class="p-relative">
-                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email" required>
+                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email" name="email" value="{{ old('email') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control signup-form-input signup-form-input-normal" placeholder="Password" required>
+                <input type="password" class="form-control signup-form-input signup-form-input-normal" placeholder="Password" name="password" value="{{ old('password') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>

@@ -42,25 +42,19 @@ class RegisterController extends Controller
             ]
         ]);
 
-        // validate that the email with the same identity must not exist in the database
-
         // email must not be registered as a student before
-        // To Test
+        // TOTEST
         $request->validate([
-            'email' => [new NotExistStudent],
+            'email' => [new NotExistStudent]
         ]);
 
+        // validate the information and stores in the session
+        $request->session()->put('registerData', $request->all());
 
-        // TODO: validate the information and stores in the session
-        if(true) {
-            return redirect()->route('register.index.student.2');
-        }
-        else {
-
-        }
+        return redirect()->route('register.index.student.2');
     }
 
-    public function indexStudent2() {
+    public function indexStudent2(Request $request) {
         return view('admin.register_student_2');
     }
 
