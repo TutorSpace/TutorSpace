@@ -21,10 +21,10 @@ bg-grey-light body-signup
             </p>
 
             <div class="form-group-4">
-                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
             </div>
 
             <p class="resend-email">
@@ -33,7 +33,7 @@ bg-grey-light body-signup
             </p>
 
             <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
-                <span class="fs-2 fc-grey p-relative left-n-2">
+                <span class="fs-2 fc-grey p-relative left-n-2 inline-grid">
                     Questions? Email us at
                     <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-student">tutorspaceusc@gmail.com</a>
                 </span>

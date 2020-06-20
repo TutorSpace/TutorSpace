@@ -172,8 +172,11 @@
         // for email verification
         &-email {
             text-align: center;
-            height: 10rem;
+            height: 8.5rem;
 
+            @include respond(lg) {
+                height: 7rem;
+            }
         }
     }
 

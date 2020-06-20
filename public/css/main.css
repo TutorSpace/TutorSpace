@@ -11211,6 +11211,10 @@ h2 {
   display: none !important;
 }
 
+.inline-grid {
+  display: inline-grid !important;
+}
+
 .invisible {
   visibility: hidden;
 }
@@ -11657,7 +11661,13 @@ svg.bookmark:hover {
 
 .signup-form-input-email {
   text-align: center;
-  height: 10rem;
+  height: 8.5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .signup-form-input-email {
+    height: 7rem;
+  }
 }
 
 .signup .input-icon {
