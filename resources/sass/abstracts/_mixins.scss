@@ -38,7 +38,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 */
 @mixin respond($breakpoint) {
     @if $breakpoint == extra-sm {
-        @media only screen and (max-width: 35.99rem) { //576px
+        @media only screen and (max-width: 35.99em) { //576px
             // @content can pass content into a mixin
             @content
         };

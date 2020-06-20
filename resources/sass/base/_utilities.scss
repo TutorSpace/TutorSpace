@@ -1,28 +1,37 @@
-.hidden {
-    display: none !important;
-}
+// ====================== position ===================
+.p-relative { position: relative; }
 
-.p-relative {
-    position: relative;
-}
+// ====================== display & visibility ==================
+.hidden { display: none !important; }
+.invisible { visibility: hidden; }
 
-.invisible {
-    visibility: hidden;
-}
+// ==================== padding & margin ===================
+.pl-0 { padding-left: 0; }
+.pr-0 { padding-right: 0; }
 
-.pl-0 {
-    padding-left: 0;
-}
-
-.pr-0 {
-    padding-right: 0;
-}
-
+// ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
-
 .bg-grey { background-color: $color-grey !important; }
 
-.fill-color-blue-secondary {
-    fill: $color-blue-secondary !important;
-}
+
+// ===================== svg =================
+.fill-color-blue-secondary { fill: $color-blue-secondary !important; }
+.fill-color-yellow-primary { fill: $color-yellow-primary; }
+.fill-color-purple-primary { fill: $color-purple-primary; }
+.fill-opacity-80 { fill-opacity: .8; }
+.fill-opacity-70 { fill-opacity: .7; }
+
+// ======================== border ======================
+.bc-blue-secondary { border-color: $color-blue-secondary !important; }
+
+// ======================== font color & size ==================
+.fs-2 { font-size: 2rem; }
+.fs-2-2 { font-size: 2.2rem; }
+.fs-2-4 { font-size: 2.4rem; }
+.fc-grey { color: $color-grey; }
+.fc-blue-tertiary { color: $color-blue-tertiary; }
+
+// =============== absolute and relative positions ===================
+.left-n-2 { left: -2rem; }
+
 

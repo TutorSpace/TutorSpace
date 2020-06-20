@@ -1,20 +1,33 @@
-// button-next is usually used with button-next-animation
-.button-next {
-    background-color: $color-blue-primary;
+// .btn-next must contains .btn-next__arrow, and it is usually used with.btn-next-animation
+.btn-next {
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 
+    // adding animation
     &-animation {
         &:hover {
-            background-color: $color-blue-secondary;
-            cursor: pointer;
-
-            .arrow-next {
+            .btn-next__arrow {
                 animation: button-animation-1 1.5s infinite;
             }
         }
+    }
+}
+
+.btn-student {
+    background-color: $color-blue-primary;
+
+    &:hover {
+        background-color: $color-blue-secondary;
+    }
+}
+
+.btn-link-student {
+    color: $color-blue-primary;
+
+    &:hover {
+        color: $color-blue-secondary;
     }
 }
 

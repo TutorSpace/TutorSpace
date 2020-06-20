@@ -7,9 +7,6 @@ $font-2: 4rem;
         min-height: 500px;
         position: relative;
 
-
-
-
         @include respond(big-desktop) {
             min-height: 700px;
         }

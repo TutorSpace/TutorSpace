@@ -29,6 +29,6 @@
     {{-- my js --}}
     <script src="{{asset('js/app.js')}}"></script>
     @yield('js')
-    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
 </body>
 </html>

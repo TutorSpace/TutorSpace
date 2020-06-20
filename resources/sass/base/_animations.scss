@@ -84,3 +84,18 @@
         transform: translateX(.7rem);
     }
 }
+
+@keyframes anchor-animation-pulsate {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 0 1rem 4rem rgba($color: #000000, $alpha: .25);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}

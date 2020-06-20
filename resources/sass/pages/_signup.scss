@@ -8,7 +8,7 @@
     }
 
     @include respond(extra-sm) {
-        min-height: 600px;
+        min-height: unset;
     }
 }
 
@@ -18,7 +18,7 @@
 
     // overwriting bootstrap container breakpoints
     @include respond(mb-13) {
-        width: 920px;
+        width: 900px;
     }
     @include respond(extra-sm) {
         width: 100%;
@@ -26,13 +26,9 @@
 
     .signup__heading {
         text-align: center;
-        white-space: nowrap;
-        font-family: 'Baloo Bhai 2', cursive;
     }
 
     &--left {
-        background-color: rgba($color-blue-primary, .8);
-
         .signup__heading {
             color: $color-white;
             margin-top: 4rem;
@@ -43,6 +39,10 @@
             }
         }
 
+        &-student {
+            background-color: rgba($color-blue-primary, .8);
+        }
+
         @include respond(md) {
             display: none;
         }
@@ -50,8 +50,37 @@
 
     &--right {
         flex: 1;
-        box-shadow: 0px 10px 100px 0px rgba(0,0,0,0.25);
+        box-shadow: 0px 1rem 10rem 0px rgba(0,0,0,0.25);
         background-color: $color-white-dark;
+
+        &-student {
+            color: $color-blue-secondary;
+
+            .signup-form-input {
+                border-color: $color-blue-secondary;
+
+                &:focus {
+                    border-color: $color-blue-secondary;
+                }
+
+                &-normal {
+                    &:focus {
+                        + svg {
+                            fill: $color-blue-secondary;
+                        }
+                    }
+                }
+            }
+
+            #btn-google-signup .abcRioButtonBlue {
+                background-color: $color-blue-primary;
+            }
+        }
+
+        .signup__heading {
+            margin-top: 4rem;
+            padding: 0 3rem;
+        }
 
         @include respond(md) {
             border-radius: 1.2rem;
@@ -60,11 +89,6 @@
         @include respond(extra-sm) {
             margin-left: 5rem;
             margin-right: 5rem;
-        }
-
-        .signup__heading {
-            color: $color-blue-secondary;
-            margin-top: 3.5rem;
         }
     }
 
@@ -77,53 +101,76 @@
 
         > *:not(:first-child) {
             margin-top: 4rem;
+
+            @include respond(extra-sm) {
+                margin-top: 3rem;
+            }
         }
 
         hr {
-            border: 1.5px solid $color-blue-secondary;
+            border: 1.5px solid;
             width: 8rem;
         }
-
     }
 
-    // container that contains 2 form groups
+    // container that contains 2 inputs
     .form-group-2 {
         display: flex;
         justify-content: space-between;
 
-        > .form-group {
+        > * {
             flex: 0 0 calc(50% - 1rem);
         }
     }
 
+    .form-group-4 {
+        display: flex;
+        justify-content: space-between;
+
+        > * {
+            flex: 0 0 calc(25% - 1rem);
+        }
+    }
+
     &-form-input {
-        font-family: Avenir;
         outline: none;
-        border: 3px solid $color-blue-secondary;
-        font-size: 2.4rem;
+        border: 3px solid;
         border-radius: 1.2rem;
         background-color: transparent;
-        height: 6.8rem;
-
-        padding-left: 4.3rem;
+        font-size: 2.4rem;
 
         &:focus {
             box-shadow: none;
             background-color: transparent;
-            border-color: $color-blue-secondary;
-
-            + svg {
-                fill: $color-blue-secondary;
-            }
-
-            &::placeholder {
-                visibility: hidden;
-            }
         }
-
 
         &::placeholder {
             color: $color-grey;
+        }
+
+        // for inputs that have svg + text
+        &-normal {
+            height: 6.2rem;
+            padding-left: 4.3rem;
+
+            &:focus {
+                &::placeholder {
+                    visibility: hidden;
+                }
+            }
+
+            @include respond(extra-sm) {
+                font-size: 1.8rem;
+                height: 6rem;
+                padding-left: 4rem;
+            }
+        }
+
+        // for email verification
+        &-email {
+            text-align: center;
+            height: 10rem;
+
         }
     }
 
@@ -136,21 +183,62 @@
         fill: $color-grey;
     }
 
-    .container-bottom {
+    .signup-container-bottom {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
 
-        .button-next {
+        .btn-next {
             position: relative;
             right: -2rem;
-            width: 8rem;
-            height: 8rem;
+            width: 7.5rem;
+            height: 7.5rem;
 
-            .arrow-next {
+            @include respond(extra-sm) {
+                width: 6rem;
+                height: 6rem;
+            }
+
+            &__arrow {
                 width: 4rem;
                 height: 4rem;
                 transform: translateX(.3rem);
+
+                @include respond(extra-sm) {
+                    width: 3rem;
+                    height: 3rem;
+                }
             }
+        }
+
+        #btn-skip {
+            font-size: 2.4rem;
+            color: $color-blue-tertiary;
+            text-decoration: underline;
+            background-color: transparent;
+
+            &:hover {
+                cursor: pointer;
+                animation: anchor-animation-pulsate 2s infinite;
+            }
+        }
+    }
+
+    .signup__notice {
+        color: $color-grey;
+        font-size: 2.4rem;
+        text-align: center;
+    }
+
+    .resend-email {
+        color: $color-grey;
+        font-size: 2rem;
+        text-align: center;
+
+        button {
+            font-size: inherit;
+            padding: 0;
+            vertical-align: baseline;
         }
     }
 }

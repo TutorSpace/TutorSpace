@@ -17,8 +17,46 @@ use App\Http\Controllers\Controller;
 
 class RegisterController extends Controller
 {
-    public function indexStudent() {
-        return view('Admin.signup_student');
+    public function indexStudent1() {
+        return view('admin.register_student_1');
+    }
+
+    public function storeStudent1() {
+        // TODO: validate the information and stores in the session
+        if(true) {
+            return redirect()->route('register.index.student.2');
+        }
+        else {
+
+        }
+    }
+
+    public function indexStudent2() {
+        return view('admin.register_student_2');
+    }
+
+    public function storeStudent2() {
+        // TODO: validate the information and stores in the session
+        if(true) {
+            return redirect()->route('register.index.student.3');
+        }
+        else {
+
+        }
+    }
+
+    public function indexStudent3() {
+        return view('admin.register_student_3');
+    }
+
+    public function storeStudent3() {
+        // TODO: validate the information and stores in the session
+        if(true) {
+            dd('success');
+        }
+        else {
+
+        }
     }
 
     // public function show() {

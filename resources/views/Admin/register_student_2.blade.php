@@ -6,55 +6,41 @@ bg-grey-light body-signup
 @endsection
 
 @section('content')
-<div class="signup container">
-    <div class="signup--left">
-        <h2 class="signup__heading">Hello, Student!</h2>
-    </div>
-    <div class="signup--right">
-        <h2 class="signup__heading">Create Account</h2>
-        <form action="#">
-            <div class="form-group-2">
-                <div class="form-group p-relative">
-                    <input type="text" class="signup-form-input form-control" placeholder="First Name" required>
-                    <svg class="input-icon">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
-                    </svg>
-                </div>
+<div class="container signup">
 
-                <div class="form-group p-relative">
-                    <input type="text" class="signup-form-input form-control" placeholder="Last Name" required>
-                    <svg class="input-icon">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
-                    </svg>
-                </div>
+    {{-- left template --}}
+    @include('admin.templates.register_left_student')
+
+    <div class="signup--right signup--right-student">
+        <h2 class="signup__heading">Email Confirmation</h2>
+        <form action="{{ route('register.store.student.2') }}" method="POST">
+            <p class="signup__notice">
+                @csrf
+                We have sent a verification code to your email address.<br>
+                Please enter the verification code below.
+            </p>
+
+            <div class="form-group-4">
+                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="number" class="form-control signup-form-input signup-form-input-email" required>
             </div>
 
-            <div class="form-group p-relative">
-                <input type="email" class="signup-form-input form-control" placeholder="Email" required>
-                <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
-                </svg>
-            </div>
+            <p class="resend-email">
+                Didn't get the code? <button class="btn btn-link btn-link-student" id="resend-code" type="button">Resend code</button>
+                <span id="timeLabel"></span>
+            </p>
 
-            <div class="form-group p-relative">
-                <input type="password" class="signup-form-input form-control" placeholder="Password" required>
-                <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
-                </svg>
-            </div>
-
-            <div class="d-flex justify-content-center mt-5">
-                <hr>
-            </div>
-
-            <div class="d-flex justify-content-center mt-5">
-                <div id="btn-google-signup"></div>
-            </div>
-
-            <div class="container-bottom">
-                <button class="btn button-next bg-grey">
-                    <svg viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" class="arrow-next">
+            <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
+                <span class="fs-2 fc-grey p-relative left-n-2">
+                    Questions? Email us at
+                    <a href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a>
+                </span>
+                {{-- btn-next --}}
+                <button class="btn btn-next bg-grey ml-auto">
+                    <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />
                         <defs>
                             <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -72,105 +58,17 @@ bg-grey-light body-signup
 
     </div>
 </div>
-<div class="yellow-triangle">
-    <svg width="495" height="401" viewBox="0 0 495 401" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path opacity="0.8"
-            d="M266.249 -51.0411C279.026 -58.4863 295.185 -49.9695 296.265 -35.221L326.075 371.966C327.222 387.628 310.696 398.441 296.803 391.119L-85.765 189.483C-99.658 182.161 -100.078 162.417 -86.5089 154.51L266.249 -51.0411Z"
-            fill="#FFBC00" fill-opacity="0.8" />
-    </svg>
-</div>
-<div class="purple-circle">
-    <svg width="465" height="319" viewBox="0 0 465 319" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="232.5" cy="232.5" r="232.5" fill="#6749DF" fill-opacity="0.8" />
-    </svg>
-</div>
 
-
-
+{{-- bg shapes for students --}}
+@include('admin.templates.bg_shapes_student')
 
 @endsection
 
+
 @section('js')
-<script src="{{ asset('js/signup.js') }}"></script>
 <script>
+    let isStudent = true;
 
-// ===================== Google Admin ==========================
-$(window).resize(function() {
-    adjustGoogleBtnSize();
-    renderButton();
-});
-
-let googleBtnWidth = 240, googleBtnHeight = 50;
-adjustGoogleBtnSize();
-
-
-function renderButton() {
-    gapi.signin2.render('btn-google-signup', {
-        'scope': 'profile email',
-        'width': googleBtnWidth,
-        'height': googleBtnHeight,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-    });
-}
-
-function adjustGoogleBtnSize() {
-    if($( window ).width() < 400) {
-        googleBtnWidth = 160;
-        googleBtnHeight = 30;
-    }
-    else if($( window ).width() < 576) {
-        googleBtnWidth = 200;
-        googleBtnHeight = 40;
-    }
-    else {
-        googleBtnWidth = 240;
-        googleBtnHeight = 50;
-    }
-}
-
-function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("======================== User Profile =======================");
-    console.log(profile);
-    console.log("===============================================");
-
-    // Do not use the Google IDs returned by getId() or the user's profile information to communicate the currently signed in user to your backend server. Instead, send ID tokens, which can be securely validated on the server.
-    console.log("ID: " + profile.getId());
-
-    console.log('Full Name: ' + profile.getName());
-    console.log('Given Name: ' + profile.getGivenName());
-    console.log('Family Name: ' + profile.getFamilyName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-
-}
-
-function onFailure(error) {
-    console.log(error);
-}
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-
-    // if not signed in
-    if (!auth2.isSignedIn.get()) {
-        var profile = auth2.currentUser.get().getBasicProfile();
-        alert("You are not signed in!");
-    } else {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-        });
-    }
-}
 </script>
+<script src="{{ asset('js/register.js') }}"></script>
 @endsection
