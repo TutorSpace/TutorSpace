@@ -21,7 +21,36 @@ class RegisterController extends Controller
         return view('admin.register_student_1');
     }
 
-    public function storeStudent1() {
+    // register using password (not Google)
+    public function storeStudent1(Request $request) {
+        $request->validate([
+            'first-name' => ['
+                required',
+                'alpha'
+            ],
+            'last-name' => ['
+                required',
+                'alpha'
+            ],
+            'email' => [
+                'required',
+                'email:rfc'
+            ],
+            'password' => [
+                'required',
+                'min:6'
+            ]
+        ]);
+
+        // validate that the email with the same identity must not exist in the database
+
+        // email must not be registered as a student before
+        // To Test
+        $request->validate([
+            'email' => [new NotExistStudent],
+        ]);
+
+
         // TODO: validate the information and stores in the session
         if(true) {
             return redirect()->route('register.index.student.2');

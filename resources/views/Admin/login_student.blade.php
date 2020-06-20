@@ -56,7 +56,7 @@ bg-grey-light body-login
 </div>
 
 {{-- bg shapes for students --}}
-@include('admin.templates.bg_shapes_student')
+@include('admin.partials.bg_shapes_student')
 
 @endsection
 

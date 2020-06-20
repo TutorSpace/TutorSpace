@@ -2,14 +2,14 @@
 @section('title', 'Sign Up - Student')
 
 @section('body-class')
-bg-grey-light body-signup
+bg-grey-light body-signup select2-bg-student
 @endsection
 
 @section('content')
 <div class="container signup">
 
     {{-- left template --}}
-    @include('admin.templates.register_left_student')
+    @include('admin.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
         <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg">
@@ -29,27 +29,49 @@ bg-grey-light body-signup
             </p>
 
             <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Major" id="input-major">
+                <div class="input-group select-container p-relative">
+                    <select class="custom-select pl-4">
+                      <option selected disabled class="fc-grey">Major</option>
+                      <option value="1">Computer Science</option>
+                      <option value="2">Mathematics</option>
+                      <option value="3">Design</option>
+                      <option value="4">Communication</option>
+                      <option value="5">Business Administration</option>
+                    </select>
+                    <div class="input-group-prepend">
+                        <svg>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                        </svg>
+                    </div>
+                  </div>
             </div>
             <div class="p-relative">
-                <input type="text" class="form-control signup-form-input signup-form-input-normal pl-4" placeholder="Second Major (optional)">
+                <div class="input-group select-container p-relative">
+                    <select class="custom-select pl-4">
+                        <option selected disabled class="fc-grey">Minor</option>
+                        <option value="1">Information Technology</option>
+                        <option value="2">Mathematics</option>
+                        <option value="3">Design</option>
+                        <option value="4">Communication</option>
+                        <option value="5">Business Administration</option>
+                    </select>
+                    <div class="input-group-prepend">
+                        <svg>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="input-group signup-form-input-select-container">
-                {{-- <select class="custom-select pl-4">
+            <div class="input-group select-container p-relative">
+                <select class="custom-select pl-4">
                   <option selected disabled class="fc-grey">Class Standing</option>
                   <option value="1">Freshman</option>
                   <option value="2">Sophomore</option>
                   <option value="3">Junior</option>
                   <option value="4">Senior</option>
                   <option value="5">Graduate</option>
-                </select> --}}
-
-                <select class="js-example-basic-single" name="state">
-                    <option value="AL">Alabama</option>
-                      ...
-                    <option value="WY">Wyoming</option>
-                  </select>
-                <div class="input-group-append">
+                </select>
+                <div class="input-group-prepend">
                     <svg>
                         <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
                     </svg>
@@ -83,7 +105,7 @@ bg-grey-light body-signup
 
 
 {{-- bg shapes for students --}}
-@include('admin.templates.bg_shapes_student')
+@include('admin.partials.bg_shapes_student')
 
 @endsection
 

@@ -9,7 +9,7 @@ bg-grey-light body-signup
 <div class="container signup">
 
     {{-- left template --}}
-    @include('admin.templates.register_left_student')
+    @include('admin.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
         <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +70,7 @@ bg-grey-light body-signup
 </div>
 
 {{-- bg shapes for students --}}
-@include('admin.templates.bg_shapes_student')
+@include('admin.partials.bg_shapes_student')
 
 @endsection
 

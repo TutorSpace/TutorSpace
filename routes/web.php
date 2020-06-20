@@ -18,8 +18,10 @@ Route::group([
     // =============== register =============
     Route::get('/register/student/1', 'Admin\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
     Route::post('/register/student/1', 'Admin\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
+
     Route::get('/register/student/2', 'Admin\RegisterController@indexStudent2')->name('register.index.student.2')->middleware(['checkLogout']);
     Route::post('/register/student/2', 'Admin\RegisterController@storeStudent2')->name('register.store.student.2')->middleware(['checkLogout']);
+
     Route::get('/register/student/3', 'Admin\RegisterController@indexStudent3')->name('register.index.student.3')->middleware(['checkLogout']);
     Route::post('/register/student/3', 'Admin\RegisterController@storeStudent3')->name('register.store.student.3')->middleware(['checkLogout']);
 

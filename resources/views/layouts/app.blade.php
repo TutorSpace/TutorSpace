@@ -12,13 +12,6 @@
     {{-- fonts --}}
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    {{-- google services --}}
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-
-
 
     <!-- my css -->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />

@@ -32,95 +32,11 @@ $('input').filter('[required]').on('input', function () {
 });
 
 
-//  ========================= register student 1 ===========================
-(function () {
-    $('#btn-google-signup').click(function (e) {
-        e.preventDefault();
-    });
+$(document).ready(function() {
+
+});
 
 
-    // ===================== Google Admin ==========================
-    let googleBtnWidth = 240,
-        googleBtnHeight = 50;
-    adjustGoogleBtnSize();
-
-    renderButton();
-
-    $(window).resize(function () {
-        adjustGoogleBtnSize();
-        renderButton();
-    });
-
-
-    function renderButton() {
-        gapi.signin2.render('btn-google-signup', {
-            'scope': 'profile email',
-            'width': googleBtnWidth,
-            'height': googleBtnHeight,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-        });
-    }
-
-    function adjustGoogleBtnSize() {
-        if ($(window).width() < 400) {
-            googleBtnWidth = 165;
-            googleBtnHeight = 36;
-        } else if ($(window).width() < 576) {
-            googleBtnWidth = 200;
-            googleBtnHeight = 40;
-        } else {
-            googleBtnWidth = 240;
-            googleBtnHeight = 50;
-        }
-    }
-
-    function onSuccess(googleUser) {
-        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("======================== User Profile =======================");
-        console.log(profile);
-        console.log("===============================================");
-
-        // Do not use the Google IDs returned by getId() or the user's profile information to communicate the currently signed in user to your backend server. Instead, send ID tokens, which can be securely validated on the server.
-        console.log("ID: " + profile.getId());
-
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-    }
-
-    function onFailure(error) {
-        console.log(error);
-    }
-
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-
-        // if not signed in
-        if (!auth2.isSignedIn.get()) {
-            var profile = auth2.currentUser.get().getBasicProfile();
-            alert("You are not signed in!");
-        } else {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
-    }
-
-
-})();
 
 
 //  ========================= register student 2 ===========================
@@ -179,6 +95,7 @@ $('input').filter('[required]').on('input', function () {
 
 // ======================== register student 3 ====================
 (function () {
+    $('.custom-select').select2({});
 
 })();
 

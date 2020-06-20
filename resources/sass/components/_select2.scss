@@ -1,0 +1,55 @@
+.select2 {
+    width: 100% !important;
+    height: 100%;
+
+    * {
+        visibility: hidden;
+    }
+
+    @include respond(extra-sm) {
+        height: 6rem !important;
+    }
+}
+
+.selection {
+    .select2-selection {
+        height: 100%;
+    }
+
+    .select2-selection__rendered {
+        visibility: visible;
+        display: flex !important;
+        align-items: center !important;
+        height: 100% !important;
+        padding-left: 1.5rem !important;
+        font-size: 2.4rem !important;
+        z-index: 1000;
+        position: relative;
+
+        @include respond(extra-sm) {
+            font-size: 1.8rem !important;
+        }
+    }
+
+}
+
+.select2-bg-student {
+
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: $color-blue-secondary;
+    }
+}
+
+.select2-container {
+    * {
+        font-size: 1.8rem !important;
+        @include respond(extra-sm) {
+            font-size: 1.4rem;
+        }
+    }
+
+    .select2-results__options {
+        font-size: 2rem !important;
+    }
+}
+

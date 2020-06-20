@@ -43431,6 +43431,28 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
 
+$(document).ready(function () {
+  $('select').each(function (idx, ele) {
+    if ($(this).find('option:selected').prop('disabled')) {
+      //Selected option is disabled
+      $(this).next().find('.select2-selection__rendered').addClass('fc-grey');
+      $(this).next().find('.select2-selection__rendered').removeClass('fc-black');
+    }
+
+    $(ele).attr('select2-open', 'false');
+  });
+  $("select").change(function () {
+    if ($(this).find('option:selected').prop('disabled')) {
+      //Selected option is disabled
+      $(this).next().find('.select2-selection__rendered').addClass('fc-grey');
+      $(this).next().find('.select2-selection__rendered').removeClass('fc-black');
+    } else {
+      $(this).next().find('.select2-selection__rendered').removeClass('fc-grey');
+      $(this).next().find('.select2-selection__rendered').addClass('fc-black');
+    }
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

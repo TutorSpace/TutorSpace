@@ -1,14 +1,14 @@
 .body-login {
     position: relative;
     height: 100vh;
-    min-height: 750px;
+    // min-height: 750px;
 
     @include respond(md) {
-        min-height: 700px;
+        // min-height: 700px;
     }
 
     @include respond(extra-sm) {
-        min-height: unset;
+        // min-height: unset;
     }
 }
 
