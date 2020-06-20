@@ -11185,6 +11185,34 @@ body {
   }
 }
 
+@-webkit-keyframes scale-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 body {
   font-family: Avenir;
 }
@@ -11321,6 +11349,29 @@ h2 {
 
 .btn-animation-y:hover {
   transform: translateY(-2px);
+}
+
+.btn-close {
+  font-size: 3.5rem;
+  fill: #0075E0;
+}
+
+.btn-close-fill {
+  display: none;
+}
+
+.btn-close:hover {
+  cursor: pointer;
+  -webkit-animation: scale-animation 2s infinite;
+          animation: scale-animation 2s infinite;
+}
+
+.btn-close:hover .btn-close-empty {
+  display: none;
+}
+
+.btn-close:hover .btn-close-fill {
+  display: block;
 }
 
 svg.bookmark:hover {
@@ -11485,10 +11536,22 @@ svg.bookmark:hover {
 
 .signup .signup__heading {
   text-align: center;
+  margin-top: 5.5rem;
+}
+
+@media only screen and (max-width: 90em) {
+  .signup .signup__heading {
+    margin-top: 4rem;
+  }
+}
+
+.signup .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .signup--left .signup__heading {
-  margin-top: 4rem;
   padding: 0 7rem;
 }
 
@@ -11539,7 +11602,6 @@ svg.bookmark:hover {
 }
 
 .signup--right .signup__heading {
-  margin-top: 4rem;
   padding: 0 3rem;
 }
 

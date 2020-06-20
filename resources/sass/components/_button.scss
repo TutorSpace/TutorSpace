@@ -44,3 +44,27 @@
     }
 }
 
+
+.btn-close {
+    font-size: 3.5rem;
+    fill: $color-blue-secondary;
+
+
+
+    &-fill {
+        display: none;
+    }
+
+    &:hover {
+        cursor: pointer;
+        animation: scale-animation 2s infinite;
+
+        .btn-close-empty {
+            display: none;
+        }
+
+        .btn-close-fill {
+            display: block;
+        }
+    }
+}

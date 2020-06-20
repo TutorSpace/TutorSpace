@@ -26,11 +26,21 @@
 
     .signup__heading {
         text-align: center;
+        margin-top: 5.5rem;
+
+        @include respond(mb-13) {
+            margin-top: 4rem;
+        }
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
     }
 
     &--left {
         .signup__heading {
-            margin-top: 4rem;
             padding: 0 7rem;
 
             @include respond(mb-13) {
@@ -81,7 +91,6 @@
         }
 
         .signup__heading {
-            margin-top: 4rem;
             padding: 0 3rem;
         }
 
