@@ -5,11 +5,6 @@
 bg-grey-light body-signup
 @endsection
 
-@php
-    // dd(session()->all());
-@endphp
-
-
 @section('content')
 <div class="container signup">
 

@@ -11496,6 +11496,10 @@ h2 {
   top: 100%;
 }
 
+.bottom-100 {
+  bottom: 100%;
+}
+
 .right-0 {
   right: 0;
 }
@@ -12236,7 +12240,6 @@ svg.bookmark:hover {
 
 .login--left .login__heading {
   margin-top: 3rem;
-  padding: 0 3rem;
   white-space: nowrap;
 }
 
@@ -12262,6 +12265,12 @@ svg.bookmark:hover {
 
 .login--right-student {
   background-color: rgba(31, 122, 255, 0.8);
+}
+
+.login--right .btn-google-container {
+  align-self: flex-end;
+  position: absolute;
+  bottom: 5rem;
 }
 
 @media only screen and (max-width: 61.99em) {

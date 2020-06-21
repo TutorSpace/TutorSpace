@@ -4,7 +4,6 @@
 @section('links-in-head')
 {{-- google services --}}
 <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-
 @endsection
 
 @section('body-class')
@@ -150,7 +149,7 @@ let isStudent = true;
             'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
-        });
+        })
     }
 
     function adjustGoogleBtnSize() {

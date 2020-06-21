@@ -59,7 +59,6 @@
 
         .login__heading {
             margin-top: 3rem;
-            padding: 0 3rem;
             white-space: nowrap;
         }
 
@@ -85,6 +84,12 @@
 
         &-student {
             background-color: rgba($color-blue-primary, .8);
+        }
+
+        .btn-google-container {
+            align-self: flex-end;
+            position: absolute;
+            bottom: 5rem;
         }
 
         @include respond(md) {
@@ -158,6 +163,7 @@
         width: 30rem;
         border-radius: 5rem;
     }
+
 
 
 }
