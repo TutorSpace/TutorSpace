@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        // added socialite
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
@@ -172,6 +173,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
+        // added broadcast
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
@@ -228,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        // added socialite
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 

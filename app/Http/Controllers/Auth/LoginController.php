@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Auth;
@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     public function indexStudent() {
-        return view('admin.login_student');
+        return view('auth.login_student');
     }
 
     // public function show() {

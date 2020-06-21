@@ -72,7 +72,7 @@ bg-grey-light body-login
 </div>
 
 {{-- bg shapes for students --}}
-@include('admin.partials.bg_shapes_student')
+@include('auth.partials.bg_shapes_student')
 
 @endsection
 
@@ -81,7 +81,7 @@ bg-grey-light body-login
 <script>
     let isStudent = true;
 
-    // ===================== Google Admin ==========================
+    // ===================== Google Auth ==========================
     let googleBtnWidth = 240,
         googleBtnHeight = 50;
     adjustGoogleBtnSize();

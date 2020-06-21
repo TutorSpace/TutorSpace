@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Sign Up - Student')
 
-@section('links-in-head')
-{{-- google services --}}
-<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-@endsection
-
 @section('body-class')
 bg-grey-light body-signup
 @endsection
@@ -14,7 +9,7 @@ bg-grey-light body-signup
 <div class="container signup">
 
     {{-- left template --}}
-    @include('admin.partials.register_left_student')
+    @include('auth.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
         <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.student') }}">
@@ -26,75 +21,39 @@ bg-grey-light body-signup
             {{-- for fill --}}
             <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
         </svg>
-        <h2 class="signup__heading">Create Account</h2>
-        <form action="{{ route('register.store.student.1') }}" method="POST">
-            <div class="form-group-2">
+
+        <h2 class="signup__heading">Email Confirmation</h2>
+        <form action="{{ route('register.store.student.2') }}" method="POST">
+            <p class="signup__notice">
                 @csrf
-                <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="First Name" name="first-name" value="{{ old('first-name') }}" required>
-                    <svg class="input-icon">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
-                    </svg>
-                    @error('first-name')
-                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
+                We have sent a verification code to your email address.<br>
+                Please enter the verification code below.
+            </p>
 
-                <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="Last Name" name="last-name" value="{{ old('last-name') }}"required>
-                    <svg class="input-icon">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
-                    </svg>
-                    @error('last-name')
-                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
+            <div class="form-group-4">
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-1" value="{{ old('code-1') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-2" value="{{ old('code-2') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-3" value="{{ old('code-3') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-4" value="{{ old('code-4') }}" maxlength="1" required>
             </div>
+            @if ($errors->any())
+                <p class="fs-1-4 fc-red mt-1">
+                    The verification code is either incorrect or timed out. Please verify the code or send another verification email.
+                </p>
+            @endif
 
-            <div class="p-relative">
-                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email" name="email" value="{{ old('email') }}" required>
-                <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
-                </svg>
-                @error('email')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
+            <p class="resend-email">
+                Didn't get the code? <button class="btn btn-link btn-link-student" id="resend-code" type="button">Resend code</button>
+                <span id="timeLabel"></span>
+            </p>
 
-            <div class="p-relative">
-                <input type="password" class="form-control signup-form-input signup-form-input-normal" placeholder="Password" name="password" value="{{ old('password') }}" required>
-                <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
-                </svg>
-                @error('password')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            <div class="d-flex justify-content-center mt-5">
-                <hr>
-            </div>
-
-            <div class="d-flex justify-content-center mt-5 p-relative">
-                {{-- to display the google register error --}}
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 mt-2 fc-red" id="googleRegisterError">
+            <div class="signup-container-bottom mt-5 p-relative">
+                <span class="fs-2 fc-grey p-relative left-n-2 inline-grid">
+                    Questions? Email us at
+                    <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-student">tutorspaceusc@gmail.com</a>
                 </span>
-                {{-- google button --}}
-                <div id="btn-google-signup"></div>
-            </div>
-
-            <div class="signup-container-bottom mt-4">
-
                 {{-- btn-next --}}
-                <button class="btn btn-next bg-grey">
+                <button class="btn btn-next bg-grey ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />
@@ -116,101 +75,15 @@ bg-grey-light body-signup
 </div>
 
 {{-- bg shapes for students --}}
-@include('admin.partials.bg_shapes_student')
+@include('auth.partials.bg_shapes_student')
 
 @endsection
 
 
 @section('js')
 <script>
-
-let isStudent = true;
-
-    // ===================== Google Admin ==========================
-    let googleBtnWidth = 240,
-        googleBtnHeight = 50;
-    adjustGoogleBtnSize();
-
-    $(window).resize(function () {
-        adjustGoogleBtnSize();
-        renderButton();
-    });
-
-    $('#btn-google-signup').click(function (e) {
-        e.preventDefault();
-    });
-
-    function renderButton() {
-        gapi.signin2.render('btn-google-signup', {
-            'scope': 'profile email',
-            'width': googleBtnWidth,
-            'height': googleBtnHeight,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-        })
-    }
-
-    function adjustGoogleBtnSize() {
-        if ($(window).width() < 400) {
-            googleBtnWidth = 165;
-            googleBtnHeight = 36;
-        } else if ($(window).width() < 576) {
-            googleBtnWidth = 200;
-            googleBtnHeight = 40;
-        } else {
-            googleBtnWidth = 240;
-            googleBtnHeight = 50;
-        }
-    }
-
-    function onSuccess(googleUser) {
-        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("======================== User Profile =======================");
-        console.log(profile);
-        console.log("===============================================");
-
-        // Do not use the Google IDs returned by getId() or the user's profile information to communicate the currently signed in user to your backend server. Instead, send ID tokens, which can be securely validated on the server.
-        console.log("ID: " + profile.getId());
-
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-    }
-
-    function onFailure(error) {
-        console.log(error);
-    }
-
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-
-        // if not signed in
-        if (!auth2.isSignedIn.get()) {
-            var profile = auth2.currentUser.get().getBasicProfile();
-            alert("You are not signed in!");
-        } else {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
-        }
-    }
+    let isStudent = true;
 
 </script>
-
 <script src="{{ asset('js/register.js') }}"></script>
-
-{{-- google services --}}
-<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 @endsection

@@ -70,7 +70,7 @@ $('svg').click(function() {
             // use ajax to send the email
             $.ajax({
                 type:'GET',
-                url: `/admin/register/send-verification-email`,
+                url: `/auth/register/send-verification-email`,
                 data: {
 
                 },

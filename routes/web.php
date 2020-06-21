@@ -7,31 +7,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/test', 'testController@test');
 
 // index page
-Route::get('/', function () {
-    return view('index');
-})->name('index')->middleware(['checkLogout']);
+Route::get('/', 'GeneralController@index')->name('index');
 
-// admin
+// private policy
+Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
+
+
+// auth
 Route::group([
-    'prefix' => 'admin'
+    'prefix' => 'auth'
 ], function () {
-    // =============== register =============
-    // send verification email
-    Route::get('/register/send-verification-email', 'Admin\RegisterController@sendVerificatioinEmail');
+    // send verification email for register
+    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificatioinEmail');
 
-    Route::get('/register/student/1', 'Admin\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
-    Route::post('/register/student/1', 'Admin\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
+    // google callback for register & login
+    Route::get('callback', 'Auth\GoogleController@handleGoogleCallback');
 
-    Route::get('/register/student/2', 'Admin\RegisterController@indexStudent2')->name('register.index.student.2')->middleware(['checkLogout']);
-    Route::post('/register/student/2', 'Admin\RegisterController@storeStudent2')->name('register.store.student.2')->middleware(['checkLogout']);
+    // ====================== register student =====================
+    Route::get('/register/student/1', 'Auth\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
+    Route::post('/register/student/1', 'Auth\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
+    Route::get('register/google/student', 'Auth\GoogleController@redirectToGoogleStudent')->name('register.google.student');
 
-    Route::get('/register/student/3', 'Admin\RegisterController@indexStudent3')->name('register.index.student.3')->middleware(['checkLogout']);
-    Route::post('/register/student/3', 'Admin\RegisterController@storeStudent3')->name('register.store.student.3')->middleware(['checkLogout']);
+
+    Route::get('/register/student/2', 'Auth\RegisterController@indexStudent2')->name('register.index.student.2')->middleware(['checkLogout']);
+    Route::post('/register/student/2', 'Auth\RegisterController@storeStudent2')->name('register.store.student.2')->middleware(['checkLogout']);
+
+    Route::get('/register/student/3', 'Auth\RegisterController@indexStudent3')->name('register.index.student.3')->middleware(['checkLogout']);
+    Route::post('/register/student/3', 'Auth\RegisterController@storeStudent3')->name('register.store.student.3')->middleware(['checkLogout']);
+
+
 
 
 
     // =============== login ===============
-    Route::get('/login/student', 'Admin\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);
+    Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);
 
 
 });

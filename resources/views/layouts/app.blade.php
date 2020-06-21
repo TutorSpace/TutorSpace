@@ -24,6 +24,14 @@
 
     {{-- my js --}}
     <script src="{{asset('js/app.js')}}"></script>
+    <script>
+        @if(session('errorMsg'))
+            toastr.error('{{ session('errorMsg') }}');
+        @endif
+        @if(session('successMsg'))
+            toastr.error('{{ session('successMsg') }}');
+        @endif
+    </script>
     @yield('js')
 
 </body>

@@ -9,7 +9,7 @@ bg-grey-light body-signup select2-bg-student
 <div class="container signup">
 
     {{-- left template --}}
-    @include('admin.partials.register_left_student')
+    @include('auth.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
         <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.student') }}">
@@ -73,7 +73,7 @@ bg-grey-light body-signup select2-bg-student
               </div>
 
             <div class="signup-container-bottom mt-5 p-relative">
-                <a href="/test" class="btn btn-link-student p-relative left-n-2 inline-grid" id="btn-skip">Skip</a>
+                <button class="btn btn-link btn-link-student p-relative left-n-2 inline-grid" id="btn-skip">Skip</button>
                 {{-- btn-next --}}
                 <button class="btn btn-next btn-next-animation btn-student ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ bg-grey-light body-signup select2-bg-student
 
 
 {{-- bg shapes for students --}}
-@include('admin.partials.bg_shapes_student')
+@include('auth.partials.bg_shapes_student')
 
 @endsection
 

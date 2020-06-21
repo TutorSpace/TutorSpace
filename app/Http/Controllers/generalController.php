@@ -11,8 +11,18 @@ use App\Session;
 use Carbon\Carbon;
 use App\User;
 
-class generalController extends Controller
+class GeneralController extends Controller
 {
+    // show the application index page
+    public function index() {
+        return view('index');
+    }
+
+    // private policy
+    public function showPrivatePolicy() {
+        return view('policy.index');
+    }
+
     // TODO: add validation
     public function removeBookmark(Request $request) {
 

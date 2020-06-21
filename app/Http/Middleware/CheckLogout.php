@@ -16,12 +16,12 @@ class CheckLogout
      */
     public function handle($request, Closure $next)
     {
-        // check whether the use is not logged in. If not, the user will redirect to the home page
+        // If the user is logged in, the user will redirect to the home page
         if(!Auth::check()) {
             return $next($request);
         }
         else {
-            return redirect()->route('home');
+            return redirect()->back();
         }
     }
 }

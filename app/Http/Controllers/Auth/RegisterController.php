@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Auth;
 
 use Auth;
 use Hash;
@@ -20,6 +20,7 @@ use App\Notifications\RegisterEmailVerification;
 
 class RegisterController extends Controller
 {
+
     public function sendVerificatioinEmail(Request $request) {
         $email = $request->session()->get('registerDataStudent')['email'];
         $firstName = $request->session()->get('registerDataStudent')['first-name'];
@@ -35,8 +36,12 @@ class RegisterController extends Controller
         );
     }
 
+
+
+
+    // first page of student register
     public function indexStudent1(Request $request) {
-        return view('admin.register_student_1');
+        return view('auth.register_student_1');
     }
 
     // register using password (not Google)
@@ -60,12 +65,17 @@ class RegisterController extends Controller
             ]
         ]);
 
-
-        // TOTEST
         // email must not be registered as a student before
         $request->validate([
             'email' => [new NotExistStudent]
         ]);
+
+        // if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
+        if(User::where('email', '=', $request->input('email'))->where('is_tutor', true)->count() != 0) {
+            echo "<h1>if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him</h1>";
+            dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
+        }
+
 
         // clear all the session data for safety concerns (no one can play around with the email verification process)
         $request->session()->flush();
@@ -88,7 +98,7 @@ class RegisterController extends Controller
     }
 
     public function indexStudent2(Request $request) {
-        return view('admin.register_student_2');
+        return view('auth.register_student_2');
     }
 
     public function storeStudent2(Request $request) {
@@ -113,7 +123,7 @@ class RegisterController extends Controller
             ]
         ]);
 
-        // users must not go to this page if they did not fill in the basic information in step 1
+        // users would not be able to not submit their information in the step if they did not fill in the basic information in step 1
         if(!$request->session()->has('registerDataStudent')) {
             return redirect()->back();
         }
@@ -124,15 +134,17 @@ class RegisterController extends Controller
     }
 
     public function indexStudent3() {
-        return view('admin.register_student_3');
+        return view('auth.register_student_3');
     }
 
     public function storeStudent3(Request $request) {
         $studentData = $request->session()->get('registerDataStudent');
 
-        // session emailVerifiedStudent exists only if the student did all the previous steps
+        // session emailVerifiedStudent exists only if the student did all the previous steps, including with Google
         if(!$request->session()->has('emailVerifiedStudent')) {
-            return redirect()->back();
+            return redirect()->back()->with([
+                'errorMsg' => 'Something went wrong with your registration process either because your information is not yet verified or you already created the account.'
+            ]);
         }
 
         $request->validate([
@@ -158,7 +170,7 @@ class RegisterController extends Controller
         // TODO: create the user
         $user = new User();
 
-        // validate the data
+        // stores the data
         if($request->input('first-major')) {
 
         }
@@ -166,6 +178,9 @@ class RegisterController extends Controller
 
         }
         if($request->input('school-year')) {
+
+        }
+        if($studentData['google-id']) {
 
         }
 
@@ -176,7 +191,7 @@ class RegisterController extends Controller
 
 
         return redirect()->route('home')->with([
-            'successMsg' => 'registerSuccess'
+            'successMsg' => 'You successfully registered!'
         ]);
     }
 
