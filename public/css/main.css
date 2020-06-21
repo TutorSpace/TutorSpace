@@ -11142,7 +11142,7 @@ html {
   font-size: 62.5%;
 }
 
-@media only screen and (max-width: 90em) {
+@media only screen and (max-width: 100em) {
   html {
     font-size: 56.25%;
   }
@@ -11733,12 +11733,6 @@ svg.bookmark:hover {
   visibility: hidden;
 }
 
-@media only screen and (max-width: 35.99em) {
-  .select2 {
-    height: 6rem !important;
-  }
-}
-
 .selection .select2-selection {
   height: 100%;
 }
@@ -11772,10 +11766,6 @@ svg.bookmark:hover {
   .select2-container * {
     font-size: 1.4rem;
   }
-}
-
-.select2-container .select2-results__options {
-  font-size: 2rem !important;
 }
 
 .index-left-container,
@@ -11850,32 +11840,39 @@ svg.bookmark:hover {
   display: flex;
   -webkit-animation: fade-in-animation 1.5s;
           animation: fade-in-animation 1.5s;
+  padding: 0 8rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 90em) {
+@media only screen and (max-width: 100em) {
   .signup {
-    width: 900px;
+    padding: 0 14rem;
   }
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 74.99em) {
   .signup {
-    width: 100%;
+    padding: 0 8rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .signup {
+    padding: 0 3rem;
   }
 }
 
 .signup .signup__heading {
   text-align: center;
-  margin-top: 5.5rem;
+  margin-top: 3.5rem;
 }
 
-@media only screen and (max-width: 90em) {
+@media only screen and (max-width: 61.99em) {
   .signup .signup__heading {
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 }
 
@@ -11886,13 +11883,7 @@ svg.bookmark:hover {
 }
 
 .signup--left .signup__heading {
-  padding: 0 7rem;
-}
-
-@media only screen and (max-width: 90em) {
-  .signup--left .signup__heading {
-    padding: 0 4rem;
-  }
+  padding: 0 4rem;
 }
 
 .signup--left .signup__heading {
@@ -12041,9 +12032,16 @@ svg.bookmark:hover {
   visibility: hidden;
 }
 
+@media only screen and (max-width: 100em) {
+  .signup-form-input-normal {
+    height: 5rem;
+  }
+}
+
 @media only screen and (max-width: 35.99em) {
   .signup-form-input-normal {
     font-size: 2rem;
+    height: 6rem;
     padding-left: 4rem;
   }
 }
@@ -12063,11 +12061,24 @@ svg.bookmark:hover {
   overflow: hidden;
   border: 3px solid;
   border-radius: 1.2rem;
-  height: 6.2rem;
+  height: 5.5rem;
+}
+
+@media only screen and (max-width: 100em) {
+  .signup .select-container {
+    height: 5rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .signup .select-container {
+    height: 6rem;
+  }
 }
 
 .signup .select-container .input-group-prepend {
   width: 6rem;
+  height: 100%;
   background-color: #0075E0;
   display: flex;
   align-items: center;
@@ -12166,21 +12177,30 @@ svg.bookmark:hover {
 
 .login {
   display: flex;
+  -webkit-animation: fade-in-animation 1.5s;
+          animation: fade-in-animation 1.5s;
+  padding: 0 8rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-@media only screen and (max-width: 90em) {
+@media only screen and (max-width: 100em) {
   .login {
-    width: 900px;
+    padding: 0 14rem;
   }
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 74.99em) {
   .login {
-    width: 100%;
+    padding: 0 8rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .login {
+    padding: 0 3rem;
   }
 }
 
@@ -12216,6 +12236,7 @@ svg.bookmark:hover {
 
 .login--left .login__heading {
   margin-top: 3rem;
+  padding: 0 3rem;
   white-space: nowrap;
 }
 
@@ -12236,7 +12257,7 @@ svg.bookmark:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 5rem;
+  padding: 0 4rem;
 }
 
 .login--right-student {
@@ -12255,12 +12276,6 @@ svg.bookmark:hover {
 
 .login form > :not(:first-child) {
   margin-top: 4rem;
-}
-
-@media only screen and (max-width: 35.99em) {
-  .login form > :not(:first-child) {
-    margin-top: 3rem;
-  }
 }
 
 .login-form-input {
@@ -12321,9 +12336,15 @@ svg.bookmark:hover {
   visibility: hidden;
 }
 
+@media only screen and (max-width: 100em) {
+  .login-form-input-normal {
+    height: 5rem;
+  }
+}
+
 @media only screen and (max-width: 35.99em) {
   .login-form-input-normal {
-    font-size: 1.8rem;
+    font-size: 2rem;
     height: 6rem;
     padding-left: 4rem;
   }
@@ -12339,7 +12360,7 @@ svg.bookmark:hover {
 }
 
 .login .btn-login {
-  height: 7rem;
+  height: 6rem;
   font-size: 2.4rem;
   width: 30rem;
   border-radius: 5rem;

@@ -116,6 +116,10 @@ $('input').filter('[required]').on('input', function () {
     if (isStudent) $('.btn-next').removeClass('btn-student');else $('.btn-next').removeClass('btn-tutor');
     $('.btn-next').addClass('bg-grey');
   }
+});
+$('svg').click(function () {
+  var route = $(this).attr('data-back-href');
+  if (route) window.location.href = route;
 }); //  ========================= register student 2 ===========================
 
 (function () {

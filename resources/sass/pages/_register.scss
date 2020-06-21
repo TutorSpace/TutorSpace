@@ -1,42 +1,41 @@
 .body-signup {
     position: relative;
     height: 100vh;
-    // min-height: 750px;
-
-    @include respond(md) {
-        // min-height: 700px;
-    }
-
-    @include respond(extra-sm) {
-        // min-height: unset;
-    }
 }
-
-// .signup-animation {
-//     transition: all 3s;
-//     transform: translate(calc(-50% + 500vw), -50%) !important;
-// }
 
 .signup {
     display: flex;
     animation: fade-in-animation 1.5s;
+    padding: 0 8rem;
+
+    @include respond(lg-2) {
+        padding: 0 14rem;
+    }
+
+    @include respond(lg) {
+        padding: 0 8rem;
+    }
+
+    @include respond(sm) {
+        padding: 0 3rem;
+    }
 
     @include absCenter;
 
-    // overwriting bootstrap container breakpoints
-    @include respond(mb-13) {
-        width: 900px;
-    }
-    @include respond(extra-sm) {
-        width: 100%;
-    }
+    // // overwriting bootstrap container breakpoints
+    // @include respond(lg-2) {
+    //     width: 900px;
+    // }
+    // @include respond(extra-sm) {
+    //     width: 100%;
+    // }
 
     .signup__heading {
         text-align: center;
-        margin-top: 5.5rem;
+        margin-top: 3.5rem;
 
-        @include respond(mb-13) {
-            margin-top: 4rem;
+        @include respond(md) {
+            margin-top: 5rem;
         }
     }
 
@@ -48,11 +47,7 @@
 
     &--left {
         .signup__heading {
-            padding: 0 7rem;
-
-            @include respond(mb-13) {
-                padding: 0 4rem;
-            }
+            padding: 0 4rem;
         }
 
         .signup__heading {
@@ -174,8 +169,13 @@
                 }
             }
 
+            @include respond(lg-2) {
+                height: 5rem;
+            }
+
             @include respond(extra-sm) {
                 font-size: 2rem;
+                height: 6rem;
                 padding-left: 4rem;
             }
         }
@@ -196,10 +196,20 @@
         overflow: hidden;
         border: 3px solid;
         border-radius: 1.2rem;
-        height: 6.2rem;
+        height: 5.5rem;
+
+        @include respond(lg-2) {
+            height: 5rem;
+        }
+
+        @include respond(extra-sm) {
+            height: 6rem;
+        }
+
 
         .input-group-prepend {
             width: 6rem;
+            height: 100%;
             background-color: $color-blue-secondary;
             display: flex;
             align-items: center;

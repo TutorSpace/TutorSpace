@@ -5,10 +5,6 @@
     * {
         visibility: hidden;
     }
-
-    @include respond(extra-sm) {
-        height: 6rem !important;
-    }
 }
 
 .selection {
@@ -46,10 +42,6 @@
         @include respond(extra-sm) {
             font-size: 1.4rem;
         }
-    }
-
-    .select2-results__options {
-        font-size: 2rem !important;
     }
 }
 

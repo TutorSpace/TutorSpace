@@ -1,28 +1,28 @@
 .body-login {
     position: relative;
     height: 100vh;
-    // min-height: 750px;
-
-    @include respond(md) {
-        // min-height: 700px;
-    }
-
-    @include respond(extra-sm) {
-        // min-height: unset;
-    }
 }
 
 .login {
     display: flex;
+    animation: fade-in-animation 1.5s;
+    padding: 0 8rem;
+
+    @include respond(lg-2) {
+        padding: 0 14rem;
+    }
+
+    @include respond(lg) {
+        padding: 0 8rem;
+    }
+
+    @include respond(sm) {
+        padding: 0 3rem;
+    }
+
+
     @include absCenter;
 
-    // overwriting bootstrap container breakpoints
-    @include respond(mb-13) {
-        width: 900px;
-    }
-    @include respond(extra-sm) {
-        width: 100%;
-    }
 
     .login__heading {
         text-align: left;
@@ -59,6 +59,7 @@
 
         .login__heading {
             margin-top: 3rem;
+            padding: 0 3rem;
             white-space: nowrap;
         }
 
@@ -76,7 +77,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 5rem;
+        padding: 0 4rem;
 
         &__logo {
 
@@ -100,10 +101,6 @@
 
         > :not(:first-child) {
             margin-top: 4rem;
-
-            @include respond(extra-sm) {
-                margin-top: 3rem;
-            }
         }
     }
 
@@ -134,8 +131,12 @@
                 }
             }
 
+            @include respond(lg-2) {
+                height: 5rem;
+            }
+
             @include respond(extra-sm) {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 height: 6rem;
                 padding-left: 4rem;
             }
@@ -152,7 +153,7 @@
     }
 
     .btn-login {
-        height: 7rem;
+        height: 6rem;
         font-size: 2.4rem;
         width: 30rem;
         border-radius: 5rem;
