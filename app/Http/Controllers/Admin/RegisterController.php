@@ -14,10 +14,28 @@ use App\Rules\NotExistStudent;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\RegisterEmailVerification;
+
 
 class RegisterController extends Controller
 {
-    public function indexStudent1() {
+    public function sendVerificatioinEmail(Request $request) {
+        $email = $request->session()->get('registerDataStudent')['email'];
+        $firstName = $request->session()->get('registerDataStudent')['first-name'];
+        $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $request->session()->put('verificationCodeStudent', $verificationCode);
+        Notification::route('mail', $email)
+            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+
+        return response()->json(
+            [
+                'successMsg' => 'Successfully sent the email!'
+            ]
+        );
+    }
+
+    public function indexStudent1(Request $request) {
         return view('admin.register_student_1');
     }
 
@@ -42,14 +60,29 @@ class RegisterController extends Controller
             ]
         ]);
 
-        // email must not be registered as a student before
+
         // TOTEST
+        // email must not be registered as a student before
         $request->validate([
             'email' => [new NotExistStudent]
         ]);
 
+        // clear all the session data for safety concerns (no one can play around with the email verification process)
+        $request->session()->flush();
+
         // validate the information and stores in the session
-        $request->session()->put('registerData', $request->all());
+        $request->session()->put('registerDataStudent', $request->all());
+
+
+        // email verification
+        $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $request->session()->put('verificationCodeStudent', $verificationCode);
+        Notification::route('mail', $request->input('email'))
+            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+
+        // for testing only preview the notification
+        // return (new RegisterEmailVerification("123abc"))
+        //     ->toMail(User::find(1));
 
         return redirect()->route('register.index.student.2');
     }
@@ -58,28 +91,93 @@ class RegisterController extends Controller
         return view('admin.register_student_2');
     }
 
-    public function storeStudent2() {
-        // TODO: validate the information and stores in the session
-        if(true) {
-            return redirect()->route('register.index.student.3');
-        }
-        else {
+    public function storeStudent2(Request $request) {
+        $verificationCode = $request->session()->get('verificationCodeStudent');
+        // validate the information
+        $request->validate([
+            'code-1' => [
+                'required',
+                Rule::in([$verificationCode[0]])
+            ],
+            'code-2' => [
+                'required',
+                Rule::in([$verificationCode[1]])
+            ],
+            'code-3' => [
+                'required',
+                Rule::in([$verificationCode[2]])
+            ],
+            'code-4' => [
+                'required',
+                Rule::in([$verificationCode[3]])
+            ]
+        ]);
 
+        // users must not go to this page if they did not fill in the basic information in step 1
+        if(!$request->session()->has('registerDataStudent')) {
+            return redirect()->back();
         }
+
+        $request->session()->put('emailVerifiedStudent', true);
+
+        return redirect()->route('register.index.student.3');
     }
 
     public function indexStudent3() {
         return view('admin.register_student_3');
     }
 
-    public function storeStudent3() {
-        // TODO: validate the information and create the user
-        if(true) {
-            dd('success');
+    public function storeStudent3(Request $request) {
+        $studentData = $request->session()->get('registerDataStudent');
+
+        // session emailVerifiedStudent exists only if the student did all the previous steps
+        if(!$request->session()->has('emailVerifiedStudent')) {
+            return redirect()->back();
         }
-        else {
+
+        $request->validate([
+            "first-major" => [
+                'nullable',
+                'exists:majors,major'
+            ],
+            "second-major" => [
+                'nullable',
+                'exists:majors,major'
+            ],
+            "school-year" => [
+                'nullable',
+                'exists:school_years,school_year'
+            ]
+        ]);
+
+
+        echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
+        dd("success");
+
+
+        // TODO: create the user
+        $user = new User();
+
+        // validate the data
+        if($request->input('first-major')) {
 
         }
+        if($request->input('second-major')) {
+
+        }
+        if($request->input('school-year')) {
+
+        }
+
+        // clear all the session data
+        $request->session()->flush();
+
+        // TODO: login the user
+
+
+        return redirect()->route('home')->with([
+            'successMsg' => 'registerSuccess'
+        ]);
     }
 
     // public function show() {

@@ -16,6 +16,9 @@ Route::group([
     'prefix' => 'admin'
 ], function () {
     // =============== register =============
+    // send verification email
+    Route::get('/register/send-verification-email', 'Admin\RegisterController@sendVerificatioinEmail');
+
     Route::get('/register/student/1', 'Admin\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
     Route::post('/register/student/1', 'Admin\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
 
@@ -24,6 +27,8 @@ Route::group([
 
     Route::get('/register/student/3', 'Admin\RegisterController@indexStudent3')->name('register.index.student.3')->middleware(['checkLogout']);
     Route::post('/register/student/3', 'Admin\RegisterController@storeStudent3')->name('register.store.student.3')->middleware(['checkLogout']);
+
+
 
     // =============== login ===============
     Route::get('/login/student', 'Admin\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);

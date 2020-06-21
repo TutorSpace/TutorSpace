@@ -5,6 +5,11 @@
 bg-grey-light body-signup
 @endsection
 
+@php
+    // dd(session()->all());
+@endphp
+
+
 @section('content')
 <div class="container signup">
 
@@ -31,18 +36,23 @@ bg-grey-light body-signup
             </p>
 
             <div class="form-group-4">
-                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-1" value="{{ old('code-1') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-2" value="{{ old('code-2') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-3" value="{{ old('code-3') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-4" value="{{ old('code-4') }}" maxlength="1" required>
             </div>
+            @if ($errors->any())
+                <p class="fs-1-4 fc-red mt-1">
+                    The verification code is either incorrect or timed out. Please verify the code or send another verification email.
+                </p>
+            @endif
 
             <p class="resend-email">
                 Didn't get the code? <button class="btn btn-link btn-link-student" id="resend-code" type="button">Resend code</button>
                 <span id="timeLabel"></span>
             </p>
 
-            <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
+            <div class="signup-container-bottom mt-5 p-relative">
                 <span class="fs-2 fc-grey p-relative left-n-2 inline-grid">
                     Questions? Email us at
                     <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-student">tutorspaceusc@gmail.com</a>

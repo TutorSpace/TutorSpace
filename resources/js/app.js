@@ -1,7 +1,17 @@
 require('./bootstrap');
 require('select2');
+window.toastr = require('toastr');
+
+
+
 
 $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $('select').each(function(idx, ele) {
         if($(this).find('option:selected').prop('disabled')){
             //Selected option is disabled

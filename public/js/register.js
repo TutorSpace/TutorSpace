@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -116,8 +116,7 @@ $('input').filter('[required]').on('input', function () {
     if (isStudent) $('.btn-next').removeClass('btn-student');else $('.btn-next').removeClass('btn-tutor');
     $('.btn-next').addClass('bg-grey');
   }
-});
-$(document).ready(function () {}); //  ========================= register student 2 ===========================
+}); //  ========================= register student 2 ===========================
 
 (function () {
   var totalSeconds = 30;
@@ -132,12 +131,33 @@ $(document).ready(function () {}); //  ========================= register studen
   //     });
   // };
 
+  function startTimeLabel() {
+    $('#timeLabel').html(pad(totalSeconds));
+    currentTimeInterval = setInterval(setTime, 1000);
+    $('#resend-code').prop('disabled', true);
+  }
+
   $('#resend-code').click(function () {
-    // TODO: using ajax to send the email
+    alert("no.................");
+
     if (!currentTimeInterval) {
-      $('#timeLabel').html(pad(totalSeconds));
-      currentTimeInterval = setInterval(setTime, 1000);
-      $(this).prop('disabled', true);
+      // use ajax to send the email
+      alert("here");
+      $.ajax({
+        type: 'GET',
+        url: "/admin/register/send-verification-email",
+        data: {},
+        success: function success(data) {
+          var successMsg = data.successMsg;
+          toastr.success(successMsg);
+          console.log("success");
+        },
+        error: function error(_error) {
+          console.log(_error);
+          toastr.error(_error);
+        }
+      });
+      startTimeLabel();
     }
   });
 
@@ -185,7 +205,7 @@ $(document).ready(function () {}); //  ========================= register studen
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**********************************************!*\
   !*** multi ./resources/js/admin/register.js ***!
   \**********************************************/

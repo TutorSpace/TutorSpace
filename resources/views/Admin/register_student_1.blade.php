@@ -36,6 +36,11 @@ bg-grey-light body-signup
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
+                    @error('first-name')
+                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="p-relative">
@@ -43,6 +48,11 @@ bg-grey-light body-signup
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
+                    @error('last-name')
+                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                            {{ $message }}
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -51,6 +61,11 @@ bg-grey-light body-signup
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
+                @error('email')
+                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
             <div class="p-relative">
@@ -58,17 +73,26 @@ bg-grey-light body-signup
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
+                @error('password')
+                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                        {{ $message }}
+                    </span>
+                @enderror
             </div>
 
-            <div class="d-flex justify-content-center mt-sm-5 mt-3">
+            <div class="d-flex justify-content-center mt-5">
                 <hr>
             </div>
 
-            <div class="d-flex justify-content-center mt-sm-5 mt-3">
+            <div class="d-flex justify-content-center mt-5 p-relative">
+                {{-- to display the google register error --}}
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 mt-2 fc-red" id="googleRegisterError">
+                </span>
+                {{-- google button --}}
                 <div id="btn-google-signup"></div>
             </div>
 
-            <div class="signup-container-bottom mt-sm-5 mt-3">
+            <div class="signup-container-bottom mt-4">
 
                 {{-- btn-next --}}
                 <button class="btn btn-next bg-grey">

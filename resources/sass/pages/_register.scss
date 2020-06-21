@@ -120,10 +120,6 @@
 
         > *:not(:first-child) {
             margin-top: 4rem;
-
-            @include respond(extra-sm) {
-                margin-top: 3rem;
-            }
         }
 
         hr {
@@ -179,8 +175,7 @@
             }
 
             @include respond(extra-sm) {
-                font-size: 1.8rem;
-                height: 6rem;
+                font-size: 2rem;
                 padding-left: 4rem;
             }
         }

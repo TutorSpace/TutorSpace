@@ -30,13 +30,11 @@ bg-grey-light body-signup select2-bg-student
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4">
-                      <option selected disabled class="fc-grey">Major</option>
-                      <option value="1">Computer Science</option>
-                      <option value="2">Mathematics</option>
-                      <option value="3">Design</option>
-                      <option value="4">Communication</option>
-                      <option value="5">Business Administration</option>
+                    <select class="custom-select pl-4" name="first-major">
+                        <option selected disabled class="fc-grey">Major</option>
+                        @foreach (App\Major::all() as $major)
+                            <option value="{{ $major->major }}">{{ $major->major }}</option>
+                        @endforeach
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -47,13 +45,11 @@ bg-grey-light body-signup select2-bg-student
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4">
-                        <option selected disabled class="fc-grey">Minor</option>
-                        <option value="1">Information Technology</option>
-                        <option value="2">Mathematics</option>
-                        <option value="3">Design</option>
-                        <option value="4">Communication</option>
-                        <option value="5">Business Administration</option>
+                    <select class="custom-select pl-4" name="second-major">
+                        <option selected disabled class="fc-grey">Second Major (optional)</option>
+                        @foreach (App\Major::all() as $major)
+                            <option value="{{ $major->major }}">{{ $major->major }}</option>
+                        @endforeach
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -63,13 +59,11 @@ bg-grey-light body-signup select2-bg-student
                 </div>
             </div>
             <div class="input-group select-container p-relative">
-                <select class="custom-select pl-4">
-                  <option selected disabled class="fc-grey">Class Standing</option>
-                  <option value="1">Freshman</option>
-                  <option value="2">Sophomore</option>
-                  <option value="3">Junior</option>
-                  <option value="4">Senior</option>
-                  <option value="5">Graduate</option>
+                <select class="custom-select pl-4" name="school-year">
+                    <option selected disabled class="fc-grey">Class Standing</option>
+                    @foreach (App\School_year::all() as $schoolYear)
+                        <option value="{{ $schoolYear->school_year }}">{{ $schoolYear->school_year }}</option>
+                    @endforeach
                 </select>
                 <div class="input-group-prepend">
                     <svg>
@@ -78,7 +72,7 @@ bg-grey-light body-signup select2-bg-student
                 </div>
               </div>
 
-            <div class="signup-container-bottom mt-sm-5 mt-3 p-relative">
+            <div class="signup-container-bottom mt-5 p-relative">
                 <a href="/test" class="btn btn-link-student p-relative left-n-2 inline-grid" id="btn-skip">Skip</a>
                 {{-- btn-next --}}
                 <button class="btn btn-next btn-next-animation btn-student ml-auto">

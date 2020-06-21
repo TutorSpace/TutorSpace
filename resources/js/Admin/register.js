@@ -32,10 +32,6 @@ $('input').filter('[required]').on('input', function () {
 });
 
 
-$(document).ready(function() {
-
-});
-
 
 
 
@@ -56,15 +52,33 @@ $(document).ready(function() {
     //     });
     // };
 
+    function startTimeLabel() {
+        $('#timeLabel').html(pad(totalSeconds));
+        currentTimeInterval = setInterval(setTime, 1000);
+        $('#resend-code').prop('disabled', true);
+    }
+
     $('#resend-code').click(function () {
-        // TODO: using ajax to send the email
-
         if (!currentTimeInterval) {
-            $('#timeLabel').html(pad(totalSeconds));
-            currentTimeInterval = setInterval(setTime, 1000);
-            $(this).prop('disabled', true);
-        }
+            // use ajax to send the email
+            $.ajax({
+                type:'GET',
+                url: `/admin/register/send-verification-email`,
+                data: {
 
+                },
+                success: (data) => {
+                    let { successMsg } = data;
+                    toastr.success(successMsg);
+                    console.log("success");
+                },
+                error: function(error) {
+                    console.log(error);
+                    toastr.error(error);
+                }
+            });
+            startTimeLabel();
+        }
     });
 
     function setTime() {
