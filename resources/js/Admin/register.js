@@ -52,6 +52,8 @@ $('input').filter('[required]').on('input', function () {
     //     });
     // };
 
+    startTimeLabel();
+
     function startTimeLabel() {
         $('#timeLabel').html(pad(totalSeconds));
         currentTimeInterval = setInterval(setTime, 1000);

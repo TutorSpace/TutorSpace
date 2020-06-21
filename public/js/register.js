@@ -131,6 +131,8 @@ $('input').filter('[required]').on('input', function () {
   //     });
   // };
 
+  startTimeLabel();
+
   function startTimeLabel() {
     $('#timeLabel').html(pad(totalSeconds));
     currentTimeInterval = setInterval(setTime, 1000);
@@ -138,11 +140,8 @@ $('input').filter('[required]').on('input', function () {
   }
 
   $('#resend-code').click(function () {
-    alert("no.................");
-
     if (!currentTimeInterval) {
       // use ajax to send the email
-      alert("here");
       $.ajax({
         type: 'GET',
         url: "/admin/register/send-verification-email",
