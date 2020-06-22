@@ -21,73 +21,22 @@ bg-grey-light body-signup select2-bg-tutor
             {{-- for fill --}}
             <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
         </svg>
-        <h2 class="signup__heading">Tell us more about yourself</h2>
+        <h2 class="signup__heading">You Want to be a Tutor for...</h2>
         <form action="{{ route('register.store.tutor.3') }}" method="POST">
             <p class="signup__notice">
                 @csrf
-                This will help us to find the best matching tutor for you!
+                No Worries! You can edit your hourly rate and course preference later in your profile.
             </p>
 
             <div class="p-relative">
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select" name="first-major" required>
-                        <option selected disabled class="fc-grey">Major</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-prepend">
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                        </svg>
-                    </div>
-                </div>
-                @error('first-major')
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $message }}
-                </span>
-                @enderror
-            </div>
-            <div class="p-relative">
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select" name="second-major">
-                        <option selected disabled class="fc-grey">Second Major (optional)</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-prepend">
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                        </svg>
-                    </div>
-                </div>
-                @error('second-major')
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $message }}
-                </span>
-                @enderror
-            </div>
-
-            <div class="multiple-inputs p-relative">
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select" name="school-year" required>
-                        <option selected disabled class="fc-grey">Class Standing</option>
-                        @foreach (App\School_year::all() as $schoolYear)
-                            <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-prepend">
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select" name="gpa" required>
-                        <option selected disabled class="fc-grey">GPA</option>
-                        @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
-                            <option value="{{ number_format($i, 2) }}">{{ number_format($i, 2) }}</option>
+                <div class="input-group select-container p-relative select-container-icon">
+                    <svg class="select-container__icon">
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
+                    </svg>
+                    <select class="custom-select" name="hourly-rate" required>
+                        <option selected disabled class="fc-grey">Hourly Rate</option>
+                        @for ($i = 10; $i <= 50; $i += 0.5)
+                            <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>
                     <div class="input-group-prepend">
@@ -96,25 +45,34 @@ bg-grey-light body-signup select2-bg-tutor
                         </svg>
                     </div>
                 </div>
-                @if ($errors->has('school-year'))
+                @error('hourly-rate')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first('school-year') }}
+                    {{ $message }}
                 </span>
-                @elseif ($errors->has('gpa'))
+                @enderror
+            </div>
+            <div class="p-relative">
+                <div class="input-group select-container p-relative select-container-icon">
+                    <svg class="select-container__icon">
+                        <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                    </svg>
+                    <select class="custom-select" name="courses" required>
+                        <option selected disabled class="fc-grey">Search by course number</option>
+                        @foreach (App\Course::all() as $course)
+                            <option value="{{ $course->id }}">{{ $course->course }}</option>
+                        @endforeach
+                    </select>
+                    <div class="input-group-prepend">
+                        <svg>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                        </svg>
+                    </div>
+                </div>
+                @error('courses')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first('gpa') }}
+                    {{ $message }}
                 </span>
-                @endif
-
-                {{-- <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input"
-                        placeholder="GPA" name="gpa" value="{{ old('gpa') }}" required>
-                    @error('gpa')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div> --}}
+                @enderror
             </div>
 
 

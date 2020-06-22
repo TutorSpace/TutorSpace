@@ -219,6 +219,33 @@
         }
     }
 
+    // for tutor's register 3 page with school year and gpa in the same row
+    .multiple-inputs {
+        display: flex;
+        // justify-content: space-between;
+
+        // height: 5.5rem;
+        // @include respond(lg-2) {
+        //     height: 5rem;
+        // }
+        // @include respond(extra-sm) {
+        //     height: 6rem;
+        // }
+        // > * {
+        //     // height: 100%;
+        //     flex: 0 0 calc(50% - 1rem);
+        // }
+
+        > :first-child {
+            margin-right: 2rem;
+            flex: 0 0 60%;
+        }
+
+        > :last-child {
+            flex: 1;
+        }
+    }
+
     // the container for selection input
     .select-container {
         overflow: hidden;
@@ -234,6 +261,21 @@
             height: 6rem;
         }
 
+        &-icon {
+            .select2-selection__rendered {
+                margin-left: 1.5rem;
+            }
+        }
+
+        &__icon {
+            position: absolute;
+            fill: $color-grey;
+            width: 2.2rem;
+            height: 2.2rem;
+            left: .5rem;
+            top: 48%;
+            transform: translateY(-50%);;
+        }
 
         .input-group-prepend {
             width: 6rem;

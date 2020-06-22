@@ -51,6 +51,7 @@ Route::group([
 
     Route::get('/register/tutor/3', 'Auth\RegisterController@indexTutor3')->name('register.index.tutor.3')->middleware(['checkLogout']);
     Route::post('/register/tutor/3', 'Auth\RegisterController@storeTutor3')->name('register.store.tutor.3')->middleware(['checkLogout']);
+    Route::get('/register/tutor/4', 'Auth\RegisterController@indexTutor4')->name('register.index.tutor.4')->middleware(['checkLogout']);
 
 
     // =============== login student ===============

@@ -30,7 +30,7 @@ bg-grey-light body-signup select2-bg-student
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4" name="first-major">
+                    <select class="custom-select" name="first-major">
                         <option selected disabled class="fc-grey">Major</option>
                         @foreach (App\Major::all() as $major)
                             <option value="{{ $major->id }}">{{ $major->major }}</option>
@@ -45,7 +45,7 @@ bg-grey-light body-signup select2-bg-student
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4" name="second-major">
+                    <select class="custom-select" name="second-major">
                         <option selected disabled class="fc-grey">Second Major (optional)</option>
                         @foreach (App\Major::all() as $major)
                             <option value="{{ $major->id }}">{{ $major->major }}</option>
@@ -59,7 +59,7 @@ bg-grey-light body-signup select2-bg-student
                 </div>
             </div>
             <div class="input-group select-container p-relative">
-                <select class="custom-select pl-4" name="school-year">
+                <select class="custom-select" name="school-year">
                     <option selected disabled class="fc-grey">Class Standing</option>
                     @foreach (App\School_year::all() as $schoolYear)
                         <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>

@@ -11516,6 +11516,10 @@ h2 {
   visibility: hidden;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .pl-0 {
   padding-left: 0;
 }
@@ -11610,6 +11614,10 @@ h2 {
 
 .left-n-2 {
   left: -2rem;
+}
+
+.flex-2 > * {
+  flex: 0 0 calc(50% - 1rem);
 }
 
 .ws-no-wrap {
@@ -12171,6 +12179,19 @@ svg.bookmark:hover {
   }
 }
 
+.signup .multiple-inputs {
+  display: flex;
+}
+
+.signup .multiple-inputs > :first-child {
+  margin-right: 2rem;
+  flex: 0 0 60%;
+}
+
+.signup .multiple-inputs > :last-child {
+  flex: 1;
+}
+
 .signup .select-container {
   overflow: hidden;
   border: 3px solid;
@@ -12188,6 +12209,20 @@ svg.bookmark:hover {
   .signup .select-container {
     height: 6rem;
   }
+}
+
+.signup .select-container-icon .select2-selection__rendered {
+  margin-left: 1.5rem;
+}
+
+.signup .select-container__icon {
+  position: absolute;
+  fill: #A0A0A0;
+  width: 2.2rem;
+  height: 2.2rem;
+  left: 0.5rem;
+  top: 48%;
+  transform: translateY(-50%);
 }
 
 .signup .select-container .input-group-prepend {
