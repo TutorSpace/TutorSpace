@@ -22,14 +22,6 @@
 
     @include absCenter;
 
-    // // overwriting bootstrap container breakpoints
-    // @include respond(lg-2) {
-    //     width: 900px;
-    // }
-    // @include respond(extra-sm) {
-    //     width: 100%;
-    // }
-
     .signup__heading {
         text-align: center;
         margin-top: 3.5rem;

@@ -13,24 +13,39 @@ bg-grey-light body-login
 @section('content')
 <div class="container login">
     <div class="login--left login--left-student">
-        <form action="#" method="POST">
+        <form action="{{ route('login.store.student') }}" method="POST">
             @csrf
             <h2 class="login__heading">Student Login</h2>
 
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email"
+                <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
+                @if($errors->any())
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $errors->first() }}
+                </span>
+                @endif
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control login-form-input login-form-input-normal"
+                <input type="password" class="form-control login-form-input login-form-input-normal" name="password"
                     placeholder="Password" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
+                @error('password')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
+                @if(session('passwordError'))
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ session('passwordError') }}
+                </span>
+                @endif
             </div>
 
             <div class="text-center">
@@ -63,7 +78,7 @@ bg-grey-light body-login
         </svg>
         <div class="d-flex justify-content-center btn-google-container">
             {{-- google button --}}
-            <div id="btn-google-signup"></div>
+            <div id="btn-google" class="btn-google"></div>
         </div>
     </div>
 </div>
@@ -88,20 +103,19 @@ bg-grey-light body-login
         renderButton();
     });
 
-    $('#btn-google-signup').click(function (e) {
-        e.preventDefault();
+    $('#btn-google').click(function (e) {
+        e.stopPropagation();
+        window.location.href = '{{ route('login.google.student') }}';
     });
 
     function renderButton() {
-        gapi.signin2.render('btn-google-signup', {
+        gapi.signin2.render('btn-google', {
             'scope': 'profile email',
             'width': googleBtnWidth,
             'height': googleBtnHeight,
             'longtitle': true,
-            'theme': 'light',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-        })
+            'theme': 'light'
+        });
     }
 
     function adjustGoogleBtnSize() {
@@ -114,48 +128,6 @@ bg-grey-light body-login
         } else {
             googleBtnWidth = 240;
             googleBtnHeight = 50;
-        }
-    }
-
-    function onSuccess(googleUser) {
-        console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        console.log("======================== User Profile =======================");
-        console.log(profile);
-        console.log("===============================================");
-
-        // Do not use the Google IDs returned by getId() or the user's profile information to communicate the currently signed in user to your backend server. Instead, send ID tokens, which can be securely validated on the server.
-        console.log("ID: " + profile.getId());
-
-        console.log('Full Name: ' + profile.getName());
-        console.log('Given Name: ' + profile.getGivenName());
-        console.log('Family Name: ' + profile.getFamilyName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
-
-    }
-
-    function onFailure(error) {
-        console.log(error);
-    }
-
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-
-        // if not signed in
-        if (!auth2.isSignedIn.get()) {
-            var profile = auth2.currentUser.get().getBasicProfile();
-            alert("You are not signed in!");
-        } else {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-                console.log('User signed out.');
-            });
         }
     }
 

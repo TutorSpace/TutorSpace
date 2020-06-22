@@ -95,8 +95,6 @@ bg-grey-light body-signup
             <div class="d-flex justify-content-center mt-5 p-relative">
                 {{-- google button --}}
                 <div id="btn-google" class="btn-google"></div>
-                {{-- <a href="{{ route('register.google.student') }}" class="btn btn-lg btn-primary btn-google"
-                id="btn-google">Google Sign In</a> --}}
             </div>
 
             <div class="signup-container-bottom mt-4">

@@ -29,8 +29,7 @@ Route::group([
     // ====================== register student =====================
     Route::get('/register/student/1', 'Auth\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
     Route::post('/register/student/1', 'Auth\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
-    Route::get('register/google/student', 'Auth\GoogleController@redirectToGoogleStudent')->name('register.google.student')->middleware(['checkLogout']);
-
+    Route::get('register/google/student', 'Auth\GoogleController@registerRedirectToGoogleStudent')->name('register.google.student')->middleware(['checkLogout']);
 
     Route::get('/register/student/2', 'Auth\RegisterController@indexStudent2')->name('register.index.student.2')->middleware(['checkLogout']);
     Route::post('/register/student/2', 'Auth\RegisterController@storeStudent2')->name('register.store.student.2')->middleware(['checkLogout']);
@@ -42,8 +41,11 @@ Route::group([
 
 
 
-    // =============== login ===============
+    // =============== login student ===============
     Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);
+    Route::post('/login/student', 'Auth\LoginController@storeStudent')->name('login.store.student')->middleware(['checkLogout']);
+    Route::get('login/google/student', 'Auth\GoogleController@loginRedirectToGoogleStudent')->name('login.google.student')->middleware(['checkLogout']);
+
 
 
 });

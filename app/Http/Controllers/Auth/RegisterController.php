@@ -189,7 +189,9 @@ class RegisterController extends Controller
 
         $user->first_name = $studentData['first-name'];
         $user->last_name = $studentData['last-name'];
-        // TODO: comment back and make database email field not null!
+        $user->is_tutor = false;
+
+        // todo: comment back and set email in db to not null
         // $user->email = $studentData['email'];
         $user->save();
 
@@ -198,8 +200,6 @@ class RegisterController extends Controller
 
         // login the user
         Auth::login($user);
-
-        dd(Auth::user()->getAttributes());
 
         return redirect()->route('home')->with([
             'registerSuccess' => true

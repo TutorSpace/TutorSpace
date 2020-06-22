@@ -18,43 +18,39 @@ class LoginController extends Controller
         return redirect()->route('index');
     }
 
-    // public function show() {
-    //     return view('authenticate.show_login');
-    // }
+    // log in the student with password
+    public function storeStudent(Request $request) {
+        $request->validate([
+            'email' => [
+                'required',
+                'email:rfc',
+                'exists:users,email'
+            ],
+            'password' => [
+                'required'
+            ]
+        ]);
 
-    // public function login(Request $request) {
+        // if this email does not have a student identity
+        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() == 0) {
+            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with email does not exist.']);
+        }
 
-    //     $request->validate([
-    //         'email' => [
-    //             'required',
-    //             'email:rfc',
-    //             'exists:users'
-    //         ],
-    //         'password' => [
-    //             'required'
-    //         ]
-    //     ]);
+        $credentials = $request->only('email', 'password');
 
-
-    //     $credentials = $request->only('email', 'password');
-
-    //     if (Auth::attempt($credentials)) {
-    //         // Authentication passed...
-    //         return redirect()->route('home');
-    //     }
-    //     else {
-    //         return redirect()->route('login')->with(
-    //             'loginError',
-    //             "Please check your email and password."
-    //         )->with('email', $request->input('email'));
-    //     }
-
-    // }
-
-    // public function logout() {
-    //     Auth::logout();
-    //     return redirect()->route('index');
-    // }
+        if (Auth::attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'is_tutor' => false])) {
+            // Authentication passed...
+            return redirect()->route('home');
+        }
+        else {
+            return redirect()->back()->withInput()->with([
+                'passwordError' => 'Your password is incorrect.'
+            ]);
+        }
+    }
 
 
 }

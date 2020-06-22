@@ -131,6 +131,8 @@ class testController extends Controller
 
         // event(new NewMessage('hi!'));
 
-        return view('test');
+        // return view('test');
+        Auth::logout();
+        // dd(Auth::user());
     }
 }

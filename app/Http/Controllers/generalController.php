@@ -15,6 +15,7 @@ class GeneralController extends Controller
 {
     // show the application index page
     public function index() {
+        dd(request()->session());
         return view('index');
     }
 

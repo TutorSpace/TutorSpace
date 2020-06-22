@@ -25,7 +25,8 @@ class EmailUSC implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(explode("@", $value)[1] !== 'usc.edu')
+        // todo: remove ucsd
+        if(explode("@", $value)[1] !== 'usc.edu' && explode("@", $value)[1] !== 'ucsd.edu')
             return false;
         return true;
     }
