@@ -62,9 +62,6 @@ bg-grey-light body-login
             </defs>
         </svg>
         <div class="d-flex justify-content-center btn-google-container">
-            {{-- to display the google register error --}}
-            <span class="fs-1-4 ws-no-wrap p-absolute bottom-100 mb-2 fc-red" id="googleRegisterError">
-            </span>
             {{-- google button --}}
             <div id="btn-google-signup"></div>
         </div>

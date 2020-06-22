@@ -38,6 +38,32 @@
     }
 }
 
+
+// google button
+.btn-google {
+    position: relative;
+    z-index: 0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+        z-index: 1;
+    }
+}
+
+
+
+
+
+
+
+
+
 .btn-animation-y {
     transition: all .2s;
 
@@ -45,6 +71,7 @@
         transform: translateY(-2px);
     }
 }
+
 
 
 .btn-close {

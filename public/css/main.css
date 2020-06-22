@@ -11638,6 +11638,22 @@ h2 {
   color: #003E77;
 }
 
+.btn-google {
+  position: relative;
+  z-index: 0;
+}
+
+.btn-google::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  z-index: 1;
+}
+
 .btn-animation-y {
   transition: all 0.2s;
 }

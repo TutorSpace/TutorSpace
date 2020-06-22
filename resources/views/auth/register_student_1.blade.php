@@ -17,65 +17,74 @@ bg-grey-light body-signup
     @include('auth.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
-        <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.student') }}">
+        <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+            data-back-href="{{ route('login.index.student') }}">
             {{-- for empty --}}
-            <path class="btn-close-empty" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-            <path class="btn-close-empty" fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
-            <path class="btn-close-empty" fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+            <path class="btn-close-empty" fill-rule="evenodd"
+                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path class="btn-close-empty" fill-rule="evenodd"
+                d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z" />
+            <path class="btn-close-empty" fill-rule="evenodd"
+                d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z" />
 
             {{-- for fill --}}
-            <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
+            <path class="btn-close-fill" fill-rule="evenodd"
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z" />
         </svg>
         <h2 class="signup__heading">Create Account</h2>
         <form action="{{ route('register.store.student.1') }}" method="POST">
             <div class="form-group-2">
                 @csrf
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="First Name" name="first-name" value="{{ old('first-name') }}" required>
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal"
+                        placeholder="First Name" name="first-name" value="{{ old('first-name') }}" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
                     @error('first-name')
-                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                            {{ $message }}
-                        </span>
+                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                        {{ $message }}
+                    </span>
                     @enderror
                 </div>
 
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal" placeholder="Last Name" name="last-name" value="{{ old('last-name') }}"required>
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal"
+                        placeholder="Last Name" name="last-name" value="{{ old('last-name') }}" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
                     </svg>
                     @error('last-name')
-                        <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                            {{ $message }}
-                        </span>
+                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                        {{ $message }}
+                    </span>
                     @enderror
                 </div>
             </div>
 
             <div class="p-relative">
-                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email" name="email" value="{{ old('email') }}" required>
+                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email"
+                    name="email" value="{{ old('email') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
                 @error('email')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
                 @enderror
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control signup-form-input signup-form-input-normal" placeholder="Password" name="password" value="{{ old('password') }}" required>
+                <input type="password" class="form-control signup-form-input signup-form-input-normal"
+                    placeholder="Password" name="password" value="{{ old('password') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
                 @error('password')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
                 @enderror
             </div>
 
@@ -84,12 +93,10 @@ bg-grey-light body-signup
             </div>
 
             <div class="d-flex justify-content-center mt-5 p-relative">
-                {{-- to display the google register error --}}
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 mt-2 fc-red" id="googleRegisterError">
-                </span>
                 {{-- google button --}}
-                <div id="btn-google"></div>
-                {{-- <a href="{{ route('register.google.student') }}" class="btn btn-lg btn-primary btn-google" id="btn-google">Google Sign In</a> --}}
+                <div id="btn-google" class="btn-google"></div>
+                {{-- <a href="{{ route('register.google.student') }}" class="btn btn-lg btn-primary btn-google"
+                id="btn-google">Google Sign In</a> --}}
             </div>
 
             <div class="signup-container-bottom mt-4">
@@ -125,8 +132,58 @@ bg-grey-light body-signup
 
 @section('js')
 <script>
+    let isStudent = true;
 
-let isStudent = true;
+    // ===================== Google auth ==========================
+    let googleBtnWidth = 240,
+        googleBtnHeight = 50;
+    adjustGoogleBtnSize();
+
+    $(window).resize(function () {
+        adjustGoogleBtnSize();
+        renderButton();
+    });
+
+    $('#btn-google').click(function (e) {
+        e.stopPropagation();
+        window.location.href = '{{ route('register.google.student') }}';
+    });
+
+
+    function renderButton() {
+        gapi.signin2.render('btn-google', {
+            'scope': 'profile email',
+            'width': googleBtnWidth,
+            'height': googleBtnHeight,
+            'longtitle': true,
+            'theme': 'dark'
+        })
+
+        let checkBtnAddedInterval = setInterval(() => {
+            _.forEach($('.abcRioButtonContents').children(), function (ele) {
+                if ($(ele).html() == 'Sign in with Google') {
+                    $(ele).html('Sign up with Google');
+                    clearInterval(checkBtnAddedInterval);
+                } else if ($(ele).html() == 'Signed in with Google') {
+                    $(ele).html('Signed up with Google');
+                    clearInterval(checkBtnAddedInterval);
+                }
+            });
+        }, 100);
+    }
+
+    function adjustGoogleBtnSize() {
+        if ($(window).width() < 400) {
+            googleBtnWidth = 165;
+            googleBtnHeight = 36;
+        } else if ($(window).width() < 576) {
+            googleBtnWidth = 200;
+            googleBtnHeight = 40;
+        } else {
+            googleBtnWidth = 240;
+            googleBtnHeight = 50;
+        }
+    }
 
 </script>
 
