@@ -3,9 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use App\User;
 
-class NotExistTutor implements Rule
+class EmailUSC implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,10 +25,9 @@ class NotExistTutor implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(User::where('email', '=', $value)->where('is_tutor', true)->count() == 0)
-            return true;
-
-        return false;
+        if(explode("@", $value)[1] !== 'usc.edu')
+            return false;
+        return true;
     }
 
     /**
@@ -39,6 +37,6 @@ class NotExistTutor implements Rule
      */
     public function message()
     {
-        return 'This email is already registered as a tutor.';
+        return 'Your email must be USC email.';
     }
 }

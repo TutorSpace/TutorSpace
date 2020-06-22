@@ -21,7 +21,9 @@ class CheckLogout
             return $next($request);
         }
         else {
-            return redirect()->back();
+            return redirect()->route('home')->with([
+                'errorMsg' => 'Please log out of your account first!'
+            ]);
         }
     }
 }

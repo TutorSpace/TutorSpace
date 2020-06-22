@@ -54,6 +54,18 @@ class GoogleController extends Controller
             ]);
         }
 
+        // if the user wants to register as a student and is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
+        if($request->session()->get('registerGoogleStudent') && User::where('email', '=', $user->email)->where('is_tutor', true)->count() != 0) {
+            echo "<h1>if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him</h1>";
+            dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
+        }
+
+        // if the user wants to register as a tutor and is registered as a student before, he should be redirected to the specific page that is specifically designed for him
+        if($request->session()->get('registerGoogleTutor') && User::where('email', '=', $user->email)->where('is_tutor', false)->count() != 0) {
+            echo "<h1>if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him</h1>";
+            dd("if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him");
+        }
+
         $redirectRouteName = $request->session()->get('redirectRouteName');
 
         $request->session()->flush();

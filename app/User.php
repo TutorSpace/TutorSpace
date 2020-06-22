@@ -39,9 +39,19 @@ class User extends Authenticatable
         return "$date $startTime";
     }
 
+    // to delete
     public function major() {
         return $this->belongsTo('App\Major');
     }
+
+    public function firstMajor() {
+        return $this->belongsTo('App\Major', 'first_major_id');
+    }
+
+    public function secondMajor() {
+        return $this->belongsTo('App\Major', 'second_major_id');
+    }
+
 
     public function school_year() {
         return $this->belongsTo('App\School_year');

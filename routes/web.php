@@ -17,16 +17,19 @@ Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show'
 Route::group([
     'prefix' => 'auth'
 ], function () {
+    // logout
+    Route::get('/logout', 'Auth\LoginController@logout')->middleware(['checkLogin']);
+
     // send verification email for register
-    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificatioinEmail');
+    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificatioinEmail')->middleware(['checkLogout']);
 
     // google callback for register & login
-    Route::get('callback', 'Auth\GoogleController@handleGoogleCallback');
+    Route::get('callback', 'Auth\GoogleController@handleGoogleCallback')->middleware(['checkLogout']);
 
     // ====================== register student =====================
     Route::get('/register/student/1', 'Auth\RegisterController@indexStudent1')->name('register.index.student.1')->middleware(['checkLogout']);
     Route::post('/register/student/1', 'Auth\RegisterController@storeStudent1')->name('register.store.student.1')->middleware(['checkLogout']);
-    Route::get('register/google/student', 'Auth\GoogleController@redirectToGoogleStudent')->name('register.google.student');
+    Route::get('register/google/student', 'Auth\GoogleController@redirectToGoogleStudent')->name('register.google.student')->middleware(['checkLogout']);
 
 
     Route::get('/register/student/2', 'Auth\RegisterController@indexStudent2')->name('register.index.student.2')->middleware(['checkLogout']);

@@ -38,7 +38,7 @@ bg-grey-light body-signup
             </div>
             @if ($errors->any())
                 <p class="fs-1-4 fc-red mt-1">
-                    The verification code is either incorrect or timed out. Please verify the code or send another verification email.
+                    The verification code is either <strong>incorrect</strong> or <strong>timed out</strong>. Please verify the code or send another verification email.
                 </p>
             @endif
 

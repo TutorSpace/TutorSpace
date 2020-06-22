@@ -8,12 +8,13 @@ use Hash;
 use App\User;
 use App\Major;
 use App\School_year;
+use App\Rules\EmailUSC;
 use App\Rules\NotExistTutor;
 use Illuminate\Http\Request;
 use App\Rules\NotExistStudent;
 use Illuminate\Validation\Rule;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RegisterEmailVerification;
 
@@ -65,9 +66,9 @@ class RegisterController extends Controller
             ]
         ]);
 
-        // email must not be registered as a student before
+        // email must not be registered as a student before and must be a USC email
         $request->validate([
-            'email' => [new NotExistStudent]
+            'email' => [new NotExistStudent, new EmailUSC]
         ]);
 
         // if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
@@ -150,48 +151,58 @@ class RegisterController extends Controller
         $request->validate([
             "first-major" => [
                 'nullable',
-                'exists:majors,major'
+                'exists:majors,id'
             ],
             "second-major" => [
                 'nullable',
-                'exists:majors,major'
+                'exists:majors,id'
             ],
             "school-year" => [
                 'nullable',
-                'exists:school_years,school_year'
+                'exists:school_years,id'
             ]
         ]);
 
 
         echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
-        dd("success");
-
 
         // TODO: create the user
         $user = new User();
 
         // stores the data
         if($request->input('first-major')) {
-
+            $user->firstMajor()->associate(Major::find($request->input('first-major')));
         }
         if($request->input('second-major')) {
-
+            $user->secondMajor()->associate(Major::find($request->input('second-major')));
         }
         if($request->input('school-year')) {
-
+            $user->school_year()->associate(School_year::find($request->input('school-year')));
         }
-        if($studentData['google-id']) {
 
+        if(isset($studentData['google-id'])) {
+            $user->google_id = $studentData['google-id'];
         }
+        else {
+            $user->password = Hash::make($studentData['password']);
+        }
+
+        $user->first_name = $studentData['first-name'];
+        $user->last_name = $studentData['last-name'];
+        // TODO: comment back and make database email field not null!
+        // $user->email = $studentData['email'];
+        $user->save();
 
         // clear all the session data
         $request->session()->flush();
 
-        // TODO: login the user
+        // login the user
+        Auth::login($user);
 
+        dd(Auth::user()->getAttributes());
 
         return redirect()->route('home')->with([
-            'successMsg' => 'You successfully registered!'
+            'registerSuccess' => true
         ]);
     }
 

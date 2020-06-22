@@ -22,8 +22,10 @@ class CheckLogin
             return $next($request);
         }
         else {
-            return redirect()->route('login');
+            return redirect()->route('index')->with([
+                'errorMsg' => 'Please log into your account first!'
+            ]);
         }
-        
+
     }
 }

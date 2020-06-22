@@ -41,6 +41,6 @@ class NotExistStudent implements Rule
      */
     public function message()
     {
-        return 'This Email is already registered.';
+        return 'This email is already registered as a student.';
     }
 }

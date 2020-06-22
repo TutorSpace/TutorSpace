@@ -88,8 +88,8 @@ bg-grey-light body-signup
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 mt-2 fc-red" id="googleRegisterError">
                 </span>
                 {{-- google button --}}
-                {{-- <div id="btn-google-signup"></div> --}}
-                <a href="{{ route('register.google.student') }}" class="btn btn-lg btn-primary btn-google" id="btn-google-signup">Google Sign In</a>
+                <div id="btn-google"></div>
+                {{-- <a href="{{ route('register.google.student') }}" class="btn btn-lg btn-primary btn-google" id="btn-google">Google Sign In</a> --}}
             </div>
 
             <div class="signup-container-bottom mt-4">

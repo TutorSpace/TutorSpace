@@ -13,6 +13,11 @@ class LoginController extends Controller
         return view('auth.login_student');
     }
 
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('index');
+    }
+
     // public function show() {
     //     return view('authenticate.show_login');
     // }
