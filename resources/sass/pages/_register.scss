@@ -50,6 +50,10 @@
             background-color: rgba($color-blue-primary, .8);
         }
 
+        &-tutor {
+            background-color: rgba($color-purple-primary, .8);
+        }
+
         @include respond(md) {
             display: none;
         }
@@ -81,6 +85,30 @@
 
             #btn-google .abcRioButtonBlue {
                 background-color: $color-blue-primary;
+            }
+        }
+
+        &-tutor {
+            color: $color-purple-secondary;
+
+            .signup-form-input {
+                border-color: $color-purple-secondary;
+
+                &:focus {
+                    border-color: $color-purple-secondary;
+                }
+
+                &-normal {
+                    &:focus {
+                        + svg {
+                            fill: $color-purple-secondary;
+                        }
+                    }
+                }
+            }
+
+            #btn-google .abcRioButtonBlue {
+                background-color: $color-purple-primary;
             }
         }
 
@@ -261,7 +289,6 @@
 
         #btn-skip {
             font-size: 2.4rem;
-            color: $color-blue-tertiary;
             text-decoration: underline;
             background-color: transparent;
 

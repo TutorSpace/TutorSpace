@@ -38,6 +38,6 @@ class EmailUSC implements Rule
      */
     public function message()
     {
-        return 'Your email must be USC email.';
+        return 'Your email must be a USC email.';
     }
 }

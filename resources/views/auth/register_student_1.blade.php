@@ -17,7 +17,7 @@ bg-grey-light body-signup
     @include('auth.partials.register_left_student')
 
     <div class="signup--right signup--right-student p-relative">
-        <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+        <svg class="btn-close fill-color-blue-secondary" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             data-back-href="{{ route('login.index.student') }}">
             {{-- for empty --}}
             <path class="btn-close-empty" fill-rule="evenodd"

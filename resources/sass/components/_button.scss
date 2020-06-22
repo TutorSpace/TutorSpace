@@ -26,6 +26,17 @@
     }
 }
 
+.btn-tutor {
+    color: $color-white;
+    background-color: $color-purple-primary;
+    transition: all .3s;
+
+    &:hover {
+        color: $color-white;
+        background-color: $color-purple-secondary;
+    }
+}
+
 // for buttons, use btn,btn-link,btn-link-*  || for anchors, use btn-link-*
 .btn-link-student {
     font-size: 2rem;
@@ -35,6 +46,17 @@
 
     &:hover {
         color: $color-blue-tertiary;
+    }
+}
+
+.btn-link-tutor {
+    font-size: 2rem;
+    font-weight: 500;
+    color: $color-purple-secondary;
+    transition: color .3s;
+
+    &:hover {
+        color: $color-purple-tertiary;
     }
 }
 

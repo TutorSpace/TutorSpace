@@ -38,13 +38,27 @@ Route::group([
     Route::post('/register/student/3', 'Auth\RegisterController@storeStudent3')->name('register.store.student.3')->middleware(['checkLogout']);
 
 
+    // ====================== register tutor =====================
+    Route::get('/register/tutor/1', 'Auth\RegisterController@indexTutor1')->name('register.index.tutor.1')->middleware(['checkLogout']);
+    Route::post('/register/tutor/1', 'Auth\RegisterController@storeTutor1')->name('register.store.tutor.1')->middleware(['checkLogout']);
+    Route::get('register/google/tutor', 'Auth\GoogleController@registerRedirectToGoogleTutor')->name('register.google.tutor')->middleware(['checkLogout']);
 
+    Route::get('/register/tutor/2', 'Auth\RegisterController@indexTutor2')->name('register.index.tutor.2')->middleware(['checkLogout']);
+    Route::post('/register/tutor/2', 'Auth\RegisterController@storeTutor2')->name('register.store.tutor.2')->middleware(['checkLogout']);
+
+    Route::get('/register/tutor/3', 'Auth\RegisterController@indexTutor3')->name('register.index.tutor.3')->middleware(['checkLogout']);
+    Route::post('/register/tutor/3', 'Auth\RegisterController@storeTutor3')->name('register.store.tutor.3')->middleware(['checkLogout']);
 
 
     // =============== login student ===============
     Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);
     Route::post('/login/student', 'Auth\LoginController@storeStudent')->name('login.store.student')->middleware(['checkLogout']);
     Route::get('login/google/student', 'Auth\GoogleController@loginRedirectToGoogleStudent')->name('login.google.student')->middleware(['checkLogout']);
+
+    // =============== login tutor ===============
+    Route::get('/login/tutor', 'Auth\LoginController@indexTutor')->name('login.index.tutor')->middleware(['checkLogout']);
+    Route::post('/login/tutor', 'Auth\LoginController@storeTutor')->name('login.store.tutor')->middleware(['checkLogout']);
+    Route::get('login/google/tutor', 'Auth\GoogleController@loginRedirectToGoogleTutor')->name('login.google.tutor')->middleware(['checkLogout']);
 
 
 

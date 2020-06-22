@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('title', 'Sign Up - Student')
+@section('title', 'Sign Up - Tutor')
 
 @section('body-class')
-bg-grey-light body-signup select2-bg-student
+bg-grey-light body-signup
 @endsection
 
 @section('content')
 <div class="container signup">
 
     {{-- left template --}}
-    @include('auth.partials.register_left_student')
+    @include('auth.partials.register_left_tutor')
 
-    <div class="signup--right signup--right-student p-relative">
-        <svg class="btn-close fill-color-blue-secondary" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.student') }}">
+    <div class="signup--right signup--right-tutor p-relative">
+        <svg class="btn-close fill-color-purple-secondary" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.tutor') }}">
             {{-- for empty --}}
             <path class="btn-close-empty" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path class="btn-close-empty" fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
@@ -21,61 +21,39 @@ bg-grey-light body-signup select2-bg-student
             {{-- for fill --}}
             <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
         </svg>
-        <h2 class="signup__heading">Tell us more about yourself</h2>
-        <form action="{{ route('register.store.student.3') }}" method="POST">
+
+        <h2 class="signup__heading">Email Confirmation</h2>
+        <form action="{{ route('register.store.tutor.2') }}" method="POST">
             <p class="signup__notice">
                 @csrf
-                This will help us to find the best matching tutor for you!
+                We have sent a verification code to your email address.<br>
+                Please enter the verification code below.
             </p>
 
-            <div class="p-relative">
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4" name="first-major">
-                        <option selected disabled class="fc-grey">Major</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-prepend">
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                        </svg>
-                    </div>
-                  </div>
+            <div class="form-group-4">
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-1" value="{{ old('code-1') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-2" value="{{ old('code-2') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-3" value="{{ old('code-3') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-4" value="{{ old('code-4') }}" maxlength="1" required>
             </div>
-            <div class="p-relative">
-                <div class="input-group select-container p-relative">
-                    <select class="custom-select pl-4" name="second-major">
-                        <option selected disabled class="fc-grey">Second Major (optional)</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
-                    </select>
-                    <div class="input-group-prepend">
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div class="input-group select-container p-relative">
-                <select class="custom-select pl-4" name="school-year">
-                    <option selected disabled class="fc-grey">Class Standing</option>
-                    @foreach (App\School_year::all() as $schoolYear)
-                        <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
-                    @endforeach
-                </select>
-                <div class="input-group-prepend">
-                    <svg>
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                    </svg>
-                </div>
-              </div>
+            @if ($errors->any())
+                <p class="fs-1-4 fc-red mt-1">
+                    The verification code is either <strong>incorrect</strong> or <strong>timed out</strong>. Please verify the code or send another verification email.
+                </p>
+            @endif
+
+            <p class="resend-email">
+                Didn't get the code? <button class="btn btn-link btn-link-tutor" id="resend-code" type="button">Resend code</button>
+                <span id="timeLabel"></span>
+            </p>
 
             <div class="signup-container-bottom mt-5 p-relative">
-                <button class="btn btn-link btn-link-student p-relative left-n-2 inline-grid fc-blue-tertiary" id="btn-skip">Skip</button>
+                <span class="fs-2 fc-grey p-relative left-n-2 inline-grid">
+                    Questions? Email us at
+                    <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-tutor">tutorspaceusc@gmail.com</a>
+                </span>
                 {{-- btn-next --}}
-                <button class="btn btn-next btn-next-animation btn-student ml-auto">
+                <button class="btn btn-next bg-grey ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />
@@ -96,18 +74,15 @@ bg-grey-light body-signup select2-bg-student
     </div>
 </div>
 
-
-
-{{-- bg shapes for students --}}
-@include('auth.partials.bg_shapes_student')
+{{-- bg shapes for tutors --}}
+@include('auth.partials.bg_shapes_tutor')
 
 @endsection
 
 
 @section('js')
 <script>
-    let isStudent = true;
-
+    let isStudent = false;
 
 </script>
 <script src="{{ asset('js/register.js') }}"></script>

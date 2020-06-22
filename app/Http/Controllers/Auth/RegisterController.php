@@ -23,12 +23,22 @@ class RegisterController extends Controller
 {
 
     public function sendVerificatioinEmail(Request $request) {
-        $email = $request->session()->get('registerDataStudent')['email'];
-        $firstName = $request->session()->get('registerDataStudent')['first-name'];
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
-        $request->session()->put('verificationCodeStudent', $verificationCode);
-        Notification::route('mail', $email)
+
+        if($request->session()->has('registerDataStudent')) {
+            $email = $request->session()->get('registerDataStudent')['email'];
+            $firstName = $request->session()->get('registerDataStudent')['first-name'];
+            $request->session()->put('verificationCodeStudent', $verificationCode);
+            Notification::route('mail', $email)
             ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+        }
+        else if($request->session()->has('registerDataTutor')) {
+            $email = $request->session()->get('registerDataTutor')['email'];
+            $firstName = $request->session()->get('registerDataTutor')['first-name'];
+            $request->session()->put('verificationCodeTutor', $verificationCode);
+            Notification::route('mail', $email)
+            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+        }
 
         return response()->json(
             [
@@ -43,6 +53,11 @@ class RegisterController extends Controller
     // first page of student register
     public function indexStudent1(Request $request) {
         return view('auth.register_student_1');
+    }
+
+    // first page of tutor register
+    public function indexTutor1(Request $request) {
+        return view('auth.register_tutor_1');
     }
 
     // register using password (not Google)
@@ -192,7 +207,7 @@ class RegisterController extends Controller
         $user->is_tutor = false;
 
         // todo: comment back and set email in db to not null
-        // $user->email = $studentData['email'];
+        $user->email = $studentData['email'];
         $user->save();
 
         // clear all the session data

@@ -11536,12 +11536,20 @@ h2 {
   fill: #0075E0 !important;
 }
 
+.fill-color-purple-secondary {
+  fill: #6749DF !important;
+}
+
 .fill-color-yellow-primary {
   fill: #FFBC00;
 }
 
 .fill-color-purple-primary {
   fill: #6749DF;
+}
+
+.fill-color-blue-primary {
+  fill: #1F7AFF;
 }
 
 .fill-opacity-80 {
@@ -11585,7 +11593,11 @@ h2 {
 }
 
 .fc-blue-tertiary {
-  color: #003E77;
+  color: #0C4293;
+}
+
+.fc-purple-tertiary {
+  color: #6749DF;
 }
 
 .fc-black {
@@ -11627,6 +11639,17 @@ h2 {
   background-color: #0075E0;
 }
 
+.btn-tutor {
+  color: #FFFFFF;
+  background-color: #6749DF;
+  transition: all 0.3s;
+}
+
+.btn-tutor:hover {
+  color: #FFFFFF;
+  background-color: #6749DF;
+}
+
 .btn-link-student {
   font-size: 2rem;
   font-weight: 500;
@@ -11635,7 +11658,18 @@ h2 {
 }
 
 .btn-link-student:hover {
-  color: #003E77;
+  color: #0C4293;
+}
+
+.btn-link-tutor {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #6749DF;
+  transition: color 0.3s;
+}
+
+.btn-link-tutor:hover {
+  color: #6749DF;
 }
 
 .btn-google {
@@ -11918,6 +11952,10 @@ svg.bookmark:hover {
   background-color: rgba(31, 122, 255, 0.8);
 }
 
+.signup--left-tutor {
+  background-color: rgba(103, 73, 223, 0.8);
+}
+
 @media only screen and (max-width: 61.99em) {
   .signup--left {
     display: none;
@@ -11948,6 +11986,26 @@ svg.bookmark:hover {
 
 .signup--right-student #btn-google .abcRioButtonBlue {
   background-color: #1F7AFF;
+}
+
+.signup--right-tutor {
+  color: #6749DF;
+}
+
+.signup--right-tutor .signup-form-input {
+  border-color: #6749DF;
+}
+
+.signup--right-tutor .signup-form-input:focus {
+  border-color: #6749DF;
+}
+
+.signup--right-tutor .signup-form-input-normal:focus + svg {
+  fill: #6749DF;
+}
+
+.signup--right-tutor #btn-google .abcRioButtonBlue {
+  background-color: #6749DF;
 }
 
 .signup--right .signup__heading {
@@ -12165,7 +12223,6 @@ svg.bookmark:hover {
 
 .signup .signup-container-bottom #btn-skip {
   font-size: 2.4rem;
-  color: #003E77;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -12258,6 +12315,26 @@ svg.bookmark:hover {
   background-color: #1F7AFF;
 }
 
+.login--left-tutor {
+  color: #6749DF;
+}
+
+.login--left-tutor .login-form-input {
+  border-color: #6749DF;
+}
+
+.login--left-tutor .login-form-input:focus {
+  border-color: #6749DF;
+}
+
+.login--left-tutor .login-form-input-normal:focus + svg {
+  fill: #6749DF;
+}
+
+.login--left-tutor #btn-google-login .abcRioButtonBlue {
+  background-color: #6749DF;
+}
+
 .login--left .login__heading {
   margin-top: 3rem;
   white-space: nowrap;
@@ -12285,6 +12362,10 @@ svg.bookmark:hover {
 
 .login--right-student {
   background-color: rgba(31, 122, 255, 0.8);
+}
+
+.login--right-tutor {
+  background-color: rgba(103, 73, 223, 0.8);
 }
 
 .login--right .btn-google-container {

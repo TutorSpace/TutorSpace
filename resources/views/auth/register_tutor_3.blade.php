@@ -1,18 +1,18 @@
 @extends('layouts.app')
-@section('title', 'Sign Up - Student')
+@section('title', 'Sign Up - Tutor')
 
 @section('body-class')
-bg-grey-light body-signup select2-bg-student
+bg-grey-light body-signup select2-bg-tutor
 @endsection
 
 @section('content')
 <div class="container signup">
 
     {{-- left template --}}
-    @include('auth.partials.register_left_student')
+    @include('auth.partials.register_left_tutor')
 
-    <div class="signup--right signup--right-student p-relative">
-        <svg class="btn-close fill-color-blue-secondary" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.student') }}">
+    <div class="signup--right signup--right-tutor p-relative">
+        <svg class="btn-close fill-color-purple-secondary" width="1em" height="1em" viewBox="0 0 16 16"  xmlns="http://www.w3.org/2000/svg" data-back-href="{{ route('login.index.tutor') }}">
             {{-- for empty --}}
             <path class="btn-close-empty" fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
             <path class="btn-close-empty" fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
@@ -22,7 +22,7 @@ bg-grey-light body-signup select2-bg-student
             <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
         </svg>
         <h2 class="signup__heading">Tell us more about yourself</h2>
-        <form action="{{ route('register.store.student.3') }}" method="POST">
+        <form action="{{ route('register.store.tutor.3') }}" method="POST">
             <p class="signup__notice">
                 @csrf
                 This will help us to find the best matching tutor for you!
@@ -73,9 +73,9 @@ bg-grey-light body-signup select2-bg-student
               </div>
 
             <div class="signup-container-bottom mt-5 p-relative">
-                <button class="btn btn-link btn-link-student p-relative left-n-2 inline-grid fc-blue-tertiary" id="btn-skip">Skip</button>
+                <button class="btn btn-link btn-link-tutor p-relative left-n-2 inline-grid fc-purple-tertiary" id="btn-skip">Skip</button>
                 {{-- btn-next --}}
-                <button class="btn btn-next btn-next-animation btn-student ml-auto">
+                <button class="btn btn-next btn-next-animation btn-tutor ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />
@@ -98,8 +98,8 @@ bg-grey-light body-signup select2-bg-student
 
 
 
-{{-- bg shapes for students --}}
-@include('auth.partials.bg_shapes_student')
+{{-- bg shapes for tutors --}}
+@include('auth.partials.bg_shapes_tutor')
 
 @endsection
 

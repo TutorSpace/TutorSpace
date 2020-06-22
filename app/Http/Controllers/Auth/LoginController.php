@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Rules\EmailUSC;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
     public function indexStudent() {
         return view('auth.login_student');
+    }
+
+    public function indexTutor() {
+        return view('auth.login_tutor');
     }
 
     public function logout(Request $request) {
@@ -30,6 +35,11 @@ class LoginController extends Controller
             'password' => [
                 'required'
             ]
+        ]);
+
+        // email must be a USC email
+        $request->validate([
+            'email' => [new EmailUSC]
         ]);
 
         // if this email does not have a student identity
