@@ -10,6 +10,10 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
+    public function indexAuth() {
+        return view('auth.index');
+    }
+
     public function indexStudent() {
         return view('auth.login_student');
     }

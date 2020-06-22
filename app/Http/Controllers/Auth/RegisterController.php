@@ -47,9 +47,6 @@ class RegisterController extends Controller
         );
     }
 
-
-
-
     // first page of student register
     public function indexStudent1(Request $request) {
         return view('auth.register_student_1');
@@ -60,7 +57,7 @@ class RegisterController extends Controller
         return view('auth.register_tutor_1');
     }
 
-    // register using password (not Google)
+    // register student using password (not Google)
     public function storeStudent1(Request $request) {
         $request->validate([
             'first-name' => ['
@@ -92,7 +89,6 @@ class RegisterController extends Controller
             dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
         }
 
-
         // clear all the session data for safety concerns (no one can play around with the email verification process)
         $request->session()->flush();
 
@@ -113,8 +109,64 @@ class RegisterController extends Controller
         return redirect()->route('register.index.student.2');
     }
 
+    // register tutor using password (not Google)
+    public function storeTutor1(Request $request) {
+        $request->validate([
+            'first-name' => ['
+                required',
+                'alpha'
+            ],
+            'last-name' => ['
+                required',
+                'alpha'
+            ],
+            'email' => [
+                'required',
+                'email:rfc'
+            ],
+            'password' => [
+                'required',
+                'min:6'
+            ]
+        ]);
+
+        // email must not be registered as a tutor before and must be a USC email
+        $request->validate([
+            'email' => [new NotExistTutor, new EmailUSC]
+        ]);
+
+        // if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him
+        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() != 0) {
+            echo "<h1>if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him</h1>";
+            dd("if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him");
+        }
+
+        // clear all the session data for safety concerns (no one can play around with the email verification process)
+        $request->session()->flush();
+
+        // validate the information and stores in the session
+        $request->session()->put('registerDataTutor', $request->all());
+
+
+        // email verification
+        $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $request->session()->put('verificationCodeTutor', $verificationCode);
+        Notification::route('mail', $request->input('email'))
+            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+
+        // for testing only preview the notification
+        // return (new RegisterEmailVerification("123abc"))
+        //     ->toMail(User::find(1));
+
+        return redirect()->route('register.index.tutor.2');
+    }
+
     public function indexStudent2(Request $request) {
         return view('auth.register_student_2');
+    }
+
+    public function indexTutor2(Request $request) {
+        return view('auth.register_tutor_2');
     }
 
     public function storeStudent2(Request $request) {
@@ -149,9 +201,47 @@ class RegisterController extends Controller
         return redirect()->route('register.index.student.3');
     }
 
+    public function storeTutor2(Request $request) {
+        $verificationCode = $request->session()->get('verificationCodeTutor');
+        // validate the information
+        $request->validate([
+            'code-1' => [
+                'required',
+                Rule::in([$verificationCode[0]])
+            ],
+            'code-2' => [
+                'required',
+                Rule::in([$verificationCode[1]])
+            ],
+            'code-3' => [
+                'required',
+                Rule::in([$verificationCode[2]])
+            ],
+            'code-4' => [
+                'required',
+                Rule::in([$verificationCode[3]])
+            ]
+        ]);
+
+        // users would not be able to not submit their information in the step if they did not fill in the basic information in step 1
+        if(!$request->session()->has('registerDataTutor')) {
+            return redirect()->back();
+        }
+
+        $request->session()->put('emailVerifiedTutor', true);
+
+        return redirect()->route('register.index.tutor.3');
+    }
+
     public function indexStudent3() {
         return view('auth.register_student_3');
     }
+
+    public function indexTutor3() {
+        return view('auth.register_tutor_3');
+    }
+
+    // -----------------------
 
     public function storeStudent3(Request $request) {
         $studentData = $request->session()->get('registerDataStudent');

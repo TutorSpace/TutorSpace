@@ -17,6 +17,9 @@ Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show'
 Route::group([
     'prefix' => 'auth'
 ], function () {
+    // index page of auth
+    Route::get('/', 'Auth\LoginController@indexAuth')->name('auth.index')->middleware(['checkLogout']);
+
     // logout
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 

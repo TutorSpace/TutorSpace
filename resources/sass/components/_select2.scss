@@ -30,9 +30,32 @@
 }
 
 .select2-bg-student {
-
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
         background-color: $color-blue-secondary;
+    }
+
+    .select2-search__field {
+        outline: none !important;
+        border: 1px solid $color-blue-secondary !important;
+        &:focus {
+            outline: none !important;
+            border: 1px solid $color-blue-secondary !important;
+        }
+    }
+}
+
+.select2-bg-tutor {
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: $color-purple-secondary;
+    }
+
+    .select2-search__field {
+        outline: none !important;
+        border: 1px solid $color-purple-secondary !important;
+        &:focus {
+            outline: none !important;
+            border: 1px solid $color-purple-secondary !important;
+        }
     }
 }
 

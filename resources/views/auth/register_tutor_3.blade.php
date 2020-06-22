@@ -58,7 +58,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </div>
                 </div>
             </div>
-            <div class="input-group select-container p-relative">
+            <div class="input-group select-container p-relative ">
                 <select class="custom-select pl-4" name="school-year">
                     <option selected disabled class="fc-grey">Class Standing</option>
                     @foreach (App\School_year::all() as $schoolYear)

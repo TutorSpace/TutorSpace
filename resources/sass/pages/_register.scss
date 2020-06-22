@@ -86,6 +86,10 @@
             #btn-google .abcRioButtonBlue {
                 background-color: $color-blue-primary;
             }
+
+            .input-group-prepend {
+                background-color: $color-blue-secondary;
+            }
         }
 
         &-tutor {
@@ -109,6 +113,10 @@
 
             #btn-google .abcRioButtonBlue {
                 background-color: $color-purple-primary;
+            }
+
+            .input-group-prepend {
+                background-color: $color-purple-secondary;
             }
         }
 
@@ -230,7 +238,6 @@
         .input-group-prepend {
             width: 6rem;
             height: 100%;
-            background-color: $color-blue-secondary;
             display: flex;
             align-items: center;
             justify-content: center;
