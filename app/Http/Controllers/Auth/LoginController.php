@@ -13,8 +13,9 @@ class LoginController extends Controller
         return view('auth.login_student');
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         Auth::logout();
+        $request->session()->flush();
         return redirect()->route('index');
     }
 
@@ -36,7 +37,11 @@ class LoginController extends Controller
             return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with email does not exist.']);
         }
 
-        $credentials = $request->only('email', 'password');
+        // if registered with google id
+        // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
+        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->first()->google_id) {
+            return redirect()->back()->withInput()->withErrors(['This email is registered using Google. Please sign in with Google.']);
+        }
 
         if (Auth::attempt([
             'email' => $request->input('email'),

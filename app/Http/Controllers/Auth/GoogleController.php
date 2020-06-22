@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
@@ -13,6 +14,7 @@ class GoogleController extends Controller
         try {
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
+            $request->session()->flush();
             return redirect()->route('index')->with([
                 'errorMsg' => 'Something went wrong with google sign in'
             ]);
@@ -69,13 +71,14 @@ class GoogleController extends Controller
                     'googleLoginError' => 'You have not yet registered with this email as a tutor. Please sign up first!'
                 ]);
             }
-====================
-            $credentials = $request->only('email', 'password');
 
-            if (Auth::attempt([
-                'email' => $request->input('email'),
-                'password' => $request->input('password'),
-                'is_tutor' => false])) {
+            if ($loginGoogleStudent) {
+                Auth::login(User::where('email', '=', $user->email)->where('is_tutor', false)->first());
+                // Authentication passed...
+                return redirect()->route('home');
+            }
+            else if ($loginGoogleTutor) {
+                Auth::login(User::where('email', '=', $user->email)->where('is_tutor', true)->first());
                 // Authentication passed...
                 return redirect()->route('home');
             }
@@ -134,7 +137,7 @@ class GoogleController extends Controller
     }
 
     // redirect to Google (student login)
-    public function loginRedirectToGoogleStudent() {
+    public function loginRedirectToGoogleStudent(Request $request) {
         $request->session()->put('loginGoogleStudent', true);
         $request->session()->put('redirectRouteName', 'home');
         return Socialite::driver('google')->redirect();
