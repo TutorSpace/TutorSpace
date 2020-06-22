@@ -69,7 +69,7 @@ class GoogleController extends Controller
                     'googleLoginError' => 'You have not yet registered with this email as a tutor. Please sign up first!'
                 ]);
             }
-
+====================
             $credentials = $request->only('email', 'password');
 
             if (Auth::attempt([
