@@ -66,7 +66,7 @@ bg-grey-light body-login
 
     <div class="login--right login--right-student">
         <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-            data-back-href="{{ route('auth.index') }}">
+            data-back-href="{{ route('index') }}">
             {{-- for empty --}}
             <path class="btn-close-empty" fill-rule="evenodd"
                 d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

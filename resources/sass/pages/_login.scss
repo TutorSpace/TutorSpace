@@ -34,19 +34,15 @@
         background-color: $color-white-dark;
 
         &-student {
-            color: $color-blue-secondary;
+            color: $color-blue-primary;
 
             .login-form-input {
-                border-color: $color-blue-secondary;
-
-                &:focus {
-                    border-color: $color-blue-secondary;
-                }
+                border-color: $color-blue-primary;
 
                 &-normal {
                     &:focus {
                         + svg {
-                            fill: $color-blue-secondary;
+                            fill: $color-blue-primary;
                         }
                     }
                 }
@@ -58,19 +54,15 @@
         }
 
         &-tutor {
-            color: $color-purple-secondary;
+            color: $color-purple-primary;
 
             .login-form-input {
-                border-color: $color-purple-secondary;
-
-                &:focus {
-                    border-color: $color-purple-secondary;
-                }
+                border-color: $color-purple-primary;
 
                 &-normal {
                     &:focus {
                         + svg {
-                            fill: $color-purple-secondary;
+                            fill: $color-purple-primary;
                         }
                     }
                 }

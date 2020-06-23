@@ -22,7 +22,7 @@
 
     &:hover {
         color: $color-white;
-        background-color: $color-blue-secondary;
+        background-color: $color-blue-primary-2;
     }
 }
 
@@ -33,7 +33,7 @@
 
     &:hover {
         color: $color-white;
-        background-color: $color-purple-secondary;
+        background-color: $color-purple-primary-2;
     }
 }
 
@@ -45,7 +45,7 @@
     transition: color .3s;
 
     &:hover {
-        color: $color-blue-tertiary;
+        color: $color-blue-secondary-2;
     }
 }
 
@@ -56,7 +56,7 @@
     transition: color .3s;
 
     &:hover {
-        color: $color-purple-tertiary;
+        color: $color-purple-secondary-2;
     }
 }
 
@@ -82,14 +82,6 @@
     }
 }
 
-
-
-
-
-
-
-
-
 .btn-animation-y {
     transition: all .2s;
 
@@ -98,11 +90,8 @@
     }
 }
 
-
-
 .btn-close {
     font-size: 3.5rem;
-    fill: $color-blue-secondary;
 
     &-fill {
         display: none;

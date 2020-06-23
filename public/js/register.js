@@ -96,9 +96,9 @@
 //  ========================= for all register page ===========================
 $('input').on('input', function () {
   if ($(this).val()) {
-    $(this).next().addClass('fill-color-blue-secondary');
+    $(this).next().addClass('fill-color-blue-primary');
   } else {
-    $(this).next().removeClass('fill-color-blue-secondary');
+    $(this).next().removeClass('fill-color-blue-primary');
   }
 });
 $('input').filter('[required]').on('input', function () {

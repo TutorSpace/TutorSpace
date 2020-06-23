@@ -31,30 +31,30 @@
 
 .select2-bg-student {
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background-color: $color-blue-secondary;
+        background-color: $color-blue-primary;
     }
 
     .select2-search__field {
         outline: none !important;
-        border: 1px solid $color-blue-secondary !important;
+        border: 1px solid $color-blue-primary !important;
         &:focus {
             outline: none !important;
-            border: 1px solid $color-blue-secondary !important;
+            border: 1px solid $color-blue-primary !important;
         }
     }
 }
 
 .select2-bg-tutor {
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background-color: $color-purple-secondary;
+        background-color: $color-purple-primary;
     }
 
     .select2-search__field {
         outline: none !important;
-        border: 1px solid $color-purple-secondary !important;
+        border: 1px solid $color-purple-primary !important;
         &:focus {
             outline: none !important;
-            border: 1px solid $color-purple-secondary !important;
+            border: 1px solid $color-purple-primary !important;
         }
     }
 }

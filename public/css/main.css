@@ -11537,11 +11537,11 @@ h2 {
 }
 
 .fill-color-blue-secondary {
-  fill: #0075E0 !important;
+  fill: #0C4293 !important;
 }
 
 .fill-color-purple-secondary {
-  fill: #6749DF !important;
+  fill: #30188F !important;
 }
 
 .fill-color-yellow-primary {
@@ -11565,7 +11565,7 @@ h2 {
 }
 
 .bc-blue-secondary {
-  border-color: #0075E0 !important;
+  border-color: #0C4293 !important;
 }
 
 .fs-1-2 {
@@ -11594,14 +11594,6 @@ h2 {
 
 .fc-grey {
   color: #A0A0A0 !important;
-}
-
-.fc-blue-tertiary {
-  color: #0C4293;
-}
-
-.fc-purple-tertiary {
-  color: #6749DF;
 }
 
 .fc-black {
@@ -11661,7 +11653,7 @@ h2 {
 .btn-link-student {
   font-size: 2rem;
   font-weight: 500;
-  color: #0075E0;
+  color: #0C4293;
   transition: color 0.3s;
 }
 
@@ -11672,12 +11664,12 @@ h2 {
 .btn-link-tutor {
   font-size: 2rem;
   font-weight: 500;
-  color: #6749DF;
+  color: #30188F;
   transition: color 0.3s;
 }
 
 .btn-link-tutor:hover {
-  color: #6749DF;
+  color: #30188F;
 }
 
 .btn-google {
@@ -11710,7 +11702,6 @@ h2 {
 
 .btn-close {
   font-size: 3.5rem;
-  fill: #0075E0;
 }
 
 .btn-close-fill {
@@ -11821,17 +11812,17 @@ svg.bookmark:hover {
 }
 
 .select2-bg-student .select2-container--default .select2-results__option--highlighted[aria-selected] {
-  background-color: #0075E0;
+  background-color: #1F7AFF;
 }
 
 .select2-bg-student .select2-search__field {
   outline: none !important;
-  border: 1px solid #0075E0 !important;
+  border: 1px solid #1F7AFF !important;
 }
 
 .select2-bg-student .select2-search__field:focus {
   outline: none !important;
-  border: 1px solid #0075E0 !important;
+  border: 1px solid #1F7AFF !important;
 }
 
 .select2-bg-tutor .select2-container--default .select2-results__option--highlighted[aria-selected] {
@@ -12001,19 +11992,15 @@ svg.bookmark:hover {
 }
 
 .signup--right-student {
-  color: #0075E0;
+  color: #1F7AFF;
 }
 
 .signup--right-student .signup-form-input {
-  border-color: #0075E0;
-}
-
-.signup--right-student .signup-form-input:focus {
-  border-color: #0075E0;
+  border-color: #1F7AFF;
 }
 
 .signup--right-student .signup-form-input-normal:focus + svg {
-  fill: #0075E0;
+  fill: #1F7AFF;
 }
 
 .signup--right-student #btn-google .abcRioButtonBlue {
@@ -12021,7 +12008,7 @@ svg.bookmark:hover {
 }
 
 .signup--right-student .input-group-prepend {
-  background-color: #0075E0;
+  background-color: #1F7AFF;
 }
 
 .signup--right-tutor {
@@ -12029,10 +12016,6 @@ svg.bookmark:hover {
 }
 
 .signup--right-tutor .signup-form-input {
-  border-color: #6749DF;
-}
-
-.signup--right-tutor .signup-form-input:focus {
   border-color: #6749DF;
 }
 
@@ -12217,7 +12200,6 @@ svg.bookmark:hover {
 
 .signup .select-container__icon {
   position: absolute;
-  fill: #A0A0A0;
   width: 2.2rem;
   height: 2.2rem;
   left: 0.5rem;
@@ -12362,19 +12344,15 @@ svg.bookmark:hover {
 }
 
 .login--left-student {
-  color: #0075E0;
+  color: #1F7AFF;
 }
 
 .login--left-student .login-form-input {
-  border-color: #0075E0;
-}
-
-.login--left-student .login-form-input:focus {
-  border-color: #0075E0;
+  border-color: #1F7AFF;
 }
 
 .login--left-student .login-form-input-normal:focus + svg {
-  fill: #0075E0;
+  fill: #1F7AFF;
 }
 
 .login--left-student #btn-google-login .abcRioButtonBlue {
@@ -12386,10 +12364,6 @@ svg.bookmark:hover {
 }
 
 .login--left-tutor .login-form-input {
-  border-color: #6749DF;
-}
-
-.login--left-tutor .login-form-input:focus {
   border-color: #6749DF;
 }
 

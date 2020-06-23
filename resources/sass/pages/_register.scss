@@ -65,19 +65,15 @@
         background-color: $color-white-dark;
 
         &-student {
-            color: $color-blue-secondary;
+            color: $color-blue-primary;
 
             .signup-form-input {
-                border-color: $color-blue-secondary;
-
-                &:focus {
-                    border-color: $color-blue-secondary;
-                }
+                border-color: $color-blue-primary;
 
                 &-normal {
                     &:focus {
                         + svg {
-                            fill: $color-blue-secondary;
+                            fill: $color-blue-primary;
                         }
                     }
                 }
@@ -88,24 +84,20 @@
             }
 
             .input-group-prepend {
-                background-color: $color-blue-secondary;
+                background-color: $color-blue-primary;
             }
         }
 
         &-tutor {
-            color: $color-purple-secondary;
+            color: $color-purple-primary;
 
             .signup-form-input {
-                border-color: $color-purple-secondary;
-
-                &:focus {
-                    border-color: $color-purple-secondary;
-                }
+                border-color: $color-purple-primary;
 
                 &-normal {
                     &:focus {
                         + svg {
-                            fill: $color-purple-secondary;
+                            fill: $color-purple-primary;
                         }
                     }
                 }
@@ -116,7 +108,7 @@
             }
 
             .input-group-prepend {
-                background-color: $color-purple-secondary;
+                background-color: $color-purple-primary;
             }
         }
 
@@ -269,7 +261,6 @@
 
         &__icon {
             position: absolute;
-            fill: $color-grey;
             width: 2.2rem;
             height: 2.2rem;
             left: .5rem;
