@@ -10,8 +10,10 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function indexAuth() {
-        return view('auth.index');
+    public function __construct() {
+        $this->middleware('checkLogout')->except([
+            'logout'
+        ]);
     }
 
     public function indexStudent() {
@@ -62,7 +64,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => false])) {
             // Authentication passed...
-            return redirect()->route('home');
+            // if they have an intended location, direct them their, or otherwise direct to home
+            return redirect()->intended('home');
         }
         else {
             return redirect()->back()->withInput()->with([
@@ -105,7 +108,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => true])) {
             // Authentication passed...
-            return redirect()->route('home');
+            // if they have an intended location, direct them their, or otherwise direct to home
+            return redirect()->intended('home');
         }
         else {
             return redirect()->back()->withInput()->with([
@@ -124,5 +128,9 @@ class LoginController extends Controller
 
     public function indexResetPasswordTutor() {
         return view('auth.reset_password_tutor');
+    }
+
+    public function resetPasswordTutor() {
+
     }
 }

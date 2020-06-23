@@ -21,6 +21,9 @@ use App\Notifications\RegisterEmailVerification;
 
 class RegisterController extends Controller
 {
+    public function __construct() {
+        $this->middleware('checkLogout');
+    }
 
     public function sendVerificatioinEmail(Request $request) {
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
@@ -54,6 +57,7 @@ class RegisterController extends Controller
 
     // first page of tutor register
     public function indexTutor1(Request $request) {
+        dd($request->session());
         return view('auth.register_tutor_1');
     }
 
