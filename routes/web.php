@@ -56,8 +56,6 @@ Route::group([
     Route::get('/register/tutor/5', 'Auth\RegisterController@indexTutor5')->name('register.index.tutor.5')->middleware(['checkLogout']);
     Route::post('/register/tutor/5', 'Auth\RegisterController@storeTutor5')->name('register.store.tutor.5')->middleware(['checkLogout']);
 
-
-
     // =============== login student ===============
     Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student')->middleware(['checkLogout']);
     Route::post('/login/student', 'Auth\LoginController@storeStudent')->name('login.store.student')->middleware(['checkLogout']);
@@ -68,7 +66,11 @@ Route::group([
     Route::post('/login/tutor', 'Auth\LoginController@storeTutor')->name('login.store.tutor')->middleware(['checkLogout']);
     Route::get('login/google/tutor', 'Auth\GoogleController@loginRedirectToGoogleTutor')->name('login.google.tutor')->middleware(['checkLogout']);
 
-
+    // ================ reset password ============
+    Route::get('/reset-password/student', 'Auth\LoginController@indexResetPasswordStudent')->name('reset-password.index.student')->middleware(['checkLogout']);
+    Route::post('/reset-password/student', 'Auth\LoginController@resetPasswordStudent')->name('reset-password.store.student')->middleware(['checkLogout']);
+    Route::get('/reset-password/tutor', 'Auth\LoginController@indexResetPasswordTutor')->name('reset-password.index.tutor')->middleware(['checkLogout']);
+    Route::post('/reset-password/tutor', 'Auth\LoginController@resetPasswordTutor')->name('reset-password.store.tutor')->middleware(['checkLogout']);
 
 });
 

@@ -114,4 +114,15 @@ class LoginController extends Controller
         }
     }
 
+    public function indexResetPasswordStudent() {
+        return view('auth.reset_password_student');
+    }
+
+    public function resetPasswordStudent() {
+
+    }
+
+    public function indexResetPasswordTutor() {
+        return view('auth.reset_password_tutor');
+    }
 }

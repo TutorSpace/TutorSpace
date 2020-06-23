@@ -12511,7 +12511,7 @@ svg.bookmark:hover {
 }
 
 .login .login__heading {
-  text-align: left;
+  text-align: center;
 }
 
 .login--left {
@@ -12687,7 +12687,8 @@ svg.bookmark:hover {
   transition: all 0.2s;
 }
 
-.login .btn-login {
+.login .btn-login,
+.login .btn-send {
   height: 6rem;
   font-size: 2.4rem;
   width: 30rem;
@@ -12700,5 +12701,23 @@ svg.bookmark:hover {
 
 .login #btn-google:hover {
   transform: translateY(-2px);
+}
+
+.login .resend-email {
+  color: #A0A0A0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.login .resend-email button {
+  font-size: inherit;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+.login .login__notice {
+  color: #A0A0A0;
+  font-size: 2.2rem;
+  text-align: center;
 }
 

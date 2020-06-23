@@ -53,7 +53,7 @@ bg-grey-light body-login
             </div>
 
             <div class="text-center">
-                <a href="#" class="btn-link-tutor">Forgot your password?</a>
+                <a href="{{ route('reset-password.index.tutor') }}" class="btn-link-tutor">Forgot your password?</a>
             </div>
 
             <p class="text-center fs-2">
