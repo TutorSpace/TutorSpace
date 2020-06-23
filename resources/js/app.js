@@ -18,7 +18,6 @@ $(document).ready(function(){
             $(this).next().find('.select2-selection__rendered').addClass('fc-grey');
             $(this).next().find('.select2-selection__rendered').removeClass('fc-black');
         }
-        $(ele).attr('select2-open', 'false');
     });
 
     $("select").change(function(){
@@ -32,6 +31,18 @@ $(document).ready(function(){
             $(this).next().find('.select2-selection__rendered').addClass('fc-black');
         }
     });
+
+    // for  square display
+    let adjustSquareSize = () => {
+        $.each($('.square'), (idx, el) => {
+            $(el).height($(el).width() + 'px');
+        });
+    };
+    adjustSquareSize();
+    $(window).resize(function() {
+        adjustSquareSize();
+    });
+
 
 })
 

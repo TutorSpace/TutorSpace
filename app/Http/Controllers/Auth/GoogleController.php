@@ -62,12 +62,12 @@ class GoogleController extends Controller
         if($loginGoogleStudent || $loginGoogleTutor) {
             // if this email does not have a student identity
             if($loginGoogleStudent && !$existStudent) {
-                return redirect()->route('login.index.student')->with([
+                return redirect()->route('register.index.student.1')->with([
                     'googleLoginError' => 'You have not yet registered with this email as a student. Please sign up first!'
                 ]);
             }
             else if($loginGoogleTutor && !$existTutor) {
-                return redirect()->route('login.index.tutor')->with([
+                return redirect()->route('register.index.tutor.1')->with([
                     'googleLoginError' => 'You have not yet registered with this email as a tutor. Please sign up first!'
                 ]);
             }
@@ -92,7 +92,7 @@ class GoogleController extends Controller
         else {
             // error if they're an existing user with the same identity when signing up
             if(($registerGoogleStudent && $existStudent) ||
-                ($request->session()->get('registerGoogleTutor') && $existTutor)){
+                ($registerGoogleTutor && $existTutor)){
                 return redirect()->route('index')->with([
                     'errorMsg' => 'You already registered as a student/tutor with the same email!'
                 ]);
@@ -124,6 +124,11 @@ class GoogleController extends Controller
                 $request->session()->put('registerDataStudent', $userData);
                 $request->session()->put('emailVerifiedStudent', true);
             }
+            else if($registerGoogleTutor) {
+                // stores all the information in the session
+                $request->session()->put('registerDataTutor', $userData);
+                $request->session()->put('emailVerifiedTutor', true);
+            }
         }
 
         return redirect()->route($redirectRouteName);
@@ -143,7 +148,22 @@ class GoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    // redirect to Google (tutor register)
+    public function registerRedirectToGoogleTutor(Request $request) {
+        $request->session()->flush();
+        $request->session()->put('registerGoogleTutor', true);
+        $request->session()->put('redirectRouteName', 'register.index.tutor.3');
+        return Socialite::driver('google')->redirect();
+    }
 
+    // redirect to Google (tutor login)
+    public function loginRedirectToGoogleTutor(Request $request) {
+        // avoid the case whtn loginTutor session and loginStudent session both exist
+        $request->session()->flush();
+        $request->session()->put('loginGoogleTutor', true);
+        $request->session()->put('redirectRouteName', 'home');
+        return Socialite::driver('google')->redirect();
+    }
 
 
 }

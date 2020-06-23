@@ -31,10 +31,10 @@ bg-grey-light body-signup
             </p>
 
             <div class="form-group-4">
-                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-1" value="{{ old('code-1') }}" maxlength="1" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-2" value="{{ old('code-2') }}" maxlength="1" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-3" value="{{ old('code-3') }}" maxlength="1" required>
-                <input type="text" class="form-control signup-form-input signup-form-input-email" name="code-4" value="{{ old('code-4') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email square" name="code-1" value="{{ old('code-1') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email square" name="code-2" value="{{ old('code-2') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email square" name="code-3" value="{{ old('code-3') }}" maxlength="1" required>
+                <input type="text" class="form-control signup-form-input signup-form-input-email square" name="code-4" value="{{ old('code-4') }}" maxlength="1" required>
             </div>
             @if ($errors->any())
                 <p class="fs-1-4 fc-red mt-1">
@@ -83,6 +83,7 @@ bg-grey-light body-signup
 @section('js')
 <script>
     let isStudent = true;
+
 
 </script>
 <script src="{{ asset('js/register.js') }}"></script>

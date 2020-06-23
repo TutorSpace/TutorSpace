@@ -31,31 +31,57 @@ $('input').filter('[required]').on('input', function () {
     }
 });
 
+$("select").filter('[required]').on('change', function() {
+    let allFilled = true;
+    $.each($('select').filter('[required]'), (idx, el) => {
+        if (!$(el).find(':selected').val() || $(el).find(':selected').prop('disabled'))
+            allFilled = false;
+    });
+
+    if (allFilled) {
+        $('.btn-next').addClass('btn-next-animation');
+        if (isStudent)
+            $('.btn-next').addClass('btn-student');
+        else
+            $('.btn-next').addClass('btn-tutor');
+        $('.btn-next').removeClass('bg-grey');
+    } else {
+        $('.btn-next').removeClass('btn-next-animation');
+        if (isStudent)
+            $('.btn-next').removeClass('btn-student');
+        else
+            $('.btn-next').removeClass('btn-tutor');
+        $('.btn-next').addClass('bg-grey');
+    }
+});
+
 $('svg').click(function() {
     let route = $(this).attr('data-back-href');
     if(route)
         window.location.href = route;
 });
 
+$('.custom-select').select2({});
+$('#courses').select2({
+    placeholder: "Search by course number"
+});
 
+$('.icon-upload-image').click(function() {
+    $('#profile-pic').click();
+})
 
+$("input[type=file]").change(function() {
+    console.log("here");
+    var fileInput = $(this)[0];
+    var filename = fileInput.files[0].name;
+
+    $('#file-input-text').html("Uploaded image: " + filename);
+});
 
 //  ========================= register student 2 ===========================
 (function () {
     let totalSeconds = 30;
     let currentTimeInterval;
-
-    // adjusting email input size
-    // $(window).resize(function() {
-    //     adjustInputEmailSize();
-    // });
-
-    // let adjustInputEmailSize = () => {
-    //     $.each($('.form-group-4 input'), (idx, el) => {
-    //         // alert($(el).height());
-    //         $(el).height($(el).width() + 'px');
-    //     });
-    // };
 
     startTimeLabel();
 
@@ -114,28 +140,4 @@ $('svg').click(function() {
 })();
 
 
-// ======================== register student 3 ====================
-(function () {
-    $('.custom-select').select2({});
 
-})();
-
-// // The tags should be always be the same as in the school_year table! Need to manully update the fields/array!
-// $(function () {
-
-//     $("#major").autocomplete({
-//         source: majorTags
-//     });
-
-//     $("#schoolYear").autocomplete({
-//         source: schoolYearTags
-//     });
-// });
-
-
-// $("input[type=file]").change(function() {
-//     var fileInput = $(this)[0];
-//     var filename = fileInput.files[0].name;
-
-//     $('#file-input-text').html(filename);
-// });

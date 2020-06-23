@@ -25,13 +25,13 @@ bg-grey-light body-signup select2-bg-tutor
         <form action="{{ route('register.store.tutor.3') }}" method="POST">
             <p class="signup__notice">
                 @csrf
-                This will help us to find the best matching tutor for you!
+                This will help students find you easily!
             </p>
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
                     <select class="custom-select" name="first-major" required>
-                        <option selected disabled class="fc-grey">Major</option>
+                        <option selected disabled class="fc-grey" value="">Major</option>
                         @foreach (App\Major::all() as $major)
                             <option value="{{ $major->id }}">{{ $major->major }}</option>
                         @endforeach
@@ -51,7 +51,7 @@ bg-grey-light body-signup select2-bg-tutor
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
                     <select class="custom-select" name="second-major">
-                        <option selected disabled class="fc-grey">Second Major (optional)</option>
+                        <option selected disabled class="fc-grey" value="">Second Major (optional)</option>
                         @foreach (App\Major::all() as $major)
                             <option value="{{ $major->id }}">{{ $major->major }}</option>
                         @endforeach
@@ -72,7 +72,7 @@ bg-grey-light body-signup select2-bg-tutor
             <div class="multiple-inputs p-relative">
                 <div class="input-group select-container p-relative">
                     <select class="custom-select" name="school-year" required>
-                        <option selected disabled class="fc-grey">Class Standing</option>
+                        <option selected disabled class="fc-grey" value="">Class Standing</option>
                         @foreach (App\School_year::all() as $schoolYear)
                             <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
                         @endforeach
@@ -85,7 +85,7 @@ bg-grey-light body-signup select2-bg-tutor
                 </div>
                 <div class="input-group select-container p-relative">
                     <select class="custom-select" name="gpa" required>
-                        <option selected disabled class="fc-grey">GPA</option>
+                        <option selected disabled class="fc-grey" value="">GPA</option>
                         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
                             <option value="{{ number_format($i, 2) }}">{{ number_format($i, 2) }}</option>
                         @endfor
@@ -120,7 +120,7 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="signup-container-bottom mt-5 p-relative">
                 {{-- btn-next --}}
-                <button class="btn btn-next btn-next-animation btn-tutor ml-auto">
+                <button class="btn btn-next bg-grey ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />

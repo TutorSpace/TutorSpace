@@ -11414,6 +11414,74 @@ body {
   }
 }
 
+@-webkit-keyframes anchor-animation-pulsate-student {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(12, 66, 147, 0.8);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@keyframes anchor-animation-pulsate-student {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(12, 66, 147, 0.8);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes anchor-animation-pulsate-tutor {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(48, 24, 143, 0.8);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+@keyframes anchor-animation-pulsate-tutor {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(48, 24, 143, 0.8);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
 @-webkit-keyframes scale-animation {
   0% {
     transform: scale(1);
@@ -11528,6 +11596,10 @@ h2 {
   padding-right: 0;
 }
 
+.pb-0-5 {
+  padding-bottom: 0.5rem;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }
@@ -11577,11 +11649,11 @@ h2 {
 }
 
 .fs-1-6 {
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
 }
 
 .fs-2 {
-  font-size: 2rem;
+  font-size: 2rem !important;
 }
 
 .fs-2-2 {
@@ -11616,6 +11688,13 @@ h2 {
   white-space: nowrap;
 }
 
+.absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .btn-next {
   border-radius: 50%;
   display: flex;
@@ -11647,7 +11726,7 @@ h2 {
 
 .btn-tutor:hover {
   color: #FFFFFF;
-  background-color: #6749DF;
+  background-color: #502ED9;
 }
 
 .btn-link-student {
@@ -11783,7 +11862,7 @@ svg.bookmark:hover {
 
 .select2 {
   width: 100% !important;
-  height: 100%;
+  min-height: 100%;
 }
 
 .select2 * {
@@ -11798,17 +11877,27 @@ svg.bookmark:hover {
   visibility: visible;
   display: flex !important;
   align-items: center !important;
-  height: 100% !important;
+  min-height: 100% !important;
   padding-left: 1.5rem !important;
-  font-size: 2.4rem !important;
+  font-size: 2rem !important;
   z-index: 1000;
   position: relative;
+  padding-right: 6rem !important;
 }
 
 @media only screen and (max-width: 35.99em) {
   .selection .select2-selection__rendered {
-    font-size: 1.8rem !important;
+    font-size: 1.6rem !important;
   }
+}
+
+.selection .select2-selection__rendered .select2-selection__choice {
+  visibility: visible;
+  color: black;
+}
+
+.selection .select2-selection__rendered .select2-selection__choice * {
+  visibility: visible;
 }
 
 .select2-bg-student .select2-container--default .select2-results__option--highlighted[aria-selected] {
@@ -11825,6 +11914,40 @@ svg.bookmark:hover {
   border: 1px solid #1F7AFF !important;
 }
 
+.select2-bg-student .select2-search--inline .select2-search__field {
+  visibility: visible !important;
+  border: none !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field:focus {
+  border: none !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field::-webkit-input-placeholder {
+  font-size: 3rem !important;
+  color: red !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field::-moz-placeholder {
+  font-size: 3rem !important;
+  color: red !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field:-ms-input-placeholder {
+  font-size: 3rem !important;
+  color: red !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field::-ms-input-placeholder {
+  font-size: 3rem !important;
+  color: red !important;
+}
+
+.select2-bg-student .select2-search--inline .select2-search__field::placeholder {
+  font-size: 3rem !important;
+  color: red !important;
+}
+
 .select2-bg-tutor .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #6749DF;
 }
@@ -11839,6 +11962,15 @@ svg.bookmark:hover {
   border: 1px solid #6749DF !important;
 }
 
+.select2-bg-tutor .select2-search--inline .select2-search__field {
+  visibility: visible !important;
+  border: none !important;
+}
+
+.select2-bg-tutor .select2-search--inline .select2-search__field:focus {
+  border: none !important;
+}
+
 .select2-container * {
   font-size: 1.8rem !important;
 }
@@ -11847,6 +11979,15 @@ svg.bookmark:hover {
   .select2-container * {
     font-size: 1.4rem;
   }
+}
+
+.select2-search__field {
+  visibility: visible !important;
+}
+
+.select2-selection--multiple .select2-selection__rendered {
+  display: flex !important;
+  flex-wrap: wrap;
 }
 
 .index-left-container,
@@ -12011,6 +12152,11 @@ svg.bookmark:hover {
   background-color: #1F7AFF;
 }
 
+.signup--right-student .btn-next-animation {
+  -webkit-animation: anchor-animation-pulsate-student 3s infinite;
+          animation: anchor-animation-pulsate-student 3s infinite;
+}
+
 .signup--right-tutor {
   color: #6749DF;
 }
@@ -12029,6 +12175,11 @@ svg.bookmark:hover {
 
 .signup--right-tutor .input-group-prepend {
   background-color: #6749DF;
+}
+
+.signup--right-tutor .btn-next-animation {
+  -webkit-animation: anchor-animation-pulsate-tutor 3s infinite;
+          animation: anchor-animation-pulsate-tutor 3s infinite;
 }
 
 .signup--right .signup__heading {
@@ -12053,7 +12204,7 @@ svg.bookmark:hover {
 }
 
 .signup form > *:not(:first-child) {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 }
 
 .signup form hr {
@@ -12076,7 +12227,7 @@ svg.bookmark:hover {
 }
 
 .signup .form-group-4 > * {
-  flex: 0 0 calc(25% - 1rem);
+  flex: 0 0 calc(20%);
 }
 
 .signup-form-input {
@@ -12084,7 +12235,7 @@ svg.bookmark:hover {
   border: 3px solid;
   border-radius: 1.2rem;
   background-color: transparent;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
 .signup-form-input:focus {
@@ -12153,13 +12304,6 @@ svg.bookmark:hover {
 
 .signup-form-input-email {
   text-align: center;
-  height: 8.5rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .signup-form-input-email {
-    height: 7rem;
-  }
 }
 
 .signup .multiple-inputs {
@@ -12179,23 +12323,24 @@ svg.bookmark:hover {
   overflow: hidden;
   border: 3px solid;
   border-radius: 1.2rem;
-  height: 5.5rem;
+  min-height: 5.5rem;
 }
 
 @media only screen and (max-width: 100em) {
   .signup .select-container {
-    height: 5rem;
+    min-height: 5rem;
   }
 }
 
 @media only screen and (max-width: 35.99em) {
   .signup .select-container {
-    height: 6rem;
+    min-height: 6rem;
   }
 }
 
 .signup .select-container-icon .select2-selection__rendered {
   margin-left: 1.5rem;
+  margin-right: -1.5rem;
 }
 
 .signup .select-container__icon {
@@ -12234,6 +12379,7 @@ svg.bookmark:hover {
   left: 1.2rem;
   top: calc(50% - 2.6rem / 2);
   fill: #A0A0A0;
+  transition: all 0.2s;
 }
 
 .signup .signup-container-bottom {
@@ -12245,14 +12391,21 @@ svg.bookmark:hover {
 .signup .signup-container-bottom .btn-next {
   position: relative;
   right: -2rem;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: 7rem;
+  height: 7rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .signup .signup-container-bottom .btn-next {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
 }
 
 @media only screen and (max-width: 35.99em) {
   .signup .signup-container-bottom .btn-next {
-    width: 6rem;
-    height: 6rem;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 }
 
@@ -12262,15 +12415,22 @@ svg.bookmark:hover {
   transform: translateX(0.3rem);
 }
 
+@media only screen and (max-width: 74.99em) {
+  .signup .signup-container-bottom .btn-next__arrow {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+}
+
 @media only screen and (max-width: 35.99em) {
   .signup .signup-container-bottom .btn-next__arrow {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 }
 
 .signup .signup-container-bottom #btn-skip {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -12283,7 +12443,7 @@ svg.bookmark:hover {
 
 .signup .signup__notice {
   color: #A0A0A0;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   text-align: center;
 }
 
@@ -12297,6 +12457,23 @@ svg.bookmark:hover {
   font-size: inherit;
   padding: 0;
   vertical-align: baseline;
+}
+
+.signup #btn-google {
+  transition: all 0.2s;
+}
+
+.signup #btn-google:hover {
+  transform: translateY(-2px);
+}
+
+.signup .icon-upload-image {
+  width: 25rem;
+  height: 25rem;
+}
+
+.signup .icon-upload-image:hover {
+  cursor: pointer;
 }
 
 .body-login {
@@ -12355,10 +12532,6 @@ svg.bookmark:hover {
   fill: #1F7AFF;
 }
 
-.login--left-student #btn-google-login .abcRioButtonBlue {
-  background-color: #1F7AFF;
-}
-
 .login--left-tutor {
   color: #6749DF;
 }
@@ -12369,10 +12542,6 @@ svg.bookmark:hover {
 
 .login--left-tutor .login-form-input-normal:focus + svg {
   fill: #6749DF;
-}
-
-.login--left-tutor #btn-google-login .abcRioButtonBlue {
-  background-color: #6749DF;
 }
 
 .login--left .login__heading {
@@ -12433,7 +12602,7 @@ svg.bookmark:hover {
 }
 
 .login form > :not(:first-child) {
-  margin-top: 4rem;
+  margin-top: 3.5rem;
 }
 
 .login-form-input {
@@ -12441,7 +12610,7 @@ svg.bookmark:hover {
   border: 3px solid;
   border-radius: 1.2rem;
   background-color: transparent;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
 .login-form-input:focus {
@@ -12515,6 +12684,7 @@ svg.bookmark:hover {
   left: 1.2rem;
   top: calc(50% - 2.6rem / 2);
   fill: #A0A0A0;
+  transition: all 0.2s;
 }
 
 .login .btn-login {
@@ -12522,5 +12692,13 @@ svg.bookmark:hover {
   font-size: 2.4rem;
   width: 30rem;
   border-radius: 5rem;
+}
+
+.login #btn-google {
+  transition: all 0.2s;
+}
+
+.login #btn-google:hover {
+  transform: translateY(-2px);
 }
 

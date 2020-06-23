@@ -238,6 +238,7 @@ class RegisterController extends Controller
     }
 
     public function indexTutor3() {
+        // dd(request()->session());
         return view('auth.register_tutor_3');
     }
 
@@ -256,7 +257,8 @@ class RegisterController extends Controller
         $request->validate([
             "first-major" => [
                 'nullable',
-                'exists:majors,id'
+                'exists:majors,id',
+                'required_with:second-major'
             ],
             "second-major" => [
                 'nullable',
@@ -271,7 +273,7 @@ class RegisterController extends Controller
 
         echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
 
-        // TODO: create the user
+        // create the user
         $user = new User();
 
         // stores the data
@@ -324,11 +326,13 @@ class RegisterController extends Controller
         $request->validate([
             "first-major" => [
                 'required',
-                'exists:majors,id'
+                'exists:majors,id',
+                'required_with:second-major'
             ],
             "second-major" => [
                 'nullable',
-                'exists:majors,id'
+                'exists:majors,id',
+
             ],
             "school-year" => [
                 'required',
@@ -336,16 +340,11 @@ class RegisterController extends Controller
             ],
             "gpa" => [
                 'required',
-                'numeric'
+                'numeric',
+                'min:1',
+                'max:4'
             ]
         ]);
-
-        // if gpa is invalid
-        if($request->input('gpa') < 1 || $request->input('gpa') > 4) {
-            return redirect()->back()->with([
-                'errorMsg' => 'The gpa you entered is incorrect.'
-            ]);
-        }
 
         $request->session()->put('registerDataTutor', array_merge($tutorData, $request->all()));
 
@@ -354,6 +353,110 @@ class RegisterController extends Controller
 
     public function indexTutor4() {
         return view('auth.register_tutor_4');
+    }
+
+    public function storeTutor4(Request $request) {
+        $tutorData = $request->session()->get('registerDataTutor');
+
+        // session emailVerifiedTutor exists only if the tutor did all the previous steps, including with Google
+        if(!$request->session()->has('emailVerifiedTutor')) {
+            return redirect()->back()->with([
+                'errorMsg' => 'Something went wrong with your registration process. Please make sure you completed all the registration steps.'
+            ]);
+        }
+
+        $request->validate([
+            'hourly-rate' => [
+                'required',
+                'numeric',
+                'min:10',
+                'max:50'
+            ],
+            'courses' => [
+                'required',
+                'array',
+                'min:1'
+            ],
+            'courses.*' => [
+                'exists:courses,id'
+            ]
+        ]);
+
+        $request->session()->put('registerDataTutor', array_merge($tutorData, $request->all()));
+
+        return redirect()->route('register.index.tutor.5');
+    }
+
+    public function indexTutor5() {
+        return view('auth.register_tutor_5');
+    }
+
+    public function storeTutor5(Request $request) {
+        $tutorData = $request->session()->get('registerDataTutor');
+
+        // session emailVerifiedTutor exists only if the tutor did all the previous steps, including with Google
+        if(!$request->session()->has('emailVerifiedTutor')) {
+            return redirect()->back()->with([
+                'errorMsg' => 'Something went wrong with your registration process. Please make sure you completed all the registration steps.'
+            ]);
+        }
+
+        $request->validate([
+            'profile-pic' => [
+                'file',
+                'mimes:jpeg,bmp,png'
+            ]
+        ]);
+
+        echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
+
+
+
+        // create the user
+        $user = new User();
+
+        // stores the data
+        $user->firstMajor()->associate(Major::find($tutorData['first-major']));
+
+        if(isset($tutorData['second-major'])) {
+            $user->secondMajor()->associate(Major::find($tutorData['second-major']));
+        }
+        $user->school_year()->associate(School_year::find($tutorData['school-year']));
+
+        if(isset($tutorData['google-id'])) {
+            $user->google_id = $tutorData['google-id'];
+        }
+        else {
+            $user->password = Hash::make($tutorData['password']);
+        }
+
+        $user->first_name = $tutorData['first-name'];
+        $user->last_name = $tutorData['last-name'];
+        $user->is_tutor = true;
+        $user->email = $tutorData['email'];
+        $user->gpa = $tutorData['gpa'];
+        $user->hourly_rate = $tutorData['hourly-rate'];
+
+        // if user uploaded the file
+        if($request->file('profile-pic')) {
+            $user->deleteImage();
+            $imgURL = $request->file('profile-pic')->store('');
+            $user->profile_pic_url = $imgURL;
+        }
+
+        $user->save();
+
+        $user->courses()->attach($tutorData['courses']);
+
+        // clear all the session data
+        $request->session()->flush();
+
+        // login the user
+        Auth::login($user);
+
+        return redirect()->route('home')->with([
+            'registerSuccess' => true
+        ]);
     }
 
 }

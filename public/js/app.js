@@ -43940,8 +43940,6 @@ $(document).ready(function () {
       $(this).next().find('.select2-selection__rendered').addClass('fc-grey');
       $(this).next().find('.select2-selection__rendered').removeClass('fc-black');
     }
-
-    $(ele).attr('select2-open', 'false');
   });
   $("select").change(function () {
     if ($(this).find('option:selected').prop('disabled')) {
@@ -43952,6 +43950,17 @@ $(document).ready(function () {
       $(this).next().find('.select2-selection__rendered').removeClass('fc-grey');
       $(this).next().find('.select2-selection__rendered').addClass('fc-black');
     }
+  }); // for  square display
+
+  var adjustSquareSize = function adjustSquareSize() {
+    $.each($('.square'), function (idx, el) {
+      $(el).height($(el).width() + 'px');
+    });
+  };
+
+  adjustSquareSize();
+  $(window).resize(function () {
+    adjustSquareSize();
   });
 });
 

@@ -86,6 +86,10 @@
             .input-group-prepend {
                 background-color: $color-blue-primary;
             }
+
+            .btn-next-animation {
+                animation: anchor-animation-pulsate-student 3s infinite;
+            }
         }
 
         &-tutor {
@@ -109,6 +113,10 @@
 
             .input-group-prepend {
                 background-color: $color-purple-primary;
+            }
+
+            .btn-next-animation {
+                animation: anchor-animation-pulsate-tutor 3s infinite;
             }
         }
 
@@ -134,7 +142,7 @@
         padding: 3rem 7rem;
 
         > *:not(:first-child) {
-            margin-top: 4rem;
+            margin-top: 3.5rem;
         }
 
         hr {
@@ -158,7 +166,7 @@
         justify-content: space-between;
 
         > * {
-            flex: 0 0 calc(25% - 1rem);
+            flex: 0 0 calc(20%);
         }
     }
 
@@ -167,7 +175,7 @@
         border: 3px solid;
         border-radius: 1.2rem;
         background-color: transparent;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
 
         &:focus {
             box-shadow: none;
@@ -203,30 +211,13 @@
         // for email verification
         &-email {
             text-align: center;
-            height: 8.5rem;
 
-            @include respond(lg) {
-                height: 7rem;
-            }
         }
     }
 
     // for tutor's register 3 page with school year and gpa in the same row
     .multiple-inputs {
         display: flex;
-        // justify-content: space-between;
-
-        // height: 5.5rem;
-        // @include respond(lg-2) {
-        //     height: 5rem;
-        // }
-        // @include respond(extra-sm) {
-        //     height: 6rem;
-        // }
-        // > * {
-        //     // height: 100%;
-        //     flex: 0 0 calc(50% - 1rem);
-        // }
 
         > :first-child {
             margin-right: 2rem;
@@ -243,19 +234,20 @@
         overflow: hidden;
         border: 3px solid;
         border-radius: 1.2rem;
-        height: 5.5rem;
+        min-height: 5.5rem;
 
         @include respond(lg-2) {
-            height: 5rem;
+            min-height: 5rem;
         }
 
         @include respond(extra-sm) {
-            height: 6rem;
+            min-height: 6rem;
         }
 
         &-icon {
             .select2-selection__rendered {
                 margin-left: 1.5rem;
+                margin-right: -1.5rem;
             }
         }
 
@@ -265,7 +257,7 @@
             height: 2.2rem;
             left: .5rem;
             top: 48%;
-            transform: translateY(-50%);;
+            transform: translateY(-50%);
         }
 
         .input-group-prepend {
@@ -297,6 +289,7 @@
         left: $icon-left-space;
         top: calc(50% - #{$icon-size} / 2);
         fill: $color-grey;
+        transition: all .2s;
     }
 
     .signup-container-bottom {
@@ -307,12 +300,17 @@
         .btn-next {
             position: relative;
             right: -2rem;
-            width: 7.5rem;
-            height: 7.5rem;
+            width: 7rem;
+            height: 7rem;
+
+            @include respond(lg) {
+                width: 5.5rem;
+                height: 5.5rem;
+            }
 
             @include respond(extra-sm) {
-                width: 6rem;
-                height: 6rem;
+                width: 4.5rem;
+                height: 4.5rem;
             }
 
             &__arrow {
@@ -320,15 +318,20 @@
                 height: 4rem;
                 transform: translateX(.3rem);
 
+                @include respond(lg) {
+                    width: 3.2rem;
+                    height: 3.2rem;
+                }
+
                 @include respond(extra-sm) {
-                    width: 3rem;
-                    height: 3rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
                 }
             }
         }
 
         #btn-skip {
-            font-size: 2.4rem;
+            font-size: 2.2rem;
             text-decoration: underline;
             background-color: transparent;
 
@@ -341,7 +344,7 @@
 
     .signup__notice {
         color: $color-grey;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         text-align: center;
     }
 
@@ -356,6 +359,22 @@
             vertical-align: baseline;
         }
     }
-}
 
+    #btn-google {
+        transition: all .2s;
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+
+    .icon-upload-image {
+        width: 25rem;
+        height: 25rem;
+
+        &:hover {
+            cursor: pointer;
+
+        }
+    }
+}
 

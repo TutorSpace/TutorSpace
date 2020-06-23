@@ -22,7 +22,7 @@ bg-grey-light body-signup select2-bg-tutor
             <path class="btn-close-fill" fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"/>
         </svg>
         <h2 class="signup__heading">You Want to be a Tutor for...</h2>
-        <form action="{{ route('register.store.tutor.3') }}" method="POST">
+        <form action="{{ route('register.store.tutor.4') }}" method="POST">
             <p class="signup__notice">
                 @csrf
                 No Worries! You can edit your hourly rate and course preference later in your profile.
@@ -30,11 +30,11 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative select-container-icon">
-                    <svg class="select-container__icon">
+                    <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                     </svg>
                     <select class="custom-select" name="hourly-rate" required>
-                        <option selected disabled class="fc-grey">Hourly Rate</option>
+                        <option selected disabled class="fc-grey" value="">Hourly Rate</option>
                         @for ($i = 10; $i <= 50; $i += 0.5)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
@@ -52,12 +52,11 @@ bg-grey-light body-signup select2-bg-tutor
                 @enderror
             </div>
             <div class="p-relative">
-                <div class="input-group select-container p-relative select-container-icon">
-                    <svg class="select-container__icon">
+                <div class="input-group select-container p-relative select-container-icon pb-0-5">
+                    <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                     </svg>
-                    <select class="custom-select" name="courses" required>
-                        <option selected disabled class="fc-grey">Search by course number</option>
+                    <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
                         @foreach (App\Course::all() as $course)
                             <option value="{{ $course->id }}">{{ $course->course }}</option>
                         @endforeach
@@ -73,12 +72,17 @@ bg-grey-light body-signup select2-bg-tutor
                     {{ $message }}
                 </span>
                 @enderror
+                @error('courses.*')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
 
             <div class="signup-container-bottom mt-5 p-relative">
                 {{-- btn-next --}}
-                <button class="btn btn-next btn-next-animation btn-tutor ml-auto">
+                <button class="btn btn-next bg-grey ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />

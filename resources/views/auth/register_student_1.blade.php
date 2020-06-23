@@ -97,8 +97,8 @@ bg-grey-light body-signup
                 <div id="btn-google" class="btn-google"></div>
             </div>
 
-            <div class="signup-container-bottom mt-4">
-
+            <div class="signup-container-bottom mt-4 p-relative">
+                <span class="fc-grey absCenter fs-1-6 ws-no-wrap">Already have an account? <a href="{{ route('login.index.student') }}" class="btn-link-student fs-1-6">Log in</a></span>
                 {{-- btn-next --}}
                 <button class="btn btn-next bg-grey">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"

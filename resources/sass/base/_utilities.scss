@@ -16,6 +16,7 @@
 // ==================== padding & margin ===================
 .pl-0 { padding-left: 0; }
 .pr-0 { padding-right: 0; }
+.pb-0-5 { padding-bottom: 0.5rem; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
@@ -37,8 +38,8 @@
 // ======================== font color & size ==================
 .fs-1-2 { font-size: 1.2rem; }
 .fs-1-4 { font-size: 1.4rem; }
-.fs-1-6 { font-size: 1.6rem; }
-.fs-2 { font-size: 2rem; }
+.fs-1-6 { font-size: 1.6rem !important; }
+.fs-2 { font-size: 2rem !important; }
 .fs-2-2 { font-size: 2.2rem; }
 .fs-2-4 { font-size: 2.4rem; }
 .fc-grey { color: $color-grey !important; }
@@ -55,4 +56,8 @@
 
 // =============== others =================
 .ws-no-wrap { white-space: nowrap; }
+
+.absCenter {
+    @include absCenter;
+}
 

@@ -47,10 +47,6 @@
                     }
                 }
             }
-
-            #btn-google-login .abcRioButtonBlue {
-                background-color: $color-blue-primary;
-            }
         }
 
         &-tutor {
@@ -68,9 +64,7 @@
                 }
             }
 
-            #btn-google-login .abcRioButtonBlue {
-                background-color: $color-purple-primary;
-            }
+
         }
 
         .login__heading {
@@ -133,7 +127,7 @@
         padding: 3rem 7rem;
 
         > :not(:first-child) {
-            margin-top: 4rem;
+            margin-top: 3.5rem;
         }
     }
 
@@ -142,7 +136,7 @@
         border: 3px solid;
         border-radius: 1.2rem;
         background-color: transparent;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
 
         &:focus {
             box-shadow: none;
@@ -183,6 +177,7 @@
         left: $icon-left-space;
         top: calc(50% - #{$icon-size} / 2);
         fill: $color-grey;
+        transition: all .2s;
     }
 
     .btn-login {
@@ -192,7 +187,12 @@
         border-radius: 5rem;
     }
 
-
+    #btn-google {
+        transition: all .2s;
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
 
 }
 
