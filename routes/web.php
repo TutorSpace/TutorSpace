@@ -63,10 +63,10 @@ Route::group([
     Route::get('login/google/tutor', 'Auth\GoogleController@loginRedirectToGoogleTutor')->name('login.google.tutor');
 
     // ================ reset password ============
-    Route::get('/reset-password/student', 'Auth\ForgotPasswordController@indexResetPasswordStudent')->name('reset-password.index.student');
-    Route::post('/reset-password/student', 'Auth\ResetPasswordController@resetPasswordStudent')->name('reset-password.store.student');
-    Route::get('/reset-password/tutor', 'Auth\ForgotPasswordController@indexResetPasswordTutor')->name('reset-password.index.tutor');
-    Route::post('/reset-password/tutor', 'Auth\ResetPasswordController@resetPasswordTutor')->name('reset-password.store.tutor');
+    Route::get('/reset-password/student', 'Auth\ResetPasswordController@indexResetPasswordStudent')->name('reset-password.index.student');
+    Route::post('/reset-password/student', 'Auth\ForgotPasswordController@resetPasswordStudent')->name('reset-password.store.student');
+    Route::get('/reset-password/tutor', 'Auth\ResetPasswordController@indexResetPasswordTutor')->name('reset-password.index.tutor');
+    Route::post('/reset-password/tutor', 'Auth\ForgotPasswordController@resetPasswordTutor')->name('reset-password.store.tutor');
 });
 
 
