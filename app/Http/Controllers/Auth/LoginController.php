@@ -64,8 +64,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => false])) {
             // Authentication passed...
-            // if they have an intended location, direct them their, or otherwise direct to home
-            return redirect()->intended('home');
+            // todo: determine where to direct them
+            return redirect()->route('home');
         }
         else {
             return redirect()->back()->withInput()->with([
@@ -108,8 +108,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => true])) {
             // Authentication passed...
-            // if they have an intended location, direct them their, or otherwise direct to home
-            return redirect()->intended('home');
+            // todo: determine where to direct them
+            return redirect()->route('home');
         }
         else {
             return redirect()->back()->withInput()->with([
