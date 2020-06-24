@@ -52,7 +52,6 @@ bg-grey-light body-signup
 
 
             <div class="signup-container-bottom mt-5 p-relative">
-                <button class="btn btn-link btn-link-tutor p-relative left-n-2 inline-grid" id="btn-skip">Skip</button>
                 {{-- btn-next --}}
                 <button class="btn btn-next btn-next-animation btn-tutor ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"

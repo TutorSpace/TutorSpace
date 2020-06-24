@@ -85,6 +85,7 @@ bg-grey-light body-signup select2-bg-tutor
                 <div class="input-group select-container p-relative">
                     <select class="custom-select" name="gpa" required>
                         <option selected disabled class="fc-grey" value="">GPA</option>
+                        <option value="0">Prefer Not to Say</option>
                         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
                             <option value="{{ number_format($i, 2) }}">{{ number_format($i, 2) }}</option>
                         @endfor
@@ -104,18 +105,7 @@ bg-grey-light body-signup select2-bg-tutor
                     {{ $errors->first('gpa') }}
                 </span>
                 @endif
-
-                {{-- <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input"
-                        placeholder="GPA" name="gpa" value="{{ old('gpa') }}" required>
-                    @error('gpa')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                </div> --}}
             </div>
-
 
             <div class="signup-container-bottom mt-5 p-relative">
                 {{-- btn-next --}}

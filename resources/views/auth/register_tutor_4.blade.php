@@ -79,6 +79,9 @@ bg-grey-light body-signup select2-bg-tutor
                 @enderror
             </div>
 
+            <p class="fc-purple-secondary fs-1-6 font-weight-bold">
+                * You NEED to choose at least one course.
+            </p>
 
             <div class="signup-container-bottom mt-5 p-relative">
                 {{-- btn-next --}}

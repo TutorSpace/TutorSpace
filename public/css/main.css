@@ -11680,6 +11680,10 @@ h2 {
   color: red;
 }
 
+.fc-purple-secondary {
+  color: #30188F;
+}
+
 .left-n-2 {
   left: -2rem;
 }
@@ -11741,24 +11745,26 @@ h2 {
 
 .btn-link-student {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   color: #0C4293;
   transition: color 0.3s;
 }
 
 .btn-link-student:hover {
   color: #07306C;
+  font-weight: 500;
 }
 
 .btn-link-tutor {
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   color: #30188F;
   transition: color 0.3s;
 }
 
 .btn-link-tutor:hover {
   color: #251175;
+  font-weight: 500;
 }
 
 .btn-google {
@@ -12142,7 +12148,19 @@ svg.bookmark:hover {
 
 .signup--right .signup__heading {
   padding: 0 3rem;
-  margin-top: 3.5rem;
+  margin-top: 4.5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .signup--right .signup__heading {
+    margin-top: 4rem;
+  }
+}
+
+@media only screen and (max-width: 74.99em) {
+  .signup--right .signup__heading {
+    margin-top: 3.5rem;
+  }
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -12208,6 +12226,7 @@ svg.bookmark:hover {
 
 .signup form {
   padding: 3rem 7rem;
+  padding-top: 2rem;
 }
 
 .signup form > *:not(:first-child) {
@@ -12326,6 +12345,13 @@ svg.bookmark:hover {
 .signup .multiple-inputs > :first-child {
   margin-right: 2rem;
   flex: 0 0 60%;
+}
+
+@media only screen and (max-width: 100em) {
+  .signup .multiple-inputs > :first-child {
+    flex: 0 0 62%;
+    margin-right: 1rem;
+  }
 }
 
 .signup .multiple-inputs > :last-child {

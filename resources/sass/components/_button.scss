@@ -40,23 +40,25 @@
 // for buttons, use btn,btn-link,btn-link-*  || for anchors, use btn-link-*
 .btn-link-student {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 400;
     color: $color-blue-secondary;
     transition: color .3s;
 
     &:hover {
         color: $color-blue-secondary-2;
+        font-weight: 500;
     }
 }
 
 .btn-link-tutor {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 400;
     color: $color-purple-secondary;
     transition: color .3s;
 
     &:hover {
         color: $color-purple-secondary-2;
+        font-weight: 500;
     }
 }
 
