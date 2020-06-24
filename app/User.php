@@ -19,12 +19,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    // customized
-    public function customSendPasswordResetNotification($token, $is_tutor)
-    {
-        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -41,6 +35,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // customized
+    public function customSendPasswordResetNotification($token, $is_tutor)
+    {
+        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
+    }
 
     public static function getTime($date, $startTime) {
         $startTime = date("H:i", strtotime($startTime));

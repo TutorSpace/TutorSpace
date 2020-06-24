@@ -2,13 +2,14 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\JsonResponse;
+use App\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Validation\ValidationException;
 
 trait ResetsPasswords
@@ -26,12 +27,12 @@ trait ResetsPasswords
      */
     public function showResetForm(Request $request, $token = null)
     {
-        if($request->identity == 'tutor') {
+        if($request->is_tutor == 'true') {
             return view('auth.passwords.reset_tutor')->with(
                 ['token' => $token, 'email' => $request->email]
             );
         }
-        else {
+        else if($request->is_tutor == 'false') {
             return view('auth.passwords.reset_student')->with(
                 ['token' => $token, 'email' => $request->email]
             );
@@ -112,12 +113,19 @@ trait ResetsPasswords
      */
     protected function resetPassword($user, $password)
     {
-        $this->setUserPassword($user, $password);
+        // $this->setUserPassword($user, $password);
+
+        // customized
+        // reset the password of all the users
+        foreach(User::where('email', $user->email)->get() as $tempUser) {
+            $tempUser->password = Hash::make($password);
+            $tempUser->save();
+        }
 
         // customized: no remember token
         // $user->setRememberToken(Str::random(60));
 
-        $user->save();
+        // $user->save();
 
         event(new PasswordReset($user));
 
