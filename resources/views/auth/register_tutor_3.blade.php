@@ -22,7 +22,7 @@ bg-grey-light body-signup select2-bg-tutor
         </svg>
         <h2 class="signup__heading">Tell us more about yourself</h2>
         <form action="{{ route('register.store.tutor.3') }}" method="POST">
-            <p class="signup__notice">
+            <p class="signup__notice ws-no-wrap">
                 @csrf
                 This will help students find you easily!
             </p>

@@ -12118,8 +12118,17 @@ svg.bookmark:hover {
   color: #FFFFFF;
 }
 
-.signup--left__svg {
-  width: 100%;
+.signup--left__svg-student {
+  width: 40rem;
+  height: 40rem;
+  position: relative;
+  right: -5rem;
+  bottom: 0rem;
+  z-index: 2000;
+}
+
+.signup--left__svg-tutor {
+  width: 40rem;
   position: relative;
   right: -5rem;
   bottom: 3rem;
@@ -12226,16 +12235,11 @@ svg.bookmark:hover {
 
 .signup form {
   padding: 3rem 7rem;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .signup form > *:not(:first-child) {
-  margin-top: 3.5rem;
-}
-
-.signup form hr {
-  border: 1.5px solid;
-  width: 8rem;
+  margin-top: 3.7rem;
 }
 
 .signup .form-group-2 {

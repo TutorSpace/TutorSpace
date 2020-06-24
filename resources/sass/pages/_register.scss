@@ -38,8 +38,17 @@
             color: $color-white;
         }
 
-        &__svg {
-            width: 100%;
+        &__svg-student {
+            width: 40rem;
+            height: 40rem;
+            position: relative;
+            right: -5rem;
+            bottom: 0rem;
+            z-index: 2000;
+        }
+
+        &__svg-tutor {
+            width: 40rem;
             position: relative;
             right: -5rem;
             bottom: 3rem;
@@ -153,15 +162,10 @@
 
     form {
         padding: 3rem 7rem;
-        padding-top: 2rem;
+        padding-top: 1.5rem;
 
         > *:not(:first-child) {
-            margin-top: 3.5rem;
-        }
-
-        hr {
-            border: 1.5px solid;
-            width: 8rem;
+            margin-top: 3.7rem;
         }
     }
 
