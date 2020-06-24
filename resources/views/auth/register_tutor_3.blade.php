@@ -7,7 +7,6 @@ bg-grey-light body-signup select2-bg-tutor
 
 @section('content')
 <div class="container signup">
-
     {{-- left template --}}
     @include('auth.partials.register_left_tutor')
 

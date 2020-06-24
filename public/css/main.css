@@ -12290,6 +12290,12 @@ svg.bookmark:hover {
 
 @media only screen and (max-width: 100em) {
   .signup-form-input-normal {
+    height: 5.5rem;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup-form-input-normal {
     height: 5rem;
   }
 }
@@ -12664,6 +12670,12 @@ svg.bookmark:hover {
 }
 
 @media only screen and (max-width: 100em) {
+  .login-form-input-normal {
+    height: 5.5rem;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
   .login-form-input-normal {
     height: 5rem;
   }

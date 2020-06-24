@@ -37,14 +37,14 @@ bg-grey-light body-login
                 <button class="btn btn-student btn-send btn-animation-y">Send</button>
             </div>
 
-            {{-- <p class="resend-email">
-                Didn't get the code? <button class="btn btn-link btn-link-student" id="resend-code" type="button">Resend code</button>
-                <span id="timeLabel"></span>
-            </p> --}}
-
             <p class="text-center fs-2">
                 <span class="fc-grey">Back to </span><a href="{{ route('login.index.student') }}"
                     class="btn-link-student">Log in</a>
+            </p>
+
+            <p class="text-left fs-2">
+                <span class="fc-grey">Questions? Email us at</span>
+                <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-student">tutorspaceusc@gmail.com</a>
             </p>
 
         </form>

@@ -53,7 +53,7 @@ bg-grey-light body-login
             </div>
 
             <div class="text-center">
-                <a href="{{ route('password.request', ['identity' => 'tutor']) }}" class="btn-link-tutor">Forgot your password?</a>
+                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor">Forgot your password?</a>
             </div>
 
             <p class="text-center fs-2">

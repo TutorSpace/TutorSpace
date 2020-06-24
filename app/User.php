@@ -7,14 +7,23 @@ use App\Session;
 use Carbon\Carbon;
 
 use App\Tutor_request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    // customized
+    public function customSendPasswordResetNotification($token, $is_tutor)
+    {
+        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
+    }
 
     /**
      * The attributes that are mass assignable.
