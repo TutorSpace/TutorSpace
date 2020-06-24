@@ -216,6 +216,25 @@
         text-align: center;
     }
 
+    .svg-reset-password-right-student {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 4rem;
+        transform: scaleY(1.15);
+    }
+
+    .svg-reset-password-right-tutor {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 0rem;
+    }
+
 }
 
 

@@ -8,34 +8,42 @@ bg-grey-light body-login
 @section('content')
 <div class="container login">
     <div class="login--left login--left-tutor">
-        <form action="{{ route('password.email') }}" method="POST">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
-            <input type="hidden" value="1" name="is_tutor">
+            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="email" value="{{ $email }}">
             <h2 class="login__heading">Reset Password</h2>
             <p class="login__notice">
                 @csrf
-                No worries! Enter your email and we'll send instructions to reset your password.
+                We have received a request to reset your password. Please enter your new password.
             </p>
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="password" class="form-control login-form-input login-form-input-normal" placeholder="New Password" name="password"
                     required>
                 <svg class="input-icon">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
-                @if($errors->any())
+                @error('password')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first() }}
+                    {{ $message }}
                 </span>
-                @endif
-                @if (session('status'))
-                    <div class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 text-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                @enderror
+            </div>
+            <div class="p-relative">
+                <input type="password" class="form-control login-form-input login-form-input-normal" placeholder="Confirm Password" name="password_confirmation"
+                    required>
+                <svg class="input-icon">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
+                </svg>
+                @error('password')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
             <div class="text-center">
-                <button class="btn btn-tutor btn-send btn-animation-y">Send</button>
+                <button class="btn btn-tutor btn-send btn-animation-y">Change Password</button>
             </div>
 
             <p class="text-center fs-2">
@@ -96,5 +104,3 @@ bg-grey-light body-login
 @include('auth.partials.bg_shapes_tutor')
 
 @endsection
-
-

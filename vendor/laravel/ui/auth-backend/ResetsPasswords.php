@@ -27,12 +27,12 @@ trait ResetsPasswords
      */
     public function showResetForm(Request $request, $token = null)
     {
-        if($request->is_tutor == 'true') {
+        if($request->is_tutor == '1') {
             return view('auth.passwords.reset_tutor')->with(
                 ['token' => $token, 'email' => $request->email]
             );
         }
-        else if($request->is_tutor == 'false') {
+        else if($request->is_tutor == '0') {
             return view('auth.passwords.reset_student')->with(
                 ['token' => $token, 'email' => $request->email]
             );
