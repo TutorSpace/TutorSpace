@@ -11568,6 +11568,10 @@ h2 {
   bottom: 100%;
 }
 
+.bottom-4 {
+  bottom: 4rem;
+}
+
 .right-0 {
   right: 0;
 }
@@ -11693,6 +11697,12 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.centerX {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .btn-next {
@@ -12087,29 +12097,27 @@ svg.bookmark:hover {
   }
 }
 
-.signup .signup__heading {
-  text-align: center;
-  margin-top: 3.5rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .signup .signup__heading {
-    margin-top: 5rem;
-  }
-}
-
 .signup .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
 }
 
-.signup--left .signup__heading {
-  padding: 0 4rem;
+.signup .signup__heading {
+  text-align: center;
 }
 
 .signup--left .signup__heading {
+  padding: 0 4rem;
   color: #FFFFFF;
+}
+
+.signup--left__svg {
+  width: 100%;
+  position: relative;
+  right: -5rem;
+  bottom: 3rem;
+  z-index: 2000;
 }
 
 .signup--left-student {
@@ -12122,7 +12130,7 @@ svg.bookmark:hover {
 
 @media only screen and (max-width: 61.99em) {
   .signup--left {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -12130,6 +12138,17 @@ svg.bookmark:hover {
   flex: 1;
   box-shadow: 0px 1rem 10rem 0px rgba(0, 0, 0, 0.25);
   background-color: #F4F4F4;
+}
+
+.signup--right .signup__heading {
+  padding: 0 3rem;
+  margin-top: 3.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup--right .signup__heading {
+    margin-top: 5rem;
+  }
 }
 
 .signup--right-student {
@@ -12142,10 +12161,6 @@ svg.bookmark:hover {
 
 .signup--right-student .signup-form-input-normal:focus + svg {
   fill: #1F7AFF;
-}
-
-.signup--right-student #btn-google .abcRioButtonBlue {
-  background-color: #1F7AFF;
 }
 
 .signup--right-student .input-group-prepend {
@@ -12169,10 +12184,6 @@ svg.bookmark:hover {
   fill: #6749DF;
 }
 
-.signup--right-tutor #btn-google .abcRioButtonBlue {
-  background-color: #6749DF;
-}
-
 .signup--right-tutor .input-group-prepend {
   background-color: #6749DF;
 }
@@ -12180,10 +12191,6 @@ svg.bookmark:hover {
 .signup--right-tutor .btn-next-animation {
   -webkit-animation: anchor-animation-pulsate-tutor 3s infinite;
           animation: anchor-animation-pulsate-tutor 3s infinite;
-}
-
-.signup--right .signup__heading {
-  padding: 0 3rem;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -12594,7 +12601,7 @@ svg.bookmark:hover {
 .login--right .btn-google-container {
   align-self: flex-end;
   position: absolute;
-  bottom: 5rem;
+  bottom: 4rem;
 }
 
 @media only screen and (max-width: 61.99em) {

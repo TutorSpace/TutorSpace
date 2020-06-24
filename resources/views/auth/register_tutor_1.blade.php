@@ -12,10 +12,15 @@ bg-grey-light body-signup
 
 @section('content')
 <div class="container signup">
-
-    {{-- left template --}}
-    @include('auth.partials.register_left_tutor')
-
+    {{-- left container --}}
+    <div class="signup--left signup--left-tutor p-relative d-flex flex-column justify-content-center">
+        <h2 class="signup__heading">Hello, Tutor!</h2>
+        <div class="d-flex justify-content-center bottom-4 centerX">
+            {{-- google button --}}
+            <div id="btn-google" class="btn-google"></div>
+        </div>
+    </div>
+    {{-- right container --}}
     <div class="signup--right signup--right-tutor p-relative">
         <svg class="btn-close fill-color-purple-primary" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             data-back-href="{{ route('index') }}">
@@ -77,7 +82,7 @@ bg-grey-light body-signup
 
             <div class="p-relative">
                 <input type="password" class="form-control signup-form-input signup-form-input-normal"
-                    placeholder="Password" name="password" value="{{ old('password') }}" required>
+                    placeholder="Password" name="password" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
@@ -88,17 +93,21 @@ bg-grey-light body-signup
                 @enderror
             </div>
 
-            <div class="d-flex justify-content-center mt-5">
-                <hr>
+            <div class="p-relative">
+                <input type="password" class="form-control signup-form-input signup-form-input-normal"
+                    placeholder="Confirm Password" name="password-confirm" required>
+                <svg class="input-icon">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
+                </svg>
+                @error('password-confirm')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
-            <div class="d-flex justify-content-center mt-5 p-relative">
-                {{-- google button --}}
-                <div id="btn-google" class="btn-google"></div>
-            </div>
-
-            <div class="signup-container-bottom mt-4 p-relative">
-                <span class="fc-grey absCenter fs-1-6 ws-no-wrap">Already have an account? <a href="{{ route('login.index.tutor') }}" class="btn-link-tutor fs-1-6">Log in</a></span>
+            <div class="signup-container-bottom p-relative">
+                <span class="fc-grey absCenter fs-2 ws-no-wrap">Already have an account? <a href="{{ route('login.index.tutor') }}" class="btn-link-tutor">Log in</a></span>
                 {{-- btn-next --}}
                 <button class="btn btn-next bg-grey">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +163,7 @@ bg-grey-light body-signup
             'width': googleBtnWidth,
             'height': googleBtnHeight,
             'longtitle': true,
-            'theme': 'dark'
+            'theme': 'light'
         })
 
         let checkBtnAddedInterval = setInterval(() => {

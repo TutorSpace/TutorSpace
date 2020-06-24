@@ -57,7 +57,6 @@ class RegisterController extends Controller
 
     // first page of tutor register
     public function indexTutor1(Request $request) {
-        dd($request->session());
         return view('auth.register_tutor_1');
     }
 
@@ -242,7 +241,6 @@ class RegisterController extends Controller
     }
 
     public function indexTutor3() {
-        // dd(request()->session());
         return view('auth.register_tutor_3');
     }
 

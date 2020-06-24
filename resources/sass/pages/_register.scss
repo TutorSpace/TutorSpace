@@ -22,28 +22,28 @@
 
     @include absCenter;
 
-    .signup__heading {
-        text-align: center;
-        margin-top: 3.5rem;
-
-        @include respond(md) {
-            margin-top: 5rem;
-        }
-    }
-
     .btn-close {
         position: absolute;
         top: 1rem;
         right: 1rem;
     }
 
+    .signup__heading {
+        text-align: center;
+    }
+
     &--left {
         .signup__heading {
             padding: 0 4rem;
+            color: $color-white;
         }
 
-        .signup__heading {
-            color: $color-white;
+        &__svg {
+            width: 100%;
+            position: relative;
+            right: -5rem;
+            bottom: 3rem;
+            z-index: 2000;
         }
 
         &-student {
@@ -55,7 +55,7 @@
         }
 
         @include respond(md) {
-            display: none;
+            display: none !important;
         }
     }
 
@@ -63,6 +63,15 @@
         flex: 1;
         box-shadow: 0px 1rem 10rem 0px rgba(0,0,0,0.25);
         background-color: $color-white-dark;
+
+        .signup__heading {
+            padding: 0 3rem;
+            margin-top: 3.5rem;
+
+            @include respond(md) {
+                margin-top: 5rem;
+            }
+        }
 
         &-student {
             color: $color-blue-primary;
@@ -79,9 +88,9 @@
                 }
             }
 
-            #btn-google .abcRioButtonBlue {
-                background-color: $color-blue-primary;
-            }
+            // #btn-google .abcRioButtonBlue {
+            //     background-color: $color-blue-primary;
+            // }
 
             .input-group-prepend {
                 background-color: $color-blue-primary;
@@ -107,9 +116,9 @@
                 }
             }
 
-            #btn-google .abcRioButtonBlue {
-                background-color: $color-purple-primary;
-            }
+            // #btn-google .abcRioButtonBlue {
+            //     background-color: $color-purple-primary;
+            // }
 
             .input-group-prepend {
                 background-color: $color-purple-primary;
@@ -118,10 +127,6 @@
             .btn-next-animation {
                 animation: anchor-animation-pulsate-tutor 3s infinite;
             }
-        }
-
-        .signup__heading {
-            padding: 0 3rem;
         }
 
         @include respond(md) {

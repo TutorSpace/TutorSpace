@@ -5,6 +5,7 @@
 .top-0 { top: 0; }
 .top-100 { top: 100%; }
 .bottom-100 { bottom: 100%; }
+.bottom-4 { bottom: 4rem; }
 .right-0 { right: 0; }
 
 // ====================== display & visibility ==================
@@ -59,5 +60,11 @@
 
 .absCenter {
     @include absCenter;
+}
+
+.centerX {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
