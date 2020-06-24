@@ -68,7 +68,7 @@ trait ResetsPasswords
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|confirmed|min:6',
         ];
     }
 
@@ -106,7 +106,8 @@ trait ResetsPasswords
     {
         $this->setUserPassword($user, $password);
 
-        $user->setRememberToken(Str::random(60));
+        // customized: no remember token
+        // $user->setRememberToken(Str::random(60));
 
         $user->save();
 

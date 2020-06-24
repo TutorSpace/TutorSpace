@@ -8,7 +8,7 @@ bg-grey-light body-login
 @section('content')
 <div class="container login">
     <div class="login--left login--left-student">
-        <form action="{{ route('reset-password.index.student') }}" method="POST">
+        <form action="{{ route('password.email') }}" method="POST">
             @csrf
             <h2 class="login__heading">Reset Password</h2>
             <p class="login__notice">
@@ -26,16 +26,21 @@ bg-grey-light body-login
                     {{ $errors->first() }}
                 </span>
                 @endif
+                @if (session('status'))
+                    <div class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 text-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
 
             <div class="text-center">
                 <button class="btn btn-student btn-send btn-animation-y">Send</button>
             </div>
 
-            <p class="resend-email">
+            {{-- <p class="resend-email">
                 Didn't get the code? <button class="btn btn-link btn-link-student" id="resend-code" type="button">Resend code</button>
                 <span id="timeLabel"></span>
-            </p>
+            </p> --}}
 
             <p class="text-center fs-2">
                 <span class="fc-grey">Back to </span><a href="{{ route('login.index.student') }}"

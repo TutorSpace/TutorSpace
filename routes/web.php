@@ -63,35 +63,17 @@ Route::group([
     Route::get('login/google/tutor', 'Auth\GoogleController@loginRedirectToGoogleTutor')->name('login.google.tutor');
 
     // ================ reset password ============
-    Route::get('/reset-password/student', 'Auth\ResetPasswordController@indexResetPasswordStudent')->name('reset-password.index.student');
-    Route::post('/reset-password/student', 'Auth\ForgotPasswordController@resetPasswordStudent')->name('reset-password.store.student');
-    Route::get('/reset-password/tutor', 'Auth\ResetPasswordController@indexResetPasswordTutor')->name('reset-password.index.tutor');
-    Route::post('/reset-password/tutor', 'Auth\ForgotPasswordController@resetPasswordTutor')->name('reset-password.store.tutor');
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+
+    // TODO: password confirm (not yet implemented)
+    Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+    Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 });
 
-
-// login
-Route::get('/login', 'loginController@show')->name('login')->middleware(['checkLogout']);
-Route::post('/login', 'loginController@login');
-
-
-
-// signup
-Route::get('/signup_user', 'signupController@show')->middleware(['checkLogout']);
-// signup student
-Route::get('/signup_student', 'signupController@showStudent')->name('signup')->middleware(['checkLogout']);
-Route::get('/signup_student_2', 'signupController@showStudent_2')->name('signup_2')->middleware(['checkLogout']);
-Route::post('/signup_student', 'signupController@signupStudent');
-Route::post('/signup_student_2', 'signupController@signupStudent_2');
-// signup tutor
-Route::get('/signup_tutor', 'signupController@showTutor')->name('signup_tutor')->middleware(['checkLogout']);
-Route::get('/signup_tutor_2', 'signupController@showTutor_2')->name('signup_tutor_2')->middleware(['checkLogout']);
-Route::post('/signup_tutor', 'signupController@signupTutor');
-Route::post('/signup_tutor_2', 'signupController@signupTutor_2');
-
-// forget password
-Route::get('/forget_password', 'forgetPasswordController@show')->middleware(['checkLogout']);
-Route::post('/forget_password_send', 'forgetPasswordController@send');
 
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['auth']);
@@ -103,10 +85,6 @@ Route::post('/edit_profile', 'profileController@editProfile');
 
 
 
-// log out
-Route::get('/logout', 'loginController@logout')->name('logout')->middleware(['auth']);
-
-
 // home page
 Route::get('/home', 'homeController@show')->name('home')->middleware(['auth']);
 
@@ -116,13 +94,13 @@ Route::get('/search', 'searchController@show')->name('search')->middleware(['aut
 
 
 // bookmark
-Route::get('/bookmark_remove', 'generalController@removeBookmark')->middleware(['auth']);
-Route::get('/bookmark_add', 'generalController@addBookmark')->middleware(['auth']);
+Route::get('/bookmark_remove', 'GeneralController@removeBookmark')->middleware(['auth']);
+Route::get('/bookmark_add', 'GeneralController@addBookmark')->middleware(['auth']);
 
 
 // dashboard
-Route::get('/dashboard', 'generalController@getDashboardPosts')->middleware(['auth']);
-Route::post('/dashboard_add', 'generalController@addDashboardPosts')->middleware(['auth']);
+Route::get('/dashboard', 'GeneralController@getDashboardPosts')->middleware(['auth']);
+Route::post('/dashboard_add', 'GeneralController@addDashboardPosts')->middleware(['auth']);
 
 
 
@@ -154,8 +132,8 @@ Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['au
 Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['auth']);
 
 // tutor requests
-Route::post('/tutor_request_reject', 'generalController@rejectTutorRequest')->middleware(['auth']);
-Route::post('/tutor_request_accept', 'generalController@acceptTutorRequest')->middleware(['auth']);
+Route::post('/tutor_request_reject', 'GeneralController@rejectTutorRequest')->middleware(['auth']);
+Route::post('/tutor_request_accept', 'GeneralController@acceptTutorRequest')->middleware(['auth']);
 Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['auth']);
 Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['auth']);
 Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['auth']);

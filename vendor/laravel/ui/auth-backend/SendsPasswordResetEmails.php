@@ -14,9 +14,14 @@ trait SendsPasswordResetEmails
      *
      * @return \Illuminate\View\View
      */
-    public function showLinkRequestForm()
+    public function showLinkRequestForm(Request $request)
     {
-        return view('auth.passwords.email');
+        if($request->identity == 'tutor') {
+            return view('auth.passwords.email_tutor');
+        }
+        else {
+            return view('auth.passwords.email_student');
+        }
     }
 
     /**
