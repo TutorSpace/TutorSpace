@@ -260,7 +260,8 @@ class RegisterController extends Controller
             "first-major" => [
                 'nullable',
                 'exists:majors,id',
-                'required_with:second-major'
+                'required_with:second-major',
+                'different:second-major'
             ],
             "second-major" => [
                 'nullable',
@@ -329,12 +330,11 @@ class RegisterController extends Controller
             "first-major" => [
                 'required',
                 'exists:majors,id',
-                'required_with:second-major'
+                'different:second-major'
             ],
             "second-major" => [
                 'nullable',
-                'exists:majors,id',
-
+                'exists:majors,id'
             ],
             "school-year" => [
                 'required',
@@ -343,7 +343,7 @@ class RegisterController extends Controller
             "gpa" => [
                 'required',
                 'numeric',
-                'min:1',
+                'min:0',
                 'max:4'
             ]
         ]);
@@ -436,8 +436,12 @@ class RegisterController extends Controller
         $user->last_name = $tutorData['last-name'];
         $user->is_tutor = true;
         $user->email = $tutorData['email'];
-        $user->gpa = $tutorData['gpa'];
         $user->hourly_rate = $tutorData['hourly-rate'];
+
+        // if gpa field is not (>= 1 && <= 4), then it will be N/A
+        if($tutorData['gpa'] >= 1 && $tutorData['gpa'] <= 4) {
+            $user->gpa = $tutorData['gpa'];
+        }
 
         // if user uploaded the file
         if($request->file('profile-pic')) {

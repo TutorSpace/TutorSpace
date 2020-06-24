@@ -96,15 +96,16 @@
 //  ========================= for all register page ===========================
 $('input').on('input', function () {
   if ($(this).val()) {
-    $(this).next().addClass('fill-color-blue-primary');
+    if (isStudent) $(this).next().addClass('fill-color-blue-primary');else $(this).next().addClass('fill-color-purple-primary');
   } else {
-    $(this).next().removeClass('fill-color-blue-primary');
+    if (isStudent) $(this).next().removeClass('fill-color-blue-primary');else $(this).next().removeClass('fill-color-purple-primary');
   }
 });
 $('input').filter('[required]').on('input', function () {
   var allFilled = true;
   $.each($('input').filter('[required]'), function (idx, el) {
     if (!$(el).val()) allFilled = false;
+    if ($(el).attr('type') == 'password' && $(el).val().length < 6) allFilled = false;
   });
 
   if (allFilled) {
@@ -117,7 +118,11 @@ $('input').filter('[required]').on('input', function () {
     $('.btn-next').addClass('bg-grey');
   }
 });
-$("select").filter('[required]').on('change', function () {
+$(".signup-form-input-email").on('input', function () {
+  var inputs = $(this).closest('form').find(':input');
+  inputs.eq(inputs.index(this) + 1).focus();
+});
+$('select').filter('[required]').on('change', function () {
   var allFilled = true;
   $.each($('select').filter('[required]'), function (idx, el) {
     if (!$(el).find(':selected').val() || $(el).find(':selected').prop('disabled')) allFilled = false;

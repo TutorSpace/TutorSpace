@@ -1,9 +1,15 @@
 //  ========================= for all register page ===========================
 $('input').on('input', function () {
     if ($(this).val()) {
-        $(this).next().addClass('fill-color-blue-primary');
+        if(isStudent)
+            $(this).next().addClass('fill-color-blue-primary');
+        else
+            $(this).next().addClass('fill-color-purple-primary');
     } else {
-        $(this).next().removeClass('fill-color-blue-primary');
+        if(isStudent)
+            $(this).next().removeClass('fill-color-blue-primary');
+        else
+            $(this).next().removeClass('fill-color-purple-primary');
     }
 });
 
@@ -11,6 +17,8 @@ $('input').filter('[required]').on('input', function () {
     let allFilled = true;
     $.each($('input').filter('[required]'), (idx, el) => {
         if (!$(el).val())
+            allFilled = false;
+        if($(el).attr('type') == 'password' && $(el).val().length < 6)
             allFilled = false;
     });
 
@@ -31,7 +39,14 @@ $('input').filter('[required]').on('input', function () {
     }
 });
 
-$("select").filter('[required]').on('change', function() {
+
+
+$(".signup-form-input-email").on('input', function() {
+    var inputs = $(this).closest('form').find(':input');
+    inputs.eq( inputs.index(this)+ 1 ).focus();
+});
+
+$('select').filter('[required]').on('change', function() {
     let allFilled = true;
     $.each($('select').filter('[required]'), (idx, el) => {
         if (!$(el).find(':selected').val() || $(el).find(':selected').prop('disabled'))
@@ -61,10 +76,14 @@ $('svg').click(function() {
         window.location.href = route;
 });
 
-$('.custom-select').select2({});
+
+$('.custom-select').select2({
+
+});
 $('#courses').select2({
     placeholder: "Search by course number"
 });
+
 
 $('.icon-upload-image').click(function() {
     $('#profile-pic').click();

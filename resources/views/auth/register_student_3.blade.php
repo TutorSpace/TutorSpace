@@ -41,7 +41,12 @@ bg-grey-light body-signup select2-bg-student
                             <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
                         </svg>
                     </div>
-                  </div>
+                </div>
+                @error('first-major')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative">
@@ -57,6 +62,11 @@ bg-grey-light body-signup select2-bg-student
                         </svg>
                     </div>
                 </div>
+                @error('second-major')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
             <div class="input-group select-container p-relative">
                 <select class="custom-select" name="school-year">

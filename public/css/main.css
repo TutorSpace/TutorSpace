@@ -11625,11 +11625,11 @@ h2 {
 }
 
 .fill-color-purple-primary {
-  fill: #6749DF;
+  fill: #6749DF !important;
 }
 
 .fill-color-blue-primary {
-  fill: #1F7AFF;
+  fill: #1F7AFF !important;
 }
 
 .fill-opacity-80 {

@@ -28,8 +28,8 @@
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
 .fill-color-purple-secondary { fill: $color-purple-secondary !important; }
 .fill-color-yellow-primary { fill: $color-yellow-primary; }
-.fill-color-purple-primary { fill: $color-purple-primary; }
-.fill-color-blue-primary { fill: $color-blue-primary; }
+.fill-color-purple-primary { fill: $color-purple-primary !important; }
+.fill-color-blue-primary { fill: $color-blue-primary !important; }
 .fill-opacity-80 { fill-opacity: .8; }
 .fill-opacity-70 { fill-opacity: .7; }
 
