@@ -115,8 +115,6 @@ $('.icon-upload-image').click(function() {
     $('#profile-pic').click();
 })
 
-
-
 $('.file-input-text-container').hide();
 $('#file-input-text').click(function() {
     $('.file-input-text-container').hide();
