@@ -34,7 +34,10 @@
 .fill-opacity-70 { fill-opacity: .7; }
 
 // ======================== border ======================
+.bc-blue-primary { border-color: $color-blue-primary !important; }
+.bc-purple-primary { border-color: $color-purple-primary !important; }
 .bc-blue-secondary { border-color: $color-blue-secondary !important; }
+.bc-purple-secondary { border-color: $color-purple-secondary !important; }
 
 // ======================== font color & size ==================
 .fs-1-2 { font-size: 1.2rem; }
@@ -72,6 +75,7 @@
 
 .invalid {
     border-color: red !important;
+    border-width: 3px !important;
     animation: invalid-input-animation-1 .3s .3s;
 
     ~ svg {

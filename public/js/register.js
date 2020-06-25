@@ -119,19 +119,29 @@ $('input').filter('[required]').on('input', function () {
   }
 });
 $(".signup-form-input-email").on('input', function () {});
-$(".signup-form-input-email").keyup(function (e) {
+$(".signup-form-input-email").keypress(function (e) {
+  var inputs = $(this).closest('form').find(':input');
+  inputs.eq(inputs.index(this) + 1).focus();
+});
+$('.signup-form-input-email').keydown(function (e) {
   if (e.keyCode == 46 || e.keyCode == 8) {
     var inputs = $(this).closest('form').find(':input');
 
     if (!$(this).is(':last-child')) {
-      inputs.eq(inputs.index(this) - 1).val('');
-      inputs.eq(inputs.index(this) - 1).focus();
+      if ($(this).val()) {
+        $(this).val('');
+      } else {
+        inputs.eq(inputs.index(this) - 1).focus();
+        inputs.eq(inputs.index(this) - 1).val('');
+      }
     } else {
-      inputs.eq(inputs.index(this)).val('');
+      if ($(this).val()) {
+        $(this).val('');
+      } else {
+        inputs.eq(inputs.index(this) - 1).focus();
+        inputs.eq(inputs.index(this) - 1).val('');
+      }
     }
-  } else {
-    var inputs = $(this).closest('form').find(':input');
-    inputs.eq(inputs.index(this) + 1).focus();
   }
 });
 $('select').filter('[required]').on('change', function () {
@@ -158,11 +168,19 @@ $('.custom-select').select2({});
 $('#courses').select2({
   placeholder: "Search by course number"
 });
+'.select-clear'.click(function () {
+  $('.select').val(null).trigger('change');
+});
 $('.icon-upload-image').click(function () {
   $('#profile-pic').click();
 });
+$('.file-input-text-container').hide();
+$('#file-input-text').click(function () {
+  $('.file-input-text-container').hide();
+  $('input[type=file]').val('');
+});
 $("input[type=file]").change(function () {
-  console.log("here");
+  $('.file-input-text-container').show();
   var fileInput = $(this)[0];
   var filename = fileInput.files[0].name;
   $('#file-input-text').html("Uploaded image: " + filename);

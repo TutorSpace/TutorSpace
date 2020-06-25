@@ -46,10 +46,13 @@ bg-grey-light body-signup
                     </defs>
                     </svg>
 
-                </div>
-            <p id="file-input-text" class="mt-2 mb-0 text-center fs-2 fc-purple-primary"></p>
-            <input type="file" class="hidden" name="profile-pic" id="profile-pic" accept="image/*">
+            </div>
 
+            <div class="text-center mt-2 file-input-text-container">
+                <span id="file-input-text" class="px-5 py-2 fs-2 fc-purple-primary bc-purple-primary border d-inline-block"></span>
+            </div>
+
+            <input type="file" class="hidden" name="profile-pic" id="profile-pic" accept="image/*">
 
             <div class="signup-container-bottom mt-5 p-relative">
                 {{-- btn-next --}}

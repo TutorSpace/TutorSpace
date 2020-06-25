@@ -141,6 +141,7 @@ class testController extends Controller
         // Auth::logout();
         // dd(Auth::user());
 
-        return view('auth.passwords.reset_student');
+        // return view('auth.passwords.reset_student');
+        return view('test');
     }
 }
