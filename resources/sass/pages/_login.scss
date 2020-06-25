@@ -191,13 +191,6 @@
         border-radius: 5rem;
     }
 
-    #btn-google {
-        transition: all .2s;
-        &:hover {
-            transform: translateY(-2px);
-        }
-    }
-
     .resend-email {
         color: $color-grey;
         font-size: 2rem;

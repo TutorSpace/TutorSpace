@@ -18,7 +18,7 @@ bg-grey-light body-login
                 We have received a request to reset your password. Please enter your new password.
             </p>
             <div class="p-relative">
-                <input type="password" class="form-control login-form-input login-form-input-normal" placeholder="New Password" name="password"
+                <input type="password" class="form-control login-form-input login-form-input-normal @error('password') invalid @enderror" placeholder="New Password" name="password"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
@@ -30,12 +30,12 @@ bg-grey-light body-login
                 @enderror
             </div>
             <div class="p-relative">
-                <input type="password" class="form-control login-form-input login-form-input-normal" placeholder="Confirm Password" name="password_confirmation"
+                <input type="password" class="form-control login-form-input login-form-input-normal @error('password_confirmation') invalid @enderror" placeholder="Confirm Password" name="password_confirmation"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                 </svg>
-                @error('password')
+                @error('password_confirmation')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
                     {{ $message }}
                 </span>

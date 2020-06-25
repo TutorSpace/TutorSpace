@@ -69,3 +69,22 @@
     transform: translateX(-50%);
 }
 
+
+.invalid {
+    border-color: red !important;
+    animation: invalid-input-animation-1 .3s .3s;
+
+    ~ svg {
+        fill: red !important;
+        animation: invalid-input-animation-1 .3s .3s;
+    }
+
+    svg {
+        fill: red !important;
+        animation: invalid-input-animation-1 .3s .3s;
+    }
+
+    .input-group-prepend {
+        background-color: red !important;
+    }
+}

@@ -90,15 +90,16 @@
     &:hover {
         transform: translateY(-2px);
     }
+    &:active {
+        transform: translate(1px);
+    }
 }
 
 .btn-close {
     font-size: 3.5rem;
-
     &-fill {
         display: none;
     }
-
     &:hover {
         cursor: pointer;
         animation: scale-animation 2s infinite;

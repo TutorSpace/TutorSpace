@@ -28,7 +28,7 @@ bg-grey-light body-signup select2-bg-tutor
             </p>
 
             <div class="p-relative">
-                <div class="input-group select-container p-relative">
+                <div class="input-group select-container p-relative @error('first-major') invalid @enderror">
                     <select class="custom-select" name="first-major" required>
                         <option selected disabled class="fc-grey" value="">Major</option>
                         @foreach (App\Major::all() as $major)
@@ -48,7 +48,7 @@ bg-grey-light body-signup select2-bg-tutor
                 @enderror
             </div>
             <div class="p-relative">
-                <div class="input-group select-container p-relative">
+                <div class="input-group select-container p-relative @error('second-major') invalid @enderror">
                     <select class="custom-select" name="second-major">
                         <option selected disabled class="fc-grey" value="">Second Major (optional)</option>
                         @foreach (App\Major::all() as $major)
@@ -69,7 +69,7 @@ bg-grey-light body-signup select2-bg-tutor
             </div>
 
             <div class="multiple-inputs p-relative">
-                <div class="input-group select-container p-relative">
+                <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
                     <select class="custom-select" name="school-year" required>
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
                         @foreach (App\School_year::all() as $schoolYear)
@@ -82,7 +82,7 @@ bg-grey-light body-signup select2-bg-tutor
                         </svg>
                     </div>
                 </div>
-                <div class="input-group select-container p-relative">
+                <div class="input-group select-container p-relative @error('gpa') invalid @enderror">
                     <select class="custom-select" name="gpa" required>
                         <option selected disabled class="fc-grey" value="">GPA</option>
                         <option value="0">N/A</option>

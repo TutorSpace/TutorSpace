@@ -18,7 +18,7 @@ bg-grey-light body-signup
         <h2 class="signup__heading">Hello, Student!</h2>
         <div class="d-flex justify-content-center bottom-4 centerX">
             {{-- google button --}}
-            <div id="btn-google" class="btn-google"></div>
+            <div id="btn-google" class="btn-google btn-animation-y"></div>
         </div>
     </div>
 
@@ -43,7 +43,7 @@ bg-grey-light body-signup
             <div class="form-group-2">
                 @csrf
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal"
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal @error('first-name') invalid @enderror"
                         placeholder="First Name" name="first-name" value="{{ old('first-name') }}" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
@@ -56,7 +56,7 @@ bg-grey-light body-signup
                 </div>
 
                 <div class="p-relative">
-                    <input type="text" class="form-control signup-form-input signup-form-input-normal"
+                    <input type="text" class="form-control signup-form-input signup-form-input-normal @error('last-name') invalid @enderror"
                         placeholder="Last Name" name="last-name" value="{{ old('last-name') }}" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
@@ -70,7 +70,7 @@ bg-grey-light body-signup
             </div>
 
             <div class="p-relative">
-                <input type="email" class="form-control signup-form-input signup-form-input-normal" placeholder="Email"
+                <input type="email" class="form-control signup-form-input signup-form-input-normal @error('email') invalid @enderror" placeholder="Email"
                     name="email" value="{{ old('email') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
@@ -83,7 +83,7 @@ bg-grey-light body-signup
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control signup-form-input signup-form-input-normal"
+                <input type="password" class="form-control signup-form-input signup-form-input-normal @error('password') invalid @enderror"
                     placeholder="Password" name="password" value="{{ old('password') }}" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
@@ -96,7 +96,7 @@ bg-grey-light body-signup
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control signup-form-input signup-form-input-normal"
+                <input type="password" class="form-control signup-form-input signup-form-input-normal @error('password-confirm') invalid @enderror"
                     placeholder="Confirm Password" name="password-confirm" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
@@ -108,7 +108,7 @@ bg-grey-light body-signup
                 @enderror
             </div>
 
-            <div class="signup-container-bottom mt-4 p-relative">
+            <div class="signup-container-bottom p-relative">
                 <span class="fc-grey absCenter fs-2 ws-no-wrap">Already have an account? <a href="{{ route('login.index.student') }}" class="btn-link-student fs-2">Log in</a></span>
                 {{-- btn-next --}}
                 <button class="btn btn-next bg-grey">

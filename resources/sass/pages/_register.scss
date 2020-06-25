@@ -105,10 +105,6 @@
                 }
             }
 
-            // #btn-google .abcRioButtonBlue {
-            //     background-color: $color-blue-primary;
-            // }
-
             .input-group-prepend {
                 background-color: $color-blue-primary;
             }
@@ -132,10 +128,6 @@
                     }
                 }
             }
-
-            // #btn-google .abcRioButtonBlue {
-            //     background-color: $color-purple-primary;
-            // }
 
             .input-group-prepend {
                 background-color: $color-purple-primary;
@@ -387,12 +379,6 @@
         }
     }
 
-    #btn-google {
-        transition: all .2s;
-        &:hover {
-            transform: translateY(-2px);
-        }
-    }
 
     .icon-upload-image {
         width: 25rem;

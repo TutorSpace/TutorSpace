@@ -29,7 +29,7 @@ bg-grey-light body-signup select2-bg-tutor
             </p>
 
             <div class="p-relative">
-                <div class="input-group select-container p-relative select-container-icon">
+                <div class="input-group select-container p-relative select-container-icon @error('hourly-rate') invalid @enderror">
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                     </svg>
@@ -52,7 +52,7 @@ bg-grey-light body-signup select2-bg-tutor
                 @enderror
             </div>
             <div class="p-relative">
-                <div class="input-group select-container p-relative select-container-icon pb-0-5">
+                <div class="input-group select-container p-relative select-container-icon pb-0-5 @error('courses') invalid @enderror @error('courses.*') invalid @enderror">
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                     </svg>

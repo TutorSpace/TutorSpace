@@ -17,7 +17,7 @@ bg-grey-light body-login
                 No worries! Enter your email and we'll send instructions to reset your password.
             </p>
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @endif" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>

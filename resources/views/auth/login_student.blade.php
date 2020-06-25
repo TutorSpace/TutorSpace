@@ -18,7 +18,7 @@ bg-grey-light body-login
             <h2 class="login__heading text-center">Student Login</h2>
 
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
@@ -31,7 +31,7 @@ bg-grey-light body-login
             </div>
 
             <div class="p-relative">
-                <input type="password" class="form-control login-form-input login-form-input-normal" name="password"
+                <input type="password" class="form-control login-form-input login-form-input-normal @error('password') invalid @enderror @if(session('passwordError')) invalid @endif" name="password"
                     placeholder="Password" required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
@@ -92,7 +92,7 @@ bg-grey-light body-login
         </svg>
         <div class="d-flex justify-content-center btn-google-container">
             {{-- google button --}}
-            <div id="btn-google" class="btn-google"></div>
+            <div id="btn-google" class="btn-google btn-animation-y"></div>
             <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
                 {{ session('googleLoginError') ?? session('googleLoginError') }}
             </span>

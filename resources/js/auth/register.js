@@ -39,11 +39,24 @@ $('input').filter('[required]').on('input', function () {
     }
 });
 
-
-
 $(".signup-form-input-email").on('input', function() {
-    var inputs = $(this).closest('form').find(':input');
-    inputs.eq( inputs.index(this)+ 1 ).focus();
+
+});
+$(".signup-form-input-email").keyup(function(e) {
+    if(e.keyCode == 46 || e.keyCode == 8) {
+        var inputs = $(this).closest('form').find(':input');
+        if(!$(this).is(':last-child')) {
+            inputs.eq( inputs.index(this) - 1 ).val('');
+            inputs.eq( inputs.index(this) - 1 ).focus();
+        }
+        else {
+            inputs.eq( inputs.index(this) ).val('');
+        }
+    }
+    else {
+        var inputs = $(this).closest('form').find(':input');
+        inputs.eq( inputs.index(this)+ 1 ).focus();
+    }
 });
 
 $('select').filter('[required]').on('change', function() {

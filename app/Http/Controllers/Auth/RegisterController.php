@@ -78,6 +78,11 @@ class RegisterController extends Controller
             'password' => [
                 'required',
                 'min:6'
+            ],
+            'password-confirm' => [
+                'required',
+                'min:6',
+                'same:password'
             ]
         ]);
 
@@ -130,6 +135,11 @@ class RegisterController extends Controller
             'password' => [
                 'required',
                 'min:6'
+            ],
+            'password-confirm' => [
+                'required',
+                'min:6',
+                'same:password'
             ]
         ]);
 
@@ -194,9 +204,13 @@ class RegisterController extends Controller
             ]
         ]);
 
+        $request->session()->forget('verificationCodeStudent');
+
         // users would not be able to not submit their information in the step if they did not fill in the basic information in step 1
         if(!$request->session()->has('registerDataStudent')) {
-            return redirect()->back();
+            return redirect()->back()->with([
+                'errorMsg' => 'Please complete step 1 first.'
+            ]);
         }
 
         $request->session()->put('emailVerifiedStudent', true);
@@ -226,9 +240,13 @@ class RegisterController extends Controller
             ]
         ]);
 
+        $request->session()->forget('verificationCodeTutor');
+
         // users would not be able to not submit their information in the step if they did not fill in the basic information in step 1
         if(!$request->session()->has('registerDataTutor')) {
-            return redirect()->back();
+            return redirect()->back()->with([
+                'errorMsg' => 'Please complete step 1 first.'
+            ]);
         }
 
         $request->session()->put('emailVerifiedTutor', true);
@@ -243,8 +261,6 @@ class RegisterController extends Controller
     public function indexTutor3() {
         return view('auth.register_tutor_3');
     }
-
-
 
     public function storeStudent3(Request $request) {
         $studentData = $request->session()->get('registerDataStudent');
@@ -411,8 +427,6 @@ class RegisterController extends Controller
         ]);
 
         echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
-
-
 
         // create the user
         $user = new User();
