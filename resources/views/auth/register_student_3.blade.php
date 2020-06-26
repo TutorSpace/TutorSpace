@@ -85,6 +85,7 @@ bg-grey-light body-signup select2-bg-student
             </div>
 
             <div class="signup-container-bottom mt-5 p-relative">
+                <button class="btn btn-link btn-link-student select-clear" id="btn-skip" type="button">Clear</button>
                 {{-- btn-next --}}
                 <button class="btn btn-next btn-next-animation btn-student ml-auto">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"

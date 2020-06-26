@@ -12537,6 +12537,8 @@ svg.bookmark:hover {
   font-size: 2.2rem;
   text-decoration: underline;
   background-color: transparent;
+  position: relative;
+  left: -3rem;
 }
 
 .signup .signup-container-bottom #btn-skip:hover {

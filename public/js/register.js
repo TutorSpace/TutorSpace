@@ -168,8 +168,8 @@ $('.custom-select').select2({});
 $('#courses').select2({
   placeholder: "Search by course number"
 });
-'.select-clear'.click(function () {
-  $('.select').val(null).trigger('change');
+$('.select-clear').click(function () {
+  $('select').val(null).trigger('change');
 });
 $('.icon-upload-image').click(function () {
   $('#profile-pic').click();

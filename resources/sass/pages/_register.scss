@@ -349,6 +349,8 @@
             font-size: 2.2rem;
             text-decoration: underline;
             background-color: transparent;
+            position: relative;
+            left: -3rem;
 
             &:hover {
                 cursor: pointer;

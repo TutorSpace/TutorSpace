@@ -107,8 +107,8 @@ $('#courses').select2({
     placeholder: "Search by course number"
 });
 
-('.select-clear').click(function() {
-    $('.select').val(null).trigger('change');
+$('.select-clear').click(function() {
+    $('select').val(null).trigger('change');
 })
 
 $('.icon-upload-image').click(function() {
