@@ -2,8 +2,9 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use Illuminate\Http\JsonResponse;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -12,11 +13,16 @@ trait SendsPasswordResetEmails
     /**
      * Display the form to request a password reset link.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function showLinkRequestForm()
+    public function showLinkRequestForm(Request $request)
     {
-        return view('auth.passwords.email');
+        if($request->is_tutor) {
+            return view('auth.passwords.email_tutor');
+        }
+        else {
+            return view('auth.passwords.email_student');
+        }
     }
 
     /**
@@ -28,6 +34,28 @@ trait SendsPasswordResetEmails
     public function sendResetLinkEmail(Request $request)
     {
         $this->validateEmail($request);
+
+        // customized
+        // if the user does not have the identity, redirect them to the given route
+        $existStudent = User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() != 0;
+        $existTutor = User::where('email', '=', $request->input('email'))->where('is_tutor', true)->count() != 0;
+        if($request->boolean('is_tutor') && !$existTutor) {
+            return redirect()->route('password.request', ['is_tutor' => false])->with([
+                'errorMsg' => 'You do not have a tutor account yet. Please try resetting password in your student account!'
+            ]);
+        }
+        else if(!$request->boolean('is_tutor') && !$existStudent) {
+            return redirect()->route('password.request', ['is_tutor' => true])->with([
+                'errorMsg' => 'You do not have a student account yet. Please try resetting password in your tutor account!'
+            ]);
+        }
+
+        // if the user is signed up using google, redirect them back
+        if(User::where('email', '=', $request->input('email'))->where('google_id', '!=', null)->count() != 0) {
+            return redirect()->back()->with([
+                'errorMsg' => 'You can not reset password because you signed up using Google.'
+            ]);
+        }
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -49,7 +77,9 @@ trait SendsPasswordResetEmails
      */
     protected function validateEmail(Request $request)
     {
-        $request->validate(['email' => 'required|email']);
+        $request->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
     }
 
     /**
@@ -60,7 +90,9 @@ trait SendsPasswordResetEmails
      */
     protected function credentials(Request $request)
     {
-        return $request->only('email');
+        // return $request->only('email');
+        // customized
+        return $request->only('email', 'is_tutor');
     }
 
     /**

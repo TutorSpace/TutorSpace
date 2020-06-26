@@ -1,13 +1,9 @@
 .select2 {
     width: 100% !important;
-    height: 100%;
+    min-height: 100%;
 
     * {
         visibility: hidden;
-    }
-
-    @include respond(extra-sm) {
-        height: 6rem !important;
     }
 }
 
@@ -20,23 +16,77 @@
         visibility: visible;
         display: flex !important;
         align-items: center !important;
-        height: 100% !important;
+        min-height: 100% !important;
         padding-left: 1.5rem !important;
-        font-size: 2.4rem !important;
+        font-size: 2rem !important;
         z-index: 1000;
         position: relative;
+        // 6rem is the width of the dropdown button
+        padding-right: 6rem !important;
 
         @include respond(extra-sm) {
-            font-size: 1.8rem !important;
+            font-size: 1.6rem !important;
+        }
+
+        .select2-selection__choice {
+            visibility: visible;
+            color: black;
+            * {
+                visibility: visible;
+            }
         }
     }
 
 }
 
 .select2-bg-student {
-
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background-color: $color-blue-secondary;
+        background-color: $color-blue-primary;
+    }
+
+    .select2-search__field {
+        outline: none !important;
+        border: 1px solid $color-blue-primary !important;
+        &:focus {
+            outline: none !important;
+            border: 1px solid $color-blue-primary !important;
+        }
+    }
+    // for multiple options
+    .select2-search--inline .select2-search__field {
+        visibility: visible !important;
+        border: none !important;
+        &:focus {
+            border: none !important;
+        }
+        &::placeholder {
+            font-size: 3rem !important;
+            color: red !important;
+        }
+    }
+
+}
+
+.select2-bg-tutor {
+    .select2-container--default .select2-results__option--highlighted[aria-selected] {
+        background-color: $color-purple-primary;
+    }
+
+    .select2-search__field {
+        outline: none !important;
+        border: 1px solid $color-purple-primary !important;
+        &:focus {
+            outline: none !important;
+            border: 1px solid $color-purple-primary !important;
+        }
+    }
+    // for multiple options
+    .select2-search--inline .select2-search__field {
+        visibility: visible !important;
+        border: none !important;
+        &:focus {
+            border: none !important;
+        }
     }
 }
 
@@ -47,9 +97,15 @@
             font-size: 1.4rem;
         }
     }
-
-    .select2-results__options {
-        font-size: 2rem !important;
-    }
 }
 
+.select2-search__field {
+    visibility: visible !important;
+}
+
+.select2-selection--multiple {
+    .select2-selection__rendered {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+}

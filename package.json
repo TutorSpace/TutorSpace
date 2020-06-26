@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.0.0-alpha4",
-        "select2": "^4.0.13"
+        "select2": "^4.0.13",
+        "toastr": "^2.1.4"
     }
 }

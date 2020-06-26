@@ -62,8 +62,8 @@ ORDER: Base + typography > general layout + grid > page layout > components
             @content
         };
     }
-    @if $breakpoint == mb-13 {
-        @media only screen and (max-width: 90em) { //1440px
+    @if $breakpoint == lg-2 {
+        @media only screen and (max-width: 100em) { //1600px
             // @content can pass content into a mixin
             @content
         };

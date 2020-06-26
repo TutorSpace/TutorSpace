@@ -28,7 +28,7 @@ class NotExistTutor implements Rule
     {
         if(User::where('email', '=', $value)->where('is_tutor', true)->count() == 0)
             return true;
-            
+
         return false;
     }
 
@@ -39,6 +39,6 @@ class NotExistTutor implements Rule
      */
     public function message()
     {
-        return 'This Email is already registered.';
+        return 'This email is already registered as a tutor.';
     }
 }

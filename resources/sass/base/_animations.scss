@@ -1,3 +1,97 @@
+// transformX animation
+@keyframes button-animation-1 {
+    from {
+        transform: translateX(.7rem);
+    }
+    50% {
+        transform: translateX(1.2rem);
+    }
+    to {
+        transform: translateX(.7rem);
+    }
+}
+
+// transformY animation
+@keyframes invalid-input-animation-1 {
+    from {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-0.5rem);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+// pulsate animation
+@keyframes anchor-animation-pulsate {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 0 1rem 4rem rgba($color: #000000, $alpha: .25);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@keyframes anchor-animation-pulsate-student {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-blue-secondary, $alpha: .8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+@keyframes anchor-animation-pulsate-tutor {
+    0% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-purple-secondary, $alpha: .8);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: none;
+    }
+}
+
+// scale animation
+@keyframes scale-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+// fade animation
+@keyframes fade-in-animation {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+
+
+// bg-shape animation
 @keyframes bg-shape-animation-1 {
     from {
         transform: rotate(0deg) translate(0, 0);
@@ -71,48 +165,4 @@
     to {
         transform: translateX(0) scale(.5);
     }
-}
-
-@keyframes button-animation-1 {
-    from {
-        transform: translateX(.7rem);
-    }
-    50% {
-        transform: translateX(1.2rem);
-    }
-    to {
-        transform: translateX(.7rem);
-    }
-}
-
-@keyframes anchor-animation-pulsate {
-    0% {
-        transform: scale(1);
-        box-shadow: none;
-    }
-    50% {
-        transform: scale(1);
-        box-shadow: 0 1rem 4rem rgba($color: #000000, $alpha: .25);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: none;
-    }
-}
-
-@keyframes scale-animation {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes fade-in-animation {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }

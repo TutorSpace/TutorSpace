@@ -22,19 +22,65 @@
 
     &:hover {
         color: $color-white;
-        background-color: $color-blue-secondary;
+        background-color: $color-blue-primary-2;
+    }
+}
+
+.btn-tutor {
+    color: $color-white;
+    background-color: $color-purple-primary;
+    transition: all .3s;
+
+    &:hover {
+        color: $color-white;
+        background-color: $color-purple-primary-2;
     }
 }
 
 // for buttons, use btn,btn-link,btn-link-*  || for anchors, use btn-link-*
 .btn-link-student {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 400;
     color: $color-blue-secondary;
     transition: color .3s;
 
     &:hover {
-        color: $color-blue-tertiary;
+        color: $color-blue-secondary-2;
+        font-weight: 500;
+    }
+}
+
+.btn-link-tutor {
+    font-size: 2rem;
+    font-weight: 400;
+    color: $color-purple-secondary;
+    transition: color .3s;
+
+    &:hover {
+        color: $color-purple-secondary-2;
+        font-weight: 500;
+    }
+}
+
+
+// google button
+.btn-google {
+    position: relative;
+    z-index: 0;
+
+    &:hover::after {
+        cursor: pointer;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 1;
     }
 }
 
@@ -44,17 +90,16 @@
     &:hover {
         transform: translateY(-2px);
     }
+    &:active {
+        transform: translate(1px);
+    }
 }
 
-
 .btn-close {
-    font-size: 3.5rem;
-    fill: $color-blue-secondary;
-
+    font-size: 2.5rem;
     &-fill {
         display: none;
     }
-
     &:hover {
         cursor: pointer;
         animation: scale-animation 2s infinite;

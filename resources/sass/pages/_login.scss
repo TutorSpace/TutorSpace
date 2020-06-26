@@ -1,31 +1,31 @@
 .body-login {
     position: relative;
     height: 100vh;
-    // min-height: 750px;
-
-    @include respond(md) {
-        // min-height: 700px;
-    }
-
-    @include respond(extra-sm) {
-        // min-height: unset;
-    }
 }
 
 .login {
     display: flex;
+    animation: fade-in-animation 1.5s;
+    padding: 0 8rem;
+
+    @include respond(lg-2) {
+        padding: 0 14rem;
+    }
+
+    @include respond(lg) {
+        padding: 0 8rem;
+    }
+
+    @include respond(sm) {
+        padding: 0 3rem;
+    }
+
+
     @include absCenter;
 
-    // overwriting bootstrap container breakpoints
-    @include respond(mb-13) {
-        width: 900px;
-    }
-    @include respond(extra-sm) {
-        width: 100%;
-    }
 
     .login__heading {
-        text-align: left;
+        text-align: center;
     }
 
     &--left {
@@ -34,31 +34,41 @@
         background-color: $color-white-dark;
 
         &-student {
-            color: $color-blue-secondary;
+            color: $color-blue-primary;
 
             .login-form-input {
-                border-color: $color-blue-secondary;
-
-                &:focus {
-                    border-color: $color-blue-secondary;
-                }
+                border-color: $color-blue-primary;
 
                 &-normal {
                     &:focus {
                         + svg {
-                            fill: $color-blue-secondary;
+                            fill: $color-blue-primary;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-tutor {
+            color: $color-purple-primary;
+
+            .login-form-input {
+                border-color: $color-purple-primary;
+
+                &-normal {
+                    &:focus {
+                        + svg {
+                            fill: $color-purple-primary;
                         }
                     }
                 }
             }
 
-            #btn-google-login .abcRioButtonBlue {
-                background-color: $color-blue-primary;
-            }
+
         }
 
         .login__heading {
-            margin-top: 3rem;
+            margin-top: 7rem;
             white-space: nowrap;
         }
 
@@ -76,7 +86,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 5rem;
+        padding: 0 4rem;
+        position: relative;
 
         &__logo {
 
@@ -84,6 +95,23 @@
 
         &-student {
             background-color: rgba($color-blue-primary, .8);
+        }
+
+        &-tutor {
+            background-color: rgba($color-purple-primary, .8);
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            fill: $color-white;
+        }
+
+        .btn-google-container {
+            align-self: flex-end;
+            position: absolute;
+            bottom: 4rem;
         }
 
         @include respond(md) {
@@ -99,20 +127,16 @@
         padding: 3rem 7rem;
 
         > :not(:first-child) {
-            margin-top: 4rem;
-
-            @include respond(extra-sm) {
-                margin-top: 3rem;
-            }
+            margin-top: 3rem;
         }
     }
 
     &-form-input {
         outline: none;
-        border: 3px solid;
+        border: 2px solid;
         border-radius: 1.2rem;
         background-color: transparent;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
 
         &:focus {
             box-shadow: none;
@@ -134,8 +158,16 @@
                 }
             }
 
+            @include respond(lg-2) {
+                height: 5.5rem;
+            }
+
+            @include respond(md) {
+                height: 5rem;
+            }
+
             @include respond(extra-sm) {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 height: 6rem;
                 padding-left: 4rem;
             }
@@ -149,15 +181,52 @@
         left: $icon-left-space;
         top: calc(50% - #{$icon-size} / 2);
         fill: $color-grey;
+        transition: all .2s;
     }
 
-    .btn-login {
-        height: 7rem;
+    .btn-login, .btn-send {
+        height: 6rem;
         font-size: 2.4rem;
         width: 30rem;
         border-radius: 5rem;
     }
 
+    .resend-email {
+        color: $color-grey;
+        font-size: 2rem;
+        text-align: center;
+
+        button {
+            font-size: inherit;
+            padding: 0;
+            vertical-align: baseline;
+        }
+    }
+
+    .login__notice {
+        color: $color-grey;
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .svg-reset-password-right-student {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 4rem;
+        transform: scaleY(1.15);
+    }
+
+    .svg-reset-password-right-tutor {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 0rem;
+    }
 
 }
 

@@ -14,6 +14,11 @@ use Carbon\Carbon;
 
 class homeController extends Controller
 {
+    public function __construct()
+    {
+
+    }
+
     public function show() {
         $user = Auth::user();
 

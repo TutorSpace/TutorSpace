@@ -93,7 +93,17 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/luoshuaiqing/Desktop/TutorSpace/resources/js/auth/login.js'");
+$('svg').click(function () {
+  var route = $(this).attr('data-back-href');
+  if (route) window.location.href = route;
+});
+$('input').on('input', function () {
+  if ($(this).val()) {
+    if (isStudent) $(this).next().addClass('fill-color-blue-primary');else $(this).next().addClass('fill-color-purple-primary');
+  } else {
+    if (isStudent) $(this).next().removeClass('fill-color-blue-primary');else $(this).next().removeClass('fill-color-purple-primary');
+  }
+});
 
 /***/ }),
 
