@@ -47,6 +47,18 @@
                     }
                 }
             }
+
+            .btn-close {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                fill: $color-blue-primary;
+
+                @include respond(md) {
+                    display: block;
+                }
+            }
         }
 
         &-tutor {
@@ -64,13 +76,25 @@
                 }
             }
 
+            .btn-close {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                fill: $color-purple-primary;
 
+                @include respond(md) {
+                    display: block;
+                }
+            }
         }
 
         .login__heading {
             margin-top: 7rem;
             white-space: nowrap;
         }
+
+
 
         @include respond(md) {
             border-radius: 1.2rem;
@@ -90,7 +114,8 @@
         position: relative;
 
         &__logo {
-
+            width: 35rem;
+            height: auto;
         }
 
         &-student {
