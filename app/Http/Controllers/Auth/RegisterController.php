@@ -65,11 +65,11 @@ class RegisterController extends Controller
         $request->validate([
             'first-name' => ['
                 required',
-                'alpha'
+                'alpha_dash'
             ],
             'last-name' => ['
                 required',
-                'alpha'
+                'alpha_dash'
             ],
             'email' => [
                 'required',
@@ -122,11 +122,11 @@ class RegisterController extends Controller
         $request->validate([
             'first-name' => ['
                 required',
-                'alpha'
+                'alpha_dash'
             ],
             'last-name' => ['
                 required',
-                'alpha'
+                'alpha_dash'
             ],
             'email' => [
                 'required',

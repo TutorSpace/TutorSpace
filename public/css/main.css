@@ -12658,6 +12658,20 @@ svg.bookmark:hover {
   fill: #1F7AFF;
 }
 
+.login--left-student .btn-close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  fill: #1F7AFF;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .login--left-student .btn-close {
+    display: block;
+  }
+}
+
 .login--left-tutor {
   color: #6749DF;
 }
@@ -12668,6 +12682,20 @@ svg.bookmark:hover {
 
 .login--left-tutor .login-form-input-normal:focus + svg {
   fill: #6749DF;
+}
+
+.login--left-tutor .btn-close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  fill: #6749DF;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .login--left-tutor .btn-close {
+    display: block;
+  }
 }
 
 .login--left .login__heading {
@@ -12694,6 +12722,11 @@ svg.bookmark:hover {
   align-items: center;
   padding: 0 4rem;
   position: relative;
+}
+
+.login--right__logo {
+  width: 35rem;
+  height: auto;
 }
 
 .login--right-student {
