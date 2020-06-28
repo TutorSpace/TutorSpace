@@ -1,0 +1,30 @@
+.nav {
+    height: 8rem;
+    background-color: $color-white-dark-2;
+    color: $color-blue-primary !important;
+    z-index: 100;
+
+    .brand-name {
+        font-size: 3.5rem;
+        font-family: 'Baloo Bhai 2', cursive;
+        font-weight: bold;
+        margin: 0 5rem;
+        text-decoration: none;
+    }
+
+    .nav__item {
+        font-size: 2rem;
+        color: $color-blue-primary;
+        font-weight: bold;
+        margin-right: 3rem;
+    }
+
+    &-guest {
+
+    }
+
+    &-auth {
+
+    }
+}
+

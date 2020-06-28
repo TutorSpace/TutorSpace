@@ -1,6 +1,7 @@
 // ====================== position ===================
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
+.p-fixed { position: fixed; }
 
 .top-0 { top: 0; }
 .top-100 { top: 100%; }
@@ -49,7 +50,10 @@
 .fc-grey { color: $color-grey !important; }
 .fc-black { color: black !important; }
 .fc-red { color: red; }
+.fc-purple-primary { color: $color-purple-primary; }
 .fc-purple-secondary { color: $color-purple-secondary; }
+.fc-blue-primary { color: $color-blue-primary; }
+.fc-blue-secondary { color: $color-blue-secondary; }
 
 // =============== absolute and relative positions ===================
 .left-n-2 { left: -2rem; }
