@@ -36,7 +36,7 @@
 
 .index__story {
     color: #555454;
-    padding: 10rem 3rem;
+    padding: 15rem 3rem;
 
     &__heading {
         margin-bottom: 3.5rem;
@@ -57,7 +57,7 @@
 
     &-container {
         flex: 0 0 45%;
-        padding: 7rem;
+        padding: 10rem;
         background-color: rgba(#747474, .4);
 
         @include respond(md) {
