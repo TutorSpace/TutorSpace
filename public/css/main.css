@@ -11614,6 +11614,90 @@ body {
   }
 }
 
+@-webkit-keyframes bg-shape-animation-3 {
+  from {
+    transform: rotate(0deg) translate(0, 0);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+
+@keyframes bg-shape-animation-3 {
+  from {
+    transform: rotate(0deg) translate(0, 0);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0);
+  }
+}
+
+@-webkit-keyframes bg-shape-animation-3-md {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem) scale(0.75);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+}
+
+@keyframes bg-shape-animation-3-md {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(3rem, 2rem) scale(0.75);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.8);
+  }
+}
+
+@-webkit-keyframes bg-shape-animation-3-extra-sm {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(2rem, 1rem) scale(0.6);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+}
+
+@keyframes bg-shape-animation-3-extra-sm {
+  from {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+
+  50% {
+    transform: rotate(10deg) translate(2rem, 1rem) scale(0.6);
+  }
+
+  to {
+    transform: rotate(0deg) translate(0, 0) scale(0.5);
+  }
+}
+
 body {
   font-family: Avenir;
 }
@@ -12343,6 +12427,96 @@ svg.bookmark:hover {
 .index__features .index__feature--2 .index__feature-container {
   margin-right: 30rem;
   padding-left: 5rem;
+}
+
+.index__bottom {
+  height: 100vh;
+  background-image: linear-gradient(to right, rgba(31, 122, 255, 0.8) 50%, rgba(103, 73, 223, 0.8) 50%);
+  position: relative;
+}
+
+.index__bottom .bg-shape-triangle-left {
+  position: absolute;
+  z-index: -1;
+  top: 5rem;
+}
+
+.index__bottom .bg-shape-triangle-left svg {
+  transform-origin: top left;
+  overflow: visible;
+  -webkit-animation: bg-shape-animation-3 12s infinite;
+          animation: bg-shape-animation-3 12s infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__bottom .bg-shape-triangle-left svg {
+    -webkit-animation: bg-shape-animation-3-md 8s infinite;
+            animation: bg-shape-animation-3-md 8s infinite;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__bottom .bg-shape-triangle-left svg {
+    -webkit-animation: bg-shape-animation-3-extra-sm 12s infinite;
+            animation: bg-shape-animation-3-extra-sm 12s infinite;
+  }
+}
+
+.index__bottom .bg-shape-circle-bottom {
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  right: 5rem;
+}
+
+.index__bottom .bg-shape-circle-bottom svg {
+  transform-origin: bottom;
+  -webkit-animation: bg-shape-animation-2 8s infinite;
+          animation: bg-shape-animation-2 8s infinite;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__bottom .bg-shape-circle-bottom svg {
+    -webkit-animation: bg-shape-animation-2-md 8s infinite;
+            animation: bg-shape-animation-2-md 8s infinite;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__bottom .bg-shape-circle-bottom svg {
+    -webkit-animation: bg-shape-animation-2-extra-sm 8s infinite;
+            animation: bg-shape-animation-2-extra-sm 8s infinite;
+  }
+}
+
+.index__bottom .bg-shape-triangle-right {
+  position: absolute;
+  z-index: -1;
+}
+
+.index__bottom .bg-shape-triangle-right svg {
+  transform-origin: top left;
+  overflow: visible;
+  -webkit-animation: bg-shape-animation-1 12s infinite;
+          animation: bg-shape-animation-1 12s infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__bottom .bg-shape-triangle-right svg {
+    -webkit-animation: bg-shape-animation-1-md 8s infinite;
+            animation: bg-shape-animation-1-md 8s infinite;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__bottom .bg-shape-triangle-right svg {
+    -webkit-animation: bg-shape-animation-1-extra-sm 12s infinite;
+            animation: bg-shape-animation-1-extra-sm 12s infinite;
+  }
 }
 
 .body-signup {
