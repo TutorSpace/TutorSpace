@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsUsersCharacteristics extends Migration
+class CreateMajorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTimestampsUsersCharacteristics extends Migration
      */
     public function up()
     {
-        Schema::table('users_characteristics', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('majors', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('major', 45);
         });
     }
 
@@ -25,8 +26,6 @@ class AddTimestampsUsersCharacteristics extends Migration
      */
     public function down()
     {
-        Schema::table('users_characteristics', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('majors');
     }
 }

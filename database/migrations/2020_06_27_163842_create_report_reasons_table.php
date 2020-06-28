@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddVotesToUsersTable extends Migration
+class CreateReportReasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddVotesToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('subjects', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('report_reasons', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('reason', 255);
         });
     }
 
@@ -25,8 +26,6 @@ class AddVotesToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('subjects', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('report_reasons');
     }
 }
