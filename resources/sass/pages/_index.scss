@@ -3,16 +3,10 @@
 
     .btn--primary {
         background-color: $color-white;
-        color: $color-purple-primary;
         border-radius: 3rem;
         height: 6rem;
         width: 50rem;
         font-weight: 500;
-
-        &:hover {
-            color: $color-purple-primary;
-        }
-
     }
 }
 
@@ -25,18 +19,32 @@
     .logo {
         margin-left: 2rem;
         width: 40rem;
+        height: auto;
         animation: move-in-left 1s;
     }
 
     .btn--primary {
         margin-top: 6rem;
+        color: $color-purple-primary;
         animation: move-in-bottom .5s ease-out 1s backwards;
+
+        &:hover {
+            color: $color-purple-primary;
+        }
+
+        @include respond(small) {
+            margin-top: 0;
+        }
     }
 }
 
 .index__story {
     color: #555454;
-    padding: 15rem 3rem;
+    padding: 15rem 5rem;
+
+    @include respond(md) {
+        padding: 10rem 5rem;
+    }
 
     &__heading {
         margin-bottom: 3.5rem;
@@ -45,8 +53,6 @@
     &__content {
         font-size: 2.2rem;
         line-height: 2;
-        // column-count: 2;
-        // column-gap: 2rem;
     }
 }
 
@@ -63,6 +69,7 @@
         @include respond(md) {
             flex: 1;
             background-color: rgba(#747474, .2);
+            padding: 10rem 5rem;
         }
     }
 
@@ -72,11 +79,20 @@
 
     &__content {
         font-size: 2.2rem;
+        line-height: 2;
     }
 }
 
 .index__features {
     padding: 15rem 3rem;
+
+    @include respond(md) {
+        padding: 10rem 3rem;
+    }
+
+    @include respond(sm) {
+        padding: 7rem 3rem;
+    }
 
     > :not(:last-child) {
         margin: 4rem 0;
@@ -138,71 +154,95 @@
 }
 
 .index__bottom {
-    height: 100vh;
+    height: calc(100vh - #{$nav-height});
     background-image: linear-gradient(to right, rgba($color-blue-primary, .8) 50%, rgba($color-purple-primary, .8) 50%);
     position: relative;
 
 
     .bg-shape-triangle-left {
-        position: absolute;
-        z-index: -1;
-        top: 5rem;
-
-        svg {
-            transform-origin: top left;
-            overflow: visible;
-            animation: bg-shape-animation-3 12s infinite;
-            animation-timing-function: linear;
-
-            @include respond(md) {
-                animation: bg-shape-animation-3-md 8s infinite;
-            }
-
-            @include respond(extra-sm) {
-                animation: bg-shape-animation-3-extra-sm 12s infinite;
-            }
-        }
+        top: 8rem;
+        width: 25rem;
+        left: -3rem;
     }
 
     .bg-shape-circle-bottom {
-        position: absolute;
-        z-index: -1;
-        bottom: 0;
-        right: 5rem;
-
-        svg {
-            transform-origin: bottom;
-            animation: bg-shape-animation-2 8s infinite;
-
-            @include respond(md) {
-                animation: bg-shape-animation-2-md 8s infinite;
-            }
-
-
-            @include respond(extra-sm) {
-                animation: bg-shape-animation-2-extra-sm 8s infinite;
-            }
-        }
+        bottom: 5rem;
+        right: 20rem;
     }
 
     .bg-shape-triangle-right {
+        right: 0;
+        top: 7rem;
+    }
+
+
+    &__heading {
+        padding-top: 12rem;
+        color: $color-white;
+
+        @include respond(extra-sm) {
+            padding-top: 30rem;
+        }
+    }
+
+    &__left {
         position: absolute;
-        z-index: -1;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        text-align: center;
 
-        svg {
-            transform-origin: top left;
-            overflow: visible;
-            animation: bg-shape-animation-1 12s infinite;
-            animation-timing-function: linear;
-
-            @include respond(md) {
-                animation: bg-shape-animation-1-md 8s infinite;
-            }
-
-            @include respond(extra-sm) {
-                animation: bg-shape-animation-1-extra-sm 12s infinite;
+        .btn--primary {
+            color: $color-blue-primary;
+            &:hover {
+                color: $color-blue-primary;
             }
         }
     }
 
+    &__right {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        .btn--primary {
+            color: $color-purple-primary;
+            &:hover {
+                color: $color-purple-primary;
+            }
+        }
+    }
+
+    &__svg {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: -2rem;
+
+        @include respond(md) {
+            margin-bottom: -3rem;
+            width: 30rem;
+        }
+
+        @include respond(sm) {
+            margin-bottom: -8rem;
+            width: 22rem;
+        }
+
+        @include respond(extra-sm) {
+            margin-bottom: -16.3rem;
+            width: 18rem;
+        }
+    }
+
+    .btn--primary {
+        @include respond(md) {
+            width: 35rem;
+        }
+
+        @include respond(sm) {
+            width: 27rem;
+        }
+    }
 }

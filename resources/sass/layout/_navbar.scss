@@ -1,8 +1,8 @@
 .nav {
-    height: 8rem;
+    height: $nav-height;
     background-color: $color-white-dark-2;
     color: $color-blue-primary !important;
-    z-index: 100;
+    z-index: 1000;
 
     .brand-name {
         font-size: 3.5rem;
