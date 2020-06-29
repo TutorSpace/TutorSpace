@@ -55,13 +55,13 @@
 
         <div class="footer__subscribe">
             <p class="footer__heading">SUBSCRIBE</p>
-            <div class="form">
+            <form class="form" method="POST" action="{{ route('subscription.store') }}">
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
                 <input type="email" class="form-control" placeholder="Enter your email">
                 <button class="btn btn-subscribe">Subscribe</button>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -121,13 +121,13 @@
 
     <div class="footer-sm__subscribe">
         <p class="footer-sm__heading">SUBSCRIBE</p>
-        <div class="form">
+        <form class="form" method="POST" action="{{ route('subscription.store') }}">
             <svg class="input-icon">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
             </svg>
             <input type="email" class="form-control" placeholder="Enter your email">
             <button class="btn btn-subscribe">Subscribe</button>
-        </div>
+        </form>
     </div>
 
 </footer>

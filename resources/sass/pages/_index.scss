@@ -84,18 +84,29 @@
 }
 
 .index__features {
-    padding: 15rem 3rem;
+    padding: 17rem 0;
 
     @include respond(md) {
-        padding: 10rem 3rem;
+        padding: 10rem 1rem;
     }
 
     @include respond(sm) {
         padding: 7rem 3rem;
     }
 
+    @include respond(extra-sm) {
+        padding: 5rem 3rem;
+    }
+
     > :not(:last-child) {
-        margin: 4rem 0;
+        margin-bottom: 10rem;
+
+        @include respond(md) {
+            margin-bottom: 5rem;
+        }
+        @include respond(sm) {
+            margin-bottom: 4rem;
+        }
     }
 
     $width: 30rem;
@@ -104,16 +115,21 @@
         color: #555454;
         position: relative;
 
-        .svg-bg {
-            position: absolute;
-            width: $width;
-            transform: scale(1.2);
-        }
-
         .svg-content {
             position: absolute;
-            width: 20rem;
             bottom: 0;
+            width: 35rem;
+            height: 100%;
+            transform: scale(1.1);
+
+            @include respond(sm) {
+                width: 25rem;
+                transform: scale(1.5);
+            }
+
+            @include respond(extra-sm) {
+                transform: scale(1.15, 1.8);
+            }
         }
 
         &-container {
@@ -124,6 +140,11 @@
 
         &__heading {
             margin-bottom: 3.5rem;
+            white-space: nowrap;
+
+            @include respond(sm) {
+                margin-bottom: 2rem;
+            }
         }
 
         &__content {
@@ -132,23 +153,54 @@
     }
 
     .index__feature--1, .index__feature--3 {
-
         .index__feature-container {
             margin-left: $width;
+
+            @include respond(sm) {
+                margin-left: 20rem;
+            }
         }
     }
 
     .index__feature--2 {
         .svg-content {
-            position: absolute;
-            width: 20rem;
-            bottom: 0;
             right: 0;
         }
 
         .index__feature-container {
-            margin-right: $width;
-            padding-left: 5rem;
+            margin-right: 20rem;
+            padding-left: 7rem;
+
+            @include respond(md) {
+                margin-right: 25rem;
+                padding-left: 5rem;
+            }
+
+            @include respond(sm) {
+                margin-right: 18rem;
+                padding-left: 2rem;
+            }
+        }
+    }
+
+    .index__feature--3 {
+        .svg-content {
+            height: 20rem;
+            bottom: 50%;
+            transform: translate(7rem, calc(50% + 3rem)) scale(1.8);
+
+            @include respond(lg) {
+                transform: translate(7rem, calc(50% + 3rem)) scale(1.5);
+            }
+            @include respond(md) {
+                transform: translate(5rem, calc(50% + 3rem)) scale(1.5);
+            }
+            @include respond(sm) {
+                transform: translate(3rem, calc(50% + 1rem)) scale(1.8, 2.5);
+            }
+            @include respond(extra-sm) {
+                transform: translate(3rem, calc(50% + 1rem)) scale(1.4, 2.5);
+            }
         }
     }
 }

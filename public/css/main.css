@@ -12523,12 +12523,12 @@ svg.bookmark:hover {
 }
 
 .index__features {
-  padding: 15rem 3rem;
+  padding: 17rem 0;
 }
 
 @media only screen and (max-width: 61.99em) {
   .index__features {
-    padding: 10rem 3rem;
+    padding: 10rem 1rem;
   }
 }
 
@@ -12538,8 +12538,26 @@ svg.bookmark:hover {
   }
 }
 
+@media only screen and (max-width: 35.99em) {
+  .index__features {
+    padding: 5rem 3rem;
+  }
+}
+
 .index__features > :not(:last-child) {
-  margin: 4rem 0;
+  margin-bottom: 10rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__features > :not(:last-child) {
+    margin-bottom: 5rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .index__features > :not(:last-child) {
+    margin-bottom: 4rem;
+  }
 }
 
 .index__features .index__feature {
@@ -12548,16 +12566,25 @@ svg.bookmark:hover {
   position: relative;
 }
 
-.index__features .index__feature .svg-bg {
-  position: absolute;
-  width: 30rem;
-  transform: scale(1.2);
-}
-
 .index__features .index__feature .svg-content {
   position: absolute;
-  width: 20rem;
   bottom: 0;
+  width: 35rem;
+  height: 100%;
+  transform: scale(1.1);
+}
+
+@media only screen and (max-width: 47.99em) {
+  .index__features .index__feature .svg-content {
+    width: 25rem;
+    transform: scale(1.5);
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__features .index__feature .svg-content {
+    transform: scale(1.15, 1.8);
+  }
 }
 
 .index__features .index__feature-container {
@@ -12568,6 +12595,13 @@ svg.bookmark:hover {
 
 .index__features .index__feature__heading {
   margin-bottom: 3.5rem;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .index__features .index__feature__heading {
+    margin-bottom: 2rem;
+  }
 }
 
 .index__features .index__feature__content {
@@ -12579,16 +12613,64 @@ svg.bookmark:hover {
   margin-left: 30rem;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .index__features .index__feature--1 .index__feature-container,
+  .index__features .index__feature--3 .index__feature-container {
+    margin-left: 20rem;
+  }
+}
+
 .index__features .index__feature--2 .svg-content {
-  position: absolute;
-  width: 20rem;
-  bottom: 0;
   right: 0;
 }
 
 .index__features .index__feature--2 .index__feature-container {
-  margin-right: 30rem;
-  padding-left: 5rem;
+  margin-right: 20rem;
+  padding-left: 7rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__features .index__feature--2 .index__feature-container {
+    margin-right: 25rem;
+    padding-left: 5rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .index__features .index__feature--2 .index__feature-container {
+    margin-right: 18rem;
+    padding-left: 2rem;
+  }
+}
+
+.index__features .index__feature--3 .svg-content {
+  height: 20rem;
+  bottom: 50%;
+  transform: translate(7rem, calc(50% + 3rem)) scale(1.8);
+}
+
+@media only screen and (max-width: 74.99em) {
+  .index__features .index__feature--3 .svg-content {
+    transform: translate(7rem, calc(50% + 3rem)) scale(1.5);
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .index__features .index__feature--3 .svg-content {
+    transform: translate(5rem, calc(50% + 3rem)) scale(1.5);
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .index__features .index__feature--3 .svg-content {
+    transform: translate(3rem, calc(50% + 1rem)) scale(1.8, 2.5);
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__features .index__feature--3 .svg-content {
+    transform: translate(3rem, calc(50% + 1rem)) scale(1.4, 2.5);
+  }
 }
 
 .index__bottom {

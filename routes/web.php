@@ -9,6 +9,9 @@ Route::get('/test', 'testController@test');
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
 
+// subscriptions
+Route::post('/subscription', 'SubscriptionController@store')->name('subscription.store');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
