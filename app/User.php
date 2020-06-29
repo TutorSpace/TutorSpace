@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\CustomResetPasswordNotification;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -38,7 +38,7 @@ class User extends Authenticatable
     // customized reset password
     public function customSendPasswordResetNotification($token, $is_tutor)
     {
-        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
+        $this->notify(new ResetPasswordNotification($token, $is_tutor));
     }
 
     public static function getTime($date, $startTime) {

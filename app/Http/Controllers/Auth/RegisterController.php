@@ -15,8 +15,8 @@ use App\Rules\NotExistStudent;
 use Illuminate\Validation\Rule;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\EmailVerification;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\RegisterEmailVerification;
 
 
 class RegisterController extends Controller
@@ -33,14 +33,14 @@ class RegisterController extends Controller
             $firstName = $request->session()->get('registerDataStudent')['first-name'];
             $request->session()->put('verificationCodeStudent', $verificationCode);
             Notification::route('mail', $email)
-            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName));
         }
         else if($request->session()->has('registerDataTutor')) {
             $email = $request->session()->get('registerDataTutor')['email'];
             $firstName = $request->session()->get('registerDataTutor')['first-name'];
             $request->session()->put('verificationCodeTutor', $verificationCode);
             Notification::route('mail', $email)
-            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName));
         }
 
         return response()->json(
@@ -108,10 +108,10 @@ class RegisterController extends Controller
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeStudent', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name')));
 
         // for testing only preview the notification
-        // return (new RegisterEmailVerification("123abc"))
+        // return (new EmailVerification("123abc"))
         //     ->toMail(User::find(1));
 
         return redirect()->route('register.index.student.2');
@@ -165,10 +165,10 @@ class RegisterController extends Controller
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeTutor', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name')));
 
         // for testing only preview the notification
-        // return (new RegisterEmailVerification("123abc"))
+        // return (new EmailVerification("123abc"))
         //     ->toMail(User::find(1));
 
         return redirect()->route('register.index.tutor.2');

@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('school_year_id')->nullable();
             $table->string('profile_pic_url', 255)->default('placeholder.png');
             $table->string('google_id', 255)->nullable();
-            $table->string('password', 255);
+            $table->string('password', 255)->nullable();
             $table->timestamps();
 
             $table->foreign('first_major_id')->references('id')->on('majors')->onDelete('cascade')->onUpdate('cascade');

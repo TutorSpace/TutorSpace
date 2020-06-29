@@ -8,8 +8,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 // TODO: set up queue if necessary
-// class RegisterEmailVerification extends Notification implements ShouldQueue
-class RegisterEmailVerification extends Notification
+// class EmailVerification extends Notification implements ShouldQueue
+class EmailVerification extends Notification
 {
     use Queueable;
 
