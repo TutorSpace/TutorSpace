@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsUsersCourses extends Migration
+class CreateCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddTimestampsUsersCourses extends Migration
      */
     public function up()
     {
-        Schema::table('users_courses', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('course', 64);
             $table->timestamps();
         });
     }
@@ -25,8 +27,6 @@ class AddTimestampsUsersCourses extends Migration
      */
     public function down()
     {
-        Schema::table('users_courses', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('courses');
     }
 }

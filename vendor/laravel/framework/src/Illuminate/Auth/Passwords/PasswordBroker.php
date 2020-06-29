@@ -46,10 +46,12 @@ class PasswordBroker implements PasswordBrokerContract
      */
     public function sendResetLink(array $credentials)
     {
+        // dd("here 1");
         // First we will check to see if we found a user at the given credentials and
         // if we did not we will redirect back to this current URI with a piece of
         // "flash" data in the session to indicate to the developers the errors.
         $user = $this->getUser($credentials);
+
 
         if (is_null($user)) {
             return static::INVALID_USER;
@@ -62,8 +64,14 @@ class PasswordBroker implements PasswordBrokerContract
         // Once we have the reset token, we are ready to send the message out to this
         // user with a link to reset their password. We will then redirect back to
         // the current URI having nothing set in the session to indicate errors.
-        $user->sendPasswordResetNotification(
-            $this->tokens->create($user)
+        // $user->sendPasswordResetNotification(
+        //     $this->tokens->create($user)
+        // );
+
+        // customized
+        $user->customSendPasswordResetNotification(
+            $this->tokens->create($user),
+            $credentials['is_tutor']
         );
 
         return static::RESET_LINK_SENT;
@@ -128,6 +136,7 @@ class PasswordBroker implements PasswordBrokerContract
      */
     public function getUser(array $credentials)
     {
+
         $credentials = Arr::except($credentials, ['token']);
 
         $user = $this->users->retrieveByCredentials($credentials);
@@ -135,7 +144,6 @@ class PasswordBroker implements PasswordBrokerContract
         if ($user && ! $user instanceof CanResetPasswordContract) {
             throw new UnexpectedValueException('User must implement CanResetPassword interface.');
         }
-
         return $user;
     }
 

@@ -177,7 +177,7 @@ index
                 </defs>
             </svg>
 
-            <a href="{{ route('register.index.student.1') }}" class="btn d-flex align-items-center justify-content-center btn--primary btn-animation-y btn-animation-spreading--white fs-2-4" target="_blank">
+            <a href="{{ route('login.index.student') }}" class="btn d-flex align-items-center justify-content-center btn--primary btn-animation-y btn-animation-spreading--white fs-2-4" target="_blank">
                 I want to be a student.
             </a>
         </div>
@@ -192,7 +192,7 @@ index
                 </defs>
             </svg>
 
-            <a href="{{ route('register.index.tutor.1') }}" class="btn d-flex align-items-center justify-content-center btn--primary btn-animation-y btn-animation-spreading--white fs-2-4" target="_blank">
+            <a href="{{ route('login.index.tutor') }}" class="btn d-flex align-items-center justify-content-center btn--primary btn-animation-y btn-animation-spreading--white fs-2-4" target="_blank">
                 I want to be a tutor.
             </a>
         </div>

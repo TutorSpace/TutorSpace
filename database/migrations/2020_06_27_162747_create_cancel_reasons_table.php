@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsCharacteristics extends Migration
+class CreateCancelReasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTimestampsCharacteristics extends Migration
      */
     public function up()
     {
-        Schema::table('characteristics', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('cancel_reasons', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->text('reason');
         });
     }
 
@@ -25,8 +26,6 @@ class AddTimestampsCharacteristics extends Migration
      */
     public function down()
     {
-        Schema::table('characteristics', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('cancel_reasons');
     }
 }

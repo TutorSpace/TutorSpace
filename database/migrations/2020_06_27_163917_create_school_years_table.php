@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsTutorRequests extends Migration
+class CreateSchoolYearsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddTimestampsTutorRequests extends Migration
      */
     public function up()
     {
-        Schema::table('tutor_requests', function (Blueprint $table) {
-            $table->timestamps();
+        Schema::create('school_years', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('school_year', 64);
         });
     }
 
@@ -25,6 +26,6 @@ class AddTimestampsTutorRequests extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('school_years');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTimestampsReport extends Migration
+class CreateCharacteristicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,9 @@ class AddTimestampsReport extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
+        Schema::create('characteristics', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('characteristic', 64);
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ class AddTimestampsReport extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('characteristics');
     }
 }
