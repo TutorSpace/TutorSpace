@@ -108,7 +108,7 @@ class RegisterController extends Controller
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeStudent', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new EmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name'), false));
 
         // for testing only preview the notification
         // return (new EmailVerification("123abc"))
@@ -165,7 +165,7 @@ class RegisterController extends Controller
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeTutor', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new EmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name'), true));
 
         // for testing only preview the notification
         // return (new EmailVerification("123abc"))

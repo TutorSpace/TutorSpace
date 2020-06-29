@@ -10,7 +10,8 @@ Route::get('/test', 'testController@test');
 Route::get('/', 'GeneralController@index')->name('index');
 
 // subscriptions
-Route::post('/subscription', 'SubscriptionController@store')->name('subscription.store');
+Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('subscription.store');
+Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
 
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');

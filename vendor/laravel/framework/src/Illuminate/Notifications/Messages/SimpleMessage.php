@@ -7,6 +7,15 @@ use Illuminate\Notifications\Action;
 
 class SimpleMessage
 {
+    // customized
+    public $isSubscriptionEmail;
+    public $email;
+    public function isForSubscriptionEmail($email) {
+        $this->isSubscriptionEmail = true;
+        $this->email = $email;
+        return $this;
+    }
+
     /**
      * The "level" of the notification (info, success, error).
      *
@@ -240,6 +249,10 @@ class SimpleMessage
             'actionText' => $this->actionText,
             'actionUrl' => $this->actionUrl,
             'displayableActionUrl' => str_replace(['mailto:', 'tel:'], '', $this->actionUrl),
+
+            // customized
+            'isSubscriptionEmail' => $this->isSubscriptionEmail,
+            'email' => $this->email,
         ];
     }
 }

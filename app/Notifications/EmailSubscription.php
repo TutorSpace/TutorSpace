@@ -8,25 +8,22 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 // TODO: set up queue if necessary
-// class EmailVerification extends Notification implements ShouldQueue
-class EmailVerification extends Notification
+class EmailSubscription extends Notification
 {
     use Queueable;
 
-    public $verificationCode;
     public $userName;
-    public $isTutor;
+    public $email;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($verificationCode, $userName, $isTutor)
+    public function __construct($userName, $email)
     {
-        $this->verificationCode = $verificationCode;
         $this->userName = $userName;
-        $this->isTutor = $isTutor;
+        $this->email = $email;
     }
 
     /**
@@ -48,17 +45,12 @@ class EmailVerification extends Notification
      */
     public function toMail($notifiable)
     {
-        if($this->isTutor) {
-            $route = route('register.index.tutor.2');
-        }
-        else {
-            $route = route('register.index.student.2');
-        }
         return (new MailMessage)
                     ->greeting('Dear ' . $this->userName)
-                    ->line('Your verification code is ' . $this->verificationCode)
-                    ->action('Continue to register', $route)
-                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
+                    ->line('Thanks for subscribing to TutorSpace! We will send you the latest updates in the future.')
+                    ->action('Start your journey as a Student/Tutor!', route('index'))
+                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!')
+                    ->isForSubscriptionEmail($this->email);
     }
 
     /**
