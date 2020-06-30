@@ -40,6 +40,11 @@ bg-grey-light body-login
                     {{ $message }}
                 </span>
                 @enderror
+                @error('email')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
             <div class="text-center">
