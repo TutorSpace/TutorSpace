@@ -12200,8 +12200,6 @@ svg.bookmark:hover {
 
 .nav {
   height: 8rem;
-  background-color: #F8F8F8;
-  color: #1F7AFF !important;
   z-index: 1000;
 }
 
@@ -12211,14 +12209,40 @@ svg.bookmark:hover {
   font-weight: 500;
   margin: 0 5rem;
   text-decoration: none;
-  color: #1F7AFF;
+  color: inherit;
 }
 
 .nav .nav__item {
   font-size: 2rem;
-  color: #1F7AFF;
   font-weight: bold;
+  color: inherit;
+}
+
+.nav .nav-left {
+  margin-right: auto;
+}
+
+.nav .nav-left .nav__item:not(:last-child) {
   margin-right: 3rem;
+}
+
+.nav .nav-right {
+  margin-right: 5rem;
+}
+
+.nav .nav__form__search {
+  border: 2px solid currentColor;
+  padding-right: 3rem;
+  font-size: 1.6rem;
+}
+
+.nav-guest {
+  background-color: #F8F8F8;
+  color: #1F7AFF;
+}
+
+.nav-auth {
+  background-color: red;
 }
 
 .footer,

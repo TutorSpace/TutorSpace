@@ -1,7 +1,5 @@
 .nav {
     height: $nav-height;
-    background-color: $color-white-dark-2;
-    color: $color-blue-primary !important;
     z-index: 1000;
 
     .brand-name {
@@ -10,22 +8,59 @@
         font-weight: 500;
         margin: 0 5rem;
         text-decoration: none;
-        color: $color-blue-primary;
+        color: inherit;
     }
 
     .nav__item {
         font-size: 2rem;
-        color: $color-blue-primary;
         font-weight: bold;
-        margin-right: 3rem;
+        color: inherit;
     }
 
-    &-guest {
+    .nav-left {
+        margin-right: auto;
+
+        .nav__item:not(:last-child) {
+            margin-right: 3rem;
+        }
+    }
+
+    .nav-right {
+        margin-right: 5rem;
+    }
+
+    .nav__form {
+
+        &__search {
+            border: 2px solid currentColor;
+            padding-right: 3rem;
+
+            font-size: 1.6rem;
+        }
+
+        &__svg {
+
+        }
+    }
+
+}
+
+.nav-guest {
+    background-color: $color-white-dark-2;
+    color: $color-blue-primary;
+
+
+}
+
+.nav-auth {
+    background-color: red;
+
+
+    &--student {
 
     }
 
-    &-auth {
+    &--tutor {
 
     }
 }
-
