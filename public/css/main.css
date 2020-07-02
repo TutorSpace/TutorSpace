@@ -11915,13 +11915,13 @@ h3 {
 }
 
 .btn-outline-student {
-  color: #0C4293;
+  color: #1F7AFF;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   transition: all 0.3s;
   border: 2px solid #1F7AFF;
-  border-radius: 2rem;
-  padding: 0.75rem 2rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .btn-outline-student:hover {
@@ -12230,15 +12230,88 @@ svg.bookmark:hover {
   margin-right: 5rem;
 }
 
+.nav .nav__form {
+  width: 30rem;
+}
+
 .nav .nav__form__search {
-  border: 2px solid currentColor;
+  border: 2px solid;
   padding-right: 3rem;
-  font-size: 1.6rem;
+  padding-left: 1.3rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+}
+
+.nav .nav__form__search::-webkit-input-placeholder {
+  font-weight: 500;
+}
+
+.nav .nav__form__search::-moz-placeholder {
+  font-weight: 500;
+}
+
+.nav .nav__form__search:-ms-input-placeholder {
+  font-weight: 500;
+}
+
+.nav .nav__form__search::-ms-input-placeholder {
+  font-weight: 500;
+}
+
+.nav .nav__form__search::placeholder {
+  font-weight: 500;
+}
+
+.nav .nav__form__svg {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(0, -50%);
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
 .nav-guest {
   background-color: #F8F8F8;
   color: #1F7AFF;
+}
+
+.nav-guest .nav__form__search {
+  border-color: #1F7AFF;
+}
+
+.nav-guest .nav__form__search:focus {
+  border-color: #0075E0;
+  box-shadow: none;
+}
+
+.nav-guest .nav__form__search:focus + .nav__form__svg {
+  fill: #0075E0;
+}
+
+.nav-guest .nav__form__search::-webkit-input-placeholder {
+  color: #A0A0A0;
+}
+
+.nav-guest .nav__form__search::-moz-placeholder {
+  color: #A0A0A0;
+}
+
+.nav-guest .nav__form__search:-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.nav-guest .nav__form__search::-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.nav-guest .nav__form__search::placeholder {
+  color: #A0A0A0;
+}
+
+.nav-guest .nav__form__svg {
+  fill: #1F7AFF;
 }
 
 .nav-auth {

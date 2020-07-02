@@ -30,16 +30,28 @@
     }
 
     .nav__form {
+        width: 30rem;
 
         &__search {
-            border: 2px solid currentColor;
+            border: 2px solid;
             padding-right: 3rem;
+            padding-left: 1.3rem;
+            font-size: 1.8rem;
+            font-weight: 500;
+            border-radius: .75rem;
 
-            font-size: 1.6rem;
+            &::placeholder {
+                font-weight: 500;
+            }
         }
 
         &__svg {
-
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translate(0, -50%);
+            width: 1.75rem;
+            height: 1.75rem;
         }
     }
 
@@ -49,7 +61,29 @@
     background-color: $color-white-dark-2;
     color: $color-blue-primary;
 
+    .nav__form {
 
+        &__search {
+            border-color: $color-blue-primary;
+
+            &:focus {
+                border-color: $color-blue-primary-2;
+                box-shadow: none;
+
+                + .nav__form__svg {
+                    fill: $color-blue-primary-2;
+                }
+            }
+
+            &::placeholder {
+                color: #A0A0A0;
+            }
+        }
+
+        &__svg {
+            fill: $color-blue-primary;
+        }
+    }
 }
 
 .nav-auth {

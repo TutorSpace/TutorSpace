@@ -18,9 +18,9 @@
             <a class="nav__item" href="#">Forum</a>
             <a class="nav__item" href="#">Support</a>
             <form action="" method="GET" class="nav__form p-relative">
-                <input type="text" class="nav__form__search form-control form-control-lg">
+                <input type="text" class="nav__form__search form-control form-control-lg" placeholder="Search for tutors...">
                 <svg class="nav__form__svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-user')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
             </form>
         </div>
@@ -28,7 +28,7 @@
 
         <div class="nav-right">
             @guest
-                <a class="nav__item btn btn-lg ml-auto btn-outline-student" href="#" id="nav-btn-sign-in">Sign In</a>
+                <a class="btn ml-auto btn-outline-student" href="#" id="nav-btn-sign-in">Sign In</a>
             @endguest
         </div>
     </nav>
