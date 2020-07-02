@@ -455,13 +455,12 @@ class RegisterController extends Controller
         // if user uploaded the file
         if($request->file('profile-pic')) {
             $user->deleteImage();
-            $imgURL = $request->file('profile-pic')->store('');
-            $user->profile_pic_url = $imgURL;
+            $user->profile_pic_url = $request->file('profile-pic')->store('');
         }
 
-        $user->courses()->attach($tutorData['courses']);
-
         $user->save();
+
+        $user->courses()->attach($tutorData['courses']);
 
         // clear all the session data
         $request->session()->flush();

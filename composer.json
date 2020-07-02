@@ -16,7 +16,8 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "pusher/pusher-php-server": "^4.1"
+        "pusher/pusher-php-server": "^4.1",
+        "superbalist/laravel-google-cloud-storage": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

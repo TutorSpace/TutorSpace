@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth;
 
 use App\User;
-use App\Subject;
-use App\Characteristic;
-use App\Bookmark;
-use App\Dashboard_post;
-use Auth;
-use App\Tutor_request;
-use App\Session;
 use App\Course;
-
+use App\Session;
+use App\Subject;
+use App\Bookmark;
 use Carbon\Carbon;
-
 use App\NewMessage;
+use App\Tutor_request;
+use App\Characteristic;
+
+use App\Dashboard_post;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class testController extends Controller
 {
@@ -25,8 +26,11 @@ class testController extends Controller
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+    public function index() {
+        return view('test');
+    }
 
-    public function test() {
+    public function test(Request $request) {
 
         // Sarah: dd() is laravel's way of php's dump. In your browser, go to localhost:8000/test and then this function will run. Whenever you want to test syntax, the easiest way would be go to 'localhost:8000/test', and run your test inside this function. Use this function to play around with the Database syntax
 
@@ -142,6 +146,14 @@ class testController extends Controller
         // dd(Auth::user());
 
         // return view('auth.passwords.reset_student');
-        return view('test');
+
+        dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
+
+        $path = $request->file('avatar')->store('');
+
+
+        return $path;
+
+
     }
 }

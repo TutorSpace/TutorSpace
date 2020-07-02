@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+
         // added socialite
         Laravel\Socialite\SocialiteServiceProvider::class,
 
