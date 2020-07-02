@@ -253,6 +253,20 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
+    // check whether a user with an email exists and is a student
+    public static function existStudent($email) {
+        return User::where('email', '=', $email)->where('is_tutor', false)->count() != 0;
+    }
+
+    public static function existTutor($email) {
+        return User::where('email', '=', $email)->where('is_tutor', true)->count() != 0;
+    }
+
+    public static function registerWithGoogle($email) {
+        return User::where('email', '=', $email)->where('google_id', '!=', null)->count() != 0;
+    }
+
+
 
 
 }

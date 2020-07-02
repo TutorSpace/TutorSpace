@@ -17,7 +17,7 @@ trait SendsPasswordResetEmails
      */
     public function showLinkRequestForm(Request $request)
     {
-        if($request->is_tutor) {
+        if($request->query('is_tutor')) {
             return view('auth.passwords.email_tutor');
         }
         else {
@@ -37,8 +37,8 @@ trait SendsPasswordResetEmails
 
         // customized
         // if the user does not have the identity, redirect them to the given route
-        $existStudent = User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() != 0;
-        $existTutor = User::where('email', '=', $request->input('email'))->where('is_tutor', true)->count() != 0;
+        $existStudent = User::existStudent($request->input('email'));
+        $existTutor = User::existTutor($request->input('email'));
         if($request->boolean('is_tutor') && !$existTutor) {
             return redirect()->route('password.request', ['is_tutor' => false])->with([
                 'errorMsg' => 'You do not have a tutor account yet. Please try resetting password in your student account!'
@@ -51,7 +51,7 @@ trait SendsPasswordResetEmails
         }
 
         // if the user is signed up using google, redirect them back
-        if(User::where('email', '=', $request->input('email'))->where('google_id', '!=', null)->count() != 0) {
+        if(User::registerWithGoogle($request->input('email'))) {
             if($request->boolean('is_tutor')) {
                 return redirect()->route('login.index.tutor')->with([
                     'errorMsg' => 'You can not reset password because you signed up using Google.'

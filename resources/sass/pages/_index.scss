@@ -13,8 +13,12 @@
 .index__top {
     height: 100vh;
 
-    background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/hero.jpg);
+    background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/usc.jpg);
     background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 
     .logo {
         margin-left: 2rem;
@@ -57,18 +61,24 @@
 }
 
 .index__mission {
-    // background-color: rgba($color: $color-yellow-primary, $alpha: .8);
-    background-image: linear-gradient(to right bottom, rgba($color: $color-yellow-primary, $alpha: .8), rgba(255, 200, 0, 0.8));
+    background-image: linear-gradient(to right bottom, rgba($color: $color-yellow-primary, $alpha: .7), rgba(255, 200, 0, 0.7)), url(../../../public/assets/usc.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     color: $color-white;
 
     &-container {
         flex: 0 0 45%;
         padding: 10rem;
-        background-color: rgba(#747474, .4);
+        // background-color: rgba(#747474, .4);
+        background-color: rgba(#747474, .5);
 
         @include respond(md) {
             flex: 1;
-            background-color: rgba(#747474, .2);
+            // background-color: rgba(#747474, .2);
+            background-color: rgba(#747474, .3);
             padding: 10rem 5rem;
         }
     }

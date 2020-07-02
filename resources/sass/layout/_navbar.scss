@@ -6,10 +6,11 @@
 
     .brand-name {
         font-size: 3.5rem;
-        font-family: 'Baloo Bhai 2', cursive;
-        font-weight: bold;
+        font-family: 'Baloo Bhai', sans-serif;
+        font-weight: 500;
         margin: 0 5rem;
         text-decoration: none;
+        color: $color-blue-primary;
     }
 
     .nav__item {

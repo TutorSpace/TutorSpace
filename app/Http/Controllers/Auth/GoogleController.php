@@ -26,9 +26,9 @@ class GoogleController extends Controller
 
         $redirectRouteName = $request->session()->get('redirectRouteName');
         // true if this email is already registered as a student
-        $existStudent = User::where('email', '=', $user->email)->where('is_tutor', false)->count() != 0;
+        $existStudent = User::existStudent($user->email);
         // true if this email is already registered as a tutor
-        $existTutor = User::where('email', '=', $user->email)->where('is_tutor', true)->count() != 0;
+        $existTutor = User::existTutor($user->email);
 
         $registerGoogleStudent = $request->session()->has('registerGoogleStudent');
         $registerGoogleTutor = $request->session()->has('registerGoogleTutor');

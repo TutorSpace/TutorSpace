@@ -24,7 +24,7 @@ Route::group([
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
     // send verification email for register
-    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificatioinEmail');
+    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificationEmail');
 
     // google callback for register & login
     Route::get('callback', 'Auth\GoogleController@handleGoogleCallback');
