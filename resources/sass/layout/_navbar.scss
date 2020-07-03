@@ -13,6 +13,21 @@
         @include respond(md) {
             margin: 0 3rem;
         }
+
+        @include respond(sm) {
+            margin-left: 1.5rem;
+            margin-right: 2.5rem;
+            position: relative;
+            width: 5rem;
+            visibility: hidden;
+
+            &::after {
+                position: absolute;
+                width: 100%;
+                top: 0;
+                visibility: visible;
+            }
+        }
     }
 
     .nav__item {
@@ -29,22 +44,27 @@
         &:hover {
             animation: none !important;
         }
+    }
 
-        &-dropdown {
-            position: absolute;
-            display: flex;
-            flex-direction: column;
-            top: calc(100% + .75rem);
+    .svg-list-dropdown, .profile-img-dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: calc(100% + .75rem);
+        display: none;
 
-            .nav__item {
-                margin-right: 0 !important;
-                padding: 1rem 2rem;
-                display: block;
-                text-align: center;
-                text-decoration: none;
-                transition: all .2s;
-            }
+        .nav__item {
+            margin-right: 0 !important;
+            padding: 1rem 2rem;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            transition: all .2s;
         }
+    }
+
+    .nav-toggle-sm {
+        display: none;
     }
 
     .nav-left {
@@ -64,13 +84,13 @@
             }
 
             .nav-toggle-sm {
-                display: block !important;
+                display: block;
             }
         }
 
         @include respond(sm) {
             .nav-toggle-sm {
-                display: none !important;
+                display: none;
             }
         }
 
@@ -79,9 +99,9 @@
     .nav__form {
         width: 30rem;
 
-        @include respond(sm) {
-            width: 20rem;
-        }
+        @media only screen and (max-width: 21.874em) { //350px
+            width: 22rem;
+        };
     }
 
     .btn-sign-in {
@@ -104,6 +124,10 @@
             ~ * {
                 display: none;
             }
+
+            @include respond(sm) {
+                margin-right: 1.5rem;
+            }
         }
 
         .nav-fade-in-animation {
@@ -125,6 +149,11 @@
             .svg-message {
                 font-size: 2.3rem;
                 margin-right: 1.8rem;
+
+                @include respond(sm) {
+                    font-size: 2.5rem;
+                    margin-right: 1.3rem;
+                }
             }
 
             .svg-notification {
@@ -132,13 +161,7 @@
             }
 
             @include respond(sm) {
-                order: 1;
-                margin-right: 0;
-                margin-left: 2.5rem;
-
-                .nav-toggle-sm {
-                    display: block !important;
-                }
+                margin-right: 1.5rem;
             }
         }
 
@@ -148,33 +171,17 @@
             border-radius: 50%;
             border: 2px solid;
             cursor: pointer;
+
+            @include respond(sm) {
+                margin-right: 2rem;
+                border-width: 1px;
+                width: 3.5rem;
+                height: 3.5rem;
+            }
         }
 
-        .svg-list {
-
-
-            &-dropdown {
-                right: 2.5rem;
-
-                .svg-container {
-                    &:hover {
-                        cursor: default;
-                        // color: $color-white;
-
-                        * {
-                            color: inherit !important;
-                        }
-                    }
-
-                    .svg-message {
-                        margin-right: 2.5rem;
-                    }
-                }
-
-                .nav__item {
-
-                }
-            }
+        .svg-list-dropdown, .profile-img-dropdown {
+            right: 2.5rem;
         }
 
         @include respond(md) {
@@ -182,9 +189,14 @@
         }
 
         @include respond(sm) {
+            margin-right: 1.5rem;
 
             .nav-toggle-lg {
                 display: none;
+            }
+
+            .nav-toggle-sm {
+                display: block;
             }
         }
     }
@@ -199,23 +211,20 @@
     background-color: $color-white-dark-2;
     color: $color-blue-primary;
 
-    .svg-list {
+    .brand-name {
+        @include respond(sm) {
+            &::after {
+                content: url(../../../public/assets/student.svg);
+            }
+        }
+    }
 
-        &-dropdown {
-
-            // .svg-container {
-            //     &:hover {
-            //         .nav__item {
-            //             color: $color-white;
-            //         }
-            //     }
-            // }
-            .nav__item {
-                background-color: $color-white;
-                &:hover {
-                    background-color: $color-blue-primary;
-                    color: $color-white;
-                }
+    .svg-list-dropdown, .profile-img-dropdown {
+        .nav__item {
+            background-color: $color-white;
+            &:hover {
+                background-color: $color-blue-primary;
+                color: $color-white;
             }
         }
     }

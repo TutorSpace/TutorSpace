@@ -12362,6 +12362,23 @@ svg.bookmark:hover {
   }
 }
 
+@media only screen and (max-width: 47.99em) {
+  .nav .brand-name {
+    margin-left: 1.5rem;
+    margin-right: 2.5rem;
+    position: relative;
+    width: 5rem;
+    visibility: hidden;
+  }
+
+  .nav .brand-name::after {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    visibility: visible;
+  }
+}
+
 .nav .nav__item {
   font-size: 2rem;
   font-weight: bold;
@@ -12379,20 +12396,27 @@ svg.bookmark:hover {
           animation: none !important;
 }
 
-.nav .svg-list-dropdown {
+.nav .svg-list-dropdown,
+.nav .profile-img-dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
   top: calc(100% + .75rem);
+  display: none;
 }
 
-.nav .svg-list-dropdown .nav__item {
+.nav .svg-list-dropdown .nav__item,
+.nav .profile-img-dropdown .nav__item {
   margin-right: 0 !important;
   padding: 1rem 2rem;
   display: block;
   text-align: center;
   text-decoration: none;
   transition: all 0.2s;
+}
+
+.nav .nav-toggle-sm {
+  display: none;
 }
 
 .nav .nav-left {
@@ -12413,13 +12437,13 @@ svg.bookmark:hover {
   }
 
   .nav .nav-left .nav-toggle-sm {
-    display: block !important;
+    display: block;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
   .nav .nav-left .nav-toggle-sm {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -12427,9 +12451,9 @@ svg.bookmark:hover {
   width: 30rem;
 }
 
-@media only screen and (max-width: 47.99em) {
+@media only screen and (max-width: 21.874em) {
   .nav .nav__form {
-    width: 20rem;
+    width: 22rem;
   }
 }
 
@@ -12453,6 +12477,12 @@ svg.bookmark:hover {
 
 .nav .nav-right .message-welcome ~ * {
   display: none;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-right .message-welcome {
+    margin-right: 1.5rem;
+  }
 }
 
 .nav .nav-right .nav-fade-in-animation {
@@ -12480,19 +12510,20 @@ svg.bookmark:hover {
   margin-right: 1.8rem;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-right__svg-container .svg-message {
+    font-size: 2.5rem;
+    margin-right: 1.3rem;
+  }
+}
+
 .nav .nav-right__svg-container .svg-notification {
   font-size: 2.5rem;
 }
 
 @media only screen and (max-width: 47.99em) {
   .nav .nav-right__svg-container {
-    order: 1;
-    margin-right: 0;
-    margin-left: 2.5rem;
-  }
-
-  .nav .nav-right__svg-container .nav-toggle-sm {
-    display: block !important;
+    margin-right: 1.5rem;
   }
 }
 
@@ -12504,20 +12535,18 @@ svg.bookmark:hover {
   cursor: pointer;
 }
 
-.nav .nav-right .svg-list-dropdown {
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-right__profile-img {
+    margin-right: 2rem;
+    border-width: 1px;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.nav .nav-right .svg-list-dropdown,
+.nav .nav-right .profile-img-dropdown {
   right: 2.5rem;
-}
-
-.nav .nav-right .svg-list-dropdown .svg-container:hover {
-  cursor: default;
-}
-
-.nav .nav-right .svg-list-dropdown .svg-container:hover * {
-  color: inherit !important;
-}
-
-.nav .nav-right .svg-list-dropdown .svg-container .svg-message {
-  margin-right: 2.5rem;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -12527,8 +12556,16 @@ svg.bookmark:hover {
 }
 
 @media only screen and (max-width: 47.99em) {
+  .nav .nav-right {
+    margin-right: 1.5rem;
+  }
+
   .nav .nav-right .nav-toggle-lg {
     display: none;
+  }
+
+  .nav .nav-right .nav-toggle-sm {
+    display: block;
   }
 }
 
@@ -12537,11 +12574,19 @@ svg.bookmark:hover {
   color: #1F7AFF;
 }
 
-.nav-guest .svg-list-dropdown .nav__item {
+@media only screen and (max-width: 47.99em) {
+  .nav-guest .brand-name::after {
+    content: url(/images/student.svg?c6d02e996d58632ef45ec02315ceee08);
+  }
+}
+
+.nav-guest .svg-list-dropdown .nav__item,
+.nav-guest .profile-img-dropdown .nav__item {
   background-color: #FFFFFF;
 }
 
-.nav-guest .svg-list-dropdown .nav__item:hover {
+.nav-guest .svg-list-dropdown .nav__item:hover,
+.nav-guest .profile-img-dropdown .nav__item:hover {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }
