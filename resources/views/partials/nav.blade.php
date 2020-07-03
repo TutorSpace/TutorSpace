@@ -45,9 +45,12 @@
 
         <div class="nav-right">
             @auth
+
+                @if(session()->has('showWelcome'))
                 <span class="message-welcome">
                     Hello, {{ Auth::user()->first_name }}!
                 </span>
+                @endif
                 <div class="nav-right__svg-container">
                     <svg class="svg-message" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -62,7 +65,8 @@
                     <a class="nav__item" href="#">Sign Out</a>
                 </div>
                 <div class="nav-toggle-sm">
-                    <svg class="svg-list" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="svg-list" width="1em" height="1em" viewBox="0 0
+                    16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                     <div class="svg-list-dropdown">
@@ -73,11 +77,6 @@
                         <a class="nav__item mt-2" href="#">Sign Out</a>
                     </div>
                 </div>
-
-
-                {{-- @session('showWelcome')
-
-                @endsession --}}
 
             @else
                 <a class="btn ml-auto btn-outline-student btn-sign-in" href="#" id="nav-btn-sign-in">Sign In</a>

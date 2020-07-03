@@ -12345,7 +12345,6 @@ svg.bookmark:hover {
 .nav {
   height: 8rem;
   z-index: 1000;
-  position: relative;
 }
 
 .nav .brand-name {
@@ -12354,6 +12353,21 @@ svg.bookmark:hover {
   margin: 0 5rem;
   text-decoration: none;
   color: inherit;
+}
+
+.nav .brand-name::after {
+  content: "";
+  display: none;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  visibility: visible;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .nav .brand-name::after {
+    display: block;
+  }
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -12369,13 +12383,6 @@ svg.bookmark:hover {
     position: relative;
     width: 5rem;
     visibility: hidden;
-  }
-
-  .nav .brand-name::after {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    visibility: visible;
   }
 }
 

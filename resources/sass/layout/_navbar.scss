@@ -1,7 +1,6 @@
 .nav {
     height: $nav-height;
     z-index: 1000;
-    position: relative;
 
     .brand-name {
         font-size: 3.5rem;
@@ -9,6 +8,19 @@
         margin: 0 5rem;
         text-decoration: none;
         color: inherit;
+
+        &::after {
+            content: "";
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            visibility: visible;
+
+            @include respond(sm) {
+                display: block;
+            }
+        }
 
         @include respond(md) {
             margin: 0 3rem;
@@ -21,12 +33,7 @@
             width: 5rem;
             visibility: hidden;
 
-            &::after {
-                position: absolute;
-                width: 100%;
-                top: 0;
-                visibility: visible;
-            }
+
         }
     }
 
@@ -200,11 +207,6 @@
             }
         }
     }
-
-
-
-
-
 }
 
 .nav-guest {
@@ -230,7 +232,6 @@
     }
 
     .nav__form {
-
         &__search {
             border-color: $color-blue-primary;
 
@@ -247,17 +248,13 @@
                 color: #A0A0A0;
             }
         }
-
         &__svg {
             fill: $color-blue-primary;
         }
     }
 
     .nav-right {
-
         &__svg-container {
-
-
             .svg-message, .svg-notification {
                 color: $color-blue-primary;
 
@@ -271,9 +268,6 @@
             border-color: $color-blue-primary;
         }
     }
-
-
-
 
 }
 

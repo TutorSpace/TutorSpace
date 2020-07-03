@@ -65,7 +65,9 @@ class LoginController extends Controller
             'is_tutor' => false])) {
             // Authentication passed...
             // todo: determine where to direct them
-            return redirect()->route('home');
+            return redirect()->route('home')->with([
+                'showWelcome' => true
+            ]);
         }
         else {
             return redirect()->back()->withInput()->with([
@@ -109,7 +111,9 @@ class LoginController extends Controller
             'is_tutor' => true])) {
             // Authentication passed...
             // todo: determine where to direct them
-            return redirect()->route('home');
+            return redirect()->route('home')->with([
+                'showWelcome' => true
+            ]);
         }
         else {
             return redirect()->back()->withInput()->with([
