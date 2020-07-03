@@ -35,7 +35,7 @@
     </nav>
 </header>
 
-<header style="margin-top: 13rem">
+<header style="margin-top: 25rem">
     <nav class="nav p-fixed w-100 d-flex align-items-center nav-guest">
         <a class="brand-name" href="@auth{{ route('index') }} @else {{ route('home') }}@endauth">TutorSpace</a>
 
@@ -97,7 +97,7 @@
     </nav>
 </header>
 
-<header style="margin-top: 26rem">
+<header style="margin-top: 50rem">
     <nav class="nav p-fixed w-100 d-flex align-items-center nav-auth nav-auth--student">
 
         <a class="brand-name" href="@auth{{ route('index') }} @else {{ route('home') }}@endauth">TutorSpace</a>
@@ -162,7 +162,7 @@
 
 
 
-<header style="margin-top: 39rem">
+<header style="margin-top: 75rem">
     <nav class="nav p-fixed w-100 d-flex align-items-center nav-auth nav-auth--tutor">
 
         <a class="brand-name" href="@auth{{ route('index') }} @else {{ route('home') }}@endauth">TutorSpace</a>
