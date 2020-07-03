@@ -147,9 +147,11 @@ class testController extends Controller
 
         // return view('auth.passwords.reset_student');
 
-        dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
+        // dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
 
-        $path = $request->file('avatar')->store('');
+        $path = $request->file('avatar')->storeAs(
+            '', 'placeholder.png'
+        );
 
 
         return $path;

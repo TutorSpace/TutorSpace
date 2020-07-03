@@ -11446,6 +11446,78 @@ body {
   }
 }
 
+@-webkit-keyframes fade-in-out-animation {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-out-animation {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes shake-animation {
+  from {
+    transform: rotateZ(0);
+  }
+
+  25% {
+    transform: rotateZ(15deg);
+  }
+
+  50% {
+    transform: rotateZ(0);
+  }
+
+  75% {
+    transform: rotateZ(-15deg);
+  }
+
+  to {
+    transform: rotateZ(0);
+  }
+}
+
+@keyframes shake-animation {
+  from {
+    transform: rotateZ(0);
+  }
+
+  25% {
+    transform: rotateZ(15deg);
+  }
+
+  50% {
+    transform: rotateZ(0);
+  }
+
+  75% {
+    transform: rotateZ(-15deg);
+  }
+
+  to {
+    transform: rotateZ(0);
+  }
+}
+
 @-webkit-keyframes bg-shape-animation-1 {
   from {
     transform: rotate(0deg) translate(0, 0);
@@ -12299,6 +12371,56 @@ svg.bookmark:hover {
 
 .nav .nav-right {
   margin-right: 5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav .nav-right .message-welcome {
+  font-size: 2.4rem;
+  font-weight: bold;
+  -webkit-animation: fade-in-out-animation 4s ease-in-out forwards;
+          animation: fade-in-out-animation 4s ease-in-out forwards;
+}
+
+.nav .nav-right .message-welcome ~ * {
+  display: none;
+}
+
+.nav .nav-right .nav-fade-in-animation {
+  -webkit-animation: fade-in-animation 3s backwards;
+          animation: fade-in-animation 3s backwards;
+}
+
+.nav .nav-right__svg-container {
+  display: flex;
+  align-items: center;
+  margin-right: 3.5rem;
+}
+
+.nav .nav-right__svg-container svg {
+  cursor: pointer;
+}
+
+.nav .nav-right__svg-container svg:hover {
+  -webkit-animation: shake-animation 0.3s linear;
+          animation: shake-animation 0.3s linear;
+}
+
+.nav .nav-right__svg-container .svg-message {
+  font-size: 2.3rem;
+  margin-right: 1.8rem;
+}
+
+.nav .nav-right__svg-container .svg-notification {
+  font-size: 2.5rem;
+}
+
+.nav .nav-right__profile-img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  border: 2px solid;
+  cursor: pointer;
 }
 
 .nav .nav__form {
@@ -12313,6 +12435,20 @@ svg.bookmark:hover {
 .nav-guest {
   background-color: #F8F8F8;
   color: #1F7AFF;
+}
+
+.nav-guest .nav-right__svg-container .svg-message,
+.nav-guest .nav-right__svg-container .svg-notification {
+  color: #1F7AFF;
+}
+
+.nav-guest .nav-right__svg-container .svg-message:hover,
+.nav-guest .nav-right__svg-container .svg-notification:hover {
+  color: #0075E0;
+}
+
+.nav-guest .nav-right__profile-img {
+  border-color: #1F7AFF;
 }
 
 .nav-guest .nav__form__search {

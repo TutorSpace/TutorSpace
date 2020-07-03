@@ -116,8 +116,20 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+@keyframes fade-in-out-animation {
+    from { opacity: 0; }
+    50% { opacity: 1; }
+    to { opacity: 0;}
+}
 
-
+// shaking animation
+@keyframes shake-animation {
+    from { transform: rotateZ(0); }
+    25% { transform: rotateZ(15deg); }
+    50% { transform: rotateZ(0); }
+    75% { transform: rotateZ(-15deg); }
+    to   { transform: rotateZ(0); }
+}
 
 // bg-shape animation
 @keyframes bg-shape-animation-1 {

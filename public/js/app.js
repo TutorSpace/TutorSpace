@@ -43961,7 +43961,13 @@ $(document).ready(function () {
   adjustSquareSize();
   $(window).resize(function () {
     adjustSquareSize();
-  });
+  }); // for nav animation
+
+  setTimeout(function () {
+    $('.message-welcome').hide();
+    $('.message-welcome ~ *').addClass('nav-fade-in-animation');
+    $('.message-welcome ~ *').show();
+  }, 3700);
 });
 
 /***/ }),

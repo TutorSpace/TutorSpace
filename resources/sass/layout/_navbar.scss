@@ -26,6 +26,55 @@
 
     .nav-right {
         margin-right: 5rem;
+        display: flex;
+        align-items: center;
+        // position: relative;
+
+        .message-welcome {
+            font-size: 2.4rem;
+            font-weight: bold;
+
+            animation: fade-in-out-animation 4s ease-in-out forwards;
+
+
+            ~ * {
+                display: none;
+            }
+        }
+
+        .nav-fade-in-animation {
+            animation: fade-in-animation 3s backwards;
+        }
+
+        &__svg-container {
+            display: flex;
+            align-items: center;
+            margin-right: 3.5rem;
+
+            svg {
+                cursor: pointer;
+                &:hover {
+                    animation: shake-animation .3s linear;
+                }
+            }
+
+            .svg-message {
+                font-size: 2.3rem;
+                margin-right: 1.8rem;
+            }
+
+            .svg-notification {
+                font-size: 2.5rem;
+            }
+        }
+
+        &__profile-img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            border: 2px solid;
+            cursor: pointer;
+        }
     }
 
     .nav__form {
@@ -38,11 +87,33 @@
         padding: .5rem 1.5rem;
     }
 
+
+
+
 }
 
 .nav-guest {
     background-color: $color-white-dark-2;
     color: $color-blue-primary;
+
+    .nav-right {
+
+        &__svg-container {
+
+
+            .svg-message, .svg-notification {
+                color: $color-blue-primary;
+
+                &:hover {
+                    color: $color-blue-primary-2;
+                }
+            }
+        }
+
+        &__profile-img {
+            border-color: $color-blue-primary;
+        }
+    }
 
     .nav__form {
 
@@ -67,6 +138,8 @@
             fill: $color-blue-primary;
         }
     }
+
+
 }
 
 .nav-auth {
@@ -81,3 +154,5 @@
 
     }
 }
+
+
