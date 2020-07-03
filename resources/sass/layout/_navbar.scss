@@ -1,6 +1,7 @@
 .nav {
     height: $nav-height;
     z-index: 1000;
+    position: relative;
 
     .brand-name {
         font-size: 3.5rem;
@@ -8,6 +9,10 @@
         margin: 0 5rem;
         text-decoration: none;
         color: inherit;
+
+        @include respond(md) {
+            margin: 0 3rem;
+        }
     }
 
     .nav__item {
@@ -16,26 +21,85 @@
         color: inherit;
     }
 
+    .svg-list {
+        font-size: 3.5rem;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            animation: none !important;
+        }
+
+        &-dropdown {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            top: calc(100% + .75rem);
+
+            .nav__item {
+                margin-right: 0 !important;
+                padding: 1rem 2rem;
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                transition: all .2s;
+            }
+        }
+    }
+
     .nav-left {
         margin-right: auto;
 
-        .nav__item:not(:last-child) {
+        .nav__item {
             margin-right: 3rem;
         }
+
+        .svg-list {
+            margin-right: 3rem;
+        }
+
+        @include respond(md) {
+            .nav-toggle-lg {
+                display: none;
+            }
+
+            .nav-toggle-sm {
+                display: block !important;
+            }
+        }
+
+        @include respond(sm) {
+            .nav-toggle-sm {
+                display: none !important;
+            }
+        }
+
     }
+
+    .nav__form {
+        width: 30rem;
+
+        @include respond(sm) {
+            width: 20rem;
+        }
+    }
+
+    .btn-sign-in {
+        border-radius: 1rem;
+        padding: .5rem 1.5rem;
+    }
+
 
     .nav-right {
         margin-right: 5rem;
         display: flex;
         align-items: center;
-        // position: relative;
 
         .message-welcome {
             font-size: 2.4rem;
             font-weight: bold;
 
             animation: fade-in-out-animation 4s ease-in-out forwards;
-
 
             ~ * {
                 display: none;
@@ -66,6 +130,16 @@
             .svg-notification {
                 font-size: 2.5rem;
             }
+
+            @include respond(sm) {
+                order: 1;
+                margin-right: 0;
+                margin-left: 2.5rem;
+
+                .nav-toggle-sm {
+                    display: block !important;
+                }
+            }
         }
 
         &__profile-img {
@@ -75,17 +149,46 @@
             border: 2px solid;
             cursor: pointer;
         }
+
+        .svg-list {
+
+
+            &-dropdown {
+                right: 2.5rem;
+
+                .svg-container {
+                    &:hover {
+                        cursor: default;
+                        // color: $color-white;
+
+                        * {
+                            color: inherit !important;
+                        }
+                    }
+
+                    .svg-message {
+                        margin-right: 2.5rem;
+                    }
+                }
+
+                .nav__item {
+
+                }
+            }
+        }
+
+        @include respond(md) {
+            margin-right: 3rem;
+        }
+
+        @include respond(sm) {
+
+            .nav-toggle-lg {
+                display: none;
+            }
+        }
     }
 
-    .nav__form {
-        width: 30rem;
-
-    }
-
-    .btn-sign-in {
-        border-radius: 1rem;
-        padding: .5rem 1.5rem;
-    }
 
 
 
@@ -96,22 +199,24 @@
     background-color: $color-white-dark-2;
     color: $color-blue-primary;
 
-    .nav-right {
+    .svg-list {
 
-        &__svg-container {
+        &-dropdown {
 
-
-            .svg-message, .svg-notification {
-                color: $color-blue-primary;
-
+            // .svg-container {
+            //     &:hover {
+            //         .nav__item {
+            //             color: $color-white;
+            //         }
+            //     }
+            // }
+            .nav__item {
+                background-color: $color-white;
                 &:hover {
-                    color: $color-blue-primary-2;
+                    background-color: $color-blue-primary;
+                    color: $color-white;
                 }
             }
-        }
-
-        &__profile-img {
-            border-color: $color-blue-primary;
         }
     }
 
@@ -138,6 +243,27 @@
             fill: $color-blue-primary;
         }
     }
+
+    .nav-right {
+
+        &__svg-container {
+
+
+            .svg-message, .svg-notification {
+                color: $color-blue-primary;
+
+                &:hover {
+                    color: $color-blue-primary-2;
+                }
+            }
+        }
+
+        &__profile-img {
+            border-color: $color-blue-primary;
+        }
+    }
+
+
 
 
 }

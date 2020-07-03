@@ -11745,7 +11745,7 @@ h3 {
 }
 
 .right-0 {
-  right: 0;
+  right: 0 !important;
 }
 
 .hidden {
@@ -12345,6 +12345,7 @@ svg.bookmark:hover {
 .nav {
   height: 8rem;
   z-index: 1000;
+  position: relative;
 }
 
 .nav .brand-name {
@@ -12355,18 +12356,86 @@ svg.bookmark:hover {
   color: inherit;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .nav .brand-name {
+    margin: 0 3rem;
+  }
+}
+
 .nav .nav__item {
   font-size: 2rem;
   font-weight: bold;
   color: inherit;
 }
 
+.nav .svg-list {
+  font-size: 3.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.nav .svg-list:hover {
+  -webkit-animation: none !important;
+          animation: none !important;
+}
+
+.nav .svg-list-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: calc(100% + .75rem);
+}
+
+.nav .svg-list-dropdown .nav__item {
+  margin-right: 0 !important;
+  padding: 1rem 2rem;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
 .nav .nav-left {
   margin-right: auto;
 }
 
-.nav .nav-left .nav__item:not(:last-child) {
+.nav .nav-left .nav__item {
   margin-right: 3rem;
+}
+
+.nav .nav-left .svg-list {
+  margin-right: 3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .nav .nav-left .nav-toggle-lg {
+    display: none;
+  }
+
+  .nav .nav-left .nav-toggle-sm {
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-left .nav-toggle-sm {
+    display: none !important;
+  }
+}
+
+.nav .nav__form {
+  width: 30rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .nav .nav__form {
+    width: 20rem;
+  }
+}
+
+.nav .btn-sign-in {
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .nav .nav-right {
@@ -12415,6 +12484,18 @@ svg.bookmark:hover {
   font-size: 2.5rem;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-right__svg-container {
+    order: 1;
+    margin-right: 0;
+    margin-left: 2.5rem;
+  }
+
+  .nav .nav-right__svg-container .nav-toggle-sm {
+    display: block !important;
+  }
+}
+
 .nav .nav-right__profile-img {
   width: 5rem;
   height: 5rem;
@@ -12423,13 +12504,32 @@ svg.bookmark:hover {
   cursor: pointer;
 }
 
-.nav .nav__form {
-  width: 30rem;
+.nav .nav-right .svg-list-dropdown {
+  right: 2.5rem;
 }
 
-.nav .btn-sign-in {
-  border-radius: 1rem;
-  padding: 0.5rem 1.5rem;
+.nav .nav-right .svg-list-dropdown .svg-container:hover {
+  cursor: default;
+}
+
+.nav .nav-right .svg-list-dropdown .svg-container:hover * {
+  color: inherit !important;
+}
+
+.nav .nav-right .svg-list-dropdown .svg-container .svg-message {
+  margin-right: 2.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .nav .nav-right {
+    margin-right: 3rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .nav .nav-right .nav-toggle-lg {
+    display: none;
+  }
 }
 
 .nav-guest {
@@ -12437,18 +12537,13 @@ svg.bookmark:hover {
   color: #1F7AFF;
 }
 
-.nav-guest .nav-right__svg-container .svg-message,
-.nav-guest .nav-right__svg-container .svg-notification {
-  color: #1F7AFF;
+.nav-guest .svg-list-dropdown .nav__item {
+  background-color: #FFFFFF;
 }
 
-.nav-guest .nav-right__svg-container .svg-message:hover,
-.nav-guest .nav-right__svg-container .svg-notification:hover {
-  color: #0075E0;
-}
-
-.nav-guest .nav-right__profile-img {
-  border-color: #1F7AFF;
+.nav-guest .svg-list-dropdown .nav__item:hover {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
 }
 
 .nav-guest .nav__form__search {
@@ -12486,6 +12581,20 @@ svg.bookmark:hover {
 
 .nav-guest .nav__form__svg {
   fill: #1F7AFF;
+}
+
+.nav-guest .nav-right__svg-container .svg-message,
+.nav-guest .nav-right__svg-container .svg-notification {
+  color: #1F7AFF;
+}
+
+.nav-guest .nav-right__svg-container .svg-message:hover,
+.nav-guest .nav-right__svg-container .svg-notification:hover {
+  color: #0075E0;
+}
+
+.nav-guest .nav-right__profile-img {
+  border-color: #1F7AFF;
 }
 
 .nav-auth {
@@ -12555,6 +12664,8 @@ svg.bookmark:hover {
 .footer .icon-social-media:hover,
 .footer-sm .icon-social-media:hover {
   cursor: pointer;
+  -webkit-animation: shake-animation 0.3s linear;
+          animation: shake-animation 0.3s linear;
 }
 
 .footer .btn-subscribe,

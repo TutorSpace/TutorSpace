@@ -44,12 +44,12 @@ $(document).ready(function(){
     });
 
     // for nav animation
-    setTimeout(function() {
-        $('.message-welcome').hide();
-        $('.message-welcome ~ *').addClass('nav-fade-in-animation');
-        $('.message-welcome ~ *').show();
+    // setTimeout(function() {
+    //     $('.message-welcome').hide();
+    //     $('.message-welcome ~ *').addClass('nav-fade-in-animation');
+    //     $('.message-welcome ~ *').show();
 
-    }, 3700);
+    // }, 3700);
 
 })
 

@@ -43962,12 +43962,11 @@ $(document).ready(function () {
   $(window).resize(function () {
     adjustSquareSize();
   }); // for nav animation
-
-  setTimeout(function () {
-    $('.message-welcome').hide();
-    $('.message-welcome ~ *').addClass('nav-fade-in-animation');
-    $('.message-welcome ~ *').show();
-  }, 3700);
+  // setTimeout(function() {
+  //     $('.message-welcome').hide();
+  //     $('.message-welcome ~ *').addClass('nav-fade-in-animation');
+  //     $('.message-welcome ~ *').show();
+  // }, 3700);
 });
 
 /***/ }),
