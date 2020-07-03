@@ -241,7 +241,7 @@
         color: $color-white;
 
         @include respond(extra-sm) {
-            padding-top: 30rem;
+            padding-top: 25rem;
         }
     }
 
@@ -290,7 +290,7 @@
         }
 
         @include respond(extra-sm) {
-            width: 18rem;
+            transform: scaleY(1.5);
         }
     }
 
@@ -301,6 +301,10 @@
 
         @include respond(sm) {
             width: 27rem;
+        }
+
+        @include respond(extra-sm) {
+            transform: translateY(4rem);
         }
     }
 }

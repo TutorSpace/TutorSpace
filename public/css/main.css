@@ -13265,7 +13265,7 @@ svg.bookmark:hover {
 
 @media only screen and (max-width: 35.99em) {
   .index__bottom__heading {
-    padding-top: 30rem;
+    padding-top: 25rem;
   }
 }
 
@@ -13322,7 +13322,7 @@ svg.bookmark:hover {
 
 @media only screen and (max-width: 35.99em) {
   .index__bottom__svg {
-    width: 18rem;
+    transform: scaleY(1.5);
   }
 }
 
@@ -13335,6 +13335,12 @@ svg.bookmark:hover {
 @media only screen and (max-width: 47.99em) {
   .index__bottom .btn--primary {
     width: 27rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__bottom .btn--primary {
+    transform: translateY(4rem);
   }
 }
 
