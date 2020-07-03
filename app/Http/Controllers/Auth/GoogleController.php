@@ -79,12 +79,18 @@ class GoogleController extends Controller
             if ($loginGoogleStudent) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', false)->first());
                 // Authentication passed...
-                return redirect()->route('home');
+                // todo: determine where to direct them
+                return redirect()->route('home')->with([
+                    'showWelcome' => true
+                ]);
             }
             else if ($loginGoogleTutor) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', true)->first());
                 // Authentication passed...
-                return redirect()->route('home');
+                // todo: determine where to direct them
+                return redirect()->route('home')->with([
+                    'showWelcome' => true
+                ]);
             }
             else {
                 return redirect()->back()->withInput()->with([

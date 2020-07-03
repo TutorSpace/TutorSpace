@@ -182,8 +182,8 @@
             @include respond(sm) {
                 margin-right: 2rem;
                 border-width: 1px;
-                width: 3.5rem;
-                height: 3.5rem;
+                width: 4.5rem;
+                height: 4.5rem;
             }
         }
 
@@ -213,12 +213,8 @@
     background-color: $color-white-dark-2;
     color: $color-blue-primary;
 
-    .brand-name {
-        @include respond(sm) {
-            &::after {
-                content: url(../../../public/assets/student.svg);
-            }
-        }
+    .brand-name::after {
+        content: url(../../../public/assets/blue_logo.svg);
     }
 
     .svg-list-dropdown, .profile-img-dropdown {
@@ -232,23 +228,19 @@
     }
 
     .nav__form {
-        &__search {
+        .input-search {
             border-color: $color-blue-primary;
 
             &:focus {
                 border-color: $color-blue-primary-2;
-                box-shadow: none;
 
-                + .nav__form__svg {
+                + .svg-search {
                     fill: $color-blue-primary-2;
                 }
             }
-
-            &::placeholder {
-                color: #A0A0A0;
-            }
         }
-        &__svg {
+
+        .svg-search {
             fill: $color-blue-primary;
         }
     }
@@ -272,15 +264,74 @@
 }
 
 .nav-auth {
-    background-color: red;
+    color: $color-white-dark;
 
+    .brand-name::after {
+        content: url(../../../public/assets/white_logo.svg);
+    }
+
+    .nav__form {
+        .input-search {
+            color: $color-white-dark-2;
+            border-color: $color-white-dark;
+            &::placeholder {
+                color: $color-white-dark-2;
+            }
+
+            &:focus {
+                border-color: $color-white-dark-2;
+                + .svg-search {
+                    fill: $color-white-dark-2;
+                }
+            }
+        }
+        .svg-search {
+            fill: $color-white-dark;
+        }
+    }
+
+    .nav-right {
+        &__svg-container {
+            .svg-message, .svg-notification {
+                color: $color-white-dark;
+
+                &:hover {
+                    color: $color-white-dark-2;
+                }
+            }
+        }
+
+        &__profile-img {
+            border-color: $color-white-dark;
+        }
+    }
 
     &--student {
+        background-color: $color-blue-primary;
 
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-blue-primary;
+                &:hover {
+                    background-color: $color-white-dark;
+                    color: $color-blue-primary;
+                }
+            }
+        }
     }
 
     &--tutor {
+        background-color: $color-purple-primary;
 
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-purple-primary;
+                &:hover {
+                    background-color: $color-white-dark;
+                    color: $color-purple-primary;
+                }
+            }
+        }
     }
 }
 
