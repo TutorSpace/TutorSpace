@@ -325,7 +325,8 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('home')->with([
-            'registerSuccess' => true
+            'registerSuccess' => true,
+            'showWelcome' => true
         ]);
     }
 
@@ -469,7 +470,8 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('home')->with([
-            'registerSuccess' => true
+            'registerSuccess' => true,
+            'showWelcome' => true
         ]);
     }
 

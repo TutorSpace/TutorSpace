@@ -106,7 +106,7 @@
     .nav__form {
         width: 30rem;
 
-        @media only screen and (max-width: 21.874em) { //350px
+        @media only screen and (max-width: 23.124em) { //370px
             width: 22rem;
         };
     }
@@ -133,12 +133,14 @@
             }
 
             @include respond(sm) {
-                margin-right: 1.5rem;
+                font-size: 2rem;
+                margin-right: 1rem;
             }
         }
 
         .nav-fade-in-animation {
             animation: fade-in-animation 3s backwards;
+            backface-visibility: hidden;
         }
 
         &__svg-container {
@@ -211,53 +213,108 @@
 
 .nav-guest {
     background-color: $color-white-dark-2;
-    color: $color-blue-primary;
 
-    .brand-name::after {
-        content: url(../../../public/assets/blue_logo.svg);
-    }
+    &--student {
+        color: $color-blue-primary;
 
-    .svg-list-dropdown, .profile-img-dropdown {
-        .nav__item {
-            background-color: $color-white;
-            &:hover {
-                background-color: $color-blue-primary;
-                color: $color-white;
-            }
-        }
-    }
-
-    .nav__form {
-        .input-search {
-            border-color: $color-blue-primary;
-
-            &:focus {
-                border-color: $color-blue-primary-2;
-
-                + .svg-search {
-                    fill: $color-blue-primary-2;
-                }
-            }
+        .brand-name::after {
+            content: url(../../../public/assets/blue_logo.svg);
         }
 
-        .svg-search {
-            fill: $color-blue-primary;
-        }
-    }
-
-    .nav-right {
-        &__svg-container {
-            .svg-message, .svg-notification {
-                color: $color-blue-primary;
-
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
                 &:hover {
-                    color: $color-blue-primary-2;
+                    background-color: $color-blue-primary;
+                    color: $color-white;
                 }
             }
         }
 
-        &__profile-img {
-            border-color: $color-blue-primary;
+        .nav__form {
+            .input-search {
+                border-color: $color-blue-primary;
+
+                &:focus {
+                    border-color: $color-blue-primary-2;
+
+                    + .svg-search {
+                        fill: $color-blue-primary-2;
+                    }
+                }
+            }
+
+            .svg-search {
+                fill: $color-blue-primary;
+            }
+        }
+
+        .nav-right {
+            &__svg-container {
+                .svg-message, .svg-notification {
+                    color: $color-blue-primary;
+
+                    &:hover {
+                        color: $color-blue-primary-2;
+                    }
+                }
+            }
+
+            &__profile-img {
+                border-color: $color-blue-primary;
+            }
+        }
+    }
+
+    &--tutor {
+        color: $color-purple-primary;
+
+        .brand-name::after {
+            content: url(../../../public/assets/purple_logo.svg);
+        }
+
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
+                &:hover {
+                    background-color: $color-purple-primary;
+                    color: $color-white;
+                }
+            }
+        }
+
+        .nav__form {
+            .input-search {
+                border-color: $color-purple-primary;
+
+                &:focus {
+                    border-color: $color-purple-primary-2;
+
+                    + .svg-search {
+                        fill: $color-purple-primary-2;
+                    }
+                }
+            }
+
+            .svg-search {
+                fill: $color-purple-primary;
+            }
+        }
+
+        .nav-right {
+            &__svg-container {
+                .svg-message, .svg-notification {
+                    color: $color-purple-primary;
+
+                    &:hover {
+                        color: $color-purple-primary-2;
+                    }
+                }
+            }
+
+            &__profile-img {
+                border-color: $color-purple-primary;
+            }
         }
     }
 

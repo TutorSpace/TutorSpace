@@ -4,12 +4,21 @@
                 'index'
             ]))
             nav-guest
-        @else
             @auth
                 @if (Auth::user()->is_tutor)
-                    nav-auth nav-auth--tutor
+                    nav-guest--tutor
+                @endif
+            {{-- will be nav-guest--student if not logged in or logged in as student but nav-guest--tutor if logged in as tutor --}}
+            @else
+                nav-guest--student
+            @endauth
+        @else
+            nav-auth
+            @auth
+                @if (Auth::user()->is_tutor)
+                    nav-auth--tutor
                 @else
-                    nav-auth nav-auth--student
+                    nav-auth--student
                 @endif
             @else
                 nav-guest
