@@ -11920,8 +11920,6 @@ h3 {
   font-weight: 500;
   transition: all 0.3s;
   border: 2px solid #1F7AFF;
-  border-radius: 1rem;
-  padding: 0.5rem 1.5rem;
 }
 
 .btn-outline-student:hover {
@@ -12198,6 +12196,80 @@ svg.bookmark:hover {
   flex-wrap: wrap;
 }
 
+.form-search {
+  position: relative;
+}
+
+.form-search .input-search {
+  border: 1px solid;
+  padding-right: 2rem;
+  font-size: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.form-search .svg-search {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(0, -50%);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.form-search-lg .input-search {
+  border: 2px solid;
+  padding-right: 3rem;
+  padding-left: 1.3rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 0.75rem;
+}
+
+.form-search-lg .input-search::-webkit-input-placeholder {
+  font-weight: 500;
+}
+
+.form-search-lg .input-search::-moz-placeholder {
+  font-weight: 500;
+}
+
+.form-search-lg .input-search:-ms-input-placeholder {
+  font-weight: 500;
+}
+
+.form-search-lg .input-search::-ms-input-placeholder {
+  font-weight: 500;
+}
+
+.form-search-lg .input-search::placeholder {
+  font-weight: 500;
+}
+
+.form-search-lg .svg-search {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translate(0, -50%);
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.form-search-blue .input-search {
+  border-color: #1F7AFF;
+}
+
+.form-search-blue .input-search:focus {
+  border-color: #0075E0;
+}
+
+.form-search-blue .input-search:focus + .svg-search {
+  fill: #0075E0;
+}
+
+.form-search-blue .svg-search {
+  fill: #1F7AFF;
+}
+
 .nav {
   height: 8rem;
   z-index: 1000;
@@ -12206,7 +12278,6 @@ svg.bookmark:hover {
 .nav .brand-name {
   font-size: 3.5rem;
   font-family: "Baloo Bhai", sans-serif;
-  font-weight: 500;
   margin: 0 5rem;
   text-decoration: none;
   color: inherit;
@@ -12234,42 +12305,9 @@ svg.bookmark:hover {
   width: 30rem;
 }
 
-.nav .nav__form__search {
-  border: 2px solid;
-  padding-right: 3rem;
-  padding-left: 1.3rem;
-  font-size: 1.8rem;
-  font-weight: 500;
-  border-radius: 0.75rem;
-}
-
-.nav .nav__form__search::-webkit-input-placeholder {
-  font-weight: 500;
-}
-
-.nav .nav__form__search::-moz-placeholder {
-  font-weight: 500;
-}
-
-.nav .nav__form__search:-ms-input-placeholder {
-  font-weight: 500;
-}
-
-.nav .nav__form__search::-ms-input-placeholder {
-  font-weight: 500;
-}
-
-.nav .nav__form__search::placeholder {
-  font-weight: 500;
-}
-
-.nav .nav__form__svg {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  transform: translate(0, -50%);
-  width: 1.75rem;
-  height: 1.75rem;
+.nav .btn-sign-in {
+  border-radius: 1rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .nav-guest {
@@ -12849,26 +12887,24 @@ svg.bookmark:hover {
 .index__bottom__svg {
   display: block;
   margin: 0 auto;
-  margin-bottom: -2rem;
+  width: 40rem;
+  height: auto;
 }
 
 @media only screen and (max-width: 61.99em) {
   .index__bottom__svg {
-    margin-bottom: -3rem;
     width: 30rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
   .index__bottom__svg {
-    margin-bottom: -8rem;
     width: 22rem;
   }
 }
 
 @media only screen and (max-width: 35.99em) {
   .index__bottom__svg {
-    margin-bottom: -16.3rem;
     width: 18rem;
   }
 }

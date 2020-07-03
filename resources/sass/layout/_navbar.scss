@@ -5,7 +5,6 @@
     .brand-name {
         font-size: 3.5rem;
         font-family: 'Baloo Bhai', sans-serif;
-        font-weight: 500;
         margin: 0 5rem;
         text-decoration: none;
         color: inherit;
@@ -32,27 +31,11 @@
     .nav__form {
         width: 30rem;
 
-        &__search {
-            border: 2px solid;
-            padding-right: 3rem;
-            padding-left: 1.3rem;
-            font-size: 1.8rem;
-            font-weight: 500;
-            border-radius: .75rem;
+    }
 
-            &::placeholder {
-                font-weight: 500;
-            }
-        }
-
-        &__svg {
-            position: absolute;
-            top: 50%;
-            right: 1rem;
-            transform: translate(0, -50%);
-            width: 1.75rem;
-            height: 1.75rem;
-        }
+    .btn-sign-in {
+        border-radius: 1rem;
+        padding: .5rem 1.5rem;
     }
 
 }

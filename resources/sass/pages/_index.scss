@@ -278,20 +278,18 @@
     &__svg {
         display: block;
         margin: 0 auto;
-        margin-bottom: -2rem;
+        width: 40rem;
+        height: auto;
 
         @include respond(md) {
-            margin-bottom: -3rem;
             width: 30rem;
         }
 
         @include respond(sm) {
-            margin-bottom: -8rem;
             width: 22rem;
         }
 
         @include respond(extra-sm) {
-            margin-bottom: -16.3rem;
             width: 18rem;
         }
     }
