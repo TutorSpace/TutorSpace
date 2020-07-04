@@ -179,6 +179,7 @@
             height: 5rem;
             border-radius: 50%;
             border: 2px solid;
+            object-fit: contain;
             cursor: pointer;
 
             @include respond(sm) {

@@ -70,7 +70,7 @@
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
                 <div class="profile-img-dropdown">
                     <a class="nav__item" href="#">Profile</a>
-                    <a class="nav__item" href="#">Sign Out</a>
+                    <a class="nav__item" href="/auth/logout">Sign Out</a>
                 </div>
                 <div class="nav-toggle-sm">
                     <svg class="svg-list" width="1em" height="1em" viewBox="0 0
@@ -82,7 +82,7 @@
                         <a class="nav__item" href="#">Forum</a>
                         <a class="nav__item" href="#">Support</a>
 
-                        <a class="nav__item mt-2" href="#">Sign Out</a>
+                        <a class="nav__item mt-2" href="/auth/logout">Sign Out</a>
                     </div>
                 </div>
 

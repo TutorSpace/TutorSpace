@@ -12543,6 +12543,8 @@ svg.bookmark:hover {
   height: 5rem;
   border-radius: 50%;
   border: 2px solid;
+  -o-object-fit: contain;
+     object-fit: contain;
   cursor: pointer;
 }
 
