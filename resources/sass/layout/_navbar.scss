@@ -37,6 +37,28 @@
         }
     }
 
+    .active {
+        position: relative;
+        &:hover {
+            text-decoration: none;
+
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(-.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 3px;
+            transition: all .2s;
+        }
+    }
+
     .nav__item {
         font-size: 2rem;
         font-weight: bold;
@@ -179,7 +201,7 @@
             height: 5rem;
             border-radius: 50%;
             border: 2px solid;
-            object-fit: contain;
+            object-fit: cover;
             cursor: pointer;
 
             @include respond(sm) {
@@ -218,6 +240,10 @@
     &--student {
         color: $color-blue-primary;
 
+        .active::after {
+            background-color: $color-blue-primary;
+        }
+
         .brand-name::after {
             content: url(../../../public/assets/blue_logo.svg);
         }
@@ -233,21 +259,7 @@
         }
 
         .nav__form {
-            .input-search {
-                border-color: $color-blue-primary;
-
-                &:focus {
-                    border-color: $color-blue-primary-2;
-
-                    + .svg-search {
-                        fill: $color-blue-primary-2;
-                    }
-                }
-            }
-
-            .svg-search {
-                fill: $color-blue-primary;
-            }
+            @include form-search-blue;
         }
 
         .nav-right {
@@ -270,6 +282,10 @@
     &--tutor {
         color: $color-purple-primary;
 
+        .active::after {
+            background-color: $color-purple-primary;
+        }
+
         .brand-name::after {
             content: url(../../../public/assets/purple_logo.svg);
         }
@@ -285,21 +301,7 @@
         }
 
         .nav__form {
-            .input-search {
-                border-color: $color-purple-primary;
-
-                &:focus {
-                    border-color: $color-purple-primary-2;
-
-                    + .svg-search {
-                        fill: $color-purple-primary-2;
-                    }
-                }
-            }
-
-            .svg-search {
-                fill: $color-purple-primary;
-            }
+            @include form-search-purple;
         }
 
         .nav-right {
@@ -324,28 +326,16 @@
 .nav-auth {
     color: $color-white-dark;
 
+    .active::after {
+        background-color: $color-white-dark;
+    }
+
     .brand-name::after {
         content: url(../../../public/assets/white_logo.svg);
     }
 
     .nav__form {
-        .input-search {
-            color: $color-white-dark-2;
-            border-color: $color-white-dark;
-            &::placeholder {
-                color: $color-white-dark-2;
-            }
-
-            &:focus {
-                border-color: $color-white-dark-2;
-                + .svg-search {
-                    fill: $color-white-dark-2;
-                }
-            }
-        }
-        .svg-search {
-            fill: $color-white-dark;
-        }
+        @include form-search-white;
     }
 
     .nav-right {
@@ -392,5 +382,6 @@
         }
     }
 }
+
 
 

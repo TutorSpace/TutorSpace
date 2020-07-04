@@ -155,7 +155,7 @@ bg-grey-light body-login
 
 </script>
 
-<script src="{{ asset('js/login.js') }}"></script>
+<script src="{{ asset('js/auth/login.js') }}"></script>
 
 {{-- google services --}}
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

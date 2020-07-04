@@ -43,7 +43,13 @@ $(document).ready(function(){
         adjustSquareSize();
     });
 
-    // for nav animation
+    // ==================== for nav display ==========================
+    let pathname = window.location.pathname;
+    if(pathname.startsWith('/forum')) {
+        $('nav .nav__item.link-forum').addClass('active');
+    }
+
+    // ===================== for nav animation ========================
     if($('.message-welcome').length) {
         setTimeout(function() {
             $('.message-welcome').hide();
@@ -53,7 +59,6 @@ $(document).ready(function(){
             $('.nav-right__profile-img').show();
         }, 3700);
     }
-
 
     $('.nav-right__profile-img').click(function() {
         if($('.nav-right .nav-toggle-sm').is(":hidden")) {

@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Welcom to TutorSpace!')
 
-
-
 @section('links-in-head')
 
 @endsection

@@ -43961,7 +43961,14 @@ $(document).ready(function () {
   adjustSquareSize();
   $(window).resize(function () {
     adjustSquareSize();
-  }); // for nav animation
+  }); // ==================== for nav display ==========================
+
+  var pathname = window.location.pathname;
+
+  if (pathname.startsWith('/forum')) {
+    $('nav .nav__item.link-forum').addClass('active');
+  } // ===================== for nav animation ========================
+
 
   if ($('.message-welcome').length) {
     setTimeout(function () {

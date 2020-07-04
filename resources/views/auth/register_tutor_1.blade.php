@@ -194,7 +194,7 @@ bg-grey-light body-signup
 
 </script>
 
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 
 {{-- google services --}}
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

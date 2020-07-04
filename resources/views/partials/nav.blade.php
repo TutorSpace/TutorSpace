@@ -13,15 +13,15 @@
                 nav-guest--student
             @endauth
         @else
-            nav-auth
             @auth
+                nav-auth
                 @if (Auth::user()->is_tutor)
                     nav-auth--tutor
                 @else
                     nav-auth--student
                 @endif
             @else
-                nav-guest
+                nav-guest nav-guest--student
             @endauth
         @endif
     ">
@@ -30,8 +30,8 @@
 
         <div class="nav-left d-flex align-items-center">
             <div class="nav-toggle-lg">
-                <a class="nav__item" href="#">Forum</a>
-                <a class="nav__item" href="#">Support</a>
+                <a class="nav__item link-forum" href="#">Forum</a>
+                <a class="nav__item link-support" href="#">Support</a>
             </div>
             <div class="nav-toggle-sm">
                 <svg class="svg-list" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

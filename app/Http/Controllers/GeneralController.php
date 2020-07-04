@@ -23,6 +23,12 @@ class GeneralController extends Controller
         return view('policy.index');
     }
 
+
+
+
+
+
+
     // TODO: add validation
     public function removeBookmark(Request $request) {
 

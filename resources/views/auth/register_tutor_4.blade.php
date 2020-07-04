@@ -121,5 +121,5 @@ bg-grey-light body-signup select2-bg-tutor
 
 
 </script>
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 @endsection

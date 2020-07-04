@@ -12280,6 +12280,10 @@ svg.bookmark:hover {
   border-radius: 0.5rem;
 }
 
+.form-search .input-search:focus {
+  box-shadow: none;
+}
+
 .form-search .svg-search {
   position: absolute;
   top: 50%;
@@ -12327,22 +12331,6 @@ svg.bookmark:hover {
   height: 1.75rem;
 }
 
-.form-search-blue .input-search {
-  border-color: #1F7AFF;
-}
-
-.form-search-blue .input-search:focus {
-  border-color: #0075E0;
-}
-
-.form-search-blue .input-search:focus + .svg-search {
-  fill: #0075E0;
-}
-
-.form-search-blue .svg-search {
-  fill: #1F7AFF;
-}
-
 .nav {
   height: 8rem;
   z-index: 1000;
@@ -12385,6 +12373,29 @@ svg.bookmark:hover {
     width: 5rem;
     visibility: hidden;
   }
+}
+
+.nav .active {
+  position: relative;
+}
+
+.nav .active:hover {
+  text-decoration: none;
+}
+
+.nav .active:hover::after {
+  width: 100%;
+}
+
+.nav .active::after {
+  content: "";
+  position: absolute;
+  bottom: calc(-.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 3px;
+  transition: all 0.2s;
 }
 
 .nav .nav__item {
@@ -12543,8 +12554,8 @@ svg.bookmark:hover {
   height: 5rem;
   border-radius: 50%;
   border: 2px solid;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
   cursor: pointer;
 }
 
@@ -12588,6 +12599,10 @@ svg.bookmark:hover {
 
 .nav-guest--student {
   color: #1F7AFF;
+}
+
+.nav-guest--student .active::after {
+  background-color: #1F7AFF;
 }
 
 .nav-guest--student .brand-name::after {
@@ -12639,6 +12654,10 @@ svg.bookmark:hover {
   color: #6749DF;
 }
 
+.nav-guest--tutor .active::after {
+  background-color: #6749DF;
+}
+
 .nav-guest--tutor .brand-name::after {
   content: url(/images/purple_logo.svg?a3124f978914dbe638da02bf2fc1b185);
 }
@@ -12686,6 +12705,10 @@ svg.bookmark:hover {
 
 .nav-auth {
   color: #F4F4F4;
+}
+
+.nav-auth .active::after {
+  background-color: #F4F4F4;
 }
 
 .nav-auth .brand-name::after {
@@ -12993,6 +13016,130 @@ svg.bookmark:hover {
 
 .footer-sm__subscribe .form input::placeholder {
   color: rgba(248, 248, 248, 0.6);
+}
+
+.forum {
+  margin-top: calc(8rem + 4rem);
+  background-color: #E5E5E5;
+}
+
+.forum-left__list {
+  list-style: none;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.forum-left__list-item {
+  background-color: #F3F3F3;
+  padding: 1rem;
+  display: flex;
+  box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.forum-left__list-item:hover {
+  color: #F3F3F3;
+}
+
+.forum-left__list-item:hover svg {
+  fill: #F3F3F3;
+}
+
+.forum-left__list-item:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.forum-left__list-svg {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1.5rem;
+  transition: all 0.1s;
+}
+
+.forum-content__heading-img {
+  background-image: url(/images/forum-heading-1.jpg?a30389110eae531915e9bc940f525e19);
+  width: 100%;
+  height: 20rem;
+  background-position: top;
+  border-radius: 1.5rem;
+}
+
+.forum-content__search {
+  display: flex;
+  width: 100%;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+.forum-content__search .input-search {
+  border-color: #6749DF;
+}
+
+.forum-content__search .input-search:focus {
+  border-color: #502ED9;
+}
+
+.forum-content__search .input-search:focus + .svg-search {
+  fill: #502ED9;
+}
+
+.forum-content__search .svg-search {
+  fill: #6749DF;
+}
+
+.forum-content__search > * {
+  color: inherit;
+}
+
+.forum-content__search .form-search {
+  width: 30rem;
+}
+
+.forum-content__search .form-search .input-search {
+  background-color: #F3F3F3;
+  font-size: 1.8rem;
+}
+
+.forum-content__search .form-search .input-search:focus {
+  border-width: 1.5px;
+}
+
+.forum-content__search .form-search .input-search + .svg-search {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.forum-content__search__search-by,
+.forum-content__search__sort-by {
+  padding: 0.5rem 1rem;
+  border-color: currentColor;
+  border-radius: 0.5rem;
+  outline: none;
+  font-weight: 500;
+}
+
+.forum-content__search__search-by {
+  margin-left: 2rem;
+  background-color: #F3F3F3;
+  margin-right: 2rem;
+}
+
+.forum-content__search__sort-by {
+  margin-left: auto;
+  background-color: #F3F3F3;
+}
+
+.bg-tutor {
+  color: #6749DF;
+}
+
+.bg-tutor .forum-left__list-item:hover {
+  background-color: #6749DF;
+}
+
+.bg-tutor .forum-left__list-svg {
+  fill: #6749DF;
 }
 
 .index {

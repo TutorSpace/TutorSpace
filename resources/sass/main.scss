@@ -25,16 +25,17 @@
 
 @import "layout/navbar";
 @import "layout/footer";
+@import "layout/forum";
 
 @import "pages/index";
-@import "pages/register";
-@import "pages/login";
-@import "pages/forget_password";
+@import "pages/auth/register";
+@import "pages/auth/login";
+@import "pages/forum/index";
+@import "pages/forum/show";
 @import "pages/home";
 @import "pages/profile";
 @import "pages/report";
 @import "pages/edit_profile";
-@import "pages/search";
 @import "pages/messages";
 @import "pages/view_session";
 @import "pages/tutor_request";
