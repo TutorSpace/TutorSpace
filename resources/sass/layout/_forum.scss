@@ -1,6 +1,10 @@
 .forum {
     margin-top: calc(#{$nav-height} + 4rem);
 
+    @include respond(sm) {
+        padding: 0 4.5rem;
+    }
+
     .btn-add-post {
         font-size: 2rem;
         color: $color-white;
@@ -16,9 +20,90 @@
             color: $color-white;
         }
     }
+
+    .overlay-forum-left {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        right: 100%;
+        top: 0;
+        z-index: 9000;
+        opacity: .9;
+        background-color: currentColor;
+        transition: right 1s;
+
+        .forum-left__list {
+            @include absCenter;
+        }
+
+        .toggle-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            justify-content: center;
+            align-items: center;
+            height: 20rem;
+            width: 3.5rem;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            cursor: pointer;
+            z-index: 9999;
+
+            @include respond(sm) {
+                display: flex;
+            }
+
+            &:hover {
+                animation: animation-pulsate-tutor 3s infinite;
+            }
+
+            .svg-toggle {
+                font-size: 2.3rem;
+            }
+        }
+
+        .toggle-collapsed {
+            left: 0;
+            transform: translate(0, -50%);
+            background-color: currentColor;
+            transition: all 1s;
+            opacity: 100%;
+
+            .svg-toggle {
+                fill: $color-white;
+            }
+        }
+
+        .toggle-expanded {
+            background-color: $color-white;
+            right: 100%;
+            transform: translate(0, -50%) rotate(180deg);
+            transition: all 1s;
+        }
+
+        &.toggle-expand-animation {
+            right: 0;
+
+            .toggle-expanded {
+                right: 0;
+
+                .svg-toggle {
+                    fill: currentColor;
+                }
+            }
+            .toggle-collapsed {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+    }
 }
 
 .forum-left {
+    @include respond(sm) {
+        display: none;
+    }
+
     &__list {
         list-style: none;
         font-size: 2rem;
@@ -28,9 +113,11 @@
             background-color: $color-white-dark-3;
             padding: 1rem;
             display: flex;
+            align-items: center;
             border-radius: .5rem;
             box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
             transition: all .1s;
+
             cursor: pointer;
 
             &:hover {
@@ -49,8 +136,26 @@
         &-svg {
             width: 3rem;
             height: 3rem;
+            min-width: 3rem;
+            min-height: 3rem;
             margin-right: 1.5rem;
             transition: all .1s;
+
+            @include respond(lg) {
+                margin-right: .5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                min-width: 2.5rem;
+                min-height: 2.5rem;
+            }
+        }
+
+        &-content {
+            color: inherit;
+            &:hover {
+                text-decoration: none;
+                color: currentColor;
+            }
         }
     }
 }
@@ -112,12 +217,20 @@
 
 .forum-right {
 
+    @include respond(md) {
+        display: none;
+    }
+
     .trending-tags, .you-may-help-with {
         margin-top: 3rem;
         background-color: $color-white-dark-3;
         padding: 2rem;
         border-radius: 1rem;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+
+        @include respond(lg) {
+            padding: 2rem 1rem;
+        }
 
         &__heading {
             display: flex;
@@ -127,7 +240,9 @@
 
             svg {
                 width: 2.2rem;
+                min-width: 2.2rem;
                 height: 2.2rem;
+                min-height: 2.2rem;
                 fill: currentColor;
             }
         }
@@ -138,6 +253,10 @@
         &__list {
             list-style: none;
             font-size: 1.6rem;
+
+            @include respond(lg) {
+                font-size: 1.4rem;
+            }
 
             thead th {
                 border-bottom: none;
@@ -157,6 +276,10 @@
             .post-cnt, .reply-cnt {
                 color: $color-grey;
                 font-size: 1.6rem;
+
+                @include respond(lg) {
+                    font-size: 1.4rem;
+                }
             }
         }
     }
@@ -178,6 +301,10 @@
                 font-size: 1.6rem;
                 display: inline-block;
                 line-height: 1.4;
+
+                @include respond(lg) {
+                    font-size: 1.4rem;
+                }
             }
         }
     }

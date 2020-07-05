@@ -11398,6 +11398,64 @@ body {
   }
 }
 
+@-webkit-keyframes animation-pulsate-student {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(12, 66, 147, 0.8);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+@keyframes animation-pulsate-student {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    transform: scale(1);
+    box-shadow: 1rem 1rem 4rem 1rem rgba(12, 66, 147, 0.8);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+@-webkit-keyframes animation-pulsate-tutor {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    box-shadow: 1rem 1rem 4rem 1rem rgba(48, 24, 143, 0.8);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
+@keyframes animation-pulsate-tutor {
+  0% {
+    box-shadow: none;
+  }
+
+  50% {
+    box-shadow: 1rem 1rem 4rem 1rem rgba(48, 24, 143, 0.8);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}
+
 @-webkit-keyframes scale-animation {
   0% {
     transform: scale(1);
@@ -11745,12 +11803,24 @@ h5 {
   bottom: 100%;
 }
 
+.bottom-0 {
+  bottom: 0;
+}
+
 .bottom-4 {
   bottom: 4rem;
 }
 
 .right-0 {
   right: 0 !important;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.left-100 {
+  left: 100% !important;
 }
 
 .hidden {
@@ -13154,6 +13224,12 @@ svg.bookmark:hover {
   margin-top: calc(8rem + 4rem);
 }
 
+@media only screen and (max-width: 47.99em) {
+  .forum {
+    padding: 0 4.5rem;
+  }
+}
+
 .forum .btn-add-post {
   font-size: 2rem;
   color: #FFFFFF;
@@ -13170,6 +13246,96 @@ svg.bookmark:hover {
   color: #FFFFFF;
 }
 
+.forum .overlay-forum-left {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  right: 100%;
+  top: 0;
+  z-index: 9000;
+  opacity: 0.9;
+  background-color: currentColor;
+  transition: right 1s;
+}
+
+.forum .overlay-forum-left .forum-left__list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.forum .overlay-forum-left .toggle-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  width: 3.5rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .forum .overlay-forum-left .toggle-container {
+    display: flex;
+  }
+}
+
+.forum .overlay-forum-left .toggle-container:hover {
+  -webkit-animation: animation-pulsate-tutor 3s infinite;
+          animation: animation-pulsate-tutor 3s infinite;
+}
+
+.forum .overlay-forum-left .toggle-container .svg-toggle {
+  font-size: 2.3rem;
+}
+
+.forum .overlay-forum-left .toggle-collapsed {
+  left: 0;
+  transform: translate(0, -50%);
+  background-color: currentColor;
+  transition: all 1s;
+  opacity: 100%;
+}
+
+.forum .overlay-forum-left .toggle-collapsed .svg-toggle {
+  fill: #FFFFFF;
+}
+
+.forum .overlay-forum-left .toggle-expanded {
+  background-color: #FFFFFF;
+  right: 100%;
+  transform: translate(0, -50%) rotate(180deg);
+  transition: all 1s;
+}
+
+.forum .overlay-forum-left.toggle-expand-animation {
+  right: 0;
+}
+
+.forum .overlay-forum-left.toggle-expand-animation .toggle-expanded {
+  right: 0;
+}
+
+.forum .overlay-forum-left.toggle-expand-animation .toggle-expanded .svg-toggle {
+  fill: currentColor;
+}
+
+.forum .overlay-forum-left.toggle-expand-animation .toggle-collapsed {
+  left: 100%;
+  opacity: 0;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .forum-left {
+    display: none;
+  }
+}
+
 .forum-left__list {
   list-style: none;
   font-size: 2rem;
@@ -13180,6 +13346,7 @@ svg.bookmark:hover {
   background-color: #F3F3F3;
   padding: 1rem;
   display: flex;
+  align-items: center;
   border-radius: 0.5rem;
   box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
   transition: all 0.1s;
@@ -13201,8 +13368,29 @@ svg.bookmark:hover {
 .forum-left__list-svg {
   width: 3rem;
   height: 3rem;
+  min-width: 3rem;
+  min-height: 3rem;
   margin-right: 1.5rem;
   transition: all 0.1s;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-left__list-svg {
+    margin-right: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+}
+
+.forum-left__list-content {
+  color: inherit;
+}
+
+.forum-left__list-content:hover {
+  text-decoration: none;
+  color: currentColor;
 }
 
 .forum-content__search {
@@ -13257,6 +13445,12 @@ svg.bookmark:hover {
   background-color: #F3F3F3;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .forum-right {
+    display: none;
+  }
+}
+
 .forum-right .trending-tags,
 .forum-right .you-may-help-with {
   margin-top: 3rem;
@@ -13264,6 +13458,13 @@ svg.bookmark:hover {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-right .trending-tags,
+  .forum-right .you-may-help-with {
+    padding: 2rem 1rem;
+  }
 }
 
 .forum-right .trending-tags__heading,
@@ -13277,13 +13478,21 @@ svg.bookmark:hover {
 .forum-right .trending-tags__heading svg,
 .forum-right .you-may-help-with__heading svg {
   width: 2.2rem;
+  min-width: 2.2rem;
   height: 2.2rem;
+  min-height: 2.2rem;
   fill: currentColor;
 }
 
 .forum-right .trending-tags__list {
   list-style: none;
   font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-right .trending-tags__list {
+    font-size: 1.4rem;
+  }
 }
 
 .forum-right .trending-tags__list thead th {
@@ -13305,6 +13514,13 @@ svg.bookmark:hover {
   font-size: 1.6rem;
 }
 
+@media only screen and (max-width: 74.99em) {
+  .forum-right .trending-tags__list .post-cnt,
+  .forum-right .trending-tags__list .reply-cnt {
+    font-size: 1.4rem;
+  }
+}
+
 .forum-right .you-may-help-with .questions {
   border-top: 1px solid #dee2e6;
 }
@@ -13322,6 +13538,12 @@ svg.bookmark:hover {
   font-size: 1.6rem;
   display: inline-block;
   line-height: 1.4;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-right .you-may-help-with .questions .question {
+    font-size: 1.4rem;
+  }
 }
 
 .bg-tutor {

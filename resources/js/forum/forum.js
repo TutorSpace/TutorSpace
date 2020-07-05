@@ -9,14 +9,14 @@ function isInViewPort(elem) {
 };
 
 function adjustScrollBtnVisibility() {
-    if(!isInViewPort(addPostBtn)) {
+    if(!isInViewPort(addPostBtn[0]) || addPostBtn.is(":hidden")) {
         $('.btn-add-post-scroll').show();
     }
     else {
         $('.btn-add-post-scroll').hide();
     }
 
-    if(!isInViewPort(trendingTags)) {
+    if(($(document).scrollTop() > 400)) {
         $('.btn-go-top').show();
     }
     else {
@@ -24,8 +24,7 @@ function adjustScrollBtnVisibility() {
     }
 }
 
-let addPostBtn = $('.btn-add-post')[0];
-let trendingTags = $('.trending-tags__list-item:last-child')[0];
+let addPostBtn = $('.btn-add-post');
 
 adjustScrollBtnVisibility();
 
@@ -33,3 +32,14 @@ $(window).scroll(function() {
     adjustScrollBtnVisibility();
 });
 
+$(window).resize(function () {
+    adjustScrollBtnVisibility();
+});
+
+$('.overlay-forum-left .toggle-collapsed').click(function() {
+    $('.overlay-forum-left').addClass('toggle-expand-animation');
+});
+
+$('.overlay-forum-left .toggle-expanded').click(function() {
+    $('.overlay-forum-left').removeClass('toggle-expand-animation');
+});

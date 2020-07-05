@@ -61,6 +61,10 @@
                 </tr>
             </tbody>
         </table>
+
+        <p class="fs-1-4 bottom-0 right-0 fc-grey my-0 text-right">
+            Last Updated at 2020/07/05
+        </p>
     </section>
 
     <div class="forum-heading-img mt-5"></div>
@@ -79,6 +83,10 @@
             <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
             <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
         </div>
+
+        <p class="fs-1-4 bottom-0 right-0 fc-grey mt-4 mb-0 text-right">
+            <a href="#">View All</a>
+        </p>
     </div>
 
 </section>

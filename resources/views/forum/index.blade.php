@@ -29,7 +29,7 @@ bg-student
 <div class="container-fluid forum">
     <div class="row px-5">
         @include("forum.partials.forum-left")
-        <section class="col-7 forum-content">
+        <section class="col-12 col-md-9 col-lg-7 forum-content">
             <div class="forum-heading-img"></div>
 
             <form action="" method="POST" class="forum-content__search">
