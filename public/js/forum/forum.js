@@ -99,9 +99,8 @@ function isInViewPort(elem) {
 }
 
 ;
-var addPostBtn = $('.btn-add-post')[0];
-var trendingTags = $('.trending-tags__list-item:last-child')[0];
-$(window).scroll(function () {
+
+function adjustScrollBtnVisibility() {
   if (!isInViewPort(addPostBtn)) {
     $('.btn-add-post-scroll').show();
   } else {
@@ -113,9 +112,13 @@ $(window).scroll(function () {
   } else {
     $('.btn-go-top').hide();
   }
-});
-$('.btn-add-post-scroll').click(function () {
-  window.location.href = "/forum/add-post";
+}
+
+var addPostBtn = $('.btn-add-post')[0];
+var trendingTags = $('.trending-tags__list-item:last-child')[0];
+adjustScrollBtnVisibility();
+$(window).scroll(function () {
+  adjustScrollBtnVisibility();
 });
 
 /***/ }),

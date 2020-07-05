@@ -19,12 +19,14 @@
 .pl-0 { padding-left: 0; }
 .pr-0 { padding-right: 0; }
 .pb-0-5 { padding-bottom: 0.5rem; }
+.mt-2rem { margin-top: 2rem; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
 .bg-grey { background-color: $color-grey !important; }
 .bg-white-dark-4 { background-color: $color-white-dark-4 !important; }
-
+.bg-color-blue-primary { background-color: $color-blue-primary !important; }
+.bg-color-purple-primary { background-color: $color-purple-primary !important; }
 
 // ===================== svg =================
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
@@ -67,6 +69,7 @@
 
 // =============== others =================
 .ws-no-wrap { white-space: nowrap; }
+.opacity-100 { opacity: 100 !important; }
 
 .absCenter {
     @include absCenter;
@@ -78,6 +81,8 @@
     transform: translateX(-50%);
 }
 
+.animation-none { animation: none !important; }
+.fade-in-fast { animation: fade-in-animation .3s !important; }
 
 .invalid {
     border-color: red !important;

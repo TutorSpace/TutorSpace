@@ -58,7 +58,7 @@
 .forum-content {
 
     &__search {
-        @include form-search-purple;
+
         display: flex;
         width: 100%;
         font-size: 1.8rem;
@@ -164,7 +164,11 @@
     .you-may-help-with {
 
         .questions {
+            border-top: 1px solid #dee2e6;
 
+            :first-child {
+                margin-top: .75rem;
+            }
             > :not(:first-child) {
                 margin-top: 1rem;
             }
@@ -184,6 +188,7 @@
     color: $color-purple-primary;
 
     .forum {
+        @include form-search-purple;
 
         &-left__list {
 
@@ -232,6 +237,59 @@
         }
     }
 }
+
+.bg-student {
+    color: $color-blue-primary;
+
+    .forum {
+        @include form-search-blue;
+
+        &-left__list {
+            &-item {
+                &:hover {
+                    background-color: $color-blue-primary;
+                }
+            }
+
+            &-svg {
+                fill: $color-blue-primary;
+            }
+        }
+
+        .btn-add-post {
+            background-color: $color-blue-primary;
+            &:hover {
+                background-color: $color-blue-primary-2;
+            }
+        }
+
+        &-right {
+
+            .trending-tags__list {
+
+                .tag-name {
+                    color: $color-blue-primary;
+                }
+
+                thead th {
+                    color: $color-blue-primary;
+                }
+            }
+        }
+    }
+
+    .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
+        &:hover {
+            circle {
+                fill: $color-blue-primary-2;
+            }
+        }
+        circle {
+            fill: $color-blue-primary;
+        }
+    }
+}
+
 
 .forum-heading-img {
     background-image: url(../../../public/images/forum-heading-1.jpg);

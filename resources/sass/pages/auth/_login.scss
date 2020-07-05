@@ -94,7 +94,21 @@
             white-space: nowrap;
         }
 
+        .btn-google-container-sm {
+            display: none !important;
 
+            @include respond(md) {
+                display: flex !important;
+            }
+        }
+
+        .separator {
+            display: none !important;
+
+            @include respond(md) {
+                display: block !important;
+            }
+        }
 
         @include respond(md) {
             border-radius: 1.2rem;

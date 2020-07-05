@@ -55,23 +55,37 @@ bg-grey-light body-login
                 </span>
                 @enderror
                 @if(session('passwordError'))
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-2rem">
                     {{ session('passwordError') }}
                 </span>
                 @endif
+            </div>
+
+            <div class="text-right mt-1">
+                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-6">Forgot your password?</a>
             </div>
 
             <div class="text-center">
                 <button class="btn btn-tutor btn-login btn-animation-y">Login</button>
             </div>
 
-            <div class="text-center">
-                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor">Forgot your password?</a>
+            <p class="text-center my-4 fs-1-4 fc-grey separator">or</p>
+
+            <div class="d-flex justify-content-center btn-google-container mt-0 btn-google-container-sm">
+                {{-- google button --}}
+                <div id="btn-google-sm" class="btn-google btn-animation-y"></div>
+                <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
+                    {{ session('googleLoginError') ?? session('googleLoginError') }}
+                </span>
             </div>
 
             <p class="text-center fs-2">
                 <span class="fc-grey">Don't have an account? </span><a href="{{ route('register.index.tutor.1') }}"
                     class="btn-link-tutor">Sign Up</a>
+            </p>
+            <p class="text-center fs-2 mt-0">
+                <span class="fc-grey">Switch to </span><a href="{{ route('login.index.student') }}"
+                    class="btn-link-tutor">Student Login</a>
             </p>
 
         </form>
@@ -97,7 +111,7 @@ bg-grey-light body-login
         </svg>
         <div class="d-flex justify-content-center btn-google-container">
             {{-- google button --}}
-            <div id="btn-google" class="btn-google btn-animation-y"></div>
+            <div id="btn-google-lg" class="btn-google btn-animation-y"></div>
             <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
                 {{ session('googleLoginError') ?? session('googleLoginError') }}
             </span>
@@ -117,7 +131,8 @@ bg-grey-light body-login
 
     // ===================== Google Auth ==========================
     let googleBtnWidth = 240,
-        googleBtnHeight = 50;
+        googleBtnHeight = 50,
+        longTitle = true;
     adjustGoogleBtnSize();
 
     $(window).resize(function () {
@@ -125,13 +140,21 @@ bg-grey-light body-login
         renderButton();
     });
 
-    $('#btn-google').click(function (e) {
+    $('#btn-google-sm, #btn-google-lg').click(function (e) {
         e.stopPropagation();
         window.location.href = '{{ route('login.google.tutor') }}';
     });
 
     function renderButton() {
-        gapi.signin2.render('btn-google', {
+        gapi.signin2.render('btn-google-sm', {
+            'scope': 'profile email',
+            'width': googleBtnWidth,
+            'height': googleBtnHeight,
+            'longtitle': longTitle,
+            'theme': 'light'
+        });
+
+        gapi.signin2.render('btn-google-lg', {
             'scope': 'profile email',
             'width': googleBtnWidth,
             'height': googleBtnHeight,
@@ -142,14 +165,17 @@ bg-grey-light body-login
 
     function adjustGoogleBtnSize() {
         if ($(window).width() < 400) {
-            googleBtnWidth = 165;
-            googleBtnHeight = 36;
+            googleBtnWidth = 120;
+            googleBtnHeight = 28;
+            longTitle = false;
         } else if ($(window).width() < 576) {
-            googleBtnWidth = 200;
-            googleBtnHeight = 40;
+            googleBtnWidth = 140;
+            googleBtnHeight = 30;
+            longTitle = false;
         } else {
             googleBtnWidth = 240;
             googleBtnHeight = 50;
+            longTitle = true
         }
     }
 

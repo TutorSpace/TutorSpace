@@ -70,7 +70,7 @@
             <svg class="svg-trending-tag mr-2">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
             </svg>
-            Trending Tags
+            You may help with...
         </h5>
         <div class="questions">
             <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit?</a>

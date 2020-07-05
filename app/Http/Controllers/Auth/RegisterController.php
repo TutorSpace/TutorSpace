@@ -314,7 +314,6 @@ class RegisterController extends Controller
         $user->last_name = $studentData['last-name'];
         $user->is_tutor = false;
 
-        // todo: comment back and set email in db to not null
         $user->email = $studentData['email'];
         $user->save();
 

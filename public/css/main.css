@@ -11781,6 +11781,10 @@ h5 {
   padding-bottom: 0.5rem;
 }
 
+.mt-2rem {
+  margin-top: 2rem;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }
@@ -11791,6 +11795,14 @@ h5 {
 
 .bg-white-dark-4 {
   background-color: #F0F0F0 !important;
+}
+
+.bg-color-blue-primary {
+  background-color: #1F7AFF !important;
+}
+
+.bg-color-purple-primary {
+  background-color: #6749DF !important;
 }
 
 .fill-color-blue-secondary {
@@ -11905,6 +11917,10 @@ h5 {
   white-space: nowrap;
 }
 
+.opacity-100 {
+  opacity: 100 !important;
+}
+
 .absCenter {
   position: absolute;
   top: 50%;
@@ -11916,6 +11932,16 @@ h5 {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.animation-none {
+  -webkit-animation: none !important;
+          animation: none !important;
+}
+
+.fade-in-fast {
+  -webkit-animation: fade-in-animation 0.3s !important;
+          animation: fade-in-animation 0.3s !important;
 }
 
 .invalid {
@@ -12095,8 +12121,8 @@ h5 {
 .btn-scroll-bottom-right-top {
   display: none;
   position: fixed;
-  bottom: 10rem;
-  right: 2rem;
+  bottom: 12.5rem;
+  right: 4rem;
   width: 8rem;
   height: 8rem;
   z-index: 1000;
@@ -12106,12 +12132,21 @@ h5 {
 .btn-scroll-bottom-right-under {
   display: none;
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 4rem;
+  right: 4rem;
   width: 8rem;
   height: 8rem;
   z-index: 1000;
   cursor: pointer;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  background-color: rgba(72, 72, 72, 0.3);
+  width: 100vw;
+  height: 100vh;
 }
 
 .discussion-previews {
@@ -13177,22 +13212,6 @@ svg.bookmark:hover {
   margin-top: 2rem;
 }
 
-.forum-content__search .input-search {
-  border-color: #6749DF;
-}
-
-.forum-content__search .input-search:focus {
-  border-color: #502ED9;
-}
-
-.forum-content__search .input-search:focus + .svg-search {
-  fill: #502ED9;
-}
-
-.forum-content__search .svg-search {
-  fill: #6749DF;
-}
-
 .forum-content__search > * {
   color: inherit;
 }
@@ -13286,6 +13305,14 @@ svg.bookmark:hover {
   font-size: 1.6rem;
 }
 
+.forum-right .you-may-help-with .questions {
+  border-top: 1px solid #dee2e6;
+}
+
+.forum-right .you-may-help-with .questions :first-child {
+  margin-top: 0.75rem;
+}
+
 .forum-right .you-may-help-with .questions > :not(:first-child) {
   margin-top: 1rem;
 }
@@ -13299,6 +13326,22 @@ svg.bookmark:hover {
 
 .bg-tutor {
   color: #6749DF;
+}
+
+.bg-tutor .forum .input-search {
+  border-color: #6749DF;
+}
+
+.bg-tutor .forum .input-search:focus {
+  border-color: #502ED9;
+}
+
+.bg-tutor .forum .input-search:focus + .svg-search {
+  fill: #502ED9;
+}
+
+.bg-tutor .forum .svg-search {
+  fill: #6749DF;
 }
 
 .bg-tutor .forum-left__list-item:hover {
@@ -13333,6 +13376,60 @@ svg.bookmark:hover {
 .bg-tutor .btn-scroll-bottom-right-top circle,
 .bg-tutor .btn-scroll-bottom-right-under circle {
   fill: #6749DF;
+}
+
+.bg-student {
+  color: #1F7AFF;
+}
+
+.bg-student .forum .input-search {
+  border-color: #1F7AFF;
+}
+
+.bg-student .forum .input-search:focus {
+  border-color: #0075E0;
+}
+
+.bg-student .forum .input-search:focus + .svg-search {
+  fill: #0075E0;
+}
+
+.bg-student .forum .svg-search {
+  fill: #1F7AFF;
+}
+
+.bg-student .forum-left__list-item:hover {
+  background-color: #1F7AFF;
+}
+
+.bg-student .forum-left__list-svg {
+  fill: #1F7AFF;
+}
+
+.bg-student .forum .btn-add-post {
+  background-color: #1F7AFF;
+}
+
+.bg-student .forum .btn-add-post:hover {
+  background-color: #0075E0;
+}
+
+.bg-student .forum-right .trending-tags__list .tag-name {
+  color: #1F7AFF;
+}
+
+.bg-student .forum-right .trending-tags__list thead th {
+  color: #1F7AFF;
+}
+
+.bg-student .btn-scroll-bottom-right-top:hover circle,
+.bg-student .btn-scroll-bottom-right-under:hover circle {
+  fill: #0075E0;
+}
+
+.bg-student .btn-scroll-bottom-right-top circle,
+.bg-student .btn-scroll-bottom-right-under circle {
+  fill: #1F7AFF;
 }
 
 .forum-heading-img {
@@ -14301,6 +14398,26 @@ svg.bookmark:hover {
 .login--left .login__heading {
   margin-top: 7rem;
   white-space: nowrap;
+}
+
+.login--left .btn-google-container-sm {
+  display: none !important;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .login--left .btn-google-container-sm {
+    display: flex !important;
+  }
+}
+
+.login--left .separator {
+  display: none !important;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .login--left .separator {
+    display: block !important;
+  }
 }
 
 @media only screen and (max-width: 61.99em) {

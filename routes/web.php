@@ -87,7 +87,6 @@ Route::group([
     Route::resource('posts', 'Forum\PostController');
 
 
-
 });
 
 // profile

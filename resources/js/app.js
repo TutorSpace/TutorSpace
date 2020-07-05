@@ -74,6 +74,25 @@ $(document).ready(function(){
     $('.btn-go-top').click(function() {
         $("html, body").animate({ scrollTop: 0 }, "slow");
     });
+
+
+    // ==================== auth overlay =================
+    $('.nav .btn-sign-in').click(function() {
+        $('.overlay-student').show();
+    });
+
+    $('.overlay .btn-close').click(function() {
+        $('.overlay').hide();
+    });
+
+    function switchLoginIdentity() {
+        $('.overlay-student').toggle();
+        $('.overlay-tutor').toggle();
+    }
+
+    $('.overlay .btn-switch-login').click(function() {
+        switchLoginIdentity();
+    });
 })
 
 
