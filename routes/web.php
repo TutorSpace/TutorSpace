@@ -84,7 +84,7 @@ Route::group([
 Route::group([
     'prefix' => 'forum'
 ], function () {
-    Route::resource('discussions', 'Forum\DiscussionController');
+    Route::resource('posts', 'Forum\PostController');
 
 
 

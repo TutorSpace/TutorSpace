@@ -153,3 +153,26 @@
         }
     }
 }
+
+.btn-scroll-bottom-right-top {
+    display: none;
+    position: fixed;
+    bottom: 10rem;
+    right: 2rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.btn-scroll-bottom-right-under {
+    display: none;
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+

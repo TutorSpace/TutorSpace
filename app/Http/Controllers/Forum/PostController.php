@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Forum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DiscussionController extends Controller
+class PostController extends Controller
 {
     public function __construct() {
         $this->middleware(['auth'])->only(['create', 'store']);

@@ -43989,6 +43989,11 @@ $(document).ready(function () {
     $('.profile-img-dropdown').hide();
     $(this).next().toggle();
   });
+  $('.btn-go-top').click(function () {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+  });
 });
 
 /***/ }),

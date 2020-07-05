@@ -23,6 +23,7 @@
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
 .bg-grey { background-color: $color-grey !important; }
+.bg-white-dark-4 { background-color: $color-white-dark-4 !important; }
 
 
 // ===================== svg =================
@@ -54,7 +55,7 @@
 .fc-purple-secondary { color: $color-purple-secondary; }
 .fc-blue-primary { color: $color-blue-primary; }
 .fc-blue-secondary { color: $color-blue-secondary; }
-.fc-black-discussion { color: $color-black-discussion; }
+.fc-black-post { color: $color-black-post; }
 
 // =============== absolute and relative positions ===================
 .left-n-2 { left: -2rem; }

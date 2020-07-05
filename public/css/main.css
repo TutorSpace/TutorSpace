@@ -11789,6 +11789,10 @@ h5 {
   background-color: #A0A0A0 !important;
 }
 
+.bg-white-dark-4 {
+  background-color: #F0F0F0 !important;
+}
+
 .fill-color-blue-secondary {
   fill: #0C4293 !important;
 }
@@ -11885,7 +11889,7 @@ h5 {
   color: #0C4293;
 }
 
-.fc-black-discussion {
+.fc-black-post {
   color: #626262;
 }
 
@@ -12088,6 +12092,28 @@ h5 {
   display: block;
 }
 
+.btn-scroll-bottom-right-top {
+  display: none;
+  position: fixed;
+  bottom: 10rem;
+  right: 2rem;
+  width: 8rem;
+  height: 8rem;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.btn-scroll-bottom-right-under {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 8rem;
+  height: 8rem;
+  z-index: 1000;
+  cursor: pointer;
+}
+
 .discussion-previews {
   margin-bottom: 12rem;
 }
@@ -12095,9 +12121,9 @@ h5 {
 .discussion-previews .discussion-preview {
   position: relative;
   border-radius: 1rem;
-  background-color: #F4F4F4;
+  background-color: #F5F5F5;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 2rem 4rem;
+  padding: 4rem 4rem 3rem 4rem;
   margin-top: 3rem;
   display: flex;
 }
@@ -12147,6 +12173,7 @@ h5 {
   display: inline-block;
   margin-bottom: 1rem;
   margin-right: 0.5rem;
+  border-radius: 0.5rem;
 }
 
 svg.bookmark:hover {
@@ -13090,7 +13117,22 @@ svg.bookmark:hover {
 
 .forum {
   margin-top: calc(8rem + 4rem);
-  background-color: #E5E5E5;
+}
+
+.forum .btn-add-post {
+  font-size: 2rem;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  width: 100%;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+
+.forum .btn-add-post:hover {
+  color: #FFFFFF;
 }
 
 .forum-left__list {
@@ -13103,6 +13145,7 @@ svg.bookmark:hover {
   background-color: #F3F3F3;
   padding: 1rem;
   display: flex;
+  border-radius: 0.5rem;
   box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
   transition: all 0.1s;
   cursor: pointer;
@@ -13117,7 +13160,7 @@ svg.bookmark:hover {
 }
 
 .forum-left__list-item:not(:first-child) {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .forum-left__list-svg {
@@ -13125,16 +13168,6 @@ svg.bookmark:hover {
   height: 3rem;
   margin-right: 1.5rem;
   transition: all 0.1s;
-}
-
-.forum-content__heading-img {
-  background-image: url(/images/forum-heading-1.jpg?a30389110eae531915e9bc940f525e19);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: top;
-  width: 100%;
-  height: 20rem;
-  border-radius: 1.5rem;
 }
 
 .forum-content__search {
@@ -13205,6 +13238,65 @@ svg.bookmark:hover {
   background-color: #F3F3F3;
 }
 
+.forum-right .trending-tags,
+.forum-right .you-may-help-with {
+  margin-top: 3rem;
+  background-color: #F3F3F3;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.forum-right .trending-tags__heading,
+.forum-right .you-may-help-with__heading {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.forum-right .trending-tags__heading svg,
+.forum-right .you-may-help-with__heading svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: currentColor;
+}
+
+.forum-right .trending-tags__list {
+  list-style: none;
+  font-size: 1.6rem;
+}
+
+.forum-right .trending-tags__list thead th {
+  border-bottom: none;
+}
+
+.forum-right .trending-tags__list-item > * {
+  border-top: none;
+}
+
+.forum-right .trending-tags__list .tag-name {
+  font-weight: bold;
+  padding: 0.25rem;
+}
+
+.forum-right .trending-tags__list .post-cnt,
+.forum-right .trending-tags__list .reply-cnt {
+  color: #A0A0A0;
+  font-size: 1.6rem;
+}
+
+.forum-right .you-may-help-with .questions > :not(:first-child) {
+  margin-top: 1rem;
+}
+
+.forum-right .you-may-help-with .questions .question {
+  color: #626262;
+  font-size: 1.6rem;
+  display: inline-block;
+  line-height: 1.4;
+}
+
 .bg-tutor {
   color: #6749DF;
 }
@@ -13215,6 +13307,46 @@ svg.bookmark:hover {
 
 .bg-tutor .forum-left__list-svg {
   fill: #6749DF;
+}
+
+.bg-tutor .forum .btn-add-post {
+  background-color: #6749DF;
+}
+
+.bg-tutor .forum .btn-add-post:hover {
+  background-color: #502ED9;
+}
+
+.bg-tutor .forum-right .trending-tags__list .tag-name {
+  color: #6749DF;
+}
+
+.bg-tutor .forum-right .trending-tags__list thead th {
+  color: #6749DF;
+}
+
+.bg-tutor .btn-scroll-bottom-right-top:hover circle,
+.bg-tutor .btn-scroll-bottom-right-under:hover circle {
+  fill: #502ED9;
+}
+
+.bg-tutor .btn-scroll-bottom-right-top circle,
+.bg-tutor .btn-scroll-bottom-right-under circle {
+  fill: #6749DF;
+}
+
+.forum-heading-img {
+  background-image: url(/images/forum-heading-1.jpg?a30389110eae531915e9bc940f525e19);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  width: 100%;
+  height: 20rem;
+  border-radius: 1.5rem;
+}
+
+.discussion__heading:hover {
+  color: #626262;
 }
 
 .discussion__heading-2 {

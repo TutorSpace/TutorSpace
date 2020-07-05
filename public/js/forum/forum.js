@@ -81,30 +81,53 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/forum/index.js":
+/***/ "./resources/js/forum/forum.js":
 /*!*************************************!*\
-  !*** ./resources/js/forum/index.js ***!
+  !*** ./resources/js/forum/forum.js ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function isInViewPort(elem) {
+  var distance = elem.getBoundingClientRect();
+  return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
+}
 
+;
+var addPostBtn = $('.btn-add-post')[0];
+var trendingTags = $('.trending-tags__list-item:last-child')[0];
+$(window).scroll(function () {
+  if (!isInViewPort(addPostBtn)) {
+    $('.btn-add-post-scroll').show();
+  } else {
+    $('.btn-add-post-scroll').hide();
+  }
+
+  if (!isInViewPort(trendingTags)) {
+    $('.btn-go-top').show();
+  } else {
+    $('.btn-go-top').hide();
+  }
+});
+$('.btn-add-post-scroll').click(function () {
+  window.location.href = "/forum/add-post";
+});
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*******************************************!*\
-  !*** multi ./resources/js/forum/index.js ***!
+  !*** multi ./resources/js/forum/forum.js ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/index.js */"./resources/js/forum/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/forum.js */"./resources/js/forum/forum.js");
 
 
 /***/ })
