@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Login - Tutor')
 
-@section('links-in-head')
-{{-- google services --}}
-<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-@endsection
-
 @section('body-class')
 bg-grey-light body-login
 @endsection

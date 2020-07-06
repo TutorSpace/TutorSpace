@@ -3,8 +3,7 @@
 @section('title', 'Forum')
 
 @section('links-in-head')
-{{-- google services --}}
-<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
+
 @endsection
 
 @section('body-class')
