@@ -1,3 +1,23 @@
+@if($errors->any())
+@php
+    session()->flash('errorMsg', $errors->first());
+@endphp
+@elseif(session('passwordError'))
+@php
+    session()->flash('errorMsg', session('passwordError'));
+@endphp
+@elseif(session('googleLoginError'))
+@php
+    session()->flash('errorMsg', session('googleLoginError'));
+@endphp
+@endif
+
+@error('password')
+@php
+    session()->flash('errorMsg', $message);
+@endphp
+@enderror
+
 <div class="overlay overlay-student">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-student">
@@ -20,34 +40,19 @@
                 <h2 class="login__heading text-center">Student Login</h2>
 
                 <div class="p-relative">
-                    <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
+                    <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
                         required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                     </svg>
-                    @if($errors->any())
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $errors->first() }}
-                    </span>
-                    @endif
                 </div>
 
                 <div class="p-relative">
-                    <input type="password" class="form-control login-form-input login-form-input-normal @error('password') invalid @enderror @if(session('passwordError')) invalid @endif" name="password"
+                    <input type="password" class="form-control login-form-input login-form-input-normal" name="password"
                         placeholder="Password" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                     </svg>
-                    @error('password')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                    @if(session('passwordError'))
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-2rem">
-                        {{ session('passwordError') }}
-                    </span>
-                    @endif
                 </div>
 
                 <div class="text-right mt-1">
@@ -63,9 +68,6 @@
                 <div class="d-flex justify-content-center btn-google-container mt-0 btn-google-container-sm">
                     {{-- google button --}}
                     <div id="btn-google-student-sm" class="btn-google btn-animation-y"></div>
-                    <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
-                        {{ session('googleLoginError') ?? session('googleLoginError') }}
-                    </span>
                 </div>
 
                 <p class="text-center fs-2">
@@ -132,34 +134,19 @@
                 <h2 class="login__heading text-center">Tutor Login</h2>
 
                 <div class="p-relative">
-                    <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
+                    <input type="email" class="form-control login-form-input login-form-input-normal" placeholder="Email" value="{{ old('email') }}" name="email"
                         required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                     </svg>
-                    @if($errors->any())
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $errors->first() }}
-                    </span>
-                    @endif
                 </div>
 
                 <div class="p-relative">
-                    <input type="password" class="form-control login-form-input login-form-input-normal @error('password') invalid @enderror @if(session('passwordError')) invalid @endif" name="password"
+                    <input type="password" class="form-control login-form-input login-form-input-normal" name="password"
                         placeholder="Password" required>
                     <svg class="input-icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-lock')}}"></use>
                     </svg>
-                    @error('password')
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                        {{ $message }}
-                    </span>
-                    @enderror
-                    @if(session('passwordError'))
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-2rem">
-                        {{ session('passwordError') }}
-                    </span>
-                    @endif
                 </div>
 
                 <div class="text-right mt-1">
@@ -175,9 +162,6 @@
                 <div class="d-flex justify-content-center btn-google-container mt-0 btn-google-container-sm">
                     {{-- google button --}}
                     <div id="btn-google-tutor-sm" class="btn-google btn-animation-y"></div>
-                    <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
-                        {{ session('googleLoginError') ?? session('googleLoginError') }}
-                    </span>
                 </div>
 
                 <p class="text-center fs-2">
@@ -214,9 +198,6 @@
             <div class="d-flex justify-content-center btn-google-container">
                 {{-- google button --}}
                 <div id="btn-google-tutor-lg" class="btn-google btn-animation-y"></div>
-                <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
-                    {{ session('googleLoginError') ?? session('googleLoginError') }}
-                </span>
             </div>
         </div>
     </div>

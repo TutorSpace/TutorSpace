@@ -20,7 +20,7 @@ class GoogleController extends Controller
         } catch (\Exception $e) {
             $request->session()->flush();
             return redirect()->route('index')->with([
-                'errorMsg' => 'Something went wrong with google sign in'
+                'errorMsg' => 'Something went wrong with your Google Sign In. Please try again!'
             ]);
         }
 
