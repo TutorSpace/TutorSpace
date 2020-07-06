@@ -32,8 +32,52 @@
         background-color: currentColor;
         transition: right 1s;
 
-        .forum-left__list {
+        .forum-left-sm__list {
             @include absCenter;
+
+            &-item {
+                &:not(:last-child) {
+                    margin-bottom: 3rem;
+                }
+
+                a {
+                    display: flex;
+                    padding: 2rem;
+
+                    &:link,
+                    &:visited {
+                        font-size: 3rem;
+                        font-weight: 400;
+                        color: $color-white;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+                        background-size: 250%;
+                        transition: all .4s;
+                        background-position: 0;
+                    }
+
+                    &:hover,
+                    &:active {
+                        background-position: 100%;
+                        color: $color-blue-primary;
+                        transform: translateX(1rem);
+                        transition: all .5s;
+
+                        svg {
+                            stroke: $color-white;
+                            fill: $color-blue-primary;
+                        }
+                    }
+
+                    svg {
+                        width: 4rem;
+                        height: 4rem;
+                        fill: $color-white;
+                        margin-right: 1rem;
+                    }
+                }
+            }
         }
 
         .toggle-container {
@@ -205,7 +249,6 @@
 
         &__search-by {
             margin-left: 2rem;
-
             margin-right: 1rem;
         }
 

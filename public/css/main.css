@@ -12477,7 +12477,7 @@ svg.bookmark:hover {
 .form-search .input-search {
   background-color: transparent;
   border: 1px solid;
-  padding-right: 2rem;
+  padding-right: 2.8rem;
   font-size: 1.6rem;
   border-radius: 0.5rem;
 }
@@ -13258,11 +13258,54 @@ svg.bookmark:hover {
   transition: right 1s;
 }
 
-.forum .overlay-forum-left .forum-left__list {
+.forum .overlay-forum-left .forum-left-sm__list {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item a {
+  display: flex;
+  padding: 2rem;
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item a:link,
+.forum .overlay-forum-left .forum-left-sm__list-item a:visited {
+  font-size: 3rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #FFFFFF 50%);
+  background-size: 250%;
+  transition: all 0.4s;
+  background-position: 0;
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item a:hover,
+.forum .overlay-forum-left .forum-left-sm__list-item a:active {
+  background-position: 100%;
+  color: #1F7AFF;
+  transform: translateX(1rem);
+  transition: all 0.5s;
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item a:hover svg,
+.forum .overlay-forum-left .forum-left-sm__list-item a:active svg {
+  stroke: #FFFFFF;
+  fill: #1F7AFF;
+}
+
+.forum .overlay-forum-left .forum-left-sm__list-item a svg {
+  width: 4rem;
+  height: 4rem;
+  fill: #FFFFFF;
+  margin-right: 1rem;
 }
 
 .forum .overlay-forum-left .toggle-container {
