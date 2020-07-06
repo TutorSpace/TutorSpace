@@ -1,0 +1,54 @@
+.post-create {
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+    padding: 4rem 4rem 3rem 4rem;
+    margin-top: 3rem;
+
+    .input-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: $color-black-post;
+        margin-bottom: 1rem;
+    }
+
+    .input-content {
+        font-size: 1.8rem;
+        color: $color-grey;
+        margin-bottom: 3rem;
+    }
+
+    .btn-post-type {
+        background-color: $color-white-dark-4;
+        padding: 1rem 2rem;
+        color: inherit;
+        font-size: inherit;
+
+        &:not(:last-child) {
+            margin-right: 1rem;
+        }
+    }
+
+    .btn-selected {
+        color: $color-white-dark-3;
+    }
+
+    .post-title {
+        background-color: $color-white-dark-4;
+        padding: 1rem 2rem;
+        width: 100%;
+        display: inline-block;
+        border: none;
+        outline: none;
+    }
+
+}
+
+
+.bg-tutor {
+
+    .btn-selected {
+        background-color: $color-purple-primary;
+    }
+
+}

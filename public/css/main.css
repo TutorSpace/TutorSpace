@@ -13246,6 +13246,23 @@ svg.bookmark:hover {
   color: #FFFFFF;
 }
 
+.forum .btn-back {
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #F3F3F3;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-right: 1.5rem;
+}
+
+.forum .btn-back svg {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
 .forum .overlay-forum-left {
   position: fixed;
   width: 100vw;
@@ -13290,7 +13307,7 @@ svg.bookmark:hover {
 .forum .overlay-forum-left .forum-left-sm__list-item a:hover,
 .forum .overlay-forum-left .forum-left-sm__list-item a:active {
   background-position: 100%;
-  color: #1F7AFF;
+  color: currentColor;
   transform: translateX(1rem);
   transition: all 0.5s;
 }
@@ -13298,7 +13315,7 @@ svg.bookmark:hover {
 .forum .overlay-forum-left .forum-left-sm__list-item a:hover svg,
 .forum .overlay-forum-left .forum-left-sm__list-item a:active svg {
   stroke: #FFFFFF;
-  fill: #1F7AFF;
+  fill: currentColor;
 }
 
 .forum .overlay-forum-left .forum-left-sm__list-item a svg {
@@ -13594,6 +13611,11 @@ svg.bookmark:hover {
   color: #6749DF;
 }
 
+.bg-tutor .btn-back:hover {
+  background-color: #6749DF;
+  color: #FFFFFF;
+}
+
 .bg-tutor .forum .input-search {
   border-color: #6749DF;
 }
@@ -13646,6 +13668,11 @@ svg.bookmark:hover {
 
 .bg-student {
   color: #1F7AFF;
+}
+
+.bg-student .btn-back:hover {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
 }
 
 .bg-student .forum .input-search {
@@ -14878,5 +14905,54 @@ svg.bookmark:hover {
   position: relative;
   right: -3rem;
   bottom: 0rem;
+}
+
+.post-create {
+  border-radius: 1rem;
+  background-color: #F5F5F5;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 4rem 4rem 3rem 4rem;
+  margin-top: 3rem;
+}
+
+.post-create .input-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #626262;
+  margin-bottom: 1rem;
+}
+
+.post-create .input-content {
+  font-size: 1.8rem;
+  color: #A0A0A0;
+  margin-bottom: 3rem;
+}
+
+.post-create .btn-post-type {
+  background-color: #F0F0F0;
+  padding: 1rem 2rem;
+  color: inherit;
+  font-size: inherit;
+}
+
+.post-create .btn-post-type:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.post-create .btn-selected {
+  color: #F3F3F3;
+}
+
+.post-create .post-title {
+  background-color: #F0F0F0;
+  padding: 1rem 2rem;
+  width: 100%;
+  display: inline-block;
+  border: none;
+  outline: none;
+}
+
+.bg-tutor .btn-selected {
+  background-color: #6749DF;
 }
 

@@ -21,6 +21,23 @@
         }
     }
 
+    .btn-back {
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        background-color: $color-white-dark-3;
+        box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+        border: none;
+        margin-right: 1.5rem;
+
+        svg {
+            font-size: 1.4rem;
+            margin-right: .5rem;
+        }
+    }
+
     .overlay-forum-left {
         position: fixed;
         width: 100vw;
@@ -60,13 +77,13 @@
                     &:hover,
                     &:active {
                         background-position: 100%;
-                        color: $color-blue-primary;
+                        color: currentColor;
                         transform: translateX(1rem);
                         transition: all .5s;
 
                         svg {
                             stroke: $color-white;
-                            fill: $color-blue-primary;
+                            fill: currentColor;
                         }
                     }
 
@@ -362,6 +379,13 @@
 .bg-tutor {
     color: $color-purple-primary;
 
+    .btn-back {
+        &:hover {
+            background-color: $color-purple-primary;
+            color: $color-white;
+        }
+    }
+
     .forum {
         @include form-search-purple;
 
@@ -415,6 +439,13 @@
 
 .bg-student {
     color: $color-blue-primary;
+
+    .btn-back {
+        &:hover {
+            background-color: $color-blue-primary;
+            color: $color-white;
+        }
+    }
 
     .forum {
         @include form-search-blue;

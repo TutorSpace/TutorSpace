@@ -27,7 +27,7 @@ bg-student
             <div class="forum-heading-img"></div>
 
             <form action="" method="POST" class="forum-content__search">
-                <div action="" method="GET" class="form-search">
+                <div class="form-search">
                     <input type="text" class="form-control form-control-lg input-search" placeholder="Computer Science...">
                     <svg class="svg-search">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
