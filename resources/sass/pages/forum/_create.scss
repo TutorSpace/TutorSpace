@@ -128,3 +128,16 @@
     }
 
 }
+
+.bg-student {
+
+    .btn-selected {
+        background-color: $color-blue-primary;
+    }
+
+    .btn-create {
+        color: $color-white-dark-4;
+        background-color: $color-blue-primary;
+    }
+
+}

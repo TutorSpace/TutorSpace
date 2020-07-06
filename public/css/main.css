@@ -12403,31 +12403,6 @@ svg.bookmark:hover {
   border: none !important;
 }
 
-.select2-bg-student .select2-search--inline .select2-search__field::-webkit-input-placeholder {
-  font-size: 3rem !important;
-  color: red !important;
-}
-
-.select2-bg-student .select2-search--inline .select2-search__field::-moz-placeholder {
-  font-size: 3rem !important;
-  color: red !important;
-}
-
-.select2-bg-student .select2-search--inline .select2-search__field:-ms-input-placeholder {
-  font-size: 3rem !important;
-  color: red !important;
-}
-
-.select2-bg-student .select2-search--inline .select2-search__field::-ms-input-placeholder {
-  font-size: 3rem !important;
-  color: red !important;
-}
-
-.select2-bg-student .select2-search--inline .select2-search__field::placeholder {
-  font-size: 3rem !important;
-  color: red !important;
-}
-
 .select2-bg-tutor .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #6749DF;
 }
@@ -15032,5 +15007,14 @@ svg.bookmark:hover {
 .bg-tutor .btn-create {
   color: #F0F0F0;
   background-color: #6749DF;
+}
+
+.bg-student .btn-selected {
+  background-color: #1F7AFF;
+}
+
+.bg-student .btn-create {
+  color: #F0F0F0;
+  background-color: #1F7AFF;
 }
 
