@@ -81,6 +81,8 @@
         flex-direction: column;
         top: calc(100% + .75rem);
         display: none;
+        border-radius: 3px;
+        overflow: hidden;
 
         .nav__item {
             margin-right: 0 !important;

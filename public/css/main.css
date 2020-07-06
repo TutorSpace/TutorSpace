@@ -12606,6 +12606,8 @@ svg.bookmark:hover {
   flex-direction: column;
   top: calc(100% + .75rem);
   display: none;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .nav .svg-list-dropdown .nav__item,
