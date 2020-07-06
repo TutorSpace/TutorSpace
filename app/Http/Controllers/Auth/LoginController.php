@@ -6,6 +6,7 @@ use Auth;
 use App\User;
 use App\Rules\EmailUSC;
 use Illuminate\Http\Request;
+use App\CustomClass\URLManager;
 use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
@@ -64,7 +65,11 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => false])) {
             // Authentication passed...
-            // todo: determine where to direct them
+            if($request->query('backRouteName')) {
+                return redirect()->route($request->query('backRouteName'))->with([
+                    'showWelcome' => true
+                ]);
+            }
             return redirect()->route('home')->with([
                 'showWelcome' => true
             ]);
@@ -110,7 +115,12 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => true])) {
             // Authentication passed...
-            // todo: determine where to direct them
+
+            if($request->query('backRouteName')) {
+                return redirect()->route($request->query('backRouteName'))->with([
+                    'showWelcome' => true
+                ]);
+            }
             return redirect()->route('home')->with([
                 'showWelcome' => true
             ]);

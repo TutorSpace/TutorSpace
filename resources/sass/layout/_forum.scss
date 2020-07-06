@@ -1,0 +1,573 @@
+.forum {
+    margin-top: calc(#{$nav-height} + 4rem);
+
+    @include respond(sm) {
+        padding: 0 4.5rem;
+    }
+
+    .btn-add-post {
+        font-size: 2rem;
+        color: $color-white;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 1rem;
+
+        &:hover {
+            color: $color-white;
+        }
+    }
+
+    .btn-back {
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        padding: .5rem 1rem;
+        border-radius: .5rem;
+        background-color: $color-white-dark-3;
+        box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+        border: none;
+        margin-right: 1.5rem;
+
+        &:hover {
+            font-weight: bolder;
+        }
+
+        svg {
+            font-size: 1.4rem;
+            margin-right: .5rem;
+        }
+
+
+    }
+
+    .overlay-forum-left {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        right: 100%;
+        top: 0;
+        z-index: 9000;
+        opacity: .9;
+        background-color: currentColor;
+        transition: right 1s;
+
+        .forum-left-sm__list {
+            @include absCenter;
+
+            &-item {
+                &:not(:last-child) {
+                    margin-bottom: 3rem;
+                }
+
+                a {
+                    display: flex;
+                    padding: 2rem;
+
+                    &:link,
+                    &:visited {
+                        font-size: 3rem;
+                        font-weight: 400;
+                        color: $color-white;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+                        background-size: 250%;
+                        transition: all .4s;
+                        background-position: 0;
+                    }
+
+                    &:hover,
+                    &:active {
+                        background-position: 100%;
+                        color: currentColor;
+                        transform: translateX(1rem);
+                        transition: all .5s;
+
+                        svg {
+                            stroke: $color-white;
+                            fill: currentColor;
+                        }
+                    }
+
+                    svg {
+                        width: 4rem;
+                        height: 4rem;
+                        fill: $color-white;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+
+        .toggle-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            justify-content: center;
+            align-items: center;
+            height: 20rem;
+            width: 3.5rem;
+            border-top-right-radius: 1.5rem;
+            border-bottom-right-radius: 1.5rem;
+            cursor: pointer;
+            z-index: 9999;
+
+            @include respond(sm) {
+                display: flex;
+            }
+
+            &:hover {
+                animation: animation-pulsate-tutor 3s infinite;
+            }
+
+            .svg-toggle {
+                font-size: 2.3rem;
+            }
+        }
+
+        .toggle-collapsed {
+            left: 0;
+            transform: translate(0, -50%);
+            background-color: currentColor;
+            transition: all 1s;
+            opacity: 100%;
+
+            .svg-toggle {
+                fill: $color-white;
+            }
+        }
+
+        .toggle-expanded {
+            background-color: $color-white;
+            right: 100%;
+            transform: translate(0, -50%) rotate(180deg);
+            transition: all 1s;
+        }
+
+        &.toggle-expand-animation {
+            right: 0;
+
+            .toggle-expanded {
+                right: 0;
+
+                .svg-toggle {
+                    fill: currentColor;
+                }
+            }
+            .toggle-collapsed {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+    }
+}
+
+.forum-left {
+    @include respond(sm) {
+        display: none;
+    }
+
+    &__list {
+        list-style: none;
+        font-size: 2rem;
+        font-weight: bold;
+
+        &-item {
+            background-color: $color-white-dark-3;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            border-radius: .5rem;
+            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
+            transition: all .1s;
+
+            cursor: pointer;
+
+            &:hover {
+                color: $color-white-dark-3;
+
+                svg {
+                    fill: $color-white-dark-3;
+                }
+            }
+
+            &:not(:first-child) {
+                margin-top: 1.5rem;
+            }
+        }
+
+        &-svg {
+            width: 3rem;
+            height: 3rem;
+            min-width: 3rem;
+            min-height: 3rem;
+            margin-right: 1.5rem;
+            transition: all .1s;
+
+            @include respond(lg) {
+                margin-right: .5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                min-width: 2.5rem;
+                min-height: 2.5rem;
+            }
+        }
+
+        &-content {
+            color: inherit;
+            &:hover {
+                text-decoration: none;
+                color: currentColor;
+            }
+        }
+    }
+}
+
+.forum-content {
+
+    &__search {
+
+        display: flex;
+        width: 100%;
+        font-size: 1.8rem;
+        margin-top: 2rem;
+
+        > * {
+            color: inherit;
+        }
+
+        .form-search {
+            width: 30rem;
+
+            .input-search {
+                background-color: $color-white-dark-3;
+                font-size: 1.8rem;
+                transition: all .1s;
+
+                &:focus {
+                    border-width: 1.5px;
+                    box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
+                }
+
+                + .svg-search {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                }
+            }
+        }
+
+        &__search-by, &__type-by, &__sort-by {
+            padding: .5rem 1rem;
+            border-color: currentColor;
+            border-radius: .5rem;
+            outline: none;
+            font-weight: 500;
+            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
+            background-color: $color-white-dark-3;
+        }
+
+        &__search-by {
+            margin-left: 2rem;
+            margin-right: 1rem;
+        }
+
+        &__type-by {
+            margin-left: auto;
+            margin-right: 1rem;
+        }
+
+        &__sort-by {
+
+        }
+    }
+}
+
+.forum-right {
+    margin-bottom: 12rem;
+
+    @include respond(md) {
+        display: none;
+    }
+
+    .trending-tags, .you-may-help-with {
+        margin-top: 3rem;
+        background-color: $color-white-dark-3;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+
+        @include respond(lg) {
+            padding: 2rem 1rem;
+        }
+
+        &__heading {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+
+            svg {
+                width: 2.2rem;
+                min-width: 2.2rem;
+                height: 2.2rem;
+                min-height: 2.2rem;
+                fill: currentColor;
+            }
+        }
+    }
+
+    .trending-tags {
+
+        &__list {
+            list-style: none;
+            font-size: 1.6rem;
+
+            @include respond(lg) {
+                font-size: 1.4rem;
+            }
+
+            thead th {
+                border-bottom: none;
+            }
+
+            &-item {
+                > * {
+                    border-top: none;
+                }
+            }
+
+            .tag-name {
+                font-weight: bold;
+                padding: .25rem;
+            }
+
+            .post-cnt, .reply-cnt {
+                color: $color-grey;
+                font-size: 1.6rem;
+
+                @include respond(lg) {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+
+    .you-may-help-with {
+
+        .questions {
+            border-top: 1px solid #dee2e6;
+
+            :first-child {
+                margin-top: .75rem;
+            }
+            > :not(:first-child) {
+                margin-top: 1rem;
+            }
+
+            .question {
+                color: $color-black-post;
+                font-size: 1.6rem;
+                display: inline-block;
+                line-height: 1.4;
+
+                @include respond(lg) {
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+}
+
+
+.bg-tutor {
+    color: $color-purple-primary;
+
+    .btn-back {
+        &:hover {
+            background-color: $color-purple-primary;
+            color: $color-white;
+        }
+    }
+
+    .forum {
+        @include form-search-purple;
+
+        &-left__list {
+
+            &-item {
+                &:hover {
+                    background-color: $color-purple-primary;
+                }
+            }
+
+            &-svg {
+                fill: $color-purple-primary;
+            }
+        }
+
+
+        .btn-add-post {
+            background-color: $color-purple-primary;
+            &:hover {
+                background-color: $color-purple-primary-2;
+            }
+        }
+
+        &-right {
+
+            .trending-tags__list {
+
+                .tag-name {
+                    color: $color-purple-primary;
+                }
+
+                thead th {
+                    color: $color-purple-primary;
+                }
+            }
+        }
+
+        .btn-link {
+            color: $color-purple-primary;
+            transition: all .2s;
+            &:hover {
+                color: $color-purple-primary-2;
+            }
+        }
+    }
+
+    .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
+        &:hover {
+            circle {
+                fill: $color-purple-primary-2;
+            }
+        }
+        circle {
+            fill: $color-purple-primary;
+        }
+    }
+}
+
+.bg-student {
+    color: $color-blue-primary;
+
+    .btn-back {
+        &:hover {
+            background-color: $color-blue-primary;
+            color: $color-white;
+        }
+    }
+
+    .forum {
+        @include form-search-blue;
+
+        &-left__list {
+            &-item {
+                &:hover {
+                    background-color: $color-blue-primary;
+                }
+            }
+
+            &-svg {
+                fill: $color-blue-primary;
+            }
+        }
+
+        .btn-add-post {
+            background-color: $color-blue-primary;
+            &:hover {
+                background-color: $color-blue-primary-2;
+            }
+        }
+
+        &-right {
+
+            .trending-tags__list {
+                .tag-name {
+                    color: $color-blue-primary;
+                }
+
+                thead th {
+                    color: $color-blue-primary;
+                }
+            }
+        }
+
+        .btn-link {
+            color: $color-blue-primary;
+            transition: all .2s;
+            &:hover {
+                color: $color-blue-primary-2;
+            }
+        }
+    }
+
+    .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
+        &:hover {
+            circle {
+                fill: $color-blue-primary-2;
+            }
+        }
+        circle {
+            fill: $color-blue-primary;
+        }
+    }
+}
+
+
+.forum-heading-img {
+    background-image: url(../../../public/images/forum-heading-1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 20rem;
+    border-radius: 1.5rem;
+}
+
+.discussion__heading {
+    &:hover {
+        color: $color-black-post;
+    }
+}
+
+.discussion__heading-2 {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+
+    .poster-img {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+}
+
+.discussion__content {
+    font-size: 1.6rem;
+}
+
+.discussion__bottom {
+    flex: 0 0 100%;
+
+    .tags {
+        font-size: 1.4rem;
+        margin-top: .5rem;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.4rem;
+
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}

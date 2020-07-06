@@ -43961,7 +43961,14 @@ $(document).ready(function () {
   adjustSquareSize();
   $(window).resize(function () {
     adjustSquareSize();
-  }); // for nav animation
+  }); // ==================== for nav display ==========================
+
+  var pathname = window.location.pathname;
+
+  if (pathname.startsWith('/forum')) {
+    $('nav .nav__item.link-forum').addClass('active');
+  } // ===================== for nav animation ========================
+
 
   if ($('.message-welcome').length) {
     setTimeout(function () {
@@ -43981,6 +43988,27 @@ $(document).ready(function () {
   $('.svg-list').click(function () {
     $('.profile-img-dropdown').hide();
     $(this).next().toggle();
+  });
+  $('.btn-go-top').click(function () {
+    $("html, body").animate({
+      scrollTop: 0
+    }, "slow");
+  }); // ==================== auth overlay =================
+
+  $('.nav .btn-sign-in').click(function () {
+    $('.overlay-student').show();
+  });
+  $('.overlay .btn-close').click(function () {
+    $('.overlay').hide();
+  });
+
+  function switchLoginIdentity() {
+    $('.overlay-student').toggle();
+    $('.overlay-tutor').toggle();
+  }
+
+  $('.overlay .btn-switch-login').click(function () {
+    switchLoginIdentity();
   });
 });
 

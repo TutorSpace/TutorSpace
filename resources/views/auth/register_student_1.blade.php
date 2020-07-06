@@ -1,10 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Sign Up - Student')
 
-@section('links-in-head')
-{{-- google services --}}
-<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-@endsection
 
 @section('body-class')
 bg-grey-light body-signup
@@ -196,7 +192,7 @@ bg-grey-light body-signup
 
 </script>
 
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 
 {{-- google services --}}
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

@@ -17,7 +17,7 @@ Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name(
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
-// auth
+// ============================  auth  ========================
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -79,6 +79,15 @@ Route::group([
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 });
 
+
+// ===============================  Forum  ==========================
+Route::group([
+    'prefix' => 'forum'
+], function () {
+    Route::resource('posts', 'Forum\PostController');
+    Route::get('my-follows', 'Forum\PostController@showMyFollows')->middleware('auth')->name('my-follows.index');
+
+});
 
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['auth']);

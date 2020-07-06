@@ -1,3 +1,8 @@
+@if(!in_array(Route::current()->getName(), [
+    'index'
+]))
+    @include ('partials.overlay-auth')
+@endif
 <header>
     <nav class="nav p-fixed w-100 d-flex align-items-center
         @if(in_array(Route::current()->getName(), [
@@ -7,21 +12,23 @@
             @auth
                 @if (Auth::user()->is_tutor)
                     nav-guest--tutor
+                @else
+                    nav-guest--student
                 @endif
             {{-- will be nav-guest--student if not logged in or logged in as student but nav-guest--tutor if logged in as tutor --}}
             @else
                 nav-guest--student
             @endauth
         @else
-            nav-auth
             @auth
+                nav-auth
                 @if (Auth::user()->is_tutor)
                     nav-auth--tutor
                 @else
                     nav-auth--student
                 @endif
             @else
-                nav-guest
+                nav-guest nav-guest--student
             @endauth
         @endif
     ">
@@ -30,15 +37,15 @@
 
         <div class="nav-left d-flex align-items-center">
             <div class="nav-toggle-lg">
-                <a class="nav__item" href="#">Forum</a>
-                <a class="nav__item" href="#">Support</a>
+                <a class="nav__item link-forum" href="{{ route('posts.index') }}">Forum</a>
+                <a class="nav__item link-support" href="#">Support</a>
             </div>
             <div class="nav-toggle-sm">
                 <svg class="svg-list" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                 </svg>
                 <div class="svg-list-dropdown">
-                    <a class="nav__item" href="#">Forum</a>
+                    <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
                     <a class="nav__item" href="#">Support</a>
                 </div>
             </div>
@@ -79,7 +86,7 @@
                     </svg>
                     <div class="svg-list-dropdown">
                         <a class="nav__item" href="#">Profile</a>
-                        <a class="nav__item" href="#">Forum</a>
+                        <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
                         <a class="nav__item" href="#">Support</a>
 
                         <a class="nav__item mt-2" href="/auth/logout">Sign Out</a>
