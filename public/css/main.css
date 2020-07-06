@@ -13425,6 +13425,7 @@ svg.bookmark:hover {
 }
 
 .forum-content__search__search-by,
+.forum-content__search__type-by,
 .forum-content__search__sort-by {
   padding: 0.5rem 1rem;
   border-color: currentColor;
@@ -13432,17 +13433,17 @@ svg.bookmark:hover {
   outline: none;
   font-weight: 500;
   box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
+  background-color: #F3F3F3;
 }
 
 .forum-content__search__search-by {
   margin-left: 2rem;
-  background-color: #F3F3F3;
-  margin-right: 2rem;
+  margin-right: 1rem;
 }
 
-.forum-content__search__sort-by {
+.forum-content__search__type-by {
   margin-left: auto;
-  background-color: #F3F3F3;
+  margin-right: 1rem;
 }
 
 @media only screen and (max-width: 61.99em) {

@@ -43,6 +43,10 @@ bg-student
                     <option value="tags">Search by Tags</option>
                     <option value="keywords">Search by Keywords</option>
                 </select>
+                {{-- <select name="" class="forum-content__search__type-by">
+                    <option value="tags">Questions Only</option>
+                    <option value="keywords">Discussions Only</option>
+                </select> --}}
                 <select name="" class="forum-content__search__sort-by">
                     <option value="popular">Popular First</option>
                     <option value="latest">Latest First</option>

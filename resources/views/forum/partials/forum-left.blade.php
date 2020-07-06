@@ -20,12 +20,6 @@
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
             </svg>
-            <a class="forum-left__list-content" href="#">Featured</a>
-        </li>
-        <li class="forum-left__list-item">
-            <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-            </svg>
             <a class="forum-left__list-content" href="#">My Posts</a>
         </li>
         <li class="forum-left__list-item">
@@ -44,12 +38,6 @@
                 <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
             </svg>
             <a class="forum-left__list-content" href="#">Popular Posts</a>
-        </li>
-        <li class="forum-left__list-item">
-            <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
-            </svg>
-            <a class="forum-left__list-content" href="#">Featured</a>
         </li>
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
