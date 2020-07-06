@@ -79,16 +79,14 @@ class GoogleController extends Controller
             if ($loginGoogleStudent) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', false)->first());
                 // Authentication passed...
-                // todo: determine where to direct them
-                return redirect()->route('home')->with([
+                return redirect()->route($redirectRouteName)->with([
                     'showWelcome' => true
                 ]);
             }
             else if ($loginGoogleTutor) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', true)->first());
                 // Authentication passed...
-                // todo: determine where to direct them
-                return redirect()->route('home')->with([
+                return redirect()->route($redirectRouteName)->with([
                     'showWelcome' => true
                 ]);
             }
@@ -156,7 +154,13 @@ class GoogleController extends Controller
     public function loginRedirectToGoogleStudent(Request $request) {
         $request->session()->flush();
         $request->session()->put('loginGoogleStudent', true);
-        $request->session()->put('redirectRouteName', 'home');
+
+        if($request->query('backRouteName')) {
+            $request->session()->put('redirectRouteName', $request->query('backRouteName'));
+        }
+        else {
+            $request->session()->put('redirectRouteName', 'home');
+        }
         return Socialite::driver('google')->redirect();
     }
 
@@ -172,7 +176,14 @@ class GoogleController extends Controller
     public function loginRedirectToGoogleTutor(Request $request) {
         $request->session()->flush();
         $request->session()->put('loginGoogleTutor', true);
-        $request->session()->put('redirectRouteName', 'home');
+
+        if($request->query('backRouteName')) {
+            $request->session()->put('redirectRouteName', $request->query('backRouteName'));
+        }
+        else {
+            $request->session()->put('redirectRouteName', 'home');
+        }
+
         return Socialite::driver('google')->redirect();
     }
 

@@ -1,7 +1,7 @@
 <div class="overlay overlay-student">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-student">
-            <form action="{{ route('login.store.student') }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.student', ['backRouteName' => Route::current()->getName()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                     data-back-href="{{ route('index') }}">
                     {{-- for empty --}}
@@ -113,7 +113,7 @@
 <div class="overlay overlay-tutor">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-tutor">
-            <form action="{{ route('login.store.tutor') }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.tutor', ['backRouteName' => Route::current()->getName()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                     data-back-href="{{ route('index') }}">
                     {{-- for empty --}}

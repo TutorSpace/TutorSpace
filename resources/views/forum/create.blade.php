@@ -30,7 +30,7 @@ bg-student select2-bg-student
             <div class="forum-heading-img"></div>
 
             <form action="" method="POST" class="forum-content__search">
-                <a class="btn btn-lg btn-back" href="{{ URL::previous() }}">
+                <a class="btn btn-lg btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('posts.index')) }}">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                     </svg>
@@ -55,9 +55,9 @@ bg-student select2-bg-student
                 <div class="input-content">
                     <input type="text" class="post-title" placeholder="Enter your post title here...">
                 </div>
-                <p class="input-title">Body</p>
+                <p class="input-title">Content</p>
                 <div class="input-content">
-                    <textarea name="" class="post-body"></textarea>
+                    <textarea name="" class="post-content"></textarea>
                 </div>
                 <p class="input-title">Tags</p>
                 <div class="input-content">
@@ -65,7 +65,7 @@ bg-student select2-bg-student
                         <svg class="select-container__icon">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                         </svg>
-                        <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
+                        <select class="custom-select" name="tags[]" multiple="multiple" id="tags" required>
                             @foreach (App\Course::all() as $course)
                                 <option value="{{ $course->id }}">{{ $course->course }}</option>
                             @endforeach
