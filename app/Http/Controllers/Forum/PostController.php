@@ -86,4 +86,8 @@ class PostController extends Controller
     {
         //
     }
+
+    public function showMyFollows() {
+        return view('forum.my_follows');
+    }
 }

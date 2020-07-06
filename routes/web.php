@@ -85,7 +85,7 @@ Route::group([
     'prefix' => 'forum'
 ], function () {
     Route::resource('posts', 'Forum\PostController');
-
+    Route::get('my-follows', 'Forum\PostController@showMyFollows')->middleware('auth')->name('my-follows.index');
 
 });
 

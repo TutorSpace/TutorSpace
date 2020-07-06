@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="#">
+            <a class="forum-left-sm__list-content" href="{{ route('my-follows.index') }}">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
                 </svg>
@@ -55,7 +55,7 @@
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
             </svg>
-            <a class="forum-left__list-content" href="#">My Follows</a>
+            <a class="forum-left__list-content" href="{{ route('my-follows.index') }}">My Follows</a>
         </li>
     </ul>
 </section>
