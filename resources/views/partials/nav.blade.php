@@ -12,6 +12,8 @@
             @auth
                 @if (Auth::user()->is_tutor)
                     nav-guest--tutor
+                @else
+                    nav-guest--student
                 @endif
             {{-- will be nav-guest--student if not logged in or logged in as student but nav-guest--tutor if logged in as tutor --}}
             @else
