@@ -430,6 +430,14 @@
                 }
             }
         }
+
+        .btn-link {
+            color: $color-purple-primary;
+            transition: all .2s;
+            &:hover {
+                color: $color-purple-primary-2;
+            }
+        }
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
@@ -479,7 +487,6 @@
         &-right {
 
             .trending-tags__list {
-
                 .tag-name {
                     color: $color-blue-primary;
                 }
@@ -487,6 +494,14 @@
                 thead th {
                     color: $color-blue-primary;
                 }
+            }
+        }
+
+        .btn-link {
+            color: $color-blue-primary;
+            transition: all .2s;
+            &:hover {
+                color: $color-blue-primary-2;
             }
         }
     }

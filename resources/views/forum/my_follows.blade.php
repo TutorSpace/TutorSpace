@@ -56,7 +56,7 @@ bg-student
                         <p class="discussion__heading-2 fc-black-post">
                             <span class="mr-3">Posted By</span>
                             <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3">Nemo Enim</a>
+                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
                         <p class="discussion__content fc-grey">
@@ -96,7 +96,7 @@ bg-student
                                     97
                                 </span>
                             </div>
-                            <a href="#">View</a>
+                            <a href="#" class="mt-3 btn-link">View</a>
                         </div>
                     </div>
                 </div>

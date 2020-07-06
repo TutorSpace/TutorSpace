@@ -85,7 +85,7 @@
         </div>
 
         <p class="fs-1-4 bottom-0 right-0 fc-grey mt-4 mb-0 text-right">
-            <a href="#">View All</a>
+            <a href="#" class="btn-link">View All</a>
         </p>
     </div>
 

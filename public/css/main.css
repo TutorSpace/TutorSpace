@@ -13646,6 +13646,15 @@ svg.bookmark:hover {
   color: #6749DF;
 }
 
+.bg-tutor .forum .btn-link {
+  color: #6749DF;
+  transition: all 0.2s;
+}
+
+.bg-tutor .forum .btn-link:hover {
+  color: #502ED9;
+}
+
 .bg-tutor .btn-scroll-bottom-right-top:hover circle,
 .bg-tutor .btn-scroll-bottom-right-under:hover circle {
   fill: #502ED9;
@@ -13703,6 +13712,15 @@ svg.bookmark:hover {
 
 .bg-student .forum-right .trending-tags__list thead th {
   color: #1F7AFF;
+}
+
+.bg-student .forum .btn-link {
+  color: #1F7AFF;
+  transition: all 0.2s;
+}
+
+.bg-student .forum .btn-link:hover {
+  color: #0075E0;
 }
 
 .bg-student .btn-scroll-bottom-right-top:hover circle,

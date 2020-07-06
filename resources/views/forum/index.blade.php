@@ -38,6 +38,7 @@ bg-student
                     <option value="keywords">Search by Keywords</option>
                 </select>
                 {{-- <select name="" class="forum-content__search__type-by">
+                    <option value="tags">Both</option>
                     <option value="tags">Questions Only</option>
                     <option value="keywords">Discussions Only</option>
                 </select> --}}
@@ -58,7 +59,7 @@ bg-student
                         <p class="discussion__heading-2 fc-black-post">
                             <span class="mr-3">Posted By</span>
                             <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3">Nemo Enim</a>
+                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
                         <p class="discussion__content fc-grey">
@@ -98,7 +99,7 @@ bg-student
                                     97
                                 </span>
                             </div>
-                            <a href="#">View</a>
+                            <a href="#" class="btn-link mt-3">View</a>
                         </div>
                     </div>
                 </div>
@@ -113,7 +114,7 @@ bg-student
                         <p class="discussion__heading-2 fc-black-post">
                             <span class="mr-3">Posted By</span>
                             <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3">Nemo Enim</a>
+                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
                         <p class="discussion__content fc-grey">
@@ -151,7 +152,7 @@ bg-student
                                     97
                                 </span>
                             </div>
-                            <a href="#">View</a>
+                            <a href="#" class="btn-link mt-3">View</a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +167,7 @@ bg-student
                         <p class="discussion__heading-2 fc-black-post">
                             <span class="mr-3">Posted By</span>
                             <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3">Nemo Enim</a>
+                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
                         <p class="discussion__content fc-grey">
@@ -203,7 +204,7 @@ bg-student
                                     97
                                 </span>
                             </div>
-                            <a href="#">View</a>
+                            <a href="#" class="btn-link mt-3">View</a>
                         </div>
                     </div>
                 </div>
