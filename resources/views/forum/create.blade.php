@@ -59,7 +59,7 @@ bg-student
                 <div class="input-content">
                     <textarea name="" class="post-body"></textarea>
                 </div>
-                <p class="input-title"></p>
+                <p class="input-title">Tags</p>
                 <div class="input-content">
                     <input type="text" class="post-title" placeholder="Enter your post title here...">
                 </div>
@@ -67,8 +67,9 @@ bg-student
                     <button class="btn btn-lg btn-save">Save as Draft</button>
                     <button class="btn btn-lg btn-create">Create Post</button>
                 </div>
-                @csrf
 
+
+                @csrf
             </form>
 
 

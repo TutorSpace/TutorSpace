@@ -93,6 +93,8 @@ $(document).ready(function(){
     $('.overlay .btn-switch-login').click(function() {
         switchLoginIdentity();
     });
+
+
 })
 
 
