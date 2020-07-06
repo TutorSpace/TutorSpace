@@ -104,6 +104,9 @@ tinymce.init({
   a_plugin_option: true,
   a_configuration_option: 400
 });
+$('#courses').select2({
+  placeholder: "Search by course number"
+});
 
 /***/ }),
 

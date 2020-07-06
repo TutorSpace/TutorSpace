@@ -10,9 +10,9 @@
 bg-white-dark-4
 
 @if(Auth::check() && Auth::user()->is_tutor)
-bg-tutor
+bg-tutor select2-bg-tutor
 @else
-bg-student
+bg-student select2-bg-student
 @endif
 
 @endsection
@@ -30,7 +30,7 @@ bg-student
             <div class="forum-heading-img"></div>
 
             <form action="" method="POST" class="forum-content__search">
-                <a class="btn btn-lg btn-back" href="#">
+                <a class="btn btn-lg btn-back" href="{{ URL::previous() }}">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                     </svg>
@@ -61,13 +61,26 @@ bg-student
                 </div>
                 <p class="input-title">Tags</p>
                 <div class="input-content">
-                    <input type="text" class="post-title" placeholder="Enter your post title here...">
+                    <div class="input-group select-container p-relative select-container-icon pb-0-5">
+                        <svg class="select-container__icon">
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                        </svg>
+                        <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
+                            @foreach (App\Course::all() as $course)
+                                <option value="{{ $course->id }}">{{ $course->course }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-prepend">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-lg btn-save">Save as Draft</button>
-                    <button class="btn btn-lg btn-create">Create Post</button>
+                    <button class="btn btn-lg btn-save btn-animation-y">Save as Draft</button>
+                    <button class="btn btn-lg btn-create btn-animation-y">Create Post</button>
                 </div>
-
 
                 @csrf
             </form>

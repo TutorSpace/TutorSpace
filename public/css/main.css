@@ -14911,8 +14911,9 @@ svg.bookmark:hover {
   border-radius: 1rem;
   background-color: #F5F5F5;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 4rem 4rem 3rem 4rem;
+  padding: 4rem;
   margin-top: 3rem;
+  margin-bottom: 12rem;
 }
 
 .post-create .input-title {
@@ -14933,6 +14934,7 @@ svg.bookmark:hover {
   padding: 1rem 2rem;
   color: inherit;
   font-size: inherit;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .post-create .btn-post-type:not(:last-child) {
@@ -14950,9 +14952,85 @@ svg.bookmark:hover {
   display: inline-block;
   border: none;
   outline: none;
+  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.post-create .select-container {
+  overflow: hidden;
+  border: 2px solid;
+  border-radius: 1.2rem;
+  min-height: 5.5rem;
+}
+
+@media only screen and (max-width: 100em) {
+  .post-create .select-container {
+    min-height: 5rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .post-create .select-container {
+    min-height: 6rem;
+  }
+}
+
+.post-create .select-container-icon .select2-selection__rendered {
+  margin-left: 1.8rem;
+  margin-right: -1.5rem;
+}
+
+.post-create .select-container__icon {
+  position: absolute;
+  width: 2.2rem;
+  height: 2.2rem;
+  left: 0.5rem;
+  top: 48%;
+  transform: translateY(-50%);
+  fill: currentColor;
+}
+
+.post-create .select-container .input-group-prepend {
+  width: 6rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  background-color: currentColor;
+}
+
+.post-create .select-container .input-group-prepend :first-child {
+  width: 6rem;
+  height: 6rem;
+  fill: #FFFFFF;
+}
+
+.post-create .select-container .input-group-prepend :first-child:hover {
+  cursor: pointer;
+}
+
+.post-create .btn-save,
+.post-create .btn-create {
+  padding: 1rem 2rem;
+  color: inherit;
+  font-size: 1.8rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.post-create .btn-save {
+  margin-right: 2rem;
+  border: 1.5px solid currentColor;
 }
 
 .bg-tutor .btn-selected {
+  background-color: #6749DF;
+}
+
+.bg-tutor .btn-create {
+  color: #F0F0F0;
   background-color: #6749DF;
 }
 
