@@ -102,6 +102,55 @@ bg-student select2-bg-student
 
 @include('partials.nav-auth-js')
 
+<script>
+    tinymce.init({
+        selector: 'textarea',  // change this value according to your HTML
+        plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
+            'table emoticons template paste help imagetools'
+        ],
+        height: 300,
+        a_plugin_option: true,
+        a_configuration_option: 400,
+        images_upload_handler: function(blobInfo, success, failure) {
+            var xhr, formData;
+
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', "{{ route('test') }}");
+            xhr.setRequestHeader("X-CSRF-Token", $('meta[name="csrf-token"]').attr('content'));
+
+            xhr.onload = function() {
+                var json;
+
+                if (xhr.status != 200) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+
+                json = JSON.parse(xhr.responseText);
+
+                if(json.errorMsg) {
+                    failure('Error: ' + json.errorMsg);
+                }
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+
+                success(json.location);
+            };
+
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+            xhr.send(formData);
+            return true;
+        },
+    });
+</script>
+
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 <script src="{{ asset('js/forum/create.js') }}"></script>
 @endsection

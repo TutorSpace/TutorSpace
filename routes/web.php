@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::post('/test', 'testController@test');
+Route::post('/test', 'testController@test')->name('test');
 Route::get('/test', 'testController@index');
 
 // index page
