@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Forum;
 
 use App\Post;
 use App\PostType;
+use App\PostDraft;
 use App\Rules\WordCountGTE;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -33,9 +35,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('forum.create');
+        return view('forum.create', [
+            'postDraft' => PostDraft::firstOrNew([
+                'user_id' => Auth::user()->id
+            ])
+        ]);
     }
 
     /**
@@ -82,10 +88,49 @@ class PostController extends Controller
 
         $post->tags()->attach($request->input('tags'));
 
+        $postDraft = PostDraft::where('user_id', Auth::user()->id)->firstOrFail();
+        if($postDraft) {
+            $postDraft->delete();
+        }
+
         return redirect()->route('posts.index');
-        // return view('test', [
-        //     'postContent' => $request->input('post-content')
-        // ]);
+    }
+
+    public function storeAsDraft(Request $request) {
+        $request->validate([
+            'post-type' => [
+                'required',
+                'exists:post_types,id'
+            ],
+            'post-title' => [
+                'required',
+                'unique:posts,title',
+                new WordCountGTE(5)
+            ],
+            'post-content' => [
+                'required',
+                new WordCountGTE(10)
+            ],
+            'tags' => [
+                'required',
+                'array',
+                'min:1'
+            ],
+            'tags.*' => [
+                'exists:tags,id'
+            ]
+        ]);
+
+        $postDraft = PostDraft::updateOrCreate([
+            'user_id' => Auth::user()->id,
+            'title' => $request->input('title'),
+            'content' => $request->input('post-content'),
+            'tags' => implode(',', $request->input('tags'))
+        ]);
+
+        return redirect()->route('posts.create')->with([
+            'successMsg' => 'Your post is saved as draft successfullly.'
+        ]);
     }
 
     /**
