@@ -27,16 +27,16 @@ bg-grey-light body-login
             <h2 class="login__heading text-center">Student Login</h2>
 
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @error('loginError') invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
-                @if($errors->any())
+                @error('loginError')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first() }}
+                    {{ $message }}
                 </span>
-                @endif
+                @enderror
             </div>
 
             <div class="p-relative">

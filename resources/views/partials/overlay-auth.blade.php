@@ -1,8 +1,9 @@
-@if($errors->any())
+@error('loginError')
 @php
-    session()->flash('errorMsg', $errors->first());
+    session()->flash('errorMsg', $message);
 @endphp
-@elseif(session('passwordError'))
+@enderror
+@if(session('passwordError'))
 @php
     session()->flash('errorMsg', session('passwordError'));
 @endphp
@@ -11,7 +12,6 @@
     session()->flash('errorMsg', session('googleLoginError'));
 @endphp
 @endif
-
 @error('password')
 @php
     session()->flash('errorMsg', $message);

@@ -29,9 +29,12 @@
     <script>
         @if(session('errorMsg'))
             toastr.error('{{ session('errorMsg') }}');
+            @php
+                session()->forget('errorMsg');
+            @endphp
         @endif
         @if(session('successMsg'))
-            toastr.error('{{ session('successMsg') }}');
+            toastr.success('{{ session('successMsg') }}');
         @endif
     </script>
     @yield('js')

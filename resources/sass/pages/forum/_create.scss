@@ -135,6 +135,10 @@
         background-color: $color-purple-primary;
     }
 
+    .input-group-prepend {
+        color: $color-purple-primary;
+    }
+
 }
 
 .bg-student {
@@ -146,6 +150,10 @@
     .btn-create {
         color: $color-white-dark-4;
         background-color: $color-blue-primary;
+    }
+
+    .input-group-prepend {
+        color: $color-blue-primary;
     }
 
 }

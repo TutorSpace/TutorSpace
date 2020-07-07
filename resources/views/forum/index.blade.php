@@ -63,6 +63,7 @@ bg-student
                             <span>Three days ago</span>
                         </p>
                         <p class="post__content fc-grey">
+                            {{ Str::words('Perfectly balanced, as all things should be.', 3, ' >>>') }}
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem

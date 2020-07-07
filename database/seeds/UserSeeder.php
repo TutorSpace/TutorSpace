@@ -25,6 +25,10 @@ class UserSeeder extends Seeder
             'last_name' => 'tester',
             'email' => 'tutor@usc.edu',
             'is_tutor' => 1,
+            'first_major_id' => 1,
+            'gpa' => '3.70',
+            'hourly_rate' => '15',
+            'school_year_id' => 1,
             'password' => Hash::make('password')
         ]);
     }

@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('gpa', 64)->default('N/A');
             $table->unsignedBigInteger('hourly_rate')->nullable();
             $table->unsignedBigInteger('school_year_id')->nullable();
-            $table->string('profile_pic_url', 255)->default('placeholder.png');
+            $table->string('profile_pic_url', 255)->default('user-profile-photos/placeholder.png');
             $table->string('google_id', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->timestamps();

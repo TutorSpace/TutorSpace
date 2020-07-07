@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Rules\WordCountGTE;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -41,19 +43,26 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'hourly-rate' => [
+            'post-type' => [
                 'required',
-                'numeric',
-                'min:10',
-                'max:50'
+                Rule::in(['Question', 'Discussion'])
             ],
-            'courses' => [
+            'post-title' => [
+                'required',
+                'unique:posts,post-title',
+                new WordCountGTE(5)
+            ],
+            'post-content' => [
+                'required',
+                new WordCountGTE(10)
+            ],
+            'tags' => [
                 'required',
                 'array',
                 'min:1'
             ],
-            'courses.*' => [
-                'exists:courses,id'
+            'tags.*' => [
+                'exists:tags,id'
             ]
         ]);
 

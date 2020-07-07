@@ -15068,6 +15068,10 @@ svg.bookmark:hover {
   background-color: #6749DF;
 }
 
+.bg-tutor .input-group-prepend {
+  color: #6749DF;
+}
+
 .bg-student .btn-selected {
   background-color: #1F7AFF;
 }
@@ -15075,5 +15079,9 @@ svg.bookmark:hover {
 .bg-student .btn-create {
   color: #F0F0F0;
   background-color: #1F7AFF;
+}
+
+.bg-student .input-group-prepend {
+  color: #1F7AFF;
 }
 
