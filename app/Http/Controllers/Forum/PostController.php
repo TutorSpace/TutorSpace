@@ -37,9 +37,14 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
+        // dd(PostDraft::firstOrNew([
+        //     'user_id' => Auth::user()->id
+        // ]));
         return view('forum.create', [
             'postDraft' => PostDraft::firstOrNew([
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+            ],[
+                'post_type_id' => 0
             ])
         ]);
     }
@@ -60,11 +65,11 @@ class PostController extends Controller
             'post-title' => [
                 'required',
                 'unique:posts,title',
-                new WordCountGTE(5)
+                new WordCountGTE(3)
             ],
             'post-content' => [
                 'required',
-                new WordCountGTE(10)
+                new WordCountGTE(5)
             ],
             'tags' => [
                 'required',
@@ -88,12 +93,14 @@ class PostController extends Controller
 
         $post->tags()->attach($request->input('tags'));
 
-        $postDraft = PostDraft::where('user_id', Auth::user()->id)->firstOrFail();
+        $postDraft = PostDraft::where('user_id', Auth::user()->id)->first();
         if($postDraft) {
             $postDraft->delete();
         }
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with([
+            'successMsg' => 'You successfully created a new post!'
+        ]);
     }
 
     public function storeAsDraft(Request $request) {
@@ -105,11 +112,11 @@ class PostController extends Controller
             'post-title' => [
                 'required',
                 'unique:posts,title',
-                new WordCountGTE(5)
+                new WordCountGTE(3)
             ],
             'post-content' => [
                 'required',
-                new WordCountGTE(10)
+                new WordCountGTE(5)
             ],
             'tags' => [
                 'required',
@@ -123,13 +130,15 @@ class PostController extends Controller
 
         $postDraft = PostDraft::updateOrCreate([
             'user_id' => Auth::user()->id,
-            'title' => $request->input('title'),
+        ],[
+            'title' => $request->input('post-title'),
             'content' => $request->input('post-content'),
+            'post_type_id' => $request->input('post-type'),
             'tags' => implode(',', $request->input('tags'))
         ]);
 
         return redirect()->route('posts.create')->with([
-            'successMsg' => 'Your post is saved as draft successfullly.'
+            'successMsg' => 'Your post draft is saved successfully!'
         ]);
     }
 

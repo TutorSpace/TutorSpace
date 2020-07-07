@@ -15,12 +15,13 @@ class CreatePostDraftsTable extends Migration
     {
         Schema::create('post_drafts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->text('content');
             $table->unsignedBigInteger('post_type_id');
             $table->string('tags');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -59,7 +59,7 @@ bg-student select2-bg-student
                 </div>
                 <p class="input-title">Title</p>
                 <div class="input-content p-relative">
-                    <input type="text" class="post-title" placeholder="Enter your post title here..." value="{{ old('post-title') ?? $postDraft->post_title }}" name="post-title" required>
+                    <input type="text" class="post-title" placeholder="Enter your post title here..." value="{{ old('post-title') ?? $postDraft->title }}" name="post-title" required>
                     @error('post-title')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-1">
                         {{ $message }}
@@ -68,7 +68,7 @@ bg-student select2-bg-student
                 </div>
                 <p class="input-title">Content</p>
                 <div class="input-content p-relative">
-                    <textarea name="post-content" class="post-content">{!! old('post-content') ?? $postDraft->post_content !!}</textarea>
+                    <textarea name="post-content" class="post-content">{!! old('post-content') ?? $postDraft->content !!}</textarea>
                     @error('post-content')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-1">
                         {{ $message }}
@@ -83,7 +83,13 @@ bg-student select2-bg-student
                         </svg>
                         <select class="custom-select" name="tags[]" multiple="multiple" id="tags" required>
                             @foreach (App\Tag::all() as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                                <option value="{{ $tag->id }}"
+                                    @if(in_array($tag->id, old('tags') ?? explode(',', $postDraft->tags)))
+                                        selected
+                                    @endif
+                                    >
+                                    {{ $tag->tag }}
+                                </option>
                             @endforeach
                         </select>
                         <div class="input-group-prepend">
