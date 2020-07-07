@@ -14985,6 +14985,10 @@ svg.bookmark:hover {
   color: #A0A0A0;
 }
 
+.post-create .post-title:focus {
+  box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
 .post-create .select-container {
   overflow: hidden;
   border: 2px solid;

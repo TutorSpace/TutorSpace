@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -39,7 +40,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hourly-rate' => [
+                'required',
+                'numeric',
+                'min:10',
+                'max:50'
+            ],
+            'courses' => [
+                'required',
+                'array',
+                'min:1'
+            ],
+            'courses.*' => [
+                'exists:courses,id'
+            ]
+        ]);
+
+
+        return view('test', [
+            'postContent' => $request->input('post-content')
+        ]);
     }
 
     /**
@@ -89,5 +110,38 @@ class PostController extends Controller
 
     public function showMyFollows() {
         return view('forum.my_follows');
+    }
+
+    public function uploadPostImg(Request $request) {
+        reset($_FILES);
+        $temp = current($_FILES);
+
+        if(is_uploaded_file($temp['tmp_name'])){
+            // Sanitize input
+            if(preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])){
+                return response()->json([
+                    'errorMsg' => 'Invalid File Name!'
+                ]);
+            }
+
+            // Verify extension
+            if(!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("jpg", "png", "jpeg"))){
+                return response()->json([
+                    'errorMsg' => 'Invalid File Extension!'
+                ]);
+            }
+
+            // upload the file
+            $uploadedFileName = $request->file('file')->store('/user-profile-photos');
+
+            return response()->json([
+                'location' => Storage::url($uploadedFileName)
+            ]);
+        } else {
+            // Notify editor that the upload failed
+            return response()->json([
+                'errorMsg' => 'Something went wrong when uploading the image...'
+            ]);
+        }
     }
 }

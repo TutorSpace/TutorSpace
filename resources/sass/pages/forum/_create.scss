@@ -47,6 +47,10 @@
         &::placeholder {
             color: $color-grey;
         }
+
+        &:focus {
+            box-shadow: 1px 3px 4px 0px rgba(0,0,0,0.1);
+        }
     }
 
     .select-container {

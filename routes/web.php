@@ -86,6 +86,7 @@ Route::group([
 ], function () {
     Route::resource('posts', 'Forum\PostController');
     Route::get('my-follows', 'Forum\PostController@showMyFollows')->middleware('auth')->name('my-follows.index');
+    Route::post('post/upload-img', 'Forum\PostController@uploadPostImg')->middleware('auth')->name('upload-post-img');
 
 });
 
