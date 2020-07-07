@@ -455,7 +455,7 @@ class RegisterController extends Controller
         // if user uploaded the file
         if($request->file('profile-pic')) {
             $user->deleteImage();
-            $user->profile_pic_url = $request->file('profile-pic')->store('');
+            $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
         }
 
         $user->save();
