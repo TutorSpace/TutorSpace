@@ -1,7 +1,7 @@
-.discussion-previews {
+.post-previews {
     margin-bottom: 12rem;
 
-    .discussion-preview {
+    .post-preview {
         position: relative;
         border-radius: 1rem;
         background-color: $color-white-dark-5;
@@ -38,7 +38,7 @@
         }
 
         // show only two lines
-        .discussion__heading {
+        .post__heading {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -46,7 +46,7 @@
             -webkit-box-orient: vertical;
         }
 
-        .discussion__content {
+        .post__content {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -54,7 +54,7 @@
             -webkit-box-orient: vertical;
         }
 
-        .discussion__bottom {
+        .post__bottom {
 
         }
     }

@@ -12219,11 +12219,11 @@ h5 {
   height: 100vh;
 }
 
-.discussion-previews {
+.post-previews {
   margin-bottom: 12rem;
 }
 
-.discussion-previews .discussion-preview {
+.post-previews .post-preview {
   position: relative;
   border-radius: 1rem;
   background-color: #F5F5F5;
@@ -12233,25 +12233,25 @@ h5 {
   display: flex;
 }
 
-.discussion-previews .discussion-preview-tag {
+.post-previews .post-preview-tag {
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 1.4rem;
 }
 
-.discussion-previews .discussion-preview__left {
+.post-previews .post-preview__left {
   flex: 1;
 }
 
-.discussion-previews .discussion-preview__right {
+.post-previews .post-preview__right {
   max-width: 25rem;
   flex: 0 0 30%;
   max-height: 25rem;
   margin-left: 2rem;
 }
 
-.discussion-previews .discussion-preview__right__thumbnail {
+.post-previews .post-preview__right__thumbnail {
   padding-top: 3rem;
   padding-bottom: 0.5rem;
   width: 100%;
@@ -12260,7 +12260,7 @@ h5 {
      object-fit: cover;
 }
 
-.discussion-previews .discussion-preview .discussion__heading {
+.post-previews .post-preview .post__heading {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -12269,7 +12269,7 @@ h5 {
   -webkit-box-orient: vertical;
 }
 
-.discussion-previews .discussion-preview .discussion__content {
+.post-previews .post-preview .post__content {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -13745,42 +13745,42 @@ svg.bookmark:hover {
   border-radius: 1.5rem;
 }
 
-.discussion__heading:hover {
+.post__heading:hover {
   color: #626262;
 }
 
-.discussion__heading-2 {
+.post__heading-2 {
   font-size: 1.4rem;
   margin-top: 1rem;
 }
 
-.discussion__heading-2 .poster-img {
+.post__heading-2 .poster-img {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
 }
 
-.discussion__content {
+.post__content {
   font-size: 1.6rem;
 }
 
-.discussion__bottom {
+.post__bottom {
   flex: 0 0 100%;
 }
 
-.discussion__bottom .tags {
+.post__bottom .tags {
   font-size: 1.4rem;
   margin-top: 0.5rem;
 }
 
-.discussion__bottom__info {
+.post__bottom__info {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1.4rem;
 }
 
-.discussion__bottom__info svg {
+.post__bottom__info svg {
   width: 1.5rem;
   height: 1.5rem;
 }

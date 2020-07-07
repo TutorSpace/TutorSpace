@@ -529,13 +529,13 @@
     border-radius: 1.5rem;
 }
 
-.discussion__heading {
+.post__heading {
     &:hover {
         color: $color-black-post;
     }
 }
 
-.discussion__heading-2 {
+.post__heading-2 {
     font-size: 1.4rem;
     margin-top: 1rem;
 
@@ -546,11 +546,11 @@
     }
 }
 
-.discussion__content {
+.post__content {
     font-size: 1.6rem;
 }
 
-.discussion__bottom {
+.post__bottom {
     flex: 0 0 100%;
 
     .tags {
