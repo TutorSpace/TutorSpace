@@ -15,8 +15,9 @@ class DatabaseSeeder extends Seeder
             MajorSeeder::class,
             SchoolYearSeeder::class,
             TagSeeder::class,
-            UserSeeder::class,
-            CourseSeeder::class
+            CourseSeeder::class,
+            PostTypeSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

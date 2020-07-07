@@ -7,7 +7,7 @@ use Hash;
 
 use App\User;
 use App\Major;
-use App\School_year;
+use App\SchoolYear;
 use App\Rules\EmailUSC;
 use App\Rules\NotExistTutor;
 use Illuminate\Http\Request;
@@ -300,7 +300,7 @@ class RegisterController extends Controller
             $user->secondMajor()->associate(Major::find($request->input('second-major')));
         }
         if($request->input('school-year')) {
-            $user->school_year()->associate(School_year::find($request->input('school-year')));
+            $user->school_year()->associate(SchoolYear::find($request->input('school-year')));
         }
 
         if(isset($studentData['google-id'])) {
@@ -432,7 +432,7 @@ class RegisterController extends Controller
         if(isset($tutorData['second-major'])) {
             $user->secondMajor()->associate(Major::find($tutorData['second-major']));
         }
-        $user->school_year()->associate(School_year::find($tutorData['school-year']));
+        $user->school_year()->associate(SchoolYear::find($tutorData['school-year']));
 
         if(isset($tutorData['google-id'])) {
             $user->google_id = $tutorData['google-id'];

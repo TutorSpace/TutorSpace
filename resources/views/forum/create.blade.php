@@ -48,8 +48,8 @@ bg-student select2-bg-student
                 <h5 class="font-weight-bold mb-5">Create a new post</h5>
                 <p class="input-title">Post Type</p>
                 <div class="input-content p-relative">
-                    <button class="btn btn-lg btn-post-type @if(old('post-type') == 'Question') btn-selected @endif" type="button">Questsion</button>
-                    <button class="btn btn-lg btn-post-type @if(old('post-type') == 'Discussion') btn-selected @endif" type="button">Discussion</button>
+                    <button class="btn btn-lg btn-post-type @if(old('post-type') == 1) btn-selected @endif" type="button" data-post-type-id=1>Question</button>
+                    <button class="btn btn-lg btn-post-type @if(old('post-type') == 2) btn-selected @endif" type="button" data-post-type-id=2>Note</button>
 
                     @error('post-type')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 left-0 fc-red mt-1">
@@ -118,8 +118,6 @@ bg-student select2-bg-student
         @include("forum.partials.forum-right")
     </div>
 </div>
-
-
 
 @include('partials.footer')
 

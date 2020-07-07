@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Post;
+use App\PostType;
 use App\Rules\WordCountGTE;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -45,11 +49,11 @@ class PostController extends Controller
         $request->validate([
             'post-type' => [
                 'required',
-                Rule::in(['Question', 'Discussion'])
+                'exists:post_types,id'
             ],
             'post-title' => [
                 'required',
-                'unique:posts,post-title',
+                'unique:posts,title',
                 new WordCountGTE(5)
             ],
             'post-content' => [
@@ -66,10 +70,22 @@ class PostController extends Controller
             ]
         ]);
 
+        $post = new Post();
+        $post->title = $request->input('post-title');
+        $post->content = $request->input('post-content');
+        $post->slug = Str::slug($request->input('post-title'));
 
-        return view('test', [
-            'postContent' => $request->input('post-content')
-        ]);
+        $post->post_type()->associate(PostType::find($request->input('post-type')));
+        $post->user()->associate(Auth::user());
+
+        $post->save();
+
+        $post->tags()->attach($request->input('tags'));
+
+        return redirect()->route('posts.index');
+        // return view('test', [
+        //     'postContent' => $request->input('post-content')
+        // ]);
     }
 
     /**
