@@ -12224,16 +12224,10 @@ h6 {
 }
 
 .post-previews {
-  margin-bottom: 12rem;
+  margin-bottom: 30rem;
 }
 
 .post-previews .post-preview {
-  position: relative;
-  border-radius: 1rem;
-  background-color: #F9F9F9;
-  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 4rem 4rem 3rem 4rem;
-  margin-top: 3rem;
   display: flex;
 }
 
@@ -12287,8 +12281,6 @@ h6 {
 
 .post-previews .post-preview .post__bottom svg {
   fill: #A0A0A0;
-  width: 2rem;
-  height: 2rem;
 }
 
 .tag {
@@ -13804,8 +13796,18 @@ svg.bookmark:hover {
 }
 
 .post__bottom__info svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.post-preview,
+.post-detail {
+  position: relative;
+  border-radius: 1rem;
+  background-color: #F9F9F9;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 4rem 4rem 3rem 4rem;
+  margin-top: 3rem;
 }
 
 .index {
@@ -14938,6 +14940,32 @@ svg.bookmark:hover {
   position: relative;
   right: -3rem;
   bottom: 0rem;
+}
+
+.post-detail {
+  margin-bottom: 30rem;
+}
+
+.post-detail-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.4rem;
+}
+
+.post-detail .post__content {
+  color: initial;
+}
+
+.post-detail .post__content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.post-detail .post__bottom svg {
+  fill: #A0A0A0;
+  width: 2rem;
+  height: 2rem;
 }
 
 .post-create {

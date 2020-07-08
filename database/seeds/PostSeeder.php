@@ -107,5 +107,44 @@ class PostSeeder extends Seeder
             'post_type_id' => 1,
             'created_at' => '2020-07-08 12:23:43'
         ]);
+
+        DB::table('posts')->insert([
+            'title' => 'This is another testing Note!',
+            'content' => '<p><em><strong>I want to try some other styles and colors in this post!</strong></em></p>
+            <p><span style="background-color: #ba372a;">fdgsgsdgdg</span></p>
+            <h1><span style="background-color: #ba372a;">sfsgdgsdghldskghklsd</span></h1>
+            <p style="text-align: right;"><span style="color: #169179;">dgdgsdgdsgdsgds</span></p>
+            <pre class="language-php"><code>$test = "Hello, World!";
+            echo $test;</code></pre>
+            <ol>
+            <li>dgdgdsgdsgds</li>
+            <li>gdsgds</li>
+            <li>dsgdsgdsg</li>
+            <li>dsg</li>
+            </ol>
+            <ul>
+            <li>dgsdgdsg</li>
+            <li><span style="color: #f1c40f;">dsg</span></li>
+            <li><span style="color: #f1c40f;">dsgdg</span></li>
+            <li><span style="color: #f1c40f;">dsgdg</span></li>
+            </ul>',
+            'slug' => 'this-is-another-testing-note',
+            'user_id' => 2,
+            'post_type_id' => 2,
+            'created_at' => '2020-07-08 14:41:26'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'Testing normal image size here!',
+            'content' => '<p><img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="" width="150" height="200" /> THis is to test a small image!</p>
+            <p>dgsgdskgdsl</p>
+            <p>Some code here:</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'testing-normal-image-size-here',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'created_at' => '2020-07-08 14:55:30'
+        ]);
     }
 }

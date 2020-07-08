@@ -107,7 +107,7 @@ bg-student
                                     0
                                 </span>
                             </div>
-                            <a href="#" class="btn-link mt-3">View</a>
+                            <a href="{{ route('posts.show', $post->slug) }}" class="btn-link mt-3">View</a>
                         </div>
                     </div>
                 </div>

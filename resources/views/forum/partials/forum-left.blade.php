@@ -37,7 +37,13 @@
     </ul>
 </div>
 
+@if(in_array(Route::current()->getName(), [
+    'posts.show'
+]))
+<section class="col-4 forum-left">
+@else
 <section class="col-3 forum-left col-lg-2">
+@endif
     <ul class="forum-left__list">
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">

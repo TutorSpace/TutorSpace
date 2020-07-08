@@ -147,9 +147,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Post $post)
     {
-        //
+        // todo: update view count
+
+
+        return view('forum.show', [
+            'post' => $post
+        ]);
     }
 
     /**

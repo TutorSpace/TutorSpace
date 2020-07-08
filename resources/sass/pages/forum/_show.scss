@@ -1,0 +1,27 @@
+.post-detail {
+    margin-bottom: 30rem;
+
+    &-tag {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .post__content {
+        color: initial;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .post__bottom {
+        svg {
+            fill: $color-grey;
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+}

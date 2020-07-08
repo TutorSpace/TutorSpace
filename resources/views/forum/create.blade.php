@@ -139,8 +139,10 @@ bg-student select2-bg-student
         plugins: [
             'advlist autolink link image lists charmap print preview hr spellchecker',
             'wordcount fullscreen insertdatetime',
-            'table emoticons paste help imagetools'
+            'table emoticons paste help imagetools',
+            'codesample'
         ],
+        toolbar: 'undo redo | bold italic | image link codesample | numlist bullist checklist | fontselect fontsizeselect formatselect | charmap emoticons | preview save print | alignleft aligncenter alignright alignjustify | outdent indent',
         // remove_linebreaks : true,
         height: 300,
         a_plugin_option: true,
