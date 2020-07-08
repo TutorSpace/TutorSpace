@@ -31,7 +31,7 @@ class Post extends Model
     }
 
     public function getTimeAgo() {
-        return 'on ' . $this->created_at->format('Y/m/d');
+        return $this->created_at->diffForHumans();
     }
 
 

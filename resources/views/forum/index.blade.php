@@ -49,113 +49,6 @@ bg-student
             </form>
 
             <div class="post-previews">
-                <div class="post-preview flex-wrap">
-                    <div class="post-preview__left">
-                        <h5>
-                            <a class="post__heading fc-black-post"  href="#">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci quasi atque non at quia? Quia tempora fugiat illo voluptas molestias officiis nemo cum neque, architecto reiciendis placeat commodi quaerat!
-                            </a>
-                        </h5>
-                        <p class="post__heading-2 fc-black-post">
-                            <span class="mr-3">Posted By</span>
-                            <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
-                            <span>Three days ago</span>
-                        </p>
-                        <div class="post__content fc-grey mb-4">
-                            {{ Str::words('Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem', 40, ' ...') }}
-                        </div>
-                    </div>
-                    <div class="post-preview__right">
-                        <img class="post-preview__right__thumbnail" src="{{asset('assets/images/usc.jpg')}}" alt="thumbnail">
-                    </div>
-                    <div class="post__bottom">
-                        <div class="tags">
-                            <span class="tag">Computer Science</span>
-                            <span class="tag">Computer</span>
-                            <span class="tag">Science</span>
-                            <span class="fc-grey">and 5 more...</span>
-                        </div>
-                        <div class="post__bottom__info d-flex fc-black-post">
-                            <div class="left-container d-flex align-items-center mt-3">
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    105 people found this post useful.
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    439
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="">
-                                    97
-                                </span>
-                            </div>
-                            <a href="#" class="btn-link mt-3">View</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="post-preview flex-wrap">
-                    <div class="post-preview__left">
-                        <h5>
-                            <a class="post__heading fc-black-post"  href="#">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci quasi atque non at quia? Quia tempora fugiat illo voluptas molestias officiis nemo cum neque, architecto reiciendis placeat commodi quaerat!
-                            </a>
-                        </h5>
-                        <p class="post__heading-2 fc-black-post">
-                            <span class="mr-3">Posted By</span>
-                            <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
-                            <span>Three days ago</span>
-                        </p>
-                        <div class="post__content fc-grey mb-4">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                        </div>
-                    </div>
-                    <div class="post__bottom">
-                        <div class="tags">
-                            <span class="tag">Computer Science</span>
-                            <span class="tag">Computer</span>
-                            <span class="tag">Science</span>
-                            <span class="fc-grey">and 5 more...</span>
-                        </div>
-                        <div class="post__bottom__info d-flex fc-black-post">
-                            <div class="left-container d-flex align-items-center mt-3">
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    105 people found this post useful.
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    439
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="">
-                                    97
-                                </span>
-                            </div>
-                            <a href="#" class="btn-link mt-3">View</a>
-                        </div>
-                    </div>
-                </div>
-
                 @foreach ($posts as $post)
                 <div class="post-preview flex-wrap">
                     <div class="post-preview__left">
@@ -173,7 +66,6 @@ bg-student
                             <span>{{ $post->getTimeAgo() }}</span>
                         </p>
                         <div class="post__content fc-grey mb-4">
-                            {{-- {!! $post->content !!} --}}
                             {!! Str::words(strip_tags($post->content), 40, ' ...') !!}
                         </div>
                     </div>
