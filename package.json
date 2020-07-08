@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.0.0-alpha4",
+        "color-hash": "^1.0.3",
         "select2": "^4.0.13",
         "toastr": "^2.1.4"
     }

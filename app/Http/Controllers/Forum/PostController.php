@@ -39,9 +39,6 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        // dd(PostDraft::firstOrNew([
-        //     'user_id' => Auth::user()->id
-        // ]));
         return view('forum.create', [
             'postDraft' => PostDraft::firstOrNew([
                 'user_id' => Auth::user()->id,
