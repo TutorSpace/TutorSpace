@@ -49,13 +49,13 @@ class LoginController extends Controller
         ]);
 
         // if this email does not have a student identity
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() == 0) {
-            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with email does not exist.']);
+        if(!User::existStudent($request->input('email'))) {
+            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with this email does not exist.']);
         }
 
-        // if registered with google id
+        // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->first()->google_id) {
+        if(User::registerWithGoogle($request->input('email'))) {
             return redirect()->back()->withInput()->withErrors(['This email is registered using Google. Please sign in with Google.']);
         }
 
@@ -93,13 +93,13 @@ class LoginController extends Controller
         ]);
 
         // if this email does not have a tutor identity
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', true)->count() == 0) {
-            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with email does not exist.']);
+        if(!User::existTutor($request->input('email'))) {
+            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with this email does not exist.']);
         }
 
-        // if registered with google id
+        // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', true)->first()->google_id) {
+        if(User::registerWithGoogle($request->input('email'))) {
             return redirect()->back()->withInput()->withErrors(['This email is registered using Google. Please sign in with Google.']);
         }
 
@@ -116,21 +116,5 @@ class LoginController extends Controller
                 'passwordError' => 'Your password is incorrect.'
             ]);
         }
-    }
-
-    public function indexResetPasswordStudent() {
-        return view('auth.reset_password_student');
-    }
-
-    public function resetPasswordStudent() {
-
-    }
-
-    public function indexResetPasswordTutor() {
-        return view('auth.reset_password_tutor');
-    }
-
-    public function resetPasswordTutor() {
-
     }
 }

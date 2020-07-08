@@ -1,116 +1,310 @@
-$navbar-height: 10rem;
-$font-1: 5.5rem;
-$font-2: 4rem;
-.index- {
-    &left-container, &right-container {
-        height: calc(100vh - #{$navbar-height});
-        min-height: 500px;
-        position: relative;
+.index {
+    background-color: $color-grey-2;
 
-        @include respond(big-desktop) {
-            min-height: 700px;
-        }
+    .btn--primary {
+        background-color: $color-white;
+        border-radius: 3rem;
+        height: 6rem;
+        width: 50rem;
+        font-weight: 500;
+    }
+}
 
+.index__top {
+    height: 100vh;
+
+    background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/usc.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    .logo {
+        margin-left: 2rem;
+        width: 40rem;
+        height: auto;
+        animation: move-in-left 1s;
     }
 
+    .btn--primary {
+        margin-top: 6rem;
+        color: $color-purple-primary;
+        animation: move-in-bottom .5s ease-out 1s backwards;
 
-    &left-container {
-
-        &__box {
-
-            // center the element
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-
-            // background-color: orangered;
-            width: 100%;
-
-            padding-left: 5rem;
-
-
-
-            &-1 {
-                font-size: $font-1;
-                margin-bottom: 2rem;
-
-                @include respond(tab-port) {
-                    font-size: 4rem;
-                }
-
-                @include respond(phone) {
-                    font-size: $font-1 !important;
-                }
-
-                @media only screen and (max-width: 25em) { //400px
-                    font-size: 4.5rem !important;
-
-                };
-
-            }
-
-            &-2 {
-                color: black;
-                margin-bottom: 6rem;
-
-                font-size: 2rem;
-                @include respond(tab-port) {
-                    font-size: 1.8rem !important;
-                }
-
-                @include respond(phone) {
-                    font-size: 2.2rem !important;
-                }
-
-                @media only screen and (max-width: 25em) { //400px
-                    font-size: 1.8rem !important;
-
-                };
-
-            }
-
-            &-3 {
-                width: 100%;
-                display: flex;
-
-                & a {
-                    font-size: $font-2;
-                    margin-right: 16px;
-
-                    @include respond(tab-port) {
-                        font-size: 1.8rem !important;
-                    }
-
-                    @include respond(phone) {
-                        font-size: $font-2 !important;
-                    }
-
-                    @media only screen and (max-width: 25em) { //400px
-                        font-size: 1.8rem !important;
-
-                    };
-
-
-
-                }
-            }
+        &:hover {
+            color: $color-purple-primary;
         }
 
-    }
-
-
-    &right-container {
-
-        &__img {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            right: 0;
-            bottom: 0;
+        @include respond(small) {
+            margin-top: 0;
         }
     }
 }
 
+.index__story {
+    color: #555454;
+    padding: 15rem 5rem;
+
+    @include respond(md) {
+        padding: 10rem 5rem;
+    }
+
+    &__heading {
+        margin-bottom: 3.5rem;
+    }
+
+    &__content {
+        font-size: 2.2rem;
+        line-height: 2;
+    }
+}
+
+.index__mission {
+    background-image: linear-gradient(to right bottom, rgba($color: $color-yellow-primary, $alpha: .7), rgba(255, 200, 0, 0.7)), url(../../../public/assets/usc.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color: $color-white;
+
+    &-container {
+        flex: 0 0 45%;
+        padding: 10rem;
+        // background-color: rgba(#747474, .4);
+        background-color: rgba(#747474, .5);
+
+        @include respond(md) {
+            flex: 1;
+            // background-color: rgba(#747474, .2);
+            background-color: rgba(#747474, .3);
+            padding: 10rem 5rem;
+        }
+    }
+
+    &__heading {
+        margin-bottom: 3.5rem;
+    }
+
+    &__content {
+        font-size: 2.2rem;
+        line-height: 2;
+    }
+}
+
+.index__features {
+    padding: 17rem 0;
+
+    @include respond(md) {
+        padding: 10rem 1rem;
+    }
+
+    @include respond(sm) {
+        padding: 7rem 3rem;
+    }
+
+    @include respond(extra-sm) {
+        padding: 5rem 3rem;
+    }
+
+    > :not(:last-child) {
+        margin-bottom: 10rem;
+
+        @include respond(md) {
+            margin-bottom: 5rem;
+        }
+        @include respond(sm) {
+            margin-bottom: 4rem;
+        }
+    }
+
+    $width: 30rem;
+    .index__feature {
+        display: flex;
+        color: #555454;
+        position: relative;
+
+        .svg-content {
+            position: absolute;
+            bottom: 0;
+            width: 35rem;
+            height: 100%;
+            transform: scale(1.1);
+
+            @include respond(sm) {
+                width: 25rem;
+                transform: scale(1.5);
+            }
+
+            @include respond(extra-sm) {
+                transform: scale(1.15, 1.8);
+            }
+        }
+
+        &-container {
+            position: relative;
+            z-index: 100;
+            padding: 3rem 0;
+        }
+
+        &__heading {
+            margin-bottom: 3.5rem;
+            white-space: nowrap;
+
+            @include respond(sm) {
+                margin-bottom: 2rem;
+            }
+        }
+
+        &__content {
+            font-size: 2.2rem;
+        }
+    }
+
+    .index__feature--1, .index__feature--3 {
+        .index__feature-container {
+            margin-left: $width;
+
+            @include respond(sm) {
+                margin-left: 20rem;
+            }
+        }
+    }
+
+    .index__feature--2 {
+        .svg-content {
+            right: 0;
+        }
+
+        .index__feature-container {
+            margin-right: 20rem;
+            padding-left: 7rem;
+
+            @include respond(md) {
+                margin-right: 25rem;
+                padding-left: 5rem;
+            }
+
+            @include respond(sm) {
+                margin-right: 18rem;
+                padding-left: 2rem;
+            }
+        }
+    }
+
+    .index__feature--3 {
+        .svg-content {
+            height: 20rem;
+            bottom: 50%;
+            transform: translate(7rem, calc(50% + 3rem)) scale(1.8);
+
+            @include respond(lg) {
+                transform: translate(7rem, calc(50% + 3rem)) scale(1.5);
+            }
+            @include respond(md) {
+                transform: translate(5rem, calc(50% + 3rem)) scale(1.5);
+            }
+            @include respond(sm) {
+                transform: translate(3rem, calc(50% + 1rem)) scale(1.8, 2.5);
+            }
+            @include respond(extra-sm) {
+                transform: translate(3rem, calc(50% + 1rem)) scale(1.4, 2.5);
+            }
+        }
+    }
+}
+
+.index__bottom {
+    height: calc(100vh - #{$nav-height});
+    background-image: linear-gradient(to right, rgba($color-blue-primary, .8) 50%, rgba($color-purple-primary, .8) 50%);
+    position: relative;
 
 
+    .bg-shape-triangle-left {
+        top: 8rem;
+        width: 25rem;
+        left: -3rem;
+    }
+
+    .bg-shape-circle-bottom {
+        bottom: 5rem;
+        right: 20rem;
+    }
+
+    .bg-shape-triangle-right {
+        right: 0;
+        top: 7rem;
+    }
+
+
+    &__heading {
+        padding-top: 12rem;
+        color: $color-white;
+
+        @include respond(extra-sm) {
+            padding-top: 30rem;
+        }
+    }
+
+    &__left {
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        .btn--primary {
+            color: $color-blue-primary;
+            &:hover {
+                color: $color-blue-primary;
+            }
+        }
+    }
+
+    &__right {
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        .btn--primary {
+            color: $color-purple-primary;
+            &:hover {
+                color: $color-purple-primary;
+            }
+        }
+    }
+
+    &__svg {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: -2rem;
+
+        @include respond(md) {
+            margin-bottom: -3rem;
+            width: 30rem;
+        }
+
+        @include respond(sm) {
+            margin-bottom: -8rem;
+            width: 22rem;
+        }
+
+        @include respond(extra-sm) {
+            margin-bottom: -16.3rem;
+            width: 18rem;
+        }
+    }
+
+    .btn--primary {
+        @include respond(md) {
+            width: 35rem;
+        }
+
+        @include respond(sm) {
+            width: 27rem;
+        }
+    }
+}

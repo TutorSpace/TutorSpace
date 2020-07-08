@@ -9,6 +9,10 @@ Route::get('/test', 'testController@test');
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
 
+// subscriptions
+Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('subscription.store');
+Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
@@ -20,7 +24,7 @@ Route::group([
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
     // send verification email for register
-    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificatioinEmail');
+    Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificationEmail');
 
     // google callback for register & login
     Route::get('callback', 'Auth\GoogleController@handleGoogleCallback');
@@ -69,7 +73,7 @@ Route::group([
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 
-    // TODO: password confirm (not yet implemented)
+    // ================ password confirm ==========
     Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 });
@@ -83,10 +87,8 @@ Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middl
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['auth']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
-
-
 // home page
-Route::get('/home', 'homeController@show')->name('home')->middleware(['auth']);
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 
 // search page

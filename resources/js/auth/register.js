@@ -39,9 +39,6 @@ $('input').filter('[required]').on('input', function () {
     }
 });
 
-$(".signup-form-input-email").on('input', function() {
-
-});
 $(".signup-form-input-email").keypress(function(e) {
     var inputs = $(this).closest('form').find(':input');
     inputs.eq( inputs.index(this)+ 1 ).focus();

@@ -26,9 +26,9 @@ class GoogleController extends Controller
 
         $redirectRouteName = $request->session()->get('redirectRouteName');
         // true if this email is already registered as a student
-        $existStudent = User::where('email', '=', $user->email)->where('is_tutor', false)->count() != 0;
+        $existStudent = User::existStudent($user->email);
         // true if this email is already registered as a tutor
-        $existTutor = User::where('email', '=', $user->email)->where('is_tutor', true)->count() != 0;
+        $existTutor = User::existTutor($user->email);
 
         $registerGoogleStudent = $request->session()->has('registerGoogleStudent');
         $registerGoogleTutor = $request->session()->has('registerGoogleTutor');
@@ -140,6 +140,7 @@ class GoogleController extends Controller
 
     // redirect to Google (student register)
     public function registerRedirectToGoogleStudent(Request $request) {
+        $request->session()->flush();
         $request->session()->put('registerGoogleStudent', true);
         $request->session()->put('redirectRouteName', 'register.index.student.3');
         return Socialite::driver('google')->redirect();
@@ -147,7 +148,7 @@ class GoogleController extends Controller
 
     // redirect to Google (student login)
     public function loginRedirectToGoogleStudent(Request $request) {
-        $request->session()->forget('loginGoogleTutor');
+        $request->session()->flush();
         $request->session()->put('loginGoogleStudent', true);
         $request->session()->put('redirectRouteName', 'home');
         return Socialite::driver('google')->redirect();
@@ -155,6 +156,7 @@ class GoogleController extends Controller
 
     // redirect to Google (tutor register)
     public function registerRedirectToGoogleTutor(Request $request) {
+        $request->session()->flush();
         $request->session()->put('registerGoogleTutor', true);
         $request->session()->put('redirectRouteName', 'register.index.tutor.3');
         return Socialite::driver('google')->redirect();
@@ -162,8 +164,7 @@ class GoogleController extends Controller
 
     // redirect to Google (tutor login)
     public function loginRedirectToGoogleTutor(Request $request) {
-        // avoid the case whtn loginTutor session and loginStudent session both exist
-        $request->session()->forget('loginGoogleStudent');
+        $request->session()->flush();
         $request->session()->put('loginGoogleTutor', true);
         $request->session()->put('redirectRouteName', 'home');
         return Socialite::driver('google')->redirect();

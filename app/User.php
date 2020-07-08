@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\CustomResetPasswordNotification;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -35,10 +35,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // customized
+    // customized reset password
     public function customSendPasswordResetNotification($token, $is_tutor)
     {
-        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
+        $this->notify(new ResetPasswordNotification($token, $is_tutor));
     }
 
     public static function getTime($date, $startTime) {
@@ -252,6 +252,20 @@ class User extends Authenticatable
 
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
+
+    // check whether a user with an email exists and is a student
+    public static function existStudent($email) {
+        return User::where('email', '=', $email)->where('is_tutor', false)->count() != 0;
+    }
+
+    public static function existTutor($email) {
+        return User::where('email', '=', $email)->where('is_tutor', true)->count() != 0;
+    }
+
+    public static function registerWithGoogle($email) {
+        return User::where('email', '=', $email)->where('google_id', '!=', null)->count() != 0;
+    }
+
 
 
 

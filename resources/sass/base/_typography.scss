@@ -1,24 +1,28 @@
+@font-face {
+	font-family: 'Baloo Bhai';
+	src: url(../../../public/assets/fonts/BalooBhai-Regular.ttf);
+}
+
 body {
     font-family: Avenir;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Baloo Bhai 2', cursive;
+    font-family: 'Baloo Bhai', sans-serif;
 }
 
 h1 {
-
+    font-size: 6.4rem;
 }
 
 // Page or section titles
 h2 {
     font-size: 4.8rem;
-    font-weight: 700;
 }
 
 // Profile, popover titles
 h3 {
-
+    font-size: 4rem;
 }
 
 // Own profile subnav
@@ -33,10 +37,5 @@ h5 {
 
 // Names on Dashboard posts, messages,
 h6 {
-
-}
-
-// Labels
-label {
 
 }

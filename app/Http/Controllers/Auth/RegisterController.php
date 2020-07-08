@@ -15,8 +15,8 @@ use App\Rules\NotExistStudent;
 use Illuminate\Validation\Rule;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\EmailVerification;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\RegisterEmailVerification;
 
 
 class RegisterController extends Controller
@@ -25,22 +25,24 @@ class RegisterController extends Controller
         $this->middleware('checkLogout');
     }
 
-    public function sendVerificatioinEmail(Request $request) {
+    public function sendVerificationEmail(Request $request) {
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
 
         if($request->session()->has('registerDataStudent')) {
             $email = $request->session()->get('registerDataStudent')['email'];
             $firstName = $request->session()->get('registerDataStudent')['first-name'];
             $request->session()->put('verificationCodeStudent', $verificationCode);
+
             Notification::route('mail', $email)
-            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName));
         }
         else if($request->session()->has('registerDataTutor')) {
             $email = $request->session()->get('registerDataTutor')['email'];
             $firstName = $request->session()->get('registerDataTutor')['first-name'];
             $request->session()->put('verificationCodeTutor', $verificationCode);
+
             Notification::route('mail', $email)
-            ->notify(new RegisterEmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName));
         }
 
         return response()->json(
@@ -92,7 +94,7 @@ class RegisterController extends Controller
         ]);
 
         // if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', true)->count() != 0) {
+        if(User::existTutor($request->input('email'))) {
             echo "<h1>if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him</h1>";
             dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
         }
@@ -100,18 +102,17 @@ class RegisterController extends Controller
         // clear all the session data for safety concerns (no one can play around with the email verification process)
         $request->session()->flush();
 
-        // validate the information and stores in the session
+        // stores the information in the session
         $request->session()->put('registerDataStudent', $request->all());
-
 
         // email verification
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeStudent', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name'), false));
 
         // for testing only preview the notification
-        // return (new RegisterEmailVerification("123abc"))
+        // return (new EmailVerification("123abc"))
         //     ->toMail(User::find(1));
 
         return redirect()->route('register.index.student.2');
@@ -149,7 +150,7 @@ class RegisterController extends Controller
         ]);
 
         // if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him
-        if(User::where('email', '=', $request->input('email'))->where('is_tutor', false)->count() != 0) {
+        if(User::existStudent($request->input('email'))) {
             echo "<h1>if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him</h1>";
             dd("if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him");
         }
@@ -157,18 +158,17 @@ class RegisterController extends Controller
         // clear all the session data for safety concerns (no one can play around with the email verification process)
         $request->session()->flush();
 
-        // validate the information and stores in the session
+        // store the information in the session
         $request->session()->put('registerDataTutor', $request->all());
-
 
         // email verification
         $verificationCode = rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
         $request->session()->put('verificationCodeTutor', $verificationCode);
         Notification::route('mail', $request->input('email'))
-            ->notify(new RegisterEmailVerification($verificationCode, $request->input('first-name')));
+            ->notify(new EmailVerification($verificationCode, $request->input('first-name'), true));
 
         // for testing only preview the notification
-        // return (new RegisterEmailVerification("123abc"))
+        // return (new EmailVerification("123abc"))
         //     ->toMail(User::find(1));
 
         return redirect()->route('register.index.tutor.2');
@@ -288,9 +288,6 @@ class RegisterController extends Controller
                 'exists:school_years,id'
             ]
         ]);
-
-
-        echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
 
         // create the user
         $user = new User();
@@ -426,8 +423,6 @@ class RegisterController extends Controller
             ]
         ]);
 
-        echo "<h1>All the information is valid. I will create the user after finishing the google account register method</h1>";
-
         // create the user
         $user = new User();
 
@@ -464,9 +459,9 @@ class RegisterController extends Controller
             $user->profile_pic_url = $imgURL;
         }
 
-        $user->save();
-
         $user->courses()->attach($tutorData['courses']);
+
+        $user->save();
 
         // clear all the session data
         $request->session()->flush();
