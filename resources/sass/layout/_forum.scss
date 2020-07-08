@@ -1,12 +1,17 @@
 .forum {
     margin-top: calc(#{$nav-height} + 4rem);
+    padding: 0 14rem;
+
+    @include respond(lg) {
+        padding: 0 3rem;
+    }
 
     @include respond(sm) {
         padding: 0 4.5rem;
     }
 
     .btn-add-post {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: $color-white;
         display: flex;
         align-items: center;
@@ -40,8 +45,6 @@
             font-size: 1.4rem;
             margin-right: .5rem;
         }
-
-
     }
 
     .overlay-forum-left {
@@ -173,7 +176,7 @@
 
     &__list {
         list-style: none;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
 
         &-item {
@@ -182,9 +185,8 @@
             display: flex;
             align-items: center;
             border-radius: .5rem;
-            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
             transition: all .1s;
-
             cursor: pointer;
 
             &:hover {
@@ -201,19 +203,19 @@
         }
 
         &-svg {
-            width: 3rem;
-            height: 3rem;
-            min-width: 3rem;
-            min-height: 3rem;
-            margin-right: 1.5rem;
+            width: 2.2rem;
+            height: 2.2rem;
+            min-width: 2.2rem;
+            min-height: 2.2rem;
+            margin-right: 1rem;
             transition: all .1s;
 
             @include respond(lg) {
                 margin-right: .5rem;
-                width: 2.5rem;
-                height: 2.5rem;
-                min-width: 2.5rem;
-                min-height: 2.5rem;
+                width: 1.8rem;
+                height: 1.8rem;
+                min-width: 1.8rem;
+                min-height: 1.8rem;
             }
         }
 
@@ -230,14 +232,14 @@
 .forum-content {
 
     &__search {
-
         display: flex;
+        font-size: 1.6rem;
         width: 100%;
-        font-size: 1.8rem;
-        margin-top: 2rem;
+        margin-top: 3rem;
 
         > * {
             color: inherit;
+            font-size: inherit;
         }
 
         .form-search {
@@ -245,7 +247,6 @@
 
             .input-search {
                 background-color: $color-white-dark-3;
-                font-size: 1.8rem;
                 transition: all .1s;
 
                 &:focus {
@@ -266,7 +267,6 @@
             border-radius: .5rem;
             outline: none;
             font-weight: 500;
-            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
             background-color: $color-white-dark-3;
         }
 
@@ -300,21 +300,18 @@
         border-radius: 1rem;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
 
-        @include respond(lg) {
-            padding: 2rem 1rem;
-        }
-
         &__heading {
             display: flex;
             align-items: center;
             font-weight: bold;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
 
             svg {
-                width: 2.2rem;
-                min-width: 2.2rem;
-                height: 2.2rem;
-                min-height: 2.2rem;
+                width: 1.7rem;
+                min-width: 1.7rem;
+                height: 1.7rem;
+                min-height: 1.7rem;
                 fill: currentColor;
             }
         }
@@ -324,11 +321,7 @@
 
         &__list {
             list-style: none;
-            font-size: 1.6rem;
-
-            @include respond(lg) {
-                font-size: 1.4rem;
-            }
+            font-size: 1.5rem;
 
             thead th {
                 border-bottom: none;
@@ -347,11 +340,7 @@
 
             .post-cnt, .reply-cnt {
                 color: $color-grey;
-                font-size: 1.6rem;
-
-                @include respond(lg) {
-                    font-size: 1.4rem;
-                }
+                font-size: 1.5rem;
             }
         }
     }
@@ -370,13 +359,9 @@
 
             .question {
                 color: $color-black-post;
-                font-size: 1.6rem;
+                font-size: 1.5rem;
                 display: inline-block;
                 line-height: 1.4;
-
-                @include respond(lg) {
-                    font-size: 1.4rem;
-                }
             }
         }
     }

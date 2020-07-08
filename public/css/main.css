@@ -11779,6 +11779,10 @@ h5 {
   font-size: 2.4rem;
 }
 
+h6 {
+  font-size: 2rem;
+}
+
 .p-relative {
   position: relative;
 }
@@ -12226,7 +12230,7 @@ h5 {
 .post-previews .post-preview {
   position: relative;
   border-radius: 1rem;
-  background-color: #F5F5F5;
+  background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
   padding: 4rem 4rem 3rem 4rem;
   margin-top: 3rem;
@@ -13000,7 +13004,7 @@ svg.bookmark:hover {
 .footer *,
 .footer-sm * {
   color: #FFFFFF;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .footer__heading,
@@ -13023,8 +13027,8 @@ svg.bookmark:hover {
 
 .footer__list__icon,
 .footer-sm__list__icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.3rem;
+  height: 2.3rem;
   fill: #FFFFFF;
 }
 
@@ -13207,6 +13211,13 @@ svg.bookmark:hover {
 
 .forum {
   margin-top: calc(8rem + 4rem);
+  padding: 0 14rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum {
+    padding: 0 3rem;
+  }
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -13216,7 +13227,7 @@ svg.bookmark:hover {
 }
 
 .forum .btn-add-post {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #FFFFFF;
   display: flex;
   align-items: center;
@@ -13387,7 +13398,7 @@ svg.bookmark:hover {
 
 .forum-left__list {
   list-style: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
@@ -13397,7 +13408,7 @@ svg.bookmark:hover {
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
-  box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
   transition: all 0.1s;
   cursor: pointer;
 }
@@ -13415,21 +13426,21 @@ svg.bookmark:hover {
 }
 
 .forum-left__list-svg {
-  width: 3rem;
-  height: 3rem;
-  min-width: 3rem;
-  min-height: 3rem;
-  margin-right: 1.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  min-width: 2.2rem;
+  min-height: 2.2rem;
+  margin-right: 1rem;
   transition: all 0.1s;
 }
 
 @media only screen and (max-width: 74.99em) {
   .forum-left__list-svg {
     margin-right: 0.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
+    min-width: 1.8rem;
+    min-height: 1.8rem;
   }
 }
 
@@ -13444,13 +13455,14 @@ svg.bookmark:hover {
 
 .forum-content__search {
   display: flex;
+  font-size: 1.6rem;
   width: 100%;
-  font-size: 1.8rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .forum-content__search > * {
   color: inherit;
+  font-size: inherit;
 }
 
 .forum-content__search .form-search {
@@ -13459,7 +13471,6 @@ svg.bookmark:hover {
 
 .forum-content__search .form-search .input-search {
   background-color: #F3F3F3;
-  font-size: 1.8rem;
   transition: all 0.1s;
 }
 
@@ -13481,7 +13492,6 @@ svg.bookmark:hover {
   border-radius: 0.5rem;
   outline: none;
   font-weight: 500;
-  box-shadow: 0px 3px 1px 0px rgba(0, 0, 0, 0.1);
   background-color: #F3F3F3;
 }
 
@@ -13514,39 +13524,27 @@ svg.bookmark:hover {
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
 }
 
-@media only screen and (max-width: 74.99em) {
-  .forum-right .trending-tags,
-  .forum-right .you-may-help-with {
-    padding: 2rem 1rem;
-  }
-}
-
 .forum-right .trending-tags__heading,
 .forum-right .you-may-help-with__heading {
   display: flex;
   align-items: center;
   font-weight: bold;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  white-space: nowrap;
 }
 
 .forum-right .trending-tags__heading svg,
 .forum-right .you-may-help-with__heading svg {
-  width: 2.2rem;
-  min-width: 2.2rem;
-  height: 2.2rem;
-  min-height: 2.2rem;
+  width: 1.7rem;
+  min-width: 1.7rem;
+  height: 1.7rem;
+  min-height: 1.7rem;
   fill: currentColor;
 }
 
 .forum-right .trending-tags__list {
   list-style: none;
-  font-size: 1.6rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .forum-right .trending-tags__list {
-    font-size: 1.4rem;
-  }
+  font-size: 1.5rem;
 }
 
 .forum-right .trending-tags__list thead th {
@@ -13565,14 +13563,7 @@ svg.bookmark:hover {
 .forum-right .trending-tags__list .post-cnt,
 .forum-right .trending-tags__list .reply-cnt {
   color: #A0A0A0;
-  font-size: 1.6rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .forum-right .trending-tags__list .post-cnt,
-  .forum-right .trending-tags__list .reply-cnt {
-    font-size: 1.4rem;
-  }
+  font-size: 1.5rem;
 }
 
 .forum-right .you-may-help-with .questions {
@@ -13589,15 +13580,9 @@ svg.bookmark:hover {
 
 .forum-right .you-may-help-with .questions .question {
   color: #626262;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   display: inline-block;
   line-height: 1.4;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .forum-right .you-may-help-with .questions .question {
-    font-size: 1.4rem;
-  }
 }
 
 .bg-tutor {
@@ -14920,7 +14905,7 @@ svg.bookmark:hover {
 
 .post-create {
   border-radius: 1rem;
-  background-color: #F5F5F5;
+  background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
   padding: 4rem;
   margin-top: 3rem;
@@ -14963,7 +14948,6 @@ svg.bookmark:hover {
   display: inline-block;
   border: none;
   outline: none;
-  box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .post-create .post-title::-webkit-input-placeholder {
@@ -14993,7 +14977,7 @@ svg.bookmark:hover {
 .post-create .select-container {
   overflow: hidden;
   border: 2px solid;
-  border-radius: 1.2rem;
+  border-radius: 0.5rem;
   min-height: 5.5rem;
 }
 
@@ -15069,6 +15053,10 @@ svg.bookmark:hover {
   background-color: #6749DF;
 }
 
+.bg-tutor .tags-container {
+  color: #6749DF;
+}
+
 .bg-tutor .input-group-prepend {
   color: #6749DF;
 }
@@ -15080,6 +15068,10 @@ svg.bookmark:hover {
 .bg-student .btn-create {
   color: #F0F0F0;
   background-color: #1F7AFF;
+}
+
+.bg-student .tags-container {
+  color: #1F7AFF;
 }
 
 .bg-student .input-group-prepend {

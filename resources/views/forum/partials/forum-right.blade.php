@@ -8,12 +8,12 @@
     </a>
 
     <section class="trending-tags">
-        <h5 class="trending-tags__heading">
+        <h6 class="trending-tags__heading">
             <svg class="svg-trending-tag mr-2">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
             </svg>
             Trending Tags
-        </h5>
+        </h6>
 
         <table class="trending-tags__list table">
             <thead>
@@ -62,7 +62,7 @@
             </tbody>
         </table>
 
-        <p class="fs-1-4 bottom-0 right-0 fc-grey my-0 text-right">
+        <p class="fs-1-2 bottom-0 right-0 fc-grey my-0 text-right">
             Last Updated at 2020/07/05
         </p>
     </section>
@@ -70,12 +70,12 @@
     <div class="forum-heading-img mt-5"></div>
 
     <div class="you-may-help-with">
-        <h5 class="you-may-help-with__heading">
+        <h6 class="you-may-help-with__heading">
             <svg class="svg-trending-tag mr-2">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
             </svg>
             You may help with...
-        </h5>
+        </h6>
         <div class="questions">
             <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit?</a>
             <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit aperiam?</a>

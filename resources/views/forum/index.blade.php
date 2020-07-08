@@ -21,7 +21,7 @@ bg-student
 @include ('forum/partials.forum-helper-btn')
 
 <div class="container-fluid forum">
-    <div class="row px-5">
+    <div class="row">
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-7 forum-content">
             <div class="forum-heading-img"></div>
@@ -42,7 +42,7 @@ bg-student
                     <option value="tags">Questions Only</option>
                     <option value="keywords">Discussions Only</option>
                 </select> --}}
-                <select name="" class="forum-content__search__sort-by">
+                <select name="" class="forum-content__search__sort-by ml-auto">
                     <option value="latest">Latest First</option>
                     <option value="popular">Popular First</option>
                 </select>

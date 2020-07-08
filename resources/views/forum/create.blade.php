@@ -24,7 +24,7 @@ bg-student select2-bg-student
 @include ('forum/partials.forum-helper-btn')
 
 <div class="container-fluid forum">
-    <div class="row px-5">
+    <div class="row">
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-7 forum-content">
             <div class="forum-heading-img"></div>
@@ -76,7 +76,7 @@ bg-student select2-bg-student
                     @enderror
                 </div>
                 <p class="input-title">Tags</p>
-                <div class="input-content p-relative">
+                <div class="input-content p-relative tags-container">
                     <div class="input-group select-container p-relative select-container-icon pb-0-5">
                         <svg class="select-container__icon">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
