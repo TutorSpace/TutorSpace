@@ -12266,6 +12266,11 @@ h6 {
   -webkit-line-clamp: 2;
   /* number of lines to show */
   -webkit-box-orient: vertical;
+  color: #626262;
+}
+
+.post-previews .post-preview .post__heading-2 {
+  color: #626262;
 }
 
 .post-previews .post-preview .post__content {
@@ -12277,6 +12282,10 @@ h6 {
   color: inherit !important;
   font-size: inherit !important;
   background-color: none !important;
+}
+
+.post-previews .post-preview .post__bottom__info {
+  color: #626262;
 }
 
 .post-previews .post-preview .post__bottom svg {
@@ -14944,6 +14953,7 @@ svg.bookmark:hover {
 
 .post-detail {
   margin-bottom: 30rem;
+  color: initial;
 }
 
 .post-detail-tag {
@@ -14953,13 +14963,12 @@ svg.bookmark:hover {
   font-size: 1.4rem;
 }
 
-.post-detail .post__content {
-  color: initial;
-}
-
 .post-detail .post__content img {
   max-width: 100%;
   height: auto;
+  max-height: 30rem;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .post-detail .post__bottom svg {

@@ -38,6 +38,12 @@
             display: -webkit-box;
             -webkit-line-clamp: 2; /* number of lines to show */
             -webkit-box-orient: vertical;
+
+            color: $color-black-post;
+
+            &-2 {
+                color: $color-black-post;
+            }
         }
 
         .post__content {
@@ -57,6 +63,10 @@
         }
 
         .post__bottom {
+
+            &__info {
+                color: $color-black-post;
+            }
             svg {
                 fill: $color-grey;
             }

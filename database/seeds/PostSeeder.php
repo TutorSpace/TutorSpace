@@ -146,5 +146,62 @@ class PostSeeder extends Seeder
             'post_type_id' => 1,
             'created_at' => '2020-07-08 14:55:30'
         ]);
+
+        $postTags = [
+            [
+                'post_id' => 1,
+                'tag_id' => 2
+            ],[
+                'post_id' => 1,
+                'tag_id' => 3
+            ],[
+                'post_id' => 1,
+                'tag_id' => 17
+            ],[
+                'post_id' => 1,
+                'tag_id' => 16
+            ],[
+                'post_id' => 1,
+                'tag_id' => 15
+            ],[
+                'post_id' => 1,
+                'tag_id' => 14
+            ],[
+                'post_id' => 1,
+                'tag_id' => 23
+            ],[
+                'post_id' => 1,
+                'tag_id' => 28
+            ],[
+                'post_id' => 1,
+                'tag_id' => 29
+            ],[
+                'post_id' => 1,
+                'tag_id' => 31
+            ],[
+                'post_id' => 1,
+                'tag_id' => 32
+            ],[
+                'post_id' => 1,
+                'tag_id' => 34
+            ],
+            [
+                'post_id' => 2,
+                'tag_id' => 2
+            ],[
+                'post_id' => 2,
+                'tag_id' => 4
+            ],[
+                'post_id' => 2,
+                'tag_id' => 1
+            ],[
+                'post_id' => 3,
+                'tag_id' => 19
+            ],[
+                'post_id' => 3,
+                'tag_id' => 29
+            ]
+            ];
+        DB::table('post_tag')->insert($postTags);
     }
 }

@@ -42,15 +42,21 @@ bg-student
             </form>
 
             <div class="post-detail">
-                <h5 class="post__heading fc-black-post">
+                <h5 class="post__heading">
                     {{ $post->title }}
                 </h5>
-                <p class="post__heading-2 fc-black-post">
+                <p class="post__heading-2">
                     <span class="mr-3">Posted By</span>
                     <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
+                    @can('viewProfile', $post)
                     <a href="#" class="poster-name mr-3 btn-link">
                         {{ "{$post->user->first_name} {$post->user->last_name}" }}
                     </a>
+                    @else
+                    <span class="poster-name mr-3">
+                        You
+                    </span>
+                    @endcan
                     <span>{{ $post->created_at }}</span>
                 </p>
                 <div class="post__content mb-4">
@@ -59,17 +65,11 @@ bg-student
 
                 <div class="post__bottom">
                     <div class="tags">
-                        @foreach ($post->tags->take(3) as $tag)
+                        @foreach ($post->tags as $tag)
                             <span class="tag">{{ $tag->tag }}</span>
                         @endforeach
-                        @php
-                            $cnt = $post->tags->count();
-                        @endphp
-                        @if ($cnt > 3)
-                            <span class="fc-grey">and {{ $cnt - 3 }} more...</span>
-                        @endif
                     </div>
-                    <div class="post__bottom__info d-flex fc-black-post">
+                    <div class="post__bottom__info d-flex">
                         <div class="left-container d-flex align-items-center mt-3">
                             <svg class="mr-1">
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>

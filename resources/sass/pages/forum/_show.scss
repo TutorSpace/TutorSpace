@@ -1,5 +1,7 @@
 .post-detail {
     margin-bottom: 30rem;
+    color: initial;
+
 
     &-tag {
         position: absolute;
@@ -8,12 +10,15 @@
         font-size: 1.4rem;
     }
 
+
     .post__content {
-        color: initial;
+
 
         img {
             max-width: 100%;
             height: auto;
+            max-height: 30rem;
+            object-fit: contain;
         }
     }
 
