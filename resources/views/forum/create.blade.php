@@ -139,8 +139,9 @@ bg-student select2-bg-student
         plugins: [
             'advlist autolink link image lists charmap print preview hr spellchecker',
             'wordcount fullscreen insertdatetime',
-            'emoticons paste help imagetools'
+            'table emoticons paste help imagetools'
         ],
+        // remove_linebreaks : true,
         height: 300,
         a_plugin_option: true,
         a_configuration_option: 400,

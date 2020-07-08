@@ -63,10 +63,9 @@ bg-student
                             <span>Three days ago</span>
                         </p>
                         <div class="post__content fc-grey mb-4">
-                            {{ Str::words('Perfectly balanced, as all things should be.', 3, ' >>>') }}
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
+                            {{ Str::words('Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem', 40, ' ...') }}
                         </div>
                     </div>
                     <div class="post-preview__right">
@@ -78,59 +77,6 @@ bg-student
                             <span class="tag">Computer</span>
                             <span class="tag">Science</span>
                             <span class="fc-grey">and 5 more...</span>
-                        </div>
-                        <div class="post__bottom__info d-flex fc-black-post">
-                            <div class="left-container d-flex align-items-center mt-3">
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    105 people found this post useful.
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    439
-                                </span>
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                                </svg>
-                                <span class="">
-                                    97
-                                </span>
-                            </div>
-                            <a href="#" class="btn-link mt-3">View</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="post-preview flex-wrap">
-                    <div class="post-preview__left">
-                        <h5>
-                            <a class="post__heading fc-black-post"  href="#">
-                            Lorem ipsum dolor sit amet consectetur
-                            </a>
-                        </h5>
-                        <p class="post__heading-2 fc-black-post">
-                            <span class="mr-3">Posted By</span>
-                            <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
-                            <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
-                            <span>Three days ago</span>
-                        </p>
-                        <div class="post__content fc-grey mb-4">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis
-                        </div>
-                    </div>
-                    <div class="post-preview__right">
-                        <img class="post-preview__right__thumbnail" src="https://storage.googleapis.com/tutorspace-storage/user-photos/mrzsjQKvQJn5sAPQqYJtEWEO5Bdg97Kfpjse2QYL.png" alt="thumbnail">
-                    </div>
-                    <div class="post__bottom">
-                        <div class="tags">
-                            <span class="tag">Computer Science</span>
-                            <span class="tag">Computer</span>
-                            <span class="tag">Science</span>
-                            {{-- <span class="fc-grey">and 5 more...</span> --}}
                         </div>
                         <div class="post__bottom__info d-flex fc-black-post">
                             <div class="left-container d-flex align-items-center mt-3">
@@ -227,7 +173,8 @@ bg-student
                             <span>{{ $post->getTimeAgo() }}</span>
                         </p>
                         <div class="post__content fc-grey mb-4">
-                            {!! Str::words($post->content, 30, ' ...') !!}
+                            {{-- {!! $post->content !!} --}}
+                            {!! Str::words(strip_tags($post->content), 40, ' ...') !!}
                         </div>
                     </div>
                     @if(!empty($post->getThumbNail()))
@@ -253,19 +200,19 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                                 </svg>
                                 <span class="mr-5">
-                                    105 people found this post useful.
+                                    {{ $post->like_count }} people found this post useful.
                                 </span>
-                                <svg class=" mr-1">
+                                <svg class="mr-1">
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                                 </svg>
                                 <span class="mr-5">
-                                    439
+                                    {{ $post->view_count }}
                                 </span>
-                                <svg class=" mr-1">
+                                <svg class="mr-1">
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                                 </svg>
                                 <span class="">
-                                    97
+                                    0
                                 </span>
                             </div>
                             <a href="#" class="btn-link mt-3">View</a>
