@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 64);
             $table->string('email', 64);
             $table->boolean('is_tutor');
+            $table->string('tutor_level')->default('beginner');
             $table->unsignedBigInteger('first_major_id')->nullable();
             $table->unsignedBigInteger('second_major_id')->nullable();
             $table->string('gpa', 64)->default('N/A');

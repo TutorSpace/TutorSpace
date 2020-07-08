@@ -218,7 +218,7 @@ class PostController extends Controller
         } else {
             // Notify editor that the upload failed
             return response()->json([
-                'errorMsg' => 'Something went wrong when uploading the image...'
+                'errorMsg' => 'Something went wrong when uploading the image. Please check your image extension and file size.'
             ]);
         }
     }

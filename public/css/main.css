@@ -11744,26 +11744,43 @@ body {
   }
 }
 
+@font-face {
+  font-family: "Baloo Bhai";
+  src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
+}
+
 body {
   font-family: Avenir;
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Baloo Bhai 2", cursive;
+h3 {
+  font-family: "Baloo Bhai", sans-serif;
+}
+
+h1 {
+  font-size: 6.4rem;
 }
 
 h2 {
   font-size: 4.8rem;
-  font-weight: 700;
 }
 
 h3 {
   font-size: 4rem;
+}
+
+h4 {
+  font-size: 3rem;
+}
+
+h5 {
+  font-size: 2.4rem;
+}
+
+h6 {
+  font-size: 2rem;
 }
 
 .p-relative {
@@ -12234,7 +12251,7 @@ h3 {
 .post-previews .post-preview__right {
   max-width: 25rem;
   flex: 0 0 30%;
-  max-height: 25rem;
+  max-height: 22rem;
   margin-left: 2rem;
   padding-top: 3rem;
   margin-bottom: 0.5rem;

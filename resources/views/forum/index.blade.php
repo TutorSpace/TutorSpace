@@ -53,7 +53,7 @@ bg-student
                 <div class="post-preview flex-wrap">
                     <div class="post-preview__left">
                         <h5>
-                            <a class="post__heading fc-black-post"  href="#">
+                            <a class="post__heading fc-black-post"  href="{{ route('posts.show', $post->slug) }}">
                                 {{ $post->title }}
                             </a>
                         </h5>
@@ -66,7 +66,7 @@ bg-student
                             <span>{{ $post->getTimeAgo() }}</span>
                         </p>
                         <div class="post__content fc-grey mb-4">
-                            {!! Str::words(strip_tags($post->content), 40, ' ...') !!}
+                            {!! Str::words(strip_tags($post->content), 30, ' ...') !!}
                         </div>
                     </div>
                     @if(!empty($post->getThumbNail()))
