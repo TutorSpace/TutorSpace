@@ -23,8 +23,8 @@ bg-student select2-bg-student
 
 @include ('forum/partials.forum-helper-btn')
 
-<div class="container-fluid forum">
-    <div class="row">
+<div class="container forum">
+    <div class="row forum-row">
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-7 forum-content">
             <div class="forum-heading-img"></div>

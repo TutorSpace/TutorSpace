@@ -9,8 +9,8 @@
 
     <section class="trending-tags">
         <h6 class="trending-tags__heading">
-            <svg class="svg-trending-tag mr-2">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+            <svg class="svg-trending-tag mr-1">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-stars')}}"></use>
             </svg>
             Trending Tags
         </h6>
@@ -71,8 +71,8 @@
 
     <div class="you-may-help-with">
         <h6 class="you-may-help-with__heading">
-            <svg class="svg-trending-tag mr-2">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+            <svg class="svg-help mr-2">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-help')}}"></use>
             </svg>
             You may help with...
         </h6>

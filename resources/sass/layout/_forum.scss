@@ -1,13 +1,12 @@
 .forum {
     margin-top: calc(#{$nav-height} + 4rem);
-    padding: 0 14rem;
 
-    @include respond(lg) {
-        padding: 0 3rem;
-    }
+    .forum-row {
+        margin: 0 -4rem;
 
-    @include respond(sm) {
-        padding: 0 4.5rem;
+        @include respond(sm) {
+            margin: 0;
+        }
     }
 
     .btn-add-post {
@@ -32,7 +31,7 @@
         align-items: center;
         padding: .5rem 1rem;
         border-radius: .5rem;
-        background-color: $color-white-dark-3;
+        background-color: $color-white-dark-5;
         box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
         border: none;
         margin-right: 1.5rem;
@@ -180,7 +179,7 @@
         font-weight: bold;
 
         &-item {
-            background-color: $color-white-dark-3;
+            background-color: $color-white-dark-5;
             padding: 1rem;
             display: flex;
             align-items: center;
@@ -190,10 +189,10 @@
             cursor: pointer;
 
             &:hover {
-                color: $color-white-dark-3;
+                color: $color-white-dark-5;
 
                 svg {
-                    fill: $color-white-dark-3;
+                    fill: $color-white-dark-5;
                 }
             }
 
@@ -246,7 +245,7 @@
             width: 30rem;
 
             .input-search {
-                background-color: $color-white-dark-3;
+                background-color: $color-white-dark-5;
                 transition: all .1s;
 
                 &:focus {
@@ -267,7 +266,7 @@
             border-radius: .5rem;
             outline: none;
             font-weight: 500;
-            background-color: $color-white-dark-3;
+            background-color: $color-white-dark-5;
         }
 
         &__search-by {
@@ -295,7 +294,7 @@
 
     .trending-tags, .you-may-help-with {
         margin-top: 3rem;
-        background-color: $color-white-dark-3;
+        background-color: $color-white-dark-5;
         padding: 2rem;
         border-radius: 1rem;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
@@ -307,17 +306,31 @@
             margin-bottom: 1.5rem;
             white-space: nowrap;
 
+            @include respond(lg) {
+                font-size: 1.8rem;
+            }
+
             svg {
-                width: 1.7rem;
-                min-width: 1.7rem;
-                height: 1.7rem;
-                min-height: 1.7rem;
                 fill: currentColor;
             }
         }
     }
 
     .trending-tags {
+
+        .svg-trending-tag {
+            width: 3.5rem;
+            min-width: 3.5rem;
+            height: 3.5rem;
+            min-height: 3.5rem;
+
+            @include respond(lg) {
+                width: 3.2rem;
+                min-width: 3.2rem;
+                height: 3.2rem;
+                min-height: 3.2rem;
+            }
+        }
 
         &__list {
             list-style: none;
@@ -346,6 +359,20 @@
     }
 
     .you-may-help-with {
+
+        .svg-help {
+            width: 2.5rem;
+            min-width: 2.5rem;
+            height: 2.5rem;
+            min-height: 2.5rem;
+
+            @include respond(lg) {
+                width: 2.2rem;
+                min-width: 2.2rem;
+                height: 2.2rem;
+                min-height: 2.2rem;
+            }
+        }
 
         .questions {
             border-top: 1px solid #dee2e6;

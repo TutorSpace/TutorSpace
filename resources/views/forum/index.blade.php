@@ -20,8 +20,8 @@ bg-student
 
 @include ('forum/partials.forum-helper-btn')
 
-<div class="container-fluid forum">
-    <div class="row">
+<div class="container forum">
+    <div class="row forum-row">
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-7 forum-content">
             <div class="forum-heading-img"></div>
@@ -59,7 +59,7 @@ bg-student
                         </h5>
                         <p class="post__heading-2 fc-black-post">
                             <span class="mr-3">Posted By</span>
-                            <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
+                            <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
                             <a href="#" class="poster-name mr-3 btn-link">
                                 {{ "{$post->user->first_name} {$post->user->last_name}" }}
                             </a>
@@ -88,20 +88,20 @@ bg-student
                         </div>
                         <div class="post__bottom__info d-flex fc-black-post">
                             <div class="left-container d-flex align-items-center mt-3">
-                                <svg class=" mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                <svg class="mr-1">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span class="mr-5">
                                     {{ $post->like_count }} people found this post useful.
                                 </span>
                                 <svg class="mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                                 </svg>
                                 <span class="mr-5">
                                     {{ $post->view_count }}
                                 </span>
                                 <svg class="mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="">
                                     0

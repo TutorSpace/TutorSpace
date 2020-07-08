@@ -11744,43 +11744,26 @@ body {
   }
 }
 
-@font-face {
-  font-family: "Baloo Bhai";
-  src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
-}
-
 body {
   font-family: Avenir;
 }
 
 h1,
 h2,
-h3 {
-  font-family: "Baloo Bhai", sans-serif;
-}
-
-h1 {
-  font-size: 6.4rem;
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Baloo Bhai 2", cursive;
 }
 
 h2 {
   font-size: 4.8rem;
+  font-weight: 700;
 }
 
 h3 {
   font-size: 4rem;
-}
-
-h4 {
-  font-size: 3rem;
-}
-
-h5 {
-  font-size: 2.4rem;
-}
-
-h6 {
-  font-size: 2rem;
 }
 
 .p-relative {
@@ -12285,6 +12268,12 @@ h6 {
   background-color: none !important;
 }
 
+.post-previews .post-preview .post__bottom svg {
+  fill: #A0A0A0;
+  width: 2rem;
+  height: 2rem;
+}
+
 .tag {
   padding: 0.5rem 1.25rem;
   display: inline-block;
@@ -12486,7 +12475,6 @@ svg.bookmark:hover {
   border: 2px solid;
   padding-right: 3rem;
   padding-left: 1.3rem;
-  font-size: 1.8rem;
   font-weight: 500;
   border-radius: 0.75rem;
 }
@@ -12526,9 +12514,9 @@ svg.bookmark:hover {
 }
 
 .nav .brand-name {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-family: "Baloo Bhai", sans-serif;
-  margin: 0 5rem;
+  margin: 0 4rem;
   text-decoration: none;
   color: inherit;
 }
@@ -12550,14 +12538,14 @@ svg.bookmark:hover {
 
 @media only screen and (max-width: 61.99em) {
   .nav .brand-name {
-    margin: 0 3rem;
+    margin: 0 2.5rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
   .nav .brand-name {
-    margin-left: 1.5rem;
-    margin-right: 2.5rem;
+    margin-left: 1.3rem;
+    margin-right: 2.2rem;
     position: relative;
     width: 5rem;
     visibility: hidden;
@@ -12588,13 +12576,13 @@ svg.bookmark:hover {
 }
 
 .nav .nav__item {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: inherit;
 }
 
 .nav .svg-list {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   cursor: pointer;
 }
@@ -12719,19 +12707,19 @@ svg.bookmark:hover {
 }
 
 .nav .nav-right__svg-container .svg-message {
-  font-size: 2.3rem;
+  font-size: 2rem;
   margin-right: 1.8rem;
 }
 
 @media only screen and (max-width: 47.99em) {
   .nav .nav-right__svg-container .svg-message {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-right: 1.3rem;
   }
 }
 
 .nav .nav-right__svg-container .svg-notification {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -12741,8 +12729,8 @@ svg.bookmark:hover {
 }
 
 .nav .nav-right__profile-img {
-  width: 5rem;
-  height: 5rem;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
   border: 2px solid;
   -o-object-fit: cover;
@@ -12754,8 +12742,8 @@ svg.bookmark:hover {
   .nav .nav-right__profile-img {
     margin-right: 2rem;
     border-width: 1px;
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 4rem;
+    height: 4rem;
   }
 }
 
@@ -13211,18 +13199,15 @@ svg.bookmark:hover {
 
 .forum {
   margin-top: calc(8rem + 4rem);
-  padding: 0 14rem;
 }
 
-@media only screen and (max-width: 74.99em) {
-  .forum {
-    padding: 0 3rem;
-  }
+.forum .forum-row {
+  margin: 0 -4rem;
 }
 
 @media only screen and (max-width: 47.99em) {
-  .forum {
-    padding: 0 4.5rem;
+  .forum .forum-row {
+    margin: 0;
   }
 }
 
@@ -13248,7 +13233,7 @@ svg.bookmark:hover {
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  background-color: #F3F3F3;
+  background-color: #F9F9F9;
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
   border: none;
   margin-right: 1.5rem;
@@ -13403,7 +13388,7 @@ svg.bookmark:hover {
 }
 
 .forum-left__list-item {
-  background-color: #F3F3F3;
+  background-color: #F9F9F9;
   padding: 1rem;
   display: flex;
   align-items: center;
@@ -13414,11 +13399,11 @@ svg.bookmark:hover {
 }
 
 .forum-left__list-item:hover {
-  color: #F3F3F3;
+  color: #F9F9F9;
 }
 
 .forum-left__list-item:hover svg {
-  fill: #F3F3F3;
+  fill: #F9F9F9;
 }
 
 .forum-left__list-item:not(:first-child) {
@@ -13470,7 +13455,7 @@ svg.bookmark:hover {
 }
 
 .forum-content__search .form-search .input-search {
-  background-color: #F3F3F3;
+  background-color: #F9F9F9;
   transition: all 0.1s;
 }
 
@@ -13492,7 +13477,7 @@ svg.bookmark:hover {
   border-radius: 0.5rem;
   outline: none;
   font-weight: 500;
-  background-color: #F3F3F3;
+  background-color: #F9F9F9;
 }
 
 .forum-content__search__search-by {
@@ -13518,7 +13503,7 @@ svg.bookmark:hover {
 .forum-right .trending-tags,
 .forum-right .you-may-help-with {
   margin-top: 3rem;
-  background-color: #F3F3F3;
+  background-color: #F9F9F9;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
@@ -13533,13 +13518,32 @@ svg.bookmark:hover {
   white-space: nowrap;
 }
 
+@media only screen and (max-width: 74.99em) {
+  .forum-right .trending-tags__heading,
+  .forum-right .you-may-help-with__heading {
+    font-size: 1.8rem;
+  }
+}
+
 .forum-right .trending-tags__heading svg,
 .forum-right .you-may-help-with__heading svg {
-  width: 1.7rem;
-  min-width: 1.7rem;
-  height: 1.7rem;
-  min-height: 1.7rem;
   fill: currentColor;
+}
+
+.forum-right .trending-tags .svg-trending-tag {
+  width: 3.5rem;
+  min-width: 3.5rem;
+  height: 3.5rem;
+  min-height: 3.5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-right .trending-tags .svg-trending-tag {
+    width: 3.2rem;
+    min-width: 3.2rem;
+    height: 3.2rem;
+    min-height: 3.2rem;
+  }
 }
 
 .forum-right .trending-tags__list {
@@ -13564,6 +13568,22 @@ svg.bookmark:hover {
 .forum-right .trending-tags__list .reply-cnt {
   color: #A0A0A0;
   font-size: 1.5rem;
+}
+
+.forum-right .you-may-help-with .svg-help {
+  width: 2.5rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .forum-right .you-may-help-with .svg-help {
+    width: 2.2rem;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    min-height: 2.2rem;
+  }
 }
 
 .forum-right .you-may-help-with .questions {

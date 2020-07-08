@@ -13,7 +13,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="#">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
                 </svg>
                 <span>Popular Posts</span>
             </a>
@@ -21,7 +21,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="#">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
                 </svg>
                 <span>My Posts</span>
             </a>
@@ -29,7 +29,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="{{ route('my-follows.index') }}">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
                 </svg>
                 <span>My Follows</span>
             </a>
@@ -41,19 +41,19 @@
     <ul class="forum-left__list">
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
             </svg>
             <a class="forum-left__list-content" href="#">Popular Posts</a>
         </li>
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
             </svg>
             <a class="forum-left__list-content" href="#">My Posts</a>
         </li>
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
             </svg>
             <a class="forum-left__list-content" href="{{ route('my-follows.index') }}">My Follows</a>
         </li>
