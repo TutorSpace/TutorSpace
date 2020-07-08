@@ -137,9 +137,9 @@ bg-student select2-bg-student
     tinymce.init({
         selector: 'textarea',  // change this value according to your HTML
         plugins: [
-            'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
-            'table emoticons template paste help imagetools'
+            'advlist autolink link image lists charmap print preview hr spellchecker',
+            'wordcount fullscreen insertdatetime',
+            'emoticons paste help imagetools'
         ],
         height: 300,
         a_plugin_option: true,

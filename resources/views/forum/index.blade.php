@@ -43,8 +43,8 @@ bg-student
                     <option value="keywords">Discussions Only</option>
                 </select> --}}
                 <select name="" class="forum-content__search__sort-by">
-                    <option value="popular">Popular First</option>
                     <option value="latest">Latest First</option>
+                    <option value="popular">Popular First</option>
                 </select>
             </form>
 
@@ -62,12 +62,12 @@ bg-student
                             <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
-                        <p class="post__content fc-grey">
+                        <div class="post__content fc-grey mb-4">
                             {{ Str::words('Perfectly balanced, as all things should be.', 3, ' >>>') }}
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                        </p>
+                        </div>
                     </div>
                     <div class="post-preview__right">
                         <img class="post-preview__right__thumbnail" src="{{asset('assets/images/usc.jpg')}}" alt="thumbnail">
@@ -118,9 +118,9 @@ bg-student
                             <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
-                        <p class="post__content fc-grey">
+                        <div class="post__content fc-grey mb-4">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis
-                        </p>
+                        </div>
                     </div>
                     <div class="post-preview__right">
                         <img class="post-preview__right__thumbnail" src="https://storage.googleapis.com/tutorspace-storage/user-photos/mrzsjQKvQJn5sAPQqYJtEWEO5Bdg97Kfpjse2QYL.png" alt="thumbnail">
@@ -171,11 +171,11 @@ bg-student
                             <a href="#" class="poster-name mr-3 btn-link">Nemo Enim</a>
                             <span>Three days ago</span>
                         </p>
-                        <p class="post__content fc-grey">
+                        <div class="post__content fc-grey mb-4">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidemLorem ipsum dolor sit amet consectetur, adipisicing elit. Facilis quidem
-                        </p>
+                        </div>
                     </div>
                     <div class="post__bottom">
                         <div class="tags">
@@ -209,6 +209,71 @@ bg-student
                         </div>
                     </div>
                 </div>
+
+                @foreach ($posts as $post)
+                <div class="post-preview flex-wrap">
+                    <div class="post-preview__left">
+                        <h5>
+                            <a class="post__heading fc-black-post"  href="#">
+                                {{ $post->title }}
+                            </a>
+                        </h5>
+                        <p class="post__heading-2 fc-black-post">
+                            <span class="mr-3">Posted By</span>
+                            <img src="{{asset('assets/images/usc.jpg')}}" alt="user photo" class="poster-img">
+                            <a href="#" class="poster-name mr-3 btn-link">
+                                {{ "{$post->user->first_name} {$post->user->last_name}" }}
+                            </a>
+                            <span>{{ $post->getTimeAgo() }}</span>
+                        </p>
+                        <div class="post__content fc-grey mb-4">
+                            {!! Str::words($post->content, 30, ' ...') !!}
+                        </div>
+                    </div>
+                    @if(!empty($post->getThumbNail()))
+                        <div class="post-preview__right">
+                            <img class="post-preview__right__thumbnail" src="{{ $post->getThumbNail()[1] }}" alt="thumbnail">
+                        </div>
+                    @endif
+                    <div class="post__bottom">
+                        <div class="tags">
+                            @foreach ($post->tags->take(3) as $tag)
+                                <span class="tag">{{ $tag->tag }}</span>
+                            @endforeach
+                            @php
+                                $cnt = $post->tags->count();
+                            @endphp
+                            @if ($cnt > 3)
+                                <span class="fc-grey">and {{ $cnt - 3 }} more...</span>
+                            @endif
+                        </div>
+                        <div class="post__bottom__info d-flex fc-black-post">
+                            <div class="left-container d-flex align-items-center mt-3">
+                                <svg class=" mr-1">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                </svg>
+                                <span class="mr-5">
+                                    105 people found this post useful.
+                                </span>
+                                <svg class=" mr-1">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                </svg>
+                                <span class="mr-5">
+                                    439
+                                </span>
+                                <svg class=" mr-1">
+                                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+                                </svg>
+                                <span class="">
+                                    97
+                                </span>
+                            </div>
+                            <a href="#" class="btn-link mt-3">View</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
             </div>
 
         </section>

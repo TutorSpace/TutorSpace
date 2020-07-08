@@ -2,10 +2,13 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $dates = ['created_at', 'updated_at'];
+
     public function getRouteKeyName() {
         return 'slug';
     }
@@ -21,5 +24,15 @@ class Post extends Model
     public function tags() {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function getThumbNail() {
+        preg_match('/\<img.+src\=(?:\"|\')(.+?)(?:\"|\')(?:.+?)\>/', $this->content, $result);
+        return $result;
+    }
+
+    public function getTimeAgo() {
+        return 'on ' . $this->created_at->format('Y/m/d');
+    }
+
 
 }

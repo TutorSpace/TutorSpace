@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->text('content');
             $table->unsignedBigInteger('view_count')->default(0);
+            $table->unsignedBigInteger('like_count')->default(0);
             $table->string('slug')->unique();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('best_reply_id')->nullable();

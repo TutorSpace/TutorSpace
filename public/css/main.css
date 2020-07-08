@@ -12249,15 +12249,16 @@ h5 {
   flex: 0 0 30%;
   max-height: 25rem;
   margin-left: 2rem;
+  padding-top: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 .post-previews .post-preview__right__thumbnail {
-  padding-top: 3rem;
-  padding-bottom: 0.5rem;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 0.3rem;
 }
 
 .post-previews .post-preview .post__heading {
@@ -12270,12 +12271,18 @@ h5 {
 }
 
 .post-previews .post-preview .post__content {
+  max-height: 30rem;
   overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  /* number of lines to show */
-  -webkit-box-orient: vertical;
+}
+
+.post-previews .post-preview .post__content * {
+  color: inherit !important;
+  font-size: inherit !important;
+  background-color: none !important;
+}
+
+.post-previews .post-preview .post__content img {
+  display: none !important;
 }
 
 .tag {

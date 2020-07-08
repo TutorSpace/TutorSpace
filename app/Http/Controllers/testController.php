@@ -26,43 +26,19 @@ class testController extends Controller
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
-    public function index() {
-        return view('test');
+    public function index(Request $request) {
+
+        $body = '<p>gdgdgsgs<sub>dgdgsgsdgs</sub></p>
+        <h1><span style="font-size: 36pt;">dgdgsg</span></h1>
+        <p><span style="font-size: 36pt;">img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/gukRmLcJBxnBinF5F3PffB67RMFGJy1uqOaqaPIV.png" alt="" width="150" height="200" /></span></p>';
+
+        preg_match('/\<img.+src\=(?:\"|\')(.+?)(?:\"|\')(?:.+?)\>/', $body, $result);
+
+        dd(empty($result));
+        // return view('test');
     }
 
     public function test(Request $request) {
-        reset($_FILES);
-        $temp = current($_FILES);
-
-        if(is_uploaded_file($temp['tmp_name'])){
-
-            // Sanitize input
-            if(preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])){
-                return response()->json([
-                    'errorMsg' => 'Invalid File Name!'
-                ]);
-            }
-
-            // Verify extension
-            if(!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("jpg", "png", "jpeg"))){
-                return response()->json([
-                    'errorMsg' => 'Invalid File Extension!'
-                ]);
-            }
-
-            // upload the file
-            $uploadedFileName = $request->file('file')->store('/user-profile-photos');
-
-            return response()->json([
-                'location' => Storage::url($uploadedFileName)
-            ]);
-        } else {
-            // Notify editor that the upload failed
-            return response()->json([
-                'errorMsg' => 'Something went wrong when uploading the image...'
-            ]);
-        }
-
 
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
