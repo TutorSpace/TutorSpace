@@ -1,6 +1,20 @@
 .post-detail-container {
     margin-bottom: 30rem;
 
+    .post__heading {
+        font-weight: 600;
+    }
+
+    .post__heading-2 {
+        display: flex;
+        align-items: center;
+        svg {
+            width: 2rem;
+            height: 2rem;
+            fill: $color-grey;
+        }
+    }
+
     .post-detail {
         color: initial;
 
@@ -18,7 +32,9 @@
         }
 
         .post__content {
-
+            * {
+                max-width: 100%;
+            }
 
             img {
                 max-width: 100%;

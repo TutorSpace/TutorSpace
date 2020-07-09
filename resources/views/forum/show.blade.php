@@ -43,9 +43,9 @@ bg-student
 
             <div class="post-detail-container">
                 <div class="post-detail">
-                    <h5 class="post__heading">
+                    <h4 class="post__heading">
                         {{ $post->title }}
-                    </h5>
+                    </h4>
                     <p class="post__heading-2 mb-4">
                         <span class="mr-3">Posted By</span>
                         <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
@@ -58,7 +58,13 @@ bg-student
                             Me
                         </span>
                         @endcan
-                        <span>{{ $post->getTime() }}</span>
+                        <span class="mr-4">{{ $post->getTime() }}</span>
+                        <svg class="mr-1">
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
+                        </svg>
+                        <span>
+                            {{ $post->view_count }}
+                        </span>
                     </p>
                     <div class="post__content mb-4">
                         {!! $post->content !!}
@@ -70,37 +76,14 @@ bg-student
                                 <span class="tag">{{ $tag->tag }}</span>
                             @endforeach
                         </div>
-                        <div class="post__bottom__info d-flex">
-                            <div class="left-container d-flex align-items-center mt-3">
-                                <svg class="mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    {{ $post->like_count }} people found this post useful.
-                                </span>
-                                <svg class="mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
-                                </svg>
-                                <span class="mr-5">
-                                    {{ $post->view_count }}
-                                </span>
-                                <svg class="mr-1">
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
-                                </svg>
-                                <span class="">
-                                    {{ $post->replies->count() }}
-                                </span>
-                            </div>
-                        </div>
-                        <div class="post__bottom__actions d-flex mt-3">
-                            <span class="mt-3">How do you feel about this post?</span>
+                        <div class="post__bottom__actions d-flex mt-3 justify-content-end">
                             <div class="left-container d-flex align-items-center mt-3">
                                 <div class="action action-useful">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span>
-                                        Useful
+                                        {{ $post->like_count }}
                                     </span>
                                 </div>
 
@@ -109,7 +92,7 @@ bg-student
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                     <span>
-                                        Reply
+                                        {{ $post->replies->count() }}
                                     </span>
                                 </div>
 
@@ -144,29 +127,15 @@ bg-student
                         <div class="post-reply__content">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis.
                         </div>
-                        <div class="post-reply__info">
-                            <svg class="mr-1">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
-                            </svg>
-                            <span class="mr-5">
-                                {{ $post->like_count }}
-                            </span>
-                            <svg class="mr-1">
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
-                            </svg>
-                            <span class="">
-                                {{ $post->replies->count() }}
-                            </span>
-                            <button class="btn btn-link btn-toggle-follow-up">Hide all followups</button>
-                        </div>
                         <div class="post-reply__actions">
-                            <span class="mr-auto">reply time</span>
+                            <span class="mr-auto fs-1-2">reply time</span>
+                            <button class="btn btn-link btn-toggle-follow-up mr-2">Hide all followups</button>
                             <div class="action action-useful">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span>
-                                    Useful
+                                    13
                                 </span>
                             </div>
                             <div class="action action-reply">
@@ -174,7 +143,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span>
-                                    Reply
+                                    13
                                 </span>
                             </div>
                             <div class="action action-report mr-0">
@@ -191,23 +160,27 @@ bg-student
 
                 <div class="post-comment">
                     <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
-                    <textarea class="post-comment__input"></textarea>
+                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2"></textarea>
                     <button class="btn btn-lg btn-reply">Reply</button>
                 </div>
 
                 <div class="followup-container">
                     <div class="followup__content">
-                        <span>@Shuaiqing Luo</span>
+                        <a class="followup-to" href="#">@Shuaiqing Luo</a>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt omnis odit suscipit esse nobis dolorum dolores iusto deleniti, minima aperiam commodi assumenda necessitatibus, ab, modi quas eaque harum non! Odio?
                     </div>
                     <div class="followup__info">
-                        <div class="followup__info__left">Donald Trump Jan 07 2020 1:32pm</div>
+                        <div class="followup__info__left">
+                            <span class="mr-1">Jan 07 2020 1:32pm</span>
+                            <span class="mr-1">by</span>
+                            <a href="#" class="followup__user">Donald Trump</a>
+                        </div>
                         <div class="action action-useful">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                             </svg>
                             <span>
-                                Useful
+                                2
                             </span>
                         </div>
                         <div class="action action-reply">
@@ -215,7 +188,48 @@ bg-student
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                             </svg>
                             <span>
-                                Reply
+                                3
+                            </span>
+                        </div>
+                        <div class="action action-report mr-0">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
+                            </svg>
+                            <span>
+                                Report
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-followup">
+                    <textarea class="post-followup__input" placeholder="Add your comments here..." rows="2"></textarea>
+                    <button class="btn btn-lg btn-reply">Reply</button>
+                </div>
+                <div class="followup-container">
+                    <div class="followup__content">
+                        <a class="followup-to" href="#">@Shuaiqing Luo</a>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt omnis odit suscipit esse nobis dolorum dolores iusto deleniti, minima aperiam commodi assumenda necessitatibus, ab, modi quas eaque harum non! Odio?
+                    </div>
+                    <div class="followup__info">
+                        <div class="followup__info__left">
+                            <span class="mr-1">Jan 07 2020 1:32pm</span>
+                            <span class="mr-1">by</span>
+                            <a href="#" class="followup__user">Donald Trump</a>
+                        </div>
+                        <div class="action action-useful">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
+                            </svg>
+                            <span>
+                                2
+                            </span>
+                        </div>
+                        <div class="action action-reply">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
+                            </svg>
+                            <span>
+                                3
                             </span>
                         </div>
                         <div class="action action-report mr-0">
@@ -229,8 +243,6 @@ bg-student
                     </div>
                 </div>
             </div>
-
-
 
         </section>
 
