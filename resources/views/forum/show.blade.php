@@ -120,7 +120,7 @@ bg-student
                 <div class="post-reply">
                     <div class="left-container">
                         <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
-                        <span class="user-name user-info">User Name dfgsdhg</span>
+                        <a class="user-name user-info" href="#">User Name dfgsdhg</a>
                         <span class="user-info">Business Administration</span>
                     </div>
                     <div class="right-container">

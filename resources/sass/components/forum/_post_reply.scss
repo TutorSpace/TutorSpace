@@ -10,6 +10,7 @@
     padding: 3rem 4rem 2rem 4rem;
 
     .left-container {
+        overflow: hidden;
         margin-right: 2rem;
         display: flex;
         flex-direction: column;
@@ -64,7 +65,7 @@
 
         .btn-toggle-follow-up {
             font-size: 1.4rem;
-            color: black !important;
+            color: $color-black-post !important;
         }
     }
 
@@ -189,12 +190,38 @@
 
 
 .bg-student {
+    .post-reply .left-container {
+        .user-name {
+            color: $color-blue-primary;
+        }
+    }
+
+    .post-comment, .post-followup {
+        .btn-reply {
+            background-color: $color-blue-primary;
+            color: $color-white;
+        }
+    }
+
     .followup__user {
         color: $color-blue-primary;
     }
 }
 
 .bg-tutor {
+    .post-reply .left-container {
+        .user-name {
+            color: $color-purple-primary;
+        }
+    }
+
+    .post-comment, .post-followup {
+        .btn-reply {
+            background-color: $color-purple-primary;
+            color: $color-white;
+        }
+    }
+
     .followup__user {
         color: $color-purple-primary;
     }

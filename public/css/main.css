@@ -12179,6 +12179,20 @@ h6 {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
+.btn-animation-y-sm {
+  transition: all 0.1s;
+}
+
+.btn-animation-y-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+}
+
+.btn-animation-y-sm:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.15rem 0.3rem rgba(0, 0, 0, 0.1);
+}
+
 .btn-animation-spreading--white {
   position: relative;
 }
@@ -12344,6 +12358,7 @@ h6 {
 }
 
 .post-reply .left-container {
+  overflow: hidden;
   margin-right: 2rem;
   display: flex;
   flex-direction: column;
@@ -12402,7 +12417,7 @@ h6 {
 
 .post-reply .right-container .btn-toggle-follow-up {
   font-size: 1.4rem;
-  color: black !important;
+  color: #626262 !important;
 }
 
 .post-comment,
@@ -12532,12 +12547,91 @@ h6 {
   height: 2rem;
 }
 
+.bg-student .post-reply .left-container .user-name {
+  color: #1F7AFF;
+}
+
+.bg-student .post-comment .btn-reply,
+.bg-student .post-followup .btn-reply {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
+}
+
 .bg-student .followup__user {
   color: #1F7AFF;
 }
 
+.bg-tutor .post-reply .left-container .user-name {
+  color: #6749DF;
+}
+
+.bg-tutor .post-comment .btn-reply,
+.bg-tutor .post-followup .btn-reply {
+  background-color: #6749DF;
+  color: #FFFFFF;
+}
+
 .bg-tutor .followup__user {
   color: #6749DF;
+}
+
+.user-card {
+  background-color: #F9F9F9;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  padding: 3rem 1rem;
+  overflow: hidden;
+}
+
+.user-card .user-image {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+}
+
+.user-card > * {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+.user-card .user-name {
+  color: currentColor;
+}
+
+.user-card .user-info {
+  color: #626262;
+}
+
+.user-card .btn-chat,
+.user-card .btn-request {
+  font-size: 1.6rem;
+  width: 80%;
+  border: 1px solid currentColor;
+}
+
+.user-card .btn-chat:focus,
+.user-card .btn-request:focus {
+  box-shadow: none;
+}
+
+.user-card .btn-chat {
+  color: currentColor;
+}
+
+.bg-student .user-card .btn-request {
+  color: #F9F9F9;
+  background-color: #1F7AFF;
+}
+
+.bg-tutor .user-card .btn-request {
+  color: #F9F9F9;
+  background-color: #6749DF;
 }
 
 svg.bookmark:hover {
@@ -13872,11 +13966,6 @@ svg.bookmark:hover {
   color: #FFFFFF;
 }
 
-.bg-tutor .btn-reply {
-  background-color: #6749DF;
-  color: #FFFFFF;
-}
-
 .bg-tutor .forum .input-search {
   border-color: #6749DF;
 }
@@ -13941,11 +14030,6 @@ svg.bookmark:hover {
 }
 
 .bg-student .btn-back:hover {
-  background-color: #1F7AFF;
-  color: #FFFFFF;
-}
-
-.bg-student .btn-reply {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }

@@ -58,4 +58,17 @@
             <a class="forum-left__list-content" href="{{ route('my-follows.index') }}">My Follows</a>
         </li>
     </ul>
+
+    @if(in_array(Route::current()->getName(), ['posts.show']))
+        <div class="user-card">
+            <img class="user-image" src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user image">
+            <a class="user-name" href="">Neno Kim</a>
+            <span class="user-info">Business Management</span>
+            <span class="user-info">Beginner Tutor</span>
+            <button class="btn btn-lg btn-chat btn-animation-y-sm">Chat</button>
+            <button class="btn btn-lg btn-request btn-animation-y-sm">Request Tutor Session</button>
+        </div>
+    @endif
+
 </section>
+

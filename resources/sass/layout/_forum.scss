@@ -405,11 +405,6 @@
         }
     }
 
-    .btn-reply {
-        background-color: $color-purple-primary;
-        color: $color-white;
-    }
-
     .forum {
         @include form-search-purple;
 
@@ -477,11 +472,6 @@
             background-color: $color-blue-primary;
             color: $color-white;
         }
-    }
-
-    .btn-reply {
-        background-color: $color-blue-primary;
-        color: $color-white;
     }
 
     .forum {
