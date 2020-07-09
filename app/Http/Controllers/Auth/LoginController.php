@@ -59,7 +59,7 @@ class LoginController extends Controller
 
         // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::registerWithGoogle($request->input('email'))) {
+        if(User::registeredWithGoogle($request->input('email'))) {
             return redirect()->back()->withInput()->withErrors([
                 'loginError' => 'This email is registered using Google. Please sign in with Google.'
             ]);
@@ -113,7 +113,7 @@ class LoginController extends Controller
 
         // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::registerWithGoogle($request->input('email'))) {
+        if(User::registeredWithGoogle($request->input('email'))) {
             return redirect()->back()->withInput()->withErrors([
                 'loginError' => 'This email is registered using Google. Please sign in with Google.'
             ]);

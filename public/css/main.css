@@ -12133,7 +12133,7 @@ h6 {
 
 .btn-outline-student {
   color: #1F7AFF;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 500;
   transition: all 0.3s;
   border: 2px solid #1F7AFF;
@@ -13008,8 +13008,8 @@ svg.bookmark:hover {
 }
 
 .nav .btn-sign-in {
-  border-radius: 1rem;
-  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
 }
 
 .nav .nav-right {
@@ -13794,7 +13794,7 @@ svg.bookmark:hover {
   display: flex;
   font-size: 1.6rem;
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .forum-content__search > * {
@@ -14154,7 +14154,7 @@ svg.bookmark:hover {
   background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
   padding: 4rem 4rem 3rem 4rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .index {

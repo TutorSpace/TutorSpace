@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 
+use App\Tag;
 use App\User;
 use App\Course;
 use App\Session;
@@ -12,10 +13,10 @@ use App\Bookmark;
 use Carbon\Carbon;
 use App\NewMessage;
 use App\Tutor_request;
+
 use App\Characteristic;
 
 use App\Dashboard_post;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,13 +29,7 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        $body = '<p>gdgdgsgs<sub>dgdgsgsdgs</sub></p>
-        <h1><span style="font-size: 36pt;">dgdgsg</span></h1>
-        <p><span style="font-size: 36pt;">img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/gukRmLcJBxnBinF5F3PffB67RMFGJy1uqOaqaPIV.png" alt="" width="150" height="200" /></span></p>';
-
-        preg_match('/\<img.+src\=(?:\"|\')(.+?)(?:\"|\')(?:.+?)\>/', $body, $result);
-
-        dd(empty($result));
+        dd(User::pluck('id',  'last_name'));
         // return view('test');
     }
 
