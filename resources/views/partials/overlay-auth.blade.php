@@ -21,9 +21,9 @@
 <div class="overlay overlay-student">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-student">
-            <form action="{{ route('login.store.student', ['backRouteName' => Route::current()->getName()]) }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.student', ['backUrl' => URL::current()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                    data-back-href="{{ route('index') }}">
+                    >
                     {{-- for empty --}}
                     <path class="btn-close-empty" fill-rule="evenodd"
                         d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -84,7 +84,7 @@
 
         <div class="login--right login--right-student bg-color-blue-primary">
             <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                data-back-href="{{ route('index') }}">
+                >
                 {{-- for empty --}}
                 <path class="btn-close-empty" fill-rule="evenodd"
                     d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -115,9 +115,9 @@
 <div class="overlay overlay-tutor">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-tutor">
-            <form action="{{ route('login.store.tutor', ['backRouteName' => Route::current()->getName()]) }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.tutor', ['backUrl' => URL::current()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                    data-back-href="{{ route('index') }}">
+                    >
                     {{-- for empty --}}
                     <path class="btn-close-empty" fill-rule="evenodd"
                         d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -178,7 +178,7 @@
 
         <div class="login--right login--right-tutor bg-color-purple-primary">
             <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                data-back-href="{{ route('index') }}">
+                >
                 {{-- for empty --}}
                 <path class="btn-close-empty" fill-rule="evenodd"
                     d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />

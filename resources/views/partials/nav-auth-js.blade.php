@@ -19,12 +19,12 @@
 
     $('#btn-google-student-sm, #btn-google-student-lg').click(function (e) {
         e.stopPropagation();
-        window.location.href = '{{ route('login.google.student', ['backRouteName' => Route::current()->getName()]) }}';
+        window.location.href = '{{ route('login.google.student', ['backUrl' => URL::current()]) }}';
     });
 
     $('#btn-google-tutor-sm, #btn-google-tutor-lg').click(function (e) {
         e.stopPropagation();
-        window.location.href = '{{ route('login.google.tutor', ['backRouteName' => Route::current()->getName()]) }}';
+        window.location.href = '{{ route('login.google.tutor', ['backUrl' => URL::current()]) }}';
     });
 
     function renderButton() {

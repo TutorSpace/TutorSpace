@@ -601,6 +601,7 @@ class ComposerStaticInit8471ee49b4bd1559886acdb20d636b54
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Reply' => __DIR__ . '/../..' . '/app/Reply.php',
         'App\\Report' => __DIR__ . '/../..' . '/app/Report.php',
         'App\\Review' => __DIR__ . '/../..' . '/app/Review.php',
         'App\\Rules\\EmailUSC' => __DIR__ . '/../..' . '/app/Rules/EmailUSC.php',

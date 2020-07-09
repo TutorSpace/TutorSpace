@@ -27,7 +27,8 @@ class AddForeignKeyPostTag extends Migration
     public function down()
     {
         Schema::table('post_tag', function (Blueprint $table) {
-            //
+            $table->dropForeign(['post_id']);
+            $table->dropForeign(['tag_id']);
         });
     }
 }

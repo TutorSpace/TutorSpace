@@ -180,7 +180,7 @@
 
         &-item {
             background-color: $color-white-dark-5;
-            padding: 1rem;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
             border-radius: .5rem;
@@ -202,10 +202,10 @@
         }
 
         &-svg {
-            width: 2.2rem;
-            height: 2.2rem;
-            min-width: 2.2rem;
-            min-height: 2.2rem;
+            width: 2rem;
+            height: 2rem;
+            min-width: 2rem;
+            min-height: 2rem;
             margin-right: 1rem;
             transition: all .1s;
 
@@ -405,6 +405,11 @@
         }
     }
 
+    .btn-reply {
+        background-color: $color-purple-primary;
+        color: $color-white;
+    }
+
     .forum {
         @include form-search-purple;
 
@@ -472,6 +477,11 @@
             background-color: $color-blue-primary;
             color: $color-white;
         }
+    }
+
+    .btn-reply {
+        background-color: $color-blue-primary;
+        color: $color-white;
     }
 
     .forum {
@@ -555,10 +565,11 @@
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
+        margin-right: .3rem;
     }
 }
 
-.post__content {
+.post__content, .post-reply__content {
     font-size: 1.6rem;
 }
 
@@ -570,16 +581,17 @@
         margin-top: .5rem;
     }
 
-    &__info {
+    &__info, &__actions {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 1.4rem;
+    }
 
-        svg {
-            width: 2rem;
-            height: 2rem;
-        }
+    svg {
+        fill: $color-grey;
+        width: 2rem;
+        height: 2rem;
     }
 }
 

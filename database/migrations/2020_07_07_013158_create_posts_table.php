@@ -23,10 +23,6 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('best_reply_id')->nullable();
             $table->unsignedBigInteger('post_type_id');
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            // $table->foreign('best_reply_id')->references('id')->on('replies')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

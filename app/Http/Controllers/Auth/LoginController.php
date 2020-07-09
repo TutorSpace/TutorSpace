@@ -70,8 +70,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => false])) {
             // Authentication passed...
-            if($request->query('backRouteName')) {
-                return redirect()->route($request->query('backRouteName'))->with([
+            if($request->query('backUrl')) {
+                return redirect($request->query('backUrl'))->with([
                     'showWelcome' => true
                 ]);
             }
@@ -125,8 +125,8 @@ class LoginController extends Controller
             'is_tutor' => true])) {
             // Authentication passed...
 
-            if($request->query('backRouteName')) {
-                return redirect()->route($request->query('backRouteName'))->with([
+            if($request->query('backUrl')) {
+                return redirect($request->query('backUrl'))->with([
                     'showWelcome' => true
                 ]);
             }

@@ -1,0 +1,153 @@
+.post-reply {
+    margin-top: 3rem;
+    display: flex;
+    color: initial;
+
+    position: relative;
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+    padding: 3rem 4rem 2rem 4rem;
+
+    .left-container {
+        margin-right: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 10rem;
+
+        > :not(:first-child) {
+            margin-top: .5rem;
+        }
+
+        img {
+            width: 10rem;
+            height: 10rem;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            border: 1px solid transparentize($color: $color-grey, $amount: .5);
+        }
+
+        .user-name {
+            font-size: 1.5rem !important;
+            line-height: 1.2;
+        }
+
+        .user-info {
+            white-space: nowrap;
+            font-size: 1.2rem;
+        }
+
+    }
+
+    .right-container {
+        flex: 1;
+
+        .post-reply__actions, .post-reply__info {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            font-size: 1.4rem;
+
+            svg {
+                fill: $color-grey;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .action {
+                margin-right: 2rem;
+            }
+        }
+
+        .btn-toggle-follow-up {
+            font-size: 1.4rem;
+            color: black !important;
+        }
+    }
+
+}
+
+.post-comment {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    color: initial;
+    flex: 0 0 100%;
+
+    border-radius: .5rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+    padding: 1.5rem 2rem 1.5rem 2rem;
+
+    img {
+        width: 6rem;
+        height: 6rem;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        border: 1px solid transparentize($color: $color-grey, $amount: .5);
+    }
+
+    &__input {
+        background-color: $color-white-dark-4;
+        margin: 1rem 2rem;
+        flex: 1;
+        display: inline-block;
+        border: none;
+        outline: none;
+        font-size: 1.6rem;
+
+        &::placeholder {
+            color: $color-grey;
+        }
+
+        &:focus {
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);
+        }
+    }
+
+
+    .btn-reply {
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        font-weight: bolder;
+    }
+}
+
+.followup-container {
+    margin-top: 1.5rem;
+    color: initial;
+    font-size: 1.6rem;
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-left: 20rem;
+
+
+    .followup__info {
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+
+        &__left {
+            margin-right: auto;
+        }
+    }
+
+
+    .action {
+        svg {
+            fill: $color-grey;
+            width: 2rem;
+            height: 2rem;
+        }
+
+        margin-right: 2rem;
+    }
+}
+

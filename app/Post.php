@@ -34,6 +34,9 @@ class Post extends Model
         return $this->created_at->diffForHumans();
     }
 
+    public function getTime() {
+        return $this->created_at->format('M d Y');
+    }
 
     // get the reply for the discussion
     public function replies() {

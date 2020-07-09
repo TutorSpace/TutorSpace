@@ -1,32 +1,43 @@
-.post-detail {
+.post-detail-container {
     margin-bottom: 30rem;
-    color: initial;
+
+    .post-detail {
+        color: initial;
+
+        &-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .post__heading {
+            &:hover {
+                color: unset;
+            }
+        }
+
+        .post__content {
 
 
-    &-tag {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 1.4rem;
-    }
+            img {
+                max-width: 100%;
+                height: auto;
+                max-height: 30rem;
+                object-fit: contain;
+            }
+        }
 
+        .post__bottom {
 
-    .post__content {
+            &__actions {
 
-
-        img {
-            max-width: 100%;
-            height: auto;
-            max-height: 30rem;
-            object-fit: contain;
+                .action {
+                    margin-right: 2rem;
+                }
+            }
         }
     }
 
-    .post__bottom {
-        svg {
-            fill: $color-grey;
-            width: 2rem;
-            height: 2rem;
-        }
-    }
+
 }

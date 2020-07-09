@@ -26,7 +26,7 @@ bg-student select2-bg-student
 <div class="container forum">
     <div class="row forum-row">
         @include("forum.partials.forum-left")
-        <section class="col-12 col-md-9 col-lg-7 forum-content">
+        <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
             <form action="#" method="GET" class="forum-content__search">

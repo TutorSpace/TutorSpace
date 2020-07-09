@@ -11987,6 +11987,10 @@ h6 {
   flex: 0 0 calc(50% - 1rem);
 }
 
+.flex-occupy-all {
+  flex: 1;
+}
+
 .ws-no-wrap {
   white-space: nowrap;
 }
@@ -12000,6 +12004,34 @@ h6 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.col-lg-20-p {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+  .col-lg-20-p {
+    flex: 0 0 20%;
+    max-width: 0 0 20%;
+  }
+}
+
+.col-lg-55-p {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+  .col-lg-55-p {
+    flex: 0 0 55%;
+    max-width: 55%;
+  }
 }
 
 .centerX {
@@ -12298,6 +12330,173 @@ h6 {
   margin-bottom: 1rem;
   margin-right: 0.5rem;
   border-radius: 0.5rem;
+}
+
+.post-reply {
+  margin-top: 3rem;
+  display: flex;
+  color: initial;
+  position: relative;
+  border-radius: 1rem;
+  background-color: #F9F9F9;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 3rem 4rem 2rem 4rem;
+}
+
+.post-reply .left-container {
+  margin-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 10rem;
+}
+
+.post-reply .left-container > :not(:first-child) {
+  margin-top: 0.5rem;
+}
+
+.post-reply .left-container img {
+  width: 10rem;
+  height: 10rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+}
+
+.post-reply .left-container .user-name {
+  font-size: 1.5rem !important;
+  line-height: 1.2;
+}
+
+.post-reply .left-container .user-info {
+  white-space: nowrap;
+  font-size: 1.2rem;
+}
+
+.post-reply .right-container {
+  flex: 1;
+}
+
+.post-reply .right-container .post-reply__actions,
+.post-reply .right-container .post-reply__info {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  font-size: 1.4rem;
+}
+
+.post-reply .right-container .post-reply__actions svg,
+.post-reply .right-container .post-reply__info svg {
+  fill: #A0A0A0;
+  width: 2rem;
+  height: 2rem;
+}
+
+.post-reply .right-container .post-reply__actions .action,
+.post-reply .right-container .post-reply__info .action {
+  margin-right: 2rem;
+}
+
+.post-reply .right-container .btn-toggle-follow-up {
+  font-size: 1.4rem;
+  color: black !important;
+}
+
+.post-comment {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  color: initial;
+  flex: 0 0 100%;
+  border-radius: 0.5rem;
+  background-color: #F9F9F9;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 2rem 1.5rem 2rem;
+}
+
+.post-comment img {
+  width: 6rem;
+  height: 6rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  border: 1px solid rgba(160, 160, 160, 0.5);
+}
+
+.post-comment__input {
+  background-color: #F0F0F0;
+  margin: 1rem 2rem;
+  flex: 1;
+  display: inline-block;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+}
+
+.post-comment__input::-webkit-input-placeholder {
+  color: #A0A0A0;
+}
+
+.post-comment__input::-moz-placeholder {
+  color: #A0A0A0;
+}
+
+.post-comment__input:-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.post-comment__input::-ms-input-placeholder {
+  color: #A0A0A0;
+}
+
+.post-comment__input::placeholder {
+  color: #A0A0A0;
+}
+
+.post-comment__input:focus {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.post-comment .btn-reply {
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  font-weight: bolder;
+}
+
+.followup-container {
+  margin-top: 1.5rem;
+  color: initial;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  background-color: #F9F9F9;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-left: 20rem;
+}
+
+.followup-container .followup__info {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.followup-container .followup__info__left {
+  margin-right: auto;
+}
+
+.followup-container .action {
+  margin-right: 2rem;
+}
+
+.followup-container .action svg {
+  fill: #A0A0A0;
+  width: 2rem;
+  height: 2rem;
 }
 
 svg.bookmark:hover {
@@ -13407,7 +13606,7 @@ svg.bookmark:hover {
 
 .forum-left__list-item {
   background-color: #F9F9F9;
-  padding: 1rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
@@ -13429,10 +13628,10 @@ svg.bookmark:hover {
 }
 
 .forum-left__list-svg {
-  width: 2.2rem;
-  height: 2.2rem;
-  min-width: 2.2rem;
-  min-height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   margin-right: 1rem;
   transition: all 0.1s;
 }
@@ -13632,6 +13831,11 @@ svg.bookmark:hover {
   color: #FFFFFF;
 }
 
+.bg-tutor .btn-reply {
+  background-color: #6749DF;
+  color: #FFFFFF;
+}
+
 .bg-tutor .forum .input-search {
   border-color: #6749DF;
 }
@@ -13696,6 +13900,11 @@ svg.bookmark:hover {
 }
 
 .bg-student .btn-back:hover {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
+}
+
+.bg-student .btn-reply {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }
@@ -13782,9 +13991,11 @@ svg.bookmark:hover {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+  margin-right: 0.3rem;
 }
 
-.post__content {
+.post__content,
+.post-reply__content {
   font-size: 1.6rem;
 }
 
@@ -13797,14 +14008,16 @@ svg.bookmark:hover {
   margin-top: 0.5rem;
 }
 
-.post__bottom__info {
+.post__bottom__info,
+.post__bottom__actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 1.4rem;
 }
 
-.post__bottom__info svg {
+.post__bottom svg {
+  fill: #A0A0A0;
   width: 2rem;
   height: 2rem;
 }
@@ -14951,19 +15164,26 @@ svg.bookmark:hover {
   bottom: 0rem;
 }
 
-.post-detail {
+.post-detail-container {
   margin-bottom: 30rem;
+}
+
+.post-detail-container .post-detail {
   color: initial;
 }
 
-.post-detail-tag {
+.post-detail-container .post-detail-tag {
   position: absolute;
   top: 1rem;
   right: 1rem;
   font-size: 1.4rem;
 }
 
-.post-detail .post__content img {
+.post-detail-container .post-detail .post__heading:hover {
+  color: unset;
+}
+
+.post-detail-container .post-detail .post__content img {
   max-width: 100%;
   height: auto;
   max-height: 30rem;
@@ -14971,10 +15191,8 @@ svg.bookmark:hover {
      object-fit: contain;
 }
 
-.post-detail .post__bottom svg {
-  fill: #A0A0A0;
-  width: 2rem;
-  height: 2rem;
+.post-detail-container .post-detail .post__bottom__actions .action {
+  margin-right: 2rem;
 }
 
 .post-create {

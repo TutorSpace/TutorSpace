@@ -23,7 +23,7 @@ bg-student
 <div class="container forum">
     <div class="row forum-row">
         @include("forum.partials.forum-left")
-        <section class="col-12 col-md-9 col-lg-7 forum-content">
+        <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
             <form action="" method="POST" class="forum-content__search">
@@ -66,7 +66,7 @@ bg-student
                             </a>
                             @else
                             <span class="poster-name mr-3">
-                                You
+                                Me
                             </span>
                             @endcan
                             <span>{{ $post->getTimeAgo() }}</span>
@@ -110,7 +110,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="">
-                                    0
+                                    {{ $post->replies->count() }}
                                 </span>
                             </div>
                             <a href="{{ route('posts.show', $post->slug) }}" class="btn-link mt-3">View</a>
