@@ -21,6 +21,7 @@ class PostController extends Controller
             'create',
             'store',
             'showMyFollows',
+            'showMyPosts',
             'uploadPostImg',
             'storeAsDraft',
             'upvote',
@@ -201,7 +202,15 @@ class PostController extends Controller
     }
 
     public function showMyFollows() {
-        return view('forum.my_follows');
+        return view('forum.my_follows', [
+            'posts' => Auth::user()->followedPosts
+        ]);
+    }
+
+    public function showMyPosts() {
+        return view('forum.my_posts', [
+            'posts' => Auth::user()->posts
+        ]);
     }
 
     public function uploadPostImg(Request $request) {

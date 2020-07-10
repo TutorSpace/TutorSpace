@@ -43,3 +43,9 @@ $('.overlay-forum-left .toggle-collapsed').click(function() {
 $('.overlay-forum-left .toggle-expanded').click(function() {
     $('.overlay-forum-left').removeClass('toggle-expand-animation');
 });
+
+
+$('.forum-left__list-item').click(function() {
+    let href = $(this).attr('data-location-href');
+    window.location.href = href;
+});

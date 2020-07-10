@@ -12292,6 +12292,14 @@ h6 {
   font-size: 1.4rem;
 }
 
+.post-previews .post-preview-tag .status {
+  cursor: pointer;
+}
+
+.post-previews .post-preview-tag .status:hover {
+  text-decoration: underline;
+}
+
 .post-previews .post-preview__left {
   flex: 1;
 }
@@ -15348,6 +15356,10 @@ svg.bookmark:hover {
 
 .post-detail-container .post-detail .post__heading:hover {
   color: unset;
+}
+
+.post-detail-container .post-detail .post__content {
+  overflow: hidden;
 }
 
 .post-detail-container .post-detail .post__content * {

@@ -84,8 +84,10 @@ Route::group([
 Route::group([
     'prefix' => 'forum'
 ], function () {
+    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
+    Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
     Route::resource('posts', 'Forum\PostController');
-    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('my-follows.index');
+
     Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
     Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->name('post-draft.store');
     Route::post('posts/upvote/{post}', 'Forum\PostController@upvote')->name('post.upvote');

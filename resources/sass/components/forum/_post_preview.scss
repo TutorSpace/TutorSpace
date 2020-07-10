@@ -9,6 +9,14 @@
             top: 1rem;
             right: 1rem;
             font-size: 1.4rem;
+
+
+            .status {
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
 
         &__left {

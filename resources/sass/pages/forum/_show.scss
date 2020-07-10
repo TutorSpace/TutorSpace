@@ -32,6 +32,7 @@
         }
 
         .post__content {
+            overflow: hidden;
             * {
                 max-width: 100%;
             }
@@ -59,7 +60,7 @@
     .action {
         &:hover {
             cursor: pointer;
-            
+
         }
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Forum - My Follows')
+@section('title', 'Forum - My Posts')
 
 
 @section('body-class')
@@ -52,10 +52,7 @@ bg-student
                 @foreach ($posts as $post)
                 <div class="post-preview flex-wrap" data-post-slug="{{ $post->slug }}">
                     <span class="post-preview-tag">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                        </svg>
-                        <span class="status">Followed</span>
+
                     </span>
                     <div class="post-preview__left">
                         <h5>
@@ -144,21 +141,7 @@ bg-student
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 <script>
-    $('.post-preview-tag').click(function() {
-        let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
-        $.ajax({
-            type:'POST',
-            url: 'follow/' + postSlug,
-            success: (data) => {
-                $(this).closest('.post-preview').remove();
-                toastr.success('Successfully unfollowed the post.');
-            },
-            error: function(error) {
-                toastr.error('Something went wrong!');
-                console.log(error);
-            }
-        });
-    });
+
 </script>
 @endsection
 

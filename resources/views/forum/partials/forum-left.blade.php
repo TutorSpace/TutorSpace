@@ -18,8 +18,9 @@
                 <span>Popular Posts</span>
             </a>
         </li>
+        @auth
         <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="#">
+            <a class="forum-left-sm__list-content" href="{{ route('posts.my-posts') }}">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
                 </svg>
@@ -27,13 +28,14 @@
             </a>
         </li>
         <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('my-follows.index') }}">
+            <a class="forum-left-sm__list-content" href="{{ route('posts.my-follows') }}">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
                 </svg>
                 <span>My Follows</span>
             </a>
         </li>
+        @endauth
     </ul>
 </div>
 
@@ -43,20 +45,23 @@
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
             </svg>
-            <a class="forum-left__list-content" href="#">Popular Posts</a>
+            <span class="forum-left__list-content">Popular Posts</span>
         </li>
-        <li class="forum-left__list-item">
+
+        @auth
+        <li class="forum-left__list-item" data-location-href="{{ route('posts.my-posts') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
             </svg>
-            <a class="forum-left__list-content" href="#">My Posts</a>
+            <span class="forum-left__list-content">My Posts</span>
         </li>
-        <li class="forum-left__list-item">
+        <li class="forum-left__list-item" data-location-href="{{ route('posts.my-follows') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
             </svg>
-            <a class="forum-left__list-content" href="{{ route('my-follows.index') }}">My Follows</a>
+            <span class="forum-left__list-content">My Follows</span>
         </li>
+        @endauth
     </ul>
 
     @if(in_array(Route::current()->getName(), ['posts.show']))
