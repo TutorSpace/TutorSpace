@@ -18,7 +18,11 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->text('content');
             $table->unsignedBigInteger('view_count')->default(0);
-            $table->unsignedBigInteger('like_count')->default(0);
+
+            // I put these two columns for faster rendering time in preview. Remember to always update the upvote count and reply count of the POST if any upvote/reply updates
+            $table->unsignedBigInteger('upvote_count')->default(0);
+            $table->unsignedBigInteger('reply_count')->default(0);
+
             $table->string('slug')->unique();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('best_reply_id')->nullable();

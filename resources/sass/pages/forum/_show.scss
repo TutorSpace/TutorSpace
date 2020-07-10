@@ -56,4 +56,10 @@
     }
 
 
+    .action {
+        &:hover {
+            cursor: pointer;
+            
+        }
+    }
 }

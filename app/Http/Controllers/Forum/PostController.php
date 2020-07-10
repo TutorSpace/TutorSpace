@@ -17,7 +17,14 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth'])->only(['create', 'store']);
+        $this->middleware(['auth'])->only([
+            'create',
+            'store',
+            'showMyFollows',
+            'uploadPostImg',
+            'storeAsDraft',
+            'upvote',
+        ]);
     }
 
     /**
@@ -149,8 +156,9 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        // todo: update view count
-
+        // $post->update([
+        //     'view_count' => $post->view_count + 1
+        // ]);
 
         return view('forum.show', [
             'post' => $post
@@ -226,5 +234,25 @@ class PostController extends Controller
                 'errorMsg' => 'Something went wrong when uploading the image. Please check your image extension and file size.'
             ]);
         }
+    }
+
+    public function upvote(Request $request, Post $post) {
+        $user = Auth::user();
+        if($user->hasUpvotedPost($post)) {
+            $user->upvotedPosts()->detach($post);
+            $post->update([
+                "upvote_count" => $post->upvote_count - 1
+            ]);
+        }
+        else {
+            $user->upvotedPosts()->attach($post);
+            $post->update([
+                "upvote_count" => $post->upvote_count + 1
+            ]);
+        }
+
+        return response()->json([
+            // 'successMsg' => 'Successfully upvoted'
+        ]);
     }
 }

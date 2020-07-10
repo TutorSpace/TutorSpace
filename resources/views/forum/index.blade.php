@@ -98,7 +98,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span class="mr-5">
-                                    {{ $post->like_count }} people found this post useful.
+                                    {{ $post->upvote_count }} people found this post useful.
                                 </span>
                                 <svg class="mr-1">
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
@@ -110,7 +110,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="">
-                                    {{ $post->replies->count() }}
+                                    {{ $post->reply_count }}
                                 </span>
                             </div>
                             <a href="{{ route('posts.show', $post->slug) }}" class="btn-link mt-3">View</a>

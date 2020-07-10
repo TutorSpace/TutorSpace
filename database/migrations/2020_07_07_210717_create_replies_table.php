@@ -28,7 +28,6 @@ class CreateRepliesTable extends Migration
             // if is direct reply for the post
             $table->boolean('is_direct_reply');
             $table->text('reply_content');
-            $table->unsignedBigInteger('like_count')->default(0);
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');

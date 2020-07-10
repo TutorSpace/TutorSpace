@@ -85,10 +85,10 @@ Route::group([
     'prefix' => 'forum'
 ], function () {
     Route::resource('posts', 'Forum\PostController');
-    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->middleware('auth')->name('my-follows.index');
-    Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->middleware('auth')->name('upload-post-img');
-    Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->middleware('auth')->name('post-draft.store');
-
+    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('my-follows.index');
+    Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
+    Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->name('post-draft.store');
+    Route::post('posts/like', 'Forum\PostController@');
 });
 
 // profile

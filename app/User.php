@@ -47,16 +47,25 @@ class User extends Authenticatable
         return "$date $startTime";
     }
 
+    // check whether a user with an email exists and is a student
+    public static function existStudent($email) {
+        return User::where('email', '=', $email)->where('is_tutor', false)->exists();
+    }
+
+    public static function existTutor($email) {
+        return User::where('email', '=', $email)->where('is_tutor', true)->exists();
+    }
+
+    public static function registeredWithGoogle($email) {
+        return User::where('email', '=', $email)->where('google_id', '!=', null)->exists();
+    }
+
     public function firstMajor() {
         return $this->belongsTo('App\Major', 'first_major_id');
     }
 
     public function secondMajor() {
         return $this->belongsTo('App\Major', 'second_major_id');
-    }
-
-    public function posts() {
-        return $this->hasMany('App\Post');
     }
 
     public function school_year() {
@@ -71,6 +80,54 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Characteristic');
     }
 
+    public function deleteImage() {
+        Storage::delete($this->profile_pic_url);
+    }
+
+
+
+    // ======================== Form ======================
+    public function posts() {
+        return $this->hasMany('App\Post');
+    }
+
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function followedPosts() {
+        // return $this->belongsToMany('App\Post', 'post_user', 'user_id', 'post_id');
+        return $this->belongsToMany('App\Post');
+    }
+
+    // get all the posts the user upvoted
+    public function upvotedPosts() {
+        return $this->belongsToMany('App\Post', 'post_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given post
+    public function hasUpvotedPost($post) {
+        return $this->upvotedReplies()->where('post_id', $post->id)->exists();
+    }
+
+    // get all the replyes the user upvoted
+    public function upvotedReplies() {
+        return $this->belongsToMany('App\Reply', 'reply_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given reply
+    public function hasUpvotedReply($reply) {
+        return $this->upvotedReplies()->where('reply_id', $reply->id)->exists();
+    }
+
+
+
+
+
+
+
+
+
     // no need for this function seemingly
     // public function sessions() {
     //     if($this->is_tutor)
@@ -78,11 +135,6 @@ class User extends Authenticatable
     //     else
     //         return $this->hasMany('App\Session', 'student_id');
     // }
-
-
-    public function deleteImage() {
-        Storage::delete($this->profile_pic_url);
-    }
 
     public function bookmarks() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
@@ -247,18 +299,7 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
-    // check whether a user with an email exists and is a student
-    public static function existStudent($email) {
-        return User::where('email', '=', $email)->where('is_tutor', false)->exists();
-    }
 
-    public static function existTutor($email) {
-        return User::where('email', '=', $email)->where('is_tutor', true)->exists();
-    }
-
-    public static function registeredWithGoogle($email) {
-        return User::where('email', '=', $email)->where('google_id', '!=', null)->exists();
-    }
 
 
 

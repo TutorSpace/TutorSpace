@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUpvoteUserTable extends Migration
+class CreatePostUserUpvoteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateUpvoteUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('upvote_user', function (Blueprint $table) {
+        Schema::create('post_user_upvote', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('reply_id');
-            $table->primary(array('user_id', 'reply_id'));
+            $table->unsignedBigInteger('post_id');
+            $table->primary(array('user_id', 'post_id'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('post_id')->references('id')->on('replies')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateUpvoteUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('upvote_user');
+        Schema::dropIfExists('post_user_upvote');
     }
 }

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $guarded = [];
+
     protected $dates = ['created_at', 'updated_at'];
 
     public function getRouteKeyName() {
@@ -60,7 +62,7 @@ class Post extends Model
     }
 
     public function bestReply() {
-        // return $this->belongsTo('App\Reply', 'reply_id');
+        return $this->belongsTo('App\Reply', 'best_reply_id');
     }
 
     // get users who are following this post
@@ -71,6 +73,21 @@ class Post extends Model
     // return a boolean indicates whether this post is followed by the given user
     public function followedBy($user) {
         return $this->usersFollowing()->where('user_id', $user->id);
+    }
+
+    // get users who upvoted this post
+    public function usersUpvoted() {
+        return $this->belongsToMany('App\User', 'post_user_upvote');
+    }
+
+    // return a boolean indicates whether this post is liked by the given user
+    public function upvotedBy($user) {
+        return $this->usersUpvoted()->where('user_id', $user->id)->exists();
+    }
+
+    // returh the number of likes of this post
+    public function getUpvotesCount() {
+        return $this->usersUpvoted()->count();
     }
 
 

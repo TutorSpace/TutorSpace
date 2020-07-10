@@ -77,13 +77,13 @@ bg-student
                             @endforeach
                         </div>
                         <div class="post__bottom__actions d-flex mt-3 justify-content-end">
-                            <div class="left-container d-flex align-items-center mt-3">
+                            <div class="left-container d-flex align-items-center mt-3" data-post-id="{{ $post->id }}">
                                 <div class="action action-useful">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span>
-                                        {{ $post->like_count }}
+                                        {{ $post->upvote_count }}
                                     </span>
                                 </div>
 
@@ -92,7 +92,7 @@ bg-student
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                     <span>
-                                        {{ $post->replies->count() }}
+                                        {{ $post->reply_count }}
                                     </span>
                                 </div>
 
@@ -127,7 +127,7 @@ bg-student
                         <div class="post-reply__content">
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis.
                         </div>
-                        <div class="post-reply__actions">
+                        <div class="post-reply__actions" data-reply-id="">
                             <span class="mr-auto fs-1-2">reply time</span>
                             <button class="btn btn-link btn-toggle-follow-up mr-2">Hide all followups</button>
                             <div class="action action-useful">
@@ -169,7 +169,7 @@ bg-student
                         <a class="followup-to" href="#">@Shuaiqing Luo</a>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt omnis odit suscipit esse nobis dolorum dolores iusto deleniti, minima aperiam commodi assumenda necessitatibus, ab, modi quas eaque harum non! Odio?
                     </div>
-                    <div class="followup__info">
+                    <div class="followup__info" data-reply-id="">
                         <div class="followup__info__left">
                             <span class="mr-1">Jan 07 2020 1:32pm</span>
                             <span class="mr-1">by</span>
@@ -205,43 +205,6 @@ bg-student
                     <textarea class="post-followup__input" placeholder="Add your comments here..." rows="2"></textarea>
                     <button class="btn btn-lg btn-reply">Reply</button>
                 </div>
-                <div class="followup-container">
-                    <div class="followup__content">
-                        <a class="followup-to" href="#">@Shuaiqing Luo</a>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt omnis odit suscipit esse nobis dolorum dolores iusto deleniti, minima aperiam commodi assumenda necessitatibus, ab, modi quas eaque harum non! Odio?
-                    </div>
-                    <div class="followup__info">
-                        <div class="followup__info__left">
-                            <span class="mr-1">Jan 07 2020 1:32pm</span>
-                            <span class="mr-1">by</span>
-                            <a href="#" class="followup__user">Donald Trump</a>
-                        </div>
-                        <div class="action action-useful">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
-                            </svg>
-                            <span>
-                                2
-                            </span>
-                        </div>
-                        <div class="action action-reply">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
-                            </svg>
-                            <span>
-                                3
-                            </span>
-                        </div>
-                        <div class="action action-report mr-0">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
-                            </svg>
-                            <span>
-                                Report
-                            </span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </section>
@@ -260,5 +223,5 @@ bg-student
 
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
-<script src="{{ asset('js/forum/index.js') }}"></script>
+<script src="{{ asset('js/forum/show.js') }}"></script>
 @endsection

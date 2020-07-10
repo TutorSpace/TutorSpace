@@ -15339,6 +15339,10 @@ svg.bookmark:hover {
   margin-right: 2rem;
 }
 
+.post-detail-container .action:hover {
+  cursor: pointer;
+}
+
 .post-create {
   border-radius: 1rem;
   background-color: #F9F9F9;
