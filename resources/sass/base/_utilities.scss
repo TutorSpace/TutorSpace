@@ -131,23 +131,15 @@
     }
 }
 
-.bg-student {
-    .active {
-        color: $color-blue-primary;
 
-        svg {
-            fill: $color-blue-primary;
-        }
+
+.disabled {
+    &:hover {
+        cursor: not-allowed;
     }
-}
 
-.bg-tutor {
-    .active {
-        color: $color-purple-primary;
-
-        svg {
-            fill: $color-purple-primary;
-        }
+    *:hover {
+        cursor: not-allowed;
     }
 }
 

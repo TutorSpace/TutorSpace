@@ -45,6 +45,9 @@
 
     .right-container {
         flex: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
 
         .post-reply__actions, .post-reply__info {
             display: flex;

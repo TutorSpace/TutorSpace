@@ -130,39 +130,56 @@ bg-student
                 </div>
 
                 {{-- post comment --}}
-                <div class="post-comment hidden" data-post-slug="{{ $post->slug }}">
+                @auth
+                <form action="{{ route('posts.reply.store', $post->slug) }}" method="POST" class="post-comment hidden">
+                    @csrf
                     <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo">
-                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2"></textarea>
+                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
                     <button class="btn btn-lg btn-reply">Reply</button>
-                </div>
+                </form>
+                @endauth
 
-                <div class="post-reply">
+
+                @foreach ($post->replies as $reply)
+                <div class="post-reply" data-reply-id="{{ $reply->id }}">
                     <div class="left-container">
-                        <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
-                        <a class="user-name user-info" href="#">User Name dfgsdhg</a>
-                        <span class="user-info">Business Administration</span>
+                        <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
+                        @if (Auth::user() != $reply->user)
+                        <a class="user-name user-info" href="#">
+                            {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
+                        </a>
+                        @else
+                        <span class="user-name user-info">
+                            Me
+                        </span>
+                        @endif
+                        <span class="user-info">
+                            {{ $reply->user->firstMajor->major ?? 'None' }}
+                        </span>
                     </div>
                     <div class="right-container">
                         <div class="post-reply__content">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum, neque. Cumque labore ullam facilis voluptatum, porro aperiam voluptate earum quo tenetur reiciendis maiores incidunt beatae numquam quasi eligendi temporibus quis.
+                            {{ $reply->reply_content }}
                         </div>
-                        <div class="post-reply__actions" data-reply-id="">
-                            <span class="mr-auto fs-1-2">reply time</span>
-                            <button class="btn btn-link btn-toggle-follow-up mr-2">Hide all followups</button>
-                            <div class="action action-upvote">
+                        <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
+                            <span class="mr-auto fs-1-2">{{ $reply->created_at }}</span>
+                            @if ($reply->replies->count() > 0)
+                                <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies->count() }} followups</button>
+                            @endif
+                            <div class="action action-upvote @if(Auth::check() && $reply->upvotedBy(Auth::user())) active @endif">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
-                                <span>
-                                    13
+                                <span class="num">
+                                    {{ $reply->getUpvotesCount() }}
                                 </span>
                             </div>
-                            <div class="action action-reply">
+                            <div class="action action-reply @if(Auth::check() && $reply->followupedBy(Auth::user())) active @endif @cannot('followup', $reply) disabled @endcannot">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
-                                <span>
-                                    13
+                                <span class="num">
+                                    {{ $reply->followups->count() }}
                                 </span>
                             </div>
                             <div class="action action-report mr-0">
@@ -177,53 +194,85 @@ bg-student
                     </div>
                 </div>
 
-                {{-- <div class="post-comment">
-                    <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
-                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2"></textarea>
+                {{-- post followup of direct reply --}}
+                @auth
+                <form action="{{ route('posts.followup.store', $reply->id) }}" method="POST" class="post-comment hidden">
+                    @csrf
+                    <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo">
+                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
                     <button class="btn btn-lg btn-reply">Reply</button>
-                </div> --}}
+                </form>
+                @endauth
 
-                <div class="followup-container">
-                    <div class="followup__content">
-                        <a class="followup-to" href="#">@Shuaiqing Luo</a>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt omnis odit suscipit esse nobis dolorum dolores iusto deleniti, minima aperiam commodi assumenda necessitatibus, ab, modi quas eaque harum non! Odio?
-                    </div>
-                    <div class="followup__info" data-reply-id="">
-                        <div class="followup__info__left">
-                            <span class="mr-1">Jan 07 2020 1:32pm</span>
-                            <span class="mr-1">by</span>
-                            <a href="#" class="followup__user">Donald Trump</a>
+                    @foreach ($reply->replies as $followup)
+                        <div class="followup-container hidden" data-followup-for="{{ $reply->id }}">
+                            <div class="followup__content">
+                                @if (Auth::user() != $followup->reply->user)
+                                <a class="followup-to" href="#">
+                                    {{ '@' . $followup->reply->user->first_name }}
+                                    {{ $followup->reply->user->last_name }}
+                                </a>
+                                @else
+                                <span class="followup-to">
+                                    {{ '@' . $followup->reply->user->first_name }}
+                                    {{ $followup->reply->user->last_name }}
+                                </span>
+                                @endif
+                                {{ $followup->reply_content }}
+                            </div>
+                            <div class="followup__info" data-reply-id="{{ $followup->id }}">
+                                <div class="followup__info__left">
+                                    <span class="mr-1">{{ $followup->created_at }}</span>
+                                    <span class="mr-1">by</span>
+                                    @if (Auth::user() != $followup->user)
+                                    <a href="#" class="followup__user">
+                                        {{ $followup->user->first_name }}
+                                        {{ $followup->user->last_name }}
+                                    </a>
+                                    @else
+                                    <span class="followup__user">
+                                        Me
+                                    </span>
+                                    @endif
+
+                                </div>
+                                <div class="action action-upvote @if(Auth::check() && $followup->upvotedBy(Auth::user())) active @endif">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
+                                    </svg>
+                                    <span class="num">
+                                        {{ $followup->getUpvotesCount() }}
+                                    </span>
+                                </div>
+                                @can('followup', $followup)
+                                <div class="action action-reply">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
+                                    </svg>
+                                </div>
+                                @endcan
+                                <div class="action action-report mr-0">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
+                                    </svg>
+                                    <span>
+                                        Report
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="action action-upvote">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
-                            </svg>
-                            <span>
-                                2
-                            </span>
-                        </div>
-                        <div class="action action-reply">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
-                            </svg>
-                            <span>
-                                3
-                            </span>
-                        </div>
-                        <div class="action action-report mr-0">
-                            <svg>
-                                <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
-                            </svg>
-                            <span>
-                                Report
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-followup">
-                    <textarea class="post-followup__input" placeholder="Add your comments here..." rows="2"></textarea>
-                    <button class="btn btn-lg btn-reply">Reply</button>
-                </div>
+
+                        {{-- post followup of the followups --}}
+                        @auth
+                        <form action="{{ route('posts.followup.store', $followup->id) }}" method="POST" class="post-followup hidden">
+                            @csrf
+                            <textarea class="post-followup__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
+                            <button class="btn btn-lg btn-reply">Reply</button>
+                        </form>
+                        @endauth
+                    @endforeach
+
+                @endforeach
             </div>
 
         </section>
@@ -245,8 +294,15 @@ bg-student
 
 <script>
 $('.action').click(function() {
+    if($(this).hasClass('disabled')) {
+        return;
+    }
+
     @auth
         let postSlug = $(this).parent().attr('data-post-slug');
+        let replyId = $(this).parent().attr('data-reply-id');
+
+        // if for the post
         if(postSlug) {
             if($(this).hasClass('action-upvote')) {
                 $.ajax({
@@ -277,44 +333,44 @@ $('.action').click(function() {
                 });
             }
             else if($(this).hasClass('action-reply')) {
-                $(this).closest('.post-detail').next('.post-comment').toggleClass('hidden');
+                $(this).closest('.post-detail').next().toggleClass('hidden');
             }
         }
-        else {
-            alert('reply');
+        // if for the replies
+        else if(replyId) {
+            if($(this).hasClass('action-upvote')) {
+                let url = '{{ url('/forum/posts/replies') }}' + `/${replyId}/upvote`;
+                $.ajax({
+                    type:'POST',
+                    url: url,
+                    success: (data) => {
+                        $(this).toggleClass('active');
+                        $(this).find('.num').html(data.num);
+                    },
+                    error: function(error) {
+                        toastr.error('Something went wrong!');
+                        console.log(error);
+                    }
+                });
+            }
+            else if($(this).hasClass('action-reply')) {
+                $(this).closest('.post-reply, .followup-container').next().toggleClass('hidden');
+            }
         }
     @else
         $('.overlay-student').show();
     @endauth
-
-    $('.btn-reply').click(function() {
-        let parent = $(this).parent();
-        let postSlug = parent.attr('data-post-slug');
-        let textarea = parent.find('textarea');
-
-        // for for post reply
-        if(postSlug) {
-            $.ajax({
-                type:'POST',
-                url: '{{ route('posts.reply.store', $post->slug) }}',
-                data: {
-                    content: textarea.val()
-                },
-                success: (data) => {
-                    toastr.success(data.successMsg);
-                    parent.hide();
-                    textarea.val('');
-                    $('.post-detail').find('.action-reply').addClass('active');
-                    $('.post-detail').find('.action-reply .num').html(data.num);
-                },
-                error: function(error) {
-                    toastr.error('Something went wrong!');
-                    console.log(error);
-                }
-            });
-        }
-    })
-
 })
+
+$('.btn-toggle-follow-up').click(function() {
+    let replyId = $(this).closest('.post-reply').attr('data-reply-id');
+    if($(this).find('.keyword').html() == 'Display') {
+        $(this).find('.keyword').html('Hide');
+    }
+    else {
+        $(this).find('.keyword').html('Display');
+    }
+    $(`.followup-container[data-followup-for=${replyId}]`).toggleClass('hidden');
+});
 </script>
 @endsection

@@ -40,11 +40,12 @@ class Post extends Model
         return $this->created_at->format('M d Y');
     }
 
-    // get the reply for the discussion
+    // get all the direct replies for the discussion
     public function replies() {
         return $this->hasMany('App\Reply');
     }
 
+    // return a boolean indicates whether this post is directly replied (not followup!) by the given user
     public function repliedBy($user) {
         return $this->replies()->where('user_id', $user->id)->exists();
     }

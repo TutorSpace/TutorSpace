@@ -5,6 +5,5 @@
     "/js/auth/register.js": "/js/auth/register.js",
     "/js/forum/create.js": "/js/forum/create.js",
     "/js/forum/forum.js": "/js/forum/forum.js",
-    "/js/forum/index.js": "/js/forum/index.js",
-    "/js/forum/show.js": "/js/forum/show.js"
+    "/js/forum/index.js": "/js/forum/index.js"
 }

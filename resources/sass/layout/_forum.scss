@@ -450,6 +450,14 @@
                 color: $color-purple-primary-2;
             }
         }
+
+        .active {
+            color: $color-purple-primary !important;
+
+            svg {
+                fill: $color-purple-primary !important;
+            }
+        }
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
@@ -516,6 +524,15 @@
                 color: $color-blue-primary-2;
             }
         }
+
+        .active {
+            color: $color-blue-primary !important;
+
+            svg {
+                fill: $color-blue-primary !important;
+            }
+        }
+
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {

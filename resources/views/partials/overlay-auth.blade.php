@@ -3,6 +3,11 @@
     session()->flash('errorMsg', $message);
 @endphp
 @enderror
+@error('email')
+@php
+    session()->flash('errorMsg', $message);
+@endphp
+@enderror
 @if(session('passwordError'))
 @php
     session()->flash('errorMsg', session('passwordError'));

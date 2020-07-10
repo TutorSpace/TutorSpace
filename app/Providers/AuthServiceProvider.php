@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('followup', function ($user, $reply) {
+            return $user->id != $reply->user->id;
+        });
     }
 }

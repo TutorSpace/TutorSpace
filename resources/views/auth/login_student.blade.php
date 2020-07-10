@@ -27,12 +27,17 @@ bg-grey-light body-login
             <h2 class="login__heading text-center">Student Login</h2>
 
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal @error('loginError') invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @error('loginError') invalid @enderror @error('email') invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
                 @error('loginError')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
+                @error('email')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
                     {{ $message }}
                 </span>

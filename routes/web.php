@@ -91,7 +91,9 @@ Route::group([
     Route::post('posts/upvote/{post}', 'Forum\PostController@upvote')->name('post.upvote');
     Route::post('posts/follow/{post}', 'Forum\PostController@follow')->name('post.follow');
 
-    Route::post('posts/{post}/replies/reply', 'Forum\ReplyController@storeReply')->middleware('auth')->name('posts.reply.store');
+    Route::post('posts/{post}/replies/reply', 'Forum\ReplyController@storeReply')->name('posts.reply.store');
+    Route::post('posts/replies/{reply}/upvote', 'Forum\ReplyController@upvote')->name('posts.reply.upvote');
+    Route::post('posts/replies/{reply}/followup', 'Forum\ReplyController@storeFollowup')->name('posts.followup.store');
 
 });
 

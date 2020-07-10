@@ -12073,20 +12073,12 @@ h6 {
   background-color: red !important;
 }
 
-.bg-student .active {
-  color: #1F7AFF;
+.disabled:hover {
+  cursor: not-allowed;
 }
 
-.bg-student .active svg {
-  fill: #1F7AFF;
-}
-
-.bg-tutor .active {
-  color: #6749DF;
-}
-
-.bg-tutor .active svg {
-  fill: #6749DF;
+.disabled *:hover {
+  cursor: not-allowed;
 }
 
 .btn-next {
@@ -12409,6 +12401,9 @@ h6 {
 
 .post-reply .right-container {
   flex: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .post-reply .right-container .post-reply__actions,
@@ -14031,6 +14026,14 @@ svg.bookmark:hover {
   color: #502ED9;
 }
 
+.bg-tutor .forum .active {
+  color: #6749DF !important;
+}
+
+.bg-tutor .forum .active svg {
+  fill: #6749DF !important;
+}
+
 .bg-tutor .btn-scroll-bottom-right-top:hover circle,
 .bg-tutor .btn-scroll-bottom-right-under:hover circle {
   fill: #502ED9;
@@ -14097,6 +14100,14 @@ svg.bookmark:hover {
 
 .bg-student .forum .btn-link:hover {
   color: #0075E0;
+}
+
+.bg-student .forum .active {
+  color: #1F7AFF !important;
+}
+
+.bg-student .forum .active svg {
+  fill: #1F7AFF !important;
 }
 
 .bg-student .btn-scroll-bottom-right-top:hover circle,
