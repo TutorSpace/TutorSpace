@@ -93,13 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('.action').click(function () {
-  if ($(this).parent().attr('data-post-id')) {
-    alert('post');
-  } else {
-    alert('reply');
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/show.js'");
 
 /***/ }),
 

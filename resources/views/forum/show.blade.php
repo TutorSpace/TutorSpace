@@ -77,33 +77,44 @@ bg-student
                             @endforeach
                         </div>
                         <div class="post__bottom__actions d-flex mt-3 justify-content-end">
-                            <div class="left-container d-flex align-items-center mt-3" data-post-id="{{ $post->id }}">
-                                <div class="action action-useful">
+                            <div class="left-container d-flex align-items-center mt-3" data-post-slug="{{ $post->slug }}">
+                                <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
-                                    <span>
+                                    <span class="num">
                                         {{ $post->upvote_count }}
                                     </span>
                                 </div>
 
-                                <div class="action action-reply">
+                                <div class="action action-reply @if(Auth::check() && $post->repliedBy(Auth::user())) active @endif">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
-                                    <span>
+                                    <span class="num">
                                         {{ $post->reply_count }}
                                     </span>
                                 </div>
 
+                                @if(Auth::check() && $post->followedBy(Auth::user()))
+                                <div class="action action-follow active">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                                    </svg>
+                                    <span class="text">
+                                        Unfollow
+                                    </span>
+                                </div>
+                                @else
                                 <div class="action action-follow">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
                                     </svg>
-                                    <span>
+                                    <span class="text">
                                         Follow
                                     </span>
                                 </div>
+                                @endif
 
                                 <div class="action action-report mr-0">
                                     <svg>
@@ -117,6 +128,14 @@ bg-student
                         </div>
                     </div>
                 </div>
+
+                {{-- post comment --}}
+                <div class="post-comment hidden" data-post-slug="{{ $post->slug }}">
+                    <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo">
+                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2"></textarea>
+                    <button class="btn btn-lg btn-reply">Reply</button>
+                </div>
+
                 <div class="post-reply">
                     <div class="left-container">
                         <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
@@ -130,7 +149,7 @@ bg-student
                         <div class="post-reply__actions" data-reply-id="">
                             <span class="mr-auto fs-1-2">reply time</span>
                             <button class="btn btn-link btn-toggle-follow-up mr-2">Hide all followups</button>
-                            <div class="action action-useful">
+                            <div class="action action-upvote">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
@@ -158,11 +177,11 @@ bg-student
                     </div>
                 </div>
 
-                <div class="post-comment">
+                {{-- <div class="post-comment">
                     <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user photo">
                     <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2"></textarea>
                     <button class="btn btn-lg btn-reply">Reply</button>
-                </div>
+                </div> --}}
 
                 <div class="followup-container">
                     <div class="followup__content">
@@ -175,7 +194,7 @@ bg-student
                             <span class="mr-1">by</span>
                             <a href="#" class="followup__user">Donald Trump</a>
                         </div>
-                        <div class="action action-useful">
+                        <div class="action action-upvote">
                             <svg>
                                 <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                             </svg>
@@ -223,5 +242,79 @@ bg-student
 
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
-<script src="{{ asset('js/forum/show.js') }}"></script>
+
+<script>
+$('.action').click(function() {
+    @auth
+        let postSlug = $(this).parent().attr('data-post-slug');
+        if(postSlug) {
+            if($(this).hasClass('action-upvote')) {
+                $.ajax({
+                    type:'POST',
+                    url: 'upvote/' + postSlug,
+                    success: (data) => {
+                        $(this).toggleClass('active');
+                        $(this).find('.num').html(data.num);
+                    },
+                    error: function(error) {
+                        toastr.error('Something went wrong!');
+                        console.log(error);
+                    }
+                });
+            }
+            else if($(this).hasClass('action-follow')){
+                $.ajax({
+                    type:'POST',
+                    url: 'follow/' + postSlug,
+                    success: (data) => {
+                        $(this).toggleClass('active');
+                        $(this).find('.text').html(data.text);
+                    },
+                    error: function(error) {
+                        toastr.error('Something went wrong!');
+                        console.log(error);
+                    }
+                });
+            }
+            else if($(this).hasClass('action-reply')) {
+                $(this).closest('.post-detail').next('.post-comment').toggleClass('hidden');
+            }
+        }
+        else {
+            alert('reply');
+        }
+    @else
+        $('.overlay-student').show();
+    @endauth
+
+    $('.btn-reply').click(function() {
+        let parent = $(this).parent();
+        let postSlug = parent.attr('data-post-slug');
+        let textarea = parent.find('textarea');
+
+        // for for post reply
+        if(postSlug) {
+            $.ajax({
+                type:'POST',
+                url: '{{ route('posts.reply.store', $post->slug) }}',
+                data: {
+                    content: textarea.val()
+                },
+                success: (data) => {
+                    toastr.success(data.successMsg);
+                    parent.hide();
+                    textarea.val('');
+                    $('.post-detail').find('.action-reply').addClass('active');
+                    $('.post-detail').find('.action-reply .num').html(data.num);
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong!');
+                    console.log(error);
+                }
+            });
+        }
+    })
+
+})
+</script>
 @endsection

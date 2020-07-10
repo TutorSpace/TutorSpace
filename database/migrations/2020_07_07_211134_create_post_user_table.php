@@ -13,6 +13,7 @@ class CreatePostUserTable extends Migration
      */
     public function up()
     {
+        // this table is for the follow relationship
         Schema::create('post_user', function (Blueprint $table) {
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');

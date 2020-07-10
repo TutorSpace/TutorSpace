@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
+use App\Post;
 use App\User;
 use App\Course;
 use App\Session;
@@ -12,10 +13,10 @@ use App\Subject;
 use App\Bookmark;
 use Carbon\Carbon;
 use App\NewMessage;
+
 use App\Tutor_request;
 
 use App\Characteristic;
-
 use App\Dashboard_post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +30,7 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        dd(User::pluck('id',  'last_name'));
+        dd(Post::find(1)->followedBy(Auth::user()));
         // return view('test');
     }
 

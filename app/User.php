@@ -100,6 +100,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Post');
     }
 
+    public function hasFollowedPost($post) {
+        return $this->followedPosts()->where('post_id', $post->id)->exists();
+    }
+
     // get all the posts the user upvoted
     public function upvotedPosts() {
         return $this->belongsToMany('App\Post', 'post_user_upvote');
@@ -107,7 +111,7 @@ class User extends Authenticatable
 
     // return a boolean indicates whether this users likes the given post
     public function hasUpvotedPost($post) {
-        return $this->upvotedReplies()->where('post_id', $post->id)->exists();
+        return $this->upvotedPosts()->where('post_id', $post->id)->exists();
     }
 
     // get all the replyes the user upvoted

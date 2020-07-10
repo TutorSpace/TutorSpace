@@ -12073,6 +12073,22 @@ h6 {
   background-color: red !important;
 }
 
+.bg-student .active {
+  color: #1F7AFF;
+}
+
+.bg-student .active svg {
+  fill: #1F7AFF;
+}
+
+.bg-tutor .active {
+  color: #6749DF;
+}
+
+.bg-tutor .active svg {
+  fill: #6749DF;
+}
+
 .btn-next {
   border-radius: 50%;
   display: flex;

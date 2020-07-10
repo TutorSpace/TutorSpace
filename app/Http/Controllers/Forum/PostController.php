@@ -24,6 +24,7 @@ class PostController extends Controller
             'uploadPostImg',
             'storeAsDraft',
             'upvote',
+            'follow'
         ]);
     }
 
@@ -252,7 +253,23 @@ class PostController extends Controller
         }
 
         return response()->json([
-            // 'successMsg' => 'Successfully upvoted'
+            'num' => $post->upvote_count
         ]);
+    }
+
+    public function follow(Request $request, Post $post) {
+        $user = Auth::user();
+        if($user->hasFollowedPost($post)) {
+            $user->followedPosts()->detach($post);
+            return response()->json([
+                'text' => 'Follow'
+            ]);
+        }
+        else {
+            $user->followedPosts()->attach($post);
+            return response()->json([
+                'text' => 'Unfollow'
+            ]);
+        }
     }
 }

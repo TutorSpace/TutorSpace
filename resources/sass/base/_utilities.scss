@@ -130,3 +130,24 @@
         background-color: red !important;
     }
 }
+
+.bg-student {
+    .active {
+        color: $color-blue-primary;
+
+        svg {
+            fill: $color-blue-primary;
+        }
+    }
+}
+
+.bg-tutor {
+    .active {
+        color: $color-purple-primary;
+
+        svg {
+            fill: $color-purple-primary;
+        }
+    }
+}
+

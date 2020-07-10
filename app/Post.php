@@ -45,6 +45,10 @@ class Post extends Model
         return $this->hasMany('App\Reply');
     }
 
+    public function repliedBy($user) {
+        return $this->replies()->where('user_id', $user->id)->exists();
+    }
+
     public function markAsBestReply(Reply $reply) {
         // $this->update([
         //     'reply_id' => $reply->id
@@ -72,7 +76,7 @@ class Post extends Model
 
     // return a boolean indicates whether this post is followed by the given user
     public function followedBy($user) {
-        return $this->usersFollowing()->where('user_id', $user->id);
+        return $this->usersFollowing()->where('user_id', $user->id)->exists();
     }
 
     // get users who upvoted this post

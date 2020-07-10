@@ -88,8 +88,15 @@ Route::group([
     Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('my-follows.index');
     Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
     Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->name('post-draft.store');
-    Route::post('posts/like', 'Forum\PostController@');
+    Route::post('posts/upvote/{post}', 'Forum\PostController@upvote')->name('post.upvote');
+    Route::post('posts/follow/{post}', 'Forum\PostController@follow')->name('post.follow');
+
+    Route::post('posts/{post}/replies/reply', 'Forum\ReplyController@storeReply')->middleware('auth')->name('posts.reply.store');
+
 });
+
+
+
 
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['auth']);
