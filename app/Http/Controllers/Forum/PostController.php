@@ -18,15 +18,9 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth'])->only([
-            'create',
-            'store',
-            'showMyFollows',
-            'showMyPosts',
-            'uploadPostImg',
-            'storeAsDraft',
-            'upvote',
-            'follow'
+        $this->middleware(['auth'])->except([
+            'index',
+            'show',
         ]);
     }
 
@@ -210,13 +204,13 @@ class PostController extends Controller
 
     public function showMyFollows() {
         return view('forum.my_follows', [
-            'posts' => Auth::user()->followedPosts
+            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
         ]);
     }
 
     public function showMyPosts() {
         return view('forum.my_posts', [
-            'posts' => Auth::user()->posts
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
         ]);
     }
 
