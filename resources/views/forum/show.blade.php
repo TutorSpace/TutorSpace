@@ -49,7 +49,7 @@ bg-student
                     <p class="post__heading-2 mb-4">
                         <span class="mr-3">Posted By</span>
                         <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
-                        @can('viewProfile', $post)
+                        @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
                         <a href="#" class="poster-name mr-3 btn-link">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}
                         </a>
@@ -57,7 +57,7 @@ bg-student
                         <span class="poster-name mr-3">
                             Me
                         </span>
-                        @endcan
+                        @endif
                         <span class="mr-4">{{ $post->getTime() }}</span>
                         <svg class="mr-1">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
@@ -144,7 +144,7 @@ bg-student
                 <div class="post-reply" data-reply-id="{{ $reply->id }}">
                     <div class="left-container">
                         <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
-                        @if (Auth::user() != $reply->user)
+                        @if (Auth::check() && Auth::user()->id != $reply->user->id)
                         <a class="user-name user-info" href="#">
                             {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
                         </a>
@@ -174,7 +174,7 @@ bg-student
                                     {{ $reply->getUpvotesCount() }}
                                 </span>
                             </div>
-                            <div class="action action-reply @if(Auth::check() && $reply->followupedBy(Auth::user())) active @endif @cannot('followup', $reply) disabled @endcannot">
+                            <div class="action action-reply @if(Auth::check() && $reply->followupedBy(Auth::user())) active @endif @auth @cannot('followup', $reply) disabled @endcannot @endauth">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
@@ -207,7 +207,7 @@ bg-student
                     @foreach ($reply->replies as $followup)
                         <div class="followup-container hidden" data-followup-for="{{ $reply->id }}">
                             <div class="followup__content">
-                                @if (Auth::user() != $followup->reply->user)
+                                @if (Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
                                     {{ $followup->reply->user->last_name }}
@@ -224,7 +224,7 @@ bg-student
                                 <div class="followup__info__left">
                                     <span class="mr-1">{{ $followup->created_at }}</span>
                                     <span class="mr-1">by</span>
-                                    @if (Auth::user() != $followup->user)
+                                    @if (Auth::user()->id != $followup->user->id)
                                     <a href="#" class="followup__user">
                                         {{ $followup->user->first_name }}
                                         {{ $followup->user->last_name }}
@@ -372,5 +372,28 @@ $('.btn-toggle-follow-up').click(function() {
     }
     $(`.followup-container[data-followup-for=${replyId}]`).toggleClass('hidden');
 });
+
+@auth
+    $('.user-card button').click(function() {
+        $('.overlay-student').show();
+    });
+@else
+    $('.user-card .btn-chat').click(function() {
+        alert('chat');
+    });
+
+    $('.user-card .btn-request').click(function() {
+        alert('request');
+    });
+
+    $('.user-card .btn-invite').click(function() {
+        alert('invite');
+    });
+
+@endauth
+
+
+
+
 </script>
 @endsection

@@ -18,6 +18,10 @@
         justify-content: center;
         flex: 0 0 10rem;
 
+        @include respond(lg) {
+            flex: 0 0 8rem;
+        }
+
         > :not(:first-child) {
             margin-top: .5rem;
         }
@@ -29,6 +33,11 @@
             border-radius: 50%;
             display: block;
             border: 1px solid transparentize($color: $color-grey, $amount: .5);
+
+            @include respond(lg) {
+                width: 8rem;
+                height: 8rem;
+            }
         }
 
         .user-name {
@@ -37,7 +46,7 @@
         }
 
         .user-info {
-            white-space: nowrap;
+            text-align: center;
             font-size: 1.2rem;
         }
 

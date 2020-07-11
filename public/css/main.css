@@ -12383,6 +12383,12 @@ h6 {
   flex: 0 0 10rem;
 }
 
+@media only screen and (max-width: 74.99em) {
+  .post-reply .left-container {
+    flex: 0 0 8rem;
+  }
+}
+
 .post-reply .left-container > :not(:first-child) {
   margin-top: 0.5rem;
 }
@@ -12397,13 +12403,20 @@ h6 {
   border: 1px solid rgba(160, 160, 160, 0.5);
 }
 
+@media only screen and (max-width: 74.99em) {
+  .post-reply .left-container img {
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
 .post-reply .left-container .user-name {
   font-size: 1.5rem !important;
   line-height: 1.2;
 }
 
 .post-reply .left-container .user-info {
-  white-space: nowrap;
+  text-align: center;
   font-size: 1.2rem;
 }
 
@@ -12603,20 +12616,45 @@ h6 {
   margin-top: 3rem;
   padding: 3rem 1rem;
   overflow: hidden;
+  position: relative;
+}
+
+.user-card > * {
+  margin-top: 1rem;
+  font-size: 1.6rem;
 }
 
 .user-card .user-image {
-  width: 12rem;
-  height: 12rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid rgba(160, 160, 160, 0.5);
 }
 
-.user-card > * {
-  margin-top: 1rem;
-  font-size: 1.6rem;
+.user-card .verified-stamp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 0;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .user-card .verified-stamp {
+    left: -0.5rem;
+  }
+}
+
+.user-card .bookmark-svg {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin-top: 0;
+  fill: currentColor;
+  cursor: pointer;
 }
 
 .user-card .user-name {

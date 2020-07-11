@@ -36,8 +36,9 @@ class PostController extends Controller
      */
     public function index()
     {
+        dd(Post::with('tags')->get());
         return view('forum.index', [
-            'posts' => Post::all()
+            'posts' => Post::with('tags')->get()
         ]);
     }
 

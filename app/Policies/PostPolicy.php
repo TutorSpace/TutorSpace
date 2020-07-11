@@ -91,8 +91,4 @@ class PostPolicy
     {
         //
     }
-
-    public function viewProfile(User $user, Post $post) {
-        return $post->user_id != $user->id;
-    }
 }
