@@ -9,6 +9,7 @@ use App\Rules\WordCountGTE;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -36,9 +37,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        dd(Post::with('tags')->get());
         return view('forum.index', [
-            'posts' => Post::with('tags')->get()
+            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
         ]);
     }
 
@@ -90,17 +90,23 @@ class PostController extends Controller
             ]
         ]);
 
-        $post = new Post();
-        $post->title = $request->input('post-title');
-        $post->content = $request->input('post-content');
-        $post->slug = Str::slug($request->input('post-title'));
+        DB::transaction(function () use($request) {
+            $post = new Post();
+            $post->title = $request->input('post-title');
+            $post->content = $request->input('post-content');
+            $post->slug = Str::slug($request->input('post-title'));
+            if(!empty($post->getThumbNail())) {
+                $post->thumbNail = $post->getThumbNail()[1];
+            }
 
-        $post->post_type()->associate(PostType::find($request->input('post-type')));
-        $post->user()->associate(Auth::user());
+            $post->post_type()->associate(PostType::find($request->input('post-type')));
+            $post->user()->associate(Auth::user());
 
-        $post->save();
+            $post->save();
 
-        $post->tags()->attach($request->input('tags'));
+            $post->tags()->attach($request->input('tags'));
+        });
+
 
         $postDraft = PostDraft::where('user_id', Auth::user()->id)->first();
         if($postDraft) {
@@ -251,19 +257,13 @@ class PostController extends Controller
         $user = Auth::user();
         if($user->hasUpvotedPost($post)) {
             $user->upvotedPosts()->detach($post);
-            $post->update([
-                "upvote_count" => $post->upvote_count - 1
-            ]);
         }
         else {
             $user->upvotedPosts()->attach($post);
-            $post->update([
-                "upvote_count" => $post->upvote_count + 1
-            ]);
         }
 
         return response()->json([
-            'num' => $post->upvote_count
+            'num' => $post->usersUpvoted()->count()
         ]);
     }
 

@@ -40,7 +40,7 @@ class Post extends Model
         return $this->created_at->format('M d Y');
     }
 
-    // get all the direct replies for the discussion
+    // get all the direct replies for the post
     public function replies() {
         return $this->hasMany('App\Reply');
     }
@@ -88,11 +88,6 @@ class Post extends Model
     // return a boolean indicates whether this post is liked by the given user
     public function upvotedBy($user) {
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
-    }
-
-    // returh the number of likes of this post
-    public function getUpvotesCount() {
-        return $this->usersUpvoted()->count();
     }
 
 

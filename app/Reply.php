@@ -61,10 +61,4 @@ class Reply extends Model
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
     }
 
-    // returh the number of likes of this post
-    public function getUpvotesCount() {
-        return $this->usersUpvoted()->count();
-    }
-
-
 }

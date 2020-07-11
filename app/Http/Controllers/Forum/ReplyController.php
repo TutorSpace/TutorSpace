@@ -23,10 +23,6 @@ class ReplyController extends Controller
             'post_id' => $post->id
         ]);
 
-        $post->update([
-            'reply_count' => $post->reply_count + 1
-        ]);
-
         // todo: send notification to the related users
         // if($post->user->id != auth()->user()->id) {
         //     // notify the reply's poster
@@ -41,11 +37,6 @@ class ReplyController extends Controller
         return redirect()->back()->with([
             'successMsg' => 'Successfully added the reply!'
         ]);
-
-        // return response()->json([
-        //     'successMsg' => 'Successfully added the reply!',
-        //     'num' => $post->reply_count
-        // ]);
     }
 
     public function storeFollowup(Request $request, Reply $reply) {
@@ -80,7 +71,7 @@ class ReplyController extends Controller
         }
 
         return response()->json([
-            'num' => $reply->getUpvotesCount()
+            'num' => $reply->usersUpvoted()->count()
         ]);
     }
 

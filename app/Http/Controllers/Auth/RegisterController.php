@@ -423,44 +423,46 @@ class RegisterController extends Controller
             ]
         ]);
 
-        // create the user
-        $user = new User();
+        DB::transaction(function () use($request, $tutorData) {
+            // create the user
+            $user = new User();
 
-        // stores the data
-        $user->firstMajor()->associate(Major::find($tutorData['first-major']));
+            // stores the data
+            $user->firstMajor()->associate(Major::find($tutorData['first-major']));
 
-        if(isset($tutorData['second-major'])) {
-            $user->secondMajor()->associate(Major::find($tutorData['second-major']));
-        }
-        $user->school_year()->associate(SchoolYear::find($tutorData['school-year']));
+            if(isset($tutorData['second-major'])) {
+                $user->secondMajor()->associate(Major::find($tutorData['second-major']));
+            }
+            $user->school_year()->associate(SchoolYear::find($tutorData['school-year']));
 
-        if(isset($tutorData['google-id'])) {
-            $user->google_id = $tutorData['google-id'];
-        }
-        else {
-            $user->password = Hash::make($tutorData['password']);
-        }
+            if(isset($tutorData['google-id'])) {
+                $user->google_id = $tutorData['google-id'];
+            }
+            else {
+                $user->password = Hash::make($tutorData['password']);
+            }
 
-        $user->first_name = $tutorData['first-name'];
-        $user->last_name = $tutorData['last-name'];
-        $user->is_tutor = true;
-        $user->email = $tutorData['email'];
-        $user->hourly_rate = $tutorData['hourly-rate'];
+            $user->first_name = $tutorData['first-name'];
+            $user->last_name = $tutorData['last-name'];
+            $user->is_tutor = true;
+            $user->email = $tutorData['email'];
+            $user->hourly_rate = $tutorData['hourly-rate'];
 
-        // if gpa field is not (>= 1 && <= 4), then it will be N/A
-        if($tutorData['gpa'] >= 1 && $tutorData['gpa'] <= 4) {
-            $user->gpa = $tutorData['gpa'];
-        }
+            // if gpa field is not (>= 1 && <= 4), then it will be N/A
+            if($tutorData['gpa'] >= 1 && $tutorData['gpa'] <= 4) {
+                $user->gpa = $tutorData['gpa'];
+            }
 
-        // if user uploaded the file
-        if($request->file('profile-pic')) {
-            $user->deleteImage();
-            $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
-        }
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+            }
 
-        $user->save();
+            $user->save();
 
-        $user->courses()->attach($tutorData['courses']);
+            $user->courses()->attach($tutorData['courses']);
+        });
 
         // clear all the session data
         $request->session()->flush();

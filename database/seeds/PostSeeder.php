@@ -103,6 +103,7 @@ class PostSeeder extends Seeder
             <p>testing link!</p>
             <p><a title="this is testing link title!" href="https://www.lipsum.com/">this is a testing link!</a></p>',
             'slug' => 'this-is-testing-post-1',
+            'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/lqNTPcNq44URzgJskKHcDuZE62FqbWzbljTSyTmf.jpeg',
             'user_id' => 1,
             'post_type_id' => 1,
             'created_at' => '2020-07-08 12:23:43'
@@ -142,6 +143,7 @@ class PostSeeder extends Seeder
             <pre class="language-python"><code>str = "Hello, World!"
             print(str)</code></pre>',
             'slug' => 'testing-normal-image-size-here',
+            'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png',
             'user_id' => 1,
             'post_type_id' => 1,
             'created_at' => '2020-07-08 14:55:30'

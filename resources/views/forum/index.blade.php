@@ -59,7 +59,7 @@ bg-student
                         </h5>
                         <p class="post__heading-2">
                             <span class="mr-3">Posted By</span>
-                            <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
+                            <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                             @can('viewProfile', $post)
                             <a href="#" class="poster-name mr-3 btn-link">
                                 {{ "{$post->user->first_name} {$post->user->last_name}" }}
@@ -75,9 +75,9 @@ bg-student
                             {!! Str::words(strip_tags($post->content), 30, ' ...') !!}
                         </div>
                     </div>
-                    @if(!empty($post->getThumbNail()))
+                    @if($post->thumbNail)
                         <div class="post-preview__right">
-                            <img class="post-preview__right__thumbnail" src="{{ $post->getThumbNail()[1] }}" alt="thumbnail">
+                            <img class="post-preview__right__thumbnail" src="{{ $post->thumbNail }}" alt="thumbnail">
                         </div>
                     @endif
                     <div class="post__bottom">
@@ -85,11 +85,8 @@ bg-student
                             @foreach ($post->tags->take(3) as $tag)
                                 <span class="tag">{{ $tag->tag }}</span>
                             @endforeach
-                            @php
-                                $cnt = $post->tags->count();
-                            @endphp
-                            @if ($cnt > 3)
-                                <span class="fc-grey">and {{ $cnt - 3 }} more...</span>
+                            @if ($post->tags_count > 3)
+                                <span class="fc-grey">and {{ $post->tags_count - 3 }} more...</span>
                             @endif
                         </div>
                         <div class="post__bottom__info d-flex">
@@ -98,7 +95,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span class="mr-5">
-                                    {{ $post->upvote_count }} people found this post useful.
+                                    {{ $post->users_upvoted_count }} people found this post useful.
                                 </span>
                                 <svg class="mr-1">
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
@@ -110,7 +107,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="">
-                                    {{ $post->reply_count }}
+                                    {{ $post->replies_count }}
                                 </span>
                             </div>
                             <a href="{{ route('posts.show', $post->slug) }}" class="btn-link mt-3">View</a>
