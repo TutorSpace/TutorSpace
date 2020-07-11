@@ -83,7 +83,7 @@ bg-student
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
-                                        {{ $post->upvote_count }}
+                                        {{ $post->users_upvoted_count }}
                                     </span>
                                 </div>
 
@@ -92,7 +92,7 @@ bg-student
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                     <span class="num">
-                                        {{ $post->reply_count }}
+                                        {{ $post->replies_count }}
                                     </span>
                                 </div>
 
@@ -171,7 +171,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span class="num">
-                                    {{ $reply->getUpvotesCount() }}
+                                    {{ $reply->usersUpvoted()->count() }}
                                 </span>
                             </div>
                             <div class="action action-reply @if(Auth::check() && $reply->followupedBy(Auth::user())) active @endif @auth @cannot('followup', $reply) disabled @endcannot @endauth">
@@ -179,7 +179,7 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="num">
-                                    {{ $reply->followups->count() }}
+                                    {{ $reply->followups()->count() }}
                                 </span>
                             </div>
                             <div class="action action-report mr-0">
@@ -234,14 +234,13 @@ bg-student
                                         Me
                                     </span>
                                     @endif
-
                                 </div>
                                 <div class="action action-upvote @if(Auth::check() && $followup->upvotedBy(Auth::user())) active @endif">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
-                                        {{ $followup->getUpvotesCount() }}
+                                        {{ $followup->usersUpvoted()->count() }}
                                     </span>
                                 </div>
                                 @can('followup', $followup)

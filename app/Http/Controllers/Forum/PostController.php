@@ -165,6 +165,12 @@ class PostController extends Controller
 
         return view('forum.show', [
             'post' => $post
+                        ->loadCount([
+                            'usersUpvoted',
+                            'replies'
+                        ])
+                        ->load('replies.replies')
+
         ]);
     }
 
