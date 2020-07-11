@@ -48,7 +48,7 @@ bg-student
                     </h4>
                     <p class="post__heading-2 mb-4">
                         <span class="mr-3">Posted By</span>
-                        <img src="{{ Storage::url(App\User::find($post->user_id)->profile_pic_url) }}" alt="user photo" class="poster-img">
+                        <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
                         <a href="#" class="poster-name mr-3 btn-link">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}

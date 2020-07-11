@@ -52,7 +52,7 @@
         color: $color-black-post;
     }
 
-    .btn-chat, .btn-request {
+    .btn-chat, .btn-request, .btn-invite {
         font-size: 1.6rem;
         width: 80%;
         border: 1px solid currentColor;
@@ -70,7 +70,7 @@
 .bg-student {
 
     .user-card {
-        .btn-request {
+        .btn-request, .btn-invite {
             color: $color-white-dark-5;
             background-color: $color-blue-primary;
         }
@@ -80,7 +80,7 @@
 .bg-tutor {
 
     .user-card {
-        .btn-request {
+        .btn-request, .btn-invite {
             color: $color-white-dark-5;
             background-color: $color-purple-primary;
         }

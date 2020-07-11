@@ -12666,14 +12666,16 @@ h6 {
 }
 
 .user-card .btn-chat,
-.user-card .btn-request {
+.user-card .btn-request,
+.user-card .btn-invite {
   font-size: 1.6rem;
   width: 80%;
   border: 1px solid currentColor;
 }
 
 .user-card .btn-chat:focus,
-.user-card .btn-request:focus {
+.user-card .btn-request:focus,
+.user-card .btn-invite:focus {
   box-shadow: none;
 }
 
@@ -12681,12 +12683,14 @@ h6 {
   color: currentColor;
 }
 
-.bg-student .user-card .btn-request {
+.bg-student .user-card .btn-request,
+.bg-student .user-card .btn-invite {
   color: #F9F9F9;
   background-color: #1F7AFF;
 }
 
-.bg-tutor .user-card .btn-request {
+.bg-tutor .user-card .btn-request,
+.bg-tutor .user-card .btn-invite {
   color: #F9F9F9;
   background-color: #6749DF;
 }
