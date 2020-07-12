@@ -163,6 +163,19 @@ bg-grey-light body-login
             'longtitle': true,
             'theme': 'light'
         });
+
+        let checkBtnAddedInterval = setInterval(() => {
+            _.forEach($('.abcRioButtonContents').children(), function (ele) {
+                if ($(ele).html() == 'Signed in with Google') {
+                    $(ele).html('Sign in with Google');
+                    clearInterval(checkBtnAddedInterval);
+                }
+                else if ($(ele).html() == 'Signed in') {
+                    $(ele).html('Sign in');
+                    clearInterval(checkBtnAddedInterval);
+                }
+            });
+        }, 1);
     }
 
     function adjustGoogleBtnSize() {
