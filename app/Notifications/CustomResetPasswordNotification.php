@@ -12,7 +12,7 @@ class CustomResetPasswordNotification extends Notification
 {
     use Queueable;
 
-    // customized (tutor or student)
+    // tutor or student
     public $is_tutor;
 
     /**
@@ -42,11 +42,7 @@ class CustomResetPasswordNotification extends Notification
      * @param  string  $token
      * @return void
      */
-    // public function __construct($token)
-    // {
-    //     $this->token = $token;
-    // }
-    // customized
+
     public function __construct($token, $is_tutor)
     {
         $this->token = $token;
@@ -82,7 +78,6 @@ class CustomResetPasswordNotification extends Notification
             $url = url(config('app.url').route('password.reset', [
                 'token' => $this->token,
                 'email' => $notifiable->getEmailForPasswordReset(),
-                // customized
                 'is_tutor' => $this->is_tutor
             ], false));
         }

@@ -93,9 +93,7 @@ class ResetPasswordController extends Controller
 
         event(new PasswordReset($user));
 
-        session()->flash(
-            'successMsg', 'Successfully reset your password!'
-        );
+        request()->session()->put('successMsg', 'Successfully reset your password!');
         $this->guard()->login($user);
     }
 }

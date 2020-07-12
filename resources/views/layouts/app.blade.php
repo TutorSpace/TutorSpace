@@ -24,6 +24,7 @@
 
     @yield('content')
 
+
     {{-- my js --}}
     <script src="{{asset('js/app.js')}}"></script>
     <script>
@@ -35,6 +36,9 @@
         @endif
         @if(session('successMsg'))
             toastr.success('{{ session('successMsg') }}');
+            @php
+                session()->forget('successMsg');
+            @endphp
         @endif
     </script>
     @yield('js')
