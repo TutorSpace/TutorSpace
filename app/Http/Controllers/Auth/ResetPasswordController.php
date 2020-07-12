@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+
 use Illuminate\Auth\Events\PasswordReset;
-use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
@@ -92,9 +93,9 @@ class ResetPasswordController extends Controller
 
         event(new PasswordReset($user));
 
-        session()->flash([
-            'successMsg' => 'Successfully reset your password!'
-        ]);
+        session()->flash(
+            'successMsg', 'Successfully reset your password!'
+        );
         $this->guard()->login($user);
     }
 }
