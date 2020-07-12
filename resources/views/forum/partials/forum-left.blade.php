@@ -57,7 +57,7 @@
 
 <section class="col-3 col-lg-20-p forum-left">
     <ul class="forum-left__list">
-        <li class="forum-left__list-item" data-location-href="{{ route('posts.index') }}">
+        <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.index') current @endif" data-location-href="{{ route('posts.index') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
             </svg>
@@ -78,13 +78,13 @@
 
 
         @auth
-        <li class="forum-left__list-item" data-location-href="{{ route('posts.my-posts') }}">
+        <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.my-posts') current @endif" data-location-href="{{ route('posts.my-posts') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
             </svg>
             <span class="forum-left__list-content">My Posts</span>
         </li>
-        <li class="forum-left__list-item" data-location-href="{{ route('posts.my-follows') }}">
+        <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.my-follows') current @endif" data-location-href="{{ route('posts.my-follows') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
             </svg>

@@ -178,6 +178,8 @@
         font-size: 1.6rem;
         font-weight: bold;
 
+
+
         &-item {
             background-color: $color-white-dark-5;
             padding: 1rem 1.5rem;
@@ -425,6 +427,15 @@
 
         &-left__list {
 
+            .current {
+                background-color: $color-purple-primary;
+                color: $color-white-dark-5;
+
+                svg {
+                    fill: $color-white-dark-5;
+                }
+            }
+
             &-item {
                 &:hover {
                     background-color: $color-purple-primary;
@@ -501,6 +512,16 @@
         @include form-search-blue;
 
         &-left__list {
+
+            .current {
+                background-color: $color-blue-primary;
+                color: $color-white-dark-5;
+
+                svg {
+                    fill: $color-white-dark-5;
+                }
+            }
+
             &-item {
                 &:hover {
                     background-color: $color-blue-primary;
