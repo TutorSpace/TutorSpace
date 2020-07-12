@@ -250,11 +250,6 @@
                 background-color: $color-white-dark-5;
                 transition: all .1s;
 
-                &:focus {
-                    border-width: 1.5px;
-                    box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
-                }
-
                 + .svg-search {
                     width: 1.75rem;
                     height: 1.75rem;
@@ -415,6 +410,12 @@
 .bg-tutor {
     color: $color-purple-primary;
 
+    .form-search .input-search {
+        &:focus {
+            box-shadow: 0px 3px 1px 0px rgba($color-purple-primary, 0.2);
+        }
+    }
+
     .btn-back {
         &:hover {
             background-color: $color-purple-primary;
@@ -500,6 +501,12 @@
 
 .bg-student {
     color: $color-blue-primary;
+
+    .form-search .input-search {
+        &:focus {
+            box-shadow: 0px 3px 1px 0px rgba($color-blue-primary, 0.2);
+        }
+    }
 
     .btn-back {
         &:hover {

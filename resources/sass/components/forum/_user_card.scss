@@ -16,8 +16,8 @@
     }
 
     .user-image {
-        width: 10rem;
-        height: 10rem;
+        width: 8rem;
+        height: 8rem;
         border-radius: 50%;
         object-fit: cover;
         border: 1px solid transparentize($color: $color-grey, $amount: .5);
@@ -55,8 +55,8 @@
     }
 
     .btn-chat, .btn-request, .btn-invite {
-        font-size: 1.2rem;
-        width: 80%;
+        font-size: 1.4rem;
+        width: 85%;
         border: 1px solid currentColor;
 
         &:focus {
