@@ -34,7 +34,7 @@ class RegisterController extends Controller
             $request->session()->put('verificationCodeStudent', $verificationCode);
 
             Notification::route('mail', $email)
-            ->notify(new EmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName, false));
         }
         else if($request->session()->has('registerDataTutor')) {
             $email = $request->session()->get('registerDataTutor')['email'];
@@ -42,7 +42,7 @@ class RegisterController extends Controller
             $request->session()->put('verificationCodeTutor', $verificationCode);
 
             Notification::route('mail', $email)
-            ->notify(new EmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName, true));
         }
 
         return response()->json(
