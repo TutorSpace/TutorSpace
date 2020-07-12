@@ -128,6 +128,8 @@ bg-grey-light body-login
 
 @section('js')
 <script>
+
+
     let isStudent = false;
 
     // ===================== Google Auth ==========================
@@ -147,6 +149,7 @@ bg-grey-light body-login
     });
 
     function renderButton() {
+
         gapi.signin2.render('btn-google-sm', {
             'scope': 'profile email',
             'width': googleBtnWidth,

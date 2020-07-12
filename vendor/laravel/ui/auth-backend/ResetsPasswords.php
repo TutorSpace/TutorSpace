@@ -2,14 +2,13 @@
 
 namespace Illuminate\Foundation\Auth;
 
-use App\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 trait ResetsPasswords
@@ -27,20 +26,9 @@ trait ResetsPasswords
      */
     public function showResetForm(Request $request, $token = null)
     {
-        if($request->query('is_tutor') == '1') {
-            return view('auth.passwords.reset_tutor')->with(
-                ['token' => $token, 'email' => $request->email]
-            );
-        }
-        else if($request->query('is_tutor') == '0') {
-            return view('auth.passwords.reset_student')->with(
-                ['token' => $token, 'email' => $request->email]
-            );
-        }
-        else {
-            dd("error!");
-        }
-
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
     }
 
     /**
@@ -52,6 +40,7 @@ trait ResetsPasswords
     public function reset(Request $request)
     {
         $request->validate($this->rules(), $this->validationErrorMessages());
+
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the
         // database. Otherwise we will parse the error and return the response.
@@ -79,7 +68,7 @@ trait ResetsPasswords
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 
@@ -115,19 +104,11 @@ trait ResetsPasswords
      */
     protected function resetPassword($user, $password)
     {
-        // $this->setUserPassword($user, $password);
+        $this->setUserPassword($user, $password);
 
-        // customized
-        // reset the password of all the users with the same email
-        foreach(User::where('email', $user->email)->get() as $tempUser) {
-            $tempUser->password = Hash::make($password);
-            $tempUser->save();
-        }
+        $user->setRememberToken(Str::random(60));
 
-        // customized: no remember token
-        // $user->setRememberToken(Str::random(60));
-
-        // $user->save();
+        $user->save();
 
         event(new PasswordReset($user));
 

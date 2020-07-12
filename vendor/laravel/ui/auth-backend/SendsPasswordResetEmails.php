@@ -51,7 +51,7 @@ trait SendsPasswordResetEmails
         }
 
         // if the user is signed up using google, redirect them back
-        if(User::registerWithGoogle($request->input('email'))) {
+        if(User::registeredWithGoogle($request->input('email'))) {
             if($request->boolean('is_tutor')) {
                 return redirect()->route('login.index.tutor')->with([
                     'errorMsg' => 'You can not reset password because you signed up using Google.'
