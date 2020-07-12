@@ -178,9 +178,9 @@ bg-student
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
-                                <span class="num">
+                                {{-- <span class="num">
                                     {{ $reply->replies_count }}
-                                </span>
+                                </span> --}}
                             </div>
                             <div class="action action-report mr-0">
                                 <svg>
@@ -236,12 +236,12 @@ bg-student
                                     </span>
                                     @endif
                                 </div>
-                                <div class="action action-upvote @if(Auth::check() && $followup->upvotedBy(Auth::user())) active @endif">
+                                <div class="action action-upvote @if(Auth::check() && !($followup->usersUpvoted->isEmpty())) active @endif">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
-                                        {{ $followup->usersUpvoted()->count() }}
+                                        {{ $followup->users_upvoted_count }}
                                     </span>
                                 </div>
                                 @can('followup', $followup)

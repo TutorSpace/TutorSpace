@@ -190,7 +190,13 @@ class PostController extends Controller
                             'replies.followups' => function($query) {
                                 $query->where('user_id', Auth::user()->id);
                             },
-                            'replies.user.firstMajor'
+                            'replies.user.firstMajor',
+
+                            'replies.replies.reply.user',
+                            'replies.replies.user',
+                            'replies.replies.usersUpvoted' => function($query) {
+                                $query->where('user_id', Auth::user()->id);
+                            },
                         ])
 
         ]);
