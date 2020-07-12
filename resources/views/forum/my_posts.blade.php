@@ -18,7 +18,8 @@ bg-student
 
 @include('partials.nav')
 
-@include ('forum/partials.forum-helper-btn')
+@include ('forum.partials.forum-helper-btn')
+@include('forum.partials.delete-post-modal')
 
 <div class="container forum">
     <div class="row forum-row">
@@ -132,23 +133,31 @@ bg-student
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 <script>
+    let postSlug, postPreview;
+
     $('.post-preview-tag').click(function() {
-        if(confirm("Are you sure you want to delete?")) {
-            let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
-            $.ajax({
-                type:'DELETE',
-                url: '/forum/posts/' + postSlug,
-                success: (data) => {
-                    $(this).closest('.post-preview').remove();
-                    toastr.success(data.successMsg);
-                },
-                error: function(error) {
-                    toastr.error('Something went wrong!');
-                    console.log(error);
-                }
-            });
-        }
+        $('#deleteModal').modal('show');
+        postSlug = $(this).closest('.post-preview').attr('data-post-slug');
+        postPreview = $(this).closest('.post-preview');
     });
+
+    $('#deleteModal .btn-delete').click(function() {
+        $.ajax({
+            type:'DELETE',
+            url: '/forum/posts/' + postSlug,
+            success: (data) => {
+                $('#deleteModal').modal('hide');
+                postPreview.remove();
+                toastr.success(data.successMsg);
+            },
+            error: function(error) {
+                toastr.error('Something went wrong!');
+                console.log(error);
+            }
+        });
+    });
+
+
 </script>
 @endsection
 

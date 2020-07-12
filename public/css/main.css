@@ -12284,6 +12284,10 @@ h6 {
   border-top: none;
 }
 
+.modal .modal-body {
+  font-size: 1.6rem;
+}
+
 .modal .form-check {
   display: flex;
   align-items: center;
@@ -12309,6 +12313,11 @@ h6 {
 
 .modal .btn-submit {
   color: #F9F9F9;
+}
+
+.modal .btn-delete {
+  color: #F9F9F9;
+  background-color: #dc3545;
 }
 
 .bg-student .btn-submit {

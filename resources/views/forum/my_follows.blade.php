@@ -18,7 +18,7 @@ bg-student
 
 @include('partials.nav')
 
-@include ('forum/partials.forum-helper-btn')
+@include ('forum.partials.forum-helper-btn')
 
 <div class="container forum">
     <div class="row forum-row">

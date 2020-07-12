@@ -4,6 +4,8 @@ window.toastr = require('toastr');
 
 window.ColorHash = require('color-hash');
 
+window.bootbox = require('bootbox');
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {

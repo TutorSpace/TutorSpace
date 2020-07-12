@@ -17,6 +17,10 @@
         border-top: none;
     }
 
+    .modal-body {
+        font-size: 1.6rem;
+    }
+
 
     .form-check {
 
@@ -43,6 +47,11 @@
 
     .btn-submit {
         color: $color-white-dark-5;
+    }
+
+    .btn-delete {
+        color: $color-white-dark-5;
+        background-color: $color-danger;
     }
 
 }
