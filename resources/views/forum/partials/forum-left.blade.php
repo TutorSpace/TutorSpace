@@ -13,7 +13,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="{{ route('posts.index') }}">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
                 <span>Forum</span>
             </a>
@@ -29,7 +29,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="#">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
                 </svg>
                 <span>Latest Posts</span>
             </a>
@@ -59,7 +59,7 @@
     <ul class="forum-left__list">
         <li class="forum-left__list-item" data-location-href="{{ route('posts.index') }}">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
             </svg>
             <span class="forum-left__list-content">Forum</span>
         </li>
@@ -71,7 +71,7 @@
         </li>
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
             </svg>
             <span class="forum-left__list-content">Latest Posts</span>
         </li>
@@ -94,7 +94,7 @@
     </ul>
 
     @if(in_array(Route::current()->getName(), ['posts.show']))
-        <div class="user-card">
+        <div class="user-card @if (Auth::check() && (Auth::check() && $post->user->id == Auth::user()->id)) hidden @endif">
             @if ($post->user->tutor_verified)
             <svg class="verified-stamp" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="60" height="60" fill="url(#pattern10)"/>
@@ -112,16 +112,14 @@
             </svg>
 
             <img class="user-image" src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user image">
-            @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
+
             <a class="user-name" href="#">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>
-            @else
-            <span class="user-name">Me</span>
-            @endif
 
             <span class="user-info text-capitalize mt-1">{{ $post->user->firstMajor->major ?? 'None' }}</span>
 
+
             @if ($post->user->is_tutor)
-            <span class="user-info text-capitalize">{{ $post->user->tutor_level }} Tutor</span>
+            <span class="user-info text-capitalize mt-1">{{ $post->user->tutor_level }} Tutor</span>
             <button class="btn btn-lg btn-chat btn-animation-y-sm mt-4">Chat</button>
             <button class="btn btn-lg btn-request btn-animation-y-sm">Request Tutor Session</button>
             @else

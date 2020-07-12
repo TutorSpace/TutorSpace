@@ -96,4 +96,8 @@ class PostPolicy
     public function markAsBestReply(User $user, Post $post, Reply $reply) {
         return $post->user->id == $user->id && !$post->bestReply && $reply->isDirectReply();
     }
+
+    public function follow(User $user, Post $post) {
+        return $post->user->id != $user->id;
+    }
 }

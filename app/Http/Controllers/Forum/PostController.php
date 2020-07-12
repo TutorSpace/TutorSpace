@@ -160,18 +160,6 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        // $post->update([
-        //     'view_count' => $post->view_count + 1
-        // ]);
-
-        // $test = $post->load([
-        //     'replies.usersUpvoted' => function($query) {
-        //         $query->where('user_id', Auth::user()->id);
-        //     },
-        // ]);
-
-        // dd($test);
-
         return view('forum.show', [
             'post' => $post
                         ->loadCount([
@@ -180,7 +168,7 @@ class PostController extends Controller
                         ])
                         ->load([
                             'replies' => function($query) {
-                                $query->withCount(['usersUpvoted', 'replies']);
+                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc');
                             },
                             'replies.replies' => function($query) {
                                 $query->withCount('usersUpvoted');
@@ -305,6 +293,8 @@ class PostController extends Controller
     }
 
     public function follow(Request $request, Post $post) {
+        $this->authorize('follow', $post);
+
         $user = Auth::user();
         if($user->hasFollowedPost($post)) {
             $user->followedPosts()->detach($post);

@@ -60,6 +60,10 @@ class Post extends Model
             'best_reply_id' => $reply->id
         ]);
 
+        $reply->update([
+            'is_best_reply' => true
+        ]);
+
         if($reply->user->id != $this->user->id) {
             // TODO: notify the reply's poster
         //     $reply->user->notify(new ReplyMarkedAsBestReply($this));

@@ -27,6 +27,7 @@ class CreateRepliesTable extends Migration
 
             // if is direct reply for the post
             $table->boolean('is_direct_reply');
+            $table->boolean('is_best_reply')->default(false);
             $table->text('reply_content');
             $table->timestamps();
 
