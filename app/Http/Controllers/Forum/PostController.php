@@ -198,7 +198,6 @@ class PostController extends Controller
                                 $query->where('user_id', Auth::user()->id);
                             },
                         ])
-
         ]);
     }
 
