@@ -146,7 +146,11 @@ bg-student
                     $canMarkBestReply = Auth::check() && Auth::user()->id == $post->user->id && !$post->bestReply ? true : false;
                 @endphp
                 @foreach ($post->replies as $reply)
-                    <div class="post-reply best-reply" data-reply-id="{{ $reply->id }}">
+                    <div class="post-reply
+                    @if ($reply->id == $post->bestReply->id)
+                    best-reply
+                    @endif
+                    " data-reply-id="{{ $reply->id }}">
                         @if($canMarkBestReply)
                         <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
                             @csrf
@@ -156,6 +160,8 @@ bg-student
                             <button class="btn btn-link">Mark as Best Reply</button>
                         </form>
                         @endif
+
+                        @if ($reply->id == $post->bestReply->id)
                         <svg class="svg-best-reply" width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M42.7473 42.1417L35.4295 38.3413C34.8637 38.0177 34.1358 38.0177 33.5699 38.3413L26.2521 42.1417C25.484 42.5054 25.0795 43.3546 25.201 44.2036L28.3949 66.979H40.6047L43.7986 44.2037C43.92 43.3546 43.5155 42.5054 42.7473 42.1417Z" fill="#FABE2C"/>
                             <path d="M40.6047 66.9788L43.7987 44.2035C43.9201 43.3544 43.5157 42.5053 42.7475 42.1416L35.4297 38.3412C35.147 38.1794 34.8232 38.0986 34.5 38.0986V66.9788H40.6047Z" fill="#FF9100"/>
@@ -167,6 +173,7 @@ bg-student
                             <path d="M37.7257 34.9443C38.4066 35.2984 39.2303 35.2325 39.8459 34.7863C40.4658 34.3362 40.7776 33.5742 40.6514 32.8201L40.0591 29.2291L42.6451 26.6767C43.1939 26.1398 43.3874 25.3402 43.1505 24.6118C42.9135 23.8853 42.2858 23.3523 41.5278 23.2379L37.9349 22.6969L36.3083 19.4456C35.9648 18.7605 35.2325 18.418 34.5 18.418V33.2682L37.7257 34.9443Z" fill="#FF9100"/>
                         </svg>
                         <span class="text-best-reply">Best Reply</span>
+                        @endif
 
                         <div class="left-container">
                             <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
