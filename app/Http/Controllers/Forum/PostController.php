@@ -163,13 +163,35 @@ class PostController extends Controller
         //     'view_count' => $post->view_count + 1
         // ]);
 
+        // $test = $post->load([
+        //     'replies.usersUpvoted' => function($query) {
+        //         $query->where('user_id', Auth::user()->id);
+        //     },
+        // ]);
+
+        // dd($test);
+
         return view('forum.show', [
             'post' => $post
                         ->loadCount([
                             'usersUpvoted',
                             'replies'
                         ])
-                        ->load('replies.replies')
+                        ->load([
+                            'replies' => function($query) {
+                                $query->withCount(['usersUpvoted', 'replies']);
+                            },
+                            'replies.replies' => function($query) {
+                                $query->withCount('usersUpvoted');
+                            },
+                            'replies.usersUpvoted' => function($query) {
+                                $query->where('user_id', Auth::user()->id);
+                            },
+                            'replies.followups' => function($query) {
+                                $query->where('user_id', Auth::user()->id);
+                            },
+                            'replies.user.firstMajor'
+                        ])
 
         ]);
     }

@@ -163,23 +163,23 @@ bg-student
                         </div>
                         <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
                             <span class="mr-auto fs-1-2">{{ $reply->created_at }}</span>
-                            @if ($reply->replies->count() > 0)
-                                <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies->count() }} followups</button>
+                            @if ($reply->replies_count > 0)
+                                <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
                             @endif
-                            <div class="action action-upvote @if(Auth::check() && $reply->upvotedBy(Auth::user())) active @endif">
+                            <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                 </svg>
                                 <span class="num">
-                                    {{ $reply->usersUpvoted()->count() }}
+                                    {{ $reply->users_upvoted_count }}
                                 </span>
                             </div>
-                            <div class="action action-reply @if(Auth::check() && $reply->followupedBy(Auth::user())) active @endif @auth @cannot('followup', $reply) disabled @endcannot @endauth">
+                            <div class="action action-reply @if(Auth::check() && !($reply->followups->isEmpty()))) active @endif @auth @cannot('followup', $reply) disabled @endcannot @endauth">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
                                 <span class="num">
-                                    {{ $reply->followups()->count() }}
+                                    {{ $reply->replies_count }}
                                 </span>
                             </div>
                             <div class="action action-report mr-0">
@@ -204,6 +204,7 @@ bg-student
                 </form>
                 @endauth
 
+                    {{-- for followups --}}
                     @foreach ($reply->replies as $followup)
                         <div class="followup-container hidden" data-followup-for="{{ $reply->id }}">
                             <div class="followup__content">
