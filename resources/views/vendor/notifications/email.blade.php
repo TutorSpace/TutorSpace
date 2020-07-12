@@ -49,6 +49,7 @@
 
 {{-- Subcopy --}}
 @if (isset($actionText))
+    {{-- if this is a subscription email --}}
     @if(isset($isSubscriptionEmail) && $isSubscriptionEmail)
         @slot('subcopy')
             @lang(
