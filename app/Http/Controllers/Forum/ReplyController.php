@@ -17,11 +17,11 @@ class ReplyController extends Controller
 
     // for replies that are directly responding to the post
     public function storeReply(Request $request, Post $post) {
-        Auth::user()->replies()->create([
+        $newReplyId = Auth::user()->replies()->create([
             'reply_content' => $request->input('content'),
             'is_direct_reply' => true,
             'post_id' => $post->id
-        ]);
+        ])->id;
 
         // todo: send notification to the related users
         // if($post->user->id != auth()->user()->id) {
@@ -35,7 +35,8 @@ class ReplyController extends Controller
         // }
 
         return redirect()->back()->with([
-            'successMsg' => 'Successfully added the reply!'
+            'successMsg' => 'Successfully added the reply!',
+            'newReplyId' => $newReplyId
         ]);
     }
 
@@ -43,18 +44,21 @@ class ReplyController extends Controller
 
         $baseReply = $reply->baseReply();
 
-        Auth::user()->replies()->create([
+        $newFollowupId = Auth::user()->replies()->create([
             'post_id' => $baseReply->post_id,
             'reply_content' => $request->input('content'),
             'is_direct_reply' => false,
             'reply_id' => $reply->id,
             'base_reply_id' => $baseReply->id
-        ]);
+        ])->id;
 
         // todo: send notifications to the related users
         // $reply->user->notify(new NewFollowupAdded(Discussion::find($baseReply->discussion_id)));
 
-        return redirect()->back()->with('successMsg', 'Successfully added the reply!');
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully added the reply!',
+            'newFollowupId' => $newFollowupId
+        ]);
     }
 
 

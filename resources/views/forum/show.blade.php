@@ -152,7 +152,11 @@ bg-student
                     @if ($post->bestReply && $reply->id == $post->bestReply->id)
                     best-reply
                     @endif
-                    " data-reply-id="{{ $reply->id }}">
+                    " data-reply-id="{{ $reply->id }}"
+                    @if ($reply->id == session('newReplyId'))
+                        id="scroll-to-reply"
+                    @endif
+                    >
                         @if($canMarkBestReply)
                         <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
                             @csrf
@@ -238,7 +242,10 @@ bg-student
 
                     {{-- for followups --}}
                     @foreach ($reply->replies as $followup)
-                        <div class="followup-container hidden" data-followup-for="{{ $reply->id }}">
+                        <div class="followup-container hidden" data-followup-for="{{ $reply->id }}"
+                        @if ($followup->id == session('newFollowupId'))
+                            id="scroll-to-followup"
+                        @endif>
                             <div class="followup__content">
                                 @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
@@ -433,6 +440,17 @@ $('.btn-toggle-follow-up').click(function() {
 $('#reportModal').modal('show');
 @enderror
 
+@if (session('newFollowupId'))
+    $(`.followup-container[data-followup-for=${$('#scroll-to-followup').attr('data-followup-for')}]`).removeClass('hidden');
+    // $(`.post-reply[data-reply-id=${}]`).show();
+    $('html, body').animate({
+        scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 100
+    }, 2000);
+@elseif(session('newReplyId'))
+    $('html, body').animate({
+        scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 100
+    }, 2000);
+@endif
 
 </script>
 @endsection
