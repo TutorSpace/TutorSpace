@@ -97,6 +97,8 @@ Route::group([
     Route::post('posts/replies/{reply}/upvote', 'Forum\ReplyController@upvote')->name('posts.reply.upvote');
     Route::post('posts/replies/{reply}/followup', 'Forum\ReplyController@storeFollowup')->name('posts.followup.store');
 
+    // report
+    Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
 });
 
 

@@ -20,13 +20,15 @@ bg-student
 
 @include ('forum/partials.forum-helper-btn')
 
+@include('forum.partials.report-modal')
+
 <div class="container forum">
     <div class="row forum-row">
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
-            <form action="" method="POST" class="forum-content__search">
+            <form action="#" method="GET" class="forum-content__search">
                 <a class="btn btn-lg btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('posts.index')) }}">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -335,6 +337,10 @@ $('.action').click(function() {
             else if($(this).hasClass('action-reply')) {
                 $(this).closest('.post-detail').next().toggleClass('hidden');
             }
+            else if($(this).hasClass('action-report')) {
+                $('#report-for').val(`post: ${postSlug}`)
+                $('#reportModal').modal('show');
+            }
         }
         // if for the replies
         else if(replyId) {
@@ -355,6 +361,10 @@ $('.action').click(function() {
             }
             else if($(this).hasClass('action-reply')) {
                 $(this).closest('.post-reply, .followup-container').next().toggleClass('hidden');
+            }
+            else if($(this).hasClass('action-report')) {
+                $('#report-for').val(`reply: ${replyId}`)
+                $('#reportModal').modal('show');
             }
         }
     @else
@@ -392,7 +402,9 @@ $('.btn-toggle-follow-up').click(function() {
 
 @endauth
 
-
+@error('report-reason')
+$('#reportModal').modal('show');
+@enderror
 
 
 </script>

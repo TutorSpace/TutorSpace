@@ -1,0 +1,64 @@
+.modal {
+
+
+    .modal-content {
+        padding: 1rem 2rem;
+    }
+
+    .modal-title {
+        font-weight: bold;
+    }
+
+    .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-footer {
+        border-top: none;
+    }
+
+
+    .form-check {
+
+        display: flex;
+        align-items: center;
+
+        .form-check-input {
+            margin-top: 0;
+        }
+        &:not(:first-child) {
+            margin: 2rem 0;
+        }
+
+        .form-check-label {
+            font-size: 1.8rem;
+            color: $color-black-post;
+            margin-left: 2rem;
+        }
+    }
+
+    button {
+        font-size: 1.6rem;
+    }
+
+    .btn-submit {
+        color: $color-white-dark-5;
+    }
+
+}
+
+
+.bg-student {
+
+    .btn-submit {
+        background-color: $color-blue-primary;
+    }
+}
+
+
+.bg-tutor {
+
+    .btn-submit {
+        background-color: $color-purple-primary;
+    }
+}

@@ -12268,6 +12268,57 @@ h6 {
   cursor: pointer;
 }
 
+.modal .modal-content {
+  padding: 1rem 2rem;
+}
+
+.modal .modal-title {
+  font-weight: bold;
+}
+
+.modal .modal-header {
+  border-bottom: none;
+}
+
+.modal .modal-footer {
+  border-top: none;
+}
+
+.modal .form-check {
+  display: flex;
+  align-items: center;
+}
+
+.modal .form-check .form-check-input {
+  margin-top: 0;
+}
+
+.modal .form-check:not(:first-child) {
+  margin: 2rem 0;
+}
+
+.modal .form-check .form-check-label {
+  font-size: 1.8rem;
+  color: #626262;
+  margin-left: 2rem;
+}
+
+.modal button {
+  font-size: 1.6rem;
+}
+
+.modal .btn-submit {
+  color: #F9F9F9;
+}
+
+.bg-student .btn-submit {
+  background-color: #1F7AFF;
+}
+
+.bg-tutor .btn-submit {
+  background-color: #6749DF;
+}
+
 .overlay {
   display: none;
   position: fixed;
