@@ -12506,6 +12506,33 @@ h6 {
   font-size: 1.4rem;
 }
 
+.best-reply {
+  padding-top: 7rem;
+}
+
+.best-reply .svg-best-reply {
+  position: absolute;
+  top: -2.2rem;
+  right: 1rem;
+  height: 7rem;
+  z-index: 100;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .best-reply .svg-best-reply {
+    right: -1rem;
+  }
+}
+
+.best-reply .text-best-reply {
+  color: #F9F9F9;
+  font-size: 2.4rem;
+  font-family: "Baloo Bhai", sans-serif;
+  position: absolute;
+  top: 0.7rem;
+  right: 8.5rem;
+}
+
 .post-comment,
 .post-followup {
   margin-top: 1.5rem;
@@ -12651,6 +12678,10 @@ h6 {
   fill: #1F7AFF;
 }
 
+.bg-student .best-reply {
+  background-image: linear-gradient(180deg, rgba(31, 122, 255, 0.9) 0%, rgba(31, 122, 255, 0.9) 5rem, transparent 10%);
+}
+
 .bg-tutor .post-reply .left-container .user-name {
   color: #6749DF;
 }
@@ -12667,6 +12698,10 @@ h6 {
 
 .bg-tutor .mark-best-reply svg {
   fill: #6749DF;
+}
+
+.bg-tutor .best-reply {
+  background-image: linear-gradient(180deg, rgba(103, 73, 223, 0.9) 0%, rgba(103, 73, 223, 0.9) 5rem, transparent 10%);
 }
 
 .user-card {

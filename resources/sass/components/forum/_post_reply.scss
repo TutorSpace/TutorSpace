@@ -91,6 +91,32 @@
 
 }
 
+
+.best-reply {
+    padding-top: 7rem;
+
+    .svg-best-reply {
+        position: absolute;
+        top: -2.2rem;
+        right: 1rem;
+        height: 7rem;
+        z-index: 100;
+
+        @include respond(extra-sm) {
+            right: -1rem;
+        }
+    }
+
+    .text-best-reply {
+        color: $color-white-dark-5;
+        font-size: 2.4rem;
+        font-family: 'Baloo Bhai', sans-serif;
+        position: absolute;
+        top: .7rem;
+        right: 8.5rem;
+    }
+}
+
 .post-comment, .post-followup {
     margin-top: 1.5rem;
     display: flex;
@@ -232,6 +258,10 @@
             fill: $color-blue-primary;
         }
     }
+
+    .best-reply {
+        background-image: linear-gradient(180deg, rgba($color-blue-primary, .9) 0%, rgba($color-blue-primary, .9) 5rem, transparent 10% );
+    }
 }
 
 .bg-tutor {
@@ -256,5 +286,9 @@
         svg {
             fill: $color-purple-primary;
         }
+    }
+
+    .best-reply {
+        background-image: linear-gradient(180deg, rgba($color-purple-primary, .9) 0%, rgba($color-purple-primary, .9) 5rem, transparent 10% );
     }
 }

@@ -146,74 +146,86 @@ bg-student
                     $canMarkBestReply = Auth::check() && Auth::user()->id == $post->user->id && !$post->bestReply ? true : false;
                 @endphp
                 @foreach ($post->replies as $reply)
-                <div class="post-reply" data-reply-id="{{ $reply->id }}">
-                    @if($canMarkBestReply)
-                    <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
-                        @csrf
-                        <svg>
-                            <use xlink:href="{{asset('assets/sprite.svg#icon-star-empty')}}"></use>
-                        </svg>
-                        <button class="btn btn-link">Mark as Best Reply</button>
-                    </form>
-                    @endif
-                    <div class="left-container">
-                        <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
-                        @if (Auth::check() && Auth::user()->id != $reply->user->id)
-                        <a class="user-name user-info" href="#">
-                            {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
-                        </a>
-                        @else
-                        <span class="user-name user-info">
-                            Me
-                        </span>
+                    <div class="post-reply best-reply" data-reply-id="{{ $reply->id }}">
+                        @if($canMarkBestReply)
+                        <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
+                            @csrf
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-star-empty')}}"></use>
+                            </svg>
+                            <button class="btn btn-link">Mark as Best Reply</button>
+                        </form>
                         @endif
-                        <span class="user-info">
-                            {{ $reply->user->firstMajor->major ?? 'None' }}
-                        </span>
-                    </div>
-                    <div class="right-container">
-                        <div class="post-reply__content">
-                            {{ $reply->reply_content }}
-                        </div>
-                        <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
-                            <span class="mr-auto fs-1-2">{{ $reply->created_at }}</span>
-                            @if ($reply->replies_count > 0)
-                                <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
-                            @endif
-                            <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
-                                <svg>
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
-                                </svg>
-                                <span class="num">
-                                    {{ $reply->users_upvoted_count }}
-                                </span>
-                            </div>
-                            <div class="action action-reply mr-4">
-                                <svg>
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
-                                </svg>
-                            </div>
-                            <div class="action action-report mr-0">
-                                <svg>
-                                    <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
-                                </svg>
-                                <span>
-                                    Report
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        <svg class="svg-best-reply" width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M42.7473 42.1417L35.4295 38.3413C34.8637 38.0177 34.1358 38.0177 33.5699 38.3413L26.2521 42.1417C25.484 42.5054 25.0795 43.3546 25.201 44.2036L28.3949 66.979H40.6047L43.7986 44.2037C43.92 43.3546 43.5155 42.5054 42.7473 42.1417Z" fill="#FABE2C"/>
+                            <path d="M40.6047 66.9788L43.7987 44.2035C43.9201 43.3544 43.5157 42.5053 42.7475 42.1416L35.4297 38.3412C35.147 38.1794 34.8232 38.0986 34.5 38.0986V66.9788H40.6047Z" fill="#FF9100"/>
+                            <path d="M46.6289 69H22.3711C21.2538 69 20.3496 68.0959 20.3496 66.9785C20.3496 65.8612 21.2538 64.957 22.3711 64.957H46.6289C47.7462 64.957 48.6504 65.8612 48.6504 66.9785C48.6504 68.0959 47.7462 69 46.6289 69Z" fill="#646D73"/>
+                            <path d="M34.5 69H46.6289C47.7462 69 48.6504 68.0959 48.6504 66.9785C48.6504 65.8612 47.7462 64.957 46.6289 64.957H34.5V69Z" fill="#474F54"/>
+                            <path d="M48.3743 49.5614L34.5004 42.3993L20.6264 49.5614C19.9473 49.9147 19.126 49.8476 18.5101 49.3956C17.8943 48.9436 17.5823 48.1835 17.7087 47.4294L20.283 32.0511L9.14905 21.1047C8.6042 20.5678 8.40676 19.7702 8.64368 19.0417C8.8806 18.3131 9.50443 17.7803 10.2625 17.6657L25.7237 15.3146L32.6921 1.0285C33.3791 -0.34153 35.6216 -0.34153 36.3086 1.0285L43.2772 15.3146L58.7385 17.6657C59.4965 17.7803 60.1204 18.3133 60.3573 19.0417C60.5942 19.7701 60.3968 20.5676 59.8519 21.1047L48.718 32.0511L51.2921 47.4294C51.4186 48.1835 51.1066 48.9435 50.4907 49.3956C49.8747 49.8453 49.0552 49.911 48.3743 49.5614Z" fill="#FED843"/>
+                            <path d="M48.374 49.5605C49.0548 49.9102 49.8743 49.8446 50.4902 49.3947C51.1061 48.9427 51.4181 48.1826 51.2917 47.4285L48.7174 32.0502L59.8513 21.1038C60.3961 20.5669 60.5936 19.7693 60.3567 19.0408C60.1197 18.3122 59.4959 17.7794 58.7379 17.6648L43.2766 15.3137L36.3083 1.02759C35.9648 0.342574 35.2325 0 34.5 0V42.3983L48.374 49.5605Z" fill="#FABE2C"/>
+                            <path d="M37.7249 34.9442L34.4992 33.2681L31.2734 34.9442C30.5983 35.2916 29.7692 35.2344 29.1533 34.7863C28.5334 34.3362 28.2215 33.5742 28.3478 32.82L28.9401 29.2291L26.3541 26.6766C25.7912 26.1278 25.6191 25.3143 25.8487 24.6117C26.0856 23.8852 26.7134 23.3522 27.4714 23.2378L31.0643 22.6968L32.6909 19.4455C33.3779 18.0755 35.6204 18.0755 36.3075 19.4455L37.9341 22.6968L41.5269 23.2378C42.285 23.3523 42.9127 23.8853 43.1496 24.6117C43.3866 25.3401 43.193 26.1397 42.6443 26.6766L40.0583 29.2291L40.6506 32.82C40.777 33.5742 40.465 34.3362 39.8451 34.7863C39.2293 35.2325 38.4056 35.2984 37.7249 34.9442Z" fill="#FABE2C"/>
+                            <path d="M37.7257 34.9443C38.4066 35.2984 39.2303 35.2325 39.8459 34.7863C40.4658 34.3362 40.7776 33.5742 40.6514 32.8201L40.0591 29.2291L42.6451 26.6767C43.1939 26.1398 43.3874 25.3402 43.1505 24.6118C42.9135 23.8853 42.2858 23.3523 41.5278 23.2379L37.9349 22.6969L36.3083 19.4456C35.9648 18.7605 35.2325 18.418 34.5 18.418V33.2682L37.7257 34.9443Z" fill="#FF9100"/>
+                        </svg>
+                        <span class="text-best-reply">Best Reply</span>
 
-                {{-- post followup of direct reply --}}
-                @auth
-                <form action="{{ route('posts.followup.store', $reply->id) }}" method="POST" class="post-comment hidden">
-                    @csrf
-                    <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo">
-                    <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
-                    <button class="btn btn-lg btn-reply">Reply</button>
-                </form>
-                @endauth
+                        <div class="left-container">
+                            <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
+                            @if (Auth::check() && Auth::user()->id != $reply->user->id)
+                            <a class="user-name user-info" href="#">
+                                {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
+                            </a>
+                            @else
+                            <span class="user-name user-info">
+                                Me
+                            </span>
+                            @endif
+                            <span class="user-info">
+                                {{ $reply->user->firstMajor->major ?? 'None' }}
+                            </span>
+                        </div>
+                        <div class="right-container">
+                            <div class="post-reply__content">
+                                {{ $reply->reply_content }}
+                            </div>
+                            <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
+                                <span class="mr-auto fs-1-2">{{ $reply->created_at }}</span>
+                                @if ($reply->replies_count > 0)
+                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
+                                @endif
+                                <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
+                                    </svg>
+                                    <span class="num">
+                                        {{ $reply->users_upvoted_count }}
+                                    </span>
+                                </div>
+                                <div class="action action-reply mr-4">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
+                                    </svg>
+                                </div>
+                                <div class="action action-report mr-0">
+                                    <svg>
+                                        <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
+                                    </svg>
+                                    <span>
+                                        Report
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- post followup of direct reply --}}
+                    @auth
+                    <form action="{{ route('posts.followup.store', $reply->id) }}" method="POST" class="post-comment hidden">
+                        @csrf
+                        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo">
+                        <textarea class="post-comment__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
+                        <button class="btn btn-lg btn-reply">Reply</button>
+                    </form>
+                    @endauth
 
                     {{-- for followups --}}
                     @foreach ($reply->replies as $followup)
