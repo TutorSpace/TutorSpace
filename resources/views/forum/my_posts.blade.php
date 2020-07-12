@@ -42,17 +42,17 @@ bg-student
                     <option value="tags">Questions Only</option>
                     <option value="keywords">Discussions Only</option>
                 </select> --}}
-                <select name="" class="forum-content__search__sort-by ml-auto">
-                    <option value="latest">Latest First</option>
-                    <option value="popular">Popular First</option>
-                </select>
             </form>
 
             <div class="post-previews">
                 @foreach ($posts as $post)
                 <div class="post-preview flex-wrap" data-post-slug="{{ $post->slug }}">
-                    <span class="post-preview-tag">
-
+                    <span class="post-preview-tag text-danger">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                          </svg>
+                          <span class="status">Delete</span>
                     </span>
                     <div class="post-preview__left">
                         <h5>
@@ -132,7 +132,23 @@ bg-student
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 <script>
-
+    $('.post-preview-tag').click(function() {
+        if(confirm("Are you sure you want to delete?")) {
+            let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
+            $.ajax({
+                type:'DELETE',
+                url: '/forum/posts/' + postSlug,
+                success: (data) => {
+                    $(this).closest('.post-preview').remove();
+                    toastr.success(data.successMsg);
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong!');
+                    console.log(error);
+                }
+            });
+        }
+    });
 </script>
 @endsection
 

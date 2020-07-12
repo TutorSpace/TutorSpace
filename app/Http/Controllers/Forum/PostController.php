@@ -218,9 +218,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response()->json([
+            'successMsg' => 'Successfully deleted the post!'
+        ]);
     }
 
     public function markAsBestReply(Post $post, Reply $reply) {

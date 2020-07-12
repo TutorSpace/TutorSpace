@@ -12336,21 +12336,6 @@ h6 {
   display: flex;
 }
 
-.post-previews .post-preview-tag {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.4rem;
-}
-
-.post-previews .post-preview-tag .status {
-  cursor: pointer;
-}
-
-.post-previews .post-preview-tag .status:hover {
-  text-decoration: underline;
-}
-
 .post-previews .post-preview__left {
   flex: 1;
 }
@@ -14119,6 +14104,24 @@ svg.bookmark:hover {
   font-size: 1.5rem;
   display: inline-block;
   line-height: 1.4;
+}
+
+.post-preview-tag,
+.post-detail-tag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.4rem;
+}
+
+.post-preview-tag .status,
+.post-detail-tag .status {
+  cursor: pointer;
+}
+
+.post-preview-tag .status:hover,
+.post-detail-tag .status:hover {
+  text-decoration: underline;
 }
 
 .bg-tutor {

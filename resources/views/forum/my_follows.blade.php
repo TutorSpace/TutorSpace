@@ -42,10 +42,6 @@ bg-student
                     <option value="tags">Questions Only</option>
                     <option value="keywords">Discussions Only</option>
                 </select> --}}
-                <select name="" class="forum-content__search__sort-by ml-auto">
-                    <option value="latest">Latest First</option>
-                    <option value="popular">Popular First</option>
-                </select>
             </form>
 
             <div class="post-previews">

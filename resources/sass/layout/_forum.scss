@@ -393,6 +393,22 @@
     }
 }
 
+.post-preview, .post-detail {
+    &-tag {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.4rem;
+
+
+        .status {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
 
 .bg-tutor {
     color: $color-purple-primary;
