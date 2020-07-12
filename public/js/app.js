@@ -44098,6 +44098,7 @@ $(document).ready(function () {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
   });
+  $('[data-toggle="tooltip"]').tooltip();
   $('select').each(function (idx, ele) {
     if ($(this).find('option:selected').prop('disabled')) {
       //Selected option is disabled

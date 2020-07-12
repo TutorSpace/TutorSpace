@@ -11,33 +11,25 @@
 
     .left-container {
         overflow: hidden;
-        margin-right: 2rem;
+        margin-right: 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        flex: 0 0 10rem;
+        flex: 0 0 8rem;
 
-        @include respond(lg) {
-            flex: 0 0 8rem;
-        }
 
         > :not(:first-child) {
             margin-top: .5rem;
         }
 
         img {
-            width: 10rem;
-            height: 10rem;
+            width: 7rem;
+            height: 7rem;
             object-fit: cover;
             border-radius: 50%;
             display: block;
             border: 1px solid transparentize($color: $color-grey, $amount: .5);
-
-            @include respond(lg) {
-                width: 8rem;
-                height: 8rem;
-            }
         }
 
         .user-name {
@@ -78,6 +70,22 @@
         .btn-toggle-follow-up {
             font-size: 1.4rem;
             color: $color-black-post !important;
+        }
+    }
+
+    .mark-best-reply {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        button {
+            padding: 0;
+            font-size: 1.4rem;
         }
     }
 
@@ -218,6 +226,12 @@
     .followup__user {
         color: $color-blue-primary;
     }
+
+    .mark-best-reply {
+        svg {
+            fill: $color-blue-primary;
+        }
+    }
 }
 
 .bg-tutor {
@@ -236,5 +250,11 @@
 
     .followup__user {
         color: $color-purple-primary;
+    }
+
+    .mark-best-reply {
+        svg {
+            fill: $color-purple-primary;
+        }
     }
 }

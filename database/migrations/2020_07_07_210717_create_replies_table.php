@@ -15,7 +15,7 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('post_id')->nullable();
+            $table->unsignedBigInteger('post_id');
 
             // the reply that this followup is directly responding to
             $table->unsignedBigInteger('reply_id')->nullable();

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Reply;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,6 +43,10 @@ class Post extends Model
 
     // get all the direct replies for the post
     public function replies() {
+        return $this->hasMany('App\Reply')->where('is_direct_reply', true);
+    }
+
+    public function allReplies() {
         return $this->hasMany('App\Reply');
     }
 
@@ -51,19 +56,19 @@ class Post extends Model
     }
 
     public function markAsBestReply(Reply $reply) {
-        // $this->update([
-        //     'reply_id' => $reply->id
-        // ]);
+        $this->update([
+            'best_reply_id' => $reply->id
+        ]);
 
-        // if($reply->user->id != $this->user->id) {
-        //     // notify the reply's poster
+        if($reply->user->id != $this->user->id) {
+            // TODO: notify the reply's poster
         //     $reply->user->notify(new ReplyMarkedAsBestReply($this));
 
-        //     // notify all the people who are following this discussion
+            // TODO: notify all the people who are following this post
         //     foreach($this->usersFollowing as $user) {
         //         $user->notify(new ReplyMarkedAsBestReply($this));
         //     }
-        // }
+        }
     }
 
     public function bestReply() {

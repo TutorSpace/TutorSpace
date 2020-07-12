@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Post;
 use App\User;
+use App\Reply;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
@@ -90,5 +91,9 @@ class PostPolicy
     public function forceDelete(User $user, Post $post)
     {
         //
+    }
+
+    public function markAsBestReply(User $user, Post $post, Reply $reply) {
+        return $post->user->id == $user->id && !$post->bestReply && $reply->isDirectReply();
     }
 }

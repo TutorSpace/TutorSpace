@@ -11,11 +11,27 @@
     </div>
     <ul class="forum-left-sm__list">
         <li class="forum-left-sm__list-item">
+            <a class="forum-left-sm__list-content" href="{{ route('posts.index') }}">
+                <svg class="forum-left-sm__list-svg">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                </svg>
+                <span>Forum</span>
+            </a>
+        </li>
+        <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="#">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
                 </svg>
                 <span>Popular Posts</span>
+            </a>
+        </li>
+        <li class="forum-left-sm__list-item">
+            <a class="forum-left-sm__list-content" href="#">
+                <svg class="forum-left-sm__list-svg">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+                </svg>
+                <span>Latest Posts</span>
             </a>
         </li>
         @auth
@@ -41,12 +57,25 @@
 
 <section class="col-3 col-lg-20-p forum-left">
     <ul class="forum-left__list">
+        <li class="forum-left__list-item" data-location-href="{{ route('posts.index') }}">
+            <svg class="forum-left__list-svg">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+            </svg>
+            <span class="forum-left__list-content">Forum</span>
+        </li>
         <li class="forum-left__list-item">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
             </svg>
             <span class="forum-left__list-content">Popular Posts</span>
         </li>
+        <li class="forum-left__list-item">
+            <svg class="forum-left__list-svg">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
+            </svg>
+            <span class="forum-left__list-content">Latest Posts</span>
+        </li>
+
 
         @auth
         <li class="forum-left__list-item" data-location-href="{{ route('posts.my-posts') }}">
@@ -79,7 +108,7 @@
             @endif
 
             <svg class="bookmark-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-star-outlined')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-star-empty')}}"></use>
             </svg>
 
             <img class="user-image" src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user image">
@@ -89,7 +118,7 @@
             <span class="user-name">Me</span>
             @endif
 
-            <span class="user-info text-capitalize">{{ $post->user->firstMajor->major ?? 'None' }}</span>
+            <span class="user-info text-capitalize mt-1">{{ $post->user->firstMajor->major ?? 'None' }}</span>
 
             @if ($post->user->is_tutor)
             <span class="user-info text-capitalize">{{ $post->user->tutor_level }} Tutor</span>
@@ -97,7 +126,7 @@
             <button class="btn btn-lg btn-request btn-animation-y-sm">Request Tutor Session</button>
             @else
             <span class="user-info mt-1">Student</span>
-            <button class="btn btn-lg btn-chat btn-animation-y-sm mt-4">Chat</button>
+            <button class="btn btn-chat btn-animation-y-sm mt-4">Chat</button>
             <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
             @endif
 

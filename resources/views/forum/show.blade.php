@@ -89,7 +89,7 @@ bg-student
                                     </span>
                                 </div>
 
-                                <div class="action action-reply @if(Auth::check() && $post->repliedBy(Auth::user())) active @endif">
+                                <div class="action action-reply @if(Auth::check() && $post->repliedBy(Auth::user())) active @endif" data-toggle="tooltip" data-placement="top" title="Reply">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
@@ -142,8 +142,20 @@ bg-student
                 @endauth
 
 
+                @php
+                    $canMarkBestReply = Auth::check() && Auth::user()->id == $post->user->id && !$post->bestReply ? true : false;
+                @endphp
                 @foreach ($post->replies as $reply)
                 <div class="post-reply" data-reply-id="{{ $reply->id }}">
+                    @if($canMarkBestReply)
+                    <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
+                        @csrf
+                        <svg>
+                            <use xlink:href="{{asset('assets/sprite.svg#icon-star-empty')}}"></use>
+                        </svg>
+                        <button class="btn btn-link">Mark as Best Reply</button>
+                    </form>
+                    @endif
                     <div class="left-container">
                         <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
                         @if (Auth::check() && Auth::user()->id != $reply->user->id)
@@ -176,13 +188,10 @@ bg-student
                                     {{ $reply->users_upvoted_count }}
                                 </span>
                             </div>
-                            <div class="action action-reply @if(Auth::check() && !($reply->followups->isEmpty()))) active @endif @auth @cannot('followup', $reply) disabled @endcannot @endauth">
+                            <div class="action action-reply mr-4">
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                 </svg>
-                                {{-- <span class="num">
-                                    {{ $reply->replies_count }}
-                                </span> --}}
                             </div>
                             <div class="action action-report mr-0">
                                 <svg>
@@ -210,7 +219,7 @@ bg-student
                     @foreach ($reply->replies as $followup)
                         <div class="followup-container hidden" data-followup-for="{{ $reply->id }}">
                             <div class="followup__content">
-                                @if (Auth::user()->id != $followup->reply->user->id)
+                                @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
                                     {{ $followup->reply->user->last_name }}
@@ -227,7 +236,7 @@ bg-student
                                 <div class="followup__info__left">
                                     <span class="mr-1">{{ $followup->created_at }}</span>
                                     <span class="mr-1">by</span>
-                                    @if (Auth::user()->id != $followup->user->id)
+                                    @if (!Auth::check() || Auth::user()->id != $followup->user->id)
                                     <a href="#" class="followup__user">
                                         {{ $followup->user->first_name }}
                                         {{ $followup->user->last_name }}
@@ -246,13 +255,11 @@ bg-student
                                         {{ $followup->users_upvoted_count }}
                                     </span>
                                 </div>
-                                @can('followup', $followup)
-                                <div class="action action-reply">
+                                <div class="action action-reply mr-4">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                 </div>
-                                @endcan
                                 <div class="action action-report mr-0">
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
@@ -266,7 +273,7 @@ bg-student
 
                         {{-- post followup of the followups --}}
                         @auth
-                        <form action="{{ route('posts.followup.store', $followup->id) }}" method="POST" class="post-followup hidden">
+                        <form action="{{ route('posts.followup.store', $followup->id) }}" method="POST" class="post-followup hidden" data-followup-for="{{ $reply->id }}">
                             @csrf
                             <textarea class="post-followup__input" placeholder="Add your comments here..." rows="2" name="content"></textarea>
                             <button class="btn btn-lg btn-reply">Reply</button>
@@ -296,10 +303,6 @@ bg-student
 
 <script>
 $('.action').click(function() {
-    if($(this).hasClass('disabled')) {
-        return;
-    }
-
     @auth
         let postSlug = $(this).parent().attr('data-post-slug');
         let replyId = $(this).parent().attr('data-reply-id');
@@ -376,11 +379,14 @@ $('.btn-toggle-follow-up').click(function() {
     let replyId = $(this).closest('.post-reply').attr('data-reply-id');
     if($(this).find('.keyword').html() == 'Display') {
         $(this).find('.keyword').html('Hide');
+
     }
     else {
         $(this).find('.keyword').html('Display');
+        $(`.post-followup[data-followup-for=${replyId}]`).addClass('hidden');
     }
     $(`.followup-container[data-followup-for=${replyId}]`).toggleClass('hidden');
+
 });
 
 @auth

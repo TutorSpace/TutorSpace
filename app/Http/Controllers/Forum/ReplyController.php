@@ -40,13 +40,11 @@ class ReplyController extends Controller
     }
 
     public function storeFollowup(Request $request, Reply $reply) {
-        // the user can not reply to his own replies
-        Gate::authorize('followup', $reply);
 
         $baseReply = $reply->baseReply();
 
-        // no post_id for followups
         Auth::user()->replies()->create([
+            'post_id' => $baseReply->post_id,
             'reply_content' => $request->input('content'),
             'is_direct_reply' => false,
             'reply_id' => $reply->id,

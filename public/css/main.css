@@ -12426,18 +12426,12 @@ h6 {
 
 .post-reply .left-container {
   overflow: hidden;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex: 0 0 10rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .post-reply .left-container {
-    flex: 0 0 8rem;
-  }
+  flex: 0 0 8rem;
 }
 
 .post-reply .left-container > :not(:first-child) {
@@ -12445,20 +12439,13 @@ h6 {
 }
 
 .post-reply .left-container img {
-  width: 10rem;
-  height: 10rem;
+  width: 7rem;
+  height: 7rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
   display: block;
   border: 1px solid rgba(160, 160, 160, 0.5);
-}
-
-@media only screen and (max-width: 74.99em) {
-  .post-reply .left-container img {
-    width: 8rem;
-    height: 8rem;
-  }
 }
 
 .post-reply .left-container .user-name {
@@ -12501,6 +12488,22 @@ h6 {
 .post-reply .right-container .btn-toggle-follow-up {
   font-size: 1.4rem;
   color: #626262 !important;
+}
+
+.post-reply .mark-best-reply {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.post-reply .mark-best-reply svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.post-reply .mark-best-reply button {
+  padding: 0;
+  font-size: 1.4rem;
 }
 
 .post-comment,
@@ -12644,6 +12647,10 @@ h6 {
   color: #1F7AFF;
 }
 
+.bg-student .mark-best-reply svg {
+  fill: #1F7AFF;
+}
+
 .bg-tutor .post-reply .left-container .user-name {
   color: #6749DF;
 }
@@ -12658,9 +12665,13 @@ h6 {
   color: #6749DF;
 }
 
+.bg-tutor .mark-best-reply svg {
+  fill: #6749DF;
+}
+
 .user-card {
   background-color: #F9F9F9;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12668,6 +12679,7 @@ h6 {
   padding: 3rem 1rem;
   overflow: hidden;
   position: relative;
+  box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .user-card > * {
@@ -12714,12 +12726,13 @@ h6 {
 
 .user-card .user-info {
   color: #626262;
+  font-size: 1.4rem;
 }
 
 .user-card .btn-chat,
 .user-card .btn-request,
 .user-card .btn-invite {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   width: 80%;
   border: 1px solid currentColor;
 }
@@ -12732,6 +12745,11 @@ h6 {
 
 .user-card .btn-chat {
   color: currentColor;
+}
+
+.user-card .btn-request,
+.user-card .btn-invite {
+  padding: 0.75rem 1.25rem;
 }
 
 .bg-student .user-card .btn-request,
@@ -12978,7 +12996,7 @@ svg.bookmark:hover {
 }
 
 .nav .brand-name {
-  font-size: 3rem;
+  font-size: 3.3rem;
   font-family: "Baloo Bhai", sans-serif;
   margin: 0 4rem;
   text-decoration: none;
@@ -13675,6 +13693,10 @@ svg.bookmark:hover {
   }
 }
 
+.forum .action {
+  color: #626262;
+}
+
 .forum .btn-add-post {
   font-size: 1.8rem;
   color: #FFFFFF;
@@ -13847,13 +13869,13 @@ svg.bookmark:hover {
 
 .forum-left__list {
   list-style: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
 }
 
 .forum-left__list-item {
   background-color: #F9F9F9;
-  padding: 1.5rem;
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
@@ -13946,7 +13968,6 @@ svg.bookmark:hover {
 
 .forum-content__search__search-by {
   margin-left: 2rem;
-  margin-right: 1rem;
 }
 
 .forum-content__search__type-by {
@@ -14238,6 +14259,7 @@ svg.bookmark:hover {
 .post__heading-2 {
   font-size: 1.4rem;
   margin-top: 1rem;
+  color: #626262;
 }
 
 .post__heading-2 .poster-img {

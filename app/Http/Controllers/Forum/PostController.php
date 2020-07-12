@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Post;
+use App\Reply;
 use App\PostType;
 use App\PostDraft;
 use App\Rules\WordCountGTE;
@@ -185,17 +186,16 @@ class PostController extends Controller
                                 $query->withCount('usersUpvoted');
                             },
                             'replies.usersUpvoted' => function($query) {
-                                $query->where('user_id', Auth::user()->id);
-                            },
-                            'replies.followups' => function($query) {
-                                $query->where('user_id', Auth::user()->id);
+                                if(Auth::check())
+                                    $query->where('user_id', Auth::user()->id);
                             },
                             'replies.user.firstMajor',
 
                             'replies.replies.reply.user',
                             'replies.replies.user',
                             'replies.replies.usersUpvoted' => function($query) {
-                                $query->where('user_id', Auth::user()->id);
+                                if(Auth::check())
+                                    $query->where('user_id', Auth::user()->id);
                             },
                         ])
         ]);
@@ -233,6 +233,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function markAsBestReply(Post $post, Reply $reply) {
+        $this->authorize('markAsBestReply', [$post, $reply]);
+
+        $post->markAsBestReply($reply);
+
+        return redirect()->back()->with([
+            'successMsg' => 'Marked as best reply.'
+        ]);
     }
 
     public function showMyFollows() {

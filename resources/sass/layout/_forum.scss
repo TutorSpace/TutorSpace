@@ -9,6 +9,10 @@
         }
     }
 
+    .action {
+        color: $color-black-post;
+    }
+
     .btn-add-post {
         font-size: 1.8rem;
         color: $color-white;
@@ -175,12 +179,12 @@
 
     &__list {
         list-style: none;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: bold;
 
         &-item {
             background-color: $color-white-dark-5;
-            padding: 1.5rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             border-radius: .5rem;
@@ -271,7 +275,6 @@
 
         &__search-by {
             margin-left: 2rem;
-            margin-right: 1rem;
         }
 
         &__type-by {
@@ -567,6 +570,7 @@
 .post__heading-2 {
     font-size: 1.4rem;
     margin-top: 1rem;
+    color: $color-black-post;
 
     .poster-img {
         width: 3rem;

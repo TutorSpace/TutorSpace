@@ -97,8 +97,12 @@ Route::group([
     Route::post('posts/replies/{reply}/upvote', 'Forum\ReplyController@upvote')->name('posts.reply.upvote');
     Route::post('posts/replies/{reply}/followup', 'Forum\ReplyController@storeFollowup')->name('posts.followup.store');
 
+    Route::post('/posts/mark-best-reply/{post}/{reply}', 'Forum\PostController@markAsBestReply')->name('posts.markBestReply');
+
     // report
     Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
+
+
 });
 
 

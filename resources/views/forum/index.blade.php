@@ -33,18 +33,9 @@ bg-student
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                     </svg>
                 </div>
-                <select name="" class="forum-content__search__search-by">
+                <select name="search-by" class="forum-content__search__search-by mr-auto">
                     <option value="tags">Search by Tags</option>
                     <option value="keywords">Search by Keywords</option>
-                </select>
-                {{-- <select name="" class="forum-content__search__type-by">
-                    <option value="tags">Both</option>
-                    <option value="tags">Questions Only</option>
-                    <option value="keywords">Discussions Only</option>
-                </select> --}}
-                <select name="" class="forum-content__search__sort-by ml-auto">
-                    <option value="latest">Latest First</option>
-                    <option value="popular">Popular First</option>
                 </select>
             </form>
 
