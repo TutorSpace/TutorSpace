@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Tag;
 use App\Post;
 use App\Reply;
 use App\PostType;
@@ -38,7 +39,7 @@ class PostController extends Controller
         return view('forum.index', [
             'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
             'pageTitle' => 'Forum',
-            // 'trendingTags' => Ta
+            'trendingTags' => Tag::getTrendingTags()
         ]);
     }
 
@@ -54,7 +55,8 @@ class PostController extends Controller
                 'user_id' => Auth::user()->id,
             ],[
                 'post_type_id' => 0
-            ])
+            ]),
+            'trendingTags' => Tag::getTrendingTags()
         ]);
     }
 
@@ -166,6 +168,7 @@ class PostController extends Controller
     public function show(Request $request, Post $post)
     {
         return view('forum.show', [
+            'trendingTags' => Tag::getTrendingTags(),
             'post' => $post
                         ->loadCount([
                             'usersUpvoted',
@@ -190,7 +193,8 @@ class PostController extends Controller
                                 if(Auth::check())
                                     $query->where('user_id', Auth::user()->id);
                             },
-                        ])
+                        ]),
+
         ]);
     }
 
@@ -244,12 +248,14 @@ class PostController extends Controller
 
     public function showMyFollows() {
         return view('forum.my_follows', [
+            'trendingTags' => Tag::getTrendingTags(),
             'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
         ]);
     }
 
     public function showMyPosts() {
         return view('forum.my_posts', [
+            'trendingTags' => Tag::getTrendingTags(),
             'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
         ]);
     }
@@ -326,6 +332,7 @@ class PostController extends Controller
     public function indexPopular() {
         // todo: orderby rule change
         return view('forum.index', [
+            'trendingTags' => Tag::getTrendingTags(),
             'posts' => Post::orderBy('view_count', 'desc')
                         ->with([
                             'tags',
@@ -342,6 +349,7 @@ class PostController extends Controller
 
     public function indexLatest() {
         return view('forum.index', [
+            'trendingTags' => Tag::getTrendingTags(),
             'posts' => Post::orderBy('created_at', 'desc')
                         ->with([
                             'tags',

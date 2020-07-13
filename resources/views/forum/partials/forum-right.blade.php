@@ -24,41 +24,18 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach ($trendingTags as $trendingTag)
                 <tr class="trending-tags__list-item mb-3">
                     <th>
-                        <a class="tag-name" href="">#Computer Science</a>
+                        <a class="tag-name" href="">#{{ $trendingTag->tag }}</a>
                     </th>
-                    <td class="post-cnt">2830</td>
-                    <td class="reply-cnt">487</td>
+                    <td class="post-cnt">{{ $trendingTag->posts_count }}</td>
+                    <td class="reply-cnt">{{ $trendingTag->posts->reduce(function ($count, $post) {
+                        return $count + $post->replies_count;
+                    }, 0) }}</td>
                 </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Science</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">47</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Mathematics</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">487</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Business Administration</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">487</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Design</a>
-                    </th>
-                    <td class="post-cnt">2</td>
-                    <td class="reply-cnt">4</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
 
