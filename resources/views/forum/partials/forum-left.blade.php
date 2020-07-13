@@ -63,13 +63,13 @@
             </svg>
             <span class="forum-left__list-content">Forum</span>
         </li>
-        <li class="forum-left__list-item" data-location-href="{{ route('posts.popular') }}">
+        <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.popular') current @endif" data-location-href="{{ route('posts.popular') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
             </svg>
             <span class="forum-left__list-content">Popular Posts</span>
         </li>
-        <li class="forum-left__list-item" data-location-href="{{ route('posts.latest') }}">
+        <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.latest') current @endif" data-location-href="{{ route('posts.latest') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
             </svg>

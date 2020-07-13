@@ -36,7 +36,9 @@ class PostController extends Controller
     public function index()
     {
         return view('forum.index', [
-            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
+            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'pageTitle' => 'Forum',
+            // 'trendingTags' => Ta
         ]);
     }
 
@@ -322,13 +324,36 @@ class PostController extends Controller
     }
 
     public function indexPopular() {
-        return view('forum.popular', [
-            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
+        // todo: orderby rule change
+        return view('forum.index', [
+            'posts' => Post::orderBy('view_count', 'desc')
+                        ->with([
+                            'tags',
+                            'user'
+                        ])
+                        ->withCount([
+                            'usersUpvoted',
+                            'replies',
+                            'tags'
+                        ])->get(),
+            'pageTitle' => 'Forum - Popular Posts'
         ]);
     }
 
     public function indexLatest() {
-
+        return view('forum.index', [
+            'posts' => Post::orderBy('created_at', 'desc')
+                        ->with([
+                            'tags',
+                            'user'
+                        ])
+                        ->withCount([
+                            'usersUpvoted',
+                            'replies',
+                            'tags'
+                        ])->get(),
+            'pageTitle' => 'Forum - Latest Posts'
+        ]);
     }
 
 }

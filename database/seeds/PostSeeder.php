@@ -107,7 +107,7 @@ class PostSeeder extends Seeder
             'user_id' => 1,
             'post_type_id' => 1,
             'view_count' => 3600,
-            'created_at' => '2020-07-08 12:23:43'
+            'created_at' => '2020-05-08 12:23:43'
         ]);
 
         DB::table('posts')->insert([
@@ -134,7 +134,7 @@ class PostSeeder extends Seeder
             'user_id' => 2,
             'post_type_id' => 2,
             'view_count' => 1200,
-            'created_at' => '2020-07-08 14:41:26'
+            'created_at' => '2020-07-05 14:41:26'
         ]);
 
         DB::table('posts')->insert([
