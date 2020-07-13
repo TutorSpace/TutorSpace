@@ -40,29 +40,18 @@ $('input').filter('[required]').on('input', function () {
 });
 
 $(".signup-form-input-email").keypress(function(e) {
-    var inputs = $(this).closest('form').find(':input');
+    var inputs = $(this).closest('form').find('input');
     inputs.eq( inputs.index(this)+ 1 ).focus();
 });
 $('.signup-form-input-email').keydown(function(e) {
     if(e.keyCode == 46 || e.keyCode == 8) {
-        var inputs = $(this).closest('form').find(':input');
-        if(!$(this).is(':last-child')) {
-            if($(this).val()) {
-                $(this).val('');
-            }
-            else {
-                inputs.eq( inputs.index(this) - 1 ).focus();
-                inputs.eq( inputs.index(this) - 1 ).val('');
-            }
+        var inputs = $(this).closest('form').find('input');
+        if($(this).val()) {
+            $(this).val('');
         }
         else {
-            if($(this).val()) {
-                $(this).val('');
-            }
-            else {
-                inputs.eq( inputs.index(this) - 1 ).focus();
-                inputs.eq( inputs.index(this) - 1).val('');
-            }
+            inputs.eq( inputs.index(this) - 1 ).focus();
+            inputs.eq( inputs.index(this) - 1 ).val('');
         }
     }
 });
