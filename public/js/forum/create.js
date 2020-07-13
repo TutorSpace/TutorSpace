@@ -98,7 +98,7 @@ $('.btn-post-type').click(function () {
   $(this).addClass('btn-selected');
   $('#input-hidden-post-type').val($(this).attr('data-post-type-id'));
 });
-$('#tags').select2({
+$('#create-tags').select2({
   placeholder: "Add post tags here..."
 });
 

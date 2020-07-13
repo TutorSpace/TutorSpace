@@ -121,6 +121,13 @@ $(window).scroll(function () {
 });
 $(window).resize(function () {
   adjustScrollBtnVisibility();
+
+  if ($(window).width() <= 1200) {
+    $('#tags').select2({
+      placeholder: "Add post tags here..."
+    });
+    console.log('here');
+  }
 });
 $('.overlay-forum-left .toggle-collapsed').click(function () {
   $('.overlay-forum-left').addClass('toggle-expand-animation');
@@ -131,6 +138,20 @@ $('.overlay-forum-left .toggle-expanded').click(function () {
 $('.forum-left__list-item').click(function () {
   var href = $(this).attr('data-location-href');
   window.location.href = href;
+});
+$('#tags').select2({
+  placeholder: "Add post tags here..."
+});
+$('.forum-content__search__search-by').change(function () {
+  var val = $(this).find("option:selected").attr('value');
+
+  if (val == 'tags') {
+    $('.tags-container').removeClass('hidden');
+    $('.keyword-search').addClass('hidden');
+  } else {
+    $('.tags-container').addClass('hidden');
+    $('.keyword-search').removeClass('hidden');
+  }
 });
 
 /***/ }),

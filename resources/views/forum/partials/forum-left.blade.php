@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="#">
+            <a class="forum-left-sm__list-content" href="{{ route('posts.popular') }}">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
                 </svg>
@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="#">
+            <a class="forum-left-sm__list-content" href="{{ route('posts.latest') }}">
                 <svg class="forum-left-sm__list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
                 </svg>
@@ -63,13 +63,13 @@
             </svg>
             <span class="forum-left__list-content">Forum</span>
         </li>
-        <li class="forum-left__list-item">
+        <li class="forum-left__list-item" data-location-href="{{ route('posts.popular') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
             </svg>
             <span class="forum-left__list-content">Popular Posts</span>
         </li>
-        <li class="forum-left__list-item">
+        <li class="forum-left__list-item" data-location-href="{{ route('posts.latest') }}">
             <svg class="forum-left__list-svg">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
             </svg>

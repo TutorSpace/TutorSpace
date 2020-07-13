@@ -26,23 +26,7 @@ bg-student
         <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
-            <form action="" method="POST" class="forum-content__search">
-                <div class="form-search">
-                    <input type="text" class="form-control form-control-lg input-search" placeholder="Computer Science...">
-                    <svg class="svg-search">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                    </svg>
-                </div>
-                <select name="" class="forum-content__search__search-by">
-                    <option value="tags">Search by Tags</option>
-                    <option value="keywords">Search by Keywords</option>
-                </select>
-                {{-- <select name="" class="forum-content__search__type-by">
-                    <option value="tags">Both</option>
-                    <option value="tags">Questions Only</option>
-                    <option value="keywords">Discussions Only</option>
-                </select> --}}
-            </form>
+            @include('forum.partials.search')
 
             <div class="post-previews">
                 @foreach ($posts as $post)

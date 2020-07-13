@@ -13742,10 +13742,11 @@ svg.bookmark:hover {
 }
 
 .forum .btn-back {
-  font-size: 1.8rem;
+  align-self: center;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
   background-color: #F9F9F9;
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
@@ -13755,7 +13756,67 @@ svg.bookmark:hover {
 
 .forum .btn-back svg {
   font-size: 1.4rem;
-  margin-right: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.forum .select-container {
+  border: 1px solid;
+  border-radius: 0.5rem;
+}
+
+.forum .select-container-icon .select2-selection__rendered {
+  margin-left: 1.5rem;
+  margin-right: -1.5rem;
+}
+
+.forum .select-container__icon {
+  position: absolute;
+  width: 1.8rem;
+  height: 1.8rem;
+  left: 0.5rem;
+  top: 48%;
+  transform: translateY(-50%);
+  fill: currentColor;
+}
+
+.forum .select-container .input-group-prepend {
+  width: 5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  background-color: currentColor;
+}
+
+.forum .select-container .input-group-prepend :first-child {
+  width: 5rem;
+  height: 5rem;
+  fill: #FFFFFF;
+}
+
+.forum .select-container .input-group-prepend :first-child:hover {
+  cursor: pointer;
+}
+
+.forum .select-container .select2-search__field {
+  font-size: 1.4rem !important;
+}
+
+.forum .select-container .select2-selection__choice {
+  font-size: 1.2rem !important;
+}
+
+.forum .select-container .select2-container .select2-search--inline .select2-search__field {
+  margin-top: 0;
+}
+
+.forum .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  height: 2.2rem;
 }
 
 .forum .overlay-forum-left {
@@ -13950,7 +14011,7 @@ svg.bookmark:hover {
 
 .forum-content__search {
   display: flex;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   width: 100%;
   margin-top: 2rem;
 }
@@ -13961,7 +14022,7 @@ svg.bookmark:hover {
 }
 
 .forum-content__search .form-search {
-  width: 30rem;
+  width: 35rem;
 }
 
 .forum-content__search .form-search .input-search {
@@ -13974,24 +14035,24 @@ svg.bookmark:hover {
   height: 1.75rem;
 }
 
-.forum-content__search__search-by,
-.forum-content__search__type-by,
-.forum-content__search__sort-by {
+.forum-content__search .tags-container {
+  max-width: 35rem;
+  flex: 1;
+  background-color: #F9F9F9;
+}
+
+.forum-content__search__search-by {
   padding: 0.5rem 1rem;
   border-color: currentColor;
   border-radius: 0.5rem;
   outline: none;
   font-weight: 500;
   background-color: #F9F9F9;
+  align-self: center;
 }
 
 .forum-content__search__search-by {
   margin-left: 2rem;
-}
-
-.forum-content__search__type-by {
-  margin-left: auto;
-  margin-right: 1rem;
 }
 
 .forum-right {
@@ -15631,61 +15692,6 @@ svg.bookmark:hover {
   box-shadow: 1px 3px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-.post-create .select-container {
-  overflow: hidden;
-  border: 2px solid;
-  border-radius: 0.5rem;
-  min-height: 5.5rem;
-}
-
-@media only screen and (max-width: 100em) {
-  .post-create .select-container {
-    min-height: 5rem;
-  }
-}
-
-@media only screen and (max-width: 35.99em) {
-  .post-create .select-container {
-    min-height: 6rem;
-  }
-}
-
-.post-create .select-container-icon .select2-selection__rendered {
-  margin-left: 1.8rem;
-  margin-right: -1.5rem;
-}
-
-.post-create .select-container__icon {
-  position: absolute;
-  width: 2.2rem;
-  height: 2.2rem;
-  left: 0.5rem;
-  top: 48%;
-  transform: translateY(-50%);
-  fill: currentColor;
-}
-
-.post-create .select-container .input-group-prepend {
-  width: 6rem;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 0;
-  background-color: currentColor;
-}
-
-.post-create .select-container .input-group-prepend :first-child {
-  width: 6rem;
-  height: 6rem;
-  fill: #FFFFFF;
-}
-
-.post-create .select-container .input-group-prepend :first-child:hover {
-  cursor: pointer;
-}
-
 .post-create .btn-save,
 .post-create .btn-create {
   padding: 1rem 2rem;
@@ -15699,6 +15705,42 @@ svg.bookmark:hover {
 .post-create .btn-save {
   margin-right: 2rem;
   border: 1.5px solid currentColor;
+}
+
+.post-create .select-container {
+  overflow: hidden;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  min-height: 4.5rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .post-create .select-container {
+    min-height: 5.5rem;
+  }
+}
+
+.post-create .select-container-icon .select2-selection__rendered {
+  margin-left: 1.8rem;
+  margin-right: -1.5rem;
+}
+
+.post-create .select-container__icon {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.post-create .select-container .input-group-prepend {
+  width: 6rem;
+}
+
+.post-create .select-container .input-group-prepend :first-child {
+  width: 6rem;
+  height: 6rem;
+}
+
+.post-create .select-container .select2-search__field {
+  font-size: 1.6rem !important;
 }
 
 .bg-tutor .btn-selected {

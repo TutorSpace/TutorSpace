@@ -29,20 +29,7 @@ bg-student select2-bg-student
         <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
-            <form action="#" method="GET" class="forum-content__search">
-                <a class="btn btn-lg btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('posts.index')) }}">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                    </svg>
-                    Back
-                </a>
-                <div class="form-search">
-                    <input type="text" class="form-control form-control-lg input-search" placeholder="Computer Science...">
-                    <svg class="svg-search">
-                        <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-                    </svg>
-                </div>
-            </form>
+            @include('forum.partials.search')
 
             <form class="post-create" action="#" method="POST">
                 <h5 class="font-weight-bold mb-5">Create a new post</h5>
@@ -78,11 +65,11 @@ bg-student select2-bg-student
                 </div>
                 <p class="input-title">Tags</p>
                 <div class="input-content p-relative tags-container">
-                    <div class="input-group select-container p-relative select-container-icon pb-0-5">
+                    <div class="input-group select-container p-relative select-container-icon">
                         <svg class="select-container__icon">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                         </svg>
-                        <select class="custom-select" name="tags[]" multiple="multiple" id="tags" required>
+                        <select class="custom-select" name="tags[]" multiple="multiple" id="create-tags" required>
                             @foreach (App\Tag::all() as $tag)
                                 <option value="{{ $tag->id }}"
                                     @if(in_array($tag->id, old('tags') ?? explode(',', $postDraft->tags)))

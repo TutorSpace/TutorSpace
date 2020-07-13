@@ -84,6 +84,9 @@ Route::group([
 Route::group([
     'prefix' => 'forum'
 ], function () {
+    Route::get('/posts/search-results', 'Forum\PostController@search')->name('posts.search');
+    Route::get('/posts/popular', 'Forum\PostController@indexPopular')->name('posts.popular');
+    Route::get('/posts/latest', 'Forum\PostController@indexLatest')->name('posts.latest');
     Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
     Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
     Route::resource('posts', 'Forum\PostController');
@@ -101,6 +104,7 @@ Route::group([
 
     // report
     Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
+
 
 
 });

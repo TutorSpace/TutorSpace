@@ -22,6 +22,9 @@ class PostController extends Controller
         $this->middleware(['auth'])->except([
             'index',
             'show',
+            'search',
+            'indexPopular',
+            'indexLatest'
         ]);
     }
 
@@ -313,4 +316,17 @@ class PostController extends Controller
             ]);
         }
     }
+
+    public function search() {
+        dd('search');
+    }
+
+    public function indexPopular() {
+
+    }
+
+    public function indexLatest() {
+
+    }
+
 }
