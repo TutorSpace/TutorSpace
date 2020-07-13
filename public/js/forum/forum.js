@@ -93,6 +93,10 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$('#tags').select2({
+  placeholder: "Add post tags here..."
+});
+
 function isInViewPort(elem) {
   var distance = elem.getBoundingClientRect();
   return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
@@ -139,9 +143,6 @@ $('.forum-left__list-item').click(function () {
   var href = $(this).attr('data-location-href');
   window.location.href = href;
 });
-$('#tags').select2({
-  placeholder: "Add post tags here..."
-});
 $('.forum-content__search__search-by').change(function () {
   var val = $(this).find("option:selected").attr('value');
 
@@ -152,7 +153,12 @@ $('.forum-content__search__search-by').change(function () {
     $('.tags-container').addClass('hidden');
     $('.keyword-search').removeClass('hidden');
   }
-});
+}); // $('.forum-content__search .select2-search__field').keypress(function() {
+//     var keycode = (event.keyCode ? event.keyCode : event.which);
+//     if(keycode == '13'){
+//         alert('You pressed a "enter" key in textbox');
+//     }
+// });
 
 /***/ }),
 

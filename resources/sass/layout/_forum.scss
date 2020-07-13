@@ -52,23 +52,6 @@
         border: 1px solid;
         border-radius: .5rem;
 
-        &-icon {
-            .select2-selection__rendered {
-                margin-left: 1.5rem;
-                margin-right: -1.5rem;
-            }
-        }
-
-        &__icon {
-            position: absolute;
-            width: 1.8rem;
-            height: 1.8rem;
-            left: .5rem;
-            top: 48%;
-            transform: translateY(-50%);
-            fill: currentColor;
-        }
-
         .input-group-prepend {
             width: 5rem;
             height: 100%;
@@ -78,20 +61,21 @@
             position: absolute;
             right: 0;
             background-color: currentColor;
+            z-index: 1000;
+
+            &:hover {
+                cursor: pointer;
+            }
 
             :first-child {
                 width: 5rem;
                 height: 5rem;
                 fill: $color-white;
-
-                &:hover {
-                    cursor: pointer;
-                }
             }
         }
 
         .select2-search__field {
-            font-size: 1.4rem !important;
+            font-size: 1.6rem !important;
         }
 
         .select2-selection__choice {
@@ -106,7 +90,6 @@
             margin-top: 0;
             display: flex;
             align-items: center;
-            height: 2.2rem;
         }
     }
 
@@ -317,6 +300,10 @@
                 + .svg-search {
                     width: 1.75rem;
                     height: 1.75rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -324,8 +311,31 @@
         .tags-container {
             max-width: 35rem;
             flex: 1;
+            border-radius: .5rem;
+            overflow: hidden;
 
             background-color: $color-white-dark-5;
+
+
+            .select-container {
+
+                .input-group-prepend {
+
+                    :first-child {
+                        width: 2rem;
+                        height: 2rem;
+                    }
+                }
+
+                .select2-container--default .select2-selection--multiple .select2-selection__choice {
+                    height: 2.2rem;
+                }
+
+                .selection .select2-selection__rendered {
+                    padding-left: 1rem !important;
+                }
+
+            }
         }
 
         &__search-by {

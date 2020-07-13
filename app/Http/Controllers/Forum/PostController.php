@@ -322,7 +322,9 @@ class PostController extends Controller
     }
 
     public function indexPopular() {
-
+        return view('forum.popular', [
+            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
+        ]);
     }
 
     public function indexLatest() {

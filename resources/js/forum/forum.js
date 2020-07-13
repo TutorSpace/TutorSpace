@@ -1,3 +1,7 @@
+$('#tags').select2({
+    placeholder: "Add post tags here..."
+});
+
 function isInViewPort(elem) {
 	var distance = elem.getBoundingClientRect();
 	return (
@@ -58,10 +62,6 @@ $('.forum-left__list-item').click(function() {
 
 
 
-$('#tags').select2({
-    placeholder: "Add post tags here..."
-});
-
 $('.forum-content__search__search-by').change(function() {
     let val = $(this).find("option:selected").attr('value');
     if(val == 'tags') {
@@ -73,3 +73,12 @@ $('.forum-content__search__search-by').change(function() {
         $('.keyword-search').removeClass('hidden');
     }
 });
+
+
+// $('.forum-content__search .select2-search__field').keypress(function() {
+//     var keycode = (event.keyCode ? event.keyCode : event.which);
+//     if(keycode == '13'){
+//         alert('You pressed a "enter" key in textbox');
+//     }
+// });
+

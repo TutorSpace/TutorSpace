@@ -17,17 +17,20 @@
 
     <div class="input-content p-relative tags-container">
         <div class="input-group select-container p-relative select-container-icon">
-            <svg class="select-container__icon">
+            {{-- <svg class="select-container__icon">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-            </svg>
-            <select class="custom-select" name="tags[]" multiple="multiple" id="tags" required>
+            </svg> --}}
+            <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
                 @foreach (App\Tag::all() as $tag)
                     <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
                 @endforeach
             </select>
             <div class="input-group-prepend">
-                <svg>
+                {{-- <svg>
                     <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
+                </svg> --}}
+                <svg class="select-container__icon">
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
             </div>
         </div>

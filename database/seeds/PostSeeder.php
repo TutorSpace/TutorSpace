@@ -106,6 +106,7 @@ class PostSeeder extends Seeder
             'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/lqNTPcNq44URzgJskKHcDuZE62FqbWzbljTSyTmf.jpeg',
             'user_id' => 1,
             'post_type_id' => 1,
+            'view_count' => 3600,
             'created_at' => '2020-07-08 12:23:43'
         ]);
 
@@ -132,6 +133,7 @@ class PostSeeder extends Seeder
             'slug' => 'this-is-another-testing-note',
             'user_id' => 2,
             'post_type_id' => 2,
+            'view_count' => 1200,
             'created_at' => '2020-07-08 14:41:26'
         ]);
 
@@ -146,6 +148,7 @@ class PostSeeder extends Seeder
             'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png',
             'user_id' => 1,
             'post_type_id' => 1,
+            'view_count' => 2400,
             'created_at' => '2020-07-08 14:55:30'
         ]);
 
@@ -205,5 +208,7 @@ class PostSeeder extends Seeder
             ]
             ];
         DB::table('post_tag')->insert($postTags);
+
+
     }
 }
