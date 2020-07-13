@@ -19,6 +19,7 @@ use App\Tutor_request;
 use App\Characteristic;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class testController extends Controller
@@ -30,8 +31,10 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        dd(Post::find(1)->followedBy(Auth::user()));
-        // return view('test');
+
+        Cache::store('redis')->put('test3', 'bagz', 600); // 10 Minutes
+
+        dd(Cache::get('test3'));
     }
 
     public function test(Request $request) {
