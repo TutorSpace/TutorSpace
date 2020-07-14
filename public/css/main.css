@@ -11859,6 +11859,14 @@ h6 {
   margin-top: 2rem;
 }
 
+.mr-1px {
+  margin-right: 1px;
+}
+
+.mr-2px {
+  margin-right: 2px;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }
@@ -13716,6 +13724,8 @@ svg.bookmark:hover {
 
 .forum .action {
   color: #626262;
+  display: flex;
+  align-items: center;
 }
 
 .forum .btn-add-post {

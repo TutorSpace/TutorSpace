@@ -11,6 +11,8 @@
 
     .action {
         color: $color-black-post;
+        display: flex;
+        align-items: center;
     }
 
     .btn-add-post {

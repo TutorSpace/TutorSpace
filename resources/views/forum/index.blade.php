@@ -77,7 +77,7 @@ bg-student
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="mr-5">
-                                        {{ $post->users_upvoted_count }} people found this post useful.
+                                        {{ $post->users_upvoted_count }} people liked this post.
                                     </span>
                                     <svg class="mr-1">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>

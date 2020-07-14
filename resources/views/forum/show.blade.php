@@ -79,7 +79,7 @@ bg-student
                         <div class="post__bottom__actions d-flex mt-3 justify-content-end">
                             <div class="left-container d-flex align-items-center mt-3" data-post-slug="{{ $post->slug }}">
                                 <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
-                                    <svg>
+                                    <svg class="mr-2px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -88,7 +88,7 @@ bg-student
                                 </div>
 
                                 <div class="action action-reply @if(Auth::check() && $post->repliedBy(Auth::user())) active @endif" data-toggle="tooltip" data-placement="top" title="Reply">
-                                    <svg>
+                                    <svg class="mr-2px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -99,7 +99,7 @@ bg-student
                                 @can('follow', $post)
                                     @if(Auth::check() && $post->followedBy(Auth::user()))
                                     <div class="action action-follow active">
-                                        <svg>
+                                        <svg class="mr-2px">
                                             <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
                                         </svg>
                                         <span class="text">
@@ -108,7 +108,7 @@ bg-student
                                     </div>
                                     @else
                                     <div class="action action-follow">
-                                        <svg>
+                                        <svg class="mr-2px">
                                             <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
                                         </svg>
                                         <span class="text">
@@ -119,7 +119,7 @@ bg-student
                                 @endcan
 
                                 <div class="action action-report mr-0">
-                                    <svg>
+                                    <svg class="mr-2px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
@@ -204,7 +204,7 @@ bg-student
                                     <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
                                 @endif
                                 <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
-                                    <svg>
+                                    <svg class="mr-1px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -217,7 +217,7 @@ bg-student
                                     </svg>
                                 </div>
                                 <div class="action action-report mr-0">
-                                    <svg>
+                                    <svg class="mr-1px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
@@ -274,7 +274,7 @@ bg-student
                                     @endif
                                 </div>
                                 <div class="action action-upvote @if(Auth::check() && !($followup->usersUpvoted->isEmpty())) active @endif">
-                                    <svg>
+                                    <svg class="mr-1px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -287,7 +287,7 @@ bg-student
                                     </svg>
                                 </div>
                                 <div class="action action-report mr-0">
-                                    <svg>
+                                    <svg class="mr-1px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
