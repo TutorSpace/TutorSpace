@@ -2,7 +2,12 @@
     margin-bottom: 30rem;
 
     .post-preview {
-        display: flex;
+
+
+        &__content-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
         &__left {
             flex: 1;
@@ -11,10 +16,9 @@
         &__right {
             max-width: 25rem;
             flex: 0 0 30%;
-            max-height: 22rem;
+            max-height: 18rem;
             margin-left: 2rem;
-            padding-top: 3rem;
-            margin-bottom: .5rem;
+            margin-bottom: 1rem;
 
             &__thumbnail {
                 width: 100%;
@@ -36,6 +40,7 @@
 
             &-2 {
                 color: $color-black-post;
+                margin-bottom: 1.5rem;
             }
         }
 

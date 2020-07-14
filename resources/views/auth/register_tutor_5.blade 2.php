@@ -23,9 +23,14 @@ bg-grey-light body-signup
         </svg>
         <h2 class="signup__heading">One Last Step!</h2>
         <form action="{{ route('register.store.tutor.5') }}" method="POST" enctype="multipart/form-data">
-            <p class="signup__notice">
+            <p class="signup__notice p-relative">
                 @csrf
                 Set up your profile picture to let students know who you are.
+                @error('profile-pic')
+                <span class="fs-1-4 p-absolute top-100 right-0 fc-red">
+                    This image went wrong. Please try uploading another photo!
+                </span>
+                @enderror
             </p>
 
             <div class="text-center">
@@ -91,5 +96,5 @@ bg-grey-light body-signup
 
 
 </script>
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 @endsection

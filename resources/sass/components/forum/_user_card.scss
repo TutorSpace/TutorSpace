@@ -16,27 +16,16 @@
     }
 
     .user-image {
-        width: 8rem;
-        height: 8rem;
+        width: 8.5rem;
+        height: 8.5rem;
         border-radius: 50%;
         object-fit: cover;
         border: 1px solid transparentize($color: $color-grey, $amount: .5);
     }
 
-    .verified-stamp {
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin-top: 0;
-
-        @include respond(lg) {
-            left: -.5rem;
-        }
-    }
-
     .bookmark-svg {
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
         position: absolute;
         top: 1rem;
         right: 1rem;

@@ -46,7 +46,7 @@ bg-student
                     <h4 class="post__heading">
                         {{ $post->title }}
                     </h4>
-                    <p class="post__heading-2 mb-4">
+                    <p class="post__heading-2 mb-4 mt-3">
                         <span class="mr-3">Posted By</span>
                         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
@@ -180,8 +180,8 @@ bg-student
                         @endif
 
                         <div class="left-container">
-                            <img src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
-                            @if (Auth::check() && Auth::user()->id != $reply->user->id)
+                            <img class="" src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
+                            @if (!Auth::check() || (Auth::check() && Auth::user()->id != $reply->user->id))
                             <a class="user-name user-info" href="#">
                                 {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
                             </a>

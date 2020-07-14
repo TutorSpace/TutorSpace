@@ -11772,7 +11772,7 @@ h3 {
 }
 
 h4 {
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 
 h5 {
@@ -12341,8 +12341,9 @@ h6 {
   margin-bottom: 30rem;
 }
 
-.post-previews .post-preview {
+.post-previews .post-preview__content-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .post-previews .post-preview__left {
@@ -12352,10 +12353,9 @@ h6 {
 .post-previews .post-preview__right {
   max-width: 25rem;
   flex: 0 0 30%;
-  max-height: 22rem;
+  max-height: 18rem;
   margin-left: 2rem;
-  padding-top: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .post-previews .post-preview__right__thumbnail {
@@ -12378,6 +12378,7 @@ h6 {
 
 .post-previews .post-preview .post__heading-2 {
   color: #626262;
+  margin-bottom: 1.5rem;
 }
 
 .post-previews .post-preview .post__content {
@@ -12445,6 +12446,7 @@ h6 {
 .post-reply .left-container .user-name {
   font-size: 1.5rem !important;
   line-height: 1.2;
+  margin-top: 0.75rem;
 }
 
 .post-reply .left-container .user-info {
@@ -12718,30 +12720,17 @@ h6 {
 }
 
 .user-card .user-image {
-  width: 8rem;
-  height: 8rem;
+  width: 8.5rem;
+  height: 8.5rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
   border: 1px solid rgba(160, 160, 160, 0.5);
 }
 
-.user-card .verified-stamp {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: 0;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .user-card .verified-stamp {
-    left: -0.5rem;
-  }
-}
-
 .user-card .bookmark-svg {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -13023,7 +13012,7 @@ svg.bookmark:hover {
 
 .nav {
   height: 8rem;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .nav .brand-name {
@@ -13287,6 +13276,7 @@ svg.bookmark:hover {
 
 .nav-guest {
   background-color: #F8F8F8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav-guest--student {
@@ -13749,7 +13739,7 @@ svg.bookmark:hover {
   font-size: 1.6rem;
   display: flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   background-color: #F9F9F9;
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
@@ -13999,7 +13989,7 @@ svg.bookmark:hover {
 
 .forum-content__search {
   display: flex;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   width: 100%;
   margin-top: 2rem;
 }
@@ -14389,7 +14379,6 @@ svg.bookmark:hover {
 
 .post__heading-2 {
   font-size: 1.4rem;
-  margin-top: 1rem;
   color: #626262;
 }
 
@@ -14403,6 +14392,7 @@ svg.bookmark:hover {
 .post__content,
 .post-reply__content {
   font-size: 1.6rem;
+  line-height: 1.6;
 }
 
 .post__bottom {
@@ -14434,8 +14424,15 @@ svg.bookmark:hover {
   border-radius: 1rem;
   background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 4rem 4rem 3rem 4rem;
   margin-top: 2rem;
+}
+
+.post-preview {
+  padding: 3rem 4rem 3rem 4rem;
+}
+
+.post-detail {
+  padding: 4.5rem 4rem 3rem 4rem;
 }
 
 .index {

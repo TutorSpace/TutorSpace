@@ -34,7 +34,7 @@
         font-size: 1.6rem;
         display: flex;
         align-items: center;
-        padding: .25rem .75rem;
+        padding: .5rem .75rem;
         border-radius: .5rem;
         background-color: $color-white-dark-5;
         box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
@@ -281,7 +281,7 @@
 
     &__search {
         display: flex;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         width: 100%;
         margin-top: 2rem;
 
@@ -683,7 +683,6 @@
 
 .post__heading-2 {
     font-size: 1.4rem;
-    margin-top: 1rem;
     color: $color-black-post;
 
     .poster-img {
@@ -696,6 +695,7 @@
 
 .post__content, .post-reply__content {
     font-size: 1.6rem;
+    line-height: 1.6;
 }
 
 .post__bottom {
@@ -725,6 +725,13 @@
     border-radius: 1rem;
     background-color: $color-white-dark-5;
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
-    padding: 4rem 4rem 3rem 4rem;
     margin-top: 2rem;
+}
+
+.post-preview {
+    padding: 3rem 4rem 3rem 4rem;
+}
+
+.post-detail {
+    padding: 4.5rem 4rem 3rem 4rem;
 }
