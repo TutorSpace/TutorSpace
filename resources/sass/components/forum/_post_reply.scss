@@ -1,7 +1,7 @@
 .post-reply {
     margin-top: 3rem;
     display: flex;
-    color: initial;
+    color: #6A6A6A;
 
     position: relative;
     border-radius: 1rem;
@@ -36,6 +36,7 @@
             font-size: 1.5rem !important;
             line-height: 1.2;
             margin-top: .75rem;
+            color: $color-black-post-3;
         }
 
         .user-info {
@@ -71,7 +72,7 @@
 
         .btn-toggle-follow-up {
             font-size: 1.4rem;
-            color: $color-black-post !important;
+            color: $color-black-post-3 !important;
         }
     }
 
@@ -90,6 +91,8 @@
             font-size: 1.4rem;
         }
     }
+
+
 
 }
 
@@ -123,7 +126,7 @@
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
-    color: initial;
+    color: #6A6A6A;
     flex: 0 0 100%;
 
     border-radius: .5rem;
@@ -194,7 +197,7 @@
 
 .followup-container {
     margin-top: 1.5rem;
-    color: initial;
+    color: #6A6A6A;
     font-size: 1.6rem;
     border-radius: 1rem;
     background-color: $color-white-dark-5;
@@ -204,7 +207,7 @@
 
     .followup__content {
         .followup-to {
-            color: $color-grey;
+            color: #464646;
         }
 
     }
@@ -219,6 +222,10 @@
         &__left {
             margin-right: auto;
             font-size: 1.2rem;
+
+            .followup__user {
+                color: #6A6A6A;
+            }
         }
     }
 
@@ -238,21 +245,13 @@
 
 
 .bg-student {
-    .post-reply .left-container {
-        .user-name {
-            color: $color-blue-primary;
-        }
-    }
+
 
     .post-comment, .post-followup {
         .btn-reply {
             background-color: $color-blue-primary;
             color: $color-white;
         }
-    }
-
-    .followup__user {
-        color: $color-blue-primary;
     }
 
     .mark-best-reply {
@@ -267,11 +266,7 @@
 }
 
 .bg-tutor {
-    .post-reply .left-container {
-        .user-name {
-            color: $color-purple-primary;
-        }
-    }
+
 
     .post-comment, .post-followup {
         .btn-reply {
@@ -279,11 +274,6 @@
             color: $color-white;
         }
     }
-
-    .followup__user {
-        color: $color-purple-primary;
-    }
-
     .mark-best-reply {
         svg {
             fill: $color-purple-primary;

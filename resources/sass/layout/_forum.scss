@@ -10,7 +10,7 @@
     }
 
     .action {
-        color: $color-black-post;
+        color: $color-grey;
         display: flex;
         align-items: center;
     }
@@ -685,7 +685,6 @@
 
 .post__heading-2 {
     font-size: 1.4rem;
-    color: $color-black-post;
 
     .poster-img {
         width: 3rem;

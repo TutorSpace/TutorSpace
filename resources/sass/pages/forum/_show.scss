@@ -8,6 +8,7 @@
     .post__heading-2 {
         display: flex;
         align-items: center;
+        color: $color-grey;
         svg {
             width: 2rem;
             height: 2rem;
@@ -16,7 +17,7 @@
     }
 
     .post-detail {
-        color: initial;
+        color: $color-black-post;
 
         &-tag {
             position: absolute;
@@ -56,11 +57,17 @@
         }
     }
 
-
     .action {
         &:hover {
             cursor: pointer;
+        }
+    }
 
+    .poster-name {
+        color: $color-black-post;
+
+        &:hover {
+            color: $color-black-post;
         }
     }
 }

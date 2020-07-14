@@ -43,14 +43,14 @@ bg-student
                     </span>
                     @endcan
 
-                    <h4 class="post__heading">
+                    <h4 class="post__heading fc-black-post-2">
                         {{ $post->title }}
                     </h4>
                     <p class="post__heading-2 mb-4 mt-3">
-                        <span class="mr-3">Posted By</span>
+                        <span class="mr-3 fc-black-post">Posted By</span>
                         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
-                        <a href="#" class="poster-name mr-3 btn-link">
+                        <a href="#" class="poster-name mr-3">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}
                         </a>
                         @else
@@ -190,7 +190,7 @@ bg-student
                                 Me
                             </span>
                             @endif
-                            <span class="user-info">
+                            <span class="user-info fc-grey mt-1">
                                 {{ $reply->user->firstMajor->major ?? 'None' }}
                             </span>
                         </div>
@@ -199,7 +199,7 @@ bg-student
                                 {{ $reply->reply_content }}
                             </div>
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
-                                <span class="mr-auto fs-1-2">{{ $reply->created_at }}</span>
+                                <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
                                     <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
                                 @endif
@@ -252,8 +252,7 @@ bg-student
                                 </a>
                                 @else
                                 <span class="followup-to">
-                                    {{ '@' . $followup->reply->user->first_name }}
-                                    {{ $followup->reply->user->last_name }}
+                                    @Me
                                 </span>
                                 @endif
                                 {{ $followup->reply_content }}
