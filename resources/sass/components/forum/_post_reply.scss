@@ -1,7 +1,7 @@
 .post-reply {
     margin-top: 3rem;
     display: flex;
-    color: #6A6A6A;
+    color: $color-black-post-3;
 
     position: relative;
     border-radius: 1rem;
@@ -126,7 +126,7 @@
     margin-top: 1.5rem;
     display: flex;
     align-items: center;
-    color: #6A6A6A;
+    color: $color-black-post-3;
     flex: 0 0 100%;
 
     border-radius: .5rem;
@@ -197,7 +197,7 @@
 
 .followup-container {
     margin-top: 1.5rem;
-    color: #6A6A6A;
+    color: $color-black-post-3;
     font-size: 1.6rem;
     border-radius: 1rem;
     background-color: $color-white-dark-5;
@@ -207,7 +207,7 @@
 
     .followup__content {
         .followup-to {
-            color: #464646;
+            color: $color-grey;
         }
 
     }
@@ -224,7 +224,7 @@
             font-size: 1.2rem;
 
             .followup__user {
-                color: #6A6A6A;
+                color: $color-black-post-3;
             }
         }
     }

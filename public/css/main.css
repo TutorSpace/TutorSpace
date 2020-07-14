@@ -12443,7 +12443,7 @@ h6 {
 .post-reply {
   margin-top: 3rem;
   display: flex;
-  color: #6A6A6A;
+  color: #3F3F3F;
   position: relative;
   border-radius: 1rem;
   background-color: #F9F9F9;
@@ -12568,7 +12568,7 @@ h6 {
   margin-top: 1.5rem;
   display: flex;
   align-items: center;
-  color: #6A6A6A;
+  color: #3F3F3F;
   flex: 0 0 100%;
   border-radius: 0.5rem;
   background-color: #F9F9F9;
@@ -12655,7 +12655,7 @@ h6 {
 
 .followup-container {
   margin-top: 1.5rem;
-  color: #6A6A6A;
+  color: #3F3F3F;
   font-size: 1.6rem;
   border-radius: 1rem;
   background-color: #F9F9F9;
@@ -12665,7 +12665,7 @@ h6 {
 }
 
 .followup-container .followup__content .followup-to {
-  color: #464646;
+  color: #A0A0A0;
 }
 
 .followup-container .followup__info {
@@ -12681,7 +12681,7 @@ h6 {
 }
 
 .followup-container .followup__info__left .followup__user {
-  color: #6A6A6A;
+  color: #3F3F3F;
 }
 
 .followup-container .action {
