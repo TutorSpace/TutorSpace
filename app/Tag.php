@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
@@ -23,6 +24,7 @@ class Tag extends Model
 
     // todo: needed to be modified
     public static function getTrendingTags() {
+        // Cache::put('test3', 'bagz', 600);
 
         $trendingTags = Tag::withCount([
                             'posts'
