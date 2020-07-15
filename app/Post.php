@@ -160,6 +160,7 @@ class Post extends Model
                     ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
                     ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                     ->whereIn('tags.id', $interestedTagIDs)
+                    ->where('posts.user_id', '!=', $user->id)
                     ->groupBy(['posts.id'])
 
                     ->take(5)
@@ -169,6 +170,7 @@ class Post extends Model
         if($posts->count() < 5) {
             $posts = $posts->merge(
                     $this->queryYouMayHelpWith()
+                    ->where('posts.user_id', '!=', $user->id)
                     ->take(5 - $posts->count())
                     ->get()
             );
