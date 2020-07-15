@@ -18,6 +18,9 @@ class Post extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
+    CONST FORMULA_YOU_MAY_HELP_WITH =
+    '-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc';
+
     public function getRouteKeyName() {
         return 'slug';
     }
@@ -138,8 +141,6 @@ class Post extends Model
                     );
 
                     return $this->queryYouMayHelpWith()
-                            // TODO: modify the order formula
-                            ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                             ->take(5)
                             ->get();
                 }
@@ -161,24 +162,30 @@ class Post extends Model
                     ->whereIn('tags.id', $interestedTagIDs)
                     ->groupBy(['posts.id'])
 
-                    // TODO: modify the order formula
-                    ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                     ->take(5)
                     ->get();
 
-        // if($posts)
+
+        if($posts->count() < 5) {
+            $posts = $posts->merge(
+                    $this->queryYouMayHelpWith()
+                    ->take(5 - $posts->count())
+                    ->get()
+            );
+        }
 
         return $posts;
     }
 
     private function queryYouMayHelpWith() {
         return Post::withCount([
-                                'replies',
-                                'usersUpvoted'
-                            ])
-                            ->join('post_types', 'post_types.id', 'posts.post_type_id')
-                            ->where('post_types.post_type', 'Question')
-                            ->having('replies_count', '<', 2);
+                    'replies',
+                    'usersUpvoted'
+                ])
+                ->join('post_types', 'post_types.id', 'posts.post_type_id')
+                ->where('post_types.post_type', 'Question')
+                ->having('replies_count', '<', 2)
+                ->orderByRaw(self::FORMULA_YOU_MAY_HELP_WITH);
     }
 
 
