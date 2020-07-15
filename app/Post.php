@@ -144,6 +144,7 @@ class Post extends Model
                             ->join('post_types', 'post_types.id', 'posts.post_type_id')
                             ->where('post_types.post_type', 'Question')
                             ->having('replies_count', '<', 2)
+
                             // TODO: modify the order formula
                             ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                             ->take(5)
@@ -161,25 +162,35 @@ class Post extends Model
         // get all the tags the user is interested in
         $interestedTagIDs = $user->tags()->pluck('id');
 
-        // get recommendations for the posts
-        $recommendedPosts = Post::withCount([
+        $posts = Post::withCount([
                             'replies',
                             'usersUpvoted'
                         ])
                         ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
                         ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                         ->whereIn('tags.id', $interestedTagIDs)
+                        ->groupBy(['posts.id'])
 
                         ->join('post_types', 'post_types.id', 'posts.post_type_id')
                         ->where('post_types.post_type', 'Question')
                         ->having('replies_count', '<', 2)
-                        ->groupBy(['posts.id'])
 
                         // TODO: modify the order formula
                         ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                         ->take(5)
                         ->get();
 
-        return $recommendedPosts;
+        // if($posts)
+
+        return $posts;
     }
+
+    private function queryYouMayHelpWith() {
+
+    }
+
+
+
+
+
 }
