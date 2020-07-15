@@ -23,6 +23,7 @@ class Tag extends Model
 
     // todo: needed to be modified
     public static function getTrendingTags() {
+
         $trendingTags = Tag::withCount([
                             'posts'
                         ])
@@ -32,7 +33,6 @@ class Tag extends Model
                             }
                         ])
                         ->orderBy('posts_count', 'desc')
-                        // ->where('posts_count', '>', 1)
                         ->get();
 
 
