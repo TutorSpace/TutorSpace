@@ -36,8 +36,6 @@ class PostController extends Controller
      */
     public function index()
     {
-
-
         return view('forum.index', [
             'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
             'pageTitle' => 'Forum',

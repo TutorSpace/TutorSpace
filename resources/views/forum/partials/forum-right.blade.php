@@ -31,9 +31,7 @@
                         <a class="tag-name" href="">#{{ $trendingTag->tag }}</a>
                     </th>
                     <td class="post-cnt">{{ $trendingTag->posts_count }}</td>
-                    <td class="reply-cnt">{{ $trendingTag->posts->reduce(function ($count, $post) {
-                        return $count + $post->replies_count;
-                    }, 0) }}</td>
+                    <td class="reply-cnt">{{ $trendingTag->replies_count }}</td>
                 </tr>
                 @endforeach
             </tbody>

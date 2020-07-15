@@ -13,41 +13,37 @@ class Tag extends Model
         return $this->belongsToMany('App\Post');
     }
 
+    // public function replies() {
+    //     return $this->posts()
+    //             ->join('replies', 'replies.post_id', '=', 'posts.id')
+    //             ->where('replies.is_direct_reply', true)
+    //             ->select('replies.*');
+    // }
 
 
-    // needed to be modified
+    // todo: needed to be modified
     public static function getTrendingTags() {
-        // $trendingTags = Tag
-        //                 ::select(
-        //                     'tags.*',
-        //                     DB::raw('count(replies.id) as replies_count'))
-        //                 ->join('post_tag', 'post_tag.tag_id', '=', 'tags.id')
-        //                 ->join('posts', 'posts.id', '=', 'post_tag.post_id')
-        //                 ->join('replies', 'replies.post_id', '=', 'posts.id')
-        //                 ->where('replies.is_direct_reply', true)
-        //                 ->groupBy('tags.id')
-        //                 ->orderBy('replies_count', 'desc')
-        //                 ->get();
-        // dd($trendingTags);
-
-        return Tag::withCount([
-                'posts'
-            ])
-            ->with([
-                'posts' => function($query) {
-                    $query
-                    ->withCount([
-                        'replies'
-                    ]);
-                }
-            ])
-            ->take(5)
-            ->get();
+        $trendingTags = Tag::withCount([
+                            'posts'
+                        ])
+                        ->with([
+                            'posts' => function($query) {
+                                $query->withCount('replies');
+                            }
+                        ])
+                        ->orderBy('posts_count', 'desc')
+                        // ->where('posts_count', '>', 1)
+                        ->get();
 
 
-        // $results = [];
-        // foreach($trendingTags as $trendingTag) {
+        foreach($trendingTags as $trendingTag) {
+            $trendingTag->replies_count = $trendingTag->posts->reduce(function ($count, $post) {
+                return $count + $post->replies_count;
+            }, 0);
+        }
 
-        // }
+        return $trendingTags->sortByDesc(function($value, $key) {
+            return $value["posts_count"] + $value["replies_count"];
+        })->take(5);
     }
 }

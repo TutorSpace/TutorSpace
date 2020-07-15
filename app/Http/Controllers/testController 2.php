@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\User;
-use App\Subject;
-use App\Characteristic;
-use App\Bookmark;
-use App\Dashboard_post;
 use Auth;
-use App\Tutor_request;
-use App\Session;
-use App\Course;
 
+use App\Tag;
+use App\Post;
+use App\User;
+use App\Reply;
+use App\Course;
+use App\Session;
+use App\Subject;
+use App\Bookmark;
 use Carbon\Carbon;
 
 use App\NewMessage;
+
+use App\Tutor_request;
+use App\Characteristic;
+use App\Dashboard_post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class testController extends Controller
 {
@@ -25,11 +30,17 @@ class testController extends Controller
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+    public function index(Request $request) {
+        $test = Tag::getTrendingTags();
+        // dd(Tag::first()->replies);
+        dd($test->first()->posts->first()->replies_count);
 
-    public function test() {
+        Cache::store('redis')->put('test3', 'bagz', 600); // 10 Minutes
 
-        // Sarah: dd() is laravel's way of php's dump. In your browser, go to localhost:8000/test and then this function will run. Whenever you want to test syntax, the easiest way would be go to 'localhost:8000/test', and run your test inside this function. Use this function to play around with the Database syntax
+        dd(Cache::get('test3'));
+    }
 
+    public function test(Request $request) {
 
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
@@ -142,6 +153,20 @@ class testController extends Controller
         // dd(Auth::user());
 
         // return view('auth.passwords.reset_student');
-        return view('test');
+
+        // dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
+
+        $path = $request->file('avatar')->storeAs(
+            '', 'placeholder.png'
+        );
+
+
+        return $path;
+
+
+    }
+
+    public function testForum(Request $request) {
+
     }
 }
