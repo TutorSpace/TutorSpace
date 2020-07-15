@@ -31,5 +31,28 @@ class UserSeeder extends Seeder
             'school_year_id' => 1,
             'password' => Hash::make('password')
         ]);
+
+        $userTags = [
+            [
+                'user_id' => 1,
+                'tag_id' => 2
+            ],[
+                'user_id' => 1,
+                'tag_id' => 3
+            ],[
+                'user_id' => 2,
+                'tag_id' => 17
+            ],[
+                'user_id' => 1,
+                'tag_id' => 16
+            ],[
+                'user_id' => 2,
+                'tag_id' => 15
+            ],[
+                'user_id' => 1,
+                'tag_id' => 14
+            ]
+        ];
+        DB::table('tag_user')->insert($userTags);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Tag;
+use Facades\App\Tag;
 use App\Post;
 use App\Reply;
 use App\PostType;

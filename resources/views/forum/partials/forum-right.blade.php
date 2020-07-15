@@ -38,7 +38,7 @@
         </table>
 
         <p class="fs-1-2 bottom-0 right-0 fc-grey my-0 text-right">
-            Last Updated at 2020/07/05
+            Last Updated at {{ cache('TAGS.TRENDING-TAGS-UPDATE-TIME') }}
         </p>
     </section>
 

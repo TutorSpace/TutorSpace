@@ -15,27 +15,21 @@
     </a>
     @endif
 
-    <div class="input-content p-relative tags-container">
+    <div class="input-content p-relative tags-container hidden">
         <div class="input-group select-container p-relative select-container-icon">
-            {{-- <svg class="select-container__icon">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
-            </svg> --}}
             <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
                 @foreach (App\Tag::all() as $tag)
                     <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
                 @endforeach
             </select>
             <div class="input-group-prepend">
-                {{-- <svg>
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard_arrow_down')}}"></use>
-                </svg> --}}
                 <svg class="select-container__icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
             </div>
         </div>
     </div>
-    <div class="form-search keyword-search hidden">
+    <div class="form-search keyword-search">
         <input type="text" class="form-control form-control-lg input-search" placeholder="Computer Science...">
         <svg class="svg-search">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
@@ -43,7 +37,7 @@
     </div>
 
     <select name="search-by" class="forum-content__search__search-by mr-auto">
-        <option value="tags">Search by Tags</option>
         <option value="keywords">Search by Keywords</option>
+        <option value="tags">Search by Tags</option>
     </select>
 </form>

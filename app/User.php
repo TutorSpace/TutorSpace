@@ -125,7 +125,9 @@ class User extends Authenticatable
         return $this->upvotedReplies()->where('reply_id', $reply->id)->exists();
     }
 
-
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
+    }
 
 
 

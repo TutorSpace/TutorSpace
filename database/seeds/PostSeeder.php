@@ -206,7 +206,7 @@ class PostSeeder extends Seeder
                 'post_id' => 3,
                 'tag_id' => 29
             ]
-            ];
+        ];
         DB::table('post_tag')->insert($postTags);
 
 

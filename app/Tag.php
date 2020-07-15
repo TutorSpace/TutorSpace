@@ -10,6 +10,12 @@ class Tag extends Model
 {
     public $timestamps = false;
 
+    CONST CACHE_KEY = 'TAGS';
+
+    public function users() {
+        return $this->belongsToMany('App\User');
+    }
+
     public function posts() {
         return $this->belongsToMany('App\Post');
     }
@@ -21,11 +27,30 @@ class Tag extends Model
     //             ->select('replies.*');
     // }
 
+    public function getCacheKey($key) {
+        $key = \strtoupper($key);
+        return self::CACHE_KEY . ".$key";
+    }
+
+    // should be called by the scheduler
+    public function updateTrendingTags() {
+        Cache::put($this->getCacheKey('trending-tags-update-time'), now(), 3600);
+        Cache::put($this->getCacheKey('trending-tags'), $this->trendingTags(), 3600);
+    }
+
+    public function getTrendingTags() {
+        if(!Cache::has($this->getCacheKey('trending-tags'))) {
+            $this->updateTrendingTags();
+        }
+        return Cache::get($this->getCacheKey('trending-tags'));
+        // return Cache::remember($this->getCacheKey('trending-tags'), 3600, function() {
+        //     return $this->trendingTags();
+        // });
+        // Cache::put($this->getCacheKey('trending-tags-update-time'), 3600, now());
+    }
 
     // todo: needed to be modified
-    public static function getTrendingTags() {
-        // Cache::put('test3', 'bagz', 600);
-
+    private function trendingTags() {
         $trendingTags = Tag::withCount([
                             'posts'
                         ])
@@ -34,18 +59,28 @@ class Tag extends Model
                                 $query->withCount('replies');
                             }
                         ])
+                        // ->having('posts_count', '>' , 1)
                         ->orderBy('posts_count', 'desc')
                         ->get();
 
 
         foreach($trendingTags as $trendingTag) {
-            $trendingTag->replies_count = $trendingTag->posts->reduce(function ($count, $post) {
-                return $count + $post->replies_count;
-            }, 0);
+            $trendingTag->replies_count =
+                $trendingTag->posts->reduce(
+                    function ($count, $post) {
+                        return $count + $post->replies_count;
+                    }, 0
+                );
         }
 
-        return $trendingTags->sortByDesc(function($value, $key) {
-            return $value["posts_count"] + $value["replies_count"];
-        })->take(5);
+        return $trendingTags
+                ->sortByDesc(function($value, $key) {
+                                return $value["posts_count"] * 2 + $value["replies_count"];
+                            })
+                ->take(5);
     }
+
+
+
+
 }
