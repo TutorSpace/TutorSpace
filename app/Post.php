@@ -137,14 +137,7 @@ class Post extends Model
                         3600
                     );
 
-                    return Post::withCount([
-                                'replies',
-                                'usersUpvoted'
-                            ])
-                            ->join('post_types', 'post_types.id', 'posts.post_type_id')
-                            ->where('post_types.post_type', 'Question')
-                            ->having('replies_count', '<', 2)
-
+                    return $this->queryYouMayHelpWith()
                             // TODO: modify the order formula
                             ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                             ->take(5)
@@ -162,23 +155,16 @@ class Post extends Model
         // get all the tags the user is interested in
         $interestedTagIDs = $user->tags()->pluck('id');
 
-        $posts = Post::withCount([
-                            'replies',
-                            'usersUpvoted'
-                        ])
-                        ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
-                        ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
-                        ->whereIn('tags.id', $interestedTagIDs)
-                        ->groupBy(['posts.id'])
+        $posts = $this->queryYouMayHelpWith()
+                    ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+                    ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+                    ->whereIn('tags.id', $interestedTagIDs)
+                    ->groupBy(['posts.id'])
 
-                        ->join('post_types', 'post_types.id', 'posts.post_type_id')
-                        ->where('post_types.post_type', 'Question')
-                        ->having('replies_count', '<', 2)
-
-                        // TODO: modify the order formula
-                        ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
-                        ->take(5)
-                        ->get();
+                    // TODO: modify the order formula
+                    ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
+                    ->take(5)
+                    ->get();
 
         // if($posts)
 
@@ -186,7 +172,13 @@ class Post extends Model
     }
 
     private function queryYouMayHelpWith() {
-
+        return Post::withCount([
+                                'replies',
+                                'usersUpvoted'
+                            ])
+                            ->join('post_types', 'post_types.id', 'posts.post_type_id')
+                            ->where('post_types.post_type', 'Question')
+                            ->having('replies_count', '<', 2);
     }
 
 
