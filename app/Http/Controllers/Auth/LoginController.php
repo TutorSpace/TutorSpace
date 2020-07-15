@@ -8,6 +8,7 @@ use App\Rules\EmailUSC;
 use Illuminate\Http\Request;
 use App\CustomClass\URLManager;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -51,13 +52,17 @@ class LoginController extends Controller
 
         // if this email does not have a student identity
         if(!User::existStudent($request->input('email'))) {
-            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with this email does not exist.']);
+            return redirect()->back()->withInput()->withErrors([
+                'loginError' => 'The identity you are trying to log in with this email does not exist.'
+            ]);
         }
 
         // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::registerWithGoogle($request->input('email'))) {
-            return redirect()->back()->withInput()->withErrors(['This email is registered using Google. Please sign in with Google.']);
+        if(User::registeredWithGoogle($request->input('email'))) {
+            return redirect()->back()->withInput()->withErrors([
+                'loginError' => 'This email is registered using Google. Please sign in with Google.'
+            ]);
         }
 
         if (Auth::attempt([
@@ -65,8 +70,8 @@ class LoginController extends Controller
             'password' => $request->input('password'),
             'is_tutor' => false])) {
             // Authentication passed...
-            if($request->query('backRouteName')) {
-                return redirect()->route($request->query('backRouteName'))->with([
+            if($request->query('backUrl')) {
+                return redirect($request->query('backUrl'))->with([
                     'showWelcome' => true
                 ]);
             }
@@ -101,13 +106,17 @@ class LoginController extends Controller
 
         // if this email does not have a tutor identity
         if(!User::existTutor($request->input('email'))) {
-            return redirect()->back()->withInput()->withErrors(['The identity you are trying to log in with this email does not exist.']);
+            return redirect()->back()->withInput()->withErrors([
+                'loginError' => 'The identity you are trying to log in with this email does not exist.'
+            ]);
         }
 
         // if registered with google
         // IMPORTANT: BOTH google_id and password must be transfered when user registers the second identity!!!
-        if(User::registerWithGoogle($request->input('email'))) {
-            return redirect()->back()->withInput()->withErrors(['This email is registered using Google. Please sign in with Google.']);
+        if(User::registeredWithGoogle($request->input('email'))) {
+            return redirect()->back()->withInput()->withErrors([
+                'loginError' => 'This email is registered using Google. Please sign in with Google.'
+            ]);
         }
 
         if (Auth::attempt([
@@ -116,8 +125,8 @@ class LoginController extends Controller
             'is_tutor' => true])) {
             // Authentication passed...
 
-            if($request->query('backRouteName')) {
-                return redirect()->route($request->query('backRouteName'))->with([
+            if($request->query('backUrl')) {
+                return redirect($request->query('backUrl'))->with([
                     'showWelcome' => true
                 ]);
             }

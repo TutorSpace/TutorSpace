@@ -42,63 +42,13 @@
         display: inline-block;
         border: none;
         outline: none;
-        box-shadow: 0 1px 2px 0px rgba(0,0,0,0.1);
 
         &::placeholder {
             color: $color-grey;
         }
-    }
 
-    .select-container {
-        overflow: hidden;
-        border: 2px solid;
-        border-radius: 1.2rem;
-        min-height: 5.5rem;
-
-        @include respond(lg-2) {
-            min-height: 5rem;
-        }
-
-        @include respond(extra-sm) {
-            min-height: 6rem;
-        }
-
-        &-icon {
-            .select2-selection__rendered {
-                margin-left: 1.8rem;
-                margin-right: -1.5rem;
-            }
-        }
-
-        &__icon {
-            position: absolute;
-            width: 2.2rem;
-            height: 2.2rem;
-            left: .5rem;
-            top: 48%;
-            transform: translateY(-50%);
-            fill: currentColor;
-        }
-
-        .input-group-prepend {
-            width: 6rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            right: 0;
-            background-color: currentColor;
-
-            :first-child {
-                width: 6rem;
-                height: 6rem;
-                fill: $color-white;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
+        &:focus {
+            box-shadow: 1px 3px 4px 0px rgba(0,0,0,0.1);
         }
     }
 
@@ -114,7 +64,53 @@
     .btn-save {
         margin-right: 2rem;
         border: 1.5px solid currentColor;
+    }
 
+    .select-container {
+        overflow: hidden;
+        border: 2px solid;
+        border-radius: .5rem;
+        min-height: 4.5rem;
+
+        @include respond(extra-sm) {
+            min-height: 5.5rem;
+        }
+
+        &-icon {
+            .select2-selection__rendered {
+                margin-left: 1.8rem;
+                margin-right: -1.5rem;
+            }
+        }
+
+        &__icon {
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+
+        .select-container__icon {
+            position: absolute;
+            width: 1.8rem;
+            height: 1.8rem;
+            left: .5rem;
+            top: 48%;
+            transform: translateY(-50%);
+            fill: currentColor;
+        }
+
+
+        .input-group-prepend {
+            width: 6rem;
+
+            :first-child {
+                width: 6rem;
+                height: 6rem;
+            }
+        }
+
+        .select2-search__field {
+            font-size: 1.6rem !important;
+        }
     }
 
 }
@@ -131,6 +127,14 @@
         background-color: $color-purple-primary;
     }
 
+    .tags-container {
+        color: $color-purple-primary;
+    }
+
+    .input-group-prepend {
+        color: $color-purple-primary;
+    }
+
 }
 
 .bg-student {
@@ -142,6 +146,14 @@
     .btn-create {
         color: $color-white-dark-4;
         background-color: $color-blue-primary;
+    }
+
+    .tags-container {
+        color: $color-blue-primary;
+    }
+
+    .input-group-prepend {
+        color: $color-blue-primary;
     }
 
 }

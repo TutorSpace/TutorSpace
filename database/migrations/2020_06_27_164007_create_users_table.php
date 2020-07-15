@@ -19,12 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 64);
             $table->string('email', 64);
             $table->boolean('is_tutor');
+            $table->string('tutor_level')->default('beginner');
+            $table->boolean('tutor_verified')->default(false);
             $table->unsignedBigInteger('first_major_id')->nullable();
             $table->unsignedBigInteger('second_major_id')->nullable();
             $table->string('gpa', 64)->default('N/A');
             $table->unsignedBigInteger('hourly_rate')->nullable();
             $table->unsignedBigInteger('school_year_id')->nullable();
-            $table->string('profile_pic_url', 255)->default('placeholder.png');
+            $table->string('profile_pic_url', 255)->default('user-profile-photos/placeholder.png');
             $table->string('google_id', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->timestamps();

@@ -164,15 +164,16 @@ bg-grey-light body-signup
 
         let checkBtnAddedInterval = setInterval(() => {
             _.forEach($('.abcRioButtonContents').children(), function (ele) {
-                if ($(ele).html() == 'Sign in with Google') {
+                if ($(ele).html() == 'Sign in with Google' || $(ele).html() == 'Signed in with Google') {
                     $(ele).html('Sign up with Google');
                     clearInterval(checkBtnAddedInterval);
-                } else if ($(ele).html() == 'Signed in with Google') {
-                    $(ele).html('Signed up with Google');
+                }
+                else if ($(ele).html() == 'Sign in' || $(ele).html() == 'Signed in') {
+                    $(ele).html('Sign up');
                     clearInterval(checkBtnAddedInterval);
                 }
             });
-        }, 100);
+        }, 1);
     }
 
     function adjustGoogleBtnSize() {

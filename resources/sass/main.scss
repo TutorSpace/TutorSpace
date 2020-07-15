@@ -12,10 +12,13 @@
 @import "base/utilities";
 
 @import "components/button";
+@import "components/modal";
 @import "components/overlay-background";
 @import "components/review";
 @import "components/forum/post_preview";
 @import "components/forum/tag";
+@import "components/forum/post_reply";
+@import "components/forum/user_card";
 @import "components/session";
 @import "components/pagination";
 @import "components/search-card";
@@ -32,7 +35,6 @@
 @import "pages/index";
 @import "pages/auth/register";
 @import "pages/auth/login";
-@import "pages/forum/index";
 @import "pages/forum/show";
 @import "pages/forum/create";
 @import "pages/home";

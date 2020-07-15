@@ -27,16 +27,21 @@ bg-grey-light body-login
             <h2 class="login__heading text-center">Student Login</h2>
 
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @error('loginError') invalid @enderror @error('email') invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
-                @if($errors->any())
+                @error('loginError')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first() }}
+                    {{ $message }}
                 </span>
-                @endif
+                @enderror
+                @error('email')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
             <div class="p-relative">
@@ -158,6 +163,19 @@ bg-grey-light body-login
             'longtitle': true,
             'theme': 'light'
         });
+
+        let checkBtnAddedInterval = setInterval(() => {
+            _.forEach($('.abcRioButtonContents').children(), function (ele) {
+                if ($(ele).html() == 'Signed in with Google') {
+                    $(ele).html('Sign in with Google');
+                    clearInterval(checkBtnAddedInterval);
+                }
+                else if ($(ele).html() == 'Signed in') {
+                    $(ele).html('Sign in');
+                    clearInterval(checkBtnAddedInterval);
+                }
+            });
+        }, 1);
     }
 
     function adjustGoogleBtnSize() {

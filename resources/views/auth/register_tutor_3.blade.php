@@ -72,7 +72,7 @@ bg-grey-light body-signup select2-bg-tutor
                 <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
                     <select class="custom-select" name="school-year" required>
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
-                        @foreach (App\School_year::all() as $schoolYear)
+                        @foreach (App\SchoolYear::all() as $schoolYear)
                             <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
                         @endforeach
                     </select>

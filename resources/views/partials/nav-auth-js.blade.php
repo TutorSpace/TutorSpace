@@ -19,12 +19,12 @@
 
     $('#btn-google-student-sm, #btn-google-student-lg').click(function (e) {
         e.stopPropagation();
-        window.location.href = '{{ route('login.google.student', ['backRouteName' => Route::current()->getName()]) }}';
+        window.location.href = '{{ route('login.google.student', ['backUrl' => URL::current()]) }}';
     });
 
     $('#btn-google-tutor-sm, #btn-google-tutor-lg').click(function (e) {
         e.stopPropagation();
-        window.location.href = '{{ route('login.google.tutor', ['backRouteName' => Route::current()->getName()]) }}';
+        window.location.href = '{{ route('login.google.tutor', ['backUrl' => URL::current()]) }}';
     });
 
     function renderButton() {
@@ -59,6 +59,19 @@
             'longtitle': true,
             'theme': 'light'
         });
+
+        let checkBtnAddedInterval = setInterval(() => {
+            _.forEach($('.abcRioButtonContents').children(), function (ele) {
+                if ($(ele).html() == 'Signed in with Google') {
+                    $(ele).html('Sign in with Google');
+                    clearInterval(checkBtnAddedInterval);
+                }
+                else if ($(ele).html() == 'Signed in') {
+                    $(ele).html('Sign in');
+                    clearInterval(checkBtnAddedInterval);
+                }
+            });
+        }, 1);
     }
 
     function adjustGoogleBtnSize() {

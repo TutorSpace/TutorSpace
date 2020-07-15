@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\ResetPasswordNotification;
+
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -38,7 +39,7 @@ class User extends Authenticatable
     // customized reset password
     public function customSendPasswordResetNotification($token, $is_tutor)
     {
-        $this->notify(new ResetPasswordNotification($token, $is_tutor));
+        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
     }
 
     public static function getTime($date, $startTime) {
@@ -47,9 +48,17 @@ class User extends Authenticatable
         return "$date $startTime";
     }
 
-    // to delete
-    public function major() {
-        return $this->belongsTo('App\Major');
+    // check whether a user with an email exists and is a student
+    public static function existStudent($email) {
+        return User::where('email', '=', $email)->where('is_tutor', false)->exists();
+    }
+
+    public static function existTutor($email) {
+        return User::where('email', '=', $email)->where('is_tutor', true)->exists();
+    }
+
+    public static function registeredWithGoogle($email) {
+        return User::where('email', '=', $email)->where('google_id', '!=', null)->exists();
     }
 
     public function firstMajor() {
@@ -60,13 +69,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Major', 'second_major_id');
     }
 
-
     public function school_year() {
-        return $this->belongsTo('App\School_year');
-    }
-
-    public function subjects() {
-        return $this->belongsToMany('App\Subject');
+        return $this->belongsTo('App\SchoolYear');
     }
 
     public function courses() {
@@ -77,6 +81,60 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Characteristic');
     }
 
+    public function deleteImage() {
+        Storage::delete($this->profile_pic_url);
+    }
+
+
+
+    // ======================== Form ======================
+    public function posts() {
+        return $this->hasMany('App\Post');
+    }
+
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function followedPosts() {
+        // return $this->belongsToMany('App\Post', 'post_user', 'user_id', 'post_id');
+        return $this->belongsToMany('App\Post');
+    }
+
+    public function hasFollowedPost($post) {
+        return $this->followedPosts()->where('post_id', $post->id)->exists();
+    }
+
+    // get all the posts the user upvoted
+    public function upvotedPosts() {
+        return $this->belongsToMany('App\Post', 'post_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given post
+    public function hasUpvotedPost($post) {
+        return $this->upvotedPosts()->where('post_id', $post->id)->exists();
+    }
+
+    // get all the replyes the user upvoted
+    public function upvotedReplies() {
+        return $this->belongsToMany('App\Reply', 'reply_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given reply
+    public function hasUpvotedReply($reply) {
+        return $this->upvotedReplies()->where('reply_id', $reply->id)->exists();
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
+    }
+
+
+
+
+
+
+
     // no need for this function seemingly
     // public function sessions() {
     //     if($this->is_tutor)
@@ -84,11 +142,6 @@ class User extends Authenticatable
     //     else
     //         return $this->hasMany('App\Session', 'student_id');
     // }
-
-
-    public function deleteImage() {
-        Storage::delete($this->profile_pic_url);
-    }
 
     public function bookmarks() {
         return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
@@ -253,18 +306,7 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
-    // check whether a user with an email exists and is a student
-    public static function existStudent($email) {
-        return User::where('email', '=', $email)->where('is_tutor', false)->count() != 0;
-    }
 
-    public static function existTutor($email) {
-        return User::where('email', '=', $email)->where('is_tutor', true)->count() != 0;
-    }
-
-    public static function registerWithGoogle($email) {
-        return User::where('email', '=', $email)->where('google_id', '!=', null)->count() != 0;
-    }
 
 
 

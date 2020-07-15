@@ -8,12 +8,12 @@
     </a>
 
     <section class="trending-tags">
-        <h5 class="trending-tags__heading">
-            <svg class="svg-trending-tag mr-2">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+        <h6 class="trending-tags__heading">
+            <svg class="svg-trending-tag mr-1">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-stars')}}"></use>
             </svg>
             Trending Tags
-        </h5>
+        </h6>
 
         <table class="trending-tags__list table">
             <thead>
@@ -24,69 +24,46 @@
                 </tr>
             </thead>
             <tbody>
+
+                @foreach ($trendingTags as $trendingTag)
                 <tr class="trending-tags__list-item mb-3">
                     <th>
-                        <a class="tag-name" href="">#Computer Science</a>
+                        <a class="tag-name" href="#">#{{ $trendingTag->tag }}</a>
                     </th>
-                    <td class="post-cnt">2830</td>
-                    <td class="reply-cnt">487</td>
+                    <td class="post-cnt">{{ $trendingTag->posts_count }}</td>
+                    <td class="reply-cnt">{{ $trendingTag->replies_count }}</td>
                 </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Science</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">47</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Mathematics</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">487</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Business Administration</a>
-                    </th>
-                    <td class="post-cnt">283</td>
-                    <td class="reply-cnt">487</td>
-                </tr>
-                <tr class="trending-tags__list-item mb-3">
-                    <th>
-                        <a class="tag-name" href="">#Design</a>
-                    </th>
-                    <td class="post-cnt">2</td>
-                    <td class="reply-cnt">4</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
 
-        <p class="fs-1-4 bottom-0 right-0 fc-grey my-0 text-right">
-            Last Updated at 2020/07/05
+        <p class="fs-1-2 bottom-0 right-0 fc-grey my-0 text-right">
+            Last Updated at {{ cache('TAGS.TRENDING-TAGS-UPDATE-TIME') }}
         </p>
     </section>
 
     <div class="forum-heading-img mt-5"></div>
 
     <div class="you-may-help-with">
-        <h5 class="you-may-help-with__heading">
-            <svg class="svg-trending-tag mr-2">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
+        <h6 class="you-may-help-with__heading">
+            <svg class="svg-help mr-2">
+                <use xlink:href="{{asset('assets/sprite.svg#icon-help')}}"></use>
             </svg>
             You may help with...
-        </h5>
+        </h6>
         <div class="questions">
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing  aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
+            @foreach ($youMayHelpWithPosts as $post)
+            <a href="{{ route('posts.show', $post->slug) }}" class="question">
+                {{ $post->title }}
+            </a>
+            @endforeach
+            <p class="fs-1-2 bottom-0 right-0 fc-grey mb-0 mt-4 text-right">
+                @auth
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME.' . Str::upper(Auth::user()->email)) }}
+                @else
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME') }}
+                @endauth
+            </p>
         </div>
-
-        <p class="fs-1-4 bottom-0 right-0 fc-grey mt-4 mb-0 text-right">
-            <a href="#" class="btn-link">View All</a>
-        </p>
     </div>
-
 </section>

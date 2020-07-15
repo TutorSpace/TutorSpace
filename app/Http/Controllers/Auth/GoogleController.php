@@ -79,16 +79,30 @@ class GoogleController extends Controller
             if ($loginGoogleStudent) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', false)->first());
                 // Authentication passed...
-                return redirect()->route($redirectRouteName)->with([
-                    'showWelcome' => true
-                ]);
+                if($redirectRouteName) {
+                    return redirect()->route($redirectRouteName)->with([
+                        'showWelcome' => true
+                    ]);
+                }
+                else if($request->session()->has('redirectUrl')) {
+                    return redirect($request->session()->get('redirectUrl'))->with([
+                        'showWelcome' => true
+                    ]);
+                }
             }
             else if ($loginGoogleTutor) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', true)->first());
                 // Authentication passed...
-                return redirect()->route($redirectRouteName)->with([
-                    'showWelcome' => true
-                ]);
+                if($redirectRouteName) {
+                    return redirect()->route($redirectRouteName)->with([
+                        'showWelcome' => true
+                    ]);
+                }
+                else if($request->session()->has('redirectUrl')) {
+                    return redirect($request->session()->get('redirectUrl'))->with([
+                        'showWelcome' => true
+                    ]);
+                }
             }
             else {
                 return redirect()->back()->withInput()->with([
@@ -155,8 +169,8 @@ class GoogleController extends Controller
         $request->session()->flush();
         $request->session()->put('loginGoogleStudent', true);
 
-        if($request->query('backRouteName')) {
-            $request->session()->put('redirectRouteName', $request->query('backRouteName'));
+        if($request->query('backUrl')) {
+            $request->session()->put('redirectUrl', $request->query('backUrl'));
         }
         else {
             $request->session()->put('redirectRouteName', 'home');
@@ -177,8 +191,8 @@ class GoogleController extends Controller
         $request->session()->flush();
         $request->session()->put('loginGoogleTutor', true);
 
-        if($request->query('backRouteName')) {
-            $request->session()->put('redirectRouteName', $request->query('backRouteName'));
+        if($request->query('backUrl')) {
+            $request->session()->put('redirectUrl', $request->query('backUrl'));
         }
         else {
             $request->session()->put('redirectRouteName', 'home');

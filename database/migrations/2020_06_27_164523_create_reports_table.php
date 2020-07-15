@@ -13,7 +13,7 @@ class CreateReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('report_tutor_session', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('reporter_id');
             $table->unsignedBigInteger('reportee_id');
@@ -33,6 +33,6 @@ class CreateReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('report_tutor_session');
     }
 }

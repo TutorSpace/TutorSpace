@@ -93,6 +93,10 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$('#tags').select2({
+  placeholder: "Add post tags here..."
+});
+
 function isInViewPort(elem) {
   var distance = elem.getBoundingClientRect();
   return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
@@ -121,12 +125,33 @@ $(window).scroll(function () {
 });
 $(window).resize(function () {
   adjustScrollBtnVisibility();
+
+  if ($(window).width() <= 1200) {
+    $('#tags').select2({
+      placeholder: "Add post tags here..."
+    });
+  }
 });
 $('.overlay-forum-left .toggle-collapsed').click(function () {
   $('.overlay-forum-left').addClass('toggle-expand-animation');
 });
 $('.overlay-forum-left .toggle-expanded').click(function () {
   $('.overlay-forum-left').removeClass('toggle-expand-animation');
+});
+$('.forum-left__list-item').click(function () {
+  var href = $(this).attr('data-location-href');
+  window.location.href = href;
+});
+$('.forum-content__search__search-by').change(function () {
+  var val = $(this).find("option:selected").attr('value');
+
+  if (val == 'tags') {
+    $('.tags-container').removeClass('hidden');
+    $('.keyword-search').addClass('hidden');
+  } else {
+    $('.tags-container').addClass('hidden');
+    $('.keyword-search').removeClass('hidden');
+  }
 });
 
 /***/ }),

@@ -24,14 +24,21 @@
 
     @yield('content')
 
+
     {{-- my js --}}
     <script src="{{asset('js/app.js')}}"></script>
     <script>
         @if(session('errorMsg'))
             toastr.error('{{ session('errorMsg') }}');
+            @php
+                session()->forget('errorMsg');
+            @endphp
         @endif
         @if(session('successMsg'))
-            toastr.error('{{ session('successMsg') }}');
+            toastr.success('{{ session('successMsg') }}');
+            @php
+                session()->forget('successMsg');
+            @endphp
         @endif
     </script>
     @yield('js')

@@ -64,7 +64,7 @@
 
 .btn-outline-student {
     color: $color-blue-primary;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     transition: all .3s;
     border: 2px solid $color-blue-primary;
@@ -109,6 +109,20 @@
     &:active {
         transform: translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    }
+}
+
+.btn-animation-y-sm {
+    transition: all .1s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .15rem .3rem rgba(0, 0, 0, .1);
     }
 }
 

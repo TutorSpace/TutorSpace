@@ -1,12 +1,22 @@
 .forum {
     margin-top: calc(#{$nav-height} + 4rem);
 
-    @include respond(sm) {
-        padding: 0 4.5rem;
+    .forum-row {
+        margin: 0 -4rem;
+
+        @include respond(sm) {
+            margin: 0;
+        }
+    }
+
+    .action {
+        color: $color-grey;
+        display: flex;
+        align-items: center;
     }
 
     .btn-add-post {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: $color-white;
         display: flex;
         align-items: center;
@@ -22,26 +32,67 @@
     }
 
     .btn-back {
-        font-size: 1.8rem;
+        align-self: center;
+        font-size: 1.6rem;
         display: flex;
         align-items: center;
-        padding: .5rem 1rem;
+        padding: .5rem .75rem;
         border-radius: .5rem;
-        background-color: $color-white-dark-3;
+        background-color: $color-white-dark-5;
         box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
         border: none;
         margin-right: 1.5rem;
 
-        &:hover {
-            font-weight: bolder;
-        }
-
         svg {
             font-size: 1.4rem;
-            margin-right: .5rem;
+            margin-right: .25rem;
+        }
+    }
+
+
+    .select-container {
+        border: 1px solid;
+        border-radius: .5rem;
+
+        .input-group-prepend {
+            width: 5rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            background-color: currentColor;
+            z-index: 1000;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            :first-child {
+                width: 5rem;
+                height: 5rem;
+                fill: $color-white;
+            }
         }
 
+        .select2-search__field {
+            font-size: 1.6rem !important;
+        }
 
+        .select2-selection__choice {
+            font-size: 1.2rem !important;
+        }
+
+        .select2-container .select2-search--inline .select2-search__field {
+            margin-top: 0;
+        }
+
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
     }
 
     .overlay-forum-left {
@@ -173,25 +224,26 @@
 
     &__list {
         list-style: none;
-        font-size: 2rem;
+        font-size: 1.6rem;
         font-weight: bold;
 
+
+
         &-item {
-            background-color: $color-white-dark-3;
-            padding: 1rem;
+            background-color: $color-white-dark-5;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
             border-radius: .5rem;
-            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
             transition: all .1s;
-
             cursor: pointer;
 
             &:hover {
-                color: $color-white-dark-3;
+                color: $color-white-dark-5;
 
                 svg {
-                    fill: $color-white-dark-3;
+                    fill: $color-white-dark-5;
                 }
             }
 
@@ -201,19 +253,19 @@
         }
 
         &-svg {
-            width: 3rem;
-            height: 3rem;
-            min-width: 3rem;
-            min-height: 3rem;
-            margin-right: 1.5rem;
+            width: 2rem;
+            height: 2rem;
+            min-width: 2rem;
+            min-height: 2rem;
+            margin-right: 1rem;
             transition: all .1s;
 
             @include respond(lg) {
                 margin-right: .5rem;
-                width: 2.5rem;
-                height: 2.5rem;
-                min-width: 2.5rem;
-                min-height: 2.5rem;
+                width: 1.8rem;
+                height: 1.8rem;
+                min-width: 1.8rem;
+                min-height: 1.8rem;
             }
         }
 
@@ -230,58 +282,76 @@
 .forum-content {
 
     &__search {
-
         display: flex;
+        font-size: 1.6rem;
         width: 100%;
-        font-size: 1.8rem;
         margin-top: 2rem;
 
         > * {
             color: inherit;
+            font-size: inherit;
         }
 
         .form-search {
-            width: 30rem;
+            width: 35rem;
 
             .input-search {
-                background-color: $color-white-dark-3;
-                font-size: 1.8rem;
+                background-color: $color-white-dark-5;
                 transition: all .1s;
-
-                &:focus {
-                    border-width: 1.5px;
-                    box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
-                }
 
                 + .svg-search {
                     width: 1.75rem;
                     height: 1.75rem;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }
 
-        &__search-by, &__type-by, &__sort-by {
+        .tags-container {
+            max-width: 35rem;
+            flex: 1;
+            border-radius: .5rem;
+            overflow: hidden;
+
+            background-color: $color-white-dark-5;
+
+
+            .select-container {
+
+                .input-group-prepend {
+
+                    :first-child {
+                        width: 2rem;
+                        height: 2rem;
+                    }
+                }
+
+                .select2-container--default .select2-selection--multiple .select2-selection__choice {
+                    height: 2.2rem;
+                }
+
+                .selection .select2-selection__rendered {
+                    padding-left: 1rem !important;
+                }
+
+            }
+        }
+
+        &__search-by {
             padding: .5rem 1rem;
             border-color: currentColor;
             border-radius: .5rem;
             outline: none;
             font-weight: 500;
-            box-shadow: 0px 3px 1px 0px rgba(0,0,0,0.1);
-            background-color: $color-white-dark-3;
+            background-color: $color-white-dark-5;
+            align-self: center;
         }
 
         &__search-by {
             margin-left: 2rem;
-            margin-right: 1rem;
-        }
-
-        &__type-by {
-            margin-left: auto;
-            margin-right: 1rem;
-        }
-
-        &__sort-by {
-
         }
     }
 }
@@ -295,26 +365,23 @@
 
     .trending-tags, .you-may-help-with {
         margin-top: 3rem;
-        background-color: $color-white-dark-3;
+        background-color: $color-white-dark-5;
         padding: 2rem;
         border-radius: 1rem;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
-
-        @include respond(lg) {
-            padding: 2rem 1rem;
-        }
 
         &__heading {
             display: flex;
             align-items: center;
             font-weight: bold;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
+
+            @include respond(lg) {
+                font-size: 1.8rem;
+            }
 
             svg {
-                width: 2.2rem;
-                min-width: 2.2rem;
-                height: 2.2rem;
-                min-height: 2.2rem;
                 fill: currentColor;
             }
         }
@@ -322,13 +389,23 @@
 
     .trending-tags {
 
-        &__list {
-            list-style: none;
-            font-size: 1.6rem;
+        .svg-trending-tag {
+            width: 3.5rem;
+            min-width: 3.5rem;
+            height: 3.5rem;
+            min-height: 3.5rem;
 
             @include respond(lg) {
-                font-size: 1.4rem;
+                width: 3.2rem;
+                min-width: 3.2rem;
+                height: 3.2rem;
+                min-height: 3.2rem;
             }
+        }
+
+        &__list {
+            list-style: none;
+            font-size: 1.5rem;
 
             thead th {
                 border-bottom: none;
@@ -347,16 +424,26 @@
 
             .post-cnt, .reply-cnt {
                 color: $color-grey;
-                font-size: 1.6rem;
-
-                @include respond(lg) {
-                    font-size: 1.4rem;
-                }
+                font-size: 1.5rem;
             }
         }
     }
 
     .you-may-help-with {
+
+        .svg-help {
+            width: 2.5rem;
+            min-width: 2.5rem;
+            height: 2.5rem;
+            min-height: 2.5rem;
+
+            @include respond(lg) {
+                width: 2.2rem;
+                min-width: 2.2rem;
+                height: 2.2rem;
+                min-height: 2.2rem;
+            }
+        }
 
         .questions {
             border-top: 1px solid #dee2e6;
@@ -370,21 +457,39 @@
 
             .question {
                 color: $color-black-post;
-                font-size: 1.6rem;
+                font-size: 1.5rem;
                 display: inline-block;
                 line-height: 1.4;
-
-                @include respond(lg) {
-                    font-size: 1.4rem;
-                }
             }
         }
     }
 }
 
+.post-preview, .post-detail {
+    &-tag {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.4rem;
+
+
+        .status {
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
 
 .bg-tutor {
     color: $color-purple-primary;
+
+    .form-search .input-search {
+        &:focus {
+            box-shadow: 0px 3px 1px 0px rgba($color-purple-primary, 0.2);
+        }
+    }
 
     .btn-back {
         &:hover {
@@ -397,6 +502,15 @@
         @include form-search-purple;
 
         &-left__list {
+
+            .current {
+                background-color: $color-purple-primary;
+                color: $color-white-dark-5;
+
+                svg {
+                    fill: $color-white-dark-5;
+                }
+            }
 
             &-item {
                 &:hover {
@@ -438,6 +552,15 @@
                 color: $color-purple-primary-2;
             }
         }
+
+        .active {
+            color: $color-purple-primary !important;
+
+            svg {
+                fill: $color-purple-primary !important;
+            }
+        }
+
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
@@ -455,6 +578,12 @@
 .bg-student {
     color: $color-blue-primary;
 
+    .form-search .input-search {
+        &:focus {
+            box-shadow: 0px 3px 1px 0px rgba($color-blue-primary, 0.2);
+        }
+    }
+
     .btn-back {
         &:hover {
             background-color: $color-blue-primary;
@@ -466,6 +595,16 @@
         @include form-search-blue;
 
         &-left__list {
+
+            .current {
+                background-color: $color-blue-primary;
+                color: $color-white-dark-5;
+
+                svg {
+                    fill: $color-white-dark-5;
+                }
+            }
+
             &-item {
                 &:hover {
                     background-color: $color-blue-primary;
@@ -504,6 +643,15 @@
                 color: $color-blue-primary-2;
             }
         }
+
+        .active {
+            color: $color-blue-primary !important;
+
+            svg {
+                fill: $color-blue-primary !important;
+            }
+        }
+
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
@@ -520,7 +668,7 @@
 
 
 .forum-heading-img {
-    background-image: url(../../../public/images/forum-heading-1.jpg);
+    background-image: url(../../../public/assets/images/forum-heading-1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
@@ -529,28 +677,29 @@
     border-radius: 1.5rem;
 }
 
-.discussion__heading {
+.post__heading {
     &:hover {
         color: $color-black-post;
     }
 }
 
-.discussion__heading-2 {
+.post__heading-2 {
     font-size: 1.4rem;
-    margin-top: 1rem;
 
     .poster-img {
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
+        margin-right: .3rem;
     }
 }
 
-.discussion__content {
+.post__content, .post-reply__content {
     font-size: 1.6rem;
+    line-height: 1.6;
 }
 
-.discussion__bottom {
+.post__bottom {
     flex: 0 0 100%;
 
     .tags {
@@ -558,16 +707,32 @@
         margin-top: .5rem;
     }
 
-    &__info {
+    &__info, &__actions {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 1.4rem;
-
-
-        svg {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
     }
+
+    svg {
+        fill: $color-grey;
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.post-preview, .post-detail {
+    position: relative;
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.post-preview {
+    padding: 3rem 4rem 3rem 4rem;
+}
+
+.post-detail {
+    padding: 4.5rem 4rem 3rem 4rem;
 }

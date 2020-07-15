@@ -91,5 +91,5 @@ bg-grey-light body-signup
 
 
 </script>
-<script src="{{ asset('js/auth/register.js') }}"></script>
+<script src="{{ asset('js/register.js') }}"></script>
 @endsection
