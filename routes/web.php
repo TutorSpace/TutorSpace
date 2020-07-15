@@ -10,6 +10,9 @@ Route::get('/test', 'testController@index');
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
 
+// search for tutors in nav bar
+Route::get('/search', 'SearchController@index')->name('search.index');
+
 // subscriptions
 Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('subscription.store');
 Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
@@ -124,8 +127,7 @@ Route::post('/edit_profile', 'profileController@editProfile');
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 
-// search page
-Route::get('/search', 'searchController@show')->name('search')->middleware(['auth']);
+
 
 
 // bookmark
@@ -159,8 +161,7 @@ Route::post('/add_characteristic', 'characteristicController@addCharacteristic')
 // reviews
 Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
 
-// search
-Route::get('/search', 'searchController@show')->middleware(['auth']);
+
 
 // reports
 Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['auth']);

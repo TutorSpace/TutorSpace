@@ -17,4 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/forum/forum.js', 'public/js/forum')
     .js('resources/js/forum/index.js', 'public/js/forum')
     .js('resources/js/forum/create.js', 'public/js/forum')
+    .js('resources/js/search/index.js', 'public/js/search')
     .sass('resources/sass/main.scss', 'public/css');

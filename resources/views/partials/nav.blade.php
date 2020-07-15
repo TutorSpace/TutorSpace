@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <form action="" method="GET" class="form-search form-search-lg nav__form">
+            <form action="{{ route('search.index') }}" method="GET" class="form-search form-search-lg nav__form">
                 <input type="text" class="form-control form-control-lg input-search" placeholder="Search for tutors...">
                 <svg class="svg-search">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>

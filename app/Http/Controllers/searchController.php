@@ -10,8 +10,17 @@ use App\Course;
 use App\Subject;
 use DB;
 
-class searchController extends Controller
+class SearchController extends Controller
 {
+    public function index(Request $request) {
+        // todo: load all the results
+
+        return view('search.index', [
+
+        ]);
+    }
+
+
     public function show(Request $request) {
         $user = Auth::user();
         $nameUserResults;
