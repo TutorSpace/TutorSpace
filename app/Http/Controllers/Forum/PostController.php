@@ -57,7 +57,8 @@ class PostController extends Controller
             ],[
                 'post_type_id' => 0
             ]),
-            'trendingTags' => Tag::getTrendingTags()
+            'trendingTags' => Tag::getTrendingTags(),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 
@@ -195,6 +196,7 @@ class PostController extends Controller
                                     $query->where('user_id', Auth::user()->id);
                             },
                         ]),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
 
         ]);
     }
@@ -250,14 +252,16 @@ class PostController extends Controller
     public function showMyFollows() {
         return view('forum.my_follows', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
+            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 
     public function showMyPosts() {
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get()
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 
@@ -344,7 +348,8 @@ class PostController extends Controller
                             'replies',
                             'tags'
                         ])->get(),
-            'pageTitle' => 'Forum - Popular Posts'
+            'pageTitle' => 'Forum - Popular Posts',
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 
@@ -361,7 +366,8 @@ class PostController extends Controller
                             'replies',
                             'tags'
                         ])->get(),
-            'pageTitle' => 'Forum - Latest Posts'
+            'pageTitle' => 'Forum - Latest Posts',
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 
