@@ -63,7 +63,7 @@ bg-student
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                         </svg>
                         <span>
-                            {{ $post->view_count }}
+                            {{ App\CustomClass\NumberFormatter::thousandsFormat($post->view_count) }}
                         </span>
                     </p>
                     <div class="post__content mb-4">
