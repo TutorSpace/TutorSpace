@@ -112,18 +112,45 @@ class Post extends Model
 
 
     public function getYouMayHelpWith() {
-        return Cache::remember(
-            $this->getCacheKey('you-may-help-with' . "." . Auth::user()->email),
-            3600,
-            function() {
-                Cache::put(
-                    $this->getCacheKey('you-may-help-with-update-time' . "." . Auth::user()->email),
-                    now(),
-                    3600
-                );
-                return $this->youMayHelpWith();
-            }
-        );
+        if(Auth::check()) {
+            return Cache::remember(
+                $this->getCacheKey('you-may-help-with' . "." . Auth::user()->email),
+                3600,
+                function() {
+                    Cache::put(
+                        $this->getCacheKey('you-may-help-with-update-time' . "." . Auth::user()->email),
+                        now(),
+                        3600
+                    );
+                    return $this->youMayHelpWith();
+                }
+            );
+        }
+        else {
+            return Cache::remember(
+                $this->getCacheKey('you-may-help-with'),
+                3600,
+                function() {
+                    Cache::put(
+                        $this->getCacheKey('you-may-help-with-update-time'),
+                        now(),
+                        3600
+                    );
+
+                    return Post::withCount([
+                                'replies',
+                                'usersUpvoted'
+                            ])
+                            ->join('post_types', 'post_types.id', 'posts.post_type_id')
+                            ->where('post_types.post_type', 'Question')
+                            ->having('replies_count', '<', 2)
+                            // TODO: modify the order formula
+                            ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
+                            ->take(5)
+                            ->get();
+                }
+            );
+        }
     }
 
 
@@ -142,9 +169,14 @@ class Post extends Model
                         ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
                         ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                         ->whereIn('tags.id', $interestedTagIDs)
+
+                        ->join('post_types', 'post_types.id', 'posts.post_type_id')
+                        ->where('post_types.post_type', 'Question')
+                        ->having('replies_count', '<', 2)
                         ->groupBy(['posts.id'])
+
                         // TODO: modify the order formula
-                        ->orderByRaw('0.6 * replies_count + 0.2 * view_count + 0.2 * users_upvoted_count desc')
+                        ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count desc')
                         ->take(5)
                         ->get();
 

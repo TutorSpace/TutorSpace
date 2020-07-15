@@ -58,7 +58,11 @@
             </a>
             @endforeach
             <p class="fs-1-2 bottom-0 right-0 fc-grey mb-0 mt-4 text-right">
+                @auth
                 Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME.' . Str::upper(Auth::user()->email)) }}
+                @else
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME') }}
+                @endauth
             </p>
         </div>
     </div>
