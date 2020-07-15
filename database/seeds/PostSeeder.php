@@ -148,7 +148,7 @@ class PostSeeder extends Seeder
             'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png',
             'user_id' => 1,
             'post_type_id' => 1,
-            'view_count' => 2400,
+            'view_count' => 4800,
             'created_at' => '2020-07-08 14:55:30'
         ]);
 

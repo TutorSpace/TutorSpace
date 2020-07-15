@@ -130,7 +130,6 @@ $(window).resize(function () {
     $('#tags').select2({
       placeholder: "Add post tags here..."
     });
-    console.log('here');
   }
 });
 $('.overlay-forum-left .toggle-collapsed').click(function () {
@@ -153,12 +152,7 @@ $('.forum-content__search__search-by').change(function () {
     $('.tags-container').addClass('hidden');
     $('.keyword-search').removeClass('hidden');
   }
-}); // $('.forum-content__search .select2-search__field').keypress(function() {
-//     var keycode = (event.keyCode ? event.keyCode : event.which);
-//     if(keycode == '13'){
-//         alert('You pressed a "enter" key in textbox');
-//     }
-// });
+});
 
 /***/ }),
 

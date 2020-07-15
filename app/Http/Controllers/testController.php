@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
-use App\Post;
+use Facades\App\Post;
 use App\User;
 use App\Reply;
 use App\Course;
@@ -18,7 +18,7 @@ use App\NewMessage;
 
 use App\Tutor_request;
 use App\Characteristic;
-use App\Dashboard_post;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -31,13 +31,9 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $test = Tag::getTrendingTags();
-        // dd(Tag::first()->replies);
-        dd($test->first()->posts->first()->replies_count);
+        $test = Post::getYouMayHelpWith();
 
-        Cache::store('redis')->put('test3', 'bagz', 600); // 10 Minutes
-
-        dd(Cache::get('test3'));
+        dd($test);
     }
 
     public function test(Request $request) {

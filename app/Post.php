@@ -4,16 +4,27 @@ namespace App;
 
 use App\Reply;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     protected $guarded = [];
 
+    CONST CACHE_KEY = 'POSTS';
+
     protected $dates = ['created_at', 'updated_at'];
 
     public function getRouteKeyName() {
         return 'slug';
+    }
+
+    public function getCacheKey($key) {
+        $key = Str::upper($key);
+        return self::CACHE_KEY . ".$key";
     }
 
     public function post_type() {
@@ -100,4 +111,43 @@ class Post extends Model
     }
 
 
+    public function getYouMayHelpWith() {
+        return Cache::remember(
+            $this->getCacheKey('you-may-help-with' . "." . Auth::user()->email),
+            3600,
+            function() {
+                Cache::put(
+                    $this->getCacheKey('you-may-help-with-update-time' . "." . Auth::user()->email),
+                    now(),
+                    3600
+                );
+                return $this->youMayHelpWith();
+            }
+        );
+    }
+
+
+    // TODO: Modify the method
+    private function youMayHelpWith() {
+        $user = Auth::user();
+
+        // get all the tags the user is interested in
+        $interestedTagIDs = $user->tags()->pluck('id');
+
+        // get recommendations for the posts
+        $recommendedPosts = Post::withCount([
+                            'replies',
+                            'usersUpvoted'
+                        ])
+                        ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+                        ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+                        ->whereIn('tags.id', $interestedTagIDs)
+                        ->groupBy(['posts.id'])
+                        // TODO: modify the order formula
+                        ->orderByRaw('0.6 * replies_count + 0.2 * view_count + 0.2 * users_upvoted_count desc')
+                        ->take(5)
+                        ->get();
+
+        return $recommendedPosts;
+    }
 }

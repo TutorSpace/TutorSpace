@@ -39,7 +39,8 @@ class PostController extends Controller
         return view('forum.index', [
             'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
             'pageTitle' => 'Forum',
-            'trendingTags' => Tag::getTrendingTags()
+            'trendingTags' => Tag::getTrendingTags(),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
 

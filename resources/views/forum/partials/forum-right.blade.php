@@ -28,7 +28,7 @@
                 @foreach ($trendingTags as $trendingTag)
                 <tr class="trending-tags__list-item mb-3">
                     <th>
-                        <a class="tag-name" href="">#{{ $trendingTag->tag }}</a>
+                        <a class="tag-name" href="#">#{{ $trendingTag->tag }}</a>
                     </th>
                     <td class="post-cnt">{{ $trendingTag->posts_count }}</td>
                     <td class="reply-cnt">{{ $trendingTag->replies_count }}</td>
@@ -52,11 +52,14 @@
             You may help with...
         </h6>
         <div class="questions">
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing  aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
-            <a href="#" class="question">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ipsum aperiam?</a>
+            @foreach ($youMayHelpWithPosts as $post)
+            <a href="{{ route('posts.show', $post->slug) }}" class="question">
+                {{ $post->title }}
+            </a>
+            @endforeach
+            <p class="fs-1-2 bottom-0 right-0 fc-grey mb-0 mt-4 text-right">
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME.' . Str::upper(Auth::user()->email)) }}
+            </p>
         </div>
     </div>
 </section>

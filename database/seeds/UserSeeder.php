@@ -51,6 +51,9 @@ class UserSeeder extends Seeder
             ],[
                 'user_id' => 1,
                 'tag_id' => 14
+            ],[
+                'user_id' => 2,
+                'tag_id' => 1
             ]
         ];
         DB::table('tag_user')->insert($userTags);

@@ -32,7 +32,7 @@ class Tag extends Model
         return self::CACHE_KEY . ".$key";
     }
 
-    // should be called by the scheduler
+    // IMPORTANT: must run scheduler in prod env
     public function updateTrendingTags() {
         Cache::put($this->getCacheKey('trending-tags-update-time'), now(), 3600);
         Cache::put($this->getCacheKey('trending-tags'), $this->trendingTags(), 3600);
@@ -43,10 +43,6 @@ class Tag extends Model
             $this->updateTrendingTags();
         }
         return Cache::get($this->getCacheKey('trending-tags'));
-        // return Cache::remember($this->getCacheKey('trending-tags'), 3600, function() {
-        //     return $this->trendingTags();
-        // });
-        // Cache::put($this->getCacheKey('trending-tags-update-time'), 3600, now());
     }
 
     // todo: needed to be modified
@@ -59,7 +55,7 @@ class Tag extends Model
                                 $query->withCount('replies');
                             }
                         ])
-                        // todo: make this post count a larger number
+                        // todo: make this post count a larger number in the future
                         ->having('posts_count', '>' , 1)
                         ->orderBy('posts_count', 'desc')
                         ->get();
@@ -75,9 +71,11 @@ class Tag extends Model
         }
 
         return $trendingTags
-                ->sortByDesc(function($value, $key) {
-                                return $value["posts_count"] * 2 + $value["replies_count"];
-                            })
+                ->sortByDesc(
+                    function($value, $key) {
+                        // TODO: modify the formula
+                        return $value["posts_count"] * 2 + $value["replies_count"];
+                    })
                 ->take(5);
     }
 

@@ -122,7 +122,7 @@
                 {{ $post->user->tutor_level }} Tutor
             </span>
             <button class="btn btn-lg btn-chat btn-animation-y-sm mt-4">Chat</button>
-            <button class="btn btn-lg btn-request btn-animation-y-sm">Request Tutor Session</button>
+            <button class="btn btn-lg btn-request btn-animation-y-sm">Request a Session</button>
             @else
             <span class="user-info mt-1">Student</span>
             <button class="btn btn-chat btn-animation-y-sm mt-4">Chat</button>
