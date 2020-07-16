@@ -13396,6 +13396,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-weight: 500;
 }
 
+@media only screen and (max-width: 35.99em) {
+  .form-search-lg .input-search {
+    font-size: 1.4rem;
+    padding: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 2.5rem;
+    border-width: 1px;
+  }
+}
+
 .form-search-lg .svg-search {
   position: absolute;
   top: 50%;
@@ -13403,6 +13413,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(0, -50%);
   width: 1.75rem;
   height: 1.75rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .form-search-lg .svg-search {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
 }
 
 .nav {
@@ -13543,12 +13560,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .nav .nav__form {
-  width: 30rem;
+  width: 40rem;
 }
 
-@media only screen and (max-width: 23.124em) {
+@media only screen and (max-width: 35.99em) {
   .nav .nav__form {
-    width: 22rem;
+    width: 25rem;
   }
 }
 

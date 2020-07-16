@@ -126,11 +126,11 @@
     }
 
     .nav__form {
-        width: 30rem;
+        width: 40rem;
 
-        @media only screen and (max-width: 23.124em) { //370px
-            width: 22rem;
-        };
+        @include respond(extra-sm) {
+            width: 25rem;
+        }
     }
 
     .btn-sign-in {

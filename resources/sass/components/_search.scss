@@ -35,6 +35,14 @@
         &::placeholder {
             font-weight: 500;
         }
+
+        @include respond(extra-sm) {
+            font-size: 1.4rem;
+            padding: .5rem;
+            padding-left: .5rem;
+            padding-right: 2.5rem;
+            border-width: 1px;
+        }
     }
 
     .svg-search {
@@ -44,5 +52,10 @@
         transform: translate(0, -50%);
         width: 1.75rem;
         height: 1.75rem;
+
+        @include respond(extra-sm) {
+            width: 1.4rem;
+            height: 1.4rem;
+        }
     }
 }
