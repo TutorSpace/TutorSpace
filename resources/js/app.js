@@ -8,6 +8,9 @@ window.bootbox = require('bootbox');
 
 require('moment');
 window.Pikaday = require('pikaday');
+require('timepicker');
+
+require('bootstrap-slider');
 
 $(document).ready(function(){
     $.ajaxSetup({

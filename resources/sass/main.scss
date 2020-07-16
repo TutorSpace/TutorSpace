@@ -2,6 +2,7 @@
 @import "~select2/dist/css/select2.min.css";
 @import "~toastr/toastr.scss";
 @import "~pikaday/scss/pikaday.scss";
+@import "~bootstrap-slider/dist/css/bootstrap-slider.min.css";
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
@@ -27,6 +28,8 @@
 @import "components/bookmark";
 @import "components/bg-shapes";
 @import "components/select2";
+@import "components/bootstrap-slider";
+@import "components/timepicker";
 @import "components/search";
 
 @import "layout/navbar";

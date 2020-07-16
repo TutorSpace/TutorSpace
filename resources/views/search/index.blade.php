@@ -66,21 +66,21 @@ bg-student
                     <div class="filter__checkboxes">
                         <div class="top-3">
                             <div class="filter__checkbox mt-3">
-                                <input type="checkbox" id="checkbox-morning">
+                                <input type="checkbox" id="checkbox-morning" class="checkbox-range">
                                 <label for="checkbox-morning">
                                     Morning
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-3">
-                                <input type="checkbox" id="checkbox-afternoon">
-                                <label for="checkbox-afternooon">
+                                <input type="checkbox" id="checkbox-afternoon" class="checkbox-range">
+                                <label for="checkbox-afternoon">
                                     Afternoon
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-3">
-                                <input type="checkbox" id="checkbox-night">
+                                <input type="checkbox" id="checkbox-night" class="checkbox-range">
                                 <label for="checkbox-night">
                                     Night
                                 </label>
@@ -102,13 +102,13 @@ bg-student
                         </div>
                     </div>
 
-                    <div class="filter__inputs mt-3">
+                    <div class="filter__inputs mt-3 hidden" id="select-detail-time">
                         <div class="filter__input-container">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
                                 <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                            <input type="text" id="start-time" class="filter__input" placeholder="Start Time">
+                            <input type="text" id="start-time" class="filter__input" class="filter__input ui-timepicker-input" placeholder="Start Time">
                         </div>
 
                         <span class="separator">to</span>
@@ -118,13 +118,39 @@ bg-student
                                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
                                 <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                             </svg>
-                            <input type="text" id="end-time" class="filter__input" placeholder="End Time">
+                            <input type="text" id="end-time" class="filter__input ui-timepicker-input" placeholder="End Time">
                         </div>
                     </div>
                 </div>
-                <div class="filter__price">
 
+
+                <div class="filter__price">
+                    <span class="filter-heading--2">
+                        Price
+                    </span>
+
+                    <input id="price-range-input" type="text"/>
+
+                    <div class="filter__inputs mt-3">
+                        <div class="filter__input-container">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
+                            </svg>
+                            <input type="number" class="filter__input" placeholder="Minimum" id="price-low" value="15"
+                            min="15" max="50">
+                        </div>
+
+                        <span class="separator">to</span>
+
+                        <div class="filter__input-container">
+                            <svg>
+                                <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
+                            </svg>
+                            <input type="number" class="filter__input" placeholder="Maximum" id="price-high" value="35" min="15" max="50">
+                        </div>
+                    </div>
                 </div>
+
                 <div class="filter__tutor-level">
                     <span class="filter-heading--2">
                         Tutor Level
