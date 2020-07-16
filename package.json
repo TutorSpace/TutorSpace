@@ -26,6 +26,8 @@
         "bootbox": "^5.4.0",
         "bootstrap-icons": "^1.0.0-alpha4",
         "color-hash": "^1.0.3",
+        "moment": "^2.27.0",
+        "pikaday": "^1.8.0",
         "select2": "^4.0.13",
         "toastr": "^2.1.4"
     }

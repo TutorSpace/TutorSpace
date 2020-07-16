@@ -30,6 +30,7 @@
 .bg-grey-light { background-color: $color-grey-light !important; }
 .bg-grey { background-color: $color-grey !important; }
 .bg-white-dark-4 { background-color: $color-white-dark-4 !important; }
+.bg-white-dark-5 { background-color: $color-white-dark-5 !important; }
 .bg-color-blue-primary { background-color: $color-blue-primary !important; }
 .bg-color-purple-primary { background-color: $color-purple-primary !important; }
 
@@ -56,7 +57,7 @@
 .fs-2-2 { font-size: 2.2rem; }
 .fs-2-4 { font-size: 2.4rem; }
 .fc-grey { color: $color-grey !important; }
-.fc-black { color: black !important; }
+.fc-black { color: $color-black !important; }
 .fc-red { color: red; }
 .fc-purple-primary { color: $color-purple-primary; }
 .fc-purple-secondary { color: $color-purple-secondary; }

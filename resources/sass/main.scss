@@ -1,6 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~select2/dist/css/select2.min.css";
 @import "~toastr/toastr.scss";
+@import "~pikaday/scss/pikaday.scss";
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
@@ -37,6 +38,7 @@
 @import "pages/auth/login";
 @import "pages/forum/show";
 @import "pages/forum/create";
+@import "pages/search";
 @import "pages/home";
 @import "pages/profile";
 @import "pages/report";

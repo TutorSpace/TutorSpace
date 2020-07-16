@@ -6,6 +6,9 @@ window.ColorHash = require('color-hash');
 
 window.bootbox = require('bootbox');
 
+require('moment');
+window.Pikaday = require('pikaday');
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
