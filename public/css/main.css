@@ -12284,6 +12284,10 @@ h6 {
   flex: 1;
 }
 
+.flex-100 {
+  flex: 0 0 100%;
+}
+
 .ws-no-wrap {
   white-space: nowrap;
 }
@@ -16194,11 +16198,23 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search {
   margin-top: calc(8rem + 4rem);
-  margin-bottom: 12rem;
+  margin-bottom: 15rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search {
+    padding: 0 5rem;
+  }
 }
 
 .search .filter {
   padding: 3rem 3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .search .filter {
+    margin-bottom: 3rem;
+  }
 }
 
 .search .filter-heading {
@@ -16222,16 +16238,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: block;
 }
 
-.search .filter__available-time .filter__checkboxes .top-3 {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-}
-
-.search .filter__price .slider {
-  margin-top: 1rem;
-}
-
 .search .filter__inputs {
   display: flex;
   align-items: center;
@@ -16247,7 +16253,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .search .filter__inputs .filter__input-container svg {
   position: absolute;
   top: 50%;
-  left: 1rem;
+  left: 0.75rem;
   transform: translateY(-50%);
   width: 1.4rem;
   height: 1.4rem;
@@ -16256,7 +16262,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search .filter__inputs .filter__input-container .filter__input {
   padding: 0.4rem 0.7rem;
-  padding-left: 3rem;
   width: 100%;
 }
 
@@ -16277,5 +16282,273 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 0;
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+.search .filter__available-time .filter__checkboxes .top-3 {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.search .filter__available-time .filter__input {
+  padding-left: 2.5rem !important;
+}
+
+.search .filter__price .slider {
+  margin-top: 1rem;
+}
+
+.search .filter__price .filter__input {
+  padding-left: 2.2rem !important;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .search .filter__tutor-level .filter__checkboxes {
+    display: flex;
+  }
+
+  .search .filter__tutor-level .filter__checkboxes .filter__checkbox {
+    margin-right: 2rem;
+  }
+}
+
+.search .filter .btn-submit {
+  color: #F9F9F9;
+  font-size: 1.6rem;
+}
+
+.search .filter .btn-hide {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+  display: none;
+  align-self: flex-end;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .search .filter .btn-hide {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .search .filter .flex__content {
+    display: none;
+  }
+}
+
+.search .search-results {
+  margin-bottom: 8rem;
+}
+
+.search .search-results .search-result {
+  padding: 3rem 3rem;
+  border-radius: 0.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.search .search-results .search-result .user-photo {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: block;
+}
+
+.search .search-results .search-result .user-name {
+  font-size: 2.2rem;
+  color: #3F3F3F;
+}
+
+.search .search-results .search-result .user-level {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+}
+
+.search .search-results .search-result .bookmark-svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #A0A0A0;
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.search .search-results .search-result .user-major {
+  font-size: 1.6rem;
+  color: #626262;
+}
+
+.search .search-results .search-result .user-hourly-rate {
+  font-size: 1.6rem;
+  color: #626262;
+  display: flex;
+  align-items: center;
+}
+
+.search .search-results .search-result .user-hourly-rate svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.3rem;
+}
+
+.search .search-results .search-result .user-intro {
+  font-size: 1.6rem;
+  color: #A0A0A0;
+  width: 40rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-intro {
+    width: 100%;
+  }
+}
+
+.search .search-results .search-result .user-courses {
+  width: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-courses {
+    width: 100%;
+  }
+}
+
+.search .search-results .search-result .user-courses .heading,
+.search .search-results .search-result .user-courses .course {
+  flex: 0 0 calc(25% - .5rem);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+}
+
+.search .search-results .search-result .user-courses .heading {
+  color: #626262;
+  font-size: 1.8rem;
+  padding-left: 0.5rem;
+}
+
+.search .search-results .search-result .user-courses .course {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 0.3rem 0.5rem;
+  align-self: center;
+}
+
+.search .search-results .search-result .user-rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+
+.search .search-results .search-result .user-rating svg {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-rating svg {
+    margin-right: 0.5rem;
+  }
+}
+
+.search .search-results .search-result .user-rating svg.full {
+  fill: #FFBC00;
+}
+
+.search .search-results .search-result .user-rating svg.empty {
+  fill: #A0A0A0;
+}
+
+.search .search-results .search-result .user-rating .rating {
+  font-size: 1.6rem;
+  color: #626262;
+  position: relative;
+  top: 2px;
+  margin-right: 0.5rem;
+  display: block;
+}
+
+.search .search-results .search-result .user-rating .review-cnt {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+  position: relative;
+  top: 2px;
+}
+
+.search .search-results .search-result .user-rating .flex-100 {
+  display: none;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-rating .flex-100 {
+    display: block;
+  }
+}
+
+.search .search-results .search-result .user-rating .btn-request,
+.search .search-results .search-result .user-rating .btn-chat {
+  position: absolute;
+  right: 0;
+  font-size: 1.6rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .search .search-results .search-result .user-rating .btn-request,
+  .search .search-results .search-result .user-rating .btn-chat {
+    font-size: 1.4rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+.search .search-results .search-result .user-rating .btn-request {
+  bottom: 0;
+  color: #F9F9F9;
+}
+
+.search .search-results .search-result .user-rating .btn-chat {
+  bottom: 5rem;
+  width: 17ch;
+  border: 1px solid currentColor;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .search .search-results .search-result .user-rating .btn-chat {
+    bottom: 3.8rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-rating .btn-chat {
+    bottom: 0;
+    right: 18ch;
+    width: 10ch;
+  }
+}
+
+.bg-student .search-results .search-result .btn-request {
+  background-color: #1F7AFF;
+}
+
+.bg-student .search-results .search-result .btn-chat {
+  color: #1F7AFF;
+}
+
+.bg-tutor .search-results .search-result .btn-request {
+  background-color: #6749DF;
+}
+
+.bg-tutor .search-results .search-result .btn-chat {
+  color: #6749DF;
 }
 

@@ -61,9 +61,49 @@ $('#price-low, #price-high').change(function() {
     if($(this).val() > 50) {
         $(this).val(50);
     }
-    if($('#price-low').val() > $('#price-high').val()) {
+    if($('#price-low').val() && $('#price-high').val() && $('#price-low').val() > $('#price-high').val()) {
         let temp = $('#price-low').val();
         $('#price-low').val($('#price-high').val());
         $('#price-high').val(temp);
     }
+});
+
+$(window).resize(function () {
+    if($(window).width() >= 992 && $('.flex__content').is(":hidden")) {
+        $('.flex__content').show();
+        $('.filter .btn-hide').html('hide')
+    }
+});
+
+$('.filter .btn-hide').click(function() {
+    if($(this).html() == 'show') {
+        $('.flex__content').toggle(300);
+        $(this).html('hide');
+    }
+    else {
+        $('.flex__content').toggle(300);
+        $(this).html('show');
+    }
+})
+
+let colorHash = new ColorHash({
+    hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
+});
+
+$.each($('.course'), (idx, ele) => {
+    var color = colorHash.rgb(idx + $(ele).html());
+
+    // console.log($(ele).html());
+
+    var d = 0;
+    // Counting the perceptive luminance - human eye favors green color...
+    let luminance = ( 0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2])/255;
+
+    if (luminance > 0.5)
+       d = 0; // bright colors - black font
+    else
+       d = 255; // dark colors - white font
+
+    $(ele).css("background-color", `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
+    $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
 });

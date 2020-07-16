@@ -193,7 +193,7 @@ index
     $('#btn-start').click(function() {
         $('html, body').animate({
             scrollTop: $('#main').offset().top - $('.nav').height()
-        }, 500);
+        }, 1000);
     });
 
     $('#nav-btn-sign-in').click(function() {
