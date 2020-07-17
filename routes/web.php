@@ -11,7 +11,6 @@ Route::get('/test', 'testController@index');
 Route::get('/', 'GeneralController@index')->name('index');
 
 // search for tutors in nav bar
-Route::post('/search', 'SearchController@search')->name('search.search');
 Route::get('/search', 'SearchController@index')->name('search.index');
 
 // subscriptions

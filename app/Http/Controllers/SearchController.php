@@ -15,19 +15,8 @@ use Illuminate\Support\Facades\Validator;
 
 class SearchController extends Controller
 {
+
     public function index(Request $request) {
-
-
-
-        // dd($request->all());
-
-
-        return view('search.index', [
-
-        ]);
-    }
-
-    public function search(Request $request) {
 
 
         // dd($request->all());
@@ -89,15 +78,16 @@ class SearchController extends Controller
             ]
         ]);
 
+        $request->session()->forget('filterErrors');
+
+        $request->session()->flashInput($request->all());
+
+
         if ($validator->fails()) {
-            return redirect()
-                    ->route('search.index')
-                    ->withInput()
-                    ->withErrors($validator, 'filter');
+            $request->session()->flash('filterErrors', $validator->errors());
+
+            return view('search.index');
         }
-
-
-
 
         $usersQuery = User::with([
                         'firstMajor',
@@ -182,12 +172,9 @@ class SearchController extends Controller
         }
 
 
-        return redirect()
-                ->route('search.index')
-                ->withInput()
-                ->with([
-                    'users' => $usersQuery->get()
-                ]);
+        return view('search.index', [
+            'users' => $usersQuery->get()
+        ]);
     }
 
 

@@ -22,16 +22,15 @@ bg-student
 
 <div class="container search">
     <h4 class="ml-2">
-        Search Results ({{ session()->has('users') ? session()->get('users')->count() : 0 }})
+        Search Results ({{ isset($users) ? $users->count() : 0 }})
     </h4>
     <div class="row mt-5">
         <div class="col-lg-4">
             {{-- filter --}}
-            <form class="filter p-relative fc-black bg-white-dark-5" method="POST" action="{{ route('search.search') }}">
-                @csrf
-                @if ($errors->filter->any())
+            <form class="filter p-relative fc-black bg-white-dark-5" method="GET" action="{{ route('search.index') }}">
+                @if (session()->has('filterErrors') && session()->get('filterErrors')->any())
                     <p class="fs-1-4 fc-red text-right">
-                        {{ $errors->filter->first() }}
+                        {{ session()->get('filterErrors')->first() }}
                     </p>
                 @endif
                 <span class="filter-heading">

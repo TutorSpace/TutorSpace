@@ -2,7 +2,7 @@
 dd(session()->get('users'));
 @endphp --}}
 
-@forelse (session()->get('users') ?? [] as $user)
+@forelse (isset($users) ? $users : [] as $user)
 <div class="search-result bg-white-dark-5">
     <div class="d-flex align-items-center mb-3">
         <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-photo mr-3">
