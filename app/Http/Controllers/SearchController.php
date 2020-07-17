@@ -108,14 +108,18 @@ class SearchController extends Controller
                     ->withCount([
                         'about_reviews'
                     ])
-                    ->where('users.is_tutor', '=', true);
-                    // ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                    // ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
+                    ->where('users.is_tutor', true)
+                    ->where(function ($query) use($request) {
+                        $query
+                            ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
+                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
+                            // todo: filter the courses that match the keyword
+                    });
 
-        dd($usersQuery->get());
+
         // dd($usersQuery->get()[1]->about_reviews->avg('star_rating'));
 
-        // todo: filter the courses that match the keyword
+
 
         // if the user filtered with price
         if($request->has('price_low') && $request->has('price_high')) {

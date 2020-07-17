@@ -24,7 +24,7 @@ dd(session()->get('users'));
         </svg>
     </div>
 
-    <p class="user-major mb-1">Business Administration</p>
+    <p class="user-major mb-1">{{ $user->firstMajor->major }}</p>
 
     <p class="user-hourly-rate mb-1">
         <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,44 +38,22 @@ dd(session()->get('users'));
             </clipPath>
             </defs>
         </svg>
-        <span>$16 per hour</span>
+        <span>${{ $user->hourly_rate }} per hour</span>
     </p>
 
     <p class="user-intro mb-2">
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente illo ab ea aliquid provident autem ipsum consequuntur possimus ex cupiditate tenetur nesciunt harum quas accusamus, rem nostrum nulla voluptates? Ullam.'
+        '{{ $user->getIntroduction() }}'
     </p>
 
     <div class="user-courses mb-4">
         <span class="heading">
             Courses:
         </span>
+        @foreach ($user->courses as $course)
         <span class="course">
-            CSCI 104
+            {{ $course->course }}
         </span>
-        <span class="course">
-            BUAD 304
-        </span>
-        <span class="course">
-            CSCI 103
-        </span>
-        <span class="course">
-            CSCI 360
-        </span>
-        <span class="course">
-            CSCI 201
-        </span>
-        <span class="course">
-            MATH 226
-        </span>
-        <span class="course">
-            EE 109
-        </span>
-        <span class="course">
-            PHYS 151
-        </span>
-        <span class="course">
-            ECON 351
-        </span>
+        @endforeach
     </div>
 
     <div class="user-rating">

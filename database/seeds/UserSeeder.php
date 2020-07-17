@@ -113,5 +113,34 @@ class UserSeeder extends Seeder
             ]
         ];
         DB::table('tag_user')->insert($userTags);
+
+        $courseUsers = [
+            [
+                'user_id' => 2,
+                'course_id' => 2
+            ],[
+                'user_id' => 2,
+                'course_id' => 3
+            ],[
+                'user_id' => 2,
+                'course_id' => 4
+            ],[
+                'user_id' => 3,
+                'course_id' => 3
+            ],[
+                'user_id' => 4,
+                'course_id' => 5
+            ],[
+                'user_id' => 4,
+                'course_id' => 6
+            ],[
+                'user_id' => 5,
+                'course_id' => 1
+            ],[
+                'user_id' => 6,
+                'course_id' => 3
+            ]
+        ];
+        DB::table('course_user')->insert($courseUsers);
     }
 }
