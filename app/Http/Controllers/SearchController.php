@@ -97,7 +97,7 @@ class SearchController extends Controller
         }
 
 
-        // todo: load all the results
+
 
         $usersQuery = User::with([
                         'firstMajor',
@@ -108,9 +108,14 @@ class SearchController extends Controller
                     ->withCount([
                         'about_reviews'
                     ])
-                    ->where('users.is_tutor', true)
-                    ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                    ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
+                    ->where('users.is_tutor', '=', true);
+                    // ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
+                    // ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
+
+        dd($usersQuery->get());
+        // dd($usersQuery->get()[1]->about_reviews->avg('star_rating'));
+
+        // todo: filter the courses that match the keyword
 
         // if the user filtered with price
         if($request->has('price_low') && $request->has('price_high')) {
@@ -122,9 +127,9 @@ class SearchController extends Controller
         }
 
 
-        // if the user filtered with tutor level
+        // TODO: if the user filtered with tutor level
 
-        // if the user does not search for any available time, do not consider time
+        // TODO: if the user does not search for any available time, do not consider time
         if($request->has('available-start-date') && $request->has('available-end-date')) {
             $startTime = date("h:i:s", strtotime($request->input('available-start-time') ?? '6:00am'));
             $endTime = date("h:i:s", strtotime($request->input('available-end-time') ?? '11:00pm'));

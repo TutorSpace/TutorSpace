@@ -99,7 +99,7 @@
                 <path fill-rule="evenodd" d="M8 12l5 3V3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10.234z"/>
             </svg>
 
-            <img class="user-image" src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png" alt="user image">
+            <img class="user-image" src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user image">
 
             <a class="user-name" href="#">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>
 
