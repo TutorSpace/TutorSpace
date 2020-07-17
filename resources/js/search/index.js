@@ -111,7 +111,8 @@ $('form.filter').submit(function() {
     $('#search-content').val($('#nav-search-content').val());
 });
 
-$('.nav__form').submit(function() {
+$('.nav__form').submit(function(e) {
+    e.preventDefault();
     $('#search-content').val($('#nav-search-content').val());
     $('form.filter').submit();
 });

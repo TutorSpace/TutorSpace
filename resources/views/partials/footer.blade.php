@@ -127,7 +127,7 @@
                 <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
             </svg>
             <input type="email" class="form-control" placeholder="Enter your email">
-            <button class="btn btn-subscribe">Subscribe</button>
+            <button class="btn btn-subscribe" type="submit">Subscribe</button>
         </form>
     </div>
 

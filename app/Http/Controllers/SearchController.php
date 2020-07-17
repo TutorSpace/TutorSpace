@@ -15,8 +15,18 @@ class SearchController extends Controller
     public function index(Request $request) {
         // todo: load all the results
         $request->validate([
-            ''
+            'available-start-date' => [
+                // 'nullable',
+                'date'
+            ],
+            'available-end-date' => [
+                // 'nullable',
+                'date'
+            ]
         ]);
+
+        // dd($request->all());
+
 
         return view('search.index', [
 

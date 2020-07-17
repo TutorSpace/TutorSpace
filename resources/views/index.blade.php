@@ -233,5 +233,14 @@ index
             }
         });
     });
+
+    $('#nav-search-content').keypress(function(e) {
+        if (e.keyCode == 13) {
+            // e.preventDefault();
+            // $('.nav__form').submit();
+            // alert('here');
+        }
+    });
+
 </script>
 @endsection
