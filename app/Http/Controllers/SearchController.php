@@ -9,6 +9,7 @@ use App\User;
 use App\Course;
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -33,6 +34,7 @@ class SearchController extends Controller
         // dd($test);
 
         $validator = Validator::make($request->all(), [
+            // validate time
             'available-start-date' => [
                 'nullable',
                 'required_with:available-end-date',
@@ -48,16 +50,43 @@ class SearchController extends Controller
             ],
             'available-time-range' => [
                 'nullable',
-                'required_with:available-start-date,available-end-date'
+                'required_with:available-start-date,available-end-date',
+                Rule::in(['morning', 'afternoon', 'night', 'anytime', 'specify-time']),
             ],
             'available-start-time' => [
                 'nullable',
-                'required_if:available-time-range,specify-time'
+                'required_if:available-time-range,specify-time',
+                'date_format:g:ia'
             ],
             'available-end-time' => [
                 'nullable',
-                'required_if:available-time-range,specify-time'
+                'required_if:available-time-range,specify-time',
+                'date_format:g:ia',
+                'after_or_equal:available-start-time'
+            ],
+
+            // validate price
+            'price-low' => [
+                'nullable',
+                'numeric',
+                'required_with:price-high'
+            ],
+            'price-high' => [
+                'nullable',
+                'numeric',
+                'required_with:price-low',
+                'gte:price-low'
+            ],
+
+            // validate tutor level
+            'tutor-level' => [
+                'nullable',
+                'array'
+            ],
+            'tutor-level.*' => [
+                'exists:courses,id'
             ]
+
         ]);
 
         if ($validator->fails()) {

@@ -78,7 +78,11 @@ bg-student
                         <div class="filter__checkboxes">
                             <div class="top-3">
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range" value="morning">
+                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range" value="morning"
+                                    @if (old('available-time-range') == 'morning')
+                                        checked
+                                    @endif
+                                    >
                                     <label for="checkbox-morning">
                                         Morning
                                     </label>
@@ -86,14 +90,22 @@ bg-student
 
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-afternoon" class="checkbox-range"
-                                    name="available-time-range" value="afternoon">
+                                    name="available-time-range" value="afternoon"
+                                    @if (old('available-time-range') == 'afternoon')
+                                        checked
+                                    @endif
+                                    >
                                     <label for="checkbox-afternoon">
                                         Afternoon
                                     </label>
                                 </div>
 
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-night" class="checkbox-range" name="available-time-range" value="night">
+                                    <input type="checkbox" id="checkbox-night" class="checkbox-range" name="available-time-range" value="night"
+                                    @if (old('available-time-range') == 'night')
+                                        checked
+                                    @endif
+                                    >
                                     <label for="checkbox-night">
                                         Night
                                     </label>
@@ -103,7 +115,11 @@ bg-student
                             <div>
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-any-time"
-                                    name="available-time-range" value="anytime">
+                                    name="available-time-range" value="anytime"
+                                    @if (old('available-time-range') == 'anytime')
+                                        checked
+                                    @endif
+                                    >
                                     <label for="checkbox-any-time">
                                         Any time is fine for me.
                                     </label>
@@ -111,7 +127,11 @@ bg-student
 
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-specify-detail-time"
-                                    name="available-time-range" value="specify-time">
+                                    name="available-time-range" value="specify-time"
+                                    @if (old('available-time-range') == 'specify-time')
+                                        checked
+                                    @endif
+                                    >
                                     <label for="checkbox-specify-detail-time">
                                         I want to specify a time.
                                     </label>
@@ -120,14 +140,20 @@ bg-student
 
                         </div>
 
-                        <div class="filter__inputs mt-3 hidden" id="select-detail-time">
+                        <div class="filter__inputs mt-3
+                        @if (old('available-time-range') != 'specify-time')
+                            hidden
+                        @endif
+                        " id="select-detail-time">
                             <div class="filter__input-container">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
                                     <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
                                 <input type="text" id="start-time" class="filter__input ui-timepicker-input" placeholder="Start Time"
-                                name="available-start-time">
+                                name="available-start-time"
+                                value="{{ old('available-start-time') }}"
+                                >
                             </div>
 
                             <span class="separator">to</span>
@@ -138,7 +164,9 @@ bg-student
                                     <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
                                 <input type="text" id="end-time" class="filter__input ui-timepicker-input" placeholder="End Time"
-                                name="available-end-time">
+                                name="available-end-time"
+                                value="{{ old('available-end-time') }}"
+                                >
                             </div>
                         </div>
                     </div>
@@ -158,7 +186,8 @@ bg-student
                                 </svg>
                                 <input type="number" class="filter__input" placeholder="Minimum" id="price-low"
                                 min="10" max="50"
-                                name="price-low">
+                                name="price-low"
+                                value="{{ old('price-low') }}">
                             </div>
 
                             <span class="separator">to</span>
@@ -168,7 +197,9 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                                 </svg>
                                 <input type="number" class="filter__input" placeholder="Maximum" id="price-high" min="10" max="50"
-                                name="price-high">
+                                name="price-high"
+                                value="{{ old('price-high') }}"
+                                >
                             </div>
                         </div>
                     </div>
@@ -180,28 +211,28 @@ bg-student
 
                         <div class="filter__checkboxes">
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-beginner" name="tutor-level">
+                                <input type="checkbox" id="checkbox-beginner" name="tutor-level[]" value="beginner">
                                 <label for="checkbox-beginner">
                                     Beginner
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-intermediate" name="tutor-level">
+                                <input type="checkbox" id="checkbox-intermediate" name="tutor-level[]" value="intermediate">
                                 <label for="checkbox-intermediate">
                                     Intermediate
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-expert" name="tutor-level">
+                                <input type="checkbox" id="checkbox-expert" name="tutor-level[]" value="expert">
                                 <label for="checkbox-expert">
                                     Expert
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-master" name="tutor-level">
+                                <input type="checkbox" id="checkbox-master" name="tutor-level[]" value="master">
                                 <label for=checkbox-master"">
                                     Master
                                 </label>
@@ -216,7 +247,7 @@ bg-student
                     </div>
                 </div>
 
-                <input type="hidden" name="search-content" id="search-content">
+                <input type="hidden" name="nav-search-content" id="search-content">
             </form>
 
         </div>
@@ -237,14 +268,11 @@ bg-student
 @section('js')
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/search/index.js') }}"></script>
+
+<script>
+    $("#price-range-input").slider('setValue', [
+        {{ old('price-low') }},
+        {{ old('price-high') }}
+    ]);
+</script>
 @endsection
-
-
-@if ($errors->any())
-<h1 class="text-danger">
-    @php
-        echo($errors->first());
-    @endphp
-</h1>
-
-@endif

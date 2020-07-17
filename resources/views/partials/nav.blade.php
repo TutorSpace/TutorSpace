@@ -52,7 +52,7 @@
 
             <form action="{{ route('search.search') }}" method="POST" class="form-search form-search-lg nav__form">
                 @csrf
-                <input type="text" class="form-control form-control-lg input-search" placeholder="Search for tutors and course code" name="search-content" id="nav-search-content">
+                <input type="text" class="form-control form-control-lg input-search" placeholder="Search for tutors and course code" id="nav-search-content" value="{{ old('nav-search-content') }}">
                 <svg class="svg-search">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
