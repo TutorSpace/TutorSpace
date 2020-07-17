@@ -54,7 +54,7 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date" name="start-date">
+                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date" name="available-start-date">
                             </div>
 
                             <span class="separator">to</span>
@@ -64,28 +64,29 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="end-date" class="filter__input" placeholder="End Date" name="end-date">
+                                <input type="text" id="end-date" class="filter__input" placeholder="End Date" name="available-end-date">
                             </div>
                         </div>
 
                         <div class="filter__checkboxes">
                             <div class="top-3">
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="" value="morning">
+                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range" value="morning">
                                     <label for="checkbox-morning">
                                         Morning
                                     </label>
                                 </div>
 
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-afternoon" class="checkbox-range">
+                                    <input type="checkbox" id="checkbox-afternoon" class="checkbox-range"
+                                    name="available-time-range" value="afternoon">
                                     <label for="checkbox-afternoon">
                                         Afternoon
                                     </label>
                                 </div>
 
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-night" class="checkbox-range">
+                                    <input type="checkbox" id="checkbox-night" class="checkbox-range" name="available-time-range" value="night">
                                     <label for="checkbox-night">
                                         Night
                                     </label>
@@ -94,14 +95,16 @@ bg-student
 
                             <div>
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-any-time">
+                                    <input type="checkbox" id="checkbox-any-time"
+                                    name="available-time-range" value="anytime">
                                     <label for="checkbox-any-time">
                                         Any time is fine for me.
                                     </label>
                                 </div>
 
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-specify-detail-time">
+                                    <input type="checkbox" id="checkbox-specify-detail-time"
+                                    name="available-time-range" value="specify-time">
                                     <label for="checkbox-specify-detail-time">
                                         I want to specify a time.
                                     </label>
@@ -116,7 +119,8 @@ bg-student
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
                                     <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="start-time" class="filter__input" class="filter__input ui-timepicker-input" placeholder="Start Time">
+                                <input type="text" id="start-time" class="filter__input ui-timepicker-input" placeholder="Start Time"
+                                name="available-end-time">
                             </div>
 
                             <span class="separator">to</span>
@@ -126,7 +130,8 @@ bg-student
                                     <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm8-7A8 8 0 1 1 0 8a8 8 0 0 1 16 0z"/>
                                     <path fill-rule="evenodd" d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="end-time" class="filter__input ui-timepicker-input" placeholder="End Time">
+                                <input type="text" id="end-time" class="filter__input ui-timepicker-input" placeholder="End Time"
+                                name="available-end-time">
                             </div>
                         </div>
                     </div>
@@ -145,7 +150,8 @@ bg-student
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                                 </svg>
                                 <input type="number" class="filter__input" placeholder="Minimum" id="price-low"
-                                min="10" max="50">
+                                min="10" max="50"
+                                name="price-low">
                             </div>
 
                             <span class="separator">to</span>
@@ -154,7 +160,8 @@ bg-student
                                 <svg>
                                     <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                                 </svg>
-                                <input type="number" class="filter__input" placeholder="Maximum" id="price-high" min="10" max="50">
+                                <input type="number" class="filter__input" placeholder="Maximum" id="price-high" min="10" max="50"
+                                name="price-high">
                             </div>
                         </div>
                     </div>
@@ -166,28 +173,28 @@ bg-student
 
                         <div class="filter__checkboxes">
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-beginner">
+                                <input type="checkbox" id="checkbox-beginner" name="tutor-level">
                                 <label for="checkbox-beginner">
                                     Beginner
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-intermediate">
+                                <input type="checkbox" id="checkbox-intermediate" name="tutor-level">
                                 <label for="checkbox-intermediate">
                                     Intermediate
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-expert">
+                                <input type="checkbox" id="checkbox-expert" name="tutor-level">
                                 <label for="checkbox-expert">
                                     Expert
                                 </label>
                             </div>
 
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-master">
+                                <input type="checkbox" id="checkbox-master" name="tutor-level">
                                 <label for=checkbox-master"">
                                     Master
                                 </label>
