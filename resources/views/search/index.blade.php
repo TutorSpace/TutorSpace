@@ -22,7 +22,7 @@ bg-student
 
 <div class="container search">
     <h4 class="ml-2">
-        Search Results (12)
+        Search Results ({{ session()->has('users') ? session()->get('users')->count() : 0 }})
     </h4>
     <div class="row mt-5">
         <div class="col-lg-4">

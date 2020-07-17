@@ -24,7 +24,7 @@ class CourseSeeder extends Seeder
         ]);
 
         DB::table('courses')->insert([
-            'course' => 'PhyS 151'
+            'course' => 'PHYS 151'
         ]);
 
         DB::table('courses')->insert([
@@ -41,6 +41,14 @@ class CourseSeeder extends Seeder
 
         DB::table('courses')->insert([
             'course' => 'WRIT 150'
+        ]);
+
+        DB::table('courses')->insert([
+            'course' => 'WRIT 340'
+        ]);
+
+        DB::table('courses')->insert([
+            'course' => 'PHYS 152'
         ]);
     }
 }

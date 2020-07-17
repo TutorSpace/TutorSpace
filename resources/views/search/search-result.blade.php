@@ -57,29 +57,28 @@ dd(session()->get('users'));
     </div>
 
     <div class="user-rating">
-        <svg class="full">
-            <use xlink:href="assets/sprite.svg#icon-star-full"></use>
-        </svg>
-        <svg class="full">
-            <use xlink:href="assets/sprite.svg#icon-star-full"></use>
-        </svg>
-        <svg class="full">
-            <use xlink:href="assets/sprite.svg#icon-star-full"></use>
-        </svg>
-        <svg class="full">
-            <use xlink:href="assets/sprite.svg#icon-star-full"></use>
-        </svg>
-        <svg class="empty">
-            <use xlink:href="assets/sprite.svg#icon-star-empty"></use>
-        </svg>
+        @php
+            $starRating = number_format((float)$user->about_reviews->avg('star_rating'), 1, '.', '');
+        @endphp
+        @for ($i = 0; $i < 5; $i++)
+            @if ($i < $starRating)
+            <svg class="full">
+                <use xlink:href="assets/sprite.svg#icon-star-full"></use>
+            </svg>
+            @else
+            <svg class="empty">
+                <use xlink:href="assets/sprite.svg#icon-star-empty"></use>
+            </svg>
+            @endif
+        @endfor
 
         <div class="flex-100"></div>
 
         <span class="rating">
-            4.2
+            {{ $starRating }}
         </span>
         <a class="review-cnt" href="#">
-            (5 reviews)
+            ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
         <button class="btn btn-lg btn-chat btn-animation-y-sm">

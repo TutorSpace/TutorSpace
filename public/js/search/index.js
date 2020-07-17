@@ -199,7 +199,7 @@ var colorHash = new ColorHash({
 }); // TODO: modify
 
 $.each($('.course'), function (idx, ele) {
-  var color = colorHash.rgb(idx + $(ele).html());
+  var color = colorHash.rgb($(ele).html());
   var d = 0; // Counting the perceptive luminance - human eye favors green color...
 
   var luminance = (0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2]) / 255;

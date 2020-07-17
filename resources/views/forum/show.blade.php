@@ -201,7 +201,7 @@ bg-student
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
                                 <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
-                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} followups</button>
+                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> all {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}</button>
                                 @endif
                                 <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
                                     <svg class="mr-1px">

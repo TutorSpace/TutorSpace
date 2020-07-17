@@ -32,6 +32,7 @@ class UserSeeder extends Seeder
             'school_year_id' => 1,
             'password' => Hash::make('password'),
             'tutor_level_id' => 1,
+            'is_tutor_verified' => true
         ]);
 
         DB::table('users')->insert([
@@ -57,7 +58,8 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 2,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 2
+            'tutor_level_id' => 2,
+            'is_tutor_verified' => true
         ]);
 
         DB::table('users')->insert([
@@ -83,7 +85,8 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 4,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4
+            'tutor_level_id' => 4,
+            'is_tutor_verified' => true
         ]);
 
 
@@ -124,6 +127,21 @@ class UserSeeder extends Seeder
             ],[
                 'user_id' => 2,
                 'course_id' => 4
+            ],[
+                'user_id' => 2,
+                'course_id' => 5
+            ],[
+                'user_id' => 2,
+                'course_id' => 6
+            ],[
+                'user_id' => 2,
+                'course_id' => 7
+            ],[
+                'user_id' => 2,
+                'course_id' => 8
+            ],[
+                'user_id' => 2,
+                'course_id' => 9
             ],[
                 'user_id' => 3,
                 'course_id' => 3
