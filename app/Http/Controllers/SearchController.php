@@ -16,13 +16,14 @@ class SearchController extends Controller
         // todo: load all the results
         $request->validate([
             'available-start-date' => [
-                // 'nullable',
+                'nullable',
                 'date'
             ],
             'available-end-date' => [
-                // 'nullable',
+                'nullable',
                 'date'
-            ]
+            ],
+            'available-time-range'
         ]);
 
         // dd($request->all());

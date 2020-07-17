@@ -1,7 +1,17 @@
 var picker = new Pikaday({ field: $('#start-date')[0] });
 var picker = new Pikaday({ field: $('#end-date')[0] });
-$('#start-time').timepicker();
-$('#end-time').timepicker();
+$('#start-time').timepicker({
+    'scrollDefault': 'now',
+    'setp' : 15,
+    'minTime': '6:00am',
+	'maxTime': '11:00pm',
+});
+$('#end-time').timepicker({
+    'scrollDefault': 'now',
+    'setp' : 15,
+    'minTime': '6:00am',
+	'maxTime': '11:00pm',
+});
 
 
 $('#checkbox-specify-detail-time').change(function() {

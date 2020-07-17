@@ -18,12 +18,7 @@ bg-student
 
 @include('partials.nav')
 
-@if ($errors->any())
-@php
-    dd($errors->first());
-@endphp
 
-@endif
 
 <div class="container search">
     <h4 class="ml-2">
@@ -31,9 +26,13 @@ bg-student
     </h4>
     <div class="row mt-5">
         <div class="col-lg-4">
-
             {{-- filter --}}
-            <form class="filter fc-black bg-white-dark-5" method="GET" action="{{ route('search.index') }}">
+            <form class="filter p-relative fc-black bg-white-dark-5" method="GET" action="{{ route('search.index') }}">
+                @if ($errors->any())
+                    <span class="fs-1-4 ws-no-wrap p-absolute top-0 right-0 mr-2 fc-red">
+                        {{ $errors->first() }}
+                    </span>
+                @endif
                 <span class="filter-heading">
                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="15" height="15" fill="url(#pattern15)" fill-opacity="0.6"/>
@@ -61,7 +60,7 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date" name="available-start-date">
+                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date" name="available-start-date" value="{{ old('available-start-date') }}">
                             </div>
 
                             <span class="separator">to</span>
@@ -71,7 +70,7 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="end-date" class="filter__input" placeholder="End Date" name="available-end-date">
+                                <input type="text" id="end-date" class="filter__input" placeholder="End Date" name="available-end-date" value="{{ old('available-end-date') }}">
                             </div>
                         </div>
 
@@ -238,3 +237,13 @@ bg-student
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/search/index.js') }}"></script>
 @endsection
+
+
+@if ($errors->any())
+<h1 class="text-danger">
+    @php
+        echo($errors->first());
+    @endphp
+</h1>
+
+@endif
