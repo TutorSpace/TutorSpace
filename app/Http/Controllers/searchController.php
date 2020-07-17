@@ -14,6 +14,9 @@ class SearchController extends Controller
 {
     public function index(Request $request) {
         // todo: load all the results
+        $request->validate([
+            ''
+        ]);
 
         return view('search.index', [
 

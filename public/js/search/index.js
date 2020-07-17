@@ -178,10 +178,10 @@ var colorHash = new ColorHash({
     min: 270,
     max: 285
   }]
-});
-$.each($('.course'), function (idx, ele) {
-  var color = colorHash.rgb(idx + $(ele).html()); // console.log($(ele).html());
+}); // TODO: modify
 
+$.each($('.course'), function (idx, ele) {
+  var color = colorHash.rgb(idx + $(ele).html());
   var d = 0; // Counting the perceptive luminance - human eye favors green color...
 
   var luminance = (0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2]) / 255;
@@ -190,6 +190,13 @@ $.each($('.course'), function (idx, ele) {
 
   $(ele).css("background-color", "rgb(".concat(color[0], ", ").concat(color[1], ", ").concat(color[2], ")"));
   $(ele).css("color", "rgb(".concat(d, ", ").concat(d, ", ").concat(d, ")"));
+});
+$('form.filter').submit(function () {
+  $('#search-content').val($('#nav-search-content').val());
+});
+$('.nav__form').submit(function () {
+  $('#search-content').val($('#nav-search-content').val());
+  $('form.filter').submit();
 });
 
 /***/ }),
