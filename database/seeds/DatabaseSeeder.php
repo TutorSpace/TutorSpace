@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            TutorLevelSeeder::class,
             MajorSeeder::class,
             SchoolYearSeeder::class,
             TagSeeder::class,
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PostTypeSeeder::class,
             PostSeeder::class,
             ReplySeeder::class,
+
         ]);
     }
 }

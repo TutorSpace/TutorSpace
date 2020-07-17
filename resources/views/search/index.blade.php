@@ -210,33 +210,18 @@ bg-student
                         </span>
 
                         <div class="filter__checkboxes">
+                            @foreach (App\TutorLevel::all() as $tutorLevel)
                             <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-beginner" name="tutor-level[]" value="beginner">
-                                <label for="checkbox-beginner">
-                                    Beginner
+                                <input type="checkbox" name="tutor-level[]" value="{{ $tutorLevel->id }}" id="checkbox-{{ $tutorLevel->tutor_level }}"
+                                @if (in_array($tutorLevel->id, old('tutor-level')))
+                                    checked
+                                @endif
+                                >
+                                <label for="checkbox-{{ $tutorLevel->tutor_level }}">
+                                    {{ $tutorLevel->tutor_level }}
                                 </label>
                             </div>
-
-                            <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-intermediate" name="tutor-level[]" value="intermediate">
-                                <label for="checkbox-intermediate">
-                                    Intermediate
-                                </label>
-                            </div>
-
-                            <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-expert" name="tutor-level[]" value="expert">
-                                <label for="checkbox-expert">
-                                    Expert
-                                </label>
-                            </div>
-
-                            <div class="filter__checkbox mt-2">
-                                <input type="checkbox" id="checkbox-master" name="tutor-level[]" value="master">
-                                <label for=checkbox-master"">
-                                    Master
-                                </label>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 

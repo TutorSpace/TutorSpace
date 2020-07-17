@@ -84,9 +84,8 @@ class SearchController extends Controller
                 'array'
             ],
             'tutor-level.*' => [
-                'exists:courses,id'
+                'exists:tutor_levels,id'
             ]
-
         ]);
 
         if ($validator->fails()) {

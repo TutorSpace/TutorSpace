@@ -29,8 +29,63 @@ class UserSeeder extends Seeder
             'gpa' => '3.70',
             'hourly_rate' => '15',
             'school_year_id' => 1,
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 1,
         ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'tester',
+            'last_name' => '1',
+            'email' => 'tester1@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 3,
+            'gpa' => '3.35',
+            'hourly_rate' => '25',
+            'school_year_id' => 1,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 1
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'tester',
+            'last_name' => '2',
+            'email' => 'tester2@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 2,
+            'gpa' => '3.90',
+            'hourly_rate' => '25',
+            'school_year_id' => 2,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 2
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'tester',
+            'last_name' => '3',
+            'email' => 'tester3@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 3,
+            'gpa' => '2.85',
+            'hourly_rate' => '22',
+            'school_year_id' => 3,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 3
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'tester',
+            'last_name' => '4',
+            'email' => 'tester4@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 4,
+            'gpa' => '3.55',
+            'hourly_rate' => '25',
+            'school_year_id' => 4,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 4
+        ]);
+
+
 
         $userTags = [
             [
