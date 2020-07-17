@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'email' => 'tutor@usc.edu',
             'is_tutor' => 1,
             'first_major_id' => 1,
+            'second_major_id' => 3,
             'gpa' => '3.70',
             'hourly_rate' => '15',
             'school_year_id' => 1,

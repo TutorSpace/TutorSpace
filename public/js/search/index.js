@@ -94,10 +94,18 @@
 /***/ (function(module, exports) {
 
 var picker = new Pikaday({
-  field: $('#start-date')[0]
+  field: $('#start-date')[0],
+  minDate: moment().toDate(),
+  onSelect: function onSelect() {
+    $('.filter__checkboxes--available-time').show(300);
+  }
 });
 var picker = new Pikaday({
-  field: $('#end-date')[0]
+  field: $('#end-date')[0],
+  minDate: moment().toDate(),
+  onSelect: function onSelect() {
+    $('.filter__checkboxes--available-time').show(300);
+  }
 });
 $('#start-time').timepicker({
   'scrollDefault': 'now',

@@ -70057,9 +70057,7 @@ __webpack_require__(/*! select2 */ "./node_modules/select2/dist/js/select2.js");
 window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
 window.ColorHash = __webpack_require__(/*! color-hash */ "./node_modules/color-hash/lib/color-hash.js");
 window.bootbox = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/bootbox.all.js");
-
-__webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-
+window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 window.Pikaday = __webpack_require__(/*! pikaday */ "./node_modules/pikaday/pikaday.js");
 
 __webpack_require__(/*! timepicker */ "./node_modules/timepicker/jquery.timepicker.min.js");

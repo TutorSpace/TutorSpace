@@ -6,7 +6,7 @@ window.ColorHash = require('color-hash');
 
 window.bootbox = require('bootbox');
 
-require('moment');
+window.moment = require('moment');
 window.Pikaday = require('pikaday');
 require('timepicker');
 

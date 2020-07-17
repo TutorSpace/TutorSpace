@@ -31,7 +31,7 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $test = Post::getYouMayHelpWith();
+        $test = User::find(2)->getIntroduction();
 
         dd($test);
     }

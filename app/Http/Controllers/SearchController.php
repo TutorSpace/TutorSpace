@@ -29,21 +29,22 @@ class SearchController extends Controller
 
     public function search(Request $request) {
 
-        $test = date("H:i", strtotime($request->input('available-start-time')));
+
         // dd($request->all());
-        // dd($test);
 
         $validator = Validator::make($request->all(), [
             // validate time
             'available-start-date' => [
                 'nullable',
                 'required_with:available-end-date',
+                'required_with:available-time-range',
                 'date_format:Y-m-d',
                 'after_or_equal:today'
             ],
             'available-end-date' => [
                 'nullable',
                 'required_with:available-start-date',
+                'required_with:available-time-range',
                 'date_format:Y-m-d',
                 'after_or_equal:today',
                 'after_or_equal:available-start-date'
@@ -95,11 +96,89 @@ class SearchController extends Controller
                     ->withErrors($validator, 'filter');
         }
 
-        return redirect()->route('search.index')->withInput();
-
 
         // todo: load all the results
 
+        $usersQuery = User::with([
+                        'firstMajor',
+                        'tutorLevel',
+                        'courses',
+                        'about_reviews'
+                    ])
+                    ->withCount([
+                        'about_reviews'
+                    ])
+                    ->where('users.is_tutor', true)
+                    ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
+                    ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
+
+        // if the user filtered with price
+        if($request->has('price_low') && $request->has('price_high')) {
+            $usersQuery = $usersQuery
+                            ->whereBetween('users.hourly_rate', [
+                                min($request->input('price_low'), $request->input('price_high')),
+                                max($request->input('price_low'), $request->input('price_high'))
+                            ]);
+        }
+
+
+        // if the user filtered with tutor level
+
+        // if the user does not search for any available time, do not consider time
+        if($request->has('available-start-date') && $request->has('available-end-date')) {
+            $startTime = date("h:i:s", strtotime($request->input('available-start-time') ?? '6:00am'));
+            $endTime = date("h:i:s", strtotime($request->input('available-end-time') ?? '11:00pm'));
+
+            $startTime = $request->input('available-start-date') . " " . $startTime;
+            $endTime = $request->input('available-end-date') . " " . $endTime;
+
+            // foreach($results as $key => $item) {
+            //     $result = $results[$key];
+            //     $availableTimes = User::find($result->id)->available_times;
+
+            //     $keep = false;
+            //     // iterate through all the available time of the user
+            //     foreach($availableTimes as $availableTime) {
+            //         $availableTimeStart = $availableTime->available_time_start;
+            //         $availableTimeEnd = $availableTime->available_time_end;
+
+            //         // if intersects, then possible to return it
+            //         if(($startTime >= $availableTimeStart && $startTime <= $availableTimeEnd) || ($endTime >= $availableTimeStart && $endTime <= $availableTimeEnd)) {
+            //             // check whether this user has time conflict with any scheduled sessions
+            //             // Must not accept the tutor request if it conflicts with a scheduled session
+            //             $upcomingSessions = User::find($result->id)->upcomingSessions(1000);
+            //             $conflict = false;
+            //             foreach($upcomingSessions as $upcomingSession) {
+            //                 $upcomingSessionStartTime = User::getTime($upcomingSession->date, $upcomingSession->start_time);
+            //                 $upcomingSessionEndTime = User::getTime($upcomingSession->date, $upcomingSession->end_time);
+
+            //                 // if conflicts
+            //                 if(($startTime >= $upcomingSessionStartTime && $startTime <= $upcomingSessionEndTime) || ($endTime >= $upcomingSessionStartTime && $endTime <= $upcomingSessionEndTime)) {
+            //                     $conflict = true;
+            //                     break;
+            //                 }
+            //             }
+
+            //             if(!$conflict) {
+            //                 $keep = true;
+            //                 break;
+            //             }
+            //         }
+            //     }
+            //     if(!$keep) {
+            //         $results->forget($key);
+            //     }
+            // };
+
+        }
+
+
+        return redirect()
+                ->route('search.index')
+                ->withInput()
+                ->with([
+                    'users' => $usersQuery->get()
+                ]);
     }
 
 

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             CourseSeeder::class,
             UserSeeder::class,
             ReportReasonSeeder::class,
+            TutorSessionSeeder::class,
+            ReviewSeeder::class,
 
             PostTypeSeeder::class,
             PostSeeder::class,

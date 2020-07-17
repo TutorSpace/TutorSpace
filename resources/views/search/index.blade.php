@@ -75,7 +75,7 @@ bg-student
                             </div>
                         </div>
 
-                        <div class="filter__checkboxes">
+                        <div class="filter__checkboxes filter__checkboxes--available-time @if(!old('available-start-date') && !old('available-end-date') && !old('available-time-range') && !old('available-start-time') && !old('available-end-time')) hidden-2 @endif">
                             <div class="top-3">
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range" value="morning"
@@ -213,7 +213,7 @@ bg-student
                             @foreach (App\TutorLevel::all() as $tutorLevel)
                             <div class="filter__checkbox mt-2">
                                 <input type="checkbox" name="tutor-level[]" value="{{ $tutorLevel->id }}" id="checkbox-{{ $tutorLevel->tutor_level }}"
-                                @if (in_array($tutorLevel->id, old('tutor-level')))
+                                @if (old('tutor-level') && in_array($tutorLevel->id, old('tutor-level')))
                                     checked
                                 @endif
                                 >
@@ -256,8 +256,8 @@ bg-student
 
 <script>
     $("#price-range-input").slider('setValue', [
-        {{ old('price-low') }},
-        {{ old('price-high') }}
+        parseInt({{ old('price-low') }}),
+        parseInt({{ old('price-high') }})
     ]);
 </script>
 @endsection

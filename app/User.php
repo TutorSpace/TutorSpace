@@ -48,6 +48,13 @@ class User extends Authenticatable
         return "$date $startTime";
     }
 
+    public function getIntroduction() {
+        $secondMajor = $this->secondMajor;
+        $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
+
+        return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+    }
+
     // check whether a user with an email exists and is a student
     public static function existStudent($email) {
         return User::where('email', '=', $email)->where('is_tutor', false)->exists();
@@ -69,7 +76,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Major', 'second_major_id');
     }
 
-    public function school_year() {
+    public function schoolYear() {
         return $this->belongsTo('App\SchoolYear');
     }
 
@@ -79,6 +86,10 @@ class User extends Authenticatable
 
     public function characteristics() {
         return $this->belongsToMany('App\Characteristic');
+    }
+
+    public function tutorLevel() {
+        return $this->belongsTo('App\TutorLevel');
     }
 
     public function deleteImage() {
@@ -182,7 +193,7 @@ class User extends Authenticatable
     }
 
     // return all the reviews about the current user
-    public function being_reviews() {
+    public function about_reviews() {
         return $this->hasMany('App\Review', 'reviewee_id');
     }
 
@@ -273,22 +284,17 @@ class User extends Authenticatable
         return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
     }
 
-    // check whether the subject with $subject_id is already faved by the current user
-    public function favedSubject($subject_id) {
-        return $this->subjects()->where('id', '=', $subject_id)->count() > 0;
-    }
-
     // check whether the course with $course_id is already faved by the current user
     public function favedCourse($course_id) {
         return $this->courses()->where('id', '=', $course_id)->count() > 0;
     }
 
-    // check whether the characteristic with $characteristic_id is already faved by the current user
+    // check whether the characteristic with $characteristic_id is already faved by the current userrating
     public function favedCharacteristic($characteristic_id) {
         return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
     }
 
-    // get the rating of the user as the reviewee
+    // get the  of the user as the reviewee
     public function getRating() {
         $avg = User::join('reviews', 'reviewee_id', '=', 'users.id')
                     ->where('users.id', '=', $this->id)

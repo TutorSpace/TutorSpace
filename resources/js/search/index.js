@@ -1,5 +1,19 @@
-var picker = new Pikaday({ field: $('#start-date')[0] });
-var picker = new Pikaday({ field: $('#end-date')[0] });
+var picker = new Pikaday({
+    field: $('#start-date')[0],
+    minDate: moment().toDate(),
+    onSelect: () => {
+        $('.filter__checkboxes--available-time').show(300);
+    }
+});
+
+var picker = new Pikaday({
+    field: $('#end-date')[0],
+    minDate: moment().toDate(),
+    onSelect: () => {
+        $('.filter__checkboxes--available-time').show(300);
+    }
+});
+
 $('#start-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
