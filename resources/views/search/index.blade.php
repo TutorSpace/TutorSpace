@@ -54,7 +54,7 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date">
+                                <input type="text" id="start-date" class="filter__input" placeholder="Start Date" name="start-date">
                             </div>
 
                             <span class="separator">to</span>
@@ -64,14 +64,14 @@ bg-student
                                     <path fill-rule="evenodd" d="M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm1-3a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
                                     <path fill-rule="evenodd" d="M3.5 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5zm9 0a.5.5 0 0 1 .5.5V1a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 .5-.5z"/>
                                 </svg>
-                                <input type="text" id="end-date" class="filter__input" placeholder="End Date">
+                                <input type="text" id="end-date" class="filter__input" placeholder="End Date" name="end-date">
                             </div>
                         </div>
 
                         <div class="filter__checkboxes">
                             <div class="top-3">
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range">
+                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="" value="morning">
                                     <label for="checkbox-morning">
                                         Morning
                                     </label>

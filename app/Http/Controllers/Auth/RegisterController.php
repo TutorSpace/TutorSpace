@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Notification;
 class RegisterController extends Controller
 {
     public function __construct() {
-        $this->middleware('checkLogout');
+        $this->middleware('guest');
     }
 
     public function sendVerificationEmail(Request $request) {

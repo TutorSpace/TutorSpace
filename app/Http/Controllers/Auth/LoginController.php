@@ -13,7 +13,7 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     public function __construct() {
-        $this->middleware('checkLogout')->except([
+        $this->middleware('guest')->except([
             'logout'
         ]);
     }
