@@ -206,41 +206,5 @@ index
         window.open($(this).attr('data-social-href'), '_blank');
     });
 
-    $('form').submit(function(e) {
-        e.preventDefault();
-        if(!$(this).find('input[type=email]').val()) {
-            toastr.error('Please enter your email!');
-            return;
-        }
-
-        $.ajax({
-            type:'POST',
-            url: "{{ route('subscription.store') }}",
-            data: {
-                email: $(this).find('input[type=email]').val()
-            },
-            success: (data) => {
-                let { successMsg } = data;
-                toastr.success(successMsg);
-            },
-            error: function(error) {
-                if(error.responseJSON.errors) {
-                    toastr.error(error.responseJSON.errors.email[0]);
-                }
-                if(error.errorMsg) {
-                    toastr.error(error.errorMsg);
-                }
-            }
-        });
-    });
-
-    $('#nav-search-content').keypress(function(e) {
-        if (e.keyCode == 13) {
-            // e.preventDefault();
-            // $('.nav__form').submit();
-            // alert('here');
-        }
-    });
-
 </script>
 @endsection

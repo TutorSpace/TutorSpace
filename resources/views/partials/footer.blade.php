@@ -55,13 +55,13 @@
 
         <div class="footer__subscribe">
             <p class="footer__heading">SUBSCRIBE</p>
-            <form class="form" method="POST" action="{{ route('subscription.store') }}">
+            <form class="form" method="POST" action="{{ route('subscription.store') }}" id="footer__form-subscribe">
                 @csrf
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
                 <input type="email" class="form-control" placeholder="Enter your email" name="email">
-                <button class="btn btn-subscribe">Subscribe</button>
+                <button class="btn btn-subscribe" type="submit">Subscribe</button>
             </form>
         </div>
     </div>

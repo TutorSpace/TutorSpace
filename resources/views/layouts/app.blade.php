@@ -40,6 +40,35 @@
                 session()->forget('successMsg');
             @endphp
         @endif
+
+        // for footer subscribe button
+        $('#footer__form-subscribe').submit(function(e) {
+            e.preventDefault();
+            if(!$(this).find('input[type=email]').val()) {
+                toastr.error('Please enter your email!');
+                return;
+            }
+
+            $.ajax({
+                type:'POST',
+                url: "{{ route('subscription.store') }}",
+                data: {
+                    email: $(this).find('input[type=email]').val()
+                },
+                success: (data) => {
+                    let { successMsg } = data;
+                    toastr.success(successMsg);
+                },
+                error: function(error) {
+                    if(error.responseJSON.errors) {
+                        toastr.error(error.responseJSON.errors.email[0]);
+                    }
+                    if(error.errorMsg) {
+                        toastr.error(error.errorMsg);
+                    }
+                }
+            });
+        });
     </script>
     @yield('js')
 
