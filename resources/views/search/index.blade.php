@@ -27,10 +27,11 @@ bg-student
     <div class="row mt-5">
         <div class="col-lg-4">
             {{-- filter --}}
-            <form class="filter p-relative fc-black bg-white-dark-5" method="GET" action="{{ route('search.index') }}">
-                @if ($errors->any())
-                    <span class="fs-1-4 ws-no-wrap p-absolute top-0 right-0 mr-2 fc-red">
-                        {{ $errors->first() }}
+            <form class="filter p-relative fc-black bg-white-dark-5" method="POST" action="{{ route('search.search') }}">
+                @csrf
+                @if ($errors->filter->any())
+                    <span class="fs-1-4 p-absolute top-0 right-0 mr-2 fc-red">
+                        {{ $errors->filter->first() }}
                     </span>
                 @endif
                 <span class="filter-heading">

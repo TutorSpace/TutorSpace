@@ -2,29 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use DB;
 
 use Auth;
 use App\User;
 use App\Course;
 use App\Subject;
-use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class SearchController extends Controller
 {
     public function index(Request $request) {
-        // todo: load all the results
-        $request->validate([
-            'available-start-date' => [
-                'nullable',
-                'date'
-            ],
-            'available-end-date' => [
-                'nullable',
-                'date'
-            ],
-            'available-time-range'
-        ]);
+
+
 
         // dd($request->all());
 
@@ -32,6 +24,34 @@ class SearchController extends Controller
         return view('search.index', [
 
         ]);
+    }
+
+    public function search(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'available-start-date' => [
+                'nullable',
+                'required_with:available-end-date',
+                'date'
+            ],
+            'available-end-date' => [
+                'nullable',
+                'required_with:available-start-date',
+                'date'
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                    ->route('search.index')
+                    ->withErrors($validator, 'filter')
+                    ->withInput();
+        }
+
+        return redirect()->route('search.index')->withInput();
+
+
+        // todo: load all the results
+
     }
 
 
