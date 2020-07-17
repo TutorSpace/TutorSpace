@@ -27,24 +27,44 @@ class SearchController extends Controller
     }
 
     public function search(Request $request) {
+
+        $test = date("H:i", strtotime($request->input('available-start-time')));
+        // dd($request->all());
+        // dd($test);
+
         $validator = Validator::make($request->all(), [
             'available-start-date' => [
                 'nullable',
                 'required_with:available-end-date',
-                'date'
+                'date_format:Y-m-d',
+                'after_or_equal:today'
             ],
             'available-end-date' => [
                 'nullable',
                 'required_with:available-start-date',
-                'date'
+                'date_format:Y-m-d',
+                'after_or_equal:today',
+                'after_or_equal:available-start-date'
+            ],
+            'available-time-range' => [
+                'nullable',
+                'required_with:available-start-date,available-end-date'
+            ],
+            'available-start-time' => [
+                'nullable',
+                'required_if:available-time-range,specify-time'
+            ],
+            'available-end-time' => [
+                'nullable',
+                'required_if:available-time-range,specify-time'
             ]
         ]);
 
         if ($validator->fails()) {
             return redirect()
                     ->route('search.index')
-                    ->withErrors($validator, 'filter')
-                    ->withInput();
+                    ->withInput()
+                    ->withErrors($validator, 'filter');
         }
 
         return redirect()->route('search.index')->withInput();

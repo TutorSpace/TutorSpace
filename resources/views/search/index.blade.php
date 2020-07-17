@@ -30,9 +30,9 @@ bg-student
             <form class="filter p-relative fc-black bg-white-dark-5" method="POST" action="{{ route('search.search') }}">
                 @csrf
                 @if ($errors->filter->any())
-                    <span class="fs-1-4 p-absolute top-0 right-0 mr-2 fc-red">
+                    <p class="fs-1-4 fc-red text-right">
                         {{ $errors->filter->first() }}
-                    </span>
+                    </p>
                 @endif
                 <span class="filter-heading">
                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
