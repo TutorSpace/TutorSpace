@@ -103,6 +103,10 @@ $(document).ready(function(){
         switchLoginIdentity();
     });
 
+    $('nav .svg-search').click(function() {
+        $('.nav__form').submit();
+    })
+
 
 })
 

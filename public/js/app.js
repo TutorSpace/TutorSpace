@@ -70147,6 +70147,9 @@ $(document).ready(function () {
   $('.overlay .btn-switch-login').click(function () {
     switchLoginIdentity();
   });
+  $('nav .svg-search').click(function () {
+    $('.nav__form').submit();
+  });
 });
 
 /***/ }),
