@@ -176,10 +176,10 @@ class SearchController extends Controller
             }
             // if the user specified detailed time in the filter
             else {
-                $startTimes = [date("h:i:s", strtotime($request->input('available-start-time')))];
+                $startTimes = [date("H:i:s", strtotime($request->input('available-start-time')))];
 
 
-                $endTimes = [date("h:i:s", strtotime($request->input('available-end-time')))];
+                $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
 
 
@@ -188,18 +188,20 @@ class SearchController extends Controller
             for($i = 0; $i <= $numDays; $i++) {
                 for($j = 0; $j < count($startTimes); $j++) {
                     $times->push([
-                        Carbon::parse($request->input('available-start-date') . " " . $startTimes[$j])->addDays($i),
-                        Carbon::parse($request->input('available-start-date') . " " . $endTimes[$j])->addDays($i)
+                        Carbon::parse($request->input('available-start-date') . " " . $startTimes[$j])->addDays($i)->format('Y-m-d H:i:s'),
+                        Carbon::parse($request->input('available-start-date') . " " . $endTimes[$j])->addDays($i)->format('Y-m-d H:i:s')
                     ]);
                 }
             }
 
-
             $users = $usersQuery->distinct()->get();
             $results = collect([]);
+
+            // TODO: check algorithm correctness
             foreach($users as $user) {
 
                 $availableTimes = $user->available_times;
+
                 for($i = 0; $i < count($times); $i++) {
                     $startTime = $times[$i][0];
                     $endTime = $times[$i][1];
@@ -210,27 +212,14 @@ class SearchController extends Controller
                         $availableTimeStart = $availableTime->available_time_start;
                         $availableTimeEnd = $availableTime->available_time_end;
 
-
                         // if intersects, then possible to return it
-                        if(($startTime >= $availableTimeStart && $endTime <= $availableTimeEnd)) {
-                            // we still need to check whether this user has time conflict with any already scheduled sessions
-                            $upcomingSessions = $user->upcomingSessions;
-                            $conflict = false;
-                            foreach($upcomingSessions as $upcomingSession) {
-                                $upcomingSessionStartTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->start_time);
-                                $upcomingSessionEndTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->end_time);
-
-                                // if conflicts
-                                if(($startTime >= $upcomingSessionStartTime && $startTime <= $upcomingSessionEndTime) || ($endTime >= $upcomingSessionStartTime && $endTime <= $upcomingSessionEndTime)) {
-                                    $conflict = true;
-                                    break;
-                                }
-                            }
-
-                            if(!$conflict) {
-                                $keep = true;
-                                break;
-                            }
+                        if((
+                            $startTime >= $availableTimeStart && $startTime <= $availableTimeEnd) ||
+                            ($endTime >= $availableTimeStart && $endTime <= $availableTimeEnd) ||
+                            ($startTime <= $availableTimeStart && $endTime >=$availableTimeEnd)
+                        ) {
+                            $keep = true;
+                            break;
                         }
                     }
                     if($keep) {
