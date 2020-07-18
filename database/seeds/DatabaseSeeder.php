@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ReportReasonSeeder::class,
             TutorSessionSeeder::class,
             ReviewSeeder::class,
+            AvailableTimeSeeder::class,
 
             PostTypeSeeder::class,
             PostSeeder::class,

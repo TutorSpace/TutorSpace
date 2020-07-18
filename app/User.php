@@ -42,11 +42,7 @@ class User extends Authenticatable
         $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
     }
 
-    public static function getTime($date, $startTime) {
-        $startTime = date("H:i", strtotime($startTime));
-        $date = date('Y-m-d', strtotime($date));
-        return "$date $startTime";
-    }
+
 
     public function getIntroduction() {
         $secondMajor = $this->secondMajor;

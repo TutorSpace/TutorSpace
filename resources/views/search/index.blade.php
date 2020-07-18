@@ -80,8 +80,8 @@ bg-student
                         <div class="filter__checkboxes filter__checkboxes--available-time @if(!old('available-start-date') && !old('available-end-date') && !old('available-time-range') && !old('available-start-time') && !old('available-end-time')) hidden-2 @endif">
                             <div class="top-3">
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range" value="morning"
-                                    @if (old('available-time-range') == 'morning')
+                                    <input type="checkbox" id="checkbox-morning" class="checkbox-range" name="available-time-range[]" value="morning"
+                                    @if (old('available-time-range') && in_array('morning', old('available-time-range')))
                                         checked
                                     @endif
                                     >
@@ -92,8 +92,8 @@ bg-student
 
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-afternoon" class="checkbox-range"
-                                    name="available-time-range" value="afternoon"
-                                    @if (old('available-time-range') == 'afternoon')
+                                    name="available-time-range[]" value="afternoon"
+                                    @if (old('available-time-range') && in_array('afternoon', old('available-time-range')))
                                         checked
                                     @endif
                                     >
@@ -103,13 +103,13 @@ bg-student
                                 </div>
 
                                 <div class="filter__checkbox mt-3">
-                                    <input type="checkbox" id="checkbox-night" class="checkbox-range" name="available-time-range" value="night"
-                                    @if (old('available-time-range') == 'night')
+                                    <input type="checkbox" id="checkbox-evening" class="checkbox-range" name="available-time-range[]" value="evening"
+                                    @if (old('available-time-range') && in_array('evening', old('available-time-range')))
                                         checked
                                     @endif
                                     >
-                                    <label for="checkbox-night">
-                                        Night
+                                    <label for="checkbox-evening">
+                                        Evening
                                     </label>
                                 </div>
                             </div>
@@ -117,8 +117,8 @@ bg-student
                             <div>
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-any-time"
-                                    name="available-time-range" value="anytime"
-                                    @if (old('available-time-range') == 'anytime')
+                                    name="available-time-range[]" value="anytime"
+                                    @if (old('available-time-range') && in_array('anytime', old('available-time-range')))
                                         checked
                                     @endif
                                     >
@@ -129,8 +129,8 @@ bg-student
 
                                 <div class="filter__checkbox mt-3">
                                     <input type="checkbox" id="checkbox-specify-detail-time"
-                                    name="available-time-range" value="specify-time"
-                                    @if (old('available-time-range') == 'specify-time')
+                                    name="available-time-range[]" value="specify-time"
+                                    @if (old('available-time-range') && in_array('specify-time', old('available-time-range')))
                                         checked
                                     @endif
                                     >
@@ -143,7 +143,7 @@ bg-student
                         </div>
 
                         <div class="filter__inputs mt-3
-                        @if (old('available-time-range') != 'specify-time')
+                        @unless (old('available-time-range') && in_array('specify-time', old('available-time-range')))
                             hidden
                         @endif
                         " id="select-detail-time">
