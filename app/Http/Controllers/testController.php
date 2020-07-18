@@ -31,11 +31,9 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $test = "CSCI201";
-        $numbers = preg_replace('/[^0-9]/', '', $test);
-        $letters = preg_replace('/[^a-zA-Z]/', '', $test);
 
-        dd($letters . " " . $numbers);
+        $test = User::join('tutor_levels', 'tutor_levels.id', '=', 'users.id')
+                    ->where('tutor_level')
     }
 
     public function test(Request $request) {

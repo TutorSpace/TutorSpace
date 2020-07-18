@@ -133,11 +133,26 @@ class SearchController extends Controller
 
 
         // TODO: if the user filtered with tutor level
+        if($request->input('tutor-level')) {
+            $tutorLevels = $request->input('tutor-level');
+            $usersQuery = $usersQuery
+                            ->join('tutor_levels', 'tutor_levels.id', '=', 'users.tutor_level_id');
+
+            $usersQuery = $usersQuery->where(function($query) use ($tutorLevels) {
+                for($i = 0; $i < count($tutorLevels); $i++) {
+                    if($i == 0) {
+                        $query->where('tutor_levels.id', $tutorLevels[$i]);
+                    }
+                    else {
+                        $query->orWhere('tutor_levels.id', $tutorLevels[$i]);
+                    }
+                }
+            });
+        }
 
 
 
-
-        // TODO: if the user does not search for any available time, do not consider time
+        // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
                 $availableTimeRange = $request->input('available-time-range');
