@@ -59,8 +59,8 @@ class SearchController extends Controller
                         if(!$value || Carbon::createFromFormat('g:ia', $value) === false ) {
                             $fail('End Time is required if the specify-time option is checked');
                         }
-                        else if(Carbon::createFromFormat('g:ia', $value)->lt(Carbon::createFromFormat('g:ia', $request->input('available-start-time')))) {
-                            $fail('End Time must be after or same as Start Time');
+                        else if(Carbon::createFromFormat('g:ia', $value)->lte(Carbon::createFromFormat('g:ia', $request->input('available-start-time')))) {
+                            $fail('End Time must be after the Start Time');
                         }
                     }
                 }
@@ -92,11 +92,11 @@ class SearchController extends Controller
         $request->session()->flashInput($request->all());
 
 
-        // if ($validator->fails()) {
+        if ($validator->fails()) {
             $request->session()->flash('filterErrors', $validator->errors());
 
             return view('search.index');
-        // }
+        }
 
         $usersQuery = User::with([
                         'firstMajor',
@@ -139,84 +139,110 @@ class SearchController extends Controller
 
         // TODO: if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
-            if($request->input('available-time-range') != 'specify-time') {
+            if(!in_array('specify-time', $request->input('available-time-range'))) {
                 $availableTimeRange = $request->input('available-time-range');
-                dd($availableTimeRange);
-                if($availableTimeRange == 'morning') {
-                    $startTime = "6:00:00";
-                    $endTime = "11:59:59";
+                if($availableTimeRange == 'anytime' || count($availableTimeRange) == 3) {
+                    $startTimes = ["6:00:00"];
+                    $endTimes = ["23:00:00"];
                 }
-                else if($availableTimeRange == 'afternoon') {
-                    $startTime = "12:00:00";
-                    $endTime = "16:59:59";
+                else if(count($availableTimeRange) == 1) {
+                    if(in_array('morning', $availableTimeRange)) {
+                        $startTimes = ["6:00:00"];
+                        $endTimes = ["11:59:59"];
+                    }
+                    else if(in_array('afternoon', $availableTimeRange)) {
+                        $startTimes = ["12:00:00"];
+                        $endTimes = ["16:59:59"];
+                    }
+                    else if(in_array('evening', $availableTimeRange)) {
+                        $startTimes = ["17:00:00"];
+                        $endTimes = ["23:00:00"];
+                    }
                 }
-                else if($availableTimeRange == 'evening') {
-                    $startTime = "17:00:00";
-                    $endTime = "23:00:00";
-                }
-                else if($availableTimeRange == 'anytime') {
-                    $startTime = "6:00:00";
-                    $endTime = "23:00:00";
+                else if(count($availableTimeRange) == 2) {
+                    if(in_array('morning', $availableTimeRange) && in_array('afternoon', $availableTimeRange)) {
+                        $startTimes = ["6:00:00"];
+                        $endTimes = ["16:59:59"];
+                    }
+                    else if(in_array('morning', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
+                        $startTimes = ["6:00:00", "17:00:00"];
+                        $endTimes = ["11:59:59", "23:00:00"];
+                    }
+                    else if(in_array('afternoon', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
+                        $startTimes = ["12:00:00"];
+                        $endTimes = ["23:00:00"];
+                    }
                 }
             }
             // if the user specified detailed time in the filter
             else {
-                $startTime = date("h:i:s", strtotime($request->input('available-start-time')));
-                $endTime = date("h:i:s", strtotime($request->input('available-end-time')));
+                $startTimes = [date("h:i:s", strtotime($request->input('available-start-time')))];
+
+
+                $endTimes = [date("h:i:s", strtotime($request->input('available-end-time')))];
             }
 
 
-            $numDays = Carbon::parse($request->input('available-end-date') . " " . $startTime)->diffInDays(Carbon::parse($request->input('available-start-date') . " " . $startTime));
+            $numDays = Carbon::parse($request->input('available-end-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-start-date') . " " . $startTimes[0]));
             $times = collect([]);
             for($i = 0; $i <= $numDays; $i++) {
-                $times->push([
-                    Carbon::parse($request->input('available-start-date') . " " . $startTime)->addDays($i),
-                    Carbon::parse($request->input('available-start-date') . " " . $endTime)->addDays($i)
-                ]);
+                for($j = 0; $j < count($startTimes); $j++) {
+                    $times->push([
+                        Carbon::parse($request->input('available-start-date') . " " . $startTimes[$j])->addDays($i),
+                        Carbon::parse($request->input('available-start-date') . " " . $endTimes[$j])->addDays($i)
+                    ]);
+                }
             }
-
-            dd($times);
 
 
             $users = $usersQuery->distinct()->get();
             $results = collect([]);
             foreach($users as $user) {
+
                 $availableTimes = $user->available_times;
+                for($i = 0; $i < count($times); $i++) {
+                    $startTime = $times[$i][0];
+                    $endTime = $times[$i][1];
 
-                $keep = false;
-                // iterate through all the available time of the user
-                foreach($availableTimes as $availableTime) {
-                    $availableTimeStart = $availableTime->available_time_start;
-                    $availableTimeEnd = $availableTime->available_time_end;
+                    $keep = false;
+                    // iterate through all the available time of the user
+                    foreach($availableTimes as $availableTime) {
+                        $availableTimeStart = $availableTime->available_time_start;
+                        $availableTimeEnd = $availableTime->available_time_end;
 
-                    // if intersects, then possible to return it
-                    if(($startTime >= $availableTimeStart && $endTime <= $availableTimeEnd)) {
-                        // check whether this user has time conflict with any scheduled sessions
-                        // Must not accept the tutor request if it conflicts with a scheduled session
-                        $upcomingSessions = $user->upcomingSessions(1000);
-                        $conflict = false;
-                        foreach($upcomingSessions as $upcomingSession) {
-                            $upcomingSessionStartTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->start_time);
-                            $upcomingSessionEndTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->end_time);
 
-                            // if conflicts
-                            if(($startTime >= $upcomingSessionStartTime && $startTime <= $upcomingSessionEndTime) || ($endTime >= $upcomingSessionStartTime && $endTime <= $upcomingSessionEndTime)) {
-                                $conflict = true;
+                        // if intersects, then possible to return it
+                        if(($startTime >= $availableTimeStart && $endTime <= $availableTimeEnd)) {
+                            // we still need to check whether this user has time conflict with any already scheduled sessions
+                            $upcomingSessions = $user->upcomingSessions;
+                            $conflict = false;
+                            foreach($upcomingSessions as $upcomingSession) {
+                                $upcomingSessionStartTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->start_time);
+                                $upcomingSessionEndTime = TimeFormatter::getTime($upcomingSession->date, $upcomingSession->end_time);
+
+                                // if conflicts
+                                if(($startTime >= $upcomingSessionStartTime && $startTime <= $upcomingSessionEndTime) || ($endTime >= $upcomingSessionStartTime && $endTime <= $upcomingSessionEndTime)) {
+                                    $conflict = true;
+                                    break;
+                                }
+                            }
+
+                            if(!$conflict) {
+                                $keep = true;
                                 break;
                             }
                         }
-
-                        if(!$conflict) {
-                            $keep = true;
-                            break;
-                        }
                     }
-                }
-                if($keep) {
-                    $results->push($user);
+                    if($keep) {
+                        $results->push($user);
+                        break;
+                    }
                 }
             };
 
+            return view('search.index', [
+                'users' => $results
+            ]);
         }
 
 
