@@ -32,6 +32,9 @@ bg-student
                     <p class="fs-1-4 fc-red text-right">
                         {{ session()->get('filterErrors')->first() }}
                     </p>
+                    @php
+                        session()->forget('filterErrors');
+                    @endphp
                 @endif
                 <span class="filter-heading">
                     <svg class="mr-2" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -224,7 +227,10 @@ bg-student
                         </div>
                     </div>
 
-                    <div class="text-right mt-3">
+                    <div class="d-flex mt-3">
+                        <button class="btn mr-auto btn-link btn-clear" type="button">
+                            Clear
+                        </button>
                         <button class="btn btn-lg btn-submit" type="submit">
                             Apply
                         </button>

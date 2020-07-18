@@ -17,10 +17,6 @@ class SearchController extends Controller
 {
 
     public function index(Request $request) {
-
-
-        // dd($request->all());
-
         $validator = Validator::make($request->all(), [
             // validate time
             'available-start-date' => [
@@ -78,8 +74,6 @@ class SearchController extends Controller
             ]
         ]);
 
-        $request->session()->forget('filterErrors');
-
         $request->session()->flashInput($request->all());
 
 
@@ -98,25 +92,26 @@ class SearchController extends Controller
                     ->withCount([
                         'about_reviews'
                     ])
+                    ->join('course_user', 'course_user.user_id', '=', 'users.id')
+                    ->join('courses', 'courses.id', 'course_user.course_id')
                     ->where('users.is_tutor', true)
                     ->where(function ($query) use($request) {
+                        $numbers = preg_replace('/[^0-9]/', '', $request->input('nav-search-content'));
+                        $letters = preg_replace('/[^a-zA-Z]/', '', $request->input('nav-search-content'));
+                        $courseNumber = $letters . " " . $numbers;
                         $query
                             ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%");
-                            // todo: filter the courses that match the keyword
+                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%")
+                            ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
 
 
-        // dd($usersQuery->get()[1]->about_reviews->avg('star_rating'));
-
-
-
         // if the user filtered with price
-        if($request->has('price_low') && $request->has('price_high')) {
+        if($request->has('price-low') && $request->has('price-high')) {
             $usersQuery = $usersQuery
                             ->whereBetween('users.hourly_rate', [
-                                min($request->input('price_low'), $request->input('price_high')),
-                                max($request->input('price_low'), $request->input('price_high'))
+                                min($request->input('price-low'), $request->input('price-high')),
+                                max($request->input('price-low'), $request->input('price-high'))
                             ]);
         }
 
@@ -173,7 +168,7 @@ class SearchController extends Controller
 
 
         return view('search.index', [
-            'users' => $usersQuery->get()
+            'users' => $usersQuery->distinct()->get()
         ]);
     }
 

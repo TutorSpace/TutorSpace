@@ -31,9 +31,11 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $test = User::find(2)->getIntroduction();
+        $test = "CSCI201";
+        $numbers = preg_replace('/[^0-9]/', '', $test);
+        $letters = preg_replace('/[^a-zA-Z]/', '', $test);
 
-        dd($test);
+        dd($letters . " " . $numbers);
     }
 
     public function test(Request $request) {

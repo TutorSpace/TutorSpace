@@ -16334,6 +16334,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.6rem;
 }
 
+.search .filter .btn-clear {
+  font-size: 1.6rem;
+  padding: 0;
+  color: #A0A0A0;
+}
+
 .search .filter .btn-hide {
   font-size: 1.4rem;
   color: #A0A0A0;
