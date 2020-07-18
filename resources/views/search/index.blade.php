@@ -189,7 +189,8 @@ bg-student
                                 <input type="number" class="filter__input" placeholder="Minimum" id="price-low"
                                 min="10" max="50"
                                 name="price-low"
-                                value="{{ old('price-low') }}">
+                                value="{{ old('price-low') }}"
+                                >
                             </div>
 
                             <span class="separator">to</span>
@@ -259,10 +260,12 @@ bg-student
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/search/index.js') }}"></script>
 
+@if(old('price-low') && old('price-high'))
 <script>
     $("#price-range-input").slider('setValue', [
         parseInt({{ old('price-low') }}),
         parseInt({{ old('price-high') }})
     ]);
 </script>
+@endif
 @endsection

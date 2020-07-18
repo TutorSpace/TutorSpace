@@ -2,7 +2,9 @@ var picker = new Pikaday({
     field: $('#start-date')[0],
     minDate: moment().toDate(),
     onSelect: () => {
-        $('.filter__checkboxes--available-time').show(300);
+        if($('#end-date').val()) {
+            $('.filter__checkboxes--available-time').show(300);
+        }
     }
 });
 
@@ -10,7 +12,9 @@ var picker = new Pikaday({
     field: $('#end-date')[0],
     minDate: moment().toDate(),
     onSelect: () => {
-        $('.filter__checkboxes--available-time').show(300);
+        if($('#start-date').val()) {
+            $('.filter__checkboxes--available-time').show(300);
+        }
     }
 });
 
@@ -140,3 +144,23 @@ $('.nav__form').submit(function(e) {
     $('#search-content').val($('#nav-search-content').val());
     $('form.filter').submit();
 });
+
+
+$('.btn-clear').click(function() {
+    if($('#checkbox-specify-detail-time').prop('checked')) {
+        $('#select-detail-time').addClass('hidden');
+    }
+
+    $('input').val('');
+    $('input:checkbox').prop('checked', false);
+    $("#price-range-input").slider('setValue', [
+        parseInt(15),
+        parseInt(35)
+    ]);
+});
+
+if($('#checkbox-specify-detail-time').prop('checked')) {
+    $('#select-detail-time').addClass('hidden');
+}
+
+
