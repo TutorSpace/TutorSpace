@@ -331,7 +331,7 @@ class PostController extends Controller
     }
 
     public function search(Request $request) {
-        $reuqest->session()->flashInput($request->all());
+        $request->session()->flashInput($request->all());
 
         if($request->input('search-by') == 'keywords') {
             $posts = Post::with([
@@ -349,19 +349,17 @@ class PostController extends Controller
             ->get();
         }
         else if($request->input('search-by') == 'tags') {
-
+            $posts = Post::with([
+                'tags',
+                'user'
+            ])->withCount([
+                'usersUpvoted',
+                'replies',
+                'tags'
+            ])
+            ->get();
         }
 
-        // Post::orderBy('view_count', 'desc')
-        //                 ->with([
-        //                     'tags',
-        //                     'user'
-        //                 ])
-        //                 ->withCount([
-        //                     'usersUpvoted',
-        //                     'replies',
-        //                     'tags'
-        //                 ])->get();
 
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),

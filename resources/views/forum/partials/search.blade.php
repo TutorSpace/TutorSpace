@@ -18,7 +18,13 @@
         <div class="input-group select-container p-relative select-container-icon">
             <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
                 @foreach (App\Tag::all() as $tag)
-                    <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                    <option value="{{ $tag->id }}"
+                        @if (in_array($tag->id, old('tags') ?? []))
+                            selected
+                        @endif
+                        >
+                        {{ $tag->tag }}
+                    </option>
                 @endforeach
             </select>
             <div class="input-group-prepend forum-search-component">
@@ -29,7 +35,7 @@
         </div>
     </div>
     <div class="form-search keyword-search">
-        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword" name="keyword">
+        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword" name="keyword" value="{{ old("keyword") }}">
         <svg class="svg-search" id="svg-keyword">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
         </svg>
