@@ -33,7 +33,7 @@ class testController extends Controller
     public function index(Request $request) {
 
         $test = User::join('tutor_levels', 'tutor_levels.id', '=', 'users.id')
-                    ->where('tutor_level')
+                    ->where('tutor_level');
     }
 
     public function test(Request $request) {

@@ -108,7 +108,7 @@
 
             @if ($post->user->is_tutor)
             <span class="user-info text-capitalize mt-1 d-flex align-items-center">
-                @if ($post->user->tutor_verified)
+                @if ($post->user->is_tutor_verified)
                 <svg class="mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="12" height="12" fill="url(#pattern10)"/>
                     <defs>
@@ -119,7 +119,7 @@
                     </defs>
                 </svg>
                 @endif
-                {{ $post->user->tutor_level }} Tutor
+                {{ $post->user->tutorLevel->tutor_level }} Tutor
             </span>
             <button class="btn btn-lg btn-chat btn-animation-y-sm mt-4">Chat</button>
             <button class="btn btn-lg btn-request btn-animation-y-sm">Request a Session</button>

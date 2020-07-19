@@ -107,7 +107,6 @@ $(document).ready(function(){
         $('.nav__form').submit();
     })
 
-
 })
 
 
