@@ -14170,7 +14170,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .forum .select-container {
   border: 1px solid;
   border-radius: 0.5rem;
-  height: calc(1.5em + 1rem + 2px);
+  min-height: calc(1.5em + 1rem + 2px);
 }
 
 .forum .select-container .input-group-prepend {

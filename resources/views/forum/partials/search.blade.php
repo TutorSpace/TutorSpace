@@ -1,5 +1,4 @@
-<form action="{{ route('posts.search') }}" method="POST" class="forum-content__search">
-    @csrf
+<form action="{{ route('posts.search') }}" method="GET" class="forum-content__search">
     @if (!in_array(Route::current()->getName(), [
         'posts.index',
         'posts.my-follows',
@@ -23,15 +22,15 @@
                 @endforeach
             </select>
             <div class="input-group-prepend forum-search-component">
-                <svg class="select-container__icon">
+                <svg class="select-container__icon" id="svg-tags">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
             </div>
         </div>
     </div>
     <div class="form-search keyword-search">
-        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104...">
-        <svg class="svg-search">
+        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword">
+        <svg class="svg-search" id="svg-keyword">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
         </svg>
     </div>

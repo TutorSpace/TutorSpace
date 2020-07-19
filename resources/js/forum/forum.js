@@ -59,8 +59,6 @@ $('.forum-left__list-item').click(function() {
     window.location.href = href;
 });
 
-
-
 $('.forum-content__search__search-by').change(function() {
     let val = $(this).find("option:selected").attr('value');
     if(val == 'tags') {
@@ -95,3 +93,16 @@ $.each($('.tag'), (idx, ele) => {
     $(ele).css("background-color", `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
     $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
 });
+
+$('.select2-search__field').unbind('keypress');
+
+$(document).on('keypress', function(e) {
+    if($('#forum__input-search-keyword').is(":focus")) {
+        $('.forum-content__search').submit();
+    }
+});
+
+$('#svg-tags, #svg-keyword').click(function() {
+    $('.forum-content__search').submit();
+})
+
