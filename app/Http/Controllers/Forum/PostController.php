@@ -357,6 +357,9 @@ class PostController extends Controller
                 'replies',
                 'tags'
             ])
+            ->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
+            ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+            // ->whereIn('tags.id', $request->input('tags'))
             ->get();
         }
 

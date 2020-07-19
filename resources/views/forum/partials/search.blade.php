@@ -14,7 +14,7 @@
     </a>
     @endif
 
-    <div class="input-content p-relative tags-container @if(old('search-by') == 'keywords') hidden @endif">
+    <div class="input-content p-relative tags-container @if(!old('search-by') || old('search-by') == 'keywords') hidden @endif">
         <div class="input-group select-container p-relative select-container-icon">
             <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
                 @foreach (App\Tag::all() as $tag)
