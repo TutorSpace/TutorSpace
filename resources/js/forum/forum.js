@@ -94,11 +94,12 @@ $.each($('.tag'), (idx, ele) => {
     $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
 });
 
-$(document).on('keypress', function(e) {
-    if($('#forum__input-search-keyword').is(":focus")) {
+$('#forum__input-search-keyword').keypress(function(e) {
+    if(e.keyCode == 13) {
         $('.forum-content__search').submit();
     }
 });
+
 
 $('#svg-tags, #svg-keyword').click(function() {
     $('.forum-content__search').submit();

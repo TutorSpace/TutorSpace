@@ -331,6 +331,8 @@ class PostController extends Controller
     }
 
     public function search(Request $request) {
+        $reuqest->session()->flashInput($request->all());
+
         if($request->input('search-by') == 'keywords') {
             $posts = Post::with([
                 'tags',
@@ -342,7 +344,9 @@ class PostController extends Controller
             ])
             ->join('users', 'users.id', '=', 'posts.user_id')
             ->where('posts.title', 'like', "%{$request->input('keyword')}%")
-            ->orWhere('posts.', 'like', "%{$request->input('keyword')}%");
+            ->orWhere('users.first_name', 'like', "%{$request->input('keyword')}%")
+            ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%")
+            ->get();
         }
         else if($request->input('search-by') == 'tags') {
 
@@ -367,8 +371,9 @@ class PostController extends Controller
         ]);
     }
 
+
     public function indexPopular() {
-        // todo: orderby rule change
+        // todo: modify the formula
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
             'posts' => Post::orderBy('view_count', 'desc')
