@@ -123,6 +123,7 @@
     <div class="footer-sm__subscribe">
         <p class="footer-sm__heading">SUBSCRIBE</p>
         <form class="form" method="POST" action="{{ route('subscription.store') }}">
+            @csrf
             <svg class="input-icon">
                 <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
             </svg>

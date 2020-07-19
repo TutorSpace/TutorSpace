@@ -331,7 +331,37 @@ class PostController extends Controller
     }
 
     public function search(Request $request) {
-        dd('search');
+        if($request->input('search-by') == 'keywords') {
+            $posts = Post::with([
+                'tags',
+                'user'
+            ])->withCount([
+                'usersUpvoted',
+                'replies',
+                'tags'
+            ]);
+        }
+        else if($request->input('search-by') == 'tags') {
+
+        }
+
+        // Post::orderBy('view_count', 'desc')
+        //                 ->with([
+        //                     'tags',
+        //                     'user'
+        //                 ])
+        //                 ->withCount([
+        //                     'usersUpvoted',
+        //                     'replies',
+        //                     'tags'
+        //                 ])->get();
+
+        return view('forum.index', [
+            'trendingTags' => Tag::getTrendingTags(),
+            'posts' => ,
+            'pageTitle' => 'Forum - Search Results',
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+        ]);
     }
 
     public function indexPopular() {

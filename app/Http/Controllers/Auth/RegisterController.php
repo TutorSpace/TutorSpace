@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Rules\NotExistStudent;
 use Illuminate\Validation\Rule;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
 use Illuminate\Support\Facades\Notification;
@@ -300,7 +301,7 @@ class RegisterController extends Controller
             $user->secondMajor()->associate(Major::find($request->input('second-major')));
         }
         if($request->input('school-year')) {
-            $user->school_year()->associate(SchoolYear::find($request->input('school-year')));
+            $user->schoolYear()->associate(SchoolYear::find($request->input('school-year')));
         }
 
         if(isset($studentData['google-id'])) {
@@ -423,9 +424,10 @@ class RegisterController extends Controller
             ]
         ]);
 
-        DB::transaction(function () use($request, $tutorData) {
-            // create the user
-            $user = new User();
+        // create the user
+        $user = new User();
+
+        DB::transaction(function () use($request, $tutorData, $user) {
 
             // stores the data
             $user->firstMajor()->associate(Major::find($tutorData['first-major']));
@@ -433,7 +435,7 @@ class RegisterController extends Controller
             if(isset($tutorData['second-major'])) {
                 $user->secondMajor()->associate(Major::find($tutorData['second-major']));
             }
-            $user->school_year()->associate(SchoolYear::find($tutorData['school-year']));
+            $user->schoolYear()->associate(SchoolYear::find($tutorData['school-year']));
 
             if(isset($tutorData['google-id'])) {
                 $user->google_id = $tutorData['google-id'];
