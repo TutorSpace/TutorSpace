@@ -53,9 +53,10 @@
     .select-container {
         border: 1px solid;
         border-radius: .5rem;
+        height: calc(1.5em + 1rem + 2px);
 
         .input-group-prepend {
-            width: 5rem;
+            width: 3rem;
             height: 100%;
             display: flex;
             align-items: center;
@@ -70,8 +71,8 @@
             }
 
             :first-child {
-                width: 5rem;
-                height: 5rem;
+                width: 2.5rem;
+                height: 2.5rem;
                 fill: $color-white;
             }
         }
@@ -215,6 +216,8 @@
             }
         }
     }
+
+
 }
 
 .forum-left {
@@ -561,6 +564,7 @@
             }
         }
 
+
     }
 
     .btn-scroll-bottom-right-top, .btn-scroll-bottom-right-under {
@@ -651,6 +655,8 @@
                 fill: $color-blue-primary !important;
             }
         }
+
+
 
     }
 

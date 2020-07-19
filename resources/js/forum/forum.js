@@ -66,6 +66,9 @@ $('.forum-content__search__search-by').change(function() {
     if(val == 'tags') {
         $('.tags-container').removeClass('hidden');
         $('.keyword-search').addClass('hidden');
+        $('#tags').select2({
+            placeholder: "Add post tags here..."
+        });
     }
     else {
         $('.tags-container').addClass('hidden');
