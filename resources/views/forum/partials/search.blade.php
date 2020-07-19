@@ -14,13 +14,15 @@
     </a>
     @endif
 
-    <div class="input-content p-relative tags-container hidden">
+    <div class="input-content p-relative tags-container @if(old('search-by') == 'keywords') hidden @endif">
         <div class="input-group select-container p-relative select-container-icon">
             <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
                 @foreach (App\Tag::all() as $tag)
                     <option value="{{ $tag->id }}"
-                        @if (in_array($tag->id, old('tags') ?? []))
-                            selected
+                        @if (old('search-by') == 'tags')
+                            @if (in_array($tag->id, old('tags') ?? []))
+                                selected
+                            @endif
                         @endif
                         >
                         {{ $tag->tag }}
@@ -34,15 +36,25 @@
             </div>
         </div>
     </div>
-    <div class="form-search keyword-search">
-        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword" name="keyword" value="{{ old("keyword") }}">
+    <div class="form-search keyword-search @if(old('search-by') == 'tags') hidden @endif">
+        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword" name="keyword" @if(old('search-by') == 'keywords') value="{{ old("keyword") }}" @endif>
         <svg class="svg-search" id="svg-keyword">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
         </svg>
     </div>
 
     <select name="search-by" class="forum-content__search__search-by mr-auto">
-        <option value="keywords">Search by Keywords</option>
-        <option value="tags">Search by Tags</option>
+        <option value="keywords"
+            @if(old('search-by') == 'keywords') selected
+            @endif
+        >
+            Search by Keywords
+        </option>
+        <option value="tags"
+            @if(old('search-by') == 'tags') selected
+            @endif
+        >
+            Search by Tags
+        </option>
     </select>
 </form>
