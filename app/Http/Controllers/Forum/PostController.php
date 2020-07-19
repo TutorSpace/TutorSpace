@@ -359,8 +359,11 @@ class PostController extends Controller
             ])
             ->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
-            // ->whereIn('tags.id', $request->input('tags'))
+            // todo: needs to be modified (need to check all the tags in the input are of this post)
+            ->whereIn('tags.id', $request->input('tags'))
+            ->distinct()
             ->get();
+
         }
 
 
