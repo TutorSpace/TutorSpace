@@ -330,7 +330,7 @@ class PostController extends Controller
         }
     }
 
-    public function search() {
+    public function search(Request $request) {
         dd('search');
     }
 

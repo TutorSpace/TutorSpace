@@ -94,8 +94,6 @@ $.each($('.tag'), (idx, ele) => {
     $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
 });
 
-$('.select2-search__field').unbind('keypress');
-
 $(document).on('keypress', function(e) {
     if($('#forum__input-search-keyword').is(":focus")) {
         $('.forum-content__search').submit();

@@ -179,7 +179,6 @@ $.each($('.tag'), function (idx, ele) {
   $(ele).css("background-color", "rgb(".concat(color[0], ", ").concat(color[1], ", ").concat(color[2], ")"));
   $(ele).css("color", "rgb(".concat(d, ", ").concat(d, ", ").concat(d, ")"));
 });
-$('.select2-search__field').unbind('keypress');
 $(document).on('keypress', function (e) {
   if ($('#forum__input-search-keyword').is(":focus")) {
     $('.forum-content__search').submit();
