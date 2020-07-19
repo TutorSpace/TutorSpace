@@ -28,7 +28,13 @@
                 @foreach ($trendingTags as $trendingTag)
                 <tr class="trending-tags__list-item mb-3">
                     <th>
-                        <a class="tag-name" href="#">#{{ $trendingTag->tag }}</a>
+                        <a class="tag-name"
+                            href="{{ route('posts.search', [
+                            'search-by' => 'tags',
+                            'tags' => [
+                                $trendingTag->id
+                            ]
+                        ]) }}">#{{ $trendingTag->tag }}</a>
                     </th>
                     <td class="post-cnt">{{ $trendingTag->posts_count }}</td>
                     <td class="reply-cnt">{{ $trendingTag->replies_count }}</td>

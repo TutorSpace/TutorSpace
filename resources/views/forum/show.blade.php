@@ -73,7 +73,14 @@ bg-student
                     <div class="post__bottom">
                         <div class="tags">
                             @foreach ($post->tags as $tag)
-                                <span class="tag">{{ $tag->tag }}</span>
+                                <a class="tag"
+                                    href="{{ route('posts.search', [
+                                        'search-by' => 'tags',
+                                        'tags' => [
+                                            $tag->id
+                                        ]
+                                    ]) }}"
+                                >{{ $tag->tag }}</a>
                             @endforeach
                         </div>
                         <div class="post__bottom__actions d-flex mt-3 justify-content-end">
