@@ -64,14 +64,14 @@ $('.forum-left__list-item').click(function() {
 $('.forum-content__search__search-by').change(function() {
     let val = $(this).find("option:selected").attr('value');
     if(val == 'tags') {
-        $('.tags-container').removeClass('hidden');
+        $('.forum-content__search .tags-container').removeClass('hidden');
         $('.keyword-search').addClass('hidden');
         $('#tags').select2({
             placeholder: "Add post tags here..."
         });
     }
     else {
-        $('.tags-container').addClass('hidden');
+        $('.forum-content__search .tags-container').addClass('hidden');
         $('.keyword-search').removeClass('hidden');
     }
 });

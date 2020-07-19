@@ -14203,6 +14203,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .forum .select-container .select2-container .select2-search--inline .select2-search__field {
   margin-top: 0;
+  position: relative;
+  top: -1px;
 }
 
 .forum .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
