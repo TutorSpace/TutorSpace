@@ -14174,14 +14174,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .forum .select-container .input-group-prepend {
-  width: 3rem;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   right: 0;
-  background-color: currentColor;
   z-index: 1000;
 }
 
@@ -14190,9 +14188,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .forum .select-container .input-group-prepend :first-child {
-  width: 2.5rem;
-  height: 2.5rem;
-  fill: #FFFFFF;
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: currentColor;
 }
 
 .forum .select-container .select2-search__field {
@@ -14340,6 +14338,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   opacity: 0;
 }
 
+.forum-search-component .select-container__icon {
+  position: relative;
+  right: 1rem;
+}
+
 @media only screen and (max-width: 47.99em) {
   .forum-left {
     display: none;
@@ -14439,11 +14442,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: #F9F9F9;
-}
-
-.forum-content__search .tags-container .select-container .input-group-prepend :first-child {
-  width: 2rem;
-  height: 2rem;
 }
 
 .forum-content__search .tags-container .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -16170,11 +16168,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .post-create .select-container .input-group-prepend {
   width: 6rem;
+  background-color: currentColor;
 }
 
 .post-create .select-container .input-group-prepend :first-child {
   width: 6rem;
   height: 6rem;
+  fill: #FFFFFF;
 }
 
 .post-create .select-container .select2-search__field {

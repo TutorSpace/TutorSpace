@@ -22,7 +22,7 @@
                     <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
                 @endforeach
             </select>
-            <div class="input-group-prepend">
+            <div class="input-group-prepend forum-search-component">
                 <svg class="select-container__icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                 </svg>
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="form-search keyword-search">
-        <input type="text" class="form-control form-control-lg input-search" placeholder="Computer Science...">
+        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104...">
         <svg class="svg-search">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
         </svg>

@@ -101,10 +101,12 @@
 
         .input-group-prepend {
             width: 6rem;
+            background-color: currentColor;
 
             :first-child {
                 width: 6rem;
                 height: 6rem;
+                fill: $color-white;
             }
         }
 
