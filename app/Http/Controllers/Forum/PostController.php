@@ -339,7 +339,10 @@ class PostController extends Controller
                 'usersUpvoted',
                 'replies',
                 'tags'
-            ]);
+            ])
+            ->join('users', 'users.id', '=', 'posts.user_id')
+            ->where('posts.title', 'like', "%{$request->input('keyword')}%")
+            ->orWhere('posts.', 'like', "%{$request->input('keyword')}%");
         }
         else if($request->input('search-by') == 'tags') {
 
@@ -358,7 +361,7 @@ class PostController extends Controller
 
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => ,
+            'posts' => $posts,
             'pageTitle' => 'Forum - Search Results',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);

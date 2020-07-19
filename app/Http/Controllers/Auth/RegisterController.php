@@ -8,12 +8,13 @@ use Hash;
 use App\User;
 use App\Major;
 use App\SchoolYear;
+use App\TutorLevel;
 use App\Rules\EmailUSC;
 use App\Rules\NotExistTutor;
 use Illuminate\Http\Request;
 use App\Rules\NotExistStudent;
-use Illuminate\Validation\Rule;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
@@ -460,6 +461,8 @@ class RegisterController extends Controller
                 $user->deleteImage();
                 $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
             }
+
+            $user->tutorLevel()->associate(TutorLevel::find(1));
 
             $user->save();
 

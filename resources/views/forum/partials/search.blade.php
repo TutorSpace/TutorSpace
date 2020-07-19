@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="form-search keyword-search">
-        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword">
+        <input type="text" class="form-control form-control-lg input-search" placeholder="How is CSCI 104..." id="forum__input-search-keyword" name="keyword">
         <svg class="svg-search" id="svg-keyword">
             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
         </svg>

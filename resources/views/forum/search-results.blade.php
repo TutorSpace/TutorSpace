@@ -26,6 +26,7 @@ bg-student
         <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
 
+
             @include('forum.partials.search')
 
             <div class="post-previews">
