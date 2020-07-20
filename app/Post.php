@@ -138,9 +138,17 @@ class Post extends Model
                         3600
                     );
 
-                    return $this->queryYouMayHelpWith()
-                            ->take(5)
-                            ->get();
+                    $posts = $this->queryYouMayHelpWith()
+                                ->take(15)
+                                ->get();
+
+                    if($posts->count() >= 1) {
+                        return $posts->random(min(5, $posts->count()));
+                    }
+                    else {
+                        return $posts;
+                    }
+
                 }
             );
         }
@@ -161,9 +169,8 @@ class Post extends Model
                     ->where('posts.user_id', '!=', $user->id)
                     ->groupBy(['posts.id'])
 
-                    ->take(5)
+                    ->take(15)
                     ->get();
-
 
         if($posts->count() < 5) {
             $posts = $posts->merge(
@@ -174,7 +181,12 @@ class Post extends Model
             );
         }
 
-        return $posts;
+        if($posts->count() >= 1) {
+            return $posts->random(min(5, $posts->count()));
+        }
+        else {
+            return $posts;
+        }
     }
 
     private function queryYouMayHelpWith() {

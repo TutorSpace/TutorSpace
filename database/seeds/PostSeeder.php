@@ -173,7 +173,7 @@ class PostSeeder extends Seeder
             print(str)</code></pre>',
             'slug' => 'random-post-2',
             'user_id' => 2,
-            'post_type_id' => 2,
+            'post_type_id' => 1,
             'view_count' => 400,
             'created_at' => '2020-07-11 14:55:30'
         ]);
