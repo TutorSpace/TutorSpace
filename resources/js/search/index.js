@@ -151,7 +151,7 @@ $('.btn-clear').click(function() {
         $('#select-detail-time').addClass('hidden');
     }
 
-    $('input').val('');
+    $('input[tpye=text], input[type=number]').val('');
     $('input:checkbox').prop('checked', false);
     $("#price-range-input").slider('setValue', [
         parseInt(15),
