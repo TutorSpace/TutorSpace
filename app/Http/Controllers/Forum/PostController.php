@@ -402,7 +402,7 @@ class PostController extends Controller
                             'tags'
                         ])
                         // todo: modify the formula
-                        ->orderByRaw('100 * users_upvoted_count + 100 * replies_count + view_count DESC')
+                        ->orderByRaw('30 * users_upvoted_count + 100 * replies_count + view_count DESC')
                         ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Popular Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()

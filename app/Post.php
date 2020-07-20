@@ -186,7 +186,7 @@ class Post extends Model
                 ->where('post_types.post_type', 'Question')
                 ->having('replies_count', '<', 2)
                 // todo: modify the formula
-                ->orderByRaw('-100 * replies_count + 1 * view_count + 3 * users_upvoted_count DESC');
+                ->orderByRaw('-100 * replies_count + 1 * view_count + 30 * users_upvoted_count DESC');
     }
 
 
