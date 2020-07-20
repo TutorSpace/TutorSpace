@@ -12,7 +12,9 @@ class URLManager {
     public static function getBackURL($defaultUrl) {
         $previousUrl = URL::previous();
         $hostName = Request::getHost();
-        if(Str::startsWith($previousUrl, $hostName)) {
+
+        if(Str::startsWith($previousUrl, "http://" . $hostName)
+            || Str::startsWith($previousUrl, "https://" . $hostName)) {
             return $previousUrl;
         }
         return $defaultUrl;
