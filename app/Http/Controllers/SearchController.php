@@ -156,7 +156,7 @@ class SearchController extends Controller
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
                 $availableTimeRange = $request->input('available-time-range');
-                if($availableTimeRange == 'anytime' || count($availableTimeRange) == 3) {
+                if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
                     $startTimes = ["6:00:00"];
                     $endTimes = ["23:00:00"];
                 }
