@@ -26,7 +26,7 @@
 <div class="overlay overlay-student">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-student">
-            <form action="{{ route('login.store.student', ['backUrl' => URL::current()]) }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.student', ['backUrl' => request()->fullUrl()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                     >
                     {{-- for empty --}}
@@ -120,7 +120,7 @@
 <div class="overlay overlay-tutor">
     <div class="container login fade-in-fast">
         <div class="login--left login--left-tutor">
-            <form action="{{ route('login.store.tutor', ['backUrl' => URL::current()]) }}" method="POST" class="p-relative">
+            <form action="{{ route('login.store.tutor', ['backUrl' => request()->fullUrl()]) }}" method="POST" class="p-relative">
                 <svg class="btn-close" width="1em" height="1em" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                     >
                     {{-- for empty --}}
