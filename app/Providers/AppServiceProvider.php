@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
             // echo "<p>{$query->sql}</p>";
         });
 
+        Paginator::defaultView('pagination.paginate');
         Paginator::defaultSimpleView('pagination.simple');
     }
 }

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    private static $POSTS_PER_PAGE = 2;
+    private static $POSTS_PER_PAGE = 5;
 
     public function __construct() {
         $this->middleware(['auth'])->except([
@@ -348,7 +348,7 @@ class PostController extends Controller
             ->where('posts.title', 'like', "%{$request->input('keyword')}%")
             ->orWhere('users.first_name', 'like', "%{$request->input('keyword')}%")
             ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%")
-            ->simplePaginate(self::$POSTS_PER_PAGE);
+            ->paginate(self::$POSTS_PER_PAGE);
         }
         else if($request->input('search-by') == 'tags') {
             $posts = Post::with([
@@ -364,8 +364,18 @@ class PostController extends Controller
             // todo: needs to be modified (need to check all the tags in the input are of this post)
             ->whereIn('tags.id', $request->input('tags'))
             ->distinct()
-            ->simplePaginate(self::$POSTS_PER_PAGE);
-
+            ->paginate(self::$POSTS_PER_PAGE);
+        }
+        else {
+            $posts = Post::with([
+                'tags',
+                'user'
+            ])->withCount([
+                'usersUpvoted',
+                'replies',
+                'tags'
+            ])
+            ->paginate(self::$POSTS_PER_PAGE);
         }
 
 

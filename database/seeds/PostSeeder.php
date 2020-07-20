@@ -152,6 +152,140 @@ class PostSeeder extends Seeder
             'created_at' => '2020-07-08 14:55:30'
         ]);
 
+        DB::table('posts')->insert([
+            'title' => 'random post 1',
+            'content' => '<p>THis is to some random post!</p>
+            <p>dgsgdskgdsl</p>
+            <p>Some code here:</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-1',
+            'user_id' => 2,
+            'post_type_id' => 3,
+            'view_count' => 4800,
+            'created_at' => '2020-07-09 14:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 2',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-2',
+            'user_id' => 2,
+            'post_type_id' => 2,
+            'view_count' => 400,
+            'created_at' => '2020-07-11 14:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 3',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-3',
+            'user_id' => 2,
+            'post_type_id' => 2,
+            'view_count' => 40,
+            'created_at' => '2020-07-13 14:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 4',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-4',
+            'user_id' => 2,
+            'post_type_id' => 3,
+            'view_count' => 10,
+            'created_at' => '2020-07-14 14:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 5',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-5',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-15 14:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 6',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-6',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-15 15:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 7',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-7',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-15 16:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 8',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-8',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-16 16:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 9',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-9',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-16 17:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 10',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-10',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-16 18:55:30'
+        ]);
+
+        DB::table('posts')->insert([
+            'title' => 'random post 11',
+            'content' => '<p>THis is to some random post!</p>
+            <pre class="language-python"><code>str = "Hello, World!"
+            print(str)</code></pre>',
+            'slug' => 'random-post-11',
+            'user_id' => 1,
+            'post_type_id' => 1,
+            'view_count' => 10,
+            'created_at' => '2020-07-16 19:55:30'
+        ]);
+
         $postTags = [
             [
                 'post_id' => 1,
@@ -205,6 +339,39 @@ class PostSeeder extends Seeder
             ],[
                 'post_id' => 3,
                 'tag_id' => 29
+            ],[
+                'post_id' => 4,
+                'tag_id' => 5
+            ],[
+                'post_id' => 5,
+                'tag_id' => 5
+            ],[
+                'post_id' => 6,
+                'tag_id' => 6
+            ],[
+                'post_id' => 7,
+                'tag_id' => 7
+            ],[
+                'post_id' => 8,
+                'tag_id' => 8
+            ],[
+                'post_id' => 9,
+                'tag_id' => 29
+            ],[
+                'post_id' => 10,
+                'tag_id' => 10
+            ],[
+                'post_id' => 11,
+                'tag_id' => 11
+            ],[
+                'post_id' => 12,
+                'tag_id' => 13
+            ],[
+                'post_id' => 13,
+                'tag_id' => 13
+            ],[
+                'post_id' => 14,
+                'tag_id' => 14
             ]
         ];
         DB::table('post_tag')->insert($postTags);

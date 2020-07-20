@@ -105,7 +105,8 @@ $(document).ready(function(){
 
     $('nav .svg-search').click(function() {
         $('.nav__form').submit();
-    })
+    });
+
 
 })
 

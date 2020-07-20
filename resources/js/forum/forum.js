@@ -105,3 +105,5 @@ $('#svg-tags, #svg-keyword').click(function() {
     $('.forum-content__search').submit();
 })
 
+
+

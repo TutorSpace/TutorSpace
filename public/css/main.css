@@ -12132,6 +12132,10 @@ h6 {
   margin-top: 2rem;
 }
 
+.mt-5rem {
+  margin-top: 5rem;
+}
+
 .mr-1px {
   margin-right: 1px;
 }
@@ -12230,6 +12234,10 @@ h6 {
 
 .fs-2-4 {
   font-size: 2.4rem;
+}
+
+.fc-current {
+  color: currentColor !important;
 }
 
 .fc-grey {
@@ -12563,6 +12571,11 @@ h6 {
   height: 8rem;
   z-index: 1000;
   cursor: pointer;
+}
+
+.btn-view-more {
+  background-color: #DCDCDC;
+  color: #FDFDFD;
 }
 
 .modal .modal-content {
@@ -14203,8 +14216,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .forum .select-container .select2-container .select2-search--inline .select2-search__field {
   margin-top: 0;
-  position: relative;
-  top: -1px;
 }
 
 .forum .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
