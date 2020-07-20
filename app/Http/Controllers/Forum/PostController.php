@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Forum;
 
-use Facades\App\Tag;
 use App\Post;
 use App\Reply;
 use App\PostType;
 use App\PostDraft;
+use Carbon\Carbon;
+use Facades\App\Tag;
 use App\Rules\WordCountGTE;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -410,8 +411,7 @@ class PostController extends Controller
     public function indexLatest() {
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Post::orderBy('created_at', 'desc')
-                        ->with([
+            'posts' => Post::with([
                             'tags',
                             'user'
                         ])
@@ -419,7 +419,10 @@ class PostController extends Controller
                             'usersUpvoted',
                             'replies',
                             'tags'
-                        ])->paginate(self::$POSTS_PER_PAGE),
+                        ])
+                        ->whereDate('created_at', '>=', Carbon::now()->subDays(14))
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Latest Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
