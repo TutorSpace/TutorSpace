@@ -30,6 +30,7 @@ bg-student
 
             <div class="post-previews">
                 @include('forum.partials.post-preview-my-follows')
+                {{ $posts->withQueryString()->links() }}
             </div>
 
         </section>

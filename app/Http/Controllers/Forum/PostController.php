@@ -39,7 +39,7 @@ class PostController extends Controller
     public function index()
     {
         return view('forum.index', [
-            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum',
             'trendingTags' => Tag::getTrendingTags(),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
@@ -254,7 +254,7 @@ class PostController extends Controller
     public function showMyFollows() {
         return view('forum.my_follows', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
@@ -262,7 +262,7 @@ class PostController extends Controller
     public function showMyPosts() {
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->get(),
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
@@ -401,7 +401,7 @@ class PostController extends Controller
                             'usersUpvoted',
                             'replies',
                             'tags'
-                        ])->get(),
+                        ])->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Popular Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
@@ -419,7 +419,7 @@ class PostController extends Controller
                             'usersUpvoted',
                             'replies',
                             'tags'
-                        ])->get(),
+                        ])->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Latest Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
