@@ -390,11 +390,9 @@ class PostController extends Controller
 
 
     public function indexPopular() {
-        // todo: modify the formula
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Post::orderBy('view_count', 'desc')
-                        ->with([
+            'posts' => Post::with([
                             'tags',
                             'user'
                         ])
@@ -402,7 +400,10 @@ class PostController extends Controller
                             'usersUpvoted',
                             'replies',
                             'tags'
-                        ])->paginate(self::$POSTS_PER_PAGE),
+                        ])
+                        // todo: modify the formula
+                        ->orderByRaw('100 * users_upvoted_count + 100 * replies_count + view_count DESC')
+                        ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Popular Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);

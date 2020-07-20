@@ -20,13 +20,6 @@ class Tag extends Model
         return $this->belongsToMany('App\Post');
     }
 
-    // public function replies() {
-    //     return $this->posts()
-    //             ->join('replies', 'replies.post_id', '=', 'posts.id')
-    //             ->where('replies.is_direct_reply', true)
-    //             ->select('replies.*');
-    // }
-
     public function getCacheKey($key) {
         $key = \strtoupper($key);
         return self::CACHE_KEY . ".$key";
