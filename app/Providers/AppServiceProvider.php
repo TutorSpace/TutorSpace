@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
@@ -35,5 +36,7 @@ class AppServiceProvider extends ServiceProvider
         DB::listen(function($query) {
             // echo "<p>{$query->sql}</p>";
         });
+
+        Paginator::defaultSimpleView('pagination.simple');
     }
 }
