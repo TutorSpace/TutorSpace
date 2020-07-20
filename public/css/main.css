@@ -12217,11 +12217,15 @@ h6 {
 }
 
 .fs-1-4 {
-  font-size: 1.4rem;
+  font-size: 1.4rem !important;
 }
 
 .fs-1-6 {
   font-size: 1.6rem !important;
+}
+
+.fs-1-8 {
+  font-size: 1.8rem !important;
 }
 
 .fs-2 {
@@ -12429,7 +12433,6 @@ h6 {
 
 .btn-link-student:hover {
   color: #07306C;
-  font-weight: 500;
 }
 
 .btn-link-tutor {
@@ -12441,7 +12444,6 @@ h6 {
 
 .btn-link-tutor:hover {
   color: #251175;
-  font-weight: 500;
 }
 
 .btn-outline-student {
@@ -15402,7 +15404,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border: 2px solid;
   border-radius: 1.2rem;
   background-color: transparent;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .signup-form-input:focus {
@@ -15431,8 +15433,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .signup-form-input-normal {
-  height: 6.2rem;
-  padding-left: 4.3rem;
+  height: 5.5rem;
+  padding-left: 4rem;
 }
 
 .signup-form-input-normal:focus::-webkit-input-placeholder {
@@ -15554,10 +15556,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .signup .input-icon {
   position: absolute;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
   left: 1.2rem;
-  top: calc(50% - 2.6rem / 2);
+  top: calc(50% - 2.2rem / 2);
   fill: #A0A0A0;
   transition: all 0.2s;
 }
@@ -15865,7 +15867,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border: 2px solid;
   border-radius: 1.2rem;
   background-color: transparent;
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 .login-form-input:focus {
@@ -15894,8 +15896,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .login-form-input-normal {
-  height: 6.2rem;
-  padding-left: 4.3rem;
+  height: 5.5rem;
+  padding-left: 4rem;
 }
 
 .login-form-input-normal:focus::-webkit-input-placeholder {
@@ -15940,38 +15942,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .login .input-icon {
   position: absolute;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
   left: 1.2rem;
-  top: calc(50% - 2.6rem / 2);
+  top: calc(50% - 2.2rem / 2);
   fill: #A0A0A0;
   transition: all 0.2s;
 }
 
-.login .btn-login,
-.login .btn-send {
+.login .btn-login {
   height: 6rem;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   width: 30rem;
   border-radius: 5rem;
-}
-
-.login .resend-email {
-  color: #A0A0A0;
-  font-size: 2rem;
-  text-align: center;
-}
-
-.login .resend-email button {
-  font-size: inherit;
-  padding: 0;
-  vertical-align: baseline;
-}
-
-.login .login__notice {
-  color: #A0A0A0;
-  font-size: 2.2rem;
-  text-align: center;
 }
 
 .login .svg-reset-password-right-student {

@@ -158,8 +158,8 @@
         }
     }
 
-
-    $icon-size: 2.6rem;
+    // $icon-size: 2.6rem;
+    $icon-size: 2.2rem;
     $icon-left-space: 1.2rem;
 
     form {
@@ -175,7 +175,8 @@
         border: 2px solid;
         border-radius: 1.2rem;
         background-color: transparent;
-        font-size: 2.2rem;
+        // font-size: 2.2rem;
+        font-size: 2rem;
 
         &:focus {
             box-shadow: none;
@@ -188,8 +189,10 @@
 
         // for inputs that have svg + text
         &-normal {
-            height: 6.2rem;
-            padding-left: 4.3rem;
+            // height: 6.2rem;
+            height: 5.5rem;
+            // padding-left: 4.3rem;
+            padding-left: 4rem;
 
             &:focus {
                 &::placeholder {
@@ -223,29 +226,11 @@
         transition: all .2s;
     }
 
-    .btn-login, .btn-send {
+    .btn-login {
         height: 6rem;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         width: 30rem;
         border-radius: 5rem;
-    }
-
-    .resend-email {
-        color: $color-grey;
-        font-size: 2rem;
-        text-align: center;
-
-        button {
-            font-size: inherit;
-            padding: 0;
-            vertical-align: baseline;
-        }
-    }
-
-    .login__notice {
-        color: $color-grey;
-        font-size: 2.2rem;
-        text-align: center;
     }
 
     .svg-reset-password-right-student {

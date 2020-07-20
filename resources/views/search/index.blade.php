@@ -246,7 +246,7 @@ bg-student
         {{-- search results --}}
         <div class="col">
             <div class="search-results">
-                @include('search.search-result')
+                @include('search.search-results')
             </div>
         </div>
     </div>
@@ -268,4 +268,17 @@ bg-student
     ]);
 </script>
 @endif
+
+
+<script>
+@auth
+
+@else
+$('.bookmark-svg, .btn-chat, .btn-request').click(function() {
+    $('.overlay-student').show();
+})
+@endauth
+
+</script>
+
 @endsection

@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="text-right mt-1">
-                    <a href="{{ route('password.request', ['is_tutor' => false]) }}" class="btn-link-student fs-1-6">Forgot your password?</a>
+                    <a href="{{ route('password.request', ['is_tutor' => false]) }}" class="btn-link-student fs-1-4">Forgot your password?</a>
                 </div>
 
                 <div class="text-center">
@@ -75,13 +75,13 @@
                     <div id="btn-google-student-sm" class="btn-google btn-animation-y"></div>
                 </div>
 
-                <p class="text-center fs-2">
+                <p class="text-center fs-1-8">
                     <span class="fc-grey">Don't have an account? </span><a href="{{ route('register.index.student.1') }}"
-                        class="btn-link-student">Sign Up</a>
+                        class="btn-link-student fs-1-8">Sign Up</a>
                 </p>
-                <p class="text-center fs-2 mt-0">
+                <p class="text-center fs-1-8 mt-0">
                     <span class="fc-grey">Switch to </span><a href="#"
-                        class="btn-link-student btn-switch-login">Tutor Login</a>
+                        class="btn-link-student btn-switch-login fs-1-8">Tutor Login</a>
                 </p>
 
             </form>
@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="text-right mt-1">
-                    <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-6">Forgot your password?</a>
+                    <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-4">Forgot your password?</a>
                 </div>
 
                 <div class="text-center">
@@ -169,13 +169,13 @@
                     <div id="btn-google-tutor-sm" class="btn-google btn-animation-y"></div>
                 </div>
 
-                <p class="text-center fs-2">
+                <p class="text-center fs-1-8">
                     <span class="fc-grey">Don't have an account? </span><a href="{{ route('register.index.tutor.1') }}"
-                        class="btn-link-tutor">Sign Up</a>
+                        class="btn-link-tutor fs-1-8">Sign Up</a>
                 </p>
-                <p class="text-center fs-2 mt-0">
+                <p class="text-center fs-1-8 mt-0">
                     <span class="fc-grey">Switch to </span><a href="#"
-                        class="btn-link-tutor btn-switch-login">Student Login</a>
+                        class="btn-link-tutor btn-switch-login fs-1-8">Student Login</a>
                 </p>
 
             </form>

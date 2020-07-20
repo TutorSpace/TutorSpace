@@ -422,22 +422,26 @@ $('.btn-toggle-follow-up').click(function() {
 });
 
 @auth
-    $('.user-card button').click(function() {
-        $('.overlay-student').show();
-    });
+$('.user-card .btn-chat').click(function() {
+    alert('chat');
+});
+
+$('.user-card .btn-request').click(function() {
+    alert('request');
+});
+
+$('.user-card .btn-invite').click(function() {
+    alert('invite');
+});
+
 @else
-    $('.user-card .btn-chat').click(function() {
-        alert('chat');
-    });
+$('.user-card button').click(function() {
+    $('.overlay-student').show();
+});
 
-    $('.user-card .btn-request').click(function() {
-        alert('request');
-    });
-
-    $('.user-card .btn-invite').click(function() {
-        alert('invite');
-    });
-
+$('.bookmark-svg').click(function() {
+    $('.overlay-student').show();
+})
 @endauth
 
 @error('report-reason')
@@ -479,5 +483,8 @@ $('#deleteModal .btn-delete').click(function() {
     });
 })
 @endcan
+
+
+
 </script>
 @endsection

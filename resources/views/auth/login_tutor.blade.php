@@ -63,7 +63,7 @@ bg-grey-light body-login
             </div>
 
             <div class="text-right mt-1">
-                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-6">Forgot your password?</a>
+                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-4">Forgot your password?</a>
             </div>
 
             <div class="text-center">
@@ -80,13 +80,13 @@ bg-grey-light body-login
                 </span>
             </div>
 
-            <p class="text-center fs-2">
+            <p class="text-center fs-1-8">
                 <span class="fc-grey">Don't have an account? </span><a href="{{ route('register.index.tutor.1') }}"
-                    class="btn-link-tutor">Sign Up</a>
+                    class="btn-link-tutor fs-1-8">Sign Up</a>
             </p>
-            <p class="text-center fs-2 mt-0">
+            <p class="text-center fs-1-8 mt-0">
                 <span class="fc-grey">Switch to </span><a href="{{ route('login.index.student') }}"
-                    class="btn-link-tutor">Student Login</a>
+                    class="btn-link-tutor fs-1-8">Student Login</a>
             </p>
 
         </form>
