@@ -12669,7 +12669,7 @@ h6 {
 .post-previews .post-preview__right {
   max-width: 25rem;
   flex: 0 0 30%;
-  max-height: 18rem;
+  max-height: 15rem;
   margin-left: 2rem;
   margin-bottom: 1rem;
 }
@@ -12694,7 +12694,6 @@ h6 {
 
 .post-previews .post-preview .post__heading-2 {
   color: #626262;
-  margin-bottom: 1.5rem;
 }
 
 .post-previews .post-preview .post__content {
@@ -12729,7 +12728,7 @@ h6 {
 }
 
 .tag {
-  padding: 0.5rem 1.25rem;
+  padding: 0.3rem 0.8rem;
   display: inline-block;
   margin-bottom: 1rem;
   margin-right: 0.5rem;
@@ -14820,7 +14819,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .post__content,
 .post-reply__content {
   font-size: 1.6rem;
-  line-height: 1.6;
 }
 
 .post__bottom {
@@ -14856,7 +14854,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .post-preview {
-  padding: 3rem 4rem 3rem 4rem;
+  padding: 2.5rem 4rem 2.5rem 4rem;
 }
 
 .post-detail {
