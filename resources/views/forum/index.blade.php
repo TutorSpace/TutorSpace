@@ -31,7 +31,7 @@ bg-student
             <div class="post-previews">
                 @include('forum.partials.post-preview-general')
             </div>
-
+            {{ $posts->withQueryString()->links() }}
         </section>
 
         @include("forum.partials.forum-right")
