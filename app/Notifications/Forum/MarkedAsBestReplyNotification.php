@@ -3,27 +3,28 @@
 namespace App\Notifications\Forum;
 
 use App\Post;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use App\Notifications\Messages\SubscriptionMessage;
 
 class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
     public $post;
-    public $email;
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post, String $email)
+    public function __construct(Post $post)
     {
         $this->post = $post;
-        $this->email = $email;
     }
 
     /**
@@ -45,9 +46,10 @@ class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new SubscriptionMessage($this->email))
-                    ->line('Your Reply to Post: ' . $this->post->title . ' is marked as best reply.')
-                    ->action('View the Post: ' . $this->post->title, route('posts.show', $this->post->slug))
+        return (new MailMessage)
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
+                    ->action('View the Post', route('posts.show', $this->post->slug))
                     ->line('Thank you for using TutorSpace!');
     }
 
@@ -60,7 +62,7 @@ class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'post' => $this->post
         ];
     }
 }

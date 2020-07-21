@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class Post extends Model
 {
@@ -79,14 +80,13 @@ class Post extends Model
             'is_best_reply' => true
         ]);
 
-        if($reply->user->id != $this->user->id) {
-            // TODO: notify the reply's poster
-        //     $reply->user->notify(new ReplyMarkedAsBestReply($this));
+        // notify the reply's owner
+        $reply->user->notify(new MarkedAsBestReplyNotification($this));
 
-            // TODO: notify all the people who are following this post
-        //     foreach($this->usersFollowing as $user) {
-        //         $user->notify(new ReplyMarkedAsBestReply($this));
-        //     }
+        // notify all the people who are following this post
+        foreach($this->usersFollowing as $user) {
+            if($reply->user->id != $user->id)
+                $user->notify(new MarkedAsBestReplyNotification($this));
         }
     }
 

@@ -117,6 +117,7 @@
                     display: flex;
                     padding: 2rem;
 
+
                     &:link,
                     &:visited {
                         font-size: 3rem;
@@ -148,6 +149,10 @@
                         height: 4rem;
                         fill: $color-white;
                         margin-right: 1rem;
+                    }
+
+                    span {
+                        white-space: nowrap;
                     }
                 }
             }

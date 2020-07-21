@@ -173,7 +173,7 @@ class GoogleController extends Controller
             $request->session()->put('redirectUrl', $request->query('backUrl'));
         }
         else {
-            $request->session()->put('redirectRouteName', 'home');
+            $request->session()->put('redirectRouteName', 'posts.index');
         }
         return Socialite::driver('google')->redirect();
     }
@@ -195,7 +195,7 @@ class GoogleController extends Controller
             $request->session()->put('redirectUrl', $request->query('backUrl'));
         }
         else {
-            $request->session()->put('redirectRouteName', 'home');
+            $request->session()->put('redirectRouteName', 'posts.index');
         }
 
         return Socialite::driver('google')->redirect();

@@ -14288,6 +14288,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 1rem;
 }
 
+.forum .overlay-forum-left .forum-left-sm__list-item a span {
+  white-space: nowrap;
+}
+
 .forum .overlay-forum-left .toggle-container {
   display: none;
   position: fixed;

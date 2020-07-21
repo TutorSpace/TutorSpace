@@ -53,6 +53,7 @@ class PostController extends Controller
                             ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')
                             ->get();
 
+            // to put the recommmended posts before the general popular posts
             $posts = $posts->merge(
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])

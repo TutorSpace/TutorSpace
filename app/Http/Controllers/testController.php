@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
-use Facades\App\Post;
 use App\User;
 use App\Reply;
 use App\Course;
@@ -13,8 +12,9 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use Carbon\Carbon;
-
 use App\NewMessage;
+
+use Facades\App\Post;
 
 use App\Tutor_request;
 use App\Characteristic;
@@ -22,6 +22,7 @@ use App\Characteristic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
@@ -32,8 +33,7 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        $test = User::join('tutor_levels', 'tutor_levels.id', '=', 'users.id')
-                    ->where('tutor_level');
+        User::find(7)->notify(new MarkedAsBestReplyNotification(Post::find(1)));
     }
 
     public function test(Request $request) {
