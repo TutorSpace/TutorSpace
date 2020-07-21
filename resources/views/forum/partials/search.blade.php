@@ -87,8 +87,29 @@
             @endif
             Filter
         </button>
-        <div class="mt-3 filter-container__content">
-            gsdghsdlgkd
+        <div class="mt-4 filter-container__content hidden">
+            <span>Type</span>
+            @foreach (App\PostType::all() as $postType)
+            <div class="d-flex align-items-center">
+                <input type="checkbox" value="" id="post-type-{{ $postType->post_type }}">
+                <label for="post-type-{{ $postType->post_type }}">
+                    {{ $postType->post_type }}
+                </label>
+            </div>
+            @endforeach
+            <span>Sort By</span>
+            <div class="d-flex align-items-center">
+                <input type="radio" value="" id="post-sort-by-popularity">
+                <label for="post-sort-by-popularity">
+                    Popularity
+                </label>
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="radio" value="" id="post-sort-by-time">
+                <label for="post-sort-by-time">
+                    Time
+                </label>
+            </div>
         </div>
     </div>
     @endif

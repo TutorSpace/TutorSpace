@@ -187,7 +187,9 @@ $('#forum__input-search-keyword').keypress(function (e) {
 $('#svg-tags, #svg-keyword').click(function () {
   $('.forum-content__search').submit();
 });
-$('.btn-filter').click(function () {});
+$('.btn-filter').click(function () {
+  $('.filter-container__content').toggleClass('hidden');
+});
 
 /***/ }),
 

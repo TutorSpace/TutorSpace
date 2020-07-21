@@ -14498,6 +14498,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
 }
 
+.forum-content__search .filter-container__content {
+  border-radius: 1rem;
+  background-color: #F9F9F9;
+  padding: 1rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+}
+
+.forum-content__search .filter-container__content label {
+  color: #626262;
+  margin-bottom: 0;
+  margin-left: 1rem;
+}
+
 .forum-right {
   margin-bottom: 12rem;
 }

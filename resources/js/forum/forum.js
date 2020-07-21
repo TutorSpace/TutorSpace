@@ -108,5 +108,5 @@ $('#svg-tags, #svg-keyword').click(function() {
 
 
 $('.btn-filter').click(function() {
-
+    $('.filter-container__content').toggleClass('hidden');
 });

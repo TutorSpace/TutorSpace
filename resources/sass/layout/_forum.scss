@@ -368,6 +368,21 @@
                 align-items: center;
                 justify-content: center;
             }
+
+            &__content {
+                border-radius: 1rem;
+                background-color: $color-white-dark-5;
+                padding: 1rem 3rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                align-items: center;
+
+                label {
+                    color: $color-black-2;
+                    margin-bottom: 0;
+                    margin-left: 1rem;
+                }
+            }
         }
     }
 }
