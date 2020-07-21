@@ -15,7 +15,6 @@ class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
     use Queueable;
 
     public $post;
-    public $user;
 
     /**
      * Create a new notification instance.
