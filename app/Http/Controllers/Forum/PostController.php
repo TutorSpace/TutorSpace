@@ -54,6 +54,7 @@ class PostController extends Controller
 
         $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->paginate(self::$POSTS_PER_PAGE);
 
+
         return view('forum.index', [
             'posts' => $posts,
             'pageTitle' => 'Forum',
@@ -191,6 +192,7 @@ class PostController extends Controller
             event(new PostViewed($post));
             $request->session()->put($post->slug, true);
         }
+
         return view('forum.show', [
             'trendingTags' => Tag::getTrendingTags(),
             'post' => $post
