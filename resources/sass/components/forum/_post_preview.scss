@@ -4,7 +4,7 @@
     .post-preview {
 
         &--mypost {
-            padding-top: 4.5rem;
+            padding-top: 2.5rem;
         }
 
         &__content-container {
@@ -84,12 +84,12 @@
 
 .bg-student {
     .post-preview--mypost {
-        background-image: linear-gradient(180deg, rgba($color-blue-primary, .2) 0%, rgba($color-blue-primary, .2) 3rem, transparent 3rem);
+        background-image: linear-gradient(180deg, rgba($color-blue-primary, .15) 0%, rgba($color-blue-primary, .1) .75rem, transparent 2rem);
     }
 }
 
 .bg-tutor {
     .post-preview--mypost {
-        background-image: linear-gradient(180deg, rgba($color-purple-primary, .2) 0%, rgba($color-purple-primary, .2) 3rem, transparent 3rem);
+        background-image: linear-gradient(180deg, rgba($color-purple-primary, .15) 0%, rgba($color-purple-primary, .1) .75rem, transparent 2rem);
     }
 }

@@ -343,7 +343,6 @@
         }
 
         &__search-by, .btn-filter {
-            padding: .5rem 1rem;
             border-radius: .5rem;
             outline: none;
             background-color: $color-white-dark-5;
@@ -354,6 +353,7 @@
 
         &__search-by {
             font-weight: 500;
+            padding: .5rem 1rem;
             margin-left: 2rem;
         }
 
@@ -367,6 +367,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                padding: .3rem .7rem;
             }
 
             &__content {
