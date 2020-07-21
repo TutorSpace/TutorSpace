@@ -8,6 +8,7 @@ use App\PostType;
 use App\PostDraft;
 use Carbon\Carbon;
 use Facades\App\Tag;
+use App\Events\PostViewed;
 use App\Rules\WordCountGTE;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -187,7 +188,7 @@ class PostController extends Controller
     public function show(Request $request, Post $post)
     {
         if (!$request->session()->has($post->slug)) {
-            $post->increment('view_count');
+            event(new PostViewed($post));
             $request->session()->put($post->slug, true);
         }
         return view('forum.show', [
