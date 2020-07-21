@@ -20,7 +20,7 @@
         <span>{{ $post->getTimeAgo() }}</span>
     </p>
 
-    <h4 class="mb-4">
+    <h4 class="mb-2">
         <a class="post__heading"  href="{{ route('posts.show', $post->slug) }}">
             {{ $post->title }}
         </a>
@@ -28,7 +28,7 @@
     <div class="post-preview__content-container">
         <div class="post-preview__left">
 
-            <div class="post__content fc-grey mb-4">
+            <div class="post__content fc-grey mb-2">
                 {!! Str::words(strip_tags($post->content), 40, ' ...') !!}
             </div>
         </div>
