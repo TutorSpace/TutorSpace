@@ -186,6 +186,10 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
+        if (!$request->session()->has($post->slug)) {
+            $post->increment('view_count');
+            $request->session()->put($post->slug, true);
+        }
         return view('forum.show', [
             'trendingTags' => Tag::getTrendingTags(),
             'post' => $post
