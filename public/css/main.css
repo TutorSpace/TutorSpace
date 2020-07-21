@@ -12780,6 +12780,7 @@ h6 {
 .post-reply .left-container .user-info {
   text-align: center;
   font-size: 1.2rem;
+  line-height: 1.2;
 }
 
 .post-reply .right-container {
