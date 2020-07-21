@@ -51,8 +51,10 @@ class PostController extends Controller
                             ->groupBy(['posts.id']);
         }
 
+        $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->paginate(self::$POSTS_PER_PAGE);
+
         return view('forum.index', [
-            'posts' => $posts->paginate(self::$POSTS_PER_PAGE),
+            'posts' => $posts,
             'pageTitle' => 'Forum',
             'trendingTags' => Tag::getTrendingTags(),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()

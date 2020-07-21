@@ -280,7 +280,7 @@ class PostSeeder extends Seeder
             <pre class="language-python"><code>str = "Hello, World!"
             print(str)</code></pre>',
             'slug' => 'random-post-11',
-            'user_id' => 1,
+            'user_id' => 2,
             'post_type_id' => 1,
             'view_count' => 10,
             'created_at' => '2020-07-16 19:55:30'
@@ -371,7 +371,7 @@ class PostSeeder extends Seeder
                 'tag_id' => 13
             ],[
                 'post_id' => 14,
-                'tag_id' => 14
+                'tag_id' => 1
             ]
         ];
         DB::table('post_tag')->insert($postTags);
