@@ -87,11 +87,15 @@
             @endif
             Filter
         </button>
-        <div class="mt-4 filter-container__content hidden">
+        <div class="mt-4 filter-container__content @unless(old('post-type') || old('post-sort-by')) hidden @endunless">
             <span>Type</span>
             @foreach (App\PostType::all() as $postType)
             <div class="d-flex align-items-center">
-                <input type="checkbox" value="{{ Str::lower($postType->post_type) }}" id="post-type-{{ Str::lower($postType->post_type) }}" name="post-type[]">
+                <input type="checkbox" value="{{ $postType->id }}" id="post-type-{{ Str::lower($postType->post_type) }}" name="post-type[]"
+                @unless (old('post-type') && !in_array($postType->id, old('post-type')))
+                    checked
+                @endunless
+                >
                 <label for="post-type-{{ Str::lower($postType->post_type) }}">
                     {{ $postType->post_type }}
                 </label>
@@ -99,13 +103,21 @@
             @endforeach
             <span>Sort By</span>
             <div class="d-flex align-items-center">
-                <input type="radio" value="popularity" id="post-sort-by-popularity" name="post-sort-by">
+                <input type="radio" value="popularity" id="post-sort-by-popularity" name="post-sort-by"
+                @unless (old('post-sort-by') && old('post-sort-by') != 'popularity')
+                    checked
+                @endunless
+                >
                 <label for="post-sort-by-popularity">
                     Popularity
                 </label>
             </div>
             <div class="d-flex align-items-center">
-                <input type="radio" value="time" id="post-sort-by-time" name="post-sort-by">
+                <input type="radio" value="time" id="post-sort-by-time" name="post-sort-by"
+                @if (old('post-sort-by') == 'time')
+                    checked
+                @endif
+                >
                 <label for="post-sort-by-time">
                     Time
                 </label>

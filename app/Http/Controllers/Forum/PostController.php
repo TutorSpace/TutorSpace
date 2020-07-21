@@ -336,49 +336,45 @@ class PostController extends Controller
     public function search(Request $request) {
         $request->session()->flashInput($request->all());
 
+        $posts = Post::with([
+            'tags',
+            'user'
+        ])->withCount([
+            'usersUpvoted',
+            'replies',
+            'tags'
+        ]);
+
+        if($request->input('post-type')) {
+            $posts = $posts->whereIn('posts.post_type_id', $request->input('post-type'));
+        }
+
         if($request->input('search-by') == 'keywords') {
-            $posts = Post::with([
-                'tags',
-                'user'
-            ])->withCount([
-                'usersUpvoted',
-                'replies',
-                'tags'
-            ])
-            ->join('users', 'users.id', '=', 'posts.user_id')
-            ->where('posts.title', 'like', "%{$request->input('keyword')}%")
-            ->orWhere('users.first_name', 'like', "%{$request->input('keyword')}%")
-            ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%")
-            ->paginate(self::$POSTS_PER_PAGE);
+            $posts = $posts
+                        ->join('users', 'users.id', '=', 'posts.user_id')
+                        ->where(function($query) use($request) {
+                            $query->where('posts.title', 'like', "%{$request->input('keyword')}%")
+                            ->orWhere('users.first_name', 'like', "%{$request->input('keyword')}%")
+                            ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%");
+                        });
         }
         else if($request->input('search-by') == 'tags') {
-            $posts = Post::with([
-                'tags',
-                'user'
-            ])->withCount([
-                'usersUpvoted',
-                'replies',
-                'tags'
-            ])
-            ->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
+            $posts = $posts->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
             // todo: needs to be modified (need to check all the tags in the input are of this post)
             ->whereIn('tags.id', $request->input('tags'))
-            ->distinct()
-            ->paginate(self::$POSTS_PER_PAGE);
-        }
-        else {
-            $posts = Post::with([
-                'tags',
-                'user'
-            ])->withCount([
-                'usersUpvoted',
-                'replies',
-                'tags'
-            ])
-            ->paginate(self::$POSTS_PER_PAGE);
+            ->distinct();
         }
 
+        // default sorting method is by popularity
+        if($request->input('post-sort-by') == 'time') {
+            $posts = $posts->orderBy('posts.created_at', 'DESC');
+        }
+        else {
+            $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC');
+        }
+
+        $posts = $posts->paginate(self::$POSTS_PER_PAGE);
 
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
@@ -403,7 +399,7 @@ class PostController extends Controller
                             'tags'
                         ])
                         // todo: modify the formula
-                        ->orderByRaw('30 * users_upvoted_count + 100 * replies_count + view_count DESC')
+                        ->orderByRaw(POST::POPULARITY_FORMULA)
                         ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Popular Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
