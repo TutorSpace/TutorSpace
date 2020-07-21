@@ -109,9 +109,6 @@
             <div class="d-flex justify-content-center btn-google-container">
                 {{-- google button --}}
                 <div id="btn-google-student-lg" class="btn-google btn-animation-y"></div>
-                <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
-                    {{ session('googleLoginError') ?? session('googleLoginError') }}
-                </span>
             </div>
         </div>
     </div>

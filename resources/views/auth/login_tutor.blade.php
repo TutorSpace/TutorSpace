@@ -76,7 +76,7 @@ bg-grey-light body-login
                 {{-- google button --}}
                 <div id="btn-google-sm" class="btn-google btn-animation-y"></div>
                 <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
-                    {{ session('googleLoginError') ?? session('googleLoginError') }}
+                    {{ session('googleLoginError') }}
                 </span>
             </div>
 

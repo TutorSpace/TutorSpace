@@ -15352,6 +15352,26 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.signup--right .btn-google-container-sm {
+  display: none !important;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup--right .btn-google-container-sm {
+    display: flex !important;
+  }
+}
+
+.signup--right .separator {
+  display: none !important;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .signup--right .separator {
+    display: block !important;
+  }
+}
+
 .signup--right-student {
   color: #1F7AFF;
 }

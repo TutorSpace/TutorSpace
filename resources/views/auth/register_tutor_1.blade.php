@@ -13,7 +13,7 @@ bg-grey-light body-signup
         <h2 class="signup__heading">Hello, Tutor!</h2>
         <div class="d-flex justify-content-center bottom-4 centerX">
             {{-- google button --}}
-            <div id="btn-google" class="btn-google btn-animation-y"></div>
+            <div id="btn-google-lg" class="btn-google btn-animation-y"></div>
         </div>
     </div>
     {{-- right container --}}
@@ -102,6 +102,18 @@ bg-grey-light body-signup
                 @enderror
             </div>
 
+
+            <p class="text-center my-4 fs-1-4 fc-grey separator">or</p>
+
+            <div class="d-flex justify-content-center btn-google-container mt-0 btn-google-container-sm">
+                {{-- google button --}}
+                <div id="btn-google-sm" class="btn-google btn-animation-y"></div>
+                <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
+                    {{ session('googleLoginError') }}
+                </span>
+            </div>
+
+
             <div class="signup-container-bottom p-relative">
                 <span class="fc-grey absCenter fs-2 ws-no-wrap">Already have an account? <a href="{{ route('login.index.tutor') }}" class="btn-link-tutor">Log in</a></span>
                 {{-- btn-next --}}
@@ -139,7 +151,8 @@ bg-grey-light body-signup
 
     // ===================== Google auth ==========================
     let googleBtnWidth = 240,
-        googleBtnHeight = 50;
+        googleBtnHeight = 50,
+        longTitle = true;
     adjustGoogleBtnSize();
 
     $(window).resize(function () {
@@ -147,20 +160,28 @@ bg-grey-light body-signup
         renderButton();
     });
 
-    $('#btn-google').click(function (e) {
+    $('#btn-google-sm, #btn-google-lg').click(function (e) {
         e.stopPropagation();
         window.location.href = '{{ route('register.google.tutor') }}';
     });
 
 
     function renderButton() {
-        gapi.signin2.render('btn-google', {
+        gapi.signin2.render('btn-google-sm', {
+            'scope': 'profile email',
+            'width': googleBtnWidth,
+            'height': googleBtnHeight,
+            'longtitle': longTitle,
+            'theme': 'light'
+        });
+
+        gapi.signin2.render('btn-google-lg', {
             'scope': 'profile email',
             'width': googleBtnWidth,
             'height': googleBtnHeight,
             'longtitle': true,
             'theme': 'light'
-        })
+        });
 
         let checkBtnAddedInterval = setInterval(() => {
             _.forEach($('.abcRioButtonContents').children(), function (ele) {
@@ -178,14 +199,17 @@ bg-grey-light body-signup
 
     function adjustGoogleBtnSize() {
         if ($(window).width() < 400) {
-            googleBtnWidth = 165;
-            googleBtnHeight = 36;
+            googleBtnWidth = 120;
+            googleBtnHeight = 28;
+            longTitle = false;
         } else if ($(window).width() < 576) {
-            googleBtnWidth = 200;
-            googleBtnHeight = 40;
+            googleBtnWidth = 140;
+            googleBtnHeight = 30;
+            longTitle = false;
         } else {
             googleBtnWidth = 240;
             googleBtnHeight = 50;
+            longTitle = true
         }
     }
 
