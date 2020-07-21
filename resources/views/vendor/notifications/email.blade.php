@@ -55,7 +55,7 @@
             @lang(
                 "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
                 "into your web browser: [:displayableActionUrl](:actionURL)\n\n" .
-                "Dont't want to receive notifications emails from us? Click [here](:unsubscribeUrl) to unsubscribe from TutorSpace"
+                "Dont't want to receive latest news from us? Click [here](:unsubscribeUrl) to unsubscribe from TutorSpace"
                 ,[
                     'actionText' => $actionText,
                     'actionURL' => $actionUrl,
@@ -83,7 +83,7 @@
     @if(isset($isSubscriptionEmail) && $isSubscriptionEmail)
         @slot('subcopy')
             @lang(
-                "Dont't want to receive notifications emails from us? Click [here](:unsubscribeUrl) to unsubscribe from TutorSpace"
+                "Dont't want to receive latest news from us? Click [here](:unsubscribeUrl) to unsubscribe from TutorSpace"
                 ,[
                     'unsubscribeUrl' => route('subscription.destroy', [
                         'email' => $email
