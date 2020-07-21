@@ -58,6 +58,11 @@
         </option>
     </select>
 
+    @if (isset($hasFilter) && $hasFilter)
     <div class="flex-100"></div>
-    <div>dghlsdghldshglksd</div>
+    <div class="filter-container mt-3">
+        <button class="btn btn-lg btn-primary">Filter</button>
+    </div>
+    @endif
+
 </form>

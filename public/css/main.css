@@ -14422,6 +14422,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .forum-content__search {
   display: flex;
+  flex-wrap: wrap;
   font-size: 1.6rem;
   width: 100%;
   margin-top: 2rem;

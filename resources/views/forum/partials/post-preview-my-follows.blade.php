@@ -1,4 +1,4 @@
-@foreach ($posts as $post)
+@forelse ($posts as $post)
 <div class="post-preview" data-post-slug="{{ $post->slug }}">
     <span class="post-preview-tag">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -73,4 +73,7 @@
     </div>
 
 </div>
-@endforeach
+@empty
+<h5 class="mt-4">You have not followed any posts yet.</h5>
+@endforelse
+

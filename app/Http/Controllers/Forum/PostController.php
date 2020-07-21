@@ -384,7 +384,8 @@ class PostController extends Controller
             'trendingTags' => Tag::getTrendingTags(),
             'posts' => $posts,
             'pageTitle' => 'Forum - Search Results',
-            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'hasFilter' => true
         ]);
     }
 

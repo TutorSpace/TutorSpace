@@ -1,4 +1,4 @@
-@foreach ($posts as $post)
+@forelse ($posts as $post)
 <div class="post-preview @if(Auth::check() && $post->user->id == Auth::user()->id) post-preview--mypost @endif">
     <p class="post__heading-2">
         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
@@ -67,4 +67,6 @@
     </div>
 
 </div>
-@endforeach
+@empty
+<h5 class="mt-4">No posts yet.</h5>
+@endforelse
