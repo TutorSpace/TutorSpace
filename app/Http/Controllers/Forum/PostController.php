@@ -49,11 +49,21 @@ class PostController extends Controller
                             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                             ->whereIn('tags.id', $interestedTagIDs)
                             ->where('posts.user_id', '!=', $user->id)
-                            ->groupBy(['posts.id']);
+                            ->groupBy(['posts.id'])
+                            ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')
+                            ->get();
+
+            $posts = $posts->merge(
+                Post::with(['tags', 'user'])
+                    ->withCount(['usersUpvoted', 'replies', 'tags'])
+                    ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->get()
+            );
+        }
+        else {
+            $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC');
         }
 
-        $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->paginate(self::$POSTS_PER_PAGE);
-
+        $posts = $posts->paginate(self::$POSTS_PER_PAGE);
 
         return view('forum.index', [
             'posts' => $posts,
