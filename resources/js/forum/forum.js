@@ -107,3 +107,6 @@ $('#svg-tags, #svg-keyword').click(function() {
 
 
 
+$('.btn-filter').click(function() {
+
+});

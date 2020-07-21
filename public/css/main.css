@@ -14421,37 +14421,39 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .forum-content__search {
-  display: flex;
-  flex-wrap: wrap;
   font-size: 1.6rem;
+}
+
+.forum-content__search--normal {
+  display: flex;
   width: 100%;
   margin-top: 2rem;
 }
 
-.forum-content__search > * {
+.forum-content__search--normal > * {
   color: inherit;
   font-size: inherit;
 }
 
-.forum-content__search .form-search {
+.forum-content__search--normal .form-search {
   width: 35rem;
 }
 
-.forum-content__search .form-search .input-search {
+.forum-content__search--normal .form-search .input-search {
   background-color: #F9F9F9;
   transition: all 0.1s;
 }
 
-.forum-content__search .form-search .input-search + .svg-search {
+.forum-content__search--normal .form-search .input-search + .svg-search {
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.forum-content__search .form-search .input-search + .svg-search:hover {
+.forum-content__search--normal .form-search .input-search + .svg-search:hover {
   cursor: pointer;
 }
 
-.forum-content__search .tags-container {
+.forum-content__search--normal .tags-container {
   max-width: 35rem;
   flex: 1;
   border-radius: 0.5rem;
@@ -14459,26 +14461,41 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #F9F9F9;
 }
 
-.forum-content__search .tags-container .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
+.forum-content__search--normal .tags-container .select-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
   height: 2.2rem;
 }
 
-.forum-content__search .tags-container .select-container .selection .select2-selection__rendered {
+.forum-content__search--normal .tags-container .select-container .selection .select2-selection__rendered {
   padding-left: 1rem !important;
 }
 
-.forum-content__search__search-by {
+.forum-content__search__search-by,
+.forum-content__search .btn-filter {
   padding: 0.5rem 1rem;
-  border-color: currentColor;
   border-radius: 0.5rem;
   outline: none;
-  font-weight: 500;
   background-color: #F9F9F9;
   align-self: center;
+  border: none;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .forum-content__search__search-by {
+  font-weight: 500;
   margin-left: 2rem;
+}
+
+.forum-content__search .filter-container {
+  font-size: inherit;
+}
+
+.forum-content__search .filter-container .btn-filter {
+  font-size: inherit;
+  color: currentColor;
+  width: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .forum-right {

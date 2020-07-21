@@ -289,73 +289,85 @@
 .forum-content {
 
     &__search {
-        display: flex;
-        flex-wrap: wrap;
         font-size: 1.6rem;
-        width: 100%;
-        margin-top: 2rem;
+        &--normal {
+            display: flex;
 
-        > * {
-            color: inherit;
-            font-size: inherit;
-        }
+            width: 100%;
+            margin-top: 2rem;
 
-        .form-search {
-            width: 35rem;
+            > * {
+                color: inherit;
+                font-size: inherit;
+            }
 
-            .input-search {
-                background-color: $color-white-dark-5;
-                transition: all .1s;
+            .form-search {
+                width: 35rem;
 
-                + .svg-search {
-                    width: 1.75rem;
-                    height: 1.75rem;
+                .input-search {
+                    background-color: $color-white-dark-5;
+                    transition: all .1s;
 
-                    &:hover {
-                        cursor: pointer;
+                    + .svg-search {
+                        width: 1.75rem;
+                        height: 1.75rem;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
                     }
                 }
             }
-        }
 
-        .tags-container {
-            max-width: 35rem;
-            flex: 1;
-            border-radius: .5rem;
-            overflow: hidden;
+            .tags-container {
+                max-width: 35rem;
+                flex: 1;
+                border-radius: .5rem;
+                overflow: hidden;
 
-            background-color: $color-white-dark-5;
+                background-color: $color-white-dark-5;
 
 
-            .select-container {
+                .select-container {
 
-                .select2-container--default .select2-selection--multiple .select2-selection__choice {
-                    height: 2.2rem;
+                    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+                        height: 2.2rem;
+                    }
+
+                    .selection .select2-selection__rendered {
+                        padding-left: 1rem !important;
+                    }
+
                 }
-
-                .selection .select2-selection__rendered {
-                    padding-left: 1rem !important;
-                }
-
             }
         }
 
-        &__search-by {
+        &__search-by, .btn-filter {
             padding: .5rem 1rem;
-            border-color: currentColor;
             border-radius: .5rem;
             outline: none;
-            font-weight: 500;
             background-color: $color-white-dark-5;
             align-self: center;
+            border: none;
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
         }
 
         &__search-by {
+            font-weight: 500;
             margin-left: 2rem;
         }
 
         .filter-container {
+            font-size: inherit;
 
+            .btn-filter {
+                font-size: inherit;
+                color: currentColor;
+                width: 10rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 }
