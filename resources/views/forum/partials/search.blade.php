@@ -91,21 +91,21 @@
             <span>Type</span>
             @foreach (App\PostType::all() as $postType)
             <div class="d-flex align-items-center">
-                <input type="checkbox" value="" id="post-type-{{ $postType->post_type }}">
-                <label for="post-type-{{ $postType->post_type }}">
+                <input type="checkbox" value="{{ Str::lower($postType->post_type) }}" id="post-type-{{ Str::lower($postType->post_type) }}" name="post-type[]">
+                <label for="post-type-{{ Str::lower($postType->post_type) }}">
                     {{ $postType->post_type }}
                 </label>
             </div>
             @endforeach
             <span>Sort By</span>
             <div class="d-flex align-items-center">
-                <input type="radio" value="" id="post-sort-by-popularity">
+                <input type="radio" value="popularity" id="post-sort-by-popularity" name="post-sort-by">
                 <label for="post-sort-by-popularity">
                     Popularity
                 </label>
             </div>
             <div class="d-flex align-items-center">
-                <input type="radio" value="" id="post-sort-by-time">
+                <input type="radio" value="time" id="post-sort-by-time" name="post-sort-by">
                 <label for="post-sort-by-time">
                     Time
                 </label>

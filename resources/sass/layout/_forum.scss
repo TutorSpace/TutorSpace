@@ -375,12 +375,14 @@
                 padding: 1rem 3rem;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-row-gap: 1rem;
                 align-items: center;
 
                 label {
                     color: $color-black-2;
                     margin-bottom: 0;
-                    margin-left: 1rem;
+                    margin-left: .5rem;
+                    cursor: pointer;
                 }
             }
         }
