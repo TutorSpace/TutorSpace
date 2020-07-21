@@ -15,6 +15,8 @@ class Post extends Model
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';
+
+    // todo: modify the formula
     CONST POPULARITY_FORMULA = '30 * users_upvoted_count + 100 * replies_count + view_count DESC';
 
     protected $dates = ['created_at', 'updated_at'];

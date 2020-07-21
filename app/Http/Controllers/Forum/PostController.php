@@ -39,8 +39,20 @@ class PostController extends Controller
      */
     public function index()
     {
+        $posts = Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags']);
+
+        if(Auth::check()) {
+            $user = Auth::user();
+            $interestedTagIDs = $user->tags()->pluck('id');
+            $posts = $posts->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+                            ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+                            ->whereIn('tags.id', $interestedTagIDs)
+                            ->where('posts.user_id', '!=', $user->id)
+                            ->groupBy(['posts.id']);
+        }
+
         return view('forum.index', [
-            'posts' => Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
+            'posts' => $posts->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum',
             'trendingTags' => Tag::getTrendingTags(),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
