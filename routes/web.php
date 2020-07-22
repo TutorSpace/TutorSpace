@@ -17,6 +17,9 @@ Route::get('/search', 'SearchController@index')->name('search.index');
 Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('subscription.store');
 Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
 
+// invite to be tutor
+Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 

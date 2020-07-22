@@ -128,7 +128,10 @@
             @else
             <span class="user-info mt-1">Student</span>
             <button class="btn btn-chat btn-animation-y-sm mt-4">Chat</button>
+
+            @can('beInvitedToBeTutor', $post->user)
             <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
+            @endcan
             @endif
 
         </div>

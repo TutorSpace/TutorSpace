@@ -11,6 +11,8 @@ use App\ReportForum;
 use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\Notifications\InviteToBeTutorNotification;
 
 class GeneralController extends Controller
 {
@@ -24,6 +26,7 @@ class GeneralController extends Controller
         return view('policy.index');
     }
 
+    // report forum
     public function storeReport(Request $request) {
         $request->validate([
             'report-reason' => [
@@ -48,7 +51,16 @@ class GeneralController extends Controller
         ]);
     }
 
+    public function inviteToBeTutor(User $user) {
+        Gate::authorize('beInvitedToBeTutor', $user);
 
+        $user->notify(new InviteToBeTutorNotification(Auth::user()));
+        return response()->json(
+            [
+                'successMsg' => "Successfully invited $user->first_name $user->last_name to be a tutor!"
+            ]
+        );
+    }
 
 
 

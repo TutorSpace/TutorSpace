@@ -436,7 +436,17 @@ $('.user-card .btn-request').click(function() {
 });
 
 $('.user-card .btn-invite').click(function() {
-    alert('invite');
+    $.ajax({
+        type:'POST',
+        url: "{{ route('invite-to-be-tutor', $post->user) }}",
+        success: (data) => {
+            toastr.success(data.successMsg);
+        },
+        error: function(error) {
+            toastr.error('Something went wrong!');
+            console.log(error);
+        }
+    });
 });
 
 @else
