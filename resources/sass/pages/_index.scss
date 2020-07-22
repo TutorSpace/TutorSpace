@@ -19,6 +19,10 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    @include respond(extra-sm) {
+        background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/images/trojan.jpg);
+    }
+
 
     .logo {
         margin-left: 2rem;
@@ -223,6 +227,10 @@
         top: 8rem;
         width: 25rem;
         left: -3rem;
+
+        @include respond(extra-sm) {
+            display: none;
+        }
     }
 
     .bg-shape-circle-bottom {

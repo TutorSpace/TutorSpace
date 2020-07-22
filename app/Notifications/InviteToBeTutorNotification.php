@@ -2,29 +2,26 @@
 
 namespace App\Notifications;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Notifications\Messages\SubscriptionMessage;
+use Illuminate\Notifications\Messages\MailMessage;
 
-
-class EmailSubscription extends Notification
+class InviteToBeTutorNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $userName;
-    public $email;
+    public $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($userName, $email)
+    public function __construct(User $user)
     {
-        $this->userName = $userName;
-        $this->email = $email;
+        $this->user = $user;
     }
 
     /**
@@ -35,7 +32,7 @@ class EmailSubscription extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -46,11 +43,11 @@ class EmailSubscription extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new SubscriptionMessage($this->email))
-                    ->greeting('Dear ' . $this->userName)
-                    ->line('Thanks for subscribing to TutorSpace! We will send you the latest updates in the future.')
-                    ->action('Start your journey as a Student/Tutor!', route('index'))
-                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
+        return (new MailMessage)
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
+                    ->action('View the notification', url('/'))
+                    ->line('Thank you for using TutorSpace!');
     }
 
     /**
@@ -62,7 +59,7 @@ class EmailSubscription extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'user' => $this->user
         ];
     }
 }

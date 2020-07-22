@@ -18,7 +18,7 @@ class Post extends Model
     CONST CACHE_KEY = 'POSTS';
 
     // todo: modify the formula
-    CONST POPULARITY_FORMULA = '30 * users_upvoted_count + 100 * replies_count + view_count DESC';
+    CONST POPULARITY_FORMULA = '50 * users_upvoted_count + 100 * replies_count + view_count DESC, created_at DESC';
 
     protected $dates = ['created_at', 'updated_at'];
 
@@ -199,9 +199,9 @@ class Post extends Model
                 ])
                 ->join('post_types', 'post_types.id', 'posts.post_type_id')
                 ->where('post_types.post_type', 'Question')
-                ->having('replies_count', '<', 2)
+                ->having('replies_count', '<=', 2)
                 // todo: modify the formula
-                ->orderByRaw('-100 * replies_count + 1 * view_count + 30 * users_upvoted_count DESC');
+                ->orderByRaw('50 * users_upvoted_count + view_count DESC');
     }
 
 

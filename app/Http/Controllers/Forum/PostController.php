@@ -50,7 +50,7 @@ class PostController extends Controller
                             ->whereIn('tags.id', $interestedTagIDs)
                             ->where('posts.user_id', '!=', $user->id)
                             ->groupBy(['posts.id'])
-                            ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')
+                            ->orderByRaw(POST::POPULARITY_FORMULA)
                             ->get();
 
             // to put the recommmended posts before the general popular posts
@@ -58,11 +58,11 @@ class PostController extends Controller
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
                     ->where('posts.user_id', '!=', $user->id)
-                    ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->get()
+                    ->orderByRaw(POST::POPULARITY_FORMULA)->get()
             );
         }
         else {
-            $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC');
+            $posts = $posts->orderByRaw(POST::POPULARITY_FORMULA);
         }
 
         $posts = $posts->paginate(self::$POSTS_PER_PAGE);
@@ -433,6 +433,8 @@ class PostController extends Controller
                         ])
                         // todo: modify the formula
                         ->orderByRaw(POST::POPULARITY_FORMULA)
+                        ->take(30)
+                        ->get()
                         ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Popular Posts',
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()

@@ -106,7 +106,7 @@ class PostSeeder extends Seeder
             'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/lqNTPcNq44URzgJskKHcDuZE62FqbWzbljTSyTmf.jpeg',
             'user_id' => 1,
             'post_type_id' => 1,
-            'view_count' => 3600,
+            'view_count' => 36,
             'created_at' => '2020-05-08 12:23:43'
         ]);
 
@@ -133,7 +133,7 @@ class PostSeeder extends Seeder
             'slug' => 'this-is-another-testing-note',
             'user_id' => 2,
             'post_type_id' => 2,
-            'view_count' => 1200,
+            'view_count' => 12,
             'created_at' => '2020-07-05 14:41:26'
         ]);
 
@@ -148,7 +148,7 @@ class PostSeeder extends Seeder
             'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/4IZ41ITmkNX5Sf1kaEJsIGmYh5YwFHQEaNQQ1rP0.png',
             'user_id' => 1,
             'post_type_id' => 1,
-            'view_count' => 4800,
+            'view_count' => 48,
             'created_at' => '2020-07-08 14:55:30'
         ]);
 
@@ -162,7 +162,7 @@ class PostSeeder extends Seeder
             'slug' => 'random-post-1',
             'user_id' => 2,
             'post_type_id' => 3,
-            'view_count' => 4800,
+            'view_count' => 48,
             'created_at' => '2020-07-09 14:55:30'
         ]);
 
@@ -174,7 +174,7 @@ class PostSeeder extends Seeder
             'slug' => 'random-post-2',
             'user_id' => 2,
             'post_type_id' => 1,
-            'view_count' => 400,
+            'view_count' => 4,
             'created_at' => '2020-07-11 14:55:30'
         ]);
 

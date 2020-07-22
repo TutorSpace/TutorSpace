@@ -13270,11 +13270,6 @@ svg.bookmark:hover {
   background-image: linear-gradient(to right, #1F7AFF, #0C4293);
 }
 
-.slider-handle {
-  background-color: #1F7AFF;
-  background-image: linear-gradient(to bottom, #0075E0, #0075E0);
-}
-
 .slider .tooltip.bs-tooltip-top,
 .slider .tooltip.bs-tooltip-auto[x-placement^=top] {
   margin-top: -3rem;
@@ -13282,6 +13277,16 @@ svg.bookmark:hover {
 
 .slider.slider-horizontal {
   width: 100%;
+}
+
+.bg-student .slider-handle {
+  background-color: #1F7AFF;
+  background-image: linear-gradient(to bottom, #0075E0, #0075E0);
+}
+
+.bg-tutor .slider-handle {
+  background-color: #6749DF;
+  background-image: linear-gradient(to bottom, #502ED9, #502ED9);
 }
 
 .ui-timepicker-wrapper {
@@ -14504,6 +14509,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 0.3rem 0.7rem;
 }
 
+.forum-content__search .filter-container .btn-filter svg {
+  height: 2rem;
+}
+
 .forum-content__search .filter-container__content {
   border-radius: 1rem;
   background-color: #F9F9F9;
@@ -14923,6 +14932,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-size: cover;
 }
 
+@media only screen and (max-width: 35.99em) {
+  .index__top {
+    background-image: linear-gradient(to right bottom, rgba(103, 73, 223, 0.8), rgba(48, 24, 143, 0.8)), url(/images/trojan.jpg?c6cb7d94165b23b9c4b765d191146a1d);
+  }
+}
+
 .index__top .logo {
   margin-left: 2rem;
   width: 40rem;
@@ -15155,6 +15170,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   top: 8rem;
   width: 25rem;
   left: -3rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .index__bottom .bg-shape-triangle-left {
+    display: none;
+  }
 }
 
 .index__bottom .bg-shape-circle-bottom {
