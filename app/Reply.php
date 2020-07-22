@@ -19,7 +19,6 @@ class Reply extends Model
         if($this->isDirectReply())
             return $this;
         else {
-            // return $this->belongsTo('App\Reply', 'base_reply_id');
             return Reply::find($this->base_reply_id);
         }
     }

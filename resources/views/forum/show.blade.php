@@ -208,7 +208,12 @@ bg-student
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
                                 <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
-                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button"><span class="keyword">Display</span> {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}</button>
+                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button">
+                                        <span class="keyword">
+                                            Display
+                                        </span>
+                                    {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}
+                                </button>
                                 @endif
                                 <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
                                     <svg class="mr-1px">
@@ -450,7 +455,10 @@ $('#reportModal').modal('show');
 
 @if (session('newFollowupId'))
     $(`.followup-container[data-followup-for=${$('#scroll-to-followup').attr('data-followup-for')}]`).removeClass('hidden');
-    // $(`.post-reply[data-reply-id=${}]`).show();
+
+    let replyId = $('#scroll-to-followup').attr('data-followup-for');
+    $(`.post-reply[data-reply-id=${replyId}]`).find('.post-reply__actions .keyword').html('Hide');
+
     $('html, body').animate({
         scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 100
     }, 2000);

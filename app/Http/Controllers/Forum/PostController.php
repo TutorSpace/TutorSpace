@@ -57,6 +57,7 @@ class PostController extends Controller
             $posts = $posts->merge(
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
+                    ->where('posts.user_id', '!=', $user->id)
                     ->orderByRaw(POST::POPULARITY_FORMULA . ', created_at DESC')->get()
             );
         }
