@@ -151,7 +151,6 @@ class Post extends Model
                     else {
                         return $posts;
                     }
-
                 }
             );
         }

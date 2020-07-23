@@ -193,7 +193,6 @@ class SearchController extends Controller
             else {
                 $startTimes = [date("H:i:s", strtotime($request->input('available-start-time')))];
 
-
                 $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
 
