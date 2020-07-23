@@ -95,11 +95,11 @@
 
     @if(in_array(Route::current()->getName(), ['posts.show']))
         <div class="user-card @if (Auth::check() && (Auth::check() && $post->user->id == Auth::user()->id)) hidden @endif">
-            @if ($post->user->is_tutor)
+            @unless ((Auth::check() && Auth::user()->is_tutor) || !$post->user->is_tutor)
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bookmark bookmark-svg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 12l5 3V3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10.234z"/>
             </svg>
-            @endif
+            @endunless
 
             <img class="user-image" src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user image">
 
