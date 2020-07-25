@@ -1,60 +1,74 @@
 # TutorSpace
 
-## Website: https://tutor.joinme.us/
+## Website: https://tutorspace.joinme.us/
+
+## Promotion Page: https://www.tutorspace.info
 
 ## Sample Tutor Account:
 ```
-Email: sophiap@usc.edu
-Password: 123
+Email: tutor@usc.edu
+Password: password
 ```
 
 ## Sample Student Account:
 ```
-Email: shuaiqin@usc.edu
-Password: 123
+Email: student@usc.edu
+Password: password
 ```
 
 ## Screenshots
-### 1. Index Page:
+### Index Page:
 ![Schema Picture](screenshots/index.png)
 
-### 2. Singup Wizard:
-![Schema Picture](screenshots/signup_wizard.png)
+### Login Page:
+![Schema Picture](screenshots/login.png)
 
-### 3. Home Page (Student):
-![Schema Picture](screenshots/home_student.png)
+### Sign Up Page:
+![Schema Picture](screenshots/signup.png)
 
-### 4. Home Page (Tutor):
-![Schema Picture](screenshots/home_tutor.png)
+### Forum:
+![Schema Picture](screenshots/forum.png)
 
-### 5. Chatting Page:
-![Schema Picture](screenshots/messages.png)
+### Forum (create new post):
+![Schema Picture](screenshots/create_new_post.png)
 
-### 6. Edit Availability Page (Tutor):
-![Schema Picture](screenshots/edit_availability.png)
+### Forum (post detail):
+![Schema Picture](screenshots/post_detail.png)
 
-### 7. Profile Page (about you):
-![Schema Picture](screenshots/profile.png)
-
-### 8. Profile Page (bookmarks):
-![Schema Picture](screenshots/bookmarks.png)
-
-### 9. Profile Page (reviews):
-![Schema Picture](screenshots/reviews.png)
-
-### 10. Profile Page (write reviews):
-![Schema Picture](screenshots/write_review.png)
-
-### 11. Profile Page (sessions):
-![Schema Picture](screenshots/upcoming_session_profile.png)
-
-### 12. Write Post:
-![Schema Picture](screenshots/write_post.png)
-
-### 13. Search Page:
+### Search:
 ![Schema Picture](screenshots/search.png)
 
-### 14. Report Tutor Page:
+### Singup Wizard:
+![Schema Picture](screenshots/signup_wizard.png)
+
+### Home Page (Student):
+![Schema Picture](screenshots/home_student.png)
+
+### Home Page (Tutor):
+![Schema Picture](screenshots/home_tutor.png)
+
+### Chatting Page:
+![Schema Picture](screenshots/messages.png)
+
+### Edit Availability Page (Tutor):
+![Schema Picture](screenshots/edit_availability.png)
+
+### Profile Page (about you):
+![Schema Picture](screenshots/profile.png)
+
+### Profile Page (bookmarks):
+![Schema Picture](screenshots/bookmarks.png)
+
+### Profile Page (reviews):
+![Schema Picture](screenshots/reviews.png)
+
+### Profile Page (write reviews):
+![Schema Picture](screenshots/write_review.png)
+
+### Profile Page (sessions):
+![Schema Picture](screenshots/upcoming_session_profile.png)
+
+### Report Tutor Page:
 ![Schema Picture](screenshots/report_tutor.png)
 
 ## Completed functionalities:

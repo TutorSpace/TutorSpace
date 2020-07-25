@@ -5,34 +5,32 @@
 }
 
 html {
-
-
-
     // This defines what 1rem is (10px in this case)
     font-size: 62.5%;
 
-    @include respond(tab-land) {
+    @include respond(lg-2) {
         font-size: 56.25%; //to make 1 rem = 9px
     }
 
-    @include respond(tab-port) {
+    @include respond(md) {
+        font-size: 53.125%; //to make 1 rem = 8.5px
+    }
+
+    @include respond(sm) {
         font-size: 50%; //to make 1 rem = 8px
     }
 
-    @include respond(phone) {
-        font-size: 35%; //to make 1 rem = 5.6px
+    @include respond(extra-sm) {
+        font-size: 37.5%; //to make 1 rem = 6px
     }
 
-    @include respond(big-desktop) {
+    @include respond(extra-lg) {
         font-size: 75%; //to make 1 rem = 12px
     }
-
-
 }
 
 body {
     box-sizing: border-box;
-
 }
 
 
@@ -50,40 +48,3 @@ html,body
     overflow-x: hidden;
 }
 
-
-
-table {
-    img {
-        width: 4rem;
-        height: 4rem;
-        display: inline-block;
-        border-radius: 50%;
-        margin-right: 1rem;
-    }
-}
-
-svg.bookmark {
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-// for auto-complete
-.ui-menu-item {
-    font-size: $font-3;
-    position: relative;
-    z-index: 1000;
-}
-
-// customized bootstrap class
-._col-extra-small-12 {
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-
-    @media only screen and (max-width: 26.875em) { //430px
-        flex: 0 0 100%;
-        max-width: 100%;
-    };
-}

@@ -1,0 +1,181 @@
+.footer, .footer-sm {
+    background-color: rgba($color: $color-footer, $alpha: .8);
+    padding: 10rem 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    a {
+        &:hover {
+            color: $color-white;
+        }
+    }
+
+    * {
+        color: $color-white;
+        font-size: 1.8rem;
+    }
+
+    &__heading {
+        font-weight: bold;
+        margin-bottom: 1.2rem;
+    }
+
+
+    &__list {
+        list-style: none;
+        text-align: center;
+        margin-bottom: 5rem;
+
+        .footer__item {
+            margin-bottom: .2rem;
+        }
+
+        &__icon {
+            width: 2.3rem;
+            height: 2.3rem;
+            fill: $color-white;
+        }
+    }
+
+    .contact-email {
+        text-decoration: none;
+
+        span {
+            margin-left: .5rem;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .icon-social-media {
+        &:hover {
+            cursor: pointer;
+            animation: shake-animation .3s linear;
+        }
+    }
+
+    .btn-subscribe {
+        border: 1px solid $color-white;
+
+        &:hover {
+            background-color: $color-white;
+            color: black;
+        }
+    }
+}
+
+.footer {
+    &__left, &__right {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__list {
+
+        &:not(:last-child) {
+            margin-right: 7rem;
+        }
+    }
+
+    &__subscribe {
+        flex-basis: 100%;
+        width: 0;
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            height: 4rem;
+
+            .input-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                position: absolute;
+                top: .75rem;
+                fill: $color-white;
+            }
+
+            input {
+                background-color: transparent;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid $color-white;
+                color: $color-white;
+                padding-left: 4rem;
+                margin-right: 4rem;
+
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                &::placeholder {
+                    color: rgba($color-white-dark-2, .6);
+                }
+            }
+        }
+    }
+
+    @include respond(md) {
+        display: none;
+    }
+
+}
+
+
+.footer-sm {
+    display: none;
+
+    @include respond(md) {
+        display: flex;
+    }
+
+    @include respond(extra-sm) {
+        padding: 8rem 2rem;
+    }
+
+    &__list {
+        flex: 50%;
+    }
+
+    &__subscribe {
+        width: 100%;
+        padding: 2rem 5rem;
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            height: 4rem;
+
+            .input-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+                position: absolute;
+                top: .75rem;
+                fill: $color-white;
+            }
+
+            input {
+                background-color: transparent;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid $color-white;
+                color: $color-white;
+                padding-left: 4rem;
+                margin-right: 4rem;
+
+
+                &:focus {
+                    box-shadow: none;
+                }
+
+                &::placeholder {
+                    color: rgba($color-white-dark-2, .6);
+                }
+            }
+        }
+    }
+}

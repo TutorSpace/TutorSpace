@@ -1,0 +1,29 @@
+
+
+.slider-selection {
+    background-color: $color-blue-primary;
+    background-image: linear-gradient(to right, $color-blue-primary, $color-blue-secondary);
+}
+
+.slider .tooltip.bs-tooltip-top {
+    margin-top: -3rem;
+}
+
+.slider.slider-horizontal {
+    width: 100%;
+}
+
+
+.bg-student {
+    .slider-handle {
+        background-color: $color-blue-primary;
+        background-image: linear-gradient(to bottom, $color-blue-primary-2, $color-blue-primary-2);
+    }
+}
+
+.bg-tutor {
+    .slider-handle {
+        background-color: $color-purple-primary;
+        background-image: linear-gradient(to bottom, $color-purple-primary-2, $color-purple-primary-2);
+    }
+}

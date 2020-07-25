@@ -2,28 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\User;
-use App\Subject;
-use App\Characteristic;
-use App\Bookmark;
-use App\Dashboard_post;
 use Auth;
-use App\Tutor_request;
-use App\Session;
+
+use App\Tag;
+use App\User;
+use App\Reply;
 use App\Course;
-
+use App\Session;
+use App\Subject;
+use App\Bookmark;
 use Carbon\Carbon;
-
 use App\NewMessage;
+
+use Facades\App\Post;
+
+use App\Tutor_request;
+use App\Characteristic;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
-    public function test() {
+    public function __construct()
+    {
+        // Auth::login(User::find(2));
+        // $this->middleware('auth');
+    }
+    public function index(Request $request) {
 
-        // Sarah: dd() is laravel's way of php's dump. In your browser, go to localhost:8000/test and then this function will run. Whenever you want to test syntax, the easiest way would be go to 'localhost:8000/test', and run your test inside this function. Use this function to play around with the Database syntax
+        User::find(7)->notify(new MarkedAsBestReplyNotification(Post::find(1)));
+    }
 
+    public function test(Request $request) {
 
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
@@ -33,10 +46,10 @@ class testController extends Controller
         // dd(Dashboard_post::with('user')->first());
         // dd(Dashboard_post::join('users', 'users.id', '=', 'user_id')->where('users.is_tutor', 1)->get());
 
-        $user = Auth::user();
+        // $user = Auth::user();
         // get all the interested courses and subjects of the users
-        $course_ids = $user->courses()->pluck('id');
-        $subject_ids = $user->subjects()->pluck('id');
+        // $course_ids = $user->courses()->pluck('id');
+        // $subject_ids = $user->subjects()->pluck('id');
 
 
         // $posts = Dashboard_post::join('users', 'users.id', '=', 'user_id')
@@ -62,7 +75,7 @@ class testController extends Controller
 
         // dd(User::find(8)->getRating());
         // dd(Session::find(3)->courseSubject());
-        $navInput = "";
+        // $navInput = "";
         // $nameResults = User::where('full_name', 'like', "%{$navInput}%")->get();
         // dd($nameResults);
 
@@ -129,6 +142,27 @@ class testController extends Controller
         // }
 
 
-        event(new NewMessage('hi!'));
+        // event(new NewMessage('hi!'));
+
+        // return view('test');
+        // Auth::logout();
+        // dd(Auth::user());
+
+        // return view('auth.passwords.reset_student');
+
+        // dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
+
+        $path = $request->file('avatar')->storeAs(
+            '', 'placeholder.png'
+        );
+
+
+        return $path;
+
+
+    }
+
+    public function testForum(Request $request) {
+
     }
 }

@@ -28,10 +28,7 @@ class NotExistStudent implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(User::where('email', '=', $value)->where('is_tutor', false)->count() == 0)
-            return true;
-            
-        return false;
+        return User::where('email', '=', $value)->where('is_tutor', false)->doesntExist();
     }
 
     /**
@@ -41,6 +38,6 @@ class NotExistStudent implements Rule
      */
     public function message()
     {
-        return 'This Email is already registered.';
+        return 'This email is already registered as a student.';
     }
 }

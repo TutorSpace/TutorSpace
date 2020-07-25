@@ -21,5 +21,16 @@
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
         "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "bootbox": "^5.4.0",
+        "bootstrap-icons": "^1.0.0-alpha4",
+        "bootstrap-slider": "^11.0.2",
+        "color-hash": "^1.0.3",
+        "moment": "^2.27.0",
+        "pikaday": "^1.8.0",
+        "select2": "^4.0.13",
+        "timepicker": "^1.13.11",
+        "toastr": "^2.1.4"
     }
 }

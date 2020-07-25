@@ -12,4 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/auth/register.js', 'public/js/auth')
+    .js('resources/js/auth/login.js', 'public/js/auth')
+    .js('resources/js/forum/forum.js', 'public/js/forum')
+    .js('resources/js/forum/index.js', 'public/js/forum')
+    .js('resources/js/forum/create.js', 'public/js/forum')
+    .js('resources/js/search/index.js', 'public/js/search')
     .sass('resources/sass/main.scss', 'public/css');
