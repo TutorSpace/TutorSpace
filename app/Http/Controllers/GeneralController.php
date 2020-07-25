@@ -52,14 +52,23 @@ class GeneralController extends Controller
     }
 
     public function inviteToBeTutor(User $user) {
-        Gate::authorize('beInvitedToBeTutor', $user);
+        if(!User::existTutor($user->email)) {
+            $user->notify(new InviteToBeTutorNotification(Auth::user()));
+            return response()->json(
+                [
+                    'successMsg' => "Successfully invited $user->first_name $user->last_name to be a tutor!"
+                ]
+            );
+        }
+        else {
+            return response()->json(
+                [
+                    'errorMsg' => 'The user already had a tutor account.'
+                ]
+            );
+        }
 
-        $user->notify(new InviteToBeTutorNotification(Auth::user()));
-        return response()->json(
-            [
-                'successMsg' => "Successfully invited $user->first_name $user->last_name to be a tutor!"
-            ]
-        );
+
     }
 
 

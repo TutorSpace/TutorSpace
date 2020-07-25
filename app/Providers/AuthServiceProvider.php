@@ -26,9 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('beInvitedToBeTutor', function ($user, User $userInvited) {
-            return !User::existTutor($userInvited->email);
-        });
-
     }
 }
