@@ -4,6 +4,11 @@
 
 ## Promotion Page: https://www.tutorspace.info
 
+## Instagram: https://www.instagram.com/tutorspaceusc/
+
+## Prototype project: https://tutor.joinme.us
+### This prototype project is created by Shuaiqing Luo in Spring 2020 and is already fully functional. Wishing to build the largest tutor matching service platform in California that provides best user interfaces and user experiences, he decided to revamp all the interfaces and functionalities, which then leads to the current product of TutorSpace. If you are interested in helping him build this platform, please email Shuaiqing at shuaiqin@usc.edu
+
 ## Sample Tutor Account:
 ```
 Email: tutor@usc.edu
@@ -37,39 +42,6 @@ Password: password
 
 ### Search:
 ![Schema Picture](screenshots/search.png)
-
-### Singup Wizard:
-![Schema Picture](screenshots/signup_wizard.png)
-
-### Home Page (Student):
-![Schema Picture](screenshots/home_student.png)
-
-### Home Page (Tutor):
-![Schema Picture](screenshots/home_tutor.png)
-
-### Chatting Page:
-![Schema Picture](screenshots/messages.png)
-
-### Edit Availability Page (Tutor):
-![Schema Picture](screenshots/edit_availability.png)
-
-### Profile Page (about you):
-![Schema Picture](screenshots/profile.png)
-
-### Profile Page (bookmarks):
-![Schema Picture](screenshots/bookmarks.png)
-
-### Profile Page (reviews):
-![Schema Picture](screenshots/reviews.png)
-
-### Profile Page (write reviews):
-![Schema Picture](screenshots/write_review.png)
-
-### Profile Page (sessions):
-![Schema Picture](screenshots/upcoming_session_profile.png)
-
-### Report Tutor Page:
-![Schema Picture](screenshots/report_tutor.png)
 
 ## Completed functionalities:
 1. Login / Signup 
