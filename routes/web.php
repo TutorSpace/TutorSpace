@@ -148,3 +148,10 @@ Route::post('/messages', 'chatController@sendMessage')->middleware(['auth']);
 Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['auth']);
 Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['auth']);
 
+// Paypal demo
+Route::get('/payment/paypal_index', 'PaypalApiController@index');
+Route::post('/payment/paypal_payment', 'PaypalApiController@payWithPaypal');
+Route::get('/payment/status', 'PaypalApiController@getPaymentStatus');
+Route::post('/payment/paypal_retrieve', 'PaypalApiController@retrieveWithPaypal');
+Route::get('/payment/paypal_retrieve_index', 'PaypalApiController@retrieve_index');
+

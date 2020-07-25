@@ -16,7 +16,9 @@
         "laravel/socialite": "^4.4",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "pusher/pusher-php-server": "^4.1"
+        "paypal/rest-api-sdk-php": "*",
+        "pusher/pusher-php-server": "^4.1",
+        "stripe/stripe-php": "^7.43"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
