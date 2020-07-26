@@ -21,9 +21,22 @@ bg-student
     @include('home.partials.header')
 
     <main class="container home__content">
-
         @if (Auth::user()->is_tutor)
-            @include('home.partials.tutor_request')
+        <div class="row">
+            <h5 class="mb-2 w-100">You Have 2 New Tutor Requests!</h5>
+            <div class="info-boxes">
+                @include('home.partials.tutor_request', ['isNotification' => true])
+            </div>
+        </div>
+
+        <div class="row">
+            <h5 class="mb-2 w-100">Calendar</h5>
+
+        </div>
+
+
+
+
         @else
 
         @endif

@@ -126,6 +126,22 @@
             }
         }
 
+        &__content {
+            .info-box {
+                .actions, .action {
+                    .btn-decline {
+                        border: 1px solid $color-purple-primary;
+                        color: $color-purple-primary;
+                    }
+
+                    .btn-accept {
+                        background-color: $color-purple-primary;
+                        color: $color-white;
+                    }
+                }
+
+            }
+        }
 
     }
 }

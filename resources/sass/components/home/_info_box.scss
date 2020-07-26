@@ -1,0 +1,89 @@
+.info-boxes {
+    width: 100%;
+
+    > * {
+        margin-top: 1rem;
+    }
+
+    .info-box {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 3rem;
+        background-color: $color-white-dark-5;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        color: $color-black-2;
+
+        > div:not(:last-child) {
+            margin-right: 1rem;
+            overflow: scroll;
+        }
+
+        img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .content {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: auto;
+            color: inherit;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            color: $color-grey;
+            display: block;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            width: 22rem;
+        }
+
+        .date {
+            width: 20ch;
+        }
+
+        .time {
+            width: 20ch;
+        }
+
+        .course {
+            width: 13ch;
+        }
+
+        .actions {
+            display: flex;
+            width: 13.5rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            @include respond(md) {
+                width: 10rem;
+                justify-content: center;
+
+                .btn:last-child {
+                    margin-top: .5rem;
+                }
+            }
+        }
+
+        .action {
+
+        }
+
+    }
+
+
+
+}
+
+
+

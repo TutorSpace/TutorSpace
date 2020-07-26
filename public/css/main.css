@@ -13449,6 +13449,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.info-boxes {
+  width: 100%;
+}
+
 .info-boxes > * {
   margin-top: 1rem;
 }
@@ -13458,10 +13462,72 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 4rem;
+  padding: 1.5rem 3rem;
   background-color: #F9F9F9;
   border-radius: 1rem;
   font-size: 1.5rem;
+  color: #626262;
+}
+
+.info-boxes .info-box > div:not(:last-child) {
+  margin-right: 1rem;
+  overflow: scroll;
+}
+
+.info-boxes .info-box img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.info-boxes .info-box .content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  color: inherit;
+}
+
+.info-boxes .info-box .title {
+  font-size: 1.3rem;
+  color: #A0A0A0;
+  display: block;
+}
+
+.info-boxes .info-box .user-info {
+  display: flex;
+  align-items: center;
+  width: 22rem;
+}
+
+.info-boxes .info-box .date {
+  width: 20ch;
+}
+
+.info-boxes .info-box .time {
+  width: 20ch;
+}
+
+.info-boxes .info-box .course {
+  width: 13ch;
+}
+
+.info-boxes .info-box .actions {
+  display: flex;
+  width: 13.5rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .actions {
+    width: 10rem;
+    justify-content: center;
+  }
+
+  .info-boxes .info-box .actions .btn:last-child {
+    margin-top: 0.5rem;
+  }
 }
 
 .nav {
@@ -16809,6 +16875,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .home__header .content-info {
   margin-top: 1rem;
+}
+
+.bg-tutor .home__content .info-box .actions .btn-decline,
+.bg-tutor .home__content .info-box .action .btn-decline {
+  border: 1px solid #6749DF;
+  color: #6749DF;
+}
+
+.bg-tutor .home__content .info-box .actions .btn-accept,
+.bg-tutor .home__content .info-box .action .btn-accept {
+  background-color: #6749DF;
+  color: #FFFFFF;
 }
 
 .bg-student .home__header {
