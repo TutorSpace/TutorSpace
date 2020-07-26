@@ -111,10 +111,10 @@ Route::group([
     // report
     Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
 
-
-
 });
 
+// home page
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -126,8 +126,7 @@ Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middl
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['auth']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
-// home page
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
+
 
 
 

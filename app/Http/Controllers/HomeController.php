@@ -13,11 +13,12 @@ use Carbon\Carbon;
 class homeController extends Controller
 {
     public function __construct() {
-
+        $this->middleware(['auth']);
     }
 
     public function index() {
-        return redirect()->route('index');
+        return view('home.index');
+
 
         // $user = Auth::user();
 

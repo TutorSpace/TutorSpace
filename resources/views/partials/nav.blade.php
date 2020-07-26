@@ -60,7 +60,8 @@
 
         <div class="nav-right">
             @auth
-                @if(session()->has('showWelcome'))
+                @if(session()->has('showWelcome')
+                && Route::current()->getName() != 'home')
                 <span class="message-welcome">
                     Hello, {{ Auth::user()->first_name }}!
                 </span>

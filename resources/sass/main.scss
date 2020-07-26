@@ -13,6 +13,7 @@
 @import "base/typography";
 @import "base/utilities";
 
+@import "components/notification";
 @import "components/button";
 @import "components/modal";
 @import "components/overlay-background";
@@ -31,6 +32,8 @@
 @import "components/bootstrap-slider";
 @import "components/timepicker";
 @import "components/search";
+@import "components/home/tutor_request";
+
 
 @import "layout/navbar";
 @import "layout/footer";
@@ -42,7 +45,8 @@
 @import "pages/forum/show";
 @import "pages/forum/create";
 @import "pages/search";
-@import "pages/home";
+@import "pages/home/index";
+
 @import "pages/profile";
 @import "pages/report";
 @import "pages/edit_profile";

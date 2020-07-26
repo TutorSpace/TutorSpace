@@ -1,0 +1,146 @@
+.home {
+    margin-top: $nav-height;
+
+    &__header {
+        width: 100vw;
+        height: 33rem;
+        padding: 0 15px;
+        margin-bottom: 8rem;
+
+        @include respond(lg) {
+            height: 28rem;
+        }
+
+        @include respond(extra-sm) {
+            height: 25rem;
+        }
+
+        &--animated {
+            .content {
+                animation: fade-in-animation 3s 4s backwards;
+            }
+
+            .welcome-msg {
+                animation: fade-in-out-animation 3.5s .5s ease-in-out both;
+            }
+        }
+
+        .content {
+            bottom: -3.5rem;
+            left: 0;
+
+            @include respond(lg) {
+                bottom: -3rem;
+            }
+
+            @include respond(extra-sm) {
+                bottom: -2rem;
+            }
+
+            .content-img {
+                height: 20rem;
+                width: 20rem;
+                margin-right: 5rem;
+
+                @include respond(lg) {
+                    height: 17rem;
+                    width: 17rem;
+                }
+
+                @include respond(extra-sm) {
+                    height: 16rem;
+                    width: 16rem;
+                    margin-right: 3rem;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            .content-info {
+                color: $color-white;
+
+                .sub {
+                    font-size: 1.5rem;
+                }
+
+                .tutor-level-progress {
+                    position: relative;
+
+                    .progress {
+                        height: 1rem;
+                        background-color: $color-purple-primary-2;
+                        width: 25rem;
+
+                        .progress-bar {
+                            background-color: $color-white;
+                        }
+                    }
+
+                    .tutor-level {
+                        font-size: 1.2rem;
+                        position: absolute;
+                        top: 1.4rem;
+
+                        &--current {
+                            left: 0;
+                        }
+
+                        &--next {
+                            right: 0;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .welcome-msg {
+            @include absCenter;
+            color: $color-white;
+        }
+
+    }
+
+    &__content {
+        margin-bottom: 18rem;
+
+        > :not(:first-child) {
+            margin-top: 3rem;
+        }
+
+    }
+}
+
+
+.bg-tutor {
+    .home {
+        &__header {
+            background-color: rgba($color-purple-primary-2, .8);
+
+            .content-info {
+                margin-top: 1rem;
+            }
+        }
+
+
+    }
+}
+
+.bg-student {
+    .home {
+        &__header {
+            background-color: rgba($color-blue-primary-2, .8);
+
+            .content-info {
+                margin-top: 3.5rem;
+            }
+        }
+
+
+    }
+}
+

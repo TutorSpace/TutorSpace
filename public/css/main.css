@@ -12390,6 +12390,12 @@ h6 {
   cursor: not-allowed;
 }
 
+.notification-indicator {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+}
+
 .btn-next {
   border-radius: 50%;
   display: flex;
@@ -13443,9 +13449,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.info-boxes > * {
+  margin-top: 1rem;
+}
+
+.info-boxes .info-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 4rem;
+  background-color: #F9F9F9;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+
 .nav {
   height: 8rem;
   z-index: 2000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav .brand-name {
@@ -13709,7 +13731,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .nav-guest {
   background-color: #F8F8F8;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .nav-guest--student {
@@ -16651,5 +16672,150 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .search-results .search-result .btn-chat {
   color: #6749DF;
+}
+
+.home {
+  margin-top: 8rem;
+}
+
+.home__header {
+  width: 100vw;
+  height: 33rem;
+  padding: 0 15px;
+  margin-bottom: 8rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__header {
+    height: 28rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__header {
+    height: 25rem;
+  }
+}
+
+.home__header--animated .content {
+  -webkit-animation: fade-in-animation 3s 4s backwards;
+          animation: fade-in-animation 3s 4s backwards;
+}
+
+.home__header--animated .welcome-msg {
+  -webkit-animation: fade-in-out-animation 3.5s 0.5s ease-in-out both;
+          animation: fade-in-out-animation 3.5s 0.5s ease-in-out both;
+}
+
+.home__header .content {
+  bottom: -3.5rem;
+  left: 0;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__header .content {
+    bottom: -3rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__header .content {
+    bottom: -2rem;
+  }
+}
+
+.home__header .content .content-img {
+  height: 20rem;
+  width: 20rem;
+  margin-right: 5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__header .content .content-img {
+    height: 17rem;
+    width: 17rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__header .content .content-img {
+    height: 16rem;
+    width: 16rem;
+    margin-right: 3rem;
+  }
+}
+
+.home__header .content .content-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.home__header .content .content-info {
+  color: #FFFFFF;
+}
+
+.home__header .content .content-info .sub {
+  font-size: 1.5rem;
+}
+
+.home__header .content .content-info .tutor-level-progress {
+  position: relative;
+}
+
+.home__header .content .content-info .tutor-level-progress .progress {
+  height: 1rem;
+  background-color: #502ED9;
+  width: 25rem;
+}
+
+.home__header .content .content-info .tutor-level-progress .progress .progress-bar {
+  background-color: #FFFFFF;
+}
+
+.home__header .content .content-info .tutor-level-progress .tutor-level {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 1.4rem;
+}
+
+.home__header .content .content-info .tutor-level-progress .tutor-level--current {
+  left: 0;
+}
+
+.home__header .content .content-info .tutor-level-progress .tutor-level--next {
+  right: 0;
+}
+
+.home__header .welcome-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+}
+
+.home__content {
+  margin-bottom: 18rem;
+}
+
+.home__content > :not(:first-child) {
+  margin-top: 3rem;
+}
+
+.bg-tutor .home__header {
+  background-color: rgba(80, 46, 217, 0.8);
+}
+
+.bg-tutor .home__header .content-info {
+  margin-top: 1rem;
+}
+
+.bg-student .home__header {
+  background-color: rgba(0, 117, 224, 0.8);
+}
+
+.bg-student .home__header .content-info {
+  margin-top: 3.5rem;
 }
 

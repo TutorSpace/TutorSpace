@@ -75,7 +75,7 @@ class LoginController extends Controller
                     'showWelcome' => true
                 ]);
             }
-            return redirect()->route('index')->with([
+            return redirect()->route('home')->with([
                 'showWelcome' => true
             ]);
         }
@@ -130,7 +130,7 @@ class LoginController extends Controller
                     'showWelcome' => true
                 ]);
             }
-            return redirect()->route('index')->with([
+            return redirect()->route('home')->with([
                 'showWelcome' => true
             ]);
         }
