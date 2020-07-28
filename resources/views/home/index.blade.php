@@ -39,7 +39,7 @@ bg-student
         <div class="row">
             <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                 <h5>All Upcoming Sessions</h5>
-                <a href="#" class="fs-1-4 fc-grey">View All Upcoming Sessions</a>
+                <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
             </div>
             <div class="info-boxes">
                 @include('home.partials.session')
@@ -50,7 +50,7 @@ bg-student
         @endif
 
         <div class="row forum">
-            <h5 class="mb-2 w-100">Forum Activity</h5>
+            <h5 class="w-100">Forum Activity</h5>
             <div class="col-12 col-sm-8 post-previews px-0">
                 @include('forum.partials.post-preview-general')
             </div>
@@ -82,9 +82,6 @@ bg-student
 
 </div>
 
-
-
-@include('partials.footer')
 
 @endsection
 
