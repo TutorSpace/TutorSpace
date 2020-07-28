@@ -12675,7 +12675,7 @@ h6 {
 .post-previews .post-preview__right {
   max-width: 25rem;
   flex: 0 0 25%;
-  max-height: 12rem;
+  max-height: 13rem;
   margin-left: 3rem;
   margin-bottom: 1rem;
 }
@@ -13467,6 +13467,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
   font-size: 1.5rem;
   color: #626262;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .info-boxes .info-box > div:not(:last-child) {
@@ -16764,15 +16765,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header {
   width: 100vw;
-  height: 21rem;
+  height: 22rem;
   padding: 0 15px;
   margin-bottom: 8rem;
-}
-
-@media only screen and (max-width: 100em) {
-  .home__header {
-    height: 20rem;
-  }
 }
 
 @media only screen and (max-width: 74.99em) {
@@ -16890,7 +16885,75 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content > :not(:first-child) {
-  margin-top: 5rem;
+  margin-top: 7rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .post-previews {
+    order: 1;
+    margin-top: 3rem;
+  }
+}
+
+.home__content .forum-data-container {
+  position: relative;
+  right: -15px;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .forum-data-container {
+    right: 0;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .forum-data-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.home__content .forum-data-container .forum-data {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F9F9;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .forum-data-container .forum-data {
+    flex: 1;
+  }
+
+  .home__content .forum-data-container .forum-data:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+}
+
+.home__content .forum-data-container .forum-data:first-child {
+  margin-top: 2rem;
+}
+
+.home__content .forum-data-container .forum-data:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.home__content .forum-data-container .forum-data .title {
+  font-size: 1.5rem;
+  color: #A0A0A0;
+}
+
+.home__content .forum-data-container .forum-data .number {
+  font-size: 1.8rem;
+  color: #626262;
+  font-weight: 500;
 }
 
 .bg-tutor .home__header {

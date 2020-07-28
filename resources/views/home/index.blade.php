@@ -51,11 +51,31 @@ bg-student
 
         <div class="row forum">
             <h5 class="mb-2 w-100">Forum Activity</h5>
-            <div class="col-8 post-previews px-0">
+            <div class="col-12 col-sm-8 post-previews px-0">
                 @include('forum.partials.post-preview-general')
             </div>
-            <div class="col-3">
-
+            <div class="col-12 col-sm-4 forum-data-container">
+                <div class="forum-data">
+                    <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                    </svg>
+                    <span class="title">My Posts</span>
+                    <a class="number" href="#">10</a>
+                </div>
+                <div class="forum-data">
+                    <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                    </svg>
+                    <span class="title">Participated</span>
+                    <a class="number" href="#">212</a>
+                </div>
+                <div class="forum-data">
+                    <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                    </svg>
+                    <span class="title">Followed</span>
+                    <a class="number" href="#">102</a>
+                </div>
             </div>
         </div>
     </main>
