@@ -13470,6 +13470,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
+@media only screen and (max-width: 35.99em) {
+  .info-boxes .info-box {
+    flex-wrap: wrap;
+  }
+}
+
+.info-boxes .info-box .flex-100 {
+  display: none;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .info-boxes .info-box .flex-100 {
+    display: block;
+  }
+}
+
 .info-boxes .info-box > div:not(:last-child) {
   margin-right: 1rem;
   overflow: scroll;
@@ -13528,25 +13544,40 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .actions {
   display: flex;
-  width: 20rem;
+  width: 21ch;
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.info-boxes .info-box .actions button {
-  width: 9.5rem;
-}
-
 @media only screen and (max-width: 61.99em) {
   .info-boxes .info-box .actions {
-    width: 9.5rem;
+    width: 12ch;
     justify-content: center;
   }
 
   .info-boxes .info-box .actions .btn:last-child {
     margin-top: 0.5rem;
   }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .info-boxes .info-box .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .info-boxes .info-box .actions .btn {
+    margin-top: 0.5rem;
+  }
+
+  .info-boxes .info-box .actions .btn:last-child {
+    margin-left: 1rem;
+  }
+}
+
+.info-boxes .info-box .actions .btn {
+  width: 12ch;
 }
 
 .nav {

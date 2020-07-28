@@ -17,9 +17,10 @@
         <span class="title">Course</span>
         <span class="content">BUAD 304</span>
     </div>
+    <div class="flex-100"></div>
     <div class="actions">
         <button class="btn btn-lg btn-animation-y-sm btn-cancel">Cancel</button>
-        <button class="btn btn-lg btn-animation-y-sm btn-view-session">View Session</button>
+        <button class="btn btn-lg btn-animation-y-sm btn-view-session">View</button>
     </div>
 
 </div>
