@@ -13454,7 +13454,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes > * {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .info-boxes .info-box {
@@ -13540,6 +13540,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .course {
   width: 13ch;
+}
+
+.info-boxes .info-box .status {
+  width: 13ch;
+}
+
+.info-boxes .info-box .status .approved {
+  color: #1F7AFF;
+}
+
+.info-boxes .info-box .status .declined {
+  color: #C70000;
+}
+
+.info-boxes .info-box .status .pending {
+  color: #FFBC00;
 }
 
 .info-boxes .info-box .actions {
@@ -16919,6 +16935,23 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 7rem;
 }
 
+.home__content .info-boxes--all {
+  max-height: 46rem;
+  overflow: scroll;
+}
+
+.home__content .user-cards {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.home__content .user-cards .user-card {
+  min-width: 20rem;
+}
+
 @media only screen and (max-width: 35.99em) {
   .home__content .post-previews {
     order: 1;
@@ -17012,5 +17045,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-student .home__header .content-info {
   margin-top: 4.5rem;
+}
+
+.bg-student .home__content .info-box .actions .btn-decline,
+.bg-student .home__content .info-box .actions .btn-cancel,
+.bg-student .home__content .info-box .action .btn-decline,
+.bg-student .home__content .info-box .action .btn-cancel {
+  border: 1px solid #1F7AFF;
+  color: #1F7AFF;
+}
+
+.bg-student .home__content .info-box .actions .btn-accept,
+.bg-student .home__content .info-box .actions .btn-view-session,
+.bg-student .home__content .info-box .action .btn-accept,
+.bg-student .home__content .info-box .action .btn-view-session {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
 }
 

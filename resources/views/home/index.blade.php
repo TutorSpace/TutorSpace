@@ -26,7 +26,16 @@ bg-student
             <h5 class="mb-2 w-100">You Have 2 New Tutor Requests!</h5>
             <div class="info-boxes">
                 @include('home.partials.tutor_request', [
-                    'isNotification' => true
+                    'isNotification' => true,
+                    'forTutor' => true
+                ])
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => true
+                ])
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => true
                 ])
             </div>
         </div>
@@ -43,9 +52,101 @@ bg-student
             </div>
             <div class="info-boxes">
                 @include('home.partials.session')
+                @include('home.partials.session')
+                @include('home.partials.session')
+                @include('home.partials.session')
             </div>
         </div>
+
+
         @else
+        <div class="row">
+            <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
+            <div class="info-boxes">
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => false,
+                    'approved' => true
+                ])
+            </div>
+            <div class="info-boxes">
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => false,
+                    'approved' => false
+                ])
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                <h5>All Upcoming Sessions</h5>
+                <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
+            </div>
+            <div class="info-boxes">
+                @include('home.partials.session')
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
+
+            <div class="user-cards">
+                @include('partials.user_card')
+                @include('partials.user_card')
+                @include('partials.user_card')
+                @include('partials.user_card')
+                @include('partials.user_card')
+            </div>
+        </div>
+
+
+        <div class="row">
+            <h5 class="mb-2 w-100">Tutor Requests</h5>
+            <div class="info-boxes info-boxes--all">
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'approved' => false
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'approved' => true
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'pending' => true
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'pending' => true
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'approved' => false
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'approved' => true
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'pending' => true
+                ])
+
+                @include('home.partials.tutor_request', [
+                    'forTutor' => false,
+                    'pending' => true
+                ])
+
+            </div>
+        </div>
 
         @endif
 
@@ -87,6 +188,7 @@ bg-student
 
 @section('js')
 <script>
+    @if(Auth::user()->is_tutor)
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
@@ -165,6 +267,7 @@ bg-student
         });
         calendar.render();
     });
+    @endif
 </script>
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/home/index.js') }}"></script>

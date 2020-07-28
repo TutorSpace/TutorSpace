@@ -17,9 +17,6 @@ class homeController extends Controller
     }
 
     public function index() {
-        if(!Auth::user()->is_tutor) {
-            return redirect()->route('index');
-        }
 
         $posts = Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags']);
 

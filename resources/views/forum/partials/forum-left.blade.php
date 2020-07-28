@@ -105,8 +105,9 @@
 
             <a class="user-name" href="#">{{ $post->user->first_name }} {{ $post->user->last_name }}</a>
 
-            <span class="user-info text-capitalize mt-1">{{ $post->user->firstMajor->major ?? 'None' }}</span>
-
+            @if ($post->user->firstMajor)
+            <span class="user-info text-capitalize mt-1">{{ $post->user->firstMajor->major }}</span>
+            @endif
 
             @if ($post->user->is_tutor)
             <span class="user-info text-capitalize mt-1 d-flex align-items-center">

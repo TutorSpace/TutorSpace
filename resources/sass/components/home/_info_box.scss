@@ -2,7 +2,7 @@
     width: 100%;
 
     > * {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
     }
 
     .info-box {
@@ -80,6 +80,22 @@
 
         .course {
             width: 13ch;
+        }
+
+        .status {
+            width: 13ch;
+
+            .approved {
+                color: $color-blue-primary;
+            }
+
+            .declined {
+                color: #C70000;
+            }
+
+            .pending {
+                color: $color-yellow-primary;
+            }
         }
 
         .actions {

@@ -115,6 +115,23 @@
             margin-top: 7rem;
         }
 
+        .info-boxes--all {
+            max-height: 46rem;
+            overflow: scroll;
+        }
+
+        .user-cards {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            align-content: flex-start;
+
+            .user-card {
+                min-width: 20rem;
+            }
+        }
+
         .post-previews {
             @include respond(extra-sm) {
                 order: 1;
@@ -218,7 +235,22 @@
             }
         }
 
+        &__content {
+            .info-box {
+                .actions, .action {
+                    .btn-decline, .btn-cancel {
+                        border: 1px solid $color-blue-primary;
+                        color: $color-blue-primary;
+                    }
 
+                    .btn-accept, .btn-view-session {
+                        background-color: $color-blue-primary;
+                        color: $color-white;
+                    }
+                }
+
+            }
+        }
     }
 }
 
