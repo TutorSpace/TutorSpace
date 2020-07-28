@@ -1,0 +1,87 @@
+.user-card {
+    background-color: $color-white-dark-5;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+    padding: 3rem 1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 2px 3px 2px 0px rgba(0,0,0,0.1);
+
+    > * {
+        margin-top: 1rem;
+        font-size: 1.6rem;
+    }
+
+    .user-image {
+        width: 8.5rem;
+        height: 8.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid transparentize($color: $color-grey, $amount: .5);
+    }
+
+    .bookmark-svg {
+        font-size: 2.8rem;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        margin-top: 0;
+        fill: currentColor;
+        cursor: pointer;
+    }
+
+    .user-name {
+        color: $color-black-post-3;
+    }
+
+    .user-info {
+        color: $color-black-post;
+        font-size: 1.4rem;
+    }
+
+    .btn-chat, .btn-request, .btn-invite {
+        font-size: 1.4rem;
+        width: 85%;
+        padding-left: .2rem;
+        padding-right: .2rem;
+        border: 1px solid currentColor;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .btn-chat {
+        color: currentColor;
+    }
+
+    .btn-request, .btn-invite {
+        padding: .75rem 0;
+    }
+}
+
+.bg-student {
+
+    .user-card {
+        .btn-request, .btn-invite {
+            color: $color-white-dark-5;
+            background-color: $color-blue-primary;
+        }
+    }
+}
+
+.bg-tutor {
+
+    .user-card {
+        .btn-request, .btn-invite {
+            color: $color-white-dark-5;
+            background-color: $color-purple-primary;
+        }
+
+    }
+}
+
+

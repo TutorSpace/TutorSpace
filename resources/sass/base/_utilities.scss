@@ -6,8 +6,11 @@
 .top-0 { top: 0; }
 .top-100 { top: 100%; }
 .bottom-100 { bottom: 100%; }
+.bottom-0 { bottom: 0; }
 .bottom-4 { bottom: 4rem; }
 .right-0 { right: 0 !important; }
+.left-0 { left: 0; }
+.left-100 { left: 100% !important; }
 
 // ====================== display & visibility ==================
 .hidden { display: none !important; }
@@ -19,11 +22,16 @@
 .pl-0 { padding-left: 0; }
 .pr-0 { padding-right: 0; }
 .pb-0-5 { padding-bottom: 0.5rem; }
+.mt-2rem { margin-top: 2rem; }
+.mr-1px { margin-right: 1px; }
+.mr-2px { margin-right: 2px; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
 .bg-grey { background-color: $color-grey !important; }
-
+.bg-white-dark-4 { background-color: $color-white-dark-4 !important; }
+.bg-color-blue-primary { background-color: $color-blue-primary !important; }
+.bg-color-purple-primary { background-color: $color-purple-primary !important; }
 
 // ===================== svg =================
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
@@ -54,6 +62,9 @@
 .fc-purple-secondary { color: $color-purple-secondary; }
 .fc-blue-primary { color: $color-blue-primary; }
 .fc-blue-secondary { color: $color-blue-secondary; }
+.fc-black-post { color: $color-black-post; }
+.fc-black-post-2 { color: $color-black-post-2; }
+.fc-black-post-3 { color: $color-black-post-3; }
 
 // =============== absolute and relative positions ===================
 .left-n-2 { left: -2rem; }
@@ -62,12 +73,37 @@
 .flex-2 {
     > * { flex: 0 0 calc(50% - 1rem); }
 }
+.flex-occupy-all { flex: 1; }
 
 // =============== others =================
 .ws-no-wrap { white-space: nowrap; }
+.opacity-100 { opacity: 100 !important; }
 
 .absCenter {
     @include absCenter;
+}
+
+.col-lg-20-p {
+    @media (min-width: 992px) {
+        flex: 0 0 20%;
+        max-width: 0 0 20%;
+    }
+
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-lg-55-p {
+    @media (min-width: 992px) {
+        flex: 0 0 55%;
+        max-width: 55%;
+    }
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .centerX {
@@ -76,6 +112,8 @@
     transform: translateX(-50%);
 }
 
+.animation-none { animation: none !important; }
+.fade-in-fast { animation: fade-in-animation .3s !important; }
 
 .invalid {
     border-color: red !important;
@@ -96,3 +134,16 @@
         background-color: red !important;
     }
 }
+
+
+
+.disabled {
+    &:hover {
+        cursor: not-allowed;
+    }
+
+    *:hover {
+        cursor: not-allowed;
+    }
+}
+

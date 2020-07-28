@@ -1,11 +1,11 @@
 .nav {
     height: $nav-height;
-    z-index: 1000;
+    z-index: 2000;
 
     .brand-name {
-        font-size: 3.5rem;
+        font-size: 3.3rem;
         font-family: 'Baloo Bhai', sans-serif;
-        margin: 0 5rem;
+        margin: 0 4rem;
         text-decoration: none;
         color: inherit;
 
@@ -23,28 +23,48 @@
         }
 
         @include respond(md) {
-            margin: 0 3rem;
+            margin: 0 2.5rem;
         }
 
         @include respond(sm) {
-            margin-left: 1.5rem;
-            margin-right: 2.5rem;
+            margin-left: 1.3rem;
+            margin-right: 2.2rem;
             position: relative;
             width: 5rem;
             visibility: hidden;
+        }
+    }
 
+    .active {
+        position: relative;
+        &:hover {
+            text-decoration: none;
 
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(-.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 3px;
+            transition: all .2s;
         }
     }
 
     .nav__item {
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
         color: inherit;
     }
 
     .svg-list {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: bold;
         cursor: pointer;
 
@@ -59,6 +79,8 @@
         flex-direction: column;
         top: calc(100% + .75rem);
         display: none;
+        border-radius: 3px;
+        overflow: hidden;
 
         .nav__item {
             margin-right: 0 !important;
@@ -112,8 +134,8 @@
     }
 
     .btn-sign-in {
-        border-radius: 1rem;
-        padding: .5rem 1.5rem;
+        border-radius: .75rem;
+        padding: .5rem 1rem;
     }
 
 
@@ -156,17 +178,17 @@
             }
 
             .svg-message {
-                font-size: 2.3rem;
+                font-size: 2rem;
                 margin-right: 1.8rem;
 
                 @include respond(sm) {
-                    font-size: 2.5rem;
+                    font-size: 2.2rem;
                     margin-right: 1.3rem;
                 }
             }
 
             .svg-notification {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
             @include respond(sm) {
@@ -175,18 +197,18 @@
         }
 
         &__profile-img {
-            width: 5rem;
-            height: 5rem;
+            width: 4.5rem;
+            height: 4.5rem;
             border-radius: 50%;
             border: 2px solid;
-            object-fit: contain;
+            object-fit: cover;
             cursor: pointer;
 
             @include respond(sm) {
                 margin-right: 2rem;
                 border-width: 1px;
-                width: 4.5rem;
-                height: 4.5rem;
+                width: 4rem;
+                height: 4rem;
             }
         }
 
@@ -215,11 +237,17 @@
 .nav-guest {
     background-color: $color-white-dark-2;
 
+    border-bottom: 1px solid rgba(0,0,0,.1);
+
     &--student {
         color: $color-blue-primary;
 
+        .active::after {
+            background-color: $color-blue-primary;
+        }
+
         .brand-name::after {
-            content: url(../../../public/assets/blue_logo.svg);
+            content: url(../../../public/assets/images/blue_logo.svg);
         }
 
         .svg-list-dropdown, .profile-img-dropdown {
@@ -233,21 +261,7 @@
         }
 
         .nav__form {
-            .input-search {
-                border-color: $color-blue-primary;
-
-                &:focus {
-                    border-color: $color-blue-primary-2;
-
-                    + .svg-search {
-                        fill: $color-blue-primary-2;
-                    }
-                }
-            }
-
-            .svg-search {
-                fill: $color-blue-primary;
-            }
+            @include form-search-blue;
         }
 
         .nav-right {
@@ -270,8 +284,12 @@
     &--tutor {
         color: $color-purple-primary;
 
+        .active::after {
+            background-color: $color-purple-primary;
+        }
+
         .brand-name::after {
-            content: url(../../../public/assets/purple_logo.svg);
+            content: url(../../../public/assets/images/purple_logo.svg);
         }
 
         .svg-list-dropdown, .profile-img-dropdown {
@@ -285,21 +303,7 @@
         }
 
         .nav__form {
-            .input-search {
-                border-color: $color-purple-primary;
-
-                &:focus {
-                    border-color: $color-purple-primary-2;
-
-                    + .svg-search {
-                        fill: $color-purple-primary-2;
-                    }
-                }
-            }
-
-            .svg-search {
-                fill: $color-purple-primary;
-            }
+            @include form-search-purple;
         }
 
         .nav-right {
@@ -324,28 +328,16 @@
 .nav-auth {
     color: $color-white-dark;
 
+    .active::after {
+        background-color: $color-white-dark;
+    }
+
     .brand-name::after {
-        content: url(../../../public/assets/white_logo.svg);
+        content: url(../../../public/assets/images/white_logo.svg);
     }
 
     .nav__form {
-        .input-search {
-            color: $color-white-dark-2;
-            border-color: $color-white-dark;
-            &::placeholder {
-                color: $color-white-dark-2;
-            }
-
-            &:focus {
-                border-color: $color-white-dark-2;
-                + .svg-search {
-                    fill: $color-white-dark-2;
-                }
-            }
-        }
-        .svg-search {
-            fill: $color-white-dark;
-        }
+        @include form-search-white;
     }
 
     .nav-right {
@@ -392,5 +384,6 @@
         }
     }
 }
+
 
 

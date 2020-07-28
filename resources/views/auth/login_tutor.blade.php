@@ -1,11 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Login - Tutor')
 
-@section('links-in-head')
-{{-- google services --}}
-<meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-@endsection
-
 @section('body-class')
 bg-grey-light body-login
 @endsection
@@ -31,16 +26,22 @@ bg-grey-light body-login
             @csrf
             <h2 class="login__heading">Tutor Login</h2>
             <div class="p-relative">
-                <input type="email" class="form-control login-form-input login-form-input-normal @if($errors->any()) invalid @endif" placeholder="Email" value="{{ old('email') }}" name="email"
+                <input type="email" class="form-control login-form-input login-form-input-normal @error('loginError') invalid @enderror @error('email') invalid @enderror" placeholder="Email" value="{{ old('email') }}" name="email"
                     required>
                 <svg class="input-icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
-                @if($errors->any())
+                @error('loginError')
                 <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
-                    {{ $errors->first() }}
+                    {{ $message }}
                 </span>
-                @endif
+                @enderror
+
+                @error('email')
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
 
             <div class="p-relative">
@@ -55,23 +56,37 @@ bg-grey-light body-login
                 </span>
                 @enderror
                 @if(session('passwordError'))
-                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red">
+                <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-2rem">
                     {{ session('passwordError') }}
                 </span>
                 @endif
+            </div>
+
+            <div class="text-right mt-1">
+                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor fs-1-6">Forgot your password?</a>
             </div>
 
             <div class="text-center">
                 <button class="btn btn-tutor btn-login btn-animation-y">Login</button>
             </div>
 
-            <div class="text-center">
-                <a href="{{ route('password.request', ['is_tutor' => true]) }}" class="btn-link-tutor">Forgot your password?</a>
+            <p class="text-center my-4 fs-1-4 fc-grey separator">or</p>
+
+            <div class="d-flex justify-content-center btn-google-container mt-0 btn-google-container-sm">
+                {{-- google button --}}
+                <div id="btn-google-sm" class="btn-google btn-animation-y"></div>
+                <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
+                    {{ session('googleLoginError') ?? session('googleLoginError') }}
+                </span>
             </div>
 
             <p class="text-center fs-2">
                 <span class="fc-grey">Don't have an account? </span><a href="{{ route('register.index.tutor.1') }}"
                     class="btn-link-tutor">Sign Up</a>
+            </p>
+            <p class="text-center fs-2 mt-0">
+                <span class="fc-grey">Switch to </span><a href="{{ route('login.index.student') }}"
+                    class="btn-link-tutor">Student Login</a>
             </p>
 
         </form>
@@ -97,7 +112,7 @@ bg-grey-light body-login
         </svg>
         <div class="d-flex justify-content-center btn-google-container">
             {{-- google button --}}
-            <div id="btn-google" class="btn-google btn-animation-y"></div>
+            <div id="btn-google-lg" class="btn-google btn-animation-y"></div>
             <span class="fs-1-4 p-absolute top-100 mt-2 fc-red">
                 {{ session('googleLoginError') ?? session('googleLoginError') }}
             </span>
@@ -113,11 +128,14 @@ bg-grey-light body-login
 
 @section('js')
 <script>
+
+
     let isStudent = false;
 
     // ===================== Google Auth ==========================
     let googleBtnWidth = 240,
-        googleBtnHeight = 50;
+        googleBtnHeight = 50,
+        longTitle = true;
     adjustGoogleBtnSize();
 
     $(window).resize(function () {
@@ -125,37 +143,62 @@ bg-grey-light body-login
         renderButton();
     });
 
-    $('#btn-google').click(function (e) {
+    $('#btn-google-sm, #btn-google-lg').click(function (e) {
         e.stopPropagation();
         window.location.href = '{{ route('login.google.tutor') }}';
     });
 
     function renderButton() {
-        gapi.signin2.render('btn-google', {
+
+        gapi.signin2.render('btn-google-sm', {
+            'scope': 'profile email',
+            'width': googleBtnWidth,
+            'height': googleBtnHeight,
+            'longtitle': longTitle,
+            'theme': 'light'
+        });
+
+        gapi.signin2.render('btn-google-lg', {
             'scope': 'profile email',
             'width': googleBtnWidth,
             'height': googleBtnHeight,
             'longtitle': true,
             'theme': 'light'
         });
+
+        let checkBtnAddedInterval = setInterval(() => {
+            _.forEach($('.abcRioButtonContents').children(), function (ele) {
+                if ($(ele).html() == 'Signed in with Google') {
+                    $(ele).html('Sign in with Google');
+                    clearInterval(checkBtnAddedInterval);
+                }
+                else if ($(ele).html() == 'Signed in') {
+                    $(ele).html('Sign in');
+                    clearInterval(checkBtnAddedInterval);
+                }
+            });
+        }, 1);
     }
 
     function adjustGoogleBtnSize() {
         if ($(window).width() < 400) {
-            googleBtnWidth = 165;
-            googleBtnHeight = 36;
+            googleBtnWidth = 120;
+            googleBtnHeight = 28;
+            longTitle = false;
         } else if ($(window).width() < 576) {
-            googleBtnWidth = 200;
-            googleBtnHeight = 40;
+            googleBtnWidth = 140;
+            googleBtnHeight = 30;
+            longTitle = false;
         } else {
             googleBtnWidth = 240;
             googleBtnHeight = 50;
+            longTitle = true
         }
     }
 
 </script>
 
-<script src="{{ asset('js/login.js') }}"></script>
+<script src="{{ asset('js/auth/login.js') }}"></script>
 
 {{-- google services --}}
 <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>

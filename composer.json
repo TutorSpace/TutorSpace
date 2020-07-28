@@ -14,8 +14,10 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^4.4",
+        "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "predis/predis": "^1.1",
         "pusher/pusher-php-server": "^4.1",
         "superbalist/laravel-google-cloud-storage": "^2.2"
     },
@@ -33,7 +35,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "autoload": {

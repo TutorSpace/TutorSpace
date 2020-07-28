@@ -98,6 +98,31 @@
     }
 }
 
+@keyframes animation-pulsate-student {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-blue-secondary, $alpha: .8);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes animation-pulsate-tutor {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-purple-secondary, $alpha: .8);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
 // scale animation
 @keyframes scale-animation {
     0% {

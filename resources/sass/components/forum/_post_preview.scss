@@ -1,0 +1,95 @@
+.post-previews {
+    margin-bottom: 30rem;
+
+    .post-preview {
+
+        &--mypost {
+            padding-top: 4.5rem;
+        }
+
+        &__content-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__left {
+            flex: 1;
+        }
+
+        &__right {
+            max-width: 25rem;
+            flex: 0 0 30%;
+            max-height: 18rem;
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+
+            &__thumbnail {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: .3rem;
+            }
+        }
+
+        // show only two lines
+        .post__heading {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+
+            color: $color-black-post;
+
+            &-2 {
+                color: $color-black-post;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .post__content {
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // display: -webkit-box;
+            // -webkit-line-clamp: 4; /* number of lines to show */
+            // -webkit-box-orient: vertical;
+
+            max-height: 30rem;
+            overflow: hidden;
+            * {
+                color: inherit !important;
+                font-size: inherit !important;
+                background-color: none !important;
+            }
+        }
+
+        .post__bottom {
+
+            &__info {
+                color: $color-grey;
+            }
+            svg {
+                fill: $color-grey;
+            }
+        }
+
+        .poster-name {
+            color: $color-black-post;
+        }
+    }
+
+
+}
+
+
+.bg-student {
+    .post-preview--mypost {
+        background-image: linear-gradient(180deg, rgba($color-blue-primary, .2) 0%, rgba($color-blue-primary, .2) 3rem, transparent 3rem);
+    }
+}
+
+.bg-tutor {
+    .post-preview--mypost {
+        background-image: linear-gradient(180deg, rgba($color-purple-primary, .2) 0%, rgba($color-purple-primary, .2) 3rem, transparent 3rem);
+    }
+}

@@ -64,7 +64,7 @@
 
 .btn-outline-student {
     color: $color-blue-primary;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 500;
     transition: all .3s;
     border: 2px solid $color-blue-primary;
@@ -112,6 +112,20 @@
     }
 }
 
+.btn-animation-y-sm {
+    transition: all .1s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .15rem .3rem rgba(0, 0, 0, .1);
+    }
+}
+
 .btn-animation-spreading--white {
     position: relative;
 
@@ -153,3 +167,26 @@
         }
     }
 }
+
+.btn-scroll-bottom-right-top {
+    display: none;
+    position: fixed;
+    bottom: 12.5rem;
+    right: 4rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.btn-scroll-bottom-right-under {
+    display: none;
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+

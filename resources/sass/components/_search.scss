@@ -4,7 +4,7 @@
     .input-search {
         background-color: transparent;
         border: 1px solid;
-        padding-right: 2rem;
+        padding-right: 2.8rem;
         font-size: 1.6rem;
         border-radius: .5rem;
 
@@ -26,9 +26,11 @@
         border: 2px solid;
         padding-right: 3rem;
         padding-left: 1.3rem;
-        font-size: 1.8rem;
         font-weight: 500;
         border-radius: .75rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 1.8rem;
 
         &::placeholder {
             font-weight: 500;
@@ -42,24 +44,5 @@
         transform: translate(0, -50%);
         width: 1.75rem;
         height: 1.75rem;
-    }
-}
-
-
-.form-search-blue {
-    .input-search {
-        border-color: $color-blue-primary;
-
-        &:focus {
-            border-color: $color-blue-primary-2;
-
-            + .svg-search {
-                fill: $color-blue-primary-2;
-            }
-        }
-    }
-
-    .svg-search {
-        fill: $color-blue-primary;
     }
 }

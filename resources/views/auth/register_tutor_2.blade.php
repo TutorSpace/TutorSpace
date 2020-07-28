@@ -85,5 +85,5 @@ bg-grey-light body-signup
     let isStudent = false;
 
 </script>
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 @endsection

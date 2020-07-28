@@ -17,6 +17,64 @@
 @mixin boxShadow {
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
 }
+
+@mixin form-search-blue {
+    .input-search {
+        border-color: $color-blue-primary;
+
+        &:focus {
+            border-color: $color-blue-primary-2;
+
+            + .svg-search {
+                fill: $color-blue-primary-2;
+            }
+        }
+    }
+
+    .svg-search {
+        fill: $color-blue-primary;
+    }
+}
+
+@mixin form-search-purple {
+    .input-search {
+        border-color: $color-purple-primary;
+
+        &:focus {
+            border-color: $color-purple-primary-2;
+
+            + .svg-search {
+                fill: $color-purple-primary-2;
+            }
+        }
+    }
+
+    .svg-search {
+        fill: $color-purple-primary;
+    }
+}
+
+@mixin form-search-white {
+    .input-search {
+        color: $color-white-dark-2;
+        border-color: $color-white-dark;
+        &::placeholder {
+            color: $color-white-dark-2;
+        }
+
+        &:focus {
+            border-color: $color-white-dark-2;
+            + .svg-search {
+                fill: $color-white-dark-2;
+            }
+        }
+    }
+    .svg-search {
+        fill: $color-white-dark;
+    }
+}
+
+
 // MEDIA QUERY MANAGER
 /*
 0 - 600px: phone

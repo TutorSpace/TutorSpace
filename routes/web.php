@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::post('/test', 'testController@test');
+Route::post('/test', 'testController@test')->name('test');
 Route::get('/test', 'testController@index');
 
 // index page
@@ -17,7 +17,7 @@ Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name(
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
-// auth
+// ============================  auth  ========================
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -78,6 +78,38 @@ Route::group([
     Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
     Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 });
+
+
+// ===============================  Forum  ==========================
+Route::group([
+    'prefix' => 'forum'
+], function () {
+    Route::get('/posts/search-results', 'Forum\PostController@search')->name('posts.search');
+    Route::get('/posts/popular', 'Forum\PostController@indexPopular')->name('posts.popular');
+    Route::get('/posts/latest', 'Forum\PostController@indexLatest')->name('posts.latest');
+    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
+    Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
+    Route::resource('posts', 'Forum\PostController');
+
+    Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
+    Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->name('post-draft.store');
+    Route::post('posts/upvote/{post}', 'Forum\PostController@upvote')->name('post.upvote');
+    Route::post('posts/follow/{post}', 'Forum\PostController@follow')->name('post.follow');
+
+    Route::post('posts/{post}/replies/reply', 'Forum\ReplyController@storeReply')->name('posts.reply.store');
+    Route::post('posts/replies/{reply}/upvote', 'Forum\ReplyController@upvote')->name('posts.reply.upvote');
+    Route::post('posts/replies/{reply}/followup', 'Forum\ReplyController@storeFollowup')->name('posts.followup.store');
+
+    Route::post('/posts/mark-best-reply/{post}/{reply}', 'Forum\PostController@markAsBestReply')->name('posts.markBestReply');
+
+    // report
+    Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
+
+
+
+});
+
+
 
 
 // profile

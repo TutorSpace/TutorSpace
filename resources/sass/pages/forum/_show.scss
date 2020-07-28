@@ -1,0 +1,73 @@
+.post-detail-container {
+    margin-bottom: 30rem;
+
+    .post__heading {
+        font-weight: 600;
+    }
+
+    .post__heading-2 {
+        display: flex;
+        align-items: center;
+        color: $color-grey;
+        svg {
+            width: 2rem;
+            height: 2rem;
+            fill: $color-grey;
+        }
+    }
+
+    .post-detail {
+        color: $color-black-post;
+
+        &-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .post__heading {
+            &:hover {
+                color: unset;
+            }
+        }
+
+        .post__content {
+            overflow: hidden;
+            * {
+                max-width: 100%;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+                max-height: 30rem;
+                object-fit: contain;
+            }
+        }
+
+        .post__bottom {
+
+            &__actions {
+
+                .action {
+                    margin-right: 2rem;
+                }
+            }
+        }
+    }
+
+    .action {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .poster-name {
+        color: $color-black-post;
+
+        &:hover {
+            color: $color-black-post;
+        }
+    }
+}

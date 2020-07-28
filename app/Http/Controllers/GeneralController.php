@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Auth;
-use App\Dashboard_post;
-use App\Tutor_request;
+
+use App\User;
 use App\Session;
 use Carbon\Carbon;
-use App\User;
+use App\ReportForum;
+use App\Tutor_request;
+use App\Dashboard_post;
+use Illuminate\Http\Request;
 
 class GeneralController extends Controller
 {
@@ -22,6 +23,34 @@ class GeneralController extends Controller
     public function showPrivatePolicy() {
         return view('policy.index');
     }
+
+    public function storeReport(Request $request) {
+        $request->validate([
+            'report-reason' => [
+                'required',
+                'exists:report_reasons,id'
+            ],
+            'report-for' => [
+                'required'
+            ]
+        ]);
+
+        $report = new ReportForum();
+        $report->reporter_id = Auth::user()->id;
+        $report->report = $request->input('report');
+        $report->report_for = $request->input('report-for');
+        $report->report_reason_id = $request->input('report-reason');
+        $report->save();
+
+
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully Reported!'
+        ]);
+    }
+
+
+
+
 
     // TODO: add validation
     public function removeBookmark(Request $request) {
