@@ -149,9 +149,6 @@ bg-student
                 @endauth
 
 
-                @php
-                    $canMarkBestReply = Auth::check() && Auth::user()->id == $post->user->id && !$post->bestReply ? true : false;
-                @endphp
                 @foreach ($post->replies as $reply)
                     <div class="post-reply
                     @if ($post->bestReply && $reply->id == $post->bestReply->id)
@@ -162,7 +159,7 @@ bg-student
                         id="scroll-to-reply"
                     @endif
                     >
-                        @if($canMarkBestReply)
+                        @can('markAsBestReply', [$post, $reply])
                         <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
                             @csrf
                             <svg>
@@ -170,7 +167,7 @@ bg-student
                             </svg>
                             <button class="btn btn-link">Mark as Best Reply</button>
                         </form>
-                        @endif
+                        @endcan
 
                         @if ($post->bestReply && $reply->id == $post->bestReply->id)
                         <svg class="svg-best-reply" width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">

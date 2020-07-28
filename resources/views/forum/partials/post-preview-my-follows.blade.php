@@ -20,11 +20,11 @@
         <span>{{ $post->getTimeAgo() }}</span>
     </p>
 
-    <h4 class="mb-2">
+    <h5 class="mb-2">
         <a class="post__heading"  href="{{ route('posts.show', $post->slug) }}">
             {{ $post->title }}
         </a>
-    </h4>
+    </h5>
     <div class="post-preview__content-container">
         <div class="post-preview__left">
 

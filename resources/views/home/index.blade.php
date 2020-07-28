@@ -47,7 +47,7 @@ bg-student
 
         <div class="row">
             <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                <h5>All Upcoming Sessions</h5>
+                <h5>Upcoming Sessions</h5>
                 <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
             </div>
             <div class="info-boxes">
@@ -80,7 +80,7 @@ bg-student
 
         <div class="row">
             <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                <h5>All Upcoming Sessions</h5>
+                <h5>Upcoming Sessions</h5>
                 <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
             </div>
             <div class="info-boxes">

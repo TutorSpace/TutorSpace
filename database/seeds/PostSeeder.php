@@ -14,7 +14,6 @@ class PostSeeder extends Seeder
         DB::table('posts')->insert([
             'title' => 'This is testing post 1',
             'content' => '<p>Hi, this is my first testing post!</p>
-            <p><img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/lqNTPcNq44URzgJskKHcDuZE62FqbWzbljTSyTmf.jpeg" alt="" width="1536" height="2048" /></p>
             <p>I would like to see what it looks like if it contains several large images!</p>
             <p><img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/JEE1cuwi5pQYBEgiAVhS0pjl8hx9zFn5QX7IKcS9.jpeg" alt="" width="4256" height="2832" /></p>
             <p>&nbsp;</p>
@@ -103,7 +102,7 @@ class PostSeeder extends Seeder
             <p>testing link!</p>
             <p><a title="this is testing link title!" href="https://www.lipsum.com/">this is a testing link!</a></p>',
             'slug' => 'this-is-testing-post-1',
-            'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/lqNTPcNq44URzgJskKHcDuZE62FqbWzbljTSyTmf.jpeg',
+            'thumbNail' => 'https://storage.googleapis.com/tutorspace-storage/user-profile-photos/JEE1cuwi5pQYBEgiAVhS0pjl8hx9zFn5QX7IKcS9.jpeg',
             'user_id' => 1,
             'post_type_id' => 1,
             'view_count' => 36,
