@@ -69,6 +69,7 @@
                 success: (data) => {
                     let { successMsg } = data;
                     toastr.success(successMsg);
+                    $(this).find('input[type=email]').val('');
                 },
                 error: function(error) {
                     if(error.responseJSON.errors) {
