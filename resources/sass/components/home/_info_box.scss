@@ -72,12 +72,17 @@
 
         .actions {
             display: flex;
-            width: 13.5rem;
+            width: 20rem;
             justify-content: space-between;
             flex-wrap: wrap;
+            align-items: center;
+
+            button {
+                width: 9.5rem;
+            }
 
             @include respond(md) {
-                width: 10rem;
+                width: 9.5rem;
                 justify-content: center;
 
                 .btn:last-child {

@@ -36,12 +36,28 @@ bg-student
             <div id="calendar"></div>
         </div>
 
-
-
-
+        <div class="row">
+            <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                <h5>All Upcoming Sessions</h5>
+                <a href="#" class="fs-1-4 fc-grey">View All Upcoming Sessions</a>
+            </div>
+            <div class="info-boxes">
+                @include('home.partials.session')
+            </div>
+        </div>
         @else
 
         @endif
+
+        <div class="row">
+            <h5 class="mb-2 w-100">Forum Activity</h5>
+            <div class="col-9 post-previews px-0">
+                @include('forum.partials.post-preview-general')
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
     </main>
 
 </div>
@@ -57,14 +73,14 @@ bg-student
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['timeGrid', 'interaction', 'bootstrap'],
+            plugins: ['timeGrid', 'interaction', 'dayGridMonth'],
             // default time should be los angeles' time
             timeZone: 'PDT',
-            defaultView: 'timeGridDay',
+            initialView: 'timeGridWeek',
             header: {
                 left: 'prev, next today',
                 center: 'title',
-                right: 'timeGridDay, timeGridWeek'
+                right: 'timeGridDay, timeGridWeek, dayGridMonth'
             },
             contentHeight: 600,
             // events: [
@@ -103,9 +119,9 @@ bg-student
             select: function (selectionInfo) {
                 startTime = selectionInfo.start;
                 endTime = selectionInfo.end;
-                startTime.setHours(startTime.getHours() + 7);
-                endTime.setHours(endTime.getHours() + 7);
-                showForm(selectionInfo);
+                // startTime.setHours(startTime.getHours() + 7);
+                // endTime.setHours(endTime.getHours() + 7);
+                // showForm(selectionInfo);
             },
             unselect: function (jsEvent, view) {
             },

@@ -13527,14 +13527,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .actions {
   display: flex;
-  width: 13.5rem;
+  width: 20rem;
   justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.info-boxes .info-box .actions button {
+  width: 9.5rem;
 }
 
 @media only screen and (max-width: 61.99em) {
   .info-boxes .info-box .actions {
-    width: 10rem;
+    width: 9.5rem;
     justify-content: center;
   }
 
@@ -16885,7 +16890,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content > :not(:first-child) {
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 .bg-tutor .home__header {
@@ -16897,13 +16902,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-tutor .home__content .info-box .actions .btn-decline,
-.bg-tutor .home__content .info-box .action .btn-decline {
+.bg-tutor .home__content .info-box .actions .btn-cancel,
+.bg-tutor .home__content .info-box .action .btn-decline,
+.bg-tutor .home__content .info-box .action .btn-cancel {
   border: 1px solid #6749DF;
   color: #6749DF;
 }
 
 .bg-tutor .home__content .info-box .actions .btn-accept,
-.bg-tutor .home__content .info-box .action .btn-accept {
+.bg-tutor .home__content .info-box .actions .btn-view-session,
+.bg-tutor .home__content .info-box .action .btn-accept,
+.bg-tutor .home__content .info-box .action .btn-view-session {
   background-color: #6749DF;
   color: #FFFFFF;
 }

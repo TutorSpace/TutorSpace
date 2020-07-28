@@ -16,6 +16,17 @@
     "{{ asset('assets/images/tutorspace_logo.png') }}"
             type = "image/x-icon">
 
+    {{-- fullcalendar --}}
+    <link href='{{asset('packages/core/main.css')}}' rel='stylesheet' />
+    <link href='{{asset('packages/daygrid/main.css')}}' rel='stylesheet' />
+    <link href='{{asset('packages/timegrid/main.css')}}' rel='stylesheet' />
+    <link href='{{asset('packages/bootstrap/main.css')}}' rel='stylesheet' />
+    <script src='{{asset('packages/core/main.js')}}'></script>
+    <script src='{{asset('packages/daygrid/main.js')}}'></script>
+    <script src='{{asset('packages/timegrid/main.js')}}'></script>
+    <script src='{{asset('packages/interaction/main.js')}}'></script>
+    <script src='{{asset('packages/bootstrap/main.js')}}'></script>
+
     <!-- my css -->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     @yield('links-in-head')

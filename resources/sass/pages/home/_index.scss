@@ -115,7 +115,7 @@
         margin-bottom: 18rem;
 
         > :not(:first-child) {
-            margin-top: 3rem;
+            margin-top: 5rem;
         }
 
     }
@@ -135,12 +135,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline {
+                    .btn-decline, .btn-cancel {
                         border: 1px solid $color-purple-primary;
                         color: $color-purple-primary;
                     }
 
-                    .btn-accept {
+                    .btn-accept, .btn-view-session {
                         background-color: $color-purple-primary;
                         color: $color-white;
                     }
