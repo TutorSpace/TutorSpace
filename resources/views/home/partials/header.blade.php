@@ -10,7 +10,7 @@
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
             </div>
             <div class="content-info">
-                <h3 class="name">Neno Enim</h3>
+                <h4 class="name">Neno Enim</h4>
                 @if (Auth::user()->is_tutor)
                 <p class="sub">
                     <span class="sub--1">
@@ -48,13 +48,13 @@
                 @else
                 <p class="sub">
                     <span class="sub--1">
-                        {{ Auth::user()->firstMajor->major ?? "None" }}
+                        {{ Auth::user()->firstMajor->major ?? "No info about your major" }}
                     </span>
                     <span class="middot">
                         &middot;
                     </span>
                     <span class="sub--2">
-                        {{ Auth::user()->schoolYear->school_year ?? "None" }}
+                        {{ Auth::user()->schoolYear->school_year ?? "No info about your school year" }}
                     </span>
                 </p>
                 @endif

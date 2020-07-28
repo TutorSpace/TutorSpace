@@ -13472,6 +13472,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box > div:not(:last-child) {
   margin-right: 1rem;
   overflow: scroll;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  /* Hide scrollbar for IE, Edge and Firefox */
+}
+
+.info-boxes .info-box > div:not(:last-child)::-webkit-scrollbar {
+  display: none;
+}
+
+.info-boxes .info-box > div:not(:last-child) {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .info-boxes .info-box img {
@@ -16746,20 +16759,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header {
   width: 100vw;
-  height: 33rem;
+  height: 21rem;
   padding: 0 15px;
   margin-bottom: 8rem;
 }
 
-@media only screen and (max-width: 74.99em) {
+@media only screen and (max-width: 100em) {
   .home__header {
-    height: 28rem;
+    height: 20rem;
   }
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 74.99em) {
   .home__header {
-    height: 25rem;
+    height: 18rem;
   }
 }
 
@@ -16774,40 +16787,32 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content {
-  bottom: -3.5rem;
+  bottom: -5rem;
   left: 0;
+}
+
+@media only screen and (max-width: 100em) {
+  .home__header .content {
+    bottom: -4.5rem;
+  }
 }
 
 @media only screen and (max-width: 74.99em) {
   .home__header .content {
-    bottom: -3rem;
-  }
-}
-
-@media only screen and (max-width: 35.99em) {
-  .home__header .content {
-    bottom: -2rem;
+    bottom: -4rem;
   }
 }
 
 .home__header .content .content-img {
   height: 20rem;
   width: 20rem;
-  margin-right: 5rem;
+  margin-right: 1.5rem;
 }
 
 @media only screen and (max-width: 74.99em) {
   .home__header .content .content-img {
-    height: 17rem;
-    width: 17rem;
-  }
-}
-
-@media only screen and (max-width: 35.99em) {
-  .home__header .content .content-img {
-    height: 16rem;
-    width: 16rem;
-    margin-right: 3rem;
+    height: 18.5rem;
+    width: 18.5rem;
   }
 }
 
@@ -16815,14 +16820,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  padding: 3rem;
+  margin-left: -3rem;
 }
 
 .home__header .content .content-info {
   color: #FFFFFF;
+  margin-left: -3.5rem;
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__header .content .content-info {
+    margin-left: -4.5rem;
+  }
+}
+
+.home__header .content .content-info .name {
+  margin-bottom: 0.25rem;
 }
 
 .home__header .content .content-info .sub {
   font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .home__header .content .content-info .tutor-level-progress {
@@ -16874,7 +16893,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-tutor .home__header .content-info {
-  margin-top: 1rem;
+  margin-top: 3rem;
 }
 
 .bg-tutor .home__content .info-box .actions .btn-decline,
@@ -16894,6 +16913,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-student .home__header .content-info {
-  margin-top: 3.5rem;
+  margin-top: 4.5rem;
 }
 

@@ -3,16 +3,16 @@
 
     &__header {
         width: 100vw;
-        height: 33rem;
+        height: 21rem;
         padding: 0 15px;
         margin-bottom: 8rem;
 
-        @include respond(lg) {
-            height: 28rem;
+        @include respond(lg-2) {
+            height: 20rem;
         }
 
-        @include respond(extra-sm) {
-            height: 25rem;
+        @include respond(lg) {
+            height: 18rem;
         }
 
         &--animated {
@@ -26,45 +26,51 @@
         }
 
         .content {
-            bottom: -3.5rem;
+            bottom: -5rem;
             left: 0;
 
-            @include respond(lg) {
-                bottom: -3rem;
+            @include respond(lg-2) {
+                bottom: -4.5rem;
             }
 
-            @include respond(extra-sm) {
-                bottom: -2rem;
+            @include respond(lg) {
+                bottom: -4rem;
             }
 
             .content-img {
                 height: 20rem;
                 width: 20rem;
-                margin-right: 5rem;
+                margin-right: 1.5rem;
 
                 @include respond(lg) {
-                    height: 17rem;
-                    width: 17rem;
-                }
-
-                @include respond(extra-sm) {
-                    height: 16rem;
-                    width: 16rem;
-                    margin-right: 3rem;
+                    height: 18.5rem;
+                    width: 18.5rem;
                 }
 
                 img {
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
+                    padding: 3rem;
+                    margin-left: -3rem;
                 }
             }
 
             .content-info {
                 color: $color-white;
+                margin-left: -3.5rem;
+
+                @include respond(lg) {
+                    margin-left: -4.5rem;
+                }
+
+                .name {
+                    margin-bottom: .25rem;
+                }
 
                 .sub {
                     font-size: 1.5rem;
+                    margin-bottom: .75rem;
                 }
 
                 .tutor-level-progress {
@@ -122,7 +128,7 @@
             background-color: rgba($color-purple-primary-2, .8);
 
             .content-info {
-                margin-top: 1rem;
+                margin-top: 3rem;
             }
         }
 
@@ -152,7 +158,7 @@
             background-color: rgba($color-blue-primary-2, .8);
 
             .content-info {
-                margin-top: 3.5rem;
+                margin-top: 4.5rem;
             }
         }
 

@@ -12,9 +12,6 @@ require('timepicker');
 
 require('bootstrap-slider');
 
-require('fullcalendar');
-import { Calendar } from '@fullcalendar/core';
-
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
