@@ -27,16 +27,20 @@ class homeController extends Controller
                         ->where('posts.user_id', '!=', $user->id)
                         ->groupBy(['posts.id'])
                         ->orderByRaw(POST::POPULARITY_FORMULA)
+                        ->take(5)
                         ->get();
 
         // if there are < 5 posts, put other posts here to fill the 5 spots
-        $posts = $posts->merge(
-            Post::with(['tags', 'user'])
-                ->withCount(['usersUpvoted', 'replies', 'tags'])
-                ->where('posts.user_id', '!=', $user->id)
-                ->orderByRaw(POST::POPULARITY_FORMULA)
-                ->get()
-        );
+        if($posts->count() < 5) {
+            $posts = $posts->merge(
+                Post::with(['tags', 'user'])
+                    ->withCount(['usersUpvoted', 'replies', 'tags'])
+                    ->where('posts.user_id', '!=', $user->id)
+                    ->orderByRaw(POST::POPULARITY_FORMULA)
+                    ->take(5 - $posts->count())
+                    ->get()
+            );
+        }
 
         return view('home.index', [
             'posts' => $posts

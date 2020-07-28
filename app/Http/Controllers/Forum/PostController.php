@@ -58,7 +58,8 @@ class PostController extends Controller
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
                     ->where('posts.user_id', '!=', $user->id)
-                    ->orderByRaw(POST::POPULARITY_FORMULA)->get()
+                    ->orderByRaw(POST::POPULARITY_FORMULA)
+                    ->get()
             );
         }
         else {

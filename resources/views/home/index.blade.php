@@ -49,9 +49,9 @@ bg-student
 
         @endif
 
-        <div class="row">
+        <div class="row forum">
             <h5 class="mb-2 w-100">Forum Activity</h5>
-            <div class="col-9 post-previews px-0">
+            <div class="col-8 post-previews px-0">
                 @include('forum.partials.post-preview-general')
             </div>
             <div class="col-3">
