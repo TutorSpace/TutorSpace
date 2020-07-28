@@ -44038,7 +44038,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/file-loader/dist/cjs.js):\nError: ENOENT: no such file or directory, open '/Users/luoshuaiqing/Desktop/TutorSpace/public/assets/fonts/BalooBhai-Regular.ttf'\n    at /Users/luoshuaiqing/Desktop/TutorSpace/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/luoshuaiqing/Desktop/TutorSpace/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/Users/luoshuaiqing/Desktop/TutorSpace/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/Users/luoshuaiqing/Desktop/TutorSpace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)\n    at ReadFileContext.<anonymous> (/Users/luoshuaiqing/Desktop/TutorSpace/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9)\n    at ReadFileContext.callback (/Users/luoshuaiqing/Desktop/TutorSpace/node_modules/graceful-fs/graceful-fs.js:115:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:239:13)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
