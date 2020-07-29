@@ -36,11 +36,11 @@ Password: password
 ### Forum:
 ![Schema Picture](screenshots/forum.png)
 
-### Forum (post detail):
+<!-- ### Forum (post detail):
 ![Schema Picture](screenshots/post_detail.png)
 
 ### Forum (create new post):
-![Schema Picture](screenshots/create_new_post.png)
+![Schema Picture](screenshots/create_new_post.png) -->
 
 ### Search:
 ![Schema Picture](screenshots/search.png)
