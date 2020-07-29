@@ -29,22 +29,10 @@ bg-student
                     'isNotification' => true,
                     'forTutor' => true
                 ])
-                @include('home.partials.tutor_request', [
+                {{-- @include('home.partials.tutor_request', [
                     'isNotification' => true,
                     'forTutor' => true
-                ])
-                @include('home.partials.tutor_request', [
-                    'isNotification' => true,
-                    'forTutor' => true
-                ])
-                @include('home.partials.tutor_request', [
-                    'isNotification' => true,
-                    'forTutor' => true
-                ])
-                @include('home.partials.tutor_request', [
-                    'isNotification' => true,
-                    'forTutor' => true
-                ])
+                ]) --}}
             </div>
         </div>
 
@@ -60,9 +48,9 @@ bg-student
             </div>
             <div class="info-boxes">
                 @include('home.partials.session')
+                {{-- @include('home.partials.session')
                 @include('home.partials.session')
-                @include('home.partials.session')
-                @include('home.partials.session')
+                @include('home.partials.session') --}}
             </div>
         </div>
 
@@ -76,13 +64,17 @@ bg-student
                     'forTutor' => false,
                     'approved' => true
                 ])
-            </div>
-            <div class="info-boxes">
-                @include('home.partials.tutor_request', [
+
+                {{-- @include('home.partials.tutor_request', [
                     'isNotification' => true,
                     'forTutor' => false,
-                    'approved' => false
-                ])
+                    'approved' => true
+                ]) --}}
+                {{-- @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => false,
+                    'approved' => true
+                ]) --}}
             </div>
         </div>
 
@@ -128,7 +120,7 @@ bg-student
                     'approved' => false
                 ])
 
-                @include('home.partials.tutor_request', [
+                {{-- @include('home.partials.tutor_request', [
                     'forTutor' => false,
                     'approved' => true
                 ])
@@ -161,7 +153,7 @@ bg-student
                 @include('home.partials.tutor_request', [
                     'forTutor' => false,
                     'pending' => true
-                ])
+                ]) --}}
 
             </div>
         </div>

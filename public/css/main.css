@@ -12390,6 +12390,14 @@ h6 {
   cursor: not-allowed;
 }
 
+.placeholder {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  visibility: hidden !important;
+}
+
 .notification-indicator {
   position: absolute;
   top: -0.75rem;
@@ -13483,8 +13491,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
     flex-wrap: wrap;
   }
 
-  .info-boxes .info-box > div {
+  .info-boxes .info-box > div:not(:first-child) {
     width: 100% !important;
+    margin-top: 0.5rem;
   }
 }
 
@@ -13590,19 +13599,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-boxes .info-box .actions {
     flex-wrap: nowrap;
-  }
-
-  .info-boxes .info-box .actions .btn {
-    margin-top: 0.5rem;
-  }
-
-  .info-boxes .info-box .actions .btn:last-child {
-    margin-left: 1rem;
+    justify-content: flex-end;
   }
 }
 
 .info-boxes .info-box .actions .btn {
   width: 12ch;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box .actions .btn {
+    margin-top: 0.5rem;
+    width: 9ch;
+  }
+
+  .info-boxes .info-box .actions .btn:last-child {
+    margin-left: 0.5rem;
+  }
+}
+
+.info-boxes .info-box .action {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav {
@@ -16954,7 +16972,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
-  justify-content: space-between;
 }
 
 @media only screen and (max-width: 35.99em) {

@@ -26,8 +26,9 @@
         @include respond(sm) {
             flex-wrap: wrap;
 
-            > div {
+            > div:not(:first-child) {
                 width: 100% !important;
+                margin-top: .5rem;
             }
         }
 
@@ -124,24 +125,27 @@
 
             @include respond(sm) {
                 flex-wrap: nowrap;
-
-                .btn {
-                    margin-top: .5rem;
-
-                    &:last-child {
-                        margin-left: 1rem;
-                    }
-                }
+                justify-content: flex-end;
             }
 
             .btn {
                 width: 12ch;
+
+                @include respond(sm) {
+                    margin-top: .5rem;
+                    width: 9ch;
+
+                    &:last-child {
+                        margin-left: .5rem;
+                    }
+                }
             }
 
         }
 
         .action {
-
+            display: flex;
+            justify-content: flex-end;
         }
 
     }
