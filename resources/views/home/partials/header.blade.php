@@ -6,9 +6,10 @@
         </h3>
         @endif
         <div class="content d-flex p-absolute">
-            <div class="content-img">
+            <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
-            </div>
+                <figcaption class="caption" id="upload-photo">Upload Photo</figcaption>
+            </figure>
             <div class="content-info">
                 <h4 class="name">Neno Enim</h4>
                 @if (Auth::user()->is_tutor)

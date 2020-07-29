@@ -38,6 +38,7 @@
                 height: 20rem;
                 width: 20rem;
                 margin-right: 1.5rem;
+                position: relative;
 
                 @include respond(lg) {
                     height: 18.5rem;
@@ -50,6 +51,32 @@
                     border-radius: 50%;
                     padding: 3rem;
                     margin-left: -3rem;
+                    transition: all .1s;
+                }
+
+                .caption {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(calc(-50% - 3rem), calc(-50% + 3rem));
+                    color: $color-white-dark-5;
+                    text-transform: uppercase;
+                    font-size: 1.4rem;
+                    text-align: center;
+                    font-weight: 500;
+                    opacity: 0;
+                    transition: all .1s;
+                    backface-visibility: hidden;
+                    cursor: pointer;
+                }
+
+                &:hover .caption, &:active .caption {
+                    opacity: 1;
+                    transform: translate(calc(-50% - 3rem), calc(-50%));
+                }
+
+                &:hover img {
+                    filter: blur(1.5px) brightness(70%);
                 }
             }
 

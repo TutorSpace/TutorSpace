@@ -17,3 +17,9 @@ $.each($('.tag'), (idx, ele) => {
     $(ele).css("background-color", `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
     $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
 });
+
+
+// upload photo
+$('#upload-photo').click(function() {
+
+});
