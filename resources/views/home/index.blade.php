@@ -93,11 +93,21 @@ bg-student
             <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
 
             <div class="user-cards">
-                @include('partials.user_card')
-                @include('partials.user_card')
-                @include('partials.user_card')
-                @include('partials.user_card')
-                @include('partials.user_card')
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
             </div>
         </div>
 
