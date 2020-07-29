@@ -468,11 +468,11 @@ $('#reportModal').modal('show');
 
     $('html, body').animate({
         scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 100
-    }, 2000);
+    }, 0);
 @elseif(session('newReplyId'))
     $('html, body').animate({
         scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 100
-    }, 2000);
+    }, 0);
 @endif
 
 
