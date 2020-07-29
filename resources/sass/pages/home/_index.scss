@@ -198,7 +198,7 @@
 .bg-tutor {
     .home {
         &__header {
-            background-color: rgba($color-purple-primary-2, .8);
+            background-image: linear-gradient(to bottom, rgba($color-purple-primary, .8), rgba($color-purple-primary-3, .8));
 
             .content-info {
                 margin-top: 3rem;
@@ -228,7 +228,7 @@
 .bg-student {
     .home {
         &__header {
-            background-color: rgba($color-blue-primary-2, .8);
+            background-image: linear-gradient(to bottom, rgba($color-blue-primary, .8), rgba($color-blue-primary-3, .8));
 
             .content-info {
                 margin-top: 4.5rem;

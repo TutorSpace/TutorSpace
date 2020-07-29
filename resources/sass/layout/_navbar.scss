@@ -238,6 +238,15 @@
 .nav-guest {
     background-color: $color-white-dark-2;
 
+    // &::before {
+    //     content: "";
+    //     width: 100%;
+    //     height: $nav-height;
+    //     position: absolute;
+    //     background-color: rgba($color-white-dark-2, .8);
+    //     z-index: -1;
+    // }
+
     &--student {
         color: $color-blue-primary;
 
