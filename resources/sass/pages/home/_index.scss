@@ -121,15 +121,12 @@
         }
 
         .user-cards {
-            display: flex;
-            justify-content: space-between;
             width: 100%;
-            flex-wrap: wrap;
-            align-content: flex-start;
 
-            .user-card {
-                min-width: 20rem;
-            }
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            gap: 2rem;
+            justify-content: space-between;
         }
 
         .post-previews {
