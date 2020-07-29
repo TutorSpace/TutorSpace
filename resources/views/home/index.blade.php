@@ -97,13 +97,13 @@ bg-student
                     'user' => App\User::find(2),
                 ])
                 @include('partials.user_card', [
-                    'user' => App\User::find(2),
+                    'user' => App\User::find(4),
                 ])
                 @include('partials.user_card', [
                     'user' => App\User::find(2),
                 ])
                 @include('partials.user_card', [
-                    'user' => App\User::find(2),
+                    'user' => App\User::find(3),
                 ])
                 @include('partials.user_card', [
                     'user' => App\User::find(2),
