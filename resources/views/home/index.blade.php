@@ -37,6 +37,14 @@ bg-student
                     'isNotification' => true,
                     'forTutor' => true
                 ])
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => true
+                ])
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => true
+                ])
             </div>
         </div>
 

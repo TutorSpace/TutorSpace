@@ -13453,6 +13453,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   width: 100%;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .info-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem;
+  }
+}
+
 .info-boxes > * {
   margin-top: 1.5rem;
 }
@@ -13470,9 +13478,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .info-boxes .info-box {
     flex-wrap: wrap;
+  }
+
+  .info-boxes .info-box > div {
+    width: 100% !important;
   }
 }
 
@@ -13480,7 +13492,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: none;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .info-boxes .info-box .flex-100 {
     display: block;
   }
@@ -13488,33 +13500,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box > div:not(:last-child) {
   margin-right: 1rem;
-  overflow: scroll;
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  /* Hide scrollbar for IE, Edge and Firefox */
-}
-
-.info-boxes .info-box > div:not(:last-child)::-webkit-scrollbar {
-  display: none;
-}
-
-.info-boxes .info-box > div:not(:last-child) {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .info-boxes .info-box img {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   margin-right: 1rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .info-boxes .info-box .content {
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: auto;
+  overflow: hidden;
   color: inherit;
 }
 
@@ -13577,10 +13587,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .info-boxes .info-box .actions {
-    width: 100%;
-    justify-content: flex-end;
+    flex-wrap: nowrap;
   }
 
   .info-boxes .info-box .actions .btn {

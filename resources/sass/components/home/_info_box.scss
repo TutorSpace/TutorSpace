@@ -1,6 +1,12 @@
 .info-boxes {
     width: 100%;
 
+    @include respond(sm) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        gap: 2rem;
+    }
+
     > * {
         margin-top: 1.5rem;
     }
@@ -17,44 +23,46 @@
         color: $color-black-2;
         box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
-        @include respond(extra-sm) {
+        @include respond(sm) {
             flex-wrap: wrap;
+
+            > div {
+                width: 100% !important;
+            }
         }
 
         .flex-100 {
             display: none;
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 display: block;
             }
         }
 
         > div:not(:last-child) {
             margin-right: 1rem;
-            overflow: scroll;
-
-            /* Hide scrollbar for Chrome, Safari and Opera */
-            &::-webkit-scrollbar {
-                display: none;
-            }
-
-            /* Hide scrollbar for IE, Edge and Firefox */
-            & {
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
-            }
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         img {
-            width: 5rem;
-            height: 5rem;
+            width: 4rem;
+            height: 4rem;
             border-radius: 50%;
             margin-right: 1rem;
+
+            @include respond(sm) {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: .5rem;
+                margin-bottom: .5rem;
+            }
         }
 
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
-            overflow: auto;
+            overflow: hidden;
             color: inherit;
         }
 
@@ -114,9 +122,8 @@
                 }
             }
 
-            @include respond(extra-sm) {
-                width: 100%;
-                justify-content: flex-end;
+            @include respond(sm) {
+                flex-wrap: nowrap;
 
                 .btn {
                     margin-top: .5rem;
