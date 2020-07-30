@@ -195,7 +195,7 @@ bg-student
                             </span>
                             @endif
                             <span class="user-info fc-grey mt-1">
-                                {{ $reply->user->firstMajor->major ?? 'None' }}
+                                {{ $reply->user->firstMajor->major ?? '' }}
                             </span>
                         </div>
                         <div class="right-container">
