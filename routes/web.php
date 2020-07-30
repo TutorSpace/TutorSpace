@@ -20,6 +20,9 @@ Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name(
 // invite to be tutor
 Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
 
+// upload photo
+Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 

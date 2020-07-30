@@ -1,3 +1,5 @@
+const { success } = require("toastr");
+
 let colorHash = new ColorHash({
     hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
 });
@@ -21,5 +23,22 @@ $.each($('.tag'), (idx, ele) => {
 
 // upload photo
 $('#upload-photo').click(function() {
+    // $('#profile-pic').click();
 
+    // var fileInput = document.getElementById('profile-pic');
+    // var file = fileInput.files[0];
+    // var formData = new FormData();
+    // formData.append('file', file);
+
+    // $.ajax({
+    //     type:'POST',
+    //     url: $('#profile-pic-form').attr('action'),
+    //     success: (data) => {
+    //         toastr.success(data.successMsg);
+    //     },
+    //     error: function(error) {
+    //         toastr.error('Something went wrong!');
+    //         console.log(error);
+    //     }
+    // });
 });

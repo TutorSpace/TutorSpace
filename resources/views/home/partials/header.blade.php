@@ -8,7 +8,10 @@
         <div class="content d-flex p-absolute">
             <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
-                <figcaption class="caption" id="upload-photo">Upload Photo</figcaption>
+                <figcaption class="caption" id="upload-profile-pic">Upload Photo</figcaption>
+                <form id="profile-pic-form" action="{{ route('upload-profile-pic') }}" enctype="multipart/form-data" class="hidden">
+                    <input type="file" class="hidden" name="profile-pic" id="profile-pic">
+                </form>
             </figure>
             <div class="content-info">
                 <h4 class="name">Neno Enim</h4>

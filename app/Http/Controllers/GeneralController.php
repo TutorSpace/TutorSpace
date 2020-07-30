@@ -11,6 +11,7 @@ use App\ReportForum;
 use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InviteToBeTutorNotification;
 
@@ -69,6 +70,23 @@ class GeneralController extends Controller
         }
 
 
+    }
+
+    public function uploadProfilePic(Request $request) {
+        DB::transaction(function() use($request) {
+            $user = Auth::user();
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+            }
+
+            $user->save();
+        });
+
+        return response()->json([
+            'successMsg' => 'Successfully updated the profile photo.'
+        ]);
     }
 
 

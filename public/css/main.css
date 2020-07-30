@@ -16865,18 +16865,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   left: 0;
 }
 
-@media only screen and (max-width: 100em) {
-  .home__header .content {
-    bottom: -4.5rem;
-  }
-}
-
-@media only screen and (max-width: 74.99em) {
-  .home__header .content {
-    bottom: -4rem;
-  }
-}
-
 .home__header .content .content-img {
   height: 20rem;
   width: 20rem;
