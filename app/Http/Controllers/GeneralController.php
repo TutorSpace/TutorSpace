@@ -73,8 +73,16 @@ class GeneralController extends Controller
     }
 
     public function uploadProfilePic(Request $request) {
-        DB::transaction(function() use($request) {
-            $user = Auth::user();
+        $request->validate([
+            'profile-pic' => [
+                'required',
+                'file',
+                'mimes:jpeg,bmp,png'
+            ]
+        ]);
+
+        $user = Auth::user();
+        DB::transaction(function() use($request, $user) {
             // if user uploaded the file
             if($request->file('profile-pic')) {
                 $user->deleteImage();
@@ -85,8 +93,10 @@ class GeneralController extends Controller
         });
 
         return response()->json([
-            'successMsg' => 'Successfully updated the profile photo.'
+            'successMsg' => 'Successfully updated the profile photo.',
+            'imgUrl' => $user->profile_pic_url
         ]);
+
     }
 
 

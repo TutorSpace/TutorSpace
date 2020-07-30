@@ -33,6 +33,10 @@ bg-student
                     'isNotification' => true,
                     'forTutor' => true
                 ])
+                @include('home.partials.tutor_request', [
+                    'isNotification' => true,
+                    'forTutor' => true
+                ])
             </div>
         </div>
 
@@ -278,6 +282,8 @@ bg-student
         calendar.render();
     });
     @endif
+
+    let storageUrl = "{{ Storage::url('') }}";
 </script>
 @include('partials.nav-auth-js')
 <script src="{{ asset('js/home/index.js') }}"></script>

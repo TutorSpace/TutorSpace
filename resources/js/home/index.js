@@ -22,23 +22,31 @@ $.each($('.tag'), (idx, ele) => {
 
 
 // upload photo
-$('#upload-photo').click(function() {
-    // $('#profile-pic').click();
+$('#upload-profile-pic').click(function() {
+    $('#input-profile-pic').click();
+});
 
-    // var fileInput = document.getElementById('profile-pic');
-    // var file = fileInput.files[0];
-    // var formData = new FormData();
-    // formData.append('file', file);
+$("#input-profile-pic").change(function() {
+    var fileInput = $(this)[0];
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('profile-pic', file);
 
-    // $.ajax({
-    //     type:'POST',
-    //     url: $('#profile-pic-form').attr('action'),
-    //     success: (data) => {
-    //         toastr.success(data.successMsg);
-    //     },
-    //     error: function(error) {
-    //         toastr.error('Something went wrong!');
-    //         console.log(error);
-    //     }
-    // });
+    $.ajax({
+        type:'POST',
+        url: $('#profile-pic-form').attr('action'),
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: (data) => {
+            console.log(data);
+            toastr.success('Successfully uploaded the image!');
+            console.log(data.imgUrl);
+            $('#profile-image').attr('src', storageUrl + data.imgUrl);
+        },
+        error: function(error) {
+            toastr.error('Something went wrong. Please try again.');
+            console.log(error);
+        }
+    });
 });
