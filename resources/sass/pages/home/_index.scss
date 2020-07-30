@@ -43,6 +43,7 @@
                     border-radius: 50%;
                     padding: 3rem;
                     margin-left: -3rem;
+                    object-fit: cover;
                     transition: all .1s;
                 }
 
@@ -144,6 +145,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
             gap: 2rem;
+
+            .user-card {
+                margin-top: 1.5rem;
+            }
         }
 
         .post-previews {

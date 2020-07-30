@@ -74,17 +74,20 @@ bg-student
             <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
             <div class="info-boxes">
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'isNotification' => true,
                     'forTutor' => false,
                     'approved' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'isNotification' => true,
                     'forTutor' => false,
                     'approved' => true
                 ])
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'isNotification' => true,
                     'forTutor' => false,
                     'approved' => true
@@ -130,41 +133,49 @@ bg-student
             <h5 class="mb-2 w-100">Tutor Requests</h5>
             <div class="info-boxes info-boxes--all">
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'approved' => false
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'approved' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'pending' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'pending' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'approved' => false
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'approved' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'pending' => true
                 ])
 
                 @include('home.partials.tutor_request', [
+                    'user' => App\User::find(1),
                     'forTutor' => false,
                     'pending' => true
                 ])
@@ -232,6 +243,9 @@ bg-student
       selectable: true,
       selectMirror: true,
       nowIndicator: true,
+        slotMinTime: "06:00:00",
+        slotMaxTime: "23:00:00",
+            allDaySlot: false,
       events: [
         {
           title: 'All Day Event',

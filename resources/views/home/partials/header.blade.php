@@ -1,7 +1,7 @@
 <section class="home__header @if(session()->has('showWelcome')) home__header--animated @endif row">
     <div class="container p-relative">
         @if(session()->has('showWelcome'))
-        <h3 class="welcome-msg">
+        <h3 class="welcome-msg ws-no-wrap">
             Welcome, {{ Auth::user()->first_name }}!
         </h3>
         @endif

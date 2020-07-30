@@ -11443,6 +11443,7 @@ html {
 
 body {
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 html,
@@ -13038,7 +13039,6 @@ h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
   padding: 3rem 1rem;
   overflow: hidden;
   position: relative;
@@ -14610,6 +14610,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: currentColor;
 }
 
+.forum-left .user-card {
+  margin-top: 3rem;
+}
+
 .forum-content__search {
   font-size: 1.6rem;
 }
@@ -15044,6 +15048,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 3rem;
   border-radius: 50%;
   margin-right: 0.3rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .post__content,
@@ -16885,6 +16891,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 50%;
   padding: 3rem;
   margin-left: -3rem;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: all 0.1s;
 }
 
@@ -16990,6 +16998,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
+}
+
+.home__content .user-cards .user-card {
+  margin-top: 1.5rem;
 }
 
 @media only screen and (max-width: 35.99em) {

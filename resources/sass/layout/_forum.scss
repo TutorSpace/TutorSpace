@@ -289,6 +289,10 @@
             }
         }
     }
+
+    .user-card {
+        margin-top: 3rem;
+    }
 }
 
 .forum-content {
@@ -737,6 +741,7 @@
         height: 3rem;
         border-radius: 50%;
         margin-right: .3rem;
+        object-fit: cover;
     }
 }
 
