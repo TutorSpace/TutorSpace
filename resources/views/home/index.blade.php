@@ -34,15 +34,18 @@ bg-student
             <div class="info-boxes">
                 @include('home.partials.tutor_request', [
                     'isNotification' => true,
-                    'forTutor' => true
+                    'forTutor' => true,
+                    'user' => App\User::find(1)
                 ])
                 @include('home.partials.tutor_request', [
                     'isNotification' => true,
-                    'forTutor' => true
+                    'forTutor' => true,
+                    'user' => App\User::find(1)
                 ])
                 @include('home.partials.tutor_request', [
                     'isNotification' => true,
-                    'forTutor' => true
+                    'forTutor' => true,
+                    'user' => App\User::find(1)
                 ])
             </div>
         </div>

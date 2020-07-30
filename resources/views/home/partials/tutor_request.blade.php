@@ -5,7 +5,7 @@
     </svg>
     @endif
     <div class="user-info">
-        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
+        <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
         <a class="content" href="#">
             Shuaiqing Luo
         </a>
