@@ -7,11 +7,12 @@ use App\Session;
 use Carbon\Carbon;
 
 use App\Tutor_request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -89,7 +90,10 @@ class User extends Authenticatable
     }
 
     public function deleteImage() {
-        Storage::delete($this->profile_pic_url);
+        if(!Str::of($this->profile_pic_url)->contains('placeholder')) {
+            Storage::delete($this->profile_pic_url);
+        }
+
     }
 
 
