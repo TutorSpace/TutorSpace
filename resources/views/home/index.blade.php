@@ -58,13 +58,18 @@ bg-student
         <div class="row">
             <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                 <h5>Upcoming Sessions</h5>
-                <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
+                <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
             </div>
             <div class="info-boxes">
                 @include('home.partials.session')
                 @include('home.partials.session')
                 @include('home.partials.session')
-                @include('home.partials.session')
+                @include('home.partials.session', [
+                    'hidden' => true
+                ])
+                @include('home.partials.session', [
+                    'hidden' => true
+                ])
             </div>
         </div>
 
@@ -98,10 +103,18 @@ bg-student
         <div class="row">
             <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                 <h5>Upcoming Sessions</h5>
-                <button class="btn btn-link fs-1-4 fc-grey">View All Upcoming Sessions</button>
+                <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
             </div>
             <div class="info-boxes">
                 @include('home.partials.session')
+                @include('home.partials.session')
+                @include('home.partials.session')
+                @include('home.partials.session', [
+                    'hidden' => true
+                ])
+                @include('home.partials.session', [
+                    'hidden' => true
+                ])
             </div>
         </div>
 
@@ -176,6 +189,9 @@ bg-student
                 @include('partials.user_card', [
                     'user' => App\User::find(2),
                 ])
+            </div>
+            <div>
+
             </div>
         </div>
 

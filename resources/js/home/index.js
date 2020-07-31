@@ -59,3 +59,7 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
     //if 'true', the content overflows the tab: we show the hidden link
     $('.tutor-requests + .scroll-faded').css('display', 'block');
 }
+
+$('.btn-view-all-upcoming-sessions').click(function() {
+    $(this).parent().next().find('.hidden').removeClass('hidden');
+});

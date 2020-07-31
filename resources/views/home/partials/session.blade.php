@@ -1,4 +1,4 @@
-<div class="info-box tutor-request">
+<div class="info-box tutor-request @if(isset($hidden) && $hidden) hidden @endif">
     <div class="user-info">
         <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
         <a class="content" href="#">

@@ -11536,6 +11536,10 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
   $('.tutor-requests + .scroll-faded').css('display', 'block');
 }
 
+$('.btn-view-all-upcoming-sessions').click(function () {
+  $(this).parent().next().find('.hidden').removeClass('hidden');
+});
+
 /***/ }),
 
 /***/ 7:
