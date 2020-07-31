@@ -17100,6 +17100,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   position: relative;
 }
 
+.home__content .recommended-tutors-bg-container {
+  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
+  padding: 2rem 0 3rem 0;
+  margin-left: -15px;
+  width: 100vw;
+}
+
+.home__content .recommended-tutors-bg-container .container {
+  padding: 0 30px;
+}
+
+.home__content .recommended-tutors-bg-container h5 {
+  color: #FFFFFF;
+}
+
 @media only screen and (max-width: 35.99em) {
   .home__content .post-previews {
     order: 1;
@@ -17164,7 +17179,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-tutor .home__header {
-  background-image: linear-gradient(to bottom, rgba(103, 73, 223, 0.8), rgba(91, 61, 211, 0.8));
+  background-image: linear-gradient(to bottom, #6749df, #5b3dd3);
 }
 
 .bg-tutor .home__header .content-info {
@@ -17188,7 +17203,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-student .home__header {
-  background-image: linear-gradient(to bottom, rgba(31, 122, 255, 0.8), rgba(24, 102, 218, 0.8));
+  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
 }
 
 .bg-student .home__header .content-info {

@@ -232,8 +232,19 @@
         }
 
 
-        .recommended-tutors {
+        .recommended-tutors-bg-container {
+            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
+            padding: 2rem 0 3rem 0;
+            margin-left: -15px;
+            width: 100vw;
 
+            .container {
+                padding: 0 30px;
+            }
+
+            h5 {
+                color: $color-white;
+            }
         }
 
         .post-previews {
@@ -294,7 +305,6 @@
                 }
             }
         }
-
     }
 }
 
@@ -302,7 +312,7 @@
 .bg-tutor {
     .home {
         &__header {
-            background-image: linear-gradient(to bottom, rgba($color-purple-primary, .8), rgba($color-purple-primary-3, .8));
+            background-image: linear-gradient(to bottom, rgba($color-purple-primary, 1), rgba($color-purple-primary-3, 1));
 
             .content-info {
                 margin-top: 3rem;
@@ -332,7 +342,7 @@
 .bg-student {
     .home {
         &__header {
-            background-image: linear-gradient(to bottom, rgba($color-blue-primary, .8), rgba($color-blue-primary-3, .8));
+            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
 
             .content-info {
                 margin-top: 4.5rem;
