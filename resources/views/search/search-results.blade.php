@@ -4,7 +4,7 @@
         <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-photo mr-3">
         <a class="user-name mr-3" href="#">{{ $user->first_name }} {{ $user->last_name }}</a>
         @if ($user->is_tutor_verified)
-        <svg class="mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg class="mr-1 svg-tutor-verified" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect width="12" height="12" fill="url(#pattern11)"/>
             <defs>
             <pattern id="pattern11" patternContentUnits="objectBoundingBox" width="1" height="1">

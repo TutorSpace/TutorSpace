@@ -88,6 +88,14 @@
                 .sub {
                     font-size: 1.5rem;
                     margin-bottom: .75rem;
+
+                    .sub--3 {
+
+                        svg {
+                            color: $color-white;
+
+                        }
+                    }
                 }
 
                 .tutor-level-progress {
@@ -135,20 +143,89 @@
             margin-top: 7rem;
         }
 
-        .info-boxes--all {
-            max-height: 46rem;
+        .tutor-requests {
+            max-height: 40rem;
             overflow: scroll;
+
+
+            + .scroll-faded {
+                margin-top: -2rem;
+                height: 3rem;
+            }
         }
 
         .user-cards {
             width: 100%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-            gap: 2rem;
+            // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            // gap: 2rem;
+            flex-wrap: wrap;
+            display: flex;
 
             .user-card {
                 margin-top: 1.5rem;
             }
+
+            .user-card {
+                width: calc((100% - 2rem * 4) / 5);
+                margin-right: 2rem;
+
+                // every 5 child
+                &:nth-child(5n + 5) {
+                    margin-right: 0;
+                }
+
+                @include respond(md) {
+                    width: calc((100% - 2rem * 2) / 3);
+
+                    &:nth-child(5n + 5) {
+                        margin-right: 2rem;
+                    }
+
+                    &:nth-child(3n + 3) {
+                        margin-right: 0;
+                    }
+                }
+
+                @include respond(extra-sm) {
+                    width: calc((100% - 2rem * 1) / 2);
+
+                    &:nth-child(5n + 5) {
+                        margin-right: 2rem;
+                    }
+
+                    &:nth-child(3n + 3) {
+                        margin-right: 2rem;
+                    }
+
+                    &:nth-child(2n + 2) {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .bookmarked-tutors {
+            max-height: 45rem;
+            overflow: scroll;
+
+            + .scroll-faded {
+                margin-top: -3rem;
+                height: 4rem;
+            }
+        }
+
+        .scroll-faded {
+            display: none;
+            content:'';
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(239, 239, 239, 1) 100%);
+            position: relative;
+        }
+
+
+        .recommended-tutors {
+
         }
 
         .post-previews {

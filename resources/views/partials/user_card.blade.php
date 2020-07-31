@@ -22,9 +22,9 @@
     @endif
 
     @if ($user->is_tutor)
-    <span class="user-info text-capitalize mt-1 d-flex align-items-center">
+    <span class="user-info text-capitalize mt-1 d-flex justify-content-center align-items-center">
         @if ($user->is_tutor_verified)
-        <svg class="mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <svg class="mr-1 svg-tutor-verified" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect width="12" height="12" fill="url(#pattern10)"/>
             <defs>
             <pattern id="pattern10" patternContentUnits="objectBoundingBox" width="1" height="1">

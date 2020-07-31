@@ -105,11 +105,62 @@ bg-student
             </div>
         </div>
 
+        <div class="row">
+            <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
+
+            <div class="user-cards bookmarked-tutors">
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(4),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(3),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(4),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(3),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(4),
+                ])
+                @include('partials.user_card', [
+                    'user' => App\User::find(2),
+                ])
+            </div>
+            <div class="scroll-faded">
+            </div>
+        </div>
+
 
         <div class="row">
             <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
 
-            <div class="user-cards">
+            {{-- must always recommend 5 tutors --}}
+            <div class="user-cards recommended-tutors">
                 @include('partials.user_card', [
                     'user' => App\User::find(2),
                 ])
@@ -131,7 +182,7 @@ bg-student
 
         <div class="row">
             <h5 class="mb-2 w-100">Tutor Requests</h5>
-            <div class="info-boxes info-boxes--all">
+            <div class="info-boxes tutor-requests">
                 @include('home.partials.tutor_request', [
                     'user' => App\User::find(1),
                     'forTutor' => false,
@@ -179,7 +230,8 @@ bg-student
                     'forTutor' => false,
                     'pending' => true
                 ])
-
+            </div>
+            <div class="scroll-faded">
             </div>
         </div>
 

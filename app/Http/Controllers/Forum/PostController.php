@@ -297,8 +297,8 @@ class PostController extends Controller
     public function showMyPosts() {
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
-            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE)
         ]);
     }
 

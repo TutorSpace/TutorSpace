@@ -13069,6 +13069,15 @@ h6 {
   cursor: pointer;
 }
 
+.user-card .user-name,
+.user-card .user-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  text-align: center;
+}
+
 .user-card .user-name {
   color: #3F3F3F;
 }
@@ -13621,6 +13630,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .action {
   display: flex;
   justify-content: flex-end;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .svg-tutor-verified {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
 }
 
 .nav {
@@ -16944,6 +16960,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 0.75rem;
 }
 
+.home__header .content .content-info .sub .sub--3 svg {
+  color: #FFFFFF;
+}
+
 .home__header .content .content-info .tutor-level-progress {
   position: relative;
 }
@@ -16988,20 +17008,84 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 7rem;
 }
 
-.home__content .info-boxes--all {
-  max-height: 46rem;
+.home__content .tutor-requests {
+  max-height: 40rem;
   overflow: scroll;
+}
+
+.home__content .tutor-requests + .scroll-faded {
+  margin-top: -2rem;
+  height: 3rem;
 }
 
 .home__content .user-cards {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: 2rem;
+  flex-wrap: wrap;
+  display: flex;
 }
 
 .home__content .user-cards .user-card {
   margin-top: 1.5rem;
+}
+
+.home__content .user-cards .user-card {
+  width: calc((100% - 2rem * 4) / 5);
+  margin-right: 2rem;
+}
+
+.home__content .user-cards .user-card:nth-child(5n+5) {
+  margin-right: 0;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .user-cards .user-card {
+    width: calc((100% - 2rem * 2) / 3);
+  }
+
+  .home__content .user-cards .user-card:nth-child(5n+5) {
+    margin-right: 2rem;
+  }
+
+  .home__content .user-cards .user-card:nth-child(3n+3) {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__content .user-cards .user-card {
+    width: calc((100% - 2rem * 1) / 2);
+  }
+
+  .home__content .user-cards .user-card:nth-child(5n+5) {
+    margin-right: 2rem;
+  }
+
+  .home__content .user-cards .user-card:nth-child(3n+3) {
+    margin-right: 2rem;
+  }
+
+  .home__content .user-cards .user-card:nth-child(2n+2) {
+    margin-right: 0;
+  }
+}
+
+.home__content .bookmarked-tutors {
+  max-height: 45rem;
+  overflow: scroll;
+}
+
+.home__content .bookmarked-tutors + .scroll-faded {
+  margin-top: -3rem;
+  height: 4rem;
+}
+
+.home__content .scroll-faded {
+  display: none;
+  content: "";
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #efefef 100%);
+  position: relative;
 }
 
 @media only screen and (max-width: 35.99em) {

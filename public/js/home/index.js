@@ -11526,6 +11526,16 @@ $("#input-profile-pic").change(function () {
   });
 });
 
+if ($('.bookmarked-tutors').prop('scrollHeight') > $('.bookmarked-tutors').prop('clientHeight')) {
+  //if 'true', the content overflows the tab: we show the hidden link
+  $('.bookmarked-tutors + .scroll-faded').css('display', 'block');
+}
+
+if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clientHeight')) {
+  //if 'true', the content overflows the tab: we show the hidden link
+  $('.tutor-requests + .scroll-faded').css('display', 'block');
+}
+
 /***/ }),
 
 /***/ 7:
