@@ -63,3 +63,43 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
 $('.btn-view-all-upcoming-sessions').click(function() {
     $(this).parent().next().find('.hidden').removeClass('hidden');
 });
+
+
+function isInViewPort(elem) {
+    var distance = elem.getBoundingClientRect();
+    console.log(distance);
+	return (
+		distance.top >= -120
+	);
+};
+
+$(window).scroll(function() {
+    if(isInViewPort($('.home__header')[0])) {
+        if($('body').hasClass('bg-student')) {
+            $('nav.nav').addClass('nav-auth--student');
+            $('nav.nav').addClass('nav-auth');
+            $('nav.nav').removeClass('nav-guest');
+            $('nav.nav').removeClass('nav-guest--student');
+        }
+        else if($('body').hasClass('bg-tutor')) {
+            $('nav.nav').addClass('nav-auth--tutor');
+            $('nav.nav').addClass('nav-auth');
+            $('nav.nav').removeClass('nav-guest');
+            $('nav.nav').removeClass('nav-guest--tutor');
+        }
+    }
+    else {
+        if($('body').hasClass('bg-student')) {
+            $('nav.nav').removeClass('nav-auth--student');
+            $('nav.nav').removeClass('nav-auth');
+            $('nav.nav').addClass('nav-guest');
+            $('nav.nav').addClass('nav-guest--student');
+        }
+        else if($('body').hasClass('bg-tutor')) {
+            $('nav.nav').removeClass('nav-auth--tutor');
+            $('nav.nav').removeClass('nav-auth');
+            $('nav.nav').addClass('nav-guest');
+            $('nav.nav').addClass('nav-guest--tutor');
+        }
+    }
+});
