@@ -315,97 +315,47 @@ bg-student
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
-      initialDate: '2020-06-12',
-      initialView: 'timeGridWeek',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      height: 'auto',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      selectable: true,
-      selectMirror: true,
-      nowIndicator: true,
+        timeZone: 'PDT',
+        initialView: 'timeGridDay',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'timeGridDay,timeGridWeek'
+        },
+        @if(Auth::user()->is_tutor)
+            eventColor: '#6749DF',
+        @else
+            eventColor: '#1F7AFF',
+        @endif
+        height: 'auto',
+        navLinks: true, // can click day/week names to navigate views
+        selectable: true,
+        selectMirror: true,
+        nowIndicator: true,
         slotMinTime: "06:00:00",
         slotMaxTime: "23:00:00",
-            allDaySlot: false,
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2020-06-01',
+        allDaySlot: false,
+        selectOverlap: false,
+        validRange: function (nowDate) {
+            return {
+                start: nowDate
+            };
         },
-        {
-          title: 'Long Event',
-          start: '2020-06-07',
-          end: '2020-06-10'
+        now: function () {
+            return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
         },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-06-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-06-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-06-11',
-          end: '2020-06-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-06-12T10:30:00',
-          end: '2020-06-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-06-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-06-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-06-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-06-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2020-06-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-06-28'
-        }
-      ]
+        events: [
+
+        ]
     });
 
     calendar.render();
   });
 
         // calendar = new FullCalendar.Calendar(calendarEl, {
-        //     // default time should be los angeles' time
-        //     timeZone: 'PDT',
-        //     initialView: 'dayGridMonth',
-        //     header: {
-        //         left: 'prev,next today',
-        //         center: 'title',
-        //         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        //     },
-        //     contentHeight: 600,
         //     // events: [
         //         // to get the code from github
         //     // ],
-        //     eventColor: '#97D2FB',
         //     eventRender: function (info) {
         //     },
         //     eventPositioned: function (info) {
@@ -417,24 +367,6 @@ bg-student
         //             window.open(eventClickInfo.event.url);
         //         }
         //     },
-        //     eventMouseEnter: function (mouseEnterInfo) {
-        //     },
-        //     eventMouseLeave: function (mouseLeaveInfo) {
-        //     },
-        //     allDaySlot: false,
-        //     minTime: "06:00:00",
-        //     // called each time a day is rendered! (including week(7 days) and month!)
-        //     dayRender: function (dayInfo) {
-        //         console.log("the day is rendered!");
-        //         console.log(dayInfo);
-        //     },
-        //     validRange: function (nowDate) {
-        //         return {
-        //             start: nowDate
-        //         };
-        //     },
-        //     navLinks: true,
-        //     selectable: true,
         //     select: function (selectionInfo) {
         //         startTime = selectionInfo.start;
         //         endTime = selectionInfo.end;
@@ -444,8 +376,6 @@ bg-student
         //     },
         //     unselect: function (jsEvent, view) {
         //     },
-        //     selectMirror: true,
-        //     selectOverlap: false,
         //     dateClick: function (info) {
         //         // alert('Clicked on: ' + info.dateStr);
         //         // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
@@ -453,17 +383,7 @@ bg-student
         //         // // change the day's background color just for fun
         //         // info.dayEl.style.backgroundColor = 'red';
         //     },
-        //     nowIndicator: true,
-        //     now: function () {
-        //         // get the pdt time
-        //         var date = new Date();
-        //         var utcDate = new Date(date.toUTCString());
-        //         // I have to change to -8 when it is winter time
-        //         utcDate.setHours(utcDate.getHours() - 7);
-        //         var usDate = new Date(utcDate);
-        //         return usDate;
-        //     },
-        //     allDayDefault: false,
+
         // });
     //     calendar.render();
     // });

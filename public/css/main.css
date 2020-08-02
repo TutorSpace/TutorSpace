@@ -12595,6 +12595,34 @@ h6 {
   color: #FDFDFD;
 }
 
+.bg-student .btn-primary {
+  background-color: #1F7AFF;
+  border-color: #1F7AFF;
+}
+
+.bg-student .btn-primary:hover {
+  background-color: #0075E0;
+  border-color: #0075E0;
+}
+
+.bg-student .btn-primary.active {
+  background-color: #0C4293 !important;
+}
+
+.bg-tutor .btn-primary {
+  background-color: #6749DF;
+  border-color: #6749DF;
+}
+
+.bg-tutor .btn-primary:hover {
+  background-color: #502ED9;
+  border-color: #502ED9;
+}
+
+.bg-tutor .btn-primary.active {
+  background-color: #30188F !important;
+}
+
 .modal .modal-content {
   padding: 1rem 2rem;
 }
