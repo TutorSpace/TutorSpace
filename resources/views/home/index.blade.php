@@ -316,95 +316,154 @@ bg-student
 <script>
 
 @if(Auth::user()->is_tutor)
+    let calendar;
     document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
+        var calendarEl = document.getElementById('calendar');
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        themeSystem: 'bootstrap',
-        initialView: 'timeGridDay',
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'timeGridDay,timeGridWeek'
-        },
-        @if(Auth::user()->is_tutor)
-            eventColor: '#6749DF',
-        @else
-            eventColor: '#1F7AFF',
-        @endif
-        height: 'auto',
-        navLinks: true, // can click day/week names to navigate views
-        selectable: true,
-        selectMirror: true,
-        nowIndicator: true,
-        slotMinTime: "06:00:00",
-        slotMaxTime: "23:00:00",
-        allDaySlot: false,
-        selectOverlap: false,
-        validRange: function (nowDate) {
-            return {
-                start: nowDate
-            };
-        },
-        now: function () {
-            return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
-        },
-        selectAllow: function(selectionInfo) {
-            let startTime = moment(selectionInfo.start);
-            if(startTime.isBefore(moment()))
-                return false;
-            return true;
-        },
-        select: function (selectionInfo) {
-            let startTime = selectionInfo.start;
-            let endTime = selectionInfo.end;
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            themeSystem: 'bootstrap',
+            initialView: 'timeGridDay',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'timeGridDay,timeGridWeek'
+            },
+            @if(Auth::user()->is_tutor)
+                eventColor: '#6749DF',
+            @else
+                eventColor: '#1F7AFF',
+            @endif
+            height: 'auto',
+            navLinks: true, // can click day/week names to navigate views
+            selectable: true,
+            selectMirror: true,
+            nowIndicator: true,
+            slotMinTime: "06:00:00",
+            slotMaxTime: "23:00:00",
+            allDaySlot: false,
+            selectOverlap: false,
+            validRange: function (nowDate) {
+                return {
+                    start: nowDate
+                };
+            },
+            now: function () {
+                return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
+            },
+            selectAllow: function(selectionInfo) {
+                let startTime = moment(selectionInfo.start);
+                if(startTime.isBefore(moment()))
+                    return false;
+                return true;
+            },
+            select: function (selectionInfo) {
+                let startTime = selectionInfo.start;
+                let endTime = selectionInfo.end;
 
-            showAvailableTimeForm(startTime, endTime);
-        },
-        eventClick: function (eventClickInfo) {
-            eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
-            if (eventClickInfo.event.url) {
-                window.open(eventClickInfo.event.url);
-            }
+                showAvailableTimeForm(startTime, endTime);
+            },
+            eventClick: function (eventClickInfo) {
+                eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
+                if (eventClickInfo.event.url) {
+                    window.open(eventClickInfo.event.url);
+                }
 
-            showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.extendedProps.id);
-        },
-        events: [
-            @foreach(Auth::user()->availableTimes as $time)
-            {
-                title: 'Available',
-                start: '{{$time->available_time_start}}',
-                end: '{{$time->available_time_end}}',
-                description: "",
-                extendedProps: {
-                    id: "{{ $time->id }}"
+                showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.extendedProps.id);
+            },
+            events: [
+                @foreach(Auth::user()->availableTimes as $time)
+                {
+                    title: 'Available',
+                    start: '{{$time->available_time_start}}',
+                    end: '{{$time->available_time_end}}',
+                    description: "",
+                    extendedProps: {
+                        id: "{{ $time->id }}"
+                    },
+                    @if(Auth::user()->is_tutor)
+                    classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
+                    @else
+                    classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
+                    @endif
                 },
-                @if(Auth::user()->is_tutor)
-                classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
-                @else
-                classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
-                @endif
-            },
-            @endforeach
-            @foreach([] as $upcomingSession)
-            {
-                @php
-                    $startTime = date("H:i", strtotime($upcomingSession->start_time));
-                    $endTime = date("H:i", strtotime($upcomingSession->end_time));
-                @endphp
-                title: 'Scheduled',
-                start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                // start: '2020-04-25T12:30:00',
-                end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
-                description: "",
-                classNames: ['orange-red']
-            },
-            @endforeach
-        ],
+                @endforeach
+                @foreach([] as $upcomingSession)
+                {
+                    @php
+                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
+                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
+                    @endphp
+                    title: 'Scheduled',
+                    start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
+                    // start: '2020-04-25T12:30:00',
+                    end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+                    description: "",
+                    classNames: ['orange-red']
+                },
+                @endforeach
+            ],
+        });
+
+        calendar.render();
     });
 
-    calendar.render();
-  });
+    $('#availableTimeConfirmationModal form').submit(function(e) {
+        e.preventDefault();
+
+        let data = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('availableTime.post') }}",
+            data: data,
+            success: function success(data) {
+                var successMsg = data.successMsg;
+                toastr.success(successMsg);
+                calendar.addEvent({
+                    title: 'Available',
+                    start: data.available_time_start,
+                    end: data.available_time_end,
+                    description: "",
+                    extendedProps: {
+                        id: data.availableTimeId
+                    },
+                    @if(Auth::user()->is_tutor)
+                    classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
+                    @else
+                    classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
+                    @endif
+                });
+                $('#availableTimeConfirmationModal').modal('hide');
+            },
+            error: function error(_error) {
+                console.log(_error);
+                toastr.error("There is an error when submitting your availability. Please try again.");
+            }
+        });
+    });
+
+    $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
+        e.preventDefault();
+
+        let data = $(this).serialize();
+
+        $.ajax({
+            type: 'DELETE',
+            url: "{{ route('availableTime.delete') }}",
+            data: data,
+            success: function success(data) {
+                var successMsg = data.successMsg;
+                toastr.success(successMsg);
+                calendar.
+                $('#availableTimeDeleteConfirmationModal').modal('hide');
+            },
+            error: function error(_error) {
+                console.log(_error);
+                toastr.error("There is an error when canceling your availability. Please try again.");
+            }
+        });
+    });
+
 @endif
 
     let storageUrl = "{{ Storage::url('') }}";

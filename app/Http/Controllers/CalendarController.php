@@ -13,7 +13,6 @@ class CalendarController extends Controller
     }
 
     public function addAvailableTime(Request $request) {
-        // dd($request->all());
         $request->validate([
             'start-time' => [
                 'required',
@@ -28,13 +27,16 @@ class CalendarController extends Controller
             ]
         ]);
 
-        Auth::user()->availableTimes()->create([
+        $availableTime = Auth::user()->availableTimes()->create([
             'available_time_start' => $request->input('start-time'),
             'available_time_end' => $request->input('end-time')
         ]);
 
-        return redirect()->route('home')->with([
-            'successMsg' => 'Successfully updated your availability.'
+        return response()->json([
+            'successMsg' => 'Successfully updated your availability.',
+            'available_time_start' => $request->input('start-time'),
+            'available_time_end' => $request->input('end-time'),
+            'availableTimeId' => $availableTime->id
         ]);
     }
 
