@@ -12671,7 +12671,7 @@ h6 {
 .modal .form-check .form-check-label {
   font-size: 1.8rem;
   color: #626262;
-  margin-left: 2rem;
+  margin-left: 1rem;
 }
 
 .modal button {
@@ -12942,7 +12942,7 @@ h6 {
   display: inline-block;
   border: none;
   outline: none;
-  margin: 0.5rem 1rem;
+  margin: 0.5rem 1.5rem;
   padding: 0.5rem 1rem;
   font-size: 1.6rem;
 }
