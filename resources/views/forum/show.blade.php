@@ -259,10 +259,10 @@ bg-student
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
-                                @else
-                                <span class="followup-to">
+                                {{-- @else --}}
+                                {{-- <span class="followup-to">
                                     @Me
-                                </span>
+                                </span> --}}
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
