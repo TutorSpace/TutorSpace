@@ -23,6 +23,14 @@ Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->
 // upload photo
 Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
 
+// calendar
+Route::group([
+    'prefix' => 'calendar'
+], function() {
+    Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.post');
+});
+
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 

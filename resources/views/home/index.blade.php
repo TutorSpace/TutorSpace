@@ -24,6 +24,10 @@ bg-student
 
 @include('partials.nav')
 
+@if(Auth::user()->is_tutor)
+    @include('home.partials.availableTimeConfirmationModal')
+@endif
+
 <div class="container-fluid home">
     @include('home.partials.header')
 
@@ -353,10 +357,8 @@ bg-student
         select: function (selectionInfo) {
             let startTime = selectionInfo.start;
             let endTime = selectionInfo.end;
-            // startTime.setHours(startTime.getHours() + 7);
-            // endTime.setHours(endTime.getHours() + 7);
-            showAvailableTimeForm(selectionInfo);
 
+            showAvailableTimeForm(startTime, endTime);
         },
         eventClick: function (eventClickInfo) {
             eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
@@ -365,8 +367,34 @@ bg-student
             }
         },
         events: [
-
-        ]
+            @foreach(Auth::user()->availableTimes as $time)
+            {
+                title: 'Available',
+                start: '{{$time->available_time_start}}',
+                end: '{{$time->available_time_end}}',
+                description: "",
+                @if(Auth::user()->is_tutor)
+                classNames: ['bg-color-purple-primary', 'fs-1-4']
+                @else
+                classNames: ['bg-color-blue-primary', 'fs-1-4']
+                @endif
+            },
+            @endforeach
+            @foreach([] as $upcomingSession)
+            {
+                @php
+                    $startTime = date("H:i", strtotime($upcomingSession->start_time));
+                    $endTime = date("H:i", strtotime($upcomingSession->end_time));
+                @endphp
+                title: 'Scheduled',
+                start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
+                // start: '2020-04-25T12:30:00',
+                end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+                description: "",
+                classNames: ['orange-red']
+            },
+            @endforeach
+        ],
     });
 
     calendar.render();
@@ -375,6 +403,5 @@ bg-student
 
     let storageUrl = "{{ Storage::url('') }}";
 </script>
-@include('partials.nav-auth-js')
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

@@ -12245,6 +12245,14 @@ h6 {
   color: currentColor !important;
 }
 
+.bg-student .fc-theme-color {
+  color: #1F7AFF;
+}
+
+.bg-tutor .fc-theme-color {
+  color: #6749DF;
+}
+
 .fc-grey {
   color: #A0A0A0 !important;
 }

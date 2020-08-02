@@ -178,8 +178,8 @@ class User extends Authenticatable
         }
     }
 
-    public function available_times() {
-        return $this->hasMany('App\Available_time');
+    public function availableTimes() {
+        return $this->hasMany('App\AvailableTime');
     }
 
     // return users who bookmarked the current user
