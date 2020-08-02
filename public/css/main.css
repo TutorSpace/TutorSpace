@@ -13096,8 +13096,7 @@ h6 {
   border: 1px solid rgba(160, 160, 160, 0.5);
 }
 
-.user-card .bookmark-svg {
-  font-size: 2.8rem;
+.user-card .svg-bookmark {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -13161,7 +13160,14 @@ h6 {
   background-color: #6749DF;
 }
 
-svg.bookmark:hover {
+.svg-bookmark {
+  width: 2rem;
+  height: 3rem;
+  color: #1F7AFF;
+  transform: scaleY(1.1);
+}
+
+.svg-bookmark:hover {
   cursor: pointer;
 }
 

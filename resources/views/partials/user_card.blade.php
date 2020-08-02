@@ -4,12 +4,15 @@
     @endif
 ">
     @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
-    <svg class="">
+    <svg class="svg-bookmark">
+        @if(true)
         <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @else
+        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @endif
     </svg>
-    {{-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bookmark bookmark-svg" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 12l5 3V3a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l5-3zm-4 1.234l4-2.4 4 2.4V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10.234z"/>
-    </svg> --}}
     @endunless
 
     <img class="user-image" src="{{ Storage::url($user->profile_pic_url) }}" alt="user image">
