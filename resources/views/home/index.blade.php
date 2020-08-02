@@ -368,7 +368,7 @@ bg-student
                     window.open(eventClickInfo.event.url);
                 }
 
-                showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.extendedProps.id);
+                showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.id);
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
@@ -377,9 +377,7 @@ bg-student
                     start: '{{$time->available_time_start}}',
                     end: '{{$time->available_time_end}}',
                     description: "",
-                    extendedProps: {
-                        id: "{{ $time->id }}"
-                    },
+                    id: "{{ $time->id }}",
                     @if(Auth::user()->is_tutor)
                     classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
                     @else
@@ -424,9 +422,7 @@ bg-student
                     start: data.available_time_start,
                     end: data.available_time_end,
                     description: "",
-                    extendedProps: {
-                        id: data.availableTimeId
-                    },
+                    id: data.availableTimeId,
                     @if(Auth::user()->is_tutor)
                     classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
                     @else
@@ -454,7 +450,7 @@ bg-student
             success: function success(data) {
                 var successMsg = data.successMsg;
                 toastr.success(successMsg);
-                calendar.
+                calendar.getEventById(data.availableTimeId).remove();
                 $('#availableTimeDeleteConfirmationModal').modal('hide');
             },
             error: function error(_error) {

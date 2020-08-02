@@ -45,8 +45,10 @@ class CalendarController extends Controller
         $availableTime = Auth::user()->availableTimes()->where('id', $availableTimeId)->firstOrFail();
 
         $availableTime->delete();
-        return redirect()->route('home')->with([
-            'successMsg' => 'Successfully removed your availability.'
+
+        return response()->json([
+            'successMsg' => 'Successfully canceled your availability.',
+            'availableTimeId' => $request->input('available-time-id')
         ]);
     }
 }
