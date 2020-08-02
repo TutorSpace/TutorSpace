@@ -1,5 +1,5 @@
 .post-reply {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
     color: $color-black-post-3;
 
@@ -61,7 +61,7 @@
         .post-reply__actions, .post-reply__info {
             display: flex;
             align-items: center;
-            // margin-top: 2rem;
+            margin-top: .5rem;
             font-size: 1.3rem;
             flex-wrap: wrap;
 
@@ -152,6 +152,10 @@
         border: none;
         outline: none;
 
+        margin: .5rem 1rem;
+        padding: .5rem 1rem;
+        font-size: 1.6rem;
+
         &::placeholder {
             color: $color-grey;
         }
@@ -165,17 +169,11 @@
 }
 
 .post-comment {
-    padding: 1.5rem 2rem 1.5rem 2rem;
-
-    &__input {
-        margin: 1rem 2rem;
-        padding: 1rem 2rem;
-        font-size: 1.6rem;
-    }
+    padding: 1.5rem 1.5rem;
 
     img {
-        width: 4rem;
-        height: 4rem;
+        width: 5rem;
+        height: 5rem;
         object-fit: cover;
         border-radius: 50%;
         display: block;
@@ -183,8 +181,8 @@
     }
 
     .btn-reply {
-        font-size: 1.8rem;
-        padding: 1rem 2rem;
+        font-size: 1.6rem;
+        padding: .5rem 1rem;
         font-weight: bolder;
     }
 }
@@ -192,12 +190,6 @@
 .post-followup {
     padding: .5rem 1rem;
     margin-left: 8rem;
-
-    &__input {
-        margin: .5rem 1rem;
-        padding: .5rem 1rem;
-        font-size: 1.6rem;
-    }
 
     .btn-reply {
         font-size: 1.6rem;
@@ -228,7 +220,7 @@
         font-size: 1.4rem;
         display: flex;
         align-items: center;
-        margin-top: 2rem;
+        margin-top: .5rem;
 
         &__left {
             margin-right: auto;

@@ -12791,7 +12791,7 @@ h6 {
 }
 
 .post-reply {
-  margin-top: 3rem;
+  margin-top: 2rem;
   display: flex;
   color: #3F3F3F;
   position: relative;
@@ -12853,6 +12853,7 @@ h6 {
 .post-reply .right-container .post-reply__info {
   display: flex;
   align-items: center;
+  margin-top: 0.5rem;
   font-size: 1.3rem;
   flex-wrap: wrap;
 }
@@ -12941,6 +12942,9 @@ h6 {
   display: inline-block;
   border: none;
   outline: none;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.6rem;
 }
 
 .post-comment__input::-webkit-input-placeholder, .post-followup__input::-webkit-input-placeholder {
@@ -12970,18 +12974,12 @@ h6 {
 }
 
 .post-comment {
-  padding: 1.5rem 2rem 1.5rem 2rem;
-}
-
-.post-comment__input {
-  margin: 1rem 2rem;
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
+  padding: 1.5rem 1.5rem;
 }
 
 .post-comment img {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -12990,20 +12988,14 @@ h6 {
 }
 
 .post-comment .btn-reply {
-  font-size: 1.8rem;
-  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
   font-weight: bolder;
 }
 
 .post-followup {
   padding: 0.5rem 1rem;
   margin-left: 8rem;
-}
-
-.post-followup__input {
-  margin: 0.5rem 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1.6rem;
 }
 
 .post-followup .btn-reply {
@@ -13031,7 +13023,7 @@ h6 {
   font-size: 1.4rem;
   display: flex;
   align-items: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .followup-container .followup__info__left {
