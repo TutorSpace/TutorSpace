@@ -11548,7 +11548,6 @@ $('.btn-view-all-upcoming-sessions').click(function () {
 
 function isInViewPort(elem) {
   var distance = elem.getBoundingClientRect();
-  console.log(distance);
   return distance.top >= -120;
 }
 

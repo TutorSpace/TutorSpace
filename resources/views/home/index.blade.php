@@ -309,13 +309,13 @@ bg-student
 @section('js')
 
 <script>
-    @if(Auth::user()->is_tutor)
+
+@if(Auth::user()->is_tutor)
     document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap',
-        timeZone: 'PDT',
         initialView: 'timeGridDay',
         headerToolbar: {
             left: 'prev,next today',
@@ -344,6 +344,27 @@ bg-student
         now: function () {
             return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
         },
+        selectAllow: function(selectionInfo) {
+            let startTime = moment(selectionInfo.start);
+            console.log(startTime);
+            if(startTime.isBefore(moment()))
+                return false;
+            return true;
+        },
+        select: function (selectionInfo) {
+            let startTime = selectionInfo.start;
+            let endTime = selectionInfo.end;
+            // startTime.setHours(startTime.getHours() + 7);
+            // endTime.setHours(endTime.getHours() + 7);
+            // showForm(selectionInfo);
+
+        },
+        eventClick: function (eventClickInfo) {
+            eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
+            if (eventClickInfo.event.url) {
+                window.open(eventClickInfo.event.url);
+            }
+        },
         events: [
 
         ]
@@ -351,43 +372,7 @@ bg-student
 
     calendar.render();
   });
-
-        // calendar = new FullCalendar.Calendar(calendarEl, {
-        //     // events: [
-        //         // to get the code from github
-        //     // ],
-        //     eventRender: function (info) {
-        //     },
-        //     eventPositioned: function (info) {
-        //         console.log("the event is placed!");
-        //     },
-        //     eventClick: function (eventClickInfo) {
-        //         eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
-        //         if (eventClickInfo.event.url) {
-        //             window.open(eventClickInfo.event.url);
-        //         }
-        //     },
-        //     select: function (selectionInfo) {
-        //         startTime = selectionInfo.start;
-        //         endTime = selectionInfo.end;
-        //         // startTime.setHours(startTime.getHours() + 7);
-        //         // endTime.setHours(endTime.getHours() + 7);
-        //         // showForm(selectionInfo);
-        //     },
-        //     unselect: function (jsEvent, view) {
-        //     },
-        //     dateClick: function (info) {
-        //         // alert('Clicked on: ' + info.dateStr);
-        //         // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-        //         // alert('Current view: ' + info.view.type);
-        //         // // change the day's background color just for fun
-        //         // info.dayEl.style.backgroundColor = 'red';
-        //     },
-
-        // });
-    //     calendar.render();
-    // });
-    @endif
+@endif
 
     let storageUrl = "{{ Storage::url('') }}";
 </script>

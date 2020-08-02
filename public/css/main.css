@@ -13669,6 +13669,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+#calendar .fc-toolbar-title {
+  font-size: 2.2rem !important;
+}
+
+#calendar th {
+  font-size: 1.4rem !important;
+}
+
+#calendar button {
+  font-size: 1.4rem;
+}
+
+#calendar td {
+  font-size: 1.2rem;
+}
+
 .nav {
   height: 8rem;
   z-index: 2000;
