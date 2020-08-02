@@ -31,6 +31,14 @@ Route::group([
     Route::delete('/availableTime', 'CalendarController@deleteAvailableTime')->name('availableTime.delete');
 });
 
+// bookmark
+Route::group([
+    'prefix' => 'bookmark'
+], function() {
+    Route::post('/{user}', '@')->name('.post');
+    Route::delete('/{user}', '@')->name('.delete');
+});
+
 
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
