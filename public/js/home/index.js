@@ -11537,7 +11537,13 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
 }
 
 $('.btn-view-all-upcoming-sessions').click(function () {
-  $(this).parent().next().find('.hidden').removeClass('hidden');
+  $(this).parent().next().find('.hidden-2').toggle("fast");
+
+  if ($(this).html().includes('View')) {
+    $(this).html('Hide Upcoming Sessions');
+  } else {
+    $(this).html('View All Upcoming Sessions');
+  }
 });
 
 function isInViewPort(elem) {
