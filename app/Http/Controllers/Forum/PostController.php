@@ -356,13 +356,15 @@ class PostController extends Controller
         if($user->hasFollowedPost($post)) {
             $user->followedPosts()->detach($post);
             return response()->json([
-                'text' => 'Follow'
+                'text' => 'Follow',
+                'svg' => '<use xlink:href="' . asset('assets/sprite.svg#icon-heart-empty') . '"></use>'
             ]);
         }
         else {
             $user->followedPosts()->attach($post);
             return response()->json([
-                'text' => 'Unfollow'
+                'text' => 'Unfollow',
+                'svg' => '<use xlink:href="' . asset('assets/sprite.svg#icon-heart-full') . '"></use>'
             ]);
         }
     }

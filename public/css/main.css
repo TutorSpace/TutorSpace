@@ -12145,6 +12145,10 @@ h6 {
   margin-right: 2px;
 }
 
+.mr-3px {
+  margin-right: 3px;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }

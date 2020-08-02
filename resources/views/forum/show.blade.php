@@ -106,8 +106,8 @@ bg-student
                                 @can('follow', $post)
                                     @if(Auth::check() && $post->followedBy(Auth::user()))
                                     <div class="action action-follow active">
-                                        <svg class="mr-2px">
-                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                                        <svg class="mr-3px">
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
                                         </svg>
                                         <span class="text">
                                             Unfollow
@@ -115,8 +115,8 @@ bg-student
                                     </div>
                                     @else
                                     <div class="action action-follow">
-                                        <svg class="mr-2px">
-                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                                        <svg class="mr-3px">
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart-empty')}}"></use>
                                         </svg>
                                         <span class="text">
                                             Follow
@@ -247,10 +247,13 @@ bg-student
 
                     {{-- for followups --}}
                     @foreach ($reply->replies as $followup)
-                        <div class="followup-container hidden" data-followup-for="{{ $reply->id }}"
-                        @if ($followup->id == session('newFollowupId'))
-                            id="scroll-to-followup"
-                        @endif>
+                        <div
+                            class="followup-container hidden"
+                            data-followup-for="{{ $reply->id }}"
+                            @if ($followup->id == session('newFollowupId'))
+                                id="scroll-to-followup"
+                            @endif
+                        >
                             <div class="followup__content">
                                 @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
@@ -360,6 +363,7 @@ $('.action').click(function() {
                     success: (data) => {
                         $(this).toggleClass('active');
                         $(this).find('.text').html(data.text);
+                        $(this).find('svg').html(data.svg);
                     },
                     error: function(error) {
                         toastr.error('Something went wrong!');
