@@ -189,7 +189,7 @@ bg-student
                             <a class="user-name user-info" href="#">
                                 {{ $reply->user->first_name }}
                             </a>
-                            <span class="user-info fc-grey mt-0">
+                            <span class="user-info fc-grey mt-1">
                                 {{ $reply->user->firstMajor->major ?? '' }}
                             </span>
                             @else

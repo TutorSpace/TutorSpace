@@ -46,8 +46,8 @@
 
         .user-info {
             text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.2;
+            font-size: 1.1rem;
+            line-height: 1.1;
         }
 
     }
@@ -168,6 +168,16 @@
 
 }
 
+.post-comment, .post-followup {
+
+
+    .btn-reply {
+        font-size: 1.6rem;
+        padding: .5rem 1rem;
+        font-weight: bolder;
+    }
+}
+
 .post-comment {
     padding: 1.5rem 1.5rem;
 
@@ -180,28 +190,17 @@
         border: 1px solid transparentize($color: $color-grey, $amount: .5);
     }
 
-    .btn-reply {
-        font-size: 1.6rem;
-        padding: .5rem 1rem;
-        font-weight: bolder;
-    }
+
 }
 
 .post-followup {
-    padding: .5rem 1rem;
     margin-left: 8rem;
-
-    .btn-reply {
-        font-size: 1.6rem;
-        padding: .6rem 1.2rem;
-        font-weight: bolder;
-    }
+    padding: .5rem 1rem;
 }
 
 .followup-container {
     margin-top: 1.5rem;
     color: $color-black-post-3;
-    font-size: 1.6rem;
     border-radius: 1rem;
     background-color: $color-white-dark-5;
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);

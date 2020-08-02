@@ -12842,8 +12842,8 @@ h6 {
 
 .post-reply .left-container .user-info {
   text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.2;
+  font-size: 1.1rem;
+  line-height: 1.1;
 }
 
 .post-reply .right-container {
@@ -12977,6 +12977,13 @@ h6 {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
+.post-comment .btn-reply,
+.post-followup .btn-reply {
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+  font-weight: bolder;
+}
+
 .post-comment {
   padding: 1.5rem 1.5rem;
 }
@@ -12991,27 +12998,14 @@ h6 {
   border: 1px solid rgba(160, 160, 160, 0.5);
 }
 
-.post-comment .btn-reply {
-  font-size: 1.6rem;
-  padding: 0.5rem 1rem;
-  font-weight: bolder;
-}
-
 .post-followup {
-  padding: 0.5rem 1rem;
   margin-left: 8rem;
-}
-
-.post-followup .btn-reply {
-  font-size: 1.6rem;
-  padding: 0.6rem 1.2rem;
-  font-weight: bolder;
+  padding: 0.5rem 1rem;
 }
 
 .followup-container {
   margin-top: 1.5rem;
   color: #3F3F3F;
-  font-size: 1.6rem;
   border-radius: 1rem;
   background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
@@ -14467,7 +14461,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
   position: absolute;
   right: 0;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .forum .select-container .input-group-prepend:hover {
@@ -15104,12 +15098,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1.5rem;
 }
 
+.post__heading {
+  font-size: 2.2rem;
+}
+
 .post__heading:hover {
   color: #626262;
 }
 
 .post__heading-2 {
   font-size: 1.4rem;
+  margin-bottom: 0.5rem;
 }
 
 .post__heading-2 .poster-img {
@@ -15122,8 +15121,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .post__content,
-.post-reply__content {
-  font-size: 1.6rem;
+.post-reply__content,
+.followup-container {
+  font-size: 1.5rem;
 }
 
 .post__bottom {
@@ -15159,11 +15159,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .post-preview {
-  padding: 2.5rem 4rem 2.5rem 4rem;
+  padding: 1.8rem 3rem;
 }
 
 .post-detail {
-  padding: 4.5rem 4rem 3rem 4rem;
+  padding: 3.5rem 3rem 2rem 3rem;
 }
 
 .index {
