@@ -12789,7 +12789,6 @@ h6 {
 .tag {
   padding: 0.3rem 0.8rem;
   display: inline-block;
-  margin-bottom: 1rem;
   margin-right: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -15131,7 +15130,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .post__bottom .tags {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-top: 0.5rem;
 }
 

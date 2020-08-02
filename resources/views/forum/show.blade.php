@@ -66,12 +66,12 @@ bg-student
                             {{ App\CustomClass\NumberFormatter::thousandsFormat($post->view_count) }}
                         </span>
                     </p>
-                    <div class="post__content mb-4">
+                    <div class="post__content fs-1-6 mb-3">
                         {!! $post->content !!}
                     </div>
 
                     <div class="post__bottom">
-                        <div class="tags">
+                        <div class="tags fs-1-4">
                             @foreach ($post->tags as $tag)
                                 <a class="tag"
                                     href="{{ route('posts.search', [
@@ -83,8 +83,8 @@ bg-student
                                 >{{ $tag->tag }}</a>
                             @endforeach
                         </div>
-                        <div class="post__bottom__actions d-flex mt-3 justify-content-end">
-                            <div class="left-container d-flex align-items-center mt-3" data-post-slug="{{ $post->slug }}">
+                        <div class="post__bottom__actions d-flex mt-2 justify-content-end">
+                            <div class="left-container d-flex align-items-center mt-2" data-post-slug="{{ $post->slug }}">
                                 <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
                                     <svg class="mr-2px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
