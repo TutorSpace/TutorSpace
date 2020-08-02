@@ -187,16 +187,16 @@ bg-student
                             <img class="" src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
                             @if (!Auth::check() || (Auth::check() && Auth::user()->id != $reply->user->id))
                             <a class="user-name user-info" href="#">
-                                {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
+                                {{ $reply->user->first_name }}
                             </a>
+                            <span class="user-info fc-grey mt-0">
+                                {{ $reply->user->firstMajor->major ?? '' }}
+                            </span>
                             @else
                             <span class="user-name user-info">
                                 Me
                             </span>
                             @endif
-                            <span class="user-info fc-grey mt-1">
-                                {{ $reply->user->firstMajor->major ?? '' }}
-                            </span>
                         </div>
                         <div class="right-container">
                             <div class="post-reply__content">
@@ -206,9 +206,7 @@ bg-student
                                 <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
                                     <button class="btn btn-link btn-toggle-follow-up mr-2" type="button">
-                                        <span class="keyword">
-                                            Display
-                                        </span>
+                                        <span class="keyword">Display</span>
                                     {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}
                                 </button>
                                 @endif
@@ -257,7 +255,6 @@ bg-student
                                 @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
-                                    {{ $followup->reply->user->last_name }}
                                 </a>
                                 @else
                                 <span class="followup-to">
@@ -273,7 +270,6 @@ bg-student
                                     @if (!Auth::check() || Auth::user()->id != $followup->user->id)
                                     <a href="#" class="followup__user">
                                         {{ $followup->user->first_name }}
-                                        {{ $followup->user->last_name }}
                                     </a>
                                     @else
                                     <span class="followup__user">

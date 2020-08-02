@@ -12798,7 +12798,7 @@ h6 {
   border-radius: 1rem;
   background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 3rem 4rem 2rem 4rem;
+  padding: 1.5rem 3rem 1.5rem 3rem;
 }
 
 .post-reply .left-container {
@@ -12816,8 +12816,8 @@ h6 {
 }
 
 .post-reply .left-container img {
-  width: 7rem;
-  height: 7rem;
+  width: 5rem;
+  height: 5rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -12826,10 +12826,14 @@ h6 {
 }
 
 .post-reply .left-container .user-name {
-  font-size: 1.5rem !important;
+  font-size: 1.4rem !important;
   line-height: 1.2;
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   color: #3F3F3F;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .post-reply .left-container .user-info {
@@ -12849,16 +12853,15 @@ h6 {
 .post-reply .right-container .post-reply__info {
   display: flex;
   align-items: center;
-  margin-top: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   flex-wrap: wrap;
 }
 
 .post-reply .right-container .post-reply__actions svg,
 .post-reply .right-container .post-reply__info svg {
   fill: #A0A0A0;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .post-reply .right-container .post-reply__actions .action,
@@ -12867,7 +12870,7 @@ h6 {
 }
 
 .post-reply .right-container .btn-toggle-follow-up {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #3F3F3F !important;
 }
 
@@ -12888,14 +12891,14 @@ h6 {
 }
 
 .best-reply {
-  padding-top: 7rem;
+  padding-top: 5.5rem;
 }
 
 .best-reply .svg-best-reply {
   position: absolute;
   top: -2.2rem;
   right: 1rem;
-  height: 7rem;
+  height: 6rem;
   z-index: 100;
 }
 
@@ -12907,11 +12910,16 @@ h6 {
 
 .best-reply .text-best-reply {
   color: #F9F9F9;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-family: "Baloo Bhai", sans-serif;
   position: absolute;
-  top: 0.7rem;
+  top: 0.4rem;
   right: 8.5rem;
+}
+
+.best-reply img {
+  width: 6rem !important;
+  height: 6rem !important;
 }
 
 .post-comment,
@@ -12972,8 +12980,8 @@ h6 {
 }
 
 .post-comment img {
-  width: 6rem;
-  height: 6rem;
+  width: 4rem;
+  height: 4rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -12989,7 +12997,7 @@ h6 {
 
 .post-followup {
   padding: 0.5rem 1rem;
-  margin-left: 15rem;
+  margin-left: 8rem;
 }
 
 .post-followup__input {
@@ -13011,8 +13019,8 @@ h6 {
   border-radius: 1rem;
   background-color: #F9F9F9;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  margin-left: 15rem;
+  padding: 1rem 2rem;
+  margin-left: 8rem;
 }
 
 .followup-container .followup__content .followup-to {
@@ -13041,8 +13049,8 @@ h6 {
 
 .followup-container .action svg {
   fill: #A0A0A0;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .bg-student .post-comment .btn-reply,
@@ -13056,7 +13064,7 @@ h6 {
 }
 
 .bg-student .best-reply {
-  background-image: linear-gradient(180deg, rgba(31, 122, 255, 0.9) 0%, rgba(31, 122, 255, 0.9) 5rem, transparent 10%);
+  background-image: linear-gradient(180deg, rgba(31, 122, 255, 0.9) 0%, rgba(31, 122, 255, 0.9) 4rem, transparent 10%);
 }
 
 .bg-tutor .post-comment .btn-reply,
@@ -13070,7 +13078,7 @@ h6 {
 }
 
 .bg-tutor .best-reply {
-  background-image: linear-gradient(180deg, rgba(103, 73, 223, 0.9) 0%, rgba(103, 73, 223, 0.9) 5rem, transparent 10%);
+  background-image: linear-gradient(180deg, rgba(103, 73, 223, 0.9) 0%, rgba(103, 73, 223, 0.9) 4rem, transparent 10%);
 }
 
 .user-card {
