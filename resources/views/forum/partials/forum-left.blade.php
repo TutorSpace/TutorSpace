@@ -46,7 +46,7 @@
         <li class="forum-left-sm__list-item">
             <a class="forum-left-sm__list-content" href="{{ route('posts.my-follows') }}">
                 <svg class="forum-left-sm__list-svg">
-                    <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                    <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
                 </svg>
                 <span>My Follows</span>
             </a>
@@ -86,7 +86,7 @@
         </li>
         <li class="forum-left__list-item @if(Route::current()->getName() == 'posts.my-follows') current @endif" data-location-href="{{ route('posts.my-follows') }}">
             <svg class="forum-left__list-svg">
-                <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
             </svg>
             <span class="forum-left__list-content">My Follows</span>
         </li>
