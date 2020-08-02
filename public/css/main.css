@@ -14379,6 +14379,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: calc(8rem + 4rem);
 }
 
+.forum .btn-link {
+  color: #A0A0A0;
+  transition: all 0.1s;
+}
+
+.forum .btn-link:hover {
+  color: #626262;
+}
+
 .forum .forum-row {
   margin: 0 -4rem;
 }
@@ -14971,15 +14980,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #6749DF;
 }
 
-.bg-tutor .forum .btn-link {
-  color: #6749DF;
-  transition: all 0.2s;
-}
-
-.bg-tutor .forum .btn-link:hover {
-  color: #502ED9;
-}
-
 .bg-tutor .forum .active {
   color: #6749DF !important;
 }
@@ -15058,15 +15058,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-student .forum-right .trending-tags__list thead th {
   color: #1F7AFF;
-}
-
-.bg-student .forum .btn-link {
-  color: #1F7AFF;
-  transition: all 0.2s;
-}
-
-.bg-student .forum .btn-link:hover {
-  color: #0075E0;
 }
 
 .bg-student .forum .active {

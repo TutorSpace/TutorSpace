@@ -289,7 +289,7 @@ class PostController extends Controller
     public function showMyFollows() {
         return view('forum.my_follows', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
+            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
@@ -298,7 +298,7 @@ class PostController extends Controller
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
-            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE)
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE)
         ]);
     }
 

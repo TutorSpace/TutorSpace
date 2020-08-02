@@ -346,7 +346,6 @@ bg-student
         },
         selectAllow: function(selectionInfo) {
             let startTime = moment(selectionInfo.start);
-            console.log(startTime);
             if(startTime.isBefore(moment()))
                 return false;
             return true;
@@ -356,7 +355,7 @@ bg-student
             let endTime = selectionInfo.end;
             // startTime.setHours(startTime.getHours() + 7);
             // endTime.setHours(endTime.getHours() + 7);
-            // showForm(selectionInfo);
+            showAvailableTimeForm(selectionInfo);
 
         },
         eventClick: function (eventClickInfo) {
