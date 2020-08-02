@@ -11590,6 +11590,15 @@ window.showAvailableTimeForm = function (startTime, endTime) {
   $('#availableTimeConfirmationModal').modal('show');
 };
 
+window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTimeId) {
+  $('#availableTimeDeleteConfirmationModal input[name="available-time-id"]').val(availableTimeId);
+  startTime = moment(startTime).format("HH:mm on MM/DD/YYYY dddd");
+  endTime = moment(endTime).format("HH:mm on MM/DD/YYYY dddd");
+  $('#availableTimeDeleteConfirmationModal .start-time').html(startTime);
+  $('#availableTimeDeleteConfirmationModal .end-time').html(endTime);
+  $('#availableTimeDeleteConfirmationModal').modal('show');
+};
+
 /***/ }),
 
 /***/ 7:

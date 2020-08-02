@@ -28,6 +28,7 @@ Route::group([
     'prefix' => 'calendar'
 ], function() {
     Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.post');
+    Route::delete('/availableTime', 'CalendarController@deleteAvailableTime')->name('availableTime.delete');
 });
 
 

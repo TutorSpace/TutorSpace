@@ -26,6 +26,7 @@ bg-student
 
 @if(Auth::user()->is_tutor)
     @include('home.partials.availableTimeConfirmationModal')
+    @include('home.partials.availableTimeDeleteConfirmationModal')
 @endif
 
 <div class="container-fluid home">
@@ -365,6 +366,8 @@ bg-student
             if (eventClickInfo.event.url) {
                 window.open(eventClickInfo.event.url);
             }
+
+            showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.extendedProps.id);
         },
         events: [
             @foreach(Auth::user()->availableTimes as $time)
@@ -373,10 +376,13 @@ bg-student
                 start: '{{$time->available_time_start}}',
                 end: '{{$time->available_time_end}}',
                 description: "",
+                extendedProps: {
+                    id: "{{ $time->id }}"
+                },
                 @if(Auth::user()->is_tutor)
-                classNames: ['bg-color-purple-primary', 'fs-1-4']
+                classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
                 @else
-                classNames: ['bg-color-blue-primary', 'fs-1-4']
+                classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
                 @endif
             },
             @endforeach
