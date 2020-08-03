@@ -451,7 +451,7 @@ $('.user-card button').click(function() {
     $('.overlay-student').show();
 });
 
-$('.bookmark-svg').click(function() {
+$('.svg-bookmark').click(function() {
     $('.overlay-student').show();
 })
 @endauth

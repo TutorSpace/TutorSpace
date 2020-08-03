@@ -70150,26 +70150,6 @@ $(document).ready(function () {
 
   $('nav .svg-search').click(function () {
     $('.nav__form').submit();
-  }); // ===================== bookmark =================
-
-  $('.svg-bookmark').click(function () {
-    if ($(this).find('use.hidden').hasClass('bookmarked')) {
-      var requestType = 'POST';
-    } else {
-      var requestType = 'DELETE';
-    }
-
-    var userId = $(this).attr('data-user-id');
-    $.ajax({
-      type: requestType,
-      url: "/bookmark/".concat(userId),
-      success: function success(data) {},
-      error: function error(_error) {
-        toastr.error('Something went wrong. Please try again.');
-        console.log(_error);
-      }
-    });
-    $(this).find('use').toggleClass('hidden');
   });
 });
 
