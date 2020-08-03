@@ -14470,7 +14470,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
   position: absolute;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .forum .select-container .input-group-prepend:hover {

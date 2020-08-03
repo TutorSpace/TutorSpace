@@ -394,7 +394,7 @@ class PostController extends Controller
                             ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%");
                         });
         }
-        else if($request->input('search-by') == 'tags') {
+        else if($request->input('search-by') == 'tags' && $request->input('tags')) {
             $posts = $posts->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
             // todo: needs to be modified (need to check all the tags in the input are of this post)
