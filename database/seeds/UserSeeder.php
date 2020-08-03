@@ -126,9 +126,6 @@ class UserSeeder extends Seeder
                 'course_id' => 2
             ],[
                 'user_id' => 2,
-                'course_id' => 3
-            ],[
-                'user_id' => 2,
                 'course_id' => 4
             ],[
                 'user_id' => 2,
