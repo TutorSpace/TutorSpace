@@ -76,8 +76,11 @@
                 </div>
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
                 <div class="profile-img-dropdown">
+                    <a class="nav__item" href="{{ route('home') }}">Dashboard</a>
                     <a class="nav__item" href="#">Profile</a>
-                    <a class="nav__item" href="/auth/logout">Sign Out</a>
+
+                    <a class="nav__item mt-2" href="#">Switch Account</a>
+                    <a class="nav__item" href="{{ route('logout') }}">Sign Out</a>
                 </div>
                 <div class="nav-toggle-sm">
                     <svg class="svg-list" width="1em" height="1em" viewBox="0 0
@@ -85,11 +88,13 @@
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                     <div class="svg-list-dropdown">
-                        <a class="nav__item" href="#">Profile</a>
                         <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
+                        <a class="nav__item" href="{{ route('home') }}">Dashboard</a>
+                        <a class="nav__item mt-2" href="#">Profile</a>
                         <a class="nav__item" href="#">Support</a>
 
-                        <a class="nav__item mt-2" href="/auth/logout">Sign Out</a>
+                        <a class="nav__item mt-2" href="#">Switch Account</a>
+                        <a class="nav__item" href="{{ route('logout') }}">Sign Out</a>
                     </div>
                 </div>
 
