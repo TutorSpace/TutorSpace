@@ -141,37 +141,6 @@ bg-student
                         @include('partials.user_card', [
                             'user' => $user
                         ])
-
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
                     @empty
                     <h6 class="">No bookmarked tutors yet</h6>
                     @endforelse
