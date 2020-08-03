@@ -83,7 +83,7 @@ bg-student
                                 >{{ $tag->tag }}</a>
                             @endforeach
                         </div>
-                        <div class="post__bottom__actions d-flex mt-2 justify-content-end">
+                        <div class="post__bottom__actions d-flex justify-content-end">
                             <div class="left-container d-flex align-items-center mt-2" data-post-slug="{{ $post->slug }}">
                                 <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
                                     <svg class="mr-2px">

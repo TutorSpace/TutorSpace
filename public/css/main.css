@@ -12778,6 +12778,10 @@ h6 {
   fill: #A0A0A0;
 }
 
+.post-previews .post-preview .post__bottom .tag {
+  margin-bottom: 0 !important;
+}
+
 .post-previews .post-preview .poster-name {
   color: #626262;
 }
@@ -12793,6 +12797,7 @@ h6 {
 .tag {
   padding: 0.3rem 0.8rem;
   display: inline-block;
+  margin-bottom: 0.75rem;
   margin-right: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -16786,7 +16791,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .search .search-results .search-result .user-courses .course {
   flex: 0 0 calc(25% - .5rem);
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   margin-right: 0.5rem;
   white-space: nowrap;
   border-radius: 0.5rem;
@@ -16794,7 +16799,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search .search-results .search-result .user-courses .heading {
   color: #626262;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding-left: 0.5rem;
 }
 

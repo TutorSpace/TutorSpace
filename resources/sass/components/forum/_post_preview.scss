@@ -71,13 +71,16 @@
             svg {
                 fill: $color-grey;
             }
+
+            .tag {
+                margin-bottom: 0 !important;
+            }
         }
 
         .poster-name {
             color: $color-black-post;
         }
     }
-
 
 }
 
