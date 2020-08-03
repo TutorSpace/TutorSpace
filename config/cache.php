@@ -74,6 +74,7 @@ return [
 
         'redis' => [
             'driver' => 'redis',
+            'client' => env('REDIS_CLIENT', 'predis'),
             'connection' => 'cache',
         ],
 

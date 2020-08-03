@@ -19,7 +19,7 @@
         </span>
         @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
         <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
-            @if(Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
+            @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
             <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
             <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
             @else
