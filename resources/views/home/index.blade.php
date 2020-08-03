@@ -239,7 +239,7 @@ bg-student
         @endif
 
         <div class="container">
-            <div class="row forum">
+            <div class="row forum mt-0">
                 <h5 class="w-100">Forum Activity</h5>
                 <div class="col-12 col-sm-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
