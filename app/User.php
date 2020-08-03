@@ -38,9 +38,9 @@ class User extends Authenticatable
     ];
 
     // customized reset password
-    public function customSendPasswordResetNotification($token, $is_tutor)
+    public function sendPasswordResetNotification($token)
     {
-        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
+        $this->notify(new CustomResetPasswordNotification($token, request()->is_tutor));
     }
 
 
