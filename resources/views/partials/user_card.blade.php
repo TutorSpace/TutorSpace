@@ -4,13 +4,13 @@
     @endif
 ">
     @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
-    <svg class="svg-bookmark">
-        @if(!$user->bookmarkedBy(Auth::user))
-        <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
-        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+    <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
+        @if(Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
+        <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
         @else
-        <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
-        <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
         @endif
     </svg>
     @endunless

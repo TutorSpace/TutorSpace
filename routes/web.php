@@ -27,7 +27,7 @@ Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middle
 Route::group([
     'prefix' => 'calendar'
 ], function() {
-    Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.post');
+    Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.store');
     Route::delete('/availableTime', 'CalendarController@deleteAvailableTime')->name('availableTime.delete');
 });
 
@@ -35,8 +35,8 @@ Route::group([
 Route::group([
     'prefix' => 'bookmark'
 ], function() {
-    Route::post('/{user}', '@')->name('.post');
-    Route::delete('/{user}', '@')->name('.delete');
+    Route::post('/{user}', 'BookmarkController@store')->name('bookmark.store');
+    Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
 });
 
 

@@ -12,21 +12,24 @@ class BookmarkController extends Controller
         $this->middleware(['auth']);
     }
 
-    public function addAvailableTime(Request $request, User $user) {
-        Auth::user()->bookmarkedUsers()->attach($user);
+    public function store(Request $request, User $user) {
+        if($user->is_tutor && !Auth::user()->is_tutor) {
+            Auth::user()->bookmarkedUsers()->attach($user);
 
-        return response()->json([
-        ]);
+            return response()->json([
+                'successMsg' => 'Successfully bookmarked the user.'
+            ]);
+        }
     }
 
-    public function deleteAvailableTime(Request $request, User $user) {
-        $availableTimeId = $request->input('available-time-id');
-        $availableTime = Auth::user()->availableTimes()->where('id', $availableTimeId)->firstOrFail();
+    public function delete(Request $request, User $user) {
+        if($user->is_tutor && !Auth::user()->is_tutor) {
+            Auth::user()->bookmarkedUsers()->detach($user);
 
-        $availableTime->delete();
+            return response()->json([
+                'successMsg' => 'Successfully unbookmarked the user.'
+            ]);
+        }
 
-        return response()->json([
-
-        ]);
     }
 }

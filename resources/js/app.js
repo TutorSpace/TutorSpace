@@ -119,13 +119,15 @@ $(document).ready(function(){
             type:requestType,
             url: `/bookmark/${userId}`,
             success: (data) => {
-                $(this).find('use').toggleClass('hidden');
+
             },
             error: function(error) {
                 toastr.error('Something went wrong. Please try again.');
                 console.log(error);
             }
         });
+
+        $(this).find('use').toggleClass('hidden');
     });
 })
 

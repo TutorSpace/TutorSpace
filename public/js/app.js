@@ -70151,8 +70151,6 @@ $(document).ready(function () {
     $('.nav__form').submit();
   });
   $('.user-card .svg-bookmark').click(function () {
-    var _this = this;
-
     if ($(this).find('use.hidden').hasClass('bookmarked')) {
       var requestType = 'POST';
     } else {
@@ -70163,14 +70161,13 @@ $(document).ready(function () {
     $.ajax({
       type: requestType,
       url: "/bookmark/".concat(userId),
-      success: function success(data) {
-        $(_this).find('use').toggleClass('hidden');
-      },
+      success: function success(data) {},
       error: function error(_error) {
         toastr.error('Something went wrong. Please try again.');
         console.log(_error);
       }
     });
+    $(this).find('use').toggleClass('hidden');
   });
 });
 

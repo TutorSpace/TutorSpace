@@ -33,7 +33,7 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        User::find(7)->notify(new MarkedAsBestReplyNotification(Post::find(1)));
+        dd(Auth::user()->bookmarkedUsers()->where('id', 2)->doesntExist());
     }
 
     public function test(Request $request) {
