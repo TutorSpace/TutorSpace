@@ -4989,7 +4989,7 @@ jQuery.fn.extend( {
 			}
 		} );
 	}
-} );
+});
 var rcheckableType = ( /^(?:checkbox|radio)$/i );
 
 var rtagName = ( /<([a-z][^\/\0>\x20\t\r\n\f]*)/i );
