@@ -107,7 +107,7 @@ $(document).ready(function(){
         $('.nav__form').submit();
     });
 
-    $('.user-card .svg-bookmark').click(function() {
+    $('.svg-bookmark').click(function() {
         if($(this).find('use.hidden').hasClass('bookmarked')) {
             var requestType = 'POST';
         }

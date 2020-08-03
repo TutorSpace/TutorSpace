@@ -103,7 +103,7 @@ class SearchController extends Controller
                         'tutorLevel',
                         'courses',
                         'about_reviews',
-                        'available_times'
+                        'availableTimes'
                     ])
                     ->withCount([
                         'about_reviews'
@@ -214,7 +214,7 @@ class SearchController extends Controller
             // TODO: check algorithm correctness
             foreach($users as $user) {
 
-                $availableTimes = $user->available_times;
+                $availableTimes = $user->availableTimes;
 
                 for($i = 0; $i < count($times); $i++) {
                     $startTime = $times[$i][0];

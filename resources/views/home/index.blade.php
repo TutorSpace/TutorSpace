@@ -137,47 +137,13 @@ bg-student
                 <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
 
                 <div class="user-cards bookmarked-tutors">
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(4),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(3),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(4),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(3),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(4),
-                    ])
-                    @include('partials.user_card', [
-                        'user' => App\User::find(2),
-                    ])
+                    @forelse (Auth::user()->bookmarkedUsers as $user)
+                        @include('partials.user_card', [
+                            'user' => $user
+                        ])
+                    @empty
+                    <h6 class="">No bookmarked tutors yet</h6>
+                    @endforelse
                 </div>
                 <div class="scroll-faded">
                 </div>

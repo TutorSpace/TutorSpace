@@ -13101,8 +13101,6 @@ h6 {
   top: 1rem;
   right: 1rem;
   margin-top: 0;
-  fill: currentColor;
-  cursor: pointer;
 }
 
 .user-card .user-name,
@@ -13163,11 +13161,8 @@ h6 {
 .svg-bookmark {
   width: 2rem;
   height: 3rem;
-  color: #1F7AFF;
+  fill: #1F7AFF;
   transform: scaleY(1.1);
-}
-
-.svg-bookmark:hover {
   cursor: pointer;
 }
 
@@ -16702,7 +16697,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .search .search-results .search-result {
-  padding: 3rem 3rem;
+  padding: 2rem 3rem;
   border-radius: 0.75rem;
   margin-bottom: 2rem;
   box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
@@ -16713,6 +16708,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 4rem;
   border-radius: 50%;
   display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .search .search-results .search-result .user-name {
@@ -16725,7 +16722,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #A0A0A0;
 }
 
-.search .search-results .search-result .bookmark-svg {
+.search .search-results .search-result .svg-bookmark {
   width: 2.5rem;
   height: 2.5rem;
   color: #A0A0A0;
