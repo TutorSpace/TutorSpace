@@ -70146,10 +70146,12 @@ $(document).ready(function () {
 
   $('.overlay .btn-switch-login').click(function () {
     switchLoginIdentity();
-  });
+  }); // ===================== nav search =================
+
   $('nav .svg-search').click(function () {
     $('.nav__form').submit();
-  });
+  }); // ===================== bookmark =================
+
   $('.svg-bookmark').click(function () {
     if ($(this).find('use.hidden').hasClass('bookmarked')) {
       var requestType = 'POST';
