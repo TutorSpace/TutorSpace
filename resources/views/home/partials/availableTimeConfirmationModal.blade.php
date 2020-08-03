@@ -1,7 +1,7 @@
 <div class="modal fade" id="availableTimeConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="{{ route("availableTime.post") }}" method="POST">
+            <form action="{{ route("availableTime.store") }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5>

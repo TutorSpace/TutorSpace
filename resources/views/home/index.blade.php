@@ -141,6 +141,37 @@ bg-student
                         @include('partials.user_card', [
                             'user' => $user
                         ])
+
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
+@include('partials.user_card', [
+    'user' => $user
+])
                     @empty
                     <h6 class="">No bookmarked tutors yet</h6>
                     @endforelse
@@ -378,7 +409,7 @@ bg-student
 
         $.ajax({
             type: 'POST',
-            url: "{{ route('availableTime.post') }}",
+            url: "{{ route('availableTime.store') }}",
             data: data,
             success: function success(data) {
                 var successMsg = data.successMsg;
