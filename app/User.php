@@ -140,7 +140,15 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Tag');
     }
 
+    // return users that this user bookmarked
+    public function bookmarkedUsers() {
+        return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
+    }
 
+    // return users who bookmarked the current user
+    public function bookmarkedByUsers() {
+        return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
+    }
 
 
 
@@ -154,9 +162,6 @@ class User extends Authenticatable
     //         return $this->hasMany('App\Session', 'student_id');
     // }
 
-    public function bookmarks() {
-        return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
-    }
 
     // whenever this function is called, we need to REMOVE the outdated tutor_requests
     public function tutor_requests() {
@@ -180,11 +185,6 @@ class User extends Authenticatable
 
     public function availableTimes() {
         return $this->hasMany('App\AvailableTime');
-    }
-
-    // return users who bookmarked the current user
-    public function users() {
-        return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
     // return all the reviews written by the current user

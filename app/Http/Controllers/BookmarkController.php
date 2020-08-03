@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookmarkController extends Controller
 {
@@ -12,10 +13,7 @@ class BookmarkController extends Controller
     }
 
     public function addAvailableTime(Request $request, User $user) {
-        $availableTime = Auth::user()->availableTimes()->create([
-            'available_time_start' => $request->input('start-time'),
-            'available_time_end' => $request->input('end-time')
-        ]);
+        Auth::user()->bookmarkedUsers()->attach($user);
 
         return response()->json([
         ]);

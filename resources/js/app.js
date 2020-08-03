@@ -107,7 +107,26 @@ $(document).ready(function(){
         $('.nav__form').submit();
     });
 
-
+    $('.user-card .svg-bookmark').click(function() {
+        if($(this).find('use.hidden').hasClass('bookmarked')) {
+            var requestType = 'POST';
+        }
+        else {
+            var requestType = 'DELETE';
+        }
+        let userId = $(this).attr('data-user-id');
+        $.ajax({
+            type:requestType,
+            url: `/bookmark/${userId}`,
+            success: (data) => {
+                $(this).find('use').toggleClass('hidden');
+            },
+            error: function(error) {
+                toastr.error('Something went wrong. Please try again.');
+                console.log(error);
+            }
+        });
+    });
 })
 
 

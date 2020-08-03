@@ -5,11 +5,11 @@
 ">
     @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
     <svg class="svg-bookmark">
-        @if(true)
-        <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        @if(!$user->bookmarkedBy(Auth::user))
+        <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
         <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
         @else
-        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
         <use xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
         @endif
     </svg>
