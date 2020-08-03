@@ -223,9 +223,9 @@
                 }
             }
 
-            @include respond(lg-2) {
-                height: 5.5rem;
-            }
+            // @include respond(lg-2) {
+            //     height: 5.5rem;
+            // }
 
             @include respond(md) {
                 height: 5rem;
