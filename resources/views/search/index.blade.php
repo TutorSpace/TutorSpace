@@ -270,15 +270,8 @@ bg-student
 @endif
 
 
-<script>
-@auth
-
-@else
-$('.bookmark-svg, .btn-chat, .btn-request').click(function() {
-    $('.overlay-student').show();
-})
-@endauth
-
-</script>
+@php
+    session()->forget('_old_input');
+@endphp
 
 @endsection

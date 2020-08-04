@@ -16727,11 +16727,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .search .search-results .search-result .svg-bookmark {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #A0A0A0;
   align-self: flex-start;
-  cursor: pointer;
 }
 
 .search .search-results .search-result .user-major {
