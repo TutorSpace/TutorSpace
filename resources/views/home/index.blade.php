@@ -334,7 +334,7 @@ bg-student
                     window.open(eventClickInfo.event.url);
                 }
 
-                showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.id);
+                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
