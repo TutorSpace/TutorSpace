@@ -9,9 +9,10 @@ use Carbon\Carbon;
 use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,6 +37,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    CONST RECOMMENDED_TUTORS_CACHE_KEY = 'RECOMMENDED_TUTORS';
 
     // customized reset password
     public function sendPasswordResetNotification($token)
@@ -148,10 +151,23 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
+    public function getRecommendedTutorsCacheKey() {
+        return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
+    }
 
     // todo: modify this method for recommending tutors
     // get recommended tutors
     public function getRecommendedTutors() {
+        return Cache::remember(
+            $this->getRecommendedTutorsCacheKey(),
+            3600,
+            function() {
+                return $this->recommendedTutors();
+            }
+        );
+    }
+
+    private function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::where('users.is_tutor', true)
