@@ -17,6 +17,7 @@ use Facades\App\CustomClass\TimeFormatter;
 
 class SearchController extends Controller
 {
+    private static $RESULTS_PER_PAGE = 3;
 
     public function index(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -244,13 +245,13 @@ class SearchController extends Controller
             };
 
             return view('search.index', [
-                'users' => $results
+                'users' => $results->paginate(self::$RESULTS_PER_PAGE)
             ]);
         }
 
 
         return view('search.index', [
-            'users' => $usersQuery->distinct()->get()
+            'users' => $usersQuery->distinct()->get()->paginate(self::$RESULTS_PER_PAGE)
         ]);
     }
 }
