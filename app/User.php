@@ -44,7 +44,6 @@ class User extends Authenticatable
     }
 
 
-
     public function getIntroduction() {
         $secondMajor = $this->secondMajor;
         $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
@@ -97,8 +96,7 @@ class User extends Authenticatable
     }
 
 
-
-    // ======================== Form ======================
+    // ======================== Forum ======================
     public function posts() {
         return $this->hasMany('App\Post');
     }
@@ -151,7 +149,52 @@ class User extends Authenticatable
     }
 
 
+    // todo: modify this method for recommending tutors
+    // get recommended tutors
+    public function getRecommendedTutors() {
+        if(!$this->is_tutor) {
+            $courseIds = $this->courses()->pluck('id');
+            $recommendedTutors = User::where('users.is_tutor', true)
+                                ->join('course_user', 'course_user.user_id', '=', 'users.id')
+                                ->join('courses', 'courses.id', 'course_user.course_id')
+                                ->whereIn('courses.id', $courseIds)
+                                ->get();
+            $recommendedTutors = $recommendedTutors
+                                    ->random(min(5, $recommendedTutors->count()));
 
+            if($recommendedTutors->count() < 5) {
+                $tutorIds = $recommendedTutors->pluck('id');
+                $tutors = User::where('users.is_tutor', true)
+                            ->where(function($query) {
+                                // if is null, then assign -1 to it so that null != null
+                                $query->where('users.first_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.first_major_id', $this->second_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
+                            })
+                            ->whereNotIn('id', $tutorIds)
+                            ->get();
+                // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+
+                $recommendedTutors = $recommendedTutors->merge($tutors);
+
+                // if there are still < 5 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 5) {
+                    $tutorIds = $recommendedTutors->pluck('id');
+                    $tutors = User::where('users.is_tutor', true)
+                                    ->whereNotIn('id', $tutorIds)
+                                    ->get();
+                    // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+                    $recommendedTutors = $recommendedTutors->merge($tutors);
+                }
+            }
+
+            return $recommendedTutors;
+        }
+        return [];
+    }
 
 
     // no need for this function seemingly

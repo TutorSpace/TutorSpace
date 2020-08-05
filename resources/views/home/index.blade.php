@@ -155,23 +155,12 @@ bg-student
                 <div class="row">
                     <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
 
-                    {{-- must always recommend 5 tutors --}}
                     <div class="user-cards recommended-tutors">
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(4),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(3),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
+                        @foreach (Auth::user()->getRecommendedTutors() as $user)
+                            @include('partials.user_card', [
+                                'user' => $user
+                            ])
+                        @endforeach
                     </div>
                 </div>
             </div>
