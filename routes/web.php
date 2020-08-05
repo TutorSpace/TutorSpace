@@ -117,6 +117,7 @@ Route::group([
     Route::get('/posts/latest', 'Forum\PostController@indexLatest')->name('posts.latest');
     Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
     Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
+    Route::get('posts/my-participated', 'Forum\PostController@showMyParticipated')->name('posts.my-participated');
     Route::resource('posts', 'Forum\PostController');
 
     Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');

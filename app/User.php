@@ -3,15 +3,16 @@
 namespace App;
 
 use DB;
+use App\Post;
 use App\Session;
-use Carbon\Carbon;
 
+use Carbon\Carbon;
 use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
@@ -95,13 +96,21 @@ class User extends Authenticatable
         if(!Str::of($this->profile_pic_url)->contains('placeholder')) {
             Storage::delete($this->profile_pic_url);
         }
-
     }
 
 
     // ======================== Forum ======================
     public function posts() {
         return $this->hasMany('App\Post');
+    }
+
+    // get the posts that this user replied to
+    public function postsReplied() {
+        return Post::join('replies', 'replies.post_id', '=', 'posts.id')
+                    ->join('users', 'users.id', '=', 'replies.user_id')
+                    ->where('users.id', $this->id)
+                    ->where('replies.is_direct_reply', true)
+                    ->distinct();
     }
 
     public function replies() {

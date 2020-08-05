@@ -294,6 +294,15 @@ class PostController extends Controller
         ]);
     }
 
+    public function showMyParticipated() {
+        return view('forum.index', [
+            'trendingTags' => Tag::getTrendingTags(),
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'posts' => Auth::user()->postsReplied()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE),
+            'pageTitle' => 'Forum - Participated Posts'
+        ]);
+    }
+
     public function showMyPosts() {
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
