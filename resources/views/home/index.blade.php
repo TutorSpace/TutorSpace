@@ -141,37 +141,6 @@ bg-student
                         @include('partials.user_card', [
                             'user' => $user
                         ])
-
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
-@include('partials.user_card', [
-    'user' => $user
-])
                     @empty
                     <h6 class="">No bookmarked tutors yet</h6>
                     @endforelse
@@ -184,25 +153,12 @@ bg-student
         <div class="container-fluid recommended-tutors-bg-container">
             <div class="container">
                 <div class="row">
-                    <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
-
-                    {{-- must always recommend 5 tutors --}}
+                    <div class="mb-2 w-100 d-flex justify-content-between align-center">
+                        <h5>Tutors You May Want to Know</h5>
+                        <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
+                    </div>
                     <div class="user-cards recommended-tutors">
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(4),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(3),
-                        ])
-                        @include('partials.user_card', [
-                            'user' => App\User::find(2),
-                        ])
+                        @include('partials.recommended_tutors')
                     </div>
                 </div>
             </div>
@@ -270,7 +226,7 @@ bg-student
         @endif
 
         <div class="container">
-            <div class="row forum">
+            <div class="row forum mt-0">
                 <h5 class="w-100">Forum Activity</h5>
                 <div class="col-12 col-sm-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
@@ -365,7 +321,7 @@ bg-student
                     window.open(eventClickInfo.event.url);
                 }
 
-                showAvailableTimeDeleteForm(eventClickInfo.start, eventClickInfo.end, eventClickInfo.event.id);
+                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
@@ -459,7 +415,30 @@ bg-student
 
 @endif
 
-    let storageUrl = "{{ Storage::url('') }}";
+let storageUrl = "{{ Storage::url('') }}";
+
+@if(!Auth::user()->is_tutor)
+    function getRecommendedTutors() {
+        $.ajax({
+            type:'GET',
+            url: '{{ route('recommended-tutors') }}?refresh=true',
+            success: (data) => {
+                $('.recommended-tutors').html(data);
+                console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // refresh recommended tutors
+    $('#btn-refresh').click(function() {
+        getRecommendedTutors();
+    });
+
+@endif
+
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

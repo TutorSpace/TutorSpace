@@ -71,6 +71,38 @@
                 }
             });
         });
+
+        @if(Auth::check() && !Auth::user()->is_tutor)
+        // ===================== bookmark =================
+        $('.svg-bookmark').click(function() {
+            if($(this).find('use.hidden').hasClass('bookmarked')) {
+                var requestType = 'POST';
+            }
+            else {
+                var requestType = 'DELETE';
+            }
+            let userId = $(this).attr('data-user-id');
+            $.ajax({
+                type:requestType,
+                url: `/bookmark/${userId}`,
+                success: (data) => {
+
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
+                }
+            });
+
+            $(this).find('use').toggleClass('hidden');
+        });
+        @endif
+
+        @guest
+        $('.svg-bookmark').click(function() {
+            $('.overlay-student').show();
+        })
+        @endguest
     </script>
     @yield('js')
 

@@ -195,7 +195,8 @@
                     }
                 }
 
-                @include respond(extra-sm) {
+                // 450px
+                @media only screen and (max-width: 28.124em) {
                     width: calc((100% - 2rem * 1) / 2);
 
                     &:nth-child(5n + 5) {
@@ -239,7 +240,10 @@
             width: 100vw;
 
             .container {
-                padding: 0 30px;
+                @include respond(extra-sm) {
+                    padding: 0 30px;
+                }
+
             }
 
             h5 {

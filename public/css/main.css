@@ -12778,6 +12778,10 @@ h6 {
   fill: #A0A0A0;
 }
 
+.post-previews .post-preview .post__bottom .tag {
+  margin-bottom: 0 !important;
+}
+
 .post-previews .post-preview .poster-name {
   color: #626262;
 }
@@ -12793,6 +12797,7 @@ h6 {
 .tag {
   padding: 0.3rem 0.8rem;
   display: inline-block;
+  margin-bottom: 0.75rem;
   margin-right: 0.5rem;
   border-radius: 0.5rem;
 }
@@ -13964,6 +13969,38 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.nav-guest--student .svg-list-dropdown .nav__item,
+.nav-guest--student .profile-img-dropdown .nav__item,
+.nav-auth--student .svg-list-dropdown .nav__item,
+.nav-auth--student .profile-img-dropdown .nav__item {
+  background-color: #FFFFFF;
+  color: #1F7AFF;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item:hover,
+.nav-guest--student .profile-img-dropdown .nav__item:hover,
+.nav-auth--student .svg-list-dropdown .nav__item:hover,
+.nav-auth--student .profile-img-dropdown .nav__item:hover {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item,
+.nav-guest--tutor .profile-img-dropdown .nav__item,
+.nav-auth--tutor .svg-list-dropdown .nav__item,
+.nav-auth--tutor .profile-img-dropdown .nav__item {
+  background-color: #FFFFFF;
+  color: #6749DF;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item:hover,
+.nav-guest--tutor .profile-img-dropdown .nav__item:hover,
+.nav-auth--tutor .svg-list-dropdown .nav__item:hover,
+.nav-auth--tutor .profile-img-dropdown .nav__item:hover {
+  background-color: #6749DF;
+  color: #FFFFFF;
+}
+
 .nav-guest {
   background-color: #F8F8F8;
 }
@@ -13978,17 +14015,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .nav-guest--student .brand-name::after {
   content: url(/images/blue_logo.svg?c6d02e996d58632ef45ec02315ceee08);
-}
-
-.nav-guest--student .svg-list-dropdown .nav__item,
-.nav-guest--student .profile-img-dropdown .nav__item {
-  background-color: #FFFFFF;
-}
-
-.nav-guest--student .svg-list-dropdown .nav__item:hover,
-.nav-guest--student .profile-img-dropdown .nav__item:hover {
-  background-color: #1F7AFF;
-  color: #FFFFFF;
 }
 
 .nav-guest--student .nav__form .input-search {
@@ -14031,17 +14057,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .nav-guest--tutor .brand-name::after {
   content: url(/images/purple_logo.svg?a3124f978914dbe638da02bf2fc1b185);
-}
-
-.nav-guest--tutor .svg-list-dropdown .nav__item,
-.nav-guest--tutor .profile-img-dropdown .nav__item {
-  background-color: #FFFFFF;
-}
-
-.nav-guest--tutor .svg-list-dropdown .nav__item:hover,
-.nav-guest--tutor .profile-img-dropdown .nav__item:hover {
-  background-color: #6749DF;
-  color: #FFFFFF;
 }
 
 .nav-guest--tutor .nav__form .input-search {
@@ -14141,30 +14156,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #1F7AFF;
 }
 
-.nav-auth--student .svg-list-dropdown .nav__item,
-.nav-auth--student .profile-img-dropdown .nav__item {
-  background-color: #1F7AFF;
-}
-
-.nav-auth--student .svg-list-dropdown .nav__item:hover,
-.nav-auth--student .profile-img-dropdown .nav__item:hover {
-  background-color: #F4F4F4;
-  color: #1F7AFF;
-}
-
 .nav-auth--tutor {
   background-color: #6749DF;
-}
-
-.nav-auth--tutor .svg-list-dropdown .nav__item,
-.nav-auth--tutor .profile-img-dropdown .nav__item {
-  background-color: #6749DF;
-}
-
-.nav-auth--tutor .svg-list-dropdown .nav__item:hover,
-.nav-auth--tutor .profile-img-dropdown .nav__item:hover {
-  background-color: #F4F4F4;
-  color: #6749DF;
 }
 
 .footer,
@@ -14465,7 +14458,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
   position: absolute;
   right: 0;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .forum .select-container .input-group-prepend:hover {
@@ -15796,12 +15789,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   visibility: hidden;
 }
 
-@media only screen and (max-width: 100em) {
-  .signup-form-input-normal {
-    height: 5.5rem;
-  }
-}
-
 @media only screen and (max-width: 61.99em) {
   .signup-form-input-normal {
     height: 5rem;
@@ -16057,6 +16044,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   text-align: center;
 }
 
+.login .login__notice {
+  color: #A0A0A0;
+  font-size: 2.2rem;
+  text-align: center;
+}
+
 .login--left {
   flex: 1;
   box-shadow: 0px 1rem 10rem 0px rgba(0, 0, 0, 0.25);
@@ -16259,12 +16252,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   visibility: hidden;
 }
 
-@media only screen and (max-width: 100em) {
-  .login-form-input-normal {
-    height: 5.5rem;
-  }
-}
-
 @media only screen and (max-width: 61.99em) {
   .login-form-input-normal {
     height: 5rem;
@@ -16289,7 +16276,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transition: all 0.2s;
 }
 
-.login .btn-login {
+.login .btn-login,
+.login .btn-send {
   height: 6rem;
   font-size: 2.2rem;
   width: 30rem;
@@ -16727,11 +16715,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .search .search-results .search-result .svg-bookmark {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #A0A0A0;
   align-self: flex-start;
-  cursor: pointer;
 }
 
 .search .search-results .search-result .user-major {
@@ -16786,7 +16770,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .search .search-results .search-result .user-courses .course {
   flex: 0 0 calc(25% - .5rem);
   margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   margin-right: 0.5rem;
   white-space: nowrap;
   border-radius: 0.5rem;
@@ -16794,7 +16778,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search .search-results .search-result .user-courses .heading {
   color: #626262;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding-left: 0.5rem;
 }
 
@@ -17121,7 +17105,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 28.124em) {
   .home__content .user-cards .user-card {
     width: calc((100% - 2rem * 1) / 2);
   }
@@ -17164,8 +17148,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   width: 100vw;
 }
 
-.home__content .recommended-tutors-bg-container .container {
-  padding: 0 30px;
+@media only screen and (max-width: 35.99em) {
+  .home__content .recommended-tutors-bg-container .container {
+    padding: 0 30px;
+  }
 }
 
 .home__content .recommended-tutors-bg-container h5 {

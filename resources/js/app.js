@@ -108,29 +108,6 @@ $(document).ready(function(){
         $('.nav__form').submit();
     });
 
-    // ===================== bookmark =================
-    $('.svg-bookmark').click(function() {
-        if($(this).find('use.hidden').hasClass('bookmarked')) {
-            var requestType = 'POST';
-        }
-        else {
-            var requestType = 'DELETE';
-        }
-        let userId = $(this).attr('data-user-id');
-        $.ajax({
-            type:requestType,
-            url: `/bookmark/${userId}`,
-            success: (data) => {
-
-            },
-            error: function(error) {
-                toastr.error('Something went wrong. Please try again.');
-                console.log(error);
-            }
-        });
-
-        $(this).find('use').toggleClass('hidden');
-    });
 })
 
 

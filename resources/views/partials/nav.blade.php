@@ -1,7 +1,7 @@
+@include ('partials.overlay-auth')
 @if(!in_array(Route::current()->getName(), [
     'index'
 ]))
-    @include ('partials.overlay-auth')
 @endif
 <header>
     <nav class="nav p-fixed w-100 d-flex align-items-center
@@ -109,7 +109,7 @@
                         <a class="nav__item" href="#">Support</a>
                     </div>
                 </div>
-                <a class="btn ml-auto btn-outline-student btn-sign-in" href="#" id="nav-btn-sign-in">Sign In</a>
+                <a class="btn ml-auto btn-outline-student btn-sign-in" href="##" id="nav-btn-sign-in">Sign In</a>
             @endauth
         </div>
     </nav>

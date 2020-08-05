@@ -9,9 +9,10 @@ use Carbon\Carbon;
 use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Notifications\Notifiable;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,12 +38,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // customized reset password
-    public function customSendPasswordResetNotification($token, $is_tutor)
-    {
-        $this->notify(new CustomResetPasswordNotification($token, $is_tutor));
-    }
+    CONST RECOMMENDED_TUTORS_CACHE_KEY = 'RECOMMENDED_TUTORS';
 
+    // customized reset password
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPasswordNotification($token, request()->is_tutor));
+    }
 
 
     public function getIntroduction() {
@@ -97,8 +99,7 @@ class User extends Authenticatable
     }
 
 
-
-    // ======================== Form ======================
+    // ======================== Forum ======================
     public function posts() {
         return $this->hasMany('App\Post');
     }
@@ -150,8 +151,69 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
+    public function getRecommendedTutorsCacheKey() {
+        return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
+    }
 
+    // todo: modify this method for recommending tutors
+    // get recommended tutors
+    public function getRecommendedTutors() {
+        if(request()->refresh) {
+            Cache::forget($this->getRecommendedTutorsCacheKey());
+        }
+        return Cache::remember(
+            $this->getRecommendedTutorsCacheKey(),
+            3600,
+            function() {
+                return $this->recommendedTutors();
+            }
+        );
+    }
 
+    private function recommendedTutors() {
+        if(!$this->is_tutor) {
+            $courseIds = $this->courses()->pluck('id');
+            $recommendedTutors = User::where('users.is_tutor', true)
+                                ->join('course_user', 'course_user.user_id', '=', 'users.id')
+                                ->join('courses', 'courses.id', 'course_user.course_id')
+                                ->whereIn('courses.id', $courseIds)
+                                ->get();
+            $recommendedTutors = $recommendedTutors
+                                    ->random(min(5, $recommendedTutors->count()));
+
+            if($recommendedTutors->count() < 5) {
+                $tutorIds = $recommendedTutors->pluck('id');
+                $tutors = User::where('users.is_tutor', true)
+                            ->where(function($query) {
+                                // if is null, then assign -1 to it so that null != null
+                                $query->where('users.first_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.first_major_id', $this->second_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
+                            })
+                            ->whereNotIn('id', $tutorIds)
+                            ->get();
+                // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+
+                $recommendedTutors = $recommendedTutors->merge($tutors);
+
+                // if there are still < 5 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 5) {
+                    $tutorIds = $recommendedTutors->pluck('id');
+                    $tutors = User::where('users.is_tutor', true)
+                                    ->whereNotIn('id', $tutorIds)
+                                    ->get();
+                    // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+                    $recommendedTutors = $recommendedTutors->merge($tutors);
+                }
+            }
+
+            return $recommendedTutors;
+        }
+        return [];
+    }
 
 
     // no need for this function seemingly

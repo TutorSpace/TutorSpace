@@ -33,7 +33,8 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        dd(Auth::user()->bookmarkedUsers()->where('id', 2)->doesntExist());
+        // $test = Auth::user()->load('courses')->get();
+        $test = Auth::user()->courses;
     }
 
     public function test(Request $request) {

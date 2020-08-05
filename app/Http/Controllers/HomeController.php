@@ -31,6 +31,7 @@ class homeController extends Controller
                         ->take(5)
                         ->get();
 
+
         // if there are < 5 posts, put other posts here to fill the 5 spots
         if($posts->count() < 5) {
             $posts = $posts->merge(
@@ -38,9 +39,8 @@ class homeController extends Controller
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
                     ->where('posts.user_id', '!=', $user->id)
                     ->orderByRaw(POST::POPULARITY_FORMULA)
-                    ->take(5 - $posts->count())
                     ->get()
-            );
+            )->take(5);
         }
 
         return view('home.index', [

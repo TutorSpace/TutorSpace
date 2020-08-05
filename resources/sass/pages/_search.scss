@@ -183,11 +183,7 @@
             }
 
             .svg-bookmark {
-                width: 2.5rem;
-                height: 2.5rem;
-                color: $color-grey;
                 align-self: flex-start;
-                cursor: pointer;
             }
 
             .user-major {
@@ -237,16 +233,15 @@
                 .heading, .course {
                     flex: 0 0 calc(25% - .5rem);
                     margin-top: .5rem;
-                    margin-bottom: .5rem;
+                    margin-bottom: .3rem;
                     margin-right: .5rem;
-
                     white-space: nowrap;
                     border-radius: .5rem;
                 }
 
                 .heading {
                     color: $color-black-2;
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                     padding-left: .5rem;
                 }
 
@@ -257,6 +252,7 @@
                     align-self: center;
                 }
             }
+
 
             .user-rating {
                 display: flex;

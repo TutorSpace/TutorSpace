@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\Forum\NewReplyAddedNotification;
+use App\Notifications\Forum\NewFollowupAddedNotification;
 
 class ReplyController extends Controller
 {
@@ -23,16 +25,15 @@ class ReplyController extends Controller
             'post_id' => $post->id
         ])->id;
 
-        // todo: send notification to the related users
-        // if($post->user->id != auth()->user()->id) {
-        //     // notify the reply's poster
-        //     $post->user->notify(new NewReplyAdded($post));
+        // notify the post's owner
+        if($post->user->id != Auth::id()) {
+            $post->user->notify(new NewReplyAddedNotification($post));
+        }
 
-        //     // notify all people who are following this post
-        //     foreach($post->usersFollowing as $user) {
-        //         $user->notify(new NewReplyAdded($post));
-        //     }
-        // }
+        // notify all people who are following this post
+        foreach($post->usersFollowing as $user) {
+            $user->notify(new NewReplyAddedNotification($post));
+        }
 
         return redirect()->back()->with([
             'successMsg' => 'Successfully added the reply!',
@@ -52,8 +53,11 @@ class ReplyController extends Controller
             'base_reply_id' => $baseReply->id
         ])->id;
 
-        // todo: send notifications to the related users
-        // $reply->user->notify(new NewFollowupAdded(Discussion::find($baseReply->discussion_id)));
+        // send notifications to the reply's user
+        if($reply->user->id != Auth::id()) {
+            $reply->user->notify(new NewFollowupAddedNotification($baseReply->post));
+        }
+
 
         return redirect()->back()->with([
             'successMsg' => 'Successfully added the reply!',
