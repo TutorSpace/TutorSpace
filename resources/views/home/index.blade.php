@@ -153,8 +153,10 @@ bg-student
         <div class="container-fluid recommended-tutors-bg-container">
             <div class="container">
                 <div class="row">
-                    <h5 class="mb-2 w-100">Recommended Tutors for You</h5>
-
+                    <div class="mb-2 w-100 d-flex justify-content-between align-center">
+                        <h5>Tutors You May Want to Know</h5>
+                        <button class="btn btn-link text-white fs-1-4">Refresh</button>
+                    </div>
                     <div class="user-cards recommended-tutors">
                         @foreach (Auth::user()->getRecommendedTutors() as $user)
                             @include('partials.user_card', [
