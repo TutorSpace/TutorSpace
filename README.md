@@ -33,6 +33,9 @@ Password: password
 ### Sign Up Page:
 ![Schema Picture](screenshots/signup.png)
 
+### Home Page:
+![Schema Picture](screenshots/home.png)
+
 ### Forum:
 ![Schema Picture](screenshots/forum.png)
 
