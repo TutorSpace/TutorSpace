@@ -229,6 +229,10 @@ $('.btn-clear').click(function () {
   $('input[tpye=text], input[type=number]').val('');
   $('input:checkbox').prop('checked', false);
   $("#price-range-input").slider('setValue', [parseInt(15), parseInt(35)]);
+  $('input[name=available-start-date]').val('');
+  $('input[name=available-end-date]').val('');
+  $('input[name=available-start-time]').val('');
+  $('input[name=available-end-time]').val('');
 });
 
 if ($('#checkbox-specify-detail-time').prop('checked')) {

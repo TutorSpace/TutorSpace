@@ -17,7 +17,7 @@ use Facades\App\CustomClass\TimeFormatter;
 
 class SearchController extends Controller
 {
-    private static $RESULTS_PER_PAGE = 3;
+    private static $RESULTS_PER_PAGE = 5;
 
     public function index(Request $request) {
         $validator = Validator::make($request->all(), [
