@@ -13969,6 +13969,38 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.nav-guest--student .svg-list-dropdown .nav__item,
+.nav-guest--student .profile-img-dropdown .nav__item,
+.nav-auth--student .svg-list-dropdown .nav__item,
+.nav-auth--student .profile-img-dropdown .nav__item {
+  background-color: #FFFFFF;
+  color: #1F7AFF;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item:hover,
+.nav-guest--student .profile-img-dropdown .nav__item:hover,
+.nav-auth--student .svg-list-dropdown .nav__item:hover,
+.nav-auth--student .profile-img-dropdown .nav__item:hover {
+  background-color: #1F7AFF;
+  color: #FFFFFF;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item,
+.nav-guest--tutor .profile-img-dropdown .nav__item,
+.nav-auth--tutor .svg-list-dropdown .nav__item,
+.nav-auth--tutor .profile-img-dropdown .nav__item {
+  background-color: #FFFFFF;
+  color: #6749DF;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item:hover,
+.nav-guest--tutor .profile-img-dropdown .nav__item:hover,
+.nav-auth--tutor .svg-list-dropdown .nav__item:hover,
+.nav-auth--tutor .profile-img-dropdown .nav__item:hover {
+  background-color: #6749DF;
+  color: #FFFFFF;
+}
+
 .nav-guest {
   background-color: #F8F8F8;
 }
@@ -13983,17 +14015,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .nav-guest--student .brand-name::after {
   content: url(/images/blue_logo.svg?c6d02e996d58632ef45ec02315ceee08);
-}
-
-.nav-guest--student .svg-list-dropdown .nav__item,
-.nav-guest--student .profile-img-dropdown .nav__item {
-  background-color: #FFFFFF;
-}
-
-.nav-guest--student .svg-list-dropdown .nav__item:hover,
-.nav-guest--student .profile-img-dropdown .nav__item:hover {
-  background-color: #1F7AFF;
-  color: #FFFFFF;
 }
 
 .nav-guest--student .nav__form .input-search {
@@ -14036,17 +14057,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .nav-guest--tutor .brand-name::after {
   content: url(/images/purple_logo.svg?a3124f978914dbe638da02bf2fc1b185);
-}
-
-.nav-guest--tutor .svg-list-dropdown .nav__item,
-.nav-guest--tutor .profile-img-dropdown .nav__item {
-  background-color: #FFFFFF;
-}
-
-.nav-guest--tutor .svg-list-dropdown .nav__item:hover,
-.nav-guest--tutor .profile-img-dropdown .nav__item:hover {
-  background-color: #6749DF;
-  color: #FFFFFF;
 }
 
 .nav-guest--tutor .nav__form .input-search {
@@ -14146,30 +14156,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #1F7AFF;
 }
 
-.nav-auth--student .svg-list-dropdown .nav__item,
-.nav-auth--student .profile-img-dropdown .nav__item {
-  background-color: #1F7AFF;
-}
-
-.nav-auth--student .svg-list-dropdown .nav__item:hover,
-.nav-auth--student .profile-img-dropdown .nav__item:hover {
-  background-color: #F4F4F4;
-  color: #1F7AFF;
-}
-
 .nav-auth--tutor {
   background-color: #6749DF;
-}
-
-.nav-auth--tutor .svg-list-dropdown .nav__item,
-.nav-auth--tutor .profile-img-dropdown .nav__item {
-  background-color: #6749DF;
-}
-
-.nav-auth--tutor .svg-list-dropdown .nav__item:hover,
-.nav-auth--tutor .profile-img-dropdown .nav__item:hover {
-  background-color: #F4F4F4;
-  color: #6749DF;
 }
 
 .footer,

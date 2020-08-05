@@ -235,17 +235,36 @@
     }
 }
 
+.nav-guest, .nav-auth {
+    &--student {
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
+                color: $color-blue-primary;
+                &:hover {
+                    background-color: $color-blue-primary;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    &--tutor {
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
+                color: $color-purple-primary;
+                &:hover {
+                    background-color: $color-purple-primary;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+}
+
 .nav-guest {
     background-color: $color-white-dark-2;
-
-    // &::before {
-    //     content: "";
-    //     width: 100%;
-    //     height: $nav-height;
-    //     position: absolute;
-    //     background-color: rgba($color-white-dark-2, .8);
-    //     z-index: -1;
-    // }
 
     &--student {
         color: $color-blue-primary;
@@ -256,16 +275,6 @@
 
         .brand-name::after {
             content: url(../../../public/assets/images/blue_logo.svg);
-        }
-
-        .svg-list-dropdown, .profile-img-dropdown {
-            .nav__item {
-                background-color: $color-white;
-                &:hover {
-                    background-color: $color-blue-primary;
-                    color: $color-white;
-                }
-            }
         }
 
         .nav__form {
@@ -298,16 +307,6 @@
 
         .brand-name::after {
             content: url(../../../public/assets/images/purple_logo.svg);
-        }
-
-        .svg-list-dropdown, .profile-img-dropdown {
-            .nav__item {
-                background-color: $color-white;
-                &:hover {
-                    background-color: $color-purple-primary;
-                    color: $color-white;
-                }
-            }
         }
 
         .nav__form {
@@ -366,30 +365,10 @@
 
     &--student {
         background-color: $color-blue-primary;
-
-        .svg-list-dropdown, .profile-img-dropdown {
-            .nav__item {
-                background-color: $color-blue-primary;
-                &:hover {
-                    background-color: $color-white-dark;
-                    color: $color-blue-primary;
-                }
-            }
-        }
     }
 
     &--tutor {
         background-color: $color-purple-primary;
-
-        .svg-list-dropdown, .profile-img-dropdown {
-            .nav__item {
-                background-color: $color-purple-primary;
-                &:hover {
-                    background-color: $color-white-dark;
-                    color: $color-purple-primary;
-                }
-            }
-        }
     }
 }
 

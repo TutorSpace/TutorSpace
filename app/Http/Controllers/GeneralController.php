@@ -18,7 +18,11 @@ use App\Notifications\InviteToBeTutorNotification;
 class GeneralController extends Controller
 {
     // show the application index page
-    public function index() {
+    public function index(Request $request) {
+        if(Auth::check()) {
+            $request->session()->reflash();
+            return redirect()->route('home');
+        }
         return view('index');
     }
 
