@@ -68,8 +68,6 @@ class GeneralController extends Controller
                 ]
             );
         }
-
-
     }
 
     public function uploadProfilePic(Request $request) {
@@ -99,37 +97,8 @@ class GeneralController extends Controller
 
     }
 
-
-
-    // TODO: add validation
-    public function removeBookmark(Request $request) {
-
-
-        $userId = $request->input('user_id');
-
-        $user = Auth::user();
-        $user->bookmarks()->detach($userId);
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully removed from bookmarked users list!'
-            ]
-        );
-    }
-
-    // TODO: add validation
-    public function addBookmark(Request $request) {
-
-        $userId = $request->input('user_id');
-
-        $user = Auth::user();
-        $user->bookmarks()->attach($userId);
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully added to bookmarked users list!'
-            ]
-        );
+    public function getRecommendedTutors() {
+        return view('partials.recommended_tutors');
     }
 
     // TODO: add validation

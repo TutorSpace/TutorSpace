@@ -39,6 +39,8 @@ Route::group([
     Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
 });
 
+// recommended tutors
+Route::get('/recommended-tutors', 'GeneralController@getRecommendedTutors')->middleware('auth')->name('recommended-tutors');
 
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');

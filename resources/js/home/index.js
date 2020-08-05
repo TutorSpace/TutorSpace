@@ -110,7 +110,7 @@ $(window).scroll(function() {
     }
 });
 
-
+// calendar
 window.showAvailableTimeForm = (startTime, endTime) => {
     $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
     $('#availableTimeConfirmationModal input[name="end-time"]').val(moment(endTime).format("YYYY-MM-DD HH:mm:00"));
@@ -135,3 +135,5 @@ window.showAvailableTimeDeleteForm = (startTime, endTime, availableTimeId) => {
     $('#availableTimeDeleteConfirmationModal .end-time').html(endTime);
     $('#availableTimeDeleteConfirmationModal').modal('show');
 }
+
+

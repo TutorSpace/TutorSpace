@@ -158,6 +158,9 @@ class User extends Authenticatable
     // todo: modify this method for recommending tutors
     // get recommended tutors
     public function getRecommendedTutors() {
+        if(request()->refresh) {
+            Cache::forget($this->getRecommendedTutorsCacheKey());
+        }
         return Cache::remember(
             $this->getRecommendedTutorsCacheKey(),
             3600,

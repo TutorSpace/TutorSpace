@@ -155,14 +155,10 @@ bg-student
                 <div class="row">
                     <div class="mb-2 w-100 d-flex justify-content-between align-center">
                         <h5>Tutors You May Want to Know</h5>
-                        <button class="btn btn-link text-white fs-1-4">Refresh</button>
+                        <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
                     </div>
                     <div class="user-cards recommended-tutors">
-                        @foreach (Auth::user()->getRecommendedTutors() as $user)
-                            @include('partials.user_card', [
-                                'user' => $user
-                            ])
-                        @endforeach
+                        @include('partials.recommended_tutors')
                     </div>
                 </div>
             </div>
@@ -419,7 +415,30 @@ bg-student
 
 @endif
 
-    let storageUrl = "{{ Storage::url('') }}";
+let storageUrl = "{{ Storage::url('') }}";
+
+@if(!Auth::user()->is_tutor)
+    function getRecommendedTutors() {
+        $.ajax({
+            type:'GET',
+            url: '{{ route('recommended-tutors') }}?refresh=true',
+            success: (data) => {
+                $('.recommended-tutors').html(data);
+                console.log(data);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // refresh recommended tutors
+    $('#btn-refresh').click(function() {
+        getRecommendedTutors();
+    });
+
+@endif
+
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

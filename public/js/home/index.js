@@ -11578,7 +11578,7 @@ $(window).scroll(function () {
       $('nav.nav').addClass('nav-guest--tutor');
     }
   }
-});
+}); // calendar
 
 window.showAvailableTimeForm = function (startTime, endTime) {
   $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
