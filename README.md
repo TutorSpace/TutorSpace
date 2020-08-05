@@ -33,8 +33,11 @@ Password: password
 ### Sign Up Page:
 ![Schema Picture](screenshots/signup.png)
 
-### Home Page:
-![Schema Picture](screenshots/home.png)
+### Home Page - Tutor:
+![Schema Picture](screenshots/home_tutor.png)
+
+### Home Page - Student:
+![Schema Picture](screenshots/home_student.png)
 
 ### Forum:
 ![Schema Picture](screenshots/forum.png)
