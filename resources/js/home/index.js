@@ -72,15 +72,10 @@ $('.btn-view-all-upcoming-sessions').click(function() {
 });
 
 
-function isInViewPort(elem) {
-    var distance = elem.getBoundingClientRect();
-	return (
-		distance.top >= -120
-	);
-};
+$('body').scroll(function() {
+    var posTop = $(window).scrollTop() - $('.home__content').offset().top;
 
-$(window).scroll(function() {
-    if(isInViewPort($('.home__header')[0])) {
+    if(posTop < -130) {
         if($('body').hasClass('bg-student')) {
             $('nav._nav').addClass('nav-auth--student');
             $('nav._nav').addClass('nav-auth');
