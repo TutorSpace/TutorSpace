@@ -70132,7 +70132,7 @@ $(document).ready(function () {
     }, "slow");
   }); // ==================== auth overlay =================
 
-  $('.nav .btn-sign-in').click(function () {
+  $('._nav .btn-sign-in').click(function () {
     $('.overlay-student').show();
   });
   $('.overlay .btn-close').click(function () {

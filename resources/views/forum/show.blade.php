@@ -467,11 +467,11 @@ $('#reportModal').modal('show');
     $(`.post-reply[data-reply-id=${replyId}]`).find('.post-reply__actions .keyword').html('Hide');
 
     $('html, body').animate({
-        scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 500
+        scrollTop: $('#scroll-to-followup').offset().top - $('._nav').height() - 500
     }, 1000);
 @elseif(session('newReplyId'))
     $('html, body').animate({
-        scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 500
+        scrollTop: $('#scroll-to-reply').offset().top - $('._nav').height() - 500
     }, 1000);
 @endif
 
