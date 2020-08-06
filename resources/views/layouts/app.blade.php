@@ -96,7 +96,14 @@
                                     if($('.bookmarked-tutors .no-results').is(":visible")) {
                                         $('.bookmarked-tutors .no-results').remove();
                                     }
-                                    $('.bookmarked-tutors').append(data);
+                                    let userCard = $(`.bookmarked-tutors .user-card[data-user-id=${userId}]`)
+                                    // if the user card already exists in bookmarked tutors, then simply toggle its svg
+                                    if(userCard[0]) {
+                                        userCard.find('use').toggleClass('hidden');
+                                    }
+                                    else {
+                                        $('.bookmarked-tutors').append(data);
+                                    }
                                 },
                                 error: function(error) {
                                     console.log(error);
@@ -104,7 +111,7 @@
                             });
                         }
                         else {
-                            $('.bookmarked-tutors').find(`.user-card[data-user-id=${userId}]`).remove();
+                            $('.bookmarked-tutors').find(`.user-card[data-user-id=${userId}]`).find('.svg-bookmark').find('use').toggleClass('hidden');
                             if(!$('.bookmarked-tutors .user-card')[0]) {
                                 $('.bookmarked-tutors').append(`
                                 <h6 class="no-results">No bookmarked tutors yet</h6>
