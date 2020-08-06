@@ -74,7 +74,7 @@
 
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
-        $('.svg-bookmark').click(function() {
+        $(document).on('click', '.svg-bookmark', function() {
             if($(this).find('use.hidden').hasClass('bookmarked')) {
                 var requestType = 'POST';
             }
@@ -94,7 +94,7 @@
                                 url: `/bookmark/${userId}`,
                                 success: (data) => {
                                     if($('.bookmarked-tutors .no-results').is(":visible")) {
-                                        $('.bookmarked-tutors .no-results').addClass('hidden');
+                                        $('.bookmarked-tutors .no-results').remove();
                                     }
                                     $('.bookmarked-tutors').append(data);
                                 },
@@ -106,7 +106,9 @@
                         else {
                             $('.bookmarked-tutors').find(`.user-card[data-user-id=${userId}]`).remove();
                             if(!$('.bookmarked-tutors .user-card')[0]) {
-                                $('.bookmarked-tutors .no-results').removeClass('hidden');
+                                $('.bookmarked-tutors').append(`
+                                <h6 class="no-results">No bookmarked tutors yet</h6>
+                                `)
                             }
                         }
                     }

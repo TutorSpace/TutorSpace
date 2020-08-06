@@ -141,7 +141,6 @@ bg-student
                         @include('partials.user_card', [
                             'user' => $user
                         ])
-                        <h6 class="no-results hidden">No bookmarked tutors yet</h6>
                     @empty
                     <h6 class="no-results">No bookmarked tutors yet</h6>
                     @endforelse
