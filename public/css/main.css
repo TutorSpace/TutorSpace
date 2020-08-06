@@ -12053,12 +12053,21 @@ h6 {
   font-size: 2rem;
 }
 
+.vh-100 {
+  height: 100vh;
+}
+
 .p-relative {
   position: relative;
 }
 
 .p-absolute {
   position: absolute;
+}
+
+.p-sticky {
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 .p-fixed {
@@ -13708,13 +13717,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
 }
 
-.nav {
+._nav {
   height: 8rem;
   z-index: 2000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.nav .brand-name {
+._nav .brand-name {
   font-size: 3.3rem;
   font-family: "Baloo Bhai", sans-serif;
   margin: 0 4rem;
@@ -13722,7 +13731,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: inherit;
 }
 
-.nav .brand-name::after {
+._nav .brand-name::after {
   content: "";
   display: none;
   position: absolute;
@@ -13732,19 +13741,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .brand-name::after {
+  ._nav .brand-name::after {
     display: block;
   }
 }
 
 @media only screen and (max-width: 61.99em) {
-  .nav .brand-name {
+  ._nav .brand-name {
     margin: 0 2.5rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .brand-name {
+  ._nav .brand-name {
     margin-left: 1.3rem;
     margin-right: 2.2rem;
     position: relative;
@@ -13753,19 +13762,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.nav .active {
+._nav .active {
   position: relative;
 }
 
-.nav .active:hover {
+._nav .active:hover {
   text-decoration: none;
 }
 
-.nav .active:hover::after {
+._nav .active:hover::after {
   width: 100%;
 }
 
-.nav .active::after {
+._nav .active::after {
   content: "";
   position: absolute;
   bottom: calc(-.5rem);
@@ -13776,25 +13785,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transition: all 0.2s;
 }
 
-.nav .nav__item {
+._nav .nav__item {
   font-size: 1.8rem;
   font-weight: bold;
   color: inherit;
 }
 
-.nav .svg-list {
+._nav .svg-list {
   font-size: 3rem;
   font-weight: bold;
   cursor: pointer;
 }
 
-.nav .svg-list:hover {
+._nav .svg-list:hover {
   -webkit-animation: none !important;
           animation: none !important;
 }
 
-.nav .svg-list-dropdown,
-.nav .profile-img-dropdown {
+._nav .svg-list-dropdown,
+._nav .profile-img-dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -13804,8 +13813,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   overflow: hidden;
 }
 
-.nav .svg-list-dropdown .nav__item,
-.nav .profile-img-dropdown .nav__item {
+._nav .svg-list-dropdown .nav__item,
+._nav .profile-img-dropdown .nav__item {
   margin-right: 0 !important;
   padding: 1rem 2rem;
   display: block;
@@ -13814,122 +13823,122 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transition: all 0.2s;
 }
 
-.nav .nav-toggle-sm {
+._nav .nav-toggle-sm {
   display: none;
 }
 
-.nav .nav-left {
+._nav .nav-left {
   margin-right: auto;
 }
 
-.nav .nav-left .nav__item {
+._nav .nav-left .nav__item {
   margin-right: 3rem;
 }
 
-.nav .nav-left .svg-list {
+._nav .nav-left .svg-list {
   margin-right: 3rem;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .nav .nav-left .nav-toggle-lg {
+  ._nav .nav-left .nav-toggle-lg {
     display: none;
   }
 
-  .nav .nav-left .nav-toggle-sm {
+  ._nav .nav-left .nav-toggle-sm {
     display: block;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-left .nav-toggle-sm {
+  ._nav .nav-left .nav-toggle-sm {
     display: none;
   }
 }
 
-.nav .nav__form {
+._nav .nav__form {
   width: 40rem;
 }
 
 @media only screen and (max-width: 35.99em) {
-  .nav .nav__form {
+  ._nav .nav__form {
     width: 25rem;
   }
 }
 
-.nav .btn-sign-in {
+._nav .btn-sign-in {
   border-radius: 0.75rem;
   padding: 0.5rem 1rem;
 }
 
-.nav .nav-right {
+._nav .nav-right {
   margin-right: 5rem;
   display: flex;
   align-items: center;
 }
 
-.nav .nav-right .message-welcome {
+._nav .nav-right .message-welcome {
   font-size: 2.4rem;
   font-weight: bold;
   -webkit-animation: fade-in-out-animation 4s ease-in-out forwards;
           animation: fade-in-out-animation 4s ease-in-out forwards;
 }
 
-.nav .nav-right .message-welcome ~ * {
+._nav .nav-right .message-welcome ~ * {
   display: none;
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-right .message-welcome {
+  ._nav .nav-right .message-welcome {
     font-size: 2rem;
     margin-right: 1rem;
   }
 }
 
-.nav .nav-right .nav-fade-in-animation {
+._nav .nav-right .nav-fade-in-animation {
   -webkit-animation: fade-in-animation 3s backwards;
           animation: fade-in-animation 3s backwards;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
 
-.nav .nav-right__svg-container {
+._nav .nav-right__svg-container {
   display: flex;
   align-items: center;
   margin-right: 3.5rem;
 }
 
-.nav .nav-right__svg-container svg {
+._nav .nav-right__svg-container svg {
   cursor: pointer;
 }
 
-.nav .nav-right__svg-container svg:hover {
+._nav .nav-right__svg-container svg:hover {
   -webkit-animation: shake-animation 0.3s linear;
           animation: shake-animation 0.3s linear;
 }
 
-.nav .nav-right__svg-container .svg-message {
+._nav .nav-right__svg-container .svg-message {
   font-size: 2rem;
   margin-right: 1.8rem;
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-right__svg-container .svg-message {
+  ._nav .nav-right__svg-container .svg-message {
     font-size: 2.2rem;
     margin-right: 1.3rem;
   }
 }
 
-.nav .nav-right__svg-container .svg-notification {
+._nav .nav-right__svg-container .svg-notification {
   font-size: 2.2rem;
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-right__svg-container {
+  ._nav .nav-right__svg-container {
     margin-right: 1.5rem;
   }
 }
 
-.nav .nav-right__profile-img {
+._nav .nav-right__profile-img {
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
@@ -13940,7 +13949,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-right__profile-img {
+  ._nav .nav-right__profile-img {
     margin-right: 2rem;
     border-width: 1px;
     width: 4rem;
@@ -13948,27 +13957,27 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.nav .nav-right .svg-list-dropdown,
-.nav .nav-right .profile-img-dropdown {
+._nav .nav-right .svg-list-dropdown,
+._nav .nav-right .profile-img-dropdown {
   right: 2.5rem;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .nav .nav-right {
+  ._nav .nav-right {
     margin-right: 3rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .nav .nav-right {
+  ._nav .nav-right {
     margin-right: 1.5rem;
   }
 
-  .nav .nav-right .nav-toggle-lg {
+  ._nav .nav-right .nav-toggle-lg {
     display: none;
   }
 
-  .nav .nav-right .nav-toggle-sm {
+  ._nav .nav-right .nav-toggle-sm {
     display: block;
   }
 }
@@ -17057,8 +17066,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFFFFF;
 }
 
+.home__nav-scroller {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(8rem + 5rem);
+  width: 30rem;
+  height: 30rem;
+  background-color: orangered;
+}
+
 .home__content {
   margin-bottom: 18rem;
+}
+
+.home__content .container {
+  padding-left: 25rem;
 }
 
 .home__content > :not(:first-child) {

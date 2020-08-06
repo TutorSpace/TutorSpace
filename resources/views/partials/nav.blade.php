@@ -4,7 +4,7 @@
 ]))
 @endif
 <header>
-    <nav class="nav p-fixed w-100 d-flex align-items-center
+    <nav class="_nav p-fixed w-100 d-flex align-items-center
         @if(in_array(Route::current()->getName(), [
                 'index'
             ]))

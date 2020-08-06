@@ -144,7 +144,26 @@
 
     }
 
+    &__nav-scroller {
+        position: -webkit-sticky;
+        position: sticky;
+        top: calc(#{$nav-height} + 5rem);
+
+        width: 30rem;
+        height: 30rem;
+        background-color: orangered;
+    }
+
     &__content {
+        // test start
+        .container {
+            padding-left: 25rem;
+        }
+        // overflow: hidden;
+
+
+        // test end
+
         margin-bottom: 18rem;
 
         > :not(:first-child) {

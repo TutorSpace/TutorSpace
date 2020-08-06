@@ -1,6 +1,12 @@
+// size
+.vh-100 {
+    height: 100vh;
+}
+
 // ====================== position ===================
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
+.p-sticky { position: sticky; }
 .p-fixed { position: fixed; }
 
 .top-0 { top: 0; }

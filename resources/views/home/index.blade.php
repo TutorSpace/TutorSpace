@@ -4,6 +4,7 @@
 
 @section('body-class')
 bg-white-dark-4
+vh-100
 
 @if(Auth::check() && Auth::user()->is_tutor)
 bg-tutor
@@ -33,10 +34,13 @@ bg-student
     @include('home.partials.header')
 
     <main class="home__content">
+        <div class="home__nav-scroller">
+            dgs
+        </div>
         @if (Auth::user()->is_tutor)
         <div class="container">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have 2 New Tutor Requests!</h5>
+                <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes">
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,
