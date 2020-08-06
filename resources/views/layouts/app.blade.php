@@ -86,7 +86,34 @@
                 type:requestType,
                 url: `/bookmark/${userId}`,
                 success: (data) => {
-
+                    @if(Route::current()->getName() == 'home')
+                    if($(this).parent().parent().hasClass('recommended-tutors')) {
+                        if(requestType == 'POST') {
+                            $.ajax({
+                                type:'GET',
+                                url: `/bookmark/${userId}`,
+                                success: (data) => {
+                                    if($('.bookmarked-tutors .no-results').is(":visible")) {
+                                        $('.bookmarked-tutors .no-results').addClass('hidden');
+                                    }
+                                    $('.bookmarked-tutors').append(data);
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                        else {
+                            $('.bookmarked-tutors').find(`.user-card[data-user-id=${userId}]`).remove();
+                            if(!$('.bookmarked-tutors .user-card')[0]) {
+                                $('.bookmarked-tutors .no-results').removeClass('hidden');
+                            }
+                        }
+                    }
+                    else if($(this).parent().parent().hasClass('bookmarked-tutors')){
+                        $(`.recommended-tutors .user-card[data-user-id=${userId}]`).find('.svg-bookmark').find('use').toggleClass('hidden');
+                    }
+                    @endif
                 },
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');
@@ -95,6 +122,8 @@
             });
 
             $(this).find('use').toggleClass('hidden');
+
+
         });
         @endif
 

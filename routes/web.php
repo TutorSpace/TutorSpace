@@ -37,6 +37,9 @@ Route::group([
 ], function() {
     Route::post('/{user}', 'BookmarkController@store')->name('bookmark.store');
     Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
+
+    // get a single user_card
+    Route::get('/{user}', 'BookmarkController@show')->name('bookmark.show');
 });
 
 // recommended tutors

@@ -12,8 +12,14 @@ class BookmarkController extends Controller
         $this->middleware(['auth']);
     }
 
+    public function show(User $user) {
+        return view('partials.user_card', [
+            'user' => $user
+        ]);
+    }
+
     public function store(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor) {
+        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->eamil) {
             Auth::user()->bookmarkedUsers()->attach($user);
 
             return response()->json([
@@ -23,7 +29,7 @@ class BookmarkController extends Controller
     }
 
     public function delete(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor) {
+        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->eamil) {
             Auth::user()->bookmarkedUsers()->detach($user);
 
             return response()->json([

@@ -1,8 +1,11 @@
 <div class="
     user-card
-    @if (Auth::check() && $user->id == Auth::id()) hidden
+    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->id == Auth::id())
+    hidden
     @endif
-">
+    "
+    data-user-id="{{ $user->id }}"
+>
     @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))

@@ -10,8 +10,8 @@ use Carbon\Carbon;
 use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Cache;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -186,6 +186,7 @@ class User extends Authenticatable
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
+                                ->where('users.email', '!=', $this->email)
                                 ->get();
             $recommendedTutors = $recommendedTutors
                                     ->random(min(5, $recommendedTutors->count()));
@@ -201,6 +202,7 @@ class User extends Authenticatable
                                     ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
                             })
                             ->whereNotIn('id', $tutorIds)
+                            ->where('users.email', '!=', $this->email)
                             ->get();
                 // I want to get a total of (5 - $recommendedTutors->count()) tutors here
                 $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
@@ -212,6 +214,7 @@ class User extends Authenticatable
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::where('users.is_tutor', true)
                                     ->whereNotIn('id', $tutorIds)
+                                    ->where('users.email', '!=', $this->email)
                                     ->get();
                     // I want to get a total of (5 - $recommendedTutors->count()) tutors here
                     $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
