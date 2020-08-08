@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
+use App\Test;
 use App\User;
 use App\Reply;
 use App\Course;
@@ -12,13 +13,13 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use Carbon\Carbon;
+
 use App\NewMessage;
 
 use Facades\App\Post;
-
 use App\Tutor_request;
-use App\Characteristic;
 
+use App\Characteristic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +33,11 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        dd(Post::find(1)->viewsCntOnDay('2020-08-08')->get());
+
+        $test = Post::find(1)->viewCntLastWeek()->get();
+
+
+        dd($test);
 
         // get post count from the last 7 days
         $posts = Post::where('user_id', Auth::user()->id)

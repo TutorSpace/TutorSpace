@@ -693,6 +693,7 @@ class ComposerStaticInit45e7b77f98fd898c4eb2573d4d4ffa9e
         'App\\TutorLevel' => __DIR__ . '/../..' . '/app/TutorLevel.php',
         'App\\Tutor_request' => __DIR__ . '/../..' . '/app/Tutor_request.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'App\\View' => __DIR__ . '/../..' . '/app/View.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',

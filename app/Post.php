@@ -125,18 +125,16 @@ class Post extends Model implements Viewable
         return $this->morphMany('App\View', 'viewable');
     }
 
-    // Sample $day input: '2020-08-08'
-    public function viewsCntOnDay($day) {
-        $day = new Carbon($day);
-        return $this->views()->whereBetween('viewed_at', [
-            '2020-08-08', '2020-08-09'
-        ]);
+    public function viewCntLastWeek() {
+        return $this->views()
+                    ->select(['day', DB::raw('COUNT("viewed_at") as view_count')])
+                    ->whereBetween('viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->groupBy('viewed_at');
     }
-
-    // // get total view count on a certain day
-    // public function viewCount($day) {
-    //     return $this->hasMany('App\View', )
-    // }
 
 
     public function getYouMayHelpWith() {

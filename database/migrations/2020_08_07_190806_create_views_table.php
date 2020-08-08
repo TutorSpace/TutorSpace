@@ -46,7 +46,7 @@ class CreateViewsTable extends Migration
             $table->morphs('viewable');
             $table->text('visitor')->nullable();
             $table->string('collection')->nullable();
-            $table->timestamp('viewed_at')->useCurrent();
+            $table->date('viewed_at')->default(date("Y-m-d"));
         });
     }
 

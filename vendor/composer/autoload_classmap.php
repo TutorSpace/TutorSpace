@@ -91,6 +91,7 @@ return array(
     'App\\TutorLevel' => $baseDir . '/app/TutorLevel.php',
     'App\\Tutor_request' => $baseDir . '/app/Tutor_request.php',
     'App\\User' => $baseDir . '/app/User.php',
+    'App\\View' => $baseDir . '/app/View.php',
     'ArithmeticError' => $vendorDir . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
     'Asm89\\Stack\\Cors' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
     'Asm89\\Stack\\CorsService' => $vendorDir . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
