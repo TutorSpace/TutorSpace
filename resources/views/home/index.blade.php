@@ -17,7 +17,6 @@ bg-student
 @section('links-in-head')
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<link href='{{asset('fullcalendar/main.min.css')}}' rel='stylesheet' />
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
 @endsection
 

@@ -119,6 +119,12 @@ class Post extends Model implements Viewable
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
     }
 
+    
+    // // get total view count on a certain day
+    // public function viewCount($day) {
+    //     return $this->hasMany('App\View', )
+    // }
+
 
     public function getYouMayHelpWith() {
         if(Auth::check()) {
@@ -207,6 +213,8 @@ class Post extends Model implements Viewable
                 // todo: modify the formula
                 ->orderByRaw('50 * users_upvoted_count + view_count DESC');
     }
+
+
 
 
 

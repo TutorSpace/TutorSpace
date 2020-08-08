@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Welcom to TutorSpace!')
+@section('title', 'Welcome to TutorSpace!')
 
 @section('links-in-head')
 

@@ -32,8 +32,15 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
+        // get post count from the last 7 days
+        $posts = Post::where('user_id', Auth::user()->id)
+                    ->join('views', 'views.viewable_id', '=', 'posts.id')
+                    ->where('views.viewable_type', 'App\Post')
+                    ->groupBy('viewable_id')
+                    ->selectRaw('count()')
+                    ->get();
+        dd($posts);
 
-        // $test = Auth::user()->load('courses')->get();
         return view('test');
     }
 
