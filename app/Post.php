@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class Post extends Model implements Viewable
@@ -119,7 +120,19 @@ class Post extends Model implements Viewable
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
     }
 
-    
+    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
+    public function views(): MorphMany {
+        return $this->morphMany('App\View', 'viewable');
+    }
+
+    // Sample $day input: '2020-08-08'
+    public function viewsCntOnDay($day) {
+        $day = new Carbon($day);
+        return $this->views()->whereBetween('viewed_at', [
+            '2020-08-08', '2020-08-09'
+        ]);
+    }
+
     // // get total view count on a certain day
     // public function viewCount($day) {
     //     return $this->hasMany('App\View', )

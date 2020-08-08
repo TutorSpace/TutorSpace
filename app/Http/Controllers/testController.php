@@ -32,6 +32,8 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
+        dd(Post::find(1)->viewsCntOnDay('2020-08-08')->get());
+
         // get post count from the last 7 days
         $posts = Post::where('user_id', Auth::user()->id)
                     ->join('views', 'views.viewable_id', '=', 'posts.id')
