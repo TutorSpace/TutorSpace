@@ -202,11 +202,12 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        $cookieName = "viewed.$post->slug";
+        $cookieName = "viewed-$post->slug";
+
+
         if (!$request->cookie($cookieName)) {
             event(new PostViewed($post));
-            Cookie::queue($cookieName, true, 60);
-            $request->session()->put($post->slug, true);
+            Cookie::queue(Cookie::make($cookieName, 'true', 60));
         }
 
         return view('forum.show', [

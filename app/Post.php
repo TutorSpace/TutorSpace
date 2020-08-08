@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
+    use InteractsWithViews;
+    protected $removeViewsOnDelete = true;
+
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';

@@ -36,5 +36,6 @@ class IncrementPostViewCount implements ShouldQueue
     {
         $post = $event->post;
         $post->increment('view_count');
+        views($post)->record();
     }
 }

@@ -34,7 +34,8 @@ class testController extends Controller
     public function index(Request $request) {
 
         // $test = Auth::user()->load('courses')->get();
-        $test = Auth::user()->courses;
+        return(views(Post::find(1))
+    ->unique()->count());
     }
 
     public function test(Request $request) {
