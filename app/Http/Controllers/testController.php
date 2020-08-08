@@ -7,20 +7,22 @@ use Auth;
 use App\Tag;
 use App\Test;
 use App\User;
+use App\View;
 use App\Reply;
 use App\Course;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
+
 use Carbon\Carbon;
 
 use App\NewMessage;
-
 use Facades\App\Post;
-use App\Tutor_request;
 
+use App\Tutor_request;
 use App\Characteristic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
@@ -34,21 +36,24 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        $test = Post::find(1)->viewCntLastWeek()->get();
 
-
-        dd($test);
-
-        // get post count from the last 7 days
-        $posts = Post::where('user_id', Auth::user()->id)
-                    ->join('views', 'views.viewable_id', '=', 'posts.id')
-                    ->where('views.viewable_type', 'App\Post')
-                    ->groupBy('viewable_id')
-                    ->selectRaw('count()')
+        // get daily post view count from the last 7 days
+        $views = View::where('views.viewable_type', 'App\Post')
+                    ->whereBetween('views.viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->join('posts', 'posts.id', '=', 'views.viewable_id')
+                    ->where('posts.user_id', Auth::user()->id)
+                    ->groupBy('views.viewed_at')
+                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
                     ->get();
-        dd($posts);
+        // dd($posts);
 
-        return view('test');
+        return view('test', [
+            'views' => $views
+        ]);
     }
 
     public function test(Request $request) {

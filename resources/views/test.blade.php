@@ -53,14 +53,17 @@
 
 @section('js')
 <script>
+
 MG.data_graphic({
     title: "Post View Count",
     description: "This graphic shows a time-series of post view counts.",
     data: [
+        @foreach($views as $view)
         {
-            'date':new Date('2014-11-01'),
-            'value':12
+            'date':new Date('{{ $view->viewed_at }}'),
+            'value': {{ $view->view_count }}
         },
+        @endforeach
     ],
     width: 600,
     height: 250,
