@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'App\Events\PostViewed' => [
-            'App\Listeners\IncrementViewCount',
+            'App\Listeners\IncrementPostViewCount',
         ],
     ];
 

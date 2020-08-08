@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -201,8 +202,10 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post)
     {
-        if (!$request->session()->has($post->slug)) {
+        $cookieName = "viewed.$post->slug";
+        if (!$request->cookie($cookieName)) {
             event(new PostViewed($post));
+            Cookie::queue($cookieName, true, 60);
             $request->session()->put($post->slug, true);
         }
 

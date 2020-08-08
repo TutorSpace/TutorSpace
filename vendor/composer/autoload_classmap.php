@@ -52,7 +52,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
-    'App\\Listeners\\IncrementViewCount' => $baseDir . '/app/Listeners/IncrementViewCount.php',
+    'App\\Listeners\\IncrementPostViewCount' => $baseDir . '/app/Listeners/IncrementPostViewCount.php',
     'App\\Major' => $baseDir . '/app/Major.php',
     'App\\Message' => $baseDir . '/app/Message.php',
     'App\\NewMessage' => $baseDir . '/app/NewMessage.php',

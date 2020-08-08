@@ -6,7 +6,7 @@ use App\Events\PostViewed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class IncrementViewCount implements ShouldQueue
+class IncrementPostViewCount implements ShouldQueue
 {
 
     /**
