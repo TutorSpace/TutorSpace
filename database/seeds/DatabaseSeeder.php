@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             PostTypeSeeder::class,
             PostSeeder::class,
             ReplySeeder::class,
+            ViewCntSeeder::class,
 
         ]);
     }
