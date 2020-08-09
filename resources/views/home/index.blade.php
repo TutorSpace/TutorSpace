@@ -4,7 +4,6 @@
 
 @section('body-class')
 bg-white-dark-4
-vh-100
 
 @if(Auth::check() && Auth::user()->is_tutor)
 bg-tutor
@@ -17,6 +16,7 @@ bg-student
 @section('links-in-head')
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+<link href='{{asset('fullcalendar/main.min.css')}}' rel='stylesheet' />
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
 @endsection
 
@@ -32,249 +32,224 @@ bg-student
 <div class="container-fluid home">
     @include('home.partials.header')
 
-    <main class="home__content container">
-        <div class="row">
-            <div class="col-3">
-                <div class="home__nav-scroller">
-                    <nav id="navbar-example3" class="navbar navbar-light bg-light">
-                        <a class="navbar-brand" href="#">Navbar</a>
-                        <nav class="nav nav-pills flex-column">
-                          <a class="nav-link" href="#item-1">Item 1</a>
-                          <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
-                            <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
-                          </nav>
-                          <a class="nav-link" href="#item-2">Item 2</a>
-                          <a class="nav-link" href="#item-3">Item 3</a>
-                          <nav class="nav nav-pills flex-column">
-                            <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
-                            <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
-                          </nav>
-                        </nav>
-                      </nav>
+    <main class="home__content">
+        @if (Auth::user()->is_tutor)
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">You Have 2 New Tutor Requests!</h5>
+                <div class="info-boxes">
+                    @include('home.partials.tutor_request', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1)
+                    ])
+                    @include('home.partials.tutor_request', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1)
+                    ])
+                    @include('home.partials.tutor_request', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1)
+                    ])
                 </div>
             </div>
+        </div>
 
-            <div class="col-9">
-                @if (Auth::user()->is_tutor)
-                <div class="container">
-                    <div class="row">
-                        <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
-                        <div class="info-boxes">
-                            @include('home.partials.tutor_request', [
-                                'isNotification' => true,
-                                'forTutor' => true,
-                                'user' => App\User::find(1)
-                            ])
-                            @include('home.partials.tutor_request', [
-                                'isNotification' => true,
-                                'forTutor' => true,
-                                'user' => App\User::find(1)
-                            ])
-                            @include('home.partials.tutor_request', [
-                                'isNotification' => true,
-                                'forTutor' => true,
-                                'user' => App\User::find(1)
-                            ])
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">Calendar</h5>
+                <div id="calendar" class="w-100"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <h5>Upcoming Sessions</h5>
+                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
-
-                <div class="container">
-                    <div class="row">
-                        <h5 class="mb-2 w-100">Calendar</h5>
-                        <div id="calendar" class="w-100"></div>
-                    </div>
+                <div class="info-boxes">
+                    @include('home.partials.session')
+                    @include('home.partials.session')
+                    @include('home.partials.session')
+                    @include('home.partials.session', [
+                        'hidden' => true
+                    ])
+                    @include('home.partials.session', [
+                        'hidden' => true
+                    ])
                 </div>
+            </div>
+        </div>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                            <h5>Upcoming Sessions</h5>
-                            <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                        </div>
-                        <div class="info-boxes">
-                            @include('home.partials.session')
-                            @include('home.partials.session')
-                            @include('home.partials.session')
-                            @include('home.partials.session', [
-                                'hidden' => true
-                            ])
-                            @include('home.partials.session', [
-                                'hidden' => true
-                            ])
-                        </div>
-                    </div>
+        @else
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
+                <div class="info-boxes">
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'isNotification' => true,
+                        'forTutor' => false,
+                        'approved' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'isNotification' => true,
+                        'forTutor' => false,
+                        'approved' => true
+                    ])
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'isNotification' => true,
+                        'forTutor' => false,
+                        'approved' => true
+                    ])
                 </div>
+            </div>
+        </div>
 
-                @else
-                <div class="container">
-                    <div class="row">
-                        <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
-                        <div class="info-boxes">
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'isNotification' => true,
-                                'forTutor' => false,
-                                'approved' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'isNotification' => true,
-                                'forTutor' => false,
-                                'approved' => true
-                            ])
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'isNotification' => true,
-                                'forTutor' => false,
-                                'approved' => true
-                            ])
-                        </div>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    <h5>Upcoming Sessions</h5>
+                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                            <h5>Upcoming Sessions</h5>
-                            <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                        </div>
-                        <div class="info-boxes">
-                            @include('home.partials.session')
-                            @include('home.partials.session')
-                            @include('home.partials.session')
-                            @include('home.partials.session', [
-                                'hidden' => true
-                            ])
-                            @include('home.partials.session', [
-                                'hidden' => true
-                            ])
-                        </div>
-                    </div>
+                <div class="info-boxes">
+                    @include('home.partials.session')
+                    @include('home.partials.session')
+                    @include('home.partials.session')
+                    @include('home.partials.session', [
+                        'hidden' => true
+                    ])
+                    @include('home.partials.session', [
+                        'hidden' => true
+                    ])
                 </div>
+            </div>
+        </div>
 
-                <div class="container">
-                    <div class="row">
-                        <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
 
-                        <div class="user-cards bookmarked-tutors">
-                            @forelse (Auth::user()->bookmarkedUsers as $user)
-                                @include('partials.user_card', [
-                                    'user' => $user
-                                ])
-                            @empty
-                            <h6 class="no-results">No bookmarked tutors yet</h6>
-                            @endforelse
-                        </div>
-                        <div class="scroll-faded">
-                        </div>
-                    </div>
+                <div class="user-cards bookmarked-tutors">
+                    @forelse (Auth::user()->bookmarkedUsers as $user)
+                        @include('partials.user_card', [
+                            'user' => $user
+                        ])
+                    @empty
+                    <h6 class="no-results">No bookmarked tutors yet</h6>
+                    @endforelse
                 </div>
-
-                <div class="container-fluid recommended-tutors-bg-container">
-                    <div class="container">
-                        <div class="row">
-                            <div class="mb-2 w-100 d-flex justify-content-between align-center">
-                                <h5>Tutors You May Want to Know</h5>
-                                <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
-                            </div>
-                            <div class="user-cards recommended-tutors">
-                                @include('partials.recommended_tutors')
-                            </div>
-                        </div>
-                    </div>
+                <div class="scroll-faded">
                 </div>
+            </div>
+        </div>
 
-                <div class="container">
-                    <div class="row">
-                        <h5 class="mb-2 w-100">Tutor Requests</h5>
-                        <div class="info-boxes tutor-requests">
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'approved' => false
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'approved' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'pending' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'pending' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'approved' => false
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'approved' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'pending' => true
-                            ])
-
-                            @include('home.partials.tutor_request', [
-                                'user' => App\User::find(1),
-                                'forTutor' => false,
-                                'pending' => true
-                            ])
-                        </div>
-                        <div class="scroll-faded">
-                        </div>
+        <div class="container-fluid recommended-tutors-bg-container">
+            <div class="container">
+                <div class="row">
+                    <div class="mb-2 w-100 d-flex justify-content-between align-center">
+                        <h5>Tutors You May Want to Know</h5>
+                        <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
                     </div>
-
-                </div>
-
-                @endif
-
-                <div class="container">
-                    <div class="row forum mt-0">
-                        <h5 class="w-100">Forum Activity</h5>
-                        <div class="col-12 col-sm-8 post-previews px-0">
-                            @include('forum.partials.post-preview-general')
-                        </div>
-                        <div class="col-12 col-sm-4 forum-data-container">
-                            <div class="forum-data">
-                                {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                                </svg> --}}
-                                <span class="title">My Posts</span>
-                                <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
-                            </div>
-                            <div class="forum-data">
-                                <span class="title">Participated</span>
-                                <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
-                            </div>
-                            <div class="forum-data">
-                                <span class="title">Followed</span>
-                                <a class="number" href="{{ route('posts.my-follows') }}">{{ Auth::user()->followedPosts()->count() }}</a>
-                            </div>
-                        </div>
+                    <div class="user-cards recommended-tutors">
+                        @include('partials.recommended_tutors')
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">Tutor Requests</h5>
+                <div class="info-boxes tutor-requests">
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'approved' => false
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'approved' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'pending' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'pending' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'approved' => false
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'approved' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'pending' => true
+                    ])
+
+                    @include('home.partials.tutor_request', [
+                        'user' => App\User::find(1),
+                        'forTutor' => false,
+                        'pending' => true
+                    ])
+                </div>
+                <div class="scroll-faded">
+                </div>
+            </div>
+
+        </div>
+
+
+        @endif
+
+        <div class="container">
+            <div class="row forum mt-0">
+                <h5 class="w-100">Forum Activity</h5>
+                <div class="col-12 col-sm-8 post-previews px-0">
+                    @include('forum.partials.post-preview-general')
+                </div>
+                <div class="col-12 col-sm-4 forum-data-container">
+                    <div class="forum-data">
+                        {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg> --}}
+                        <span class="title">My Posts</span>
+                        <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
+                    </div>
+                    <div class="forum-data">
+                        <span class="title">Participated</span>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
+                    </div>
+                    <div class="forum-data">
+                        <span class="title">Followed</span>
+                        <a class="number" href="{{ route('posts.my-follows') }}">{{ Auth::user()->followedPosts()->count() }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </main>
 
@@ -286,12 +261,10 @@ bg-student
 @section('js')
 
 <script>
-
 @if(Auth::user()->is_tutor)
     let calendar;
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-
         calendar = new FullCalendar.Calendar(calendarEl, {
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
@@ -331,7 +304,6 @@ bg-student
             select: function (selectionInfo) {
                 let startTime = selectionInfo.start;
                 let endTime = selectionInfo.end;
-
                 showAvailableTimeForm(startTime, endTime);
             },
             eventClick: function (eventClickInfo) {
@@ -339,7 +311,6 @@ bg-student
                 if (eventClickInfo.event.url) {
                     window.open(eventClickInfo.event.url);
                 }
-
                 showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
             },
             events: [
@@ -373,15 +344,11 @@ bg-student
                 @endforeach
             ],
         });
-
         calendar.render();
     });
-
     $('#availableTimeConfirmationModal form').submit(function(e) {
         e.preventDefault();
-
         let data = $(this).serialize();
-
         $.ajax({
             type: 'POST',
             url: "{{ route('availableTime.store') }}",
@@ -409,12 +376,9 @@ bg-student
             }
         });
     });
-
     $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
         e.preventDefault();
-
         let data = $(this).serialize();
-
         $.ajax({
             type: 'DELETE',
             url: "{{ route('availableTime.delete') }}",
@@ -431,11 +395,8 @@ bg-student
             }
         });
     });
-
 @endif
-
 let storageUrl = "{{ Storage::url('') }}";
-
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
         $.ajax({
@@ -450,14 +411,11 @@ let storageUrl = "{{ Storage::url('') }}";
             }
         });
     }
-
     // refresh recommended tutors
     $('#btn-refresh').click(function() {
         getRecommendedTutors();
     });
-
 @endif
-
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
