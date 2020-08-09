@@ -20,5 +20,16 @@ class ViewCntSeeder extends Seeder
                 'viewed_at' => Carbon::now()->subDays($i % 3 == 0 ? 0 : rand(1, 30))
             ]);
         }
+
+        // generate profile views
+        for($i = 0; $i < 1000; $i++) {
+            DB::table('views')->insert([
+                'viewable_type' => 'App\Profile',
+                'viewable_id' => rand(1, 7),
+                'viewed_at' => Carbon::now()->subDays($i % 3 == 0 ? 0 : rand(1, 30))
+            ]);
+        }
+
+
     }
 }
