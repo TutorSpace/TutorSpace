@@ -38,8 +38,10 @@ class testController extends Controller
 
 
         // get daily post view count from the last 7 days
-        $views = Post::getViewCntWeek(2);
+        $views = User::getViewCntWeek(1);
         // dd($posts);
+
+        // dd($views);
 
         return view('test', [
             'views' => $views

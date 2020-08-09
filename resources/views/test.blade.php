@@ -1,4 +1,3 @@
-{{-- Google Chart --}}
 {{-- @extends('layouts.app')
 
 @section('links-in-head')
@@ -6,32 +5,31 @@
 @endsection
 
 @section('content')
-<h1>test</h1>
-<div id="chart"/>
+<div id="pie-chart"/>
 @endsection
 
 @section('js')
 <script>
-    google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
+
         var data = google.visualization.arrayToDataTable([
-            @foreach()
-            ['Day', 'ViewCount'],
-            ['08/10',  0],
-            ['08/11',  3],
-            ['08/12',  5]
-            @endforeach
+          ['Rating', 'Rating Scroe'],
+          ['5.0',     11],
+          ['4.5',      2],
+          ['4',  2],
+          ['3.5', 2],
+          ['3',    7]
         ]);
 
         var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
+          title: 'My Daily Activities'
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('chart'));
+        var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
 
         chart.draw(data, options);
       }
@@ -39,7 +37,7 @@
 @endsection --}}
 
 
-{{-- MetricGraphics --}}
+
 @extends('layouts.app')
 
 @section('links-in-head')
@@ -47,7 +45,7 @@
 @endsection
 
 @section('content')
-{{-- Metric Grphics --}}
+
 <div id="post-chart"/>
 
 <div id="profile-chart"></div>
@@ -60,7 +58,7 @@ MG.data_graphic({
     title: "Post View Count",
     description: "This graphic shows a time-series of post view counts.",
     data: [
-        @foreach($views as $view)
+        @foreach(App\Post::getViewCntWeek(1) as $view)
         {
             'date':new Date('{{ $view->viewed_at }}'),
             'value': {{ $view->view_count }}
@@ -72,6 +70,7 @@ MG.data_graphic({
     target: '#post-chart',
     x_accessor: 'date',
     y_accessor: 'value',
+    linked: true,
     top: 50
 })
 
@@ -79,7 +78,7 @@ MG.data_graphic({
     title: "Profile View Count",
     description: "This graphic shows a time-series of profile view counts.",
     data: [
-        @foreach($views as $view)
+        @foreach(App\User::getViewCntWeek(1) as $view)
         {
             'date':new Date('{{ $view->viewed_at }}'),
             'value': {{ $view->view_count }}
@@ -91,6 +90,7 @@ MG.data_graphic({
     target: '#profile-chart',
     x_accessor: 'date',
     y_accessor: 'value',
+    linked: true,
     top: 50
 })
 </script>

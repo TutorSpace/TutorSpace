@@ -15,13 +15,18 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements Viewable
 {
     use Notifiable;
+    use InteractsWithViews;
+    protected $removeViewsOnDelete = true;
 
     /**
      * The attributes that are mass assignable.
@@ -96,6 +101,37 @@ class User extends Authenticatable
         if(!Str::of($this->profile_pic_url)->contains('placeholder')) {
             Storage::delete($this->profile_pic_url);
         }
+    }
+
+    // return the profile' daily view count in the past week
+    public function viewCntWeek() {
+        return $this->views()
+                    ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
+                    ->whereBetween('viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->groupBy('viewed_at');
+    }
+
+    public static function getViewCntWeek($userId) {
+        return View::where('views.viewable_type', 'App\User')
+                    ->whereBetween('views.viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->join('users', 'users.id', '=', 'views.viewable_id')
+                    ->where('users.id', $userId)
+                    ->groupBy('views.viewed_at')
+                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->get();
+    }
+
+    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
+    public function views(): MorphMany {
+        return $this->morphMany('App\View', 'viewable');
     }
 
 
