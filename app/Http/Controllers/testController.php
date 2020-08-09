@@ -38,17 +38,7 @@ class testController extends Controller
 
 
         // get daily post view count from the last 7 days
-        $views = View::where('views.viewable_type', 'App\Post')
-                    ->whereBetween('views.viewed_at', [
-                        // a week is 7 -1 + 1 days including today
-                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
-                        Carbon::now()->format('Y-m-d')
-                    ])
-                    ->join('posts', 'posts.id', '=', 'views.viewable_id')
-                    ->where('posts.user_id', Auth::user()->id)
-                    ->groupBy('views.viewed_at')
-                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
-                    ->get();
+        $views = Post::getViewCntWeek(2);
         // dd($posts);
 
         return view('test', [

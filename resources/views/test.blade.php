@@ -49,6 +49,8 @@
 @section('content')
 {{-- Metric Grphics --}}
 <div id="chart"/>
+
+<div id="profile-chart"></div>
 @endsection
 
 @section('js')
@@ -68,6 +70,25 @@ MG.data_graphic({
     width: 600,
     height: 250,
     target: '#chart',
+    x_accessor: 'date',
+    y_accessor: 'value',
+    top: 50
+})
+
+MG.data_graphic({
+    title: "Profile View Count",
+    description: "This graphic shows a time-series of post view counts.",
+    data: [
+        @foreach($views as $view)
+        {
+            'date':new Date('{{ $view->viewed_at }}'),
+            'value': {{ $view->view_count }}
+        },
+        @endforeach
+    ],
+    width: 600,
+    height: 250,
+    target: '#profile-chart',
     x_accessor: 'date',
     y_accessor: 'value',
     top: 50
