@@ -20,9 +20,9 @@
 @import "components/overlay-background";
 @import "components/review";
 @import "components/forum/post_preview";
-@import "components/forum/tag";
+@import "components/tag";
 @import "components/forum/post_reply";
-@import "components/forum/user_card";
+@import "components/user_card";
 @import "components/session";
 @import "components/pagination";
 @import "components/search-card";
@@ -33,9 +33,10 @@
 @import "components/bootstrap-slider";
 @import "components/timepicker";
 @import "components/search";
-@import "components/home/info_box";
+@import "components/info_box";
 @import "components/svg_tutor_verified";
 @import "components/calendar";
+@import "components/menu-bar";
 
 
 @import "layout/navbar";

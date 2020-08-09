@@ -15953,6 +15953,12 @@ A VERTICAL event
   /* natural color for navlinks */
 }
 
+.menu-bar {
+  width: 30rem;
+  background-color: #6749DF;
+  position: absolute;
+}
+
 ._nav {
   height: 8rem;
   z-index: 2000;

@@ -29,8 +29,11 @@ bg-student
     @include('home.partials.availableTimeDeleteConfirmationModal')
 @endif
 
-<div class="container-fluid home">
-    @include('home.partials.header')
+<div class="container-fluid home p-relative">
+    @include('home.partials.menu_bar')
+
+    {{-- @include('home.partials.header') --}}
+
 
     <main class="home__content">
         @if (Auth::user()->is_tutor)
