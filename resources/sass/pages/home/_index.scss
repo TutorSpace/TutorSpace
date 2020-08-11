@@ -155,15 +155,45 @@
         background-color: orangered;
     }
 
-    &__content {
-        // test start
-        .container {
-            // padding-left: 25rem;
+    .menu-bar-container {
+        @include respond(extra-sm) {
+            display: none;
         }
-        // overflow: hidden;
+    }
 
+    &__content-container {
+        padding-left: 15px;
+        padding-right: 0;
+        // padding-left: 30px;
+        // padding-right: 15px;
 
-        // test end
+        @include respond(extra-sm) {
+            padding-left: 0;
+        }
+    }
+
+    &__content {
+        background-color: orangered;
+        padding: 0 15px;
+
+        .container {
+            margin: 0 auto;
+            max-width: 100rem;
+
+            @include respond(lg-2) {
+                max-width: 85rem;
+            }
+
+            @include respond(lg) {
+                max-width: 100%;
+                padding: 0 3rem;
+            }
+
+            @include respond(md) {
+
+            }
+
+        }
 
         margin-bottom: 18rem;
 

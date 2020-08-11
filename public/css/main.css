@@ -13287,7 +13287,6 @@ h6 {
   flex: 0 0 25%;
   max-height: 10rem;
   margin-left: 3rem;
-  margin-bottom: 0.25rem;
 }
 
 .post-previews .post-preview__right__thumbnail {
@@ -13313,6 +13312,12 @@ h6 {
 }
 
 .post-previews .post-preview .post__content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
   max-height: 15rem;
   overflow: hidden;
 }
@@ -14196,7 +14201,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   align-items: center;
 }
 
-@media only screen and (max-width: 61.99em) {
+@media only screen and (max-width: 100em) {
   .info-boxes .info-box .actions {
     width: 12ch;
     justify-content: center;
@@ -15966,6 +15971,14 @@ A VERTICAL event
   text-align: center;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .menu-bar {
+    font-weight: 1.2rem;
+    max-width: 17rem;
+    width: 17rem;
+  }
+}
+
 .menu-bar__lists {
   list-style: none;
   margin-top: 15rem;
@@ -15976,6 +15989,16 @@ A VERTICAL event
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .menu-bar__lists > li {
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-bar__lists > li svg {
+    display: none;
+  }
 }
 
 .menu-bar__lists > li:first-child {
@@ -15989,6 +16012,7 @@ A VERTICAL event
 .menu-bar__lists > li:not(:first-child):hover {
   background-color: white;
   color: #6749DF;
+  cursor: pointer;
 }
 
 .menu-bar__lists > li:not(:first-child):hover svg {
@@ -19354,8 +19378,45 @@ A VERTICAL event
   background-color: orangered;
 }
 
+@media only screen and (max-width: 35.99em) {
+  .home .menu-bar-container {
+    display: none;
+  }
+}
+
+.home__content-container {
+  padding-left: 15px;
+  padding-right: 0;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__content-container {
+    padding-left: 0;
+  }
+}
+
 .home__content {
+  background-color: orangered;
+  padding: 0 15px;
   margin-bottom: 18rem;
+}
+
+.home__content .container {
+  margin: 0 auto;
+  max-width: 100rem;
+}
+
+@media only screen and (max-width: 100em) {
+  .home__content .container {
+    max-width: 85rem;
+  }
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__content .container {
+    max-width: 100%;
+    padding: 0 3rem;
+  }
 }
 
 .home__content .container:not(:first-child) {

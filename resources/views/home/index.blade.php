@@ -31,10 +31,10 @@ bg-student
 
 <div class="container-fluid home p-relative">
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 menu-bar-container">
             @include('home.partials.menu_bar')
         </div>
-        <div class="col-8">
+        <div class="col-xl-8 col-sm-10 col-12 home__content-container">
             <main class="home__content">
                 @if (Auth::user()->is_tutor)
                 <div class="container">

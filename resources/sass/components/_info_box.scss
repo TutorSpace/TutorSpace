@@ -115,7 +115,7 @@
             flex-wrap: wrap;
             align-items: center;
 
-            @include respond(md) {
+            @include respond(lg-2) {
                 width: 12ch;
                 justify-content: center;
 
