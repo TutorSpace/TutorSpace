@@ -11544,36 +11544,39 @@ $('.btn-view-all-upcoming-sessions').click(function () {
   } else {
     $(this).html('View All Upcoming Sessions');
   }
-});
-$('body').scroll(function () {
-  var posTop = $(window).scrollTop() - $('.home__content').offset().top;
-
-  if (posTop < -130) {
-    if ($('body').hasClass('bg-student')) {
-      $('nav._nav').addClass('nav-auth--student');
-      $('nav._nav').addClass('nav-auth');
-      $('nav._nav').removeClass('nav-guest');
-      $('nav._nav').removeClass('nav-guest--student');
-    } else if ($('body').hasClass('bg-tutor')) {
-      $('nav._nav').addClass('nav-auth--tutor');
-      $('nav._nav').addClass('nav-auth');
-      $('nav._nav').removeClass('nav-guest');
-      $('nav._nav').removeClass('nav-guest--tutor');
-    }
-  } else {
-    if ($('body').hasClass('bg-student')) {
-      $('nav._nav').removeClass('nav-auth--student');
-      $('nav._nav').removeClass('nav-auth');
-      $('nav._nav').addClass('nav-guest');
-      $('nav._nav').addClass('nav-guest--student');
-    } else if ($('body').hasClass('bg-tutor')) {
-      $('nav._nav').removeClass('nav-auth--tutor');
-      $('nav._nav').removeClass('nav-auth');
-      $('nav._nav').addClass('nav-guest');
-      $('nav._nav').addClass('nav-guest--tutor');
-    }
-  }
-}); // calendar
+}); // $(window).scroll(function() {
+//     var posTop = $(window).scrollTop() - $('.home__content').offset().top;
+//     console.log(posTop);
+//     if(posTop < 0) {
+//         if($('body').hasClass('bg-student')) {
+//             $('nav._nav').addClass('nav-auth--student');
+//             $('nav._nav').addClass('nav-auth');
+//             $('nav._nav').removeClass('nav-guest');
+//             $('nav._nav').removeClass('nav-guest--student');
+//         }
+//         else if($('body').hasClass('bg-tutor')) {
+//             $('nav._nav').addClass('nav-auth--tutor');
+//             $('nav._nav').addClass('nav-auth');
+//             $('nav._nav').removeClass('nav-guest');
+//             $('nav._nav').removeClass('nav-guest--tutor');
+//         }
+//     }
+//     else {
+//         if($('body').hasClass('bg-student')) {
+//             $('nav._nav').removeClass('nav-auth--student');
+//             $('nav._nav').removeClass('nav-auth');
+//             $('nav._nav').addClass('nav-guest');
+//             $('nav._nav').addClass('nav-guest--student');
+//         }
+//         else if($('body').hasClass('bg-tutor')) {
+//             $('nav._nav').removeClass('nav-auth--tutor');
+//             $('nav._nav').removeClass('nav-auth');
+//             $('nav._nav').addClass('nav-guest');
+//             $('nav._nav').addClass('nav-guest--tutor');
+//         }
+//     }
+// });
+// calendar
 
 window.showAvailableTimeForm = function (startTime, endTime) {
   $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
