@@ -1,6 +1,18 @@
 .home {
     margin-top: $nav-height;
 
+    &__header-container {
+        .heading-container {
+            margin: 0 -15px;
+        }
+
+        .heading {
+            color: $color-black-2;
+            font-size: 3.4rem;
+            font-weight: 500;
+            margin-top: 8rem;
+        }
+    }
 
     &__header {
         width: 100vw;
@@ -164,8 +176,6 @@
     &__content-container {
         padding-left: 15px;
         padding-right: 0;
-        // padding-left: 30px;
-        // padding-right: 15px;
 
         @include respond(extra-sm) {
             padding-left: 0;
@@ -175,27 +185,23 @@
     &__content {
         background-color: orangered;
         padding: 0 15px;
+        margin-bottom: 18rem;
 
         .container {
             margin: 0 auto;
             max-width: 100rem;
 
             @include respond(lg-2) {
-                max-width: 85rem;
+                max-width: 93rem;
             }
 
             @include respond(lg) {
                 max-width: 100%;
                 padding: 0 3rem;
             }
-
-            @include respond(md) {
-
-            }
-
         }
 
-        margin-bottom: 18rem;
+
 
         .container:not(:first-child) {
             margin-top: 7rem;

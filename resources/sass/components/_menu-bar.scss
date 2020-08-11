@@ -14,7 +14,10 @@
     @include respond(md) {
         font-weight: 1.2rem;
         max-width: 17rem;
-        width: 17rem;
+    }
+
+    @include respond(sm) {
+        max-width: 15rem;
     }
 
     &__lists {

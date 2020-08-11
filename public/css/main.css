@@ -12854,6 +12854,10 @@ h6 {
   color: #3F3F3F;
 }
 
+.ff-Avenir {
+  font-family: Avenir;
+}
+
 .left-n-2 {
   left: -2rem;
 }
@@ -15975,7 +15979,12 @@ A VERTICAL event
   .menu-bar {
     font-weight: 1.2rem;
     max-width: 17rem;
-    width: 17rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .menu-bar {
+    max-width: 15rem;
   }
 }
 
@@ -19218,6 +19227,17 @@ A VERTICAL event
   margin-top: 8rem;
 }
 
+.home__header-container .heading-container {
+  margin: 0 -15px;
+}
+
+.home__header-container .heading {
+  color: #626262;
+  font-size: 3.4rem;
+  font-weight: 500;
+  margin-top: 8rem;
+}
+
 .home__header {
   width: 100vw;
   height: 22rem;
@@ -19408,7 +19428,7 @@ A VERTICAL event
 
 @media only screen and (max-width: 100em) {
   .home__content .container {
-    max-width: 85rem;
+    max-width: 93rem;
   }
 }
 
