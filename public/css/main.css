@@ -15954,9 +15954,46 @@ A VERTICAL event
 }
 
 .menu-bar {
-  width: 30rem;
-  background-color: #6749DF;
-  position: absolute;
+  background-color: rgba(55, 28, 163, 0.8);
+  max-width: 20rem;
+  position: fixed;
+  width: 100%;
+  margin-left: -15px;
+  height: 100%;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.menu-bar__lists {
+  list-style: none;
+  margin-top: 15rem;
+}
+
+.menu-bar__lists > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+}
+
+.menu-bar__lists > li:first-child {
+  margin-bottom: 2rem;
+}
+
+.menu-bar__lists > li:not(:first-child) {
+  cursor: pointer;
+}
+
+.menu-bar__lists > li:not(:first-child):hover {
+  background-color: white;
+  color: #6749DF;
+}
+
+.menu-bar__lists > li:not(:first-child):hover svg {
+  -webkit-animation: button-animation-1 1.5s infinite;
+          animation: button-animation-1 1.5s infinite;
 }
 
 ._nav {
