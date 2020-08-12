@@ -18,6 +18,7 @@
                     <h4 class="name">
                         {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                     </h4>
+                    @if (Auth::user()->is_tutor)
                     <div>
                         @php
                             $starRating = Auth::user()->getAvgRating();
@@ -37,6 +38,7 @@
                             {{ $starRating }}
                         </span>
                     </div>
+                    @endif
                 </div>
 
                 @if (Auth::user()->is_tutor)
