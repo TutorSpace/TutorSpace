@@ -177,6 +177,31 @@
                 }
             }
 
+            .content-data {
+                position: absolute;
+                display: flex;
+                bottom: 3rem;
+                right: 4rem;
+
+                .data {
+                    &:not(:last-child) {
+                        margin-right: 3rem;
+                    }
+
+                    .number {
+                        color: $color-white;
+                        display: block;
+                        font-size: 3rem;
+                        line-height: 1;
+                        font-weight: 500;
+                    }
+
+                    .classifier {
+                        color: $color-grey;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
         }
 
         .welcome-msg {

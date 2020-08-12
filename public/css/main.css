@@ -19415,6 +19415,30 @@ A VERTICAL event
   right: 0;
 }
 
+.home__header .content .content-data {
+  position: absolute;
+  display: flex;
+  bottom: 3rem;
+  right: 4rem;
+}
+
+.home__header .content .content-data .data:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.home__header .content .content-data .data .number {
+  color: #FFFFFF;
+  display: block;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.home__header .content .content-data .data .classifier {
+  color: #A0A0A0;
+  font-size: 1.4rem;
+}
+
 .home__header .welcome-msg {
   position: absolute;
   top: 50%;

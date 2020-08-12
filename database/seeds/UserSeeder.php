@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +18,8 @@ class UserSeeder extends Seeder
             'last_name' => 'tester',
             'email' => 'student@usc.edu',
             'is_tutor' => 0,
-            'password' => Hash::make('password')
+            'password' => Hash::make('password'),
+            'created_at' => Carbon::now()->subHours('23')
         ]);
 
         DB::table('users')->insert([
@@ -32,7 +34,8 @@ class UserSeeder extends Seeder
             'school_year_id' => 1,
             'password' => Hash::make('password'),
             'tutor_level_id' => 1,
-            'is_tutor_verified' => true
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('173')
         ]);
 
         DB::table('users')->insert([
@@ -45,7 +48,8 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 1,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 1
+            'tutor_level_id' => 1,
+            'created_at' => Carbon::now()->subHours('103')
         ]);
 
         DB::table('users')->insert([
@@ -59,7 +63,8 @@ class UserSeeder extends Seeder
             'school_year_id' => 2,
             'password' => Hash::make('password'),
             'tutor_level_id' => 2,
-            'is_tutor_verified' => true
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('199')
         ]);
 
         DB::table('users')->insert([
@@ -72,7 +77,8 @@ class UserSeeder extends Seeder
             'hourly_rate' => '22',
             'school_year_id' => 3,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 3
+            'tutor_level_id' => 3,
+            'created_at' => Carbon::now()->subHours('143')
         ]);
 
         DB::table('users')->insert([
@@ -86,7 +92,8 @@ class UserSeeder extends Seeder
             'school_year_id' => 4,
             'password' => Hash::make('password'),
             'tutor_level_id' => 4,
-            'is_tutor_verified' => true
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('11')
         ]);
 
         DB::table('users')->insert([
@@ -100,7 +107,8 @@ class UserSeeder extends Seeder
             'school_year_id' => 3,
             'password' => Hash::make('password'),
             'tutor_level_id' => 4,
-            'is_tutor_verified' => true
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('193')
         ]);
 
 

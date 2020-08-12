@@ -96,7 +96,18 @@
                 @endif
             </div>
             <div class="content-data">
-
+                <div class="data">
+                    <span class="number">{{ Carbon\Carbon::now()->diffInDays(Auth::user()->created_at) }}</span>
+                    <span class="classifier">Days</span>
+                </div>
+                <div class="data">
+                    <span class="number">5</span>
+                    <span class="classifier">Sessions</span>
+                </div>
+                <div class="data">
+                    <span class="number">5</span>
+                    <span class="classifier">Students</span>
+                </div>
             </div>
         </div>
     </div>
