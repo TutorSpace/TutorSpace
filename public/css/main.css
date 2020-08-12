@@ -19254,6 +19254,7 @@ A VERTICAL event
   padding: 0;
   margin-bottom: 8rem;
   margin-top: 3rem;
+  border-radius: 1rem;
 }
 
 .home__header--animated .content {
@@ -19266,36 +19267,35 @@ A VERTICAL event
           animation: fade-in-out-animation 3.5s 0.5s ease-in-out both;
 }
 
-.home__header .content .content-img {
+.home__header .content {
   height: 20rem;
-  width: 20rem;
-  margin-right: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.home__header .content-img {
+  margin-right: 4.5rem;
+  margin-bottom: 0;
+  margin-left: 4rem;
   position: relative;
+  width: 12rem;
+  height: 12rem;
 }
 
-@media only screen and (max-width: 74.99em) {
-  .home__header .content .content-img {
-    height: 18.5rem;
-    width: 18.5rem;
-  }
-}
-
-.home__header .content .content-img img {
+.home__header .content-img img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 3rem;
-  margin-left: -3rem;
   -o-object-fit: cover;
      object-fit: cover;
   transition: all 0.1s;
 }
 
-.home__header .content .content-img .caption {
+.home__header .content-img .caption {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(calc(-50% - 3rem), calc(-50% + 3rem));
+  transform: translate(calc(-50%), calc(-50%));
   color: #F9F9F9;
   text-transform: uppercase;
   font-size: 1.4rem;
@@ -19308,30 +19308,24 @@ A VERTICAL event
   cursor: pointer;
 }
 
-.home__header .content .content-img:hover .caption,
-.home__header .content .content-img:active .caption {
+.home__header .content-img:hover .caption,
+.home__header .content-img:active .caption {
   opacity: 1;
-  transform: translate(calc(-50% - 3rem), calc(-50%));
+  transform: translate(calc(-50%), calc(-50%));
 }
 
-.home__header .content .content-img:hover img {
+.home__header .content-img:hover img {
   -webkit-filter: blur(1.5px) brightness(70%);
           filter: blur(1.5px) brightness(70%);
 }
 
 .home__header .content .content-info {
   color: #FFFFFF;
-  margin-left: -3.5rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .home__header .content .content-info {
-    margin-left: -4.5rem;
-  }
 }
 
 .home__header .content .content-info .name {
   margin-bottom: 0.25rem;
+  font-weight: 600;
 }
 
 .home__header .content .content-info .sub {
@@ -19611,11 +19605,11 @@ A VERTICAL event
 }
 
 .bg-tutor .home__header {
-  background-image: linear-gradient(to bottom, #6749df, #5b3dd3);
+  background-image: linear-gradient(to right, #6749df, #492faf);
 }
 
 .bg-tutor .home__header .content-info {
-  margin-top: 3rem;
+  margin-top: -2.5rem;
 }
 
 .bg-tutor .home__content .info-box .actions .btn-decline,
@@ -19636,10 +19630,6 @@ A VERTICAL event
 
 .bg-student .home__header {
   background-image: linear-gradient(to bottom, #1f7aff, #1866da);
-}
-
-.bg-student .home__header .content-info {
-  margin-top: 4.5rem;
 }
 
 .bg-student .home__content .info-box .actions .btn-decline,
