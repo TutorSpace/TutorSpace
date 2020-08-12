@@ -187,7 +187,7 @@
             }
 
             @include respond(md) {
-                max-width: 67vw;
+                max-width: 69vw;
                 margin-left: 21rem;
             }
 
@@ -198,7 +198,8 @@
             @include respond(extra-sm) {
                 margin-left: 15px;
                 margin-right: 15px;
-                width: 100%;
+                // width: 100%;
+                max-width: calc(100% - 30px);
             }
         }
 

@@ -19432,7 +19432,7 @@ A VERTICAL event
 
 @media only screen and (max-width: 61.99em) {
   .home__content .container {
-    max-width: 67vw;
+    max-width: 69vw;
     margin-left: 21rem;
   }
 }
@@ -19447,7 +19447,7 @@ A VERTICAL event
   .home__content .container {
     margin-left: 15px;
     margin-right: 15px;
-    width: 100%;
+    max-width: calc(100% - 30px);
   }
 }
 
