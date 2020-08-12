@@ -15983,7 +15983,6 @@ A VERTICAL event
 
 @media only screen and (max-width: 61.99em) {
   .menu-bar {
-    font-weight: 1.2rem;
     max-width: 18rem;
   }
 }
@@ -15991,6 +15990,7 @@ A VERTICAL event
 @media only screen and (max-width: 47.99em) {
   .menu-bar {
     max-width: 15rem;
+    font-size: 1.4rem;
   }
 }
 
@@ -16026,7 +16026,10 @@ A VERTICAL event
 
 @media only screen and (max-width: 61.99em) {
   .menu-bar__lists > li {
-    padding: 1rem 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1.8rem;
+    padding-right: 0;
   }
 
   .menu-bar__lists > li svg {

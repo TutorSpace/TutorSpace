@@ -16,12 +16,12 @@
     }
 
     @include respond(md) {
-        font-weight: 1.2rem;
         max-width: 18rem;
     }
 
     @include respond(sm) {
         max-width: 15rem;
+        font-size: 1.4rem;
     }
 
     @include respond(extra-sm) {
@@ -52,7 +52,11 @@
             }
 
             @include respond(md) {
-                padding: 1rem 1.5rem;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                padding-left: 1.8rem;
+                padding-right: 0;
+                // justify-content: center;
 
                 svg {
                     display: none;
