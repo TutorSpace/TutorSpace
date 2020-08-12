@@ -5,7 +5,7 @@
             Welcome, {{ Auth::user()->first_name }}!
         </h3>
         @endif
-        <div class="content d-flex">
+        <div class="content d-flex p-relative">
             <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
                 <figcaption class="caption" id="upload-profile-pic">Upload Photo</figcaption>
@@ -14,7 +14,31 @@
                 </form>
             </figure>
             <div class="content-info">
-                <h4 class="name">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
+                <div class="name-container">
+                    <h4 class="name">
+                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                    </h4>
+                    <div>
+                        @php
+                            $starRating = Auth::user()->getAvgRating();
+                        @endphp
+                        @for ($i = 0; $i < 5; $i++)
+                            @if ($i < $starRating)
+                            <svg class="full">
+                                <use xlink:href="assets/sprite.svg#icon-star-full"></use>
+                            </svg>
+                            @else
+                            <svg class="empty">
+                                <use xlink:href="assets/sprite.svg#icon-star-empty"></use>
+                            </svg>
+                            @endif
+                        @endfor
+                        <span class="rating">
+                            {{ $starRating }}
+                        </span>
+                    </div>
+                </div>
+
                 @if (Auth::user()->is_tutor)
                 <p class="sub">
                     <span class="sub--1">
@@ -70,7 +94,8 @@
                     </span>
                 </p>
                 @endif
-
+            </div>
+            <div class="content-data">
 
             </div>
         </div>

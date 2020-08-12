@@ -19279,6 +19279,7 @@ A VERTICAL event
   margin-left: 4rem;
   position: relative;
   width: 12rem;
+  min-width: 12rem;
   height: 12rem;
 }
 
@@ -19323,9 +19324,48 @@ A VERTICAL event
   color: #FFFFFF;
 }
 
-.home__header .content .content-info .name {
+.home__header .content .content-info .name-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   margin-bottom: 0.25rem;
+}
+
+.home__header .content .content-info .name-container .name {
   font-weight: 600;
+  margin-bottom: 0;
+  margin-right: 3rem;
+  max-width: 30rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home__header .content .content-info .name-container svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.4rem;
+  position: relative;
+  bottom: 0.2rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__header .content .content-info .name-container svg {
+    margin-right: 0.3rem;
+  }
+}
+
+.home__header .content .content-info .name-container svg.full {
+  fill: #FFBC00;
+}
+
+.home__header .content .content-info .name-container svg.empty {
+  fill: #FFFFFF;
+}
+
+.home__header .content .content-info .name-container .rating {
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
 }
 
 .home__header .content .content-info .sub {
@@ -19349,12 +19389,12 @@ A VERTICAL event
 
 .home__header .content .content-info .tutor-level-progress {
   position: relative;
+  width: 25rem;
 }
 
 .home__header .content .content-info .tutor-level-progress .progress {
   height: 1rem;
   background-color: #502ED9;
-  width: 25rem;
 }
 
 .home__header .content .content-info .tutor-level-progress .progress .progress-bar {

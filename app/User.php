@@ -307,6 +307,11 @@ class User extends Authenticatable implements Viewable
         return $this->hasMany('App\Review', 'reviewee_id');
     }
 
+    public function getAvgRating() {
+        return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
+    }
+
+
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
