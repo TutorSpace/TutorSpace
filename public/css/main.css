@@ -14166,7 +14166,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 22rem;
+  width: 20rem;
 }
 
 .info-boxes .info-box .date {
@@ -15964,7 +15964,7 @@ A VERTICAL event
 
 .menu-bar {
   background-color: rgba(55, 28, 163, 0.8);
-  max-width: 20rem;
+  max-width: 25rem;
   position: fixed;
   width: 100%;
   margin-left: -15px;
@@ -15975,16 +15975,28 @@ A VERTICAL event
   text-align: center;
 }
 
+@media only screen and (max-width: 74.99em) {
+  .menu-bar {
+    max-width: 22rem;
+  }
+}
+
 @media only screen and (max-width: 61.99em) {
   .menu-bar {
     font-weight: 1.2rem;
-    max-width: 17rem;
+    max-width: 18rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
   .menu-bar {
     max-width: 15rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .menu-bar {
+    display: none;
   }
 }
 
@@ -15997,7 +16009,19 @@ A VERTICAL event
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 3rem;
+  padding: 1.8rem 3.5rem;
+  cursor: pointer;
+}
+
+.menu-bar__lists > li:hover {
+  background-color: white;
+  color: #6749DF;
+  cursor: pointer;
+}
+
+.menu-bar__lists > li:hover svg {
+  -webkit-animation: button-animation-1 1.5s infinite;
+          animation: button-animation-1 1.5s infinite;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -16008,25 +16032,6 @@ A VERTICAL event
   .menu-bar__lists > li svg {
     display: none;
   }
-}
-
-.menu-bar__lists > li:first-child {
-  margin-bottom: 2rem;
-}
-
-.menu-bar__lists > li:not(:first-child) {
-  cursor: pointer;
-}
-
-.menu-bar__lists > li:not(:first-child):hover {
-  background-color: white;
-  color: #6749DF;
-  cursor: pointer;
-}
-
-.menu-bar__lists > li:not(:first-child):hover svg {
-  -webkit-animation: button-animation-1 1.5s infinite;
-          animation: button-animation-1 1.5s infinite;
 }
 
 ._nav {
@@ -19247,7 +19252,7 @@ A VERTICAL event
 
 @media only screen and (max-width: 74.99em) {
   .home__header {
-    height: 18rem;
+    height: 17rem;
   }
 }
 
@@ -19389,53 +19394,60 @@ A VERTICAL event
   color: #FFFFFF;
 }
 
-.home__nav-scroller {
-  position: -webkit-sticky;
-  position: sticky;
-  top: calc(8rem + 5rem);
-  width: 100%;
-  height: 30rem;
-  background-color: orangered;
-}
-
-@media only screen and (max-width: 35.99em) {
-  .home .menu-bar-container {
-    display: none;
-  }
-}
-
 .home__content-container {
   padding-left: 15px;
   padding-right: 0;
+  margin-left: 3rem;
 }
 
 @media only screen and (max-width: 35.99em) {
   .home__content-container {
     padding-left: 0;
+    margin-left: 0;
   }
 }
 
 .home__content {
-  background-color: orangered;
-  padding: 0 15px;
   margin-bottom: 18rem;
 }
 
 .home__content .container {
-  margin: 0 auto;
+  margin-left: 40rem;
   max-width: 100rem;
 }
 
 @media only screen and (max-width: 100em) {
   .home__content .container {
-    max-width: 93rem;
+    max-width: 90rem;
+    margin-left: 35rem;
   }
 }
 
 @media only screen and (max-width: 74.99em) {
   .home__content .container {
-    max-width: 100%;
-    padding: 0 3rem;
+    max-width: 70vw;
+    margin-left: 27rem;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .container {
+    max-width: 67vw;
+    margin-left: 21rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .home__content .container {
+    margin-left: 18rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__content .container {
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 100%;
   }
 }
 

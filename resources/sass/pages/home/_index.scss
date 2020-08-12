@@ -22,7 +22,7 @@
 
 
         @include respond(lg) {
-            height: 18rem;
+            height: 17rem;
         }
 
         &--animated {
@@ -157,50 +157,50 @@
 
     }
 
-    &__nav-scroller {
-        position: -webkit-sticky;
-        position: sticky;
-        top: calc(#{$nav-height} + 5rem);
-
-        width: 100%;
-        height: 30rem;
-        background-color: orangered;
-    }
-
-    .menu-bar-container {
-        @include respond(extra-sm) {
-            display: none;
-        }
-    }
-
     &__content-container {
         padding-left: 15px;
         padding-right: 0;
+        margin-left: 3rem;
 
         @include respond(extra-sm) {
             padding-left: 0;
+            margin-left: 0;
         }
     }
 
     &__content {
-        background-color: orangered;
-        padding: 0 15px;
+        // background-color: orangered;
         margin-bottom: 18rem;
 
         .container {
-            margin: 0 auto;
+            margin-left: 40rem;
             max-width: 100rem;
 
             @include respond(lg-2) {
-                max-width: 93rem;
+                max-width: 90rem;
+                margin-left: 35rem;
             }
 
             @include respond(lg) {
-                max-width: 100%;
-                padding: 0 3rem;
+                max-width: 70vw;
+                margin-left: 27rem;
+            }
+
+            @include respond(md) {
+                max-width: 67vw;
+                margin-left: 21rem;
+            }
+
+            @include respond(sm) {
+                margin-left: 18rem;
+            }
+
+            @include respond(extra-sm) {
+                margin-left: 15px;
+                margin-right: 15px;
+                width: 100%;
             }
         }
-
 
 
         .container:not(:first-child) {
