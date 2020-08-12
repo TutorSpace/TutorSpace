@@ -21,6 +21,7 @@
         margin-bottom: 8rem;
         margin-top: 3rem;
         border-radius: 1rem;
+        position: relative;
 
 
         &--animated {
@@ -46,6 +47,13 @@
                 width: 12rem;
                 min-width: 12rem;
                 height: 12rem;
+
+                @include respond(md) {
+                    width: 10rem;
+                    min-width: 10rem;
+                    height: 10rem;
+                    margin-right: 3rem;
+                }
 
                 img {
                     width: 100%;
@@ -98,6 +106,10 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                         white-space: nowrap;
+
+                        @include respond(md) {
+                            margin-right: 1.8rem;
+                        }
                     }
 
                     svg {
@@ -107,7 +119,9 @@
                         position: relative;
                         bottom: .2rem;
 
-                        @include respond(extra-sm) {
+                        @include respond(md) {
+                            width: 1.5rem;
+                            height: 1.5rem;
                             margin-right: .3rem;
                         }
 
@@ -123,6 +137,10 @@
                     .rating {
                         font-size: 1.4rem;
                         margin-left: .5rem;
+
+                        @include respond(md) {
+                            font-size: 1.2rem;
+                        }
                     }
 
                 }
@@ -183,9 +201,22 @@
                 bottom: 3rem;
                 right: 4rem;
 
+                @include respond(md) {
+                    right: 2rem;
+                    bottom: .75rem;
+                }
+
+                @include respond(extra-sm) {
+                    display: none;
+                }
+
                 .data {
                     &:not(:last-child) {
                         margin-right: 3rem;
+
+                        @include respond(md) {
+                            margin-right: 1.5rem;
+                        }
                     }
 
                     .number {
@@ -194,11 +225,19 @@
                         font-size: 3rem;
                         line-height: 1;
                         font-weight: 500;
+
+                        @include respond(md) {
+                            font-size: 2rem;
+                        }
                     }
 
                     .classifier {
                         color: $color-grey;
                         font-size: 1.4rem;
+
+                        @include respond(md) {
+                            font-size: 1.2rem;
+                        }
                     }
                 }
             }

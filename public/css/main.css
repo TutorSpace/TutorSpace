@@ -19255,6 +19255,7 @@ A VERTICAL event
   margin-bottom: 8rem;
   margin-top: 3rem;
   border-radius: 1rem;
+  position: relative;
 }
 
 .home__header--animated .content {
@@ -19281,6 +19282,15 @@ A VERTICAL event
   width: 12rem;
   min-width: 12rem;
   height: 12rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__header .content-img {
+    width: 10rem;
+    min-width: 10rem;
+    height: 10rem;
+    margin-right: 3rem;
+  }
 }
 
 .home__header .content-img img {
@@ -19341,6 +19351,12 @@ A VERTICAL event
   white-space: nowrap;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-info .name-container .name {
+    margin-right: 1.8rem;
+  }
+}
+
 .home__header .content .content-info .name-container svg {
   width: 1.8rem;
   height: 1.8rem;
@@ -19349,8 +19365,10 @@ A VERTICAL event
   bottom: 0.2rem;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 61.99em) {
   .home__header .content .content-info .name-container svg {
+    width: 1.5rem;
+    height: 1.5rem;
     margin-right: 0.3rem;
   }
 }
@@ -19366,6 +19384,12 @@ A VERTICAL event
 .home__header .content .content-info .name-container .rating {
   font-size: 1.4rem;
   margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-info .name-container .rating {
+    font-size: 1.2rem;
+  }
 }
 
 .home__header .content .content-info .sub {
@@ -19422,8 +19446,27 @@ A VERTICAL event
   right: 4rem;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-data {
+    right: 2rem;
+    bottom: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__header .content .content-data {
+    display: none;
+  }
+}
+
 .home__header .content .content-data .data:not(:last-child) {
   margin-right: 3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-data .data:not(:last-child) {
+    margin-right: 1.5rem;
+  }
 }
 
 .home__header .content .content-data .data .number {
@@ -19434,9 +19477,21 @@ A VERTICAL event
   font-weight: 500;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-data .data .number {
+    font-size: 2rem;
+  }
+}
+
 .home__header .content .content-data .data .classifier {
   color: #A0A0A0;
   font-size: 1.4rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__header .content .content-data .data .classifier {
+    font-size: 1.2rem;
+  }
 }
 
 .home__header .welcome-msg {
