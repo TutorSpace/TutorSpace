@@ -68,8 +68,14 @@ bg-student
 
         <div class="container">
             <div class="row">
-                <h5 class="mb-2 w-100">Calendar</h5>
-                <div id="calendar" class="w-100"></div>
+                <div class="col-8">
+                    <h5 class="mb-2 w-100">Calendar</h5>
+                    <div id="calendar" class="w-100"></div>
+                </div>
+                <div class="col-4">
+                    <h5>Upcoming Sessions</h5>
+                    @include('home.partials.upcoming_session_card')
+                </div>
             </div>
         </div>
 
@@ -80,13 +86,13 @@ bg-student
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
                 </div>
@@ -128,13 +134,13 @@ bg-student
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
                 </div>
@@ -374,9 +380,9 @@ bg-student
                     description: "",
                     id: data.availableTimeId,
                     @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
                     @else
-                    classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
                     @endif
                 });
                 $('#availableTimeConfirmationModal').modal('hide');

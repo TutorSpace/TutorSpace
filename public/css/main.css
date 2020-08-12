@@ -15963,7 +15963,6 @@ A VERTICAL event
 }
 
 .menu-bar {
-  background-color: rgba(55, 28, 163, 0.8);
   max-width: 25rem;
   position: fixed;
   width: 100%;
@@ -16005,36 +16004,64 @@ A VERTICAL event
   margin-top: 15rem;
 }
 
-.menu-bar__lists > li {
+.menu-bar__lists li.active {
+  background-color: white;
+}
+
+.menu-bar__lists a {
+  text-decoration: none;
+  color: unset;
+  display: block;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.8rem 3.5rem;
-  cursor: pointer;
-}
-
-.menu-bar__lists > li:hover {
-  background-color: white;
-  color: #6749DF;
-  cursor: pointer;
-}
-
-.menu-bar__lists > li:hover svg {
-  -webkit-animation: button-animation-1 1.5s infinite;
-          animation: button-animation-1 1.5s infinite;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .menu-bar__lists > li {
+  .menu-bar__lists a {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     padding-left: 1.8rem;
     padding-right: 0;
   }
 
-  .menu-bar__lists > li svg {
+  .menu-bar__lists a svg {
     display: none;
   }
+}
+
+.menu-bar__lists a:hover {
+  background-color: white;
+}
+
+.menu-bar__lists a:hover svg {
+  -webkit-animation: button-animation-1 1.5s infinite;
+          animation: button-animation-1 1.5s infinite;
+}
+
+.bg-student .menu-bar {
+  background-color: rgba(55, 28, 163, 0.8);
+}
+
+.bg-student .menu-bar__lists li.active {
+  color: #1F7AFF;
+}
+
+.bg-student .menu-bar__lists a:hover {
+  color: #1F7AFF;
+}
+
+.bg-tutor .menu-bar {
+  background-color: rgba(55, 28, 163, 0.8);
+}
+
+.bg-tutor .menu-bar__lists li.active {
+  color: #6749DF;
+}
+
+.bg-tutor .menu-bar__lists a:hover {
+  color: #6749DF;
 }
 
 ._nav {

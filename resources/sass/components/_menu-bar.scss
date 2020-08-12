@@ -1,6 +1,4 @@
 .menu-bar {
-    background-color: rgba(#371CA3, .8);
-
     max-width: 25rem;
     position: fixed;
     width: 100%;
@@ -32,38 +30,74 @@
         list-style: none;
         margin-top: 15rem;
 
+        li.active {
+            background-color: white;
+        }
 
-        > li {
-            // background-color: orangered;
+        a {
+            text-decoration: none;
+            color: unset;
+            display: block;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.8rem 3.5rem;
-            cursor: pointer;
-
-            &:hover {
-                background-color: white;
-                color: $color-purple-primary;
-                cursor: pointer;
-
-                svg {
-                    animation: button-animation-1 1.5s infinite;
-                }
-            }
 
             @include respond(md) {
                 padding-top: 1.5rem;
                 padding-bottom: 1.5rem;
                 padding-left: 1.8rem;
                 padding-right: 0;
-                // justify-content: center;
 
                 svg {
                     display: none;
                 }
             }
+
+            &:hover {
+                background-color: white;
+
+                svg {
+                    animation: button-animation-1 1.5s infinite;
+                }
+            }
         }
+    }
+}
 
+.bg-student {
+    .menu-bar {
+        background-color: rgba(#371CA3, .8);
 
+        &__lists {
+            li.active {
+                color: $color-blue-primary;
+            }
+
+            a {
+                &:hover {
+                    color: $color-blue-primary;
+                }
+            }
+        }
+    }
+}
+
+.bg-tutor {
+    .menu-bar {
+        background-color: rgba(#371CA3, .8);
+
+        &__lists {
+            li.active {
+                color: $color-purple-primary;
+            }
+
+            a {
+                &:hover {
+                    color: $color-purple-primary;
+                }
+            }
+        }
     }
 }
