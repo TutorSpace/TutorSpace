@@ -1,29 +1,26 @@
 .home {
     margin-top: $nav-height;
+    color: $color-black-2;
 
     &__header-container {
-        .heading-container {
-            margin: 0 -15px;
-        }
+        padding: 8rem 0 0 0;
 
         .heading {
-            color: $color-black-2;
             font-size: 3.4rem;
             font-weight: 500;
-            margin-top: 8rem;
+            margin-bottom: .3rem;
+        }
+
+        .heading-container {
+            font-size: 1.5rem;
         }
     }
 
     &__header {
-        width: 100vw;
-        height: 22rem;
-        padding: 0 15px;
+        padding: 0;
         margin-bottom: 8rem;
+        margin-top: 3rem;
 
-
-        @include respond(lg) {
-            height: 17rem;
-        }
 
         &--animated {
             .content {
@@ -36,8 +33,6 @@
         }
 
         .content {
-            bottom: -5rem;
-            left: 0;
 
             .content-img {
                 height: 20rem;
@@ -169,7 +164,6 @@
     }
 
     &__content {
-        // background-color: orangered;
         margin-bottom: 18rem;
 
         .container {

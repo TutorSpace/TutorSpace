@@ -1,11 +1,11 @@
-<section class="home__header @if(session()->has('showWelcome')) home__header--animated @endif row">
-    <div class="container p-relative">
+<section class="home__header @if(session()->has('showWelcome')) home__header--animated @endif">
+    <div class="">
         @if(session()->has('showWelcome'))
         <h3 class="welcome-msg ws-no-wrap">
             Welcome, {{ Auth::user()->first_name }}!
         </h3>
         @endif
-        <div class="content d-flex p-absolute">
+        <div class="content d-flex">
             <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
                 <figcaption class="caption" id="upload-profile-pic">Upload Photo</figcaption>

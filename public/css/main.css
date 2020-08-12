@@ -19233,30 +19233,27 @@ A VERTICAL event
 
 .home {
   margin-top: 8rem;
+  color: #626262;
 }
 
-.home__header-container .heading-container {
-  margin: 0 -15px;
+.home__header-container {
+  padding: 8rem 0 0 0;
 }
 
 .home__header-container .heading {
-  color: #626262;
   font-size: 3.4rem;
   font-weight: 500;
-  margin-top: 8rem;
+  margin-bottom: 0.3rem;
+}
+
+.home__header-container .heading-container {
+  font-size: 1.5rem;
 }
 
 .home__header {
-  width: 100vw;
-  height: 22rem;
-  padding: 0 15px;
+  padding: 0;
   margin-bottom: 8rem;
-}
-
-@media only screen and (max-width: 74.99em) {
-  .home__header {
-    height: 17rem;
-  }
+  margin-top: 3rem;
 }
 
 .home__header--animated .content {
@@ -19267,11 +19264,6 @@ A VERTICAL event
 .home__header--animated .welcome-msg {
   -webkit-animation: fade-in-out-animation 3.5s 0.5s ease-in-out both;
           animation: fade-in-out-animation 3.5s 0.5s ease-in-out both;
-}
-
-.home__header .content {
-  bottom: -5rem;
-  left: 0;
 }
 
 .home__header .content .content-img {

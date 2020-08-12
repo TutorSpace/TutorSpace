@@ -33,14 +33,13 @@ bg-student
     @include('home.partials.menu_bar')
     <main class="home__content">
         <div class="container home__header-container">
-            <div class="row">
-                {{-- <div> --}}
-                    <p class="heading">Dashboard</p>
-                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi </span>
-                    {{-- @include('home.partials.header') --}}
-                {{-- </div> --}}
+            <div class="heading-container">
+                <p class="heading">Dashboard</p>
+                <span>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                </span>
             </div>
-
+            @include('home.partials.header')
         </div>
 
         @if (Auth::user()->is_tutor)
