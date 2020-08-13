@@ -67,19 +67,21 @@ bg-student
         </div>
 
         <div class="container">
-            <div class="row">
-                <div class="col-8">
+            <div class="row home__row-columns-2">
+                <div class="col-lg-8">
                     <h5 class="mb-2 w-100">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 info-cards">
                     <h5>Upcoming Sessions</h5>
+                    @include('home.partials.upcoming_session_card')
+                    @include('home.partials.upcoming_session_card')
                     @include('home.partials.upcoming_session_card')
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        {{-- <div class="container">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                     <h5>Upcoming Sessions</h5>
@@ -97,7 +99,7 @@ bg-student
                     ])
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         @else
         <div class="container">
@@ -160,8 +162,7 @@ bg-student
                     <h6 class="no-results">No bookmarked tutors yet</h6>
                     @endforelse
                 </div>
-                <div class="scroll-faded">
-                </div>
+                <div class="scroll-faded"></div>
             </div>
         </div>
 

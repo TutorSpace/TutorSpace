@@ -14244,6 +14244,95 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 61.99em) {
+  .info-cards {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .info-cards h5 {
+    flex: 0 0 100%;
+  }
+}
+
+.info-cards .info-card {
+  border-radius: 1rem;
+  padding: 1.25rem 1.75rem;
+  background-color: #F9F9F9;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-cards .info-card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+.info-cards .info-card:not(:first-child) {
+  margin-top: 1.3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-cards .info-card:not(:first-child) {
+    margin-top: 1.6rem;
+  }
+}
+
+.info-cards .info-card .user-name {
+  font-weight: 600;
+  font-size: 1.5rem;
+  max-width: calc(100% - 5rem);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: inherit;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-cards .info-card .user-name {
+    font-size: 1.3rem;
+  }
+}
+
+.info-cards .info-card .action-toggle {
+  font-size: 2.4rem;
+  color: #6749DF;
+  cursor: pointer;
+}
+
+.info-cards .info-card__row {
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  display: flex;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-cards .info-card__row {
+    font-size: 1.2rem;
+    margin: 0.3rem;
+  }
+}
+
+.info-cards .info-card__row .title {
+  display: block;
+}
+
+.info-cards .info-card__row .content {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.info-cards .info-card__row .row-left {
+  flex: 0 0 65%;
+}
+
+.info-cards .info-card__row .row-right {
+  flex: 1;
+}
+
+@media only screen and (max-width: 61.99em) {
   .svg-tutor-verified {
     width: 1.2rem;
     height: 1.2rem;
@@ -19748,6 +19837,14 @@ A VERTICAL event
   font-size: 1.8rem;
   color: #626262;
   font-weight: 500;
+}
+
+.home__row-columns-2 > * {
+  padding: 0;
+}
+
+.home__row-columns-2 > :first-child {
+  padding-right: 30px;
 }
 
 .bg-tutor .home__header {

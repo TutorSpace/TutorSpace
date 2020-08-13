@@ -1,0 +1,86 @@
+.info-cards {
+
+    @include respond(md) {
+        margin-top: 5rem;;
+
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        h5 {
+            flex: 0 0 100%;
+        }
+
+    }
+
+    .info-card {
+        border-radius: 1rem;
+        padding: 1.25rem 1.75rem;
+        background-color: $color-white-dark-5;
+        box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+
+        @include respond(md) {
+            flex: 0 0 calc(50% - 1rem);
+        }
+
+        &:not(:first-child) {
+            margin-top: 1.3rem;
+
+            @include respond(md) {
+                margin-top: 1.6rem;
+            }
+        }
+
+        .user-name {
+            font-weight: 600;
+            font-size: 1.5rem;
+            max-width: calc(100% - 5rem);
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: inherit;
+
+            @include respond(md) {
+                font-size: 1.3rem;
+            }
+        }
+
+        .action-toggle {
+            font-size: 2.4rem;
+            color: $color-purple-primary;
+            cursor: pointer;
+        }
+
+        &__row {
+            margin-top: .5rem;
+            font-size: 1.4rem;
+            display: flex;
+            overflow: hidden;
+
+            @include respond(md) {
+                font-size: 1.2rem;
+                margin: .3rem;
+            }
+
+
+            .title {
+                display: block;
+            }
+
+            .content {
+                font-weight: 500;
+                white-space: nowrap;
+            }
+
+            .row-left {
+                flex: 0 0 65%;
+            }
+
+            .row-right {
+                flex: 1;
+            }
+        }
+
+
+    }
+
+}

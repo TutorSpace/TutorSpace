@@ -11536,6 +11536,11 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
   $('.tutor-requests + .scroll-faded').css('display', 'block');
 }
 
+if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
+  //if 'true', the content overflows the tab: we show the hidden link
+  $('.info-cards + .scroll-faded').css('display', 'block');
+}
+
 $('.btn-view-all-upcoming-sessions').click(function () {
   $(this).parent().next().find('.hidden-2').toggle("fast");
 
