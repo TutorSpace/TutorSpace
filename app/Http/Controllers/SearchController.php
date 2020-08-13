@@ -159,7 +159,7 @@ class SearchController extends Controller
                 $availableTimeRange = $request->input('available-time-range');
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
                     $startTimes = ["6:00:00"];
-                    $endTimes = ["23:00:00"];
+                    $endTimes = ["23:59:59"];
                 }
                 else if(count($availableTimeRange) == 1) {
                     if(in_array('morning', $availableTimeRange)) {
@@ -172,7 +172,7 @@ class SearchController extends Controller
                     }
                     else if(in_array('evening', $availableTimeRange)) {
                         $startTimes = ["17:00:00"];
-                        $endTimes = ["23:00:00"];
+                        $endTimes = ["23:59:59"];
                     }
                 }
                 else if(count($availableTimeRange) == 2) {
@@ -182,11 +182,11 @@ class SearchController extends Controller
                     }
                     else if(in_array('morning', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
                         $startTimes = ["6:00:00", "17:00:00"];
-                        $endTimes = ["11:59:59", "23:00:00"];
+                        $endTimes = ["11:59:59", "23:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
                         $startTimes = ["12:00:00"];
-                        $endTimes = ["23:00:00"];
+                        $endTimes = ["23:59:59"];
                     }
                 }
             }

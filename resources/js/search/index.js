@@ -22,13 +22,13 @@ $('#start-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
     'minTime': '6:00am',
-	'maxTime': '11:00pm',
+	'maxTime': '12:00am',
 });
 $('#end-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
     'minTime': '6:00am',
-	'maxTime': '11:00pm',
+	'maxTime': '12:00am',
 });
 
 

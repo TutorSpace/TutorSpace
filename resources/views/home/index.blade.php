@@ -312,7 +312,7 @@ bg-student
             selectMirror: true,
             nowIndicator: true,
             slotMinTime: "06:00:00",
-            slotMaxTime: "23:00:00",
+            slotMaxTime: "24:00:00",
             allDaySlot: false,
             selectOverlap: false,
             validRange: function (nowDate) {
