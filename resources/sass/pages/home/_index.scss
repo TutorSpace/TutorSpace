@@ -467,7 +467,13 @@
 
         > :first-child {
             padding-right: 30px;
+
+            @include respond(md) {
+                padding-right: 0;
+            }
         }
+
+
 
     }
 }

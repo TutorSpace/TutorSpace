@@ -14269,6 +14269,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card {
+    padding: 1rem 1.5rem;
+    flex: 0 0 calc(50% - .5rem);
+  }
+}
+
 .info-cards .info-card:not(:first-child) {
   margin-top: 1.3rem;
 }
@@ -14289,12 +14296,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: inherit;
 }
 
-@media only screen and (max-width: 61.99em) {
-  .info-cards .info-card .user-name {
-    font-size: 1.3rem;
-  }
-}
-
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
   color: #6749DF;
@@ -14308,10 +14309,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   overflow: hidden;
 }
 
-@media only screen and (max-width: 61.99em) {
+@media only screen and (max-width: 35.99em) {
   .info-cards .info-card__row {
-    font-size: 1.2rem;
-    margin: 0.3rem;
+    font-size: 1.35rem;
+    margin-top: 0.3rem;
   }
 }
 
@@ -19845,6 +19846,12 @@ A VERTICAL event
 
 .home__row-columns-2 > :first-child {
   padding-right: 30px;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__row-columns-2 > :first-child {
+    padding-right: 0;
+  }
 }
 
 .bg-tutor .home__header {

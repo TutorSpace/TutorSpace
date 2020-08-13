@@ -19,7 +19,7 @@
                         {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                     </h4>
                     @if (Auth::user()->is_tutor)
-                    <div>
+                    <div class="d-flex align-items-center">
                         @php
                             $starRating = Auth::user()->getAvgRating();
                         @endphp

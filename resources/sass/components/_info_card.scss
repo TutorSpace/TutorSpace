@@ -22,6 +22,11 @@
             flex: 0 0 calc(50% - 1rem);
         }
 
+        @include respond(sm) {
+            padding: 1rem 1.5rem;
+            flex: 0 0 calc(50% - .5rem);
+        }
+
         &:not(:first-child) {
             margin-top: 1.3rem;
 
@@ -38,10 +43,6 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             color: inherit;
-
-            @include respond(md) {
-                font-size: 1.3rem;
-            }
         }
 
         .action-toggle {
@@ -56,9 +57,9 @@
             display: flex;
             overflow: hidden;
 
-            @include respond(md) {
-                font-size: 1.2rem;
-                margin: .3rem;
+            @include respond(extra-sm) {
+                font-size: 1.35rem;
+                margin-top: .3rem;
             }
 
 
