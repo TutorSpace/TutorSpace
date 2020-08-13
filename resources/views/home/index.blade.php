@@ -102,9 +102,12 @@ bg-student
         </div> --}}
 
         <div class="container">
-            <h5>Data Visualizations</h5>
-            <div class="home__data-visualizations">
-
+            <div class="row">
+                <h5 class="mb-2 w-100">Data Visualizations</h5>
+                <div class="home__data-visualizations">
+                    <div id="post-chart"></div>
+                    <div id="profile-chart"></div>
+                </div>
             </div>
         </div>
 
@@ -250,7 +253,7 @@ bg-student
 
         <div class="container">
             <div class="row forum mt-0">
-                <h5 class="w-100">Forum Activity</h5>
+                <h5 class="w-100">Recommended Posts</h5>
                 <div class="col-12 col-sm-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
                 </div>
@@ -441,6 +444,49 @@ let storageUrl = "{{ Storage::url('') }}";
         getRecommendedTutors();
     });
 @endif
+</script>
+
+{{-- for graphics --}}
+<script>
+    MG.data_graphic({
+        title: "Post View Count",
+        description: "This graphic shows a time-series of post view counts.",
+        data: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#post-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
+
+    MG.data_graphic({
+        title: "Profile View Count",
+        description: "This graphic shows a time-series of profile view counts.",
+        data: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#profile-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

@@ -19854,6 +19854,10 @@ A VERTICAL event
   }
 }
 
+.home__data-visualizations {
+  display: flex;
+}
+
 .bg-tutor .home__header {
   background-image: linear-gradient(to right, #6749df, #492faf);
 }

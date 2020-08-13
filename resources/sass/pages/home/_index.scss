@@ -472,8 +472,10 @@
                 padding-right: 0;
             }
         }
+    }
 
-
+    &__data-visualizations {
+        display: flex;
 
     }
 }
