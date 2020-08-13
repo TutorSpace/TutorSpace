@@ -101,6 +101,13 @@ bg-student
             </div>
         </div> --}}
 
+        <div class="container">
+            <h5>Data Visualizations</h5>
+            <div class="home__data-visualizations">
+
+            </div>
+        </div>
+
         @else
         <div class="container">
             <div class="row">
