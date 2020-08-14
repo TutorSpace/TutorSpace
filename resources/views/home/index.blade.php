@@ -292,6 +292,7 @@ bg-student
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
+            // timeZone: 'PST',
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
             headerToolbar: {
@@ -309,7 +310,7 @@ bg-student
             selectable: true,
             selectMirror: true,
             nowIndicator: true,
-            slotMinTime: "06:00:00",
+            slotMinTime: "08:00:00",
             slotMaxTime: "24:00:00",
             allDaySlot: false,
             selectOverlap: false,
