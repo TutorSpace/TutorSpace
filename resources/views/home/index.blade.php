@@ -298,7 +298,7 @@ bg-student
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'timeGridDay,timeGridWeek'
+                right: 'timeGridDay timeGridThreeDay'
             },
             @if(Auth::user()->is_tutor)
                 eventColor: '#6749DF',
@@ -318,6 +318,15 @@ bg-student
                 return {
                     start: nowDate
                 };
+            },
+            // editable: true,
+            expandRows: true,
+            views: {
+                timeGridThreeDay: {
+                    type: 'timeGrid',
+                    duration: { days: 3 },
+                    buttonText: '3 day'
+                }
             },
             now: function () {
                 return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
