@@ -1,4 +1,4 @@
-<div class="info-card">
+<div class="info-card @if(isset($hidden) && $hidden) hidden-2 @endif">
     <div class="d-flex justify-content-between align-items-center">
         <a class="user-name" href="#">
             Shuaiqing Luo

@@ -65,13 +65,13 @@ if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight'
     $('.info-cards + .scroll-faded').css('display', 'block');
 }
 
-$('.btn-view-all-upcoming-sessions').click(function() {
-    $(this).parent().next().find('.hidden-2').toggle("fast");
+$('.btn-view-all-info-cards').click(function() {
+    $(this).closest('.info-cards').find('.hidden-2').toggle("fast");
     if($(this).html().includes('View')) {
-        $(this).html('Hide Upcoming Sessions')
+        $(this).html('Hide')
     }
     else {
-        $(this).html('View All Upcoming Sessions')
+        $(this).html('View All')
     }
 
 });

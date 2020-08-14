@@ -14268,10 +14268,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
     justify-content: space-between;
     flex-wrap: wrap;
   }
-
-  .info-cards h5 {
-    flex: 0 0 100%;
-  }
 }
 
 .info-cards .info-card {

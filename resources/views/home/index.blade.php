@@ -67,10 +67,19 @@ bg-student
                     <div id="calendar" class="w-100"></div>
                 </div>
                 <div class="col-lg-4 info-cards">
-                    <h5>Upcoming Sessions</h5>
+                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                    </div>
                     @include('home.partials.upcoming_session_card')
                     @include('home.partials.upcoming_session_card')
                     @include('home.partials.upcoming_session_card')
+                    @include('home.partials.upcoming_session_card', [
+                        'hidden' => true
+                    ])
+                    @include('home.partials.upcoming_session_card', [
+                        'hidden' => true
+                    ])
                 </div>
             </div>
         </div>
