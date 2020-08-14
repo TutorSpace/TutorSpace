@@ -19377,17 +19377,13 @@ A VERTICAL event
 }
 
 .home__header-container {
-  padding: 8rem 0 0 0;
+  padding: 7rem 0 0 0;
 }
 
 .home__header-container .heading {
   font-size: 3.4rem;
   font-weight: 500;
   margin-bottom: 0.3rem;
-}
-
-.home__header-container .heading-container {
-  font-size: 1.5rem;
 }
 
 .home__header {
