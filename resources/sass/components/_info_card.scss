@@ -65,6 +65,7 @@
 
             .title {
                 display: block;
+                line-height: 1;
             }
 
             .content {
@@ -78,6 +79,10 @@
 
             .row-right {
                 flex: 1;
+            }
+
+            .btn-view {
+                font-size: 1.2rem;
             }
         }
 

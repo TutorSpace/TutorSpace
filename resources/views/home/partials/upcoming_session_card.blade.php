@@ -22,9 +22,8 @@
             <small class="title">Time</small>
             <span class="content">13:30PM - 15:00PM</span>
         </div>
-        <div class="row-right">
-            <small class="title">Course</small>
-            <span class="content">Math 102A</span>
+        <div class="row-right d-flex align-items-stretch">
+            <button class="btn btn-primary btn-view">View Session</button>
         </div>
     </div>
 </div>

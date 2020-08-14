@@ -14318,6 +14318,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card__row .title {
   display: block;
+  line-height: 1;
 }
 
 .info-cards .info-card__row .content {
@@ -14331,6 +14332,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card__row .row-right {
   flex: 1;
+}
+
+.info-cards .info-card__row .btn-view {
+  font-size: 1.2rem;
 }
 
 @media only screen and (max-width: 61.99em) {

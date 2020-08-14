@@ -279,8 +279,6 @@ bg-student
 
     </main>
 
-
-
 </div>
 
 

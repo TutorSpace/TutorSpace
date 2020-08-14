@@ -1417,8 +1417,14 @@ A VERTICAL event
 
 
 
-  .fc-theme-bootstrap a:not([href]) {
+.fc-theme-bootstrap a:not([href]) {
     color: inherit; /* natural color for navlinks */
-  }
+}
+
+// testing
+// #calendar {
+//     max-height: 40rem;
+//     overflow: scroll;
+// }
 
 
