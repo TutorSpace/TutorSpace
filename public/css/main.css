@@ -14132,6 +14132,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   overflow: hidden;
 }
 
+@media only screen and (max-width: 100em) {
+  .info-boxes .info-box > div:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+}
+
 .info-boxes .info-box img {
   width: 4rem;
   height: 4rem;
@@ -14197,6 +14203,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFBC00;
 }
 
+@media only screen and (max-width: 100em) {
+  .info-boxes .info-box .user-info,
+  .info-boxes .info-box .time {
+    width: 19ch;
+  }
+
+  .info-boxes .info-box .course,
+  .info-boxes .info-box .status {
+    width: 11ch;
+  }
+}
+
 .info-boxes .info-box .actions {
   display: flex;
   width: 21ch;
@@ -14205,7 +14223,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   align-items: center;
 }
 
-@media only screen and (max-width: 100em) {
+@media only screen and (max-width: 74.99em) {
   .info-boxes .info-box .actions {
     width: 12ch;
     justify-content: center;
