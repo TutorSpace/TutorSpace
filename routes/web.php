@@ -141,6 +141,7 @@ Route::group([
 
 // home page
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
 
 
 
