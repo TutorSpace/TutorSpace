@@ -17,7 +17,6 @@ class homeController extends Controller
     }
 
     public function index() {
-
         $posts = Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags']);
 
         $user = Auth::user();
@@ -162,5 +161,9 @@ class homeController extends Controller
 
     public function tutorSessions() {
         return view('home.tutor-sessions');
+    }
+
+    public function forumActivities() {
+        return view('home.forum-activities');
     }
 }
