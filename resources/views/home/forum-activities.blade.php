@@ -73,7 +73,7 @@ bg-student
                         <span class="title">Participated</span>
                         <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
                     </div>
-                    <div class="forum-data">
+                    <div class="forum-data" id="forum-data-my-follows">
                         <span class="title">Followed</span>
                         <a class="number" href="{{ route('posts.my-follows') }}">{{ Auth::user()->followedPosts()->count() }}</a>
                     </div>
@@ -161,6 +161,8 @@ let storageUrl = "{{ Storage::url('') }}";
                 url: "{{ url('forum/posts/follow') }}" + `/${postSlug}`,
                 success: (data) => {
                     $(this).closest('.post-preview').remove();
+                    let num = parseInt($('#forum-data-my-follows .number').html());
+                    $('#forum-data-my-follows .number').html(num - 1);
                     toastr.success('Successfully unfollowed the post.');
                 },
                 error: function(error) {
@@ -180,7 +182,6 @@ let storageUrl = "{{ Storage::url('') }}";
                 $('#deleteModal').modal('hide');
                 postPreview.remove();
                 let num = parseInt($('#forum-data-my-posts .number').html());
-                console.log(num);
                 $('#forum-data-my-posts .number').html(num - 1);
                 toastr.success(data.successMsg);
             },
