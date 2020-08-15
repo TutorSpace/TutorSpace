@@ -62,7 +62,7 @@ bg-student
                     </div>
                 </div>
                 <div class="col-12 col-sm-4 forum-data-container">
-                    <div class="forum-data">
+                    <div class="forum-data" id="forum-data-my-posts">
                         {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
                         </svg> --}}
@@ -179,6 +179,9 @@ let storageUrl = "{{ Storage::url('') }}";
             success: (data) => {
                 $('#deleteModal').modal('hide');
                 postPreview.remove();
+                let num = parseInt($('#forum-data-my-posts .number').html());
+                console.log(num);
+                $('#forum-data-my-posts .number').html(num - 1);
                 toastr.success(data.successMsg);
             },
             error: function(error) {
