@@ -23,7 +23,7 @@
             @endfor
         </div>
 
-        <div class="time-ago">
+        <div class="time-ago fc-grey">
             6 days ago
         </div>
     </div>
