@@ -1,6 +1,6 @@
 <nav class="menu-bar">
     <ul class="menu-bar__lists">
-        <li class="active">
+        <li @if(Route::current()->getName() == 'home') class="active" @endif>
             <a href="{{ route('home') }}">
                 <span>Dashboard</span>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -9,7 +9,7 @@
             </a>
 
         </li>
-        <li>
+        <li @if(Route::current()->getName() == 'home.tutor-sessions') class="active" @endif>
             <a href="{{ route('home.tutor-sessions') }}">
                 <span>Tutor Sessions</span>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

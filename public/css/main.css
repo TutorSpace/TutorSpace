@@ -16125,6 +16125,7 @@ A VERTICAL event
   justify-content: space-between;
   align-items: center;
   padding: 1.8rem 3.5rem;
+  margin-bottom: 0.75rem;
 }
 
 @media only screen and (max-width: 61.99em) {

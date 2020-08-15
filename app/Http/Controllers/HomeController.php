@@ -161,6 +161,6 @@ class homeController extends Controller
     }
 
     public function tutorSessions() {
-        
+        return view('home.tutor-sessions');
     }
 }

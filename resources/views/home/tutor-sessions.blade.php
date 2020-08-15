@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard - Tutor Sessions')
 
 @section('body-class')
 bg-white-dark-4
@@ -33,6 +33,12 @@ bg-student
     @include('home.partials.menu_bar')
     <main class="home__content">
         <div class="container home__header-container">
+            <div class="heading-container">
+                <p class="heading">Tutor Sessions</p>
+                <span>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                </span>
+            </div>
             @include('home.partials.header')
         </div>
 
@@ -254,32 +260,6 @@ bg-student
 
         @endif
 
-        <div class="container">
-            <div class="row forum mt-0">
-                <h5 class="w-100">Recommended Posts</h5>
-                <div class="col-12 col-sm-8 post-previews px-0">
-                    @include('forum.partials.post-preview-general')
-                </div>
-                <div class="col-12 col-sm-4 forum-data-container">
-                    <div class="forum-data">
-                        {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                        </svg> --}}
-                        <span class="title">My Posts</span>
-                        <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
-                    </div>
-                    <div class="forum-data">
-                        <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
-                    </div>
-                    <div class="forum-data">
-                        <span class="title">Followed</span>
-                        <a class="number" href="{{ route('posts.my-follows') }}">{{ Auth::user()->followedPosts()->count() }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </main>
 
 </div>
@@ -436,25 +416,6 @@ bg-student
     });
 @endif
 let storageUrl = "{{ Storage::url('') }}";
-@if(!Auth::user()->is_tutor)
-    function getRecommendedTutors() {
-        $.ajax({
-            type:'GET',
-            url: '{{ route('recommended-tutors') }}?refresh=true',
-            success: (data) => {
-                $('.recommended-tutors').html(data);
-                console.log(data);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    }
-    // refresh recommended tutors
-    $('#btn-refresh').click(function() {
-        getRecommendedTutors();
-    });
-@endif
 </script>
 
 {{-- for graphics --}}
