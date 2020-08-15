@@ -73,7 +73,16 @@ $('.btn-view-all-info-cards').click(function() {
     else {
         $(this).html('View All')
     }
+});
 
+$('.btn-view-all-info-boxes').click(function() {
+    $(this).closest('.row').find('.info-boxes .hidden-2').toggle("fast");
+    if($(this).html().includes('View')) {
+        $(this).html('Hide')
+    }
+    else {
+        $(this).html('View All')
+    }
 });
 
 

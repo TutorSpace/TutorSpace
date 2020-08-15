@@ -14260,6 +14260,54 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: flex-end;
 }
 
+.info-boxes .info-box .review {
+  flex: 1;
+  white-space: normal !important;
+}
+
+.info-boxes .info-box .rating {
+  width: 15rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box .rating {
+    text-align: end;
+    margin-right: 0 !important;
+  }
+}
+
+.info-boxes .info-box .rating svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.2rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .rating svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.1rem;
+  }
+}
+
+.info-boxes .info-box .rating svg.full {
+  fill: #FFBC00;
+}
+
+.info-boxes .info-box .rating svg.empty {
+  fill: #626262;
+}
+
+.info-boxes .info-box .time-ago {
+  width: 10rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box .time-ago {
+    text-align: end;
+  }
+}
+
 @media only screen and (max-width: 61.99em) {
   .info-cards {
     margin-top: 5rem;

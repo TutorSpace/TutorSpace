@@ -164,6 +164,48 @@
             justify-content: flex-end;
         }
 
+        .review {
+            flex: 1;
+            white-space: normal !important;
+        }
+
+        .rating {
+            width: 15rem;
+
+            @include respond(sm) {
+                text-align: end;
+                margin-right: 0 !important;
+            }
+
+            svg {
+                width: 1.8rem;
+                height: 1.8rem;
+                margin-right: .2rem;
+
+                @include respond(md) {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    margin-right: .1rem;
+                }
+
+                &.full {
+                    fill: $color-yellow-primary;
+                }
+
+                &.empty {
+                    fill: $color-black-2;
+                }
+            }
+        }
+
+        .time-ago {
+            width: 10rem;
+
+            @include respond(sm) {
+                text-align: end;
+            }
+        }
+
     }
 
 

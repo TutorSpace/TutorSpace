@@ -22,7 +22,7 @@
             <small class="title">Time</small>
             <span class="content">13:30PM - 15:00PM</span>
         </div>
-        <div class="row-right d-flex align-items-stretch">
+        <div class="row-right d-flex align-items-center">
             <button class="btn btn-primary btn-view">View Session</button>
         </div>
     </div>
