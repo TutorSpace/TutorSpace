@@ -83,8 +83,11 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            width: 23rem;
 
+            @include respond(lg-2) {
+                width: 20rem;
+            }
         }
 
         .date {
@@ -92,16 +95,14 @@
         }
 
         .time {
-            width: 20ch;
+            width: 17ch;
         }
 
-        .course {
-            width: 13ch;
+        .course, .status {
+            width: 10ch;
         }
 
         .status {
-            width: 13ch;
-
             .approved {
                 color: $color-blue-primary;
             }
@@ -115,25 +116,15 @@
             }
         }
 
-        @include respond(lg-2) {
-            .user-info, .time {
-                width: 19ch;
-            }
-
-            .course, .status {
-                width: 11ch;
-            }
-        }
-
         .actions {
             display: flex;
             width: 21ch;
             justify-content: space-between;
-            flex-wrap: wrap;
             align-items: center;
 
-            @include respond(lg) {
+            @include respond(md) {
                 width: 12ch;
+                flex-wrap: wrap;
                 justify-content: center;
 
                 .btn:last-child {
@@ -148,6 +139,11 @@
 
             .btn {
                 width: 12ch;
+                margin-right: .75rem;
+
+                @include respond(md) {
+                    margin-right: 0;
+                }
 
                 @include respond(sm) {
                     margin-top: .5rem;

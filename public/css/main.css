@@ -14172,7 +14172,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 20rem;
+  width: 23rem;
+}
+
+@media only screen and (max-width: 100em) {
+  .info-boxes .info-box .user-info {
+    width: 20rem;
+  }
 }
 
 .info-boxes .info-box .date {
@@ -14180,15 +14186,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes .info-box .time {
-  width: 20ch;
+  width: 17ch;
 }
 
-.info-boxes .info-box .course {
-  width: 13ch;
-}
-
+.info-boxes .info-box .course,
 .info-boxes .info-box .status {
-  width: 13ch;
+  width: 10ch;
 }
 
 .info-boxes .info-box .status .approved {
@@ -14203,29 +14206,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFBC00;
 }
 
-@media only screen and (max-width: 100em) {
-  .info-boxes .info-box .user-info,
-  .info-boxes .info-box .time {
-    width: 19ch;
-  }
-
-  .info-boxes .info-box .course,
-  .info-boxes .info-box .status {
-    width: 11ch;
-  }
-}
-
 .info-boxes .info-box .actions {
   display: flex;
   width: 21ch;
   justify-content: space-between;
-  flex-wrap: wrap;
   align-items: center;
 }
 
-@media only screen and (max-width: 74.99em) {
+@media only screen and (max-width: 61.99em) {
   .info-boxes .info-box .actions {
     width: 12ch;
+    flex-wrap: wrap;
     justify-content: center;
   }
 
@@ -14243,6 +14234,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .actions .btn {
   width: 12ch;
+  margin-right: 0.75rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .actions .btn {
+    margin-right: 0;
+  }
 }
 
 @media only screen and (max-width: 47.99em) {

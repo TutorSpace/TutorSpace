@@ -42,7 +42,6 @@ bg-student
             @include('home.partials.header')
         </div>
 
-        @if (Auth::user()->is_tutor)
         <div class="container">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
@@ -90,166 +89,26 @@ bg-student
             </div>
         </div>
 
-        {{-- <div class="container">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                </div>
-                <div class="info-boxes">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                </div>
-            </div>
-        </div> --}}
-
-        <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">Data Visualization</h5>
-                <div class="home__data-visualizations">
-                    <div id="post-chart"></div>
-                    <div id="profile-chart"></div>
-                </div>
-            </div>
-        </div>
-
-        @else
-        <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
-                <div class="info-boxes">
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                </div>
-                <div class="info-boxes">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
-
-                <div class="user-cards bookmarked-tutors">
-                    @forelse (Auth::user()->bookmarkedUsers as $user)
-                        @include('partials.user_card', [
-                            'user' => $user
-                        ])
-                    @empty
-                    <h6 class="no-results">No bookmarked tutors yet</h6>
-                    @endforelse
-                </div>
-                <div class="scroll-faded"></div>
-            </div>
-        </div>
-
-        <div class="container-fluid recommended-tutors-bg-container">
-            <div class="container">
-                <div class="row">
-                    <div class="mb-2 w-100 d-flex justify-content-between align-center">
-                        <h5>Tutors You May Want to Know</h5>
-                        <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
-                    </div>
-                    <div class="user-cards recommended-tutors">
-                        @include('partials.recommended_tutors')
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="container">
             <div class="row">
                 <h5 class="mb-2 w-100">Tutor Requests</h5>
                 <div class="info-boxes tutor-requests">
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => false
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(1)
                     ])
 
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => true
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(2)
                     ])
 
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(3)
                     ])
 
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(4)
                     ])
 
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => false
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
                 </div>
                 <div class="scroll-faded">
                 </div>
@@ -257,8 +116,6 @@ bg-student
 
         </div>
 
-
-        @endif
 
     </main>
 
@@ -418,47 +275,6 @@ bg-student
 let storageUrl = "{{ Storage::url('') }}";
 </script>
 
-{{-- for graphics --}}
-<script>
-    MG.data_graphic({
-        title: "Post View Count",
-        description: "This graphic shows a time-series of post view counts.",
-        data: [
-            @foreach(App\Post::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
-            @endforeach
-        ],
-        width: 300,
-        // height: 250,
-        target: '#post-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
 
-    MG.data_graphic({
-        title: "Profile View Count",
-        description: "This graphic shows a time-series of profile view counts.",
-        data: [
-            @foreach(App\User::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
-            @endforeach
-        ],
-        width: 300,
-        // height: 250,
-        target: '#profile-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
-</script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
