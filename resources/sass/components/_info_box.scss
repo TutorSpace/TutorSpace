@@ -72,6 +72,7 @@
             text-overflow: ellipsis;
             overflow: hidden;
             color: inherit;
+            font-weight: 500;
         }
 
         .title {
@@ -83,11 +84,7 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 23rem;
-
-            @include respond(lg-2) {
-                width: 20rem;
-            }
+            width: 20rem;
         }
 
         .date {
@@ -98,8 +95,13 @@
             width: 17ch;
         }
 
-        .course, .status {
+        .course, .status, .format {
             width: 10ch;
+        }
+
+        .price {
+            width: 7ch;
+            color: $color-purple-primary;
         }
 
         .status {

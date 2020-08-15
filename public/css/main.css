@@ -14161,6 +14161,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   text-overflow: ellipsis;
   overflow: hidden;
   color: inherit;
+  font-weight: 500;
 }
 
 .info-boxes .info-box .title {
@@ -14172,13 +14173,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 23rem;
-}
-
-@media only screen and (max-width: 100em) {
-  .info-boxes .info-box .user-info {
-    width: 20rem;
-  }
+  width: 20rem;
 }
 
 .info-boxes .info-box .date {
@@ -14190,8 +14185,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes .info-box .course,
-.info-boxes .info-box .status {
+.info-boxes .info-box .status,
+.info-boxes .info-box .format {
   width: 10ch;
+}
+
+.info-boxes .info-box .price {
+  width: 7ch;
+  color: #6749DF;
 }
 
 .info-boxes .info-box .status .approved {

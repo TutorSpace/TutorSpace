@@ -18,8 +18,13 @@
             <span class="title">Course</span>
             <span class="content">BUAD 304</span>
         </div>
-
-
-
+        <div class="format">
+            <span class="title">Format</span>
+            <div class="content">Online</div>
+        </div>
+        <div class="price">
+            <span class="title">Price</span>
+            <div class="content">$12.5</div>
+        </div>
     </div>
 </div>

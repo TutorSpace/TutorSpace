@@ -43,29 +43,6 @@ bg-student
         </div>
 
         <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
-                <div class="info-boxes">
-                    @include('home.partials.tutor_request', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1)
-                    ])
-                    @include('home.partials.tutor_request', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1)
-                    ])
-                    @include('home.partials.tutor_request', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1)
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
                     <h5 class="mb-2 w-100">Calendar</h5>
@@ -91,7 +68,7 @@ bg-student
 
         <div class="container">
             <div class="row">
-                <h5 class="mb-2 w-100">Tutor Requests</h5>
+                <h5 class="mb-2 w-100">Past Sessions</h5>
                 <div class="info-boxes tutor-requests">
                     @include('home.partials.past_session', [
                         'user' => App\User::find(1)
@@ -99,6 +76,14 @@ bg-student
 
                     @include('home.partials.past_session', [
                         'user' => App\User::find(2)
+                    ])
+
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(3)
+                    ])
+
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(4)
                     ])
 
                     @include('home.partials.past_session', [

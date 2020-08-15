@@ -8,7 +8,7 @@
         <div class="user-info">
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
-                Shuaiqing Luogldhgsdg
+                Shuaiqing Luog
             </a>
         </div>
         <div class="date">
