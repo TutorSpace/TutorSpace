@@ -7,12 +7,28 @@
 
         .heading {
             font-size: 3.4rem;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 0;
         }
 
         .heading-container {
             font-size: 1.5rem;
+        }
+    }
+
+    .heading__forum-activities {
+        > :not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        > * {
+            cursor: pointer;
+            padding: 0 3px 3px 3px;
+            border-bottom: .5rem solid transparent;
+
+            &.active {
+                border-color: currentColor;
+            }
         }
     }
 
@@ -401,11 +417,13 @@
         }
 
         .post-previews {
+
             @include respond(extra-sm) {
                 order: 1;
                 margin-top: 3rem;
             }
         }
+
 
         .forum-data-container {
             position: relative;
@@ -508,6 +526,11 @@
             }
         }
 
+        .post-previews {
+            .post-preview-tag {
+                color: $color-purple-primary;
+            }
+        }
     }
 }
 
@@ -532,6 +555,12 @@
                     }
                 }
 
+            }
+        }
+
+        .post-previews {
+            .post-preview-tag {
+                color: $color-blue-primary;
             }
         }
     }

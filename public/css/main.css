@@ -19426,12 +19426,26 @@ A VERTICAL event
 
 .home__header-container .heading {
   font-size: 3.4rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0;
 }
 
 .home__header-container .heading-container {
   font-size: 1.5rem;
+}
+
+.home .heading__forum-activities > :not(:last-child) {
+  margin-right: 2rem;
+}
+
+.home .heading__forum-activities > * {
+  cursor: pointer;
+  padding: 0 3px 3px 3px;
+  border-bottom: 0.5rem solid transparent;
+}
+
+.home .heading__forum-activities > *.active {
+  border-color: currentColor;
 }
 
 .home__header {
@@ -19949,6 +19963,10 @@ A VERTICAL event
   color: #FFFFFF;
 }
 
+.bg-tutor .home .post-previews .post-preview-tag {
+  color: #6749DF;
+}
+
 .bg-student .home__header {
   background-image: linear-gradient(to bottom, #1f7aff, #1866da);
 }
@@ -19967,5 +19985,9 @@ A VERTICAL event
 .bg-student .home__content .info-box .action .btn-view-session {
   background-color: #1F7AFF;
   color: #FFFFFF;
+}
+
+.bg-student .home .post-previews .post-preview-tag {
+  color: #1F7AFF;
 }
 

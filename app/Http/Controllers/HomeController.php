@@ -164,6 +164,9 @@ class homeController extends Controller
     }
 
     public function forumActivities() {
-        return view('home.forum-activities');
+        return view('home.forum-activities', [
+            'myPosts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get(),
+            'myFollows' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get()
+        ]);
     }
 }
