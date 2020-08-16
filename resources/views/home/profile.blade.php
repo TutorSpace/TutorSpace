@@ -66,13 +66,13 @@ bg-student
                 </div>
 
                 <div class="profile__form-row mt-3">
-                    <div>
-                        <label for="" class="profile__label">Class Standing</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="Junior">
+                    <div class="autocomplete">
+                        <label for="school-year" class="profile__label">Class Standing</label>
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year" id="school-year">
                     </div>
-                    <div class="gpa">
-                        <label for="" class="profile__label">GPA</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="4.0">
+                    <div class="gpa autocomplete">
+                        <label for="gpa" class="profile__label">GPA</label>
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa">
                     </div>
                 </div>
 
@@ -115,6 +115,18 @@ bg-student
         "{{ $minor->minor }}",
         @endforeach
     ];
+
+    let schoolYears = [
+        @foreach(App\SchoolYear::all() as $schoolYear)
+        "{{ $schoolYear->school_year }}",
+        @endforeach
+    ];
+
+    let gpa = [
+        @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
+        "{{ number_format($i, 2) }}",
+        @endfor
+    ]
 
 
     function autocomplete(inp, arr) {
@@ -218,6 +230,8 @@ bg-student
 autocomplete(document.getElementById("first-major"), majors);
 autocomplete(document.getElementById("second-major"), majors);
 autocomplete(document.getElementById("minor"), minors);
+autocomplete(document.getElementById("school-year"), schoolYears);
+autocomplete(document.getElementById("gpa"), gpa);
 
 </script>
 @endsection

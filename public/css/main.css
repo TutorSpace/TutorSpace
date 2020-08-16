@@ -20041,6 +20041,7 @@ A VERTICAL event
   font-size: 1.4rem;
   font-weight: 500;
   margin-top: 0.5rem;
+  white-space: nowrap;
 }
 
 .profile__input {
@@ -20054,6 +20055,6 @@ A VERTICAL event
 
 .profile .gpa,
 .profile .hourly-rate {
-  flex: 0 0 8rem;
+  flex: 0 0 10rem;
 }
 

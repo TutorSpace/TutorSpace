@@ -22,6 +22,7 @@
         font-size: 1.4rem;
         font-weight: 500;
         margin-top: .5rem;
+        white-space: nowrap;
     }
 
     &__input {
@@ -33,7 +34,7 @@
     }
 
     .gpa, .hourly-rate {
-        flex: 0 0 8rem;
+        flex: 0 0 10rem;
     }
 
 
