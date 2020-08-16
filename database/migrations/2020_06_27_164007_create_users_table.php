@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_tutor_verified')->default(false);
             $table->unsignedBigInteger('first_major_id')->nullable();
             $table->unsignedBigInteger('second_major_id')->nullable();
+            $table->unsignedBigInteger('minor_id')->nullable();
             $table->string('gpa', 64)->default('N/A');
             $table->unsignedBigInteger('hourly_rate')->nullable();
             $table->unsignedBigInteger('school_year_id')->nullable();
@@ -34,6 +35,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('first_major_id')->references('id')->on('majors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('second_major_id')->references('id')->on('majors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('minor_id')->references('id')->on('minors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('school_year_id')->nullable()->references('id')->on('school_years')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tutor_level_id')->nullable()->references('id')->on('tutor_levels')->onDelete('cascade')->onUpdate('cascade');
 

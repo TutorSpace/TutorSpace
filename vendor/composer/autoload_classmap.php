@@ -2572,6 +2572,7 @@ return array(
     'League\\OAuth1\\Client\\Signature\\Signature' => $vendorDir . '/league/oauth1-client/src/Client/Signature/Signature.php',
     'League\\OAuth1\\Client\\Signature\\SignatureInterface' => $vendorDir . '/league/oauth1-client/src/Client/Signature/SignatureInterface.php',
     'MajorSeeder' => $baseDir . '/database/seeds/MajorSeeder.php',
+    'MinorSeeder' => $baseDir . '/database/seeds/MinorSeeder.php',
     'Mockery' => $vendorDir . '/mockery/mockery/library/Mockery.php',
     'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
     'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => $vendorDir . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',

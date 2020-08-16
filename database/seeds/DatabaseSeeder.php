@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TutorLevelSeeder::class,
             MajorSeeder::class,
+            MinorSeeder::class,
             SchoolYearSeeder::class,
             TagSeeder::class,
             CourseSeeder::class,
