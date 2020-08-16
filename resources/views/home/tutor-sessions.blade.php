@@ -176,8 +176,8 @@ bg-student
             views: {
                 timeGridThreeDay: {
                     type: 'timeGrid',
-                    duration: { days: 3 },
-                    buttonText: '3 day'
+                    duration: { days: 5 },
+                    buttonText: '5 day'
                 }
             },
             now: function () {

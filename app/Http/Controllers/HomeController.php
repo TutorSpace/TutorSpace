@@ -169,4 +169,8 @@ class homeController extends Controller
             'myFollows' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get()
         ]);
     }
+
+    public function profile() {
+        return view('home.profile');
+    }
 }

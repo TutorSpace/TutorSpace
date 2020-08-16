@@ -143,6 +143,7 @@ Route::group([
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
 Route::get('/home/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
+Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
 
 
 
