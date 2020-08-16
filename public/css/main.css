@@ -16197,28 +16197,52 @@ A VERTICAL event
           animation: button-animation-1 1.5s infinite;
 }
 
-.bg-student .menu-bar {
-  background-color: rgba(55, 28, 163, 0.8);
-}
-
-.bg-student .menu-bar__lists li.active {
-  color: #1F7AFF;
-}
-
-.bg-student .menu-bar__lists a:hover {
-  color: #1F7AFF;
-}
-
 .bg-tutor .menu-bar {
   background-color: rgba(55, 28, 163, 0.8);
 }
 
 .bg-tutor .menu-bar__lists li.active {
-  color: #6749DF;
+  color: rgba(55, 28, 163, 0.8);
 }
 
 .bg-tutor .menu-bar__lists a:hover {
-  color: #6749DF;
+  color: rgba(55, 28, 163, 0.8);
+}
+
+.autocomplete {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+}
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+  /*when hovering an item:*/
+  background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
 }
 
 ._nav {

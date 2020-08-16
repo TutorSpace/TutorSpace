@@ -67,37 +67,17 @@
     }
 }
 
-.bg-student {
-    .menu-bar {
-        background-color: rgba(#371CA3, .8);
-
-        &__lists {
-            li.active {
-                color: $color-blue-primary;
-            }
-
-            a {
-                &:hover {
-                    color: $color-blue-primary;
-                }
-            }
-        }
-    }
-}
-
 .bg-tutor {
     .menu-bar {
         background-color: rgba(#371CA3, .8);
 
         &__lists {
             li.active {
-                color: $color-purple-primary;
+                color: rgba(#371CA3, .8);
             }
 
-            a {
-                &:hover {
-                    color: $color-purple-primary;
-                }
+            a:hover {
+                color: rgba(#371CA3, .8);
             }
         }
     }
