@@ -45,6 +45,21 @@
         white-space: nowrap;
     }
 
+    .hourly-rate-input-container {
+        position: relative;
+
+        .symbol {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 1.5rem;
+        }
+
+        input {
+            padding-left: 2.5rem;
+        }
+    }
+
 
 
 }

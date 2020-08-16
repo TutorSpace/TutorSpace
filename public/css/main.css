@@ -20066,3 +20066,18 @@ A VERTICAL event
   white-space: nowrap;
 }
 
+.profile .hourly-rate-input-container {
+  position: relative;
+}
+
+.profile .hourly-rate-input-container .symbol {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1.5rem;
+}
+
+.profile .hourly-rate-input-container input {
+  padding-left: 2.5rem;
+}
+

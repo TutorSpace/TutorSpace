@@ -89,8 +89,13 @@ bg-student
                     </div>
                     <div class="hourly-rate autocomplete">
                         <label for="hourly-rate" class="profile__label">Hourly Rate</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
+                        <div class="hourly-rate-input-container">
+                            <span class="symbol">$</span>
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </form>
