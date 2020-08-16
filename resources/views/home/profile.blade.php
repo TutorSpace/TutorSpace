@@ -74,6 +74,11 @@ bg-student
                         <label for="gpa" class="profile__label">GPA</label>
                         <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa">
                     </div>
+                    <div class="gpa-note">
+                        <span class="font-italic">
+                            Note: Your GPA would <span class="font-weight-bold">NOT</span> occur on your profile page.
+                        </span>
+                    </div>
                 </div>
 
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
