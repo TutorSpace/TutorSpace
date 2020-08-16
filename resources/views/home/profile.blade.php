@@ -84,7 +84,7 @@ bg-student
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
                 <div class="profile__form-row flex-wrap">
                     <div class="autocomplete mb-3">
-                        <label for="" class="profile__label">Courses You Would Like to Tutor in</label>
+                        <label for="course" class="profile__label">Courses You Would Like to Tutor in</label>
                         <input type="text" class="profile__input form-control form-control-lg" id="course">
                     </div>
                     <div class="hourly-rate autocomplete">
@@ -99,6 +99,23 @@ bg-student
                         @foreach (App\Course::all() as $course)
                         <span class="course p-relative" type="button">
                             {{ $course->course }}
+                            <span class="p-absolute remove">&times;</span>
+                        </span>
+                        @endforeach
+                    </div>
+                </div>
+
+                <h5 class="w-100 profile__heading">Forum Settings</h5>
+                <div class="profile__form-row flex-wrap">
+                    <div class="autocomplete mb-3">
+                        <label for="tag" class="profile__label">Tags You are Interested in</label>
+                        <input type="text" class="profile__input form-control form-control-lg" id="tag">
+                    </div>
+
+                    <div class="user-courses flex-100">
+                        @foreach (App\Tag::all()->take(15) as $tag)
+                        <span class="course p-relative" type="button">
+                            {{ $tag->tag }}
                             <span class="p-absolute remove">&times;</span>
                         </span>
                         @endforeach
