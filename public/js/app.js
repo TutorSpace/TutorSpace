@@ -104414,7 +104414,7 @@ $(document).ready(function () {
       max: 285
     }]
   });
-  $.each($('.user-courses .course'), function (idx, ele) {
+  $.each($('.boxes .box, .user-courses .course'), function (idx, ele) {
     var color = colorHash.rgb($(ele).html());
     var d = 0; // Counting the perceptive luminance - human eye favors green color...
 

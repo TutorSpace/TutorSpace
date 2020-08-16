@@ -95,9 +95,9 @@ bg-student
                         </div>
                     </div>
 
-                    <div class="user-courses flex-100">
+                    <div class="boxes flex-100">
                         @foreach (App\Course::all() as $course)
-                        <span class="course p-relative" type="button">
+                        <span class="box p-relative" type="button">
                             {{ $course->course }}
                             <span class="p-absolute remove">&times;</span>
                         </span>
@@ -112,9 +112,9 @@ bg-student
                         <input type="text" class="profile__input form-control form-control-lg" id="tag">
                     </div>
 
-                    <div class="user-courses flex-100">
+                    <div class="boxes flex-100">
                         @foreach (App\Tag::all()->take(15) as $tag)
-                        <span class="course p-relative" type="button">
+                        <span class="box p-relative" type="button">
                             {{ $tag->tag }}
                             <span class="p-absolute remove">&times;</span>
                         </span>

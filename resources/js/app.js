@@ -116,7 +116,7 @@ $(document).ready(function(){
         hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
     });
 
-    $.each($('.user-courses .course'), (idx, ele) => {
+    $.each($('.boxes .box, .user-courses .course'), (idx, ele) => {
         var color = colorHash.rgb($(ele).html());
         var d = 0;
         // Counting the perceptive luminance - human eye favors green color...

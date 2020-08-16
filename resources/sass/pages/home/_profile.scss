@@ -49,30 +49,27 @@
         }
     }
 
-    .user-courses {
+    .boxes {
         display: flex;
         flex-wrap: wrap;
 
-        .course {
+        .box {
             flex: 0 0 calc(12.5% - .75rem);
             margin-top: .5rem;
             margin-bottom: .3rem;
             margin-right: .75rem;
             white-space: nowrap;
             border-radius: .5rem;
-
-            @include respond(sm) {
-                flex: 0 0 calc(25% - .75rem);
-            }
-        }
-
-        .course {
             text-align: center;
             font-size: 1.4rem;
             padding: .5rem .7rem;
             align-self: center;
-            cursor: pointer;
             transition: all .1s;
+            cursor: pointer;
+
+            @include respond(sm) {
+                flex: 0 0 calc(25% - .75rem);
+            }
 
             &:hover {
                 transform: translateY(-3px);
@@ -84,6 +81,7 @@
                 line-height: 1.3;
             }
         }
+
     }
 
     .hourly-rate-input-container {
