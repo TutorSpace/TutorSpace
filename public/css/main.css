@@ -16225,6 +16225,7 @@ A VERTICAL event
   top: 100%;
   left: 0;
   right: 0;
+  font-size: inherit;
 }
 
 .autocomplete-items div {
@@ -20043,8 +20044,12 @@ A VERTICAL event
 }
 
 .profile__input {
-  font-size: 1.6rem;
   padding: 2rem 1.5rem;
+}
+
+.profile .autocomplete,
+.profile__input {
+  font-size: 1.6rem;
 }
 
 .profile .gpa,

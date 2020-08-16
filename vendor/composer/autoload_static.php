@@ -657,6 +657,7 @@ class ComposerStaticInit45e7b77f98fd898c4eb2573d4d4ffa9e
         'App\\Listeners\\IncrementPostViewCount' => __DIR__ . '/../..' . '/app/Listeners/IncrementPostViewCount.php',
         'App\\Major' => __DIR__ . '/../..' . '/app/Major.php',
         'App\\Message' => __DIR__ . '/../..' . '/app/Message.php',
+        'App\\Minor' => __DIR__ . '/../..' . '/app/Minor.php',
         'App\\NewMessage' => __DIR__ . '/../..' . '/app/NewMessage.php',
         'App\\Notifications\\CustomResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/CustomResetPasswordNotification.php',
         'App\\Notifications\\EmailSubscription' => __DIR__ . '/../..' . '/app/Notifications/EmailSubscription.php',

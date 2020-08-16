@@ -55,6 +55,7 @@ return array(
     'App\\Listeners\\IncrementPostViewCount' => $baseDir . '/app/Listeners/IncrementPostViewCount.php',
     'App\\Major' => $baseDir . '/app/Major.php',
     'App\\Message' => $baseDir . '/app/Message.php',
+    'App\\Minor' => $baseDir . '/app/Minor.php',
     'App\\NewMessage' => $baseDir . '/app/NewMessage.php',
     'App\\Notifications\\CustomResetPasswordNotification' => $baseDir . '/app/Notifications/CustomResetPasswordNotification.php',
     'App\\Notifications\\EmailSubscription' => $baseDir . '/app/Notifications/EmailSubscription.php',

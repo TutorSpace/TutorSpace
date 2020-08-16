@@ -81,6 +81,10 @@ class User extends Authenticatable implements Viewable
         return $this->belongsTo('App\Major', 'second_major_id');
     }
 
+    public function minor() {
+        // return $this-
+    }
+
     public function schoolYear() {
         return $this->belongsTo('App\SchoolYear');
     }
