@@ -54,23 +54,35 @@
         flex-wrap: wrap;
 
         .course {
-            flex: 0 0 calc(12.5% - .5rem);
+            flex: 0 0 calc(12.5% - .75rem);
             margin-top: .5rem;
             margin-bottom: .3rem;
-            margin-right: .5rem;
+            margin-right: .75rem;
             white-space: nowrap;
             border-radius: .5rem;
 
             @include respond(sm) {
-                flex: 0 0 calc(25% - .5rem);
+                flex: 0 0 calc(25% - .75rem);
             }
         }
 
         .course {
             text-align: center;
             font-size: 1.4rem;
-            padding: .3rem .5rem;
+            padding: .5rem .7rem;
             align-self: center;
+            cursor: pointer;
+            transition: all .1s;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+
+            .remove {
+                right: .5rem;
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
         }
     }
 

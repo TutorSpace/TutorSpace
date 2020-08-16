@@ -19450,7 +19450,7 @@ A VERTICAL event
 }
 
 .home__header-container {
-  padding: 7rem 0 0 0;
+  padding: 5rem 0 0 0;
 }
 
 .home__header-container .heading {
@@ -20080,25 +20080,37 @@ A VERTICAL event
 }
 
 .profile .user-courses .course {
-  flex: 0 0 calc(12.5% - .5rem);
+  flex: 0 0 calc(12.5% - .75rem);
   margin-top: 0.5rem;
   margin-bottom: 0.3rem;
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
   white-space: nowrap;
   border-radius: 0.5rem;
 }
 
 @media only screen and (max-width: 47.99em) {
   .profile .user-courses .course {
-    flex: 0 0 calc(25% - .5rem);
+    flex: 0 0 calc(25% - .75rem);
   }
 }
 
 .profile .user-courses .course {
   text-align: center;
   font-size: 1.4rem;
-  padding: 0.3rem 0.5rem;
+  padding: 0.5rem 0.7rem;
   align-self: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.profile .user-courses .course:hover {
+  transform: translateY(-3px);
+}
+
+.profile .user-courses .course .remove {
+  right: 0.5rem;
+  font-size: 1.6rem;
+  line-height: 1.3;
 }
 
 .profile .hourly-rate-input-container {

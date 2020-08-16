@@ -83,9 +83,9 @@ bg-student
 
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
                 <div class="profile__form-row flex-wrap">
-                    <div class="mb-3">
+                    <div class="autocomplete mb-3">
                         <label for="" class="profile__label">Courses You Would Like to Tutor in</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="">
+                        <input type="text" class="profile__input form-control form-control-lg" id="course">
                     </div>
                     <div class="hourly-rate autocomplete">
                         <label for="hourly-rate" class="profile__label">Hourly Rate</label>
@@ -97,8 +97,9 @@ bg-student
 
                     <div class="user-courses flex-100">
                         @foreach (App\Course::all() as $course)
-                        <span class="course">
+                        <span class="course p-relative" type="button">
                             {{ $course->course }}
+                            <span class="p-absolute remove">&times;</span>
                         </span>
                         @endforeach
                     </div>
@@ -148,6 +149,12 @@ bg-student
         @for ($i = 10; $i <= 50; $i += 0.5)
             "{{ number_format($i, 1) }}",
         @endfor
+    ];
+
+    let courses = [
+        @foreach(App\Course::all() as $course)
+        "{{ $course->course }}",
+        @endforeach
     ];
 
 
@@ -211,8 +218,13 @@ bg-student
                 /*If the ENTER key is pressed, prevent the form from being submitted,*/
                 e.preventDefault();
                 if (currentFocus > -1) {
-                /*and simulate a click on the "active" item:*/
-                if (x) x[currentFocus].click();
+                    if($(inp).attr('id') == 'course') {
+                        alert('here');
+                    }
+                    else if(x) {
+                        /*and simulate a click on the "active" item:*/
+                        x[currentFocus].click();
+                    }
                 }
             }
         });
@@ -255,6 +267,7 @@ autocomplete(document.getElementById("minor"), minors);
 autocomplete(document.getElementById("school-year"), schoolYears);
 autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
+autocomplete(document.getElementById("course"), courses);
 
 </script>
 @endsection
