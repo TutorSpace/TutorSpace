@@ -87,9 +87,9 @@ bg-student
                         <label for="" class="profile__label">Courses you would like to tutor</label>
                         <input type="text" class="profile__input form-control form-control-lg" value="">
                     </div>
-                    <div class="hourly-rate">
-                        <label for="" class="profile__label">Hourly Rate</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="18">
+                    <div class="hourly-rate autocomplete">
+                        <label for="hourly-rate" class="profile__label">Hourly Rate</label>
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
                     </div>
                 </div>
             </div>
@@ -131,7 +131,13 @@ bg-student
         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
         "{{ number_format($i, 2) }}",
         @endfor
-    ]
+    ];
+
+    let hourlyRate = [
+        @for ($i = 10; $i <= 50; $i += 0.5)
+            "{{ number_format($i, 1) }}",
+        @endfor
+    ];
 
 
     function autocomplete(inp, arr) {
@@ -237,6 +243,7 @@ autocomplete(document.getElementById("second-major"), majors);
 autocomplete(document.getElementById("minor"), minors);
 autocomplete(document.getElementById("school-year"), schoolYears);
 autocomplete(document.getElementById("gpa"), gpa);
+autocomplete(document.getElementById("hourly-rate"), hourlyRate);
 
 </script>
 @endsection

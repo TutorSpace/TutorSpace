@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('first_major_id')->nullable();
             $table->unsignedBigInteger('second_major_id')->nullable();
             $table->unsignedBigInteger('minor_id')->nullable();
-            $table->string('gpa', 64)->default('N/A');
+            $table->decimal('gpa', 3)->nullable();
             $table->unsignedBigInteger('hourly_rate')->nullable();
             $table->unsignedBigInteger('school_year_id')->nullable();
             $table->unsignedBigInteger('tutor_level_id')->nullable();

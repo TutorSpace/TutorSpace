@@ -358,7 +358,7 @@ class RegisterController extends Controller
             "gpa" => [
                 'required',
                 'numeric',
-                'min:0',
+                'min:1',
                 'max:4'
             ]
         ]);
