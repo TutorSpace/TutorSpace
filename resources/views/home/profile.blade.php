@@ -70,7 +70,7 @@ bg-student
                         <label for="school-year" class="profile__label">Class Standing</label>
                         <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year" id="school-year">
                     </div>
-                    <div class="gpa autocomplete">
+                    <div class="gpa autocomplete mr-3">
                         <label for="gpa" class="profile__label">GPA</label>
                         <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa">
                     </div>
@@ -82,9 +82,9 @@ bg-student
                 </div>
 
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
-                <div class="profile__form-row">
-                    <div>
-                        <label for="" class="profile__label">Courses you would like to tutor</label>
+                <div class="profile__form-row flex-wrap">
+                    <div class="mb-3">
+                        <label for="" class="profile__label">Courses You Would Like to Tutor in</label>
                         <input type="text" class="profile__input form-control form-control-lg" value="">
                     </div>
                     <div class="hourly-rate autocomplete">
@@ -93,9 +93,15 @@ bg-student
                             <span class="symbol">$</span>
                             <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
                         </div>
-
                     </div>
 
+                    <div class="user-courses flex-100">
+                        @foreach (App\Course::all() as $course)
+                        <span class="course">
+                            {{ $course->course }}
+                        </span>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </form>

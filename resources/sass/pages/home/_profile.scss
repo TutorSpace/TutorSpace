@@ -40,9 +40,38 @@
     .gpa-note {
         display: flex;
         align-items: flex-end;
-        margin-bottom: 1.4rem;
+        margin-bottom: .3rem;
         font-size: 1.2rem;
-        white-space: nowrap;
+        flex: 0 0 20rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .user-courses {
+        display: flex;
+        flex-wrap: wrap;
+
+        .course {
+            flex: 0 0 calc(12.5% - .5rem);
+            margin-top: .5rem;
+            margin-bottom: .3rem;
+            margin-right: .5rem;
+            white-space: nowrap;
+            border-radius: .5rem;
+
+            @include respond(sm) {
+                flex: 0 0 calc(25% - .5rem);
+            }
+        }
+
+        .course {
+            text-align: center;
+            font-size: 1.4rem;
+            padding: .3rem .5rem;
+            align-self: center;
+        }
     }
 
     .hourly-rate-input-container {

@@ -93,7 +93,8 @@
     > * { flex: 0 0 calc(50% - 1rem); }
 }
 .flex-occupy-all { flex: 1; }
-.flex-100 { flex: 0 0 100%; }
+.flex-100 { flex: 0 0 100% !important; }
+.flex-wrap { flex-wrap: wrap; }
 
 // =============== others =================
 .ws-no-wrap { white-space: nowrap; }

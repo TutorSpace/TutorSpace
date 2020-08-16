@@ -104399,6 +104399,31 @@ $(document).ready(function () {
 
   $('nav .svg-search').click(function () {
     $('.nav__form').submit();
+  }); // TODO: modify this
+  // courses color
+
+  var colorHash = new ColorHash({
+    hue: [{
+      min: 70,
+      max: 90
+    }, {
+      min: 180,
+      max: 210
+    }, {
+      min: 270,
+      max: 285
+    }]
+  });
+  $.each($('.user-courses .course'), function (idx, ele) {
+    var color = colorHash.rgb($(ele).html());
+    var d = 0; // Counting the perceptive luminance - human eye favors green color...
+
+    var luminance = (0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2]) / 255;
+    if (luminance > 0.5) d = 0; // bright colors - black font
+    else d = 255; // dark colors - white font
+
+    $(ele).css("background-color", "rgb(".concat(color[0], ", ").concat(color[1], ", ").concat(color[2], ")"));
+    $(ele).css("color", "rgb(".concat(d, ", ").concat(d, ", ").concat(d, ")"));
   });
 });
 

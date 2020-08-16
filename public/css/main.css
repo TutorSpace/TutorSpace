@@ -12871,7 +12871,11 @@ h6 {
 }
 
 .flex-100 {
-  flex: 0 0 100%;
+  flex: 0 0 100% !important;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
 }
 
 .ws-no-wrap {
@@ -20061,9 +20065,40 @@ A VERTICAL event
 .profile .gpa-note {
   display: flex;
   align-items: flex-end;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0.3rem;
   font-size: 1.2rem;
+  flex: 0 0 20rem;
+}
+
+.profile .gpa-note::-webkit-scrollbar {
+  display: none;
+}
+
+.profile .user-courses {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile .user-courses .course {
+  flex: 0 0 calc(12.5% - .5rem);
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  margin-right: 0.5rem;
   white-space: nowrap;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .profile .user-courses .course {
+    flex: 0 0 calc(25% - .5rem);
+  }
+}
+
+.profile .user-courses .course {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 0.3rem 0.5rem;
+  align-self: center;
 }
 
 .profile .hourly-rate-input-container {
