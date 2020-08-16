@@ -29,6 +29,28 @@
         padding: 2rem 1.5rem;
     }
 
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 3.5rem;
+
+
+        button {
+            width: 20rem;
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            transition: all .1s;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+        }
+    }
+
     .autocomplete, &__input {
         font-size: 1.6rem;
     }
@@ -73,6 +95,10 @@
 
             &:hover {
                 transform: translateY(-3px);
+            }
+
+            &:active {
+                transform: translateY(-1px);
             }
 
             .remove {

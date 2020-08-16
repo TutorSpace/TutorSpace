@@ -121,6 +121,12 @@ bg-student
                         @endforeach
                     </div>
                 </div>
+
+                {{-- buttons --}}
+                <div class="w-100 profile__buttons">
+                    <button class="btn btn-outline-primary mr-5" type="button">Discard Changes</button>
+                    <button class="btn btn-primary" type="button">Save Changes</button>
+                </div>
             </div>
         </form>
 

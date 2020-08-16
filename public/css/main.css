@@ -13190,6 +13190,18 @@ h6 {
   background-color: #0C4293 !important;
 }
 
+.bg-student .btn-outline-primary {
+  border-color: #1F7AFF;
+  color: #1F7AFF;
+}
+
+.bg-student .btn-outline-primary:hover,
+.bg-student .btn-outline-primary:active {
+  background-color: unset;
+  color: #0075E0;
+  border-color: #0075E0;
+}
+
 .bg-tutor .btn-primary {
   background-color: #6749DF;
   border-color: #6749DF;
@@ -13202,6 +13214,18 @@ h6 {
 
 .bg-tutor .btn-primary.active {
   background-color: #30188F !important;
+}
+
+.bg-tutor .btn-outline-primary {
+  border-color: #6749DF;
+  color: #6749DF;
+}
+
+.bg-tutor .btn-outline-primary:hover,
+.bg-tutor .btn-outline-primary:active {
+  background-color: unset !important;
+  color: #502ED9 !important;
+  border-color: #502ED9 !important;
 }
 
 .modal .modal-content {
@@ -20052,6 +20076,27 @@ A VERTICAL event
   padding: 2rem 1.5rem;
 }
 
+.profile__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 3.5rem;
+}
+
+.profile__buttons button {
+  width: 20rem;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  transition: all 0.1s;
+}
+
+.profile__buttons button:hover {
+  transform: translateY(-3px);
+}
+
+.profile__buttons button:active {
+  transform: translateY(-1px);
+}
+
 .profile .autocomplete,
 .profile__input {
   font-size: 1.6rem;
@@ -20102,6 +20147,10 @@ A VERTICAL event
 
 .profile .boxes .box:hover {
   transform: translateY(-3px);
+}
+
+.profile .boxes .box:active {
+  transform: translateY(-1px);
 }
 
 .profile .boxes .box .remove {
