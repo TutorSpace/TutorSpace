@@ -53,15 +53,15 @@ bg-student
                 <div class="profile__form-row mt-3">
                     <div class="autocomplete">
                         <label for="first-major" class="profile__label">First Major</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->firstMajor->major }}" name="first-major" id="first-major">
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major">
                     </div>
                     <div class="autocomplete">
                         <label for="second-major" class="profile__label">Second Major (optional)</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->secondMajor->major }}" name="second-major" id="second-major">
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major" id="second-major">
                     </div>
                     <div class="autocomplete">
                         <label for="minor" class="profile__label">Minor (optional)</label>
-                        <input type="text" class="profile__input form-control form-control-lg" value="{{ "" }}" name="minor" id="minor">
+                        <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor">
                     </div>
                 </div>
 
@@ -107,6 +107,12 @@ bg-student
     let majors = [
         @foreach(App\Major::all() as $major)
         "{{ $major->major }}",
+        @endforeach
+    ];
+
+    let minors = [
+        @foreach(App\Minor::all() as $minor)
+        "{{ $minor->minor }}",
         @endforeach
     ];
 
@@ -211,6 +217,7 @@ bg-student
 
 autocomplete(document.getElementById("first-major"), majors);
 autocomplete(document.getElementById("second-major"), majors);
+autocomplete(document.getElementById("minor"), minors);
 
 </script>
 @endsection
