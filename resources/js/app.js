@@ -103,10 +103,10 @@ $(document).ready(function(){
         switchLoginIdentity();
     });
 
+    // ===================== nav search =================
     $('nav .svg-search').click(function() {
         $('.nav__form').submit();
     });
-
 
 })
 

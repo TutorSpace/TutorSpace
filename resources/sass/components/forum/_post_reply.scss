@@ -1,5 +1,5 @@
 .post-reply {
-    margin-top: 3rem;
+    margin-top: 2rem;
     display: flex;
     color: $color-black-post-3;
 
@@ -7,7 +7,7 @@
     border-radius: 1rem;
     background-color: $color-white-dark-5;
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
-    padding: 3rem 4rem 2rem 4rem;
+    padding: 1.5rem 3rem 1.5rem 3rem;
 
     .left-container {
         overflow: hidden;
@@ -24,8 +24,8 @@
         }
 
         img {
-            width: 7rem;
-            height: 7rem;
+            width: 5rem;
+            height: 5rem;
             object-fit: cover;
             border-radius: 50%;
             display: block;
@@ -33,16 +33,21 @@
         }
 
         .user-name {
-            font-size: 1.5rem !important;
+            font-size: 1.4rem !important;
             line-height: 1.2;
-            margin-top: .75rem;
+            margin-top: .5rem;
             color: $color-black-post-3;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
         }
 
         .user-info {
             text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.2;
+            font-size: 1.1rem;
+            line-height: 1.1;
         }
 
     }
@@ -56,14 +61,14 @@
         .post-reply__actions, .post-reply__info {
             display: flex;
             align-items: center;
-            margin-top: 2rem;
-            font-size: 1.4rem;
+            margin-top: .5rem;
+            font-size: 1.3rem;
             flex-wrap: wrap;
 
             svg {
                 fill: $color-grey;
-                width: 2rem;
-                height: 2rem;
+                width: 1.5rem;
+                height: 1.5rem;
             }
 
             .action {
@@ -72,7 +77,7 @@
         }
 
         .btn-toggle-follow-up {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: $color-black-post-3 !important;
         }
     }
@@ -99,13 +104,13 @@
 
 
 .best-reply {
-    padding-top: 7rem;
+    padding-top: 5.5rem;
 
     .svg-best-reply {
         position: absolute;
         top: -2.2rem;
         right: 1rem;
-        height: 7rem;
+        height: 6rem;
         z-index: 100;
 
         @include respond(extra-sm) {
@@ -115,11 +120,16 @@
 
     .text-best-reply {
         color: $color-white-dark-5;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         font-family: 'Baloo Bhai', sans-serif;
         position: absolute;
-        top: .7rem;
+        top: .4rem;
         right: 8.5rem;
+    }
+
+    img {
+        width: 6rem !important;
+        height: 6rem !important;
     }
 }
 
@@ -142,6 +152,10 @@
         border: none;
         outline: none;
 
+        margin: .5rem 1.5rem;
+        padding: .5rem 1rem;
+        font-size: 1.6rem;
+
         &::placeholder {
             color: $color-grey;
         }
@@ -154,57 +168,44 @@
 
 }
 
-.post-comment {
-    padding: 1.5rem 2rem 1.5rem 2rem;
+.post-comment, .post-followup {
 
-    &__input {
-        margin: 1rem 2rem;
-        padding: 1rem 2rem;
+
+    .btn-reply {
         font-size: 1.6rem;
+        padding: .5rem 1rem;
+        font-weight: bolder;
     }
+}
+
+.post-comment {
+    padding: 1.5rem 1.5rem;
 
     img {
-        width: 6rem;
-        height: 6rem;
+        width: 5rem;
+        height: 5rem;
         object-fit: cover;
         border-radius: 50%;
         display: block;
         border: 1px solid transparentize($color: $color-grey, $amount: .5);
     }
 
-    .btn-reply {
-        font-size: 1.8rem;
-        padding: 1rem 2rem;
-        font-weight: bolder;
-    }
+
 }
 
 .post-followup {
+    margin-left: 8rem;
     padding: .5rem 1rem;
-    margin-left: 15rem;
-
-    &__input {
-        margin: .5rem 1rem;
-        padding: .5rem 1rem;
-        font-size: 1.6rem;
-    }
-
-    .btn-reply {
-        font-size: 1.6rem;
-        padding: .6rem 1.2rem;
-        font-weight: bolder;
-    }
 }
 
 .followup-container {
     margin-top: 1.5rem;
     color: $color-black-post-3;
-    font-size: 1.6rem;
     border-radius: 1rem;
     background-color: $color-white-dark-5;
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
-    padding: 2rem;
-    margin-left: 15rem;
+    padding: 1rem 2rem;
+    margin-left: 8rem;
 
     .followup__content {
         .followup-to {
@@ -218,7 +219,7 @@
         font-size: 1.4rem;
         display: flex;
         align-items: center;
-        margin-top: 2rem;
+        margin-top: .5rem;
 
         &__left {
             margin-right: auto;
@@ -235,8 +236,8 @@
         margin-right: 1rem;
         svg {
             fill: $color-grey;
-            width: 2rem;
-            height: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
         }
     }
 
@@ -262,7 +263,7 @@
     }
 
     .best-reply {
-        background-image: linear-gradient(180deg, rgba($color-blue-primary, .9) 0%, rgba($color-blue-primary, .9) 5rem, transparent 10% );
+        background-image: linear-gradient(180deg, rgba($color-blue-primary, .9) 0%, rgba($color-blue-primary, .9) 4rem, transparent 10% );
     }
 }
 
@@ -282,6 +283,6 @@
     }
 
     .best-reply {
-        background-image: linear-gradient(180deg, rgba($color-purple-primary, .9) 0%, rgba($color-purple-primary, .9) 5rem, transparent 10% );
+        background-image: linear-gradient(180deg, rgba($color-purple-primary, .9) 0%, rgba($color-purple-primary, .9) 4rem, transparent 10% );
     }
 }

@@ -16,6 +16,7 @@
     "{{ asset('assets/images/tutorspace_logo.png') }}"
             type = "image/x-icon">
 
+
     <!-- my css -->
     <link rel="stylesheet" href="{{asset('css/main.css')}}" />
     @yield('links-in-head')
@@ -58,6 +59,7 @@
                 success: (data) => {
                     let { successMsg } = data;
                     toastr.success(successMsg);
+                    $(this).find('input[type=email]').val('');
                 },
                 error: function(error) {
                     if(error.responseJSON.errors) {
@@ -69,6 +71,38 @@
                 }
             });
         });
+
+        @if(Auth::check() && !Auth::user()->is_tutor)
+        // ===================== bookmark =================
+        $('.svg-bookmark').click(function() {
+            if($(this).find('use.hidden').hasClass('bookmarked')) {
+                var requestType = 'POST';
+            }
+            else {
+                var requestType = 'DELETE';
+            }
+            let userId = $(this).attr('data-user-id');
+            $.ajax({
+                type:requestType,
+                url: `/bookmark/${userId}`,
+                success: (data) => {
+
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
+                }
+            });
+
+            $(this).find('use').toggleClass('hidden');
+        });
+        @endif
+
+        @guest
+        $('.svg-bookmark').click(function() {
+            $('.overlay-student').show();
+        })
+        @endguest
     </script>
     @yield('js')
 

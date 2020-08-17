@@ -89,6 +89,20 @@ class UserSeeder extends Seeder
             'is_tutor_verified' => true
         ]);
 
+        DB::table('users')->insert([
+            'first_name' => 'tester',
+            'last_name' => '5',
+            'email' => 'tester5@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 8,
+            'gpa' => '3.13',
+            'hourly_rate' => '35',
+            'school_year_id' => 3,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 4,
+            'is_tutor_verified' => true
+        ]);
+
 
 
         $userTags = [
@@ -122,11 +136,12 @@ class UserSeeder extends Seeder
 
         $courseUsers = [
             [
+                'user_id' => 1,
+                'course_id' => 2
+            ],
+            [
                 'user_id' => 2,
                 'course_id' => 2
-            ],[
-                'user_id' => 2,
-                'course_id' => 3
             ],[
                 'user_id' => 2,
                 'course_id' => 4
@@ -160,6 +175,9 @@ class UserSeeder extends Seeder
             ],[
                 'user_id' => 6,
                 'course_id' => 3
+            ],[
+                'user_id' => 7,
+                'course_id' => 5
             ]
         ];
         DB::table('course_user')->insert($courseUsers);

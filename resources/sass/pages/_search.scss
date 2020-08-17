@@ -159,7 +159,7 @@
         margin-bottom: 8rem;
 
         .search-result {
-            padding: 3rem 3rem;
+            padding: 2rem 3rem;
             border-radius: .75rem;
             margin-bottom: 2rem;
             box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
@@ -169,6 +169,7 @@
                 height: 4rem;
                 border-radius: 50%;
                 display: block;
+                object-fit: cover;
             }
 
             .user-name {
@@ -181,12 +182,8 @@
                 color: $color-grey;
             }
 
-            .bookmark-svg {
-                width: 2.5rem;
-                height: 2.5rem;
-                color: $color-grey;
+            .svg-bookmark {
                 align-self: flex-start;
-                cursor: pointer;
             }
 
             .user-major {
@@ -236,16 +233,15 @@
                 .heading, .course {
                     flex: 0 0 calc(25% - .5rem);
                     margin-top: .5rem;
-                    margin-bottom: .5rem;
+                    margin-bottom: .3rem;
                     margin-right: .5rem;
-
                     white-space: nowrap;
                     border-radius: .5rem;
                 }
 
                 .heading {
                     color: $color-black-2;
-                    font-size: 1.8rem;
+                    font-size: 1.6rem;
                     padding-left: .5rem;
                 }
 
@@ -256,6 +252,7 @@
                     align-self: center;
                 }
             }
+
 
             .user-rating {
                 display: flex;

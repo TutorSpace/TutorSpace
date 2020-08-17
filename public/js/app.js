@@ -70146,7 +70146,8 @@ $(document).ready(function () {
 
   $('.overlay .btn-switch-login').click(function () {
     switchLoginIdentity();
-  });
+  }); // ===================== nav search =================
+
   $('nav .svg-search').click(function () {
     $('.nav__form').submit();
   });

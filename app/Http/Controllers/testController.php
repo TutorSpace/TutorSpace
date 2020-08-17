@@ -33,7 +33,8 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        User::find(7)->notify(new MarkedAsBestReplyNotification(Post::find(1)));
+        // $test = Auth::user()->load('courses')->get();
+        $test = Auth::user()->courses;
     }
 
     public function test(Request $request) {

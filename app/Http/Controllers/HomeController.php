@@ -2,22 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
-use App\Session;
-use App\Course;
+use App\Post;
 use App\User;
-use App\Tutor_request;
+use App\Course;
+use App\Session;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class homeController extends Controller
 {
     public function __construct() {
-
+        $this->middleware(['auth']);
     }
 
     public function index() {
-        return redirect()->route('index');
+
+        $posts = Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags']);
+
+        $user = Auth::user();
+        $interestedTagIDs = $user->tags()->pluck('id');
+        $posts = $posts->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+                        ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+                        ->whereIn('tags.id', $interestedTagIDs)
+                        ->where('posts.user_id', '!=', $user->id)
+                        ->groupBy(['posts.id'])
+                        ->orderByRaw(POST::POPULARITY_FORMULA)
+                        ->take(5)
+                        ->get();
+
+
+        // if there are < 5 posts, put other posts here to fill the 5 spots
+        if($posts->count() < 5) {
+            $posts = $posts->merge(
+                Post::with(['tags', 'user'])
+                    ->withCount(['usersUpvoted', 'replies', 'tags'])
+                    ->where('posts.user_id', '!=', $user->id)
+                    ->orderByRaw(POST::POPULARITY_FORMULA)
+                    ->get()
+            )->take(5);
+        }
+
+        return view('home.index', [
+            'posts' => $posts
+        ]);
+
 
         // $user = Auth::user();
 

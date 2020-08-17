@@ -1,6 +1,14 @@
 .forum {
     margin-top: calc(#{$nav-height} + 4rem);
 
+    .btn-link {
+        color: $color-grey;
+        transition: all .1s;
+        &:hover {
+            color: $color-black-post;
+        }
+    }
+
     .forum-row {
         margin: 0 -4rem;
 
@@ -288,6 +296,10 @@
                 color: currentColor;
             }
         }
+    }
+
+    .user-card {
+        margin-top: 3rem;
     }
 }
 
@@ -588,14 +600,6 @@
             }
         }
 
-        .btn-link {
-            color: $color-purple-primary;
-            transition: all .2s;
-            &:hover {
-                color: $color-purple-primary-2;
-            }
-        }
-
         .active {
             color: $color-purple-primary !important;
 
@@ -680,14 +684,6 @@
             }
         }
 
-        .btn-link {
-            color: $color-blue-primary;
-            transition: all .2s;
-            &:hover {
-                color: $color-blue-primary-2;
-            }
-        }
-
         .active {
             color: $color-blue-primary !important;
 
@@ -724,6 +720,7 @@
 }
 
 .post__heading {
+    font-size: 2.2rem;
     &:hover {
         color: $color-black-post;
     }
@@ -731,24 +728,26 @@
 
 .post__heading-2 {
     font-size: 1.4rem;
+    margin-bottom: .5rem;
 
     .poster-img {
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
         margin-right: .3rem;
+        object-fit: cover;
     }
 }
 
-.post__content, .post-reply__content {
-    font-size: 1.6rem;
+.post__content, .post-reply__content, .followup-container {
+    font-size: 1.5rem;
 }
 
 .post__bottom {
     flex: 0 0 100%;
 
     .tags {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         margin-top: .5rem;
     }
 
@@ -775,10 +774,10 @@
 }
 
 .post-preview {
-    padding: 2.5rem 4rem 2.5rem 4rem;
+    padding: 1.8rem 3rem;
 }
 
 .post-detail {
-    padding: 4.5rem 4rem 3rem 4rem;
+    padding: 3rem 3rem 2rem 3rem;
 }
 

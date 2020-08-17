@@ -11,13 +11,18 @@ use App\ReportForum;
 use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InviteToBeTutorNotification;
 
 class GeneralController extends Controller
 {
     // show the application index page
-    public function index() {
+    public function index(Request $request) {
+        if(Auth::check()) {
+            $request->session()->reflash();
+            return redirect()->route('home');
+        }
         return view('index');
     }
 
@@ -67,41 +72,37 @@ class GeneralController extends Controller
                 ]
             );
         }
+    }
 
+    public function uploadProfilePic(Request $request) {
+        $request->validate([
+            'profile-pic' => [
+                'required',
+                'file',
+                'mimes:jpeg,bmp,png'
+            ]
+        ]);
+
+        $user = Auth::user();
+        DB::transaction(function() use($request, $user) {
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+            }
+
+            $user->save();
+        });
+
+        return response()->json([
+            'successMsg' => 'Successfully updated the profile photo.',
+            'imgUrl' => $user->profile_pic_url
+        ]);
 
     }
 
-
-
-    // TODO: add validation
-    public function removeBookmark(Request $request) {
-
-
-        $userId = $request->input('user_id');
-
-        $user = Auth::user();
-        $user->bookmarks()->detach($userId);
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully removed from bookmarked users list!'
-            ]
-        );
-    }
-
-    // TODO: add validation
-    public function addBookmark(Request $request) {
-
-        $userId = $request->input('user_id');
-
-        $user = Auth::user();
-        $user->bookmarks()->attach($userId);
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully added to bookmarked users list!'
-            ]
-        );
+    public function getRecommendedTutors() {
+        return view('partials.recommended_tutors');
     }
 
     // TODO: add validation

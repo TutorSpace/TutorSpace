@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/auth/register.js', 'public/js/auth')
     .js('resources/js/auth/login.js', 'public/js/auth')
@@ -18,4 +19,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/forum/index.js', 'public/js/forum')
     .js('resources/js/forum/create.js', 'public/js/forum')
     .js('resources/js/search/index.js', 'public/js/search')
+    .js('resources/js/home/index.js', 'public/js/home')
     .sass('resources/sass/main.scss', 'public/css');

@@ -4,7 +4,6 @@
 /public/storage
 /storage/*.key
 .env
-.env.example
 .env.backup
 .phpunit.result.cache
 Homestead.json
@@ -12,4 +11,3 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 *.icloud
-/vendor

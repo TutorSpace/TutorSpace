@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3rem;
     padding: 3rem 1rem;
     overflow: hidden;
     position: relative;
@@ -23,14 +22,19 @@
         border: 1px solid transparentize($color: $color-grey, $amount: .5);
     }
 
-    .bookmark-svg {
-        font-size: 2.8rem;
+    .svg-bookmark {
         position: absolute;
         top: 1rem;
         right: 1rem;
         margin-top: 0;
-        fill: currentColor;
-        cursor: pointer;
+    }
+
+    .user-name, .user-info {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 80%;
+        text-align: center;
     }
 
     .user-name {

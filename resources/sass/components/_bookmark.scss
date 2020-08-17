@@ -1,5 +1,8 @@
-svg.bookmark {
-    &:hover {
-        cursor: pointer;
-    }
+.svg-bookmark {
+    width: 2rem;
+    height: 3rem;
+    fill: $color-blue-primary;
+    transform: scaleY(1.1);
+    cursor: pointer;
+
 }

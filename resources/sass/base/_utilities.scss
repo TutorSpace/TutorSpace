@@ -27,6 +27,7 @@
 .mt-5rem { margin-top: 5rem; }
 .mr-1px { margin-right: 1px; }
 .mr-2px { margin-right: 2px; }
+.mr-3px { margin-right: 3px; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
@@ -60,8 +61,11 @@
 .fs-2-2 { font-size: 2.2rem; }
 .fs-2-4 { font-size: 2.4rem; }
 .fc-current { color: currentColor !important; }
+.bg-student .fc-theme-color { color: $color-blue-primary; }
+.bg-tutor .fc-theme-color { color: $color-purple-primary; }
 .fc-grey { color: $color-grey !important; }
 .fc-black { color: $color-black !important; }
+.fc-black-2 { color: $color-black-2 !important; }
 .fc-red { color: red; }
 .fc-purple-primary { color: $color-purple-primary; }
 .fc-purple-secondary { color: $color-purple-secondary; }
@@ -151,5 +155,17 @@
     *:hover {
         cursor: not-allowed;
     }
+}
+
+.hover--pointer {
+    cursor: pointer;
+}
+
+.placeholder {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    visibility: hidden !important;
 }
 

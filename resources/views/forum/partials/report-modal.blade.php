@@ -22,7 +22,8 @@
                     </label>
                 </div>
                 @endforeach
-                <textarea name="report" rows="5" class="form-control fs-1-6" required></textarea>
+                <label for="report" class="fc-black-post">Description</label>
+                <textarea id="report" name="report" rows="3" class="form-control fs-1-6" required></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-lg btn-secondary mr-2" data-dismiss="modal">Cancel</button>

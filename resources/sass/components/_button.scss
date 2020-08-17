@@ -192,3 +192,39 @@
     background-color: #DCDCDC;
     color: #FDFDFD;
 }
+
+
+.bg-student {
+    .btn-primary {
+        background-color: $color-blue-primary;
+        border-color: $color-blue-primary;
+
+        &:hover {
+            background-color: $color-blue-primary-2;
+            border-color: $color-blue-primary-2;
+        }
+
+        &.active {
+            background-color: $color-blue-secondary !important;
+        }
+    }
+
+}
+
+
+.bg-tutor {
+    .btn-primary {
+        background-color: $color-purple-primary;
+        border-color: $color-purple-primary;
+
+        &:hover {
+            background-color: $color-purple-primary-2;
+            border-color: $color-purple-primary-2;
+        }
+
+        &.active {
+            background-color: $color-purple-secondary !important;
+        }
+    }
+
+}

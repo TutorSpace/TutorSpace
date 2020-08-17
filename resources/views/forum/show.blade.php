@@ -66,12 +66,12 @@ bg-student
                             {{ App\CustomClass\NumberFormatter::thousandsFormat($post->view_count) }}
                         </span>
                     </p>
-                    <div class="post__content mb-4">
+                    <div class="post__content fs-1-6 mb-3">
                         {!! $post->content !!}
                     </div>
 
                     <div class="post__bottom">
-                        <div class="tags">
+                        <div class="tags fs-1-4">
                             @foreach ($post->tags as $tag)
                                 <a class="tag"
                                     href="{{ route('posts.search', [
@@ -83,8 +83,8 @@ bg-student
                                 >{{ $tag->tag }}</a>
                             @endforeach
                         </div>
-                        <div class="post__bottom__actions d-flex mt-3 justify-content-end">
-                            <div class="left-container d-flex align-items-center mt-3" data-post-slug="{{ $post->slug }}">
+                        <div class="post__bottom__actions d-flex justify-content-end">
+                            <div class="left-container d-flex align-items-center mt-2" data-post-slug="{{ $post->slug }}">
                                 <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
                                     <svg class="mr-2px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
@@ -106,8 +106,8 @@ bg-student
                                 @can('follow', $post)
                                     @if(Auth::check() && $post->followedBy(Auth::user()))
                                     <div class="action action-follow active">
-                                        <svg class="mr-2px">
-                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                                        <svg class="mr-3px">
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
                                         </svg>
                                         <span class="text">
                                             Unfollow
@@ -115,8 +115,8 @@ bg-student
                                     </div>
                                     @else
                                     <div class="action action-follow">
-                                        <svg class="mr-2px">
-                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart')}}"></use>
+                                        <svg class="mr-3px">
+                                            <use xlink:href="{{asset('assets/sprite.svg#icon-heart-empty')}}"></use>
                                         </svg>
                                         <span class="text">
                                             Follow
@@ -149,9 +149,6 @@ bg-student
                 @endauth
 
 
-                @php
-                    $canMarkBestReply = Auth::check() && Auth::user()->id == $post->user->id && !$post->bestReply ? true : false;
-                @endphp
                 @foreach ($post->replies as $reply)
                     <div class="post-reply
                     @if ($post->bestReply && $reply->id == $post->bestReply->id)
@@ -162,7 +159,7 @@ bg-student
                         id="scroll-to-reply"
                     @endif
                     >
-                        @if($canMarkBestReply)
+                        @can('markAsBestReply', [$post, $reply])
                         <form action="{{ route('posts.markBestReply', [$post, $reply]) }}" class="mark-best-reply" method="POST">
                             @csrf
                             <svg>
@@ -170,7 +167,7 @@ bg-student
                             </svg>
                             <button class="btn btn-link">Mark as Best Reply</button>
                         </form>
-                        @endif
+                        @endcan
 
                         @if ($post->bestReply && $reply->id == $post->bestReply->id)
                         <svg class="svg-best-reply" width="69" height="69" viewBox="0 0 69 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,16 +187,16 @@ bg-student
                             <img class="" src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
                             @if (!Auth::check() || (Auth::check() && Auth::user()->id != $reply->user->id))
                             <a class="user-name user-info" href="#">
-                                {{ $reply->user->first_name . ' ' . $reply->user->last_name }}
+                                {{ $reply->user->first_name }}
                             </a>
+                            <span class="user-info fc-grey mt-1">
+                                {{ $reply->user->firstMajor->major ?? '' }}
+                            </span>
                             @else
                             <span class="user-name user-info">
                                 Me
                             </span>
                             @endif
-                            <span class="user-info fc-grey mt-1">
-                                {{ $reply->user->firstMajor->major ?? 'None' }}
-                            </span>
                         </div>
                         <div class="right-container">
                             <div class="post-reply__content">
@@ -209,9 +206,7 @@ bg-student
                                 <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
                                     <button class="btn btn-link btn-toggle-follow-up mr-2" type="button">
-                                        <span class="keyword">
-                                            Display
-                                        </span>
+                                        <span class="keyword">Display</span>
                                     {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}
                                 </button>
                                 @endif
@@ -252,20 +247,22 @@ bg-student
 
                     {{-- for followups --}}
                     @foreach ($reply->replies as $followup)
-                        <div class="followup-container hidden" data-followup-for="{{ $reply->id }}"
-                        @if ($followup->id == session('newFollowupId'))
-                            id="scroll-to-followup"
-                        @endif>
+                        <div
+                            class="followup-container hidden"
+                            data-followup-for="{{ $reply->id }}"
+                            @if ($followup->id == session('newFollowupId'))
+                                id="scroll-to-followup"
+                            @endif
+                        >
                             <div class="followup__content">
                                 @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
-                                    {{ $followup->reply->user->last_name }}
                                 </a>
-                                @else
-                                <span class="followup-to">
+                                {{-- @else --}}
+                                {{-- <span class="followup-to">
                                     @Me
-                                </span>
+                                </span> --}}
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
@@ -276,7 +273,6 @@ bg-student
                                     @if (!Auth::check() || Auth::user()->id != $followup->user->id)
                                     <a href="#" class="followup__user">
                                         {{ $followup->user->first_name }}
-                                        {{ $followup->user->last_name }}
                                     </a>
                                     @else
                                     <span class="followup__user">
@@ -367,6 +363,7 @@ $('.action').click(function() {
                     success: (data) => {
                         $(this).toggleClass('active');
                         $(this).find('.text').html(data.text);
+                        $(this).find('svg').html(data.svg);
                     },
                     error: function(error) {
                         toastr.error('Something went wrong!');
@@ -454,7 +451,7 @@ $('.user-card button').click(function() {
     $('.overlay-student').show();
 });
 
-$('.bookmark-svg').click(function() {
+$('.svg-bookmark').click(function() {
     $('.overlay-student').show();
 })
 @endauth
@@ -470,12 +467,12 @@ $('#reportModal').modal('show');
     $(`.post-reply[data-reply-id=${replyId}]`).find('.post-reply__actions .keyword').html('Hide');
 
     $('html, body').animate({
-        scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 100
-    }, 2000);
+        scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 500
+    }, 1000);
 @elseif(session('newReplyId'))
     $('html, body').animate({
-        scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 100
-    }, 2000);
+        scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 500
+    }, 1000);
 @endif
 
 

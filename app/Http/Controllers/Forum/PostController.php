@@ -58,7 +58,8 @@ class PostController extends Controller
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
                     ->where('posts.user_id', '!=', $user->id)
-                    ->orderByRaw(POST::POPULARITY_FORMULA)->get()
+                    ->orderByRaw(POST::POPULARITY_FORMULA)
+                    ->get()
             );
         }
         else {
@@ -288,7 +289,7 @@ class PostController extends Controller
     public function showMyFollows() {
         return view('forum.my_follows', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
+            'posts' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
         ]);
     }
@@ -296,8 +297,8 @@ class PostController extends Controller
     public function showMyPosts() {
         return view('forum.my_posts', [
             'trendingTags' => Tag::getTrendingTags(),
-            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->paginate(self::$POSTS_PER_PAGE),
-            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'posts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE)
         ]);
     }
 
@@ -355,13 +356,15 @@ class PostController extends Controller
         if($user->hasFollowedPost($post)) {
             $user->followedPosts()->detach($post);
             return response()->json([
-                'text' => 'Follow'
+                'text' => 'Follow',
+                'svg' => '<use xlink:href="' . asset('assets/sprite.svg#icon-heart-empty') . '"></use>'
             ]);
         }
         else {
             $user->followedPosts()->attach($post);
             return response()->json([
-                'text' => 'Unfollow'
+                'text' => 'Unfollow',
+                'svg' => '<use xlink:href="' . asset('assets/sprite.svg#icon-heart-full') . '"></use>'
             ]);
         }
     }
@@ -391,7 +394,7 @@ class PostController extends Controller
                             ->orWhere('users.last_name', 'like', "%{$request->input('keyword')}%");
                         });
         }
-        else if($request->input('search-by') == 'tags') {
+        else if($request->input('search-by') == 'tags' && $request->input('tags')) {
             $posts = $posts->join('post_tag', 'post_tag.post_id', '=', 'posts.id')
             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
             // todo: needs to be modified (need to check all the tags in the input are of this post)

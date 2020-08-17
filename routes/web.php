@@ -20,6 +20,28 @@ Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name(
 // invite to be tutor
 Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
 
+// upload photo
+Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
+
+// calendar
+Route::group([
+    'prefix' => 'calendar'
+], function() {
+    Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.store');
+    Route::delete('/availableTime', 'CalendarController@deleteAvailableTime')->name('availableTime.delete');
+});
+
+// bookmark
+Route::group([
+    'prefix' => 'bookmark'
+], function() {
+    Route::post('/{user}', 'BookmarkController@store')->name('bookmark.store');
+    Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
+});
+
+// recommended tutors
+Route::get('/recommended-tutors', 'GeneralController@getRecommendedTutors')->middleware('auth')->name('recommended-tutors');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
@@ -111,10 +133,10 @@ Route::group([
     // report
     Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
 
-
-
 });
 
+// home page
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -126,8 +148,7 @@ Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middl
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['auth']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
-// home page
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
+
 
 
 
