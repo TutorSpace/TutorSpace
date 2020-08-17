@@ -155,3 +155,7 @@ Route::get('/payment/status', 'PaypalApiController@getPaymentStatus');
 Route::post('/payment/paypal_retrieve', 'PaypalApiController@retrieveWithPaypal');
 Route::get('/payment/paypal_retrieve_index', 'PaypalApiController@retrieve_index');
 
+// Stripe demo
+Route::get('/payment/stripe_index', 'StripeApiController@index');
+Route::post('/payment/stripe_payment', 'StripeApiController@processPayment');
+Route::post('/payment/stripe_payout', 'StripeApiController@processPayout');
