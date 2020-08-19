@@ -13,7 +13,7 @@
 
     * {
         color: $color-white;
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     &__heading {
@@ -32,8 +32,8 @@
         }
 
         &__icon {
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 2.3rem;
+            height: 2.3rem;
             fill: $color-white;
         }
     }
@@ -52,6 +52,7 @@
     .icon-social-media {
         &:hover {
             cursor: pointer;
+            animation: shake-animation .3s linear;
         }
     }
 

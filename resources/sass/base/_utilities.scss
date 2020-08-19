@@ -1,16 +1,26 @@
+// size
+.vh-100 {
+    height: 100vh;
+}
+
 // ====================== position ===================
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
+.p-sticky { position: sticky; }
 .p-fixed { position: fixed; }
 
 .top-0 { top: 0; }
 .top-100 { top: 100%; }
 .bottom-100 { bottom: 100%; }
+.bottom-0 { bottom: 0; }
 .bottom-4 { bottom: 4rem; }
-.right-0 { right: 0; }
+.right-0 { right: 0 !important; }
+.left-0 { left: 0; }
+.left-100 { left: 100% !important; }
 
 // ====================== display & visibility ==================
 .hidden { display: none !important; }
+.hidden-2 { display: none; }
 .inline-grid { display: inline-grid !important; }
 .invisible { visibility: hidden; }
 .overflow-hidden { overflow: hidden; }
@@ -19,11 +29,22 @@
 .pl-0 { padding-left: 0; }
 .pr-0 { padding-right: 0; }
 .pb-0-5 { padding-bottom: 0.5rem; }
+.mt-2rem { margin-top: 2rem; }
+.mt-3rem { margin-top: 3rem; }
+.mt-5rem { margin-top: 5rem; }
+.mr-1px { margin-right: 1px; }
+.mr-2px { margin-right: 2px; }
+.mr-3px { margin-right: 3px; }
+.mr-4px { margin-right: 4px; }
+.mr-6px { margin-right: 6px; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
 .bg-grey { background-color: $color-grey !important; }
-
+.bg-white-dark-4 { background-color: $color-white-dark-4 !important; }
+.bg-white-dark-5 { background-color: $color-white-dark-5 !important; }
+.bg-color-blue-primary { background-color: $color-blue-primary !important; }
+.bg-color-purple-primary { background-color: $color-purple-primary !important; }
 
 // ===================== svg =================
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
@@ -42,18 +63,32 @@
 
 // ======================== font color & size ==================
 .fs-1-2 { font-size: 1.2rem; }
-.fs-1-4 { font-size: 1.4rem; }
+.fs-1-4 { font-size: 1.4rem !important; }
 .fs-1-6 { font-size: 1.6rem !important; }
+.fs-1-8 { font-size: 1.8rem !important; }
 .fs-2 { font-size: 2rem !important; }
 .fs-2-2 { font-size: 2.2rem; }
 .fs-2-4 { font-size: 2.4rem; }
+.fc-current { color: currentColor !important; }
+.bg-student .fc-theme-color { color: $color-blue-primary; }
+.bg-tutor .fc-theme-color { color: $color-purple-primary; }
 .fc-grey { color: $color-grey !important; }
-.fc-black { color: black !important; }
+.fc-black { color: $color-black !important; }
+.fc-black-2 { color: $color-black-2 !important; }
 .fc-red { color: red; }
 .fc-purple-primary { color: $color-purple-primary; }
 .fc-purple-secondary { color: $color-purple-secondary; }
 .fc-blue-primary { color: $color-blue-primary; }
 .fc-blue-secondary { color: $color-blue-secondary; }
+.fc-black-post { color: $color-black-post; }
+.fc-black-post-2 { color: $color-black-post-2 !important; }
+.fc-black-post-3 { color: $color-black-post-3; }
+
+// ======================== font family =======================
+.ff-Avenir { font-family: Avenir; }
+
+// ======================== font weight =======================
+.fw-900 { font-weight: 900; }
 
 // =============== absolute and relative positions ===================
 .left-n-2 { left: -2rem; }
@@ -62,12 +97,39 @@
 .flex-2 {
     > * { flex: 0 0 calc(50% - 1rem); }
 }
+.flex-occupy-all { flex: 1; }
+.flex-100 { flex: 0 0 100% !important; }
+.flex-wrap { flex-wrap: wrap; }
 
 // =============== others =================
 .ws-no-wrap { white-space: nowrap; }
+.opacity-100 { opacity: 100 !important; }
 
 .absCenter {
     @include absCenter;
+}
+
+.col-lg-20-p {
+    @media (min-width: 992px) {
+        flex: 0 0 20%;
+        max-width: 0 0 20%;
+    }
+
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-lg-55-p {
+    @media (min-width: 992px) {
+        flex: 0 0 55%;
+        max-width: 55%;
+    }
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 .centerX {
@@ -76,6 +138,8 @@
     transform: translateX(-50%);
 }
 
+.animation-none { animation: none !important; }
+.fade-in-fast { animation: fade-in-animation .3s !important; }
 
 .invalid {
     border-color: red !important;
@@ -96,3 +160,28 @@
         background-color: red !important;
     }
 }
+
+
+
+.disabled {
+    &:hover {
+        cursor: not-allowed;
+    }
+
+    *:hover {
+        cursor: not-allowed;
+    }
+}
+
+.hover--pointer {
+    cursor: pointer;
+}
+
+.placeholder {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    visibility: hidden !important;
+}
+

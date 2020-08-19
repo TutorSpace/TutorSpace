@@ -98,6 +98,31 @@
     }
 }
 
+@keyframes animation-pulsate-student {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        transform: scale(1);
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-blue-secondary, $alpha: .8);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes animation-pulsate-tutor {
+    0% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: 1rem 1rem 4rem 1rem rgba($color: $color-purple-secondary, $alpha: .8);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
 // scale animation
 @keyframes scale-animation {
     0% {
@@ -116,8 +141,20 @@
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+@keyframes fade-in-out-animation {
+    from { opacity: 0; }
+    50% { opacity: 1; }
+    to { opacity: 0;}
+}
 
-
+// shaking animation
+@keyframes shake-animation {
+    from { transform: rotateZ(0); }
+    25% { transform: rotateZ(15deg); }
+    50% { transform: rotateZ(0); }
+    75% { transform: rotateZ(-15deg); }
+    to   { transform: rotateZ(0); }
+}
 
 // bg-shape animation
 @keyframes bg-shape-animation-1 {

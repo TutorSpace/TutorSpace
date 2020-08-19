@@ -1,6 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~select2/dist/css/select2.min.css";
 @import "~toastr/toastr.scss";
+@import "~pikaday/scss/pikaday.scss";
+@import "~bootstrap-slider/dist/css/bootstrap-slider.min.css";
+@import "~metrics-graphics/dist/metricsgraphics.css";
+@import '../../public/fullcalendar/main.css';
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
@@ -11,9 +15,15 @@
 @import "base/typography";
 @import "base/utilities";
 
+@import "components/notification";
 @import "components/button";
+@import "components/modal";
 @import "components/overlay-background";
 @import "components/review";
+@import "components/forum/post_preview";
+@import "components/tag";
+@import "components/forum/post_reply";
+@import "components/user_card";
 @import "components/session";
 @import "components/pagination";
 @import "components/search-card";
@@ -21,19 +31,31 @@
 @import "components/bookmark";
 @import "components/bg-shapes";
 @import "components/select2";
+@import "components/bootstrap-slider";
+@import "components/timepicker";
+@import "components/search";
+@import "components/info_box";
+@import "components/info_card";
+@import "components/svg_tutor_verified";
+@import "components/menu-bar";
+@import "components/auto-complete";
+
 
 @import "layout/navbar";
 @import "layout/footer";
+@import "layout/forum";
 
 @import "pages/index";
-@import "pages/register";
-@import "pages/login";
-@import "pages/forget_password";
-@import "pages/home";
-@import "pages/profile";
+@import "pages/auth/register";
+@import "pages/auth/login";
+@import "pages/forum/show";
+@import "pages/forum/create";
+@import "pages/search";
+@import "pages/home/index";
+@import "pages/home/profile";
+
 @import "pages/report";
 @import "pages/edit_profile";
-@import "pages/search";
 @import "pages/messages";
 @import "pages/view_session";
-@import "pages/tutor_request";
+

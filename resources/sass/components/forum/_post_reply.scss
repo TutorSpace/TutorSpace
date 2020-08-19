@@ -1,0 +1,294 @@
+.post-reply {
+    margin-top: 2rem;
+    display: flex;
+    color: $color-black-post-3;
+
+    position: relative;
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+    padding: 2rem 3rem 1.5rem 2rem;
+
+
+    .left-container {
+        overflow: hidden;
+        margin-right: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 8rem;
+
+
+        > :not(:first-child) {
+            margin-top: .5rem;
+        }
+
+        img {
+            width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            border: 1px solid transparentize($color: $color-grey, $amount: .5);
+        }
+
+        .user-name {
+            font-size: 1.4rem !important;
+            line-height: 1.2;
+            margin-top: .5rem;
+            color: $color-black-post-3;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        .user-info {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.1;
+        }
+
+    }
+
+    .right-container {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .post-reply__actions, .post-reply__info {
+            display: flex;
+            align-items: flex-end;
+            margin-top: .5rem;
+            font-size: 1.3rem;
+            flex-wrap: wrap;
+
+            span {
+                line-height: 1.6;
+            }
+
+            svg {
+                fill: $color-grey;
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            .action {
+                margin-right: 1rem;
+            }
+        }
+
+        .btn-toggle-follow-up {
+            font-size: 1.3rem;
+            color: $color-black-post-3 !important;
+            margin-right: 1rem;
+            padding: 0;
+        }
+    }
+
+    .mark-best-reply {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        button {
+            padding: 0;
+            font-size: 1.4rem;
+        }
+    }
+
+
+
+}
+
+
+.best-reply {
+    padding-top: 5.5rem;
+
+    .svg-best-reply {
+        position: absolute;
+        top: -2.2rem;
+        right: 1rem;
+        height: 6rem;
+        z-index: 100;
+
+        @include respond(extra-sm) {
+            right: -1rem;
+        }
+    }
+
+    .text-best-reply {
+        color: $color-white-dark-5;
+        font-size: 2.2rem;
+        font-family: 'Baloo Bhai', sans-serif;
+        position: absolute;
+        top: .4rem;
+        right: 8.5rem;
+    }
+
+    img {
+        width: 6rem !important;
+        height: 6rem !important;
+    }
+}
+
+.post-comment, .post-followup {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    color: $color-black-post-3;
+    flex: 0 0 100%;
+
+    border-radius: .5rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+
+
+    &__input {
+        background-color: $color-white-dark-4;
+        flex: 1;
+        display: inline-block;
+        border: none;
+        outline: none;
+
+        margin: .5rem 1.5rem;
+        padding: .5rem 1rem;
+        font-size: 1.6rem;
+
+        &::placeholder {
+            color: $color-grey;
+        }
+
+        &:focus {
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1);
+        }
+    }
+
+
+}
+
+.post-comment, .post-followup {
+
+    .btn-reply {
+        font-size: 1.6rem;
+        padding: .5rem 1rem;
+        font-weight: bolder;
+    }
+}
+
+.post-comment {
+    padding: 1.5rem 1.5rem;
+
+    img {
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        border: 1px solid transparentize($color: $color-grey, $amount: .5);
+    }
+
+
+}
+
+.post-followup {
+    margin-left: 8rem;
+    padding: 1rem 1rem;
+}
+
+.followup-container {
+    margin-top: 1.5rem;
+    color: $color-black-post-3;
+    border-radius: 1rem;
+    background-color: $color-white-dark-5;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+    padding: 2rem 2rem;
+    margin-left: 8rem;
+
+    .followup__content {
+        .followup-to {
+            color: $color-grey;
+        }
+
+    }
+
+
+    .followup__info {
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        margin-top: .5rem;
+
+        &__left {
+            margin-right: auto;
+            font-size: 1.2rem;
+
+            .followup__user {
+                color: $color-black-post-3;
+            }
+        }
+    }
+
+
+    .action {
+        margin-right: 1rem;
+        svg {
+            fill: $color-grey;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+
+}
+
+
+
+.bg-student {
+
+
+    .post-comment, .post-followup {
+        .btn-reply {
+            background-color: $color-blue-primary;
+            color: $color-white;
+        }
+    }
+
+    .mark-best-reply {
+        svg {
+            fill: $color-blue-primary;
+        }
+    }
+
+    .best-reply {
+        background-image: linear-gradient(180deg, rgba($color-blue-primary, .9) 0%, rgba($color-blue-primary, .9) 4rem, transparent 10% );
+    }
+}
+
+.bg-tutor {
+
+
+    .post-comment, .post-followup {
+        .btn-reply {
+            background-color: $color-purple-primary;
+            color: $color-white;
+        }
+    }
+    .mark-best-reply {
+        svg {
+            fill: $color-purple-primary;
+        }
+    }
+
+    .best-reply {
+        background-image: linear-gradient(180deg, rgba($color-purple-primary, .9) 0%, rgba($color-purple-primary, .9) 4rem, transparent 10% );
+    }
+}

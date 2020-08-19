@@ -7,13 +7,15 @@ use Hash;
 
 use App\User;
 use App\Major;
-use App\School_year;
+use App\SchoolYear;
+use App\TutorLevel;
 use App\Rules\EmailUSC;
 use App\Rules\NotExistTutor;
 use Illuminate\Http\Request;
 use App\Rules\NotExistStudent;
-use Illuminate\Validation\Rule;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
 use Illuminate\Support\Facades\Notification;
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Notification;
 class RegisterController extends Controller
 {
     public function __construct() {
-        $this->middleware('checkLogout');
+        $this->middleware('guest');
     }
 
     public function sendVerificationEmail(Request $request) {
@@ -34,7 +36,7 @@ class RegisterController extends Controller
             $request->session()->put('verificationCodeStudent', $verificationCode);
 
             Notification::route('mail', $email)
-            ->notify(new EmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName, false));
         }
         else if($request->session()->has('registerDataTutor')) {
             $email = $request->session()->get('registerDataTutor')['email'];
@@ -42,7 +44,7 @@ class RegisterController extends Controller
             $request->session()->put('verificationCodeTutor', $verificationCode);
 
             Notification::route('mail', $email)
-            ->notify(new EmailVerification($verificationCode, $firstName));
+            ->notify(new EmailVerification($verificationCode, $firstName, true));
         }
 
         return response()->json(
@@ -300,7 +302,7 @@ class RegisterController extends Controller
             $user->secondMajor()->associate(Major::find($request->input('second-major')));
         }
         if($request->input('school-year')) {
-            $user->school_year()->associate(School_year::find($request->input('school-year')));
+            $user->schoolYear()->associate(SchoolYear::find($request->input('school-year')));
         }
 
         if(isset($studentData['google-id'])) {
@@ -314,7 +316,6 @@ class RegisterController extends Controller
         $user->last_name = $studentData['last-name'];
         $user->is_tutor = false;
 
-        // todo: comment back and set email in db to not null
         $user->email = $studentData['email'];
         $user->save();
 
@@ -325,7 +326,8 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('home')->with([
-            'registerSuccess' => true
+            'registerSuccess' => true,
+            'showWelcome' => true
         ]);
     }
 
@@ -356,7 +358,7 @@ class RegisterController extends Controller
             "gpa" => [
                 'required',
                 'numeric',
-                'min:0',
+                'min:1',
                 'max:4'
             ]
         ]);
@@ -426,42 +428,46 @@ class RegisterController extends Controller
         // create the user
         $user = new User();
 
-        // stores the data
-        $user->firstMajor()->associate(Major::find($tutorData['first-major']));
+        DB::transaction(function () use($request, $tutorData, $user) {
 
-        if(isset($tutorData['second-major'])) {
-            $user->secondMajor()->associate(Major::find($tutorData['second-major']));
-        }
-        $user->school_year()->associate(School_year::find($tutorData['school-year']));
+            // stores the data
+            $user->firstMajor()->associate(Major::find($tutorData['first-major']));
 
-        if(isset($tutorData['google-id'])) {
-            $user->google_id = $tutorData['google-id'];
-        }
-        else {
-            $user->password = Hash::make($tutorData['password']);
-        }
+            if(isset($tutorData['second-major'])) {
+                $user->secondMajor()->associate(Major::find($tutorData['second-major']));
+            }
+            $user->schoolYear()->associate(SchoolYear::find($tutorData['school-year']));
 
-        $user->first_name = $tutorData['first-name'];
-        $user->last_name = $tutorData['last-name'];
-        $user->is_tutor = true;
-        $user->email = $tutorData['email'];
-        $user->hourly_rate = $tutorData['hourly-rate'];
+            if(isset($tutorData['google-id'])) {
+                $user->google_id = $tutorData['google-id'];
+            }
+            else {
+                $user->password = Hash::make($tutorData['password']);
+            }
 
-        // if gpa field is not (>= 1 && <= 4), then it will be N/A
-        if($tutorData['gpa'] >= 1 && $tutorData['gpa'] <= 4) {
-            $user->gpa = $tutorData['gpa'];
-        }
+            $user->first_name = $tutorData['first-name'];
+            $user->last_name = $tutorData['last-name'];
+            $user->is_tutor = true;
+            $user->email = $tutorData['email'];
+            $user->hourly_rate = $tutorData['hourly-rate'];
 
-        // if user uploaded the file
-        if($request->file('profile-pic')) {
-            $user->deleteImage();
-            $imgURL = $request->file('profile-pic')->store('');
-            $user->profile_pic_url = $imgURL;
-        }
+            // if gpa field is not (>= 1 && <= 4), then it will be N/A
+            if($tutorData['gpa'] >= 1 && $tutorData['gpa'] <= 4) {
+                $user->gpa = $tutorData['gpa'];
+            }
 
-        $user->courses()->attach($tutorData['courses']);
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+            }
 
-        $user->save();
+            $user->tutorLevel()->associate(TutorLevel::find(1));
+
+            $user->save();
+
+            $user->courses()->attach($tutorData['courses']);
+        });
 
         // clear all the session data
         $request->session()->flush();
@@ -470,7 +476,8 @@ class RegisterController extends Controller
         Auth::login($user);
 
         return redirect()->route('home')->with([
-            'registerSuccess' => true
+            'registerSuccess' => true,
+            'showWelcome' => true
         ]);
     }
 

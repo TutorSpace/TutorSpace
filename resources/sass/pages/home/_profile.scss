@@ -1,0 +1,130 @@
+.profile {
+    margin-top: unset !important;
+
+    &__heading {
+        margin-top: 5rem;
+    }
+
+    &__form-row {
+        display: flex;
+        width: 100%;
+
+        > :not(:last-child) {
+            margin-right: 2rem;
+        }
+
+        > * {
+            flex: 0 0 calc(33.33% - 1rem);
+        }
+    }
+
+    &__label {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-top: .5rem;
+        white-space: nowrap;
+    }
+
+    &__input {
+        padding: 2rem 1.5rem;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 3.5rem;
+
+
+        button {
+            width: 20rem;
+            padding: 1rem 2rem;
+            font-size: 1.4rem;
+            transition: all .1s;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+        }
+    }
+
+    .autocomplete, &__input {
+        font-size: 1.6rem;
+    }
+
+    .gpa, .hourly-rate {
+        flex: 0 0 10rem;
+    }
+
+    .gpa-note {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: .3rem;
+        font-size: 1.2rem;
+        flex: 0 0 20rem;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .boxes {
+        display: flex;
+        flex-wrap: wrap;
+
+        .box {
+            flex: 0 0 calc(12.5% - .75rem);
+            margin-top: .5rem;
+            margin-bottom: .3rem;
+            margin-right: .75rem;
+            white-space: nowrap;
+            border-radius: .5rem;
+            text-align: center;
+            font-size: 1.4rem;
+            padding: .5rem .7rem;
+            align-self: center;
+            transition: all .1s;
+            cursor: pointer;
+
+            @include respond(sm) {
+                flex: 0 0 calc(25% - .75rem);
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+
+            &:active {
+                transform: translateY(-1px);
+            }
+
+            .remove {
+                right: .5rem;
+                font-size: 1.6rem;
+                line-height: 1.3;
+            }
+        }
+
+    }
+
+    .hourly-rate-input-container {
+        position: relative;
+
+        .symbol {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 1.5rem;
+        }
+
+        input {
+            padding-left: 2.5rem;
+        }
+    }
+
+
+
+}

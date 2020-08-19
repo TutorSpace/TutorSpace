@@ -1,31 +1,376 @@
-.nav {
+._nav {
     height: $nav-height;
-    background-color: $color-white-dark-2;
-    color: $color-blue-primary !important;
-    z-index: 1000;
+    z-index: 2000;
+    border-bottom: 1px solid rgba(0,0,0,.1);
 
     .brand-name {
-        font-size: 3.5rem;
+        font-size: 3.3rem;
         font-family: 'Baloo Bhai', sans-serif;
-        font-weight: 500;
-        margin: 0 5rem;
+        margin: 0 4rem;
         text-decoration: none;
-        color: $color-blue-primary;
+        color: inherit;
+
+        &::after {
+            content: "";
+            display: none;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            visibility: visible;
+
+            @include respond(sm) {
+                display: block;
+            }
+        }
+
+        @include respond(md) {
+            margin: 0 2.5rem;
+        }
+
+        @include respond(sm) {
+            margin-left: 1.3rem;
+            margin-right: 2.2rem;
+            position: relative;
+            width: 5rem;
+            visibility: hidden;
+        }
+    }
+
+    .active {
+        position: relative;
+        &:hover {
+            text-decoration: none;
+
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(-.5rem);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 3px;
+            transition: all .2s;
+        }
     }
 
     .nav__item {
-        font-size: 2rem;
-        color: $color-blue-primary;
+        font-size: 1.8rem;
         font-weight: bold;
-        margin-right: 3rem;
+        color: inherit;
     }
 
-    &-guest {
+    .svg-list {
+        font-size: 3rem;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            animation: none !important;
+        }
+    }
+
+    .svg-list-dropdown, .profile-img-dropdown {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: calc(100% + .75rem);
+        display: none;
+        border-radius: 3px;
+        overflow: hidden;
+
+        .nav__item {
+            margin-right: 0 !important;
+            padding: 1rem 2rem;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            transition: all .2s;
+        }
+    }
+
+    .nav-toggle-sm {
+        display: none;
+    }
+
+    .nav-left {
+        margin-right: auto;
+
+        .nav__item {
+            margin-right: 3rem;
+        }
+
+        .svg-list {
+            margin-right: 3rem;
+        }
+
+        @include respond(md) {
+            .nav-toggle-lg {
+                display: none;
+            }
+
+            .nav-toggle-sm {
+                display: block;
+            }
+        }
+
+        @include respond(sm) {
+            .nav-toggle-sm {
+                display: none;
+            }
+        }
 
     }
 
-    &-auth {
+    .nav__form {
+        width: 40rem;
 
+        @include respond(extra-sm) {
+            width: 25rem;
+        }
+    }
+
+    .btn-sign-in {
+        border-radius: .75rem;
+        padding: .5rem 1rem;
+    }
+
+
+    .nav-right {
+        margin-right: 5rem;
+        display: flex;
+        align-items: center;
+
+        .message-welcome {
+            font-size: 2.4rem;
+            font-weight: bold;
+
+            animation: fade-in-out-animation 4s ease-in-out forwards;
+
+            ~ * {
+                display: none;
+            }
+
+            @include respond(sm) {
+                font-size: 2rem;
+                margin-right: 1rem;
+            }
+        }
+
+        .nav-fade-in-animation {
+            animation: fade-in-animation 3s backwards;
+            backface-visibility: hidden;
+        }
+
+        &__svg-container {
+            display: flex;
+            align-items: center;
+            margin-right: 3.5rem;
+
+            svg {
+                cursor: pointer;
+                &:hover {
+                    animation: shake-animation .3s linear;
+                }
+            }
+
+            .svg-message {
+                font-size: 2rem;
+                margin-right: 1.8rem;
+
+                @include respond(sm) {
+                    font-size: 2.2rem;
+                    margin-right: 1.3rem;
+                }
+            }
+
+            .svg-notification {
+                font-size: 2.2rem;
+            }
+
+            @include respond(sm) {
+                margin-right: 1.5rem;
+            }
+        }
+
+        &__profile-img {
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 50%;
+            border: 2px solid;
+            object-fit: cover;
+            cursor: pointer;
+
+            @include respond(sm) {
+                margin-right: 2rem;
+                border-width: 1px;
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+
+        .svg-list-dropdown, .profile-img-dropdown {
+            right: 2.5rem;
+        }
+
+        @include respond(md) {
+            margin-right: 3rem;
+        }
+
+        @include respond(sm) {
+            margin-right: 1.5rem;
+
+            .nav-toggle-lg {
+                display: none;
+            }
+
+            .nav-toggle-sm {
+                display: block;
+            }
+        }
     }
 }
+
+.nav-guest, .nav-auth {
+    &--student {
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
+                color: $color-blue-primary;
+                &:hover {
+                    background-color: $color-blue-primary;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+
+    &--tutor {
+        .svg-list-dropdown, .profile-img-dropdown {
+            .nav__item {
+                background-color: $color-white;
+                color: $color-purple-primary;
+                &:hover {
+                    background-color: $color-purple-primary;
+                    color: $color-white;
+                }
+            }
+        }
+    }
+}
+
+.nav-guest {
+    background-color: $color-white-dark-2;
+
+    &--student {
+        color: $color-blue-primary;
+
+        .active::after {
+            background-color: $color-blue-primary;
+        }
+
+        .brand-name::after {
+            content: url(../../../public/assets/images/blue_logo.svg);
+        }
+
+        .nav__form {
+            @include form-search-blue;
+        }
+
+        .nav-right {
+            &__svg-container {
+                .svg-message, .svg-notification {
+                    color: $color-blue-primary;
+
+                    &:hover {
+                        color: $color-blue-primary-2;
+                    }
+                }
+            }
+
+            &__profile-img {
+                border-color: $color-blue-primary;
+            }
+        }
+    }
+
+    &--tutor {
+        color: $color-purple-primary;
+
+        .active::after {
+            background-color: $color-purple-primary;
+        }
+
+        .brand-name::after {
+            content: url(../../../public/assets/images/purple_logo.svg);
+        }
+
+        .nav__form {
+            @include form-search-purple;
+        }
+
+        .nav-right {
+            &__svg-container {
+                .svg-message, .svg-notification {
+                    color: $color-purple-primary;
+
+                    &:hover {
+                        color: $color-purple-primary-2;
+                    }
+                }
+            }
+
+            &__profile-img {
+                border-color: $color-purple-primary;
+            }
+        }
+    }
+
+}
+
+.nav-auth {
+    color: $color-white-dark;
+
+    .active::after {
+        background-color: $color-white-dark;
+    }
+
+    .brand-name::after {
+        content: url(../../../public/assets/images/white_logo.svg);
+    }
+
+    .nav__form {
+        @include form-search-white;
+    }
+
+    .nav-right {
+        &__svg-container {
+            .svg-message, .svg-notification {
+                color: $color-white-dark;
+
+                &:hover {
+                    color: $color-white-dark-2;
+                }
+            }
+        }
+
+        &__profile-img {
+            border-color: $color-white-dark;
+        }
+    }
+
+    &--student {
+        background-color: $color-blue-primary;
+    }
+
+    &--tutor {
+        background-color: $color-purple-primary;
+    }
+}
+
+
 

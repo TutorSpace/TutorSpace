@@ -11,7 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 class GoogleController extends Controller
 {
     public function __construct() {
-        $this->middleware('checkLogout');
+        $this->middleware('guest');
     }
 
     public function handleGoogleCallback(Request $request) {
@@ -20,7 +20,7 @@ class GoogleController extends Controller
         } catch (\Exception $e) {
             $request->session()->flush();
             return redirect()->route('index')->with([
-                'errorMsg' => 'Something went wrong with google sign in'
+                'errorMsg' => 'Something went wrong with your Google Sign In. Please try again!'
             ]);
         }
 
@@ -79,12 +79,30 @@ class GoogleController extends Controller
             if ($loginGoogleStudent) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', false)->first());
                 // Authentication passed...
-                return redirect()->route('home');
+                if($redirectRouteName) {
+                    return redirect()->route($redirectRouteName)->with([
+                        'showWelcome' => true
+                    ]);
+                }
+                else if($request->session()->has('redirectUrl')) {
+                    return redirect($request->session()->get('redirectUrl'))->with([
+                        'showWelcome' => true
+                    ]);
+                }
             }
             else if ($loginGoogleTutor) {
                 Auth::login(User::where('email', '=', $user->email)->where('is_tutor', true)->first());
                 // Authentication passed...
-                return redirect()->route('home');
+                if($redirectRouteName) {
+                    return redirect()->route($redirectRouteName)->with([
+                        'showWelcome' => true
+                    ]);
+                }
+                else if($request->session()->has('redirectUrl')) {
+                    return redirect($request->session()->get('redirectUrl'))->with([
+                        'showWelcome' => true
+                    ]);
+                }
             }
             else {
                 return redirect()->back()->withInput()->with([
@@ -150,7 +168,13 @@ class GoogleController extends Controller
     public function loginRedirectToGoogleStudent(Request $request) {
         $request->session()->flush();
         $request->session()->put('loginGoogleStudent', true);
-        $request->session()->put('redirectRouteName', 'home');
+
+        if($request->query('backUrl')) {
+            $request->session()->put('redirectUrl', $request->query('backUrl'));
+        }
+        else {
+            $request->session()->put('redirectRouteName', 'home');
+        }
         return Socialite::driver('google')->redirect();
     }
 
@@ -166,7 +190,14 @@ class GoogleController extends Controller
     public function loginRedirectToGoogleTutor(Request $request) {
         $request->session()->flush();
         $request->session()->put('loginGoogleTutor', true);
-        $request->session()->put('redirectRouteName', 'home');
+
+        if($request->query('backUrl')) {
+            $request->session()->put('redirectUrl', $request->query('backUrl'));
+        }
+        else {
+            $request->session()->put('redirectRouteName', 'home');
+        }
+
         return Socialite::driver('google')->redirect();
     }
 

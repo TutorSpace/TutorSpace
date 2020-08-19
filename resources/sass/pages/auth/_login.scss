@@ -1,0 +1,263 @@
+.body-login {
+    position: relative;
+    height: 100vh;
+}
+
+.login {
+    display: flex;
+    animation: fade-in-animation 1.5s;
+    padding: 0 8rem;
+
+    @include respond(lg-2) {
+        padding: 0 14rem;
+    }
+
+    @include respond(lg) {
+        padding: 0 8rem;
+    }
+
+    @include respond(sm) {
+        padding: 0 3rem;
+    }
+
+
+    @include absCenter;
+
+
+    .login__heading {
+        text-align: center;
+    }
+
+    .login__notice {
+        color: $color-grey;
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    &--left {
+        flex: 1;
+        box-shadow: 0px 1rem 10rem 0px rgba(0,0,0,0.25);
+        background-color: $color-white-dark;
+
+        &-student {
+            color: $color-blue-primary;
+
+            .login-form-input {
+                border-color: $color-blue-primary;
+
+                &-normal {
+                    &:focus {
+                        + svg {
+                            fill: $color-blue-primary;
+                        }
+                    }
+                }
+            }
+
+            .btn-close {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                fill: $color-blue-primary;
+
+                @include respond(md) {
+                    display: block;
+                }
+            }
+        }
+
+        &-tutor {
+            color: $color-purple-primary;
+
+            .login-form-input {
+                border-color: $color-purple-primary;
+
+                &-normal {
+                    &:focus {
+                        + svg {
+                            fill: $color-purple-primary;
+                        }
+                    }
+                }
+            }
+
+            .btn-close {
+                display: none;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                fill: $color-purple-primary;
+
+                @include respond(md) {
+                    display: block;
+                }
+            }
+        }
+
+        .login__heading {
+            margin-top: 7rem;
+            white-space: nowrap;
+        }
+
+        .btn-google-container-sm {
+            display: none !important;
+
+            @include respond(md) {
+                display: flex !important;
+            }
+        }
+
+        .separator {
+            display: none !important;
+
+            @include respond(md) {
+                display: block !important;
+            }
+        }
+
+        @include respond(md) {
+            border-radius: 1.2rem;
+        }
+
+        @include respond(extra-sm) {
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
+    }
+
+    &--right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 4rem;
+        position: relative;
+
+        &__logo {
+            width: 35rem;
+            height: auto;
+        }
+
+        &-student {
+            background-color: rgba($color-blue-primary, .8);
+        }
+
+        &-tutor {
+            background-color: rgba($color-purple-primary, .8);
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            fill: $color-white;
+        }
+
+        .btn-google-container {
+            align-self: flex-end;
+            position: absolute;
+            bottom: 4rem;
+        }
+
+        @include respond(md) {
+            display: none;
+        }
+    }
+
+    // $icon-size: 2.6rem;
+    $icon-size: 2.2rem;
+    $icon-left-space: 1.2rem;
+
+    form {
+        padding: 3rem 7rem;
+
+        > :not(:first-child) {
+            margin-top: 3rem;
+        }
+    }
+
+    &-form-input {
+        outline: none;
+        border: 2px solid;
+        border-radius: 1.2rem;
+        background-color: transparent;
+        // font-size: 2.2rem;
+        font-size: 2rem;
+
+        &:focus {
+            box-shadow: none;
+            background-color: transparent;
+        }
+
+        &::placeholder {
+            color: $color-grey;
+        }
+
+        // for inputs that have svg + text
+        &-normal {
+            // height: 6.2rem;
+            height: 5.5rem;
+            // padding-left: 4.3rem;
+            padding-left: 4rem;
+
+            &:focus {
+                &::placeholder {
+                    visibility: hidden;
+                }
+            }
+
+            // @include respond(lg-2) {
+            //     height: 5.5rem;
+            // }
+
+            @include respond(md) {
+                height: 5rem;
+            }
+
+            @include respond(extra-sm) {
+                font-size: 2rem;
+                height: 6rem;
+                padding-left: 4rem;
+            }
+        }
+    }
+
+    .input-icon {
+        position: absolute;
+        width: $icon-size;
+        height: $icon-size;
+        left: $icon-left-space;
+        top: calc(50% - #{$icon-size} / 2);
+        fill: $color-grey;
+        transition: all .2s;
+    }
+
+    .btn-login, .btn-send {
+        height: 6rem;
+        font-size: 2.2rem;
+        width: 30rem;
+        border-radius: 5rem;
+    }
+
+    .svg-reset-password-right-student {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 4rem;
+        transform: scaleY(1.15);
+    }
+
+    .svg-reset-password-right-tutor {
+        width: 30rem;
+        height: 40rem;
+        align-self: flex-end;
+        position: relative;
+        right: -3rem;
+        bottom: 0rem;
+    }
+
+}
+
+

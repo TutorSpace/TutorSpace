@@ -4,19 +4,51 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/test', 'testController@test');
+Route::post('/test', 'testController@test')->name('test');
+Route::get('/test', 'testController@index');
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
+
+// search for tutors in nav bar
+Route::get('/search', 'SearchController@index')->name('search.index');
 
 // subscriptions
 Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('subscription.store');
 Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
 
+// invite to be tutor
+Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
+
+// upload photo
+Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
+
+// calendar
+Route::group([
+    'prefix' => 'calendar'
+], function() {
+    Route::post('/availableTime', 'CalendarController@addAvailableTime')->name('availableTime.store');
+    Route::delete('/availableTime', 'CalendarController@deleteAvailableTime')->name('availableTime.delete');
+});
+
+// bookmark
+Route::group([
+    'prefix' => 'bookmark'
+], function() {
+    Route::post('/{user}', 'BookmarkController@store')->name('bookmark.store');
+    Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
+
+    // get a single user_card
+    Route::get('/{user}', 'BookmarkController@show')->name('bookmark.show');
+});
+
+// recommended tutors
+Route::get('/recommended-tutors', 'GeneralController@getRecommendedTutors')->middleware('auth')->name('recommended-tutors');
+
 // private policy
 Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
 
-// auth
+// ============================  auth  ========================
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -79,6 +111,42 @@ Route::group([
 });
 
 
+// ===============================  Forum  ==========================
+Route::group([
+    'prefix' => 'forum'
+], function () {
+    Route::get('/posts/search-results', 'Forum\PostController@search')->name('posts.search');
+    Route::get('/posts/popular', 'Forum\PostController@indexPopular')->name('posts.popular');
+    Route::get('/posts/latest', 'Forum\PostController@indexLatest')->name('posts.latest');
+    Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
+    Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
+    Route::get('posts/my-participated', 'Forum\PostController@showMyParticipated')->name('posts.my-participated');
+    Route::resource('posts', 'Forum\PostController');
+
+    Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
+    Route::post('posts/draft', 'Forum\PostController@storeAsDraft')->name('post-draft.store');
+    Route::post('posts/upvote/{post}', 'Forum\PostController@upvote')->name('post.upvote');
+    Route::post('posts/follow/{post}', 'Forum\PostController@follow')->name('post.follow');
+
+    Route::post('posts/{post}/replies/reply', 'Forum\ReplyController@storeReply')->name('posts.reply.store');
+    Route::post('posts/replies/{reply}/upvote', 'Forum\ReplyController@upvote')->name('posts.reply.upvote');
+    Route::post('posts/replies/{reply}/followup', 'Forum\ReplyController@storeFollowup')->name('posts.followup.store');
+
+    Route::post('/posts/mark-best-reply/{post}/{reply}', 'Forum\PostController@markAsBestReply')->name('posts.markBestReply');
+
+    // report
+    Route::post('/report', 'GeneralController@storeReport')->middleware('auth')->name('forum.report.store');
+
+});
+
+// home page
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
+Route::get('/home/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
+Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
+
+
+
 // profile
 Route::get('/profile', 'profileController@show')->name('profile')->middleware(['auth']);
 Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middleware(['auth']);
@@ -87,12 +155,10 @@ Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middl
 Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['auth']);
 Route::post('/edit_profile', 'profileController@editProfile');
 
-// home page
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 
-// search page
-Route::get('/search', 'searchController@show')->name('search')->middleware(['auth']);
+
+
 
 
 // bookmark
@@ -126,8 +192,7 @@ Route::post('/add_characteristic', 'characteristicController@addCharacteristic')
 // reviews
 Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
 
-// search
-Route::get('/search', 'searchController@show')->middleware(['auth']);
+
 
 // reports
 Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['auth']);

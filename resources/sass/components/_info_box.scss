@@ -1,0 +1,216 @@
+.info-boxes {
+    width: 100%;
+
+    @include respond(sm) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        gap: 2rem;
+    }
+
+    > * {
+        margin-top: 1.5rem;
+    }
+
+    .info-box {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 3rem;
+        background-color: $color-white-dark-5;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        color: $color-black-2;
+        box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+
+        @include respond(sm) {
+            flex-wrap: wrap;
+
+            > div:not(:first-child) {
+                width: 100% !important;
+                margin-top: .5rem;
+            }
+        }
+
+        .flex-100 {
+            display: none;
+            @include respond(sm) {
+                display: block;
+            }
+        }
+
+        > div:not(:last-child) {
+            margin-right: 1rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            @include respond(lg-2) {
+                margin-right: .5rem;
+            }
+        }
+
+
+
+        img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+
+            @include respond(sm) {
+                width: 2.5rem;
+                height: 2.5rem;
+                margin-right: .5rem;
+                margin-bottom: .5rem;
+            }
+        }
+
+        .content {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: inherit;
+            font-weight: 500;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            color: $color-grey;
+            display: block;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            width: 20rem;
+        }
+
+        .date {
+            width: 20ch;
+        }
+
+        .time {
+            width: 17ch;
+        }
+
+        .course, .status, .format {
+            width: 10ch;
+        }
+
+        .price {
+            width: 7ch;
+            color: $color-purple-primary;
+        }
+
+        .status {
+            .approved {
+                color: $color-blue-primary;
+            }
+
+            .declined {
+                color: #C70000;
+            }
+
+            .pending {
+                color: $color-yellow-primary;
+            }
+        }
+
+        .actions {
+            display: flex;
+            width: 21ch;
+            justify-content: space-between;
+            align-items: center;
+
+            @include respond(md) {
+                width: 12ch;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .btn:last-child {
+                    margin-top: .5rem;
+                }
+            }
+
+            @include respond(sm) {
+                flex-wrap: nowrap;
+                justify-content: flex-end;
+            }
+
+            .btn {
+                width: 12ch;
+                margin-right: .75rem;
+
+                @include respond(md) {
+                    margin-right: 0;
+                }
+
+                @include respond(sm) {
+                    margin-top: .5rem;
+                    width: 9ch;
+
+                    &:last-child {
+                        margin-left: .5rem;
+                    }
+                }
+            }
+
+        }
+
+        .action {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .review {
+            flex: 1;
+            white-space: normal !important;
+        }
+
+        .rating {
+            width: 15rem;
+
+            @include respond(sm) {
+                text-align: end;
+                margin-right: 0 !important;
+            }
+
+            svg {
+                width: 1.8rem;
+                height: 1.8rem;
+                margin-right: .2rem;
+
+                @include respond(md) {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    margin-right: .1rem;
+                }
+
+                &.full {
+                    fill: $color-yellow-primary;
+                }
+
+                &.empty {
+                    fill: $color-black-2;
+                }
+            }
+        }
+
+        .time-ago {
+            width: 10rem;
+
+            @include respond(sm) {
+                text-align: end;
+            }
+        }
+
+    }
+
+
+
+}
+
+
+

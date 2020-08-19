@@ -93,7 +93,14 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/create.js'");
+$('.btn-post-type').click(function () {
+  $('.btn-selected').removeClass('btn-selected');
+  $(this).addClass('btn-selected');
+  $('#input-hidden-post-type').val($(this).attr('data-post-type-id'));
+});
+$('#create-tags').select2({
+  placeholder: "Add post tags here..."
+});
 
 /***/ }),
 

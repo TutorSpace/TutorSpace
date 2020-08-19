@@ -18,12 +18,12 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('star_rating');
             $table->unsignedBigInteger('reviewer_id');
             $table->unsignedBigInteger('reviewee_id');
-            $table->unsignedBigInteger('session_id');
+            // $table->unsignedBigInteger('session_id');
             $table->text('review');
             $table->timestamps();
             $table->foreign('reviewer_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('reviewee_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

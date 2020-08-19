@@ -3,21 +3,30 @@
 namespace App;
 
 use DB;
+use App\Post;
 use App\Session;
-use Carbon\Carbon;
 
+use Carbon\Carbon;
 use App\Tutor_request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\ResetPasswordNotification;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements Viewable
 {
     use Notifiable;
+    use InteractsWithViews;
+    protected $removeViewsOnDelete = true;
 
     /**
      * The attributes that are mass assignable.
@@ -35,21 +44,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    CONST RECOMMENDED_TUTORS_CACHE_KEY = 'RECOMMENDED_TUTORS';
+
     // customized reset password
-    public function customSendPasswordResetNotification($token, $is_tutor)
+    public function sendPasswordResetNotification($token)
     {
-        $this->notify(new ResetPasswordNotification($token, $is_tutor));
+        $this->notify(new CustomResetPasswordNotification($token, request()->is_tutor));
     }
 
-    public static function getTime($date, $startTime) {
-        $startTime = date("H:i", strtotime($startTime));
-        $date = date('Y-m-d', strtotime($date));
-        return "$date $startTime";
+
+    public function getIntroduction() {
+        $secondMajor = $this->secondMajor;
+        $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
+
+        return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
     }
 
-    // to delete
-    public function major() {
-        return $this->belongsTo('App\Major');
+    // check whether a user with an email exists and is a student
+    public static function existStudent($email) {
+        return User::where('email', '=', $email)->where('is_tutor', false)->exists();
+    }
+
+    public static function existTutor($email) {
+        return User::where('email', '=', $email)->where('is_tutor', true)->exists();
+    }
+
+    public static function registeredWithGoogle($email) {
+        return User::where('email', '=', $email)->where('google_id', '!=', null)->exists();
     }
 
     public function firstMajor() {
@@ -60,13 +81,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Major', 'second_major_id');
     }
 
-
-    public function school_year() {
-        return $this->belongsTo('App\School_year');
+    public function minor() {
+        return $this->belongsTo('App\Major', 'minor_id');
     }
 
-    public function subjects() {
-        return $this->belongsToMany('App\Subject');
+    public function schoolYear() {
+        return $this->belongsTo('App\SchoolYear');
     }
 
     public function courses() {
@@ -77,6 +97,177 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Characteristic');
     }
 
+    public function tutorLevel() {
+        return $this->belongsTo('App\TutorLevel');
+    }
+
+    public function deleteImage() {
+        if(!Str::of($this->profile_pic_url)->contains('placeholder')) {
+            Storage::delete($this->profile_pic_url);
+        }
+    }
+
+    // return the profile' daily view count in the past week
+    public function viewCntWeek() {
+        return $this->views()
+                    ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
+                    ->whereBetween('viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->groupBy('viewed_at');
+    }
+
+    public static function getViewCntWeek($userId) {
+        return View::where('views.viewable_type', 'App\User')
+                    ->whereBetween('views.viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->join('users', 'users.id', '=', 'views.viewable_id')
+                    ->where('users.id', $userId)
+                    ->groupBy('views.viewed_at')
+                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->get();
+    }
+
+    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
+    public function views(): MorphMany {
+        return $this->morphMany('App\View', 'viewable');
+    }
+
+
+    // ======================== Forum ======================
+    public function posts() {
+        return $this->hasMany('App\Post');
+    }
+
+    // get the posts that this user replied to
+    public function postsReplied() {
+        return Post::join('replies', 'replies.post_id', '=', 'posts.id')
+                    ->join('users', 'users.id', '=', 'replies.user_id')
+                    ->where('users.id', $this->id)
+                    ->where('replies.is_direct_reply', true)
+                    ->distinct();
+    }
+
+    public function replies() {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function followedPosts() {
+        // return $this->belongsToMany('App\Post', 'post_user', 'user_id', 'post_id');
+        return $this->belongsToMany('App\Post');
+    }
+
+    public function hasFollowedPost($post) {
+        return $this->followedPosts()->where('post_id', $post->id)->exists();
+    }
+
+    // get all the posts the user upvoted
+    public function upvotedPosts() {
+        return $this->belongsToMany('App\Post', 'post_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given post
+    public function hasUpvotedPost($post) {
+        return $this->upvotedPosts()->where('post_id', $post->id)->exists();
+    }
+
+    // get all the replyes the user upvoted
+    public function upvotedReplies() {
+        return $this->belongsToMany('App\Reply', 'reply_user_upvote');
+    }
+
+    // return a boolean indicates whether this users likes the given reply
+    public function hasUpvotedReply($reply) {
+        return $this->upvotedReplies()->where('reply_id', $reply->id)->exists();
+    }
+
+    public function tags() {
+        return $this->belongsToMany('App\Tag');
+    }
+
+    // return users that this user bookmarked
+    public function bookmarkedUsers() {
+        return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
+    }
+
+    // return users who bookmarked the current user
+    public function bookmarkedByUsers() {
+        return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
+    }
+
+    public function getRecommendedTutorsCacheKey() {
+        return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
+    }
+
+    // todo: modify this method for recommending tutors
+    // get recommended tutors
+    public function getRecommendedTutors() {
+        if(request()->refresh) {
+            Cache::forget($this->getRecommendedTutorsCacheKey());
+        }
+        return Cache::remember(
+            $this->getRecommendedTutorsCacheKey(),
+            3600,
+            function() {
+                return $this->recommendedTutors();
+            }
+        );
+    }
+
+    private function recommendedTutors() {
+        if(!$this->is_tutor) {
+            $courseIds = $this->courses()->pluck('id');
+            $recommendedTutors = User::where('users.is_tutor', true)
+                                ->join('course_user', 'course_user.user_id', '=', 'users.id')
+                                ->join('courses', 'courses.id', 'course_user.course_id')
+                                ->whereIn('courses.id', $courseIds)
+                                ->where('users.email', '!=', $this->email)
+                                ->get();
+            $recommendedTutors = $recommendedTutors
+                                    ->random(min(5, $recommendedTutors->count()));
+
+            if($recommendedTutors->count() < 5) {
+                $tutorIds = $recommendedTutors->pluck('id');
+                $tutors = User::where('users.is_tutor', true)
+                            ->where(function($query) {
+                                // if is null, then assign -1 to it so that null != null
+                                $query->where('users.first_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.first_major_id', $this->second_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
+                            })
+                            ->whereNotIn('id', $tutorIds)
+                            ->where('users.email', '!=', $this->email)
+                            ->get();
+                // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+
+                $recommendedTutors = $recommendedTutors->merge($tutors);
+
+                // if there are still < 5 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 5) {
+                    $tutorIds = $recommendedTutors->pluck('id');
+                    $tutors = User::where('users.is_tutor', true)
+                                    ->whereNotIn('id', $tutorIds)
+                                    ->where('users.email', '!=', $this->email)
+                                    ->get();
+                    // I want to get a total of (5 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+                    $recommendedTutors = $recommendedTutors->merge($tutors);
+                }
+            }
+
+            return $recommendedTutors;
+        }
+        return [];
+    }
+
+
     // no need for this function seemingly
     // public function sessions() {
     //     if($this->is_tutor)
@@ -85,14 +276,6 @@ class User extends Authenticatable
     //         return $this->hasMany('App\Session', 'student_id');
     // }
 
-
-    public function deleteImage() {
-        Storage::delete($this->profile_pic_url);
-    }
-
-    public function bookmarks() {
-        return $this->belongsToMany('App\User', 'bookmark_user', 'user_id', 'bookmarked_user_id');
-    }
 
     // whenever this function is called, we need to REMOVE the outdated tutor_requests
     public function tutor_requests() {
@@ -114,13 +297,8 @@ class User extends Authenticatable
         }
     }
 
-    public function available_times() {
-        return $this->hasMany('App\Available_time');
-    }
-
-    // return users who bookmarked the current user
-    public function users() {
-        return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
+    public function availableTimes() {
+        return $this->hasMany('App\AvailableTime');
     }
 
     // return all the reviews written by the current user
@@ -129,51 +307,63 @@ class User extends Authenticatable
     }
 
     // return all the reviews about the current user
-    public function being_reviews() {
+    public function about_reviews() {
         return $this->hasMany('App\Review', 'reviewee_id');
     }
 
+    public function getAvgRating() {
+        return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
+    }
+
+
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
-    public function upcomingSessions($num) {
-        $mytime = Carbon::now();
+    public function upcomingSessions() {
 
-        $outdatedSessions = Session::where('is_upcoming', 1)
-                    ->where('is_canceled', 0)
-                    ->get();
+        $key = $this->is_tutor ? 'tutor_id' : 'student_id';
 
-        foreach($outdatedSessions as $outdatedSession) {
-            $sessionTime = User::getTime($outdatedSession->date, $outdatedSession->start_time);
-            if($sessionTime <= $mytime) {
-                $outdatedSession->is_upcoming = 0;
-                $outdatedSession->save();
-            }
-        }
+        return $this->hasMany('App\Session', $key)
+                        ->where('sessions.is_upcoming', true)
+                        ->where('is_canceled', false);
 
-        if($this->is_tutor) {
-            // the returned information is about the student
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-                ->join('users', 'sessions.student_id', '=', 'users.id')
-                ->where('tutor_id', $this->id)
-                ->where('is_upcoming', 1)
-                ->where('is_canceled', 0)
-                ->limit($num)
-                ->get();
+        // $mytime = Carbon::now();
 
-            return $sessions;
-        }
-        else {
-            // the returned information is about the tutor
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-            ->join('users', 'sessions.tutor_id', '=', 'users.id')
-            ->where('student_id', $this->id)
-            ->where('is_upcoming', 1)
-            ->where('is_canceled', 0)
-            ->limit($num)
-            ->get();
+        // $outdatedSessions = Session::where('is_upcoming', 1)
+        //             ->where('is_canceled', 0)
+        //             ->get();
 
-            return $sessions;
-        }
+        // foreach($outdatedSessions as $outdatedSession) {
+        //     $sessionTime = User::getTime($outdatedSession->date, $outdatedSession->start_time);
+        //     if($sessionTime <= $mytime) {
+        //         $outdatedSession->is_upcoming = 0;
+        //         $outdatedSession->save();
+        //     }
+        // }
+
+        // if($this->is_tutor) {
+        //     // the returned information is about the student
+        //     $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+        //         ->join('users', 'sessions.student_id', '=', 'users.id')
+        //         ->where('tutor_id', $this->id)
+        //         ->where('is_upcoming', 1)
+        //         ->where('is_canceled', 0)
+        //         ->limit($num)
+        //         ->get();
+
+        //     return $sessions;
+        // }
+        // else {
+        //     // the returned information is about the tutor
+        //     $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
+        //     ->join('users', 'sessions.tutor_id', '=', 'users.id')
+        //     ->where('student_id', $this->id)
+        //     ->where('is_upcoming', 1)
+        //     ->where('is_canceled', 0)
+        //     ->limit($num)
+        //     ->get();
+
+        //     return $sessions;
+        // }
     }
 
     public function pastSessions() {
@@ -220,22 +410,17 @@ class User extends Authenticatable
         return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
     }
 
-    // check whether the subject with $subject_id is already faved by the current user
-    public function favedSubject($subject_id) {
-        return $this->subjects()->where('id', '=', $subject_id)->count() > 0;
-    }
-
     // check whether the course with $course_id is already faved by the current user
     public function favedCourse($course_id) {
         return $this->courses()->where('id', '=', $course_id)->count() > 0;
     }
 
-    // check whether the characteristic with $characteristic_id is already faved by the current user
+    // check whether the characteristic with $characteristic_id is already faved by the current userrating
     public function favedCharacteristic($characteristic_id) {
         return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
     }
 
-    // get the rating of the user as the reviewee
+    // get the  of the user as the reviewee
     public function getRating() {
         $avg = User::join('reviews', 'reviewee_id', '=', 'users.id')
                     ->where('users.id', '=', $this->id)
@@ -253,18 +438,7 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
-    // check whether a user with an email exists and is a student
-    public static function existStudent($email) {
-        return User::where('email', '=', $email)->where('is_tutor', false)->count() != 0;
-    }
 
-    public static function existTutor($email) {
-        return User::where('email', '=', $email)->where('is_tutor', true)->count() != 0;
-    }
-
-    public static function registerWithGoogle($email) {
-        return User::where('email', '=', $email)->where('google_id', '!=', null)->count() != 0;
-    }
 
 
 

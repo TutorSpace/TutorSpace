@@ -13,11 +13,15 @@
 .index__top {
     height: 100vh;
 
-    background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/usc.jpg);
+    background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/images/usc.jpg);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+
+    @include respond(extra-sm) {
+        background-image: linear-gradient(to right bottom, rgba($color: $color-purple-primary, $alpha: .8), rgba($color: $color-purple-secondary, $alpha: .8)), url(../../../public/assets/images/trojan.jpg);
+    }
 
 
     .logo {
@@ -61,7 +65,7 @@
 }
 
 .index__mission {
-    background-image: linear-gradient(to right bottom, rgba($color: $color-yellow-primary, $alpha: .7), rgba(255, 200, 0, 0.7)), url(../../../public/assets/usc.jpg);
+    background-image: linear-gradient(to right bottom, rgba($color: $color-yellow-primary, $alpha: .7), rgba(255, 200, 0, 0.7)), url(../../../public/assets/images/usc.jpg);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -72,12 +76,10 @@
     &-container {
         flex: 0 0 45%;
         padding: 10rem;
-        // background-color: rgba(#747474, .4);
         background-color: rgba(#747474, .5);
 
         @include respond(md) {
             flex: 1;
-            // background-color: rgba(#747474, .2);
             background-color: rgba(#747474, .3);
             padding: 10rem 5rem;
         }
@@ -225,6 +227,10 @@
         top: 8rem;
         width: 25rem;
         left: -3rem;
+
+        @include respond(extra-sm) {
+            display: none;
+        }
     }
 
     .bg-shape-circle-bottom {
@@ -243,7 +249,7 @@
         color: $color-white;
 
         @include respond(extra-sm) {
-            padding-top: 30rem;
+            padding-top: 25rem;
         }
     }
 
@@ -280,21 +286,19 @@
     &__svg {
         display: block;
         margin: 0 auto;
-        margin-bottom: -2rem;
+        width: 40rem;
+        height: auto;
 
         @include respond(md) {
-            margin-bottom: -3rem;
             width: 30rem;
         }
 
         @include respond(sm) {
-            margin-bottom: -8rem;
             width: 22rem;
         }
 
         @include respond(extra-sm) {
-            margin-bottom: -16.3rem;
-            width: 18rem;
+            transform: scaleY(1.5);
         }
     }
 
@@ -306,5 +310,10 @@
         @include respond(sm) {
             width: 27rem;
         }
+
+        @include respond(extra-sm) {
+            transform: translateY(4rem);
+        }
     }
 }
+

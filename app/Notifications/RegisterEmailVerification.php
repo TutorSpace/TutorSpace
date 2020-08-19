@@ -7,8 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-// TODO: set up queue if necessary
-// class RegisterEmailVerification extends Notification implements ShouldQueue
+
 class RegisterEmailVerification extends Notification
 {
     use Queueable;

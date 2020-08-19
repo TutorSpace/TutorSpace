@@ -72,7 +72,7 @@ bg-grey-light body-signup select2-bg-student
                 <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
                     <select class="custom-select" name="school-year">
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
-                        @foreach (App\School_year::all() as $schoolYear)
+                        @foreach (App\SchoolYear::all() as $schoolYear)
                             <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
                         @endforeach
                     </select>
@@ -122,5 +122,5 @@ bg-grey-light body-signup select2-bg-student
 
 
 </script>
-<script src="{{ asset('js/register.js') }}"></script>
+<script src="{{ asset('js/auth/register.js') }}"></script>
 @endsection

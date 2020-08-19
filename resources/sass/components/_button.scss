@@ -46,7 +46,6 @@
 
     &:hover {
         color: $color-blue-secondary-2;
-        font-weight: 500;
     }
 }
 
@@ -58,18 +57,15 @@
 
     &:hover {
         color: $color-purple-secondary-2;
-        font-weight: 500;
     }
 }
 
 .btn-outline-student {
-    color: $color-blue-secondary;
-    font-size: 2rem;
-    font-weight: 400;
+    color: $color-blue-primary;
+    font-size: 1.8rem;
+    font-weight: 500;
     transition: all .3s;
     border: 2px solid $color-blue-primary;
-    border-radius: 2rem;
-    padding: .75rem 2rem;
 
     &:hover {
         background-color: $color-blue-primary;
@@ -114,6 +110,20 @@
     }
 }
 
+.btn-animation-y-sm {
+    transition: all .1s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .1);
+    }
+
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .15rem .3rem rgba(0, 0, 0, .1);
+    }
+}
+
 .btn-animation-spreading--white {
     position: relative;
 
@@ -154,4 +164,89 @@
             display: block;
         }
     }
+}
+
+.btn-scroll-bottom-right-top {
+    display: none;
+    position: fixed;
+    bottom: 12.5rem;
+    right: 4rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.btn-scroll-bottom-right-under {
+    display: none;
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+    width: 8rem;
+    height: 8rem;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.btn-view-more {
+    background-color: #DCDCDC;
+    color: #FDFDFD;
+}
+
+
+.bg-student {
+    .btn-primary {
+        background-color: $color-blue-primary;
+        border-color: $color-blue-primary;
+
+        &:hover {
+            background-color: $color-blue-primary-2;
+            border-color: $color-blue-primary-2;
+        }
+
+        &.active {
+            background-color: $color-blue-secondary !important;
+        }
+    }
+
+    .btn-outline-primary {
+        border-color: $color-blue-primary;
+        color: $color-blue-primary;
+
+        &:hover, &:active {
+            background-color: unset;
+            color: $color-blue-primary-2;
+            border-color: $color-blue-primary-2;
+        }
+    }
+
+}
+
+
+.bg-tutor {
+    .btn-primary {
+        background-color: $color-purple-primary;
+        border-color: $color-purple-primary;
+
+        &:hover {
+            background-color: $color-purple-primary-2;
+            border-color: $color-purple-primary-2;
+        }
+
+        &.active {
+            background-color: $color-purple-secondary !important;
+        }
+    }
+
+    .btn-outline-primary {
+        border-color: $color-purple-primary;
+        color: $color-purple-primary;
+
+        &:hover, &:active {
+            background-color: unset !important;
+            color: $color-purple-primary-2 !important;
+            border-color: $color-purple-primary-2 !important;
+        }
+    }
+
 }

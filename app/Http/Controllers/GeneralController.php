@@ -2,19 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Auth;
-use App\Dashboard_post;
-use App\Tutor_request;
+
+use App\User;
 use App\Session;
 use Carbon\Carbon;
-use App\User;
+use App\ReportForum;
+use App\Tutor_request;
+use App\Dashboard_post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
+use App\Notifications\InviteToBeTutorNotification;
 
 class GeneralController extends Controller
 {
     // show the application index page
-    public function index() {
+    public function index(Request $request) {
+        if(Auth::check()) {
+            $request->session()->reflash();
+            return redirect()->route('home');
+        }
         return view('index');
     }
 
@@ -23,35 +31,78 @@ class GeneralController extends Controller
         return view('policy.index');
     }
 
-    // TODO: add validation
-    public function removeBookmark(Request $request) {
-
-
-        $userId = $request->input('user_id');
-
-        $user = Auth::user();
-        $user->bookmarks()->detach($userId);
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully removed from bookmarked users list!'
+    // report forum
+    public function storeReport(Request $request) {
+        $request->validate([
+            'report-reason' => [
+                'required',
+                'exists:report_reasons,id'
+            ],
+            'report-for' => [
+                'required'
             ]
-        );
+        ]);
+
+        $report = new ReportForum();
+        $report->reporter_id = Auth::user()->id;
+        $report->report = $request->input('report');
+        $report->report_for = $request->input('report-for');
+        $report->report_reason_id = $request->input('report-reason');
+        $report->save();
+
+
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully Reported!'
+        ]);
     }
 
-    // TODO: add validation
-    public function addBookmark(Request $request) {
+    public function inviteToBeTutor(User $user) {
+        if(!User::existTutor($user->email)) {
+            $user->notify(new InviteToBeTutorNotification(Auth::user()));
+            return response()->json(
+                [
+                    'successMsg' => "Successfully invited $user->first_name $user->last_name to be a tutor!"
+                ]
+            );
+        }
+        else {
+            return response()->json(
+                [
+                    'errorMsg' => 'The user already had a tutor account.'
+                ]
+            );
+        }
+    }
 
-        $userId = $request->input('user_id');
+    public function uploadProfilePic(Request $request) {
+        $request->validate([
+            'profile-pic' => [
+                'required',
+                'file',
+                'mimes:jpeg,bmp,png'
+            ]
+        ]);
 
         $user = Auth::user();
-        $user->bookmarks()->attach($userId);
+        DB::transaction(function() use($request, $user) {
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+            }
 
-        return response()->json(
-            [
-                'successMsg' => 'Successfully added to bookmarked users list!'
-            ]
-        );
+            $user->save();
+        });
+
+        return response()->json([
+            'successMsg' => 'Successfully updated the profile photo.',
+            'imgUrl' => $user->profile_pic_url
+        ]);
+
+    }
+
+    public function getRecommendedTutors() {
+        return view('partials.recommended_tutors');
     }
 
     // TODO: add validation

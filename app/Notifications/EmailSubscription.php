@@ -3,11 +3,12 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-// TODO: set up queue if necessary
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\Messages\SubscriptionMessage;
+
+
 class EmailSubscription extends Notification
 {
     use Queueable;
@@ -45,12 +46,11 @@ class EmailSubscription extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new SubscriptionMessage($this->email))
                     ->greeting('Dear ' . $this->userName)
                     ->line('Thanks for subscribing to TutorSpace! We will send you the latest updates in the future.')
                     ->action('Start your journey as a Student/Tutor!', route('index'))
-                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!')
-                    ->isForSubscriptionEmail($this->email);
+                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
     }
 
     /**

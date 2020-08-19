@@ -9,14 +9,18 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "cyrildewit/eloquent-viewable": "^5.2",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/socialite": "^4.4",
+        "laravel/telescope": "^3.5",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "pusher/pusher-php-server": "^4.1"
+        "predis/predis": "^1.1",
+        "pusher/pusher-php-server": "^4.1",
+        "superbalist/laravel-google-cloud-storage": "^2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -32,7 +36,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/telescope"
+            ]
         }
     },
     "autoload": {
