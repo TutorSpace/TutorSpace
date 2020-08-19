@@ -14121,6 +14121,14 @@ h6 {
   margin-right: 3px;
 }
 
+.mr-4px {
+  margin-right: 4px;
+}
+
+.mr-6px {
+  margin-right: 6px;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }
@@ -14770,7 +14778,7 @@ h6 {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   /* number of lines to show */
   -webkit-box-orient: vertical;
   max-height: 15rem;
@@ -14822,8 +14830,8 @@ h6 {
   position: relative;
   border-radius: 1rem;
   background-color: #F9F9F9;
-  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem 3rem 1.5rem 3rem;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem 1.5rem 2rem;
 }
 
 .post-reply .left-container {
@@ -14877,10 +14885,15 @@ h6 {
 .post-reply .right-container .post-reply__actions,
 .post-reply .right-container .post-reply__info {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 0.5rem;
   font-size: 1.3rem;
   flex-wrap: wrap;
+}
+
+.post-reply .right-container .post-reply__actions span,
+.post-reply .right-container .post-reply__info span {
+  line-height: 1.6;
 }
 
 .post-reply .right-container .post-reply__actions svg,
@@ -14898,6 +14911,8 @@ h6 {
 .post-reply .right-container .btn-toggle-follow-up {
   font-size: 1.3rem;
   color: #3F3F3F !important;
+  margin-right: 1rem;
+  padding: 0;
 }
 
 .post-reply .mark-best-reply {
@@ -14957,7 +14972,7 @@ h6 {
   flex: 0 0 100%;
   border-radius: 0.5rem;
   background-color: #F9F9F9;
-  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .post-comment__input,
@@ -15029,7 +15044,7 @@ h6 {
   color: #3F3F3F;
   border-radius: 1rem;
   background-color: #F9F9F9;
-  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
   padding: 1rem 2rem;
   margin-left: 8rem;
 }
@@ -15101,7 +15116,7 @@ h6 {
   padding: 3rem 1rem;
   overflow: hidden;
   position: relative;
-  box-shadow: 2px 3px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .user-card > * {
@@ -16728,7 +16743,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   background-color: #F9F9F9;
-  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
   border: none;
   margin-right: 1.5rem;
 }
@@ -16932,11 +16947,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .forum-left__list-item {
   background-color: #F9F9F9;
-  padding: 1rem 1.5rem;
+  padding: 1.4rem 1.5rem;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;
-  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1);
   transition: all 0.1s;
   cursor: pointer;
 }
@@ -17041,7 +17056,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #F9F9F9;
   align-self: center;
   border: none;
-  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .forum-content__search__search-by {
@@ -17101,7 +17116,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #F9F9F9;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .forum-right .trending-tags__heading,
@@ -17223,7 +17238,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-tutor .form-search .input-search:focus {
-  box-shadow: 0px 3px 1px 0px rgba(103, 73, 223, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(103, 73, 223, 0.2);
 }
 
 .bg-tutor .btn-back:hover {
@@ -17303,7 +17318,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-student .form-search .input-search:focus {
-  box-shadow: 0px 3px 1px 0px rgba(31, 122, 255, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(31, 122, 255, 0.2);
 }
 
 .bg-student .btn-back:hover {
@@ -17392,13 +17407,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 2.2rem;
 }
 
-.post__heading:hover {
-  color: #626262;
+.post-detail .post__heading {
+  font-size: 3rem;
 }
 
 .post__heading-2 {
   font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .post__heading-2 .poster-img {
@@ -17422,7 +17437,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .post__bottom .tags {
   font-size: 1.2rem;
-  margin-top: 0.5rem;
+  margin-top: 0.8rem;
+  margin-bottom: 2rem;
 }
 
 .post__bottom__info,
@@ -17444,16 +17460,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   position: relative;
   border-radius: 1rem;
   background-color: #F9F9F9;
-  box-shadow: 0px 4px 3px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
   margin-top: 2rem;
 }
 
 .post-preview {
-  padding: 1.8rem 3rem;
+  padding: 2rem 2rem;
 }
 
 .post-detail {
-  padding: 3rem 3rem 2rem 3rem;
+  padding: 4rem 4rem 2.5rem 4rem;
 }
 
 .index {
