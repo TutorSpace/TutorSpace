@@ -95,7 +95,7 @@ bg-student
                     </div>
 
                     <div class="boxes flex-100">
-                        @foreach (App\Course::all() as $course)
+                        @foreach (App\Course::all()->take(7) as $course)
                         <span class="box p-relative" type="button">
                             {{ $course->course }}
                             <span class="p-absolute remove">&times;</span>
