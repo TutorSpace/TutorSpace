@@ -80,6 +80,18 @@
 
             .btn-view {
                 font-size: 1.2rem;
+                flex: 1;
+                align-self: flex-end;
+            }
+
+            .btn-view-session {
+                &::after {
+                    content: ' Session';
+
+                    @include respond(lg) {
+                        display: none;
+                    }
+                }
             }
         }
 

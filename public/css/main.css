@@ -15844,6 +15844,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card__row .btn-view {
   font-size: 1.2rem;
+  flex: 1;
+  align-self: flex-end;
+}
+
+.info-cards .info-card__row .btn-view-session::after {
+  content: " Session";
+}
+
+@media only screen and (max-width: 74.99em) {
+  .info-cards .info-card__row .btn-view-session::after {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 61.99em) {
