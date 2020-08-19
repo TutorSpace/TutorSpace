@@ -19210,7 +19210,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header {
   padding: 0;
-  margin-bottom: 8rem;
   margin-top: 3rem;
   border-radius: 1rem;
   position: relative;
@@ -19518,7 +19517,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content .container:not(:first-child) {
-  margin-top: 7rem;
+  margin-top: 5.5rem;
 }
 
 .home__content .tutor-requests {
