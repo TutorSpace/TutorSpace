@@ -60,55 +60,65 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
     $('.tutor-requests + .scroll-faded').css('display', 'block');
 }
 
-$('.btn-view-all-upcoming-sessions').click(function() {
-    $(this).parent().next().find('.hidden-2').toggle("fast");
+if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
+    //if 'true', the content overflows the tab: we show the hidden link
+    $('.info-cards + .scroll-faded').css('display', 'block');
+}
+
+$('.btn-view-all-info-cards').click(function() {
+    $(this).closest('.info-cards').find('.hidden-2').toggle("fast");
     if($(this).html().includes('View')) {
-        $(this).html('Hide Upcoming Sessions')
+        $(this).html('Hide')
     }
     else {
-        $(this).html('View All Upcoming Sessions')
+        $(this).html('View All')
     }
+});
 
+$('.btn-view-all-info-boxes').click(function() {
+    $(this).closest('.row').find('.info-boxes .hidden-2').toggle("fast");
+    if($(this).html().includes('View')) {
+        $(this).html('Hide')
+    }
+    else {
+        $(this).html('View All')
+    }
 });
 
 
-function isInViewPort(elem) {
-    var distance = elem.getBoundingClientRect();
-	return (
-		distance.top >= -120
-	);
-};
+// $(window).scroll(function() {
+//     var posTop = $(window).scrollTop() - $('.home__content').offset().top;
+//     console.log(posTop);
 
-$(window).scroll(function() {
-    if(isInViewPort($('.home__header')[0])) {
-        if($('body').hasClass('bg-student')) {
-            $('nav.nav').addClass('nav-auth--student');
-            $('nav.nav').addClass('nav-auth');
-            $('nav.nav').removeClass('nav-guest');
-            $('nav.nav').removeClass('nav-guest--student');
-        }
-        else if($('body').hasClass('bg-tutor')) {
-            $('nav.nav').addClass('nav-auth--tutor');
-            $('nav.nav').addClass('nav-auth');
-            $('nav.nav').removeClass('nav-guest');
-            $('nav.nav').removeClass('nav-guest--tutor');
-        }
-    }
-    else {
-        if($('body').hasClass('bg-student')) {
-            $('nav.nav').removeClass('nav-auth--student');
-            $('nav.nav').removeClass('nav-auth');
-            $('nav.nav').addClass('nav-guest');
-            $('nav.nav').addClass('nav-guest--student');
-        }
-        else if($('body').hasClass('bg-tutor')) {
-            $('nav.nav').removeClass('nav-auth--tutor');
-            $('nav.nav').removeClass('nav-auth');
-            $('nav.nav').addClass('nav-guest');
-            $('nav.nav').addClass('nav-guest--tutor');
-        }
-    }
-});
+//     if(posTop < 0) {
+//         if($('body').hasClass('bg-student')) {
+//             $('nav._nav').addClass('nav-auth--student');
+//             $('nav._nav').addClass('nav-auth');
+//             $('nav._nav').removeClass('nav-guest');
+//             $('nav._nav').removeClass('nav-guest--student');
+//         }
+//         else if($('body').hasClass('bg-tutor')) {
+//             $('nav._nav').addClass('nav-auth--tutor');
+//             $('nav._nav').addClass('nav-auth');
+//             $('nav._nav').removeClass('nav-guest');
+//             $('nav._nav').removeClass('nav-guest--tutor');
+//         }
+//     }
+//     else {
+//         if($('body').hasClass('bg-student')) {
+//             $('nav._nav').removeClass('nav-auth--student');
+//             $('nav._nav').removeClass('nav-auth');
+//             $('nav._nav').addClass('nav-guest');
+//             $('nav._nav').addClass('nav-guest--student');
+//         }
+//         else if($('body').hasClass('bg-tutor')) {
+//             $('nav._nav').removeClass('nav-auth--tutor');
+//             $('nav._nav').removeClass('nav-auth');
+//             $('nav._nav').addClass('nav-guest');
+//             $('nav._nav').addClass('nav-guest--tutor');
+//         }
+//     }
+// });
 
 // calendar
 window.showAvailableTimeForm = (startTime, endTime) => {
@@ -135,5 +145,7 @@ window.showAvailableTimeDeleteForm = (startTime, endTime, availableTimeId) => {
     $('#availableTimeDeleteConfirmationModal .end-time').html(endTime);
     $('#availableTimeDeleteConfirmationModal').modal('show');
 }
+
+
 
 

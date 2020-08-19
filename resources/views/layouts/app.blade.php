@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
 
+    @guest
     {{-- google services --}}
     <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-
-    {{-- tinymec (rich editor) --}}
-    <script src="https://cdn.tiny.cloud/1/0g5x4ywp59ytu15qbexxmx02e1mxg5eudd75k8p0kicery2n/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    @endguest
 
     <link rel = "icon" href =
     "{{ asset('assets/images/tutorspace_logo.png') }}"
@@ -74,7 +73,7 @@
 
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
-        $('.svg-bookmark').click(function() {
+        $(document).on('click', '.svg-bookmark', function() {
             if($(this).find('use.hidden').hasClass('bookmarked')) {
                 var requestType = 'POST';
             }
@@ -86,7 +85,43 @@
                 type:requestType,
                 url: `/bookmark/${userId}`,
                 success: (data) => {
-
+                    @if(Route::current()->getName() == 'home')
+                    if($(this).parent().parent().hasClass('recommended-tutors')) {
+                        if(requestType == 'POST') {
+                            $.ajax({
+                                type:'GET',
+                                url: `/bookmark/${userId}`,
+                                success: (data) => {
+                                    if($('.bookmarked-tutors .no-results').is(":visible")) {
+                                        $('.bookmarked-tutors .no-results').remove();
+                                    }
+                                    let userCard = $(`.bookmarked-tutors .user-card[data-user-id=${userId}]`)
+                                    // if the user card already exists in bookmarked tutors, then simply toggle its svg
+                                    if(userCard[0]) {
+                                        userCard.find('use').toggleClass('hidden');
+                                    }
+                                    else {
+                                        $('.bookmarked-tutors').append(data);
+                                    }
+                                },
+                                error: function(error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                        else {
+                            $('.bookmarked-tutors').find(`.user-card[data-user-id=${userId}]`).find('.svg-bookmark').find('use').toggleClass('hidden');
+                            if(!$('.bookmarked-tutors .user-card')[0]) {
+                                $('.bookmarked-tutors').append(`
+                                <h6 class="no-results">No bookmarked tutors yet</h6>
+                                `)
+                            }
+                        }
+                    }
+                    else if($(this).parent().parent().hasClass('bookmarked-tutors')){
+                        $(`.recommended-tutors .user-card[data-user-id=${userId}]`).find('.svg-bookmark').find('use').toggleClass('hidden');
+                    }
+                    @endif
                 },
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');
@@ -95,6 +130,8 @@
             });
 
             $(this).find('use').toggleClass('hidden');
+
+
         });
         @endif
 

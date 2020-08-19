@@ -1,4 +1,3 @@
-
 /* classes attached to <body> */
 
 .fc-not-allowed,
@@ -16,10 +15,9 @@
 }
 .fc {
   /* layout of immediate children */
-  display: flex;
-  flex-direction: column;
-
-  font-size: 1em
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
 }
 .fc,
   .fc *,
@@ -30,7 +28,7 @@
 .fc table {
     border-collapse: collapse;
     border-spacing: 0;
-    font-size: 1em; /* normalize cross-browser */
+    font-size: 1.2rem;
   }
 .fc th {
     text-align: center;
@@ -85,8 +83,8 @@
       -ms-user-select: none;
           user-select: none;
 
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'fcicons' !important;
+  /* use to prevent issues with browser extensions that change fonts */
+  font-family: 'fcicons';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -177,7 +175,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     background-color: transparent;
     border: 1px solid transparent;
     padding: 0.4em 0.65em;
-    font-size: 1em;
+    font-size: 1.2rem;
     line-height: 1.5;
     border-radius: 0.25em;
   }
@@ -243,7 +241,7 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
 }
 .fc .fc-button .fc-icon {
     vertical-align: middle;
-    font-size: 1.5em; /* bump up the size (but don't make it bigger than line-height of button, which is 1.5em also) */
+    font-size: 1.2rem;
   }
 .fc .fc-button-group {
     position: relative;
@@ -292,7 +290,9 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
     margin-top: 1.5em;
   }
 .fc .fc-toolbar-title {
-    font-size: 1.75em;
+    font-size: 1.8rem;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
   }
 .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
@@ -455,7 +455,6 @@ When it's NOT activated, the fc-button classes won't even be in the DOM.
   }
 .fc .fc-bg-event .fc-event-title {
       margin: .5em;
-      font-size: .85em;
       font-size: var(--fc-small-font-size, .85em);
       font-style: italic;
     }
@@ -681,7 +680,7 @@ A HORIZONTAL event
 .fc .fc-popover-close {
     cursor: pointer;
     opacity: 0.65;
-    font-size: 1.1em;
+    font-size: 1.2rem;
   }
 .fc-theme-standard .fc-popover {
     border: 1px solid #ddd;
@@ -814,7 +813,7 @@ A HORIZONTAL event
 .fc .fc-daygrid-day-bottom {
     position: relative;
     z-index: 4;
-    font-size: .85em;
+    font-size: 1.2rem;
     margin: 2px 3px 0;
   }
 .fc .fc-daygrid-more-link {
@@ -872,7 +871,6 @@ A HORIZONTAL event
   position: relative; /* for z-indexes assigned later */
   white-space: nowrap;
   border-radius: 3px; /* dot event needs this to when selected */
-  font-size: .85em;
   font-size: var(--fc-small-font-size, .85em);
 }
 /* --- the rectangle ("block") style of event --- */
@@ -1210,10 +1208,8 @@ A VERTICAL event
 }
 .fc-timegrid-event { /* events need to be root */
 
-  font-size: .85em;
-
   font-size: var(--fc-small-font-size, .85em);
-  border-radius: 3px
+  border-radius: 3px;
 
 }
 .fc-timegrid-event .fc-event-main {
@@ -1221,7 +1217,6 @@ A VERTICAL event
   }
 .fc-timegrid-event .fc-event-time {
     white-space: nowrap;
-    font-size: .85em;
     font-size: var(--fc-small-font-size, .85em);
     margin-bottom: 1px;
   }
@@ -1233,8 +1228,7 @@ A VERTICAL event
     content: '\00a0-\00a0'; /* dash surrounded by non-breaking spaces */
   }
 .fc-timegrid-event-condensed .fc-event-title {
-    font-size: .85em;
-    font-size: var(--fc-small-font-size, .85em)
+    font-size: var(--fc-small-font-size, .85em);
   }
 .fc-media-screen .fc-timegrid-event {
     position: absolute; /* absolute WITHIN the harness */
@@ -1415,7 +1409,7 @@ A VERTICAL event
 
 
 
-  .fc-theme-bootstrap a:not([href]) {
+.fc-theme-bootstrap a:not([href]) {
     color: inherit; /* natural color for navlinks */
-  }
+}
 

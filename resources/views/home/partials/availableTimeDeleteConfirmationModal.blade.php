@@ -6,7 +6,7 @@
                 @csrf
                 <div class="modal-header">
                     <h5>
-                        Delete Availability
+                        Availability Info
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -14,14 +14,14 @@
                 </div>
                 <div class="modal-body fc-black-post">
                         <input type="hidden" value="" name="available-time-id">
-                        Are you sure you want to delete your availability time slot from <br/>
+                        You indicated your availability from <br/>
                         <span class="fc-theme-color start-time">time</span><br/>
                         <span class="">to</span><br/>
-                        <span class="fc-theme-color end-time">time</span>?
+                        <span class="fc-theme-color end-time">time</span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-lg btn-secondary mr-2" data-dismiss="modal">Cancel</button>
-                    <button class="btn btn-lg btn-delete">Delete</button>
+                    <button class="btn btn-lg btn-delete">Remove</button>
                 </div>
             </form>
         </div>

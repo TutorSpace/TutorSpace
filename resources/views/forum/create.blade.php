@@ -3,7 +3,8 @@
 @section('title', 'Forum')
 
 @section('links-in-head')
-
+{{-- tinymec (rich editor) --}}
+<script src="https://cdn.tiny.cloud/1/0g5x4ywp59ytu15qbexxmx02e1mxg5eudd75k8p0kicery2n/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 @endsection
 
 @section('body-class')

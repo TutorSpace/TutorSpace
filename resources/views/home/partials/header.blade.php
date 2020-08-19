@@ -1,11 +1,11 @@
-<section class="home__header @if(session()->has('showWelcome')) home__header--animated @endif row">
-    <div class="container p-relative">
+<section class="home__header @if(session()->has('showWelcome')) home__header--animated @endif">
+    <div class="">
         @if(session()->has('showWelcome'))
         <h3 class="welcome-msg ws-no-wrap">
             Welcome, {{ Auth::user()->first_name }}!
         </h3>
         @endif
-        <div class="content d-flex p-absolute">
+        <div class="content d-flex p-relative">
             <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
                 <figcaption class="caption" id="upload-profile-pic">Upload Photo</figcaption>
@@ -14,7 +14,35 @@
                 </form>
             </figure>
             <div class="content-info">
-                <h4 class="name">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
+                <div class="name-container">
+                    <h4 class="name">
+                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                    </h4>
+                    @if (Auth::user()->is_tutor)
+                    <div class="d-flex align-items-center">
+                        @php
+                            $starRating = Auth::user()->getAvgRating();
+                        @endphp
+                        @for ($i = 0; $i < 5; $i++)
+                            @if ($i < $starRating)
+                            <svg class="full" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                <title>star-full</title>
+                                <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
+                            </svg>
+                            @else
+                            <svg class="empty" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                                <title>star-empty</title>
+                                <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798zM16 23.547l-6.983 3.671 1.334-7.776-5.65-5.507 7.808-1.134 3.492-7.075 3.492 7.075 7.807 1.134-5.65 5.507 1.334 7.776-6.983-3.671z"></path>
+                            </svg>
+                            @endif
+                        @endfor
+                        <span class="rating">
+                            {{ $starRating }}
+                        </span>
+                    </div>
+                    @endif
+                </div>
+
                 @if (Auth::user()->is_tutor)
                 <p class="sub">
                     <span class="sub--1">
@@ -70,8 +98,20 @@
                     </span>
                 </p>
                 @endif
-
-
+            </div>
+            <div class="content-data">
+                <div class="data">
+                    <span class="number">{{ Carbon\Carbon::now()->diffInDays(Auth::user()->created_at) }}</span>
+                    <span class="classifier">Days</span>
+                </div>
+                <div class="data">
+                    <span class="number">5</span>
+                    <span class="classifier">Sessions</span>
+                </div>
+                <div class="data">
+                    <span class="number">5</span>
+                    <span class="classifier">Students</span>
+                </div>
             </div>
         </div>
     </div>

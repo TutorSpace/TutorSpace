@@ -37,6 +37,9 @@ Route::group([
 ], function() {
     Route::post('/{user}', 'BookmarkController@store')->name('bookmark.store');
     Route::delete('/{user}', 'BookmarkController@delete')->name('bookmark.delete');
+
+    // get a single user_card
+    Route::get('/{user}', 'BookmarkController@show')->name('bookmark.show');
 });
 
 // recommended tutors
@@ -117,6 +120,7 @@ Route::group([
     Route::get('/posts/latest', 'Forum\PostController@indexLatest')->name('posts.latest');
     Route::get('posts/my-follows', 'Forum\PostController@showMyFollows')->name('posts.my-follows');
     Route::get('posts/my-posts', 'Forum\PostController@showMyPosts')->name('posts.my-posts');
+    Route::get('posts/my-participated', 'Forum\PostController@showMyParticipated')->name('posts.my-participated');
     Route::resource('posts', 'Forum\PostController');
 
     Route::post('posts/upload-img', 'Forum\PostController@uploadPostImg')->name('upload-post-img');
@@ -137,6 +141,9 @@ Route::group([
 
 // home page
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
+Route::get('/home/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
+Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
 
 
 

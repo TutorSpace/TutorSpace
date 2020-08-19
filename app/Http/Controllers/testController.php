@@ -5,21 +5,24 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
+use App\Test;
 use App\User;
+use App\View;
 use App\Reply;
 use App\Course;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
-use Carbon\Carbon;
-use App\NewMessage;
 
+use Carbon\Carbon;
+
+use App\NewMessage;
 use Facades\App\Post;
 
 use App\Tutor_request;
 use App\Characteristic;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
@@ -33,8 +36,16 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        // $test = Auth::user()->load('courses')->get();
-        $test = Auth::user()->courses;
+
+        // get daily post view count from the last 7 days
+        $views = User::getViewCntWeek(1);
+        // dd($posts);
+
+        // dd($views);
+
+        return view('test', [
+            'views' => $views
+        ]);
     }
 
     public function test(Request $request) {

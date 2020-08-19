@@ -44,7 +44,13 @@
             white-space: nowrap;
             text-overflow: ellipsis;
             overflow: hidden;
+
+            @include respond(lg-2) {
+                margin-right: .5rem;
+            }
         }
+
+
 
         img {
             width: 4rem;
@@ -66,6 +72,7 @@
             text-overflow: ellipsis;
             overflow: hidden;
             color: inherit;
+            font-weight: 500;
         }
 
         .title {
@@ -77,7 +84,7 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 22rem;
+            width: 20rem;
         }
 
         .date {
@@ -85,16 +92,19 @@
         }
 
         .time {
-            width: 20ch;
+            width: 17ch;
         }
 
-        .course {
-            width: 13ch;
+        .course, .status, .format {
+            width: 10ch;
+        }
+
+        .price {
+            width: 7ch;
+            color: $color-purple-primary;
         }
 
         .status {
-            width: 13ch;
-
             .approved {
                 color: $color-blue-primary;
             }
@@ -112,11 +122,11 @@
             display: flex;
             width: 21ch;
             justify-content: space-between;
-            flex-wrap: wrap;
             align-items: center;
 
             @include respond(md) {
                 width: 12ch;
+                flex-wrap: wrap;
                 justify-content: center;
 
                 .btn:last-child {
@@ -131,6 +141,11 @@
 
             .btn {
                 width: 12ch;
+                margin-right: .75rem;
+
+                @include respond(md) {
+                    margin-right: 0;
+                }
 
                 @include respond(sm) {
                     margin-top: .5rem;
@@ -147,6 +162,48 @@
         .action {
             display: flex;
             justify-content: flex-end;
+        }
+
+        .review {
+            flex: 1;
+            white-space: normal !important;
+        }
+
+        .rating {
+            width: 15rem;
+
+            @include respond(sm) {
+                text-align: end;
+                margin-right: 0 !important;
+            }
+
+            svg {
+                width: 1.8rem;
+                height: 1.8rem;
+                margin-right: .2rem;
+
+                @include respond(md) {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    margin-right: .1rem;
+                }
+
+                &.full {
+                    fill: $color-yellow-primary;
+                }
+
+                &.empty {
+                    fill: $color-black-2;
+                }
+            }
+        }
+
+        .time-ago {
+            width: 10rem;
+
+            @include respond(sm) {
+                text-align: end;
+            }
         }
 
     }

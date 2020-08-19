@@ -22,13 +22,13 @@ $('#start-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
     'minTime': '6:00am',
-	'maxTime': '11:00pm',
+	'maxTime': '12:00am',
 });
 $('#end-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
     'minTime': '6:00am',
-	'maxTime': '11:00pm',
+	'maxTime': '12:00am',
 });
 
 
@@ -114,26 +114,6 @@ $('.filter .btn-hide').click(function() {
     }
 })
 
-let colorHash = new ColorHash({
-    hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
-});
-
-// TODO: modify
-$.each($('.course'), (idx, ele) => {
-    var color = colorHash.rgb($(ele).html());
-    var d = 0;
-    // Counting the perceptive luminance - human eye favors green color...
-    let luminance = ( 0.299 * color[0] + 0.587 * color[1] + 0.114 * color[2])/255;
-
-    if (luminance > 0.5)
-       d = 0; // bright colors - black font
-    else
-       d = 255; // dark colors - white font
-
-    $(ele).css("background-color", `rgb(${color[0]}, ${color[1]}, ${color[2]})`);
-    $(ele).css("color", `rgb(${d}, ${d}, ${d})`);
-});
-
 
 $('form.filter').submit(function() {
     $('#search-content').val($('#nav-search-content').val());
@@ -157,6 +137,11 @@ $('.btn-clear').click(function() {
         parseInt(15),
         parseInt(35)
     ]);
+
+    $('input[name=available-start-date]').val('');
+    $('input[name=available-end-date]').val('');
+    $('input[name=available-start-time]').val('');
+    $('input[name=available-end-time]').val('');
 });
 
 if($('#checkbox-specify-detail-time').prop('checked')) {

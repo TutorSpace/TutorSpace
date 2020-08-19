@@ -28,6 +28,7 @@
         "bootstrap-slider": "^11.0.2",
         "color-hash": "^1.0.3",
         "fullcalendar": "^5.1.0",
+        "metrics-graphics": "^2.15.6",
         "moment": "^2.27.0",
         "pikaday": "^1.8.0",
         "select2": "^4.0.13",

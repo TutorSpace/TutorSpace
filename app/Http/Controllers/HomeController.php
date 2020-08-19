@@ -17,7 +17,6 @@ class homeController extends Controller
     }
 
     public function index() {
-
         $posts = Post::with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags']);
 
         $user = Auth::user();
@@ -158,5 +157,20 @@ class homeController extends Controller
         //         'numUnreadMsgs' => $numUnreadMsgs
         //     ]);
         // }
+    }
+
+    public function tutorSessions() {
+        return view('home.tutor-sessions');
+    }
+
+    public function forumActivities() {
+        return view('home.forum-activities', [
+            'myPosts' => Auth::user()->posts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get(),
+            'myFollows' => Auth::user()->followedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get()
+        ]);
+    }
+
+    public function profile() {
+        return view('home.profile');
     }
 }

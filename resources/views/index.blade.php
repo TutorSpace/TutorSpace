@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Welcom to TutorSpace!')
+@section('title', 'Welcome to TutorSpace!')
 
 @section('links-in-head')
 
@@ -192,15 +192,9 @@ index
 <script>
     $('#btn-start').click(function() {
         $('html, body').animate({
-            scrollTop: $('#index__bottom').offset().top - $('.nav').height()
+            scrollTop: $('#index__bottom').offset().top - $('._nav').height()
         }, 1000);
     });
-
-    // $('#nav-btn-sign-in').click(function() {
-    //     $('html, body').animate({
-    //         scrollTop: $('#index__bottom').offset().top - $('.nav').height()
-    //     }, 1000);
-    // });
 
     $('.icon-social-media').click(function() {
         window.open($(this).attr('data-social-href'), '_blank');

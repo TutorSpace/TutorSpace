@@ -47,7 +47,7 @@
         padding: .5rem .75rem;
         border-radius: .5rem;
         background-color: $color-white-dark-5;
-        box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+        box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
         border: none;
         margin-right: 1.5rem;
 
@@ -124,7 +124,6 @@
                 a {
                     display: flex;
                     padding: 2rem;
-
 
                     &:link,
                     &:visited {
@@ -247,15 +246,13 @@
         font-size: 1.6rem;
         font-weight: bold;
 
-
-
         &-item {
             background-color: $color-white-dark-5;
-            padding: 1rem 1.5rem;
+            padding: 1.4rem 1.5rem;
             display: flex;
             align-items: center;
             border-radius: .5rem;
-            box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
             transition: all .1s;
             cursor: pointer;
 
@@ -365,7 +362,7 @@
             background-color: $color-white-dark-5;
             align-self: center;
             border: none;
-            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
         }
 
         &__search-by {
@@ -423,7 +420,7 @@
         background-color: $color-white-dark-5;
         padding: 2rem;
         border-radius: 1rem;
-        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+        box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
 
         &__heading {
             display: flex;
@@ -523,8 +520,8 @@
 .post-preview, .post-detail {
     &-tag {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 2rem;
+        right: 2rem;
         font-size: 1.4rem;
 
 
@@ -542,7 +539,7 @@
 
     .form-search .input-search {
         &:focus {
-            box-shadow: 0px 3px 1px 0px rgba($color-purple-primary, 0.2);
+            box-shadow: 0px 2px 2px 0px rgba($color-purple-primary, 0.2);
         }
     }
 
@@ -628,7 +625,7 @@
 
     .form-search .input-search {
         &:focus {
-            box-shadow: 0px 3px 1px 0px rgba($color-blue-primary, 0.2);
+            box-shadow: 0px 2px 2px 0px rgba($color-blue-primary, 0.2);
         }
     }
 
@@ -721,20 +718,21 @@
 
 .post__heading {
     font-size: 2.2rem;
-    &:hover {
-        color: $color-black-post;
-    }
+}
+
+.post-detail .post__heading {
+    font-size: 3rem;
 }
 
 .post__heading-2 {
     font-size: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 2rem;
 
     .poster-img {
-        width: 3rem;
-        height: 3rem;
+        width: 2.8rem;
+        height: 2.8rem;
         border-radius: 50%;
-        margin-right: .3rem;
+        margin-right: .8rem;
         object-fit: cover;
     }
 }
@@ -748,7 +746,8 @@
 
     .tags {
         font-size: 1.2rem;
-        margin-top: .5rem;
+        margin-top: .8rem;
+        margin-bottom: 2rem;
     }
 
     &__info, &__actions {
@@ -769,15 +768,15 @@
     position: relative;
     border-radius: 1rem;
     background-color: $color-white-dark-5;
-    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
     margin-top: 2rem;
 }
 
 .post-preview {
-    padding: 1.8rem 3rem;
+    padding: 2rem 2rem;
 }
 
 .post-detail {
-    padding: 3rem 3rem 2rem 3rem;
+    padding: 4rem 4rem 2.5rem 4rem;
 }
 

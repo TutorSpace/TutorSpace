@@ -9,10 +9,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
-class Post extends Model
+class Post extends Model implements Viewable
 {
+    use InteractsWithViews;
+    protected $removeViewsOnDelete = true;
+
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';
@@ -114,6 +120,38 @@ class Post extends Model
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
     }
 
+    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
+    public function views(): MorphMany {
+        return $this->morphMany('App\View', 'viewable');
+    }
+
+    // return the posts' daily view count in the past week
+    public function viewCntWeek() {
+        return $this->views()
+                    ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
+                    ->whereBetween('viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->groupBy('viewed_at');
+    }
+
+    public static function getViewCntWeek($userId) {
+        return View::where('views.viewable_type', 'App\Post')
+                    ->whereBetween('views.viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->join('posts', 'posts.id', '=', 'views.viewable_id')
+                    ->where('posts.user_id', $userId)
+                    ->groupBy('views.viewed_at')
+                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->get();
+    }
+
+
 
     public function getYouMayHelpWith() {
         if(Auth::check()) {
@@ -202,6 +240,8 @@ class Post extends Model
                 // todo: modify the formula
                 ->orderByRaw('50 * users_upvoted_count + view_count DESC');
     }
+
+
 
 
 

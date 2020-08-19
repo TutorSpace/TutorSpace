@@ -65,7 +65,7 @@
 
     <div class="user-rating">
         @php
-            $starRating = number_format((float)$user->about_reviews->avg('star_rating'), 1, '.', '');
+            $starRating = $user->getAvgRating();
         @endphp
         @for ($i = 0; $i < 5; $i++)
             @if ($i < $starRating)

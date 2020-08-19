@@ -247,6 +247,9 @@ bg-student
         <div class="col">
             <div class="search-results">
                 @include('search.search-results')
+                @if (isset($users))
+                    {{ $users->withQueryString()->links() }}
+                @endif
             </div>
         </div>
     </div>

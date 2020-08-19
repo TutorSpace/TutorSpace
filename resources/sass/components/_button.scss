@@ -209,6 +209,17 @@
         }
     }
 
+    .btn-outline-primary {
+        border-color: $color-blue-primary;
+        color: $color-blue-primary;
+
+        &:hover, &:active {
+            background-color: unset;
+            color: $color-blue-primary-2;
+            border-color: $color-blue-primary-2;
+        }
+    }
+
 }
 
 
@@ -224,6 +235,17 @@
 
         &.active {
             background-color: $color-purple-secondary !important;
+        }
+    }
+
+    .btn-outline-primary {
+        border-color: $color-purple-primary;
+        color: $color-purple-primary;
+
+        &:hover, &:active {
+            background-color: unset !important;
+            color: $color-purple-primary-2 !important;
+            border-color: $color-purple-primary-2 !important;
         }
     }
 

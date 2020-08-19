@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Dashboard')
 
 @section('body-class')
 bg-white-dark-4
@@ -16,7 +16,6 @@ bg-student
 @section('links-in-head')
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<link href='{{asset('fullcalendar/main.min.css')}}' rel='stylesheet' />
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
 @endsection
 
@@ -29,14 +28,17 @@ bg-student
     @include('home.partials.availableTimeDeleteConfirmationModal')
 @endif
 
-<div class="container-fluid home">
-    @include('home.partials.header')
-
+<div class="container-fluid home p-relative">
+    @include('home.partials.menu_bar')
     <main class="home__content">
+        <div class="container home__header-container">
+            @include('home.partials.header')
+        </div>
+
         @if (Auth::user()->is_tutor)
         <div class="container">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have 2 New Tutor Requests!</h5>
+                <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes">
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,
@@ -58,28 +60,55 @@ bg-student
         </div>
 
         <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">Calendar</h5>
-                <div id="calendar" class="w-100"></div>
+            <div class="row home__row-columns-2">
+                <div class="col-lg-8">
+                    <h5 class="w-100 calendar-heading">Calendar</h5>
+                    <div id="calendar" class="w-100"></div>
+                </div>
+                <div class="col-lg-4 info-cards">
+                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                    </div>
+                    @include('home.partials.upcoming_session_card')
+                    @include('home.partials.upcoming_session_card')
+                    @include('home.partials.upcoming_session_card')
+                    @include('home.partials.upcoming_session_card', [
+                        'hidden' => true
+                    ])
+                    @include('home.partials.upcoming_session_card', [
+                        'hidden' => true
+                    ])
+                </div>
             </div>
         </div>
 
-        <div class="container">
+        {{-- <div class="container">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                     <h5>Upcoming Sessions</h5>
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
+                </div>
+            </div>
+        </div> --}}
+
+        <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">Data Visualization</h5>
+                <div class="home__data-visualizations">
+                    <div id="post-chart"></div>
+                    <div id="profile-chart"></div>
                 </div>
             </div>
         </div>
@@ -119,13 +148,13 @@ bg-student
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session')
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
-                    @include('home.partials.session', [
+                    @include('home.partials.upcoming_session_box', [
                         'hidden' => true
                     ])
                 </div>
@@ -142,11 +171,10 @@ bg-student
                             'user' => $user
                         ])
                     @empty
-                    <h6 class="">No bookmarked tutors yet</h6>
+                    <h6 class="no-results">No bookmarked tutors yet</h6>
                     @endforelse
                 </div>
-                <div class="scroll-faded">
-                </div>
+                <div class="scroll-faded"></div>
             </div>
         </div>
 
@@ -227,31 +255,25 @@ bg-student
 
         <div class="container">
             <div class="row forum mt-0">
-                <h5 class="w-100">Forum Activity</h5>
+                <h5 class="w-100">Recommended Posts</h5>
                 <div class="col-12 col-sm-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
                 </div>
                 <div class="col-12 col-sm-4 forum-data-container">
                     <div class="forum-data">
-                        <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                        </svg>
+                        </svg> --}}
                         <span class="title">My Posts</span>
-                        <a class="number" href="#">10</a>
+                        <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
                     <div class="forum-data">
-                        <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                        </svg>
                         <span class="title">Participated</span>
-                        <a class="number" href="#">212</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
                     </div>
                     <div class="forum-data">
-                        <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                        </svg>
                         <span class="title">Followed</span>
-                        <a class="number" href="#">102</a>
+                        <a class="number" href="{{ route('posts.my-follows') }}">{{ Auth::user()->followedPosts()->count() }}</a>
                     </div>
                 </div>
             </div>
@@ -267,19 +289,18 @@ bg-student
 @section('js')
 
 <script>
-
 @if(Auth::user()->is_tutor)
     let calendar;
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
-
         calendar = new FullCalendar.Calendar(calendarEl, {
+            // timeZone: 'PST',
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'timeGridDay,timeGridWeek'
+                right: 'timeGridDay timeGridThreeDay'
             },
             @if(Auth::user()->is_tutor)
                 eventColor: '#6749DF',
@@ -291,14 +312,23 @@ bg-student
             selectable: true,
             selectMirror: true,
             nowIndicator: true,
-            slotMinTime: "06:00:00",
-            slotMaxTime: "23:00:00",
+            slotMinTime: "08:00:00",
+            slotMaxTime: "24:00:00",
             allDaySlot: false,
             selectOverlap: false,
             validRange: function (nowDate) {
                 return {
                     start: nowDate
                 };
+            },
+            // editable: true,
+            expandRows: true,
+            views: {
+                timeGridThreeDay: {
+                    type: 'timeGrid',
+                    duration: { days: 5 },
+                    buttonText: '5 day'
+                }
             },
             now: function () {
                 return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
@@ -312,7 +342,6 @@ bg-student
             select: function (selectionInfo) {
                 let startTime = selectionInfo.start;
                 let endTime = selectionInfo.end;
-
                 showAvailableTimeForm(startTime, endTime);
             },
             eventClick: function (eventClickInfo) {
@@ -320,7 +349,6 @@ bg-student
                 if (eventClickInfo.event.url) {
                     window.open(eventClickInfo.event.url);
                 }
-
                 showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
             },
             events: [
@@ -332,9 +360,9 @@ bg-student
                     description: "",
                     id: "{{ $time->id }}",
                     @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-purple-primary', 'hover--pointer'],
                     @else
-                    classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-blue-primary', 'hover--pointer'],
                     @endif
                 },
                 @endforeach
@@ -354,15 +382,11 @@ bg-student
                 @endforeach
             ],
         });
-
         calendar.render();
     });
-
     $('#availableTimeConfirmationModal form').submit(function(e) {
         e.preventDefault();
-
         let data = $(this).serialize();
-
         $.ajax({
             type: 'POST',
             url: "{{ route('availableTime.store') }}",
@@ -377,9 +401,9 @@ bg-student
                     description: "",
                     id: data.availableTimeId,
                     @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
                     @else
-                    classNames: ['bg-color-blue-primary', 'fs-1-4', 'hover--pointer'],
+                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
                     @endif
                 });
                 $('#availableTimeConfirmationModal').modal('hide');
@@ -390,12 +414,9 @@ bg-student
             }
         });
     });
-
     $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
         e.preventDefault();
-
         let data = $(this).serialize();
-
         $.ajax({
             type: 'DELETE',
             url: "{{ route('availableTime.delete') }}",
@@ -412,11 +433,8 @@ bg-student
             }
         });
     });
-
 @endif
-
 let storageUrl = "{{ Storage::url('') }}";
-
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
         $.ajax({
@@ -431,14 +449,54 @@ let storageUrl = "{{ Storage::url('') }}";
             }
         });
     }
-
     // refresh recommended tutors
     $('#btn-refresh').click(function() {
         getRecommendedTutors();
     });
-
 @endif
+</script>
 
+{{-- for graphics --}}
+<script>
+    MG.data_graphic({
+        title: "Post View Count",
+        description: "This graphic shows a time-series of post view counts.",
+        data: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#post-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
+
+    MG.data_graphic({
+        title: "Profile View Count",
+        description: "This graphic shows a time-series of profile view counts.",
+        data: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#profile-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

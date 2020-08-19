@@ -9,9 +9,10 @@
     </span>
     <p class="post__heading-2">
         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
-        <span class="poster-name mr-3">
+        <span class="poster-name mr-2">
             Me
         </span>
+        <span class="mr-2 fw-900">&middot;</span>
         <span>{{ $post->getTimeAgo() }}</span>
     </p>
 
@@ -23,7 +24,7 @@
                 </a>
             </h5>
             <div class="post__content fc-grey mb-2">
-                {!! Str::words(strip_tags($post->content), 40, ' ...') !!}
+                {{ strip_tags($post->content) }}
             </div>
         </div>
         @if($post->thumbNail)
@@ -41,20 +42,20 @@
                 @endif
             </div>
             <div class="post__bottom__info d-flex">
-                <div class="left-container d-flex align-items-center mt-3">
-                    <svg class="mr-1">
+                <div class="left-container d-flex align-items-center">
+                    <svg class="mr-6px">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                     </svg>
                     <span class="mr-5">
                         {{ $post->users_upvoted_count }} people liked this post.
                     </span>
-                    <svg class="mr-1">
+                    <svg class="mr-6px">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                     </svg>
                     <span class="mr-5">
                         {{ App\CustomClass\NumberFormatter::thousandsFormat($post->view_count) }}
                     </span>
-                    <svg class="mr-1">
+                    <svg class="mr-6px">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                     </svg>
                     <span class="">

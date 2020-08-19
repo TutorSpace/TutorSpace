@@ -3,24 +3,30 @@
 namespace App;
 
 use DB;
+use App\Post;
 use App\Session;
-use Carbon\Carbon;
 
+use Carbon\Carbon;
 use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements Viewable
 {
     use Notifiable;
+    use InteractsWithViews;
+    protected $removeViewsOnDelete = true;
 
     /**
      * The attributes that are mass assignable.
@@ -75,6 +81,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\Major', 'second_major_id');
     }
 
+    public function minor() {
+        return $this->belongsTo('App\Major', 'minor_id');
+    }
+
     public function schoolYear() {
         return $this->belongsTo('App\SchoolYear');
     }
@@ -95,13 +105,52 @@ class User extends Authenticatable
         if(!Str::of($this->profile_pic_url)->contains('placeholder')) {
             Storage::delete($this->profile_pic_url);
         }
+    }
 
+    // return the profile' daily view count in the past week
+    public function viewCntWeek() {
+        return $this->views()
+                    ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
+                    ->whereBetween('viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->groupBy('viewed_at');
+    }
+
+    public static function getViewCntWeek($userId) {
+        return View::where('views.viewable_type', 'App\User')
+                    ->whereBetween('views.viewed_at', [
+                        // a week is 7 -1 + 1 days including today
+                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
+                        Carbon::now()->format('Y-m-d')
+                    ])
+                    ->join('users', 'users.id', '=', 'views.viewable_id')
+                    ->where('users.id', $userId)
+                    ->groupBy('views.viewed_at')
+                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->get();
+    }
+
+    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
+    public function views(): MorphMany {
+        return $this->morphMany('App\View', 'viewable');
     }
 
 
     // ======================== Forum ======================
     public function posts() {
         return $this->hasMany('App\Post');
+    }
+
+    // get the posts that this user replied to
+    public function postsReplied() {
+        return Post::join('replies', 'replies.post_id', '=', 'posts.id')
+                    ->join('users', 'users.id', '=', 'replies.user_id')
+                    ->where('users.id', $this->id)
+                    ->where('replies.is_direct_reply', true)
+                    ->distinct();
     }
 
     public function replies() {
@@ -177,6 +226,7 @@ class User extends Authenticatable
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
+                                ->where('users.email', '!=', $this->email)
                                 ->get();
             $recommendedTutors = $recommendedTutors
                                     ->random(min(5, $recommendedTutors->count()));
@@ -192,6 +242,7 @@ class User extends Authenticatable
                                     ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
                             })
                             ->whereNotIn('id', $tutorIds)
+                            ->where('users.email', '!=', $this->email)
                             ->get();
                 // I want to get a total of (5 - $recommendedTutors->count()) tutors here
                 $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
@@ -203,6 +254,7 @@ class User extends Authenticatable
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::where('users.is_tutor', true)
                                     ->whereNotIn('id', $tutorIds)
+                                    ->where('users.email', '!=', $this->email)
                                     ->get();
                     // I want to get a total of (5 - $recommendedTutors->count()) tutors here
                     $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
@@ -258,6 +310,11 @@ class User extends Authenticatable
     public function about_reviews() {
         return $this->hasMany('App\Review', 'reviewee_id');
     }
+
+    public function getAvgRating() {
+        return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
+    }
+
 
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST

@@ -34,6 +34,7 @@ class PostViewed
      */
     public function broadcastOn()
     {
+        // this function will be called only if you implements the shouldbroadcast
         return new PrivateChannel('channel-name');
     }
 }

@@ -6,7 +6,7 @@ use App\Events\PostViewed;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class IncrementViewCount implements ShouldQueue
+class IncrementPostViewCount implements ShouldQueue
 {
 
     /**
@@ -36,5 +36,6 @@ class IncrementViewCount implements ShouldQueue
     {
         $post = $event->post;
         $post->increment('view_count');
+        views($post)->record();
     }
 }

@@ -50,16 +50,16 @@ bg-student
                         <span class="mr-3 fc-black-post">Posted By</span>
                         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
-                        <a href="#" class="poster-name mr-3">
+                        <a href="#" class="poster-name mr-4">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}
                         </a>
                         @else
-                        <span class="poster-name mr-3">
+                        <span class="poster-name mr-4">
                             Me
                         </span>
                         @endif
                         <span class="mr-4">{{ $post->getTime() }}</span>
-                        <svg class="mr-1">
+                        <svg class="mr-6px">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                         </svg>
                         <span>
@@ -86,7 +86,7 @@ bg-student
                         <div class="post__bottom__actions d-flex justify-content-end">
                             <div class="left-container d-flex align-items-center mt-2" data-post-slug="{{ $post->slug }}">
                                 <div class="action action-upvote @if(Auth::check() && $post->upvotedBy(Auth::user())) active @endif">
-                                    <svg class="mr-2px">
+                                    <svg class="mr-6px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -95,7 +95,7 @@ bg-student
                                 </div>
 
                                 <div class="action action-reply @if(Auth::check() && $post->repliedBy(Auth::user())) active @endif" data-toggle="tooltip" data-placement="top" title="Reply">
-                                    <svg class="mr-2px">
+                                    <svg class="mr-6px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -106,7 +106,7 @@ bg-student
                                 @can('follow', $post)
                                     @if(Auth::check() && $post->followedBy(Auth::user()))
                                     <div class="action action-follow active">
-                                        <svg class="mr-3px">
+                                        <svg class="mr-6px">
                                             <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
                                         </svg>
                                         <span class="text">
@@ -115,7 +115,7 @@ bg-student
                                     </div>
                                     @else
                                     <div class="action action-follow">
-                                        <svg class="mr-3px">
+                                        <svg class="mr-6px">
                                             <use xlink:href="{{asset('assets/sprite.svg#icon-heart-empty')}}"></use>
                                         </svg>
                                         <span class="text">
@@ -126,7 +126,7 @@ bg-student
                                 @endcan
 
                                 <div class="action action-report mr-0">
-                                    <svg class="mr-2px">
+                                    <svg class="mr-6px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
@@ -205,13 +205,13 @@ bg-student
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
                                 <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
                                 @if ($reply->replies_count > 0)
-                                    <button class="btn btn-link btn-toggle-follow-up mr-2" type="button">
+                                    <button class="btn btn-link btn-toggle-follow-up" type="button">
                                         <span class="keyword">Display</span>
                                     {{ $reply->replies_count }} {{ $reply->replies_count == 1 ? 'followup' : 'followups' }}
                                 </button>
                                 @endif
                                 <div class="action action-upvote @if(Auth::check() && !($reply->usersUpvoted->isEmpty())) active @endif">
-                                    <svg class="mr-1px">
+                                    <svg class="mr-4px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -222,9 +222,10 @@ bg-student
                                     <svg>
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-bubbles')}}"></use>
                                     </svg>
+                                    &nbsp;
                                 </div>
                                 <div class="action action-report mr-0">
-                                    <svg class="mr-1px">
+                                    <svg class="mr-4px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
@@ -259,10 +260,6 @@ bg-student
                                 <a class="followup-to" href="#">
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
-                                {{-- @else --}}
-                                {{-- <span class="followup-to">
-                                    @Me
-                                </span> --}}
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
@@ -281,7 +278,7 @@ bg-student
                                     @endif
                                 </div>
                                 <div class="action action-upvote @if(Auth::check() && !($followup->usersUpvoted->isEmpty())) active @endif">
-                                    <svg class="mr-1px">
+                                    <svg class="mr-4px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-thumbs-up')}}"></use>
                                     </svg>
                                     <span class="num">
@@ -294,7 +291,7 @@ bg-student
                                     </svg>
                                 </div>
                                 <div class="action action-report mr-0">
-                                    <svg class="mr-1px">
+                                    <svg class="mr-4px">
                                         <use xlink:href="{{asset('assets/sprite.svg#icon-warning')}}"></use>
                                     </svg>
                                     <span>
@@ -467,11 +464,11 @@ $('#reportModal').modal('show');
     $(`.post-reply[data-reply-id=${replyId}]`).find('.post-reply__actions .keyword').html('Hide');
 
     $('html, body').animate({
-        scrollTop: $('#scroll-to-followup').offset().top - $('.nav').height() - 500
+        scrollTop: $('#scroll-to-followup').offset().top - $('._nav').height() - 500
     }, 1000);
 @elseif(session('newReplyId'))
     $('html, body').animate({
-        scrollTop: $('#scroll-to-reply').offset().top - $('.nav').height() - 500
+        scrollTop: $('#scroll-to-reply').offset().top - $('._nav').height() - 500
     }, 1000);
 @endif
 

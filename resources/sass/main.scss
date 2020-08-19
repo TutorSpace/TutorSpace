@@ -3,6 +3,8 @@
 @import "~toastr/toastr.scss";
 @import "~pikaday/scss/pikaday.scss";
 @import "~bootstrap-slider/dist/css/bootstrap-slider.min.css";
+@import "~metrics-graphics/dist/metricsgraphics.css";
+@import '../../public/fullcalendar/main.css';
 
 @import "abstracts/functions";
 @import "abstracts/mixins";
@@ -19,9 +21,9 @@
 @import "components/overlay-background";
 @import "components/review";
 @import "components/forum/post_preview";
-@import "components/forum/tag";
+@import "components/tag";
 @import "components/forum/post_reply";
-@import "components/forum/user_card";
+@import "components/user_card";
 @import "components/session";
 @import "components/pagination";
 @import "components/search-card";
@@ -32,9 +34,11 @@
 @import "components/bootstrap-slider";
 @import "components/timepicker";
 @import "components/search";
-@import "components/home/info_box";
+@import "components/info_box";
+@import "components/info_card";
 @import "components/svg_tutor_verified";
-@import "components/calendar";
+@import "components/menu-bar";
+@import "components/auto-complete";
 
 
 @import "layout/navbar";
@@ -48,8 +52,8 @@
 @import "pages/forum/create";
 @import "pages/search";
 @import "pages/home/index";
+@import "pages/home/profile";
 
-@import "pages/profile";
 @import "pages/report";
 @import "pages/edit_profile";
 @import "pages/messages";
