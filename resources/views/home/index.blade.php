@@ -16,7 +16,6 @@ bg-student
 @section('links-in-head')
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<link href='{{asset('fullcalendar/main.min.css')}}' rel='stylesheet' />
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
 @endsection
 
@@ -63,7 +62,7 @@ bg-student
         <div class="container">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
-                    <h5 class="mb-2 w-100">Calendar</h5>
+                    <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                 </div>
                 <div class="col-lg-4 info-cards">
