@@ -14277,6 +14277,10 @@ h6 {
   font-family: Avenir;
 }
 
+.fw-900 {
+  font-weight: 900;
+}
+
 .left-n-2 {
   left: -2rem;
 }
@@ -17398,10 +17402,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .post__heading-2 .poster-img {
-  width: 3rem;
-  height: 3rem;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
-  margin-right: 0.3rem;
+  margin-right: 0.8rem;
   -o-object-fit: cover;
      object-fit: cover;
 }

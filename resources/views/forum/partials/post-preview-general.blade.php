@@ -3,14 +3,15 @@
     <p class="post__heading-2">
         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
-        <a href="#" class="poster-name mr-3">
+        <a href="#" class="poster-name mr-2">
             {{ "{$post->user->first_name} {$post->user->last_name}" }}
         </a>
         @else
-        <span class="poster-name mr-3">
+        <span class="poster-name mr-2">
             Me
         </span>
         @endif
+        <span class="mr-2 fw-900">&middot;</span>
         <span>{{ $post->getTimeAgo() }}</span>
     </p>
 
