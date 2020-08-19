@@ -25,12 +25,12 @@ Password: password
 
 
 
-## ======================== `RESOURCES` ========================
+### ======================== `RESOURCES` ========================
 1. [**Github**](https://github.com/TutorSpace/TutorSpace)
 2. [**Trello**](https://trello.com/tutorspace1/home)
 3. [**Figma**](https://www.figma.com/file/5fTGR3CI0dBXJgsb7gp3ev/Tutor?node-id=0%3A1)
 
-## ====================== `ALL DEVELOPERS` ======================
+### ====================== `ALL DEVELOPERS` ======================
 1. ***NEVER*** push directly to the ***MASTER*** branch. Create your own branches and make pull requests to ***DEVELOP*** branch.
 2. Pull from ***DEVELOP*** branch regularly to make sure you get the most updated code. If there’s a merge conflict you don’t know how to solve, please let other developers know and we can figure it out together.
 3. We are using the **Agile** methodology, so it would be best if all our developers can follow the following rules:
