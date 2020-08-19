@@ -5,7 +5,7 @@
                 <span>OUR SERVICES</span>
             </li>
             <li class="footer__item">
-                <a href="#" target="_blank">Forum</a>
+                <a href="{{ route('posts.index') }}" target="_blank">Forum</a>
             </li>
         </ul>
 

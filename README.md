@@ -52,7 +52,7 @@ Password: password
 1. Debug at `localhost:8000/telescope`, where you can access the exact queries you executed and their runtime, cache, queues, scheduled tasks, .etc
 2. Runtime is of our ***TOP*** priority. Try to optimize runtime using techniques like CACHE, QUEUES, EAGER LOADING, and more beyond.
 3. Keep code ***STRUCTURED***
-4. Please restructure/optimize existing code
+4. Please restructure/optimize existing code wherever you see a potential to improve. (***Just make sure you fully tested it after you modified the code to guarantee it really works. If you know some part of the program can be improved/optimized but dont want to modify it right away, please leave a "todo" comment near it so that we can modify it sometime in the future***)
 5. Most Useful Sections in Laravel's Official Documentation : (***PLEASE READ ALL THE ONES MARKED WITH * FIRST, AS THEY ARE THE MOST IMPORTANT ONES!***)
     1. Architecture Concepts:
         1. Facades
