@@ -49,7 +49,7 @@ Password: password
     5. Run `php artisan migrate:refresh --seed` to refresh & seed the database
 
 
-## ====================== `BACKEND DEVELOPERS` ======================
+### ====================== `BACKEND DEVELOPERS` ======================
 1. Debug at `localhost:8000/telescope`, where you can access the exact queries you executed and their runtime, cache, queues, scheduled tasks, .etc
 2. Runtime is of our ***TOP*** priority. Try to optimize runtime using techniques like CACHE, QUEUES, EAGER LOADING, and more beyond.
 3. Keep code ***STRUCTURED***
