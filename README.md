@@ -90,12 +90,17 @@ Password: password
 
 
 ### ====================== ***FRONTEND DEVELOPERS*** ======================
-1. Try to extract all the shared common components out of a page and build blade & css files unique to those components.
-2. Always plan out the page layout before writing any code. This will be helpful for responsive layout.
-3. Create variables in `resources/sass` if a value will be used in many places.
+1. Use BEM Naming Conventions
+2. Try to extract all the shared common components out of a page and build blade & css files unique to those components.
+3. Always plan out the page layout before writing any code. This will be helpful for responsive layout.
+4. Create variables in `resources/sass` if a value will be used in many places.
 5. Do not use CDN of third-party libraries. Instead, use npm to install those packages and then include the js files in `resources/js/app.js` using `require` statements (CommonJS syntax)
 6. Write all js files in `resources/js` folder, and add those files into `webpack.mix.js`. Then, run `npm run watch` or `npm run dev` to compile the js files into the public folder. Finally, include the compiled js files into the `app.blade.php` if it will be shared among many files
-7. Important Resources:
+7. Since our platform is quite large and all the pages share one single large css file, please pay special attention not to conflict with any already existing css classes by wrapping a page's main styles with a main class and defind all the styles under that main class.
+8. Since our users can be guest users, student users, and tutor users, they often share same or similar components on the same page. Therefore, please first plan out which common parts they share and extract them out when building the css files.
+9. Use `class` instead of `id` wherever possible for both CSS and JS files.
+10. Use ***jQuery*** instead of ***vanilla JS***
+11. Important Resources:
     1. [Blade Templates](https://laravel.com/docs/7.x/blade)
     2. [Bootstrap](https://getbootstrap.com/)
     3. [Bootstrap Icons](https://icons.getbootstrap.com/)
