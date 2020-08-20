@@ -38,7 +38,6 @@ class CreateUsersTable extends Migration
             $table->foreign('minor_id')->references('id')->on('minors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('school_year_id')->nullable()->references('id')->on('school_years')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tutor_level_id')->nullable()->references('id')->on('tutor_levels')->onDelete('cascade')->onUpdate('cascade');
-
         });
     }
 
