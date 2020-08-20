@@ -35,8 +35,8 @@ Password: password
 2. Pull from ***DEVELOP*** branch regularly to make sure you get the most updated code. If there’s a merge conflict you don’t know how to solve, please let other developers know and we can figure it out together.
 3. We are using the **Agile** methodology, so it would be best if all our developers can follow the following rules:
     1. Our sprint cycle is ***ONE WEEK***. Everyone’s tasks are listed in Trello. Remember to update the tasks before the end each sprint cycle by adding description to the tasks. Remember not to move the tasks to a different list, since we will do it together in our daily meeting. (The meeting time has yet to be decided.)
-    2. Please always notify others about 1) What features/tasks have you accomplished last 1 - 2 days and 2) What features/tasks do you plan to work on next 1 - 2 days. 
-        > **Please update these every 1 or 2 days in our slack room.**
+    2. Please always notify others about 1) What features/tasks have you accomplished last 1 - 3 days and 2) What features/tasks do you plan to work on next 1 - 3 days. 
+        > **Please update these every 1 - 3 days in our slack room.**
 4. Try ***adding comment*** to your code as much as possible
 5. Avoid Repetitive Code (***DRY***)
 6. If you see any bugs in our project or you have any concerns about the existing functionalities( no matter it’s frontend or backend), please report it directly in the corresponding slack channel or take a note of it and bring it up in our next weekly meeting.
