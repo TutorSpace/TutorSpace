@@ -23,14 +23,16 @@ Email: student@usc.edu
 Password: password
 ```
 
+> Since these two sample accounts used fake emails, you would not be able to test any email related funcitonalities in our platform (subscribing, getting notifications, verification code, etc). You would need to register on our platform using your own email.
 
 
-### ======================== `RESOURCES` ========================
+
+### ======================== ***RESOURCES*** ========================
 1. [**Github**](https://github.com/TutorSpace/TutorSpace)
 2. [**Trello**](https://trello.com/tutorspace1/home)
 3. [**Figma**](https://www.figma.com/file/5fTGR3CI0dBXJgsb7gp3ev/Tutor?node-id=0%3A1)
 
-### ====================== `ALL DEVELOPERS` ======================
+### ====================== ***ALL DEVELOPERS*** ======================
 1. ***NEVER*** push directly to the ***MASTER*** branch. Create your own branches and make pull requests to ***DEVELOP*** branch.
 2. Pull from ***DEVELOP*** branch regularly to make sure you get the most updated code. If there’s a merge conflict you don’t know how to solve, please let other developers know and we can figure it out together.
 3. We are using the **Agile** methodology, so it would be best if all our developers can follow the following rules:
@@ -49,12 +51,12 @@ Password: password
     5. Run `php artisan migrate:refresh --seed` to refresh & seed the database
 
 
-### ====================== `BACKEND DEVELOPERS` ======================
+### ====================== ***BACKEND DEVELOPERS*** ======================
 1. Debug at `localhost:8000/telescope`, where you can access the exact queries you executed and their runtime, cache, queues, scheduled tasks, .etc
 2. Runtime is of our ***TOP*** priority. Try to optimize runtime using techniques like CACHE, QUEUES, EAGER LOADING, and more beyond.
 3. Keep code ***STRUCTURED***
 4. Please restructure/optimize existing code wherever you see a potential to improve. (***Just make sure you fully tested it after you modified the code to guarantee it really works. If you know some part of the program can be improved/optimized but dont want to modify it right away, please leave a "todo" comment near it so that we can modify it sometime in the future***)
-5. Most Useful Sections in Laravel's Official Documentation : (***PLEASE READ ALL THE ONES MARKED WITH * FIRST, AS THEY ARE THE MOST IMPORTANT ONES!***)
+5. Most Useful Sections in Laravel's Official Documentation: (***PLEASE READ ALL THE ONES MARKED WITH * FIRST, AS THEY ARE THE MOST IMPORTANT ONES!***)
     1. Architecture Concepts:
         1. Facades
     2. The Basics 
@@ -86,6 +88,19 @@ Password: password
         3. Collections (*)
         4. Mutators (*)
 
+
+### ====================== ***FRONTEND DEVELOPERS*** ======================
+1. Try to extract all the shared common components out of a page and build blade & css files unique to those components.
+2. Always plan out the page layout before writing any code. This will be helpful for responsive layout.
+3. Create variables in `resources/sass` if a value will be used in many places.
+5. Do not use CDN of third-party libraries. Instead, use npm to install those packages and then include the js files in `resources/js/app.js` using `require` statements (CommonJS syntax)
+6. Write all js files in `resources/js` folder, and add those files into `webpack.mix.js`. Then, run `npm run watch` or `npm run dev` to compile the js files into the public folder. Finally, include the compiled js files into the `app.blade.php` if it will be shared among many files
+7. Important Resources:
+    1. [Blade Templates](https://laravel.com/docs/7.x/blade)
+    2. [Bootstrap](https://getbootstrap.com/)
+    3. [Bootstrap Icons](https://icons.getbootstrap.com/)
+    4. [IconMoon Icons](https://icomoon.io/app/#/select)
+    5. [NPM Modules](https://www.npmjs.com/)
 
 
 <!-- 
