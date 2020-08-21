@@ -43,6 +43,9 @@ if __name__ == '__main__':
     tags = []
     tags += read_from_csv('tags.csv')
     tags += read_from_csv('buildings.csv')
+    tags += read_from_csv('courses.csv')
+    tags += read_from_csv('majors.csv')
+    tags += read_from_csv('minors.csv')
 
     values = [[item] for item in tags]
     my_cursor.executemany(u"INSERT INTO `tags`(`tag`) VALUES (%s)", values)
