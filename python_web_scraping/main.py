@@ -1,5 +1,7 @@
 import csv
 import mysql.connector
+import os
+from dotenv import load_dotenv
 
 
 def read_from_csv(file_name):
@@ -17,21 +19,31 @@ def read_from_csv(file_name):
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    DB_HOST = os.getenv("DB_HOST")
+    DB_PORT = os.getenv("DB_PORT")
+    DB_DATABASE = os.getenv("DB_DATABASE")
+    DB_USERNAME = os.getenv("DB_USERNAME")
+    DB_PASSWORD = os.getenv("DB_PASSWORD")
+
     my_db = mysql.connector.connect(
-        host="www.joinme.us",
-        user="joinmeus_db_user",
-        password="Lsq987069!",
-        database="joinmeus_tutorspace_db",
-        port="3306"
+        host = DB_HOST,
+        user = DB_USERNAME,
+        password = DB_PASSWORD,
+        database = DB_DATABASE,
+        port = "3306",
+        auth_plugin = 'mysql_native_password'
     )
     my_cursor = my_db.cursor()\
+
+    # print('current directory:', os.getcwd())
+    os.chdir('python_web_scraping')
 
     # Tags
     tags = []
     tags += read_from_csv('tags.csv')
     tags += read_from_csv('buildings.csv')
 
-    my_cursor.execute(u"TRUNCATE TABLE tags;")
     values = [[item] for item in tags]
     my_cursor.executemany(u"INSERT INTO `tags`(`tag`) VALUES (%s)", values)
 
@@ -39,7 +51,6 @@ if __name__ == '__main__':
     courses = []
     courses += read_from_csv('courses.csv')
 
-    my_cursor.execute(u"TRUNCATE TABLE courses;")
     values = [[item] for item in courses]
     my_cursor.executemany(u"INSERT INTO `courses`(`course`) VALUES (%s)", values)
 
@@ -47,7 +58,6 @@ if __name__ == '__main__':
     majors = []
     majors += read_from_csv('majors.csv')
 
-    my_cursor.execute(u"TRUNCATE TABLE majors;")
     values = [[item] for item in majors]
     my_cursor.executemany(u"INSERT INTO `majors`(`major`) VALUES (%s)", values)
 
@@ -55,7 +65,6 @@ if __name__ == '__main__':
     minors = []
     minors += read_from_csv('minors.csv')
 
-    my_cursor.execute(u"TRUNCATE TABLE minors;")
     values = [[item] for item in minors]
     my_cursor.executemany(u"INSERT INTO `minors`(`minor`) VALUES (%s)", values)
 

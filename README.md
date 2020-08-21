@@ -48,7 +48,8 @@ Password: password
     2. Run `php artisan serve` and `php artisan queue:work` to start running the project. By default, you should be able to see the project by entering `localhost:8000` in your browser if the port 8000 is not occupied.
     3. Run `npm install` to install all required packages
     4. Run `npm run watch` to compile all js/css files (very useful for our ***FrontEnd*** developers)
-    5. Run `php artisan migrate:refresh --seed` to refresh & seed the database
+    5. Make sure you have `python-dotenv` package installed. If not, run `pip install python-dotenv`.
+    6. Run `php artisan migrate:refresh --seed` to refresh & seed the database
 
 
 ### ====================== ***BACKEND DEVELOPERS*** ======================
