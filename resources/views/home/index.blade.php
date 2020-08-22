@@ -439,6 +439,8 @@ bg-student
         });
     });
 @endif
+
+
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
