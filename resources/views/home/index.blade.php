@@ -360,7 +360,7 @@ bg-student
                     description: "",
                     id: "{{ $time->id }}",
                     @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'hover--pointer'],
+                    classNames: ['bg-color-purple-primary', 'hover--pointer', 'my-available-time'],
                     @else
                     classNames: ['bg-color-blue-primary', 'hover--pointer'],
                     @endif
