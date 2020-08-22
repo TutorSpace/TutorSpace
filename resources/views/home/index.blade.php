@@ -370,8 +370,8 @@ bg-student
                 @foreach(Auth::user()->upcomingSessions as $upcomingSession)
                 {
                     @php
-                        $startTime = date("H:i", strtotime($upcomingSession->available_time_start));
-                        $endTime = date("H:i", strtotime($upcomingSession->available_time_end));
+                        $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
+                        $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
                     @endphp
                     title: 'In Person',
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
@@ -403,11 +403,8 @@ bg-student
                     end: data.available_time_end,
                     description: "",
                     id: data.availableTimeId,
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 });
                 $('#availableTimeConfirmationModal').modal('hide');
             },

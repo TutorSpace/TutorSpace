@@ -21,6 +21,7 @@ class CreateSessionsTable extends Migration
             $table->date('date');
             $table->time('session_time_start', 0);
             $table->time('session_time_end', 0);
+            $table->boolean('is_in_person');
             $table->boolean('is_upcoming')->default(true);
             $table->boolean('is_canceled')->default(false);
             $table->unsignedBigInteger('cancel_reason_id')->nullable();
