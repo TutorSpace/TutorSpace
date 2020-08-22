@@ -16304,11 +16304,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #ffffff;
 }
 
-.my-available-time {
-  cursor: not-allowed;
-  z-index: 1000;
-}
-
 ._nav {
   height: 8rem;
   z-index: 2000;
