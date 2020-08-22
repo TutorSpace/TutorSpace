@@ -331,7 +331,7 @@ bg-student
                 timeGridThreeDay: {
                     type: 'timeGrid',
                     duration: { days: 5 },
-                    buttonText: '5 day'
+                    buttonText: '5 days'
                 }
             },
             now: function () {

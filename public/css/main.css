@@ -14909,10 +14909,6 @@ h6 {
   border-color: #0075E0;
 }
 
-.bg-student .btn-primary.active {
-  background-color: #0C4293 !important;
-}
-
 .bg-student .btn-outline-primary {
   border-color: #1F7AFF;
   color: #1F7AFF;
@@ -14933,10 +14929,6 @@ h6 {
 .bg-tutor .btn-primary:hover {
   background-color: #502ED9;
   border-color: #502ED9;
-}
-
-.bg-tutor .btn-primary.active {
-  background-color: #30188F !important;
 }
 
 .bg-tutor .btn-outline-primary {
@@ -16324,6 +16316,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   z-index: 100 !important;
 }
 
+#calendar .fc-toolbar-chunk:last-child .btn-primary {
+  background-color: #E0E0E0;
+  color: #3F3F3F !important;
+  border: none !important;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem !important;
+  font-size: 1.2rem !important;
+  box-shadow: none !important;
+}
+
+#calendar .fc-toolbar-chunk:last-child .btn-primary:disabled {
+  cursor: not-allowed;
+}
+
+#calendar .fc-toolbar-chunk:last-child .btn-primary.active {
+  background-color: #6749DF !important;
+  color: #FFFFFF !important;
+}
+
 .fc .fc-timegrid-col-events {
   margin-right: 0;
   margin-left: 0;
@@ -16365,15 +16376,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .fc-next-button,
 .fc-prev-button {
   background-color: transparent !important;
-  color: #3F3F3F !important;
   border-color: transparent !important;
-  font-size: 1.2rem !important;
+  font-size: 1.4rem !important;
   line-height: 1 !important;
+  color: #3F3F3F !important;
+  box-shadow: none !important;
 }
 
-.fc-next-button:disabled,
-.fc-prev-button:disabled {
-  cursor: not-allowed;
+.fc-next-button,
+.fc-toolbar-title {
+  margin-left: 0.8rem !important;
+}
+
+.fc-toolbar-title {
+  font-size: 2.2rem !important;
 }
 
 ._nav {

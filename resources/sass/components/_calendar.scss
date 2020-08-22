@@ -19,6 +19,27 @@
         z-index: 100 !important;
     }
 
+    .fc-toolbar-chunk:last-child {
+        .btn-primary {
+            background-color: $color-grey-3;
+            color: $color-black !important;
+            border: none !important;
+            text-transform: uppercase;
+            padding: .5rem 1rem !important;
+            font-size: 1.2rem !important;
+            box-shadow: none !important;
+
+            &:disabled {
+                cursor: not-allowed;
+            }
+
+            &.active {
+                background-color: $color-purple-primary !important;
+                color: $color-white !important;
+            }
+
+        }
+    }
 }
 
 
@@ -68,12 +89,17 @@
 
 .fc-next-button, .fc-prev-button {
     background-color: transparent !important;
-    color: $color-black !important;
     border-color: transparent !important;
-    font-size: 1.2rem !important;
+    font-size: 1.4rem !important;
     line-height: 1 !important;
+    color: $color-black !important;
+    box-shadow: none !important;
+}
 
-    &:disabled {
-        cursor: not-allowed;
-    }
+.fc-next-button, .fc-toolbar-title {
+    margin-left: .8rem !important;
+}
+
+.fc-toolbar-title {
+    font-size: 2.2rem !important;
 }
