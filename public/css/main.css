@@ -16332,6 +16332,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .fc .fc-timegrid-col.fc-day-today {
   /* background-color: rgba(255, 220, 40, 0.15); */
   /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
+  background-color: transparent !important;
 }
 
 .fc-v-event .fc-event-main-frame {
@@ -16354,6 +16355,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-left: 0 !important;
   left: 0 !important;
   z-index: unset !important;
+}
+
+.fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+}
+
+.fc-next-button,
+.fc-prev-button {
+  background-color: transparent !important;
+  color: #3F3F3F !important;
+  border-color: transparent !important;
+  font-size: 1.2rem !important;
+  line-height: 1 !important;
+}
+
+.fc-next-button:disabled,
+.fc-prev-button:disabled {
+  cursor: not-allowed;
 }
 
 ._nav {

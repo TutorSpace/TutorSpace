@@ -32,6 +32,7 @@
 .fc .fc-timegrid-col.fc-day-today {
     /* background-color: rgba(255, 220, 40, 0.15); */
     /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
+    background-color: transparent !important;
 }
 
 .fc-v-event .fc-event-main-frame {
@@ -56,4 +57,23 @@
     margin-left: 0 !important;
     left: 0 !important;
     z-index: unset !important;
+}
+
+
+// tool bar
+.fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+}
+
+.fc-next-button, .fc-prev-button {
+    background-color: transparent !important;
+    color: $color-black !important;
+    border-color: transparent !important;
+    font-size: 1.2rem !important;
+    line-height: 1 !important;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }

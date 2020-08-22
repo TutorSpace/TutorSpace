@@ -294,13 +294,21 @@ bg-student
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         calendar = new FullCalendar.Calendar(calendarEl, {
+            customButtons: {
+                myCustomButton: {
+                    text: 'custom!',
+                    click: function() {
+                        alert('clicked the custom button!');
+                    }
+                }
+            },
             // timeZone: 'PST',
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
             headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridDay timeGridThreeDay'
+                left: 'prev title next',
+                center: '',
+                right: 'today timeGridDay timeGridThreeDay'
             },
             eventColor: 'rgb(213, 208, 223)',
             height: 'auto',
