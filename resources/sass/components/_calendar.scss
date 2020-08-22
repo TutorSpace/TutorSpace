@@ -1,8 +1,23 @@
-.my-available-time {
-    width: 100%;
-    background-color: rgba($color-purple-primary, .3) !important;
-    border-color: rgba($color-purple-primary, .3) !important;
+#calendar {
+    .my-available-time {
+        width: 100%;
+        background-color: $color-calendar-time-available !important;
+        border-color: $color-calendar-time-available !important;
+    }
+
+    .inperson-session {
+        width: 100%;
+        background-color: $color-calendar-inpseron !important;
+        border-color: $color-calendar-inpseron !important;
+    }
+
 }
+
+.inperson-session {
+        width: 100%;
+        background-color: $color-calendar-inpseron !important;
+        border-color: $color-calendar-inpseron !important;
+    }
 
 .fc .fc-timegrid-col-events {
     margin-right: 0;

@@ -349,7 +349,11 @@ bg-student
                 if (eventClickInfo.event.url) {
                     window.open(eventClickInfo.event.url);
                 }
-                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                console.log(eventClickInfo.event);
+                if(eventClickInfo.event.extendedProps.type == 'available-time') {
+                    showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                }
+
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
@@ -359,11 +363,8 @@ bg-student
                     end: '{{$time->available_time_end}}',
                     description: "",
                     id: "{{ $time->id }}",
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'hover--pointer', 'my-available-time'],
-                    @else
-                    classNames: ['bg-color-blue-primary', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 },
                 @endforeach
                 @foreach(Auth::user()->upcomingSessions as $upcomingSession)
@@ -372,11 +373,14 @@ bg-student
                         $startTime = date("H:i", strtotime($upcomingSession->available_time_start));
                         $endTime = date("H:i", strtotime($upcomingSession->available_time_end));
                     @endphp
-                    title: 'Scheduled',
+                    title: 'In Person',
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
                     end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
-                    // description: "",
-                    classNames: ['orange-red']
+                    description: "",
+                    extendedProps: {
+                        "type": "upcoming-session--inperson"
+                    },
+                    classNames: ['inperson-session']
                 },
                 @endforeach
             ],
