@@ -16320,6 +16320,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
 }
 
+.fc-v-event .fc-event-main-frame {
+  justify-content: center;
+  align-items: center;
+}
+
+.fc-v-event .fc-event-title-container {
+  flex-grow: 0;
+}
+
+.fc-timegrid-event .fc-event-time {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
 ._nav {
   height: 8rem;
   z-index: 2000;
