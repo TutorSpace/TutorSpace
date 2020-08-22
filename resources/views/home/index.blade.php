@@ -302,11 +302,7 @@ bg-student
                 center: 'title',
                 right: 'timeGridDay timeGridThreeDay'
             },
-            @if(Auth::user()->is_tutor)
-                eventColor: '#6749DF',
-            @else
-                eventColor: '#1F7AFF',
-            @endif
+            eventColor: 'rgb(213, 208, 223)',
             height: 'auto',
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
@@ -358,7 +354,7 @@ bg-student
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
                 {
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: '{{$time->available_time_start}}',
                     end: '{{$time->available_time_end}}',
                     description: "",
@@ -367,20 +363,29 @@ bg-student
                     classNames: ['my-available-time', 'hover--pointer']
                 },
                 @endforeach
+
                 @foreach(Auth::user()->upcomingSessions as $upcomingSession)
                 {
                     @php
                         $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
                         $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
                     @endphp
+                    @if($upcomingSession->is_in_person)
                     title: 'In Person',
-                    start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                    end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
-                    description: "",
                     extendedProps: {
                         "type": "upcoming-session--inperson"
                     },
-                    classNames: ['inperson-session']
+                    classNames: ['inperson-session'],
+                    @else
+                    title: 'Online',
+                    extendedProps: {
+                        "type": "upcoming-session--online"
+                    },
+                    classNames: ['online-session'],
+                    @endif
+                    start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
+                    end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+                    description: "",
                 },
                 @endforeach
             ],
@@ -398,7 +403,7 @@ bg-student
                 var successMsg = data.successMsg;
                 toastr.success(successMsg);
                 calendar.addEvent({
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: data.available_time_start,
                     end: data.available_time_end,
                     description: "",

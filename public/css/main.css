@@ -16312,14 +16312,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 #calendar .inperson-session {
   width: 100%;
-  background-color: rgba(245, 147, 0, 0.5) !important;
-  border-color: rgba(245, 147, 0, 0.5) !important;
+  background-color: rgba(245, 147, 0, 0.8) !important;
+  border-color: rgba(245, 147, 0, 0.8) !important;
+  z-index: 100 !important;
 }
 
-.inperson-session {
+#calendar .online-session {
   width: 100%;
-  background-color: rgba(245, 147, 0, 0.5) !important;
-  border-color: rgba(245, 147, 0, 0.5) !important;
+  background-color: rgba(5, 0, 245, 0.5) !important;
+  border-color: rgba(5, 0, 245, 0.5) !important;
+  z-index: 100 !important;
 }
 
 .fc .fc-timegrid-col-events {
@@ -16345,6 +16347,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 0;
   display: flex;
   align-items: center;
+}
+
+.fc-media-screen .fc-timegrid-event-harness {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  left: 0 !important;
+  z-index: unset !important;
 }
 
 ._nav {

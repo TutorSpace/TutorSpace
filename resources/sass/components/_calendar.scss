@@ -9,15 +9,18 @@
         width: 100%;
         background-color: $color-calendar-inpseron !important;
         border-color: $color-calendar-inpseron !important;
+        z-index: 100 !important;
+    }
+
+    .online-session {
+        width: 100%;
+        background-color: $color-calendar-online !important;
+        border-color: $color-calendar-online !important;
+        z-index: 100 !important;
     }
 
 }
 
-.inperson-session {
-        width: 100%;
-        background-color: $color-calendar-inpseron !important;
-        border-color: $color-calendar-inpseron !important;
-    }
 
 .fc .fc-timegrid-col-events {
     margin-right: 0;
@@ -40,9 +43,17 @@
     flex-grow: 0;
 }
 
-
+// center the "title" text in the event
 .fc-timegrid-event .fc-event-time {
     margin-bottom: 0;
     display: flex;
     align-items: center;
+}
+
+// make overlap events always occupy 100% of the
+.fc-media-screen .fc-timegrid-event-harness {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    left: 0 !important;
+    z-index: unset !important;
 }
