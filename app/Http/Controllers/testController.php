@@ -35,8 +35,8 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-
-
+        print(Session::find(1)->session_time_start);
+dd("here");
         // get daily post view count from the last 7 days
         $views = User::getViewCntWeek(1);
         // dd($posts);

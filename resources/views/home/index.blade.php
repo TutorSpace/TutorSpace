@@ -366,24 +366,22 @@ bg-student
                     @endif
                 },
                 @endforeach
-                @foreach([] as $upcomingSession)
+                @foreach(Auth::user()->upcomingSessions as $upcomingSession)
                 {
                     @php
-                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
-                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
+                        $startTime = date("H:i", strtotime($upcomingSession->available_time_start));
+                        $endTime = date("H:i", strtotime($upcomingSession->available_time_end));
                     @endphp
                     title: 'Scheduled',
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                    // start: '2020-04-25T12:30:00',
                     end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
-                    description: "",
+                    // description: "",
                     classNames: ['orange-red']
                 },
                 @endforeach
             ],
         });
         calendar.render();
-        // $('.my-available-time').width($('#calendar').width());
     });
     $('#availableTimeConfirmationModal form').submit(function(e) {
         e.preventDefault();
