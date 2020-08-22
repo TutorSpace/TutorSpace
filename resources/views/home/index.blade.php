@@ -383,6 +383,7 @@ bg-student
             ],
         });
         calendar.render();
+        // $('.my-available-time').width($('#calendar').width());
     });
     $('#availableTimeConfirmationModal form').submit(function(e) {
         e.preventDefault();

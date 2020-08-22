@@ -16304,6 +16304,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #ffffff;
 }
 
+.my-available-time {
+  width: 100%;
+  background-color: rgba(103, 73, 223, 0.3) !important;
+  border-color: rgba(103, 73, 223, 0.3) !important;
+}
+
+.fc .fc-timegrid-col-events {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.fc .fc-timegrid-col.fc-day-today {
+  /* background-color: rgba(255, 220, 40, 0.15); */
+  /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
+}
+
 ._nav {
   height: 8rem;
   z-index: 2000;

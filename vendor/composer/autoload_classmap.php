@@ -296,7 +296,6 @@ return array(
     'Dotenv\\Regex\\Regex' => $vendorDir . '/vlucas/phpdotenv/src/Regex/Regex.php',
     'Dotenv\\Repository\\AbstractRepository' => $vendorDir . '/vlucas/phpdotenv/src/Repository/AbstractRepository.php',
     'Dotenv\\Repository\\AdapterRepository' => $vendorDir . '/vlucas/phpdotenv/src/Repository/AdapterRepository.php',
-    'Dotenv\\Repository\\Adapter\\ApacheAdapter' => $vendorDir . '/vlucas/phpdotenv/src/Repository/Adapter/ApacheAdapter 2.php',
     'Dotenv\\Repository\\Adapter\\ArrayAdapter' => $vendorDir . '/vlucas/phpdotenv/src/Repository/Adapter/ArrayAdapter.php',
     'Dotenv\\Repository\\Adapter\\AvailabilityInterface' => $vendorDir . '/vlucas/phpdotenv/src/Repository/Adapter/AvailabilityInterface.php',
     'Dotenv\\Repository\\Adapter\\EnvConstAdapter' => $vendorDir . '/vlucas/phpdotenv/src/Repository/Adapter/EnvConstAdapter.php',

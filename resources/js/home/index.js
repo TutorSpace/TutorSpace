@@ -146,6 +146,3 @@ window.showAvailableTimeDeleteForm = (startTime, endTime, availableTimeId) => {
     $('#availableTimeDeleteConfirmationModal').modal('show');
 }
 
-
-
-
