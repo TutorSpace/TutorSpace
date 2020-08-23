@@ -15,7 +15,7 @@ class CreateMinorsTable extends Migration
     {
         Schema::create('minors', function (Blueprint $table) {
             $table->id();
-            $table->string('minor', 64);
+            $table->string('minor', 255);
         });
     }
 

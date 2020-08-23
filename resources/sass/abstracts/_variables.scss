@@ -4,6 +4,7 @@
 
 $color-grey: #A0A0A0;
 $color-grey-2: #EAEAEA;
+$color-grey-3: #E0E0E0;
 $color-grey-light: #E5E5E5;
 $color-white: #FFFFFF;
 $color-white-dark: #F4F4F4;
@@ -32,5 +33,10 @@ $color-black: #3F3F3F;
 $color-black-2: #626262;
 
 $color-danger: #dc3545;
+
+// for calendar
+$color-calendar-time-available: rgba(213, 208, 223, 1);
+$color-calendar-inpseron: rgba(#F59300,.8);
+$color-calendar-online: rgba(#0500F5, .5);
 
 $nav-height: 8rem;

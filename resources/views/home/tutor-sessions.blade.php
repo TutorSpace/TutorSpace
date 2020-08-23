@@ -44,8 +44,11 @@ bg-student
         <div class="container">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
-                    <h5 class="mb-2 w-100">Calendar</h5>
+                    <h5 class="mb-2 w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
+                    <div class="calendar-note">
+                        <span>Available Time</span>
+                    </div>
                 </div>
                 <div class="col-lg-4 info-cards">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
@@ -147,15 +150,11 @@ bg-student
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
             headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridDay timeGridThreeDay'
+                left: 'prev title next',
+                center: '',
+                right: 'today timeGridDay timeGridThreeDay'
             },
-            @if(Auth::user()->is_tutor)
-                eventColor: '#6749DF',
-            @else
-                eventColor: '#1F7AFF',
-            @endif
+            eventColor: 'rgb(213, 208, 223)',
             height: 'auto',
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
@@ -176,7 +175,7 @@ bg-student
                 timeGridThreeDay: {
                     type: 'timeGrid',
                     duration: { days: 5 },
-                    buttonText: '5 day'
+                    buttonText: '5 days'
                 }
             },
             now: function () {
@@ -198,35 +197,47 @@ bg-student
                 if (eventClickInfo.event.url) {
                     window.open(eventClickInfo.event.url);
                 }
-                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                console.log(eventClickInfo.event);
+                if(eventClickInfo.event.extendedProps.type == 'available-time') {
+                    showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                }
+
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
                 {
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: '{{$time->available_time_start}}',
                     end: '{{$time->available_time_end}}',
                     description: "",
                     id: "{{ $time->id }}",
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 },
                 @endforeach
-                @foreach([] as $upcomingSession)
+
+                @foreach(Auth::user()->upcomingSessions as $upcomingSession)
                 {
                     @php
-                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
-                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
+                        $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
+                        $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
                     @endphp
-                    title: 'Scheduled',
+                    @if($upcomingSession->is_in_person)
+                    title: 'In Person',
+                    extendedProps: {
+                        "type": "upcoming-session--inperson"
+                    },
+                    classNames: ['inperson-session'],
+                    @else
+                    title: 'Online',
+                    extendedProps: {
+                        "type": "upcoming-session--online"
+                    },
+                    classNames: ['online-session'],
+                    @endif
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                    // start: '2020-04-25T12:30:00',
                     end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
                     description: "",
-                    classNames: ['orange-red']
                 },
                 @endforeach
             ],
@@ -244,16 +255,13 @@ bg-student
                 var successMsg = data.successMsg;
                 toastr.success(successMsg);
                 calendar.addEvent({
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: data.available_time_start,
                     end: data.available_time_end,
                     description: "",
                     id: data.availableTimeId,
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 });
                 $('#availableTimeConfirmationModal').modal('hide');
             },

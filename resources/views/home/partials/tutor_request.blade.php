@@ -8,7 +8,7 @@
         <div class="user-info">
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
-                Shuaiqing Luog
+                Shuaiqing Luo
             </a>
         </div>
         <div class="date">
@@ -23,10 +23,13 @@
             <span class="title">Course</span>
             <span class="content">BUAD 304</span>
         </div>
+        <div class="session-type">
+            <span class="title">Type</span>
+            <span class="content">In Person</span>
+        </div>
         @if ($forTutor)
-        <div class="actions">
-            <button class="btn btn-lg btn-animation-y-sm btn-decline">Decline</button>
-            <button class="btn btn-lg btn-animation-y-sm btn-accept">Accept</button>
+        <div class="action">
+            <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
         </div>
         @else
         <div class="status">
