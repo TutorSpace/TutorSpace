@@ -9,10 +9,9 @@ use Illuminate\Support\Facades\Session as Session;
 use Illuminate\Support\Facades\URL;
 use PayPal\Api\Amount;
 use PayPal\Api\Currency;
-use PayPal\Api\Details;
 use PayPal\Api\Item;
 
-/** All Paypal Details class **/
+// All Paypal Details class
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
@@ -39,7 +38,6 @@ class PaypalApiController extends Controller
      */
     public function __construct()
     {
-
         /** PayPal api context **/
         $paypal_conf = Config::get('paypal');
         $this->_api_context = new ApiContext(new OAuthTokenCredential(
@@ -47,7 +45,6 @@ class PaypalApiController extends Controller
             $paypal_conf['secret'])
         );
         $this->_api_context->setConfig($paypal_conf['settings']);
-
     }
 
     public function index()
@@ -56,7 +53,7 @@ class PaypalApiController extends Controller
     }
 
     // Processes payment from user to TutorSpace
-    // Request should contain 'amount'
+    // Request should contain an 'amount' parameter
     public function payWithPaypal(Request $request)
     {
 
@@ -80,10 +77,10 @@ class PaypalApiController extends Controller
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
-            ->setDescription('Your transaction description');  // Description
+            ->setDescription('Your transaction description');  // TODO: Description
 
         $redirect_urls = new RedirectUrls();
-        $redirect_urls->setReturnUrl(URL::to('/payment/status'))  // Return URL
+        $redirect_urls->setReturnUrl(URL::to('/payment/status'))  // TODO: Return URL
             ->setCancelUrl(URL::to('/payment/status'));
 
         $payment = new Payment();
@@ -94,41 +91,30 @@ class PaypalApiController extends Controller
 
         // Creates payment
         try {
-
             $payment->create($this->_api_context);
-
         } catch (\PayPal\Exception\PayPalConnectionException $ex) {
-
             if (Config::get('app.debug')) {
                 Session::put('error', 'Connection timeout');
                 return Redirect::to('/payment/paypal_index');
-
             } else {
-
                 Session::put('error', 'Some error occur, sorry for inconvenient');
                 return Redirect::to('/payment/paypal_index');
-
             }
 
         }
 
         foreach ($payment->getLinks() as $link) {
-
             if ($link->getRel() == 'approval_url') {
-
                 $redirect_url = $link->getHref();
                 break;
-
             }
-
         }
 
         // Adds payment ID to session
         Session::put('paypal_payment_id', $payment->getId());
 
         if (isset($redirect_url)) {
-
-            /** redirect to paypal **/
+            // Redirect to paypal
             return Redirect::away($redirect_url);
 
         }
@@ -149,7 +135,6 @@ class PaypalApiController extends Controller
             // Error
             Session::put('error', 'Payment failed');
             return Redirect::to('/payment/paypal_index');
-
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
@@ -163,7 +148,6 @@ class PaypalApiController extends Controller
             // Success
             Session::put('success', 'Payment success');
             return Redirect::to('/payment/paypal_index');
-
         }
 
         // Error
@@ -204,12 +188,9 @@ class PaypalApiController extends Controller
             if (Config::get('app.debug')) {
                 Session::put('error', 'Connection timeout');
                 return Redirect::to('/payment/paypal_retrieve_index');
-
             } else {
-
                 Session::put('error', 'Some error occur, sorry for inconvenient');
                 return Redirect::to('/payment/paypal_retrieve_index');
-
             }
         }
         // Success
