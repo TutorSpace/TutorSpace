@@ -67,6 +67,11 @@
             }
         }
 
+        .notification-content {
+            flex: 1;
+            margin-right: 2rem !important;
+        }
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -166,6 +171,11 @@
         .action {
             display: flex;
             justify-content: flex-end;
+            min-width: 6rem;
+
+            button {
+                width: 100%;
+            }
         }
 
         .review {

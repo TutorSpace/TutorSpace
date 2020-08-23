@@ -542,7 +542,7 @@
                         color: $color-purple-primary;
                     }
 
-                    .btn-view-request, .btn-view-session {
+                    .btn-view, .btn-view-request, .btn-view-session {
                         background-color: $color-purple-primary;
                         color: $color-white;
                     }
@@ -574,7 +574,7 @@
                         color: $color-blue-primary;
                     }
 
-                    .btn-view-session {
+                    .btn-view-session, .btn-view, {
                         background-color: $color-blue-primary;
                         color: $color-white;
                     }

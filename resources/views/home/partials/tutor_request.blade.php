@@ -28,11 +28,6 @@
             <span class="content">In Person</span>
         </div>
         @if ($forTutor)
-        {{-- <div class="actions">
-            <button class="btn btn-lg btn-animation-y-sm btn-decline">Decline</button>
-            <button class="btn btn-lg btn-animation-y-sm btn-accept">Accept</button>
-        </div> --}}
-
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
         </div>

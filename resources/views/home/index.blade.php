@@ -60,6 +60,22 @@ bg-student
         </div>
 
         <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">New Notifications</h5>
+                <div class="info-boxes">
+                    @include('home.partials.notification', [
+                        'isCancellationNotification' => true,
+                        'notificationContent' => 'Nemo Enim'
+                    ])
+                    @include('home.partials.notification', [
+                        'isBestReplyNotification' => true,
+                        'notificationContent' => 'Testing Post 1'
+                    ])
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
                     <h5 class="w-100 calendar-heading">Calendar</h5>

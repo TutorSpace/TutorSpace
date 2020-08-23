@@ -15906,6 +15906,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.info-boxes .info-box .notification-content {
+  flex: 1;
+  margin-right: 2rem !important;
+}
+
 .info-boxes .info-box .content {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -16012,6 +16017,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .action {
   display: flex;
   justify-content: flex-end;
+  min-width: 6rem;
+}
+
+.info-boxes .info-box .action button {
+  width: 100%;
 }
 
 .info-boxes .info-box .review {
@@ -20160,8 +20170,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #6749DF;
 }
 
+.bg-tutor .home__content .info-box .actions .btn-view,
 .bg-tutor .home__content .info-box .actions .btn-view-request,
 .bg-tutor .home__content .info-box .actions .btn-view-session,
+.bg-tutor .home__content .info-box .action .btn-view,
 .bg-tutor .home__content .info-box .action .btn-view-request,
 .bg-tutor .home__content .info-box .action .btn-view-session {
   background-color: #6749DF;
@@ -20183,7 +20195,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-student .home__content .info-box .actions .btn-view-session,
-.bg-student .home__content .info-box .action .btn-view-session {
+.bg-student .home__content .info-box .actions .btn-view,
+.bg-student .home__content .info-box .action .btn-view-session,
+.bg-student .home__content .info-box .action .btn-view {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }
