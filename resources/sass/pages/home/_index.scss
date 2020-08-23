@@ -537,12 +537,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-purple-primary;
                         color: $color-purple-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view-request, .btn-view-session {
                         background-color: $color-purple-primary;
                         color: $color-white;
                     }
@@ -569,12 +569,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-blue-primary;
                         color: $color-blue-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view-session {
                         background-color: $color-blue-primary;
                         color: $color-white;
                     }
