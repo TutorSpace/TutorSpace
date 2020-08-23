@@ -384,6 +384,26 @@
             margin-bottom: 1.7rem;
         }
 
+        .calendar-note {
+            font-size: 1.6rem;
+            margin-top: 2.2rem;
+            text-align: right;
+
+            span {
+                position: relative;
+            }
+
+            span::before {
+                content: "";
+                display: inline-block;
+                width: 7rem;
+                height: 100%;
+                position: absolute;
+                right: calc(100% + 1.5rem);
+                background-color: $color-calendar-time-available;
+            }
+        }
+
         .bookmarked-tutors {
             max-height: 45rem;
             overflow: scroll;

@@ -64,6 +64,9 @@ bg-student
                 <div class="col-lg-8">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
+                    <div class="calendar-note">
+                        <span>Available Time</span>
+                    </div>
                 </div>
                 <div class="col-lg-4 info-cards">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">

@@ -20006,6 +20006,26 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 1.7rem;
 }
 
+.home__content .calendar-note {
+  font-size: 1.6rem;
+  margin-top: 2.2rem;
+  text-align: right;
+}
+
+.home__content .calendar-note span {
+  position: relative;
+}
+
+.home__content .calendar-note span::before {
+  content: "";
+  display: inline-block;
+  width: 7rem;
+  height: 100%;
+  position: absolute;
+  right: calc(100% + 1.5rem);
+  background-color: #d5d0df;
+}
+
 .home__content .bookmarked-tutors {
   max-height: 45rem;
   overflow: scroll;
