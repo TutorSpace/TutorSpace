@@ -20239,12 +20239,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 1.6rem;
   flex: 0 0 calc(50% - 2rem);
   height: 100%;
+  max-height: 350px;
 }
 
 @media only screen and (max-width: 61.99em) {
   .home__data-visualizations .graph-1,
   .home__data-visualizations .graph-2 {
     flex: 0 0 100%;
+    max-height: 250px;
   }
 }
 

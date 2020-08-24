@@ -491,6 +491,18 @@ let storageUrl = "{{ Storage::url('') }}";
 
 {{-- for data visualization --}}
 <script>
+    function drawGraph() {
+        let height = 350;
+
+        if($(window).width() < 992) {
+            height = 250;
+        }
+
+        scatterGraphLayout.height = height;
+        gaugeGraphLayout.height = height;
+        Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
+        Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+    }
 
     var postViewCntData = {
         x: [
@@ -526,12 +538,11 @@ let storageUrl = "{{ Storage::url('') }}";
         hovertemplate: '%{y}<extra></extra>',
     };
 
-    var data = [postViewCntData, profileViewCntData];
+    var scatterData = [postViewCntData, profileViewCntData];
 
     var layout = {
         showlegend: true,
         font: {size: 10},
-        height: 350,
         legend: {
             xanchor: 'right',
         },
@@ -551,7 +562,6 @@ let storageUrl = "{{ Storage::url('') }}";
     // create a deep copy of layout
     var scatterGraphLayout = Object.assign({}, layout);
     scatterGraphLayout.title = 'Post/Profile View Count Data';
-    // scatterGraphLayout.yaxis = {title: 'View Count (times)'};
 
     var options = {
             scrollZoom: true,
@@ -560,25 +570,15 @@ let storageUrl = "{{ Storage::url('') }}";
             responsive: true,
         };
 
-    Plotly.newPlot(
-        'scatter-chart',
-        data,
-        scatterGraphLayout,
-        options
-    );
-
     // for the gauge chart
-    var data = [{
+    var gaugeData = [{
         domain: { row: 1, column: 1 },
         value: 85,
         // title: { text: "5-Star Rating" },
         type: "indicator",
         mode: "gauge+number+delta",
         number: {
-            suffix: "%",
-            font: {
-                size: 50
-            }
+            suffix: "%"
         },
         delta: {
             reference: 70,
@@ -602,15 +602,17 @@ let storageUrl = "{{ Storage::url('') }}";
     var gaugeGraphLayout = Object.assign({}, layout);
     gaugeGraphLayout.title = '5-Star Rating';
     gaugeGraphLayout.margin = {
-            l: 30,
-            r: 30,
-            b: 35,
-            t: 50,
-            pad: 0
+        l: 30,
+        r: 30,
+        b: 35,
+        t: 50,
+        pad: 0
     };
 
-
-    Plotly.newPlot('gauge-chart', data, gaugeGraphLayout, options);
+    drawGraph();
+    $(window).resize(function() {
+        drawGraph();
+    });
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
