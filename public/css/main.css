@@ -20150,7 +20150,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFFFFF;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .post-previews {
     order: 1;
     margin-top: 3rem;
@@ -20162,7 +20162,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   right: -15px;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .forum-data-container {
     right: 0;
     padding: 0;
@@ -20184,7 +20184,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 0.5rem;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .forum-data-container .forum-data {
     flex: 1;
   }

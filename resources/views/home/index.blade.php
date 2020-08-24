@@ -282,10 +282,10 @@ bg-student
         <div class="container">
             <div class="row forum mt-0">
                 <h5 class="w-100">Recommended Posts</h5>
-                <div class="col-12 col-sm-8 post-previews px-0">
+                <div class="col-12 col-md-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
                 </div>
-                <div class="col-12 col-sm-4 forum-data-container">
+                <div class="col-12 col-md-4 forum-data-container">
                     <div class="forum-data">
                         {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>

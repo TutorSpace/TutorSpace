@@ -443,7 +443,7 @@
 
         .post-previews {
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 order: 1;
                 margin-top: 3rem;
             }
@@ -454,7 +454,7 @@
             position: relative;
             right: -15px;
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 right: 0;
                 padding: 0;
                 display: flex;
@@ -473,7 +473,7 @@
                 padding: 1rem 2rem;
                 border-radius: .5rem;
 
-                @include respond(extra-sm) {
+                @include respond(sm) {
                     flex: 1;
 
                     &:not(:last-child) {
