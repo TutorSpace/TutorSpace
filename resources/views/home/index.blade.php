@@ -505,13 +505,8 @@ let storageUrl = "{{ Storage::url('') }}";
         ],
         type: 'scatter',
         mode: 'lines+markers',
-        // marker: {
-            // color: '#C8A2C8',
-            // line: {
-                // width: 2.5
-            // }
-        // },
         name:'Post View Count',
+        hovertemplate: '%{y}<extra></extra>',
     };
 
     var profileViewCntData = {
@@ -531,9 +526,11 @@ let storageUrl = "{{ Storage::url('') }}";
             // color: '#C8A2C8',
             // line: {
                 // width: 2.5
-            // }
+            // },
+            // size: 8,
         // },
         name:'Profile View Count',
+        hovertemplate: '%{y}<extra></extra>',
     };
 
     var data = [postViewCntData, profileViewCntData];
@@ -547,7 +544,6 @@ let storageUrl = "{{ Storage::url('') }}";
         legend: {
             xanchor: 'right',
         },
-        // autosize: true,
         margin: {
             l: 30,
             r: 30,
@@ -557,9 +553,9 @@ let storageUrl = "{{ Storage::url('') }}";
         },
         yaxis: {fixedrange: true},
         xaxis : {fixedrange: true},
-        responsive: true,
         plot_bgcolor: "#F9F9F9",
         paper_bgcolor:"#F9F9F9",
+
     };
 
     Plotly.newPlot(
@@ -568,6 +564,7 @@ let storageUrl = "{{ Storage::url('') }}";
         layout, {
             scrollZoom: true,
             displaylogo: false,
+            displayModeBar: false,
             responsive: true,
         }
     );

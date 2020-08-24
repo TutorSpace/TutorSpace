@@ -15109,7 +15109,7 @@ h6 {
 }
 
 .tag {
-  padding: 0.3rem 0.8rem;
+  padding: 0.3rem 0.8rem 0.15rem 0.8rem;
   display: inline-block;
   margin-bottom: 0.75rem;
   margin-right: 0.5rem;
@@ -16479,6 +16479,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .fc-col-header {
   background-color: #FBFBFB;
+}
+
+.fc-event-main-frame {
+  flex-wrap: wrap;
 }
 
 ._nav {
@@ -20234,14 +20238,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 100%;
 }
 
+@media only screen and (max-width: 61.99em) {
+  .home__data-visualizations .graph-1 {
+    flex: 0 0 100%;
+  }
+}
+
 .home__data-visualizations .graph-2 {
   flex: 0 0 calc(50% - 1rem);
   margin-top: 1.6rem;
 }
 
 .home__data-visualizations .plotly {
-  border-radius: 10px;
+  border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .bg-tutor .home__header {

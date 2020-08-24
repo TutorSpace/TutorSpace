@@ -520,12 +520,15 @@
     &__data-visualizations {
         display: flex;
         width: 100%;
-        // margin-bottom: 3rem;
 
         .graph-1 {
             margin-top: 1.6rem;
             flex: 0 0 calc(50% - 1rem);
             height: 100%;
+
+            @include respond(md) {
+                flex: 0 0 100%;
+            }
         }
 
         .graph-2 {
@@ -534,8 +537,9 @@
         }
 
         .plotly {
-            border-radius: 10px;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
         }
     }
 }
