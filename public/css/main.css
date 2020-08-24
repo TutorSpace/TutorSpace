@@ -14705,8 +14705,17 @@ h6 {
 
 .notification-indicator {
   position: absolute;
-  top: -0.75rem;
-  right: -0.75rem;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .notification-indicator {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }
 
 .btn-next {
@@ -15100,7 +15109,7 @@ h6 {
 }
 
 .tag {
-  padding: 0.3rem 0.8rem;
+  padding: 0.3rem 0.8rem 0.15rem 0.8rem;
   display: inline-block;
   margin-bottom: 0.75rem;
   margin-right: 0.5rem;
@@ -15830,15 +15839,44 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 47.99em) {
-  .info-boxes {
+  .info-boxes--sm-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .info-boxes--sm-card > div {
+    max-width: calc(50% - 1rem);
+    flex: 0 1 calc(50% - 1rem);
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .info-boxes--sm-card > div {
+    max-width: calc(33% - 1rem);
+    flex: 0 1 calc(33% - 1rem);
+  }
+}
+
+@media only screen and (max-width: 28.125em) {
+  .info-boxes--sm-card {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 2rem;
+  }
+
+  .info-boxes--sm-card > div {
+    max-width: unset;
+    flex: unset;
   }
 }
 
 .info-boxes > * {
   margin-top: 1.5rem;
+}
+
+.info-boxes button {
+  max-width: 7rem;
 }
 
 .info-boxes .info-box {
@@ -15857,6 +15895,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-boxes .info-box {
     flex-wrap: wrap;
+    padding: 1rem 1.5rem;
   }
 
   .info-boxes .info-box > div:not(:first-child) {
@@ -15909,6 +15948,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .notification-content {
   flex: 1;
   margin-right: 2rem !important;
+  white-space: normal !important;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .info-boxes .info-box .notification-content {
+    font-size: 1.6rem;
+  }
 }
 
 .info-boxes .info-box .content {
@@ -16091,6 +16137,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .info-cards .info-card {
     flex: 0 0 calc(50% - 1rem);
+    width: calc(50% - 1rem);
   }
 }
 
@@ -16098,6 +16145,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-cards .info-card {
     padding: 1rem 1.5rem;
     flex: 0 0 calc(50% - .5rem);
+    width: calc(50% - .5rem);
+    font-size: 1rem;
   }
 }
 
@@ -16121,10 +16170,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: inherit;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card .user-name {
+    font-size: 1.3rem;
+  }
+}
+
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
   color: #6749DF;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card .action-toggle {
+    font-size: 2rem;
+  }
 }
 
 .info-cards .info-card__row {
@@ -16136,8 +16197,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 35.99em) {
   .info-cards .info-card__row {
-    font-size: 1.35rem;
-    margin-top: 0.3rem;
+    font-size: 1rem;
   }
 }
 
@@ -16153,6 +16213,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card__row .row-left {
   flex: 0 0 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .info-cards .info-card__row .row-right {
@@ -16163,6 +16225,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
   flex: 1;
   align-self: flex-end;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card__row .btn-view {
+    font-size: 1rem;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
 }
 
 .info-cards .info-card__row .btn-view-session::after {
@@ -16348,6 +16418,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 #calendar .fc-toolbar-chunk:last-child .btn-primary.active {
   background-color: #6749DF !important;
   color: #FFFFFF !important;
+}
+
+#calendar button:disabled {
+  cursor: not-allowed;
 }
 
 .fc .fc-timegrid-col-events {
@@ -20076,7 +20150,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFFFFF;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .post-previews {
     order: 1;
     margin-top: 3rem;
@@ -20088,7 +20162,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   right: -15px;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .forum-data-container {
     right: 0;
     padding: 0;
@@ -20110,7 +20184,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 0.5rem;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 47.99em) {
   .home__content .forum-data-container .forum-data {
     flex: 1;
   }
@@ -20155,6 +20229,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__data-visualizations {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.home__data-visualizations .graph-1,
+.home__data-visualizations .graph-2 {
+  margin-top: 1.6rem;
+  flex: 0 0 calc(50% - 2rem);
+  height: 100%;
+  max-height: 350px;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__data-visualizations .graph-1,
+  .home__data-visualizations .graph-2 {
+    flex: 0 0 100%;
+    max-height: 250px;
+  }
+}
+
+.home__data-visualizations .plotly {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .bg-tutor .home__header {

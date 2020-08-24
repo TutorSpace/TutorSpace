@@ -41,6 +41,10 @@
 
         }
     }
+
+    button:disabled {
+        cursor: not-allowed;
+    }
 }
 
 
@@ -109,3 +113,4 @@
 .fc-col-header  {
     background-color: #FBFBFB;
 }
+

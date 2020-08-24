@@ -443,7 +443,7 @@
 
         .post-previews {
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 order: 1;
                 margin-top: 3rem;
             }
@@ -454,7 +454,7 @@
             position: relative;
             right: -15px;
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 right: 0;
                 padding: 0;
                 display: flex;
@@ -473,7 +473,7 @@
                 padding: 1rem 2rem;
                 border-radius: .5rem;
 
-                @include respond(extra-sm) {
+                @include respond(sm) {
                     flex: 1;
 
                     &:not(:last-child) {
@@ -519,7 +519,27 @@
 
     &__data-visualizations {
         display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
 
+        .graph-1, .graph-2 {
+            margin-top: 1.6rem;
+            flex: 0 0 calc(50% - 2rem);
+            height: 100%;
+            max-height: 350px;
+
+            @include respond(md) {
+                flex: 0 0 100%;
+                max-height: 250px;
+            }
+        }
+
+        .plotly {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+        }
     }
 }
 
