@@ -573,18 +573,15 @@ let storageUrl = "{{ Storage::url('') }}";
     // for the gauge chart
     var gaugeData = [{
         domain: { row: 1, column: 1 },
-        value: 85,
-        // title: { text: "5-Star Rating" },
+        value: {{ Auth::user()->getFiveStarReviewPercentage() }},
         type: "indicator",
         mode: "gauge+number+delta",
         number: {
             suffix: "%"
         },
         delta: {
+            // todo: modify the reference
             reference: 70,
-            // font: {
-            //     size: 15
-            // },
             increasing: {
                 // color: ""
             }

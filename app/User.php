@@ -319,6 +319,14 @@ class User extends Authenticatable implements Viewable
         return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
     }
 
+    public function getFiveStarReviewPercentage() {
+        $fiveStarCnt = $this->about_reviews()
+                            ->where('star_rating', 5)
+                            ->count();
+
+        return $fiveStarCnt / $this->about_reviews()->count() * 100;
+    }
+
 
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
