@@ -1,14 +1,33 @@
 .info-boxes {
     width: 100%;
 
-    @include respond(sm) {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        gap: 2rem;
+
+
+    &--sm-card {
+        @include respond(sm) {
+            // display: grid;
+            // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            // gap: 2rem;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            > div {
+                max-width: calc(50% - 1rem);
+                flex: 0 1 calc(50% - 1rem);
+            }
+        }
     }
+
+
 
     > * {
         margin-top: 1.5rem;
+    }
+
+    button {
+        max-width: 7rem;
     }
 
     .info-box {
@@ -25,6 +44,7 @@
 
         @include respond(sm) {
             flex-wrap: wrap;
+            padding: 1rem 1.5rem;
 
             > div:not(:first-child) {
                 width: 100% !important;

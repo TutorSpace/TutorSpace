@@ -14705,8 +14705,17 @@ h6 {
 
 .notification-indicator {
   position: absolute;
-  top: -0.75rem;
-  right: -0.75rem;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .notification-indicator {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
 }
 
 .btn-next {
@@ -15830,15 +15839,24 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 47.99em) {
-  .info-boxes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 2rem;
+  .info-boxes--sm-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .info-boxes--sm-card > div {
+    max-width: calc(50% - 1rem);
+    flex: 0 1 calc(50% - 1rem);
   }
 }
 
 .info-boxes > * {
   margin-top: 1.5rem;
+}
+
+.info-boxes button {
+  max-width: 7rem;
 }
 
 .info-boxes .info-box {
@@ -15857,6 +15875,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-boxes .info-box {
     flex-wrap: wrap;
+    padding: 1rem 1.5rem;
   }
 
   .info-boxes .info-box > div:not(:first-child) {

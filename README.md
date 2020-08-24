@@ -44,13 +44,14 @@ Password: password
 6. If you see any bugs in our project or you have any concerns about the existing functionalities( no matter it’s frontend or backend), please report it directly in the corresponding slack channel or take a note of it and bring it up in our next weekly meeting.
 7. If there is anything you did not finish yet or you want to work on later in the future, please put some comments around them with a format of `TODO: xxxxxx`
 8. Important commands to run our project:
-    1. First check your `.env` file exists in the root directory of the project, and the credentials inside it can either connect to your local database or the `joinmeus_tutorspace_db` database.
-    2. Run `php artisan serve` and `php artisan queue:work` to start running the project. By default, you should be able to see the project by entering `localhost:8000` in your browser if the port 8000 is not occupied.
-    3. Make sure you already installed `csv`, `mysql.connector`, and `load_dotenv` python packages on your computer. (To test this, simply go to `python_web_scraping` folder and run `python main.py` to see whether it reports any error. If everything works, make sure you go back to the project's root folder)
-    4. Run `npm install` to install all required packages
-    5. Run `npm run watch` to compile all js/css files (very useful for our ***FrontEnd*** developers)
-    6. Make sure you have `python-dotenv` package installed. If not, run `pip install python-dotenv`.
-    7. Run `php artisan migrate:refresh --seed` to refresh & seed the database
+    1. Install Laravel on your local computer.
+    2. First check your `.env` file exists in the root directory of the project, and the credentials inside it can either connect to your local database or the `joinmeus_tutorspace_db` database.
+    3. Run `php artisan serve` and `php artisan queue:work` to start running the project. By default, you should be able to see the project by entering `localhost:8000` in your browser if the port 8000 is not occupied.
+    4. Make sure you already installed `csv`, `mysql.connector`, and `load_dotenv` python packages on your computer. (To test this, simply go to `python_web_scraping` folder and run `python main.py` to see whether it reports any error. If everything works, make sure you go back to the project's root folder)
+    5. Run `npm install` to install all required packages
+    6. Run `npm run watch` to compile all js/css files (very useful for our ***FrontEnd*** developers)
+    7. Make sure you have `python-dotenv` package installed. If not, run `pip install python-dotenv`.
+    8. Run `php artisan migrate:refresh --seed` to refresh & seed the database
 
 
 ### ====================== ***BACKEND DEVELOPERS*** ======================

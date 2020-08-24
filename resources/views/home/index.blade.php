@@ -42,7 +42,7 @@ bg-student
         <div class="container">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
-                <div class="info-boxes">
+                <div class="info-boxes info-boxes--sm-card">
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,
                         'forTutor' => true,
