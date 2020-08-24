@@ -16091,6 +16091,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .info-cards .info-card {
     flex: 0 0 calc(50% - 1rem);
+    width: calc(50% - 1rem);
   }
 }
 
@@ -16098,6 +16099,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-cards .info-card {
     padding: 1rem 1.5rem;
     flex: 0 0 calc(50% - .5rem);
+    width: calc(50% - .5rem);
+    font-size: 1rem;
   }
 }
 
@@ -16121,10 +16124,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: inherit;
 }
 
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card .user-name {
+    font-size: 1.3rem;
+  }
+}
+
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
   color: #6749DF;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card .action-toggle {
+    font-size: 2rem;
+  }
 }
 
 .info-cards .info-card__row {
@@ -16136,7 +16151,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 35.99em) {
   .info-cards .info-card__row {
-    font-size: 1.35rem;
+    font-size: 1rem;
     margin-top: 0.3rem;
   }
 }
@@ -16163,6 +16178,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
   flex: 1;
   align-self: flex-end;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card__row .btn-view {
+    font-size: 1rem;
+  }
 }
 
 .info-cards .info-card__row .btn-view-session::after {
@@ -20151,10 +20172,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .home__row-columns-2 > :first-child {
     padding-right: 0;
   }
-}
-
-.home__data-visualizations {
-  display: flex;
 }
 
 .bg-tutor .home__header {

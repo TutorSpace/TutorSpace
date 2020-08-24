@@ -129,8 +129,7 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div id="post-chart"></div>
-                    <div id="profile-chart"></div>
+                    <div id="scatter-chart"></div>
                 </div>
             </div>
         </div>
@@ -487,20 +486,69 @@ let storageUrl = "{{ Storage::url('') }}";
 
 {{-- for data visualization --}}
 <script>
-    var trace1 = {
-        x:['2020-10-04', '2021-11-04', '2023-12-04'],
-        y: [90, 40, 60],
-        type: 'scatter'
+
+    var postViewCntData = {
+        x: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            "{{ $view->viewed_at }}",
+            @endforeach
+        ],
+        y: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            "{{ $view->view_count }}",
+            @endforeach
+        ],
+        type: 'scatter',
+        mode: 'lines+markers',
+        // marker: {
+            // color: '#C8A2C8',
+            // line: {
+                // width: 2.5
+            // }
+        // },
+        name:'Post View Count',
     };
 
-    var data = [trace1];
+    var profileViewCntData = {
+        x: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            "{{ $view->viewed_at }}",
+            @endforeach
+        ],
+        y: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            "{{ $view->view_count }}",
+            @endforeach
+        ],
+        type: 'scatter',
+        mode: 'lines+markers',
+        // marker: {
+            // color: '#C8A2C8',
+            // line: {
+                // width: 2.5
+            // }
+        // },
+        name:'Profile View Count',
+    };
+
+    var data = [postViewCntData, profileViewCntData];
 
     var layout = {
-        title: 'Scroll and Zoom',
-        showlegend: false
+        title: 'Post/Profile View Count Data',
+        showlegend: true,
+        // font: {size: 18},
+        yaxis: {title: 'View Count (times)'},
     };
 
-    Plotly.newPlot('post-chart', data, layout, {scrollZoom: true});
+    Plotly.newPlot(
+        'scatter-chart',
+        data,
+        layout, {
+            scrollZoom: true,
+            displaylogo: false,
+            responsive: true,
+        }
+    );
 
     // MG.data_graphic({
     //     title: "Post View Count",

@@ -518,8 +518,10 @@
     }
 
     &__data-visualizations {
-        display: flex;
-
+        // display: flex;
+        * {
+            // background-color: rgba($color-purple-primary, .1) !important;
+        }
     }
 }
 
