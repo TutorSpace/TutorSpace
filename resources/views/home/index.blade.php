@@ -17,6 +17,9 @@ bg-student
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
+
+{{-- plotly --}}
+<script src="{{ asset('js/plotly.js') }}"></script>
 @endsection
 
 @section('content')
@@ -482,47 +485,62 @@ let storageUrl = "{{ Storage::url('') }}";
 @endif
 </script>
 
-{{-- for graphics --}}
+{{-- for data visualization --}}
 <script>
-    MG.data_graphic({
-        title: "Post View Count",
-        description: "This graphic shows a time-series of post view counts.",
-        data: [
-            @foreach(App\Post::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
-            @endforeach
-        ],
-        width: 300,
-        // height: 250,
-        target: '#post-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
+    var trace1 = {
+        x:['2020-10-04', '2021-11-04', '2023-12-04'],
+        y: [90, 40, 60],
+        type: 'scatter'
+    };
 
-    MG.data_graphic({
-        title: "Profile View Count",
-        description: "This graphic shows a time-series of profile view counts.",
-        data: [
-            @foreach(App\User::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
-            @endforeach
-        ],
-        width: 300,
-        // height: 250,
-        target: '#profile-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
+    var data = [trace1];
+
+    var layout = {
+        title: 'Scroll and Zoom',
+        showlegend: false
+    };
+
+    Plotly.newPlot('post-chart', data, layout, {scrollZoom: true});
+
+    // MG.data_graphic({
+    //     title: "Post View Count",
+    //     description: "This graphic shows a time-series of post view counts.",
+    //     data: [
+    //         @foreach(App\Post::getViewCntWeek(1) as $view)
+    //         {
+    //             'date':new Date('{{ $view->viewed_at }}'),
+    //             'value': {{ $view->view_count }}
+    //         },
+    //         @endforeach
+    //     ],
+    //     width: 300,
+    //     // height: 250,
+    //     target: '#post-chart',
+    //     x_accessor: 'date',
+    //     y_accessor: 'value',
+    //     linked: true,
+    //     top: 50
+    // })
+
+    // MG.data_graphic({
+    //     title: "Profile View Count",
+    //     description: "This graphic shows a time-series of profile view counts.",
+    //     data: [
+    //         @foreach(App\User::getViewCntWeek(1) as $view)
+    //         {
+    //             'date':new Date('{{ $view->viewed_at }}'),
+    //             'value': {{ $view->view_count }}
+    //         },
+    //         @endforeach
+    //     ],
+    //     width: 300,
+    //     // height: 250,
+    //     target: '#profile-chart',
+    //     x_accessor: 'date',
+    //     y_accessor: 'value',
+    //     linked: true,
+    //     top: 50
+    // })
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
