@@ -133,7 +133,7 @@ bg-student
                         <div id="scatter-chart"></div>
                     </div>
                     <div class="graph-2">
-
+                        <div id="gauge-chart"></div>
                     </div>
                 </div>
             </div>
@@ -522,13 +522,6 @@ let storageUrl = "{{ Storage::url('') }}";
         ],
         type: 'scatter',
         mode: 'lines+markers',
-        // marker: {
-            // color: '#C8A2C8',
-            // line: {
-                // width: 2.5
-            // },
-            // size: 8,
-        // },
         name:'Profile View Count',
         hovertemplate: '%{y}<extra></extra>',
     };
@@ -536,17 +529,15 @@ let storageUrl = "{{ Storage::url('') }}";
     var data = [postViewCntData, profileViewCntData];
 
     var layout = {
-        title: 'Post/Profile View Count Data',
         showlegend: true,
         font: {size: 10},
         height: 350,
-        yaxis: {title: 'View Count (times)'},
         legend: {
             xanchor: 'right',
         },
         margin: {
             l: 30,
-            r: 30,
+            r: 25,
             b: 35,
             t: 50,
             pad: 0
@@ -555,59 +546,71 @@ let storageUrl = "{{ Storage::url('') }}";
         xaxis : {fixedrange: true},
         plot_bgcolor: "#F9F9F9",
         paper_bgcolor:"#F9F9F9",
-
     };
 
-    Plotly.newPlot(
-        'scatter-chart',
-        data,
-        layout, {
+    // create a deep copy of layout
+    var scatterGraphLayout = Object.assign({}, layout);
+    scatterGraphLayout.title = 'Post/Profile View Count Data';
+    // scatterGraphLayout.yaxis = {title: 'View Count (times)'};
+
+    var options = {
             scrollZoom: true,
             displaylogo: false,
             displayModeBar: false,
             responsive: true,
-        }
+        };
+
+    Plotly.newPlot(
+        'scatter-chart',
+        data,
+        scatterGraphLayout,
+        options
     );
 
-    // MG.data_graphic({
-    //     title: "Post View Count",
-    //     description: "This graphic shows a time-series of post view counts.",
-    //     data: [
-    //         @foreach(App\Post::getViewCntWeek(1) as $view)
-    //         {
-    //             'date':new Date('{{ $view->viewed_at }}'),
-    //             'value': {{ $view->view_count }}
-    //         },
-    //         @endforeach
-    //     ],
-    //     width: 300,
-    //     // height: 250,
-    //     target: '#post-chart',
-    //     x_accessor: 'date',
-    //     y_accessor: 'value',
-    //     linked: true,
-    //     top: 50
-    // })
+    // for the gauge chart
+    var data = [{
+        domain: { row: 1, column: 1 },
+        value: 85,
+        // title: { text: "5-Star Rating" },
+        type: "indicator",
+        mode: "gauge+number+delta",
+        number: {
+            suffix: "%",
+            font: {
+                size: 50
+            }
+        },
+        delta: {
+            reference: 70,
+            // font: {
+            //     size: 15
+            // },
+            increasing: {
+                // color: ""
+            }
+        },
+        gauge: {
+            axis: { range: [0, 100] },
+            // bgcolor: "white",
+            color: "red",
+            bar: {
+                color: "#FFBC00"
+            }
+        }
+    }];
 
-    // MG.data_graphic({
-    //     title: "Profile View Count",
-    //     description: "This graphic shows a time-series of profile view counts.",
-    //     data: [
-    //         @foreach(App\User::getViewCntWeek(1) as $view)
-    //         {
-    //             'date':new Date('{{ $view->viewed_at }}'),
-    //             'value': {{ $view->view_count }}
-    //         },
-    //         @endforeach
-    //     ],
-    //     width: 300,
-    //     // height: 250,
-    //     target: '#profile-chart',
-    //     x_accessor: 'date',
-    //     y_accessor: 'value',
-    //     linked: true,
-    //     top: 50
-    // })
+    var gaugeGraphLayout = Object.assign({}, layout);
+    gaugeGraphLayout.title = '5-Star Rating';
+    gaugeGraphLayout.margin = {
+            l: 30,
+            r: 30,
+            b: 35,
+            t: 50,
+            pad: 0
+    };
+
+
+    Plotly.newPlot('gauge-chart', data, gaugeGraphLayout, options);
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection

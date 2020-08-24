@@ -519,21 +519,18 @@
 
     &__data-visualizations {
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
+        justify-content: space-between;
 
-        .graph-1 {
+        .graph-1, .graph-2 {
             margin-top: 1.6rem;
-            flex: 0 0 calc(50% - 1rem);
+            flex: 0 0 calc(50% - 2rem);
             height: 100%;
 
             @include respond(md) {
                 flex: 0 0 100%;
             }
-        }
-
-        .graph-2 {
-            flex: 0 0 calc(50% - 1rem);
-            margin-top: 1.6rem;
         }
 
         .plotly {

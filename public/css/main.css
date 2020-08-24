@@ -20229,24 +20229,23 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__data-visualizations {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
+  justify-content: space-between;
 }
 
-.home__data-visualizations .graph-1 {
+.home__data-visualizations .graph-1,
+.home__data-visualizations .graph-2 {
   margin-top: 1.6rem;
-  flex: 0 0 calc(50% - 1rem);
+  flex: 0 0 calc(50% - 2rem);
   height: 100%;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__data-visualizations .graph-1 {
+  .home__data-visualizations .graph-1,
+  .home__data-visualizations .graph-2 {
     flex: 0 0 100%;
   }
-}
-
-.home__data-visualizations .graph-2 {
-  flex: 0 0 calc(50% - 1rem);
-  margin-top: 1.6rem;
 }
 
 .home__data-visualizations .plotly {
