@@ -15,7 +15,7 @@ class CreateMajorsTable extends Migration
     {
         Schema::create('majors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('major', 64);
+            $table->string('major', 255);
         });
     }
 

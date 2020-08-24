@@ -67,6 +67,11 @@
             }
         }
 
+        .notification-content {
+            flex: 1;
+            margin-right: 2rem !important;
+        }
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -84,7 +89,7 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            max-width: 20rem;
         }
 
         .date {
@@ -97,6 +102,10 @@
 
         .course, .status, .format {
             width: 10ch;
+        }
+
+        .session-type {
+            width: 8ch;
         }
 
         .price {
@@ -162,6 +171,11 @@
         .action {
             display: flex;
             justify-content: flex-end;
+            min-width: 6rem;
+
+            button {
+                width: 100%;
+            }
         }
 
         .review {

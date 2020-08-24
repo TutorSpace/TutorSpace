@@ -384,6 +384,26 @@
             margin-bottom: 1.7rem;
         }
 
+        .calendar-note {
+            font-size: 1.6rem;
+            margin-top: 2.2rem;
+            text-align: right;
+
+            span {
+                position: relative;
+            }
+
+            span::before {
+                content: "";
+                display: inline-block;
+                width: 7rem;
+                height: 100%;
+                position: absolute;
+                right: calc(100% + 1.5rem);
+                background-color: $color-calendar-time-available;
+            }
+        }
+
         .bookmarked-tutors {
             max-height: 45rem;
             overflow: scroll;
@@ -517,12 +537,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-purple-primary;
                         color: $color-purple-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view, .btn-view-request, .btn-view-session {
                         background-color: $color-purple-primary;
                         color: $color-white;
                     }
@@ -549,12 +569,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-blue-primary;
                         color: $color-blue-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view-session, .btn-view, {
                         background-color: $color-blue-primary;
                         color: $color-white;
                     }
