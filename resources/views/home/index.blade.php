@@ -129,7 +129,12 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div id="scatter-chart"></div>
+                    <div class="graph-1">
+                        <div id="scatter-chart"></div>
+                    </div>
+                    <div class="graph-2">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -536,8 +541,25 @@ let storageUrl = "{{ Storage::url('') }}";
     var layout = {
         title: 'Post/Profile View Count Data',
         showlegend: true,
-        // font: {size: 18},
+        font: {size: 10},
+        height: 350,
         yaxis: {title: 'View Count (times)'},
+        legend: {
+            xanchor: 'right',
+        },
+        // autosize: true,
+        margin: {
+            l: 30,
+            r: 30,
+            b: 35,
+            t: 50,
+            pad: 0
+        },
+        yaxis: {fixedrange: true},
+        xaxis : {fixedrange: true},
+        responsive: true,
+        plot_bgcolor: "#F9F9F9",
+        paper_bgcolor:"#F9F9F9",
     };
 
     Plotly.newPlot(

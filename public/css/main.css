@@ -20223,6 +20223,27 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.home__data-visualizations {
+  display: flex;
+  width: 100%;
+}
+
+.home__data-visualizations .graph-1 {
+  margin-top: 1.6rem;
+  flex: 0 0 calc(50% - 1rem);
+  height: 100%;
+}
+
+.home__data-visualizations .graph-2 {
+  flex: 0 0 calc(50% - 1rem);
+  margin-top: 1.6rem;
+}
+
+.home__data-visualizations .plotly {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .bg-tutor .home__header {
   background-image: linear-gradient(to right, #6749df, #492faf);
 }
