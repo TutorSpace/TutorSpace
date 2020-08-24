@@ -5,10 +5,6 @@
 
     &--sm-card {
         @include respond(sm) {
-            // display: grid;
-            // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-            // gap: 2rem;
-
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -16,6 +12,25 @@
             > div {
                 max-width: calc(50% - 1rem);
                 flex: 0 1 calc(50% - 1rem);
+            }
+        }
+
+        @include respond(extra-sm) {
+            > div {
+                max-width: calc(33% - 1rem);
+                flex: 0 1 calc(33% - 1rem);
+            }
+        }
+
+        // 450px
+        @media only screen and (max-width: 28.125em) {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            gap: 2rem;
+
+            > div {
+                max-width: unset;
+                flex: unset;
             }
         }
     }
@@ -90,6 +105,12 @@
         .notification-content {
             flex: 1;
             margin-right: 2rem !important;
+            white-space: normal !important;
+
+            @include respond(extra-sm) {
+                font-size: 1.6rem;
+            }
+
         }
 
         .content {

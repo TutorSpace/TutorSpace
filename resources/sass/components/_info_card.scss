@@ -67,7 +67,6 @@
 
             @include respond(extra-sm) {
                 font-size: 1rem;
-                margin-top: .3rem;
             }
 
 
@@ -83,6 +82,8 @@
 
             .row-left {
                 flex: 0 0 65%;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             .row-right {
@@ -96,6 +97,8 @@
 
                 @include respond(sm) {
                     font-size: 1rem;
+                    padding-top: 1px;
+                    padding-bottom: 1px;
                 }
             }
 

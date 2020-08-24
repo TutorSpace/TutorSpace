@@ -15851,6 +15851,26 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 35.99em) {
+  .info-boxes--sm-card > div {
+    max-width: calc(33% - 1rem);
+    flex: 0 1 calc(33% - 1rem);
+  }
+}
+
+@media only screen and (max-width: 28.125em) {
+  .info-boxes--sm-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem;
+  }
+
+  .info-boxes--sm-card > div {
+    max-width: unset;
+    flex: unset;
+  }
+}
+
 .info-boxes > * {
   margin-top: 1.5rem;
 }
@@ -15928,6 +15948,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .notification-content {
   flex: 1;
   margin-right: 2rem !important;
+  white-space: normal !important;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .info-boxes .info-box .notification-content {
+    font-size: 1.6rem;
+  }
 }
 
 .info-boxes .info-box .content {
@@ -16171,7 +16198,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 35.99em) {
   .info-cards .info-card__row {
     font-size: 1rem;
-    margin-top: 0.3rem;
   }
 }
 
@@ -16187,6 +16213,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card__row .row-left {
   flex: 0 0 65%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .info-cards .info-card__row .row-right {
@@ -16202,6 +16230,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-cards .info-card__row .btn-view {
     font-size: 1rem;
+    padding-top: 1px;
+    padding-bottom: 1px;
   }
 }
 
