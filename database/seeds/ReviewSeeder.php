@@ -12,7 +12,7 @@ class ReviewSeeder extends Seeder
     public function run()
     {
         DB::table('reviews')->insert([
-            'star_rating' => 4,
+            'star_rating' => 5,
             'reviewer_id' => 1,
             'reviewee_id' => 2,
             'review' => 'This is testing review 1.'
@@ -26,7 +26,7 @@ class ReviewSeeder extends Seeder
         ]);
 
         DB::table('reviews')->insert([
-            'star_rating' => 4,
+            'star_rating' => 5,
             'reviewer_id' => 1,
             'reviewee_id' => 2,
             'review' => 'This is testing review 3.'

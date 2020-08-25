@@ -138,7 +138,11 @@ class Post extends Model implements Viewable
     }
 
     public static function getViewCntWeek($userId) {
-        return View::where('views.viewable_type', 'App\Post')
+        return View::select([
+                        'viewed_at',
+                        DB::raw('COUNT("views.viewed_at") as view_count')
+                    ])
+                    ->where('views.viewable_type', 'App\Post')
                     ->whereBetween('views.viewed_at', [
                         // a week is 7 -1 + 1 days including today
                         Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
@@ -147,7 +151,7 @@ class Post extends Model implements Viewable
                     ->join('posts', 'posts.id', '=', 'views.viewable_id')
                     ->where('posts.user_id', $userId)
                     ->groupBy('views.viewed_at')
-                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->orderBy('views.viewed_at')
                     ->get();
     }
 

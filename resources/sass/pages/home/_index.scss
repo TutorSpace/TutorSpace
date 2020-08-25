@@ -384,6 +384,26 @@
             margin-bottom: 1.7rem;
         }
 
+        .calendar-note {
+            font-size: 1.6rem;
+            margin-top: 2.2rem;
+            text-align: right;
+
+            span {
+                position: relative;
+            }
+
+            span::before {
+                content: "";
+                display: inline-block;
+                width: 7rem;
+                height: 100%;
+                position: absolute;
+                right: calc(100% + 1.5rem);
+                background-color: $color-calendar-time-available;
+            }
+        }
+
         .bookmarked-tutors {
             max-height: 45rem;
             overflow: scroll;
@@ -423,7 +443,7 @@
 
         .post-previews {
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 order: 1;
                 margin-top: 3rem;
             }
@@ -434,7 +454,7 @@
             position: relative;
             right: -15px;
 
-            @include respond(extra-sm) {
+            @include respond(sm) {
                 right: 0;
                 padding: 0;
                 display: flex;
@@ -453,7 +473,7 @@
                 padding: 1rem 2rem;
                 border-radius: .5rem;
 
-                @include respond(extra-sm) {
+                @include respond(sm) {
                     flex: 1;
 
                     &:not(:last-child) {
@@ -499,7 +519,27 @@
 
     &__data-visualizations {
         display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: space-between;
 
+        .graph-1, .graph-2 {
+            margin-top: 1.6rem;
+            flex: 0 0 calc(50% - 2rem);
+            height: 100%;
+            max-height: 350px;
+
+            @include respond(md) {
+                flex: 0 0 100%;
+                max-height: 250px;
+            }
+        }
+
+        .plotly {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+        }
     }
 }
 
@@ -517,12 +557,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-purple-primary;
                         color: $color-purple-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view, .btn-view-request, .btn-view-session {
                         background-color: $color-purple-primary;
                         color: $color-white;
                     }
@@ -549,12 +589,12 @@
         &__content {
             .info-box {
                 .actions, .action {
-                    .btn-decline, .btn-cancel {
+                    .btn-cancel {
                         border: 1px solid $color-blue-primary;
                         color: $color-blue-primary;
                     }
 
-                    .btn-accept, .btn-view-session {
+                    .btn-view-session, .btn-view, {
                         background-color: $color-blue-primary;
                         color: $color-white;
                     }

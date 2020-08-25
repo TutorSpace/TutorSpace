@@ -17,6 +17,9 @@ bg-student
 {{-- fullcalendar --}}
 <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
+
+{{-- plotly --}}
+<script src="{{ asset('js/plotly.js') }}"></script>
 @endsection
 
 @section('content')
@@ -39,7 +42,7 @@ bg-student
         <div class="container">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
-                <div class="info-boxes">
+                <div class="info-boxes info-boxes--sm-card">
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,
                         'forTutor' => true,
@@ -60,12 +63,31 @@ bg-student
         </div>
 
         <div class="container">
+            <div class="row">
+                <h5 class="mb-2 w-100">New Notifications</h5>
+                <div class="info-boxes">
+                    @include('home.partials.notification', [
+                        'isCancellationNotification' => true,
+                        'notificationContent' => 'Nemo Enim'
+                    ])
+                    @include('home.partials.notification', [
+                        'isBestReplyNotification' => true,
+                        'notificationContent' => 'Testing Post 1'
+                    ])
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="row home__row-columns-2">
-                <div class="col-lg-8">
+                <div class="col-lg-8  mt-5">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
+                    <div class="calendar-note">
+                        <span>Available Time</span>
+                    </div>
                 </div>
-                <div class="col-lg-4 info-cards">
+                <div class="col-lg-4 info-cards  mt-5">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
@@ -107,8 +129,12 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div id="post-chart"></div>
-                    <div id="profile-chart"></div>
+                    <div class="graph-1">
+                        <div id="scatter-chart"></div>
+                    </div>
+                    <div class="graph-2">
+                        <div id="gauge-chart"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -256,10 +282,10 @@ bg-student
         <div class="container">
             <div class="row forum mt-0">
                 <h5 class="w-100">Recommended Posts</h5>
-                <div class="col-12 col-sm-8 post-previews px-0">
+                <div class="col-12 col-md-8 post-previews px-0">
                     @include('forum.partials.post-preview-general')
                 </div>
-                <div class="col-12 col-sm-4 forum-data-container">
+                <div class="col-12 col-md-4 forum-data-container">
                     <div class="forum-data">
                         {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -298,15 +324,11 @@ bg-student
             themeSystem: 'bootstrap',
             initialView: 'timeGridDay',
             headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridDay timeGridThreeDay'
+                left: 'prev title next',
+                center: '',
+                right: 'today timeGridDay timeGridThreeDay'
             },
-            @if(Auth::user()->is_tutor)
-                eventColor: '#6749DF',
-            @else
-                eventColor: '#1F7AFF',
-            @endif
+            eventColor: 'rgb(213, 208, 223)',
             height: 'auto',
             navLinks: true, // can click day/week names to navigate views
             selectable: true,
@@ -327,7 +349,7 @@ bg-student
                 timeGridThreeDay: {
                     type: 'timeGrid',
                     duration: { days: 5 },
-                    buttonText: '5 day'
+                    buttonText: '5 days'
                 }
             },
             now: function () {
@@ -349,35 +371,47 @@ bg-student
                 if (eventClickInfo.event.url) {
                     window.open(eventClickInfo.event.url);
                 }
-                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                console.log(eventClickInfo.event);
+                if(eventClickInfo.event.extendedProps.type == 'available-time') {
+                    showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
+                }
+
             },
             events: [
                 @foreach(Auth::user()->availableTimes as $time)
                 {
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: '{{$time->available_time_start}}',
                     end: '{{$time->available_time_end}}',
                     description: "",
                     id: "{{ $time->id }}",
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 },
                 @endforeach
-                @foreach([] as $upcomingSession)
+
+                @foreach(Auth::user()->upcomingSessions as $upcomingSession)
                 {
                     @php
-                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
-                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
+                        $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
+                        $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
                     @endphp
-                    title: 'Scheduled',
+                    @if($upcomingSession->is_in_person)
+                    title: 'In Person',
+                    extendedProps: {
+                        "type": "upcoming-session--inperson"
+                    },
+                    classNames: ['inperson-session'],
+                    @else
+                    title: 'Online',
+                    extendedProps: {
+                        "type": "upcoming-session--online"
+                    },
+                    classNames: ['online-session'],
+                    @endif
                     start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                    // start: '2020-04-25T12:30:00',
                     end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
                     description: "",
-                    classNames: ['orange-red']
                 },
                 @endforeach
             ],
@@ -395,16 +429,13 @@ bg-student
                 var successMsg = data.successMsg;
                 toastr.success(successMsg);
                 calendar.addEvent({
-                    title: 'Available',
+                    textColor: 'transparent',
                     start: data.available_time_start,
                     end: data.available_time_end,
                     description: "",
                     id: data.availableTimeId,
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
-                    @endif
+                    type: "available-time",
+                    classNames: ['my-available-time', 'hover--pointer']
                 });
                 $('#availableTimeConfirmationModal').modal('hide');
             },
@@ -434,6 +465,8 @@ bg-student
         });
     });
 @endif
+
+
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
@@ -456,47 +489,127 @@ let storageUrl = "{{ Storage::url('') }}";
 @endif
 </script>
 
-{{-- for graphics --}}
+{{-- for data visualization --}}
 <script>
-    MG.data_graphic({
-        title: "Post View Count",
-        description: "This graphic shows a time-series of post view counts.",
-        data: [
-            @foreach(App\Post::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
-            @endforeach
-        ],
-        width: 300,
-        // height: 250,
-        target: '#post-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
+    function drawGraph() {
+        let height = 350;
 
-    MG.data_graphic({
-        title: "Profile View Count",
-        description: "This graphic shows a time-series of profile view counts.",
-        data: [
-            @foreach(App\User::getViewCntWeek(1) as $view)
-            {
-                'date':new Date('{{ $view->viewed_at }}'),
-                'value': {{ $view->view_count }}
-            },
+        if($(window).width() < 992) {
+            height = 250;
+        }
+
+        scatterGraphLayout.height = height;
+        gaugeGraphLayout.height = height;
+        Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
+        Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+    }
+
+    var postViewCntData = {
+        x: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            "{{ $view->viewed_at }}",
             @endforeach
         ],
-        width: 300,
-        // height: 250,
-        target: '#profile-chart',
-        x_accessor: 'date',
-        y_accessor: 'value',
-        linked: true,
-        top: 50
-    })
+        y: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            "{{ $view->view_count }}",
+            @endforeach
+        ],
+        type: 'scatter',
+        mode: 'lines+markers',
+        name:'Post View Count',
+        hovertemplate: '%{y}<extra></extra>',
+    };
+
+    var profileViewCntData = {
+        x: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            "{{ $view->viewed_at }}",
+            @endforeach
+        ],
+        y: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            "{{ $view->view_count }}",
+            @endforeach
+        ],
+        type: 'scatter',
+        mode: 'lines+markers',
+        name:'Profile View Count',
+        hovertemplate: '%{y}<extra></extra>',
+    };
+
+    var scatterData = [postViewCntData, profileViewCntData];
+
+    var layout = {
+        showlegend: true,
+        font: {size: 10},
+        legend: {
+            xanchor: 'right',
+        },
+        margin: {
+            l: 30,
+            r: 25,
+            b: 35,
+            t: 50,
+            pad: 0
+        },
+        yaxis: {fixedrange: true},
+        xaxis : {fixedrange: true},
+        plot_bgcolor: "#F9F9F9",
+        paper_bgcolor:"#F9F9F9",
+    };
+
+    // create a deep copy of layout
+    var scatterGraphLayout = Object.assign({}, layout);
+    scatterGraphLayout.title = 'Post/Profile View Count Data';
+
+    var options = {
+            scrollZoom: true,
+            displaylogo: false,
+            displayModeBar: false,
+            responsive: true,
+        };
+
+    // for the gauge chart
+    var gaugeData = [{
+        domain: { row: 1, column: 1 },
+        value: {{ Auth::user()->getFiveStarReviewPercentage() }},
+        type: "indicator",
+        mode: "gauge+number+delta",
+        number: {
+            suffix: "%"
+        },
+        delta: {
+            // todo: modify the reference
+            reference: 70,
+            increasing: {
+                // color: ""
+            }
+        },
+        gauge: {
+            axis: { range: [0, 100] },
+            // bgcolor: "white",
+            color: "red",
+            bar: {
+                color: "#FFBC00"
+            }
+        }
+    }];
+
+    var gaugeGraphLayout = Object.assign({}, layout);
+    gaugeGraphLayout.title = '5-Star Rating';
+    gaugeGraphLayout.margin = {
+        l: 30,
+        r: 30,
+        b: 35,
+        t: 50,
+        pad: 0
+    };
+
+    drawGraph();
+    $(window).resize(function() {
+        drawGraph();
+    });
 </script>
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
