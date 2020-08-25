@@ -179,6 +179,12 @@ bg-student
         @endforeach
     ];
 
+    let tags = [
+        @foreach(App\Tag::all() as $tag)
+        "{{ $tag->tag }}",
+        @endforeach
+    ];
+
 
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
@@ -290,6 +296,7 @@ autocomplete(document.getElementById("school-year"), schoolYears);
 autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
 autocomplete(document.getElementById("course"), courses);
+autocomplete(document.getElementById("tag"), tags);
 
 </script>
 @endsection
