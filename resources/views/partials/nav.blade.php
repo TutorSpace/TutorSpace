@@ -37,6 +37,7 @@
 
         <div class="nav-left d-flex align-items-center">
             <div class="nav-toggle-lg">
+                <a class="nav__item link-find-tutor" href="{{ route('search.index') }}">Find a Tutor</a>
                 <a class="nav__item link-forum" href="{{ route('posts.index') }}">Forum</a>
                 <a class="nav__item link-support" href="#">Support</a>
             </div>
@@ -45,6 +46,7 @@
                     <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                 </svg>
                 <div class="svg-list-dropdown">
+                    <a class="nav__item" href="{{ route('search.index') }}">Find a Tutor</a>
                     <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
                     <a class="nav__item" href="#">Support</a>
                 </div>
@@ -88,6 +90,7 @@
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                     <div class="svg-list-dropdown">
+                        <a class="nav__item" href="{{ route('search.index') }}">Find a Tutor</a>
                         <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
                         <a class="nav__item" href="{{ route('home') }}">Dashboard</a>
                         <a class="nav__item mt-2" href="{{ route('home.profile') }}">Profile</a>
@@ -105,6 +108,7 @@
                         <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                     <div class="svg-list-dropdown">
+                        <a class="nav__item" href="{{ route('search.index') }}">Find a Tutor</a>
                         <a class="nav__item" href="{{ route('posts.index') }}">Forum</a>
                         <a class="nav__item" href="#">Support</a>
                     </div>
