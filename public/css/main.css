@@ -16607,7 +16607,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 3rem;
 }
 
-@media only screen and (max-width: 61.99em) {
+@media only screen and (max-width: 74.99em) {
   ._nav .nav-left .nav-toggle-lg {
     display: none;
   }
@@ -19338,6 +19338,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .search .filter {
     margin-bottom: 3rem;
+    padding: 2rem 2rem;
   }
 }
 

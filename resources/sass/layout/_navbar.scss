@@ -108,7 +108,7 @@
             margin-right: 3rem;
         }
 
-        @include respond(md) {
+        @include respond(lg) {
             .nav-toggle-lg {
                 display: none;
             }

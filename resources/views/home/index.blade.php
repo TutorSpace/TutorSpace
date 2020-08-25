@@ -611,5 +611,6 @@ let storageUrl = "{{ Storage::url('') }}";
         drawGraph();
     });
 </script>
+
 <script src="{{ asset('js/home/index.js') }}"></script>
 @endsection
