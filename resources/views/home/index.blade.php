@@ -495,7 +495,7 @@ let storageUrl = "{{ Storage::url('') }}";
         let height = 350;
 
         if($(window).width() < 992) {
-            height = 250;
+            height = 200;
         }
 
         scatterGraphLayout.height = height;
