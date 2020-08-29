@@ -5,8 +5,7 @@
     width: 1.5rem;
     height: 1.5rem;
 
-
-    @include respond(sm) {
+    @include respond(md) {
         width: 1.3rem;
         height: 1.3rem;
     }

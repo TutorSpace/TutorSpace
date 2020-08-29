@@ -57,17 +57,17 @@
     }
 }
 
-.fc-view-harness {
-    max-height: 63rem;
-    overflow: scroll;
-}
-
 .fc-col-header {
-    font-size: 1.4rem !important;
+    font-size: 1.5rem !important;
 
     .fc-col-header-cell-cushion {
         padding: 3px 4px;
     }
+}
+
+.fc-view-harness {
+    max-height: 63rem;
+    overflow: scroll;
 }
 
 .fc .fc-timegrid-col-events {

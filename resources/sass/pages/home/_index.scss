@@ -288,36 +288,25 @@
                 max-width: 90rem;
                 margin-left: 35rem;
             }
-
-            @include respond(lg) {
-                max-width: 70vw;
-                margin-left: 27rem;
-            }
-
-            @include respond(md) {
-                max-width: 69vw;
-                margin-left: 21rem;
-            }
-
-            @include respond(sm) {
-                margin-left: 18rem;
-            }
-
-            @include respond(extra-sm) {
-                margin-left: 15px;
-                margin-right: 15px;
-                max-width: calc(100% - 30px);
-            }
         }
 
         .container.col-layout-3 {
-            margin-left: 33rem;
-            max-width: calc(100vw - 50rem - 33rem);
+            margin-left: 35rem;
+            max-width: calc(100vw - 40rem - 48rem);
 
             @include respond(lg-2) {
-                max-width: 90rem;
-                margin-left: 35rem;
+                margin-left: 30rem;
+                max-width: calc(100vw - 30rem - 48rem);
             }
+
+            // 1370 px
+            @media only screen and (max-width: 85.624em) {
+                max-width: 70vw;
+                margin-left: 33rem;
+            }
+        }
+
+        .container.col-layout-2, .container.col-layout-3 {
 
             @include respond(lg) {
                 max-width: 70vw;
@@ -341,7 +330,7 @@
         }
 
         .container:not(:first-child) {
-            margin-top: 6.5rem;
+            margin-top: 6rem;
         }
 
         .tutor-requests {
@@ -595,15 +584,23 @@
         position: absolute;
         right: 0;
         top: 0;
-        margin-right: 2rem;
+        margin-right: 3rem;
         width: 40rem;
+
+        @include respond(lg-2) {
+            width: 37rem;
+        }
+
+        // 1370 px
+        @media only screen and (max-width: 85.624em) {
+            display: none;
+        }
 
         .home__board {
             margin-top: 8rem;
             background-color: $color-grey;
             height: 20rem;
             border-radius: 1rem;
-
 
         }
     }

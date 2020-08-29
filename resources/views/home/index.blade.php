@@ -39,7 +39,7 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
-        <div class="container col-layout-3">
+        {{-- <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes info-boxes--sm-card">
@@ -60,7 +60,7 @@ bg-student
                     ])
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container col-layout-3">
             <div class="row">
@@ -80,7 +80,7 @@ bg-student
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
-                <div class="col-lg-8 mt-5">
+                <div class="col-12 pr-0">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
@@ -89,7 +89,7 @@ bg-student
                         <span class="in-person">In Person</span>
                     </div>
                 </div>
-                <div class="col-lg-4 info-cards mt-5">
+                {{-- <div class="col-lg-4 info-cards">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
@@ -103,7 +103,7 @@ bg-student
                     @include('home.partials.upcoming_session_card', [
                         'hidden' => true
                     ])
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -284,10 +284,10 @@ bg-student
         <div class="container col-layout-3">
             <div class="row forum mt-0">
                 <h5 class="w-100">Recommended Posts</h5>
-                <div class="col-12 col-md-8 post-previews px-0">
+                <div class="col-12 col-md-9 post-previews px-0">
                     @include('forum.partials.post-preview-general')
                 </div>
-                <div class="col-12 col-md-4 forum-data-container">
+                <div class="col-12 col-md-3 forum-data-container">
                     <div class="forum-data">
                         {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
