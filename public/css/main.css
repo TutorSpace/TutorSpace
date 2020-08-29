@@ -16435,11 +16435,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .fc-col-header {
-  font-size: 1.5rem !important;
+  font-size: 1.4rem !important;
 }
 
 .fc-col-header .fc-col-header-cell-cushion {
-  padding: 5px 4px;
+  padding: 3px 4px;
 }
 
 .fc .fc-timegrid-col-events {
@@ -20119,7 +20119,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content .calendar-note {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-top: 2.2rem;
   text-align: right;
 }
