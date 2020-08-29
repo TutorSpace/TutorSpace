@@ -1,4 +1,5 @@
 #calendar {
+
     .my-available-time {
         width: 100%;
         background-color: $color-calendar-time-available !important;
@@ -45,8 +46,29 @@
     button:disabled {
         cursor: not-allowed;
     }
+
+
 }
 
+.fc-timegrid-slots {
+    tr {
+        height: 2.2rem;
+        font-size: 1.4rem;
+    }
+}
+
+.fc-view-harness {
+    max-height: 60rem;
+    overflow: scroll;
+}
+
+.fc-col-header {
+    font-size: 1.5rem !important;
+
+    .fc-col-header-cell-cushion {
+        padding: 5px 4px;
+    }
+}
 
 .fc .fc-timegrid-col-events {
     margin-right: 0;
@@ -69,6 +91,12 @@
 .fc-v-event .fc-event-title-container {
     flex-grow: 0;
 }
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+    text-align: center;
+}
+
+
 
 // center the "title" text in the event
 .fc-timegrid-event .fc-event-time {

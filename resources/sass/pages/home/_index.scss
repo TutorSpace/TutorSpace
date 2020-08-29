@@ -391,17 +391,34 @@
 
             span {
                 position: relative;
+
+                &:not(:last-child) {
+                    margin-right: 7rem;
+                }
+
             }
 
             span::before {
                 content: "";
                 display: inline-block;
-                width: 7rem;
+                width: 5.5rem;
                 height: 100%;
                 position: absolute;
-                right: calc(100% + 1.5rem);
+                right: calc(100% + .7rem);
+            }
+
+            .online::before {
+                background-color: $color-calendar-online;
+            }
+
+            .in-person::before {
+                background-color: $color-calendar-inperson;
+            }
+
+            .available-time::before {
                 background-color: $color-calendar-time-available;
             }
+
         }
 
         .bookmarked-tutors {
