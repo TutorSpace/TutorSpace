@@ -44,7 +44,7 @@ class profileController extends Controller
             $bookmarks = $user->bookmarks;
 
             // get reviews the user wrote
-            $reviews = $user->written_reviews;
+            $reviews = $user->writtenReviews;
             $reviewTotalRating = $user->getRatingAsReviewer();
 
             return view('profile.profile_student', [
