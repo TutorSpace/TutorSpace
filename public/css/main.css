@@ -15974,7 +15974,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  max-width: 20rem;
+  width: 20rem;
 }
 
 .info-boxes .info-box .date {
