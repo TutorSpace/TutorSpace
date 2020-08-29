@@ -34,12 +34,12 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <div class="container home__header-container">
+        <div class="container col-layout-3 home__header-container">
             @include('home.partials.header')
         </div>
 
         @if (Auth::user()->is_tutor)
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes info-boxes--sm-card">
@@ -62,7 +62,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">New Notifications</h5>
                 <div class="info-boxes">
@@ -78,7 +78,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8 mt-5">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
@@ -127,7 +127,7 @@ bg-student
             </div>
         </div> --}}
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
@@ -142,7 +142,7 @@ bg-student
         </div>
 
         @else
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
                 <div class="info-boxes">
@@ -169,7 +169,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                     <h5>Upcoming Sessions</h5>
@@ -189,7 +189,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
 
@@ -207,7 +207,7 @@ bg-student
         </div>
 
         <div class="container-fluid recommended-tutors-bg-container">
-            <div class="container">
+            <div class="container col-layout-3">
                 <div class="row">
                     <div class="mb-2 w-100 d-flex justify-content-between align-center">
                         <h5>Tutors You May Want to Know</h5>
@@ -220,7 +220,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Tutor Requests</h5>
                 <div class="info-boxes tutor-requests">
@@ -281,7 +281,7 @@ bg-student
 
         @endif
 
-        <div class="container">
+        <div class="container col-layout-3">
             <div class="row forum mt-0">
                 <h5 class="w-100">Recommended Posts</h5>
                 <div class="col-12 col-md-8 post-previews px-0">
@@ -309,6 +309,11 @@ bg-student
 
     </main>
 
+    <section class="home__side-bar">
+        <div class="home__board">
+
+        </div>
+    </section>
 </div>
 
 

@@ -19688,7 +19688,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header-container {
-  padding: 5rem 0 0 0;
+  padding: 8rem 0 0 0;
 }
 
 .home__header-container .heading {
@@ -19721,7 +19721,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header {
   padding: 0;
-  margin-top: 3rem;
   border-radius: 1rem;
   position: relative;
 }
@@ -19987,40 +19986,80 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 18rem;
 }
 
-.home__content .container {
+.home__content .container.col-layout-2 {
   margin-left: 40rem;
   max-width: 100rem;
 }
 
 @media only screen and (max-width: 100em) {
-  .home__content .container {
+  .home__content .container.col-layout-2 {
     max-width: 90rem;
     margin-left: 35rem;
   }
 }
 
 @media only screen and (max-width: 74.99em) {
-  .home__content .container {
+  .home__content .container.col-layout-2 {
     max-width: 70vw;
     margin-left: 27rem;
   }
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__content .container {
+  .home__content .container.col-layout-2 {
     max-width: 69vw;
     margin-left: 21rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .home__content .container {
+  .home__content .container.col-layout-2 {
     margin-left: 18rem;
   }
 }
 
 @media only screen and (max-width: 35.99em) {
-  .home__content .container {
+  .home__content .container.col-layout-2 {
+    margin-left: 15px;
+    margin-right: 15px;
+    max-width: calc(100% - 30px);
+  }
+}
+
+.home__content .container.col-layout-3 {
+  margin-left: 33rem;
+  max-width: calc(100vw - 50rem - 33rem);
+}
+
+@media only screen and (max-width: 100em) {
+  .home__content .container.col-layout-3 {
+    max-width: 90rem;
+    margin-left: 35rem;
+  }
+}
+
+@media only screen and (max-width: 74.99em) {
+  .home__content .container.col-layout-3 {
+    max-width: 70vw;
+    margin-left: 27rem;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .container.col-layout-3 {
+    max-width: 69vw;
+    margin-left: 21rem;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .home__content .container.col-layout-3 {
+    margin-left: 18rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__content .container.col-layout-3 {
     margin-left: 15px;
     margin-right: 15px;
     max-width: calc(100% - 30px);
@@ -20277,6 +20316,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.home__side-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 2rem;
+  width: 40rem;
+}
+
+.home__side-bar .home__board {
+  margin-top: 8rem;
+  background-color: #A0A0A0;
+  height: 20rem;
+  border-radius: 1rem;
 }
 
 .bg-tutor .home__header {
