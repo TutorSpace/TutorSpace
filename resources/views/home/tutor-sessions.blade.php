@@ -38,7 +38,6 @@ bg-student
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
                 </span>
             </div>
-            @include('home.partials.header')
         </div>
 
         <div class="container">
@@ -47,7 +46,9 @@ bg-student
                     <h5 class="mb-2 w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
-                        <span>Available Time</span>
+                        <span class="available-time">Available Time</span>
+                        <span class="online">Online</span>
+                        <span class="in-person">In Person</span>
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">
@@ -222,14 +223,13 @@ bg-student
                         $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
                         $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
                     @endphp
+                    title: '{{ $upcomingSession->course->course }}',
                     @if($upcomingSession->is_in_person)
-                    title: 'In Person',
                     extendedProps: {
                         "type": "upcoming-session--inperson"
                     },
                     classNames: ['inperson-session'],
                     @else
-                    title: 'Online',
                     extendedProps: {
                         "type": "upcoming-session--online"
                     },
@@ -291,6 +291,8 @@ bg-student
         });
     });
 @endif
+
+
 let storageUrl = "{{ Storage::url('') }}";
 </script>
 
