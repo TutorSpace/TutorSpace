@@ -120,7 +120,11 @@ class User extends Authenticatable implements Viewable
     }
 
     public static function getViewCntWeek($userId) {
-        return View::where('views.viewable_type', 'App\User')
+        return View::select([
+                        'viewed_at',
+                        DB::raw('COUNT("views.viewed_at") as view_count')
+                    ])
+                    ->where('views.viewable_type', 'App\User')
                     ->whereBetween('views.viewed_at', [
                         // a week is 7 -1 + 1 days including today
                         Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
@@ -129,7 +133,7 @@ class User extends Authenticatable implements Viewable
                     ->join('users', 'users.id', '=', 'views.viewable_id')
                     ->where('users.id', $userId)
                     ->groupBy('views.viewed_at')
-                    ->select(['viewed_at', DB::raw('COUNT("views.viewed_at") as view_count')])
+                    ->orderBy('views.viewed_at')
                     ->get();
     }
 
@@ -313,6 +317,14 @@ class User extends Authenticatable implements Viewable
 
     public function getAvgRating() {
         return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
+    }
+
+    public function getFiveStarReviewPercentage() {
+        $fiveStarCnt = $this->about_reviews()
+                            ->where('star_rating', 5)
+                            ->count();
+
+        return $fiveStarCnt / $this->about_reviews()->count() * 100;
     }
 
 

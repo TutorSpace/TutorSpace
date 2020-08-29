@@ -188,6 +188,8 @@ index
 
 @endsection
 
+
+
 @section('js')
 <script>
     $('#btn-start').click(function() {
@@ -201,4 +203,7 @@ index
     });
 
 </script>
+@include('partials.nav-auth-js')
 @endsection
+
+

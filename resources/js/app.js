@@ -10,8 +10,6 @@ window.moment = require('moment');
 window.Pikaday = require('pikaday');
 require('timepicker');
 
-window.MG = require('metrics-graphics');
-
 require('bootstrap-slider');
 
 $(document).ready(function(){

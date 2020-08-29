@@ -1,5 +1,13 @@
 .notification-indicator {
     position: absolute;
-    top: -0.75rem;
-    right: -0.75rem;
+    top: -.5rem;
+    right: -.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+
+
+    @include respond(sm) {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
 }
