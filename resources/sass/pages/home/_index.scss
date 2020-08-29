@@ -280,7 +280,7 @@
     &__content {
         margin-bottom: 18rem;
 
-        .container.col-layout-2 {
+        .col-layout-2 {
             margin-left: 40rem;
             max-width: 100rem;
 
@@ -290,7 +290,7 @@
             }
         }
 
-        .container.col-layout-3 {
+        .col-layout-3 {
             margin-left: 35rem;
             max-width: calc(100vw - 40rem - 48rem);
 
@@ -304,9 +304,50 @@
                 max-width: 70vw;
                 margin-left: 33rem;
             }
+
+            &--hidden {
+                display: none;
+
+                // 1370 px
+                @media only screen and (max-width: 85.624em) {
+                    display: block;
+                }
+            }
+
+            // 1370 px
+            @media only screen and (max-width: 85.624em) {
+                #calendar-container {
+                    padding-right: 30px !important;
+                    flex: 0 0 66.6666666667%;
+                    max-width: 66.6666666667%;
+                }
+            }
+
+            @include respond(md) {
+                #calendar-container {
+                    padding-right: 0 !important;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+            }
+
+            @media only screen and (max-width: 85.624em) {
+                #upcoming-sessions-container {
+                    flex: 0 0 33.3333333333%;
+                    max-width: 33.3333333333%;
+                }
+            }
+
+            @include respond(md) {
+                #upcoming-sessions-container {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    display: flex;
+                }
+            }
         }
 
-        .container.col-layout-2, .container.col-layout-3 {
+        .col-layout-2, .col-layout-3 {
 
             @include respond(lg) {
                 max-width: 70vw;
@@ -400,7 +441,7 @@
         }
 
         .calendar-note {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             margin-top: 2.2rem;
             text-align: right;
 
@@ -555,9 +596,16 @@
         width: 100%;
         justify-content: space-between;
 
+        .graph-1 {
+            flex: 0 0 calc(65% - 3rem);
+        }
+
+        .graph-2 {
+            flex: 0 0 calc(35%);
+        }
+
         .graph-1, .graph-2 {
             margin-top: 1.6rem;
-            flex: 0 0 calc(50% - 2rem);
             height: 100%;
             max-height: 350px;
 

@@ -15877,6 +15877,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes button {
   max-width: 7rem;
+  line-height: 1.4;
 }
 
 .info-boxes .info-box {
@@ -19986,63 +19987,104 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 18rem;
 }
 
-.home__content .container.col-layout-2 {
+.home__content .col-layout-2 {
   margin-left: 40rem;
   max-width: 100rem;
 }
 
 @media only screen and (max-width: 100em) {
-  .home__content .container.col-layout-2 {
+  .home__content .col-layout-2 {
     max-width: 90rem;
     margin-left: 35rem;
   }
 }
 
-.home__content .container.col-layout-3 {
+.home__content .col-layout-3 {
   margin-left: 35rem;
   max-width: calc(100vw - 40rem - 48rem);
 }
 
 @media only screen and (max-width: 100em) {
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-3 {
     margin-left: 30rem;
     max-width: calc(100vw - 30rem - 48rem);
   }
 }
 
 @media only screen and (max-width: 85.624em) {
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-3 {
     max-width: 70vw;
     margin-left: 33rem;
   }
 }
 
+.home__content .col-layout-3--hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3--hidden {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3 #calendar-container {
+    padding-right: 30px !important;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .col-layout-3 #calendar-container {
+    padding-right: 0 !important;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3 #upcoming-sessions-container {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .col-layout-3 #upcoming-sessions-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+  }
+}
+
 @media only screen and (max-width: 74.99em) {
-  .home__content .container.col-layout-2,
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     max-width: 70vw;
     margin-left: 27rem;
   }
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__content .container.col-layout-2,
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     max-width: 69vw;
     margin-left: 21rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .home__content .container.col-layout-2,
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     margin-left: 18rem;
   }
 }
 
 @media only screen and (max-width: 35.99em) {
-  .home__content .container.col-layout-2,
-  .home__content .container.col-layout-3 {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     margin-left: 15px;
     margin-right: 15px;
     max-width: calc(100% - 30px);
@@ -20120,7 +20162,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content .calendar-note {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-top: 2.2rem;
   text-align: right;
 }
@@ -20273,10 +20315,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: space-between;
 }
 
+.home__data-visualizations .graph-1 {
+  flex: 0 0 calc(65% - 3rem);
+}
+
+.home__data-visualizations .graph-2 {
+  flex: 0 0 calc(35%);
+}
+
 .home__data-visualizations .graph-1,
 .home__data-visualizations .graph-2 {
   margin-top: 1.6rem;
-  flex: 0 0 calc(50% - 2rem);
   height: 100%;
   max-height: 350px;
 }

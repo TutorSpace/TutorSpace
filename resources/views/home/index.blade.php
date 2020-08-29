@@ -39,7 +39,7 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
-        {{-- <div class="container col-layout-3">
+        <div class="container col-layout-3 col-layout-3--hidden">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes info-boxes--sm-card">
@@ -60,7 +60,7 @@ bg-student
                     ])
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <div class="container col-layout-3">
             <div class="row">
@@ -80,7 +80,7 @@ bg-student
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
-                <div class="col-12 pr-0">
+                <div class="pr-0" id="calendar-container">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
@@ -89,7 +89,7 @@ bg-student
                         <span class="in-person">In Person</span>
                     </div>
                 </div>
-                {{-- <div class="col-lg-4 info-cards">
+                <div class="info-cards col-layout-3--hidden" id="upcoming-sessions-container">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
@@ -103,7 +103,7 @@ bg-student
                     @include('home.partials.upcoming_session_card', [
                         'hidden' => true
                     ])
-                </div> --}}
+                </div>
             </div>
         </div>
 
