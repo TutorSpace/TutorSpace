@@ -306,25 +306,29 @@ class User extends Authenticatable implements Viewable
     }
 
     // return all the reviews written by the current user
-    public function written_reviews() {
+    public function writtenReviews() {
         return $this->hasMany('App\Review', 'reviewer_id');
     }
 
     // return all the reviews about the current user
-    public function about_reviews() {
+    public function aboutReviews() {
         return $this->hasMany('App\Review', 'reviewee_id');
     }
 
     public function getAvgRating() {
-        return number_format((float)$this->about_reviews()->avg('star_rating'), 1, '.', '');
+        return number_format((float)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
     }
 
     public function getFiveStarReviewPercentage() {
-        $fiveStarCnt = $this->about_reviews()
+        $reviewCnt = $this->aboutReviews()->count();
+        if($reviewCnt == 0)
+            return 0;
+
+        $fiveStarCnt = $this->aboutReviews()
                             ->where('star_rating', 5)
                             ->count();
 
-        return $fiveStarCnt / $this->about_reviews()->count() * 100;
+        return $fiveStarCnt / $reviewCnt * 100;
     }
 
 
