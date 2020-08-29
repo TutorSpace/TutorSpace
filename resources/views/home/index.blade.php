@@ -80,7 +80,7 @@ bg-student
 
         <div class="container">
             <div class="row home__row-columns-2">
-                <div class="col-lg-8  mt-5">
+                <div class="col-lg-8 mt-5">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
@@ -89,7 +89,7 @@ bg-student
                         <span class="in-person">In Person</span>
                     </div>
                 </div>
-                <div class="col-lg-4 info-cards  mt-5">
+                <div class="col-lg-4 info-cards mt-5">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
