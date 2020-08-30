@@ -16586,7 +16586,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 0 !important;
   padding: 1rem 2rem;
   display: block;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -16755,7 +16755,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .nav-auth--student .svg-list-dropdown .nav__item,
 .nav-auth--student .profile-img-dropdown .nav__item {
   background-color: #FFFFFF;
-  color: #1F7AFF;
+  color: #595959;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item .nav__item__svg,
+.nav-guest--student .profile-img-dropdown .nav__item .nav__item__svg,
+.nav-auth--student .svg-list-dropdown .nav__item .nav__item__svg,
+.nav-auth--student .profile-img-dropdown .nav__item .nav__item__svg {
+  margin-right: 1.5rem;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item .nav__item__svg--light,
+.nav-guest--student .profile-img-dropdown .nav__item .nav__item__svg--light,
+.nav-auth--student .svg-list-dropdown .nav__item .nav__item__svg--light,
+.nav-auth--student .profile-img-dropdown .nav__item .nav__item__svg--light {
+  display: none;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item .nav__item__svg--dark,
+.nav-guest--student .profile-img-dropdown .nav__item .nav__item__svg--dark,
+.nav-auth--student .svg-list-dropdown .nav__item .nav__item__svg--dark,
+.nav-auth--student .profile-img-dropdown .nav__item .nav__item__svg--dark {
+  display: inline;
 }
 
 .nav-guest--student .svg-list-dropdown .nav__item:hover,
@@ -16766,12 +16787,47 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #FFFFFF;
 }
 
+.nav-guest--student .svg-list-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-guest--student .profile-img-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-auth--student .svg-list-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-auth--student .profile-img-dropdown .nav__item:hover .nav__item__svg--light {
+  display: inline;
+}
+
+.nav-guest--student .svg-list-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-guest--student .profile-img-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-auth--student .svg-list-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-auth--student .profile-img-dropdown .nav__item:hover .nav__item__svg--dark {
+  display: none;
+}
+
 .nav-guest--tutor .svg-list-dropdown .nav__item,
 .nav-guest--tutor .profile-img-dropdown .nav__item,
 .nav-auth--tutor .svg-list-dropdown .nav__item,
 .nav-auth--tutor .profile-img-dropdown .nav__item {
   background-color: #FFFFFF;
-  color: #6749DF;
+  color: #595959;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item .nav__item__svg,
+.nav-guest--tutor .profile-img-dropdown .nav__item .nav__item__svg,
+.nav-auth--tutor .svg-list-dropdown .nav__item .nav__item__svg,
+.nav-auth--tutor .profile-img-dropdown .nav__item .nav__item__svg {
+  margin-right: 1.5rem;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item .nav__item__svg--light,
+.nav-guest--tutor .profile-img-dropdown .nav__item .nav__item__svg--light,
+.nav-auth--tutor .svg-list-dropdown .nav__item .nav__item__svg--light,
+.nav-auth--tutor .profile-img-dropdown .nav__item .nav__item__svg--light {
+  display: none;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item .nav__item__svg--dark,
+.nav-guest--tutor .profile-img-dropdown .nav__item .nav__item__svg--dark,
+.nav-auth--tutor .svg-list-dropdown .nav__item .nav__item__svg--dark,
+.nav-auth--tutor .profile-img-dropdown .nav__item .nav__item__svg--dark {
+  display: inline;
 }
 
 .nav-guest--tutor .svg-list-dropdown .nav__item:hover,
@@ -16780,6 +16836,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .nav-auth--tutor .profile-img-dropdown .nav__item:hover {
   background-color: #6749DF;
   color: #FFFFFF;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-guest--tutor .profile-img-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-auth--tutor .svg-list-dropdown .nav__item:hover .nav__item__svg--light,
+.nav-auth--tutor .profile-img-dropdown .nav__item:hover .nav__item__svg--light {
+  display: inline;
+}
+
+.nav-guest--tutor .svg-list-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-guest--tutor .profile-img-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-auth--tutor .svg-list-dropdown .nav__item:hover .nav__item__svg--dark,
+.nav-auth--tutor .profile-img-dropdown .nav__item:hover .nav__item__svg--dark {
+  display: none;
 }
 
 .nav-guest {
