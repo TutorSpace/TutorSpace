@@ -113,12 +113,23 @@
         }
 
 
-        .info-box__year {
+        &__year {
             @include respond(md) {
                 display: none;
             }
 
             @include respond(sm) {
+                display: inline;
+            }
+        }
+
+        &__time-stamp {
+            margin-left: 2rem;
+            font-style: italic;
+            color: $color-grey;
+            display: none;
+
+            @media only screen and (max-width: 85.624em) {
                 display: inline;
             }
         }

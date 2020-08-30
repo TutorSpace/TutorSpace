@@ -444,14 +444,14 @@
             font-size: 1.5rem;
             margin-top: 2.2rem;
             text-align: right;
+            position: relative;
 
             span {
                 position: relative;
 
-                &:not(:last-child) {
+                &:not(:nth-last-child(2)) {
                     margin-right: 7rem;
                 }
-
             }
 
             span::before {
@@ -475,6 +475,13 @@
                 background-color: $color-calendar-time-available;
             }
 
+            .note {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                margin-right: 0 !important;
+                margin-top: .5rem;
+            }
         }
 
         .bookmarked-tutors {

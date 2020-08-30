@@ -15959,13 +15959,26 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 @media only screen and (max-width: 61.99em) {
-  .info-boxes .info-box .info-box__year {
+  .info-boxes .info-box__year {
     display: none;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .info-boxes .info-box .info-box__year {
+  .info-boxes .info-box__year {
+    display: inline;
+  }
+}
+
+.info-boxes .info-box__time-stamp {
+  margin-left: 2rem;
+  font-style: italic;
+  color: #A0A0A0;
+  display: none;
+}
+
+@media only screen and (max-width: 85.624em) {
+  .info-boxes .info-box__time-stamp {
     display: inline;
   }
 }
@@ -16173,7 +16186,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card .user-name {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   max-width: calc(100% - 5rem);
   overflow: hidden;
   white-space: nowrap;
@@ -20183,13 +20196,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.5rem;
   margin-top: 2.2rem;
   text-align: right;
+  position: relative;
 }
 
 .home__content .calendar-note span {
   position: relative;
 }
 
-.home__content .calendar-note span:not(:last-child) {
+.home__content .calendar-note span:not(:nth-last-child(2)) {
   margin-right: 7rem;
 }
 
@@ -20212,6 +20226,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__content .calendar-note .available-time::before {
   background-color: #d5d0df;
+}
+
+.home__content .calendar-note .note {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-right: 0 !important;
+  margin-top: 0.5rem;
 }
 
 .home__content .bookmarked-tutors {
