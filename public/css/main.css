@@ -14421,6 +14421,10 @@ h6 {
   margin-right: 6px;
 }
 
+.mb-1px {
+  margin-bottom: 1px;
+}
+
 .bg-grey-light {
   background-color: #E5E5E5 !important;
 }
@@ -15142,8 +15146,8 @@ h6 {
 }
 
 .post-reply .left-container img {
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -15152,7 +15156,7 @@ h6 {
 }
 
 .post-reply .left-container .user-name {
-  font-size: 1.4rem !important;
+  font-size: 1.6rem !important;
   line-height: 1.2;
   margin-top: 0.5rem;
   color: #3F3F3F;
@@ -15164,7 +15168,7 @@ h6 {
 
 .post-reply .left-container .user-info {
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   line-height: 1.1;
 }
 
@@ -15180,7 +15184,7 @@ h6 {
   display: flex;
   align-items: flex-end;
   margin-top: 0.5rem;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   flex-wrap: wrap;
 }
 
@@ -15202,10 +15206,11 @@ h6 {
 }
 
 .post-reply .right-container .btn-toggle-follow-up {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #3F3F3F !important;
   margin-right: 1rem;
   padding: 0;
+  border: none;
 }
 
 .post-reply .mark-best-reply {
@@ -17978,7 +17983,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .post__content,
 .post-reply__content,
 .followup-container {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
 .post__bottom {
