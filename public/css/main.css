@@ -14711,7 +14711,7 @@ h6 {
   height: 1.5rem;
 }
 
-@media only screen and (max-width: 47.99em) {
+@media only screen and (max-width: 61.99em) {
   .notification-indicator {
     width: 1.3rem;
     height: 1.3rem;
@@ -15877,6 +15877,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes button {
   max-width: 7rem;
+  line-height: 1.4;
 }
 
 .info-boxes .info-box {
@@ -15957,6 +15958,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box__year {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box__year {
+    display: inline;
+  }
+}
+
+.info-boxes .info-box__time-stamp {
+  margin-left: 2rem;
+  font-style: italic;
+  color: #A0A0A0;
+  display: none;
+}
+
+@media only screen and (max-width: 85.624em) {
+  .info-boxes .info-box__time-stamp {
+    display: inline;
+  }
+}
+
 .info-boxes .info-box .content {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15974,11 +16000,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 20rem;
+  width: 18rem;
 }
 
 .info-boxes .info-box .date {
   width: 20ch;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .date {
+    width: 15ch;
+  }
 }
 
 .info-boxes .info-box .time {
@@ -16141,12 +16173,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 47.99em) {
+@media only screen and (max-width: 26.24em) {
   .info-cards .info-card {
-    padding: 1rem 1.5rem;
-    flex: 0 0 calc(50% - .5rem);
-    width: calc(50% - .5rem);
-    font-size: 1rem;
+    flex: 0 0 calc(100%);
+    width: calc(100%);
   }
 }
 
@@ -16154,15 +16184,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 1.3rem;
 }
 
-@media only screen and (max-width: 61.99em) {
-  .info-cards .info-card:not(:first-child) {
-    margin-top: 1.6rem;
-  }
-}
-
 .info-cards .info-card .user-name {
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   max-width: calc(100% - 5rem);
   overflow: hidden;
   white-space: nowrap;
@@ -16170,22 +16194,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: inherit;
 }
 
-@media only screen and (max-width: 47.99em) {
-  .info-cards .info-card .user-name {
-    font-size: 1.3rem;
-  }
-}
-
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
   color: #6749DF;
   cursor: pointer;
-}
-
-@media only screen and (max-width: 47.99em) {
-  .info-cards .info-card .action-toggle {
-    font-size: 2rem;
-  }
 }
 
 .info-cards .info-card__row {
@@ -16195,15 +16207,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   overflow: hidden;
 }
 
-@media only screen and (max-width: 35.99em) {
-  .info-cards .info-card__row {
-    font-size: 1rem;
+@media only screen and (max-width: 47.99em) {
+  .info-cards .info-card__row .info-card__year {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 26.24em) {
+  .info-cards .info-card__row .info-card__year {
+    display: inline;
   }
 }
 
 .info-cards .info-card__row .title {
   display: block;
-  line-height: 1;
+  line-height: 1.3;
+  font-size: 1.3rem;
 }
 
 .info-cards .info-card__row .content {
@@ -16225,14 +16244,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
   flex: 1;
   align-self: flex-end;
-}
-
-@media only screen and (max-width: 47.99em) {
-  .info-cards .info-card__row .btn-view {
-    font-size: 1rem;
-    padding-top: 1px;
-    padding-bottom: 1px;
-  }
 }
 
 .info-cards .info-card__row .btn-view-session::after {
@@ -16424,6 +16435,68 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   cursor: not-allowed;
 }
 
+.calendar-note {
+  font-size: 1.5rem;
+  margin-top: 2.2rem;
+  text-align: right;
+  position: relative;
+}
+
+.calendar-note span {
+  position: relative;
+}
+
+.calendar-note span:not(:nth-last-child(2)) {
+  margin-right: 7rem;
+}
+
+.calendar-note span::before {
+  content: "";
+  display: inline-block;
+  width: 5.5rem;
+  height: 100%;
+  position: absolute;
+  right: calc(100% + .7rem);
+}
+
+.calendar-note .online::before {
+  background-color: rgba(5, 0, 245, 0.5);
+}
+
+.calendar-note .in-person::before {
+  background-color: rgba(245, 147, 0, 0.8);
+}
+
+.calendar-note .available-time::before {
+  background-color: #d5d0df;
+}
+
+.calendar-note .note {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-right: 0 !important;
+  margin-top: 0.5rem;
+}
+
+.fc-timegrid-slots tr {
+  height: 2.2rem;
+  font-size: 1.4rem;
+}
+
+.fc-col-header {
+  font-size: 1.5rem !important;
+}
+
+.fc-col-header .fc-col-header-cell-cushion {
+  padding: 3px 4px;
+}
+
+.fc-view-harness {
+  max-height: 63rem;
+  overflow: scroll;
+}
+
 .fc .fc-timegrid-col-events {
   margin-right: 0;
   margin-left: 0;
@@ -16442,6 +16515,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .fc-v-event .fc-event-title-container {
   flex-grow: 0;
+}
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
 }
 
 .fc-timegrid-event .fc-event-time {
@@ -16629,7 +16706,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 35.99em) {
   ._nav .nav__form {
-    width: 25rem;
+    width: 30rem;
   }
 }
 
@@ -19757,7 +19834,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header-container {
-  padding: 5rem 0 0 0;
+  padding: 8rem 0 0 0;
 }
 
 .home__header-container .heading {
@@ -19790,7 +19867,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header {
   padding: 0;
-  margin-top: 3rem;
   border-radius: 1rem;
   position: relative;
 }
@@ -20056,40 +20132,104 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 18rem;
 }
 
-.home__content .container {
+.home__content .col-layout-2 {
   margin-left: 40rem;
   max-width: 100rem;
 }
 
 @media only screen and (max-width: 100em) {
-  .home__content .container {
+  .home__content .col-layout-2 {
     max-width: 90rem;
     margin-left: 35rem;
   }
 }
 
+.home__content .col-layout-3 {
+  margin-left: 35rem;
+  max-width: calc(100vw - 42rem - 48rem);
+}
+
+@media only screen and (max-width: 100em) {
+  .home__content .col-layout-3 {
+    margin-left: 30rem;
+    max-width: calc(100vw - 34rem - 48rem);
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3 {
+    max-width: 70vw;
+    margin-left: 33rem;
+  }
+}
+
+.home__content .col-layout-3--hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3--hidden {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3 #calendar-container {
+    padding-right: 30px !important;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .col-layout-3 #calendar-container {
+    padding-right: 0 !important;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__content .col-layout-3 #upcoming-sessions-container {
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__content .col-layout-3 #upcoming-sessions-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+  }
+}
+
 @media only screen and (max-width: 74.99em) {
-  .home__content .container {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     max-width: 70vw;
     margin-left: 27rem;
   }
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__content .container {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     max-width: 69vw;
     margin-left: 21rem;
   }
 }
 
 @media only screen and (max-width: 47.99em) {
-  .home__content .container {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     margin-left: 18rem;
   }
 }
 
 @media only screen and (max-width: 35.99em) {
-  .home__content .container {
+  .home__content .col-layout-2,
+  .home__content .col-layout-3 {
     margin-left: 15px;
     margin-right: 15px;
     max-width: calc(100% - 30px);
@@ -20097,7 +20237,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__content .container:not(:first-child) {
-  margin-top: 5.5rem;
+  margin-top: 6rem;
 }
 
 .home__content .tutor-requests {
@@ -20164,26 +20304,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__content .calendar-heading {
   margin-bottom: 1.7rem;
-}
-
-.home__content .calendar-note {
-  font-size: 1.6rem;
-  margin-top: 2.2rem;
-  text-align: right;
-}
-
-.home__content .calendar-note span {
-  position: relative;
-}
-
-.home__content .calendar-note span::before {
-  content: "";
-  display: inline-block;
-  width: 7rem;
-  height: 100%;
-  position: absolute;
-  right: calc(100% + 1.5rem);
-  background-color: #d5d0df;
 }
 
 .home__content .bookmarked-tutors {
@@ -20305,10 +20425,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: space-between;
 }
 
+.home__data-visualizations .graph-1 {
+  flex: 0 0 calc(65% - 3rem);
+}
+
+.home__data-visualizations .graph-2 {
+  flex: 0 0 calc(35%);
+}
+
 .home__data-visualizations .graph-1,
 .home__data-visualizations .graph-2 {
   margin-top: 1.6rem;
-  flex: 0 0 calc(50% - 2rem);
   height: 100%;
   max-height: 350px;
 }
@@ -20317,7 +20444,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .home__data-visualizations .graph-1,
   .home__data-visualizations .graph-2 {
     flex: 0 0 100%;
-    max-height: 250px;
+    max-height: 200px;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .home__data-visualizations .graph-2 {
+    margin-top: 2.4rem;
   }
 }
 
@@ -20325,6 +20458,41 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.home__side-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-right: 8rem;
+  width: 38rem;
+}
+
+@media only screen and (max-width: 100em) {
+  .home__side-bar {
+    width: 36rem;
+  }
+}
+
+@media only screen and (max-width: 85.624em) {
+  .home__side-bar {
+    display: none;
+  }
+}
+
+.home__side-bar .home__board {
+  margin-top: 8rem;
+  background-color: #A0A0A0;
+  height: 20rem;
+  border-radius: 1rem;
+}
+
+.home__side-bar__notifications {
+  margin-top: 6rem;
+}
+
+.home__side-bar__upcoming-sessions {
+  margin-top: 6rem;
 }
 
 .bg-tutor .home__header {
@@ -20335,18 +20503,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: -2.5rem;
 }
 
-.bg-tutor .home__content .info-box .actions .btn-cancel,
-.bg-tutor .home__content .info-box .action .btn-cancel {
+.bg-tutor .home .info-box .actions .btn-cancel,
+.bg-tutor .home .info-box .action .btn-cancel {
   border: 1px solid #6749DF;
   color: #6749DF;
 }
 
-.bg-tutor .home__content .info-box .actions .btn-view,
-.bg-tutor .home__content .info-box .actions .btn-view-request,
-.bg-tutor .home__content .info-box .actions .btn-view-session,
-.bg-tutor .home__content .info-box .action .btn-view,
-.bg-tutor .home__content .info-box .action .btn-view-request,
-.bg-tutor .home__content .info-box .action .btn-view-session {
+.bg-tutor .home .info-box .actions .btn-view,
+.bg-tutor .home .info-box .actions .btn-view-request,
+.bg-tutor .home .info-box .actions .btn-view-session,
+.bg-tutor .home .info-box .action .btn-view,
+.bg-tutor .home .info-box .action .btn-view-request,
+.bg-tutor .home .info-box .action .btn-view-session {
   background-color: #6749DF;
   color: #FFFFFF;
 }
@@ -20359,16 +20527,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-image: linear-gradient(to bottom, #1f7aff, #1866da);
 }
 
-.bg-student .home__content .info-box .actions .btn-cancel,
-.bg-student .home__content .info-box .action .btn-cancel {
+.bg-student .home .info-box .actions .btn-cancel,
+.bg-student .home .info-box .action .btn-cancel {
   border: 1px solid #1F7AFF;
   color: #1F7AFF;
 }
 
-.bg-student .home__content .info-box .actions .btn-view-session,
-.bg-student .home__content .info-box .actions .btn-view,
-.bg-student .home__content .info-box .action .btn-view-session,
-.bg-student .home__content .info-box .action .btn-view {
+.bg-student .home .info-box .actions .btn-view-session,
+.bg-student .home .info-box .actions .btn-view,
+.bg-student .home .info-box .action .btn-view-session,
+.bg-student .home .info-box .action .btn-view {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }
@@ -20505,5 +20673,307 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .hourly-rate-input-container input {
   padding-left: 2.5rem;
+}
+
+.view-profile {
+  margin-top: 8rem;
+  color: #626262;
+  margin-bottom: 18rem;
+}
+
+.view-profile .back-container {
+  padding-top: 5rem;
+}
+
+.view-profile .back-container .btn-back {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.view-profile .back-container .btn-back svg {
+  font-size: 1.7rem;
+  margin-right: 1rem;
+}
+
+.view-profile__header {
+  padding: 0;
+  border-radius: 1rem;
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  width: 100%;
+  background-color: #F9F9F9;
+}
+
+.view-profile__header .content {
+  height: 20rem;
+  display: flex;
+  align-items: center;
+}
+
+.view-profile__header .content-img {
+  margin-right: 4.5rem;
+  margin-bottom: 0;
+  margin-left: 4rem;
+  position: relative;
+  width: 12rem;
+  min-width: 12rem;
+  height: 12rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content-img {
+    width: 10rem;
+    min-width: 10rem;
+    height: 10rem;
+    margin-right: 3rem;
+  }
+}
+
+.view-profile__header .content-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: all 0.1s;
+}
+
+.view-profile__header .content-img .caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(calc(-50%), calc(-50%));
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0;
+  transition: all 0.1s;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.view-profile__header .content .content-info .name-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.view-profile__header .content .content-info .name-container .name {
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-right: 3rem;
+  max-width: 30rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-info .name-container .name {
+    margin-right: 1.8rem;
+  }
+}
+
+.view-profile__header .content .content-info .name-container svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.4rem;
+  position: relative;
+  bottom: 0.2rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-info .name-container svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.3rem;
+  }
+}
+
+.view-profile__header .content .content-info .name-container svg.full {
+  fill: #FFBC00;
+}
+
+.view-profile__header .content .content-info .name-container svg.empty {
+  fill: #FFFFFF;
+}
+
+.view-profile__header .content .content-info .name-container .rating {
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-info .name-container .rating {
+    font-size: 1.2rem;
+  }
+}
+
+.view-profile__header .content .content-info .sub {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.view-profile__header .content .content-info .sub .sub--3 svg {
+  transition: all 0.1s;
+  cursor: pointer;
+}
+
+.view-profile__header .content .content-info .sub .sub--3 svg:hover {
+  transform: scale(1.4);
+}
+
+.view-profile__header .content .content-info .sub .sub--3 svg:active {
+  transform: scale(1.4) translateY(2px);
+}
+
+.view-profile__header .content .content-data {
+  position: absolute;
+  display: flex;
+  bottom: 3rem;
+  right: 4rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-data {
+    right: 2rem;
+    bottom: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .view-profile__header .content .content-data {
+    display: none;
+  }
+}
+
+.view-profile__header .content .content-data .data:not(:last-child) {
+  margin-right: 3rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-data .data:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
+
+.view-profile__header .content .content-data .data .number {
+  display: block;
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-data .data .number {
+    font-size: 2rem;
+  }
+}
+
+.view-profile__header .content .content-data .data .classifier {
+  color: #A0A0A0;
+  font-size: 1.4rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-data .data .classifier {
+    font-size: 1.2rem;
+  }
+}
+
+.view-profile__header .welcome-msg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+}
+
+.view-profile__course {
+  border-radius: 1rem;
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  color: #F9F9F9;
+}
+
+.view-profile .reviews {
+  margin-top: 7rem;
+}
+
+.view-profile .forum {
+  margin-top: 7rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .post-previews {
+    order: 1;
+    margin-top: 3rem;
+  }
+}
+
+.view-profile .forum .forum-data-container {
+  position: relative;
+  right: -15px;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .forum-data-container {
+    right: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.view-profile .forum .forum-data-container .forum-data {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F9F9;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .forum-data-container .forum-data {
+    flex: 1;
+  }
+
+  .view-profile .forum .forum-data-container .forum-data:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+}
+
+.view-profile .forum .forum-data-container .forum-data:first-child {
+  margin-top: 2rem;
+}
+
+.view-profile .forum .forum-data-container .forum-data:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.view-profile .forum .forum-data-container .forum-data .title {
+  font-size: 1.5rem;
+  color: #A0A0A0;
+}
+
+.view-profile .forum .forum-data-container .forum-data .number {
+  font-size: 1.8rem;
+  color: #626262;
+  font-weight: 500;
+}
+
+.bg-tutor .view-profile__course {
+  background-color: #6749DF;
 }
 

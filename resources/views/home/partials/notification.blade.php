@@ -9,8 +9,7 @@
             @elseif(isset($isBestReplyNotification) && $isBestReplyNotification)
             Your reply to <span class="font-weight-bold font-italic">{{ $notificationContent }}</span> has been marked as best reply.
             @endif
-
-
+            <span class="info-box__time-stamp">3 days ago</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view">View</button>
