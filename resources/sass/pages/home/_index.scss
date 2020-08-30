@@ -292,11 +292,11 @@
 
         .col-layout-3 {
             margin-left: 35rem;
-            max-width: calc(100vw - 40rem - 48rem);
+            max-width: calc(100vw - 42rem - 48rem);
 
             @include respond(lg-2) {
                 margin-left: 30rem;
-                max-width: calc(100vw - 32rem - 48rem);
+                max-width: calc(100vw - 34rem - 48rem);
             }
 
             // 1370 px
@@ -632,11 +632,11 @@
         position: absolute;
         right: 0;
         top: 0;
-        margin-right: 5rem;
-        width: 40rem;
+        margin-right: 8rem;
+        width: 38rem;
 
         @include respond(lg-2) {
-            width: 37rem;
+            width: 36rem;
         }
 
         // 1370 px
