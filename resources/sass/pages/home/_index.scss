@@ -296,7 +296,7 @@
 
             @include respond(lg-2) {
                 margin-left: 30rem;
-                max-width: calc(100vw - 30rem - 48rem);
+                max-width: calc(100vw - 32rem - 48rem);
             }
 
             // 1370 px
@@ -632,7 +632,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        margin-right: 3rem;
+        margin-right: 5rem;
         width: 40rem;
 
         @include respond(lg-2) {
@@ -651,7 +651,11 @@
             border-radius: 1rem;
         }
 
-        &__tutor-requests {
+        &__notifications {
+            margin-top: 6rem;
+        }
+
+        &__upcoming-sessions {
             margin-top: 6rem;
         }
     }

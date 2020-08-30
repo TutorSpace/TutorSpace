@@ -312,7 +312,7 @@ bg-student
     <section class="home__side-bar">
         <div class="home__board">
         </div>
-        <div class="home__side-bar__tutor-requests">
+        <div class="home__side-bar__notifications">
             <h5 class="mb-2 w-100">New Notifications</h5>
             <div class="info-boxes">
                 @include('home.partials.notification', [
@@ -322,6 +322,25 @@ bg-student
                 @include('home.partials.notification', [
                     'isBestReplyNotification' => true,
                     'notificationContent' => 'Testing Post 1'
+                ])
+
+            </div>
+        </div>
+
+        <div class="home__side-bar__upcoming-sessions">
+            <div class="info-cards">
+                <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                    <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                    <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                </div>
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card', [
+                    'hidden' => true
+                ])
+                @include('home.partials.upcoming_session_card', [
+                    'hidden' => true
                 ])
             </div>
         </div>

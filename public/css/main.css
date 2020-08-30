@@ -20025,7 +20025,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 100em) {
   .home__content .col-layout-3 {
     margin-left: 30rem;
-    max-width: calc(100vw - 30rem - 48rem);
+    max-width: calc(100vw - 32rem - 48rem);
   }
 }
 
@@ -20372,7 +20372,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   position: absolute;
   right: 0;
   top: 0;
-  margin-right: 3rem;
+  margin-right: 5rem;
   width: 40rem;
 }
 
@@ -20395,7 +20395,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
 }
 
-.home__side-bar__tutor-requests {
+.home__side-bar__notifications {
+  margin-top: 6rem;
+}
+
+.home__side-bar__upcoming-sessions {
   margin-top: 6rem;
 }
 
