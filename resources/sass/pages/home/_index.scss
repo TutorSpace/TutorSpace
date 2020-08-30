@@ -440,50 +440,6 @@
             margin-bottom: 1.7rem;
         }
 
-        .calendar-note {
-            font-size: 1.5rem;
-            margin-top: 2.2rem;
-            text-align: right;
-            position: relative;
-
-            span {
-                position: relative;
-
-                &:not(:nth-last-child(2)) {
-                    margin-right: 7rem;
-                }
-            }
-
-            span::before {
-                content: "";
-                display: inline-block;
-                width: 5.5rem;
-                height: 100%;
-                position: absolute;
-                right: calc(100% + .7rem);
-            }
-
-            .online::before {
-                background-color: $color-calendar-online;
-            }
-
-            .in-person::before {
-                background-color: $color-calendar-inperson;
-            }
-
-            .available-time::before {
-                background-color: $color-calendar-time-available;
-            }
-
-            .note {
-                position: absolute;
-                top: 100%;
-                right: 0;
-                margin-right: 0 !important;
-                margin-top: .5rem;
-            }
-        }
-
         .bookmarked-tutors {
             max-height: 45rem;
             overflow: scroll;

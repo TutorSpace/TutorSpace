@@ -130,6 +130,28 @@ $(document).ready(function(){
     });
 
 
+    // home and view profile page
+
+    $('.btn-view-all-info-cards').click(function() {
+        $(this).closest('.info-cards').find('.hidden-2').toggle("fast");
+        if($(this).html().includes('View')) {
+            $(this).html('Hide')
+        }
+        else {
+            $(this).html('View All')
+        }
+    });
+
+    $('.btn-view-all-info-boxes').click(function() {
+        $(this).closest('.row').find('.info-boxes .hidden-2').toggle("fast");
+        if($(this).html().includes('View')) {
+            $(this).html('Hide')
+        }
+        else {
+            $(this).html('View All')
+        }
+    });
+
 })
 
 
