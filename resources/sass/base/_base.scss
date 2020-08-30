@@ -21,7 +21,7 @@ html {
     }
 
     @include respond(extra-sm) {
-        font-size: 43.75%; //to make 1 rem = 6px
+        font-size: 37.5%; //to make 1 rem = 6px
     }
 
     @include respond(extra-lg) {

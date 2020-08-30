@@ -13682,7 +13682,7 @@ html {
 
 @media only screen and (max-width: 35.99em) {
   html {
-    font-size: 43.75%;
+    font-size: 37.5%;
   }
 }
 
@@ -15816,8 +15816,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 35.99em) {
   .form-search-lg .input-search {
     font-size: 1.6rem;
-    padding-left: 0.5rem;
-    padding-right: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     border-width: 1px;
     height: 3.8rem;
   }
@@ -16605,6 +16605,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 35.99em) {
+  ._nav .brand-name {
+    margin-left: 1rem;
+    margin-right: 1.3rem;
+    position: relative;
+    width: 3.5rem;
+    visibility: hidden;
+    height: 3.5rem;
+  }
+}
+
 ._nav .active {
   position: relative;
 }
@@ -16702,7 +16713,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   width: 40rem;
 }
 
-@media only screen and (max-width: 35.99em) {
+@media only screen and (max-width: 28.125em) {
   ._nav .nav__form {
     width: 30rem;
   }
@@ -18560,13 +18571,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 35.99em) {
-  .signup--right {
-    margin-left: 5rem;
-    margin-right: 5rem;
-  }
-}
-
 .signup form {
   padding: 3rem 7rem;
   padding-top: 1.5rem;
@@ -18999,13 +19003,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .login--left {
     border-radius: 1.2rem;
-  }
-}
-
-@media only screen and (max-width: 35.99em) {
-  .login--left {
-    margin-left: 5rem;
-    margin-right: 5rem;
   }
 }
 

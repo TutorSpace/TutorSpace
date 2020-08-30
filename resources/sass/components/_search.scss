@@ -39,8 +39,8 @@
 
         @include respond(extra-sm) {
             font-size: 1.6rem;
-            padding-left: .5rem;
-            padding-right: 2.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
             border-width: 1px;
             height: 3.8rem;
         }
@@ -54,9 +54,5 @@
         width: 1.75rem;
         height: 1.75rem;
 
-        @include respond(extra-sm) {
-            // width: 1.4rem;
-            // height: 1.4rem;
-        }
     }
 }
