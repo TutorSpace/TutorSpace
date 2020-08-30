@@ -11539,26 +11539,7 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
 if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
   //if 'true', the content overflows the tab: we show the hidden link
   $('.info-cards + .scroll-faded').css('display', 'block');
-}
-
-$('.btn-view-all-info-cards').click(function () {
-  $(this).closest('.info-cards').find('.hidden-2').toggle("fast");
-
-  if ($(this).html().includes('View')) {
-    $(this).html('Hide');
-  } else {
-    $(this).html('View All');
-  }
-});
-$('.btn-view-all-info-boxes').click(function () {
-  $(this).closest('.row').find('.info-boxes .hidden-2').toggle("fast");
-
-  if ($(this).html().includes('View')) {
-    $(this).html('Hide');
-  } else {
-    $(this).html('View All');
-  }
-}); // $(window).scroll(function() {
+} // $(window).scroll(function() {
 //     var posTop = $(window).scrollTop() - $('.home__content').offset().top;
 //     console.log(posTop);
 //     if(posTop < 0) {
@@ -11591,6 +11572,7 @@ $('.btn-view-all-info-boxes').click(function () {
 //     }
 // });
 // calendar
+
 
 window.showAvailableTimeForm = function (startTime, endTime) {
   $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));

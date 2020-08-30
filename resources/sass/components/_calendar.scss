@@ -1,4 +1,5 @@
 #calendar {
+
     .my-available-time {
         width: 100%;
         background-color: $color-calendar-time-available !important;
@@ -45,8 +46,74 @@
     button:disabled {
         cursor: not-allowed;
     }
+
+
 }
 
+
+.calendar-note {
+    font-size: 1.5rem;
+    margin-top: 2.2rem;
+    text-align: right;
+    position: relative;
+
+    span {
+        position: relative;
+
+        &:not(:nth-last-child(2)) {
+            margin-right: 7rem;
+        }
+    }
+
+    span::before {
+        content: "";
+        display: inline-block;
+        width: 5.5rem;
+        height: 100%;
+        position: absolute;
+        right: calc(100% + .7rem);
+    }
+
+    .online::before {
+        background-color: $color-calendar-online;
+    }
+
+    .in-person::before {
+        background-color: $color-calendar-inperson;
+    }
+
+    .available-time::before {
+        background-color: $color-calendar-time-available;
+    }
+
+    .note {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-right: 0 !important;
+        margin-top: .5rem;
+    }
+}
+
+.fc-timegrid-slots {
+    tr {
+        height: 2.2rem;
+        font-size: 1.4rem;
+    }
+}
+
+.fc-col-header {
+    font-size: 1.5rem !important;
+
+    .fc-col-header-cell-cushion {
+        padding: 3px 4px;
+    }
+}
+
+.fc-view-harness {
+    max-height: 63rem;
+    overflow: scroll;
+}
 
 .fc .fc-timegrid-col-events {
     margin-right: 0;
@@ -69,6 +136,12 @@
 .fc-v-event .fc-event-title-container {
     flex-grow: 0;
 }
+
+.fc-direction-ltr .fc-timegrid-slot-label-frame {
+    text-align: center;
+}
+
+
 
 // center the "title" text in the event
 .fc-timegrid-event .fc-event-time {

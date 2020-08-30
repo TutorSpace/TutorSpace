@@ -3,7 +3,7 @@
     color: $color-black-2;
 
     &__header-container {
-        padding: 5rem 0 0 0;
+        padding: 8rem 0 0 0;
 
         .heading {
             font-size: 3.4rem;
@@ -36,7 +36,6 @@
 
     &__header {
         padding: 0;
-        margin-top: 3rem;
         border-radius: 1rem;
         position: relative;
 
@@ -281,7 +280,7 @@
     &__content {
         margin-bottom: 18rem;
 
-        .container {
+        .col-layout-2 {
             margin-left: 40rem;
             max-width: 100rem;
 
@@ -289,6 +288,66 @@
                 max-width: 90rem;
                 margin-left: 35rem;
             }
+        }
+
+        .col-layout-3 {
+            margin-left: 35rem;
+            max-width: calc(100vw - 42rem - 48rem);
+
+            @include respond(lg-2) {
+                margin-left: 30rem;
+                max-width: calc(100vw - 34rem - 48rem);
+            }
+
+            // 1370 px
+            @media only screen and (max-width: 85.624em) {
+                max-width: 70vw;
+                margin-left: 33rem;
+            }
+
+            &--hidden {
+                display: none;
+
+                // 1370 px
+                @media only screen and (max-width: 85.624em) {
+                    display: block;
+                }
+            }
+
+            // 1370 px
+            @media only screen and (max-width: 85.624em) {
+                #calendar-container {
+                    padding-right: 30px !important;
+                    flex: 0 0 66.6666666667%;
+                    max-width: 66.6666666667%;
+                }
+            }
+
+            @include respond(md) {
+                #calendar-container {
+                    padding-right: 0 !important;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+            }
+
+            @media only screen and (max-width: 85.624em) {
+                #upcoming-sessions-container {
+                    flex: 0 0 33.3333333333%;
+                    max-width: 33.3333333333%;
+                }
+            }
+
+            @include respond(md) {
+                #upcoming-sessions-container {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    display: flex;
+                }
+            }
+        }
+
+        .col-layout-2, .col-layout-3 {
 
             @include respond(lg) {
                 max-width: 70vw;
@@ -307,20 +366,17 @@
             @include respond(extra-sm) {
                 margin-left: 15px;
                 margin-right: 15px;
-                // width: 100%;
                 max-width: calc(100% - 30px);
             }
         }
 
-
         .container:not(:first-child) {
-            margin-top: 5.5rem;
+            margin-top: 6rem;
         }
 
         .tutor-requests {
             max-height: 40rem;
             overflow: scroll;
-
 
             + .scroll-faded {
                 margin-top: -3rem;
@@ -382,26 +438,6 @@
 
         .calendar-heading {
             margin-bottom: 1.7rem;
-        }
-
-        .calendar-note {
-            font-size: 1.6rem;
-            margin-top: 2.2rem;
-            text-align: right;
-
-            span {
-                position: relative;
-            }
-
-            span::before {
-                content: "";
-                display: inline-block;
-                width: 7rem;
-                height: 100%;
-                position: absolute;
-                right: calc(100% + 1.5rem);
-                background-color: $color-calendar-time-available;
-            }
         }
 
         .bookmarked-tutors {
@@ -523,15 +559,28 @@
         width: 100%;
         justify-content: space-between;
 
+        .graph-1 {
+            flex: 0 0 calc(65% - 3rem);
+        }
+
+        .graph-2 {
+            flex: 0 0 calc(35%);
+        }
+
         .graph-1, .graph-2 {
             margin-top: 1.6rem;
-            flex: 0 0 calc(50% - 2rem);
             height: 100%;
             max-height: 350px;
 
             @include respond(md) {
                 flex: 0 0 100%;
-                max-height: 250px;
+                max-height: 200px;
+            }
+        }
+
+        @include respond(md) {
+            .graph-2 {
+                margin-top: 2.4rem;
             }
         }
 
@@ -539,6 +588,38 @@
             border-radius: 1rem;
             overflow: hidden;
             box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.1);
+        }
+    }
+
+    &__side-bar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right: 8rem;
+        width: 38rem;
+
+        @include respond(lg-2) {
+            width: 36rem;
+        }
+
+        // 1370 px
+        @media only screen and (max-width: 85.624em) {
+            display: none;
+        }
+
+        .home__board {
+            margin-top: 8rem;
+            background-color: $color-grey;
+            height: 20rem;
+            border-radius: 1rem;
+        }
+
+        &__notifications {
+            margin-top: 6rem;
+        }
+
+        &__upcoming-sessions {
+            margin-top: 6rem;
         }
     }
 }
@@ -554,21 +635,19 @@
             }
         }
 
-        &__content {
-            .info-box {
-                .actions, .action {
-                    .btn-cancel {
-                        border: 1px solid $color-purple-primary;
-                        color: $color-purple-primary;
-                    }
-
-                    .btn-view, .btn-view-request, .btn-view-session {
-                        background-color: $color-purple-primary;
-                        color: $color-white;
-                    }
+        .info-box {
+            .actions, .action {
+                .btn-cancel {
+                    border: 1px solid $color-purple-primary;
+                    color: $color-purple-primary;
                 }
 
+                .btn-view, .btn-view-request, .btn-view-session {
+                    background-color: $color-purple-primary;
+                    color: $color-white;
+                }
             }
+
         }
 
         .post-previews {
@@ -586,21 +665,19 @@
 
         }
 
-        &__content {
-            .info-box {
-                .actions, .action {
-                    .btn-cancel {
-                        border: 1px solid $color-blue-primary;
-                        color: $color-blue-primary;
-                    }
-
-                    .btn-view-session, .btn-view, {
-                        background-color: $color-blue-primary;
-                        color: $color-white;
-                    }
+        .info-box {
+            .actions, .action {
+                .btn-cancel {
+                    border: 1px solid $color-blue-primary;
+                    color: $color-blue-primary;
                 }
 
+                .btn-view-session, .btn-view, {
+                    background-color: $color-blue-primary;
+                    color: $color-white;
+                }
             }
+
         }
 
         .post-previews {

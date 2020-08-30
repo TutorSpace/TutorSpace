@@ -13,7 +13,7 @@
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02/2020 Wednesday</span>
+            <span class="content">08/02<span class="info-box__year">/2020</span> Wednesday</span>
         </div>
         <div class="time">
             <span class="title">Time</span>

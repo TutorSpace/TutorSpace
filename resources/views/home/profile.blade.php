@@ -26,7 +26,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <div class="container home__header-container">
+        <div class="container col-layout-2 home__header-container">
             <div class="heading-container">
                 <p class="heading">Profile Settings</p>
                 <span>
@@ -35,7 +35,7 @@ bg-student
             </div>
         </div>
 
-        <form class="container profile" autocomplete="off">
+        <form class="container col-layout-2 profile" autocomplete="off">
             <div class="row">
                 <h5 class="w-100 profile__heading">Personal Information</h5>
                 <div class="profile__form-row">

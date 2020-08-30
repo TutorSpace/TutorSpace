@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             SchoolYearSeeder::class,
             UserSeeder::class,
             ReportReasonSeeder::class,
-            TutorSessionSeeder::class,
             ReviewSeeder::class,
             AvailableTimeSeeder::class,
             UpcomingSessionSeeder::class,

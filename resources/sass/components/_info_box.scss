@@ -43,6 +43,7 @@
 
     button {
         max-width: 7rem;
+        line-height: 1.4;
     }
 
     .info-box {
@@ -85,8 +86,6 @@
             }
         }
 
-
-
         img {
             width: 4rem;
             height: 4rem;
@@ -113,6 +112,28 @@
 
         }
 
+
+        &__year {
+            @include respond(md) {
+                display: none;
+            }
+
+            @include respond(sm) {
+                display: inline;
+            }
+        }
+
+        &__time-stamp {
+            margin-left: 2rem;
+            font-style: italic;
+            color: $color-grey;
+            display: none;
+
+            @media only screen and (max-width: 85.624em) {
+                display: inline;
+            }
+        }
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -130,11 +151,15 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            width: 18rem;
         }
 
         .date {
             width: 20ch;
+
+            @include respond(md) {
+                width: 15ch;
+            }
         }
 
         .time {
