@@ -39,7 +39,7 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
-        <div class="container col-layout-3 col-layout-3--hidden">
+        <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
                 <div class="info-boxes info-boxes--sm-card">
@@ -62,7 +62,7 @@ bg-student
             </div>
         </div>
 
-        <div class="container col-layout-3">
+        <div class="container col-layout-3 col-layout-3--hidden">
             <div class="row">
                 <h5 class="mb-2 w-100">New Notifications</h5>
                 <div class="info-boxes">
@@ -311,7 +311,19 @@ bg-student
 
     <section class="home__side-bar">
         <div class="home__board">
-
+        </div>
+        <div class="home__side-bar__tutor-requests">
+            <h5 class="mb-2 w-100">New Notifications</h5>
+            <div class="info-boxes">
+                @include('home.partials.notification', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Nemo Enim'
+                ])
+                @include('home.partials.notification', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1'
+                ])
+            </div>
         </div>
     </section>
 </div>

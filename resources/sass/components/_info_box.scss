@@ -86,8 +86,6 @@
             }
         }
 
-
-
         img {
             width: 4rem;
             height: 4rem;
@@ -114,6 +112,17 @@
 
         }
 
+
+        .info-box__year {
+            @include respond(md) {
+                display: none;
+            }
+
+            @include respond(sm) {
+                display: inline;
+            }
+        }
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -131,11 +140,15 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            width: 18rem;
         }
 
         .date {
             width: 20ch;
+
+            @include respond(md) {
+                width: 15ch;
+            }
         }
 
         .time {

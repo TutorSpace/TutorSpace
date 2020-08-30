@@ -15958,6 +15958,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .info-box__year {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box .info-box__year {
+    display: inline;
+  }
+}
+
 .info-boxes .info-box .content {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -15975,11 +15987,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 20rem;
+  width: 18rem;
 }
 
 .info-boxes .info-box .date {
   width: 20ch;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .info-boxes .info-box .date {
+    width: 15ch;
+  }
 }
 
 .info-boxes .info-box .time {
@@ -20377,6 +20395,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
 }
 
+.home__side-bar__tutor-requests {
+  margin-top: 6rem;
+}
+
 .bg-tutor .home__header {
   background-image: linear-gradient(to right, #6749df, #492faf);
 }
@@ -20385,18 +20407,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: -2.5rem;
 }
 
-.bg-tutor .home__content .info-box .actions .btn-cancel,
-.bg-tutor .home__content .info-box .action .btn-cancel {
+.bg-tutor .home .info-box .actions .btn-cancel,
+.bg-tutor .home .info-box .action .btn-cancel {
   border: 1px solid #6749DF;
   color: #6749DF;
 }
 
-.bg-tutor .home__content .info-box .actions .btn-view,
-.bg-tutor .home__content .info-box .actions .btn-view-request,
-.bg-tutor .home__content .info-box .actions .btn-view-session,
-.bg-tutor .home__content .info-box .action .btn-view,
-.bg-tutor .home__content .info-box .action .btn-view-request,
-.bg-tutor .home__content .info-box .action .btn-view-session {
+.bg-tutor .home .info-box .actions .btn-view,
+.bg-tutor .home .info-box .actions .btn-view-request,
+.bg-tutor .home .info-box .actions .btn-view-session,
+.bg-tutor .home .info-box .action .btn-view,
+.bg-tutor .home .info-box .action .btn-view-request,
+.bg-tutor .home .info-box .action .btn-view-session {
   background-color: #6749DF;
   color: #FFFFFF;
 }
@@ -20409,16 +20431,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-image: linear-gradient(to bottom, #1f7aff, #1866da);
 }
 
-.bg-student .home__content .info-box .actions .btn-cancel,
-.bg-student .home__content .info-box .action .btn-cancel {
+.bg-student .home .info-box .actions .btn-cancel,
+.bg-student .home .info-box .action .btn-cancel {
   border: 1px solid #1F7AFF;
   color: #1F7AFF;
 }
 
-.bg-student .home__content .info-box .actions .btn-view-session,
-.bg-student .home__content .info-box .actions .btn-view,
-.bg-student .home__content .info-box .action .btn-view-session,
-.bg-student .home__content .info-box .action .btn-view {
+.bg-student .home .info-box .actions .btn-view-session,
+.bg-student .home .info-box .actions .btn-view,
+.bg-student .home .info-box .action .btn-view-session,
+.bg-student .home .info-box .action .btn-view {
   background-color: #1F7AFF;
   color: #FFFFFF;
 }

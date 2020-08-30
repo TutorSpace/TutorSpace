@@ -649,7 +649,10 @@
             background-color: $color-grey;
             height: 20rem;
             border-radius: 1rem;
+        }
 
+        &__tutor-requests {
+            margin-top: 6rem;
         }
     }
 }
@@ -665,21 +668,19 @@
             }
         }
 
-        &__content {
-            .info-box {
-                .actions, .action {
-                    .btn-cancel {
-                        border: 1px solid $color-purple-primary;
-                        color: $color-purple-primary;
-                    }
-
-                    .btn-view, .btn-view-request, .btn-view-session {
-                        background-color: $color-purple-primary;
-                        color: $color-white;
-                    }
+        .info-box {
+            .actions, .action {
+                .btn-cancel {
+                    border: 1px solid $color-purple-primary;
+                    color: $color-purple-primary;
                 }
 
+                .btn-view, .btn-view-request, .btn-view-session {
+                    background-color: $color-purple-primary;
+                    color: $color-white;
+                }
             }
+
         }
 
         .post-previews {
@@ -697,21 +698,19 @@
 
         }
 
-        &__content {
-            .info-box {
-                .actions, .action {
-                    .btn-cancel {
-                        border: 1px solid $color-blue-primary;
-                        color: $color-blue-primary;
-                    }
-
-                    .btn-view-session, .btn-view, {
-                        background-color: $color-blue-primary;
-                        color: $color-white;
-                    }
+        .info-box {
+            .actions, .action {
+                .btn-cancel {
+                    border: 1px solid $color-blue-primary;
+                    color: $color-blue-primary;
                 }
 
+                .btn-view-session, .btn-view, {
+                    background-color: $color-blue-primary;
+                    color: $color-white;
+                }
             }
+
         }
 
         .post-previews {
