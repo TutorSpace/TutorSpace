@@ -20836,6 +20836,73 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 7rem;
 }
 
+.view-profile .forum {
+  margin-top: 7rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .post-previews {
+    order: 1;
+    margin-top: 3rem;
+  }
+}
+
+.view-profile .forum .forum-data-container {
+  position: relative;
+  right: -15px;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .forum-data-container {
+    right: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.view-profile .forum .forum-data-container .forum-data {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F9F9;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .forum .forum-data-container .forum-data {
+    flex: 1;
+  }
+
+  .view-profile .forum .forum-data-container .forum-data:not(:last-child) {
+    margin-right: 2.5rem;
+  }
+}
+
+.view-profile .forum .forum-data-container .forum-data:first-child {
+  margin-top: 2rem;
+}
+
+.view-profile .forum .forum-data-container .forum-data:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.view-profile .forum .forum-data-container .forum-data .title {
+  font-size: 1.5rem;
+  color: #A0A0A0;
+}
+
+.view-profile .forum .forum-data-container .forum-data .number {
+  font-size: 1.8rem;
+  color: #626262;
+  font-weight: 500;
+}
+
 .bg-tutor .view-profile__course {
   background-color: #6749DF;
 }
