@@ -165,7 +165,7 @@ class PaypalApiController extends Controller
         $payouts = new Payout();
         $senderBatchHeader = new PayoutSenderBatchHeader();
         $senderBatchHeader->setSenderBatchId(uniqid().microtime(true))
-            ->setEmailSubject("You have a payment");
+            ->setEmailSubject("You received a fund from TutorSpace.");
 
         $amount = new Currency();
         $amount->setCurrency('USD');
@@ -176,7 +176,7 @@ class PaypalApiController extends Controller
         $senderItem->setRecipientType('Email')
             ->setNote('Thanks you.')
             ->setReceiver($request->get('email'))
-            ->setSenderItemId("item_1" . uniqid().microtime('true'))
+            ->setSenderItemId("fund" . uniqid().microtime('true'))
             ->setAmount($amount);
 
         $payouts->setSenderBatchHeader($senderBatchHeader)->addItem($senderItem);
