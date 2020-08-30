@@ -13682,7 +13682,7 @@ html {
 
 @media only screen and (max-width: 35.99em) {
   html {
-    font-size: 37.5%;
+    font-size: 43.75%;
   }
 }
 
@@ -15783,7 +15783,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .form-search-lg .input-search {
-  border: 2px solid;
+  border: 1.5px solid;
   padding-right: 3rem;
   padding-left: 1.3rem;
   font-weight: 500;
@@ -15815,11 +15815,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 35.99em) {
   .form-search-lg .input-search {
-    font-size: 1.4rem;
-    padding: 0.5rem;
+    font-size: 1.6rem;
     padding-left: 0.5rem;
     padding-right: 2.5rem;
     border-width: 1px;
+    height: 3.8rem;
   }
 }
 
@@ -15830,13 +15830,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(0, -50%);
   width: 1.75rem;
   height: 1.75rem;
-}
-
-@media only screen and (max-width: 35.99em) {
-  .form-search-lg .svg-search {
-    width: 1.4rem;
-    height: 1.4rem;
-  }
 }
 
 .info-boxes {
@@ -17425,7 +17418,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
   align-items: center;
   height: 20rem;
-  width: 3.5rem;
+  width: 2.6rem;
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   cursor: pointer;
@@ -17444,7 +17437,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .forum .overlay-forum-left .toggle-container .svg-toggle {
-  font-size: 2.3rem;
+  font-size: 2.2rem;
 }
 
 .forum .overlay-forum-left .toggle-collapsed {
@@ -17553,6 +17546,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .forum-left .user-card {
   margin-top: 3rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .forum-content {
+    padding-right: 0;
+  }
 }
 
 .forum-content__search {
@@ -19409,7 +19408,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 35.99em) {
   .search {
-    padding: 0 5rem;
+    padding: 0 15px;
   }
 }
 
@@ -19766,6 +19765,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .home {
   margin-top: 8rem;
   color: #626262;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 .home__header-container {
