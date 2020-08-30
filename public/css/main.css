@@ -18455,6 +18455,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.index__bottom .index__bottom__left {
+  margin-top: 5em;
+}
+
+.index__bottom .index__bottom__right {
+  margin-top: 5em;
+}
+
 .body-signup {
   position: relative;
   height: 100vh;
