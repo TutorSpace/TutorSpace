@@ -87,7 +87,7 @@
             margin-right: 0 !important;
             padding: 1rem 2rem;
             display: block;
-            text-align: center;
+            text-align: left;
             text-decoration: none;
             transition: all .2s;
         }
@@ -239,9 +239,24 @@
     &--student {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-blue-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-blue-primary;
                     color: $color-white;
                 }
@@ -252,9 +267,24 @@
     &--tutor {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-purple-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-purple-primary;
                     color: $color-white;
                 }
