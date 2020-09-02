@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Stripe\Customer;
-use Stripe\PaymentIntent;
 use Stripe\Stripe;
-use Illuminate\Support\Facades\Log;
 use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
@@ -20,12 +16,9 @@ use Stripe\Transfer;
 
 class StripeApiController extends Controller
 {
-
-    private $account_id_ = "acct_1HDuIHHfd3Aoz8fx";
-
     public function __construct()
     {
-        Stripe::setApiKey('sk_test_51H6RWlBtUwiw0w2oea2KC7E1uIQ11zes7Oi5kNhYTbsnVvMNCAQ9mIhOtet3prL0ZMai7Ru4inulT0D8oydWPAOt00XVTc8P83');
+        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
     public function index() {
@@ -83,10 +76,11 @@ class StripeApiController extends Controller
     public function refundCharge(Request $request) {
         $charge_id = $request->get('charge_id');
         $refund = Refund::create(['charge' => $charge_id]);
-        return response()->json([
-            'status' => $refund->status,
-            'failure_reason' => $refund->failure_reason,
-        ]);
+        Session::put('status', $refund->status);
+        if ($refund->status != 'succeeded') {
+            Session::put('failure_reason', $refund->failure_reason);
+        }
+        return view('payment.stripe_connect');
     }
 
     // Pays out to current user
@@ -95,16 +89,18 @@ class StripeApiController extends Controller
         $amount = intval($request->get('amount'));
         $balance = Balance::retrieve();
         if ($balance->available[0]->amount < $amount) {
-            $topup = Topup::create([
-                'amount' => $amount - $balance->available[0]->amount,
-                'currency' => 'usd',
-                'description' => 'Top-up on '.date("Y-m-d H:i:s"),
-                'statement_descriptor' => 'One-time top-up',
-            ]);
-            if ($topup->status != 'success') {
-                $request->session()->put('status', 'failed');
-                return view('payment.stripe_connect');
-            }
+            // $topup = Topup::create([
+            //     'amount' => $amount - $balance->available[0]->amount,
+            //     'currency' => 'usd',
+            //     'description' => 'Top-up on '.date("Y-m-d H:i:s"),
+            //     'statement_descriptor' => 'One-time top-up',
+            // ]);
+            // if ($topup->status != 'success') {
+            //     Session::put('status', 'failed');
+            //     return view('payment.stripe_connect');
+            // }
+            Session::put('status', 'failed');
+            return view('payment.stripe_connect');
         }
         $transfer = Transfer::create([
             'amount' => $amount,
