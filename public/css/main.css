@@ -20642,10 +20642,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 0.5rem;
   text-align: center;
   font-size: 1.4rem;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 4rem 0.5rem 4rem;
   align-self: center;
-  transition: all 0.1s;
-  cursor: pointer;
+  cursor: default;
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -20654,18 +20653,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.profile .boxes .box:hover {
-  transform: translateY(-3px);
-}
-
-.profile .boxes .box:active {
-  transform: translateY(-1px);
-}
-
 .profile .boxes .box .remove {
   right: 0.5rem;
-  font-size: 1.6rem;
-  line-height: 1.3;
+  cursor: pointer;
+}
+
+.profile .boxes .box .verify {
+  left: 1rem;
 }
 
 .profile .hourly-rate-input-container {
