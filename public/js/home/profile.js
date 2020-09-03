@@ -81,30 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/view_profile/index.js":
-/*!********************************************!*\
-  !*** ./resources/js/view_profile/index.js ***!
-  \********************************************/
+/***/ "./resources/js/home/profile.js":
+/*!**************************************!*\
+  !*** ./resources/js/home/profile.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+alert("test");
 
 /***/ }),
 
-/***/ 8:
-/*!**************************************************!*\
-  !*** multi ./resources/js/view_profile/index.js ***!
-  \**************************************************/
+/***/ 7:
+/*!********************************************!*\
+  !*** multi ./resources/js/home/profile.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/view_profile/index.js */"./resources/js/view_profile/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/profile.js */"./resources/js/home/profile.js");
 
 
 /***/ })
