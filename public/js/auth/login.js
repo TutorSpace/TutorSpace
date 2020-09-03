@@ -114,7 +114,7 @@ $('input').on('input', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\auth\login.js */"./resources/js/auth/login.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/auth/login.js */"./resources/js/auth/login.js");
 
 
 /***/ })
