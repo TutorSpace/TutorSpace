@@ -2,6 +2,11 @@
     margin-top: $nav-height;
     color: $color-black-2;
 
+    @include respond(extra-sm) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     &__header-container {
         padding: 8rem 0 0 0;
 
