@@ -16158,7 +16158,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card {
   border-radius: 1rem;
-  padding: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
   background-color: #F9F9F9;
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
@@ -16556,7 +16556,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .notifications--sidebar {
   margin-top: 2rem;
   background-color: #F9F9F9;
-  padding: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
   font-size: 1.6rem;
   border-radius: 1rem;
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
@@ -16567,16 +16567,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notifications--sidebar .notification:not(:first-child) {
-  margin-top: 2rem;
-}
-
-.notifications--sidebar .notification > *:not(:last-child) {
-  margin-right: 2rem;
+  margin-top: 2.3rem;
 }
 
 .notifications--sidebar .notification--left {
   flex: 0 0 4.5rem;
   width: 4.5rem;
+  margin-right: 2rem;
 }
 
 .notifications--sidebar .notification--left > :first-child {
@@ -16590,6 +16587,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notifications--sidebar .notification--content {
+  margin-right: 0.5rem;
   flex: 1;
   width: calc(100% - 4rem - 7rem - 2 * 2rem);
   display: flex;
@@ -20360,10 +20358,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .home__content .user-cards .user-card:nth-child(2n+2) {
     margin-right: 0;
   }
-}
-
-.home__content .calendar-heading {
-  margin-bottom: 1.7rem;
 }
 
 .home__content .bookmarked-tutors {

@@ -1,7 +1,7 @@
 .notifications--sidebar {
     margin-top: 2rem;
     background-color: $color-white-dark-5;
-    padding: 1.5rem 2rem;
+    padding: 2rem 2.5rem;
     font-size: 1.6rem;
     border-radius: 1rem;
     box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
@@ -10,16 +10,14 @@
         display: flex;
 
         &:not(:first-child) {
-            margin-top: 2rem;
+            margin-top: 2.3rem;
         }
 
-        > *:not(:last-child) {
-            margin-right: 2rem;
-        }
 
         &--left {
             flex: 0 0 4.5rem;
             width: 4.5rem;
+            margin-right: 2rem;
 
             > :first-child {
                 width: 100%;
@@ -33,6 +31,7 @@
         }
 
         &--content {
+            margin-right: .5rem;
             flex: 1;
             width: calc(100% - 4rem - 7rem - 2 * 2rem);
             display: flex;

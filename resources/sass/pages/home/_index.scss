@@ -285,6 +285,12 @@
     &__content {
         margin-bottom: 18rem;
 
+        // #calendar-background {
+        //     padding: 2rem 2rem 5rem 2rem;
+        //     background-color: #F9F9F9;
+        //     border-radius: 1rem;
+        // }
+
         .col-layout-2 {
             margin-left: 40rem;
             max-width: 100rem;
@@ -442,9 +448,11 @@
             }
         }
 
-        .calendar-heading {
-            margin-bottom: 1.7rem;
-        }
+        // .calendar-heading {
+        //     margin-bottom: 1rem;
+        //     font-size: 1.6rem;
+        //     color: $color-grey;
+        // }
 
         .bookmarked-tutors {
             max-height: 45rem;
