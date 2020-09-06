@@ -5,7 +5,7 @@
     </div>
     <div class="notification--content">
         <span>Session Cancelled</span>
-        <span class="subtitle">Computer Science &middot; 08/21/20</span>
+        <span class="subtitle">{{ $notificationContent }} &middot; 08/21/20</span>
     </div>
 
     <div class="notification--right">
