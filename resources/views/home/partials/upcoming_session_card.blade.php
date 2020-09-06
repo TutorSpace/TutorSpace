@@ -10,7 +10,7 @@
     <div class="info-card__row">
         <div class="row-left">
             <small class="title">Date</small>
-            <span class="content">08/02<span class="info-card__year">/2020</span> Thursday</span>
+            <span class="content">08/02<span class="info-card__year">/20</span> Thur</span>
         </div>
         <div class="row-right">
             <small class="title">Course</small>
@@ -20,7 +20,7 @@
     <div class="info-card__row">
         <div class="row-left">
             <small class="title">Time</small>
-            <span class="content">13:30PM - 15:00PM</span>
+            <span class="content">13:30 - 15:00</span>
         </div>
         <div class="row-right d-flex align-items-center">
             <button class="btn btn-primary btn-view btn-view-session">View</button>

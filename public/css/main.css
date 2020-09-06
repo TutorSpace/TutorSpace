@@ -15998,27 +15998,27 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 18rem;
+  width: 20rem;
 }
 
 .info-boxes .info-box .date {
-  width: 20ch;
+  width: 16ch;
 }
 
 @media only screen and (max-width: 61.99em) {
   .info-boxes .info-box .date {
-    width: 15ch;
+    width: 11ch;
   }
 }
 
 .info-boxes .info-box .time {
-  width: 17ch;
+  width: 14ch;
 }
 
 .info-boxes .info-box .course,
 .info-boxes .info-box .status,
 .info-boxes .info-box .format {
-  width: 10ch;
+  width: 12ch;
 }
 
 .info-boxes .info-box .session-type {

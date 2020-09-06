@@ -151,23 +151,23 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 18rem;
+            width: 20rem;
         }
 
         .date {
-            width: 20ch;
+            width: 16ch;
 
             @include respond(md) {
-                width: 15ch;
+                width: 11ch;
             }
         }
 
         .time {
-            width: 17ch;
+            width: 14ch;
         }
 
         .course, .status, .format {
-            width: 10ch;
+            width: 12ch;
         }
 
         .session-type {
