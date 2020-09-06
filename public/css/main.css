@@ -16158,22 +16158,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card {
   border-radius: 1rem;
-  padding: 1.25rem 1.75rem;
+  padding: 1.5rem 2rem;
   background-color: #F9F9F9;
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 @media only screen and (max-width: 61.99em) {
   .info-cards .info-card {
+    padding: 1.25rem 1.75rem;
     flex: 0 0 calc(50% - 1rem);
     width: calc(50% - 1rem);
-  }
-}
-
-@media only screen and (max-width: 26.24em) {
-  .info-cards .info-card {
-    flex: 0 0 calc(100%);
-    width: calc(100%);
   }
 }
 
@@ -16557,6 +16551,65 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .fc-col-header {
   background-color: #FBFBFB;
+}
+
+.notifications--sidebar {
+  margin-top: 2rem;
+  background-color: #F9F9F9;
+  padding: 1.5rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.notifications--sidebar .notification {
+  display: flex;
+}
+
+.notifications--sidebar .notification:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.notifications--sidebar .notification > *:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.notifications--sidebar .notification--left {
+  flex: 0 0 4.5rem;
+  width: 4.5rem;
+}
+
+.notifications--sidebar .notification--left > :first-child {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+
+.notifications--sidebar .notification--left .notification--best-reply {
+  background-color: #FBB752;
+}
+
+.notifications--sidebar .notification--content {
+  flex: 1;
+  width: calc(100% - 4rem - 7rem - 2 * 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications--sidebar .notification--content .subtitle {
+  color: #A0A0A0;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+
+.notifications--sidebar .notification--right {
+  flex: 0 0 7rem;
+  width: 7rem;
+  font-size: 1.2rem;
+  color: #A0A0A0;
+  white-space: nowrap;
 }
 
 ._nav {
