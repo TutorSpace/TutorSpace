@@ -324,7 +324,6 @@ bg-student
                     'isBestReplyNotification' => true,
                     'notificationContent' => 'Testing Post 1'
                 ])
-
             </div>
         </div>
 
