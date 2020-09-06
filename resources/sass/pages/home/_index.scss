@@ -319,22 +319,23 @@
                 }
             }
 
-            // 1370 px
-            @media only screen and (max-width: 85.624em) {
-                #calendar-container {
+            #calendar-container {
+
+                // 1370 px
+                @media only screen and (max-width: 85.624em) {
                     padding-right: 30px !important;
                     flex: 0 0 66.6666666667%;
                     max-width: 66.6666666667%;
                 }
-            }
 
-            @include respond(md) {
-                #calendar-container {
+                @include respond(md) {
                     padding-right: 0 !important;
                     flex: 0 0 100%;
                     max-width: 100%;
                 }
+
             }
+
 
             @media only screen and (max-width: 85.624em) {
                 #upcoming-sessions-container {

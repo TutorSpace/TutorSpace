@@ -16016,8 +16016,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes .info-box .course,
-.info-boxes .info-box .status,
-.info-boxes .info-box .format {
+.info-boxes .info-box .status {
   width: 12ch;
 }
 
@@ -16478,12 +16477,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .fc-timegrid-slots tr {
-  height: 2.2rem;
-  font-size: 1.4rem;
+  height: 2.3rem;
+  font-size: 1.5rem;
 }
 
 .fc-col-header {
-  font-size: 1.5rem !important;
+  font-size: 1.65rem !important;
 }
 
 .fc-col-header .fc-col-header-cell-cushion {
