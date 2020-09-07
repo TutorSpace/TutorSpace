@@ -23,6 +23,11 @@ bg-student
 
 @include('partials.nav')
 
+<script>
+    @php ($tag_array = ["ACAD 123", "ACAD 124", "ACAD 125", "ACAD 126", "ACAD 127", "ACAD 128",  "ACAD 129"])
+    tag_js = ["ACAD 123", "ACAD 124", "ACAD 125", "ACAD 126", "ACAD 127", "ACAD 128",  "ACAD 129"];
+</script>
+
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
@@ -103,11 +108,11 @@ bg-student
                     </div>
 
                     <div class="boxes flex-100">
-                        @foreach (App\Course::all()->take(7) as $course)
+                        @foreach ($tag_array as $course)
                         <span class="box p-relative" type="button">
-                            {{ $course->course }}
+                            {{ $course }}
                             <span class="p-absolute remove">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" onClick="deleteTag( '{{ $course }}' )">
                                     <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                 </svg>
                             </span>
@@ -162,6 +167,18 @@ bg-student
 @section('js')
 
 <script src="{{ asset('js/home/profile.js') }}"></script>
+
+<script>
+    function deleteTag(prop) {
+        <?php
+            $key = array_search("ACAD 125",$tag_array);
+            unset($tag_array[$key]);
+        ?>;
+        var temp = "<?= $tag_array[0] ?>";
+        console.log(temp);
+        location.reload();
+    }
+</script>
 
 {{-- autocomplete --}}
 <script>

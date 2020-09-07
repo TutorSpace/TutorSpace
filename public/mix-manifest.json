@@ -6,7 +6,6 @@
     "/js/forum/create.js": "/js/forum/create.js",
     "/js/forum/forum.js": "/js/forum/forum.js",
     "/js/home/index.js": "/js/home/index.js",
-    "/js/home/profile.js": "/js/home/profile.js",
     "/js/search/index.js": "/js/search/index.js",
     "/js/view_profile/index.js": "/js/view_profile/index.js"
 }
