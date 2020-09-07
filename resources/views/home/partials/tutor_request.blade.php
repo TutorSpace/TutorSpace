@@ -51,7 +51,7 @@
 
     </div>
 
-    <div class="tutor-request__modal">
+    <div class="home__tutor-request__modal">
         <!-- Modal content -->
         <div class="tutor-request__modal__content__close">
             <div class="tutor-request__modal__close">
@@ -124,8 +124,9 @@
 
 
 <script>
+    
     // Get the modal
-    var modal = document.getElementsByClassName("tutor-request__modal")[0];
+    var modal = document.getElementsByClassName("home__tutor-request__modal")[0];
 
     // Get the button that opens the modal
     var btn = document.getElementsByClassName("btn-view-request")[0];

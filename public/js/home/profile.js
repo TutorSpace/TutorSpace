@@ -93,11 +93,9 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-<<<<<<< HEAD
-alert("test");
-=======
-
->>>>>>> 58410782c6ead6fbdfb24c26bafd06e254397d01
+$('.boxes .box').click(function () {
+  $(this).remove();
+});
 
 /***/ }),
 
@@ -108,7 +106,7 @@ alert("test");
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/profile.js */"./resources/js/home/profile.js");
+module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\home\profile.js */"./resources/js/home/profile.js");
 
 
 /***/ })
