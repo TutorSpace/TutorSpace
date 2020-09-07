@@ -161,7 +161,7 @@ bg-student
 
 @section('js')
 
-<script src="{{ asset('js/home/index.js') }}"></script>
+<script src="{{ asset('js/home/profile.js') }}"></script>
 
 {{-- autocomplete --}}
 <script>
