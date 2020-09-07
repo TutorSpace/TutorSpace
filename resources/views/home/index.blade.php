@@ -314,17 +314,27 @@ bg-student
         <div class="home__board">
         </div>
         <div class="home__side-bar__notifications">
-            <h5 class="mb-2 w-100">New Notifications</h5>
-            <div class="info-boxes">
-                @include('home.partials.notification', [
+            <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                <h5 class="mb-0 ws-no-wrap">New Notifications</h5>
+                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap">View All</button>
+            </div>
+            <div class="notifications--sidebar">
+                @include('home.partials.notification--sidebar', [
                     'isCancellationNotification' => true,
                     'notificationContent' => 'Nemo Enim'
                 ])
-                @include('home.partials.notification', [
+                @include('home.partials.notification--sidebar', [
                     'isBestReplyNotification' => true,
                     'notificationContent' => 'Testing Post 1'
                 ])
-
+                @include('home.partials.notification--sidebar', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Nemo Enim'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1'
+                ])
             </div>
         </div>
 

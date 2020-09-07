@@ -13,11 +13,12 @@
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02<span class="info-box__year">/2020</span> Wednesday</span>
+            <span class="content">08/02<span class="info-box__year">/20</span>
+                Wed</span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">13:30PM - 15:00PM</span>
+            <span class="content">12:30 - 13:00</span>
         </div>
         <div class="course">
             <span class="title">Course</span>

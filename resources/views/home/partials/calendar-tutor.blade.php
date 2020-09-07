@@ -60,6 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         },
+        eventTimeFormat: {
+            hour: 'numeric',
+            minute: '2-digit',
+            meridiem: 'short'
+        },
         events: [
             @foreach(Auth::user()->availableTimes as $time)
             {

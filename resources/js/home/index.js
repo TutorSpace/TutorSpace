@@ -127,3 +127,6 @@ window.showAvailableTimeDeleteForm = (startTime, endTime, availableTimeId) => {
     $('#availableTimeDeleteConfirmationModal').modal('show');
 }
 
+$('.action-toggle').click(function() {
+    $(this).next('.action-toggle__content').toggle();
+});

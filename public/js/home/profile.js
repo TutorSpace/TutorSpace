@@ -93,7 +93,11 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 alert("test");
+=======
+
+>>>>>>> 58410782c6ead6fbdfb24c26bafd06e254397d01
 
 /***/ }),
 
