@@ -26,12 +26,20 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <div class="container col-layout-2 home__header-container">
+        <!-- <div class="container col-layout-2 home__header-container">
             <div class="heading-container">
                 <p class="heading">Profile Settings</p>
                 <span>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
                 </span>
+            </div>
+        </div> -->
+        <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
+            <div class="home__panel__text heading-container">
+                <p class="heading">Want to earn experience points more quickly? </p>
+            </div>
+            <div class="home__panel__button">
+                <p class="home__panel__button__label">Become a Verified Tutor</p>
             </div>
         </div>
 
