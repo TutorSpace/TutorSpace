@@ -213,3 +213,10 @@ Route::post('/messages', 'chatController@sendMessage')->middleware(['auth']);
 Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['auth']);
 Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['auth']);
 
+// Stripe demo
+Route::get('/payment/stripe_index', 'StripeApiController@index');
+Route::post('/payment/stripe_onboarding', 'StripeApiController@createAccountLink');
+Route::post('/payment/stripe_charge', 'StripeApiController@processCharge');
+Route::post('/payment/stripe_refund', 'StripeApiController@refundCharge');
+Route::post('/payment/stripe_payout', 'StripeApiController@processPayout');
+Route::get('/payment/check', 'StripeApiController@checkAccountDetail');
