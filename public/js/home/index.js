@@ -11593,6 +11593,10 @@ window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTime
   $('#availableTimeDeleteConfirmationModal').modal('show');
 };
 
+$('.action-toggle').click(function () {
+  $(this).next('.action-toggle__content').toggle();
+});
+
 /***/ }),
 
 /***/ 6:

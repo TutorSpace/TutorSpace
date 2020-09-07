@@ -50,6 +50,30 @@
             color: $color-purple-primary;
             cursor: pointer;
 
+            &__content {
+                display: none;
+                position: absolute;
+                border-radius: .5rem;
+                left: calc(100% - 1rem);
+                top: 2.5rem;
+                padding: 1rem 1.5rem;
+                font-size: 1.6rem;
+                font-weight: 500;
+                list-style: none;
+                background-color: $color-white;
+                box-shadow: 1px 3px 4px rgba(0,0,0,0.1);
+
+                svg {
+                    width: 1.75rem;
+                    height: 1.75rem;
+                    margin-right: .5rem;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $color-black-2;
+                }
+            }
         }
 
         &__row {

@@ -16191,6 +16191,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   cursor: pointer;
 }
 
+.info-cards .info-card .action-toggle__content {
+  display: none;
+  position: absolute;
+  border-radius: 0.5rem;
+  left: calc(100% - 1rem);
+  top: 2.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  list-style: none;
+  background-color: #FFFFFF;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-cards .info-card .action-toggle__content svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.5rem;
+}
+
+.info-cards .info-card .action-toggle__content a {
+  text-decoration: none;
+  color: #626262;
+}
+
 .info-cards .info-card__row {
   margin-top: 0.5rem;
   font-size: 1.4rem;
