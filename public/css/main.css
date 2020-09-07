@@ -20745,7 +20745,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .tutor-request__modal .tutor-request__modal__content__close {
   background-color: #fefefe;
   margin: auto;
-  width: 50%;
+  width: 70rem;
   border-radius: 10px;
   /* The Close Button */
 }
@@ -20795,6 +20795,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   flex-direction: row;
   align-items: center;
   margin-bottom: 2rem;
+}
+
+.tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile .user-info .content {
+  font-weight: bold;
 }
 
 .tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__calendar {

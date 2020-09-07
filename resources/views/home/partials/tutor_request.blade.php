@@ -82,7 +82,7 @@
                         <div class="user-info">
                             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
                             <a class="content" href="#">
-                                <p style="font-weight: bold">Shuaiqing Luo</p>
+                                <span>Shuaiqing Luo</span>
                             </a>
                         </div>
                     </div>

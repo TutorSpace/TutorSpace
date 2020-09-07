@@ -191,7 +191,7 @@
     .tutor-request__modal__content__close {
         background-color: #fefefe;
         margin: auto;
-        width: 50%;
+        width: 70rem;
         @media (max-width: 480px) {
             width: 90%;
         }
@@ -231,6 +231,9 @@
                     flex-direction: row;
                     align-items: center;
                     margin-bottom: 2rem;
+                    .content {
+                        font-weight: bold;
+                    }
                 }
             }
     
@@ -270,8 +273,5 @@
                 }
             }
         }
-        
-    }
-
-    
+    }    
 }
