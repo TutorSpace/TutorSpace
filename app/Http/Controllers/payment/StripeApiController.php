@@ -38,14 +38,13 @@ class StripeApiController extends Controller
                 'country' => 'US',
                 'type' => 'express',
             ]);
-            $user->stripe_account_id = $account->id;
-            $user->save();
-            $account_links  = AccountLink::create([
-                'account' => $user->stripe_account_id,
-                'refresh_url' => $request->get('refresh_url'),
-                'return_url' => $request->get('return_url'),
+            $account_links = AccountLink::create([
+                'account' => $account->id,
+                'refresh_url' => url('/payment/check'),
+                'return_url' => url('/payment/check'),
                 'type' => 'account_onboarding',
             ]);
+            Session::put('stripe_account_id', $account->id);
         } else {
             $account_links = Account::createLoginLink(
                 $user->stripe_account_id, []
@@ -54,6 +53,19 @@ class StripeApiController extends Controller
         return response()->json([
             'stripe_url' => $account_links->url
         ]);
+    }
+
+    public function checkAccountDetail(Request $request) {
+        $account_id = Session::get('stripe_account_id');
+        $account = Account::retrieve($account_id, []);
+        if ($account->details_submitted) {
+            $user = User::find(Auth::user()->id);
+            $user->stripe_account_id = $account->id;
+            $user->save();
+            return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        } else {
+            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+        }
     }
 
     // Charges current user
@@ -68,6 +80,9 @@ class StripeApiController extends Controller
         ]);
         // TODO: Add charge id to database and Refund
         Session::put('status', $charge->status);
+        if ($charge->status != 'succeeded') {
+            Session::put('failure_message', $charge->failure_message);
+        }
         return view('payment.stripe_connect');
     }
 
@@ -77,6 +92,7 @@ class StripeApiController extends Controller
         $charge_id = $request->get('charge_id');
         $refund = Refund::create(['charge' => $charge_id]);
         Session::put('status', $refund->status);
+        // TODO: database
         if ($refund->status != 'succeeded') {
             Session::put('failure_reason', $refund->failure_reason);
         }
@@ -107,6 +123,7 @@ class StripeApiController extends Controller
             'currency' => 'usd',
             'destination' => Auth::user()->stripe_account_id,
         ]);
+        // TODO: database
         Session::put('status', 'success');
         return view('payment.stripe_connect');
     }
