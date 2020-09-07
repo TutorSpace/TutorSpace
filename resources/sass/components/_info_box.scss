@@ -39,7 +39,13 @@
 
     > * {
         margin-top: 1.5rem;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
     }
+
+
 
     button {
         max-width: 7rem;
@@ -168,6 +174,10 @@
 
         .course, .status {
             width: 12ch;
+        }
+
+        .type {
+            width: 9ch;
         }
 
         .session-type {

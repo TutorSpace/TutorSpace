@@ -15873,6 +15873,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 1.5rem;
 }
 
+.info-boxes > *:last-child {
+  margin-bottom: 0.5rem;
+}
+
 .info-boxes button {
   max-width: 7rem;
   line-height: 1.4;
@@ -16018,6 +16022,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .course,
 .info-boxes .info-box .status {
   width: 12ch;
+}
+
+.info-boxes .info-box .type {
+  width: 9ch;
 }
 
 .info-boxes .info-box .session-type {

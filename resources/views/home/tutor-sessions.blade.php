@@ -83,7 +83,7 @@ bg-student
                         'user' => App\User::find(2)
                     ])
 
-                    @include('home.partials.past_session', [
+                    {{-- @include('home.partials.past_session', [
                         'user' => App\User::find(3)
                     ])
 
@@ -97,7 +97,7 @@ bg-student
 
                     @include('home.partials.past_session', [
                         'user' => App\User::find(4)
-                    ])
+                    ]) --}}
 
                 </div>
                 <div class="scroll-faded">

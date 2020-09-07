@@ -8,18 +8,18 @@
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02/2020 Wednesday</span>
+            <span class="content">08/02<span class="info-box__year">/20</span> Wed</span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">13:30PM - 15:00PM</span>
+            <span class="content">13:30 - 15:00</span>
         </div>
         <div class="course">
             <span class="title">Course</span>
             <span class="content">BUAD 304</span>
         </div>
-        <div class="format">
-            <span class="title">Format</span>
+        <div class="type">
+            <span class="title">Type</span>
             <div class="content">Online</div>
         </div>
         <div class="price">
