@@ -15873,6 +15873,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 1.5rem;
 }
 
+.info-boxes > *:last-child {
+  margin-bottom: 0.5rem;
+}
+
 .info-boxes button {
   max-width: 7rem;
   line-height: 1.4;
@@ -15998,27 +16002,30 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 18rem;
+  width: 20rem;
 }
 
 .info-boxes .info-box .date {
-  width: 20ch;
+  width: 16ch;
 }
 
 @media only screen and (max-width: 61.99em) {
   .info-boxes .info-box .date {
-    width: 15ch;
+    width: 11ch;
   }
 }
 
 .info-boxes .info-box .time {
-  width: 17ch;
+  width: 14ch;
 }
 
 .info-boxes .info-box .course,
-.info-boxes .info-box .status,
-.info-boxes .info-box .format {
-  width: 10ch;
+.info-boxes .info-box .status {
+  width: 12ch;
+}
+
+.info-boxes .info-box .type {
+  width: 9ch;
 }
 
 .info-boxes .info-box .session-type {
@@ -16159,22 +16166,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card {
   border-radius: 1rem;
-  padding: 1.25rem 1.75rem;
+  padding: 2rem 2.5rem;
   background-color: #F9F9F9;
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 @media only screen and (max-width: 61.99em) {
   .info-cards .info-card {
+    padding: 1.25rem 1.75rem;
     flex: 0 0 calc(50% - 1rem);
     width: calc(50% - 1rem);
-  }
-}
-
-@media only screen and (max-width: 26.24em) {
-  .info-cards .info-card {
-    flex: 0 0 calc(100%);
-    width: calc(100%);
   }
 }
 
@@ -16196,6 +16197,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 2.4rem;
   color: #6749DF;
   cursor: pointer;
+}
+
+.info-cards .info-card .action-toggle__content {
+  display: none;
+  position: absolute;
+  border-radius: 0.5rem;
+  left: calc(100% - 1rem);
+  top: 2.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  list-style: none;
+  background-color: #FFFFFF;
+  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-cards .info-card .action-toggle__content svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.5rem;
+}
+
+.info-cards .info-card .action-toggle__content a {
+  text-decoration: none;
+  color: #626262;
 }
 
 .info-cards .info-card__row {
@@ -16478,12 +16504,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .fc-timegrid-slots tr {
-  height: 2.2rem;
-  font-size: 1.4rem;
+  height: 2.3rem;
+  font-size: 1.5rem;
 }
 
 .fc-col-header {
-  font-size: 1.5rem !important;
+  font-size: 1.65rem !important;
 }
 
 .fc-col-header .fc-col-header-cell-cushion {
@@ -16558,6 +16584,184 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .fc-col-header {
   background-color: #FBFBFB;
+}
+
+.notifications--sidebar {
+  margin-top: 2rem;
+  background-color: #F9F9F9;
+  padding: 2rem 2.5rem;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.notifications--sidebar .notification {
+  display: flex;
+}
+
+.notifications--sidebar .notification:not(:first-child) {
+  margin-top: 2.3rem;
+}
+
+.notifications--sidebar .notification--left {
+  flex: 0 0 4.5rem;
+  width: 4.5rem;
+  margin-right: 2rem;
+}
+
+.notifications--sidebar .notification--left > :first-child {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+
+.notifications--sidebar .notification--left .notification--best-reply {
+  background-color: #FBB752;
+}
+
+.notifications--sidebar .notification--content {
+  margin-right: 0.5rem;
+  flex: 1;
+  width: calc(100% - 4rem - 7rem - 2 * 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.notifications--sidebar .notification--content .subtitle {
+  color: #A0A0A0;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+}
+
+.notifications--sidebar .notification--right {
+  flex: 0 0 7rem;
+  width: 7rem;
+  font-size: 1.2rem;
+  color: #A0A0A0;
+  white-space: nowrap;
+}
+
+.home__tutor-request__modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  /* Modal Content */
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close {
+  background-color: #fefefe;
+  margin: auto;
+  width: 70rem;
+  border-radius: 10px;
+  /* The Close Button */
+}
+
+@media (max-width: 480px) {
+  .home__tutor-request__modal .tutor-request__modal__content__close {
+    width: 90%;
+  }
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close {
+  float: right;
+  padding: 2rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close:hover,
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content {
+  padding: 5rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #6749DF;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile {
+  background-color: white;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile .user-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile .user-info .content {
+  font-weight: bold;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__calendar {
+  height: 20rem;
+  background-color: #C4C4C4;
+  margin: 2rem 0rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__policy {
+  font-size: 1.5rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--decline,
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--confirm {
+  border: 1px solid #6749DF;
+  border-radius: 2px;
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--decline {
+  background-color: white;
+  color: #6749DF;
+  margin-right: 2rem;
+}
+
+.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--confirm {
+  background-color: #6749DF;
+  color: white;
 }
 
 ._nav {
@@ -18107,6 +18311,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 4rem 4rem 2.5rem 4rem;
 }
 
+#cover__loading {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9999;
+}
+
 .index {
   background-color: #EAEAEA;
 }
@@ -18430,7 +18647,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .index__bottom__svg {
   display: block;
   margin: 0 auto;
-  width: 40rem;
+  width: 30rem;
   height: auto;
 }
 
@@ -20310,10 +20527,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.home__content .calendar-heading {
-  margin-bottom: 1.7rem;
-}
-
 .home__content .bookmarked-tutors {
   max-height: 45rem;
   overflow: scroll;
@@ -20553,6 +20766,47 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #1F7AFF;
 }
 
+.home__panel {
+  position: relative;
+  top: 5rem;
+  margin-bottom: 5rem;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 5rem;
+}
+
+.home__panel .home__panel__text {
+  width: 60%;
+  color: white;
+}
+
+.home__panel .home__panel__button {
+  max-width: 40%;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.home__panel .home__panel__button .home__panel__button__label {
+  margin: 0;
+  font-size: 2rem;
+  color: #6749DF;
+}
+
+.home__panel .home__panel__button:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
 .profile {
   margin-top: unset !important;
 }
@@ -20635,17 +20889,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .boxes .box {
   flex: 0 0 calc(12.5% - .75rem);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   margin-right: 0.75rem;
   white-space: nowrap;
   border-radius: 0.5rem;
   text-align: center;
   font-size: 1.4rem;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 4rem 0.5rem 4rem;
   align-self: center;
-  transition: all 0.1s;
-  cursor: pointer;
+  cursor: default;
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -20654,18 +20911,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.profile .boxes .box:hover {
-  transform: translateY(-3px);
-}
-
-.profile .boxes .box:active {
-  transform: translateY(-1px);
-}
-
 .profile .boxes .box .remove {
   right: 0.5rem;
-  font-size: 1.6rem;
-  line-height: 1.3;
+  cursor: pointer;
+}
+
+.profile .boxes .box .verify {
+  left: 1rem;
 }
 
 .profile .hourly-rate-input-container {

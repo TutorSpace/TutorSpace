@@ -5,7 +5,7 @@
         </svg>
         <div class="notification-content">
             @if (isset($isCancellationNotification) && $isCancellationNotification)
-            <span class="font-weight-bold mr-2">CANCELLATION:</span> Your Tutor Session has been cancelled by <span class="font-weight-bold">{{ $notificationContent }}</span>.
+            <span class="font-weight-bold mr-2">CANCELLATION:</span> Your Tutor Session on 08/23/20 has been cancelled by <span class="font-weight-bold">{{ $notificationContent }}</span>.
             @elseif(isset($isBestReplyNotification) && $isBestReplyNotification)
             Your reply to <span class="font-weight-bold font-italic">{{ $notificationContent }}</span> has been marked as best reply.
             @endif

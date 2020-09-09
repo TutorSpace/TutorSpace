@@ -40,7 +40,8 @@
 @import "components/menu-bar";
 @import "components/auto-complete";
 @import "components/calendar";
-
+@import "components/home/notifications--sidebar";
+@import "components/tutor_request.scss";
 
 @import "layout/navbar";
 @import "layout/footer";
@@ -55,6 +56,7 @@
 @import "pages/home/index";
 @import "pages/home/profile";
 @import "pages/view_profile/index";
+
 
 
 @import "pages/report";

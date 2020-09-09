@@ -16,6 +16,7 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback(Request $request) {
         try {
+            // sending a followup request to google to get the access token and profile info
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
             $request->session()->flush();

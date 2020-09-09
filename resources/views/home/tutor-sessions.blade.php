@@ -74,7 +74,7 @@ bg-student
         <div class="container col-layout-2">
             <div class="row">
                 <h5 class="mb-2 w-100">Past Sessions</h5>
-                <div class="info-boxes tutor-requests">
+                <div class="info-boxes info-boxes info-boxes--sm-card tutor-requests">
                     @include('home.partials.past_session', [
                         'user' => App\User::find(1)
                     ])
@@ -83,7 +83,7 @@ bg-student
                         'user' => App\User::find(2)
                     ])
 
-                    @include('home.partials.past_session', [
+                    {{-- @include('home.partials.past_session', [
                         'user' => App\User::find(3)
                     ])
 
@@ -97,7 +97,7 @@ bg-student
 
                     @include('home.partials.past_session', [
                         'user' => App\User::find(4)
-                    ])
+                    ]) --}}
 
                 </div>
                 <div class="scroll-faded">

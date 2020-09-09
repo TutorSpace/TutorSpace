@@ -11593,6 +11593,10 @@ window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTime
   $('#availableTimeDeleteConfirmationModal').modal('show');
 };
 
+$('.action-toggle').click(function () {
+  $(this).next('.action-toggle__content').toggle();
+});
+
 /***/ }),
 
 /***/ 6:
@@ -11602,7 +11606,7 @@ window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTime
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
+module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\home\index.js */"./resources/js/home/index.js");
 
 
 /***/ })
