@@ -1,3 +1,42 @@
+.home__panel {
+    position: relative;
+    top: 5rem;
+    margin-bottom: 5rem;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 5rem;
+
+    .home__panel__text {
+        width: 60%;
+        color: white;
+        
+    }
+    .home__panel__button {
+        max-width: 40%;
+        background-color: white;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 3rem;
+        cursor: pointer;
+        box-shadow: 2px 2px 2px rgb(0,0,0,0.25);
+        .home__panel__button__label {
+            margin: 0;
+            font-size: 2rem;
+            color: $color-purple-primary;
+        }
+        &:hover {
+            box-shadow: 2px 2px 2px rgb(0,0,0,0.5);
+        }
+    }
+}
+
 .profile {
     margin-top: unset !important;
 
@@ -77,34 +116,41 @@
 
         .box {
             flex: 0 0 calc(12.5% - .75rem);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             margin-top: .5rem;
-            margin-bottom: .3rem;
+            margin-bottom: .5rem;
             margin-right: .75rem;
             white-space: nowrap;
             border-radius: .5rem;
             text-align: center;
             font-size: 1.4rem;
-            padding: .5rem .7rem;
+            padding: .5rem 4rem .5rem 4rem;
             align-self: center;
-            transition: all .1s;
-            cursor: pointer;
+            //transition: all .1s;
+            cursor: default;
+            
 
             @include respond(sm) {
                 flex: 0 0 calc(25% - .75rem);
             }
 
-            &:hover {
-                transform: translateY(-3px);
-            }
+            // &:hover {
+            //     transform: translateY(-3px);
+            // }
 
-            &:active {
-                transform: translateY(-1px);
-            }
+            // &:active {
+            //     transform: translateY(-1px);
+            // }
 
             .remove {
-                right: .5rem;
-                font-size: 1.6rem;
-                line-height: 1.3;
+                right: 0.5rem;
+                cursor: pointer;
+            }
+            .verify {
+                left: 1rem;
             }
         }
 
@@ -128,3 +174,6 @@
 
 
 }
+
+
+

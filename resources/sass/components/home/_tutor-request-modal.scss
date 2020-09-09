@@ -1,0 +1,106 @@
+.home__tutor-request-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 15rem; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+
+    /* Modal Content */
+    .tutor-request-modal__content__close {
+        background-color: $color-white-dark-5;
+        margin: 0 auto;
+        width: 70rem;
+        border-radius: 1rem;
+        position: relative;
+
+        @include respond(sm) {
+            width: 60rem;
+        }
+
+        @include respond(extra-sm) {
+            width: 75%;
+        }
+
+        /* The Close Button */
+        .tutor-request-modal__close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .tutor-request-modal__content {
+            padding: 5rem;
+            .tutor-request-modal__content__header {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                color: $color-purple-primary;
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .tutor-request-modal__content__profile {
+                background-color: white;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                .user-info {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-bottom: 2rem;
+                    .content {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .tutor-request-modal__content__calendar {
+                height: 20rem;
+                background-color: #C4C4C4;
+                margin: 2rem 0rem;
+            }
+
+            .tutor-request-modal__content__policy {
+                font-size: 1.5rem;
+            }
+
+            .tutor-request-modal__content__confirm {
+                font-size: 1.5rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                margin-top: 3rem;
+
+                .tutor-request-modal__content__confirm--decline,
+                .tutor-request-modal__content__confirm--confirm {
+                    border: 1px solid $color-purple-primary;
+                    border-radius: 2px;
+                    padding: 1rem 3rem;
+                    cursor: pointer;
+                }
+                .tutor-request-modal__content__confirm--decline {
+                    background-color: $color-white-dark-5;
+                    color: $color-purple-primary;
+                    margin-right: 2rem;
+                }
+                .tutor-request-modal__content__confirm--confirm {
+                    background-color: $color-purple-primary;
+                    color: $color-white-dark-5;
+                }
+            }
+        }
+    }
+}

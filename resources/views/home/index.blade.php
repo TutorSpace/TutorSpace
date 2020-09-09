@@ -394,4 +394,5 @@ let storageUrl = "{{ Storage::url('') }}";
 @include('home.partials.data-visualization')
 
 <script src="{{ asset('js/home/index.js') }}"></script>
+
 @endsection
