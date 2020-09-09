@@ -1,3 +1,17 @@
+#cover__loading {
+    position: fixed; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    width: 100%; 
+    top:0; 
+    left: 0; 
+    background: #000; 
+    z-index:9999;
+}
+
+
 .index {
     background-color: $color-grey-2;
 
@@ -288,7 +302,7 @@
     &__svg {
         display: block;
         margin: 0 auto;
-        width: 40rem;
+        width: 30rem;
         height: auto;
 
         @include respond(md) {

@@ -18311,6 +18311,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 4rem 4rem 2.5rem 4rem;
 }
 
+#cover__loading {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  z-index: 9999;
+}
+
 .index {
   background-color: #EAEAEA;
 }
@@ -18634,7 +18647,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .index__bottom__svg {
   display: block;
   margin: 0 auto;
-  width: 40rem;
+  width: 30rem;
   height: auto;
 }
 
@@ -20876,8 +20889,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .boxes .box {
   flex: 0 0 calc(12.5% - .75rem);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 0.5rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
   margin-right: 0.75rem;
   white-space: nowrap;
   border-radius: 0.5rem;

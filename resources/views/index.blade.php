@@ -13,6 +13,18 @@ index
 
 @include('partials.nav')
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" ></script>
+
+<script>
+    $(window).on('load', function() {
+        $("#cover__loading").hide();
+    });
+</script>
+
+<div id="cover__loading">
+    <!-- <h5 class="text-white text-center p-5 m-5">Loading...</h5> -->
+</div>
+
 <section class="index__top p-relative">
     <div class="absCenter d-flex flex-column align-items-center">
         <svg class="logo" width="357" height="324" viewBox="0 0 357 324" fill="none" xmlns="http://www.w3.org/2000/svg">

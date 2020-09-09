@@ -116,8 +116,12 @@
 
         .box {
             flex: 0 0 calc(12.5% - .75rem);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             margin-top: .5rem;
-            margin-bottom: .3rem;
+            margin-bottom: .5rem;
             margin-right: .75rem;
             white-space: nowrap;
             border-radius: .5rem;
