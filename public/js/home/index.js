@@ -11563,6 +11563,13 @@ window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTime
 
 $('.action-toggle').click(function () {
   $(this).next('.action-toggle__content').toggle();
+}); // tutor request popup
+
+$('.btn-view-request').click(function () {
+  $('.home__tutor-request-modal').toggle();
+});
+$('.tutor-request-modal__close').click(function () {
+  $('.home__tutor-request-modal').toggle();
 });
 
 /***/ }),

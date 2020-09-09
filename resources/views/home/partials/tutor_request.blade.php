@@ -30,7 +30,7 @@
         </div>
         @if ($forTutor)
         <div class="action">
-            <button class="btn btn-lg btn-animation-y-sm btn-view-request" data-toggle="modal" data-target="#exampleModalCenter" type="button">View</button>
+            <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
         </div>
         @else
         <div class="status">
@@ -51,26 +51,6 @@
 
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        </div>
-    </div>
     <div class="home__tutor-request-modal">
         <!-- Modal content -->
         <div class="tutor-request-modal__content__close">
@@ -99,23 +79,24 @@
                     <p class="tutor-request-modal__content__header--title">New Tutor Request</p>
                 </div>
                 <div class="tutor-request-modal__content__profile">
-                    <div class="tutor-request-modal__content__profile info-box tutor-request">
+                    <div>
                         <div class="user-info">
                             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
                             <a class="content" href="#">
-                                <span>Shuaiqing Luo</span>
+                                Shuaiqing Luo
                             </a>
                         </div>
                     </div>
-                    <div class="tutor-request-modal__content__profile info-box tutor-request">
+                    <div class="content-box">
                         <div class="date">
                             <span class="title">Date</span>
-                            <span class="content">08/02<span class="info-box__year">/2020</span> Wednesday</span>
+                            <span class="content">08/02/20 Wed</span>
                         </div>
                         <div class="time">
                             <span class="title">Time</span>
-                            <span class="content">13:30PM - 15:00PM</span>
+                            <span class="content">13:30 - 15:00</span>
                         </div>
+                        <div class="flex-100"></div>
                         <div class="course">
                             <span class="title">Course</span>
                             <span class="content">BUAD 304</span>
@@ -123,6 +104,11 @@
                         <div class="session-type">
                             <span class="title">Type</span>
                             <span class="content">In Person</span>
+                        </div>
+                        <div class="flex-100"></div>
+                        <div class="price">
+                            <span class="title">Price</span>
+                            <span class="content">$13.5</span>
                         </div>
                     </div>
                 </div>
@@ -133,8 +119,8 @@
                     <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
-                    <p class="tutor-request-modal__content__confirm--decline">Decline</p>
-                    <p class="tutor-request-modal__content__confirm--confirm">Confirm Tutor Session</p>
+                    <button class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5">Decline</button>
+                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm ">Confirm Tutor Session</button>
                 </div>
             </div>
         </div>
