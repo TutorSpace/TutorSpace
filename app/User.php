@@ -7,7 +7,6 @@ use App\Post;
 use App\Session;
 
 use Carbon\Carbon;
-use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 
@@ -15,18 +14,13 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable implements Viewable
+class User extends Authenticatable
 {
     use Notifiable;
-    use InteractsWithViews;
-    protected $removeViewsOnDelete = true;
 
     /**
      * The attributes that are mass assignable.
@@ -138,7 +132,7 @@ class User extends Authenticatable implements Viewable
     }
 
     // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
-    public function views(): MorphMany {
+    public function views() {
         return $this->morphMany('App\View', 'viewable');
     }
 
