@@ -198,8 +198,6 @@ class Post extends Model implements Viewable
         }
     }
 
-
-    // TODO: Modify the method
     private function youMayHelpWith() {
         $user = Auth::user();
 

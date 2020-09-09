@@ -14266,18 +14266,18 @@ body {
 }
 
 @font-face {
-  font-family: "Baloo Bhai";
+  font-family: "Baloo Bhai", Avenir, sans-serif;
   src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
 }
 
 body {
-  font-family: Avenir;
+  font-family: Avenir, sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Baloo Bhai", sans-serif;
+  font-family: "Baloo Bhai", Avenir, sans-serif;
 }
 
 h1 {
@@ -16643,100 +16643,164 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   white-space: nowrap;
 }
 
-.home__tutor-request__modal {
+.home__tutor-request-modal {
   display: none;
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 100;
   /* Sit on top */
-  padding-top: 100px;
+  padding-top: 15rem;
   /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100vw;
   /* Full width */
-  height: 100%;
+  height: 100vh;
   /* Full height */
   overflow: auto;
   /* Enable scroll if needed */
-  background-color: black;
-  /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
   /* Modal Content */
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close {
-  background-color: #fefefe;
-  margin: auto;
+.home__tutor-request-modal .tutor-request-modal__content__close {
+  background-color: #F9F9F9;
+  margin: 0 auto;
   width: 70rem;
-  border-radius: 10px;
+  border-radius: 1rem;
+  position: relative;
   /* The Close Button */
 }
 
-@media (max-width: 480px) {
-  .home__tutor-request__modal .tutor-request__modal__content__close {
-    width: 90%;
+@media only screen and (max-width: 47.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close {
+    width: 60rem;
   }
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close {
-  float: right;
-  padding: 2rem 2rem;
-  margin-bottom: 2rem;
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close {
+    width: 75%;
+  }
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close:hover,
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__close:focus {
-  color: #000;
-  text-decoration: none;
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__close:hover {
   cursor: pointer;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content {
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content {
   padding: 5rem;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__header {
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #6749DF;
-  font-size: 2rem;
-  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: 1.3rem;
+  font-weight: 500;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile {
-  background-color: white;
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__header--title {
+  margin-top: 1.2rem;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile {
   box-shadow: none;
   margin: 0;
   padding: 0;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile .user-info {
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .flex-100 {
+  display: none !important;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .flex-100 {
+    display: flex !important;
+  }
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: inherit;
+  font-weight: 500;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .user-info {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 2rem;
+  font-size: 1.6rem;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__profile .user-info .content {
-  font-weight: bold;
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .user-info img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__calendar {
+@media only screen and (max-width: 47.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .user-info img {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box {
+    flex-wrap: wrap;
+  }
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .title {
+  font-size: 1.3rem;
+  color: #A0A0A0;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .content {
+  font-size: 1.4rem;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar {
   height: 20rem;
   background-color: #C4C4C4;
   margin: 2rem 0rem;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__policy {
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__policy {
   font-size: 1.5rem;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm {
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm {
   font-size: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -16745,23 +16809,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 3rem;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--decline,
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--confirm {
-  border: 1px solid #6749DF;
-  border-radius: 2px;
-  padding: 1rem 3rem;
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--decline,
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--confirm {
+  border: 1px solid;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
   cursor: pointer;
+  font-size: 1.6rem;
+  max-width: none;
 }
 
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--decline {
-  background-color: white;
-  color: #6749DF;
-  margin-right: 2rem;
-}
-
-.home__tutor-request__modal .tutor-request__modal__content__close .tutor-request__modal__content .tutor-request__modal__content__confirm .tutor-request__modal__content__confirm--confirm {
-  background-color: #6749DF;
-  color: white;
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--decline,
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--confirm {
+    padding: 1rem 1.5rem;
+    font-size: 1.4rem;
+  }
 }
 
 ._nav {
@@ -18659,7 +18722,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 47.99em) {
   .index__bottom__svg {
-    width: 22rem;
+    width: 19rem;
   }
 }
 
@@ -18684,6 +18747,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 35.99em) {
   .index__bottom .btn--primary {
     transform: translateY(4rem);
+    width: 24rem;
   }
 }
 

@@ -11539,39 +11539,7 @@ if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clien
 if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
   //if 'true', the content overflows the tab: we show the hidden link
   $('.info-cards + .scroll-faded').css('display', 'block');
-} // $(window).scroll(function() {
-//     var posTop = $(window).scrollTop() - $('.home__content').offset().top;
-//     console.log(posTop);
-//     if(posTop < 0) {
-//         if($('body').hasClass('bg-student')) {
-//             $('nav._nav').addClass('nav-auth--student');
-//             $('nav._nav').addClass('nav-auth');
-//             $('nav._nav').removeClass('nav-guest');
-//             $('nav._nav').removeClass('nav-guest--student');
-//         }
-//         else if($('body').hasClass('bg-tutor')) {
-//             $('nav._nav').addClass('nav-auth--tutor');
-//             $('nav._nav').addClass('nav-auth');
-//             $('nav._nav').removeClass('nav-guest');
-//             $('nav._nav').removeClass('nav-guest--tutor');
-//         }
-//     }
-//     else {
-//         if($('body').hasClass('bg-student')) {
-//             $('nav._nav').removeClass('nav-auth--student');
-//             $('nav._nav').removeClass('nav-auth');
-//             $('nav._nav').addClass('nav-guest');
-//             $('nav._nav').addClass('nav-guest--student');
-//         }
-//         else if($('body').hasClass('bg-tutor')) {
-//             $('nav._nav').removeClass('nav-auth--tutor');
-//             $('nav._nav').removeClass('nav-auth');
-//             $('nav._nav').addClass('nav-guest');
-//             $('nav._nav').addClass('nav-guest--tutor');
-//         }
-//     }
-// });
-// calendar
+} // calendar
 
 
 window.showAvailableTimeForm = function (startTime, endTime) {
@@ -11595,6 +11563,13 @@ window.showAvailableTimeDeleteForm = function (startTime, endTime, availableTime
 
 $('.action-toggle').click(function () {
   $(this).next('.action-toggle__content').toggle();
+}); // tutor request popup
+
+$('.btn-view-request').click(function () {
+  $('.home__tutor-request-modal').toggle();
+});
+$('.tutor-request-modal__close').click(function () {
+  $('.home__tutor-request-modal').toggle();
 });
 
 /***/ }),
@@ -11606,7 +11581,7 @@ $('.action-toggle').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\home\index.js */"./resources/js/home/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
 
 
 /***/ })

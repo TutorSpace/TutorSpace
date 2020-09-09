@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\view_profile\index.js */"./resources/js/view_profile/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/view_profile/index.js */"./resources/js/view_profile/index.js");
 
 
 /***/ })

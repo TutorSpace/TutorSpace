@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
@@ -57,13 +58,13 @@ class Tag extends Model
         $current = Carbon::now();
         foreach($trendingTags as $trendingTag) {
             //Stores the number of days since the latest post for a particular tag was created
-            $trendingTag->created_at =
+            $trendingTag->created_at_score =
                 $trendingTag->posts()
                 ->select('created_at')
                 ->orderBy('created_at', 'DESC')
                 ->first()
                 ->created_at
-                ->diffInDays($current);
+                ->diffInDays($current) + 1;
             //Stores the number of replies for each tag
             $trendingTag->replies_count =
                 $trendingTag->posts->reduce(
@@ -78,7 +79,7 @@ class Tag extends Model
                     function($value, $key) {
                         /* Since the created_at value is inversely proportional to the ranking i.e the lesser the value of
                         created_at the more weightage should be applied to the corresponding tag's trend */
-                        return ($value["posts_count"] * 2 + $value["replies_count"])/$value['created_at'];
+                        return $value["posts_count"] * 2 + $value["replies_count"] * 1.3 / $value['created_at_score'];
                     })
                 ->take(5);
     }

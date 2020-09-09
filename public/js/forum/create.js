@@ -111,7 +111,7 @@ $('#create-tags').select2({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\forum\create.js */"./resources/js/forum/create.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/create.js */"./resources/js/forum/create.js");
 
 
 /***/ })
