@@ -14266,18 +14266,18 @@ body {
 }
 
 @font-face {
-  font-family: "Baloo Bhai";
+  font-family: "Baloo Bhai", Avenir, sans-serif;
   src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
 }
 
 body {
-  font-family: Avenir;
+  font-family: Avenir, sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Baloo Bhai", sans-serif;
+  font-family: Avenir, sans-serif;
 }
 
 h1 {
