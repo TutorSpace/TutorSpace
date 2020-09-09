@@ -241,8 +241,8 @@ class Post extends Model implements Viewable
                 ->join('post_types', 'post_types.id', 'posts.post_type_id')
                 ->where('post_types.post_type', 'Question')
                 ->having('replies_count', '<=', 2)
-                // todo: modify the formula
-                ->orderByRaw('50 * users_upvoted_count + view_count DESC');
+                //Order the posts by the time they were created and then apply the tags of the user to them
+                ->orderBy('created_at', 'DESC');
     }
 
 

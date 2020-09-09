@@ -53,8 +53,18 @@ class Tag extends Model
                         ->orderBy('posts_count', 'desc')
                         ->get();
 
-
+        //Stores the current day
+        $current = Carbon::now();
         foreach($trendingTags as $trendingTag) {
+            //Stores the number of days since the latest post for a particular tag was created
+            $trendingTag->created_at =
+                $trendingTag->posts()
+                ->select('created_at')
+                ->orderBy('created_at', 'DESC')
+                ->first()
+                ->created_at
+                ->diffInDays($current);
+            //Stores the number of replies for each tag
             $trendingTag->replies_count =
                 $trendingTag->posts->reduce(
                     function ($count, $post) {
@@ -66,8 +76,9 @@ class Tag extends Model
         return $trendingTags
                 ->sortByDesc(
                     function($value, $key) {
-                        // TODO: modify the formula
-                        return $value["posts_count"] * 2 + $value["replies_count"];
+                        /* Since the created_at value is inversely proportional to the ranking i.e the lesser the value of
+                        created_at the more weightage should be applied to the corresponding tag's trend */
+                        return ($value["posts_count"] * 2 + $value["replies_count"])/$value['created_at'];
                     })
                 ->take(5);
     }
