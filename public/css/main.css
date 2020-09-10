@@ -14266,7 +14266,7 @@ body {
 }
 
 @font-face {
-  font-family: "Baloo Bhai", Avenir, sans-serif;
+  font-family: "Baloo Bhai";
   src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
 }
 
@@ -14277,7 +14277,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Baloo Bhai", Avenir, sans-serif;
+  font-family: "Baloo Bhai", "Arial Black", sans-serif;
 }
 
 h1 {
@@ -16879,7 +16879,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 ._nav .brand-name {
   font-size: 3.3rem;
-  font-family: "Baloo Bhai", sans-serif;
+  font-family: "Baloo Bhai", "Arial Black", sans-serif;
   margin: 0 4rem;
   text-decoration: none;
   color: inherit;
@@ -18711,6 +18711,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .index__bottom__heading {
   padding-top: 12rem;
   color: #FFFFFF;
+  font-weight: 900;
 }
 
 @media only screen and (max-width: 35.99em) {
