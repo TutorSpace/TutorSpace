@@ -11567,6 +11567,7 @@ $('.action-toggle').click(function () {
 
 $('.btn-view-request').click(function () {
   $('.home__tutor-request-modal').toggle();
+  calendarPopUp.render();
 });
 $('.tutor-request-modal__close').click(function () {
   $('.home__tutor-request-modal').toggle();

@@ -46,7 +46,8 @@ bg-student
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,
                         'forTutor' => true,
-                        'user' => App\User::find(1)
+                        'user' => App\User::find(1),
+                        'isFirstOne' => true
                     ])
                     @include('home.partials.tutor_request', [
                         'isNotification' => true,

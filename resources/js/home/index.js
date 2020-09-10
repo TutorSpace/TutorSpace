@@ -99,6 +99,7 @@ $('.action-toggle').click(function() {
 // tutor request popup
 $('.btn-view-request').click(function() {
     $('.home__tutor-request-modal').toggle();
+    calendarPopUp.render();
 })
 
 $('.tutor-request-modal__close').click(function() {

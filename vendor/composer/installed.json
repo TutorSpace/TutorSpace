@@ -102,82 +102,6 @@
         ]
     },
     {
-        "name": "cyrildewit/eloquent-viewable",
-        "version": "v5.2.0",
-        "version_normalized": "5.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cyrildewit/eloquent-viewable.git",
-            "reference": "a2653b8e6c62d53b0014eb1765cc41f5df93eac7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cyrildewit/eloquent-viewable/zipball/a2653b8e6c62d53b0014eb1765cc41f5df93eac7",
-            "reference": "a2653b8e6c62d53b0014eb1765cc41f5df93eac7",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/cache": "^6.0|^7.0",
-            "illuminate/contracts": "^6.0|^7.0",
-            "illuminate/cookie": "^6.0|^7.0",
-            "illuminate/database": "^6.0|^7.0",
-            "illuminate/http": "^6.0|^7.0",
-            "illuminate/support": "^6.0|^7.0",
-            "jaybizzle/crawler-detect": "^1.0",
-            "nesbot/carbon": "^2.0",
-            "php": "^7.2"
-        },
-        "require-dev": {
-            "illuminate/config": "^6.0|^7.0",
-            "mockery/mockery": "^1.2.4",
-            "orchestra/testbench": "^4.0|^5.0",
-            "phpunit/phpunit": "^8.4"
-        },
-        "time": "2020-03-28T13:57:17+00:00",
-        "type": "library",
-        "extra": {
-            "laravel": {
-                "providers": [
-                    "CyrildeWit\\EloquentViewable\\EloquentViewableServiceProvider"
-                ]
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "CyrildeWit\\EloquentViewable\\": "src/"
-            },
-            "files": [
-                "src/helpers.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Cyril de Wit",
-                "email": "info@cyrildewit.nl",
-                "homepage": "http://cyrildewit.nl",
-                "role": "Developer"
-            }
-        ],
-        "description": "Laravel package that allows you to associate views with Eloquent models",
-        "homepage": "https://github.com/cyrildewit/eloquent-viewable",
-        "keywords": [
-            "counter",
-            "cyrildewit",
-            "eloquent",
-            "hits",
-            "laravel",
-            "viewable",
-            "views",
-            "visitable",
-            "visits"
-        ]
-    },
-    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "v0.1.1",
         "version_normalized": "0.1.1.0",
@@ -1464,57 +1388,6 @@
         ]
     },
     {
-        "name": "jaybizzle/crawler-detect",
-        "version": "v1.2.96",
-        "version_normalized": "1.2.96.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-            "reference": "5a53c78644c54a628c3f5ead915c35b489c92239"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/5a53c78644c54a628c3f5ead915c35b489c92239",
-            "reference": "5a53c78644c54a628c3f5ead915c35b489c92239",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.8|^5.5|^6.5",
-            "satooshi/php-coveralls": "1.*"
-        },
-        "time": "2020-06-14T20:37:24+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Jaybizzle\\CrawlerDetect\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mark Beech",
-                "email": "m@rkbee.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
-        "homepage": "https://github.com/JayBizzle/Crawler-Detect/",
-        "keywords": [
-            "crawler",
-            "crawler detect",
-            "crawler detector",
-            "crawlerdetect",
-            "php crawler detect"
-        ]
-    },
-    {
         "name": "laravel/framework",
         "version": "v7.20.0",
         "version_normalized": "7.20.0.0",
@@ -2457,17 +2330,17 @@
     },
     {
         "name": "nesbot/carbon",
-        "version": "2.36.1",
-        "version_normalized": "2.36.1.0",
+        "version": "2.39.1",
+        "version_normalized": "2.39.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f"
+            "reference": "7af467873250583cc967a59ee9df29fabab193c1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/ee7378a36cc62952100e718bcc58be4c7210e55f",
-            "reference": "ee7378a36cc62952100e718bcc58be4c7210e55f",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7af467873250583cc967a59ee9df29fabab193c1",
+            "reference": "7af467873250583cc967a59ee9df29fabab193c1",
             "shasum": ""
         },
         "require": {
@@ -2480,13 +2353,13 @@
             "doctrine/orm": "^2.7",
             "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
             "kylekatarnls/multi-tester": "^2.0",
-            "phpmd/phpmd": "^2.8",
+            "phpmd/phpmd": "^2.9",
             "phpstan/extension-installer": "^1.0",
-            "phpstan/phpstan": "^0.12.30",
+            "phpstan/phpstan": "^0.12.35",
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2020-07-04T12:29:56+00:00",
+        "time": "2020-09-04T13:11:37+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -6589,8 +6462,8 @@
     },
     {
         "name": "symfony/polyfill-php80",
-        "version": "v1.18.0",
-        "version_normalized": "1.18.0.0",
+        "version": "v1.18.1",
+        "version_normalized": "1.18.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php80.git",
@@ -6926,17 +6799,17 @@
     },
     {
         "name": "symfony/translation",
-        "version": "v5.1.2",
-        "version_normalized": "5.1.2.0",
+        "version": "v5.1.5",
+        "version_normalized": "5.1.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/translation.git",
-            "reference": "d387f07d4c15f9c09439cf3f13ddbe0b2c5e8be2"
+            "reference": "917b02cdc5f33e0309b8e9d33ee1480b20687413"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/translation/zipball/d387f07d4c15f9c09439cf3f13ddbe0b2c5e8be2",
-            "reference": "d387f07d4c15f9c09439cf3f13ddbe0b2c5e8be2",
+            "url": "https://api.github.com/repos/symfony/translation/zipball/917b02cdc5f33e0309b8e9d33ee1480b20687413",
+            "reference": "917b02cdc5f33e0309b8e9d33ee1480b20687413",
             "shasum": ""
         },
         "require": {
@@ -6971,7 +6844,7 @@
             "symfony/config": "",
             "symfony/yaml": ""
         },
-        "time": "2020-05-30T20:35:19+00:00",
+        "time": "2020-08-17T10:01:29+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -7006,17 +6879,17 @@
     },
     {
         "name": "symfony/translation-contracts",
-        "version": "v2.1.3",
-        "version_normalized": "2.1.3.0",
+        "version": "v2.2.0",
+        "version_normalized": "2.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/translation-contracts.git",
-            "reference": "616a9773c853097607cf9dd6577d5b143ffdcd63"
+            "reference": "77ce1c3627c9f39643acd9af086631f842c50c4d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/616a9773c853097607cf9dd6577d5b143ffdcd63",
-            "reference": "616a9773c853097607cf9dd6577d5b143ffdcd63",
+            "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/77ce1c3627c9f39643acd9af086631f842c50c4d",
+            "reference": "77ce1c3627c9f39643acd9af086631f842c50c4d",
             "shasum": ""
         },
         "require": {
@@ -7025,11 +6898,11 @@
         "suggest": {
             "symfony/translation-implementation": ""
         },
-        "time": "2020-07-06T13:23:11+00:00",
+        "time": "2020-09-07T11:33:47+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "2.1-dev"
+                "dev-master": "2.2-dev"
             },
             "thanks": {
                 "name": "symfony/contracts",

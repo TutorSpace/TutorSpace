@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\View;
 use App\Reply;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -9,16 +10,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
-class Post extends Model implements Viewable
+class Post extends Model
 {
-    use InteractsWithViews;
-    protected $removeViewsOnDelete = true;
-
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';
@@ -120,8 +115,8 @@ class Post extends Model implements Viewable
         return $this->usersUpvoted()->where('user_id', $user->id)->exists();
     }
 
-    // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
-    public function views(): MorphMany {
+    // This is for the views table. To get the total view count on this post, simply retrieve the view_count column
+    public function views() {
         return $this->morphMany('App\View', 'viewable');
     }
 
@@ -139,17 +134,17 @@ class Post extends Model implements Viewable
 
     public static function getViewCntWeek($userId) {
         return View::select([
-                        'viewed_at',
+                        'views.viewed_at',
                         DB::raw('COUNT("views.viewed_at") as view_count')
                     ])
+                    ->join('posts', 'posts.id', '=', 'views.viewable_id')
+                    ->where('posts.user_id', $userId)
                     ->where('views.viewable_type', 'App\Post')
                     ->whereBetween('views.viewed_at', [
                         // a week is 7 -1 + 1 days including today
                         Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
                         Carbon::now()->format('Y-m-d')
                     ])
-                    ->join('posts', 'posts.id', '=', 'views.viewable_id')
-                    ->where('posts.user_id', $userId)
                     ->groupBy('views.viewed_at')
                     ->orderBy('views.viewed_at')
                     ->get();

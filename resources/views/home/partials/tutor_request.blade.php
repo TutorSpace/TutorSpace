@@ -51,6 +51,7 @@
 
     </div>
 
+    @if (isset($isFirstOne))
     <div class="home__tutor-request-modal">
         <!-- Modal content -->
         <div class="tutor-request-modal__content__close">
@@ -113,8 +114,9 @@
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__calendar">
+                    <div class="calendar"></div>
                 </div>
-                <div class="tutor-request-modal__content__policy">
+                <div class="tutor-request-modal__content__policy mt-5">
                     <p><span class="font-weight-bold">Cancellation Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
@@ -125,4 +127,6 @@
             </div>
         </div>
     </div>
+    @endif
+
 </div>
