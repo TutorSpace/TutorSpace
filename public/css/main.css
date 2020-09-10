@@ -16797,12 +16797,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .title {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: #A0A0A0;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .content {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar {
@@ -16822,61 +16822,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 2px 3px;
 }
 
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-view-harness {
-  max-height: 61rem;
-  overflow: scroll;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc .fc-timegrid-col-events {
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc .fc-timegrid-col.fc-day-today {
-  /* background-color: rgba(255, 220, 40, 0.15); */
-  /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
-  background-color: transparent !important;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-v-event .fc-event-main-frame {
-  justify-content: center;
-  align-items: center;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-v-event .fc-event-title-container {
-  flex-grow: 0;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-direction-ltr .fc-timegrid-slot-label-frame {
-  text-align: center;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-timegrid-event .fc-event-time {
-  margin-bottom: 0;
-  display: flex;
-  align-items: center;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-media-screen .fc-timegrid-event-harness {
-  margin-right: 0 !important;
-  margin-left: 0 !important;
-  left: 0 !important;
-  z-index: unset !important;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-toolbar-chunk {
-  display: flex;
-  align-items: center;
-}
-
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-next-button,
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-prev-button {
-  background-color: transparent !important;
-  border-color: transparent !important;
   font-size: 1.2rem !important;
-  line-height: 1 !important;
-  color: #3F3F3F !important;
-  box-shadow: none !important;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-next-button,
@@ -16886,10 +16834,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-toolbar-title {
   font-size: 2rem !important;
-}
-
-.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-col-header {
-  background-color: #FBFBFB;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__policy {
