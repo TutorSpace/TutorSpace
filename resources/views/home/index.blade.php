@@ -322,7 +322,7 @@ bg-student
             <div class="notifications--sidebar">
                 @include('home.partials.notification--sidebar', [
                     'isCancellationNotification' => true,
-                    'notificationContent' => 'Nemo Enim'
+                    'notificationContent' => 'Computer Science'
                 ])
                 @include('home.partials.notification--sidebar', [
                     'isBestReplyNotification' => true,
@@ -330,7 +330,7 @@ bg-student
                 ])
                 @include('home.partials.notification--sidebar', [
                     'isCancellationNotification' => true,
-                    'notificationContent' => 'Nemo Enim'
+                    'notificationContent' => 'Computer Science'
                 ])
                 @include('home.partials.notification--sidebar', [
                     'isBestReplyNotification' => true,
