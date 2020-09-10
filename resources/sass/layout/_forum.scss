@@ -172,7 +172,7 @@
             justify-content: center;
             align-items: center;
             height: 20rem;
-            width: 3.5rem;
+            width: 2.6rem;
             border-top-right-radius: 1.5rem;
             border-bottom-right-radius: 1.5rem;
             cursor: pointer;
@@ -187,7 +187,7 @@
             }
 
             .svg-toggle {
-                font-size: 2.3rem;
+                font-size: 2.2rem;
             }
         }
 
@@ -301,6 +301,10 @@
 }
 
 .forum-content {
+
+    @include respond(extra-sm) {
+        padding-right: 0;
+    }
 
     &__search {
         font-size: 1.6rem;
@@ -738,7 +742,7 @@
 }
 
 .post__content, .post-reply__content, .followup-container {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 }
 
 .post__bottom {

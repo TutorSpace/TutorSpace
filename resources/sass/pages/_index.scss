@@ -1,3 +1,17 @@
+#cover__loading {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+    background: #000;
+    z-index:9999;
+}
+
+
 .index {
     background-color: $color-grey-2;
 
@@ -223,6 +237,8 @@
     position: relative;
 
 
+
+
     .bg-shape-triangle-left {
         top: 8rem;
         width: 25rem;
@@ -286,7 +302,7 @@
     &__svg {
         display: block;
         margin: 0 auto;
-        width: 40rem;
+        width: 30rem;
         height: auto;
 
         @include respond(md) {
@@ -294,7 +310,7 @@
         }
 
         @include respond(sm) {
-            width: 22rem;
+            width: 19rem;
         }
 
         @include respond(extra-sm) {
@@ -313,7 +329,7 @@
 
         @include respond(extra-sm) {
             transform: translateY(4rem);
+            width: 24rem;
         }
     }
 }
-

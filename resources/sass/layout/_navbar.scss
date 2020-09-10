@@ -34,6 +34,15 @@
             width: 5rem;
             visibility: hidden;
         }
+
+        @include respond(extra-sm) {
+            margin-left: 1rem;
+            margin-right: 1.3rem;
+            position: relative;
+            width: 3.5rem;
+            visibility: hidden;
+            height: 3.5rem;
+        }
     }
 
     .active {
@@ -87,7 +96,7 @@
             margin-right: 0 !important;
             padding: 1rem 2rem;
             display: block;
-            text-align: center;
+            text-align: left;
             text-decoration: none;
             transition: all .2s;
         }
@@ -108,7 +117,7 @@
             margin-right: 3rem;
         }
 
-        @include respond(md) {
+        @include respond(lg) {
             .nav-toggle-lg {
                 display: none;
             }
@@ -129,8 +138,13 @@
     .nav__form {
         width: 40rem;
 
-        @include respond(extra-sm) {
-            width: 25rem;
+        // @include respond(extra-sm) {
+        //     width: 25rem;
+        // }
+
+        // 430px
+        @media only screen and (max-width: 28.125em) {
+            width: 30rem;
         }
     }
 
@@ -239,9 +253,24 @@
     &--student {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-blue-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-blue-primary;
                     color: $color-white;
                 }
@@ -252,9 +281,24 @@
     &--tutor {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-purple-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-purple-primary;
                     color: $color-white;
                 }

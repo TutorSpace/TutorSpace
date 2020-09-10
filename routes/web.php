@@ -140,20 +140,23 @@ Route::group([
 });
 
 // home page
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
-Route::get('/home/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
-Route::get('/home/profile', 'HomeController@profile')->name('home.profile');
+Route::group([
+    'prefix' => 'home',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
+    Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
+    Route::get('/profile', 'HomeController@profile')->name('home.profile');
+});
 
-
-
-// profile
-Route::get('/profile', 'profileController@show')->name('profile')->middleware(['auth']);
-Route::get('/view_profile/{viewUserId}', 'profileController@viewProfile')->middleware(['auth']);
-
-// edit profile
-Route::get('/edit_profile', 'profileController@showEdit')->name('edit_profile')->middleware(['auth']);
-Route::post('/edit_profile', 'profileController@editProfile');
+// view profile
+Route::group([
+    'prefix' => 'view-profile',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
+});
 
 
 

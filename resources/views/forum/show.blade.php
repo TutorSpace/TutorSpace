@@ -59,7 +59,7 @@ bg-student
                         </span>
                         @endif
                         <span class="mr-4">{{ $post->getTime() }}</span>
-                        <svg class="mr-6px">
+                        <svg class="mr-6px mb-1px">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                         </svg>
                         <span>

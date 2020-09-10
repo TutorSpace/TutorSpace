@@ -39,10 +39,17 @@
 
     > * {
         margin-top: 1.5rem;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
     }
+
+
 
     button {
         max-width: 7rem;
+        line-height: 1.4;
     }
 
     .info-box {
@@ -85,8 +92,6 @@
             }
         }
 
-
-
         img {
             width: 4rem;
             height: 4rem;
@@ -113,6 +118,28 @@
 
         }
 
+
+        &__year {
+            @include respond(md) {
+                display: none;
+            }
+
+            @include respond(sm) {
+                display: inline;
+            }
+        }
+
+        &__time-stamp {
+            margin-left: 2rem;
+            font-style: italic;
+            color: $color-grey;
+            display: none;
+
+            @media only screen and (max-width: 85.624em) {
+                display: inline;
+            }
+        }
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -130,19 +157,27 @@
         .user-info {
             display: flex;
             align-items: center;
-            max-width: 20rem;
+            width: 20rem;
         }
 
         .date {
-            width: 20ch;
+            width: 16ch;
+
+            @include respond(md) {
+                width: 11ch;
+            }
         }
 
         .time {
-            width: 17ch;
+            width: 14ch;
         }
 
-        .course, .status, .format {
-            width: 10ch;
+        .course, .status {
+            width: 12ch;
+        }
+
+        .type {
+            width: 9ch;
         }
 
         .session-type {
