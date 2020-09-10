@@ -16593,6 +16593,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #FBFBFB;
 }
 
+.fc .fc-timegrid-slot {
+  border: none !important;
+}
+
 .notifications--sidebar {
   margin-top: 2rem;
   background-color: #F9F9F9;
