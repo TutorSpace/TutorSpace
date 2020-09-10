@@ -16415,27 +16415,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #ffffff;
 }
 
-#calendar .my-available-time {
+#calendar .my-available-time,
+.calendar .my-available-time {
   width: 100%;
   background-color: #d5d0df !important;
   border-color: #d5d0df !important;
 }
 
-#calendar .inperson-session {
+#calendar .inperson-session,
+.calendar .inperson-session {
   width: 100%;
   background-color: rgba(245, 147, 0, 0.8) !important;
   border-color: rgba(245, 147, 0, 0.8) !important;
   z-index: 100 !important;
 }
 
-#calendar .online-session {
+#calendar .online-session,
+.calendar .online-session {
   width: 100%;
   background-color: rgba(5, 0, 245, 0.5) !important;
   border-color: rgba(5, 0, 245, 0.5) !important;
   z-index: 100 !important;
 }
 
-#calendar .fc-toolbar-chunk:last-child .btn-primary {
+#calendar .fc-toolbar-chunk:last-child .btn-primary,
+.calendar .fc-toolbar-chunk:last-child .btn-primary {
   background-color: #E0E0E0;
   color: #3F3F3F !important;
   border: none !important;
@@ -16446,16 +16450,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: none !important;
 }
 
-#calendar .fc-toolbar-chunk:last-child .btn-primary:disabled {
+#calendar .fc-toolbar-chunk:last-child .btn-primary:disabled,
+.calendar .fc-toolbar-chunk:last-child .btn-primary:disabled {
   cursor: not-allowed;
 }
 
-#calendar .fc-toolbar-chunk:last-child .btn-primary.active {
+#calendar .fc-toolbar-chunk:last-child .btn-primary.active,
+.calendar .fc-toolbar-chunk:last-child .btn-primary.active {
   background-color: #6749DF !important;
   color: #FFFFFF !important;
 }
 
-#calendar button:disabled {
+#calendar button:disabled,
+.calendar button:disabled {
   cursor: not-allowed;
 }
 
@@ -16698,6 +16705,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content {
   padding: 5rem;
+  padding-bottom: 3rem;
+  margin-bottom: 5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content {
+    padding: 3rem;
+  }
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__header {
@@ -16791,22 +16806,103 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar {
-  height: 20rem;
-  background-color: #C4C4C4;
   margin: 2rem 0rem;
 }
 
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-timegrid-slots tr {
+  height: 2rem;
+  font-size: 1.3rem;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-col-header {
+  font-size: 1.45rem !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-col-header .fc-col-header-cell-cushion {
+  padding: 2px 3px;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-view-harness {
+  max-height: 61rem;
+  overflow: scroll;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc .fc-timegrid-col-events {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc .fc-timegrid-col.fc-day-today {
+  /* background-color: rgba(255, 220, 40, 0.15); */
+  /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
+  background-color: transparent !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-v-event .fc-event-main-frame {
+  justify-content: center;
+  align-items: center;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-v-event .fc-event-title-container {
+  flex-grow: 0;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-direction-ltr .fc-timegrid-slot-label-frame {
+  text-align: center;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-timegrid-event .fc-event-time {
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-media-screen .fc-timegrid-event-harness {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  left: 0 !important;
+  z-index: unset !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-toolbar-chunk {
+  display: flex;
+  align-items: center;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-next-button,
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-prev-button {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  font-size: 1.2rem !important;
+  line-height: 1 !important;
+  color: #3F3F3F !important;
+  box-shadow: none !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-next-button,
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-toolbar-title {
+  margin-left: 0.4rem !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-toolbar-title {
+  font-size: 2rem !important;
+}
+
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .fc-col-header {
+  background-color: #FBFBFB;
+}
+
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__policy {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--decline,
@@ -16815,7 +16911,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 0.5rem;
   padding: 1rem 2rem;
   cursor: pointer;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   max-width: none;
 }
 
@@ -16823,7 +16919,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--decline,
   .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm .tutor-request-modal__content__confirm--confirm {
     padding: 1rem 1.5rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }
 
