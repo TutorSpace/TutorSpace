@@ -20395,12 +20395,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 35.99em) {
-  .home__header .content .content-data {
-    display: none;
-  }
-}
-
 .home__header .content .content-data .data:not(:last-child) {
   margin-right: 3rem;
 }
@@ -20425,6 +20419,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 25em) {
+  .home__header .content .content-data .data .number {
+    font-size: 1.6rem;
+    position: relative;
+    top: 2.5px;
+  }
+}
+
 .home__header .content .content-data .data .classifier {
   color: #A0A0A0;
   font-size: 1.4rem;
@@ -20433,6 +20435,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .home__header .content .content-data .data .classifier {
     font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 26em) {
+  .home__header .content .content-data .data .classifier {
+    font-size: 7px;
   }
 }
 

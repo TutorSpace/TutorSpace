@@ -227,9 +227,7 @@
                     bottom: .75rem;
                 }
 
-                @include respond(extra-sm) {
-                    display: none;
-                }
+
 
                 .data {
                     &:not(:last-child) {
@@ -250,6 +248,13 @@
                         @include respond(md) {
                             font-size: 2rem;
                         }
+
+                        // 400px
+                         @media only screen and (max-width: 25em) {
+                            font-size: 1.6rem;
+                            position: relative;
+                            top: 2.5px;
+                        }
                     }
 
                     .classifier {
@@ -258,6 +263,11 @@
 
                         @include respond(md) {
                             font-size: 1.2rem;
+                        }
+
+                        // 400px
+                         @media only screen and (max-width: 26em) {
+                            font-size: 7px;
                         }
                     }
                 }
