@@ -5,7 +5,7 @@ $('.boxes .box').click(function() {
 $('.autocomplete .profile__input__courses').on("keydown", function(e){
     if(e.which == 13){
         var new_tag = $('.profile__input__courses').val().toUpperCase();
-        
+
         // checks if a duplicate tag is being added
         if ($('.boxes__course .box .label').text().includes(new_tag)) {
            // error message
@@ -22,7 +22,7 @@ $('.autocomplete .profile__input__courses').on("keydown", function(e){
         }
         // clear input field
         $('.profile__input__courses').val("");
-        
+
     }
 });
 
@@ -51,7 +51,7 @@ window.profile_add_course_tag_tutor = function() {
 $('.autocomplete .profile__input__forum').on("keydown", function(e){
     if(e.which == 13){
         var new_tag = $('.profile__input__forum').val().toUpperCase();
-        
+
         // checks if a duplicate tag is being added
         if ($('.boxes__forum .box .label').text().includes(new_tag)) {
            // error message
@@ -69,7 +69,7 @@ $('.autocomplete .profile__input__forum').on("keydown", function(e){
         }
         // clear input field
         $('.profile__input__forum').val("");
-        
+
     }
 });
 

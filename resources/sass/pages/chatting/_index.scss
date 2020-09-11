@@ -1,0 +1,47 @@
+.chatting {
+    margin-top: $nav-height;
+    color: $color-black-2;
+
+    &__side-bar--left {
+        background-color: $color-white-dark-5;
+        height: 100vh;
+        width: 30rem;
+        padding: 3rem 0;
+
+        .heading {
+            margin-left: var(--rem-2);
+        }
+
+        .search-bar-container {
+            padding: 0 2rem;
+            margin-top: 1.5rem;
+            position: relative;
+
+            .search-bar {
+                border-radius: 7rem;
+                background-color: rgba(240, 240, 240, 0.9);
+            }
+
+            svg {
+                width: 2rem;
+                height: 2rem;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 2.6rem;
+                fill: $color-grey;
+                cursor: pointer;
+            }
+        }
+
+        .chatting-msgs {
+            margin-top: 2rem;
+
+            .chatting-msg {
+
+            }
+        }
+    }
+
+
+}
