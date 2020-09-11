@@ -9,7 +9,7 @@
         padding: 3rem 0;
 
         .heading {
-            margin-left: var(--rem-2);
+            margin-left: 2rem;
         }
 
         .search-bar-container {
@@ -38,7 +38,47 @@
             margin-top: 2rem;
 
             .chatting-msg {
+                border-left: 5px solid $color-yellow-primary;
 
+                .chatting-box {
+                    $padding-y: 1rem;
+                    $img-size: 5rem;
+                    $time-width: 3rem;
+
+                    padding: $padding-y 2rem;
+                    padding-left: calc(2rem - 5px);
+                    display: flex;
+
+
+                    .img-container {
+                        width: $img-size;
+                        flex: 0 0 $img-size;
+                        img {
+                            width: $img-size;
+                            height: $img-size;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .content-container {
+                        display: flex;
+                        flex-direction: column;
+                        width: calc(100% - #{$img-size} - #{$time-width});
+
+                        .message-content {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+
+
+                    .time-container {
+                        width: $time-width;
+                    }
+
+                }
             }
         }
     }

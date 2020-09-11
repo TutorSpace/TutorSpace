@@ -13648,7 +13648,6 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 :root {
   --fc-small-font-size: 1.2rem;
-  --rem-2: 2rem;
 }
 
 *,
@@ -21355,7 +21354,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__side-bar--left .heading {
-  margin-left: var(--rem-2);
+  margin-left: 2rem;
 }
 
 .chatting__side-bar--left .search-bar-container {
@@ -21382,5 +21381,44 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__side-bar--left .chatting-msgs {
   margin-top: 2rem;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg {
+  border-left: 5px solid #FFBC00;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box {
+  padding: 1rem 2rem;
+  padding-left: calc(2rem - 5px);
+  display: flex;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
+  width: 5rem;
+  flex: 0 0 5rem;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 5rem - 3rem);
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .message-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .time-container {
+  width: 3rem;
 }
 
