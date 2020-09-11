@@ -18418,19 +18418,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 4rem 4rem 2.5rem 4rem;
 }
 
-#cover__loading {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: #000;
-  z-index: 9999;
-}
-
 .index {
   background-color: #EAEAEA;
 }
