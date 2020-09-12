@@ -13,18 +13,6 @@ index
 
 @include('partials.nav')
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" ></script>
-
-<script>
-    $(window).on('load', function() {
-        $("#cover__loading").hide();
-    });
-</script>
-
-<div id="cover__loading">
-    <!-- <h5 class="text-white text-center p-5 m-5">Loading...</h5> -->
-</div>
-
 <section class="index__top p-relative">
     <div class="absCenter d-flex flex-column align-items-center">
         <svg class="logo" width="357" height="324" viewBox="0 0 357 324" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,7 +194,7 @@ index
                 <path d="M207.169 86.4703C200.061 93.1647 192.955 93.1647 185.851 86.4703C182.968 83.6999 180.681 80.3687 179.13 76.6811C177.578 72.9935 176.795 69.0272 176.829 65.0256V0H216.184V65.0256C216.219 69.0267 215.438 72.9928 213.887 76.6805C212.337 80.3681 210.051 83.6995 207.169 86.4703V86.4703Z" fill="white"/>
                 <path d="M427.192 317.415C427.192 378.282 391.075 399.533 346.515 399.533C345.483 399.533 344.45 399.533 343.426 399.533C341.361 399.489 339.312 399.392 337.292 399.251C297.076 396.342 265.83 374.028 265.83 317.415C265.83 258.845 340.545 184.931 346.173 179.449L346.5 179.129C346.5 179.129 427.192 256.554 427.192 317.415Z" fill="white"/>
                 <path d="M343.574 390.221L373.083 348.923L343.5 394.758L343.426 399.496C341.361 399.452 339.312 399.355 337.292 399.214L340.47 338.324V337.848L340.522 337.766L340.827 332.009L311.125 286.062L340.871 327.717L340.945 328.937L343.344 282.931L317.956 235.452L343.656 274.875L346.158 179.486L345.742 254.702L370.989 224.882L345.609 261.181L344.94 302.374L368.546 262.84L344.844 308.437L344.473 331.339L378.726 276.296L344.339 339.313L343.574 390.221Z" fill="#3F3D56"/>
-                
+
             </svg>
             <a href="{{ route('login.index.student') }}" class="btn d-flex align-items-center justify-content-center btn--primary btn-animation-y btn-animation-spreading--white fs-2-4" target="_blank">
                 I am a student.

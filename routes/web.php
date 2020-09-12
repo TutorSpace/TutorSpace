@@ -158,15 +158,15 @@ Route::group([
     Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
 });
 
+// chatting
+Route::group([
+    'prefix' => 'chatting',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/', 'ChattingController@index')->name('chatting.index');
+});
 
 
-
-
-
-
-// bookmark
-Route::get('/bookmark_remove', 'GeneralController@removeBookmark')->middleware(['auth']);
-Route::get('/bookmark_add', 'GeneralController@addBookmark')->middleware(['auth']);
 
 
 // dashboard

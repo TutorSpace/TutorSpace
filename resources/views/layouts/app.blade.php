@@ -71,6 +71,11 @@
             });
         });
 
+        // nav icons
+        $('nav .svg-message').click(function() {
+            window.location.href = "{{ route('chatting.index') }}";
+        });
+
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
         $(document).on('click', '.svg-bookmark', function() {

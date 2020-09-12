@@ -14266,7 +14266,7 @@ body {
 }
 
 @font-face {
-  font-family: "Baloo Bhai", Avenir, sans-serif;
+  font-family: "Baloo Bhai";
   src: url(/fonts/BalooBhai-Regular.ttf?be225f103c645a303ff5b0a3856dda74);
 }
 
@@ -14277,7 +14277,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Baloo Bhai", Avenir, sans-serif;
+  font-family: "Baloo Bhai", "Arial Black", sans-serif;
 }
 
 h1 {
@@ -15887,7 +15887,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 3rem;
+  padding: 2rem 3rem;
   background-color: #F9F9F9;
   border-radius: 1rem;
   font-size: 1.5rem;
@@ -16593,6 +16593,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #FBFBFB;
 }
 
+.fc .fc-timegrid-slot {
+  border: none !important;
+}
+
 .notifications--sidebar {
   margin-top: 2rem;
   background-color: #F9F9F9;
@@ -16875,7 +16879,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 ._nav .brand-name {
   font-size: 3.3rem;
-  font-family: "Baloo Bhai", sans-serif;
+  font-family: "Baloo Bhai", "Arial Black", sans-serif;
   margin: 0 4rem;
   text-decoration: none;
   color: inherit;
@@ -18414,19 +18418,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 4rem 4rem 2.5rem 4rem;
 }
 
-#cover__loading {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: #000;
-  z-index: 9999;
-}
-
 .index {
   background-color: #EAEAEA;
 }
@@ -18707,6 +18698,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .index__bottom__heading {
   padding-top: 12rem;
   color: #FFFFFF;
+  font-weight: 900;
 }
 
 @media only screen and (max-width: 35.99em) {
@@ -20395,12 +20387,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-@media only screen and (max-width: 35.99em) {
-  .home__header .content .content-data {
-    display: none;
-  }
-}
-
 .home__header .content .content-data .data:not(:last-child) {
   margin-right: 3rem;
 }
@@ -20425,6 +20411,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+@media only screen and (max-width: 25em) {
+  .home__header .content .content-data .data .number {
+    font-size: 1.6rem;
+    position: relative;
+    top: 2.5px;
+  }
+}
+
 .home__header .content .content-data .data .classifier {
   color: #A0A0A0;
   font-size: 1.4rem;
@@ -20433,6 +20427,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 61.99em) {
   .home__header .content .content-data .data .classifier {
     font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 26em) {
+  .home__header .content .content-data .data .classifier {
+    font-size: 7px;
   }
 }
 
@@ -21339,5 +21339,281 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .view-profile__course {
   background-color: #6749DF;
+}
+
+.chatting {
+  margin-top: 8rem;
+  color: #626262;
+}
+
+.chatting .chatting-container {
+  padding: 3rem;
+  height: calc(100vh - 8rem);
+}
+
+.chatting .search-bar-container {
+  position: relative;
+}
+
+.chatting .search-bar-container .search-bar {
+  border-radius: 7rem;
+  background-color: rgba(240, 240, 240, 0.9);
+  font-size: 1.6rem;
+}
+
+.chatting .search-bar-container svg {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2.8rem;
+  fill: #A0A0A0;
+  cursor: pointer;
+}
+
+.chatting__side-bar--left {
+  background-color: #F9F9F9;
+  height: 100%;
+  flex: 0 0 37rem;
+  padding: 3rem 0;
+  overflow: scroll;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left {
+    flex: 0 0 28rem;
+  }
+}
+
+.chatting__side-bar--left .heading {
+  margin-left: 2rem;
+  font-size: 3.5rem;
+}
+
+.chatting__side-bar--left .search-bar-container {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.chatting__side-bar--left .search-bar-container .search-bar {
+  padding: 1.75rem 1.5rem;
+}
+
+.chatting__side-bar--left .chatting-msgs {
+  margin-top: 2rem;
+}
+
+.chatting__side-bar--left .chatting-msgs > *:not(:first-child) {
+  paddings-top: 1rem;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg {
+  border-left: 5px solid transparent;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg.unread {
+  border-left: 5px solid #FFBC00;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box {
+  padding: 1.75rem 2rem;
+  padding-left: calc(2rem - 5px);
+  display: flex;
+  cursor: pointer;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box:hover {
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
+  flex: 0 0 5.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
+    flex: 0 0 4rem;
+  }
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 5.5rem - 5rem - 1rem);
+  padding: 0rem 1rem 0 1.5rem;
+  justify-content: center;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .user-name,
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .user-name {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
+  position: absolute;
+  left: calc(100% + 1.6rem);
+  font-size: 1.2rem;
+  color: #A0A0A0;
+  text-align: right;
+  width: 5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
+    left: calc(100% + 3rem);
+  }
+}
+
+.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
+  font-size: 1.3rem;
+  color: #A0A0A0;
+}
+
+.chatting__content {
+  margin-left: 2rem;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatting__content__header {
+  background-color: #F9F9F9;
+  padding: 3rem;
+  width: 100%;
+  box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
+  border-radius: 1rem 1rem 0px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.chatting__content__header .user-name {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #626262;
+}
+
+.chatting__content__header .other-info {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+  margin-left: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.chatting__content__messages {
+  background-color: #EDEDED;
+  padding: 3rem;
+  flex: 1;
+  overflow: scroll;
+}
+
+.chatting__content__messages .message {
+  display: flex;
+}
+
+.chatting__content__messages .message:not(:first-child) {
+  margin-top: 2.5rem;
+}
+
+.chatting__content__messages .message .img-container {
+  margin-right: 2rem;
+}
+
+.chatting__content__messages .message .img-container img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.chatting__content__messages .message .message-content-container {
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  max-width: 50%;
+  font-size: 1.5rem;
+}
+
+.chatting__content__messages .message .time-container {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chatting__content__messages .message--self {
+  justify-content: flex-end;
+}
+
+.chatting__content__messages .message--self .message-content-container {
+  margin-left: 1.5rem;
+  background-color: rgba(249, 249, 249, 0.9);
+  color: #626262;
+}
+
+.chatting__content__messages .message--other .message-content-container {
+  margin-right: 1.5rem;
+  color: #F9F9F9;
+}
+
+.chatting__send-msg-container {
+  background-color: #F9F9F9;
+  border-radius: 0px 0px 1rem 1rem;
+  padding: 3rem;
+}
+
+.chatting__send-msg-container .search-bar-container {
+  display: flex;
+  align-items: center;
+}
+
+.chatting__send-msg-container .search-bar-container .search-bar {
+  margin-right: 2rem;
+  padding: 2.25rem 2rem;
+}
+
+.chatting__send-msg-container .search-bar-container .btn-send {
+  font-size: 1.6rem;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
+}
+
+.bg-student .message-content-container {
+  background-color: rgba(31, 122, 255, 0.95);
+}
+
+.bg-tutor .message-content-container {
+  background: rgba(103, 73, 223, 0.95);
 }
 

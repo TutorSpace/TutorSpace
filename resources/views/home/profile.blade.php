@@ -31,14 +31,6 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <!-- <div class="container col-layout-2 home__header-container">
-            <div class="heading-container">
-                <p class="heading">Profile Settings</p>
-                <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
-                </span>
-            </div>
-        </div> -->
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
                 <p class="heading">Want to earn experience points more quickly? </p>
@@ -106,9 +98,9 @@ bg-student
                             <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
                         </div>
                     </div>
-                    
-                    
-                    <div class="boxes boxes__course flex-100">                    
+
+
+                    <div class="boxes boxes__course flex-100">
                         @foreach ($course_array as $course)
                         <span class="box p-relative" type="button">
                             <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
