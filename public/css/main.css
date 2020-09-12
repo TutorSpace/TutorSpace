@@ -21347,7 +21347,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting .chatting-container {
-  padding: 3rem;
+  padding: 3rem 3rem;
 }
 
 .chatting .search-bar-container {
@@ -21376,11 +21376,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__side-bar--left {
   background-color: #F9F9F9;
-  height: calc(100vh - 8rem);
+  height: calc(100vh - 8rem - 2 * 3rem);
   width: 37rem;
   flex: 0 0 37rem;
   padding: 3rem 0;
   overflow: scroll;
+  border-radius: 1rem;
 }
 
 .chatting__side-bar--left .heading {
@@ -21477,9 +21478,23 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #F9F9F9;
   padding: 3rem 3rem;
   width: 100%;
-  font-size: 2.2rem;
-  font-weight: 500;
   box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
   border-radius: 1rem 1rem 0px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.chatting__content__header .user-name {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #626262;
+}
+
+.chatting__content__header .other-info {
+  font-size: 1.4rem;
+  color: #A0A0A0;
+  margin-left: 1.3rem;
+  display: flex;
+  align-items: center;
 }
 
