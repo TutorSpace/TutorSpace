@@ -23,7 +23,9 @@ bg-student
         <div class="chatting__side-bar--left">
             @include('chatting.side-bar--left')
         </div>
-        <div class="chatting__content"></div>
+        <div class="chatting__content">
+            @include('chatting.content')
+        </div>
     </div>
 </div>
 
