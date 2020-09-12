@@ -21472,6 +21472,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .chatting__content {
   margin-left: 2rem;
   flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .chatting__content__header {
@@ -21496,5 +21498,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-left: 1.3rem;
   display: flex;
   align-items: center;
+}
+
+.chatting__content__messages {
+  background-color: #EDEDED;
+  background-color: orangered;
+  padding: 2rem;
+  flex: 1;
 }
 
