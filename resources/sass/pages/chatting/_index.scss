@@ -4,12 +4,14 @@
 
     &__side-bar--left {
         background-color: $color-white-dark-5;
-        height: 100vh;
-        width: 30rem;
+        height: calc(100vh - #{$nav-height});
+        width: 37rem;
         padding: 3rem 0;
+        overflow: scroll;
 
         .heading {
             margin-left: 2rem;
+            font-size: 3.5rem;
         }
 
         .search-bar-container {
@@ -20,6 +22,8 @@
             .search-bar {
                 border-radius: 7rem;
                 background-color: rgba(240, 240, 240, 0.9);
+                font-size: 1.6rem;
+                padding: 1.75rem 1.5rem;
             }
 
             svg {
@@ -28,7 +32,7 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                right: 2.6rem;
+                right: 2.8rem;
                 fill: $color-grey;
                 cursor: pointer;
             }
@@ -37,22 +41,37 @@
         .chatting-msgs {
             margin-top: 2rem;
 
+            > *:not(:first-child) {
+                paddings-top: 1rem;
+
+            }
+
             .chatting-msg {
-                border-left: 5px solid $color-yellow-primary;
+                border-left: 5px solid transparent;
+
+                &.unread {
+                    border-left: 5px solid $color-yellow-primary;
+                }
 
                 .chatting-box {
                     $padding-y: 1rem;
-                    $img-size: 5rem;
-                    $time-width: 3rem;
+                    $img-size: 5.5rem;
+                    $time-width: 5rem;
 
                     padding: $padding-y 2rem;
                     padding-left: calc(2rem - 5px);
                     display: flex;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(240, 240, 240, 0.9);;
+                    }
 
 
                     .img-container {
                         width: $img-size;
                         flex: 0 0 $img-size;
+
                         img {
                             width: $img-size;
                             height: $img-size;
@@ -64,18 +83,42 @@
                     .content-container {
                         display: flex;
                         flex-direction: column;
-                        width: calc(100% - #{$img-size} - #{$time-width});
+                        width: calc(100% - #{$img-size} - #{$time-width} - 1rem);
+                        padding: 0rem 1rem;
+                        justify-content: center;
 
-                        .message-content {
+                        .user-name, .content-2 {
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
                         }
-                    }
+
+                        .content-1 {
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+
+                            .user-name {
+                                font-size: 1.8rem;
+                                font-weight: 500;
+                            }
+
+                            .time {
+                                position: absolute;
+                                left: calc(100% + 1.6rem);
+                                font-size: 1.2rem;
+                                color: $color-grey;
+                                text-align: right;
+                                width: $time-width;
+                            }
+                        }
+
+                        .content-2 {
+                            font-size: 1.3rem;
+                            color: $color-grey;
+                        }
 
 
-                    .time-container {
-                        width: $time-width;
                     }
 
                 }
