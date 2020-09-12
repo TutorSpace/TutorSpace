@@ -21352,8 +21352,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting .search-bar-container {
-  padding: 0 2rem;
-  margin-top: 2rem;
   position: relative;
 }
 
@@ -21361,7 +21359,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 7rem;
   background-color: rgba(240, 240, 240, 0.9);
   font-size: 1.6rem;
-  padding: 1.75rem 1.5rem;
 }
 
 .chatting .search-bar-container svg {
@@ -21388,6 +21385,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .chatting__side-bar--left .heading {
   margin-left: 2rem;
   font-size: 3.5rem;
+}
+
+.chatting__side-bar--left .search-bar-container {
+  margin-top: 2rem;
+  padding: 0 2rem;
+}
+
+.chatting__side-bar--left .search-bar-container .search-bar {
+  padding: 1.75rem 1.5rem;
 }
 
 .chatting__side-bar--left .chatting-msgs {
@@ -21514,7 +21520,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__content__messages .message:not(:first-child) {
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 .chatting__content__messages .message .img-container {
@@ -21530,12 +21536,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__content__messages .message .message-content-container {
-  margin-right: 1.5rem;
   padding: 1.5rem 2rem;
   border-radius: 1rem;
-  background-color: #6749DF;
   max-width: 50%;
-  color: #F9F9F9;
   font-size: 1.5rem;
 }
 
@@ -21544,5 +21547,50 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #A0A0A0;
   display: flex;
   align-items: flex-end;
+}
+
+.chatting__content__messages .message--self {
+  justify-content: flex-end;
+}
+
+.chatting__content__messages .message--self .message-content-container {
+  margin-left: 1.5rem;
+  background-color: #F9F9F9;
+  color: #626262;
+}
+
+.chatting__content__messages .message--other .message-content-container {
+  margin-right: 1.5rem;
+  color: #F9F9F9;
+}
+
+.chatting__send-msg-container {
+  background-color: #F9F9F9;
+  border-radius: 0px 0px 1rem 1rem;
+  padding: 3rem;
+}
+
+.chatting__send-msg-container .search-bar-container {
+  display: flex;
+  align-items: center;
+}
+
+.chatting__send-msg-container .search-bar-container .search-bar {
+  margin-right: 2rem;
+  padding: 2.25rem 2rem;
+}
+
+.chatting__send-msg-container .search-bar-container .btn-send {
+  font-size: 1.6rem;
+  border-radius: 3rem;
+  padding: 1rem 2rem;
+}
+
+.bg-student .message-content-container {
+  background-color: rgba(31, 122, 255, 0.9);
+}
+
+.bg-tutor .message-content-container {
+  background: rgba(103, 73, 223, 0.9);
 }
 

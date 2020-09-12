@@ -10,15 +10,12 @@
     }
 
     .search-bar-container {
-        padding: 0 2rem;
-        margin-top: 2rem;
         position: relative;
 
         .search-bar {
             border-radius: 7rem;
             background-color: rgba(240, 240, 240, 0.9);
             font-size: 1.6rem;
-            padding: 1.75rem 1.5rem;
         }
 
         svg {
@@ -45,6 +42,15 @@
         .heading {
             margin-left: 2rem;
             font-size: 3.5rem;
+        }
+
+        .search-bar-container {
+            margin-top: 2rem;
+            padding: 0 2rem;
+
+            .search-bar {
+                padding: 1.75rem 1.5rem;
+            }
         }
 
         .chatting-msgs {
@@ -169,7 +175,6 @@
 
         &__messages {
             background-color: $color-grey-4;
-            // background-color: orangered;
             padding: $padding;
             flex: 1;
             overflow: scroll;
@@ -178,7 +183,7 @@
                 display: flex;
 
                 &:not(:first-child) {
-                    margin-top: 1.5rem;
+                    margin-top: 2.5rem;
                 }
 
                 .img-container {
@@ -193,12 +198,9 @@
                 }
 
                 .message-content-container {
-                    margin-right: 1.5rem;
                     padding: 1.5rem 2rem;
                     border-radius: 1rem;
-                    background-color: $color-purple-primary;
                     max-width: 50%;
-                    color: $color-white-dark-5;
                     font-size: 1.5rem;
                 }
 
@@ -209,10 +211,66 @@
                     align-items: flex-end;
                 }
 
+                &--self {
+                    justify-content: flex-end;
+
+                    .message-content-container {
+                        margin-left: 1.5rem;
+                        background-color: $color-white-dark-5;
+                        color: $color-black-2;
+                    }
+                }
+
+                &--other {
+                    .message-content-container {
+                        margin-right: 1.5rem;
+                        color: $color-white-dark-5;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    &__send-msg-container {
+        background-color: $color-white-dark-5;
+        border-radius: 0px 0px 1rem 1rem;
+        padding: 3rem;
+
+
+        .search-bar-container {
+            display: flex;
+            align-items: center;
+
+            .search-bar {
+                margin-right: 2rem;
+                padding: 2.25rem 2rem;
+            }
+
+            .btn-send {
+                font-size: 1.6rem;
+                border-radius: 3rem;
+                padding: 1rem 2rem;
             }
         }
 
 
+    }
+
+}
+
+
+.bg-student {
+    .message-content-container {
+        background-color: rgba($color-blue-primary, .9);
+    }
+
+}
+
+.bg-tutor {
+    .message-content-container {
+        background: rgba($color-purple-primary, .9);
     }
 
 }
