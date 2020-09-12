@@ -21555,7 +21555,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__content__messages .message--self .message-content-container {
   margin-left: 1.5rem;
-  background-color: #F9F9F9;
+  background-color: rgba(249, 249, 249, 0.9);
   color: #626262;
 }
 
