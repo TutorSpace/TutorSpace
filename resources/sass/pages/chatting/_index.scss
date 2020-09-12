@@ -33,11 +33,14 @@
     &__side-bar--left {
         background-color: $color-white-dark-5;
         height: 100%;
-        width: 37rem;
         flex: 0 0 37rem;
         padding: 3rem 0;
         overflow: scroll;
         border-radius: 1rem;
+
+        @include respond(md) {
+            flex: 0 0 28rem;
+        }
 
         .heading {
             margin-left: 2rem;
@@ -84,14 +87,22 @@
 
 
                     .img-container {
-                        width: $img-size;
                         flex: 0 0 $img-size;
+
+                        @include respond(md) {
+                            flex: 0 0 4rem;
+                        }
 
                         img {
                             width: $img-size;
                             height: $img-size;
                             border-radius: 50%;
                             object-fit: cover;
+
+                            @include respond(md) {
+                                width: 4rem;
+                                height: 4rem;
+                            }
                         }
                     }
 
@@ -125,6 +136,10 @@
                                 color: $color-grey;
                                 text-align: right;
                                 width: $time-width;
+
+                                @include respond(md) {
+                                    left: calc(100% + 3rem);
+                                }
                             }
                         }
 
@@ -263,14 +278,14 @@
 
 .bg-student {
     .message-content-container {
-        background-color: rgba($color-blue-primary, .9);
+        background-color: rgba($color-blue-primary, .95);
     }
 
 }
 
 .bg-tutor {
     .message-content-container {
-        background: rgba($color-purple-primary, .9);
+        background: rgba($color-purple-primary, .95);
     }
 
 }

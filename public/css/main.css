@@ -21375,11 +21375,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .chatting__side-bar--left {
   background-color: #F9F9F9;
   height: 100%;
-  width: 37rem;
   flex: 0 0 37rem;
   padding: 3rem 0;
   overflow: scroll;
   border-radius: 1rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left {
+    flex: 0 0 28rem;
+  }
 }
 
 .chatting__side-bar--left .heading {
@@ -21424,8 +21429,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
-  width: 5.5rem;
   flex: 0 0 5.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
+    flex: 0 0 4rem;
+  }
 }
 
 .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
@@ -21434,6 +21444,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
+    width: 4rem;
+    height: 4rem;
+  }
 }
 
 .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container {
@@ -21469,6 +21486,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #A0A0A0;
   text-align: right;
   width: 5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
+    left: calc(100% + 3rem);
+  }
 }
 
 .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
@@ -21587,10 +21610,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .bg-student .message-content-container {
-  background-color: rgba(31, 122, 255, 0.9);
+  background-color: rgba(31, 122, 255, 0.95);
 }
 
 .bg-tutor .message-content-container {
-  background: rgba(103, 73, 223, 0.9);
+  background: rgba(103, 73, 223, 0.95);
 }
 
