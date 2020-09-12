@@ -10,7 +10,27 @@
     </span>
 </div>
 <div class="chatting__content__messages">
-    @include('chatting.chat-message')
+    @include('chatting.chat-message', [
+        'myMessage' => false
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => true
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => false
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => true
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => false
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => false
+    ])
+    @include('chatting.chat-message', [
+        'myMessage' => true
+    ])
 </div>
 <div class="send-msg-container">
     <h1>here</h1>

@@ -6,6 +6,7 @@
 
     .chatting-container {
         padding: $outer-padding;
+        height: calc(100vh - #{$nav-height});
     }
 
     .search-bar-container {
@@ -34,7 +35,7 @@
 
     &__side-bar--left {
         background-color: $color-white-dark-5;
-        height: calc(100vh - #{$nav-height} - 2 * #{$outer-padding});
+        height: 100%;
         width: 37rem;
         flex: 0 0 37rem;
         padding: 3rem 0;
@@ -85,7 +86,6 @@
                             height: $img-size;
                             border-radius: 50%;
                             object-fit: cover;
-
                         }
                     }
 
@@ -138,12 +138,14 @@
     &__content {
         margin-left: 2rem;
         flex: 1;
+        height: 100%;
         display: flex;
         flex-direction: column;
 
+        $padding: 3rem;
         &__header {
             background-color: $color-white-dark-5;
-            padding: 3rem 3rem;
+            padding: $padding;
             width: 100%;
             box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
             border-radius: 1rem 1rem 0px 0px;
@@ -167,9 +169,47 @@
 
         &__messages {
             background-color: $color-grey-4;
-            background-color: orangered;
-            padding: 2rem;
+            // background-color: orangered;
+            padding: $padding;
             flex: 1;
+            overflow: scroll;
+
+            .message {
+                display: flex;
+
+                &:not(:first-child) {
+                    margin-top: 1.5rem;
+                }
+
+                .img-container {
+                    margin-right: 2rem;
+
+                    img {
+                        width: 5rem;
+                        height: 5rem;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+
+                .message-content-container {
+                    margin-right: 1.5rem;
+                    padding: 1.5rem 2rem;
+                    border-radius: 1rem;
+                    background-color: $color-purple-primary;
+                    max-width: 50%;
+                    color: $color-white-dark-5;
+                    font-size: 1.5rem;
+                }
+
+                .time-container {
+                    font-size: 1.4rem;
+                    color: $color-grey;
+                    display: flex;
+                    align-items: flex-end;
+                }
+
+            }
         }
 
 
