@@ -2,7 +2,8 @@
     margin-top: $nav-height;
     color: $color-black-2;
 
-    $outer-padding: 3rem
+    $outer-padding: 3rem;
+
     .chatting-container {
         padding: $outer-padding;
     }
@@ -61,7 +62,7 @@
                 }
 
                 .chatting-box {
-                    $padding-y: 1rem;
+                    $padding-y: 1.75rem;
                     $img-size: 5.5rem;
                     $time-width: 5rem;
 
@@ -84,6 +85,7 @@
                             height: $img-size;
                             border-radius: 50%;
                             object-fit: cover;
+
                         }
                     }
 
@@ -91,7 +93,7 @@
                         display: flex;
                         flex-direction: column;
                         width: calc(100% - #{$img-size} - #{$time-width} - 1rem);
-                        padding: 0rem 1rem;
+                        padding: 0rem 1rem 0 1.5rem;
                         justify-content: center;
 
                         .user-name, .content-2 {
