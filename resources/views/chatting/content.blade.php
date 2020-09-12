@@ -9,3 +9,6 @@
         Beginner Tutor
     </span>
 </div>
+<div class="chatting__content_messages">
+    @include('chatting.chat-message')
+</div>
