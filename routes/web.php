@@ -188,10 +188,6 @@ Route::post('/add_fav_subject', 'subjectController@addFavSubject')->middleware([
 Route::post('/remove_fav_course', 'courseController@removeFavCourse')->middleware(['auth']);
 Route::post('/add_fav_course', 'courseController@addFavCourse')->middleware(['auth']);
 
-// characteristics
-Route::post('/remove_characteristic', 'characteristicController@removeCharacteristic')->middleware(['auth']);
-Route::post('/add_characteristic', 'characteristicController@addCharacteristic')->middleware(['auth']);
-
 // reviews
 Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
 
