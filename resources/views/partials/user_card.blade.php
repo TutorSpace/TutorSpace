@@ -1,6 +1,6 @@
 <div class="
     user-card
-    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->id == Auth::id())
+    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->email == Auth::user()->email)
     hidden
     @endif
     "
