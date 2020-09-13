@@ -14960,6 +14960,13 @@ h6 {
   padding: 1rem 2rem;
 }
 
+@media only screen and (max-width: 35.99em) {
+  .modal .modal-dialog {
+    max-width: 80%;
+    margin: auto;
+  }
+}
+
 .modal .modal-title {
   font-weight: bold;
 }

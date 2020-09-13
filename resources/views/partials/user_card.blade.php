@@ -1,11 +1,12 @@
 <div class="
     user-card
-    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->id == Auth::id())
+    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->email == Auth::user()->email)
     hidden
     @endif
     "
     data-user-id="{{ $user->id }}"
 >
+    {{-- todo: use gate to do this! remember to check whether the user is trying to bookmark his own student account --}}
     @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))

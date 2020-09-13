@@ -1,8 +1,14 @@
 .modal {
 
-
     .modal-content {
         padding: 1rem 2rem;
+    }
+
+    .modal-dialog {
+        @include respond(extra-sm) {
+            max-width: 80%;
+            margin: auto;
+        }
     }
 
     .modal-title {
