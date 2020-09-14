@@ -236,7 +236,7 @@ autocomplete(document.getElementById("hourly-rate"), hourlyRate);
 autocomplete(document.getElementById("course"), courses, profile_add_course_tag_tutor);
 autocomplete(document.getElementById("tag"), tags, profile_add_forum_tag_tutor);
 $('.boxes__course .box').click(function () {
-  var _this = this;
+  $(this).remove(); // TODO - YASHVI: get the course id of the element clicked
 
   var new_course_id = 1;
   $.ajax({
@@ -245,10 +245,8 @@ $('.boxes__course .box').click(function () {
     data: {
       new_course_id: new_course_id
     },
-    success: function success(data) {
-      $(_this).remove();
-      var successMsg = data.successMsg;
-      toastr.success(successMsg);
+    success: function success(data) {// let { successMsg } = data;
+      // toastr.success(successMsg);
     },
     error: function error(_error) {
       toastr.error(_error);
@@ -256,7 +254,7 @@ $('.boxes__course .box').click(function () {
   });
 });
 $('.boxes__forum .box').click(function () {
-  var _this2 = this;
+  $(this).remove(); // TODO - YASHVI: get the tag id of the element clicked
 
   var new_tag_id = 1;
   $.ajax({
@@ -265,10 +263,8 @@ $('.boxes__forum .box').click(function () {
     data: {
       new_tag_id: new_tag_id
     },
-    success: function success(data) {
-      $(_this2).remove();
-      var successMsg = data.successMsg;
-      toastr.success(successMsg);
+    success: function success(data) {// let { successMsg } = data;
+      // toastr.success(successMsg);
     },
     error: function error(_error2) {
       toastr.error(_error2);

@@ -1,5 +1,4 @@
 // ===================== autocomplete ==========================
-
 window.autocomplete = function(inp, arr, clickCallBackFunc) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
@@ -112,6 +111,9 @@ autocomplete(document.getElementById("tag"), tags,
 profile_add_forum_tag_tutor);
 
 $('.boxes__course .box').click(function() {
+    $(this).remove();
+
+    // TODO - YASHVI: get the course id of the element clicked
     var new_course_id = 1;
     $.ajax({
         type:'POST',
@@ -120,9 +122,8 @@ $('.boxes__course .box').click(function() {
             new_course_id:new_course_id
         },
         success: (data) => {
-            $(this).remove();
-            let { successMsg } = data;
-            toastr.success(successMsg);
+            // let { successMsg } = data;
+            // toastr.success(successMsg);
         },
         error: function(error) {
             toastr.error(error);
@@ -131,6 +132,9 @@ $('.boxes__course .box').click(function() {
 })
 
 $('.boxes__forum .box').click(function() {
+    $(this).remove();
+
+    // TODO - YASHVI: get the tag id of the element clicked
     var new_tag_id = 1;
     $.ajax({
         type:'POST',
@@ -139,9 +143,8 @@ $('.boxes__forum .box').click(function() {
             new_tag_id:new_tag_id
         },
         success: (data) => {
-            $(this).remove();
-            let { successMsg } = data;
-            toastr.success(successMsg);
+            // let { successMsg } = data;
+            // toastr.success(successMsg);
         },
         error: function(error) {
             toastr.error(error);
