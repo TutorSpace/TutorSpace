@@ -143,8 +143,8 @@ bg-student
 
                 {{-- buttons --}}
                 <div class="w-100 profile__buttons">
-                    <button class="btn btn-outline-primary mr-5" type="button">Discard Changes</button>
-                    <button class="btn btn-primary" type="button">Save Changes</button>
+                    <button class="btn btn-outline-primary mr-5" id="btn-reset" type="button">Discard Changes</button>
+                    <button class="btn btn-primary" type="submit">Save Changes</button>
                 </div>
             </div>
         </form>

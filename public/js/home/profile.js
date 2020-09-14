@@ -386,6 +386,9 @@ $('.autocomplete .profile__input__courses').on("keydown", function (e) {
     $('.profile__input__courses').val("");
   }
 });
+$('#btn-reset').click(function () {
+  location.reload(true);
+});
 
 /***/ }),
 

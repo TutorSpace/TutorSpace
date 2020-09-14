@@ -286,3 +286,7 @@ $('.autocomplete .profile__input__courses').on("keydown", function(e){
 
     }
 });
+
+$('#btn-reset').click(function() {
+    location.reload(true);
+});
