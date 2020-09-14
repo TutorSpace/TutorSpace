@@ -260,7 +260,9 @@ bg-student
 @endsection
 
 @section('js')
-@include('partials.nav-auth-js')
+@guest
+    @include('partials.nav-auth-js')
+@endguest
 <script src="{{ asset('js/search/index.js') }}"></script>
 
 @if(old('price-low') && old('price-high'))
