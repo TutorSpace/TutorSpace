@@ -181,13 +181,9 @@ window.autocomplete = function (inp, arr, clickCallBackFunc) {
       /*If the ENTER key is pressed, prevent the form from being submitted,*/
       e.preventDefault();
 
-      if (currentFocus > -1) {
-        if ($(inp).attr('id') == 'course') {
-          alert('here');
-        } else if (x) {
-          /*and simulate a click on the "active" item:*/
-          x[currentFocus].click();
-        }
+      if (x) {
+        /*and simulate a click on the "active" item:*/
+        x[currentFocus].click();
       }
     }
   });
