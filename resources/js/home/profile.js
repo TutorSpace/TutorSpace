@@ -121,13 +121,13 @@ $('.boxes__course .box').click(function() {
         data: {
             new_course_id:new_course_id
         },
-        success: (data) => {
+        // success: (data) => {
             // let { successMsg } = data;
             // toastr.success(successMsg);
-        },
-        error: function(error) {
-            toastr.error(error);
-        }
+        // },
+        // error: function(error) {
+        //     toastr.error(error);
+        // }
     });
 })
 
@@ -142,13 +142,13 @@ $('.boxes__forum .box').click(function() {
         data: {
             new_tag_id:new_tag_id
         },
-        success: (data) => {
+        // success: (data) => {
             // let { successMsg } = data;
             // toastr.success(successMsg);
-        },
-        error: function(error) {
-            toastr.error(error);
-        }
+        // },
+        // error: function(error) {
+        //     toastr.error(error);
+        // }
     });
 })
 

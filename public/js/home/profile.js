@@ -244,13 +244,14 @@ $('.boxes__course .box').click(function () {
     url: '/course_add_remove',
     data: {
       new_course_id: new_course_id
-    },
-    success: function success(data) {// let { successMsg } = data;
-      // toastr.success(successMsg);
-    },
-    error: function error(_error) {
-      toastr.error(_error);
-    }
+    } // success: (data) => {
+    // let { successMsg } = data;
+    // toastr.success(successMsg);
+    // },
+    // error: function(error) {
+    //     toastr.error(error);
+    // }
+
   });
 });
 $('.boxes__forum .box').click(function () {
@@ -262,13 +263,14 @@ $('.boxes__forum .box').click(function () {
     url: '/tag_add_remove',
     data: {
       new_tag_id: new_tag_id
-    },
-    success: function success(data) {// let { successMsg } = data;
-      // toastr.success(successMsg);
-    },
-    error: function error(_error2) {
-      toastr.error(_error2);
-    }
+    } // success: (data) => {
+    // let { successMsg } = data;
+    // toastr.success(successMsg);
+    // },
+    // error: function(error) {
+    //     toastr.error(error);
+    // }
+
   });
 });
 
@@ -297,8 +299,8 @@ function profile_add_course_tag_tutor() {
           var successMsg = data.successMsg;
           toastr.success(successMsg);
         },
-        error: function error(_error3) {
-          toastr.error(_error3);
+        error: function error(_error) {
+          toastr.error(_error);
         }
       });
     } // clear input field
@@ -333,8 +335,8 @@ function profile_add_forum_tag_tutor() {
           var successMsg = data.successMsg;
           toastr.success(successMsg);
         },
-        error: function error(_error4) {
-          toastr.error(_error4);
+        error: function error(_error2) {
+          toastr.error(_error2);
         }
       });
     } // clear input field
