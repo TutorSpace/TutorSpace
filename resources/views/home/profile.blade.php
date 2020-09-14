@@ -209,7 +209,7 @@ bg-student
     ];
 
 
-    function autocomplete(inp, arr) {
+    function autocomplete(inp, arr, clickCallBackFunc) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
         var currentFocus;
@@ -241,8 +241,9 @@ bg-student
                     b.addEventListener("click", function(e) {
                     /*insert the value for the autocomplete text field:*/
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    profile_add_course_tag_tutor();
-                    profile_add_forum_tag_tutor();
+                    if(clickCallBackFunc){
+                        clickCallBackFunc();
+                    }
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
@@ -322,8 +323,8 @@ bg-student
     autocomplete(document.getElementById("school-year"), schoolYears);
     autocomplete(document.getElementById("gpa"), gpa);
     autocomplete(document.getElementById("hourly-rate"), hourlyRate);
-    autocomplete(document.getElementById("course"), courses);
-    autocomplete(document.getElementById("tag"), tags);
+    autocomplete(document.getElementById("course"), courses, profile_add_course_tag_tutor);
+    autocomplete(document.getElementById("tag"), tags, profile_add_forum_tag_tutor);
 
 </script>
 

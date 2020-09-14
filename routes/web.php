@@ -166,7 +166,9 @@ Route::group([
     Route::get('/', 'ChattingController@index')->name('chatting.index');
 });
 
-
+//
+Route::post('/course_add_remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
+Route::post('/tag_add_remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
 
 
 // dashboard
