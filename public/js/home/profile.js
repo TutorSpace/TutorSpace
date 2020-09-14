@@ -94,7 +94,7 @@
 /***/ (function(module, exports) {
 
 // ===================== autocomplete ==========================
-window.autocomplete = function (inp, arr) {
+window.autocomplete = function (inp, arr, clickCallBackFunc) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
   var currentFocus;
@@ -141,10 +141,13 @@ window.autocomplete = function (inp, arr) {
         b.addEventListener("click", function (e) {
           /*insert the value for the autocomplete text field:*/
           inp.value = this.getElementsByTagName("input")[0].value;
-          profile_add_course_tag_tutor();
-          profile_add_forum_tag_tutor();
+
+          if (clickCallBackFunc) {
+            clickCallBackFunc();
+          }
           /*close the list of autocompleted values,
           (or any other open lists of autocompleted values:*/
+
 
           closeAllLists();
         });
@@ -234,10 +237,47 @@ autocomplete(document.getElementById("minor"), minors);
 autocomplete(document.getElementById("school-year"), schoolYears);
 autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
-autocomplete(document.getElementById("course"), courses);
-autocomplete(document.getElementById("tag"), tags);
-$('.boxes .box').click(function () {
-  $(this).remove();
+autocomplete(document.getElementById("course"), courses, profile_add_course_tag_tutor);
+autocomplete(document.getElementById("tag"), tags, profile_add_forum_tag_tutor);
+$('.boxes__course .box').click(function () {
+  var _this = this;
+
+  var new_course_id = 1;
+  $.ajax({
+    type: 'POST',
+    url: '/course_add_remove',
+    data: {
+      new_course_id: new_course_id
+    },
+    success: function success(data) {
+      $(_this).remove();
+      var successMsg = data.successMsg;
+      toastr.success(successMsg);
+    },
+    error: function error(_error) {
+      toastr.error(_error);
+    }
+  });
+});
+$('.boxes__forum .box').click(function () {
+  var _this2 = this;
+
+  var new_tag_id = 1;
+  $.ajax({
+    type: 'POST',
+    url: '/tag_add_remove',
+    data: {
+      new_tag_id: new_tag_id
+    },
+    success: function success(data) {
+      $(_this2).remove();
+      var successMsg = data.successMsg;
+      toastr.success(successMsg);
+    },
+    error: function error(_error2) {
+      toastr.error(_error2);
+    }
+  });
 });
 $('.autocomplete .profile__input__courses').on("keydown", function (e) {
   if (e.which == 13) {
@@ -259,23 +299,76 @@ $('.autocomplete .profile__input__courses').on("keydown", function (e) {
   }
 });
 
-window.profile_add_course_tag_tutor = function () {
+function profile_add_course_tag_tutor() {
   var new_tag = $('#course').val();
 
-  if ($('.boxes__course .box .label').text().includes(new_tag)) {} // error message
-  // checks if 7 tags have been added already
+  if ($('.boxes__course .box .label').text().includes(new_tag)) {
+    toastr.error("The course is already selected ");
+  } // checks if 7 tags have been added already
   else if ($('.boxes__course .box').length == 7) {
       toastr.error("You can add at most 7 courses.");
     } else {
       // create new tag
+      //todo: remove this once the fix is made to use ids instead of course name
+      var new_course_id = 1;
       $clone = $('.boxes__course .box:first').clone(true);
       $('.label', $clone).text(new_tag);
-      $('.boxes__course').append($clone);
+      $.ajax({
+        type: 'POST',
+        url: '/course_add_remove',
+        data: {
+          new_course_id: new_course_id
+        },
+        success: function success(data) {
+          $('.boxes__course').append($clone);
+          var successMsg = data.successMsg;
+          toastr.success(successMsg);
+        },
+        error: function error(_error3) {
+          toastr.error(_error3);
+        }
+      });
     } // clear input field
 
 
   $('.profile__input__courses').val("");
-};
+}
+
+function profile_add_forum_tag_tutor() {
+  var new_tag = $('#tag').val();
+
+  if ($('.boxes__forum .box .label').text().includes(new_tag)) {
+    // error message
+    toastr.error("The tag is already selected ");
+  } // checks if 7 tags have been added already
+  else if ($('.boxes__forum .box').length == 10) {
+      toastr.error("You can add at most 10 tags.");
+    } else {
+      // create new tag
+      //todo: remove this once the fix is made to use ids instead of tag name
+      var new_tag_id = 2;
+      $clone = $('.boxes__forum .box:first').clone(true);
+      $('.label', $clone).text(new_tag);
+      $.ajax({
+        type: 'POST',
+        url: '/tag_add_remove',
+        data: {
+          new_tag_id: new_tag_id
+        },
+        success: function success(data) {
+          $('.boxes__course').append($clone);
+          var successMsg = data.successMsg;
+          toastr.success(successMsg);
+        },
+        error: function error(_error4) {
+          toastr.error(_error4);
+        }
+      });
+    } // clear input field
+
+
+  $('.profile__input__forum').val("");
+}
 
 $('.autocomplete .profile__input__forum').on("keydown", function (e) {
   if (e.which == 13) {
@@ -296,24 +389,6 @@ $('.autocomplete .profile__input__forum').on("keydown", function (e) {
     $('.profile__input__forum').val("");
   }
 });
-
-window.profile_add_forum_tag_tutor = function () {
-  var new_tag = $('#tag').val();
-
-  if ($('.boxes__forum .box .label').text().includes(new_tag)) {} // error message
-  // checks if 7 tags have been added already
-  else if ($('.boxes__forum .box').length == 10) {
-      toastr.error("You can add at most 10 tags.");
-    } else {
-      // create new tag
-      $clone = $('.boxes__forum .box:first').clone(true);
-      $('.label', $clone).text(new_tag);
-      $('.boxes__forum').append($clone);
-    } // clear input field
-
-
-  $('.profile__input__forum').val("");
-};
 
 /***/ }),
 

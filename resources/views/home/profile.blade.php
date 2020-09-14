@@ -159,11 +159,6 @@ bg-student
 
 @section('js')
 
-<script src="toastr.js"></script>
-<script src="{{ asset('js/home/profile.js') }}"></script>
-
-
-
 {{-- autocomplete --}}
 <script>
     let majors = [
@@ -208,9 +203,8 @@ bg-student
         @endforeach
     ];
 
-
-
 </script>
 
+<script src="{{ asset('js/home/profile.js') }}"></script>
 
 @endsection
