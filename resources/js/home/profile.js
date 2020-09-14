@@ -283,7 +283,6 @@ $('.autocomplete .profile__input__courses').on("keydown", function(e){
         }
         // clear input field
         $('.profile__input__courses').val("");
-
     }
 });
 
