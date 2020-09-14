@@ -106,29 +106,16 @@ autocomplete(document.getElementById("minor"), minors);
 autocomplete(document.getElementById("school-year"), schoolYears);
 autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
-autocomplete(document.getElementById("course"), courses, profile_add_course_tag_tutor);
+autocomplete(document.getElementById("course"), courses, profile_add_course);
 autocomplete(document.getElementById("tag"), tags,
-profile_add_forum_tag_tutor);
+profile_add_tag);
 
 $('.boxes__course .box').click(function() {
     $(this).remove();
 
     // TODO - YASHVI: get the course id of the element clicked
     var new_course_id = 1;
-    $.ajax({
-        type:'POST',
-        url: '/course_add_remove',
-        data: {
-            new_course_id:new_course_id
-        },
-        // success: (data) => {
-            // let { successMsg } = data;
-            // toastr.success(successMsg);
-        // },
-        // error: function(error) {
-        //     toastr.error(error);
-        // }
-    });
+    ajaxAddRemoveCourse(new_course_id);
 })
 
 $('.boxes__forum .box').click(function() {
@@ -136,26 +123,13 @@ $('.boxes__forum .box').click(function() {
 
     // TODO - YASHVI: get the tag id of the element clicked
     var new_tag_id = 1;
-    $.ajax({
-        type:'POST',
-        url: '/tag_add_remove',
-        data: {
-            new_tag_id:new_tag_id
-        },
-        // success: (data) => {
-            // let { successMsg } = data;
-            // toastr.success(successMsg);
-        // },
-        // error: function(error) {
-        //     toastr.error(error);
-        // }
-    });
+    ajaxAddRemoveTag(new_tag_id);
 })
 
-function profile_add_course_tag_tutor() {
-    var new_tag = $('#course').val();
+function profile_add_course() {
+    var new_course = $('#course').val();
 
-    if ($('.boxes__course .box .label').text().includes(new_tag)) {
+    if ($('.boxes__course .box .label').text().includes(new_course)) {
         toastr.error("The course is already selected ");
     }
     // checks if 7 tags have been added already
@@ -163,34 +137,16 @@ function profile_add_course_tag_tutor() {
         toastr.error("You can add at most 7 courses.");
     }
     else {
-        // create new tag
-
-        //todo: remove this once the fix is made to use ids instead of course name
+        appendCourse(new_course);
+        // TODO - YASHVI: get the course id of the element clicked
         var new_course_id = 1;
-        $clone = $('.boxes__course .box:first').clone( true );
-        $('.label', $clone).text(new_tag);
-
-        $.ajax({
-        type:'POST',
-        url: '/course_add_remove',
-        data: {
-            new_course_id:new_course_id
-        },
-        success: (data) => {
-            $('.boxes__course').append($clone);
-            let { successMsg } = data;
-            toastr.success(successMsg);
-        },
-        error: function(error) {
-            toastr.error(error);
-        }
-    });
+        ajaxAddCourse(new_course_id);
     }
     // clear input field
     $('.profile__input__courses').val("");
 }
 
-function profile_add_forum_tag_tutor() {
+function profile_add_tag() {
     var new_tag = $('#tag').val();
 
     if ($('.boxes__forum .box .label').text().includes(new_tag)) {
@@ -210,20 +166,20 @@ function profile_add_forum_tag_tutor() {
         $('.label', $clone).text(new_tag);
 
         $.ajax({
-        type:'POST',
-        url: '/tag_add_remove',
-        data: {
-            new_tag_id:new_tag_id
-        },
-        success: (data) => {
-            $('.boxes__course').append($clone);
-            let { successMsg } = data;
-            toastr.success(successMsg);
-        },
-        error: function(error) {
-            toastr.error(error);
-        }
-    });
+            type:'POST',
+            url: '/tag_add_remove',
+            data: {
+                new_tag_id:new_tag_id
+            },
+            success: (data) => {
+                $('.boxes__course').append($clone);
+                let { successMsg } = data;
+                toastr.success(successMsg);
+            },
+            error: function(error) {
+                toastr.error(error);
+            }
+        });
     }
     // clear input field
     $('.profile__input__forum').val("");
@@ -245,33 +201,24 @@ $('.autocomplete .profile__input__forum').on("keydown", function(e){
             // error message
         }
         else {
-            // create new tag
-            $('.boxes__forum').append(`
-            <span class="box p-relative">
-                <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
-                    <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
-                </svg>
-                <span class="label">` + new_tag + `</span>
-                <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                </svg>
-            </span>
-            `);
+            appendTag(new_tag, '.boxes__course');
+
+            // TODO - YASHVI: get the course id of the element clicked
+            var new_course_id = 1;
+            ajaxAddRemoveCourse(new_course_id);
         }
         // clear input field
         $('.profile__input__forum').val("");
-
     }
 });
 
 
 $('.autocomplete .profile__input__courses').on("keydown", function(e){
     if(e.which == 13){
-        var new_course = $('.profile__input__courses').val().toUpperCase();
+        var new_tag = $('.profile__input__courses').val().toUpperCase();
 
         // checks if a duplicate tag is being added
-        if ($('.boxes__course .box .label').text().includes(new_course)) {
+        if ($('.boxes__course .box .label').text().includes(new_tag)) {
             toastr.error('You already added this course.');
         }
         // checks if 7 tags have been added already
@@ -281,7 +228,7 @@ $('.autocomplete .profile__input__courses').on("keydown", function(e){
         else {
             // create new tag
             $clone = $('.boxes__course .box:first').clone( true );
-            $('.label', $clone).text(new_course);
+            $('.label', $clone).text(new_tag);
             $('.boxes__course').append($clone);
         }
         // clear input field
@@ -292,3 +239,55 @@ $('.autocomplete .profile__input__courses').on("keydown", function(e){
 $('#btn-reset').click(function() {
     location.reload(true);
 });
+
+
+function appendTag(tagName, parentSelector) {
+    // create new tag
+    $(parentSelector).append(`
+    <span class="box p-relative">
+        <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
+            <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
+        </svg>
+        <span class="label">` + tagName + `</span>
+        <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </span>
+    `);
+}
+
+
+function ajaxAddRemoveCourse(courseId) {
+    $.ajax({
+        type:'POST',
+        url: '/course_add_remove',
+        data: {
+            new_course_id: courseId
+        },
+        // success: (data) => {
+            // let { successMsg } = data;
+            // toastr.success(successMsg);
+        // },
+        // error: function(error) {
+        //     toastr.error(error);
+        // }
+    });
+}
+
+function ajaxAddRemoveTag(tagId) {
+    $.ajax({
+        type:'POST',
+        url: '/tag_add_remove',
+        data: {
+            new_tag_id: tagId
+        },
+        // success: (data) => {
+            // let { successMsg } = data;
+            // toastr.success(successMsg);
+        // },
+        // error: function(error) {
+        //     toastr.error(error);
+        // }
+    });
+}
