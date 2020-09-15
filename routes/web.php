@@ -166,51 +166,52 @@ Route::group([
     Route::get('/', 'ChattingController@index')->name('chatting.index');
 });
 
-// add course
+// add/remove course/tag to the user profile
 Route::post('/course_add_remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
 Route::post('/tag_add_remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
 
 
-// dashboard
-Route::get('/dashboard', 'GeneralController@getDashboardPosts')->middleware(['auth']);
-Route::post('/dashboard_add', 'GeneralController@addDashboardPosts')->middleware(['auth']);
+// ================= IMPORTANT: DO NOT ADD ROUTES BELOW ==================
+
+
+// // dashboard
+// Route::get('/dashboard', 'GeneralController@getDashboardPosts')->middleware(['auth']);
+// Route::post('/dashboard_add', 'GeneralController@addDashboardPosts')->middleware(['auth']);
+
+// // sessions
+// Route::post('/session_cancel', 'sessionController@cancelSession')->middleware(['auth']);
+// Route::get('/view_session/{session}', 'sessionController@viewSession')->middleware(['auth']);
+
+
+// // subjects
+// Route::post('/remove_fav_subject', 'subjectController@removeFavSubject')->middleware(['auth']);
+// Route::post('/add_fav_subject', 'subjectController@addFavSubject')->middleware(['auth']);
+
+// // courses
+// Route::post('/remove_fav_course', 'courseController@removeFavCourse')->middleware(['auth']);
+// Route::post('/add_fav_course', 'courseController@addFavCourse')->middleware(['auth']);
+
+// // reviews
+// Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
 
 
 
-// sessions
-Route::post('/session_cancel', 'sessionController@cancelSession')->middleware(['auth']);
-Route::get('/view_session/{session}', 'sessionController@viewSession')->middleware(['auth']);
+// // reports
+// Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['auth']);
+// Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['auth']);
+
+// // tutor requests
+// Route::post('/tutor_request_reject', 'GeneralController@rejectTutorRequest')->middleware(['auth']);
+// Route::post('/tutor_request_accept', 'GeneralController@acceptTutorRequest')->middleware(['auth']);
+// Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['auth']);
+// Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['auth']);
+// Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['auth']);
+// Route::post('/tutor_request', 'tutorRequestController@makeTutorRequest')->middleware(['auth']);
 
 
-// subjects
-Route::post('/remove_fav_subject', 'subjectController@removeFavSubject')->middleware(['auth']);
-Route::post('/add_fav_subject', 'subjectController@addFavSubject')->middleware(['auth']);
-
-// courses
-Route::post('/remove_fav_course', 'courseController@removeFavCourse')->middleware(['auth']);
-Route::post('/add_fav_course', 'courseController@addFavCourse')->middleware(['auth']);
-
-// reviews
-Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
-
-
-
-// reports
-Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['auth']);
-Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['auth']);
-
-// tutor requests
-Route::post('/tutor_request_reject', 'GeneralController@rejectTutorRequest')->middleware(['auth']);
-Route::post('/tutor_request_accept', 'GeneralController@acceptTutorRequest')->middleware(['auth']);
-Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['auth']);
-Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['auth']);
-Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['auth']);
-Route::post('/tutor_request', 'tutorRequestController@makeTutorRequest')->middleware(['auth']);
-
-
-// chatting
-Route::get('/messages', 'chatController@show')->name('chatroom')->middleware(['auth']);
-Route::post('/messages', 'chatController@sendMessage')->middleware(['auth']);
-Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['auth']);
-Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['auth']);
+// // chatting
+// Route::get('/messages', 'chatController@show')->name('chatroom')->middleware(['auth']);
+// Route::post('/messages', 'chatController@sendMessage')->middleware(['auth']);
+// Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['auth']);
+// Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['auth']);
 
