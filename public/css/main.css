@@ -15120,11 +15120,14 @@ h6 {
 }
 
 .tag {
-  padding: 0.3rem 0.8rem 0.15rem 0.8rem;
-  display: inline-block;
+  padding: 0.3rem 1.4rem 0.15rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
   margin-bottom: 0.75rem;
   margin-right: 0.5rem;
   border-radius: 0.5rem;
+  min-width: 8rem;
+  justify-content: center;
 }
 
 .post-reply {

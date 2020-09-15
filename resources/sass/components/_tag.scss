@@ -1,7 +1,11 @@
 .tag {
-    padding: .3rem .8rem .15rem .8rem;
-    display: inline-block;
+    padding: .3rem 1.4rem .15rem 1.4rem;
+    display: inline-flex;
+    align-items: center;
     margin-bottom: .75rem;
     margin-right: .5rem;
     border-radius: .5rem;
+
+    min-width: 8rem;
+    justify-content: center;
 }
