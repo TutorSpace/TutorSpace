@@ -235,13 +235,13 @@ autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
 autocomplete(document.getElementById("course"), courses, profile_add_course);
 autocomplete(document.getElementById("tag"), tags, profile_add_tag);
-$('.boxes__course .box').click(function () {
-  $(this).remove(); // TODO - YASHVI: get the course id of the element clicked
+$('.boxes__course').on('click', '.box', function () {
+  $(this).remove(); // TODO - YASHVI: get the tag id of the element clicked
 
-  var new_course_id = 1;
-  ajaxAddRemoveCourse(new_course_id);
+  var new_tag_id = 1;
+  ajaxAddRemoveTag(new_tag_id);
 });
-$('.boxes__forum .box').click(function () {
+$('.boxes__forum').on('click', '.box', function () {
   $(this).remove(); // TODO - YASHVI: get the tag id of the element clicked
 
   var new_tag_id = 1;
