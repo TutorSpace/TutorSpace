@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InviteToBeTutorNotification;
+use Illuminate\Support\Facades\Log;
 
 class GeneralController extends Controller
 {
@@ -104,6 +105,64 @@ class GeneralController extends Controller
     public function getRecommendedTutors() {
         return view('partials.recommended_tutors');
     }
+
+    // TODO: add validation
+    public function rejectTutorRequest(Request $request) {
+        $tutorRequestId = $request->input('tutor_request_id');
+
+        Tutor_request::find($tutorRequestId)->delete();
+
+        return response()->json(
+            [
+                'successMsg' => 'Successfully rejected the tutor request!'
+            ]
+        );
+    }
+
+    //add or remove the course id to/from the user
+    public function addRemoveCourseToProfile(Request $request) {
+        $new_course_id = $request->input('new_course_id');
+        // Log::channel('stderr')->info($new_course_id);
+        if(Auth::user()->courses()->find($new_course_id)) {
+            Auth::user()->courses()->detach($new_course_id);
+
+            return response()->json([
+                'successMsg' => 'Successfully removed the course.'
+            ]);
+        }
+        else {
+            Auth::user()->courses()->attach($new_course_id);
+
+            return response()->json([
+                'successMsg' => 'Successfully added the course.'
+            ]);
+
+        }
+
+    }
+
+    //add or remove the tag id to/from the user
+    public function addRemoveTagToProfile(Request $request) {
+        $new_tag_id = $request->input('new_tag_id');
+        // Log::channel('stderr')->info($new_tag_id);
+        // Log::channel('stderr')->info(Auth::user()->id);
+        if(Auth::user()->tags()->find($new_tag_id)) {
+            Auth::user()->tags()->detach($new_tag_id);
+
+            return response()->json([
+                'successMsg' => 'Successfully removed the tag.'
+            ]);
+        }
+        else {
+            Auth::user()->tags()->attach($new_tag_id);
+
+            return response()->json([
+                'successMsg' => 'Successfully added the tag.'
+            ]);
+        }
+    }
+
+
 
     // TODO: add validation
     public function getDashboardPosts(Request $request) {
@@ -309,18 +368,7 @@ class GeneralController extends Controller
 
     }
 
-    // TODO: add validation
-    public function rejectTutorRequest(Request $request) {
-        $tutorRequestId = $request->input('tutor_request_id');
 
-        Tutor_request::find($tutorRequestId)->delete();
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully rejected the tutor request!'
-            ]
-        );
-    }
 
 
 

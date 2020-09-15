@@ -26,5 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('add-available-time', function ($user) {
+            $isAvailable = true;
+            // todo: check if the available time overlaps with any other time slots here
+            return $user->is_tutor && $isAvailable;
+        });
     }
 }

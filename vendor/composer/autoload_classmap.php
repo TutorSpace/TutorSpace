@@ -24,6 +24,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\BookmarkController' => $baseDir . '/app/Http/Controllers/BookmarkController.php',
     'App\\Http\\Controllers\\CalendarController' => $baseDir . '/app/Http/Controllers/CalendarController.php',
+    'App\\Http\\Controllers\\ChattingController' => $baseDir . '/app/Http/Controllers/ChattingController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Forum\\PostController' => $baseDir . '/app/Http/Controllers/Forum/PostController.php',
     'App\\Http\\Controllers\\Forum\\ReplyController' => $baseDir . '/app/Http/Controllers/Forum/ReplyController.php',
