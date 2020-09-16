@@ -16481,6 +16481,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-bottom: 1px solid #dee2e6 !important;
 }
 
+#calendar .fc-today-button,
+.calendar .fc-today-button {
+  margin-right: 1.3rem;
+}
+
+#calendar button,
+.calendar button {
+  white-space: nowrap;
+}
+
 .calendar-note {
   font-size: 1.5rem;
   margin-top: 2.2rem;
@@ -16813,6 +16823,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box > * {
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box > * {
+    flex: 0 0 50%;
+  }
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .title {
