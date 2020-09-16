@@ -1,0 +1,8 @@
+.notification {
+
+    &__side-bar--left {
+        .msgs {
+            height: calc(100% - 12rem);
+        }
+    }
+}

@@ -1,5 +1,5 @@
 // for both chatting and notifications
-.chatting, .notifications {
+.chatting, .notification {
     margin-top: $nav-height;
     color: $color-black-2;
 
@@ -11,6 +11,27 @@
     &-container {
         padding: $outer-padding-y $outer-padding-x;
         height: calc(100vh - #{$nav-height});
+    }
+
+    .search-bar-container {
+        position: relative;
+
+        .search-bar {
+            border-radius: 7rem;
+            background-color: rgba(240, 240, 240, 0.9);
+            font-size: 1.6rem;
+        }
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 2.8rem;
+            fill: $color-grey;
+            cursor: pointer;
+        }
     }
 
     &__side-bar--left {
@@ -59,7 +80,6 @@
         .msgs {
             margin-top: 2rem;
             overflow: scroll;
-            height: calc(100% - 12rem);
 
             > *:not(:first-child) {
                 paddings-top: 1rem;

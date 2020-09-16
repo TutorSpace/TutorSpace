@@ -1,23 +1,8 @@
 .chatting {
 
-    .search-bar-container {
-        position: relative;
-
-        .search-bar {
-            border-radius: 7rem;
-            background-color: rgba(240, 240, 240, 0.9);
-            font-size: 1.6rem;
-        }
-
-        svg {
-            width: 2rem;
-            height: 2rem;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 2.8rem;
-            fill: $color-grey;
-            cursor: pointer;
+    &__side-bar--left {
+        .msgs {
+            height: calc(100% - 12rem);
         }
     }
 
