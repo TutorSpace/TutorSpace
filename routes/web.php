@@ -153,7 +153,6 @@ Route::group([
 // view profile
 Route::group([
     'prefix' => 'view-profile',
-    'middleware' => 'auth'
 ], function() {
     Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
 });
