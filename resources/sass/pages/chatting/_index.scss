@@ -35,7 +35,7 @@
         height: 100%;
         flex: 0 0 37rem;
         padding: 3rem 0;
-        overflow: scroll;
+        overflow: hidden;
         border-radius: 1rem;
 
         @include respond(md) {
@@ -58,6 +58,8 @@
 
         .chatting-msgs {
             margin-top: 2rem;
+            overflow: scroll;
+            height: 100%;
 
             > *:not(:first-child) {
                 paddings-top: 1rem;

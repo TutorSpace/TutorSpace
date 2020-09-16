@@ -21422,7 +21422,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 100%;
   flex: 0 0 37rem;
   padding: 3rem 0;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: 1rem;
 }
 
@@ -21448,6 +21448,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__side-bar--left .chatting-msgs {
   margin-top: 2rem;
+  overflow: scroll;
+  height: 100%;
 }
 
 .chatting__side-bar--left .chatting-msgs > *:not(:first-child) {
