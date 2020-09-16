@@ -16476,6 +16476,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   cursor: not-allowed;
 }
 
+#calendar .table-bordered tr:nth-child(2n),
+.calendar .table-bordered tr:nth-child(2n) {
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
 .calendar-note {
   font-size: 1.5rem;
   margin-top: 2.2rem;

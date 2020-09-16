@@ -48,6 +48,10 @@
     }
 
 
+    .table-bordered tr:nth-child(2n) {
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+
 }
 
 
