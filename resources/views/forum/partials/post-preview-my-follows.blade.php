@@ -8,7 +8,7 @@
     </span>
     <p class="post__heading-2">
         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
-        <a href="#" class="poster-name mr-2">
+        <a href="{{ route('view.profile', $post->user->id) }}" class="poster-name mr-2">
             {{ "{$post->user->first_name} {$post->user->last_name}" }}
         </a>
         <span class="mr-2 fw-900">&middot;</span>
