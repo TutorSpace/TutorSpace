@@ -85,6 +85,13 @@ bg-student
                     </div>
                 </div>
 
+                <div class="profile__form-row mt-3">
+                    <div class="input-introduction">
+                        <label for="" class="profile__label">Introduction</label>
+                        <textarea name="" id="" cols="30" rows="10" class="profile__input form-control form-control-lg">{{ Auth::user()->getIntroduction() }}</textarea>
+                    </div>
+                </div>
+
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
                 <div class="profile__form-row flex-wrap">
                     <div class="autocomplete mb-3">

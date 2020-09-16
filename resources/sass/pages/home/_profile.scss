@@ -13,7 +13,7 @@
     .home__panel__text {
         width: 60%;
         color: white;
-        
+
     }
     .home__panel__button {
         max-width: 40%;
@@ -131,7 +131,7 @@
             align-self: center;
             //transition: all .1s;
             cursor: default;
-            
+
 
             @include respond(sm) {
                 flex: 0 0 calc(25% - .75rem);
@@ -171,7 +171,13 @@
         }
     }
 
+    .input-introduction {
+        flex: 0 0 66%;
 
+        textarea {
+            padding: 1rem 1.5rem;
+        }
+    }
 
 }
 

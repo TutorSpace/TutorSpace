@@ -21076,6 +21076,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding-left: 2.5rem;
 }
 
+.profile .input-introduction {
+  flex: 0 0 66%;
+}
+
+.profile .input-introduction textarea {
+  padding: 1rem 1.5rem;
+}
+
 .view-profile {
   margin-top: 8rem;
   color: #626262;
