@@ -76,6 +76,10 @@
             window.location.href = "{{ route('chatting.index') }}";
         });
 
+        $('nav .svg-notification').click(function() {
+            window.location.href = "{{ route('notifications.index') }}";
+        });
+
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
         $(document).on('click', '.svg-bookmark', function() {

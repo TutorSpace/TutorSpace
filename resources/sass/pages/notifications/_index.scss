@@ -1,4 +1,4 @@
-.chatting {
+.notifications {
 
     .search-bar-container {
         position: relative;
@@ -45,7 +45,7 @@
         .chatting-msgs {
             margin-top: 2rem;
             overflow: scroll;
-            height: calc(100% - 12rem);
+            height: 100%;
 
             > *:not(:first-child) {
                 paddings-top: 1rem;

@@ -1,0 +1,36 @@
+// for both chatting and notifications
+.chatting, .notifications {
+    margin-top: $nav-height;
+    color: $color-black-2;
+
+    $outer-padding-x: 10rem;
+    $outer-padding-y: 3rem;
+
+    &-container {
+        padding: $outer-padding-y $outer-padding-x;
+        height: calc(100vh - #{$nav-height});
+    }
+
+    &__side-bar--left {
+        background-color: $color-white-dark-5;
+        height: calc(100%);
+        padding: 2rem 0 3rem 0;
+        overflow: hidden;
+        border-radius: 1rem;
+
+
+        #btn-back {
+            font-size: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            color: $color-grey;
+
+
+            svg {
+                font-size: 1.2rem;
+                margin-right: .25rem;
+            }
+        }
+    }
+
+}

@@ -169,6 +169,22 @@ Route::group([
 Route::post('/course_add_remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
 Route::post('/tag_add_remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
 
+// notifications
+Route::group([
+    'prefix' => 'notifications',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/', 'NotificationController@index')->name('notifications.index');
+});
+
+
+
+
+
+
+
+
+
 
 // ================= IMPORTANT: DO NOT ADD ROUTES BELOW ==================
 

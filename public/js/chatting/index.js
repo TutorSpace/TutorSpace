@@ -97,14 +97,26 @@
 
 /***/ }),
 
+/***/ "./resources/js/notifications/index.js":
+/*!*********************************************!*\
+  !*** ./resources/js/notifications/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ 9:
-/*!**********************************************!*\
-  !*** multi ./resources/js/chatting/index.js ***!
-  \**********************************************/
+/*!************************************************************************************!*\
+  !*** multi ./resources/js/chatting/index.js ./resources/js/notifications/index.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/chatting/index.js */"./resources/js/chatting/index.js");
+__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/chatting/index.js */"./resources/js/chatting/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/notifications/index.js */"./resources/js/notifications/index.js");
 
 
 /***/ })
