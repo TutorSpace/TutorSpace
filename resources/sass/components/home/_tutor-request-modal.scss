@@ -29,8 +29,8 @@
         /* The Close Button */
         .tutor-request-modal__close {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
+            top: 1.2rem;
+            right: 1.2rem;
 
             &:hover {
                 cursor: pointer;
@@ -38,7 +38,7 @@
         }
 
         .tutor-request-modal__content {
-            padding: 5rem;
+            padding: 4rem;
             padding-bottom: 3rem;
             margin-bottom: 5rem;
 
@@ -164,10 +164,15 @@
                     font-size: 2rem !important;
                 }
 
+                .calendar-note {
+                    margin-top: .3rem;
+                    margin-bottom: 2rem;
+                }
             }
 
             .tutor-request-modal__content__policy {
                 font-size: 1.3rem;
+                margin-top: 3.5rem;
             }
 
             .tutor-request-modal__content__confirm {
