@@ -5,7 +5,7 @@
         <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
     </svg>
 </form>
-<ul class="chatting-msgs">
+<ul class="msgs">
     @include('chatting.side-bar-chatting-msg', [
         'unRead' => true,
         'time' => "5:38pm"

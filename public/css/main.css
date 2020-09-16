@@ -18494,12 +18494,160 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: inline-flex;
   align-items: center;
   color: #A0A0A0;
+  padding-left: calc(2.5rem - 1.2rem);
 }
 
 .chatting__side-bar--left #btn-back svg,
 .notifications__side-bar--left #btn-back svg {
   font-size: 1.2rem;
   margin-right: 0.25rem;
+}
+
+.chatting__side-bar--left,
+.notifications__side-bar--left {
+  flex: 0 0 37rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left,
+  .notifications__side-bar--left {
+    flex: 0 0 28rem;
+  }
+}
+
+.chatting__side-bar--left .heading,
+.notifications__side-bar--left .heading {
+  margin-left: 2.5rem;
+  font-size: 3.5rem;
+}
+
+.chatting__side-bar--left .search-bar-container,
+.notifications__side-bar--left .search-bar-container {
+  margin-top: 2rem;
+  padding: 0 2.5rem;
+}
+
+.chatting__side-bar--left .search-bar-container .search-bar,
+.notifications__side-bar--left .search-bar-container .search-bar {
+  padding: 1.75rem 1.5rem;
+}
+
+.chatting__side-bar--left .msgs,
+.notifications__side-bar--left .msgs {
+  margin-top: 2rem;
+  overflow: scroll;
+  height: calc(100% - 12rem);
+}
+
+.chatting__side-bar--left .msgs > *:not(:first-child),
+.notifications__side-bar--left .msgs > *:not(:first-child) {
+  paddings-top: 1rem;
+}
+
+.chatting__side-bar--left .msgs .msg,
+.notifications__side-bar--left .msgs .msg {
+  border-left: 5px solid transparent;
+}
+
+.chatting__side-bar--left .msgs .msg.unread,
+.notifications__side-bar--left .msgs .msg.unread {
+  border-left: 5px solid #FFBC00;
+}
+
+.chatting__side-bar--left .msgs .msg .box,
+.notifications__side-bar--left .msgs .msg .box {
+  padding: 1.75rem 2.5rem;
+  padding-left: calc(2.5rem - 5px);
+  display: flex;
+  cursor: pointer;
+}
+
+.chatting__side-bar--left .msgs .msg .box:hover,
+.notifications__side-bar--left .msgs .msg .box:hover {
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+.chatting__side-bar--left .msgs .msg .box .img-container,
+.notifications__side-bar--left .msgs .msg .box .img-container {
+  flex: 0 0 5.5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .msgs .msg .box .img-container,
+  .notifications__side-bar--left .msgs .msg .box .img-container {
+    flex: 0 0 4rem;
+  }
+}
+
+.chatting__side-bar--left .msgs .msg .box .img-container img,
+.notifications__side-bar--left .msgs .msg .box .img-container img {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .msgs .msg .box .img-container img,
+  .notifications__side-bar--left .msgs .msg .box .img-container img {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container,
+.notifications__side-bar--left .msgs .msg .box .content-container {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 5.5rem - 5rem - 1rem);
+  padding: 0rem 1rem 0 1.5rem;
+  justify-content: center;
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container .user-name,
+.chatting__side-bar--left .msgs .msg .box .content-container .content-2,
+.notifications__side-bar--left .msgs .msg .box .content-container .user-name,
+.notifications__side-bar--left .msgs .msg .box .content-container .content-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container .content-1,
+.notifications__side-bar--left .msgs .msg .box .content-container .content-1 {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container .content-1 .user-name,
+.notifications__side-bar--left .msgs .msg .box .content-container .content-1 .user-name {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container .content-1 .time,
+.notifications__side-bar--left .msgs .msg .box .content-container .content-1 .time {
+  position: absolute;
+  left: calc(100% + 1.6rem);
+  font-size: 1.2rem;
+  color: #A0A0A0;
+  text-align: right;
+  width: 5rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .chatting__side-bar--left .msgs .msg .box .content-container .content-1 .time,
+  .notifications__side-bar--left .msgs .msg .box .content-container .content-1 .time {
+    left: calc(100% + 3rem);
+  }
+}
+
+.chatting__side-bar--left .msgs .msg .box .content-container .content-2,
+.notifications__side-bar--left .msgs .msg .box .content-container .content-2 {
+  font-size: 1.3rem;
+  color: #A0A0A0;
 }
 
 .index {
@@ -21454,130 +21602,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   cursor: pointer;
 }
 
-.chatting__side-bar--left {
-  flex: 0 0 37rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .chatting__side-bar--left {
-    flex: 0 0 28rem;
-  }
-}
-
-.chatting__side-bar--left .heading {
-  margin-left: 2rem;
-  font-size: 3.5rem;
-}
-
-.chatting__side-bar--left .search-bar-container {
-  margin-top: 2rem;
-  padding: 0 2rem;
-}
-
-.chatting__side-bar--left .search-bar-container .search-bar {
-  padding: 1.75rem 1.5rem;
-}
-
-.chatting__side-bar--left .chatting-msgs {
-  margin-top: 2rem;
-  overflow: scroll;
-  height: calc(100% - 12rem);
-}
-
-.chatting__side-bar--left .chatting-msgs > *:not(:first-child) {
-  paddings-top: 1rem;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg {
-  border-left: 5px solid transparent;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg.unread {
-  border-left: 5px solid #FFBC00;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box {
-  padding: 1.75rem 2rem;
-  padding-left: calc(2rem - 5px);
-  display: flex;
-  cursor: pointer;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box:hover {
-  background-color: rgba(240, 240, 240, 0.9);
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
-  flex: 0 0 5.5rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
-    flex: 0 0 4rem;
-  }
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
-  width: 5.5rem;
-  height: 5.5rem;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
-    width: 4rem;
-    height: 4rem;
-  }
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 5.5rem - 5rem - 1rem);
-  padding: 0rem 1rem 0 1.5rem;
-  justify-content: center;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .user-name,
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .user-name {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
-  position: absolute;
-  left: calc(100% + 1.6rem);
-  font-size: 1.2rem;
-  color: #A0A0A0;
-  text-align: right;
-  width: 5rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
-    left: calc(100% + 3rem);
-  }
-}
-
-.chatting__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
-  font-size: 1.3rem;
-  color: #A0A0A0;
-}
-
 .chatting__content {
   margin-left: 2rem;
   flex: 1;
@@ -21683,269 +21707,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__send-msg-container .search-bar-container .btn-send {
-  font-size: 1.6rem;
-  border-radius: 3rem;
-  padding: 1rem 2rem;
-}
-
-.bg-student .message-content-container {
-  background-color: rgba(31, 122, 255, 0.95);
-}
-
-.bg-tutor .message-content-container {
-  background: rgba(103, 73, 223, 0.95);
-}
-
-.notifications .search-bar-container {
-  position: relative;
-}
-
-.notifications .search-bar-container .search-bar {
-  border-radius: 7rem;
-  background-color: rgba(240, 240, 240, 0.9);
-  font-size: 1.6rem;
-}
-
-.notifications .search-bar-container svg {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 2.8rem;
-  fill: #A0A0A0;
-  cursor: pointer;
-}
-
-.notifications__side-bar--left {
-  flex: 0 0 37rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .notifications__side-bar--left {
-    flex: 0 0 28rem;
-  }
-}
-
-.notifications__side-bar--left .heading {
-  margin-left: 2rem;
-  font-size: 3.5rem;
-}
-
-.notifications__side-bar--left .search-bar-container {
-  margin-top: 2rem;
-  padding: 0 2rem;
-}
-
-.notifications__side-bar--left .search-bar-container .search-bar {
-  padding: 1.75rem 1.5rem;
-}
-
-.notifications__side-bar--left .chatting-msgs {
-  margin-top: 2rem;
-  overflow: scroll;
-  height: 100%;
-}
-
-.notifications__side-bar--left .chatting-msgs > *:not(:first-child) {
-  paddings-top: 1rem;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg {
-  border-left: 5px solid transparent;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg.unread {
-  border-left: 5px solid #FFBC00;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box {
-  padding: 1.75rem 2rem;
-  padding-left: calc(2rem - 5px);
-  display: flex;
-  cursor: pointer;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box:hover {
-  background-color: rgba(240, 240, 240, 0.9);
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
-  flex: 0 0 5.5rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container {
-    flex: 0 0 4rem;
-  }
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
-  width: 5.5rem;
-  height: 5.5rem;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .img-container img {
-    width: 4rem;
-    height: 4rem;
-  }
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 5.5rem - 5rem - 1rem);
-  padding: 0rem 1rem 0 1.5rem;
-  justify-content: center;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .user-name,
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .user-name {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
-  position: absolute;
-  left: calc(100% + 1.6rem);
-  font-size: 1.2rem;
-  color: #A0A0A0;
-  text-align: right;
-  width: 5rem;
-}
-
-@media only screen and (max-width: 61.99em) {
-  .notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-1 .time {
-    left: calc(100% + 3rem);
-  }
-}
-
-.notifications__side-bar--left .chatting-msgs .chatting-msg .chatting-box .content-container .content-2 {
-  font-size: 1.3rem;
-  color: #A0A0A0;
-}
-
-.notifications__content {
-  margin-left: 2rem;
-  flex: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.notifications__content__header {
-  background-color: #F9F9F9;
-  padding: 3rem;
-  width: 100%;
-  box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
-  border-radius: 1rem 1rem 0px 0px;
-  display: flex;
-  align-items: center;
-}
-
-.notifications__content__header .user-name {
-  font-size: 2.2rem;
-  font-weight: 500;
-  color: #626262;
-}
-
-.notifications__content__header .other-info {
-  font-size: 1.4rem;
-  color: #A0A0A0;
-  margin-left: 1.3rem;
-  display: flex;
-  align-items: center;
-}
-
-.notifications__content__messages {
-  background-color: #EDEDED;
-  padding: 3rem;
-  flex: 1;
-  overflow: scroll;
-}
-
-.notifications__content__messages .message {
-  display: flex;
-}
-
-.notifications__content__messages .message:not(:first-child) {
-  margin-top: 2.5rem;
-}
-
-.notifications__content__messages .message .img-container {
-  margin-right: 2rem;
-}
-
-.notifications__content__messages .message .img-container img {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.notifications__content__messages .message .message-content-container {
-  padding: 1.5rem 2rem;
-  border-radius: 1rem;
-  max-width: 50%;
-  font-size: 1.5rem;
-}
-
-.notifications__content__messages .message .time-container {
-  font-size: 1.4rem;
-  color: #A0A0A0;
-  display: flex;
-  align-items: flex-end;
-}
-
-.notifications__content__messages .message--self {
-  justify-content: flex-end;
-}
-
-.notifications__content__messages .message--self .message-content-container {
-  margin-left: 1.5rem;
-  background-color: rgba(249, 249, 249, 0.9);
-  color: #626262;
-}
-
-.notifications__content__messages .message--other .message-content-container {
-  margin-right: 1.5rem;
-  color: #F9F9F9;
-}
-
-.notifications__send-msg-container {
-  background-color: #F9F9F9;
-  border-radius: 0px 0px 1rem 1rem;
-  padding: 3rem;
-}
-
-.notifications__send-msg-container .search-bar-container {
-  display: flex;
-  align-items: center;
-}
-
-.notifications__send-msg-container .search-bar-container .search-bar {
-  margin-right: 2rem;
-  padding: 2.25rem 2rem;
-}
-
-.notifications__send-msg-container .search-bar-container .btn-send {
   font-size: 1.6rem;
   border-radius: 3rem;
   padding: 1rem 2rem;

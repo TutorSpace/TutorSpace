@@ -1,5 +1,5 @@
-<li class="chatting-msg @if(isset($unRead) && $unRead) unread @endif">
-    <div class="chatting-box">
+<li class="msg @if(isset($unRead) && $unRead) unread @endif">
+    <div class="box">
         <div class="img-container">
             <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user img">
         </div>
