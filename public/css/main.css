@@ -16388,6 +16388,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: rgba(55, 28, 163, 0.8);
 }
 
+.bg-student .menu-bar {
+  background-color: rgba(0, 92, 225, 0.8);
+}
+
+.bg-student .menu-bar__lists li.active {
+  color: rgba(0, 92, 225, 0.8);
+}
+
+.bg-student .menu-bar__lists a:hover {
+  color: rgba(0, 92, 225, 0.8);
+}
+
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
