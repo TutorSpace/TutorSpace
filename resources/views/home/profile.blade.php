@@ -31,6 +31,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
                 <p class="heading">Want to earn experience points more quickly? </p>
@@ -39,6 +40,7 @@ bg-student
                 <p class="home__panel__button__label">Become a Verified Tutor</p>
             </div>
         </div>
+        @endif
 
         <form class="container col-layout-2 profile" autocomplete="off">
             <div class="row">
@@ -84,6 +86,15 @@ bg-student
                         </span>
                     </div>
                 </div>
+
+                @if (Auth::user()->is_tutor)
+                <div class="profile__form-row mt-3">
+                    <div class="input-introduction">
+                        <label for="" class="profile__label">Introduction</label>
+                        <textarea name="" id="" cols="30" rows="10" class="profile__input form-control form-control-lg">{{ Auth::user()->getIntroduction() }}</textarea>
+                    </div>
+                </div>
+                @endif
 
                 <h5 class="w-100 profile__heading">Tutor Information</h5>
                 <div class="profile__form-row flex-wrap">

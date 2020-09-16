@@ -16476,6 +16476,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   cursor: not-allowed;
 }
 
+#calendar .table-bordered tr:nth-child(2n),
+.calendar .table-bordered tr:nth-child(2n) {
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+#calendar .fc-today-button,
+.calendar .fc-today-button {
+  margin-right: 1.3rem;
+}
+
+#calendar button,
+.calendar button {
+  white-space: nowrap;
+}
+
 .calendar-note {
   font-size: 1.5rem;
   margin-top: 2.2rem;
@@ -16709,8 +16724,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__close {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 1.2rem;
+  right: 1.2rem;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__close:hover {
@@ -16718,7 +16733,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content {
-  padding: 5rem;
+  padding: 4rem;
   padding-bottom: 3rem;
   margin-bottom: 5rem;
 }
@@ -16810,6 +16825,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   flex-direction: column;
 }
 
+@media only screen and (max-width: 35.99em) {
+  .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box > * {
+    flex: 0 0 50%;
+  }
+}
+
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__profile .content-box .title {
   font-size: 1.4rem;
   color: #A0A0A0;
@@ -16850,8 +16871,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 2rem !important;
 }
 
+.home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__calendar .calendar-note {
+  margin-top: 0.3rem;
+  margin-bottom: 2rem;
+}
+
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__policy {
   font-size: 1.3rem;
+  margin-top: 3.5rem;
 }
 
 .home__tutor-request-modal .tutor-request-modal__content__close .tutor-request-modal__content .tutor-request-modal__content__confirm {
@@ -21049,6 +21076,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding-left: 2.5rem;
 }
 
+.profile .input-introduction {
+  flex: 0 0 66%;
+}
+
+.profile .input-introduction textarea {
+  padding: 1rem 1.5rem;
+}
+
 .view-profile {
   margin-top: 8rem;
   color: #626262;
@@ -21387,7 +21422,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   height: 100%;
   flex: 0 0 37rem;
   padding: 3rem 0;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: 1rem;
 }
 
@@ -21413,6 +21448,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__side-bar--left .chatting-msgs {
   margin-top: 2rem;
+  overflow: scroll;
+  height: 100%;
 }
 
 .chatting__side-bar--left .chatting-msgs > *:not(:first-child) {

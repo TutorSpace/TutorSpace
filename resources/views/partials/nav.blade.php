@@ -130,17 +130,17 @@
                 </div>
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
                 <div class="profile-img-dropdown">
-                    <a class="nav__item" href="{{ route('home.profile') }}">
-                        <svg class="nav__item__svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
-                        </svg>
-                        Profile
-                    </a>
                     <a class="nav__item" href="{{ route('home') }}">
                         <svg class="nav__item__svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M6 1H1v3h5V1zM1 0a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H1zm14 12h-5v3h5v-3zm-5-1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-5zM6 8H1v7h5V8zM1 7a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H1zm14-6h-5v7h5V1zm-5-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h5a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1h-5z"/>
                         </svg>
                         Dashboard
+                    </a>
+                    <a class="nav__item" href="{{ route('home.profile') }}">
+                        <svg class="nav__item__svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                        Profile
                     </a>
                     <a class="nav__item mt-2" href="#">
                         <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -254,7 +254,7 @@
                             </svg>
                             Support
                         </a>
-                        <a class="nav__item mt-2" href="#">                            
+                        <a class="nav__item mt-2" href="#">
                             <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0)">
                                     <path d="M418.133 104.533C416 104.533 413.867 104.533 411.733 102.4C369.067 63.9999 313.6 42.6666 256 42.6666C200.533 42.6666 145.067 61.8666 102.4 100.267C98.1335 102.4 91.7335 102.4 87.4668 98.1333C83.2001 93.8666 85.3335 87.4666 89.6001 83.1999C134.4 42.6666 194.133 21.3333 256 21.3333C317.867 21.3333 379.734 44.7999 426.667 85.3333C430.934 89.5999 430.934 95.9999 426.667 100.267C424.534 102.4 422.4 104.533 418.133 104.533V104.533Z" fill="#595959"/>

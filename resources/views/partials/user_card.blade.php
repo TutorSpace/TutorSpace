@@ -21,7 +21,7 @@
 
     <img class="user-image" src="{{ Storage::url($user->profile_pic_url) }}" alt="user image">
 
-    <a class="user-name" href="#">
+    <a class="user-name" href="{{ route('view.profile', $user->id) }}">
         {{ $user->first_name }} {{ $user->last_name }}
     </a>
 
@@ -38,12 +38,12 @@
         @endif
         {{ $user->tutorLevel->tutor_level }} Tutor
     </span>
-    <button class="btn btn-lg btn-chat btn-animation-y-sm mt-4">Chat</button>
-    <button class="btn btn-lg btn-request btn-animation-y-sm">Request a Session</button>
+    <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ route('chatting.index') }}">Chat</a>
+    <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">Request a Session</a>
 
     @else
     <span class="user-info mt-1">Student</span>
-    <button class="btn btn-chat btn-animation-y-sm mt-4">Chat</button>
+    <a class="btn btn-chat btn-animation-y-sm mt-4" href="{{ route('chatting.index') }}">Chat</a>
 
     @if (!App\User::existTutor($user->email))
     <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
