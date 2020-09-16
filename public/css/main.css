@@ -14449,6 +14449,18 @@ h6 {
   background-color: #6749DF !important;
 }
 
+.bg-color-notification--sessions {
+  background-color: #F0847D !important;
+}
+
+.bg-color-notification--forum {
+  background-color: #5263FB !important;
+}
+
+.bg-color-notification--tutorspace {
+  background-color: #FBB752 !important;
+}
+
 .fill-color-blue-secondary {
   fill: #0C4293 !important;
 }
@@ -18603,7 +18615,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__side-bar--left .msgs .msg .box .img-container img,
-.notification__side-bar--left .msgs .msg .box .img-container img {
+.chatting__side-bar--left .msgs .msg .box .img-container div,
+.notification__side-bar--left .msgs .msg .box .img-container img,
+.notification__side-bar--left .msgs .msg .box .img-container div {
   width: 5.5rem;
   height: 5.5rem;
   border-radius: 50%;
@@ -18613,7 +18627,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 @media only screen and (max-width: 61.99em) {
   .chatting__side-bar--left .msgs .msg .box .img-container img,
-  .notification__side-bar--left .msgs .msg .box .img-container img {
+  .chatting__side-bar--left .msgs .msg .box .img-container div,
+  .notification__side-bar--left .msgs .msg .box .img-container img,
+  .notification__side-bar--left .msgs .msg .box .img-container div {
     width: 4rem;
     height: 4rem;
   }
@@ -21605,7 +21621,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__side-bar--left .msgs {
-  height: calc(100% - 12rem);
+  height: calc(100% - 12.5rem);
 }
 
 .chatting__content {
@@ -21727,6 +21743,26 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notification__side-bar--left .msgs {
-  height: calc(100% - 12rem);
+  height: calc(100% - 16rem);
+}
+
+.notification .notification-type-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.notification .notification-type-info .type-container {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.notification .notification-type-info .type-container:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.notification .notification-type-info .type-container svg {
+  margin-right: 0.75rem;
 }
 
