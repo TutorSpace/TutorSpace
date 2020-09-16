@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/chatting/index.js":
-/*!****************************************!*\
-  !*** ./resources/js/chatting/index.js ***!
-  \****************************************/
+/***/ "./resources/js/notification/index.js":
+/*!********************************************!*\
+  !*** ./resources/js/notification/index.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -97,14 +97,14 @@
 
 /***/ }),
 
-/***/ 9:
-/*!**********************************************!*\
-  !*** multi ./resources/js/chatting/index.js ***!
-  \**********************************************/
+/***/ 10:
+/*!**************************************************!*\
+  !*** multi ./resources/js/notification/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/chatting/index.js */"./resources/js/chatting/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/notification/index.js */"./resources/js/notification/index.js");
 
 
 /***/ })

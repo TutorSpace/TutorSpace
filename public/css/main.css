@@ -18644,9 +18644,9 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   justify-content: center;
 }
 
-.chatting__side-bar--left .msgs .msg .box .content-container .user-name,
+.chatting__side-bar--left .msgs .msg .box .content-container .content-1__content,
 .chatting__side-bar--left .msgs .msg .box .content-container .content-2,
-.notification__side-bar--left .msgs .msg .box .content-container .user-name,
+.notification__side-bar--left .msgs .msg .box .content-container .content-1__content,
 .notification__side-bar--left .msgs .msg .box .content-container .content-2 {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -18660,8 +18660,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   position: relative;
 }
 
-.chatting__side-bar--left .msgs .msg .box .content-container .content-1 .user-name,
-.notification__side-bar--left .msgs .msg .box .content-container .content-1 .user-name {
+.chatting__side-bar--left .msgs .msg .box .content-container .content-1 .content-1__content,
+.notification__side-bar--left .msgs .msg .box .content-container .content-1 .content-1__content {
   font-size: 1.8rem;
   font-weight: 500;
 }

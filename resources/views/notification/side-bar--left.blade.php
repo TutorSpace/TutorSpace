@@ -69,7 +69,7 @@
     ])
     @include('notification.side-bar-notification-msg', [
         'time' => "12/30/20",
-        'notificationType' => 'session'
+        'notificationType' => 'sessions'
     ])
     @include('notification.side-bar-notification-msg', [
         'time' => "12/30/20",

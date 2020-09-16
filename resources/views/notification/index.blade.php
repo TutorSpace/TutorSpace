@@ -30,7 +30,7 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content">
-            {{-- @include('notification.content') --}}
+            @include('notification.content')
         </div>
     </div>
 </div>
@@ -39,6 +39,6 @@ bg-student
 
 @section('js')
 
-<script src="{{ asset('js/notifications/index.js') }}"></script>
+<script src="{{ asset('js/notification/index.js') }}"></script>
 
 @endsection

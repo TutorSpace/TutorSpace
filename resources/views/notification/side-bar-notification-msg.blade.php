@@ -11,7 +11,7 @@
         </div>
         <div class="content-container">
             <span class="content-1">
-                <span class="user-name">Shuaiqing Luodgsdhgdlshglsdgdslkghshglhsdgldshgls</span>
+                <span class="content-1__content">Shuaiqing Luodgsdhgdlshglsdgdslkghshglhsdgldshgls</span>
                 <p class="time mb-0">
                     {{ $time }}
                 </p>
