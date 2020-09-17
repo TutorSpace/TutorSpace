@@ -21309,10 +21309,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .profile .boxes .box .remove {
   right: 0.5rem;
   cursor: pointer;
+  display: none;
 }
 
 .profile .boxes .box .verify {
   left: 1rem;
+}
+
+.profile .boxes .box:hover > .remove {
+  display: inline;
 }
 
 .profile .hourly-rate-input-container {

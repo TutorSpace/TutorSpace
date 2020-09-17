@@ -148,9 +148,13 @@
             .remove {
                 right: 0.5rem;
                 cursor: pointer;
+                display: none;
             }
             .verify {
                 left: 1rem;
+            }
+            &:hover > .remove {
+                display: inline;
             }
         }
 
