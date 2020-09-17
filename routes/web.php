@@ -153,7 +153,6 @@ Route::group([
 // view profile
 Route::group([
     'prefix' => 'view-profile',
-    'middleware' => 'auth'
 ], function() {
     Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
 });
@@ -169,6 +168,22 @@ Route::group([
 // add/remove course/tag to the user profile
 Route::post('/course_add_remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
 Route::post('/tag_add_remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
+
+// notifications
+Route::group([
+    'prefix' => 'notifications',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/', 'NotificationController@index')->name('notifications.index');
+});
+
+
+
+
+
+
+
+
 
 
 // ================= IMPORTANT: DO NOT ADD ROUTES BELOW ==================
