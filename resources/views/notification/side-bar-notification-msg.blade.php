@@ -11,7 +11,9 @@
         </div>
         <div class="content-container">
             <span class="content-1">
-                <span class="content-1__content">Shuaiqing Luodgsdhgdlshglsdgdslkghshglhsdgldshgls</span>
+                <span class="content-1__content">
+                    {{ $notificationHeader }}
+                </span>
                 <p class="time mb-0">
                     {{ $time }}
                 </p>

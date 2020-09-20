@@ -17158,9 +17158,41 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 2.2rem;
 }
 
+._nav .nav-right__svg-container .notification-indicator {
+  top: -0.1rem;
+  right: 0.1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  ._nav .nav-right__svg-container .notification-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
 @media only screen and (max-width: 47.99em) {
   ._nav .nav-right__svg-container {
     margin-right: 1.5rem;
+  }
+}
+
+._nav .nav-right__notif-message {
+  margin-right: 0rem;
+}
+
+._nav .nav-right__notif-message .notification-indicator {
+  top: -0.3rem;
+  right: 1.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  ._nav .nav-right__notif-message .notification-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
   }
 }
 
@@ -21309,10 +21341,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .profile .boxes .box .remove {
   right: 0.5rem;
   cursor: pointer;
+  display: none;
 }
 
 .profile .boxes .box .verify {
   left: 1rem;
+}
+
+.profile .boxes .box:hover > .remove {
+  display: inline;
 }
 
 .profile .hourly-rate-input-container {
