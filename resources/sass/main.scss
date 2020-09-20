@@ -27,7 +27,6 @@
 @import "components/session";
 @import "components/pagination";
 @import "components/search-card";
-@import "components/tutor-card";
 @import "components/bookmark";
 @import "components/bg-shapes";
 @import "components/select2";
@@ -46,6 +45,7 @@
 @import "layout/navbar";
 @import "layout/footer";
 @import "layout/forum";
+@import "layout/chatting-notifications";
 
 @import "pages/index";
 @import "pages/auth/register";
@@ -56,10 +56,6 @@
 @import "pages/home/index";
 @import "pages/home/profile";
 @import "pages/view_profile/index";
-
-
-
-@import "pages/report";
-@import "pages/messages";
-@import "pages/view_session";
+@import "pages/chatting/index";
+@import "pages/notifications/index";
 

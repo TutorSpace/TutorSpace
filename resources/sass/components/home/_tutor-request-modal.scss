@@ -29,8 +29,8 @@
         /* The Close Button */
         .tutor-request-modal__close {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
+            top: 1.2rem;
+            right: 1.2rem;
 
             &:hover {
                 cursor: pointer;
@@ -38,7 +38,7 @@
         }
 
         .tutor-request-modal__content {
-            padding: 5rem;
+            padding: 4rem;
             padding-bottom: 3rem;
             margin-bottom: 5rem;
 
@@ -117,15 +117,19 @@
                     > * {
                         display: flex;
                         flex-direction: column;
+
+                        @include respond(extra-sm) {
+                            flex: 0 0 50%;
+                        }
                     }
 
                     .title {
-                        font-size: 1.3rem;
+                        font-size: 1.4rem;
                         color: $color-grey;
                     }
 
                     .content {
-                        font-size: 1.4rem;
+                        font-size: 1.5rem;
                     }
                 }
             }
@@ -133,103 +137,42 @@
             .tutor-request-modal__content__calendar {
                 margin: 2rem 0rem;
 
-
-            .fc-timegrid-slots {
-                tr {
-                    height: 2rem;
-                    font-size: 1.3rem;
+                .fc-timegrid-slots {
+                    tr {
+                        height: 2rem;
+                        font-size: 1.3rem;
+                    }
                 }
-            }
 
-            .fc-col-header {
-                font-size: 1.45rem !important;
+                .fc-col-header {
+                    font-size: 1.45rem !important;
 
-                .fc-col-header-cell-cushion {
-                    padding: 2px 3px;
+                    .fc-col-header-cell-cushion {
+                        padding: 2px 3px;
+                    }
                 }
-            }
 
-            .fc-view-harness {
-                max-height: 61rem;
-                overflow: scroll;
-            }
+                .fc-next-button, .fc-prev-button {
+                    font-size: 1.2rem !important;
+                }
 
-            .fc .fc-timegrid-col-events {
-                margin-right: 0;
-                margin-left: 0;
-            }
+                .fc-next-button, .fc-toolbar-title {
+                    margin-left: .4rem !important;
+                }
 
+                .fc-toolbar-title {
+                    font-size: 2rem !important;
+                }
 
-            // change background color of today
-            .fc .fc-timegrid-col.fc-day-today {
-                /* background-color: rgba(255, 220, 40, 0.15); */
-                /* background-color: var(--fc-today-bg-color, rgba(255, 220, 40, 0.15)); */
-                background-color: transparent !important;
-            }
-
-            .fc-v-event .fc-event-main-frame {
-                justify-content: center;
-                align-items: center;
-            }
-
-            .fc-v-event .fc-event-title-container {
-                flex-grow: 0;
-            }
-
-            .fc-direction-ltr .fc-timegrid-slot-label-frame {
-                text-align: center;
-            }
-
-
-
-            // center the "title" text in the event
-            .fc-timegrid-event .fc-event-time {
-                margin-bottom: 0;
-                display: flex;
-                align-items: center;
-            }
-
-            // make overlap events always occupy 100% of the
-            .fc-media-screen .fc-timegrid-event-harness {
-                margin-right: 0 !important;
-                margin-left: 0 !important;
-                left: 0 !important;
-                z-index: unset !important;
-            }
-
-
-            // tool bar
-            .fc-toolbar-chunk {
-                display: flex;
-                align-items: center;
-            }
-
-            .fc-next-button, .fc-prev-button {
-                background-color: transparent !important;
-                border-color: transparent !important;
-                font-size: 1.2rem !important;
-                line-height: 1 !important;
-                color: $color-black !important;
-                box-shadow: none !important;
-            }
-
-            .fc-next-button, .fc-toolbar-title {
-                margin-left: .4rem !important;
-            }
-
-            .fc-toolbar-title {
-                font-size: 2rem !important;
-            }
-
-
-            .fc-col-header  {
-                background-color: #FBFBFB;
-            }
-
+                .calendar-note {
+                    margin-top: .3rem;
+                    margin-bottom: 2rem;
+                }
             }
 
             .tutor-request-modal__content__policy {
                 font-size: 1.3rem;
+                margin-top: 3.5rem;
             }
 
             .tutor-request-modal__content__confirm {

@@ -328,7 +328,9 @@ bg-student
 
 @section('js')
 
-@include('partials.nav-auth-js')
+@guest
+    @include('partials.nav-auth-js')
+@endguest
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 
 <script>
@@ -421,14 +423,6 @@ $('.btn-toggle-follow-up').click(function() {
 });
 
 @auth
-$('.user-card .btn-chat').click(function() {
-    alert('chat');
-});
-
-$('.user-card .btn-request').click(function() {
-    alert('request');
-});
-
 $('.user-card .btn-invite').click(function() {
     $.ajax({
         type:'POST',
@@ -442,7 +436,6 @@ $('.user-card .btn-invite').click(function() {
         }
     });
 });
-
 @else
 $('.user-card button').click(function() {
     $('.overlay-student').show();

@@ -24,7 +24,7 @@ bg-student
 @include('partials.nav')
 
 <main class="container view-profile p-relative">
-    @if (Auth::user()->is_tutor)
+    @if ($user->is_tutor)
     <div class="row back-container">
         <a class="btn btn-lg btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('posts.index')) }}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +118,7 @@ bg-student
 
 
     @else
-
+    <h1>View Student Page is still under development.</h1>
 
     @endif
 </main>
