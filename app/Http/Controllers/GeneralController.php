@@ -131,14 +131,14 @@ class GeneralController extends Controller
             ]);
         }
         else {
-            Auth::user()->courses()->attach($new_course_id);
+            if(Auth::user()->courses()->count() < 7){
+                Auth::user()->courses()->attach($new_course_id);
 
             return response()->json([
                 'successMsg' => 'Successfully added the course.'
             ]);
-
+            }
         }
-
     }
 
     //add or remove the tag id to/from the user
@@ -154,11 +154,14 @@ class GeneralController extends Controller
             ]);
         }
         else {
-            Auth::user()->tags()->attach($new_tag_id);
+            if(Auth::user()->tags()->count() < 10) {
+                Auth::user()->tags()->attach($new_tag_id);
 
             return response()->json([
                 'successMsg' => 'Successfully added the tag.'
             ]);
+
+            }
         }
     }
 

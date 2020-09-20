@@ -14,6 +14,7 @@ bg-student
 @endsection
 
 @section('links-in-head')
+
 {{-- plotly --}}
 <script src="{{ asset('js/plotly.js') }}"></script>
 @endsection

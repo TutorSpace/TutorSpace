@@ -48,6 +48,17 @@
     }
 
 
+    .table-bordered tr:nth-child(2n) {
+        border-bottom: 1px solid #dee2e6 !important;
+    }
+
+    .fc-today-button {
+        margin-right: 1.3rem;
+    }
+
+    button {
+        white-space: nowrap;
+    }
 }
 
 

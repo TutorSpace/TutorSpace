@@ -22,5 +22,6 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/home/profile.js', 'public/js/home')
     .js('resources/js/view_profile/index.js', 'public/js/view_profile')
     .js('resources/js/chatting/index.js', 'public/js/chatting')
+    .js('resources/js/notification/index.js', 'public/js/notification')
     .sass('resources/sass/main.scss', 'public/css');
 
