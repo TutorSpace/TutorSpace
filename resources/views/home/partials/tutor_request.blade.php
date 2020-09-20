@@ -18,7 +18,7 @@
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">12:30 - 13:00</span>
+            <span class="content">2:30 - 13:00</span>
         </div>
         <div class="course">
             <span class="title">Course</span>
@@ -84,27 +84,27 @@
                         <div class="user-info">
                             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
                             <a class="content" href="#">
-                                Shuaiqing Luo
+                                <!-- tutor name -->
                             </a>
                         </div>
                     </div>
                     <div class="content-box">
                         <div class="date">
                             <span class="title">Date</span>
-                            <span class="content">08/02/20 Wed</span>
+                            <span class="content"></span>
                         </div>
                         <div class="time">
                             <span class="title">Time</span>
-                            <span class="content">13:30 - 15:00</span>
+                            <span class="content"></span>
                         </div>
                         <div class="flex-100"></div>
                         <div class="course">
                             <span class="title">Course</span>
-                            <span class="content">BUAD 304</span>
+                            <span class="content"></span>
                         </div>
                         <div class="session-type">
                             <span class="title">Type</span>
-                            <span class="content">In Person</span>
+                            <span class="content"></span>
                         </div>
                         <div class="flex-100"></div>
                         <div class="price">

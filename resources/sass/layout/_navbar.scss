@@ -206,8 +206,35 @@
                 font-size: 2.2rem;
             }
 
+            .notification-indicator {
+                top: -.1rem;
+                right: 0.1rem;
+                width: 0.75rem;
+                height: 0.75rem;
+
+                @include respond(md) {
+                    width: 0.75rem;
+                    height: 0.75rem;
+                }
+            }
+
             @include respond(sm) {
                 margin-right: 1.5rem;
+            }
+        }
+
+        &__notif-message {
+            margin-right: 0rem;
+            .notification-indicator {
+                top: -.3rem;
+                right: 1.5rem;
+                width: 0.75rem;
+                height: 0.75rem;
+
+                @include respond(md) {
+                    width: 0.75rem;
+                    height: 0.75rem;
+                }
             }
         }
 
