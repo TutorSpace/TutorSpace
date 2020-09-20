@@ -113,16 +113,17 @@ autocomplete(document.getElementById("tag"), tags,
 profile_add_tag);
 
 
-$('.boxes__course').on('click', '.box', function() {
-    $(this).remove();
+$('.boxes__course').on('click', '.box .remove', function() {
+    $(this).parent().remove();
 
     // TODO - YASHVI: get the tag id of the element clicked
     var new_tag_id = 1;
     ajaxAddRemoveTag(new_tag_id);
 });
 
-$('.boxes__forum').on('click', '.box', function() {
-    $(this).remove();
+
+$('.boxes__forum').on('click', '.box .remove', function() {
+    $(this).parent().remove();
 
     // TODO - YASHVI: get the tag id of the element clicked
     var new_tag_id = 1;
@@ -170,55 +171,55 @@ function profile_add_tag() {
     $('.profile__input__forum').val("");
 }
 
-$('.autocomplete .profile__input__courses').on("keydown", function(e){
-    if(e.which == 13){
-        var new_course = $('.profile__input__courses').val().toUpperCase();
+// $('.autocomplete .profile__input__courses').on("keydown", function(e){
+//     if(e.which == 13){
+//         var new_course = $('.profile__input__courses').val().toUpperCase();
 
-        // checks if a duplicate tag is being added
-        if ($('.boxes__course .box .label').text().includes(new_course)) {
-            toastr.error('You already added this course.');
-        }
-        // checks if 7 tags have been added already
-        else if ($('.boxes__course .box').length == 7) {
-            toastr.error("You can add at most 7 courses.");
-        }
-        else {
-            appendNewBox(new_course, '.boxes__course');
+//         // checks if a duplicate tag is being added
+//         if ($('.boxes__course .box .label').text().includes(new_course)) {
+//             toastr.error('You already added this course.');
+//         }
+//         // checks if 7 tags have been added already
+//         else if ($('.boxes__course .box').length == 7) {
+//             toastr.error("You can add at most 7 courses.");
+//         }
+//         else {
+//             appendNewBox(new_course, '.boxes__course');
 
-            // TODO - YASHVI: get the tag id of the element
-            var new_course_id = 1;
-            ajaxAddRemoveCourse(new_course_id);
-        }
-        // clear input field
-        $('.profile__input__courses').val("");
-    }
-});
+//             // TODO - YASHVI: get the tag id of the element
+//             var new_course_id = 1;
+//             ajaxAddRemoveCourse(new_course_id);
+//         }
+//         // clear input field
+//         $('.profile__input__courses').val("");
+//     }
+// });
 
 
-$('.autocomplete .profile__input__forum').on("keydown", function(e){
-    if(e.which == 13){
-        var new_tag = $('.profile__input__forum').val().toUpperCase();
+// $('.autocomplete .profile__input__forum').on("keydown", function(e){
+//     if(e.which == 13){
+//         var new_tag = $('.profile__input__forum').val().toUpperCase();
 
-        // checks if a duplicate tag is being added
-        if ($('.boxes__forum .box .label').text().includes(new_tag)) {
-           // error message
-           toastr.error('You already added this tag.');
-        }
-        // checks if 10 tags have been added already
-        else if ($('.boxes__forum .box').length == 10) {
-            toastr.error("You can add at most 10 tags.");
-        }
-        else {
-            appendNewBox(new_tag, '.boxes__forum');
+//         // checks if a duplicate tag is being added
+//         if ($('.boxes__forum .box .label').text().includes(new_tag)) {
+//            // error message
+//            toastr.error('You already added this tag.');
+//         }
+//         // checks if 10 tags have been added already
+//         else if ($('.boxes__forum .box').length == 10) {
+//             toastr.error("You can add at most 10 tags.");
+//         }
+//         else {
+//             appendNewBox(new_tag, '.boxes__forum');
 
-            // TODO - YASHVI: get the tag id of the element
-            var new_tag_id = 1;
-            ajaxAddRemoveTag(new_tag_id);
-        }
-        // clear input field
-        $('.profile__input__forum').val("");
-    }
-});
+//             // TODO - YASHVI: get the tag id of the element
+//             var new_tag_id = 1;
+//             ajaxAddRemoveTag(new_tag_id);
+//         }
+//         // clear input field
+//         $('.profile__input__forum').val("");
+//     }
+// });
 
 $('#btn-reset').click(function() {
     location.reload(true);
@@ -228,7 +229,7 @@ $('#btn-reset').click(function() {
 function appendNewBox(tagName, parentSelector) {
     // create new tag
     $(parentSelector).append(`
-    <span class="box p-relative" style="background-color: rgb(45, 118, 134); color: rgb(255, 255, 255);">
+    <span class="box p-relative" id="new_box" style="background-color: rgb(45, 118, 134); color: rgb(255, 255, 255);">
         <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
             <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
