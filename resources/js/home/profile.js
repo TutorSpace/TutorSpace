@@ -114,6 +114,7 @@ profile_add_tag);
 
 
 $('.boxes__course').on('click', '.box .remove', function() {
+    var course_val = $(this).siblings('.label').text();
     $(this).parent().remove();
 
     // TODO - YASHVI: get the tag id of the element clicked

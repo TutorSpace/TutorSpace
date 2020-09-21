@@ -21238,6 +21238,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: unset !important;
 }
 
+.profile__text-container--white {
+  background-color: #F9F9F9;
+  width: 100%;
+  padding: 3rem;
+  margin: 5rem 0 0;
+  border-radius: 10px;
+}
+
 .profile__heading {
   margin-top: 5rem;
 }
@@ -21285,6 +21293,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile__buttons button:active {
   transform: translateY(-1px);
+}
+
+.profile__buttons #btn-reset {
+  background-color: #F9F9F9;
 }
 
 .profile .autocomplete,
