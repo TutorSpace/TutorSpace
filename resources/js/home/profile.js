@@ -114,20 +114,15 @@ profile_add_tag);
 
 
 $('.boxes__course').on('click', '.box .remove', function() {
-    var course_val = $(this).siblings('.label').text();
+    var new_tag_id = $(this).siblings('.label').attr('data-course-id');
     $(this).parent().remove();
-
-    // TODO - YASHVI: get the tag id of the element clicked
-    var new_tag_id = 1;
-    ajaxAddRemoveTag(new_tag_id);
+    ajaxAddRemoveCourse(new_tag_id);
 });
 
 
 $('.boxes__forum').on('click', '.box .remove', function() {
+    var new_tag_id = $(this).siblings('.label').attr('data-tag-id');
     $(this).parent().remove();
-
-    // TODO - YASHVI: get the tag id of the element clicked
-    var new_tag_id = 1;
     ajaxAddRemoveTag(new_tag_id);
 });
 
@@ -142,10 +137,10 @@ function profile_add_course() {
         toastr.error("You can add at most 7 courses.");
     }
     else {
-        appendNewBox(new_course, '.boxes__course');
         // TODO - YASHVI: get the course id of the element clicked
+        ajaxAddRemoveCourse(new_course);
         var new_course_id = 1;
-        ajaxAddRemoveCourse(new_course_id);
+        appendNewBox('data-course-id', new_course, new_course_id, '.boxes__course');
     }
     // clear input field
     $('.profile__input__courses').val("");
@@ -163,71 +158,22 @@ function profile_add_tag() {
         toastr.error("You can add at most 10 tags.");
     }
     else {
-        appendNewBox(new_tag, '.boxes__forum');
+        
         // TODO - YASHVI: get the course id of the element clicked
+        ajaxAddRemoveTag(new_tag);
         var new_tag_id = 1;
-        ajaxAddRemoveTag(new_tag_id);
+        appendNewBox('data-tag-id', new_tag, new_tag_id, '.boxes__forum');
     }
     // clear input field
     $('.profile__input__forum').val("");
 }
-
-// $('.autocomplete .profile__input__courses').on("keydown", function(e){
-//     if(e.which == 13){
-//         var new_course = $('.profile__input__courses').val().toUpperCase();
-
-//         // checks if a duplicate tag is being added
-//         if ($('.boxes__course .box .label').text().includes(new_course)) {
-//             toastr.error('You already added this course.');
-//         }
-//         // checks if 7 tags have been added already
-//         else if ($('.boxes__course .box').length == 7) {
-//             toastr.error("You can add at most 7 courses.");
-//         }
-//         else {
-//             appendNewBox(new_course, '.boxes__course');
-
-//             // TODO - YASHVI: get the tag id of the element
-//             var new_course_id = 1;
-//             ajaxAddRemoveCourse(new_course_id);
-//         }
-//         // clear input field
-//         $('.profile__input__courses').val("");
-//     }
-// });
-
-
-// $('.autocomplete .profile__input__forum').on("keydown", function(e){
-//     if(e.which == 13){
-//         var new_tag = $('.profile__input__forum').val().toUpperCase();
-
-//         // checks if a duplicate tag is being added
-//         if ($('.boxes__forum .box .label').text().includes(new_tag)) {
-//            // error message
-//            toastr.error('You already added this tag.');
-//         }
-//         // checks if 10 tags have been added already
-//         else if ($('.boxes__forum .box').length == 10) {
-//             toastr.error("You can add at most 10 tags.");
-//         }
-//         else {
-//             appendNewBox(new_tag, '.boxes__forum');
-
-//             // TODO - YASHVI: get the tag id of the element
-//             var new_tag_id = 1;
-//             ajaxAddRemoveTag(new_tag_id);
-//         }
-//         // clear input field
-//         $('.profile__input__forum').val("");
-//     }
-// });
 
 $('#btn-reset').click(function() {
     location.reload(true);
 });
 
 
-function appendNewBox(tagName, parentSelector) {
+function appendNewBox(dataType, tagName, tagId, parentSelector) {
     // create new tag
     $(parentSelector).append(`
     <span class="box p-relative" id="new_box" style="background-color: rgb(45, 118, 134); color: rgb(255, 255, 255);">
@@ -235,7 +181,7 @@ function appendNewBox(tagName, parentSelector) {
             <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
             <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
         </svg>
-        <span class="label">` + tagName + `</span>
+        <span class="label" ` + dataType  + `=` + tagId + `>` + tagName + `</span>
         <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
@@ -251,10 +197,10 @@ function ajaxAddRemoveCourse(courseId) {
         data: {
             new_course_id: courseId
         },
-        // success: (data) => {
-            // let { successMsg } = data;
-            // toastr.success(successMsg);
-        // },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+        },
         // error: function(error) {
         //     toastr.error(error);
         // }
@@ -268,10 +214,10 @@ function ajaxAddRemoveTag(tagId) {
         data: {
             new_tag_id: tagId
         },
-        // success: (data) => {
-            // let { successMsg } = data;
-            // toastr.success(successMsg);
-        // },
+        success: (data) => {
+            let { successMsg } = data;
+            toastr.success(successMsg);
+        },
         // error: function(error) {
         //     toastr.error(error);
         // }
