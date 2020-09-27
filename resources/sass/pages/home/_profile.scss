@@ -40,6 +40,14 @@
 .profile {
     margin-top: unset !important;
 
+    &__text-container--white {
+        background-color: $color-white-dark-5;
+        width: 100%;
+        padding: 3rem;
+        margin: 5rem 0 0;
+        border-radius: 10px;
+    }
+
     &__heading {
         margin-top: 5rem;
     }
@@ -87,6 +95,10 @@
             &:active {
                 transform: translateY(-1px);
             }
+        }
+
+        #btn-reset {
+            background-color: $color-white-dark-5;
         }
     }
 
@@ -149,10 +161,14 @@
                 right: 0.5rem;
                 cursor: pointer;
                 display: none;
+                width: 1.5rem;
+                height: 1.5rem;
             }
+
             .verify {
                 left: 1rem;
             }
+
             &:hover > .remove {
                 display: inline;
             }
