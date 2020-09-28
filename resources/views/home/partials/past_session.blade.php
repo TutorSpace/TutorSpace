@@ -7,11 +7,10 @@
             </a>
         </div>
         <div class="date">
-            <span class="title">Date</span>
-            <span class="content">08/02<span class="info-box__year">/20</span> Wed</span>
-        </div>
-        <div class="time">
-            <span class="title">Time</span>
+            <div>
+                <span class="title">Date</span>
+                <span class="content">08/02<span class="info-box__year">/20</span> Wed</span>
+            </div>
             <span class="content">13:30 - 15:00</span>
         </div>
         <div class="course">

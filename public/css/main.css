@@ -15862,12 +15862,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-boxes--sm-card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .info-boxes--sm-card > div {
     max-width: calc(50% - 1rem);
     flex: 0 1 calc(50% - 1rem);
+  }
+
+  .info-boxes--sm-card > div:not(:last-child) {
+    margin-right: 1rem;
   }
 }
 
