@@ -34,16 +34,8 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-
-        // orm
-        $tmp = User::where('email', '=', Auth::user()->email)->where('is_tutor', '=', 0)->get();
-
-
-        return view('test', [
-            "test" => "success"
-        ]);
-
-        echo $tmp;
+        $courseId = 1;
+        dd(Auth::user()->courses()->where('id', $courseId)->exists());
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()
