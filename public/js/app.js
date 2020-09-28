@@ -70194,7 +70194,7 @@ $(document).ready(function () {
     } else {
       $(this).html('View All');
     }
-  });
+  }); // switch account
 });
 
 /***/ }),
@@ -70262,8 +70262,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

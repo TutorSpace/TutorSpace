@@ -21,6 +21,8 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    {{-- add the switch account popups --}}
+    {{-- @include('home.partials.availableTimeConfirmationModal') --}}
 
     @yield('content')
 
