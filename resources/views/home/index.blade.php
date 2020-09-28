@@ -317,7 +317,7 @@ bg-student
         <div class="home__side-bar__notifications">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <h5 class="mb-0 ws-no-wrap">New Notifications</h5>
-                {{-- <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap">View All</button> --}}
+                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
             </div>
             <div class="notifications--sidebar">
                 @include('home.partials.notification--sidebar', [
@@ -335,6 +335,16 @@ bg-student
                 @include('home.partials.notification--sidebar', [
                     'isBestReplyNotification' => true,
                     'notificationContent' => 'Testing Post 1'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Computer Science',
+                    'hidden' => true
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1',
+                    'hidden' => true
                 ])
             </div>
         </div>

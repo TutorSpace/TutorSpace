@@ -16663,6 +16663,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 2.3rem;
 }
 
+.notifications--sidebar .side-bar__notification:hover {
+  cursor: pointer;
+}
+
 .notifications--sidebar .side-bar__notification--left {
   flex: 0 0 4.5rem;
   width: 4.5rem;

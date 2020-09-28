@@ -11578,6 +11578,15 @@ $('.btn-view-request').click(function () {
 $('.tutor-request-modal__close').click(function () {
   $('.home__tutor-request-modal').toggle();
 });
+$('.btn-view-all-notifications').click(function () {
+  $(this).closest('.home__side-bar__notifications').find('.notifications--sidebar [data-to-hide="true"]').toggleClass("hidden");
+
+  if ($(this).html().includes('View')) {
+    $(this).html('Hide');
+  } else {
+    $(this).html('View All');
+  }
+});
 
 /***/ }),
 
