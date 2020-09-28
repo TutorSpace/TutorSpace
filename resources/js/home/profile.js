@@ -212,6 +212,7 @@ function ajaxAddRemoveCourse(courseInfo) {
             if(courseInfo.toAdd) {
                 let { courseId, courseName } = data;
                 appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
+                toastr.success('Successfully addedd the course.')
             }
         }
     });
@@ -227,6 +228,7 @@ function ajaxAddRemoveTag(tagInfo) {
             if(tagInfo.toAdd) {
                 let { tagId, tagName } = data;
                 appendNewBox('data-tag-id', tagName, tagId, '.boxes__forum');
+                toastr.success('Successfully addedd the tag.')
             }
         }
     });
