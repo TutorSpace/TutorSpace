@@ -21354,6 +21354,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   right: 0.5rem;
   cursor: pointer;
   display: none;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .profile .boxes .box .verify {
