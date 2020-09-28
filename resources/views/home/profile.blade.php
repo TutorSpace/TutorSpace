@@ -44,12 +44,22 @@ bg-student
 
         <form class="container col-layout-2 profile" autocomplete="off">
             <div class="row">
-                <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Personal Information</h5>
+                <!-- <H4 class="profile__first_time--1 font-weight-bold invisible">Step 1: Complete your personal information</H4> -->
+                <div class="profile__text-container--white profile__tutor-info">
+                    <div class="row d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="font-weight-bold">Personal Information</h5>
+                        <div class="profile__text__edit d-flex align-items-center mr-2 hover--pointer">
+                            <svg class="mr-2" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                            </svg>
+                            <span class="fs-1-4">Edit</span>
+                        </div>
+                    </div>
                     <div class="profile__form-row">
                         <div>
                             <label for="" class="profile__label">First Name *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Shuaiqing" readonly>
+                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Shuaiqing" disabled readonly>
                         </div>
                         <div>
                             <label for="" class="profile__label">Last Name *</label>
@@ -60,26 +70,26 @@ bg-student
                     <div class="profile__form-row mt-3">
                         <div class="autocomplete">
                             <label for="first-major" class="profile__label">First Major *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major">
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major" disabled>
                         </div>
                         <div class="autocomplete">
                             <label for="second-major" class="profile__label">Second Major (optional)</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major" id="second-major">
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major" id="second-major" disabled>
                         </div>
                         <div class="autocomplete">
                             <label for="minor" class="profile__label">Minor (optional)</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor">
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor" disabled>
                         </div>
                     </div>
 
                     <div class="profile__form-row mt-3">
                         <div class="autocomplete">
                             <label for="school-year" class="profile__label">Class Standing *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year" id="school-year">
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year" id="school-year" disabled>
                         </div>
                         <div class="gpa autocomplete mr-3">
                             <label for="gpa" class="profile__label">GPA *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa">
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa" disabled>
                         </div>
                         <div class="gpa-note">
                             <span class="font-italic">
@@ -92,12 +102,13 @@ bg-student
                     <div class="profile__form-row mt-3">
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction</label>
-                            <textarea name="" id="" cols="30" rows="5" class="profile__input form-control form-control-lg">{{ Auth::user()->getIntroduction() }}</textarea>
+                            <textarea name="" id="" cols="30" rows="5" class="profile__input form-control form-control-lg" disabled>{{ Auth::user()->getIntroduction() }}</textarea>
                         </div>
                     </div>
                     @endif
                 </div>
 
+                <!-- <H4 class="profile__first_time--2 font-weight-bold invisible">Step 2: Complete your tutor information</H4> -->
                 <div class="profile__text-container--white">
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">

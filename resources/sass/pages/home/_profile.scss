@@ -40,6 +40,13 @@
 .profile {
     margin-top: unset !important;
 
+    // &__first_time {
+    //     z-index: 2;
+    //     position: relative;
+    //     top: 5rem;
+    //     color: white;
+    // }
+
     &__text-container--white {
         background-color: $color-white-dark-5;
         width: 100%;

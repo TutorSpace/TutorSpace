@@ -235,6 +235,9 @@ autocomplete(document.getElementById("gpa"), gpa);
 autocomplete(document.getElementById("hourly-rate"), hourlyRate);
 autocomplete(document.getElementById("course"), courses, profile_add_course);
 autocomplete(document.getElementById("tag"), tags, profile_add_tag);
+$('.profile__text__edit').on('click', function () {
+  $(".profile__input").prop("disabled", false);
+});
 $('.boxes__course').on('click', '.box .remove', function () {
   var new_tag_id = $(this).siblings('.label').attr('data-course-id');
   $(this).parent().remove();

@@ -1,5 +1,5 @@
 <section class="view-profile__header">
-    <div class="">
+    <div class="my-5">
         <div class="content d-flex p-relative">
             <figure class="content-img">
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
@@ -32,6 +32,13 @@
                         </span>
                     </div>
                     @endif
+                </div>
+                <div>
+                    <p class="sub">
+                        <span class="sub--1">
+                            {{ Auth::user()->firstMajor->major }}&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ Auth::user()->schoolYear->school_year ?? "No info about your school year" }}
+                        </span>
+                    </p>
                 </div>
 
                 @if (Auth::user()->is_tutor)
@@ -72,6 +79,17 @@
                     </span>
                 </p>
                 @endif
+                <div class="review font-italic mt-3 fs-1-4 fc-grey">
+                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
+                </div>
+                <div class="mt-3">
+                    <button class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2">Chat</button>
+                    <button class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2">Request a Session</button>
+                </div>
+            </div>
+            <div class="content-price">
+                <span class="fs-2-4 mr-2 fc-purple-primary">$ 16</span>
+                <span class="pt-3 fc-grey fs-1-4">/hour</span>
             </div>
             <div class="content-data">
                 <div class="data">
