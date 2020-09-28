@@ -79,6 +79,14 @@ bg-grey-light body-signup select2-bg-tutor
                 @enderror
             </div>
 
+            <!-- Input field to test the livesearch feature
+            <form>
+                <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
+                <input type="text" id="getHint" size="30">
+                <div id="livesearch"></div>
+            </form> -->
+
+
             <p class="fc-purple-secondary fs-1-6 font-weight-bold">
                 * You NEED to choose at least one course.
             </p>

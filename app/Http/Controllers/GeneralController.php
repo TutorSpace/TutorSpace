@@ -8,6 +8,7 @@ use App\User;
 use App\Session;
 use Carbon\Carbon;
 use App\ReportForum;
+use App\Course;
 use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
@@ -371,9 +372,38 @@ class GeneralController extends Controller
 
     }
 
+    public function getHint(Request $request) {
+        $q = $request->input('str');
+        $course_name = Course::all();
+        $hint = "";
+        if ($q !== "") {
+          $q = strtolower($q);
+          $len=strlen($q);
+          foreach($course_name as $course) {
+            if (stristr($q, substr($course->course, 0, $len))) {
+              if ($hint === "") {
+                // "<option value="{{ $course->id }}">{{ $course->course }}</option>"
+                $hint = $course->course."<br />";
+              } else {
+                $hint .= "$course->course"."<br />";
+              }
+            }
+          }
+        }
 
-
-
-
-
+        if ($hint === "") {
+            return response()->json(
+            [
+                'successMsg'=> "no suggestion"
+            ]
+        );
+        }
+        else {
+            return response()->json(
+            [
+                'successMsg' => $hint,
+            ]
+        );
+        }
+    }
 }
