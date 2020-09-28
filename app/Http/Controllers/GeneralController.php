@@ -4,18 +4,19 @@ namespace App\Http\Controllers;
 
 use Auth;
 
+use App\Tag;
 use App\User;
+use App\Course;
 use App\Session;
 use Carbon\Carbon;
 use App\ReportForum;
-use App\Course;
 use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InviteToBeTutorNotification;
-use Illuminate\Support\Facades\Log;
 
 class GeneralController extends Controller
 {
@@ -51,7 +52,6 @@ class GeneralController extends Controller
         $report->report_for = $request->input('report-for');
         $report->report_reason_id = $request->input('report-reason');
         $report->save();
-
 
         return redirect()->back()->with([
             'successMsg' => 'Successfully Reported!'
@@ -107,6 +107,64 @@ class GeneralController extends Controller
         return view('partials.recommended_tutors');
     }
 
+    //add or remove the course id to/from the user
+    public function addRemoveCourseToProfile(Request $request) {
+        $courseId = $request->input('courseId') ?? Course::where('course', $request->input('courseName'))->first()->id;
+
+        if(Auth::user()->courses()->find($courseId)) {
+            Auth::user()->courses()->detach($courseId);
+
+            return response()->json([
+                'successMsg' => 'Successfully removed the course.'
+            ]);
+        }
+        else if(Auth::user()->courses()->count() < 7){
+            Auth::user()->courses()->attach($courseId);
+
+            return response()->json([
+                'successMsg' => 'Successfully added the course.',
+                'courseName' => $request->input('courseName'),
+                'courseId' => $courseId
+            ]);
+        }
+    }
+
+    //add or remove the tag id to/from the user
+    public function addRemoveTagToProfile(Request $request) {
+        $tagId = $request->input('tagId') ?? Tag::where('tag', $request->input('tagName'))->first()->id;
+
+        if(Auth::user()->tags()->find($tagId)) {
+            Auth::user()->tags()->detach($tagId);
+
+            return response()->json([
+                'successMsg' => 'Successfully removed the tag.'
+            ]);
+        }
+        else if(Auth::user()->tags()->count() < 10){
+            Auth::user()->tags()->attach($tagId);
+
+            return response()->json([
+                'successMsg' => 'Successfully added the tag.',
+                'tagName' => $request->input('tagName'),
+                'tagId' => $tagId
+            ]);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // TODO: add validation
     public function rejectTutorRequest(Request $request) {
         $tutorRequestId = $request->input('tutor_request_id');
@@ -119,54 +177,6 @@ class GeneralController extends Controller
             ]
         );
     }
-
-    //add or remove the course id to/from the user
-    public function addRemoveCourseToProfile(Request $request) {
-        $new_course_id = $request->input('new_course_id');
-        // Log::channel('stderr')->info($new_course_id);
-        if(Auth::user()->courses()->find($new_course_id)) {
-            Auth::user()->courses()->detach($new_course_id);
-
-            return response()->json([
-                'successMsg' => 'Successfully removed the course.'
-            ]);
-        }
-        else {
-            if(Auth::user()->courses()->count() < 7){
-                Auth::user()->courses()->attach($new_course_id);
-
-            return response()->json([
-                'successMsg' => 'Successfully added the course.'
-            ]);
-            }
-        }
-    }
-
-    //add or remove the tag id to/from the user
-    public function addRemoveTagToProfile(Request $request) {
-        $new_tag_id = $request->input('new_tag_id');
-        // Log::channel('stderr')->info($new_tag_id);
-        // Log::channel('stderr')->info(Auth::user()->id);
-        if(Auth::user()->tags()->find($new_tag_id)) {
-            Auth::user()->tags()->detach($new_tag_id);
-
-            return response()->json([
-                'successMsg' => 'Successfully removed the tag.'
-            ]);
-        }
-        else {
-            if(Auth::user()->tags()->count() < 10) {
-                Auth::user()->tags()->attach($new_tag_id);
-
-            return response()->json([
-                'successMsg' => 'Successfully added the tag.'
-            ]);
-
-            }
-        }
-    }
-
-
 
     // TODO: add validation
     public function getDashboardPosts(Request $request) {
