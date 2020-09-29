@@ -34,15 +34,13 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
+
         $courseId = 1;
         dd(Auth::user()->courses()->where('id', $courseId)->exists());
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()
         // ]);
-
-        // Post::find(2)->views()->save($view);
-
         // dd("here");
 
         // // get daily post view count from the last 7 days
