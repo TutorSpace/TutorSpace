@@ -39,8 +39,17 @@ bg-student
 
         <form class="container col-layout-2 profile" autocomplete="off">
             <div class="row">
-                <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Personal Information</h5>
+                <div class="profile__text-container--white profile__tutor-info">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="font-weight-bold">Personal Information</h5>
+                        <div class="profile__text__edit d-flex align-items-center mr-2 hover--pointer">
+                            <svg class="mr-2" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
+                                <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
+                            </svg>
+                            <span class="fs-1-4">Edit</span>
+                        </div>
+                    </div>
                     <div class="profile__form-row">
                         <div>
                             <label for="" class="profile__label">First Name *</label>
@@ -48,7 +57,7 @@ bg-student
                         </div>
                         <div>
                             <label for="" class="profile__label">Last Name *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Luo"  readonly>
+                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Luo" readonly>
                         </div>
                     </div>
 

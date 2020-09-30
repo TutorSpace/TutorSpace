@@ -50,20 +50,6 @@ $("#input-profile-pic").change(function() {
     });
 });
 
-if ($('.bookmarked-tutors').prop('scrollHeight') > $('.bookmarked-tutors').prop('clientHeight')) {
-    //if 'true', the content overflows the tab: we show the hidden link
-    $('.bookmarked-tutors + .scroll-faded').css('display', 'block');
-}
-
-if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clientHeight')) {
-    //if 'true', the content overflows the tab: we show the hidden link
-    $('.tutor-requests + .scroll-faded').css('display', 'block');
-}
-
-if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
-    //if 'true', the content overflows the tab: we show the hidden link
-    $('.info-cards + .scroll-faded').css('display', 'block');
-}
 
 // calendar
 window.showAvailableTimeForm = (startTime, endTime) => {
@@ -113,3 +99,15 @@ $('.btn-view-request').click(function() {
 $('.tutor-request-modal__close').click(function() {
     $('.home__tutor-request-modal').toggle();
 })
+
+
+
+$('.btn-view-all-notifications').click(function() {
+    $(this).closest('.home__side-bar__notifications').find('.notifications--sidebar [data-to-hide="true"]').toggleClass("hidden");
+    if($(this).html().includes('View')) {
+        $(this).html('Hide')
+    }
+    else {
+        $(this).html('View All')
+    }
+});

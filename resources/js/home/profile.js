@@ -110,6 +110,10 @@ autocomplete(document.getElementById("course"), courses, profile_add_course);
 autocomplete(document.getElementById("tag"), tags,
 profile_add_tag);
 
+$('.profile__text__edit').on('click', function() {
+    $(".profile__input").prop("readonly", false);
+});
+
 
 $('.boxes__course').on('click', '.box .remove', function() {
     var courseId = $(this).siblings('.label').attr('data-course-id');

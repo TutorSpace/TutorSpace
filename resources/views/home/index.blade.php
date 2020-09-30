@@ -59,6 +59,7 @@ bg-student
                         'forTutor' => true,
                         'user' => App\User::find(1)
                     ])
+
                 </div>
             </div>
         </div>
@@ -109,7 +110,63 @@ bg-student
             </div>
         </div>
 
-        {{-- <div class="container">
+        @else
+        <div class="container col-layout-3">
+            <div class="row">
+                <h5 class="mb-2 w-100">You Have 2 Unpaid Payments.</h5>
+                <div class="info-boxes info-boxes--sm-card">
+                    @include('home.partials.unpaid_payment', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1),
+                        'isFirstOne' => true
+                    ])
+                    @include('home.partials.unpaid_payment', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1)
+                    ])
+                    @include('home.partials.unpaid_payment', [
+                        'isNotification' => true,
+                        'forTutor' => true,
+                        'user' => App\User::find(1)
+                    ])
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container col-layout-3">
+            <div class="row">
+                <div class="mb-2 w-100 d-flex justify-content-between align-center">
+                    <h5>Tutors You May Want to Know</h5>
+                    <button class="btn btn-link fs-1-4" id="btn-refresh">Refresh</button>
+                </div>
+                <div class="user-cards recommended-tutors">
+                    @include('partials.recommended_tutors')
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container col-layout-3">
+            <div class="row">
+                <h5 class="mb-2 w-100">Data Visualization</h5>
+                <div class="home__data-visualizations">
+                    <div class="graph-1">
+                        <div id="scatter-chart"></div>
+                    </div>
+                    <div class="graph-2">
+                        <div id="gauge-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{{--
+        <div class="container col-layout-3">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                     <h5>Upcoming Sessions</h5>
@@ -129,69 +186,7 @@ bg-student
             </div>
         </div> --}}
 
-        <div class="container col-layout-3">
-            <div class="row">
-                <h5 class="mb-2 w-100">Data Visualization</h5>
-                <div class="home__data-visualizations">
-                    <div class="graph-1">
-                        <div id="scatter-chart"></div>
-                    </div>
-                    <div class="graph-2">
-                        <div id="gauge-chart"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @else
-        <div class="container col-layout-3">
-            <div class="row">
-                <h5 class="mb-2 w-100">Congrats! Your Tutor Request has been approved!</h5>
-                <div class="info-boxes">
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'isNotification' => true,
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="container col-layout-3">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                </div>
-                <div class="info-boxes">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                </div>
-            </div>
-        </div>
-
-        <div class="container col-layout-3">
+        {{-- <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
 
@@ -204,28 +199,14 @@ bg-student
                     <h6 class="no-results">No bookmarked tutors yet</h6>
                     @endforelse
                 </div>
-                <div class="scroll-faded"></div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="container-fluid recommended-tutors-bg-container">
-            <div class="container col-layout-3">
-                <div class="row">
-                    <div class="mb-2 w-100 d-flex justify-content-between align-center">
-                        <h5>Tutors You May Want to Know</h5>
-                        <button class="btn btn-link text-white fs-1-4" id="btn-refresh">Refresh</button>
-                    </div>
-                    <div class="user-cards recommended-tutors">
-                        @include('partials.recommended_tutors')
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="container col-layout-3">
+        {{-- <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Tutor Requests</h5>
-                <div class="info-boxes tutor-requests">
+                <div class="info-boxes">
                     @include('home.partials.tutor_request', [
                         'user' => App\User::find(1),
                         'forTutor' => false,
@@ -273,12 +254,10 @@ bg-student
                         'forTutor' => false,
                         'pending' => true
                     ])
-                </div>
-                <div class="scroll-faded">
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
 
         @endif
@@ -314,30 +293,6 @@ bg-student
     <section class="home__side-bar">
         <div class="home__board">
         </div>
-        <div class="home__side-bar__notifications">
-            <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                <h5 class="mb-0 ws-no-wrap">New Notifications</h5>
-                {{-- <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap">View All</button> --}}
-            </div>
-            <div class="notifications--sidebar">
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-            </div>
-        </div>
 
         <div class="home__side-bar__upcoming-sessions">
             <div class="info-cards">
@@ -356,6 +311,41 @@ bg-student
                 ])
             </div>
         </div>
+        <div class="home__side-bar__notifications">
+            <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                <span class="mb-0 ws-no-wrap">New Notifications</span>
+                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
+            </div>
+            <div class="notifications--sidebar">
+                @include('home.partials.notification--sidebar', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Computer Science'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Computer Science'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1'
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isCancellationNotification' => true,
+                    'notificationContent' => 'Computer Science',
+                    'hidden' => true
+                ])
+                @include('home.partials.notification--sidebar', [
+                    'isBestReplyNotification' => true,
+                    'notificationContent' => 'Testing Post 1',
+                    'hidden' => true
+                ])
+            </div>
+        </div>
+
     </section>
 </div>
 

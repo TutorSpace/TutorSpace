@@ -43,7 +43,7 @@
         padding: 0;
         border-radius: 1rem;
         position: relative;
-
+        background-color: $color-grey-2;
 
         &--animated {
             .content {
@@ -111,7 +111,7 @@
             }
 
             .content-info {
-                color: $color-white;
+                color: $color-black-2;
 
                 .name-container {
                     display: flex;
@@ -173,7 +173,6 @@
                     .sub--3 {
 
                         svg {
-                            color: $color-white;
                             transition: all .1s;
                             cursor: pointer;
                             &:hover {
@@ -193,10 +192,10 @@
 
                     .progress {
                         height: 1rem;
-                        background-color: $color-purple-primary-2;
+                        background-color: $color-white;
 
                         .progress-bar {
-                            background-color: $color-white;
+                            background-color: $color-purple-primary-2;
                         }
                     }
 
@@ -239,7 +238,7 @@
                     }
 
                     .number {
-                        color: $color-white;
+                        color: $color-black-2;
                         display: block;
                         font-size: 3rem;
                         line-height: 1;
@@ -276,7 +275,6 @@
 
         .welcome-msg {
             @include absCenter;
-            color: $color-white;
         }
 
     }
@@ -294,12 +292,6 @@
 
     &__content {
         margin-bottom: 18rem;
-
-        // #calendar-background {
-        //     padding: 2rem 2rem 5rem 2rem;
-        //     background-color: #F9F9F9;
-        //     border-radius: 1rem;
-        // }
 
         .col-layout-2 {
             margin-left: 40rem;
@@ -396,17 +388,7 @@
             margin-top: 6rem;
         }
 
-        .tutor-requests {
-            max-height: 40rem;
-            overflow: scroll;
-
-            + .scroll-faded {
-                margin-top: -3rem;
-                height: 4rem;
-            }
-        }
-
-        .user-cards {
+        .recommended-tutors {
             width: 100%;
             display: grid;
             // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -416,9 +398,6 @@
 
             .user-card {
                 margin-top: 1.5rem;
-            }
-
-            .user-card {
                 width: calc((100% - 2rem * 4) / 5);
                 margin-right: 2rem;
 
@@ -458,47 +437,9 @@
             }
         }
 
-        // .calendar-heading {
-        //     margin-bottom: 1rem;
-        //     font-size: 1.6rem;
-        //     color: $color-grey;
-        // }
-
-        .bookmarked-tutors {
-            max-height: 45rem;
-            overflow: scroll;
-
-            + .scroll-faded {
-                margin-top: -3rem;
-                height: 4rem;
-            }
-        }
-
-        .scroll-faded {
-            display: none;
-            content:'';
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(239, 239, 239, 1) 100%);
-            position: relative;
-        }
-
-
-        .recommended-tutors-bg-container {
-            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
-            padding: 3rem 0 4rem 0;
-            margin-left: -15px;
-            width: 100vw;
-
-            .container {
-                @include respond(extra-sm) {
-                    padding: 0 30px;
-                }
-
-            }
-
-            h5 {
-                color: $color-white;
-            }
+        .btn-pay {
+            background-color: $color-blue-primary;
+            color: $color-white-dark-5;
         }
 
         .post-previews {
@@ -640,6 +581,22 @@
 
         &__notifications {
             margin-top: 6rem;
+            background-color: $color-white-dark-5;
+            border-radius: 1rem;
+            box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+
+            > :first-child {
+                padding-top: 2.5rem;
+                padding-left: 3rem;
+                padding-right: 2rem;
+
+                span {
+                    font-size: 1.8rem;
+
+                    color: $color-grey;
+                }
+
+            }
         }
 
         &__upcoming-sessions {
@@ -652,11 +609,15 @@
 .bg-tutor {
     .home {
         &__header {
-            background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
+            // background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
 
             .content-info {
                 margin-top: -2.5rem;
             }
+        }
+
+        .welcome-msg {
+            color: $color-purple-primary;
         }
 
         .info-box {
@@ -685,8 +646,15 @@
 .bg-student {
     .home {
         &__header {
-            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
+            // background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
 
+            .content-info {
+                margin-bottom: 4.5rem;
+            }
+        }
+
+        .welcome-msg {
+            color: $color-blue-primary;
         }
 
         .info-box {
@@ -709,6 +677,7 @@
                 color: $color-blue-primary;
             }
         }
+
     }
 }
 
