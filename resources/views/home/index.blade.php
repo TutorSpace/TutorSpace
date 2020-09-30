@@ -110,20 +110,6 @@ bg-student
             </div>
         </div>
 
-        <div class="container col-layout-3">
-            <div class="row">
-                <h5 class="mb-2 w-100">Data Visualization</h5>
-                <div class="home__data-visualizations">
-                    <div class="graph-1">
-                        <div id="scatter-chart"></div>
-                    </div>
-                    <div class="graph-2">
-                        <div id="gauge-chart"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         @else
         <div class="container col-layout-3">
             <div class="row">
@@ -159,6 +145,21 @@ bg-student
                 </div>
                 <div class="user-cards recommended-tutors">
                     @include('partials.recommended_tutors')
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container col-layout-3">
+            <div class="row">
+                <h5 class="mb-2 w-100">Data Visualization</h5>
+                <div class="home__data-visualizations">
+                    <div class="graph-1">
+                        <div id="scatter-chart"></div>
+                    </div>
+                    <div class="graph-2">
+                        <div id="gauge-chart"></div>
+                    </div>
                 </div>
             </div>
         </div>
