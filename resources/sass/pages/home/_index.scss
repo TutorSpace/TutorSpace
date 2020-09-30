@@ -173,7 +173,6 @@
                     .sub--3 {
 
                         svg {
-                            color: $color-white;
                             transition: all .1s;
                             cursor: pointer;
                             &:hover {
@@ -276,7 +275,6 @@
 
         .welcome-msg {
             @include absCenter;
-            color: $color-white;
         }
 
     }
@@ -641,6 +639,10 @@
             }
         }
 
+        .welcome-msg {
+            color: $color-purple-primary;
+        }
+
         .info-box {
             .actions, .action {
                 .btn-cancel {
@@ -669,6 +671,10 @@
         &__header {
             // background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
 
+        }
+
+        .welcome-msg {
+            color: $color-blue-primary;
         }
 
         .info-box {

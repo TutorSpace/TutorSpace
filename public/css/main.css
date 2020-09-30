@@ -20715,7 +20715,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-info .sub .sub--3 svg {
-  color: #FFFFFF;
   transition: all 0.1s;
   cursor: pointer;
 }
@@ -20824,7 +20823,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #FFFFFF;
 }
 
 .home__content-container {
@@ -21193,6 +21191,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: -2.5rem;
 }
 
+.bg-tutor .home .welcome-msg {
+  color: #6749DF;
+}
+
 .bg-tutor .home .info-box .actions .btn-cancel,
 .bg-tutor .home .info-box .action .btn-cancel {
   border: 1px solid #6749DF;
@@ -21211,6 +21213,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .home .post-previews .post-preview-tag {
   color: #6749DF;
+}
+
+.bg-student .home .welcome-msg {
+  color: #1F7AFF;
 }
 
 .bg-student .home .info-box .actions .btn-cancel,
