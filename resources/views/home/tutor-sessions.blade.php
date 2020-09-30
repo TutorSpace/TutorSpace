@@ -75,37 +75,37 @@ bg-student
             <div class="row mt-5">
                 <h5 class="mb-2 w-100 mt-5">Past Sessions</h5>
                 <div class="info-boxes info-boxes info-boxes--sm-card">
-                    <div>
-                        <div class="info-box info-box--explanation tutor-request">
-                            <div class="user-info">
-                                TUTORED WITH
-                            </div>
-                            <div class="date">
-                                DATE
-                            </div>
-                            <div class="course">
-                                COURSE
-                            </div>
-                            <div class="type">
-                                TYPE
-                            </div>
-                            <div class="status">
-                                STATUS
-                            </div>
-                            <div class="price">
-                                TOTAL
-                            </div>
-                            <div class="action--toggle">
-                                ACTION
-                            </div>
+                    <div class="info-box info-box--explanation ">
+                        <div class="user-info">
+                            TUTORED WITH
+                        </div>
+                        <div class="date">
+                            DATE
+                        </div>
+                        <div class="course">
+                            COURSE
+                        </div>
+                        <div class="type">
+                            TYPE
+                        </div>
+                        <div class="status">
+                            STATUS
+                        </div>
+                        <div class="price">
+                            TOTAL
+                        </div>
+                        <div class="action--toggle">
+                            ACTION
                         </div>
                     </div>
                     @include('home.partials.past_session', [
-                        'user' => App\User::find(1)
+                        'user' => App\User::find(1),
+                        'status' => 'pending'
                     ])
 
                     @include('home.partials.past_session', [
-                        'user' => App\User::find(2)
+                        'user' => App\User::find(2),
+                        'status' => 'completed'
                     ])
 
                     {{-- @include('home.partials.past_session', [

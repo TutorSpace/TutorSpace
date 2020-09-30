@@ -5,7 +5,6 @@
         @include respond(sm) {
             display: flex;
             flex-wrap: wrap;
-            // justify-content: space-between;
 
             > div {
                 max-width: calc(50% - 1rem);
@@ -198,6 +197,10 @@
                 color: $color-blue-primary;
             }
 
+            .completed {
+                color: $color-purple-primary;
+            }
+
             .declined {
                 color: #C70000;
             }
@@ -260,7 +263,12 @@
 
         .action--toggle {
             color: $color-purple-primary;
+            width: 5rem;
+            text-align: center;
 
+            svg {
+                cursor: pointer;
+            }
         }
 
         .review {
@@ -311,9 +319,17 @@
             padding-bottom: 0;
             background-color: transparent;
             box-shadow: none;
-            color: $color-grey !important;
+
             font-weight: 800;
             font-size: 1.4rem;
+
+            * {
+                color: $color-grey !important;
+            }
+
+            @include respond(sm) {
+                display: none;
+            }
         }
 
     }
@@ -321,6 +337,7 @@
 
 
 }
+
 
 
 
