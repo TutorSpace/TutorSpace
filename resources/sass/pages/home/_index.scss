@@ -43,7 +43,7 @@
         padding: 0;
         border-radius: 1rem;
         position: relative;
-
+        background-color: $color-grey-2;
 
         &--animated {
             .content {
@@ -111,7 +111,7 @@
             }
 
             .content-info {
-                color: $color-white;
+                color: $color-black-2;
 
                 .name-container {
                     display: flex;
@@ -193,10 +193,10 @@
 
                     .progress {
                         height: 1rem;
-                        background-color: $color-purple-primary-2;
+                        background-color: $color-white;
 
                         .progress-bar {
-                            background-color: $color-white;
+                            background-color: $color-purple-primary-2;
                         }
                     }
 
@@ -239,7 +239,7 @@
                     }
 
                     .number {
-                        color: $color-white;
+                        color: $color-black-2;
                         display: block;
                         font-size: 3rem;
                         line-height: 1;
@@ -668,7 +668,7 @@
 .bg-tutor {
     .home {
         &__header {
-            background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
+            // background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
 
             .content-info {
                 margin-top: -2.5rem;
@@ -701,7 +701,7 @@
 .bg-student {
     .home {
         &__header {
-            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
+            // background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
 
         }
 

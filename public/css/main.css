@@ -20521,6 +20521,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 0;
   border-radius: 1rem;
   position: relative;
+  background-color: #EAEAEA;
 }
 
 .home__header--animated .content {
@@ -20596,7 +20597,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-info {
-  color: #FFFFFF;
+  color: #626262;
 }
 
 .home__header .content .content-info .name-container {
@@ -20683,11 +20684,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header .content .content-info .tutor-level-progress .progress {
   height: 1rem;
-  background-color: #502ED9;
+  background-color: #FFFFFF;
 }
 
 .home__header .content .content-info .tutor-level-progress .progress .progress-bar {
-  background-color: #FFFFFF;
+  background-color: #502ED9;
 }
 
 .home__header .content .content-info .tutor-level-progress .tutor-level {
@@ -20729,7 +20730,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-data .data .number {
-  color: #FFFFFF;
+  color: #626262;
   display: block;
   font-size: 3rem;
   line-height: 1;
@@ -21165,10 +21166,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 6rem;
 }
 
-.bg-tutor .home__header {
-  background-image: linear-gradient(to right, #6749df, #492faf);
-}
-
 .bg-tutor .home__header .content-info {
   margin-top: -2.5rem;
 }
@@ -21191,10 +21188,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .home .post-previews .post-preview-tag {
   color: #6749DF;
-}
-
-.bg-student .home__header {
-  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
 }
 
 .bg-student .home .info-box .actions .btn-cancel,
