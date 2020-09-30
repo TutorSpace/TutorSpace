@@ -18,7 +18,7 @@
             <span class="title show--sm">Course</span>
             <span class="content">BUAD 304</span>
         </div>
-        <div class="type">
+        <div class="session-type">
             <span class="title show--sm">Type</span>
             <div class="content">Online</div>
         </div>

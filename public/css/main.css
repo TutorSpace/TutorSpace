@@ -14393,6 +14393,12 @@ h6 {
   }
 }
 
+@media only screen and (max-width: 61.99em) {
+  .hide--md {
+    display: none !important;
+  }
+}
+
 .pl-0 {
   padding-left: 0;
 }
@@ -16064,10 +16070,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .course,
 .info-boxes .info-box .status {
   width: 12ch;
-}
-
-.info-boxes .info-box .type {
-  width: 9ch;
 }
 
 .info-boxes .info-box .session-type {
@@ -20950,73 +20952,58 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 6rem;
 }
 
-.home__content .user-cards {
+.home__content .recommended-tutors {
   width: 100%;
   display: grid;
   flex-wrap: wrap;
   display: flex;
 }
 
-.home__content .user-cards .user-card {
+.home__content .recommended-tutors .user-card {
   margin-top: 1.5rem;
-}
-
-.home__content .user-cards .user-card {
   width: calc((100% - 2rem * 4) / 5);
   margin-right: 2rem;
 }
 
-.home__content .user-cards .user-card:nth-child(5n+5) {
+.home__content .recommended-tutors .user-card:nth-child(5n+5) {
   margin-right: 0;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__content .user-cards .user-card {
+  .home__content .recommended-tutors .user-card {
     width: calc((100% - 2rem * 2) / 3);
   }
 
-  .home__content .user-cards .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(5n+5) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(3n+3) {
+  .home__content .recommended-tutors .user-card:nth-child(3n+3) {
     margin-right: 0;
   }
 }
 
 @media only screen and (max-width: 28.124em) {
-  .home__content .user-cards .user-card {
+  .home__content .recommended-tutors .user-card {
     width: calc((100% - 2rem * 1) / 2);
   }
 
-  .home__content .user-cards .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(5n+5) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(3n+3) {
+  .home__content .recommended-tutors .user-card:nth-child(3n+3) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(2n+2) {
+  .home__content .recommended-tutors .user-card:nth-child(2n+2) {
     margin-right: 0;
   }
 }
 
-.home__content .recommended-tutors-bg-container {
-  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
-  padding: 3rem 0 4rem 0;
-  margin-left: -15px;
-  width: 100vw;
-}
-
-@media only screen and (max-width: 35.99em) {
-  .home__content .recommended-tutors-bg-container .container {
-    padding: 0 30px;
-  }
-}
-
-.home__content .recommended-tutors-bg-container h5 {
-  color: #FFFFFF;
+.home__content .btn-pay {
+  background-color: #1F7AFF;
+  color: #F9F9F9;
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -21213,6 +21200,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .bg-tutor .home .post-previews .post-preview-tag {
   color: #6749DF;
+}
+
+.bg-student .home__header .content-info {
+  margin-bottom: 4.5rem;
 }
 
 .bg-student .home .welcome-msg {

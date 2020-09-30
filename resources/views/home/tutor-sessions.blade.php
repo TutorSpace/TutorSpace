@@ -88,7 +88,7 @@ bg-student
                         <div class="course">
                             COURSE
                         </div>
-                        <div class="type">
+                        <div class="session-type">
                             TYPE
                         </div>
                         <div class="status">

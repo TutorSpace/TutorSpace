@@ -293,12 +293,6 @@
     &__content {
         margin-bottom: 18rem;
 
-        // #calendar-background {
-        //     padding: 2rem 2rem 5rem 2rem;
-        //     background-color: #F9F9F9;
-        //     border-radius: 1rem;
-        // }
-
         .col-layout-2 {
             margin-left: 40rem;
             max-width: 100rem;
@@ -394,7 +388,7 @@
             margin-top: 6rem;
         }
 
-        .user-cards {
+        .recommended-tutors {
             width: 100%;
             display: grid;
             // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -404,9 +398,6 @@
 
             .user-card {
                 margin-top: 1.5rem;
-            }
-
-            .user-card {
                 width: calc((100% - 2rem * 4) / 5);
                 margin-right: 2rem;
 
@@ -446,23 +437,9 @@
             }
         }
 
-
-        .recommended-tutors-bg-container {
-            background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
-            padding: 3rem 0 4rem 0;
-            margin-left: -15px;
-            width: 100vw;
-
-            .container {
-                @include respond(extra-sm) {
-                    padding: 0 30px;
-                }
-
-            }
-
-            h5 {
-                color: $color-white;
-            }
+        .btn-pay {
+            background-color: $color-blue-primary;
+            color: $color-white-dark-5;
         }
 
         .post-previews {
@@ -671,6 +648,9 @@
         &__header {
             // background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
 
+            .content-info {
+                margin-bottom: 4.5rem;
+            }
         }
 
         .welcome-msg {
@@ -697,6 +677,7 @@
                 color: $color-blue-primary;
             }
         }
+
     }
 }
 
