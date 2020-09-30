@@ -24,6 +24,13 @@
 .inline-grid { display: inline-grid !important; }
 .invisible { visibility: hidden; }
 .overflow-hidden { overflow: hidden; }
+.show--sm {
+    display: none !important;
+    @include respond(sm) { display: block !important; }
+}
+.hide--sm {
+    @include respond(sm) { display: none !important; }
+}
 
 // ==================== padding & margin ===================
 .pl-0 { padding-left: 0; }

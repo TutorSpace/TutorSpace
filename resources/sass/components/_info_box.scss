@@ -264,7 +264,8 @@
         .action--toggle {
             color: $color-purple-primary;
             width: 5rem;
-            text-align: center;
+            display: flex;
+            justify-content: center;
 
             svg {
                 cursor: pointer;
@@ -339,5 +340,11 @@
 }
 
 
+// .bg-tutor {
+//     .info-box--explanation {
+//         .status .pending {
 
+//         }
+//     }
+// }
 

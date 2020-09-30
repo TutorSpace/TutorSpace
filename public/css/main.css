@@ -14377,6 +14377,22 @@ h6 {
   overflow: hidden;
 }
 
+.show--sm {
+  display: none !important;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .show--sm {
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .hide--sm {
+    display: none !important;
+  }
+}
+
 .pl-0 {
   padding-left: 0;
 }
@@ -16140,7 +16156,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .action--toggle {
   color: #6749DF;
   width: 5rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .info-boxes .info-box .action--toggle svg {
