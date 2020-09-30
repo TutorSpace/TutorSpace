@@ -110,26 +110,6 @@ bg-student
             </div>
         </div>
 
-        {{-- <div class="container">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                </div>
-                <div class="info-boxes">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                </div>
-            </div>
-        </div> --}}
-
         <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
@@ -315,9 +295,27 @@ bg-student
     <section class="home__side-bar">
         <div class="home__board">
         </div>
+
+        <div class="home__side-bar__upcoming-sessions">
+            <div class="info-cards">
+                <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                    <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                    <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                </div>
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card')
+                @include('home.partials.upcoming_session_card', [
+                    'hidden' => true
+                ])
+                @include('home.partials.upcoming_session_card', [
+                    'hidden' => true
+                ])
+            </div>
+        </div>
         <div class="home__side-bar__notifications">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                <h5 class="mb-0 ws-no-wrap">New Notifications</h5>
+                <span class="mb-0 ws-no-wrap">New Notifications</span>
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
             </div>
             <div class="notifications--sidebar">
@@ -350,23 +348,6 @@ bg-student
             </div>
         </div>
 
-        <div class="home__side-bar__upcoming-sessions">
-            <div class="info-cards">
-                <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                    <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                </div>
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card', [
-                    'hidden' => true
-                ])
-                @include('home.partials.upcoming_session_card', [
-                    'hidden' => true
-                ])
-            </div>
-        </div>
     </section>
 </div>
 

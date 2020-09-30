@@ -16650,19 +16650,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notifications--sidebar {
-  margin-top: 2rem;
-  background-color: #F9F9F9;
+  margin-top: 0.5rem;
   font-size: 1.6rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .notifications--sidebar .side-bar__notification {
   display: flex;
-  padding-top: 1.15rem;
-  padding-bottom: 1.15rem;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .notifications--sidebar .side-bar__notification:first-child {
@@ -16703,7 +16700,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .notifications--sidebar .side-bar__notification--right {
@@ -21148,6 +21145,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__side-bar__notifications {
   margin-top: 6rem;
+  background-color: #F9F9F9;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.home__side-bar__notifications > :first-child {
+  padding-top: 2.5rem;
+  padding-left: 3rem;
+  padding-right: 2rem;
+}
+
+.home__side-bar__notifications > :first-child span {
+  font-size: 1.8rem;
+  color: #A0A0A0;
 }
 
 .home__side-bar__upcoming-sessions {

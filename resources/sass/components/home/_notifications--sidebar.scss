@@ -1,17 +1,14 @@
 .notifications--sidebar {
-    margin-top: 2rem;
-    background-color: $color-white-dark-5;
+    margin-top: .5rem;
     font-size: 1.6rem;
-    border-radius: 1rem;
-    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 
     .side-bar__notification {
         display: flex;
 
-        padding-top: 1.15rem;
-        padding-bottom: 1.15rem;
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
+        padding-top: 1.75rem;
+        padding-bottom: 1.75rem;
+        padding-left: 3rem;
+        padding-right: 3rem;
 
         &:first-child {
             padding-top: 2.15rem;
@@ -51,7 +48,7 @@
                 font-size: 1.2rem;
                 white-space: nowrap;
                 text-overflow: ellipsis;
-                overflow: auto;
+                overflow: hidden;
             }
         }
 
