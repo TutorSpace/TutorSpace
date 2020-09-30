@@ -396,16 +396,6 @@
             margin-top: 6rem;
         }
 
-        .tutor-requests {
-            max-height: 40rem;
-            overflow: scroll;
-
-            + .scroll-faded {
-                margin-top: -3rem;
-                height: 4rem;
-            }
-        }
-
         .user-cards {
             width: 100%;
             display: grid;
@@ -456,30 +446,6 @@
                     }
                 }
             }
-        }
-
-        // .calendar-heading {
-        //     margin-bottom: 1rem;
-        //     font-size: 1.6rem;
-        //     color: $color-grey;
-        // }
-
-        .bookmarked-tutors {
-            max-height: 45rem;
-            overflow: scroll;
-
-            + .scroll-faded {
-                margin-top: -3rem;
-                height: 4rem;
-            }
-        }
-
-        .scroll-faded {
-            display: none;
-            content:'';
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(239, 239, 239, 1) 100%);
-            position: relative;
         }
 
 

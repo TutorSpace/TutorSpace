@@ -20952,16 +20952,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 6rem;
 }
 
-.home__content .tutor-requests {
-  max-height: 40rem;
-  overflow: scroll;
-}
-
-.home__content .tutor-requests + .scroll-faded {
-  margin-top: -3rem;
-  height: 4rem;
-}
-
 .home__content .user-cards {
   width: 100%;
   display: grid;
@@ -21012,24 +21002,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .home__content .user-cards .user-card:nth-child(2n+2) {
     margin-right: 0;
   }
-}
-
-.home__content .bookmarked-tutors {
-  max-height: 45rem;
-  overflow: scroll;
-}
-
-.home__content .bookmarked-tutors + .scroll-faded {
-  margin-top: -3rem;
-  height: 4rem;
-}
-
-.home__content .scroll-faded {
-  display: none;
-  content: "";
-  width: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #efefef 100%);
-  position: relative;
 }
 
 .home__content .recommended-tutors-bg-container {
@@ -21453,6 +21425,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .input-introduction textarea {
   padding: 1rem 1.5rem;
+}
+
+.home .past-sessions {
+  max-height: 40rem;
+  overflow: scroll;
+}
+
+.home .past-sessions > * {
+  margin-top: 1.5rem;
+}
+
+.home .past-sessions > *:last-child {
+  margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .home .past-sessions {
+    max-height: 60rem;
+  }
 }
 
 .view-profile {

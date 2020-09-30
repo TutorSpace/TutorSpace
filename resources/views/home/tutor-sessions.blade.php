@@ -73,8 +73,11 @@ bg-student
 
         <div class="container col-layout-2">
             <div class="row mt-5">
-                <h5 class="mb-2 w-100 mt-5">Past Sessions</h5>
-                <div class="info-boxes info-boxes info-boxes--sm-card">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Past Sessions</h5>
+                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
+                </div>
+                <div class="info-boxes info-boxes">
                     <div class="info-box info-box--explanation ">
                         <div class="user-info">
                             TUTORED WITH
@@ -98,9 +101,20 @@ bg-student
                             ACTION
                         </div>
                     </div>
+                </div>
+                <div class="info-boxes info-boxes--sm-card past-sessions">
                     @include('home.partials.past_session', [
                         'user' => App\User::find(1),
                         'status' => 'pending'
+                    ])
+
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(2),
+                        'status' => 'completed'
+                    ])
+                    @include('home.partials.past_session', [
+                        'user' => App\User::find(2),
+                        'status' => 'completed'
                     ])
 
                     @include('home.partials.past_session', [
@@ -123,9 +137,6 @@ bg-student
                     @include('home.partials.past_session', [
                         'user' => App\User::find(4)
                     ]) --}}
-
-                </div>
-                <div class="scroll-faded">
                 </div>
             </div>
         </div>

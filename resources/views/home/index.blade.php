@@ -185,7 +185,6 @@ bg-student
                     <h6 class="no-results">No bookmarked tutors yet</h6>
                     @endforelse
                 </div>
-                <div class="scroll-faded"></div>
             </div>
         </div>
 
@@ -254,8 +253,6 @@ bg-student
                         'forTutor' => false,
                         'pending' => true
                     ])
-                </div>
-                <div class="scroll-faded">
                 </div>
             </div>
 
