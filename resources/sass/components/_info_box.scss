@@ -142,6 +142,7 @@
             }
         }
 
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -159,11 +160,12 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            max-width: 20rem;
+            min-width: 17rem;
         }
 
         .date {
-            width: 16ch;
+            width: 13ch;
 
             @include respond(md) {
                 width: 11ch;
@@ -171,7 +173,7 @@
         }
 
         .time {
-            width: 14ch;
+            width: 12ch;
         }
 
         .course, .status {
@@ -256,6 +258,11 @@
             }
         }
 
+        .action--toggle {
+            color: $color-purple-primary;
+
+        }
+
         .review {
             flex: 1;
             white-space: normal !important;
@@ -296,6 +303,17 @@
             @include respond(sm) {
                 text-align: end;
             }
+        }
+
+
+        &--explanation {
+            padding-top: 0;
+            padding-bottom: 0;
+            background-color: transparent;
+            box-shadow: none;
+            color: $color-grey !important;
+            font-weight: 800;
+            font-size: 1.4rem;
         }
 
     }
