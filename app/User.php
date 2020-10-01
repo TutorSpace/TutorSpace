@@ -19,6 +19,7 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\CustomResetPasswordNotification;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -455,8 +456,10 @@ class User extends Authenticatable implements Viewable
     }
 
 
-
-
+    // Payments
+    public function paymentMethod() {
+        return $this->hasOne('App\PaymentMethod', 'email', 'email')->withDefault();
+    }
 
 
 }

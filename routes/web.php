@@ -215,8 +215,15 @@ Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['aut
 
 // Stripe demo
 Route::get('/payment/stripe_index', 'StripeApiController@index');
+Route::get('/payment/stripe_pay_index', 'StripeApiController@payIndex');
+Route::get('/payment/stripe_save_card', 'StripeApiController@saveCardIndex');
+Route::get('/payment/list_cards', 'StripeApiController@listCards');
 Route::post('/payment/stripe_onboarding', 'StripeApiController@createAccountLink');
+Route::post('/payment/create_payment_intent', 'StripeApiController@createPaymentIntent');
+Route::post('/payment/create_setup_intent', 'StripeApiController@createSetupIntent');
 Route::post('/payment/stripe_charge', 'StripeApiController@processCharge');
 Route::post('/payment/stripe_refund', 'StripeApiController@refundCharge');
 Route::post('/payment/stripe_payout', 'StripeApiController@processPayout');
 Route::get('/payment/check', 'StripeApiController@checkAccountDetail');
+Route::post('/payment/create_payment_intent_with_card', 'StripeApiController@createPaymentIntentWithCard');
+Route::post('/payment/confirm_payment_intent', 'StripeApiController@confirmPaymentIntent');

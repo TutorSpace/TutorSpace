@@ -10,7 +10,9 @@ use Stripe\AccountLink;
 use App\User;
 use Illuminate\Support\Facades\Session;
 use Stripe\Balance;
+use Stripe\Customer;
 use Stripe\Refund;
+use Stripe\SetupIntent;
 use Stripe\Topup;
 use Stripe\Transfer;
 
@@ -19,10 +21,20 @@ class StripeApiController extends Controller
     public function __construct()
     {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+
+
     }
 
     public function index() {
         return view('payment.stripe_connect');
+    }
+
+    public function payIndex() {
+        return view('payment.stripe_test_form');
+    }
+
+    public function saveCardIndex() {
+        return view('payment.stripe_save_card');
     }
 
     // Generates a link for user to create/update account
@@ -32,8 +44,9 @@ class StripeApiController extends Controller
         // FIXME: Delete this
         Auth::attempt(['email' => 'student@usc.edu', 'password' => 'password']);
         $user = User::find(Auth::user()->id);
+        $payment_method = $user->paymentMethod;
         // Creates account only if user has no account
-        if (!isset($user->stripe_account_id) || trim($user->stripe_account_id) === '') {
+        if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
             $account = Account::create([
                 'country' => 'US',
                 'type' => 'express',
@@ -47,12 +60,80 @@ class StripeApiController extends Controller
             Session::put('stripe_account_id', $account->id);
         } else {
             $account_links = Account::createLoginLink(
-                $user->stripe_account_id, []
+                $payment_method->stripe_account_id, []
             );
         }
         return response()->json([
             'stripe_url' => $account_links->url
         ]);
+    }
+
+    public function createPaymentIntent(Request $request) {
+        $customer_id = $this->getCustomerId();
+        $payment_intent = \Stripe\PaymentIntent::create([
+            'amount' => 1099,  // TODO: change amount
+            'currency' => 'usd',
+            'customer' => $customer_id,
+            'receipt_email' => Auth::user()->email,
+        ]);
+        return response()->json([
+            'clientSecret' => $payment_intent->client_secret
+        ]);
+    }
+
+    public function createPaymentIntentWithCard(Request $request) {
+        $customer_id = $this->getCustomerId();
+        $card_num = intval($request->json('card_num'));
+        $payment_methods = \Stripe\PaymentMethod::all([
+            'customer' => $customer_id,
+            'type' => 'card'
+        ]);
+        $payment_intent = \Stripe\PaymentIntent::create([
+            'amount' => intval($request->json('amount')),  // TODO: change amount
+            'currency' => 'usd',
+            'payment_method' => $payment_methods->data[$card_num]->id,
+            'customer' => $customer_id,
+        ]);
+        return response()->json([
+            'clientSecret' => $payment_intent->client_secret,
+            'paymentMethodId' => $payment_methods->data[$card_num]->id
+        ]);
+    }
+
+    public function confirmPaymentIntent(Request $request) {
+        $payment_intent_id = $request->json('payment_intent_id');
+        $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+        $payment_intent->confirm();
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function createSetupIntent(Request $request) {
+        $customer_id = $this->getCustomerId();
+        $setup_intent = SetupIntent::create([
+            'customer' => $customer_id
+        ]);
+        return response()->json([
+            'clientSecret' => $setup_intent->client_secret
+        ]);
+    }
+
+    public function listCards(Request $request) {
+        $cards = \Stripe\PaymentMethod::all([
+            'customer' => $this->getCustomerId(),
+            'type' => 'card'
+        ])->data;
+        $result = [];
+        foreach ($cards as $card) {
+            array_push($result, [
+                'brand' => $card->card->brand,
+                'exp_month' => $card->card->exp_month,
+                'exp_year' => $card->card->exp_year,
+                'last4' => $card->card->last4
+            ]);
+        }
+        return view('payment.stripe_reuse_card')->with('cards', $result);
     }
 
     public function checkAccountDetail(Request $request) {
@@ -128,4 +209,23 @@ class StripeApiController extends Controller
         return view('payment.stripe_connect');
     }
 
+    // Gets the customer_id of current user
+    // Creates one if it doesn't exist
+    private function getCustomerId() {
+        // FIXME: Delete this
+        Auth::attempt(['email' => 'student@usc.edu', 'password' => 'password']);
+        $user = User::find(Auth::user()->id);
+        $payment_method = $user->paymentMethod;
+        if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {
+            $customer = Customer::create([
+                'email' => $user->email
+            ]);
+            $customer_id = $customer->id;
+            $payment_method->stripe_customer_id = $customer_id;
+            $payment_method->save();
+        } else {
+            $customer_id = $payment_method->stripe_customer_id;
+        }
+        return $customer_id;
+    }
 }
