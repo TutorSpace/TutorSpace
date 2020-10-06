@@ -100,8 +100,6 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
-
-
 autocomplete(document.getElementById("first-major"), majors);
 autocomplete(document.getElementById("second-major"), majors);
 autocomplete(document.getElementById("minor"), minors);
@@ -112,48 +110,122 @@ autocomplete(document.getElementById("course"), courses, profile_add_course);
 autocomplete(document.getElementById("tag"), tags,
 profile_add_tag);
 
+$('.home__panel__button__label').on('click', function() {
+    bootbox.dialog({ 
+        message: `
+            <div class="container">
+                <svg class="d-block mx-auto my-3" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28.6788 14.6551C28.0288 14.0043 26.9721 14.0043 26.3221 14.6551L19.1671 21.8093L16.1788 18.8218C15.5288 18.171 14.4721 18.171 13.8221 18.8218C13.1713 19.4726 13.1713 20.5276 13.8221 21.1785L17.9888 25.3451C18.3138 25.671 18.7404 25.8335 19.1671 25.8335C19.5938 25.8335 20.0204 25.671 20.3454 25.3451L28.6788 17.0118C29.3296 16.361 29.3296 15.306 28.6788 14.6551Z" fill="#6749DF"/>
+                    <path d="M38.3333 18.3333C37.4133 18.3333 36.6667 19.08 36.6667 20C36.6667 29.19 29.19 36.6667 20 36.6667C10.81 36.6667 3.33333 29.19 3.33333 20C3.33333 10.81 10.81 3.33333 20 3.33333C24.4742 3.33333 28.6742 5.08167 31.8275 8.25667C32.475 8.91083 33.5308 8.91417 34.1842 8.265C34.8375 7.61667 34.8408 6.56167 34.1925 5.90833C30.4092 2.09833 25.3683 0 20 0C8.97167 0 0 8.97167 0 20C0 31.0283 8.97167 40 20 40C31.0283 40 40 31.0283 40 20C40 19.08 39.2533 18.3333 38.3333 18.3333Z" fill="#6749DF"/>
+                </svg>
+                <h4 class="w-100 text-center mb-5">Become a Verified Tutor</h4>
+                <p class="text-dark mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius tellus ac fringilla enim ac etiam amet. Facilisi amet sit egestas id sit. Ac eget dui non ipsum gravida malesuada imperdiet feugiat in. Vulputate libero non elit luctus ipsum netus eget.</p>
+                
+                <h5 class="w-100 mt-5">Submit Your Verification Request</h5>
+                <div class="profile__form-row flex-wrap">
+                    <div class="autocomplete mb-3">
+                        <label for="course-verification" class="profile__label text-dark">Courses you would like to tutor in *</label>
+                        <input type="text" class="profile__input profile__input__courses form-control form-control-lg" id="course-verification">
+                    </div>
+                </div>
+                
+                <p class="text-dark">Report Submission</p>
+                <div class="m-5 p-5">
+                </div>
+                <p class="text-dark">Questions? Email us at <span class="fc-theme-color">tutorspaceusc@gmail.com</span></p>
+            </div>
+        `,
+        size: 'medium',
+        onEscape: true,
+        backdrop: true,
+        centerVertical: true,
+        buttons: {
+            Decline: {
+                label: 'Decline',
+                className: 'btn btn-outline-primary mr-2 p-3 px-5',
+                callback: function(){
+                                    
+                }
+            },
+            Submit: {
+                label: 'Submit',
+                className: 'btn btn-primary p-3 px-5',
+                callback: function(){
+                                    
+                }
+            },
+        }
+    });
+    autocomplete(document.getElementById("course-verification"), courses, profile_add_course_verification);
+
+});
+
 $('.profile__text__edit').on('click', function() {
-    $(".profile__input").prop("disabled",false);
+    $(".profile__input").prop("readonly", false);
+    $(".profile__buttons").removeClass("d-none");
 });
 
 
 $('.boxes__course').on('click', '.box .remove', function() {
-    var new_tag_id = $(this).siblings('.label').attr('data-course-id');
+    var courseId = $(this).siblings('.label').attr('data-course-id');
     $(this).parent().remove();
-    ajaxAddRemoveCourse(new_tag_id);
+    ajaxAddRemoveCourse({
+        courseId: courseId
+    });
 });
 
-
 $('.boxes__forum').on('click', '.box .remove', function() {
-    var new_tag_id = $(this).siblings('.label').attr('data-tag-id');
+    var tagId = $(this).siblings('.label').attr('data-tag-id');
     $(this).parent().remove();
-    ajaxAddRemoveTag(new_tag_id);
+    ajaxAddRemoveTag({
+        tagId: tagId
+    });
 });
 
 function profile_add_course() {
-    var new_course = $('#course').val();
+    var new_course_name = $('#course').val();
 
-    if ($('.boxes__course .box .label').text().includes(new_course)) {
+    if ($('.boxes__course .box .label').text().includes(new_course_name)) {
         toastr.error("The course is already selected ");
     }
-    // checks if 7 tags have been added already
+    // checks if 7 courses have been added already
     else if ($('.boxes__course .box').length == 7) {
         toastr.error("You can add at most 7 courses.");
     }
     else {
-        // TODO - YASHVI: get the course id of the element clicked
-        ajaxAddRemoveCourse(new_course);
-        var new_course_id = 1;
-        appendNewBox('data-course-id', new_course, new_course_id, '.boxes__course');
+        ajaxAddRemoveCourse({
+            courseName: new_course_name,
+            toAdd: true
+        });
+    }
+    // clear input field
+    $('.profile__input__courses').val("");
+}
+
+function profile_add_course_verification() {
+    var new_course_name = $('#course-verification').val();
+
+    if ($('.boxes__course .box .label').text().includes(new_course_name)) {
+        toastr.error("The course is already selected ");
+    }
+    // checks if 7 courses have been added already
+    else if ($('.boxes__course .box').length == 7) {
+        toastr.error("You can add at most 7 courses.");
+    }
+    else {
+        ajaxAddRemoveCourse({
+            courseName: new_course_name,
+            toAdd: true
+        });
     }
     // clear input field
     $('.profile__input__courses').val("");
 }
 
 function profile_add_tag() {
-    var new_tag = $('#tag').val();
+    var new_tag_name = $('#tag').val();
 
-    if ($('.boxes__forum .box .label').text().includes(new_tag)) {
+    if ($('.boxes__forum .box .label').text().includes(new_tag_name)) {
         // error message
         toastr.error("The tag is already selected ");
     }
@@ -162,11 +234,10 @@ function profile_add_tag() {
         toastr.error("You can add at most 10 tags.");
     }
     else {
-        
-        // TODO - YASHVI: get the course id of the element clicked
-        ajaxAddRemoveTag(new_tag);
-        var new_tag_id = 1;
-        appendNewBox('data-tag-id', new_tag, new_tag_id, '.boxes__forum');
+        ajaxAddRemoveTag({
+            tagName: new_tag_name,
+            toAdd: true
+        });
     }
     // clear input field
     $('.profile__input__forum').val("");
@@ -176,54 +247,64 @@ $('#btn-reset').click(function() {
     location.reload(true);
 });
 
-
+// appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
 function appendNewBox(dataType, tagName, tagId, parentSelector) {
-    // create new tag
-    $(parentSelector).append(`
-    <span class="box p-relative" id="new_box" style="background-color: rgb(45, 118, 134); color: rgb(255, 255, 255);">
-        <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
-            <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
-        </svg>
-        <span class="label" ` + dataType  + `=` + tagId + `>` + tagName + `</span>
+    if(dataType == 'data-course-id') {
+        // todo: make ajax call to see whether the course is verified
+        let isVerified = true;
+
+        var svgVerify = isVerified ? `<svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
+        <path d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z" fill="#FAFAFA"/>
+        </svg>` : '';
+    }
+
+
+
+    let ele = `<span class="box p-relative" style="background-color: rgb(83, 150, 172); color: rgb(0, 0, 0);">
+    ${svgVerify ?? ''}`
+        +
+        `<span class="label" ` + dataType  + `=` + tagId + `>` + tagName + `</span>
         <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
         </svg>
     </span>
-    `);
+    `;
+
+    console.log(ele);
+
+    $(parentSelector).append(ele);
 }
 
 
-function ajaxAddRemoveCourse(courseId) {
+function ajaxAddRemoveCourse(courseInfo) {
     $.ajax({
         type:'POST',
-        url: '/course_add_remove',
-        data: {
-            new_course_id: courseId
-        },
+        url: '/course-add-remove',
+        data: courseInfo,
         success: (data) => {
-            let { successMsg } = data;
-            toastr.success(successMsg);
-        },
-        // error: function(error) {
-        //     toastr.error(error);
-        // }
+            // if for adding course
+            if(courseInfo.toAdd) {
+                let { courseId, courseName } = data;
+                appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
+                toastr.success('Successfully addedd the course.')
+            }
+        }
     });
 }
 
-function ajaxAddRemoveTag(tagId) {
+function ajaxAddRemoveTag(tagInfo) {
     $.ajax({
         type:'POST',
-        url: '/tag_add_remove',
-        data: {
-            new_tag_id: tagId
-        },
+        url: '/tag-add-remove',
+        data: tagInfo,
         success: (data) => {
-            let { successMsg } = data;
-            toastr.success(successMsg);
-        },
-        // error: function(error) {
-        //     toastr.error(error);
-        // }
+            // if for adding tag
+            if(tagInfo.toAdd) {
+                let { tagId, tagName } = data;
+                appendNewBox('data-tag-id', tagName, tagId, '.boxes__forum');
+                toastr.success('Successfully addedd the tag.')
+            }
+        }
     });
 }

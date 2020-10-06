@@ -21,6 +21,9 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    {{-- add the switch account popups --}}
+    @include('partials.nav') 
+    {{-- @include('home.partials.availableTimeConfirmationModal') --}}
 
     @yield('content')
 
@@ -40,7 +43,6 @@
                 session()->forget('successMsg');
             @endphp
         @endif
-
         // for footer subscribe button
         $('#footer__form-subscribe').submit(function(e) {
             e.preventDefault();
@@ -48,7 +50,6 @@
                 toastr.error('Please enter your email!');
                 return;
             }
-
             $.ajax({
                 type:'POST',
                 url: "{{ route('subscription.store') }}",
@@ -70,16 +71,13 @@
                 }
             });
         });
-
         // nav icons
         $('nav .svg-message').click(function() {
             window.location.href = "{{ route('chatting.index') }}";
         });
-
         $('nav .svg-notification').click(function() {
             window.location.href = "{{ route('notifications.index') }}";
         });
-
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
         $(document).on('click', '.svg-bookmark', function() {
@@ -137,13 +135,9 @@
                     console.log(error);
                 }
             });
-
             $(this).find('use').toggleClass('hidden');
-
-
         });
         @endif
-
         @guest
         $('.svg-bookmark').click(function() {
             $('.overlay-student').show();

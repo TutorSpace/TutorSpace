@@ -51,7 +51,6 @@ let calendarOptions = {
         if (eventClickInfo.event.url) {
             window.open(eventClickInfo.event.url);
         }
-        console.log(eventClickInfo.event);
         if(eventClickInfo.event.extendedProps.type == 'available-time') {
             showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
         }
@@ -112,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarPopUpOptions = Object.assign({}, calendarOptions);
     calendarPopUpOptions.height = 350;
     calendarPopUpOptions.selectAllow = false;
+    calendarPopUpOptions.eventClick = null;
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
 });
 $('#availableTimeConfirmationModal form').submit(function(e) {

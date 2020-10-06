@@ -1,0 +1,18 @@
+.home .past-sessions {
+
+    > * {
+        margin-top: 1.5rem;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
+    }
+
+    max-height: 40rem;
+    overflow: scroll;
+
+    @include respond(sm) {
+        max-height: 60rem;
+    }
+
+}

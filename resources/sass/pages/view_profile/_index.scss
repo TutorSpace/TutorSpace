@@ -127,7 +127,6 @@
                 }
                 .review {
                     max-width: 75%;
-    
                     @include respond(extra-sm) {
                         max-width: 95%;
                     }
@@ -166,7 +165,8 @@
                 }
 
                 @include respond(extra-sm) {
-                    display: none;
+                    right: 2rem;
+                    top: 0rem;
                 }
             }
 
