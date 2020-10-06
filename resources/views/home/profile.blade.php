@@ -40,7 +40,10 @@ bg-student
 
         <form class="container col-layout-2 profile" autocomplete="off">
             <div class="row">
+<<<<<<< HEAD
                 <!-- <H4 class="profile__first_time--1 font-weight-bold invisible">Step 1: Complete your personal information</H4> -->
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
                 <div class="profile__text-container--white profile__tutor-info">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="font-weight-bold">Personal Information</h5>
@@ -116,7 +119,10 @@ bg-student
                     </div>
                 </div>
 
+<<<<<<< HEAD
                 <!-- <H4 class="profile__first_time--2 font-weight-bold invisible">Step 2: Complete your tutor information</H4> -->
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
                 <div class="profile__text-container--white">
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">

@@ -1,0 +1,198 @@
+// for both chatting and notifications
+.chatting, .notification {
+    margin-top: $nav-height;
+    color: $color-black-2;
+
+    $outer-padding-x: 10rem;
+    $outer-padding-y: 3rem;
+
+    $padding-left: 2.5rem;
+
+    &-container {
+        padding: $outer-padding-y $outer-padding-x;
+        height: calc(100vh - #{$nav-height});
+    }
+
+    .search-bar-container {
+        position: relative;
+
+        .search-bar {
+            border-radius: 7rem;
+            background-color: rgba(240, 240, 240, 0.9);
+            font-size: 1.6rem;
+        }
+
+        svg {
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 2.8rem;
+            fill: $color-grey;
+            cursor: pointer;
+        }
+    }
+
+
+    &__side-bar--left {
+        flex: 0 0 37rem;
+        background-color: $color-white-dark-5;
+        height: calc(100%);
+        padding: 2rem 0 3rem 0;
+        overflow: hidden;
+        border-radius: 1rem;
+
+        @include respond(md) {
+            flex: 0 0 28rem;
+        }
+
+        #btn-back {
+            font-size: 1.4rem;
+            display: inline-flex;
+            align-items: center;
+            color: $color-grey;
+            padding-left: calc(#{$padding-left} - 1.2rem);
+
+            svg {
+                font-size: 1.2rem;
+                margin-right: .25rem;
+            }
+        }
+
+        .heading {
+            margin-left: $padding-left;
+            font-size: 3.5rem;
+        }
+
+        .search-bar-container {
+            margin-top: 2rem;
+            padding: 0 $padding-left;
+
+            .search-bar {
+                padding: 1.75rem 1.5rem;
+            }
+        }
+
+        .msgs {
+            margin-top: 2rem;
+            overflow: scroll;
+
+            > *:not(:first-child) {
+                paddings-top: 1rem;
+            }
+
+            .msg {
+                border-left: 5px solid transparent;
+
+                &.unread {
+                    border-left: 5px solid $color-yellow-primary;
+                }
+
+                .box {
+                    $padding-y: 1.75rem;
+                    $img-size: 5.5rem;
+                    $time-width: 5rem;
+
+                    padding: $padding-y $padding-left;
+                    padding-left: calc(#{$padding-left} - 5px);
+                    display: flex;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(240, 240, 240, 0.9);;
+                    }
+
+
+                    .img-container {
+                        flex: 0 0 $img-size;
+
+                        @include respond(md) {
+                            flex: 0 0 4rem;
+                        }
+
+                        img, div {
+                            width: $img-size;
+                            height: $img-size;
+                            border-radius: 50%;
+                            object-fit: cover;
+
+                            @include respond(md) {
+                                width: 4rem;
+                                height: 4rem;
+                            }
+                        }
+                    }
+
+                    .content-container {
+                        display: flex;
+                        flex-direction: column;
+                        width: calc(100% - #{$img-size} - #{$time-width} - 1rem);
+                        padding: 0rem 1rem 0 1.5rem;
+                        justify-content: center;
+
+                        .content-1__content, .content-2 {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+
+                        .content-1 {
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+
+                            .content-1__content {
+                                font-size: 1.8rem;
+                                font-weight: 500;
+                            }
+
+                            .time {
+                                position: absolute;
+                                left: calc(100% + 1.6rem);
+                                font-size: 1.2rem;
+                                color: $color-grey;
+                                text-align: right;
+                                width: $time-width;
+
+                                @include respond(md) {
+                                    left: calc(100% + 3rem);
+                                }
+                            }
+                        }
+
+                        .content-2 {
+                            font-size: 1.3rem;
+                            color: $color-grey;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__content {
+        margin-left: 2rem;
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
+
+        $padding: 3rem;
+        &__header {
+            background-color: $color-white-dark-5;
+            padding: $padding;
+            width: 100%;
+            box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
+            border-radius: 1rem 1rem 0px 0px;
+            display: flex;
+            align-items: center;
+
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: $color-black-2;
+        }
+    }
+
+}

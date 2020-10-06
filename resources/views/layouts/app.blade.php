@@ -22,7 +22,10 @@
 </head>
 <body class="@yield('body-class')">
     {{-- add the switch account popups --}}
+<<<<<<< HEAD
     @include('partials.nav') 
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
     {{-- @include('home.partials.availableTimeConfirmationModal') --}}
 
     @yield('content')

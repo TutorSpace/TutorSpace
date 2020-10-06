@@ -259,7 +259,10 @@ $('.home__panel__button__label').on('click', function () {
 });
 $('.profile__text__edit').on('click', function () {
   $(".profile__input").prop("readonly", false);
+<<<<<<< HEAD
   $(".profile__buttons").removeClass("d-none");
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
 });
 $('.boxes__course').on('click', '.box .remove', function () {
   var courseId = $(this).siblings('.label').attr('data-course-id');
@@ -289,6 +292,7 @@ function profile_add_course() {
         courseName: new_course_name,
         toAdd: true
       });
+<<<<<<< HEAD
     } // clear input field
 
 
@@ -308,6 +312,8 @@ function profile_add_course_verification() {
         courseName: new_course_name,
         toAdd: true
       });
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
     } // clear input field
 
 
@@ -393,7 +399,7 @@ function ajaxAddRemoveTag(tagInfo) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\home\profile.js */"./resources/js/home/profile.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/profile.js */"./resources/js/home/profile.js");
 
 
 /***/ })

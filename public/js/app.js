@@ -70195,6 +70195,7 @@ $(document).ready(function () {
       $(this).html('View All');
     }
   }); // switch account
+<<<<<<< HEAD
 
   $('.nav__item__svg--switch-account').on('click', function () {
     bootbox.dialog({
@@ -70217,6 +70218,8 @@ $(document).ready(function () {
       }
     });
   });
+=======
+>>>>>>> a05bdf88221e6fa266e945e259888f119d0a1a45
 });
 
 /***/ }),
@@ -70284,8 +70287,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\yashv\OneDrive\Desktop\webdev\TutorSpace\resources\sass\main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
