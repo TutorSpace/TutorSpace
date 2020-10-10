@@ -151,10 +151,12 @@
                 $currUser = Auth::user();
 
                 if($currUser->hasDualIdentities()) {
-                    $declineLabel = "sfsdg";
-                    $submitLabel = "Become a Tutor";
+                    $declineLabel = "Cancel";
 
-                    $callbackFuncName = "sgsg";
+                    if($currUser->is_tutor) $submitLabel = "Switch to Student Account";
+                    else $submitLabel = "Switch to Tutor Account";
+
+                    $callbackFuncName = "callbackHaveDualIdentity";
                 } else {
                     $declineLabel = "Not Now";
                     if($currUser->is_tutor) $submitLabel = "Become a Student";
@@ -195,7 +197,6 @@
                 type: 'POST',
                 url: "{{ route('switch-account.register') }}",
                 success: (data) => {
-                    console.log(data);
                     bootbox.dialog({
                         message: data.successMsg,
                         backdrop: true,
@@ -223,6 +224,20 @@
             @else
 
             @endif
+        }
+
+        function callbackHaveDualIdentity() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('switch-account.switch') }}",
+                success: (data) => {
+                    window.location.reload();
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
+                }
+            })
         }
         @endauth
 

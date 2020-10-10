@@ -187,6 +187,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
+    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
 });
 
 
