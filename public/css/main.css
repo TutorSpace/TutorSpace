@@ -15049,6 +15049,11 @@ h6 {
   background-color: #dc3545;
 }
 
+.modal-switch-account .svg--not-dual-identity {
+  width: 10rem;
+  height: 10rem;
+}
+
 .bg-student .btn-submit {
   background-color: #1F7AFF;
 }
@@ -21621,12 +21626,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .view-profile__header .content .content-price {
     right: 2rem;
     top: 0rem;
-  }
-}
-
-@media only screen and (max-width: 35.99em) {
-  .view-profile__header .content .content-price {
-    display: none;
   }
 }
 

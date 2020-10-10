@@ -164,10 +164,6 @@
                     right: 2rem;
                     top: 0rem;
                 }
-
-                @include respond(extra-sm) {
-                    display: none;
-                }
             }
 
             .content-data {

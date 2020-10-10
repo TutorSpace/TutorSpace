@@ -334,6 +334,11 @@ class User extends Authenticatable
         return $fiveStarCnt / $reviewCnt * 100;
     }
 
+    public function hasDualIdentities() {
+        return User::where('email', $this->email)->count() == 2;
+    }
+
+
 
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST

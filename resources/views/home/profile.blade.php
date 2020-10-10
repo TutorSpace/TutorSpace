@@ -107,6 +107,12 @@ bg-student
                         </div>
                     </div>
                     @endif
+
+                    {{-- buttons --}}
+                    <div class="w-100 profile__buttons d-none">
+                        <button class="btn btn-outline-primary mr-5" id="btn-reset" type="button">Discard Changes</button>
+                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                    </div>
                 </div>
 
                 <div class="profile__text-container--white">
@@ -163,12 +169,6 @@ bg-student
                         </div>
                         <p class="profile__label font-italic">Note: You can add at most 10 tags.</p>
                     </div>
-                </div>
-
-                {{-- buttons --}}
-                <div class="w-100 profile__buttons">
-                    <button class="btn btn-outline-primary mr-5" id="btn-reset" type="button">Discard Changes</button>
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
                 </div>
             </div>
         </form>
