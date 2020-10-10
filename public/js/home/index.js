@@ -11517,6 +11517,7 @@ $("#input-profile-pic").change(function () {
     success: function success(data) {
       toastr.success('Successfully uploaded the image!');
       $('#profile-image').attr('src', storageUrl + data.imgUrl);
+      console.log(storageUrl + data.imgUrl);
       $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
     },
     error: function error(_error) {
