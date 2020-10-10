@@ -33,7 +33,7 @@ $("#input-profile-pic").change(function() {
     formData.append('profile-pic', file);
 
     $.ajax({
-        type:'POST',
+        type: 'POST',
         url: $('#profile-pic-form').attr('action'),
         data: formData,
         contentType: false,

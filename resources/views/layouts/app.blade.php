@@ -186,33 +186,35 @@
         });
 
         function callbackNotHaveDualIdentity() {
-            @if($currUser->is_tutor)
-
-            @else
-
-            @endif
-
-            bootbox.dialog({
-                message: "success",
-                backdrop: true,
-                centerVertical: true,
-                buttons: {
-                    Decline: {
-                        label: "test",
-                        className: 'btn btn-outline-primary mr-2 py-2 px-4',
-                        callback: function(){
-
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('switch-account.register') }}",
+                success: (data) => {
+                    bootbox.dialog({
+                        message: data.successMsg,
+                        backdrop: true,
+                        centerVertical: true,
+                        buttons: {
+                            Decline: {
+                                label: "Cancel",
+                                className: 'btn btn-outline-primary mr-2 py-2 px-4',
+                            },
+                            Submit: {
+                                label: 'Go',
+                                className: 'btn btn-primary py-2 px-4',
+                                callback: function(){
+                                    window.location.href = "{{ route('home') }}";
+                                }
+                            },
                         }
-                    },
-                    Submit: {
-                        label: 'test',
-                        className: 'btn btn-primary py-2 px-4',
-                        callback: function(){
-
-                        }
-                    },
+                    });
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
                 }
             });
+
         }
         @endauth
 

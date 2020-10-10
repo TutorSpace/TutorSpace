@@ -181,7 +181,13 @@ Route::group([
     Route::get('/', 'NotificationController@index')->name('notifications.index');
 });
 
-
+// switch account
+Route::group([
+    'prefix' => 'switch-account',
+    'middleware' => 'auth'
+], function() {
+    Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
+});
 
 
 
