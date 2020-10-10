@@ -145,6 +145,8 @@
         $('.nav__item__svg--switch-account').on('click',function() {
             if($('.modal-switch-account')[0]) return;
 
+            $('.nav-right__profile-img').click();
+
             @php
                 $currUser = Auth::user();
 
@@ -153,6 +155,8 @@
                     $declineLabel = "Not Now";
                     if($currUser->is_tutor) $submitLabel = "Become a Student";
                     else $submitLabel = "Become a Tutor";
+
+                    $callbackFuncName = "callbackNotHaveDualIdentity";
                 }
             @endphp
 
@@ -170,17 +174,12 @@
                 buttons: {
                     Decline: {
                         label: "{{ $declineLabel }}",
-                        className: 'btn btn-outline-primary mr-2 py-2 px-4',
-                        callback: function(){
-
-                        }
+                        className: 'btn btn-outline-primary mr-2 py-2 px-4'
                     },
                     Submit: {
                         label: '{{ $submitLabel }}',
                         className: 'btn btn-primary py-2 px-4',
-                        callback: function(){
-
-                        }
+                        callback: {{ $callbackFuncName }}
                     },
                 }
             });
@@ -188,36 +187,32 @@
 
         function callbackNotHaveDualIdentity() {
             @if($currUser->is_tutor)
-                bootbox.dialog({
-                    @if($currUser->hasDualIdentities())
-                    message: `@include('partials.switch-account-modal-dual', [
-                        'currUser' => $currUser
-                    ])`,
-                    @else
-                    message: `@include('partials.switch-account-modal-not-dual')`,
-                    @endif
-                    backdrop: true,
-                    centerVertical: true,
-                    buttons: {
-                        Decline: {
-                            label: "{{ $declineLabel }}",
-                            className: 'btn btn-outline-primary mr-2 py-2 px-4',
-                            callback: function(){
 
-                            }
-                        },
-                        Submit: {
-                            label: '{{ $submitLabel }}',
-                            className: 'btn btn-primary py-2 px-4',
-                            callback: function(){
-
-                            }
-                        },
-                    }
-                });
             @else
 
             @endif
+
+            bootbox.dialog({
+                message: "success",
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Decline: {
+                        label: "test",
+                        className: 'btn btn-outline-primary mr-2 py-2 px-4',
+                        callback: function(){
+
+                        }
+                    },
+                    Submit: {
+                        label: 'test',
+                        className: 'btn btn-primary py-2 px-4',
+                        callback: function(){
+
+                        }
+                    },
+                }
+            });
         }
         @endauth
 
