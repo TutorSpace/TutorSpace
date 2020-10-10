@@ -151,6 +151,10 @@
                 $currUser = Auth::user();
 
                 if($currUser->hasDualIdentities()) {
+                    $declineLabel = "sfsdg";
+                    $submitLabel = "Become a Tutor";
+
+                    $callbackFuncName = "sgsg";
                 } else {
                     $declineLabel = "Not Now";
                     if($currUser->is_tutor) $submitLabel = "Become a Student";

@@ -35,8 +35,11 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        $courseId = 1;
-        dd(Auth::user()->courses()->where('id', $courseId)->exists());
+        $newUser = Auth::user()->replicate();
+        $newUser->first_name = "haha";
+
+
+        dd($newUser);
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()

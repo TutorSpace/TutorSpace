@@ -276,38 +276,15 @@ class User extends Authenticatable
 
     // switch account
     public function createStudentIdentityFromTutor() {
-
+        $newUser = $this->replicate();
+        $newUser->is_tutor = 0;
+        $newUser->is_tutor_verified = 0;
+        $newUser->hourly_rate = null;
+        $newUser->tutor_level_id = null;
+        $newUser->introduction = null;
+        $newUser->save();
+        return $newUser;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // no need for this function seemingly
-    // public function sessions() {
-    //     if($this->is_tutor)
-    //         return $this->hasMany('App\Session', 'tutor_id');
-    //     else
-    //         return $this->hasMany('App\Session', 'student_id');
-    // }
-
 
     // whenever this function is called, we need to REMOVE the outdated tutor_requests
     public function tutor_requests() {
