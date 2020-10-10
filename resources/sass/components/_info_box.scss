@@ -185,7 +185,6 @@
 
         .price {
             width: 7ch;
-            color: $color-purple-primary;
         }
 
         .status {
@@ -336,11 +335,15 @@
 }
 
 
-// .bg-tutor {
-//     .info-box--explanation {
-//         .status .pending {
+.bg-tutor {
+    .info-box .price {
+        color: $color-purple-primary
+    }
+}
 
-//         }
-//     }
-// }
+.bg-student {
+    .info-box .price {
+        color: $color-blue-primary
+    }
+}
 

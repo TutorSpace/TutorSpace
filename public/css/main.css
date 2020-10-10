@@ -16083,7 +16083,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .price {
   width: 7ch;
-  color: #6749DF;
 }
 
 .info-boxes .info-box .status .approved {
@@ -16236,6 +16235,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-boxes .info-box--explanation {
     display: none;
   }
+}
+
+.bg-tutor .info-box .price {
+  color: #6749DF;
+}
+
+.bg-student .info-box .price {
+  color: #1F7AFF;
 }
 
 @media only screen and (max-width: 61.99em) {
