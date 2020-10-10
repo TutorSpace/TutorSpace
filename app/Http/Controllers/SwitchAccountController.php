@@ -9,10 +9,11 @@ class SwitchAccountController extends Controller
 {
     public function register(Request $request) {
         $currUser = Auth::user();
-        if($currUser->is_tutor && !$currUser->hasDualIdentities()) {
+        if($currUser->hasDualIdentities()) return;
+
+        if($currUser->is_tutor) {
             Auth::login($currUser->createStudentIdentityFromTutor());
             $successMsg = view('switch-account.partials.switch-account-register-success', compact('currUser'))->render();
-
         }
 
 

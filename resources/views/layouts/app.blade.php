@@ -190,6 +190,7 @@
         });
 
         function callbackNotHaveDualIdentity() {
+            @if($currUser->is_tutor)
             $.ajax({
                 type: 'POST',
                 url: "{{ route('switch-account.register') }}",
@@ -219,7 +220,9 @@
                     console.log(error);
                 }
             });
+            @else
 
+            @endif
         }
         @endauth
 
