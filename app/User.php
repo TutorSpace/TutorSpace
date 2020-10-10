@@ -274,6 +274,31 @@ class User extends Authenticatable
         return [];
     }
 
+    // switch account
+    public function createStudentIdentityFromTutor() {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // no need for this function seemingly
     // public function sessions() {

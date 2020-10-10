@@ -163,11 +163,11 @@
 
             bootbox.dialog({
                 @if($currUser->hasDualIdentities())
-                message: `@include('partials.switch-account-modal-dual', [
+                message: `@include('switch-account.partials.switch-account-modal-dual', [
                     'currUser' => $currUser
                 ])`,
                 @else
-                message: `@include('partials.switch-account-modal-not-dual')`,
+                message: `@include('switch-account.partials.switch-account-modal-not-dual')`,
                 @endif
                 backdrop: true,
                 centerVertical: true,
@@ -190,6 +190,7 @@
                 type: 'POST',
                 url: "{{ route('switch-account.register') }}",
                 success: (data) => {
+                    console.log(data);
                     bootbox.dialog({
                         message: data.successMsg,
                         backdrop: true,
@@ -200,7 +201,7 @@
                                 className: 'btn btn-outline-primary mr-2 py-2 px-4',
                             },
                             Submit: {
-                                label: 'Go',
+                                label: 'Switch Account Now',
                                 className: 'btn btn-primary py-2 px-4',
                                 callback: function(){
                                     window.location.href = "{{ route('home') }}";
