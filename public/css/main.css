@@ -20973,11 +20973,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__content .recommended-tutors .user-card {
   margin-top: 1.5rem;
-  width: calc((100% - 2rem * 4) / 5);
+  width: calc((100% - 2rem * 3) / 4);
+  min-width: 17.5rem;
   margin-right: 2rem;
+  color: #1F7AFF;
 }
 
-.home__content .recommended-tutors .user-card:nth-child(5n+5) {
+.home__content .recommended-tutors .user-card:nth-child(4n+4) {
   margin-right: 0;
 }
 
@@ -20986,7 +20988,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
     width: calc((100% - 2rem * 2) / 3);
   }
 
-  .home__content .recommended-tutors .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(4n+4) {
     margin-right: 2rem;
   }
 
@@ -21000,7 +21002,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
     width: calc((100% - 2rem * 1) / 2);
   }
 
-  .home__content .recommended-tutors .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(4n+4) {
     margin-right: 2rem;
   }
 
