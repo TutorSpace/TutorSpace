@@ -44,8 +44,8 @@ if __name__ == '__main__':
     # Tags
     tags = []
 
-    # tags += read_from_csv('courses.csv')
-    # tags += read_from_csv('tags.csv')
+    tags += read_from_csv('courses.csv')
+    tags += read_from_csv('tags.csv')
     tags += read_from_csv('buildings.csv')
     tags += read_from_csv('majors.csv')
     tags += read_from_csv('minors.csv')
