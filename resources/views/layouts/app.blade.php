@@ -180,7 +180,7 @@
                 buttons: {
                     Decline: {
                         label: "{{ $declineLabel }}",
-                        className: 'btn btn-outline-primary mr-2 py-2 px-4'
+                        className: 'btn btn-outline-primary mr-3 py-2 px-4'
                     },
                     Submit: {
                         label: '{{ $submitLabel }}',
@@ -204,7 +204,7 @@
                         buttons: {
                             Decline: {
                                 label: "Cancel",
-                                className: 'btn btn-outline-primary mr-2 py-2 px-4',
+                                className: 'btn btn-outline-primary mr-3 py-2 px-4',
                             },
                             Submit: {
                                 label: 'Switch Account Now',

@@ -37,9 +37,15 @@ bg-student
         </div>
         @endif
 
-        <form class="container col-layout-2 profile" autocomplete="off">
+        <form class="container col-layout-2 profile" autocomplete="off" method="POST" action="{{ route('home.profile.store') }}">
+            @csrf
             <div class="row">
                 <div class="profile__text-container--white profile__tutor-info">
+                    @if ($errors->any())
+                    <p class="fs-1-4 fc-red mb-2">
+                        {{ $errors->first() }}
+                    </p>
+                    @endif
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h5 class="font-weight-bold">Personal Information</h5>
                         <div class="profile__text__edit d-flex align-items-center mr-2 hover--pointer">
@@ -53,11 +59,11 @@ bg-student
                     <div class="profile__form-row">
                         <div>
                             <label for="" class="profile__label">First Name *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Shuaiqing" readonly>
+                            <input type="text" class="profile__input form-control form-control-lg" value="Shuaiqing" disabled>
                         </div>
                         <div>
                             <label for="" class="profile__label">Last Name *</label>
-                            <input type="text" class="profile__input form-control form-control-lg" placeholder="Luo" readonly>
+                            <input type="text" class="profile__input form-control form-control-lg" value="Luo" disabled>
                         </div>
                     </div>
 
@@ -103,7 +109,7 @@ bg-student
                     <div class="profile__form-row mt-3">
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction</label>
-                            <textarea name="" rows="5" class="profile__input form-control form-control-lg" readonly>{{ Auth::user()->getIntroduction() }}</textarea>
+                            <textarea name="introduction" rows="5" class="profile__input form-control form-control-lg" readonly>{{ Auth::user()->introduction }}</textarea>
                         </div>
                     </div>
                     @endif

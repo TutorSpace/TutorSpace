@@ -76,7 +76,7 @@ class User extends Authenticatable
     }
 
     public function minor() {
-        return $this->belongsTo('App\Major', 'minor_id');
+        return $this->belongsTo('App\Minor', 'minor_id');
     }
 
     public function schoolYear() {
