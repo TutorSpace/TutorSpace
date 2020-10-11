@@ -212,10 +212,10 @@ class HomeController extends Controller
         ]);
 
         foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
-            $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->firstOrFail());
-            $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->firstOrFail());
-            $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->firstOrFail());
-            $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->firstOrFail());
+            $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
+            $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->first());
+            $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->first());
+            $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->first());
             $tmpUser->gpa = $request->input('gpa');
             $tmpUser->introduction = $tmpUser->is_tutor ? $request->input('introduction') : null;
 
