@@ -60,8 +60,13 @@
     }
 
     // specific to switch account
-    &-switch-acount {
+    &-switch-account {
 
+
+        .svg--top {
+            width: 10rem;
+            height: 10rem;
+        }
     }
 
 }

@@ -96,19 +96,22 @@ class GeneralController extends Controller
         ]);
 
         $user = Auth::user();
-        DB::transaction(function() use($request, $user) {
-            // if user uploaded the file
-            if($request->file('profile-pic')) {
-                $user->deleteImage();
-                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
-            }
+        $profile_pic_url = "";
 
-            $user->save();
-        });
+        // if user uploaded the file
+        if($request->file('profile-pic')) {
+            $user->deleteImage();
+            $profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
+
+            foreach(User::where('email', $user->email)->get() as $tmpUser) {
+                $tmpUser->profile_pic_url = $profile_pic_url;
+                $tmpUser->save();
+            }
+        }
 
         return response()->json([
             'successMsg' => 'Successfully updated the profile photo.',
-            'imgUrl' => $user->profile_pic_url
+            'imgUrl' => $profile_pic_url
         ]);
 
     }

@@ -34,9 +34,11 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
+        $currUser = Auth::user();
+        Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
 
-        $courseId = 1;
-        dd(Auth::user()->courses()->where('id', $courseId)->exists());
+
+        dd("here");
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()

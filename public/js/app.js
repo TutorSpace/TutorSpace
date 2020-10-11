@@ -70194,7 +70194,7 @@ $(document).ready(function () {
     } else {
       $(this).html('View All');
     }
-  }); // switch account
+  });
 });
 
 /***/ }),
