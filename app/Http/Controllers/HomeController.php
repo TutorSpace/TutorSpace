@@ -194,43 +194,33 @@ class HomeController extends Controller
             'minor' => [
                 'nullable',
                 'exists:minors,minor'
+            ],
+            'introduction' => [
+                'nullable',
+                'size:50'
+            ],
+            "gpa" => [
+                Rule::requiredIf($currUser->is_tutor),
+                'numeric',
+                'min:1',
+                'max:4'
+            ],
+            "school-year" => [
+                Rule::requiredIf($currUser->is_tutor),
+                'exists:school_years,school_year'
             ]
         ]);
 
-        if($currUser->is_tutor || $currUser->hasDualIdentities()) {
-            $request->validate([
-                'introduction' => [
-                    'nullable',
-                    'size:50'
-                ],
-                "gpa" => [
-                    'required',
-                    'numeric',
-                    'min:1',
-                    'max:4'
-                ],
-                "school-year" => [
-                    'required',
-                    'exists:school_years,school_year'
-                ]
-            ]);
+        foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
+            $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->firstOrFail());
+            $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->firstOrFail());
+            $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->firstOrFail());
+            $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->firstOrFail());
+            $tmpUser->gpa = $request->input('gpa');
+            $tmpUser->introduction = $tmpUser->is_tutor ? $request->input('introduction') : null;
 
-            foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
-                $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->firstOrFail());
-                $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->firstOrFail());
-                $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->firstOrFail());
-                $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->firstOrFail());
-                $tmpUser->gpa = $request->input('gpa');
-                $tmpUser->save();
-            }
+            $tmpUser->save();
         }
-        // if the user only has one student identity
-        else {
-
-        }
-
-
-
 
 
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
