@@ -188,7 +188,7 @@
         }
 
         .status {
-            .approved {
+            .approved, .paid {
                 color: $color-blue-primary;
             }
 
@@ -196,7 +196,7 @@
                 color: $color-purple-primary;
             }
 
-            .declined {
+            .declined, .unpaid {
                 color: #C70000;
             }
 
@@ -260,15 +260,20 @@
             color: $color-purple-primary;
             width: 5rem;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
 
             svg {
                 cursor: pointer;
             }
 
-            button {
-                padding: .75rem 1rem;
+            @include respond(sm) {
+                justify-content: flex-end;
+
+                button {
+                    padding: .75rem 1rem;
+                }
             }
+
         }
 
         .review {

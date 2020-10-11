@@ -120,40 +120,45 @@ bg-student
                     </div>
                 </div>
                 <div class="info-boxes info-boxes--sm-card past-sessions">
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(1),
-                        'status' => 'pending'
-                    ])
+                    @if(Auth::user()->is_tutor)
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'pending'
+                        ])
 
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(2),
-                        'status' => 'completed'
-                    ])
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(2),
-                        'status' => 'completed'
-                    ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
 
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(2),
-                        'status' => 'completed'
-                    ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                    @else
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'paid'
+                        ])
 
-                    {{-- @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
 
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ]) --}}
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'paid'
+                        ])
+                    @endif
                 </div>
             </div>
         </div>

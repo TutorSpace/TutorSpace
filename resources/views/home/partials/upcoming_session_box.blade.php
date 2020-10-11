@@ -1,4 +1,4 @@
-<div class="@if(isset($hidden) && $hidden) hidden-2 @endif">
+<div>
     <div class="info-box">
         <div class="user-info">
             <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
@@ -30,5 +30,4 @@
         </div>
 
     </div>
-
 </div>
