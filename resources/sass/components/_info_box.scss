@@ -67,7 +67,7 @@
 
         @include respond(sm) {
             flex-wrap: wrap;
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 2.5rem;
 
             > div:not(:first-child) {
                 width: 100% !important;
@@ -207,7 +207,7 @@
 
         .actions {
             display: flex;
-            width: 21ch;
+            width: 18ch;
             justify-content: space-between;
             align-items: center;
 
@@ -260,10 +260,14 @@
             color: $color-purple-primary;
             width: 5rem;
             display: flex;
-            justify-content: center;
+            justify-content: flex-end;
 
             svg {
                 cursor: pointer;
+            }
+
+            button {
+                padding: .75rem 1rem;
             }
         }
 

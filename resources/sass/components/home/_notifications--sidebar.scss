@@ -34,6 +34,10 @@
             .side-bar__notification--best-reply {
                 background-color: #FBB752;
             }
+
+            img {
+                object-fit: cover;
+            }
         }
 
         &--content {

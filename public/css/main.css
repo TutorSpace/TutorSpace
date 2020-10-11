@@ -15950,7 +15950,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-boxes .info-box {
     flex-wrap: wrap;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 2.5rem;
   }
 
   .info-boxes .info-box > div:not(:first-child) {
@@ -16103,7 +16103,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .actions {
   display: flex;
-  width: 21ch;
+  width: 18ch;
   justify-content: space-between;
   align-items: center;
 }
@@ -16163,11 +16163,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #6749DF;
   width: 5rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .info-boxes .info-box .action--toggle svg {
   cursor: pointer;
+}
+
+.info-boxes .info-box .action--toggle button {
+  padding: 0.75rem 1rem;
 }
 
 .info-boxes .info-box .review {
@@ -16750,6 +16754,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .notifications--sidebar .side-bar__notification--left .side-bar__notification--best-reply {
   background-color: #FBB752;
+}
+
+.notifications--sidebar .side-bar__notification--left img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .notifications--sidebar .side-bar__notification--content {
