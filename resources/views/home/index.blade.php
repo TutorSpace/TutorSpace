@@ -255,9 +255,9 @@ bg-student
                     <div class="graph-1">
                         <div id="scatter-chart"></div>
                     </div>
-                    {{-- <div class="graph-2">
+                    <div class="graph-2">
                         <div id="gauge-chart"></div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

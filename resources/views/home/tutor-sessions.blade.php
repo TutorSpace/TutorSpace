@@ -41,6 +41,7 @@ bg-student
             @include('home.partials.header')
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
@@ -70,6 +71,10 @@ bg-student
                 </div>
             </div>
         </div>
+        @else
+
+        @endif
+
 
         <div class="container col-layout-2">
             <div class="row mt-5">
