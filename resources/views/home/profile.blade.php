@@ -58,18 +58,18 @@ bg-student
                     </div>
                     <div class="profile__form-row">
                         <div>
-                            <label for="" class="profile__label">First Name *</label>
+                            <label for="" class="profile__label">First Name</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="Shuaiqing" disabled>
                         </div>
                         <div>
-                            <label for="" class="profile__label">Last Name *</label>
+                            <label for="" class="profile__label">Last Name</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="Luo" disabled>
                         </div>
                     </div>
 
                     <div class="profile__form-row mt-3">
                         <div class="autocomplete">
-                            <label for="first-major" class="profile__label">First Major *</label>
+                            <label for="first-major" class="profile__label">First Major</label>
                             <input
                                 type="text"
                                 class="profile__input form-control form-control-lg"
@@ -91,11 +91,11 @@ bg-student
 
                     <div class="profile__form-row mt-3">
                         <div class="autocomplete">
-                            <label for="school-year" class="profile__label">Class Standing *</label>
+                            <label for="school-year" class="profile__label">Class Standing</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year" id="school-year" readonly>
                         </div>
                         <div class="gpa autocomplete mr-3">
-                            <label for="gpa" class="profile__label">GPA *</label>
+                            <label for="gpa" class="profile__label">GPA</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa" readonly>
                         </div>
                         <div class="gpa-note">
@@ -125,11 +125,11 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
-                            <label for="course" class="profile__label">Courses you would like to tutor in *</label>
+                            <label for="course" class="profile__label">Courses you would like to tutor in</label>
                             <input type="text" class="profile__input profile__input__courses form-control form-control-lg" id="course">
                         </div>
                         <div class="hourly-rate autocomplete">
-                            <label for="hourly-rate" class="profile__label">Hourly Rate *</label>
+                            <label for="hourly-rate" class="profile__label">Hourly Rate</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
                                 <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
