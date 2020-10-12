@@ -21455,6 +21455,21 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 1rem 1.5rem;
 }
 
+.modal-verify-tutor #upload-file {
+  height: 150px;
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.modal-verify-tutor #upload-file-button input {
+  opacity: 0;
+  position: absolute;
+}
+
+.modal-verify-tutor #upload-file-button {
+  border-radius: 15px;
+}
+
 .home .past-sessions {
   max-height: 40rem;
   overflow: scroll;

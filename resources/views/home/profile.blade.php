@@ -233,4 +233,56 @@ bg-student
 
 <script src="{{ asset('js/home/profile.js') }}"></script>
 
+<script>
+
+    $('.home__panel__button').on('click',function() {
+        if($('.modal-verify-tutor')[0]) return;
+
+
+        @php
+            $callbackFuncName = "tutorVerification_upload";
+        @endphp
+        
+
+
+        bootbox.dialog({
+            message: `@include('home.partials.tutorVerification')`,
+            size: 'medium',
+            onEscape: true,
+            backdrop: true,
+            centerVertical: true,
+            buttons: {
+                Decline: {
+                    label: 'Decline',
+                    className: 'btn btn-outline-primary mr-2 p-3 px-5',
+                    callback: function(){}
+                },
+                Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: {{ $callbackFuncName }}
+                },
+            }
+        });
+
+        function tutorVerification_upload() {
+            bootbox.dialog({
+                message: `@include('home.partials.tutorVerification--upload_success')`,
+                size: 'medium',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Close: {
+                    label: 'Close',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: function(){}
+                },
+                }
+            });
+        }
+    });
+
+</script>
+
 @endsection
