@@ -21816,6 +21816,24 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #6749DF;
 }
 
+.modal-book-session img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .modal-book-session .calendar-details {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 601px) {
+  .modal-book-session .calendar-details {
+    flex-direction: row;
+  }
+}
+
 .chatting__side-bar--left .msgs {
   height: calc(100% - 12.5rem);
 }

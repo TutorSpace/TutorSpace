@@ -10,25 +10,38 @@
     </svg>
 
     <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
-    <p class="fc-black-2 mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <div>
+        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
+        <span class="font-weight-bold ml-4 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+    </div>
+    <p class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</p>
+    <div class="row">
+        <div class="col-9 pl-0">
+            <div id="calendar" class="w-100"></div>
+            <div class="calendar-note">
+                <span class="available-time">Available Time</span>
+                <span class="online">Online</span>
+                <span class="in-person">In Person</span>
+                <span class="note">Note: All time in the calender are based on PST.</span>
+            </div>
+        </div>
+    </div>
+    <div id="calendar" class="w-100 py-5 my-5"></div>
+    <div class="d-flex justify-content-between calendar-details">
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Date:</p>
+            <p class="fc-black-2 fs-1-4">08/02/2020 Thursday</p>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Time:</p>
+            <p class="fc-black-2 fs-1-4">3:30pm - 5:00pm</p>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Tutor Hourly Rate:</p>
+            <p class="fc-black-2 fs-1-4">$ 16 per hour</p>
+        </div>
+    </div>
+
+    <p class="mt-5 fc-red">Warning: Your selected time is not in thte tutor’s available time. <br/>The Tutor may cancel your request if he/she is not available during that time.</p>
     
-    <p class="font-weight-bold fc-black-2 mt-5">Choose the course you would like to be tutored in </p>
-    <div class="autocomplete mb-3">
-        <input type="text" class="profile__input profile__input__courses form-control form-control-lg"></input>
-    </div>
-
-    <p class="font-weight-bold fc-black-2 mt-5">Do you want to meet your tutor online or in person? </p>
-    <div class="mb-3">
-        <input type="text" class="profile__input form-control form-control-lg" list="meeting-type"></input>
-        <datalist id="meeting-type">
-            <option value="In Person">
-            <option value="Online">
-        </datalist>
-    </div>
-    <p class="font-weight-bold fc-black-2 mt-5">Is there anything you would like your tutor to know prior to the session? </p>
-    <div class="mb-3">
-        <textarea class="profile__input form-control form-control-lg" rows="3"></textarea>
-    </div>
-
-    <p class="fc-black-2 mt-5"><span class="font-weight-bold">USC Integrity Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 </div>

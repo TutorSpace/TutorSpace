@@ -147,7 +147,7 @@ bg-student
 
         bootbox.dialog({
             message: `@include('book-session.book-session')`,
-            size: 'medium',
+            size: 'large',
             onEscape: true,
             backdrop: true,
             centerVertical: true,
@@ -163,7 +163,7 @@ bg-student
         function session_details() {
             bootbox.dialog({
                 message: `@include('book-session.session-details')`,
-                size: 'medium',
+                size: 'large',
                 onEscape: true,
                 backdrop: true,
                 centerVertical: true,
@@ -180,13 +180,13 @@ bg-student
         function session_confirm() {
             bootbox.dialog({
                 message: `@include('book-session.session-confirm')`,
-                size: 'medium',
+                size: 'large',
                 onEscape: true,
                 backdrop: true,
                 centerVertical: true,
                 buttons: {
                     Submit: {
-                    label: 'Submit',
+                    label: 'Book Session',
                     className: 'btn btn-primary p-3 px-5',
                     callback: function(){},
                 },
