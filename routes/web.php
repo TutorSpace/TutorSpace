@@ -147,7 +147,8 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
-    Route::get('/profile', 'HomeController@profile')->name('home.profile');
+    Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
+    Route::post('/profile', 'HomeController@store')->name('home.profile.store');
 });
 
 // view profile
@@ -181,7 +182,14 @@ Route::group([
     Route::get('/', 'NotificationController@index')->name('notifications.index');
 });
 
-
+// switch account
+Route::group([
+    'prefix' => 'switch-account',
+    'middleware' => 'auth'
+], function() {
+    Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
+    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
+});
 
 
 

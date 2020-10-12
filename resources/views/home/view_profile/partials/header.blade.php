@@ -36,7 +36,7 @@
                 <div>
                     <p class="sub">
                         <span class="sub--1">
-                            {{ Auth::user()->firstMajor->major }}&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ Auth::user()->schoolYear->school_year ?? "No info about your school year" }}
+                            Computer Science&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ Auth::user()->schoolYear->school_year ?? "No info about your school year" }}
                         </span>
                     </p>
                 </div>

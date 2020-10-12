@@ -67,7 +67,7 @@
 
         @include respond(sm) {
             flex-wrap: wrap;
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 2.5rem;
 
             > div:not(:first-child) {
                 width: 100% !important;
@@ -185,11 +185,10 @@
 
         .price {
             width: 7ch;
-            color: $color-purple-primary;
         }
 
         .status {
-            .approved {
+            .approved, .paid {
                 color: $color-blue-primary;
             }
 
@@ -197,7 +196,7 @@
                 color: $color-purple-primary;
             }
 
-            .declined {
+            .declined, .unpaid {
                 color: #C70000;
             }
 
@@ -208,7 +207,7 @@
 
         .actions {
             display: flex;
-            width: 21ch;
+            width: 18ch;
             justify-content: space-between;
             align-items: center;
 
@@ -266,6 +265,15 @@
             svg {
                 cursor: pointer;
             }
+
+            @include respond(sm) {
+                justify-content: flex-end;
+
+                button {
+                    padding: .75rem 1rem;
+                }
+            }
+
         }
 
         .review {
@@ -336,11 +344,15 @@
 }
 
 
-// .bg-tutor {
-//     .info-box--explanation {
-//         .status .pending {
+.bg-tutor {
+    .info-box .price {
+        color: $color-purple-primary
+    }
+}
 
-//         }
-//     }
-// }
+.bg-student {
+    .info-box .price {
+        color: $color-blue-primary
+    }
+}
 

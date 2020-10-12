@@ -82,6 +82,14 @@
                     <span class="sub--1">
                         {{ Auth::user()->firstMajor->major ?? "No info about your major" }}
                     </span>
+                    @if (Auth::user()->secondMajor)
+                    <span class="middot">
+                        &middot;
+                    </span>
+                    <span class="sub--1">
+                        {{ Auth::user()->secondMajor->major }}
+                    </span>
+                    @endif
                     <span class="middot">
                         &middot;
                     </span>
@@ -109,8 +117,14 @@
                     <span class="classifier">Sessions</span>
                 </div>
                 <div class="data">
+                    @if (Auth::user()->is_tutor)
                     <span class="number">5</span>
                     <span class="classifier">Students</span>
+                    @else
+                    <span class="number">5</span>
+                    <span class="classifier">Tutors</span>
+                    @endif
+
                 </div>
             </div>
         </div>

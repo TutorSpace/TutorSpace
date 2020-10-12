@@ -33,7 +33,7 @@ $("#input-profile-pic").change(function() {
     formData.append('profile-pic', file);
 
     $.ajax({
-        type:'POST',
+        type: 'POST',
         url: $('#profile-pic-form').attr('action'),
         data: formData,
         contentType: false,
@@ -41,6 +41,7 @@ $("#input-profile-pic").change(function() {
         success: (data) => {
             toastr.success('Successfully uploaded the image!');
             $('#profile-image').attr('src', storageUrl + data.imgUrl);
+            console.log(storageUrl + data.imgUrl);
             $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
         },
         error: function(error) {

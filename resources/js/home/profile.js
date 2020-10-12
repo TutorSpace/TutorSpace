@@ -111,7 +111,7 @@ autocomplete(document.getElementById("tag"), tags,
 profile_add_tag);
 
 $('.home__panel__button__label').on('click', function() {
-    bootbox.dialog({ 
+    bootbox.dialog({
         message: `
             <div class="container">
                 <svg class="d-block mx-auto my-3" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +120,6 @@ $('.home__panel__button__label').on('click', function() {
                 </svg>
                 <h4 class="w-100 text-center mb-5">Become a Verified Tutor</h4>
                 <p class="text-dark mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius tellus ac fringilla enim ac etiam amet. Facilisi amet sit egestas id sit. Ac eget dui non ipsum gravida malesuada imperdiet feugiat in. Vulputate libero non elit luctus ipsum netus eget.</p>
-                
                 <h5 class="w-100 mt-5">Submit Your Verification Request</h5>
                 <div class="profile__form-row flex-wrap">
                     <div class="autocomplete mb-3">
@@ -128,7 +127,6 @@ $('.home__panel__button__label').on('click', function() {
                         <input type="text" class="profile__input profile__input__courses form-control form-control-lg" id="course-verification">
                     </div>
                 </div>
-                
                 <p class="text-dark">Report Submission</p>
                 <div class="m-5 p-5">
                 </div>
@@ -144,14 +142,12 @@ $('.home__panel__button__label').on('click', function() {
                 label: 'Decline',
                 className: 'btn btn-outline-primary mr-2 p-3 px-5',
                 callback: function(){
-                                    
                 }
             },
             Submit: {
                 label: 'Submit',
                 className: 'btn btn-primary p-3 px-5',
                 callback: function(){
-                                    
                 }
             },
         }
@@ -307,4 +303,24 @@ function ajaxAddRemoveTag(tagInfo) {
             }
         }
     });
+}
+
+function profile_add_course_verification() {
+    var new_course_name = $('#course-verification').val();
+
+    if ($('.boxes__course .box .label').text().includes(new_course_name)) {
+        toastr.error("The course is already selected ");
+    }
+    // checks if 7 courses have been added already
+    else if ($('.boxes__course .box').length == 7) {
+        toastr.error("You can add at most 7 courses.");
+    }
+    else {
+        ajaxAddRemoveCourse({
+            courseName: new_course_name,
+            toAdd: true
+        });
+    }
+    // clear input field
+    $('.profile__input__courses').val("");
 }

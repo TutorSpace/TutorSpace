@@ -35,6 +35,10 @@
 
             @elseif($status == 'completed')
             <div class="content completed">Completed</div>
+            @elseif($status == 'paid')
+            <div class="content paid">Paid</div>
+            @elseif($status == 'unpaid')
+            <div class="content unpaid">Unpaid</div>
             @endif
         </div>
         <div class="price">
