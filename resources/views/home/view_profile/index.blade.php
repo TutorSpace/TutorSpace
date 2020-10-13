@@ -130,5 +130,62 @@ bg-student
 
 @include('home.partials.calendar-view-tutor')
 
+<script>
+    $('#tutor-profile-request-session').on('click',function() {
+        if($('.modal-verify-tutor')[0]) return;
+        @php
+            $callbackFuncName_details = "session_details";
+            $callbackFuncName_confirm = "session_confirm";
+        @endphp
+        
+        bootbox.dialog({
+            message: `@include('book-session.book-session')`,
+            size: 'medium',
+            onEscape: true,
+            backdrop: true,
+            centerVertical: true,
+            buttons: {
+                Next: {
+                    label: 'Next',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: {{ $callbackFuncName_details }}
+                },
+            }
+        });
+        function session_details() {
+            bootbox.dialog({
+                message: `@include('book-session.session-details')`,
+                size: 'medium',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Next: {
+                    label: 'Next',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: {{ $callbackFuncName_confirm }}
+                },
+                }
+            });
+        }
+        function session_confirm() {
+            bootbox.dialog({
+                message: `@include('book-session.session-confirm')`,
+                size: 'medium',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: function(){},
+                },
+                }
+            });
+        }
+    });
+</script>
+
 <script src="{{ asset('js/view_profile/index.js') }}"></script>
 @endsection
