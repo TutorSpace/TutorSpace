@@ -15069,6 +15069,12 @@ h6 {
   border-radius: 15px;
 }
 
+.modal-book-session img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
 .bg-student .btn-submit {
   background-color: #1F7AFF;
 }

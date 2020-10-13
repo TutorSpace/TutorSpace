@@ -9,11 +9,39 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h4 class="w-100 text-center mb-5">Book Your Tutor Session</h4>
-    <figure class="content-img">
+    <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
+    <div>
         <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
-    </figure>
-    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-    <div id="calendar" class="w-100"></div>
+        <span class="font-weight-bold ml-4 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
+    </div>
+    <p class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</p>
+    <div class="row">
+        <div class="col-9 pl-0">
+            <div id="calendar" class="w-100"></div>
+            <div class="calendar-note">
+                <span class="available-time">Available Time</span>
+                <span class="online">Online</span>
+                <span class="in-person">In Person</span>
+                <span class="note">Note: All time in the calender are based on PST.</span>
+            </div>
+        </div>
+    </div>
+    <div id="calendar" class="w-100 py-5 my-5"></div>
+    <div class="d-flex justify-content-between calendar-details">
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Date:</p>
+            <p class="fc-black-2 fs-1-4">08/02/2020 Thursday</p>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Time:</p>
+            <p class="fc-black-2 fs-1-4">3:30pm - 5:00pm</p>
+        </div>
+        <div class="d-flex flex-column mt-3">
+            <p class="fc-grey fs-1-2">Tutor Hourly Rate:</p>
+            <p class="fc-black-2 fs-1-4">$ 16 per hour</p>
+        </div>
+    </div>
 
+    <p class="mt-5 fc-red">Warning: Your selected time is not in thte tutor’s available time. <br/>The Tutor may cancel your request if he/she is not available during that time.</p>
+    
 </div>

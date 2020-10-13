@@ -139,8 +139,8 @@ bg-student
         @endphp
         
         bootbox.dialog({
-            message: `@include('book-session.book-session')`,
-            size: 'medium',
+            message: `@include('session.book-session')`,
+            size: 'large',
             onEscape: true,
             backdrop: true,
             centerVertical: true,
@@ -154,8 +154,8 @@ bg-student
         });
         function session_details() {
             bootbox.dialog({
-                message: `@include('book-session.session-details')`,
-                size: 'medium',
+                message: `@include('session.session-details')`,
+                size: 'large',
                 onEscape: true,
                 backdrop: true,
                 centerVertical: true,
@@ -170,14 +170,14 @@ bg-student
         }
         function session_confirm() {
             bootbox.dialog({
-                message: `@include('book-session.session-confirm')`,
-                size: 'medium',
+                message: `@include('session.session-confirm')`,
+                size: 'large',
                 onEscape: true,
                 backdrop: true,
                 centerVertical: true,
                 buttons: {
                     Submit: {
-                    label: 'Submit',
+                    label: 'Book Session',
                     className: 'btn btn-primary p-3 px-5',
                     callback: function(){},
                 },
