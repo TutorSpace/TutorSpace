@@ -234,7 +234,7 @@ class SearchController extends Controller
                         $availableTimeStart = $availableTime->available_time_start;
                         $availableTimeEnd = $availableTime->available_time_end;                    
 
-                        if(TimeOverlapManager::timeOverlap($startTime, $endTime, $availableTimeStart, $availableTimeEnd)) {    
+                        if(TimeOverlapManager::noTimeOverlap($startTime, $endTime, $availableTimeStart, $availableTimeEnd)) {    
                             $keep = false;
                         }
                         if($keep && !$results->contains($user)) {
