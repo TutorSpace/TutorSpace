@@ -124,8 +124,6 @@ class SearchController extends Controller
                             ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
 
-
-
         // if the user filtered with price
         if($request->input('price-low') && $request->input('price-high')) {
             $usersQuery = $usersQuery
@@ -214,7 +212,7 @@ class SearchController extends Controller
 
             $users = $usersQuery->distinct()->get();
             $results = collect([]);
-            // TODO: check algorithm correctness
+
             foreach($users as $user) {
 
                 //ignore those users without an available time
@@ -246,6 +244,7 @@ class SearchController extends Controller
                     
                 }
             };
+
             return view('search.index', [
                 'users' => $results->paginate(self::$RESULTS_PER_PAGE)
             ]);
