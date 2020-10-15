@@ -464,6 +464,12 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
+    // IMPORTANT: must run scheduler in prod env
+    public function clearTutorAvailableTime() {
+        $tutors = User::where('is_tutor', 1)->get();
+        foreach($tutors as $tutor)
+            $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
+        }
 
 
 
