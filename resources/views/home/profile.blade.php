@@ -37,7 +37,8 @@ bg-student
         </div>
         @endif
 
-        <form class="container col-layout-2 profile" autocomplete="off" method="POST" action="{{ route('home.profile.store') }}">
+        <form class="container col-layout-2 profile" autocomplete="off" action="{{ route('home.profile.update') }}" method="POST">
+            @method('PUT')
             @csrf
             <div class="row">
                 <div class="profile__text-container--white profile__tutor-info">
@@ -234,7 +235,7 @@ bg-student
         @php
             $callbackFuncName = "tutorVerification_upload";
         @endphp
-        
+
         bootbox.dialog({
             message: `@include('home.partials.tutorVerification')`,
             size: 'medium',

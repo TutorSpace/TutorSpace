@@ -148,7 +148,7 @@ Route::group([
     Route::get('/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
-    Route::post('/profile', 'HomeController@store')->name('home.profile.store');
+    Route::put('/profile', 'HomeController@update')->name('home.profile.update');
 });
 
 // view profile

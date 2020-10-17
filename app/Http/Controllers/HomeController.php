@@ -178,7 +178,7 @@ class HomeController extends Controller
         return view('home.profile');
     }
 
-    public function store(Request $request) {
+    public function update(Request $request) {
         $currUser = Auth::user();
         $request->validate([
             'first-major' => [
