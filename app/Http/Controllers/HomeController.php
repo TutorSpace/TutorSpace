@@ -225,4 +225,7 @@ class HomeController extends Controller
 
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }
+
+
+
 }

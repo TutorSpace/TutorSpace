@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\InvalidUser;
 use Illuminate\Support\Facades\Route;
 
 
@@ -189,6 +190,7 @@ Route::group([
 ], function() {
     Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
     Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
+    Route::get('/register-to-be-tutor', 'SwitchAccountController@indexRegisterToBeTutor')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor');
 });
 
 

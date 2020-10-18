@@ -222,6 +222,7 @@
                 }
             });
             @else
+            window.location.href = "{{ route('switch-account.register-to-be-tutor') }}";
 
             @endif
         }

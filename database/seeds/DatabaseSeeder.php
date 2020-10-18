@@ -28,8 +28,6 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             ReplySeeder::class,
             ViewCntSeeder::class,
-            InvalidUserSeeder::class,
-
         ]);
     }
 }
