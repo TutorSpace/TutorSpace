@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         DB::listen(function($query) {
             // echo "<p>{$query->sql}</p>";
         });
+        URL::forceScheme('https');
 
         Paginator::defaultView('pagination.paginate');
         Paginator::defaultSimpleView('pagination.simple');

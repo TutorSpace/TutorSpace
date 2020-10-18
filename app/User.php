@@ -458,8 +458,7 @@ class User extends Authenticatable implements Viewable
 
     // Payments
     public function paymentMethod() {
-        return $this->hasOne('App\PaymentMethod', 'email', 'email')->withDefault();
+        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
     }
-
 
 }

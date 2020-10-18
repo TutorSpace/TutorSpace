@@ -21,8 +21,6 @@ class StripeApiController extends Controller
     public function __construct()
     {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
-
-
     }
 
     public function index() {
@@ -68,8 +66,10 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // Creates a payment intent with new cards
     public function createPaymentIntent(Request $request) {
         $customer_id = $this->getCustomerId();
+        // TODO: target connected account
         $payment_intent = \Stripe\PaymentIntent::create([
             'amount' => 1099,  // TODO: change amount
             'currency' => 'usd',
@@ -81,6 +81,7 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // Creates a payment intent with preset cards
     public function createPaymentIntentWithCard(Request $request) {
         $customer_id = $this->getCustomerId();
         $card_num = intval($request->json('card_num'));
@@ -89,7 +90,7 @@ class StripeApiController extends Controller
             'type' => 'card'
         ]);
         $payment_intent = \Stripe\PaymentIntent::create([
-            'amount' => intval($request->json('amount')),  // TODO: change amount
+            'amount' => intval($request->json('amount')),
             'currency' => 'usd',
             'payment_method' => $payment_methods->data[$card_num]->id,
             'customer' => $customer_id,
@@ -100,6 +101,7 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // Confirms a card payment with preset cards
     public function confirmPaymentIntent(Request $request) {
         $payment_intent_id = $request->json('payment_intent_id');
         $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
@@ -109,6 +111,7 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // Saving a card
     public function createSetupIntent(Request $request) {
         $customer_id = $this->getCustomerId();
         $setup_intent = SetupIntent::create([
@@ -119,6 +122,7 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // Lists all cards of the current user
     public function listCards(Request $request) {
         $cards = \Stripe\PaymentMethod::all([
             'customer' => $this->getCustomerId(),
@@ -133,38 +137,25 @@ class StripeApiController extends Controller
                 'last4' => $card->card->last4
             ]);
         }
+        // TODO: change route
         return view('payment.stripe_reuse_card')->with('cards', $result);
     }
 
+    // Redirected by Stripe
     public function checkAccountDetail(Request $request) {
         $account_id = Session::get('stripe_account_id');
         $account = Account::retrieve($account_id, []);
         if ($account->details_submitted) {
             $user = User::find(Auth::user()->id);
-            $user->stripe_account_id = $account->id;
-            $user->save();
+            $payment_method = $user->paymentMethod;
+            $payment_method->email = $user->email;
+            $payment_method->stripe_account_id = $account->id;
+            $payment_method->save();
+            // TODO: change route
             return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
         } else {
             return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
-    }
-
-    // Charges current user
-    // Request should contain 'amount'
-    public function processCharge(Request $request) {
-        $account_id = Auth::user()->stripe_account_id;
-        // $amount = intval($request->json('amount'));
-        $charge = \Stripe\Charge::create([
-            'amount'   => $request->get('amount'),
-            'currency' => 'usd',
-            'source' => $account_id
-        ]);
-        // TODO: Add charge id to database and Refund
-        Session::put('status', $charge->status);
-        if ($charge->status != 'succeeded') {
-            Session::put('failure_message', $charge->failure_message);
-        }
-        return view('payment.stripe_connect');
     }
 
     // Refunds a charge
@@ -221,6 +212,7 @@ class StripeApiController extends Controller
                 'email' => $user->email
             ]);
             $customer_id = $customer->id;
+            $payment_method->email = $user->email;
             $payment_method->stripe_customer_id = $customer_id;
             $payment_method->save();
         } else {

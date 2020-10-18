@@ -221,7 +221,6 @@ Route::get('/payment/list_cards', 'StripeApiController@listCards');
 Route::post('/payment/stripe_onboarding', 'StripeApiController@createAccountLink');
 Route::post('/payment/create_payment_intent', 'StripeApiController@createPaymentIntent');
 Route::post('/payment/create_setup_intent', 'StripeApiController@createSetupIntent');
-Route::post('/payment/stripe_charge', 'StripeApiController@processCharge');
 Route::post('/payment/stripe_refund', 'StripeApiController@refundCharge');
 Route::post('/payment/stripe_payout', 'StripeApiController@processPayout');
 Route::get('/payment/check', 'StripeApiController@checkAccountDetail');
