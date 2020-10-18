@@ -78,10 +78,10 @@ $('#tutor-profile-request-session').on('click',function() {
             centerVertical: true,
             buttons: {
                 Next: {
-                label: 'Next',
-                className: 'btn btn-primary p-3 px-5',
-                callback: session_confirm
-            },
+                    label: 'Next',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: session_confirm
+                },
             }
         });
     }
@@ -94,10 +94,10 @@ $('#tutor-profile-request-session').on('click',function() {
             centerVertical: true,
             buttons: {
                 Submit: {
-                label: 'Book Session',
-                className: 'btn btn-primary p-3 px-5',
-                callback: function(){},
-            },
+                    label: 'Book Session',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: function(){},
+                },
             }
         });
     }

@@ -234,7 +234,7 @@ bg-student
         @endfor
     ];
     let hourlyRate = [
-        @for ($i = 10; $i <= 50; $i += 0.5)
+        @for ($i = 10; $i <= 50; $i += 1)
             "{{ number_format($i, 1) }}",
         @endfor
     ];

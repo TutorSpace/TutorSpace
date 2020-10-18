@@ -223,8 +223,7 @@ class HomeController extends Controller
         }
 
         if($currUser->is_invalid) {
-            $request->session()->flash('registerToBeTutor1', true);
-            return redirect()->route('switch-account.register-to-be-tutor');
+            return redirect()->route('switch-account.index.register-to-be-tutor-2');
         }
 
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');

@@ -35,7 +35,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </svg>
                     <select class="custom-select" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
-                        @for ($i = 10; $i <= 50; $i += 0.5)
+                        @for ($i = 10; $i <= 50; $i += 1)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>
