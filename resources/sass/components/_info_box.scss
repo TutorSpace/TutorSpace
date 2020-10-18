@@ -1,17 +1,18 @@
 .info-boxes {
     width: 100%;
 
-
-
     &--sm-card {
         @include respond(sm) {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
 
             > div {
                 max-width: calc(50% - 1rem);
                 flex: 0 1 calc(50% - 1rem);
+
+                &:not(:last-child) {
+                    margin-right: 1rem;
+                }
             }
         }
 
@@ -39,10 +40,17 @@
 
     > * {
         margin-top: 1.5rem;
+
+        &:last-child {
+            margin-bottom: .5rem;
+        }
     }
+
+
 
     button {
         max-width: 7rem;
+        line-height: 1.4;
     }
 
     .info-box {
@@ -50,7 +58,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5rem 3rem;
+        padding: 2rem 3rem;
         background-color: $color-white-dark-5;
         border-radius: 1rem;
         font-size: 1.5rem;
@@ -59,7 +67,7 @@
 
         @include respond(sm) {
             flex-wrap: wrap;
-            padding: 1rem 1.5rem;
+            padding: 1.5rem 2.5rem;
 
             > div:not(:first-child) {
                 width: 100% !important;
@@ -84,8 +92,6 @@
                 margin-right: .5rem;
             }
         }
-
-
 
         img {
             width: 4rem;
@@ -113,6 +119,29 @@
 
         }
 
+
+        &__year {
+            @include respond(md) {
+                display: none;
+            }
+
+            @include respond(sm) {
+                display: inline;
+            }
+        }
+
+        &__time-stamp {
+            margin-left: 2rem;
+            font-style: italic;
+            color: $color-grey;
+            display: none;
+
+            @media only screen and (max-width: 85.624em) {
+                display: inline;
+            }
+        }
+
+
         .content {
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -130,19 +159,24 @@
         .user-info {
             display: flex;
             align-items: center;
-            width: 20rem;
+            max-width: 20rem;
+            min-width: 17rem;
         }
 
         .date {
-            width: 20ch;
+            width: 13ch;
+
+            @include respond(md) {
+                width: 11ch;
+            }
         }
 
         .time {
-            width: 17ch;
+            width: 12ch;
         }
 
-        .course, .status, .format {
-            width: 10ch;
+        .course, .status {
+            width: 12ch;
         }
 
         .session-type {
@@ -151,15 +185,18 @@
 
         .price {
             width: 7ch;
-            color: $color-purple-primary;
         }
 
         .status {
-            .approved {
+            .approved, .paid {
                 color: $color-blue-primary;
             }
 
-            .declined {
+            .completed {
+                color: $color-purple-primary;
+            }
+
+            .declined, .unpaid {
                 color: #C70000;
             }
 
@@ -170,7 +207,7 @@
 
         .actions {
             display: flex;
-            width: 21ch;
+            width: 18ch;
             justify-content: space-between;
             align-items: center;
 
@@ -219,6 +256,26 @@
             }
         }
 
+        .action--toggle {
+            color: $color-purple-primary;
+            width: 5rem;
+            display: flex;
+            justify-content: center;
+
+            svg {
+                cursor: pointer;
+            }
+
+            @include respond(sm) {
+                justify-content: flex-end;
+
+                button {
+                    padding: .75rem 1rem;
+                }
+            }
+
+        }
+
         .review {
             flex: 1;
             white-space: normal !important;
@@ -261,6 +318,25 @@
             }
         }
 
+
+        &--explanation {
+            padding-top: 0;
+            padding-bottom: 0;
+            background-color: transparent;
+            box-shadow: none;
+
+            font-weight: 800;
+            font-size: 1.4rem;
+
+            * {
+                color: $color-grey !important;
+            }
+
+            @include respond(sm) {
+                display: none;
+            }
+        }
+
     }
 
 
@@ -268,4 +344,15 @@
 }
 
 
+.bg-tutor {
+    .info-box .price {
+        color: $color-purple-primary
+    }
+}
+
+.bg-student {
+    .info-box .price {
+        color: $color-blue-primary
+    }
+}
 

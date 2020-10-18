@@ -2,6 +2,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js
 /storage/*.key
 .env
 .env.backup
@@ -11,4 +12,4 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 *.icloud
-vendor/
+.vscode

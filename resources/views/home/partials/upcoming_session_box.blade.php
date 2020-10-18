@@ -1,4 +1,4 @@
-<div class="@if(isset($hidden) && $hidden) hidden-2 @endif">
+<div>
     <div class="info-box">
         <div class="user-info">
             <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
@@ -8,15 +8,20 @@
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02/2020 Wednesday</span>
+            <span class="content">08/02<span class="info-box__year">/20</span>
+                Wed</span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">13:30PM - 15:00PM</span>
+            <span class="content">2:30 - 13:00</span>
         </div>
         <div class="course">
             <span class="title">Course</span>
             <span class="content">BUAD 304</span>
+        </div>
+        <div class="session-type">
+            <span class="title">Type</span>
+            <span class="content">In Person</span>
         </div>
         <div class="flex-100"></div>
         <div class="actions">
@@ -25,5 +30,4 @@
         </div>
 
     </div>
-
 </div>

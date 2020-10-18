@@ -5,6 +5,7 @@
 $color-grey: #A0A0A0;
 $color-grey-2: #EAEAEA;
 $color-grey-3: #E0E0E0;
+$color-grey-4: #EDEDED;
 $color-grey-light: #E5E5E5;
 $color-white: #FFFFFF;
 $color-white-dark: #F4F4F4;
@@ -31,6 +32,7 @@ $color-black-post-2: #474747;
 $color-black-post-3: #3F3F3F;
 $color-black: #3F3F3F;
 $color-black-2: #626262;
+$color-black-3: #595959;
 
 $color-danger: #dc3545;
 
@@ -38,5 +40,10 @@ $color-danger: #dc3545;
 $color-calendar-time-available: rgba(213, 208, 223, 1);
 $color-calendar-inperson: rgba(#F59300, .8);
 $color-calendar-online: rgba(#0500F5, .5);
+
+// for notifications
+$color-notification--session: #F0847D;
+$color-notification--forum: #5263FB;
+$color-notification--tutorspace: #FBB752;
 
 $nav-height: 8rem;
