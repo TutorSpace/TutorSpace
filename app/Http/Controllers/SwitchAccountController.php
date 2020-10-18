@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SwitchAccountController extends Controller
 {
@@ -64,5 +65,38 @@ class SwitchAccountController extends Controller
         }
     }
 
-    // $request->session()->flash('registerToBeTutor1', true);
+    public function updateRegisterToBeTutor2(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'hourly-rate' => [
+                'required',
+                'numeric',
+                'min:10',
+                'max:50'
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            return view('home.profile', [
+                'registerToBeTutor2' => true,
+                'hourlyRateError' => true
+            ]);
+        }
+
+        $currUser = Auth::user();
+        $currUser->hourly_rate = $request->input('hourly-rate');
+
+        if($currUser->is_tutor && $currUser->is_invalid && $currUser->first_major_id && $currUser->gpa && $currUser->hourly_rate && $currUser->school_year_id && $currUser->tutor_level_id) {
+            $currUser->is_invalid = false;
+            $currUser->invalid_reason = null;
+            $currUser->invalid_redirect_route_name = null;
+            $currUser->save();
+
+            return redirect()->route('home.profile')->with('successMsg', 'You successfully created a tutor account!');
+        }
+
+        return redirect()->back();
+
+
+    }
+
 }

@@ -191,6 +191,7 @@ Route::group([
     Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
     Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
     Route::get('/register-to-be-tutor', 'SwitchAccountController@indexRegisterToBeTutor')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor');
+    Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
 });
 
 

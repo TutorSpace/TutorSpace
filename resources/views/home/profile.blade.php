@@ -37,7 +37,7 @@ bg-student
         </div>
         @endif
 
-        <form class="container col-layout-2 profile" autocomplete="off" action="{{ route('home.profile.update') }}" method="POST">
+        <form class="container col-layout-2 profile" autocomplete="off" action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }}@else {{ route('home.profile.update') }} @endif" method="POST">
             @method('PUT')
             @csrf
             <div class="row">
@@ -133,6 +133,11 @@ bg-student
                     @if (isset($registerToBeTutor2) && $registerToBeTutor2)
                     <h4 class="heading--register-to-be-tutor-2">Step 2: Complete your tutor information</h4>
                     @endif
+                    @if (isset($hourlyRateError) && $hourlyRateError)
+                    <p class="fs-1-4 fc-red">
+                        Please Enter a Valid Hourly Rate.
+                    </p>
+                    @endif
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
@@ -163,6 +168,12 @@ bg-student
                             @endforeach
                         </div>
                         <p class="profile__label font-italic">Note: You can add at most 7 courses.</p>
+                    </div>
+                    {{-- buttons --}}
+                    <div class="w-100 profile__buttons mt-0">
+                        @if (isset($registerToBeTutor2) && $registerToBeTutor2)
+                        <button class="btn btn-primary" type="submit">Create Account</button>
+                        @endif
                     </div>
                 </div>
 
