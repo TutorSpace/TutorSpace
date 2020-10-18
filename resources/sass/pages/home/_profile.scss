@@ -216,10 +216,17 @@
         }
     }
 
-    .heading--register-to-be-tutor {
+    .heading--register-to-be-tutor-1 {
         position: absolute;
         bottom: calc(100% + 3rem + .75rem);
         left: -3rem;
+        color: $color-white-dark-5;
+    }
+
+    .heading--register-to-be-tutor-2 {
+        position: absolute;
+        bottom: calc(100% + .75rem);
+        left: 0rem;
         color: $color-white-dark-5;
     }
 

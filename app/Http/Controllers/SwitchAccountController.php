@@ -45,16 +45,24 @@ class SwitchAccountController extends Controller
 
         // if the user does not have a VALID tutor account
         if(User::where('email', $currUser->email)->where('is_tutor', true)->where('is_invalid', false)->doesntExist()) {
-            $user = User::where('email', $currUser->email)->where('is_tutor', true)->where('is_invalid', true)->first();
-            if($user) {
-                Auth::login($user);
-            } else {
-                Auth::login($currUser->createTutorIdentityFromStudent());
+            if(!$request->session()->get('registerToBeTutor1')) {
+                $user = User::where('email', $currUser->email)->where('is_tutor', true)->where('is_invalid', true)->first();
+                if($user) {
+                    Auth::login($user);
+                } else {
+                    Auth::login($currUser->createTutorIdentityFromStudent());
+                }
+                return view('home.profile', [
+                    'registerToBeTutor1' => true
+                ]);
+            } else if($request->session()->get('registerToBeTutor1')) {
+                return view('home.profile', [
+                    'registerToBeTutor2' => true
+                ]);
             }
-            return view('home.profile', [
-                'registerToBeTutor' => true
-            ]);
+
         }
     }
 
+    // $request->session()->flash('registerToBeTutor1', true);
 }

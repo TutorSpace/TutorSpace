@@ -222,6 +222,10 @@ class HomeController extends Controller
             $tmpUser->save();
         }
 
+        if($currUser->is_invalid) {
+            $request->session()->flash('registerToBeTutor1', true);
+            return redirect()->route('switch-account.register-to-be-tutor');
+        }
 
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }

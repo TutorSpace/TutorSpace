@@ -14357,6 +14357,10 @@ h6 {
   left: 100% !important;
 }
 
+.top-0-5 {
+  top: 0.5rem;
+}
+
 .hidden {
   display: none !important;
 }
@@ -21495,10 +21499,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 15px;
 }
 
-.profile .heading--register-to-be-tutor {
+.profile .heading--register-to-be-tutor-1 {
   position: absolute;
   bottom: calc(100% + 3rem + .75rem);
   left: -3rem;
+  color: #F9F9F9;
+}
+
+.profile .heading--register-to-be-tutor-2 {
+  position: absolute;
+  bottom: calc(100% + .75rem);
+  left: 0rem;
   color: #F9F9F9;
 }
 

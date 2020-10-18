@@ -149,7 +149,7 @@ Route::group([
     Route::get('/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
-    Route::put('/profile', 'HomeController@update')->name('home.profile.update');
+    Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
 });
 
 // view profile
