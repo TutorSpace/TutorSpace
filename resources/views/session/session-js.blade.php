@@ -50,3 +50,56 @@
         });
     });
 </script>
+
+
+<script>
+$('#tutor-profile-request-session').on('click',function() {
+
+    bootbox.dialog({
+        message: `@include('session.book-session')`,
+        size: 'large',
+        onEscape: true,
+        backdrop: true,
+        centerVertical: true,
+        buttons: {
+            Next: {
+                label: 'Next',
+                className: 'btn btn-primary p-3 px-5',
+                callback: session_details
+            },
+        }
+    });
+    function session_details() {
+        bootbox.dialog({
+            message: `@include('session.session-details')`,
+            size: 'large',
+            onEscape: true,
+            backdrop: true,
+            centerVertical: true,
+            buttons: {
+                Next: {
+                label: 'Next',
+                className: 'btn btn-primary p-3 px-5',
+                callback: session_confirm
+            },
+            }
+        });
+    }
+    function session_confirm() {
+        bootbox.dialog({
+            message: `@include('session.session-confirm')`,
+            size: 'large',
+            onEscape: true,
+            backdrop: true,
+            centerVertical: true,
+            buttons: {
+                Submit: {
+                label: 'Book Session',
+                className: 'btn btn-primary p-3 px-5',
+                callback: function(){},
+            },
+            }
+        });
+    }
+});
+</script>
