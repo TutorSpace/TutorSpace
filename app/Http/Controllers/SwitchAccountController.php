@@ -51,7 +51,9 @@ class SwitchAccountController extends Controller
             } else {
                 Auth::login($currUser->createTutorIdentityFromStudent());
             }
-            return view('home.profile');
+            return view('home.profile', [
+                'registerToBeTutor' => true
+            ]);
         }
     }
 

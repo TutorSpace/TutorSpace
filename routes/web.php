@@ -54,7 +54,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     // logout
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->withoutMiddleware(InvalidUser::class)->name('logout');
 
     // send verification email for register
     Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificationEmail');

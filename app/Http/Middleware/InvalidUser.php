@@ -16,11 +16,9 @@ class InvalidUser
      */
     public function handle($request, Closure $next)
     {
-        $response = $next($request);
-
         if(Auth::check() && Auth::user()->is_invalid) {
             return redirect()->route(Auth::user()->invalid_redirect_route_name);
         }
-        return $response;
+        return $next($request);
     }
 }
