@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id')->unique();
             $table->string('first_name', 64);
             $table->string('last_name', 64);
-            $table->string('email', 64);
+            $table->string('email', 64)->unique();
             $table->boolean('is_tutor');
             $table->boolean('is_tutor_verified')->default(false);
             $table->unsignedBigInteger('first_major_id')->nullable();
