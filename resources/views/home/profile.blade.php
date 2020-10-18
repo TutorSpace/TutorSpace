@@ -286,12 +286,15 @@ bg-student
 
 <script src="{{ asset('js/home/profile.js') }}"></script>
 
-@if ((isset($registerToBeTutor1) && $registerToBeTutor1) || (isset($registerToBeTutor2) && $registerToBeTutor2))
+@if ((isset($registerToBeTutor1) && $registerToBeTutor1))
 <script>
     $('.profile__text__edit').click();
 </script>
+@endif
 
+@if ((isset($registerToBeTutor1) && $registerToBeTutor1) || (isset($registerToBeTutor2) && $registerToBeTutor2))
 {{-- the following classes are from the bootbox --}}
 <div class="modal-backdrop fade show"></div>
 @endif
+
 @endsection

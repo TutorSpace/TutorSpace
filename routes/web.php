@@ -168,7 +168,7 @@ Route::group([
 });
 
 // add/remove course/tag to the user profile
-Route::post('/course-add-remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
+Route::post('/course-add-remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth'])->withoutMiddleware(InvalidUser::class);
 Route::post('/tag-add-remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
 
 // autocomplete
