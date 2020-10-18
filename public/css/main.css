@@ -14611,6 +14611,10 @@ h6 {
   color: #3F3F3F;
 }
 
+.z-index-9999 {
+  z-index: 9998 !important;
+}
+
 .ff-Avenir {
   font-family: Avenir;
 }
@@ -17045,7 +17049,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 ._nav {
   height: 8rem;
-  z-index: 2000;
+  z-index: 9999;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -21489,6 +21493,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .modal-verify-tutor #upload-file-button {
   border-radius: 15px;
+}
+
+.profile .heading--register-to-be-tutor {
+  position: absolute;
+  bottom: calc(100% + 3rem + .75rem);
+  left: -3rem;
+  color: #F9F9F9;
 }
 
 .home .past-sessions {

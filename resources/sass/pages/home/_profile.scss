@@ -216,5 +216,12 @@
         }
     }
 
+    .heading--register-to-be-tutor {
+        position: absolute;
+        bottom: calc(100% + 3rem + .75rem);
+        left: -3rem;
+        color: $color-white-dark-5;
+    }
+
 }
 
