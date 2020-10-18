@@ -25,7 +25,7 @@
         </div>
         <div class="flex-100"></div>
         <div class="actions">
-            <button class="btn btn-lg btn-animation-y-sm btn-cancel">Cancel</button>
+            <button class="btn btn-lg btn-animation-y-sm btn-cancel-session">Cancel</button>
             <button class="btn btn-lg btn-animation-y-sm btn-view-session">View</button>
         </div>
 

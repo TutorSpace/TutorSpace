@@ -178,7 +178,7 @@ class HomeController extends Controller
         return view('home.profile');
     }
 
-    public function store(Request $request) {
+    public function update(Request $request) {
         $currUser = Auth::user();
         $request->validate([
             'first-major' => [
@@ -222,7 +222,13 @@ class HomeController extends Controller
             $tmpUser->save();
         }
 
+        if($currUser->is_invalid) {
+            return redirect()->route('switch-account.index.register-to-be-tutor-2');
+        }
 
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }
+
+
+
 }

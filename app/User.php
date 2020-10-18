@@ -283,6 +283,18 @@ class User extends Authenticatable
         $newUser->hourly_rate = null;
         $newUser->tutor_level_id = null;
         $newUser->introduction = null;
+        $newUser->is_invalid = false;
+        $newUser->save();
+        return $newUser;
+    }
+
+    public function createTutorIdentityFromStudent() {
+        $newUser = $this->replicate();
+        $newUser->is_tutor = 1;
+        $newUser->is_invalid = true;
+        $newUser->tutor_level_id = 1;
+        $newUser->invalid_reason = 'The user did not finish all the steps when registering from a student to a tutor.';
+        $newUser->invalid_redirect_route_name = 'switch-account.register-to-be-tutor';
         $newUser->save();
         return $newUser;
     }
@@ -338,11 +350,8 @@ class User extends Authenticatable
     }
 
     public function hasDualIdentities() {
-        return User::where('email', $this->email)->count() == 2;
+        return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
     }
-
-
-
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {

@@ -37,18 +37,22 @@ bg-student
         </div>
         @endif
 
-        <form class="container col-layout-2 profile" autocomplete="off" method="POST" action="{{ route('home.profile.store') }}">
+        <form class="container col-layout-2 profile" autocomplete="off" action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }}@else {{ route('home.profile.update') }} @endif" method="POST">
+            @method('PUT')
             @csrf
             <div class="row">
-                <div class="profile__text-container--white profile__tutor-info">
+                <div class="profile__text-container--white p-relative @if (isset($registerToBeTutor1) && $registerToBeTutor1) z-index-9999 @endif">
                     @if ($errors->any())
-                    <p class="fs-1-4 fc-red mb-2">
+                    <p class="fs-1-4 fc-red mb-2 @if (isset($registerToBeTutor1) && $registerToBeTutor1) p-absolute top-0-5 @endif">
                         {{ $errors->first() }}
                     </p>
                     @endif
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 p-relative">
+                        @if (isset($registerToBeTutor1) && $registerToBeTutor1)
+                        <h4 class="heading--register-to-be-tutor-1">Step 1: Complete your personal infomation</h4>
+                        @endif
                         <h5 class="font-weight-bold">Personal Information</h5>
-                        <div class="profile__text__edit d-flex align-items-center mr-2 hover--pointer">
+                        <div class="profile__text__edit d-flex align-items-center mr-2 hover--pointer @if (isset($registerToBeTutor1) && $registerToBeTutor1) hidden @endif">
                             <svg class="mr-2" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
                                 <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
@@ -58,11 +62,11 @@ bg-student
                     </div>
                     <div class="profile__form-row">
                         <div>
-                            <label for="" class="profile__label">First Name</label>
+                            <label class="profile__label">First Name</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="Shuaiqing" disabled>
                         </div>
                         <div>
-                            <label for="" class="profile__label">Last Name</label>
+                            <label class="profile__label">Last Name</label>
                             <input type="text" class="profile__input form-control form-control-lg" value="Luo" disabled>
                         </div>
                     </div>
@@ -116,12 +120,24 @@ bg-student
 
                     {{-- buttons --}}
                     <div class="w-100 profile__buttons d-none">
+                        @if (isset($registerToBeTutor1) && $registerToBeTutor1)
+                        <button class="btn btn-primary" type="submit">Next</button>
+                        @else
                         <button class="btn btn-outline-primary mr-5" id="btn-reset" type="button">Discard Changes</button>
                         <button class="btn btn-primary" type="submit">Save Changes</button>
+                        @endif
                     </div>
                 </div>
 
-                <div class="profile__text-container--white">
+                <div class="profile__text-container--white p-relative @if (isset($registerToBeTutor2) && $registerToBeTutor2) z-index-9999 @endif">
+                    @if (isset($registerToBeTutor2) && $registerToBeTutor2)
+                    <h4 class="heading--register-to-be-tutor-2">Step 2: Complete your tutor information</h4>
+                    @endif
+                    @if (isset($hourlyRateError) && $hourlyRateError)
+                    <p class="fs-1-4 fc-red">
+                        Please Enter a Valid Hourly Rate.
+                    </p>
+                    @endif
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
@@ -152,6 +168,12 @@ bg-student
                             @endforeach
                         </div>
                         <p class="profile__label font-italic">Note: You can add at most 7 courses.</p>
+                    </div>
+                    {{-- buttons --}}
+                    <div class="w-100 profile__buttons mt-0">
+                        @if (isset($registerToBeTutor2) && $registerToBeTutor2)
+                        <button class="btn btn-primary" type="submit">Create Account</button>
+                        @endif
                     </div>
                 </div>
 
@@ -212,7 +234,7 @@ bg-student
         @endfor
     ];
     let hourlyRate = [
-        @for ($i = 10; $i <= 50; $i += 0.5)
+        @for ($i = 10; $i <= 50; $i += 1)
             "{{ number_format($i, 1) }}",
         @endfor
     ];
@@ -228,6 +250,62 @@ bg-student
     ];
 </script>
 
+<script>
+    $('.home__panel__button').on('click',function() {
+        if($('.modal-verify-tutor')[0]) return;
+        @php
+            $callbackFuncName = "tutorVerification_upload";
+        @endphp
+
+        bootbox.dialog({
+            message: `@include('home.partials.tutorVerification')`,
+            size: 'medium',
+            onEscape: true,
+            backdrop: true,
+            centerVertical: true,
+            buttons: {
+                Decline: {
+                    label: 'Decline',
+                    className: 'btn btn-outline-primary mr-2 p-3 px-5',
+                    callback: function(){}
+                },
+                Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: {{ $callbackFuncName }}
+                },
+            }
+        });
+        function tutorVerification_upload() {
+            bootbox.dialog({
+                message: `@include('home.partials.tutorVerification--upload_success')`,
+                size: 'medium',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Close: {
+                    label: 'Close',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: function(){}
+                },
+                }
+            });
+        }
+    });
+</script>
+
 <script src="{{ asset('js/home/profile.js') }}"></script>
+
+@if ((isset($registerToBeTutor1) && $registerToBeTutor1))
+<script>
+    $('.profile__text__edit').click();
+</script>
+@endif
+
+@if ((isset($registerToBeTutor1) && $registerToBeTutor1) || (isset($registerToBeTutor2) && $registerToBeTutor2))
+{{-- the following classes are from the bootbox --}}
+<div class="modal-backdrop fade show"></div>
+@endif
 
 @endsection

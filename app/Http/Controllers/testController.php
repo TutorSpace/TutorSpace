@@ -35,10 +35,10 @@ class testController extends Controller
     }
     public function index(Request $request) {
         $currUser = Auth::user();
-        Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
+        // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
 
 
-        dd("here");
+        dd($currUser);
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()

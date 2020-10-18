@@ -163,6 +163,7 @@ bg-student
             </div>
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
@@ -186,7 +187,7 @@ bg-student
                 </div>
             </div>
         </div>
-
+        @endif
 
     </main>
 
@@ -208,4 +209,8 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
 <script src="{{ asset('js/home/index.js') }}"></script>
+
+
+@include('session.session-js')
+
 @endsection
