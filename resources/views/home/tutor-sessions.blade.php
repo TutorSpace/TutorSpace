@@ -163,6 +163,7 @@ bg-student
             </div>
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
@@ -186,7 +187,7 @@ bg-student
                 </div>
             </div>
         </div>
-
+        @endif
 
     </main>
 
@@ -210,82 +211,6 @@ let storageUrl = "{{ Storage::url('') }}";
 <script src="{{ asset('js/home/index.js') }}"></script>
 
 
-<script>
-    $('.btn-view-session').on('click',function() {
-        if($('.modal-book-session')[0]) return;
-        @php
-            $callbackFuncName_details = "session_details";
-            $callbackFuncName_confirm = "session_delete";
-        @endphp
-        
-        bootbox.dialog({
-            message: `@include('session.view-session')`,
-            size: 'large',
-            onEscape: true,
-            backdrop: true,
-            centerVertical: true,
-            buttons: {
-                Next: {
-                    label: 'Next',
-                    className: 'btn btn-primary p-3 px-5',
-                    callback: {{ $callbackFuncName_details }}
-                },
-            }
-        });
-        function session_details() {
-            bootbox.dialog({
-                message: `@include('session.view-session-overview')`,
-                size: 'large',
-                onEscape: true,
-                backdrop: true,
-                centerVertical: true,
-                buttons: {
-                    Cancel: {
-                        label: 'Cancel Session',
-                        className: 'btn btn-outline-primary mr-2 p-3 px-5',
-                        callback: {{ $callbackFuncName_confirm }}
-                    },
-                    Next: {
-                        label: 'Next',
-                        className: 'btn btn-primary p-3 px-5',
-                        callback: function(){}
-                    },
-                }
-            });
-        }
-        function session_delete() {
-            bootbox.dialog({
-                message: `@include('session.view-session-cancel')`,
-                size: 'large',
-                onEscape: true,
-                backdrop: true,
-                centerVertical: true,
-                buttons: {
-                    Cancel: {
-                    label: 'Cancel Session',
-                    className: 'btn btn-primary p-3 px-5',
-                    callback: function(){},
-                },
-                }
-            });
-        }
-    });
-    $('.btn-cancel').on('click',function() {
-        if($('.modal-book-session')[0]) return;
-        bootbox.dialog({
-            message: `@include('session.view-session-cancel')`,
-            size: 'large',
-            onEscape: true,
-            backdrop: true,
-            centerVertical: true,
-            buttons: {
-                Cancel: {
-                    label: 'Cancel Session',
-                    className: 'btn btn-primary p-3 px-5',
-                    callback: function(){},
-                },
-            }
-        });
-    });
-</script>
+@include('session.session-js')
+
 @endsection

@@ -15081,6 +15081,8 @@ h6 {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .bg-student .btn-submit {
@@ -16278,12 +16280,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.bg-tutor .info-box .price {
+.bg-student .info-boxes .price {
+  color: #1F7AFF;
+}
+
+.bg-student .info-boxes svg {
+  color: #1F7AFF;
+}
+
+.bg-tutor .info-boxes .price {
   color: #6749DF;
 }
 
-.bg-student .info-box .price {
-  color: #1F7AFF;
+.bg-tutor .info-boxes svg {
+  color: #6749DF;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -16326,7 +16336,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
-  color: #6749DF;
   cursor: pointer;
 }
 
@@ -16409,6 +16418,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-cards .info-card__row .btn-view-session::after {
     display: none;
   }
+}
+
+.bg-student .info-cards svg {
+  color: #1F7AFF;
+}
+
+.bg-tutor .info-cards svg {
+  color: #6749DF;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -21242,8 +21259,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #6749DF;
 }
 
-.bg-tutor .home .info-box .actions .btn-cancel,
-.bg-tutor .home .info-box .action .btn-cancel {
+.bg-tutor .home .info-box .actions .btn-cancel-session,
+.bg-tutor .home .info-box .action .btn-cancel-session {
   border: 1px solid #6749DF;
   color: #6749DF;
 }
@@ -21270,8 +21287,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #1F7AFF;
 }
 
-.bg-student .home .info-box .actions .btn-cancel,
-.bg-student .home .info-box .action .btn-cancel {
+.bg-student .home .info-box .actions .btn-cancel-session,
+.bg-student .home .info-box .action .btn-cancel-session {
   border: 1px solid #1F7AFF;
   color: #1F7AFF;
 }

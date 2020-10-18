@@ -386,4 +386,6 @@ let storageUrl = "{{ Storage::url('') }}";
 
 <script src="{{ asset('js/home/index.js') }}"></script>
 
+@include('session.session-js')
+
 @endsection

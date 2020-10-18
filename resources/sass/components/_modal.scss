@@ -85,20 +85,21 @@
         #upload-file-button {
             border-radius: 15px;
         }
- 	} 
+ 	}
 
     &-book-session {
         img {
             width: 5rem;
             height: 5rem;
             border-radius: 50%;
+            object-fit: cover;
         }
 
 
         .calendar-details {
-            
+
         }
-    } 
+    }
 
 }
 

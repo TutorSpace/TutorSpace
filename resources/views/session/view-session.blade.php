@@ -11,7 +11,7 @@
 
     <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
     <div>
-        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
+        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
         <span class="font-weight-bold ml-4 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
     </div>
     <p class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</p>
@@ -43,5 +43,5 @@
     </div>
 
     <p class="mt-5 fc-red">Warning: Your selected time is not in thte tutor’s available time. <br/>The Tutor may cancel your request if he/she is not available during that time.</p>
-    
+
 </div>
