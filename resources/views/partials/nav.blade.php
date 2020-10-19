@@ -120,12 +120,20 @@
                     Hello, {{ Auth::user()->first_name }}!
                 </span>
                 @endif
-                <div class="nav-right__svg-container">
+                <div class="nav-right__svg-container nav-right__notif-message p-relative">
                     <svg class="svg-message" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     </svg>
+                    <svg class="notification-indicator" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="2.5" cy="2.5" r="2.5" fill="#FFBC00"/>
+                    </svg>
+                </div>
+                <div class="nav-right__svg-container p-relative">
                     <svg class="svg-notification" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bell-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                    </svg>
+                    <svg class="notification-indicator" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="2.5" cy="2.5" r="2.5" fill="#FFBC00"/>
                     </svg>
                 </div>
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
@@ -142,7 +150,7 @@
                         </svg>
                         Profile
                     </a>
-                    <a class="nav__item mt-2" href="#">
+                    <a class="nav__item mt-2 nav__item__svg--switch-account" href="#">
                         <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
                                 <path d="M418.133 104.533C416 104.533 413.867 104.533 411.733 102.4C369.067 63.9999 313.6 42.6666 256 42.6666C200.533 42.6666 145.067 61.8666 102.4 100.267C98.1335 102.4 91.7335 102.4 87.4668 98.1333C83.2001 93.8666 85.3335 87.4666 89.6001 83.1999C134.4 42.6666 194.133 21.3333 256 21.3333C317.867 21.3333 379.734 44.7999 426.667 85.3333C430.934 89.5999 430.934 95.9999 426.667 100.267C424.534 102.4 422.4 104.533 418.133 104.533V104.533Z" fill="#595959"/>
@@ -254,7 +262,7 @@
                             </svg>
                             Support
                         </a>
-                        <a class="nav__item mt-2" href="#">
+                        <a class="nav__item mt-2 nav__item__svg--switch-account" href="#">
                             <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0)">
                                     <path d="M418.133 104.533C416 104.533 413.867 104.533 411.733 102.4C369.067 63.9999 313.6 42.6666 256 42.6666C200.533 42.6666 145.067 61.8666 102.4 100.267C98.1335 102.4 91.7335 102.4 87.4668 98.1333C83.2001 93.8666 85.3335 87.4666 89.6001 83.1999C134.4 42.6666 194.133 21.3333 256 21.3333C317.867 21.3333 379.734 44.7999 426.667 85.3333C430.934 89.5999 430.934 95.9999 426.667 100.267C424.534 102.4 422.4 104.533 418.133 104.533V104.533Z" fill="#595959"/>

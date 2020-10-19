@@ -24,7 +24,6 @@
 @import "components/tag";
 @import "components/forum/post_reply";
 @import "components/user_card";
-@import "components/session";
 @import "components/pagination";
 @import "components/search-card";
 @import "components/bookmark";
@@ -55,6 +54,7 @@
 @import "pages/search";
 @import "pages/home/index";
 @import "pages/home/profile";
+@import "pages/home/tutor-sessions";
 @import "pages/view_profile/index";
 @import "pages/chatting/index";
 @import "pages/notifications/index";

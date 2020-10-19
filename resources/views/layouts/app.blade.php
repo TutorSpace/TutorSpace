@@ -21,7 +21,6 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
-
     @yield('content')
 
 
@@ -40,7 +39,6 @@
                 session()->forget('successMsg');
             @endphp
         @endif
-
         // for footer subscribe button
         $('#footer__form-subscribe').submit(function(e) {
             e.preventDefault();
@@ -48,7 +46,6 @@
                 toastr.error('Please enter your email!');
                 return;
             }
-
             $.ajax({
                 type:'POST',
                 url: "{{ route('subscription.store') }}",
@@ -70,16 +67,13 @@
                 }
             });
         });
-
         // nav icons
         $('nav .svg-message').click(function() {
             window.location.href = "{{ route('chatting.index') }}";
         });
-
         $('nav .svg-notification').click(function() {
             window.location.href = "{{ route('notifications.index') }}";
         });
-
         @if(Auth::check() && !Auth::user()->is_tutor)
         // ===================== bookmark =================
         $(document).on('click', '.svg-bookmark', function() {
@@ -137,18 +131,117 @@
                     console.log(error);
                 }
             });
-
             $(this).find('use').toggleClass('hidden');
-
-
         });
         @endif
-
         @guest
         $('.svg-bookmark').click(function() {
             $('.overlay-student').show();
         })
         @endguest
+
+        @auth
+        // nav bar switch account
+        $('.nav__item__svg--switch-account').on('click',function() {
+            if($('.modal-switch-account')[0]) return;
+
+            $('.nav-right__profile-img').click();
+
+            @php
+                $currUser = Auth::user();
+
+                if($currUser->hasDualIdentities()) {
+                    $declineLabel = "Cancel";
+
+                    if($currUser->is_tutor) $submitLabel = "Switch to Student Account";
+                    else $submitLabel = "Switch to Tutor Account";
+
+                    $callbackFuncName = "callbackHaveDualIdentity";
+                } else {
+                    $declineLabel = "Not Now";
+                    if($currUser->is_tutor) $submitLabel = "Become a Student";
+                    else $submitLabel = "Become a Tutor";
+
+                    $callbackFuncName = "callbackNotHaveDualIdentity";
+                }
+            @endphp
+
+
+            bootbox.dialog({
+                @if($currUser->hasDualIdentities())
+                message: `@include('switch-account.partials.switch-account-modal-dual', [
+                    'currUser' => $currUser
+                ])`,
+                @else
+                message: `@include('switch-account.partials.switch-account-modal-not-dual')`,
+                @endif
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Decline: {
+                        label: "{{ $declineLabel }}",
+                        className: 'btn btn-outline-primary mr-3 py-2 px-4'
+                    },
+                    Submit: {
+                        label: '{{ $submitLabel }}',
+                        className: 'btn btn-primary py-2 px-4',
+                        callback: {{ $callbackFuncName }}
+                    },
+                }
+            });
+        });
+
+        function callbackNotHaveDualIdentity() {
+            @if($currUser->is_tutor)
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('switch-account.register') }}",
+                success: (data) => {
+                    bootbox.dialog({
+                        message: data.successMsg,
+                        backdrop: true,
+                        centerVertical: true,
+                        buttons: {
+                            Decline: {
+                                label: "Cancel",
+                                className: 'btn btn-outline-primary mr-3 py-2 px-4',
+                            },
+                            Submit: {
+                                label: 'Switch Account Now',
+                                className: 'btn btn-primary py-2 px-4',
+                                callback: function(){
+                                    window.location.href = "{{ route('home') }}";
+                                }
+                            },
+                        }
+                    });
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
+                }
+            });
+            @else
+            window.location.href = "{{ route('switch-account.register-to-be-tutor') }}";
+
+            @endif
+        }
+
+        function callbackHaveDualIdentity() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('switch-account.switch') }}",
+                success: (data) => {
+                    window.location.reload();
+                },
+                error: function(error) {
+                    toastr.error('Something went wrong. Please try again.');
+                    console.log(error);
+                }
+            })
+        }
+        @endauth
+
     </script>
     @yield('js')
 

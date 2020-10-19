@@ -14357,6 +14357,10 @@ h6 {
   left: 100% !important;
 }
 
+.top-0-5 {
+  top: 0.5rem;
+}
+
 .hidden {
   display: none !important;
 }
@@ -14375,6 +14379,28 @@ h6 {
 
 .overflow-hidden {
   overflow: hidden;
+}
+
+.show--sm {
+  display: none !important;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .show--sm {
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 47.99em) {
+  .hide--sm {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 61.99em) {
+  .hide--md {
+    display: none !important;
+  }
 }
 
 .pl-0 {
@@ -14587,6 +14613,10 @@ h6 {
 
 .fc-black-post-3 {
   color: #3F3F3F;
+}
+
+.z-index-9999 {
+  z-index: 9998 !important;
 }
 
 .ff-Avenir {
@@ -15025,6 +15055,34 @@ h6 {
 .modal .btn-delete {
   color: #F9F9F9;
   background-color: #dc3545;
+}
+
+.modal-switch-account .svg--top {
+  width: 10rem;
+  height: 10rem;
+}
+
+.modal-verify-tutor #upload-file {
+  height: 150px;
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.modal-verify-tutor #upload-file-button input {
+  opacity: 0;
+  position: absolute;
+}
+
+.modal-verify-tutor #upload-file-button {
+  border-radius: 15px;
+}
+
+.modal-book-session img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .bg-student .btn-submit {
@@ -15862,12 +15920,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-boxes--sm-card {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .info-boxes--sm-card > div {
     max-width: calc(50% - 1rem);
     flex: 0 1 calc(50% - 1rem);
+  }
+
+  .info-boxes--sm-card > div:not(:last-child) {
+    margin-right: 1rem;
   }
 }
 
@@ -15920,7 +15981,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 @media only screen and (max-width: 47.99em) {
   .info-boxes .info-box {
     flex-wrap: wrap;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 2.5rem;
   }
 
   .info-boxes .info-box > div:not(:first-child) {
@@ -16024,11 +16085,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .info-boxes .info-box .user-info {
   display: flex;
   align-items: center;
-  width: 20rem;
+  max-width: 20rem;
+  min-width: 17rem;
 }
 
 .info-boxes .info-box .date {
-  width: 16ch;
+  width: 13ch;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -16038,16 +16100,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes .info-box .time {
-  width: 14ch;
+  width: 12ch;
 }
 
 .info-boxes .info-box .course,
 .info-boxes .info-box .status {
   width: 12ch;
-}
-
-.info-boxes .info-box .type {
-  width: 9ch;
 }
 
 .info-boxes .info-box .session-type {
@@ -16056,14 +16114,19 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .price {
   width: 7ch;
-  color: #6749DF;
 }
 
-.info-boxes .info-box .status .approved {
+.info-boxes .info-box .status .approved,
+.info-boxes .info-box .status .paid {
   color: #1F7AFF;
 }
 
-.info-boxes .info-box .status .declined {
+.info-boxes .info-box .status .completed {
+  color: #6749DF;
+}
+
+.info-boxes .info-box .status .declined,
+.info-boxes .info-box .status .unpaid {
   color: #C70000;
 }
 
@@ -16073,7 +16136,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-boxes .info-box .actions {
   display: flex;
-  width: 21ch;
+  width: 18ch;
   justify-content: space-between;
   align-items: center;
 }
@@ -16129,6 +16192,27 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   width: 100%;
 }
 
+.info-boxes .info-box .action--toggle {
+  color: #6749DF;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.info-boxes .info-box .action--toggle svg {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box .action--toggle {
+    justify-content: flex-end;
+  }
+
+  .info-boxes .info-box .action--toggle button {
+    padding: 0.75rem 1rem;
+  }
+}
+
 .info-boxes .info-box .review {
   flex: 1;
   white-space: normal !important;
@@ -16177,6 +16261,41 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.info-boxes .info-box--explanation {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  box-shadow: none;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.info-boxes .info-box--explanation * {
+  color: #A0A0A0 !important;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .info-boxes .info-box--explanation {
+    display: none;
+  }
+}
+
+.bg-student .info-boxes .price {
+  color: #1F7AFF;
+}
+
+.bg-student .info-boxes svg {
+  color: #1F7AFF;
+}
+
+.bg-tutor .info-boxes .price {
+  color: #6749DF;
+}
+
+.bg-tutor .info-boxes svg {
+  color: #6749DF;
+}
+
 @media only screen and (max-width: 61.99em) {
   .info-cards {
     margin-top: 5rem;
@@ -16217,7 +16336,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .info-cards .info-card .action-toggle {
   font-size: 2.4rem;
-  color: #6749DF;
   cursor: pointer;
 }
 
@@ -16300,6 +16418,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   .info-cards .info-card__row .btn-view-session::after {
     display: none;
   }
+}
+
+.bg-student .info-cards svg {
+  color: #1F7AFF;
+}
+
+.bg-tutor .info-cards svg {
+  color: #6749DF;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -16647,20 +16773,25 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notifications--sidebar {
-  margin-top: 2rem;
-  background-color: #F9F9F9;
-  padding: 2rem 2.5rem;
+  margin-top: 0.5rem;
   font-size: 1.6rem;
-  border-radius: 1rem;
-  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
 .notifications--sidebar .side-bar__notification {
   display: flex;
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
-.notifications--sidebar .side-bar__notification:not(:first-child) {
-  margin-top: 2.3rem;
+.notifications--sidebar .side-bar__notification:first-child {
+  padding-top: 2.15rem;
+}
+
+.notifications--sidebar .side-bar__notification:hover {
+  cursor: pointer;
+  background-color: rgba(240, 240, 240, 0.9);
 }
 
 .notifications--sidebar .side-bar__notification--left {
@@ -16679,6 +16810,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #FBB752;
 }
 
+.notifications--sidebar .side-bar__notification--left img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .notifications--sidebar .side-bar__notification--content {
   margin-right: 0.5rem;
   flex: 1;
@@ -16692,7 +16828,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.2rem;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .notifications--sidebar .side-bar__notification--right {
@@ -16934,7 +17070,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 ._nav {
   height: 8rem;
-  z-index: 2000;
+  z-index: 9999;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -17158,9 +17294,41 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 2.2rem;
 }
 
+._nav .nav-right__svg-container .notification-indicator {
+  top: -0.1rem;
+  right: 0.1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  ._nav .nav-right__svg-container .notification-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}
+
 @media only screen and (max-width: 47.99em) {
   ._nav .nav-right__svg-container {
     margin-right: 1.5rem;
+  }
+}
+
+._nav .nav-right__notif-message {
+  margin-right: 0rem;
+}
+
+._nav .nav-right__notif-message .notification-indicator {
+  top: -0.3rem;
+  right: 1.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  ._nav .nav-right__notif-message .notification-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
   }
 }
 
@@ -20481,6 +20649,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   padding: 0;
   border-radius: 1rem;
   position: relative;
+  background-color: #EAEAEA;
 }
 
 .home__header--animated .content {
@@ -20556,7 +20725,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-info {
-  color: #FFFFFF;
+  color: #626262;
 }
 
 .home__header .content .content-info .name-container {
@@ -20623,7 +20792,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-info .sub .sub--3 svg {
-  color: #FFFFFF;
   transition: all 0.1s;
   cursor: pointer;
 }
@@ -20643,11 +20811,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header .content .content-info .tutor-level-progress .progress {
   height: 1rem;
-  background-color: #502ED9;
+  background-color: #FFFFFF;
 }
 
 .home__header .content .content-info .tutor-level-progress .progress .progress-bar {
-  background-color: #FFFFFF;
+  background-color: #502ED9;
 }
 
 .home__header .content .content-info .tutor-level-progress .tutor-level {
@@ -20689,7 +20857,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .home__header .content .content-data .data .number {
-  color: #FFFFFF;
+  color: #626262;
   display: block;
   font-size: 3rem;
   line-height: 1;
@@ -20732,7 +20900,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #FFFFFF;
 }
 
 .home__content-container {
@@ -20860,101 +21027,60 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 6rem;
 }
 
-.home__content .tutor-requests {
-  max-height: 40rem;
-  overflow: scroll;
-}
-
-.home__content .tutor-requests + .scroll-faded {
-  margin-top: -3rem;
-  height: 4rem;
-}
-
-.home__content .user-cards {
+.home__content .recommended-tutors {
   width: 100%;
   display: grid;
   flex-wrap: wrap;
   display: flex;
 }
 
-.home__content .user-cards .user-card {
+.home__content .recommended-tutors .user-card {
   margin-top: 1.5rem;
-}
-
-.home__content .user-cards .user-card {
-  width: calc((100% - 2rem * 4) / 5);
+  width: calc((100% - 2rem * 3) / 4);
+  min-width: 17.5rem;
   margin-right: 2rem;
+  color: #1F7AFF;
 }
 
-.home__content .user-cards .user-card:nth-child(5n+5) {
+.home__content .recommended-tutors .user-card:nth-child(4n+4) {
   margin-right: 0;
 }
 
 @media only screen and (max-width: 61.99em) {
-  .home__content .user-cards .user-card {
+  .home__content .recommended-tutors .user-card {
     width: calc((100% - 2rem * 2) / 3);
   }
 
-  .home__content .user-cards .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(4n+4) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(3n+3) {
+  .home__content .recommended-tutors .user-card:nth-child(3n+3) {
     margin-right: 0;
   }
 }
 
 @media only screen and (max-width: 28.124em) {
-  .home__content .user-cards .user-card {
+  .home__content .recommended-tutors .user-card {
     width: calc((100% - 2rem * 1) / 2);
   }
 
-  .home__content .user-cards .user-card:nth-child(5n+5) {
+  .home__content .recommended-tutors .user-card:nth-child(4n+4) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(3n+3) {
+  .home__content .recommended-tutors .user-card:nth-child(3n+3) {
     margin-right: 2rem;
   }
 
-  .home__content .user-cards .user-card:nth-child(2n+2) {
+  .home__content .recommended-tutors .user-card:nth-child(2n+2) {
     margin-right: 0;
   }
 }
 
-.home__content .bookmarked-tutors {
-  max-height: 45rem;
-  overflow: scroll;
-}
-
-.home__content .bookmarked-tutors + .scroll-faded {
-  margin-top: -3rem;
-  height: 4rem;
-}
-
-.home__content .scroll-faded {
-  display: none;
-  content: "";
-  width: 100%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #efefef 100%);
-  position: relative;
-}
-
-.home__content .recommended-tutors-bg-container {
-  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
-  padding: 3rem 0 4rem 0;
-  margin-left: -15px;
-  width: 100vw;
-}
-
-@media only screen and (max-width: 35.99em) {
-  .home__content .recommended-tutors-bg-container .container {
-    padding: 0 30px;
-  }
-}
-
-.home__content .recommended-tutors-bg-container h5 {
-  color: #FFFFFF;
+.home__content .btn-pay {
+  background-color: #1F7AFF;
+  color: #F9F9F9;
 }
 
 @media only screen and (max-width: 47.99em) {
@@ -21105,22 +21231,36 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__side-bar__notifications {
   margin-top: 6rem;
+  background-color: #F9F9F9;
+  border-radius: 1rem;
+  box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.home__side-bar__notifications > :first-child {
+  padding-top: 2.5rem;
+  padding-left: 3rem;
+  padding-right: 2rem;
+}
+
+.home__side-bar__notifications > :first-child span {
+  font-size: 1.8rem;
+  color: #A0A0A0;
 }
 
 .home__side-bar__upcoming-sessions {
   margin-top: 6rem;
 }
 
-.bg-tutor .home__header {
-  background-image: linear-gradient(to right, #6749df, #492faf);
-}
-
 .bg-tutor .home__header .content-info {
   margin-top: -2.5rem;
 }
 
-.bg-tutor .home .info-box .actions .btn-cancel,
-.bg-tutor .home .info-box .action .btn-cancel {
+.bg-tutor .home .welcome-msg {
+  color: #6749DF;
+}
+
+.bg-tutor .home .info-box .actions .btn-cancel-session,
+.bg-tutor .home .info-box .action .btn-cancel-session {
   border: 1px solid #6749DF;
   color: #6749DF;
 }
@@ -21139,12 +21279,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #6749DF;
 }
 
-.bg-student .home__header {
-  background-image: linear-gradient(to bottom, #1f7aff, #1866da);
+.bg-student .home__header .content-info {
+  margin-bottom: 4.5rem;
 }
 
-.bg-student .home .info-box .actions .btn-cancel,
-.bg-student .home .info-box .action .btn-cancel {
+.bg-student .home .welcome-msg {
+  color: #1F7AFF;
+}
+
+.bg-student .home .info-box .actions .btn-cancel-session,
+.bg-student .home .info-box .action .btn-cancel-session {
   border: 1px solid #1F7AFF;
   color: #1F7AFF;
 }
@@ -21206,6 +21350,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: unset !important;
 }
 
+.profile__text-container--white {
+  background-color: #F9F9F9;
+  width: 100%;
+  padding: 3rem;
+  margin: 5rem 0 0;
+  border-radius: 10px;
+}
+
 .profile__heading {
   margin-top: 5rem;
 }
@@ -21253,6 +21405,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile__buttons button:active {
   transform: translateY(-1px);
+}
+
+.profile__buttons #btn-reset {
+  background-color: #F9F9F9;
 }
 
 .profile .autocomplete,
@@ -21309,10 +21465,17 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .profile .boxes .box .remove {
   right: 0.5rem;
   cursor: pointer;
+  display: none;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .profile .boxes .box .verify {
   left: 1rem;
+}
+
+.profile .boxes .box:hover > .remove {
+  display: inline;
 }
 
 .profile .hourly-rate-input-container {
@@ -21336,6 +21499,54 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .profile .input-introduction textarea {
   padding: 1rem 1.5rem;
+}
+
+.profile .modal-verify-tutor #upload-file {
+  height: 150px;
+  border: 2px dashed rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.profile .modal-verify-tutor #upload-file-button input {
+  opacity: 0;
+  position: absolute;
+}
+
+.profile .modal-verify-tutor #upload-file-button {
+  border-radius: 15px;
+}
+
+.profile .heading--register-to-be-tutor-1 {
+  position: absolute;
+  bottom: calc(100% + 3rem + .75rem);
+  left: -3rem;
+  color: #F9F9F9;
+}
+
+.profile .heading--register-to-be-tutor-2 {
+  position: absolute;
+  bottom: calc(100% + .75rem);
+  left: 0rem;
+  color: #F9F9F9;
+}
+
+.home .past-sessions {
+  max-height: 40rem;
+  overflow: scroll;
+}
+
+.home .past-sessions > * {
+  margin-top: 1.5rem;
+}
+
+.home .past-sessions > *:last-child {
+  margin-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .home .past-sessions {
+    max-height: 60rem;
+  }
 }
 
 .view-profile {
@@ -21370,7 +21581,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .view-profile__header .content {
-  height: 20rem;
+  height: auto;
   display: flex;
   align-items: center;
 }
@@ -21477,6 +21688,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+.view-profile__header .content .content-info .review {
+  max-width: 75%;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .view-profile__header .content .content-info .review {
+    max-width: 95%;
+  }
+}
+
 .view-profile__header .content .content-info .sub {
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
@@ -21495,17 +21716,31 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: scale(1.4) translateY(2px);
 }
 
+.view-profile__header .content .content-price {
+  position: absolute;
+  display: flex;
+  top: 0rem;
+  right: 4rem;
+}
+
+@media only screen and (max-width: 61.99em) {
+  .view-profile__header .content .content-price {
+    right: 2rem;
+    top: 0rem;
+  }
+}
+
 .view-profile__header .content .content-data {
   position: absolute;
   display: flex;
-  bottom: 3rem;
+  bottom: 0rem;
   right: 4rem;
 }
 
 @media only screen and (max-width: 61.99em) {
   .view-profile__header .content .content-data {
     right: 2rem;
-    bottom: 0.75rem;
+    bottom: 0rem;
   }
 }
 
@@ -21527,9 +21762,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .view-profile__header .content .content-data .data .number {
   display: block;
-  font-size: 3rem;
+  font-size: 4rem;
   line-height: 1;
   font-weight: 500;
+  color: #6749DF;
 }
 
 @media only screen and (max-width: 61.99em) {

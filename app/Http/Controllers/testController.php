@@ -34,23 +34,26 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $view = new View([
-            'viewed_at' => Carbon::now()
-        ]);
+        $currUser = Auth::user();
+        // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
 
-        Post::find(2)->views()->save($view);
 
-        dd("here");
+        dd($currUser);
 
-        // get daily post view count from the last 7 days
-        $views = User::getViewCntWeek(1);
-        // dd($posts);
+        // $view = new View([
+        //     'viewed_at' => Carbon::now()
+        // ]);
+        // dd("here");
 
-        // dd($views);
+        // // get daily post view count from the last 7 days
+        // $views = User::getViewCntWeek(1);
+        // // dd($posts);
 
-        return view('test', [
-            'views' => $views
-        ]);
+        // // dd($views);
+
+        // return view('test', [
+        //     'views' => $views
+        // ]);
     }
 
     public function test(Request $request) {

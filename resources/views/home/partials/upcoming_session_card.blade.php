@@ -12,7 +12,7 @@
                     <svg>
                         <use xlink:href="{{asset('assets/sprite.svg#icon-blocked')}}"></use>
                     </svg>
-                    <a href="#">Cancel</a>
+                    <button class="btn px-0 py-0 fs-1-6 btn-cancel-session" type="button">Cancel</button>
                 </li>
             </ul>
         </div>

@@ -11517,6 +11517,7 @@ $("#input-profile-pic").change(function () {
     success: function success(data) {
       toastr.success('Successfully uploaded the image!');
       $('#profile-image').attr('src', storageUrl + data.imgUrl);
+      console.log(storageUrl + data.imgUrl);
       $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
     },
     error: function error(_error) {
@@ -11524,23 +11525,7 @@ $("#input-profile-pic").change(function () {
       console.log(_error);
     }
   });
-});
-
-if ($('.bookmarked-tutors').prop('scrollHeight') > $('.bookmarked-tutors').prop('clientHeight')) {
-  //if 'true', the content overflows the tab: we show the hidden link
-  $('.bookmarked-tutors + .scroll-faded').css('display', 'block');
-}
-
-if ($('.tutor-requests').prop('scrollHeight') > $('.tutor-requests').prop('clientHeight')) {
-  //if 'true', the content overflows the tab: we show the hidden link
-  $('.tutor-requests + .scroll-faded').css('display', 'block');
-}
-
-if ($('.info-cards').prop('scrollHeight') > $('.info-cards').prop('clientHeight')) {
-  //if 'true', the content overflows the tab: we show the hidden link
-  $('.info-cards + .scroll-faded').css('display', 'block');
-} // calendar
-
+}); // calendar
 
 window.showAvailableTimeForm = function (startTime, endTime) {
   $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
@@ -11566,11 +11551,26 @@ $('.action-toggle').click(function () {
 }); // tutor request popup
 
 $('.btn-view-request').click(function () {
+  $('.home__tutor-request-modal .tutor-request-modal__content__profile .user-info .content').text($(this).closest('.info-box').find('.user-info .content').text());
+  $('.home__tutor-request-modal .tutor-request-modal__content__profile .date .content').text($(this).closest('.info-box').find('.date .content').text());
+  $('.home__tutor-request-modal .tutor-request-modal__content__profile .time .content').text($(this).closest('.info-box').find('.time .content').text());
+  $('.home__tutor-request-modal .tutor-request-modal__content__profile .course .content').text($(this).closest('.info-box').find('.course .content').text());
+  $('.home__tutor-request-modal .tutor-request-modal__content__profile .session-type .content').text($(this).closest('.info-box').find('.session-type .content').text()); // $('.home__tutor-request-modal .tutor-request-modal__content__profile .price .content').text($(this).closest('.info-box').find('.price .content').text());
+
   $('.home__tutor-request-modal').toggle();
   calendarPopUp.render();
 });
 $('.tutor-request-modal__close').click(function () {
   $('.home__tutor-request-modal').toggle();
+});
+$('.btn-view-all-notifications').click(function () {
+  $(this).closest('.home__side-bar__notifications').find('.notifications--sidebar [data-to-hide="true"]').toggleClass("hidden");
+
+  if ($(this).html().includes('View')) {
+    $(this).html('Hide');
+  } else {
+    $(this).html('View All');
+  }
 });
 
 /***/ }),

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\InvalidUser;
 use Illuminate\Support\Facades\Route;
 
 
@@ -53,7 +54,7 @@ Route::group([
     'prefix' => 'auth'
 ], function () {
     // logout
-    Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('/logout', 'Auth\LoginController@logout')->withoutMiddleware(InvalidUser::class)->name('logout');
 
     // send verification email for register
     Route::get('/register/send-verification-email', 'Auth\RegisterController@sendVerificationEmail');
@@ -147,7 +148,8 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/tutor-sessions', 'HomeController@tutorSessions')->name('home.tutor-sessions');
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
-    Route::get('/profile', 'HomeController@profile')->name('home.profile');
+    Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
+    Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
 });
 
 // view profile
@@ -166,8 +168,12 @@ Route::group([
 });
 
 // add/remove course/tag to the user profile
-Route::post('/course_add_remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth']);
-Route::post('/tag_add_remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
+Route::post('/course-add-remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth'])->withoutMiddleware(InvalidUser::class);
+Route::post('/tag-add-remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
+
+// autocomplete
+Route::post('/gethint', 'GeneralController@getHint');
+
 
 // notifications
 Route::group([
@@ -177,7 +183,17 @@ Route::group([
     Route::get('/', 'NotificationController@index')->name('notifications.index');
 });
 
-
+// switch account
+Route::group([
+    'prefix' => 'switch-account',
+    'middleware' => 'auth'
+], function() {
+    Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
+    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
+    Route::get('/register-to-be-tutor', 'SwitchAccountController@indexRegisterToBeTutor')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor');
+    Route::get('/register-to-be-tutor-2', 'SwitchAccountController@indexRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.index.register-to-be-tutor-2');
+    Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
+});
 
 
 

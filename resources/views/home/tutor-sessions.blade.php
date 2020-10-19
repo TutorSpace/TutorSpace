@@ -41,6 +41,7 @@ bg-student
             @include('home.partials.header')
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
@@ -70,69 +71,123 @@ bg-student
                 </div>
             </div>
         </div>
+        @else
+        <div class="container col-layout-2">
+            <div class="row mt-5">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Upcoming Sessions</h5>
+                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
+                </div>
+                <div class="info-boxes info-boxes--sm-card past-sessions">
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                </div>
+            </div>
+        </div>
+        @endif
+
 
         <div class="container col-layout-2">
-            <div class="row">
-                <h5 class="mb-2 w-100">Past Sessions</h5>
-                <div class="info-boxes info-boxes info-boxes--sm-card tutor-requests">
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(1)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(2)
-                    ])
-
-                    {{-- @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ]) --}}
-
+            <div class="row mt-5">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Past Sessions</h5>
+                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
                 </div>
-                <div class="scroll-faded">
+                <div class="info-boxes info-boxes">
+                    <div class="info-box info-box--explanation ">
+                        <div class="user-info">
+                            TUTORED WITH
+                        </div>
+                        <div class="date">
+                            DATE
+                        </div>
+                        <div class="course">
+                            COURSE
+                        </div>
+                        <div class="session-type">
+                            TYPE
+                        </div>
+                        <div class="status">
+                            STATUS
+                        </div>
+                        <div class="price">
+                            TOTAL
+                        </div>
+                        <div class="action--toggle">
+                            ACTION
+                        </div>
+                    </div>
+                </div>
+                <div class="info-boxes info-boxes--sm-card past-sessions">
+                    @if(Auth::user()->is_tutor)
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'pending'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                    @else
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'paid'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'paid'
+                        ])
+                    @endif
                 </div>
             </div>
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Reviews (5)</h5>
+                    @php
+                    $reviewCount = Auth::user()->aboutReviews->count();
+                    @endphp
+                    <h5>Reviews ({{ $reviewCount }})</h5>
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.review', [
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta perspiciatis nihil ab labore cupiditate odio nisi iure minima praesentium?'
+                    @php
+                    $reviews = Auth::user()->aboutReviews;
+                    $today = \Carbon\Carbon::today();
+                    @endphp
+                    @foreach($reviews as $review)
+                        @include('home.partials.review', [
+                        'content' => $review->review,
+                        'dateCreated' => $review->created_at ?? $today
                     ])
-                    @include('home.partials.review', [
-                        'content' => 'He is very nice!'
-                    ])
-                    @include('home.partials.review', [
-                        'content' => 'I love his CSCI 201 course! Best private tutor ever!'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'No, he is not good'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta'
-                    ])
+                    @endforeach
                 </div>
             </div>
         </div>
-
+        @endif
 
     </main>
 
@@ -154,4 +209,8 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
 <script src="{{ asset('js/home/index.js') }}"></script>
+
+
+@include('session.session-js')
+
 @endsection

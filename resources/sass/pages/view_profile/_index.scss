@@ -28,7 +28,7 @@
         background-color: $color-white-dark-5;
 
         .content {
-            height: 20rem;
+            height: auto;
             display: flex;
             align-items: center;
 
@@ -124,7 +124,13 @@
                             font-size: 1.2rem;
                         }
                     }
+                }
+                .review {
+                    max-width: 75%;
 
+                    @include respond(extra-sm) {
+                        max-width: 95%;
+                    }
                 }
 
                 .sub {
@@ -148,15 +154,27 @@
                 }
             }
 
-            .content-data {
+            .content-price {
                 position: absolute;
                 display: flex;
-                bottom: 3rem;
+                top: 0rem;
                 right: 4rem;
 
                 @include respond(md) {
                     right: 2rem;
-                    bottom: .75rem;
+                    top: 0rem;
+                }
+            }
+
+            .content-data {
+                position: absolute;
+                display: flex;
+                bottom: 0rem;
+                right: 4rem;
+
+                @include respond(md) {
+                    right: 2rem;
+                    bottom: 0rem;
                 }
 
                 @include respond(extra-sm) {
@@ -174,9 +192,10 @@
 
                     .number {
                         display: block;
-                        font-size: 3rem;
+                        font-size: 4rem;
                         line-height: 1;
                         font-weight: 500;
+                        color: $color-purple-primary;
 
                         @include respond(md) {
                             font-size: 2rem;
