@@ -47,7 +47,6 @@
 
         .action-toggle {
             font-size: 2.4rem;
-            color: $color-purple-primary;
             cursor: pointer;
 
             &__content {
@@ -145,4 +144,20 @@
 
     }
 
+}
+
+.bg-student {
+    .info-cards {
+        svg {
+            color: $color-blue-primary;
+        }
+    }
+}
+
+.bg-tutor {
+    .info-cards {
+        svg {
+            color: $color-purple-primary;
+        }
+    }
 }

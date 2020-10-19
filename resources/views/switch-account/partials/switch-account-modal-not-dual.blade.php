@@ -5,6 +5,6 @@
         <path d="M36.6362 46.8173C37.823 45.6337 38.5007 43.9919 38.5007 42.3182C38.5007 40.6446 37.823 39.0028 36.6362 37.8188C35.4525 36.6355 33.8107 35.9546 32.1371 35.9546C30.4603 35.9546 28.8216 36.6355 27.638 37.8188C26.4543 39.0028 25.7734 40.6446 25.7734 42.3182C25.7734 43.9919 26.4543 45.6337 27.638 46.8173C28.8216 48.001 30.4634 48.6819 32.1371 48.6819C33.8107 48.6819 35.4525 48.001 36.6362 46.8173Z" fill="currentColor"/>
         <path d="M72.8636 35.9546C71.1868 35.9546 69.5482 36.6355 68.3645 37.8188C67.1777 39.0028 66.5 40.6446 66.5 42.3182C66.5 43.9919 67.1777 45.6337 68.3645 46.8173C69.5482 48.001 71.19 48.6819 72.8636 48.6819C74.5373 48.6819 76.1791 48.0006 77.3627 46.8173C78.5495 45.6337 79.2273 43.9919 79.2273 42.3182C79.2273 40.6446 78.5495 39.0028 77.3627 37.8188C76.1791 36.6355 74.5373 35.9546 72.8636 35.9546Z" fill="currentColor"/>
     </svg>
-    <p class="font-weight-bold text-center fs-1-8 ws-no-wrap">Looks like you don’t have a {{ $currUser->is_tutor ? "tutor" : "student" }} account yet...</p>
-    <p class="fc-grey text-center">No worries, you can become a {{ $currUser->is_tutor ? "tutor" : "student" }} in a few steps.</p>
+    <p class="font-weight-bold text-center fs-1-8 ws-no-wrap">Looks like you don’t have a {{ $currUser->is_tutor ? "student" : "tutor" }} account yet...</p>
+    <p class="fc-grey text-center">No worries, you can become a {{ $currUser->is_tutor ? "student" : "tutor" }} in a few steps.</p>
 </div>

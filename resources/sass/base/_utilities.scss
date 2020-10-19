@@ -17,6 +17,7 @@
 .right-0 { right: 0 !important; }
 .left-0 { left: 0; }
 .left-100 { left: 100% !important; }
+.top-0-5 { top: .5rem; }
 
 // ====================== display & visibility ==================
 .hidden { display: none !important; }
@@ -98,6 +99,9 @@
 .fc-black-post { color: $color-black-post; }
 .fc-black-post-2 { color: $color-black-post-2 !important; }
 .fc-black-post-3 { color: $color-black-post-3; }
+
+// z-index
+.z-index-9999 { z-index: 9998 !important; }
 
 // ======================== font family =======================
 .ff-Avenir { font-family: Avenir; }
@@ -188,9 +192,7 @@
     }
 }
 
-.hover--pointer {
-    cursor: pointer;
-}
+.hover--pointer { cursor: pointer; }
 
 .placeholder {
     margin-top: 0 !important;
@@ -199,4 +201,6 @@
     margin-right: 0 !important;
     visibility: hidden !important;
 }
+
+
 

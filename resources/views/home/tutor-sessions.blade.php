@@ -163,34 +163,31 @@ bg-student
             </div>
         </div>
 
+        @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Reviews (5)</h5>
+                    @php
+                    $reviewCount = Auth::user()->aboutReviews->count();
+                    @endphp
+                    <h5>Reviews ({{ $reviewCount }})</h5>
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.review', [
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta perspiciatis nihil ab labore cupiditate odio nisi iure minima praesentium?'
+                    @php
+                    $reviews = Auth::user()->aboutReviews;
+                    $today = \Carbon\Carbon::today();
+                    @endphp
+                    @foreach($reviews as $review)
+                        @include('home.partials.review', [
+                        'content' => $review->review,
+                        'dateCreated' => $review->created_at ?? $today
                     ])
-                    @include('home.partials.review', [
-                        'content' => 'He is very nice!'
-                    ])
-                    @include('home.partials.review', [
-                        'content' => 'I love his CSCI 201 course! Best private tutor ever!'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'No, he is not good'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta'
-                    ])
+                    @endforeach
                 </div>
             </div>
         </div>
-
+        @endif
 
     </main>
 
@@ -212,4 +209,8 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
 <script src="{{ asset('js/home/index.js') }}"></script>
+
+
+@include('session.session-js')
+
 @endsection

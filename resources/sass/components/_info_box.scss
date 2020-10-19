@@ -344,15 +344,27 @@
 }
 
 
-.bg-tutor {
-    .info-box .price {
-        color: $color-purple-primary
+.bg-student {
+    .info-boxes {
+        .price {
+            color: $color-blue-primary;
+        }
+
+        svg {
+            color: $color-blue-primary;
+        }
     }
 }
 
-.bg-student {
-    .info-box .price {
-        color: $color-blue-primary
+.bg-tutor {
+    .info-boxes {
+        .price {
+            color: $color-purple-primary;
+        }
+
+        svg {
+            color: $color-purple-primary;
+        }
     }
 }
 

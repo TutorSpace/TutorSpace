@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -282,6 +283,18 @@ class User extends Authenticatable
         $newUser->hourly_rate = null;
         $newUser->tutor_level_id = null;
         $newUser->introduction = null;
+        $newUser->is_invalid = false;
+        $newUser->save();
+        return $newUser;
+    }
+
+    public function createTutorIdentityFromStudent() {
+        $newUser = $this->replicate();
+        $newUser->is_tutor = 1;
+        $newUser->is_invalid = true;
+        $newUser->tutor_level_id = 1;
+        $newUser->invalid_reason = 'The user did not finish all the steps when registering from a student to a tutor.';
+        $newUser->invalid_redirect_route_name = 'switch-account.register-to-be-tutor';
         $newUser->save();
         return $newUser;
     }
@@ -337,11 +350,8 @@ class User extends Authenticatable
     }
 
     public function hasDualIdentities() {
-        return User::where('email', $this->email)->count() == 2;
+        return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
     }
-
-
-
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
@@ -464,9 +474,16 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
+    // IMPORTANT: must run scheduler in prod env
+    public function clearTutorAvailableTime() {
+        $tutors = User::where('is_tutor', 1)->get();
+        foreach($tutors as $tutor)
+            $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
+        }
 
-
-
-
+    // Payments
+    public function paymentMethod() {
+        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
+    }
 
 }
