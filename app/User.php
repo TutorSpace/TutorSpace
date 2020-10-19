@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
@@ -481,9 +480,8 @@ class User extends Authenticatable
             $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
         }
 
-    // Payments
-    public function paymentMethod() {
-        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
-    }
+
+
+
 
 }
