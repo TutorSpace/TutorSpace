@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Confirmation [Order Number]
+    Your tutor session has been cancelled.
 </div>
 <div class="notification__content__info">
     
@@ -10,6 +10,7 @@
     <div class="container modal-book-session bg-white p-5 pt-2 mb-5 notification__side-bar--right">
         <p class="fc-black-2 justify-content-center fs-1-6 text-center">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<p>
         
+        <p class="my-5 fs-1-2">Your session has been cancelled by Nemo Enim.</p>
         <p class="mt-5 fc-theme-color fs-1-6">Session Overview</p>
 
         <div class="d-flex justify-content-between mb-5">
@@ -36,17 +37,6 @@
         </div>
         
         <div id="calendar" style="height: 10rem"></div>
-
-        <p class="mt-5 fc-theme-color fs-1-6">Price Summary</p>
-        <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between fs-1-2">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
-        <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between fs-1-2">Hours<span class="fc-theme-color">&nbsp;&nbsp;x 2</span></p>
-        <hr class="bc-theme-color"/>
-        <p class="mt-3 font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-4">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 28</span></p>
-
-        <p class="fc-black-2 mt-5 fs-1-2"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-        <p class="fc-black-2 mt-3 fs-1-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-
 
     </div>
 

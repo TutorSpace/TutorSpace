@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Confirmation [Order Number]
+    Session Completed [Order:91029031823]
 </div>
 <div class="notification__content__info">
     
@@ -34,8 +34,6 @@
                 <p class="fs-1-4 fc-theme-color">$ 28</p>
             </div>
         </div>
-        
-        <div id="calendar" style="height: 10rem"></div>
 
         <p class="mt-5 fc-theme-color fs-1-6">Price Summary</p>
         <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between fs-1-2">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
@@ -43,10 +41,12 @@
         <hr class="bc-theme-color"/>
         <p class="mt-3 font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-4">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 28</span></p>
 
-        <p class="fc-black-2 mt-5 fs-1-2"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="fc-black-2 mt-5 fs-1-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-        <p class="fc-black-2 mt-3 fs-1-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-
+        
+        <p class="fc-grey text-center mt-5">Question about your session? <br/> 
+            <span class="fc-theme-color hover--pointer">Send an email to: customerservice.com</span>
+        </p>
 
     </div>
 

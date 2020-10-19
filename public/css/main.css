@@ -14531,6 +14531,14 @@ h6 {
   border-color: #30188F !important;
 }
 
+.bg-student .bc-theme-color {
+  border-color: #1F7AFF !important;
+}
+
+.bg-tutor .bc-theme-color {
+  border-color: #6749DF !important;
+}
+
 .fs-1-2 {
   font-size: 1.2rem;
 }
@@ -14762,6 +14770,21 @@ h6 {
     width: 1.3rem;
     height: 1.3rem;
   }
+}
+
+.notification__side-bar--right {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.notification__side-bar--right__header {
+  height: 7.5rem;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.notification__side-bar--right__header__image {
+  top: 5rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 .btn-next {

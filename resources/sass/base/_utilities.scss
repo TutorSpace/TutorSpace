@@ -76,6 +76,8 @@
 .bc-purple-primary { border-color: $color-purple-primary !important; }
 .bc-blue-secondary { border-color: $color-blue-secondary !important; }
 .bc-purple-secondary { border-color: $color-purple-secondary !important; }
+.bg-student .bc-theme-color { border-color: $color-blue-primary !important; }
+.bg-tutor .bc-theme-color { border-color: $color-purple-primary !important; }
 
 // ======================== font color & size ==================
 .fs-1-2 { font-size: 1.2rem; }

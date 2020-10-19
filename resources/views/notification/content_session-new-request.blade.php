@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Confirmation [Order Number]
+    You received a new tutor request from Nemo Enim!
 </div>
 <div class="notification__content__info">
     
@@ -37,16 +37,14 @@
         
         <div id="calendar" style="height: 10rem"></div>
 
-        <p class="mt-5 fc-theme-color fs-1-6">Price Summary</p>
-        <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between fs-1-2">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
-        <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between fs-1-2">Hours<span class="fc-theme-color">&nbsp;&nbsp;x 2</span></p>
-        <hr class="bc-theme-color"/>
-        <p class="mt-3 font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-4">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 28</span></p>
-
         <p class="fc-black-2 mt-5 fs-1-2"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
         <p class="fc-black-2 mt-3 fs-1-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
+        <div class="d-flex justify-content-center pt-5">
+            <button class="btn btn-lg btn-outline-primary btn-cancel mr-3 py-2 px-5" type="button">Decline</button>
+            <button class="btn btn-lg btn-primary btn-submit py-2 px-5" type="submit">Accept</button>
+        </div>
 
     </div>
 
