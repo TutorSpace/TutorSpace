@@ -18,10 +18,10 @@ class CreateTutorRequestsTable extends Migration
             $table->unsignedBigInteger('tutor_id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->timestamp('session_date', 3);
-            $table->string('session_start_time', 64);
-            $table->string('session_end_time', 64);
+            $table->timestamp('session_start_time');
+            $table->timestamp('session_end_time');
             $table->text('message_to_tutor')->nullable();
+            $table->string('status')->default("pending");
             $table->timestamps();
 
             $table->foreign('tutor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
