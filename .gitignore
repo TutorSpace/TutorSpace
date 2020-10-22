@@ -11,7 +11,6 @@ npm-debug.log
 yarn-error.log
 *.icloud
 .vscode
-/public/assets
 /public/css
 /public/images
 /public/storage
