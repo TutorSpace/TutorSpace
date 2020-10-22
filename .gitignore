@@ -1,8 +1,5 @@
 .DS_Store
 /node_modules
-/public/hot
-/public/storage
-/public/js
 /storage/*.key
 /vendor
 .env
@@ -14,3 +11,8 @@ npm-debug.log
 yarn-error.log
 *.icloud
 .vscode
+/public/assets
+/public/css
+/public/images
+/public/storage
+/public/js
