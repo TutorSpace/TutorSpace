@@ -30,7 +30,7 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content">
-            @include('notification.content')
+            @include('notification.content_session-session-complete')
         </div>
     </div>
 </div>

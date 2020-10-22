@@ -478,7 +478,7 @@ class User extends Authenticatable
         $tutors = User::where('is_tutor', 1)->get();
         foreach($tutors as $tutor)
             $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
-        }
+    }
 
 
 
