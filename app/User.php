@@ -304,8 +304,8 @@ class User extends Authenticatable
 
         $tutorRequests = Tutor_request::all();
         foreach($tutorRequests as $tutorRequest) {
-            $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
-            if($requestTime <= $mytime) {
+            $startTime = $tutorRequest->session_start_time;
+            if($startTime <= $mytime) {
                 $tutorRequest->delete();
             }
         }
@@ -479,9 +479,4 @@ class User extends Authenticatable
         foreach($tutors as $tutor)
             $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
         }
-
-
-
-
-
 }
