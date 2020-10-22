@@ -31,8 +31,8 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <div class="container home__header-container">
-            <div class="heading-container">
+        <div class="container col-layout-2 home__header-container">
+            <div class="heading-container mb-5">
                 <p class="heading">Tutor Sessions</p>
                 <span>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
@@ -41,11 +41,18 @@ bg-student
             @include('home.partials.header')
         </div>
 
-        <div class="container">
+        @if (Auth::user()->is_tutor)
+        <div class="container col-layout-2">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8">
-                    <h5 class="mb-2 w-100">Calendar</h5>
+                    <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
+                    <div class="calendar-note">
+                        <span class="available-time">Available Time</span>
+                        <span class="online">Online</span>
+                        <span class="in-person">In Person</span>
+                        <span class="note">Note: All time in the calender are based on PST.</span>
+                    </div>
                 </div>
                 <div class="col-lg-4 info-cards">
                     <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
@@ -64,69 +71,123 @@ bg-student
                 </div>
             </div>
         </div>
-
-        <div class="container">
-            <div class="row">
-                <h5 class="mb-2 w-100">Past Sessions</h5>
-                <div class="info-boxes tutor-requests">
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(1)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(2)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(3)
-                    ])
-
-                    @include('home.partials.past_session', [
-                        'user' => App\User::find(4)
-                    ])
-
+        @else
+        <div class="container col-layout-2">
+            <div class="row mt-5">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Upcoming Sessions</h5>
+                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
                 </div>
-                <div class="scroll-faded">
+                <div class="info-boxes info-boxes--sm-card past-sessions">
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                    @include('home.partials.upcoming_session_box')
+                </div>
+            </div>
+        </div>
+        @endif
+
+
+        <div class="container col-layout-2">
+            <div class="row mt-5">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Past Sessions</h5>
+                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
+                </div>
+                <div class="info-boxes info-boxes">
+                    <div class="info-box info-box--explanation ">
+                        <div class="user-info">
+                            TUTORED WITH
+                        </div>
+                        <div class="date">
+                            DATE
+                        </div>
+                        <div class="course">
+                            COURSE
+                        </div>
+                        <div class="session-type">
+                            TYPE
+                        </div>
+                        <div class="status">
+                            STATUS
+                        </div>
+                        <div class="price">
+                            TOTAL
+                        </div>
+                        <div class="action--toggle">
+                            ACTION
+                        </div>
+                    </div>
+                </div>
+                <div class="info-boxes info-boxes--sm-card past-sessions">
+                    @if(Auth::user()->is_tutor)
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'pending'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'completed'
+                        ])
+                    @else
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(1),
+                            'status' => 'paid'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'unpaid'
+                        ])
+
+                        @include('home.partials.past_session', [
+                            'user' => App\User::find(2),
+                            'status' => 'paid'
+                        ])
+                    @endif
                 </div>
             </div>
         </div>
 
-        <div class="container">
+        @if (Auth::user()->is_tutor)
+        <div class="container col-layout-2">
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Reviews (5)</h5>
+                    @php
+                    $reviewCount = Auth::user()->aboutReviews->count();
+                    @endphp
+                    <h5>Reviews ({{ $reviewCount }})</h5>
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                 </div>
                 <div class="info-boxes">
-                    @include('home.partials.review', [
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta perspiciatis nihil ab labore cupiditate odio nisi iure minima praesentium?'
+                    @php
+                    $reviews = Auth::user()->aboutReviews;
+                    $today = \Carbon\Carbon::today();
+                    @endphp
+                    @foreach($reviews as $review)
+                        @include('home.partials.review', [
+                        'content' => $review->review,
+                        'dateCreated' => $review->created_at ?? $today
                     ])
-                    @include('home.partials.review', [
-                        'content' => 'He is very nice!'
-                    ])
-                    @include('home.partials.review', [
-                        'content' => 'I love his CSCI 201 course! Best private tutor ever!'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'No, he is not good'
-                    ])
-                    @include('home.partials.review', [
-                        'hidden' => true,
-                        'content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium molestiae, ullam hic modi sequi amet, id non voluptatum, repudiandae dicta'
-                    ])
+                    @endforeach
                 </div>
             </div>
         </div>
-
+        @endif
 
     </main>
 
@@ -137,155 +198,19 @@ bg-student
 
 @section('js')
 
-<script>
+
 @if(Auth::user()->is_tutor)
-    let calendar;
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        calendar = new FullCalendar.Calendar(calendarEl, {
-            // timeZone: 'PST',
-            themeSystem: 'bootstrap',
-            initialView: 'timeGridDay',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'timeGridDay timeGridThreeDay'
-            },
-            @if(Auth::user()->is_tutor)
-                eventColor: '#6749DF',
-            @else
-                eventColor: '#1F7AFF',
-            @endif
-            height: 'auto',
-            navLinks: true, // can click day/week names to navigate views
-            selectable: true,
-            selectMirror: true,
-            nowIndicator: true,
-            slotMinTime: "08:00:00",
-            slotMaxTime: "24:00:00",
-            allDaySlot: false,
-            selectOverlap: false,
-            validRange: function (nowDate) {
-                return {
-                    start: nowDate
-                };
-            },
-            // editable: true,
-            expandRows: true,
-            views: {
-                timeGridThreeDay: {
-                    type: 'timeGrid',
-                    duration: { days: 5 },
-                    buttonText: '5 day'
-                }
-            },
-            now: function () {
-                return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
-            },
-            selectAllow: function(selectionInfo) {
-                let startTime = moment(selectionInfo.start);
-                if(startTime.isBefore(moment()))
-                    return false;
-                return true;
-            },
-            select: function (selectionInfo) {
-                let startTime = selectionInfo.start;
-                let endTime = selectionInfo.end;
-                showAvailableTimeForm(startTime, endTime);
-            },
-            eventClick: function (eventClickInfo) {
-                eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
-                if (eventClickInfo.event.url) {
-                    window.open(eventClickInfo.event.url);
-                }
-                showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
-            },
-            events: [
-                @foreach(Auth::user()->availableTimes as $time)
-                {
-                    title: 'Available',
-                    start: '{{$time->available_time_start}}',
-                    end: '{{$time->available_time_end}}',
-                    description: "",
-                    id: "{{ $time->id }}",
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', 'hover--pointer'],
-                    @endif
-                },
-                @endforeach
-                @foreach([] as $upcomingSession)
-                {
-                    @php
-                        $startTime = date("H:i", strtotime($upcomingSession->start_time));
-                        $endTime = date("H:i", strtotime($upcomingSession->end_time));
-                    @endphp
-                    title: 'Scheduled',
-                    start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-                    // start: '2020-04-25T12:30:00',
-                    end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
-                    description: "",
-                    classNames: ['orange-red']
-                },
-                @endforeach
-            ],
-        });
-        calendar.render();
-    });
-    $('#availableTimeConfirmationModal form').submit(function(e) {
-        e.preventDefault();
-        let data = $(this).serialize();
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('availableTime.store') }}",
-            data: data,
-            success: function success(data) {
-                var successMsg = data.successMsg;
-                toastr.success(successMsg);
-                calendar.addEvent({
-                    title: 'Available',
-                    start: data.available_time_start,
-                    end: data.available_time_end,
-                    description: "",
-                    id: data.availableTimeId,
-                    @if(Auth::user()->is_tutor)
-                    classNames: ['bg-color-purple-primary', '', 'hover--pointer'],
-                    @else
-                    classNames: ['bg-color-blue-primary', '', 'hover--pointer'],
-                    @endif
-                });
-                $('#availableTimeConfirmationModal').modal('hide');
-            },
-            error: function error(_error) {
-                console.log(_error);
-                toastr.error("There is an error when submitting your availability. Please try again.");
-            }
-        });
-    });
-    $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
-        e.preventDefault();
-        let data = $(this).serialize();
-        $.ajax({
-            type: 'DELETE',
-            url: "{{ route('availableTime.delete') }}",
-            data: data,
-            success: function success(data) {
-                var successMsg = data.successMsg;
-                toastr.success(successMsg);
-                calendar.getEventById(data.availableTimeId).remove();
-                $('#availableTimeDeleteConfirmationModal').modal('hide');
-            },
-            error: function error(_error) {
-                console.log(_error);
-                toastr.error("There is an error when canceling your availability. Please try again.");
-            }
-        });
-    });
+    @include('home.partials.calendar-tutor')
 @endif
+
+<script>
 let storageUrl = "{{ Storage::url('') }}";
 </script>
 
 
 <script src="{{ asset('js/home/index.js') }}"></script>
+
+
+@include('session.session-js')
+
 @endsection

@@ -1,0 +1,311 @@
+.view-profile {
+    margin-top: $nav-height;
+    color: $color-black-2;
+    margin-bottom: 18rem;
+
+    .back-container {
+        padding-top: 5rem;
+
+        .btn-back {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 1.7rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &__header {
+        padding: 0;
+        border-radius: 1rem;
+        position: relative;
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        width: 100%;
+        background-color: $color-white-dark-5;
+
+        .content {
+            height: auto;
+            display: flex;
+            align-items: center;
+
+            &-img {
+                margin-right: 4.5rem;
+                margin-bottom: 0;
+                margin-left: 4rem;
+                position: relative;
+                width: 12rem;
+                min-width: 12rem;
+                height: 12rem;
+
+                @include respond(md) {
+                    width: 10rem;
+                    min-width: 10rem;
+                    height: 10rem;
+                    margin-right: 3rem;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    transition: all .1s;
+                }
+
+                .caption {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(calc(-50%), calc(-50%));
+                    text-transform: uppercase;
+                    font-size: 1.4rem;
+                    text-align: center;
+                    font-weight: 500;
+                    opacity: 0;
+                    transition: all .1s;
+                    backface-visibility: hidden;
+                    cursor: pointer;
+                }
+            }
+
+            .content-info {
+
+                .name-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    margin-bottom: .25rem;
+
+                    .name {
+                        font-weight: 600;
+                        margin-bottom: 0;
+                        margin-right: 3rem;
+                        max-width: 30rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+
+                        @include respond(md) {
+                            margin-right: 1.8rem;
+                        }
+                    }
+
+                    svg {
+                        width: 1.8rem;
+                        height: 1.8rem;
+                        margin-right: .4rem;
+                        position: relative;
+                        bottom: .2rem;
+
+                        @include respond(md) {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            margin-right: .3rem;
+                        }
+
+                        &.full {
+                            fill: $color-yellow-primary;
+                        }
+
+                        &.empty {
+                            fill: $color-white;
+                        }
+                    }
+
+                    .rating {
+                        font-size: 1.4rem;
+                        margin-left: .5rem;
+
+                        @include respond(md) {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+                .review {
+                    max-width: 75%;
+
+                    @include respond(extra-sm) {
+                        max-width: 95%;
+                    }
+                }
+
+                .sub {
+                    font-size: 1.5rem;
+                    margin-bottom: .75rem;
+
+                    .sub--3 {
+
+                        svg {
+                            transition: all .1s;
+                            cursor: pointer;
+                            &:hover {
+                                transform: scale(1.4);
+                            }
+
+                            &:active {
+                                transform: scale(1.4) translateY(2px);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content-price {
+                position: absolute;
+                display: flex;
+                top: 0rem;
+                right: 4rem;
+
+                @include respond(md) {
+                    right: 2rem;
+                    top: 0rem;
+                }
+            }
+
+            .content-data {
+                position: absolute;
+                display: flex;
+                bottom: 0rem;
+                right: 4rem;
+
+                @include respond(md) {
+                    right: 2rem;
+                    bottom: 0rem;
+                }
+
+                @include respond(extra-sm) {
+                    display: none;
+                }
+
+                .data {
+                    &:not(:last-child) {
+                        margin-right: 3rem;
+
+                        @include respond(md) {
+                            margin-right: 1.5rem;
+                        }
+                    }
+
+                    .number {
+                        display: block;
+                        font-size: 4rem;
+                        line-height: 1;
+                        font-weight: 500;
+                        color: $color-purple-primary;
+
+                        @include respond(md) {
+                            font-size: 2rem;
+                        }
+                    }
+
+                    .classifier {
+                        color: $color-grey;
+                        font-size: 1.4rem;
+
+                        @include respond(md) {
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .welcome-msg {
+            @include absCenter;
+            color: $color-white;
+        }
+
+    }
+
+
+    &__course {
+        border-radius: 1rem;
+        font-size: 1.8rem;
+        padding: 1rem 2rem;
+        text-align: center;
+        color: $color-white-dark-5;
+    }
+
+    .reviews {
+        margin-top: 7rem;
+    }
+
+    .forum {
+        margin-top: 7rem;
+        .post-previews {
+
+            @include respond(sm) {
+                order: 1;
+                margin-top: 3rem;
+            }
+        }
+
+
+        .forum-data-container {
+            position: relative;
+            right: -15px;
+
+            @include respond(sm) {
+                right: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .forum-data {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: $color-white-dark-5;
+                box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+                padding: 1rem 2rem;
+                border-radius: .5rem;
+
+                @include respond(sm) {
+                    flex: 1;
+
+                    &:not(:last-child) {
+                        margin-right: 2.5rem;
+                    }
+                }
+
+                &:first-child {
+                    margin-top: 2rem;
+                }
+
+                &:not(:first-child) {
+                    margin-top: 1.5rem;
+                }
+
+                .title {
+                    font-size: 1.5rem;
+                    color: $color-grey;
+                }
+
+                .number {
+                    font-size: 1.8rem;
+                    color: $color-black-post;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+
+.bg-tutor {
+
+    .view-profile {
+
+        &__course {
+            background-color: $color-purple-primary;
+        }
+    }
+
+}

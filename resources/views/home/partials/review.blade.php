@@ -24,7 +24,7 @@
         </div>
 
         <div class="time-ago fc-grey">
-            6 days ago
+            {{ $dateCreated->diffForHumans() }}
         </div>
     </div>
 </div>

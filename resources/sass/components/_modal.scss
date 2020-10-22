@@ -1,8 +1,14 @@
 .modal {
 
-
     .modal-content {
         padding: 1rem 2rem;
+    }
+
+    .modal-dialog {
+        @include respond(extra-sm) {
+            max-width: 80%;
+            margin: auto;
+        }
     }
 
     .modal-title {
@@ -20,7 +26,6 @@
     .modal-body {
         font-size: 1.6rem;
     }
-
 
     .form-check {
 
@@ -52,6 +57,48 @@
     .btn-delete {
         color: $color-white-dark-5;
         background-color: $color-danger;
+    }
+
+    // switch account
+    &-switch-account {
+
+
+        .svg--top {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+
+    // verify tutor
+    &-verify-tutor {
+        #upload-file {
+            height: 150px;
+            border: 2px dashed rgba(0,0,0,.3);
+            border-radius: 20px;
+        }
+
+        #upload-file-button input {
+            opacity: 0;
+            position: absolute;
+        }
+
+        #upload-file-button {
+            border-radius: 15px;
+        }
+ 	}
+
+    &-book-session {
+        img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+
+        .calendar-details {
+
+        }
     }
 
 }

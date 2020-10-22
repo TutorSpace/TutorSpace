@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use Facades\App\Tag;
+use Facades\App\User;
 
 class Kernel extends ConsoleKernel
 {
@@ -30,6 +31,11 @@ class Kernel extends ConsoleKernel
             Tag::updateTrendingTags();
             echo "Successfully updated trending tags at: " . now();
         })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            User::clearTutorAvailableTime();
+            echo "Successfully removed stale available time of tutors at: " . now();
+        })->daily();
     }
 
     /**

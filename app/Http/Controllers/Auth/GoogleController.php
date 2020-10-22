@@ -16,6 +16,7 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback(Request $request) {
         try {
+            // sending a followup request to google to get the access token and profile info
             $user = Socialite::driver('google')->user();
         } catch (\Exception $e) {
             $request->session()->flush();
@@ -35,10 +36,8 @@ class GoogleController extends Controller
         $loginGoogleStudent = $request->session()->has('loginGoogleStudent');
         $loginGoogleTutor = $request->session()->has('loginGoogleTutor');
 
-
-        // todo: remove ucsd
         // only allow people with @usc.edu to login
-        if(explode("@", $user->email)[1] !== 'usc.edu' && explode("@", $user->email)[1] !== 'ucsd.edu'){
+        if(explode("@", $user->email)[1] !== 'usc.edu'){
             // if for registration
             if($registerGoogleStudent){
                 return redirect()->route('register.index.student.1')->with([
