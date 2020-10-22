@@ -195,7 +195,7 @@ Route::group([
     Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
 });
 
-
+Route::post('/tutor_accept_request', 'GeneralController@acceptTutorRequest');
 
 
 

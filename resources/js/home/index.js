@@ -112,3 +112,24 @@ $('.btn-view-all-notifications').click(function() {
         $(this).html('View All')
     }
 });
+
+
+$('.btn-primary').click(function() {
+    var name = 'Anurag';
+    var course = $(".content").text();
+    alert(name);
+    $.ajax({
+        type: 'POST',
+        url: '/tutor_accept_request',
+        data: {
+          name: name
+        },
+        success: function success(data) {
+          var successMsg = data.successMsg;
+          toastr.success(successMsg);
+        },
+        error: function error(_error3) {
+          toastr.error(_error3);
+        }
+      });
+})
