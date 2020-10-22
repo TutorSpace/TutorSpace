@@ -336,6 +336,8 @@ class GeneralController extends Controller
 
     // TODO: add validation
     public function acceptTutorRequest(Request $request) {
+        Log::channel('stderr')->info('I\'m here!');
+        Log::channel('stderr')->info($request->input('name'));
         $user = Auth::user();
         $tutorRequestId = $request->input('tutor_request_id');
 
