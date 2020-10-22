@@ -2,11 +2,9 @@
 
 namespace App\Listeners;
 
-use App\View;
-use Carbon\Carbon;
 use App\Events\PostViewed;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
 class IncrementPostViewCount implements ShouldQueue
 {
@@ -38,11 +36,6 @@ class IncrementPostViewCount implements ShouldQueue
     {
         $post = $event->post;
         $post->increment('view_count');
-
-        $view = new View([
-            'viewed_at' => Carbon::now()
-        ]);
-
-        $post->views()->save($view);
+        views($post)->record();
     }
 }

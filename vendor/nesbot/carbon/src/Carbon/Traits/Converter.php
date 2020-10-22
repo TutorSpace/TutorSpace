@@ -388,24 +388,16 @@ trait Converter
     /**
      * Format the instance as RFC3339
      *
-     * @param bool $extended
-     *
      * @example
      * ```
-     * echo Carbon::now()->toRfc3339String() . "\n";
-     * echo Carbon::now()->toRfc3339String(true) . "\n";
+     * echo Carbon::now()->toRfc3339String();
      * ```
      *
      * @return string
      */
-    public function toRfc3339String($extended = false)
+    public function toRfc3339String()
     {
-        $format = DateTime::RFC3339;
-        if ($extended) {
-            $format = DateTime::RFC3339_EXTENDED;
-        }
-
-        return $this->rawFormat($format);
+        return $this->rawFormat(DateTime::RFC3339);
     }
 
     /**

@@ -18,9 +18,8 @@ class BookmarkController extends Controller
         ]);
     }
 
-    // todo: use gate to do this! remember to check whether the user is trying to bookmark his own student account
     public function store(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->email) {
+        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->eamil) {
             Auth::user()->bookmarkedUsers()->attach($user);
 
             return response()->json([
@@ -30,7 +29,7 @@ class BookmarkController extends Controller
     }
 
     public function delete(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->email) {
+        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->eamil) {
             Auth::user()->bookmarkedUsers()->detach($user);
 
             return response()->json([

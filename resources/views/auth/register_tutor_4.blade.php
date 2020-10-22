@@ -35,7 +35,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </svg>
                     <select class="custom-select" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
-                        @for ($i = 10; $i <= 50; $i += 1)
+                        @for ($i = 10; $i <= 50; $i += 0.5)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>
@@ -78,14 +78,6 @@ bg-grey-light body-signup select2-bg-tutor
                 </span>
                 @enderror
             </div>
-
-            <!-- Input field to test the livesearch feature
-            <form>
-                <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
-                <input type="text" id="getHint" size="30">
-                <div id="livesearch"></div>
-            </form> -->
-
 
             <p class="fc-purple-secondary fs-1-6 font-weight-bold">
                 * You NEED to choose at least one course.

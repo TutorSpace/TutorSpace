@@ -7,13 +7,41 @@ use Illuminate\Database\Migrations\Migration;
 class CreateViewsTable extends Migration
 {
     /**
+     * The database schema.
+     *
+     * @var \Illuminate\Support\Facades\Schema
+     */
+    protected $schema;
+
+    /**
+     * The table name.
+     *
+     * @var string
+     */
+    protected $table;
+
+    /**
+     * Create a new migration instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->schema = Schema::connection(
+            config('eloquent-viewable.models.view.connection')
+        );
+
+        $this->table = config('eloquent-viewable.models.view.table_name');
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('views', function (Blueprint $table) {
+        $this->schema->create($this->table, function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->morphs('viewable');
             $table->text('visitor')->nullable();
@@ -29,6 +57,6 @@ class CreateViewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('views');
+        Schema::dropIfExists($this->table);
     }
 }

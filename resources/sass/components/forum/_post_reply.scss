@@ -25,8 +25,8 @@
         }
 
         img {
-            width: 6rem;
-            height: 6rem;
+            width: 5rem;
+            height: 5rem;
             object-fit: cover;
             border-radius: 50%;
             display: block;
@@ -34,7 +34,7 @@
         }
 
         .user-name {
-            font-size: 1.6rem !important;
+            font-size: 1.4rem !important;
             line-height: 1.2;
             margin-top: .5rem;
             color: $color-black-post-3;
@@ -47,7 +47,7 @@
 
         .user-info {
             text-align: center;
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             line-height: 1.1;
         }
 
@@ -63,7 +63,7 @@
             display: flex;
             align-items: flex-end;
             margin-top: .5rem;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             flex-wrap: wrap;
 
             span {
@@ -82,11 +82,10 @@
         }
 
         .btn-toggle-follow-up {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: $color-black-post-3 !important;
             margin-right: 1rem;
             padding: 0;
-            border: none;
         }
     }
 

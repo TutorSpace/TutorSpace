@@ -11,23 +11,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // adding tags
-        $command = escapeshellcmd('python python_web_scraping/main.py');
-        $output = shell_exec($command);
-
         $this->call([
             TutorLevelSeeder::class,
+            MajorSeeder::class,
+            MinorSeeder::class,
             SchoolYearSeeder::class,
+            TagSeeder::class,
+            CourseSeeder::class,
             UserSeeder::class,
             ReportReasonSeeder::class,
+            TutorSessionSeeder::class,
             ReviewSeeder::class,
             AvailableTimeSeeder::class,
-            UpcomingSessionSeeder::class,
 
             PostTypeSeeder::class,
             PostSeeder::class,
             ReplySeeder::class,
             ViewCntSeeder::class,
+
         ]);
     }
 }

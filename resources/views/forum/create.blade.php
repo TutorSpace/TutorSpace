@@ -120,10 +120,7 @@ bg-student select2-bg-student
 
 @section('js')
 
-@guest
-    @include('partials.nav-auth-js')
-@endguest
-
+@include('partials.nav-auth-js')
 
 <script>
     tinymce.init({

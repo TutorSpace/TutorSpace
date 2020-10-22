@@ -18,12 +18,11 @@ class CreateSessionsTable extends Migration
             $table->unsignedBigInteger('tutor_id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->date('date');
-            $table->time('session_time_start', 0);
-            $table->time('session_time_end', 0);
-            $table->boolean('is_in_person');
-            $table->boolean('is_upcoming')->default(true);
-            $table->boolean('is_canceled')->default(false);
+            $table->timestamp('date', 3);
+            $table->string('start_time', 64);
+            $table->string('end_time', 64);
+            $table->boolean('is_upcoming');
+            $table->boolean('is_canceled');
             $table->unsignedBigInteger('cancel_reason_id')->nullable();
             $table->string('cancel_notes', 45)->nullable();
             $table->timestamps();

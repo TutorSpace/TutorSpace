@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 
-use App\Tag;
 use App\User;
-use App\Course;
 use App\Session;
 use Carbon\Carbon;
 use App\ReportForum;
@@ -14,7 +12,6 @@ use App\Tutor_request;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\InviteToBeTutorNotification;
 
@@ -53,6 +50,7 @@ class GeneralController extends Controller
         $report->report_reason_id = $request->input('report-reason');
         $report->save();
 
+
         return redirect()->back()->with([
             'successMsg' => 'Successfully Reported!'
         ]);
@@ -60,16 +58,6 @@ class GeneralController extends Controller
 
     public function inviteToBeTutor(User $user) {
         if(!User::existTutor($user->email)) {
-            if(Auth::user()->invitedUsers()->where('invited_user_id', $user->id)->exists()) {
-                return response()->json(
-                [
-                    'successMsg' => "This request has already been sent to $user->first_name $user->last_name"
-                ]
-            );
-            }
-            else {
-                Auth::user()->invitedUsers()->attach($user->id);
-            }
             $user->notify(new InviteToBeTutorNotification(Auth::user()));
             return response()->json(
                 [
@@ -80,7 +68,7 @@ class GeneralController extends Controller
         else {
             return response()->json(
                 [
-                    'errorMsg' => 'The user already has a tutor account.'
+                    'errorMsg' => 'The user already had a tutor account.'
                 ]
             );
         }
@@ -96,99 +84,25 @@ class GeneralController extends Controller
         ]);
 
         $user = Auth::user();
-        $profile_pic_url = "";
-
-        // if user uploaded the file
-        if($request->file('profile-pic')) {
-            $user->deleteImage();
-            $profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
-
-            foreach(User::where('email', $user->email)->get() as $tmpUser) {
-                $tmpUser->profile_pic_url = $profile_pic_url;
-                $tmpUser->save();
+        DB::transaction(function() use($request, $user) {
+            // if user uploaded the file
+            if($request->file('profile-pic')) {
+                $user->deleteImage();
+                $user->profile_pic_url = $request->file('profile-pic')->store('/user-profile-photos');
             }
-        }
+
+            $user->save();
+        });
 
         return response()->json([
             'successMsg' => 'Successfully updated the profile photo.',
-            'imgUrl' => $profile_pic_url
+            'imgUrl' => $user->profile_pic_url
         ]);
 
     }
 
     public function getRecommendedTutors() {
         return view('partials.recommended_tutors');
-    }
-
-    //add or remove the course id to/from the user
-    public function addRemoveCourseToProfile(Request $request) {
-        $courseId = $request->input('courseId') ?? Course::where('course', $request->input('courseName'))->first()->id;
-
-        if(Auth::user()->courses()->find($courseId)) {
-            Auth::user()->courses()->detach($courseId);
-
-            return response()->json([
-                'successMsg' => 'Successfully removed the course.'
-            ]);
-        }
-        else if(Auth::user()->courses()->count() < 7){
-            Auth::user()->courses()->attach($courseId);
-
-            return response()->json([
-                'successMsg' => 'Successfully added the course.',
-                'courseName' => $request->input('courseName'),
-                'courseId' => $courseId
-            ]);
-        }
-    }
-
-    //add or remove the tag id to/from the user
-    public function addRemoveTagToProfile(Request $request) {
-        $tagId = $request->input('tagId') ?? Tag::where('tag', $request->input('tagName'))->first()->id;
-
-        if(Auth::user()->tags()->find($tagId)) {
-            Auth::user()->tags()->detach($tagId);
-
-            return response()->json([
-                'successMsg' => 'Successfully removed the tag.'
-            ]);
-        }
-        else if(Auth::user()->tags()->count() < 10){
-            Auth::user()->tags()->attach($tagId);
-
-            return response()->json([
-                'successMsg' => 'Successfully added the tag.',
-                'tagName' => $request->input('tagName'),
-                'tagId' => $tagId
-            ]);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // TODO: add validation
-    public function rejectTutorRequest(Request $request) {
-        $tutorRequestId = $request->input('tutor_request_id');
-
-        Tutor_request::find($tutorRequestId)->delete();
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully rejected the tutor request!'
-            ]
-        );
     }
 
     // TODO: add validation
@@ -395,38 +309,20 @@ class GeneralController extends Controller
 
     }
 
-    public function getHint(Request $request) {
-        $q = $request->input('str');
-        $course_name = Course::all();
-        $hint = "";
-        if ($q !== "") {
-          $q = strtolower($q);
-          $len=strlen($q);
-          foreach($course_name as $course) {
-            if (stristr($q, substr($course->course, 0, $len))) {
-              if ($hint === "") {
-                // "<option value="{{ $course->id }}">{{ $course->course }}</option>"
-                $hint = $course->course."<br />";
-              } else {
-                $hint .= "$course->course"."<br />";
-              }
-            }
-          }
-        }
+    // TODO: add validation
+    public function rejectTutorRequest(Request $request) {
+        $tutorRequestId = $request->input('tutor_request_id');
 
-        if ($hint === "") {
-            return response()->json(
+        Tutor_request::find($tutorRequestId)->delete();
+
+        return response()->json(
             [
-                'successMsg'=> "no suggestion"
+                'successMsg' => 'Successfully rejected the tutor request!'
             ]
         );
-        }
-        else {
-            return response()->json(
-            [
-                'successMsg' => $hint,
-            ]
-        );
-        }
     }
+
+
+
+
 }

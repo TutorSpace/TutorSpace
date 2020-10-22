@@ -24,7 +24,6 @@
         <exclude name="StaticAccess" />
         <exclude name="IfStatementAssignment" />
         <exclude name="UndefinedVariable" />
-        <exclude name="ErrorControlOperator" />
     </rule>
     <rule ref="rulesets/controversial.xml" />
     <rule ref="rulesets/design.xml">

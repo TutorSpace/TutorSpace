@@ -203,6 +203,10 @@
             background-color: $color-blue-primary-2;
             border-color: $color-blue-primary-2;
         }
+
+        &.active {
+            background-color: $color-blue-secondary !important;
+        }
     }
 
     .btn-outline-primary {
@@ -227,6 +231,10 @@
         &:hover {
             background-color: $color-purple-primary-2;
             border-color: $color-purple-primary-2;
+        }
+
+        &.active {
+            background-color: $color-purple-secondary !important;
         }
     }
 

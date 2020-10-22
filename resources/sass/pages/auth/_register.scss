@@ -154,10 +154,10 @@
             border-radius: 1.2rem;
         }
 
-        // @include respond(extra-sm) {
-        //     margin-left: 5rem;
-        //     margin-right: 5rem;
-        // }
+        @include respond(extra-sm) {
+            margin-left: 5rem;
+            margin-right: 5rem;
+        }
     }
 
 

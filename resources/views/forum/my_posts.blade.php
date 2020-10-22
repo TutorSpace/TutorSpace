@@ -48,9 +48,7 @@ bg-student
 
 @section('js')
 
-@guest
-    @include('partials.nav-auth-js')
-@endguest
+@include('partials.nav-auth-js')
 <script src="{{ asset('js/forum/forum.js') }}"></script>
 <script>
     let postSlug, postPreview;

@@ -3,7 +3,7 @@
     margin-bottom: 15rem;
 
     @include respond(extra-sm) {
-        padding: 0 15px;
+        padding: 0 5rem;
     }
 
 
@@ -12,7 +12,6 @@
 
         @include respond(md) {
             margin-bottom: 3rem;
-            padding: 2rem 2rem;
         }
 
 

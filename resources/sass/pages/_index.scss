@@ -222,6 +222,7 @@
     background-image: linear-gradient(to right, rgba($color-blue-primary, .8) 50%, rgba($color-purple-primary, .8) 50%);
     position: relative;
 
+
     .bg-shape-triangle-left {
         top: 8rem;
         width: 25rem;
@@ -246,7 +247,6 @@
     &__heading {
         padding-top: 12rem;
         color: $color-white;
-        font-weight: 900;
 
         @include respond(extra-sm) {
             padding-top: 25rem;
@@ -286,7 +286,7 @@
     &__svg {
         display: block;
         margin: 0 auto;
-        width: 30rem;
+        width: 40rem;
         height: auto;
 
         @include respond(md) {
@@ -294,7 +294,7 @@
         }
 
         @include respond(sm) {
-            width: 19rem;
+            width: 22rem;
         }
 
         @include respond(extra-sm) {
@@ -313,7 +313,7 @@
 
         @include respond(extra-sm) {
             transform: translateY(4rem);
-            width: 24rem;
         }
     }
 }
+

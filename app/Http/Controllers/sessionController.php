@@ -10,8 +10,6 @@ use App\User;
 
 class sessionController extends Controller
 {
-
-
     // TODO: add validation
     public function cancelSession(Request $request) {
         $sessionId = $request->input('session_id');

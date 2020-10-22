@@ -82,19 +82,3 @@
         }
     }
 }
-
-.bg-student {
-    .menu-bar {
-        background-color: rgba(#005CE1, .8);
-
-        &__lists {
-            li.active {
-                color: rgba(#005CE1, .8);
-            }
-
-            a:hover {
-                color: rgba(#005CE1, .8);
-            }
-        }
-    }
-}

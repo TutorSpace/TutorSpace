@@ -392,8 +392,7 @@ class RegisterController extends Controller
             'courses' => [
                 'required',
                 'array',
-                'min:1',
-                'max:7'
+                'min:1'
             ],
             'courses.*' => [
                 'exists:courses,id'

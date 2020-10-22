@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use App\NewMessage;
 use Facades\App\Post;
 
+use App\Tutor_request;
 use App\Characteristic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,26 +35,17 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function index(Request $request) {
-        $currUser = Auth::user();
-        // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
 
 
-        dd($currUser);
+        // get daily post view count from the last 7 days
+        $views = User::getViewCntWeek(1);
+        // dd($posts);
 
-        // $view = new View([
-        //     'viewed_at' => Carbon::now()
-        // ]);
-        // dd("here");
+        // dd($views);
 
-        // // get daily post view count from the last 7 days
-        // $views = User::getViewCntWeek(1);
-        // // dd($posts);
-
-        // // dd($views);
-
-        // return view('test', [
-        //     'views' => $views
-        // ]);
+        return view('test', [
+            'views' => $views
+        ]);
     }
 
     public function test(Request $request) {

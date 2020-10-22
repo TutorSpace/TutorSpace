@@ -31,9 +31,6 @@ class CreateUsersTable extends Migration
             $table->string('google_id', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->text('introduction')->nullable();
-            $table->boolean('is_invalid')->default(false);
-            $table->string('invalid_reason', 256)->nullable();
-            $table->string('invalid_redirect_route_name', 64)->nullable();
             $table->timestamps();
 
             $table->foreign('first_major_id')->references('id')->on('majors')->onDelete('cascade')->onUpdate('cascade');

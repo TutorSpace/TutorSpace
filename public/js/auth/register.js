@@ -174,33 +174,7 @@ $("input[type=file]").change(function () {
   var fileInput = $(this)[0];
   var filename = fileInput.files[0].name;
   $('#file-input-text').html("Uploaded image: " + filename);
-});
-$("#getHint").on('keyup', function () {
-  var str = document.getElementById('getHint').value;
-  var select = document.getElementById('courses');
-
-  if (str.length == 0) {
-    document.getElementById("livesearch").innerHTML = "";
-    return;
-  } else {
-    $.ajax({
-      type: 'POST',
-      url: '/gethint',
-      data: {
-        str: str
-      },
-      success: function success(data) {
-        var successMsg = data.successMsg;
-        document.getElementById("livesearch").innerHTML = successMsg;
-      },
-      error: function error(_error) {
-        toastr.error(_error);
-      }
-    });
-  }
-}); // $('#courses').addEventListener("input", function(e)) {
-// }
-//  ========================= register student 2 ===========================
+}); //  ========================= register student 2 ===========================
 
 (function () {
   var totalSeconds = 30;
@@ -225,9 +199,9 @@ $("#getHint").on('keyup', function () {
           toastr.success(successMsg);
           console.log("success");
         },
-        error: function error(_error2) {
-          console.log(_error2);
-          toastr.error(_error2);
+        error: function error(_error) {
+          console.log(_error);
+          toastr.error(_error);
         }
       });
       startTimeLabel();

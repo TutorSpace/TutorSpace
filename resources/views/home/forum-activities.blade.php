@@ -13,11 +13,6 @@ bg-student
 
 @endsection
 
-@section('links-in-head')
-
-{{-- plotly --}}
-<script src="{{ asset('js/plotly.js') }}"></script>
-@endsection
 
 @section('content')
 
@@ -28,7 +23,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        <div class="container col-layout-2 home__header-container">
+        <div class="container home__header-container">
             <div class="heading-container">
                 <p class="heading">Forum Activities</p>
                 <span>
@@ -37,27 +32,23 @@ bg-student
             </div>
         </div>
 
-        <div class="container col-layout-2">
+        <div class="container">
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div class="graph-1">
-                        <div id="scatter-chart"></div>
-                    </div>
-                    <div class="graph-2">
-                        <div id="gauge-chart"></div>
-                    </div>
+                    <div id="post-chart"></div>
+                    <div id="profile-chart"></div>
                 </div>
             </div>
         </div>
 
-        <div class="container col-layout-2">
+        <div class="container">
             <div class="row forum mt-0">
                 <h5 class="w-100 heading__forum-activities">
                     <span class="active">My Posts</span>
                     <span class="">My Follows</span>
                 </h5>
-                <div class="col-12 col-md-8 post-previews px-0">
+                <div class="col-12 col-sm-8 post-previews px-0">
                     <div>
                         @include('forum.partials.post-preview-my-posts', [
                             'posts' => $myPosts
@@ -70,7 +61,7 @@ bg-student
                         ])
                     </div>
                 </div>
-                <div class="col-12 col-md-4 forum-data-container">
+                <div class="col-12 col-sm-4 forum-data-container">
                     <div class="forum-data" id="forum-data-my-posts">
                         {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -104,8 +95,48 @@ let storageUrl = "{{ Storage::url('') }}";
 </script>
 
 
-{{-- for data visualization --}}
-@include('home.partials.data-visualization')
+{{-- for graphics --}}
+<script>
+    MG.data_graphic({
+        title: "Post View Count",
+        description: "This graphic shows a time-series of post view counts.",
+        data: [
+            @foreach(App\Post::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#post-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
+
+    MG.data_graphic({
+        title: "Profile View Count",
+        description: "This graphic shows a time-series of profile view counts.",
+        data: [
+            @foreach(App\User::getViewCntWeek(1) as $view)
+            {
+                'date':new Date('{{ $view->viewed_at }}'),
+                'value': {{ $view->view_count }}
+            },
+            @endforeach
+        ],
+        width: 300,
+        // height: 250,
+        target: '#profile-chart',
+        x_accessor: 'date',
+        y_accessor: 'value',
+        linked: true,
+        top: 50
+    })
+</script>
 
 <script>
     $('.heading__forum-activities span').click(function() {

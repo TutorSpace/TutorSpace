@@ -12,9 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
 use Facades\App\CustomClass\TimeFormatter;
-use Facades\App\CustomClass\TimeOverlapManager;
 
 
 class SearchController extends Controller
@@ -105,11 +103,11 @@ class SearchController extends Controller
                         'firstMajor',
                         'tutorLevel',
                         'courses',
-                        'aboutReviews',
+                        'about_reviews',
                         'availableTimes'
                     ])
                     ->withCount([
-                        'aboutReviews'
+                        'about_reviews'
                     ])
                     ->where('users.is_tutor', true)
                     ->join('course_user', 'course_user.user_id', '=', 'users.id')
@@ -123,6 +121,7 @@ class SearchController extends Controller
                             ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%")
                             ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
+
 
         // if the user filtered with price
         if($request->input('price-low') && $request->input('price-high')) {
@@ -153,18 +152,18 @@ class SearchController extends Controller
         }
 
 
-        // TODO: change this part about the available time
+
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
                 $availableTimeRange = $request->input('available-time-range');
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
-                    $startTimes = ["8:00:00"];
+                    $startTimes = ["6:00:00"];
                     $endTimes = ["23:59:59"];
                 }
                 else if(count($availableTimeRange) == 1) {
                     if(in_array('morning', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["6:00:00"];
                         $endTimes = ["11:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange)) {
@@ -178,11 +177,11 @@ class SearchController extends Controller
                 }
                 else if(count($availableTimeRange) == 2) {
                     if(in_array('morning', $availableTimeRange) && in_array('afternoon', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["6:00:00"];
                         $endTimes = ["16:59:59"];
                     }
                     else if(in_array('morning', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
-                        $startTimes = ["8:00:00", "17:00:00"];
+                        $startTimes = ["6:00:00", "17:00:00"];
                         $endTimes = ["11:59:59", "23:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
@@ -197,9 +196,9 @@ class SearchController extends Controller
 
                 $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
-            
-            $numDays = Carbon::parse($request->input('available-start-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-end-date') . " " . $endTimes[0]));
 
+
+            $numDays = Carbon::parse($request->input('available-end-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-start-date') . " " . $startTimes[0]));
             $times = collect([]);
             for($i = 0; $i <= $numDays; $i++) {
                 for($j = 0; $j < count($startTimes); $j++) {
@@ -213,12 +212,8 @@ class SearchController extends Controller
             $users = $usersQuery->distinct()->get();
             $results = collect([]);
 
+            // TODO: check algorithm correctness
             foreach($users as $user) {
-
-                //ignore those users without an available time
-                if(!count($user->availableTimes)){
-                    continue;
-                }
 
                 $availableTimes = $user->availableTimes;
 
@@ -226,22 +221,26 @@ class SearchController extends Controller
                     $startTime = $times[$i][0];
                     $endTime = $times[$i][1];
 
+                    $keep = false;
                     // iterate through all the available time of the user
                     foreach($availableTimes as $availableTime) {
-                        $keep = true;
                         $availableTimeStart = $availableTime->available_time_start;
-                        $availableTimeEnd = $availableTime->available_time_end;                    
+                        $availableTimeEnd = $availableTime->available_time_end;
 
-                        if(TimeOverlapManager::noTimeOverlap($startTime, $endTime, $availableTimeStart, $availableTimeEnd)) {    
-                            $keep = false;
-                        }
-                        if($keep && !$results->contains($user)) {
-                            $results->push($user);
+                        // if intersects, then possible to return it
+                        if((
+                            $startTime >= $availableTimeStart && $startTime <= $availableTimeEnd) ||
+                            ($endTime >= $availableTimeStart && $endTime <= $availableTimeEnd) ||
+                            ($startTime <= $availableTimeStart && $endTime >=$availableTimeEnd)
+                        ) {
+                            $keep = true;
                             break;
                         }
-                        
                     }
-                    
+                    if($keep) {
+                        $results->push($user);
+                        break;
+                    }
                 }
             };
 

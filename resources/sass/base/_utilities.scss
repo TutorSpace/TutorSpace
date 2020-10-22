@@ -17,7 +17,6 @@
 .right-0 { right: 0 !important; }
 .left-0 { left: 0; }
 .left-100 { left: 100% !important; }
-.top-0-5 { top: .5rem; }
 
 // ====================== display & visibility ==================
 .hidden { display: none !important; }
@@ -25,16 +24,6 @@
 .inline-grid { display: inline-grid !important; }
 .invisible { visibility: hidden; }
 .overflow-hidden { overflow: hidden; }
-.show--sm {
-    display: none !important;
-    @include respond(sm) { display: block !important; }
-}
-.hide--sm {
-    @include respond(sm) { display: none !important; }
-}
-.hide--md {
-    @include respond(md) { display: none !important; }
-}
 
 // ==================== padding & margin ===================
 .pl-0 { padding-left: 0; }
@@ -48,7 +37,6 @@
 .mr-3px { margin-right: 3px; }
 .mr-4px { margin-right: 4px; }
 .mr-6px { margin-right: 6px; }
-.mb-1px { margin-bottom: 1px; }
 
 // ==================== background color ===================
 .bg-grey-light { background-color: $color-grey-light !important; }
@@ -57,10 +45,6 @@
 .bg-white-dark-5 { background-color: $color-white-dark-5 !important; }
 .bg-color-blue-primary { background-color: $color-blue-primary !important; }
 .bg-color-purple-primary { background-color: $color-purple-primary !important; }
-
-.bg-color-notification--sessions { background-color: $color-notification--session !important; }
-.bg-color-notification--forum { background-color: $color-notification--forum !important; }
-.bg-color-notification--tutorspace { background-color: $color-notification--tutorspace !important; }
 
 // ===================== svg =================
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
@@ -99,9 +83,6 @@
 .fc-black-post { color: $color-black-post; }
 .fc-black-post-2 { color: $color-black-post-2 !important; }
 .fc-black-post-3 { color: $color-black-post-3; }
-
-// z-index
-.z-index-9999 { z-index: 9998 !important; }
 
 // ======================== font family =======================
 .ff-Avenir { font-family: Avenir; }
@@ -192,7 +173,9 @@
     }
 }
 
-.hover--pointer { cursor: pointer; }
+.hover--pointer {
+    cursor: pointer;
+}
 
 .placeholder {
     margin-top: 0 !important;
@@ -201,6 +184,4 @@
     margin-right: 0 !important;
     visibility: hidden !important;
 }
-
-
 

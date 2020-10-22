@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\AvailableTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 
 class CalendarController extends Controller
 {
@@ -27,8 +26,6 @@ class CalendarController extends Controller
                 'after_or_equal:start-time'
             ]
         ]);
-
-        Gate::authorize('add-available-time');
 
         $availableTime = Auth::user()->availableTimes()->create([
             'available_time_start' => $request->input('start-time'),

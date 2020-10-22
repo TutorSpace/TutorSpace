@@ -111,7 +111,7 @@ trait Mixin
 
                 try {
                     $closure = $closureBase->bindTo($context);
-                } catch (Throwable $throwable) {
+                } catch (Throwable $e) {
                     $closure = $closureBase;
                 }
 
