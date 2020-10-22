@@ -10,3 +10,16 @@
         height: 1.3rem;
     }
 }
+
+.notification__side-bar--right {
+    border-radius: 0 0 1rem 1rem;
+    &__header {
+        height: 7.5rem;
+        border-radius: 1rem 1rem 0 0;
+        &__image {
+            top: 5rem;
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}
