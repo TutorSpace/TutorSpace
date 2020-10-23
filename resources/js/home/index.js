@@ -1,5 +1,3 @@
-const { success } = require("toastr");
-
 let colorHash = new ColorHash({
     hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
 });
@@ -114,22 +112,22 @@ $('.btn-view-all-notifications').click(function() {
 });
 
 
-$('.btn-primary').click(function() {
-    var name = 'Anurag';
-    var course = $(".content").text();
-    alert(name);
-    $.ajax({
-        type: 'POST',
-        url: '/tutor_accept_request',
-        data: {
-          name: name
-        },
-        success: function success(data) {
-          var successMsg = data.successMsg;
-          toastr.success(successMsg);
-        },
-        error: function error(_error3) {
-          toastr.error(_error3);
-        }
-      });
-})
+// $('.btn-primary').click(function() {
+//     var name = 'Anurag';
+//     var course = $(".content").text();
+//     alert(name);
+//     $.ajax({
+//         type: 'POST',
+//         url: '/tutor_accept_request',
+//         data: {
+//           name: name
+//         },
+//         success: function success(data) {
+//           var successMsg = data.successMsg;
+//           toastr.success(successMsg);
+//         },
+//         error: function error(_error3) {
+//           toastr.error(_error3);
+//         }
+//       });
+// })

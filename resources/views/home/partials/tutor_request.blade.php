@@ -115,5 +115,3 @@
     @endif
 
 </div>
-
-<script src="{{ asset('js/home/index.js') }}"></script>

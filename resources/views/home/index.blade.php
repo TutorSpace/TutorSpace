@@ -44,6 +44,11 @@ bg-student
                 <h5 class="mb-2 w-100">You Have 3 New Tutor Requests!</h5>
 
                 <div class="info-boxes info-boxes--sm-card">
+                    @include('home.partials.tutor_request', [
+                            'isNotification' => true,
+                            'user' => App\User::find(1),
+                            'isFirstOne' => true
+                        ])
                     @foreach (App\TutorRequest::all() as $tutorRequest)
                         @include('home.partials.tutor_request', [
                             'isNotification' => true,
