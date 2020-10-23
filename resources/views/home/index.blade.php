@@ -47,7 +47,7 @@ bg-student
                     @include('home.partials.tutor_request', [
                             'isNotification' => true,
                             'user' => App\User::find(1),
-                            // 'isFirstOne' => $loop->first
+                            'isFirstOne' => true
                         ])
                     @foreach (App\TutorRequest::all() as $tutorRequest)
                         @include('home.partials.tutor_request', [
