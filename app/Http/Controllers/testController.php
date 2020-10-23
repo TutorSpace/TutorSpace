@@ -13,6 +13,7 @@ use App\Course;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
+use App\TutorRequest;
 
 use Carbon\Carbon;
 
@@ -36,9 +37,12 @@ class testController extends Controller
     public function index(Request $request) {
         $currUser = Auth::user();
         // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
+        $session_start_time = explode(' ',TutorRequest::first()->session_start_time);
+        $date = $session_start_time[0];
+        $time = $session_start_time[1];
+        $day = Carbon::parse($date)->format('d');
 
-
-        dd($currUser);
+        dd(Carbon::parse(explode(' ',TutorRequest::first()->session_start_time)[0])->format('D'));
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()

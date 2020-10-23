@@ -302,19 +302,19 @@ class User extends Authenticatable
     public function tutor_requests() {
         $mytime = Carbon::now();
 
-        $tutorRequests = Tutor_request::all();
+        $tutorRequests = TutorRequest::all();
         foreach($tutorRequests as $tutorRequest) {
-            $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
+            $requestTime = $tutorRequest->session_start_time;
             if($requestTime <= $mytime) {
                 $tutorRequest->delete();
             }
         }
 
         if($this->is_tutor) {
-            return $this->hasMany('App\Tutor_request', 'tutor_id');
+            return $this->hasMany('App\TutorRequest', 'tutor_id');
         }
         else {
-            return $this->hasMany('App\Tutor_request', 'student_id');
+            return $this->hasMany('App\TutorRequest', 'student_id');
         }
     }
 
