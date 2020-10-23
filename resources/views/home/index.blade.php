@@ -19,7 +19,7 @@ bg-student
 <script src='{{asset('fullcalendar/main.min.js')}}'></script>
 
 {{-- plotly --}}
-<script src="{{ asset('js/plotly.js') }}"></script>
+<script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
 @endsection
 
 @section('content')
@@ -48,6 +48,11 @@ bg-student
                             'isNotification' => true,
                             'user' => App\User::find(1),
                             'isFirstOne' => true
+                        ])
+                        @include('home.partials.tutor_request', [
+                            'isNotification' => true,
+                            'user' => App\User::find(1),
+                            'isFirstOne' => false
                         ])
                     @foreach (App\TutorRequest::all() as $tutorRequest)
                         @include('home.partials.tutor_request', [

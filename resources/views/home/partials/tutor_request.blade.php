@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    @if (isset($isFirstOne))
+    @if (isset($isFirstOne) && $isFirstOne)
     <div class="home__tutor-request-modal">
         <!-- Modal content -->
         <div class="tutor-request-modal__content__close">
