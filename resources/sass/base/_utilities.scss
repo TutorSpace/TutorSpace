@@ -62,6 +62,11 @@
 .bg-color-notification--forum { background-color: $color-notification--forum !important; }
 .bg-color-notification--tutorspace { background-color: $color-notification--tutorspace !important; }
 
+// ======================= color ====================
+.bg-student .color-primary { color: $color-blue-primary; }
+.bg-tutor .color-primary { color: $color-purple-primary; }
+
+
 // ===================== svg =================
 .fill-color-blue-secondary { fill: $color-blue-secondary !important; }
 .fill-color-purple-secondary { fill: $color-purple-secondary !important; }
