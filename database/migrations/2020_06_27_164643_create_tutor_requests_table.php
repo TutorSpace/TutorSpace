@@ -18,9 +18,8 @@ class CreateTutorRequestsTable extends Migration
             $table->unsignedBigInteger('tutor_id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('course_id');
-            $table->timestamp('session_date', 3);
-            $table->string('session_start_time', 64);
-            $table->string('session_end_time', 64);
+            $table->timestamp('session_time_start');
+            $table->timestamp('session_time_end');
             $table->text('message_to_tutor')->nullable();
             $table->timestamps();
 

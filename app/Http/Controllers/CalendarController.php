@@ -28,7 +28,7 @@ class CalendarController extends Controller
             ]
         ]);
 
-        Gate::authorize('add-available-time');
+        Gate::authorize('add-available-time', [$request->input('start-time'), $request->input('end-time')]);
 
         $availableTime = Auth::user()->availableTimes()->create([
             'available_time_start' => $request->input('start-time'),

@@ -298,24 +298,9 @@ class User extends Authenticatable
         return $newUser;
     }
 
-    // whenever this function is called, we need to REMOVE the outdated tutor_requests
-    public function tutor_requests() {
-        $mytime = Carbon::now();
 
-        $tutorRequests = Tutor_request::all();
-        foreach($tutorRequests as $tutorRequest) {
-            $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
-            if($requestTime <= $mytime) {
-                $tutorRequest->delete();
-            }
-        }
-
-        if($this->is_tutor) {
-            return $this->hasMany('App\Tutor_request', 'tutor_id');
-        }
-        else {
-            return $this->hasMany('App\Tutor_request', 'student_id');
-        }
+    public function tutorRequests() {
+        return $this->hasMany('App\TutorRequest', $this->is_tutor ? 'tutor_id' : 'student_id');
     }
 
     public function availableTimes() {
@@ -350,6 +335,34 @@ class User extends Authenticatable
 
     public function hasDualIdentities() {
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
+    }
+
+
+
+
+
+
+
+
+
+    // whenever this function is called, we need to REMOVE the outdated tutor_requests
+    public function tutor_requests() {
+        $mytime = Carbon::now();
+
+        $tutorRequests = Tutor_request::all();
+        foreach($tutorRequests as $tutorRequest) {
+            $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
+            if($requestTime <= $mytime) {
+                $tutorRequest->delete();
+            }
+        }
+
+        if($this->is_tutor) {
+            return $this->hasMany('App\Tutor_request', 'tutor_id');
+        }
+        else {
+            return $this->hasMany('App\Tutor_request', 'student_id');
+        }
     }
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
