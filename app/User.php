@@ -341,37 +341,10 @@ class User extends Authenticatable
 
 
 
-
-
-
-
-    // whenever this function is called, we need to REMOVE the outdated tutor_requests
-    public function tutor_requests() {
-        $mytime = Carbon::now();
-
-        $tutorRequests = Tutor_request::all();
-        foreach($tutorRequests as $tutorRequest) {
-            $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
-            if($requestTime <= $mytime) {
-                $tutorRequest->delete();
-            }
-        }
-
-        if($this->is_tutor) {
-            return $this->hasMany('App\Tutor_request', 'tutor_id');
-        }
-        else {
-            return $this->hasMany('App\Tutor_request', 'student_id');
-        }
-    }
-
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
-
-        $key = $this->is_tutor ? 'tutor_id' : 'student_id';
-
-        return $this->hasMany('App\Session', $key)
-                        ->where('sessions.is_upcoming', true)
+        return $this->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
+                        ->where('is_upcoming', true)
                         ->where('is_canceled', false);
 
         // $mytime = Carbon::now();

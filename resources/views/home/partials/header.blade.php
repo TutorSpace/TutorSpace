@@ -63,7 +63,7 @@
                         &middot;
                     </span>
                     <span class="sub--2">
-                        54 points
+                        ??? points
                     </span>
                 </p>
                 <div class="tutor-level-progress">
@@ -71,10 +71,10 @@
                         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="tutor-level tutor-level--current">
-                        Beginner
+                        ??????
                     </span>
                     <span class="tutor-level tutor-level--next">
-                        Intermediate
+                        ??????????
                     </span>
                 </div>
                 @else
@@ -113,15 +113,15 @@
                     <span class="classifier">Days</span>
                 </div>
                 <div class="data">
-                    <span class="number">5</span>
+                    <span class="number">-1</span>
                     <span class="classifier">Sessions</span>
                 </div>
                 <div class="data">
                     @if (Auth::user()->is_tutor)
-                    <span class="number">5</span>
+                    <span class="number">-1</span>
                     <span class="classifier">Students</span>
                     @else
-                    <span class="number">5</span>
+                    <span class="number">-1</span>
                     <span class="classifier">Tutors</span>
                     @endif
 

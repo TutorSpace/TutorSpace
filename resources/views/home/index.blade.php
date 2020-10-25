@@ -41,10 +41,10 @@ bg-student
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{App\User::find(Auth::user()->id)->tutor_requests()->count()}} New Tutor Requests!</h5>
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->tutorRequests()->count() }} New Tutor Requests!</h5>
 
                 <div class="info-boxes info-boxes--sm-card">
-                    @foreach (App\TutorRequest::all() as $tutorRequest)
+                    @foreach (Auth::user()->tutorRequests as $tutorRequest)
                         @include('home.partials.tutor_request', [
                             'isNotification' => true,
                             'isFirstOne' => $loop->first,

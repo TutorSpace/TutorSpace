@@ -129,5 +129,5 @@ $('.btn-primary').click(function() {
         error: function error(_error3) {
           toastr.error(_error3);
         }
-      });
+    });
 })

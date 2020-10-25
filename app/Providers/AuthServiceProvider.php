@@ -32,8 +32,8 @@ class AuthServiceProvider extends ServiceProvider
             foreach($user->availableTimes as $availableTime) {
                 if(!TimeOverlapManager::noTimeOverlap($startTime, $endTime, $availableTime->available_time_start, $availableTime->available_time_end)) $isAvailable = false;
             }
-            foreach($user->tutorRequests as $tutorRequest) {
-                if(!TimeOverlapManager::noTimeOverlap($startTime, $endTime, $tutorRequest->session_time_start, $tutorRequest->session_time_end)) $isAvailable = false;
+            foreach($user->upcomingSessions as $session) {
+                if(!TimeOverlapManager::noTimeOverlap($startTime, $endTime, $session->session_time_start, $session->session_time_end)) $isAvailable = false;
             }
             return $user->is_tutor && $isAvailable;
         });
