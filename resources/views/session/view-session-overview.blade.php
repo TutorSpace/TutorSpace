@@ -1,6 +1,6 @@
 <div class="container modal-session">
     <p class="mt-5">Session Overview</p>
-    <p class="fc-grey my-3">Tutor Name:<span class="ml-2 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span><p>
+    <p class="fc-grey my-3">{{ Auth::user()->is_tutor ? 'Tutor Name' : 'Student Name' }}:<span class="ml-2 fc-black-2">firstname lastname</span><p>
 
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column">

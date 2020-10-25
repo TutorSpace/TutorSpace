@@ -40,6 +40,19 @@
                 Cancel: {
                     label: 'Cancel Session',
                     className: 'btn btn-primary p-3 px-4 fs-1-4',
+                    callback: function() {
+                        $.ajax({
+                            type: 'DELETE',
+                            url: "{{ route('session.cancel') }}",
+                            success: function success(data) {
+                                var successMsg = data.successMsg;
+                                toastr.success(successMsg);
+                            },
+                            error: function error(error) {
+                                toastr.error(error);
+                            }
+                        });
+                    }
                 },
             }
         });

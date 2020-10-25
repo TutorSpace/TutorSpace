@@ -118,7 +118,7 @@ $('#btn-confirm-tutor-session').click(function() {
     alert(name);
     $.ajax({
         type: 'POST',
-        url: '/tutor_accept_request',
+        url: '/tutor-request/accept',
         data: {
           name: name
         },
