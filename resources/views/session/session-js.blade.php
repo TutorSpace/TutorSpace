@@ -8,10 +8,25 @@
             buttons: {
                 Next: {
                     label: 'Done',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-5 fs-1-4',
                 },
             }
         });
+
+        let options = Object.assign({}, calendarOptions);
+        options.selectAllow = false;
+        options.eventClick = null;
+        options.headerToolbar = null;
+        options.height = 'auto';
+        options.slotMinTime = "08:30:00";
+        options.slotMaxTime = "11:30:00";
+        let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
+        e.render();
+        setTimeout(() => {
+            e.destroy();
+            e.render();
+            e.gotoDate('2020-10-25');
+        }, 500);
 
     });
 

@@ -76,10 +76,6 @@ let calendarOptions = {
 
         @foreach(Auth::user()->upcomingSessions as $upcomingSession)
         {
-            @php
-                $startTime = date("H:i", strtotime($upcomingSession->session_time_start));
-                $endTime = date("H:i", strtotime($upcomingSession->session_time_end));
-            @endphp
             title: '{{ $upcomingSession->course->course }}',
             @if($upcomingSession->is_in_person)
             extendedProps: {
@@ -92,8 +88,8 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$startTime}}',
-            end: '{{date('Y-m-d', strtotime($upcomingSession->date))}}T{{$endTime}}',
+            start: '{{ $upcomingSession->session_time_start }}',
+            end: '{{ $upcomingSession->session_time_end }}',
             description: "",
         },
         @endforeach
@@ -102,6 +98,11 @@ let calendarOptions = {
 
 let calendar;
 let calendarPopUp;
+let calendarPopUpOptions = Object.assign({}, calendarOptions);
+calendarPopUpOptions.height = 350;
+calendarPopUpOptions.selectAllow = false;
+calendarPopUpOptions.eventClick = null;
+
 document.addEventListener('DOMContentLoaded', function() {
     // for the large calendar
     var calendarEl = document.getElementById('calendar');
@@ -110,13 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // for the calendar in tutor request
     var calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
-    let calendarPopUpOptions = Object.assign({}, calendarOptions);
-    calendarPopUpOptions.height = 350;
-    calendarPopUpOptions.selectAllow = false;
-    calendarPopUpOptions.eventClick = null;
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
-
-    // for the calendar in view upcoming session
 });
 
 
