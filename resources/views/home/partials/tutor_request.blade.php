@@ -1,3 +1,15 @@
+@php
+
+$session_start_time = explode(' ',$tutorRequest->session_start_time);
+$date = $session_start_time[0];
+$month = Carbon\Carbon::parse($date)->format('m');;
+$day_date = Carbon\Carbon::parse($date)->format('d');;
+$year = Carbon\Carbon::parse($date)->format('y');;
+$time = Carbon\Carbon::parse($session_start_time[1])->format('g:i A');
+$day = Carbon\Carbon::parse($date)->format('D');
+$student = App\User::find($tutorRequest->student_id);
+@endphp
+
 <div>
     <div class="info-box">
         @if(isset($isNotification) && $isNotification)
@@ -6,27 +18,27 @@
         </svg>
         @endif
         <div class="user-info">
-            <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
+            <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
-                {{ $user->first_name . $user->last_name }}
+                {{ $student->first_name . " " . $student->last_name }}
             </a>
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02<span class="info-box__year">/20</span>
-                Wed</span>
+            <span class="content">{{$month}}/{{$day_date}}<span class="info-box__year">/{{$year}}</span>
+                {{$day}}</span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">2:30 - 13:00</span>
+            <span class="content">{{$time}}</span>
         </div>
         <div class="course">
             <span class="title">Course</span>
-            <span class="content">BUAD 304</span>
+            <span class="content">{{App\Course::find($tutorRequest->course_id)->course}}</span>
         </div>
         <div class="session-type">
             <span class="title">Type</span>
-            <span class="content">In Person</span>
+            <span class="content">In-person</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
@@ -64,7 +76,7 @@
                 <div class="tutor-request-modal__content__profile">
                     <div>
                         <div class="user-info">
-                            <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
+                            <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
                             <a class="content" href="#">
                                 <!-- tutor name -->
                             </a>
