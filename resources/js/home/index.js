@@ -112,7 +112,7 @@ $('.btn-view-all-notifications').click(function() {
 });
 
 
-$('.btn-primary').click(function() {
+$('#btn-confirm-tutor-session').click(function() {
     var name = 'Anurag';
     var course = $(".content").text();
     alert(name);
@@ -129,5 +129,5 @@ $('.btn-primary').click(function() {
         error: function error(_error3) {
           toastr.error(_error3);
         }
-      });
+    });
 })

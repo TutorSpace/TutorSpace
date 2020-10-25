@@ -16,7 +16,7 @@ bg-student
 @section('links-in-head')
 
 {{-- plotly --}}
-<script src="{{ asset('js/plotly.js') }}"></script>
+<script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
 @endsection
 
 @section('content')

@@ -1,11 +1,11 @@
 @php
 
-$session_start_time = explode(' ',$tutorRequest->session_start_time);
-$date = $session_start_time[0];
+$session_time_start = explode(' ',$tutorRequest->session_time_start);
+$date = $session_time_start[0];
 $month = Carbon\Carbon::parse($date)->format('m');;
 $day_date = Carbon\Carbon::parse($date)->format('d');;
 $year = Carbon\Carbon::parse($date)->format('y');;
-$time = Carbon\Carbon::parse($session_start_time[1])->format('g:i A');
+$time = Carbon\Carbon::parse($session_time_start[1])->format('g:i A');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
 @endphp
@@ -119,7 +119,7 @@ $student = App\User::find($tutorRequest->student_id);
                 </div>
                 <div class="tutor-request-modal__content__confirm">
                     <button class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5">Decline</button>
-                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm ">Confirm Tutor Session</button>
+                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">Confirm Tutor Session</button>
                 </div>
             </div>
         </div>

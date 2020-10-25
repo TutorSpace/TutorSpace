@@ -63,11 +63,11 @@ bg-student
                     <div class="profile__form-row">
                         <div>
                             <label class="profile__label">First Name</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="Shuaiqing" disabled>
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->first_name }}" disabled>
                         </div>
                         <div>
                             <label class="profile__label">Last Name</label>
-                            <input type="text" class="profile__input form-control form-control-lg" value="Luo" disabled>
+                            <input type="text" class="profile__input form-control form-control-lg" value="{{ Auth::user()->last_name }}" disabled>
                         </div>
                     </div>
 

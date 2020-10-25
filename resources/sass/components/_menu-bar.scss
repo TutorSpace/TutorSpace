@@ -18,11 +18,6 @@
     }
 
     @include respond(sm) {
-        max-width: 15rem;
-        font-size: 1.4rem;
-    }
-
-    @include respond(extra-sm) {
         display: none;
     }
 

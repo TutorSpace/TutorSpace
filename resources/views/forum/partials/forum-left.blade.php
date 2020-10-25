@@ -1,4 +1,4 @@
-<div class="overlay-forum-left">
+<div class="toggle-customized">
     <div class="toggle-container toggle-collapsed">
         <svg class="svg-toggle" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
@@ -9,43 +9,43 @@
             <path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
         </svg>
     </div>
-    <ul class="forum-left-sm__list">
-        <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('posts.index') }}">
-                <svg class="forum-left-sm__list-svg">
+    <ul class="toggle-after-list">
+        <li class="toggle-after-list-item">
+            <a class="toggle-after-list-content" href="{{ route('posts.index') }}">
+                <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
                 <span>Forum</span>
             </a>
         </li>
-        <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('posts.popular') }}">
-                <svg class="forum-left-sm__list-svg">
+        <li class="toggle-after-list-item">
+            <a class="toggle-after-list-content" href="{{ route('posts.popular') }}">
+                <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-fire')}}"></use>
                 </svg>
                 <span>Popular Posts</span>
             </a>
         </li>
-        <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('posts.latest') }}">
-                <svg class="forum-left-sm__list-svg">
+        <li class="toggle-after-list-item">
+            <a class="toggle-after-list-content" href="{{ route('posts.latest') }}">
+                <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-arrow-up')}}"></use>
                 </svg>
                 <span>Latest Posts</span>
             </a>
         </li>
         @auth
-        <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('posts.my-posts') }}">
-                <svg class="forum-left-sm__list-svg">
+        <li class="toggle-after-list-item">
+            <a class="toggle-after-list-content" href="{{ route('posts.my-posts') }}">
+                <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-keyboard')}}"></use>
                 </svg>
                 <span>My Posts</span>
             </a>
         </li>
-        <li class="forum-left-sm__list-item">
-            <a class="forum-left-sm__list-content" href="{{ route('posts.my-follows') }}">
-                <svg class="forum-left-sm__list-svg">
+        <li class="toggle-after-list-item">
+            <a class="toggle-after-list-content" href="{{ route('posts.my-follows') }}">
+                <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-heart-full')}}"></use>
                 </svg>
                 <span>My Follows</span>

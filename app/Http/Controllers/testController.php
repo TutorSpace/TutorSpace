@@ -29,13 +29,16 @@ use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+
     public function index(Request $request) {
         $currUser = Auth::user();
+
+        dd(TutorRequest::all());
+        dd($currUser->tutorRequests);
         // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
         $session_start_time = explode(' ',TutorRequest::first()->session_start_time);
         $date = $session_start_time[0];

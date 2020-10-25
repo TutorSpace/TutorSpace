@@ -82,6 +82,16 @@ class SwitchAccountController extends Controller
         }
 
         $currUser = Auth::user();
+
+        // the user must added at least one course
+        if($currUser->courses()->doesntExist()) {
+            return view('home.profile', [
+                'registerToBeTutor2' => true,
+                'hourlyRateError' => true
+            ]);
+        }
+
+
         $currUser->hourly_rate = $request->input('hourly-rate');
 
         if($currUser->is_tutor && $currUser->is_invalid && $currUser->first_major_id && $currUser->gpa && $currUser->hourly_rate && $currUser->school_year_id && $currUser->tutor_level_id) {

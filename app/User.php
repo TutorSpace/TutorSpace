@@ -298,24 +298,9 @@ class User extends Authenticatable
         return $newUser;
     }
 
-    // whenever this function is called, we need to REMOVE the outdated tutor_requests
-    public function tutor_requests() {
-        $mytime = Carbon::now();
 
-        $tutorRequests = TutorRequest::all();
-        foreach($tutorRequests as $tutorRequest) {
-            $requestTime = $tutorRequest->session_start_time;
-            if($requestTime <= $mytime) {
-                $tutorRequest->delete();
-            }
-        }
-
-        if($this->is_tutor) {
-            return $this->hasMany('App\TutorRequest', 'tutor_id');
-        }
-        else {
-            return $this->hasMany('App\TutorRequest', 'student_id');
-        }
+    public function tutorRequests() {
+        return $this->hasMany('App\TutorRequest', $this->is_tutor ? 'tutor_id' : 'student_id');
     }
 
     public function availableTimes() {
@@ -352,13 +337,14 @@ class User extends Authenticatable
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
     }
 
+
+
+
+
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
-
-        $key = $this->is_tutor ? 'tutor_id' : 'student_id';
-
-        return $this->hasMany('App\Session', $key)
-                        ->where('sessions.is_upcoming', true)
+        return $this->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
+                        ->where('is_upcoming', true)
                         ->where('is_canceled', false);
 
         // $mytime = Carbon::now();

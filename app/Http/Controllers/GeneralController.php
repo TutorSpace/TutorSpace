@@ -10,7 +10,7 @@ use App\Course;
 use App\Session;
 use Carbon\Carbon;
 use App\ReportForum;
-use App\Tutor_request;
+use App\TutorRequest;
 use App\Dashboard_post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -182,7 +182,7 @@ class GeneralController extends Controller
     public function rejectTutorRequest(Request $request) {
         $tutorRequestId = $request->input('tutor_request_id');
 
-        Tutor_request::find($tutorRequestId)->delete();
+        TutorRequest::find($tutorRequestId)->delete();
 
         return response()->json(
             [
@@ -341,7 +341,7 @@ class GeneralController extends Controller
         $user = Auth::user();
         $tutorRequestId = $request->input('tutor_request_id');
 
-        $tutorRequest = Tutor_request::find($tutorRequestId);
+        $tutorRequest = TutorRequest::find($tutorRequestId);
 
         // Must not accept the tutor if it is outdated
         $mytime = Carbon::now();
@@ -387,7 +387,7 @@ class GeneralController extends Controller
         $session->is_upcoming = 1;
         $session->save();
 
-        Tutor_request::find($tutorRequestId)->delete();
+        TutorRequest::find($tutorRequestId)->delete();
 
         return response()->json(
             [
