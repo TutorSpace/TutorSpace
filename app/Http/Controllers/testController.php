@@ -28,17 +28,25 @@ use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+
     public function index(Request $request) {
         $currUser = Auth::user();
         // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
 
 
-        dd($currUser);
+
+        $currUser = Auth::user();
+
+        // the user must added at least one course
+        if($currUser->courses()->exists()) {
+            dd('here');
+        }
+
+
 
         // $view = new View([
         //     'viewed_at' => Carbon::now()
