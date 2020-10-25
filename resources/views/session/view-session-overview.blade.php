@@ -1,7 +1,10 @@
-<div class="container modal-book-session">
+<div class="container modal-session">
     <p class="mt-5">Session Overview</p>
     <p class="fc-grey mt-3">Tutor Name: <span class="ml-4 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span><p>
 
+    <div class="calendar">
+
+    </div>
     <div class="d-flex justify-content-between mb-5">
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-2">Date:</p>
@@ -31,11 +34,11 @@
     <hr class="bc-blue-primary"/>
     <p class="mt-3 font-weight-bold fc-black-2 d-flex flex-row justify-content-between">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 28</span></p>
 
-    <p class="fc-black-2 mt-5"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p class="fc-black-2 mt-5 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-    <p class="fc-black-2 mt-3"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
-    <p class="fc-black-2 mt-3"><span class="font-weight-bold">USC Integrity Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">USC Integrity Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
 
 </div>

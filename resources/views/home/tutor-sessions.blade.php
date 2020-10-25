@@ -168,7 +168,7 @@ bg-student
             <div class="row">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
                     @php
-                    $reviewCount = Auth::user()->aboutReviews->count();
+                    $reviewCount = Auth::user()->aboutReviews()->count();
                     @endphp
                     <h5>Reviews ({{ $reviewCount }})</h5>
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
@@ -178,12 +178,13 @@ bg-student
                     $reviews = Auth::user()->aboutReviews;
                     $today = \Carbon\Carbon::today();
                     @endphp
-                    @foreach($reviews as $review)
+                    @for ($i = 0; $i < $reviewCount; $i++)
                         @include('home.partials.review', [
-                        'content' => $review->review,
-                        'dateCreated' => $review->created_at ?? $today
-                    ])
-                    @endforeach
+                            'content' => $reviews->get($i)->review,
+                            'dateCreated' => $reviews->get($i)->created_at ?? $today,
+                            'hidden' => $i >= 2
+                        ])
+                    @endfor
                 </div>
             </div>
         </div>

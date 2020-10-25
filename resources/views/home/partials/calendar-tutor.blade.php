@@ -103,17 +103,23 @@ let calendarOptions = {
 let calendar;
 let calendarPopUp;
 document.addEventListener('DOMContentLoaded', function() {
+    // for the large calendar
     var calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, calendarOptions);
     calendar.render();
 
+    // for the calendar in tutor request
     var calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
     let calendarPopUpOptions = Object.assign({}, calendarOptions);
     calendarPopUpOptions.height = 350;
     calendarPopUpOptions.selectAllow = false;
     calendarPopUpOptions.eventClick = null;
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
+
+    // for the calendar in view upcoming session
 });
+
+
 $('#availableTimeConfirmationModal form').submit(function(e) {
     e.preventDefault();
     let data = $(this).serialize();
