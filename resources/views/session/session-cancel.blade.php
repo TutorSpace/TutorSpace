@@ -1,6 +1,6 @@
 <div class="container modal-session-cancel">
-    <h4 class="w-100 text-center my-5">Are you sure you want to cancel the session
-with Nemo Enim?</h4>
+    <h5 class="w-100 text-center my-5">Are you sure you want to cancel the session
+with Nemo Enim?</h5>
 
     <p class="fc-grey text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
@@ -13,8 +13,7 @@ with Nemo Enim?</h4>
         </select>
     </div>
 
-    <p class="fc-black-2 mt-5"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-    <p class="fc-black-2 mt-5"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-5 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
 
 </div>

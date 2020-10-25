@@ -8,7 +8,7 @@
             buttons: {
                 Next: {
                     label: 'Done',
-                    className: 'btn btn-primary p-3 px-5 fs-1-4',
+                    className: 'btn btn-primary p-3 px-4 fs-1-4',
                 },
             }
         });
@@ -39,7 +39,7 @@
             buttons: {
                 Cancel: {
                     label: 'Cancel Session',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-4 fs-1-4',
                 },
             }
         });
@@ -59,7 +59,7 @@ $('#tutor-profile-request-session').on('click',function() {
         buttons: {
             Next: {
                 label: 'Next',
-                className: 'btn btn-primary p-3 px-5',
+                className: 'btn btn-primary p-3 px-4',
                 callback: session_details
             },
         }
@@ -74,7 +74,7 @@ $('#tutor-profile-request-session').on('click',function() {
             buttons: {
                 Next: {
                     label: 'Next',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-4',
                     callback: session_confirm
                 },
             }
