@@ -151,4 +151,19 @@ $(document).ready(function(){
         }
     });
 
+    // toggle-customized
+    $('.toggle-customized .toggle-collapsed').click(function() {
+        $('.toggle-customized').addClass('toggle-expand-animation');
+    });
+
+    $('.toggle-customized .toggle-expanded').click(function() {
+        $('.toggle-customized').removeClass('toggle-expand-animation');
+    });
+
+
+    $('.toggle-after-list-item').click(function() {
+        let href = $(this).attr('data-location-href');
+        window.location.href = href;
+    });
+
 })

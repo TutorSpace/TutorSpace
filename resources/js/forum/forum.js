@@ -45,19 +45,6 @@ $(window).resize(function () {
     }
 });
 
-$('.overlay-forum-left .toggle-collapsed').click(function() {
-    $('.overlay-forum-left').addClass('toggle-expand-animation');
-});
-
-$('.overlay-forum-left .toggle-expanded').click(function() {
-    $('.overlay-forum-left').removeClass('toggle-expand-animation');
-});
-
-
-$('.forum-left__list-item').click(function() {
-    let href = $(this).attr('data-location-href');
-    window.location.href = href;
-});
 
 $('.forum-content__search__search-by').change(function() {
     let val = $(this).find("option:selected").attr('value');
