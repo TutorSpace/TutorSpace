@@ -119,7 +119,7 @@ $student = App\User::find($tutorRequest->student_id);
                 </div>
                 <div class="tutor-request-modal__content__confirm">
                     <button class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5">Decline</button>
-                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm ">Confirm Tutor Session</button>
+                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">Confirm Tutor Session</button>
                 </div>
             </div>
         </div>
