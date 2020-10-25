@@ -8,7 +8,7 @@ use App\Session;
 use Auth;
 use App\User;
 
-class sessionController extends Controller
+class SessionController extends Controller
 {
 
 
