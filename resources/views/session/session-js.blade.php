@@ -8,31 +8,26 @@
             buttons: {
                 Next: {
                     label: 'Done',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-4 fs-1-4',
                 },
             }
         });
 
-        function session_details() {
-            bootbox.dialog({
-                message: `@include('session.view-session-overview')`,
-                size: 'large',
-                backdrop: true,
-                centerVertical: true,
-                buttons: {
-                    Cancel: {
-                        label: 'Cancel Session',
-                        className: 'btn btn-outline-primary mr-2 p-3 px-5',
-                        callback: session_cancel
-                    },
-                    Next: {
-                        label: 'Done',
-                        className: 'btn btn-primary p-3 px-5',
-                        callback: function(){}
-                    },
-                }
-            });
-        }
+        let options = Object.assign({}, calendarOptions);
+        options.selectAllow = false;
+        options.eventClick = null;
+        options.headerToolbar = null;
+        options.height = 'auto';
+        options.slotMinTime = "08:30:00";
+        options.slotMaxTime = "11:30:00";
+        let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
+        e.render();
+        setTimeout(() => {
+            e.destroy();
+            e.render();
+            e.gotoDate('2020-10-25');
+        }, 500);
+
     });
 
     $('.btn-cancel-session').on('click',function() {
@@ -44,7 +39,20 @@
             buttons: {
                 Cancel: {
                     label: 'Cancel Session',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-4 fs-1-4',
+                    callback: function() {
+                        $.ajax({
+                            type: 'DELETE',
+                            url: "{{ route('session.cancel') }}",
+                            success: function success(data) {
+                                var successMsg = data.successMsg;
+                                toastr.success(successMsg);
+                            },
+                            error: function error(error) {
+                                toastr.error(error);
+                            }
+                        });
+                    }
                 },
             }
         });
@@ -64,11 +72,21 @@ $('#tutor-profile-request-session').on('click',function() {
         buttons: {
             Next: {
                 label: 'Next',
-                className: 'btn btn-primary p-3 px-5',
+                className: 'btn btn-primary p-3 px-4',
                 callback: session_details
             },
         }
     });
+
+    let options = Object.assign({}, calendarOptions);
+    options.height = 350;
+    let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
+    e.render();
+    setTimeout(() => {
+        e.destroy();
+        e.render();
+    }, 500);
+
     function session_details() {
         bootbox.dialog({
             message: `@include('session.session-details')`,
@@ -79,27 +97,28 @@ $('#tutor-profile-request-session').on('click',function() {
             buttons: {
                 Next: {
                     label: 'Next',
-                    className: 'btn btn-primary p-3 px-5',
+                    className: 'btn btn-primary p-3 px-4',
                     callback: session_confirm
                 },
             }
         });
-    }
-    function session_confirm() {
-        bootbox.dialog({
-            message: `@include('session.session-confirm')`,
-            size: 'large',
-            onEscape: true,
-            backdrop: true,
-            centerVertical: true,
-            buttons: {
-                Submit: {
-                    label: 'Book Session',
-                    className: 'btn btn-primary p-3 px-5',
-                    callback: function(){},
-                },
-            }
-        });
+
+        function session_confirm() {
+            bootbox.dialog({
+                message: `@include('session.session-confirm')`,
+                size: 'large',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Submit: {
+                        label: 'Book Session',
+                        className: 'btn btn-primary p-3 px-5',
+                        callback: function(){},
+                    },
+                }
+            });
+        }
     }
 });
 </script>

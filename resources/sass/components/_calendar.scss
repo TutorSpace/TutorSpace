@@ -36,7 +36,6 @@
             }
 
             &.active {
-                background-color: $color-purple-primary !important;
                 color: $color-white !important;
             }
 
@@ -60,7 +59,6 @@
         white-space: nowrap;
     }
 }
-
 
 .calendar-note {
     font-size: 1.5rem;
@@ -199,4 +197,24 @@
 
 .fc .fc-timegrid-slot {
     border: none !important;
+}
+
+.bg-tutor {
+    .fc-toolbar-chunk:last-child {
+        .btn-primary {
+            &.active {
+                background-color: $color-purple-primary !important;
+            }
+        }
+    }
+}
+
+.bg-student {
+    .fc-toolbar-chunk:last-child {
+        .btn-primary {
+            &.active {
+                background-color: $color-blue-primary !important;
+            }
+        }
+    }
 }

@@ -87,17 +87,18 @@
         }
  	}
 
-    &-book-session {
+    &-session {
+        font-size: 1.6rem;
         img {
-            width: 5rem;
-            height: 5rem;
+            width: 4.5rem;
+            height: 4.5rem;
             border-radius: 50%;
             object-fit: cover;
         }
 
-
-        .calendar-details {
-
+        .modal-svg {
+            width: 4rem;
+            height: 4rem;
         }
     }
 

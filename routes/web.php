@@ -195,7 +195,23 @@ Route::group([
     Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
 });
 
-Route::post('/tutor_accept_request', 'GeneralController@acceptTutorRequest');
+// tutor requests
+Route::group([
+    'prefix' => 'tutor-request',
+    'middleware' => 'auth'
+], function() {
+    Route::post('/accept', 'GeneralController@acceptTutorRequest');
+});
+
+// sessions
+Route::group([
+    'prefix' => 'session',
+    'middleware' => 'auth'
+], function() {
+    Route::delete('/cancel', 'SessionController@cancelSession')->name('session.cancel');
+});
+
+
 
 
 

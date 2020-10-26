@@ -7,7 +7,7 @@
             <img class="notification__side-bar--right__header__image rounded-circle bg-color-blue-primary position-relative "></img>
         </div>
 
-    <div class="container modal-book-session bg-white p-5 pt-2 mb-5 notification__side-bar--right">
+    <div class="container modal-session bg-white p-5 pt-2 mb-5 notification__side-bar--right">
         <p class="fc-black-2 justify-content-center fs-1-6 text-center">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}<p>
 
         <p class="my-5 fs-1-2">Your session has been cancelled by Nemo Enim.</p>
