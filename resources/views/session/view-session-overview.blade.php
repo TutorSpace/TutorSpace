@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div id="calendar-view-session" class="my-5"></div>
+    <div id="calendar-view-session" class="my-5 calendar"></div>
 
     <p class="mb-2">Price Summary</p>
     <div class="mb-2 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></div>
