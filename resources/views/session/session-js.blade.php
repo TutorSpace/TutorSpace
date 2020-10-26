@@ -92,6 +92,23 @@ $('#tutor-profile-request-session').on('click',function() {
                 },
             }
         });
+
+        function session_confirm() {
+            bootbox.dialog({
+                message: `@include('session.session-confirm')`,
+                size: 'large',
+                onEscape: true,
+                backdrop: true,
+                centerVertical: true,
+                buttons: {
+                    Submit: {
+                        label: 'Book Session',
+                        className: 'btn btn-primary p-3 px-5',
+                        callback: function(){},
+                    },
+                }
+            });
+        }
     }
 });
 </script>
