@@ -85,7 +85,6 @@ $('#tutor-profile-request-session').on('click',function() {
     setTimeout(() => {
         e.destroy();
         e.render();
-        e.gotoDate('2020-10-25');
     }, 500);
 
     function session_details() {
