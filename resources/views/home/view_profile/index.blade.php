@@ -124,7 +124,7 @@ bg-student
 
 @section('js')
 
-@include('home.partials.calendar-view-tutor')
+@include('home.partials.calendar-view-profile')
 
 @include('session.session-js')
 

@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <div id="calendar" class="w-100 py-5 my-5"></div>
+
     <div class="d-flex justify-content-between calendar-details">
         <div class="d-flex flex-column mt-3">
             <p class="fc-grey fs-1-2">Date:</p>
