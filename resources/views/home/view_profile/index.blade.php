@@ -124,7 +124,10 @@ bg-student
 
 @section('js')
 
-@include('home.partials.calendar-view-profile')
+@if ($user->is_tutor)
+    @include('home.partials.calendar-view-profile')
+@endif
+
 
 @include('session.session-js')
 

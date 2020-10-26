@@ -8,7 +8,7 @@ let calendarOptions = {
         center: '',
         right: 'today timeGridDay timeGridThreeDay'
     },
-    eventColor: 'rgb(213, 208, 223)',
+    eventColor: 'rgb(213, 208, 3)',
     height: 'auto',
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
@@ -17,7 +17,9 @@ let calendarOptions = {
     slotMinTime: "08:00:00",
     slotMaxTime: "24:00:00",
     allDaySlot: false,
-    selectOverlap: false,
+    selectOverlap: function(event) {
+        return event.display === 'background';
+    },
     validRange: function (nowDate) {
         return {
             start: nowDate
@@ -70,6 +72,7 @@ let calendarOptions = {
             description: "",
             id: "{{ $time->id }}",
             type: "available-time",
+            display: "background",
             classNames: ['my-available-time', 'hover--pointer']
         },
         @endforeach
