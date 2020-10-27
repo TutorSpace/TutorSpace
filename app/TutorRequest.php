@@ -13,7 +13,7 @@ class TutorRequest extends Model
     public function changeTutorRequestStatusOnTimeout() {
         $tutorRequests = TutorRequest::all();
         foreach($tutorRequests as $tutorRequest) {
-            if($tutorRequest->session_time_start < Carbon::now()) {
+            if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(10)) {
                 $tutorRequest->status = 'expired';
                 $tutorRequest->save();
             }
