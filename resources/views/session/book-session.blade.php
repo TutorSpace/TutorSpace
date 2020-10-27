@@ -11,8 +11,8 @@
 
     <h5 class="w-100 text-center mb-3">Book your Tutor Session</h5>
     <div>
-        <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
-        <span class="font-weight-bold ml-2 fc-black-2">{{ $user->first_name }} {{ $user->last_name }}</span>
+        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
+        <span class="font-weight-bold ml-2 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
     </div>
     <span class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</span>
     <div class="row mb-5">
