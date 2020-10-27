@@ -7,6 +7,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 use Facades\App\Tag;
 use Facades\App\User;
+use Facades\App\TutorRequest;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,13 +30,18 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             Tag::updateTrendingTags();
-            echo "Successfully updated trending tags at: " . now();
+            echo "Successfully updated trending tags at: " . now() . "\n";
         })->everyThirtyMinutes();
 
         $schedule->call(function () {
             User::clearTutorAvailableTime();
-            echo "Successfully removed stale available time of tutors at: " . now();
+            echo "Successfully removed stale available time of tutors at: " . now() . "\n";
         })->daily();
+
+        $schedule->call(function () {
+            TutorRequest::changeTutorRequestStatusOnTimeout();
+            echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
+        })->everyThirtyMinutes();
     }
 
     /**
