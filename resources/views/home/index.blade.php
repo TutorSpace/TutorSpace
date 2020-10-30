@@ -48,7 +48,7 @@ bg-student
                         @include('home.partials.tutor_request', [
                             'isNotification' => true,
                             'isFirstOne' => $loop->first,
-                            'requestObject' => $tutorRequest
+                            'tutorRequest' => $tutorRequest
                         ])
                     @endforeach
                 </div>

@@ -37,7 +37,9 @@ class testController extends Controller
     public function index(Request $request) {
         $currUser = Auth::user();
 
-        dd(TutorRequest::all());
+        $isAvailable=true;
+        $isAvailable=true;
+        dd($isAvailable);
         dd($currUser->tutorRequests);
         // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
         $session_start_time = explode(' ',TutorRequest::first()->session_start_time);
