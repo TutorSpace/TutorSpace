@@ -139,7 +139,7 @@ class TutorRequestController extends Controller
         } else {
             return response()->json(
                 [
-                    'errorMsg' => $response->message()
+                    'errorMsg' => $gateResponse->message()
                 ]
             );
         }

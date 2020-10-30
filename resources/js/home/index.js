@@ -89,7 +89,7 @@ $('.btn-view-request').click(function() {
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .course .content').text($(this).closest('.info-box').find('.course .content').text());
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .session-type .content').text($(this).closest('.info-box').find('.session-type .content').text());
     // $('.home__tutor-request-modal .tutor-request-modal__content__profile .price .content').text($(this).closest('.info-box').find('.price .content').text());
-    $('#btn-confirm-tutor-session').attr('data-user-id', $(this).closest('.info-box').attr("data-user-id"));
+    $('#btn-confirm-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
     calendarPopUp.render();
@@ -113,7 +113,8 @@ $('.btn-view-all-notifications').click(function() {
 
 
 $('#btn-confirm-tutor-session').click(function() {
-    var tutorRequestId = $(this).attr("data-user-id");
+    var tutorRequestId = $(this).attr("data-tutorRequest-id");
+    alert(tutorRequestId);
     $.ajax({
         type: 'POST',
         url: '/tutor-request/accept',
@@ -121,8 +122,11 @@ $('#btn-confirm-tutor-session').click(function() {
           tutorRequestId: tutorRequestId
         },
         success: function success(data) {
-          var successMsg = data.successMsg;
-          toastr.success(successMsg);
+            var successMsg = data.successMsg;
+            if(successMsg)
+                toastr.success(successMsg);
+            else
+                toastr.error(data.errorMsg);
         },
         error: function error(_error3) {
           toastr.error(_error3);
