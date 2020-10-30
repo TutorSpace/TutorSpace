@@ -197,6 +197,15 @@ Route::group([
 
 
 
+// support
+Route::group([
+    'prefix' => 'support',
+    'middleware' => 'auth'
+], function() {
+    Route::get('/', 'SupportController@index')->name('support');
+});
+
+
 
 
 

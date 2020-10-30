@@ -22017,3 +22017,72 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   overflow: scroll;
 }
 
+.support__header--bg {
+  height: 40vh;
+  border-radius: 0 0 100px 0;
+}
+
+.support__header--content {
+  color: white;
+  position: relative;
+  top: -25vh;
+}
+
+.support__footer {
+  position: relative;
+  top: -20vh;
+}
+
+.support__footer__button {
+  background-color: #6749DF;
+  border-radius: 40px;
+}
+
+.support__cards {
+  position: relative;
+  top: -20vh;
+}
+
+.support__cards--selected {
+  position: relative;
+  top: -20vh;
+}
+
+.support__cards--selected details {
+  outline: none;
+  line-height: 1.6;
+}
+
+.support__cards--selected details summary {
+  outline: none;
+  margin-bottom: 1.5rem;
+}
+
+.support__cards--selected details summary::-webkit-details-marker {
+  color: #6749DF;
+  margin-right: 2rem;
+}
+
+.support__cards--description {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.support__card {
+  cursor: pointer;
+  width: 24vw;
+  border-radius: 10px;
+  padding-top: 5rem;
+}
+
+.support__card__title {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 480px) {
+  .support__card {
+    width: 40vw;
+  }
+}
+

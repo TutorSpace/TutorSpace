@@ -1,0 +1,66 @@
+.support {
+    &__header {
+        &--bg {
+            height: 40vh;
+            border-radius: 0 0 100px 0;
+        }
+        &--content {
+            color: white;
+            position: relative;
+            top: -25vh;
+        }
+    }
+    &__footer {
+        &__button {
+            background-color: $color-purple-primary;
+            border-radius: 40px;
+        }
+        position: relative;
+        top: -20vh;
+    }
+
+    &__cards {
+        position: relative;
+        top: -20vh;
+
+        &--selected {
+            position: relative;
+            top: -20vh;
+
+            details {
+                summary {
+                    outline: none;
+                    margin-bottom: 1.5rem;
+                    &::-webkit-details-marker {
+                        color: $color-purple-primary;
+                        margin-right: 2rem;
+                    }
+                };
+
+                outline: none;
+                line-height: 1.6;
+            }
+        }
+
+        &--description {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__card {
+        cursor: pointer;
+        width: 24vw;
+        border-radius: 10px;
+        padding-top: 5rem;
+
+        &__title {
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 480px) {
+            width: 40vw;
+        }
+    }
+}
