@@ -200,7 +200,7 @@ Route::group([
     'prefix' => 'tutor-request',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/accept', 'GeneralController@acceptTutorRequest');
+    Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
 });
 
 // sessions

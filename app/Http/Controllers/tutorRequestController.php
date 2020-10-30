@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\NewMessage;
+use Illuminate\Support\Facades\Log;
 use App\Chatroom;
+use App\Session;
 use App\Message;
+use Illuminate\Support\Facades\Gate;
+use App\TutorRequest;
 
 class TutorRequestController extends Controller
 {
@@ -105,6 +109,40 @@ class TutorRequestController extends Controller
         return response()->json([
             'successMsg' => 'Successfully make the tutor request!'
         ]);
+    }
+
+    public function acceptTutorRequest(Request $request) {
+        $tutorRequestId = $request->input('tutorRequestId');
+        $tutorRequest = TutorRequest::find($tutorRequestId);
+        $tutorId = $tutorRequest->tutor_id;
+        $studentId = $tutorRequest->student_id;
+        $user = Auth::user();
+        $gateResponse = Gate::inspect('add-tutor-sesssion', [$tutorRequest]);
+        if($gateResponse->allowed()){
+            $session = new Session();
+            $session->tutor_id = $tutorRequest->tutor_id;
+            $session->student_id = $tutorRequest->student_id;
+            $session->course_id = $tutorRequest->course_id;
+            $session->session_time_start = $tutorRequest->session_time_start;
+            $session->session_time_end = $tutorRequest->session_time_end;
+            $session->is_in_person = 1;
+            $session->save();
+            $tutorRequest->status = 'accepted';
+            $tutorRequest->save();
+
+            TutorRequest::find($tutorRequestId)->delete();
+            return response()->json(
+                [
+                    'successMsg' => 'Successfully accepted the tutor request!'
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'errorMsg' => $response->message()
+                ]
+            );
+        }
     }
 
 
