@@ -1,17 +1,19 @@
 @php
 
 $session_time_start = explode(' ',$tutorRequest->session_time_start);
+$session_time_end = explode(' ',$tutorRequest->session_time_end);
 $date = $session_time_start[0];
 $month = Carbon\Carbon::parse($date)->format('m');;
 $day_date = Carbon\Carbon::parse($date)->format('d');;
 $year = Carbon\Carbon::parse($date)->format('y');;
-$time = Carbon\Carbon::parse($session_time_start[1])->format('g:i A');
+$startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
+$endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
 @endphp
 
 <div>
-    <div class="info-box">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -30,7 +32,7 @@ $student = App\User::find($tutorRequest->student_id);
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">{{$time}}</span>
+            <span class="content">{{$startTime}} - {{$endTime}}</span>
         </div>
         <div class="course">
             <span class="title">Course</span>

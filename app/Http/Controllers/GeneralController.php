@@ -164,20 +164,6 @@ class GeneralController extends Controller
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // TODO: add validation
     public function rejectTutorRequest(Request $request) {
         $tutorRequestId = $request->input('tutor_request_id');
@@ -332,69 +318,6 @@ class GeneralController extends Controller
                 'successMsg' => 'Successfully added the post!'
             ]
         );
-    }
-
-    // TODO: add validation
-    public function acceptTutorRequest(Request $request) {
-        Log::channel('stderr')->info('I\'m here!');
-        Log::channel('stderr')->info($request->input('name'));
-        $user = Auth::user();
-        $tutorRequestId = $request->input('tutor_request_id');
-
-        $tutorRequest = TutorRequest::find($tutorRequestId);
-
-        // Must not accept the tutor if it is outdated
-        $mytime = Carbon::now();
-        $requestTime = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->start_time);
-        if($requestTime <= $mytime) {
-            $tutorRequest->delete();
-            return response()->json(
-                [
-                    'errorMsg' => 'The tutor request is outdated! Going to remove it automatically!'
-                ]
-            );
-        }
-
-        // Must not accept the tutor request if it conflicts with a scheduled session
-        $upcomingSessions = $user->upcomingSessions(1000);
-        foreach($upcomingSessions as $upcomingSession) {
-            $upcomingSessionStartTime = User::getTime($upcomingSession->date, $upcomingSession->start_time);
-            $upcomingSessionEndTime = User::getTime($upcomingSession->date, $upcomingSession->end_time);
-
-            $requestTimeEnd = User::getTime($tutorRequest->tutor_session_date, $tutorRequest->end_time);
-
-            // if it conflicts
-            if(($requestTime >= $upcomingSessionStartTime && $requestTime <= $upcomingSessionEndTime) || ($requestTimeEnd >= $upcomingSessionStartTime && $requestTimeEnd <= $upcomingSessionEndTime)) {
-                $tutorRequest->delete();
-                return response()->json(
-                    [
-                        'errorMsg' => 'The tutor request is conflicted with an already scheduled tutor session! Going to remove it automatically!'
-                    ]
-                );
-            }
-        }
-
-
-        $session = new Session();
-        $session->tutor_id = $tutorRequest->tutor_id;
-        $session->student_id = $tutorRequest->student_id;
-        $session->is_course = $tutorRequest->is_course_request;
-        $session->course_id = $tutorRequest->course_id;
-        $session->subject_id = $tutorRequest->subject_id;
-        $session->start_time = $tutorRequest->start_time;
-        $session->end_time = $tutorRequest->end_time;
-        $session->date = $tutorRequest->tutor_session_date;
-        $session->is_upcoming = 1;
-        $session->save();
-
-        TutorRequest::find($tutorRequestId)->delete();
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully accepted the tutor request!'
-            ]
-        );
-
     }
 
     public function getHint(Request $request) {
