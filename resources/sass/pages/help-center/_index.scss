@@ -23,30 +23,6 @@
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         grid-gap: 3rem;
 
-        // &--selected {
-        //     position: relative;
-        //     top: -20vh;
-
-        //     details {
-        //         summary {
-        //             outline: none;
-        //             margin-bottom: 1.5rem;
-        //             &::-webkit-details-marker {
-        //                 color: $color-purple-primary;
-        //                 margin-right: 2rem;
-        //             }
-        //         };
-
-        //         outline: none;
-        //         line-height: 1.6;
-        //     }
-        // }
-
-        // &--description {
-        //     line-height: 1.6;
-        //     margin-bottom: 2rem;
-        // }
-
         .help-center__card {
             padding: 5rem 3rem;
             border-radius: 3rem;
@@ -66,7 +42,10 @@
             }
         }
 
+    }
 
+    &__section {
+        
     }
 
 
