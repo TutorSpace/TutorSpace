@@ -3,15 +3,21 @@
 
 @section('body-class')
 bg-grey-light
-@endsection
 
+@if(Auth::check() && Auth::user()->is_tutor)
+bg-tutor
+@else
+bg-student
+@endif
+
+@endsection
 
 @section('content')
 
 @include('partials.nav')
 
 <div class="container-fluid help-center">
-    <div class="help-center__header-bg bg-color-purple-primary"></div>
+    <div class="help-center__header-bg bg-primary"></div>
 
     <div class="container p-relative help-center-content">
         <h2 class="help-center__header-content text-center">
@@ -77,12 +83,12 @@ bg-grey-light
                 <details class="fs-1-6 my-3">
                     <summary>I finished my session one hour ago. When can I have my payment?</summary>
                     <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibh in nunc pretium. Semper platea scelerisque volutpat iaculis pellentesque dapibus in id. Tortor malesuada non lacinia nibh. Risus justo, amet sit nisl in egestas donec. Congue vestibulum, vulputate et nisi, faucibus. Tristique iaculis magna vitae at convallis sed. Turpis netus ac varius commodo quisque ac, suspendisse nulla vitae. Magna mauris, vehicula feugiat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-                    <p class="fc-purple-primary">Still having trouble? Send us an email</p>
+                    <p class="color-primary">Still having trouble? Send us an email</p>
                 </details>
                 <details class="fs-1-6 my-3">
                     <summary>How should I connect my account to stripe?</summary>
                     <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibh in nunc pretium. Semper platea scelerisque volutpat iaculis pellentesque dapibus in id. Tortor malesuada non lacinia nibh. Risus justo, amet sit nisl in egestas donec. Congue vestibulum, vulputate et nisi, faucibus. Tristique iaculis magna vitae at convallis sed. Turpis netus ac varius commodo quisque ac, suspendisse nulla vitae. Magna mauris, vehicula feugiat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-                    <p class="fc-purple-primary">Still having trouble? Send us an email</p>
+                    <p class="color-primary">Still having trouble? Send us an email</p>
                 </details>
             </div>
             <div class="help-center__cards--selected--useraccounts d-none mx-5 my-5">
@@ -101,9 +107,9 @@ bg-grey-light
 
 
         <div class="help-center__footer d-flex flex-column justify-content-center align-items-center">
-            <h4 class="fc-purple-primary font-weight-bold mb-3">Still have a question?</h4>
+            <h4 class="color-primary font-weight-bold mb-3">Still have a question?</h4>
             <p class="fc-grey fs-1-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <button class="btn text-white p-3 px-5 fs-1-8 help-center__footer__button">Contact Us</button>
+            <button class="btn text-white fs-1-8 help-center__footer__button btn-primary btn-animation-y">Contact Us</button>
         </div>
 
 

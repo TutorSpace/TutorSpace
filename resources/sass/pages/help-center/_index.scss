@@ -57,6 +57,7 @@
 
             .card__svg {
                 margin: 0 auto;
+
             }
 
             .card__title {
@@ -69,14 +70,31 @@
     }
 
 
-
-
     &__footer {
         margin: 8rem 0;
 
         &__button {
-            background-color: $color-purple-primary;
-            border-radius: 40px;
+            padding: 1rem 0;
+            width: 40rem;
+            border-radius: 3rem;
+        }
+    }
+}
+
+
+.bg-student {
+    .card__svg {
+        * {
+            fill: $color-blue-primary;
+        }
+    }
+}
+
+
+.bg-tutor {
+    .card__svg {
+        * {
+            fill: $color-purple-primary;
         }
     }
 }
