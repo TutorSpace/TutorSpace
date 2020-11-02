@@ -11572,6 +11572,13 @@ $('.btn-view-all-notifications').click(function () {
     $(this).html('View All');
   }
 });
+$('.action--toggle').hover(function () {
+  $(this).children('.action--toggle--list').removeClass("d-none");
+  $(this).children('.action--toggle--list').addClass("d-flex");
+}, function () {
+  $(this).children('.action--toggle--list').removeClass("d-flex");
+  $(this).children('.action--toggle--list').addClass("d-none");
+});
 
 /***/ }),
 

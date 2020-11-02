@@ -21533,6 +21533,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .home .past-sessions {
   max-height: 40rem;
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .home .past-sessions > * {
@@ -21543,10 +21545,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-bottom: 0.5rem;
 }
 
+.home .past-sessions::-webkit-scrollbar {
+  display: none;
+}
+
 @media only screen and (max-width: 47.99em) {
   .home .past-sessions {
     max-height: 60rem;
   }
+}
+
+.home .past-sessions .action--toggle--list {
+  background-color: white;
+  width: 10vw;
+  border-radius: 10px;
+  top: 2rem;
+  right: 2rem;
+  box-shadow: -1px 1px #EAEAEA;
+  z-index: 2;
+}
+
+.home .past-sessions .action--toggle--list--title {
+  margin-left: 2rem;
 }
 
 .view-profile {
