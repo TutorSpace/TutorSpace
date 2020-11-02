@@ -1,5 +1,5 @@
 
-<div class="bg-white help-center__card">
+<div class="bg-white help-center__card" data-section-id="{{ $id }}">
     <svg class="card__svg" width="5rem" height="5rem" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="{{ $SVG }}" fill="#6749DF"/>
     </svg>
