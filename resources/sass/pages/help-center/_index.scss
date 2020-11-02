@@ -1,66 +1,82 @@
 .help-center {
+    position: relative;
+
     &__header {
-        &--bg {
-            height: 40vh;
-            border-radius: 0 0 100px 0;
-        }
-        &--content {
-            color: white;
-            position: relative;
-            top: -25vh;
+        &-bg {
+            position: absolute;
+            height: 40rem;
+            width: 100vw;
+            border-radius: 0 0 13rem 0;
+            margin: 0 -15px;
         }
     }
-    &__footer {
-        &__button {
-            background-color: $color-purple-primary;
-            border-radius: 40px;
-        }
-        position: relative;
-        top: -20vh;
+
+    &-content {
+        color: $color-white;
+        padding-top: 18rem;
     }
 
     &__cards {
-        position: relative;
-        top: -20vh;
+        margin-top: 6rem;
+        margin-bottom: 8rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        grid-gap: 3rem;
 
-        &--selected {
-            position: relative;
-            top: -20vh;
+        // &--selected {
+        //     position: relative;
+        //     top: -20vh;
 
-            details {
-                summary {
-                    outline: none;
-                    margin-bottom: 1.5rem;
-                    &::-webkit-details-marker {
-                        color: $color-purple-primary;
-                        margin-right: 2rem;
-                    }
-                };
+        //     details {
+        //         summary {
+        //             outline: none;
+        //             margin-bottom: 1.5rem;
+        //             &::-webkit-details-marker {
+        //                 color: $color-purple-primary;
+        //                 margin-right: 2rem;
+        //             }
+        //         };
 
-                outline: none;
-                line-height: 1.6;
+        //         outline: none;
+        //         line-height: 1.6;
+        //     }
+        // }
+
+        // &--description {
+        //     line-height: 1.6;
+        //     margin-bottom: 2rem;
+        // }
+
+        .help-center__card {
+            padding: 5rem 3rem;
+            border-radius: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+
+            .card__svg {
+                margin: 0 auto;
+            }
+
+            .card__title {
+                color: $color-black-2;
+                text-align: center;
             }
         }
 
-        &--description {
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
+
     }
 
-    &__card {
-        cursor: pointer;
-        width: 24vw;
-        border-radius: 10px;
-        padding-top: 5rem;
 
-        &__title {
-            margin: 0;
-            padding: 0;
-        }
 
-        @media (max-width: 480px) {
-            width: 40vw;
+
+    &__footer {
+        margin: 8rem 0;
+
+        &__button {
+            background-color: $color-purple-primary;
+            border-radius: 40px;
         }
     }
 }
