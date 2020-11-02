@@ -12,7 +12,13 @@ class Session extends Model
         return $this->belongsTo('App\Course');
     }
 
+    public function tutor() {
+        return $this->belongsTo('App\User', 'tutor_id');
+    }
 
+    public function student() {
+        return $this->belongsTo('App\User', 'student_id');
+    }
 
 
 }
