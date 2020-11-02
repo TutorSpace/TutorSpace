@@ -6,6 +6,7 @@
     "/js/chatting/index.js": "/js/chatting/index.js",
     "/js/forum/create.js": "/js/forum/create.js",
     "/js/forum/forum.js": "/js/forum/forum.js",
+    "/js/help-center/index.js": "/js/help-center/index.js",
     "/js/home/index.js": "/js/home/index.js",
     "/js/home/profile.js": "/js/home/profile.js",
     "/js/notification/index.js": "/js/notification/index.js",

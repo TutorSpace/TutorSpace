@@ -211,6 +211,13 @@ Route::group([
     Route::delete('/cancel', 'SessionController@cancelSession')->name('session.cancel');
 });
 
+// help center
+Route::group([
+    'prefix' => 'help-center'
+], function() {
+    Route::get('/', 'HelpCenterController@index')->name('help-center.index');
+});
+
 
 
 

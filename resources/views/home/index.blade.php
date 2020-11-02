@@ -88,15 +88,21 @@ bg-student
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
                     </div>
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_card', [
-                        'hidden' => true
-                    ])
+
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
+                    @endphp
+                    @if ($upcomingSessions->count() > 0)
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->student,
+                                'hidden' => $i > 1
+                            ])
+                        @endfor
+                    @else
+                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -139,103 +145,6 @@ bg-student
                 </div>
             </div>
         </div>
-
-
-{{--
-        <div class="container col-layout-3">
-            <div class="row">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    <h5>Upcoming Sessions</h5>
-                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-upcoming-sessions">View All Upcoming Sessions</button>
-                </div>
-                <div class="info-boxes">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_box', [
-                        'hidden' => true
-                    ])
-                </div>
-            </div>
-        </div> --}}
-
-        {{-- <div class="container col-layout-3">
-            <div class="row">
-                <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
-
-                <div class="user-cards bookmarked-tutors">
-                    @forelse (Auth::user()->bookmarkedUsers as $user)
-                        @include('partials.user_card', [
-                            'user' => $user
-                        ])
-                    @empty
-                    <h6 class="no-results">No bookmarked tutors yet</h6>
-                    @endforelse
-                </div>
-            </div>
-        </div> --}}
-
-
-        {{-- <div class="container col-layout-3">
-            <div class="row">
-                <h5 class="mb-2 w-100">Tutor Requests</h5>
-                <div class="info-boxes">
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => false
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => false
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'approved' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
-
-                    @include('home.partials.tutor_request', [
-                        'user' => App\User::find(1),
-                        'forTutor' => false,
-                        'pending' => true
-                    ])
-                </div>
-            </div>
-
-        </div> --}}
-
-
         @endif
 
 
@@ -261,9 +170,6 @@ bg-student
                 </div>
                 <div class="col-12 col-md-3 forum-data-container">
                     <div class="forum-data">
-                        {{-- <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
-                        </svg> --}}
                         <span class="title">My Posts</span>
                         <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
@@ -291,15 +197,38 @@ bg-student
                     <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                     <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
                 </div>
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card')
-                @include('home.partials.upcoming_session_card', [
-                    'hidden' => true
-                ])
-                @include('home.partials.upcoming_session_card', [
-                    'hidden' => true
-                ])
+                @if (Auth::user()->is_tutor)
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
+                    @endphp
+                    @if ($upcomingSessions->count() > 0)
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->student,
+                                'hidden' => $i > 1
+                            ])
+                        @endfor
+                    @else
+                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                    @endif
+                @else
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
+                    @endphp
+                    @if ($upcomingSessions->count() > 0)
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->tutor,
+                                'hidden' => $i > 1
+                            ])
+                        @endfor
+                    @else
+                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                    @endif
+                @endif
+
             </div>
         </div>
         <div class="home__side-bar__notifications">

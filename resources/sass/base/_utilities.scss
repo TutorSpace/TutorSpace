@@ -57,6 +57,8 @@
 .bg-white-dark-5 { background-color: $color-white-dark-5 !important; }
 .bg-color-blue-primary { background-color: $color-blue-primary !important; }
 .bg-color-purple-primary { background-color: $color-purple-primary !important; }
+.bg-student .bg-primary { background-color: $color-blue-primary !important; }
+.bg-tutor .bg-primary { background-color: $color-purple-primary !important; }
 
 .bg-color-notification--sessions { background-color: $color-notification--session !important; }
 .bg-color-notification--forum { background-color: $color-notification--forum !important; }

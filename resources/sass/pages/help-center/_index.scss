@@ -1,0 +1,115 @@
+.help-center {
+    position: relative;
+
+    &__header {
+        &-bg {
+            position: absolute;
+            height: 40rem;
+            width: 100vw;
+            border-radius: 0 0 13rem 0;
+            margin: 0 -15px;
+        }
+    }
+
+    &-content {
+        color: $color-white;
+        padding-top: 18rem;
+    }
+
+    $margin-y: 8rem;
+
+    &__cards {
+        margin-top: 6rem;
+        margin-bottom: $margin-y;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+        grid-gap: 3rem;
+
+        .help-center__card {
+            padding: 5rem 3rem;
+            border-radius: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+
+            .card__svg {
+                margin: 0 auto;
+
+            }
+
+            .card__title {
+                color: $color-black-2;
+                text-align: center;
+            }
+        }
+
+    }
+
+    &__section {
+        margin: $margin-y 3rem;
+
+
+        .header {
+            font-size: 3.5rem;
+        }
+
+        .content {
+            margin: 2rem 0;
+            line-height: 1.8;
+            font-size: 1.6rem;
+
+            .section-description {}
+
+            details {
+                width: fit-content;
+
+                summary {
+                    color: $color-black-2;
+                    outline: none !important;
+                    font-weight: bolder;
+                    font-size: 1.8rem;
+                    margin-bottom: 1.5rem;
+                }
+
+            }
+        }
+    }
+
+
+    &__footer {
+        margin: $margin-y 0;
+
+        &__button {
+            padding: 1rem 0;
+            width: 40rem;
+            border-radius: 3rem;
+        }
+    }
+}
+
+
+.bg-student {
+    .card__svg {
+        * {
+            fill: $color-blue-primary;
+        }
+    }
+
+    details > summary::-webkit-details-marker {
+        color: $color-blue-primary;
+    }
+}
+
+
+.bg-tutor {
+    .card__svg {
+        * {
+            fill: $color-purple-primary;
+        }
+    }
+
+    details > summary::-webkit-details-marker {
+        color: $color-purple-primary;
+    }
+}
