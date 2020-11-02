@@ -59,15 +59,38 @@ bg-student
                         <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
                     </div>
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card')
-                    @include('home.partials.upcoming_session_card', [
-                        'hidden' => true
-                    ])
-                    @include('home.partials.upcoming_session_card', [
-                        'hidden' => true
-                    ])
+                    @if (Auth::user()->is_tutor)
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
+                    @endphp
+                    @if ($upcomingSessions->count() > 0)
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->student,
+                                'hidden' => $i > 1
+                            ])
+                        @endfor
+                    @else
+                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                    @endif
+                @else
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
+                    @endphp
+                    @if ($upcomingSessions->count() > 0)
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->tutor,
+                                'hidden' => $i > 1
+                            ])
+                        @endfor
+                    @else
+                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                    @endif
+                @endif
+
                 </div>
             </div>
         </div>
