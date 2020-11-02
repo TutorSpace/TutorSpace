@@ -16,9 +16,11 @@
         padding-top: 18rem;
     }
 
+    $margin-y: 8rem;
+
     &__cards {
         margin-top: 6rem;
-        margin-bottom: 8rem;
+        margin-bottom: $margin-y;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
         grid-gap: 3rem;
@@ -45,12 +47,38 @@
     }
 
     &__section {
-        
+        margin: $margin-y 3rem;
+
+
+        .header {
+            font-size: 3.5rem;
+        }
+
+        .content {
+            margin: 2rem 0;
+            line-height: 1.8;
+            font-size: 1.6rem;
+
+            .section-description {}
+
+            details {
+                width: fit-content;
+
+                summary {
+                    color: $color-black-2;
+                    outline: none !important;
+                    font-weight: bolder;
+                    font-size: 1.8rem;
+                    margin-bottom: 1.5rem;
+                }
+
+            }
+        }
     }
 
 
     &__footer {
-        margin: 8rem 0;
+        margin: $margin-y 0;
 
         &__button {
             padding: 1rem 0;
@@ -67,6 +95,10 @@
             fill: $color-blue-primary;
         }
     }
+
+    details > summary::-webkit-details-marker {
+        color: $color-blue-primary;
+    }
 }
 
 
@@ -75,5 +107,9 @@
         * {
             fill: $color-purple-primary;
         }
+    }
+
+    details > summary::-webkit-details-marker {
+        color: $color-purple-primary;
     }
 }

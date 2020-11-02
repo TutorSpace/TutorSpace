@@ -72,9 +72,7 @@ bg-student
             ])
         </div>
 
-
-
-
+        @include('help-center.partials.section')
 
         <div class="help-center__footer d-flex flex-column justify-content-center align-items-center">
             <h4 class="color-primary font-weight-bold mb-3">Still have a question?</h4>
