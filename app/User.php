@@ -343,9 +343,10 @@ class User extends Authenticatable
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
-        return $this->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
-                        ->where('is_upcoming', true)
-                        ->where('is_canceled', false);
+        return $this
+                    ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
+                    ->where('is_upcoming', true)
+                    ->where('is_canceled', false);
 
         // $mytime = Carbon::now();
 

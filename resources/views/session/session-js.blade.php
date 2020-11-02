@@ -13,6 +13,7 @@
             }
         });
 
+        @if(Auth::user()->is_tutor)
         let options = Object.assign({}, calendarOptions);
         options.selectAllow = false;
         options.eventClick = null;
@@ -27,6 +28,7 @@
             e.render();
             e.gotoDate('2020-10-25');
         }, 500);
+        @endif
 
     });
 
