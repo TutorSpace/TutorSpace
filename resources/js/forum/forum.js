@@ -2,6 +2,12 @@ $('#tags').select2({
     placeholder: "Add post tags here..."
 });
 
+$('.forum-left__list-item').click(function() {
+    let href = $(this).attr('data-location-href');
+    window.location.href = href;
+});
+
+
 function isInViewPort(elem) {
 	var distance = elem.getBoundingClientRect();
 	return (
