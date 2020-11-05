@@ -148,6 +148,19 @@ bg-student
                 </div>
             </div>
         </div>
+        
+        <div class="container col-layout-3 bg-white p-5">
+            <div class="col">
+                <div class="mb-2">
+                    <p class="fs-1-6 fc-grey">Bookmarked Tutors</p>
+                </div>
+                <div class="user-cards bookmarked-tutors">
+                    @include('home.partials.bookmarked_tutors')
+                    @include('home.partials.bookmarked_tutors')
+                    @include('home.partials.bookmarked_tutors')
+                </div>
+            </div>
+        </div>
 
 
 {{--
