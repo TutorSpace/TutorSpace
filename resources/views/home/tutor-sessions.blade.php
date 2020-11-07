@@ -146,40 +146,48 @@ bg-student
                     @if(Auth::user()->is_tutor)
                         @include('home.partials.past_session', [
                             'user' => App\User::find(1),
-                            'status' => 'pending'
+                            'status' => 'pending',
+                            'currUser' => Auth::user()
                         ])
 
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'completed'
+                            'status' => 'completed',
+                            'currUser' => Auth::user()
                         ])
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'completed'
+                            'status' => 'completed',
+                            'currUser' => Auth::user()
                         ])
 
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'completed'
+                            'status' => 'completed',
+                            'currUser' => Auth::user()
                         ])
                     @else
                         @include('home.partials.past_session', [
                             'user' => App\User::find(1),
-                            'status' => 'paid'
+                            'status' => 'paid',
+                            'currUser' => Auth::user()
                         ])
 
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'unpaid'
+                            'status' => 'unpaid',
+                            'currUser' => Auth::user()
                         ])
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'unpaid'
+                            'status' => 'unpaid',
+                            'currUser' => Auth::user()
                         ])
 
                         @include('home.partials.past_session', [
                             'user' => App\User::find(2),
-                            'status' => 'paid'
+                            'status' => 'paid',
+                            'currUser' => Auth::user()
                         ])
                     @endif
                 </div>

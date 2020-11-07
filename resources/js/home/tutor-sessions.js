@@ -6,12 +6,8 @@ $(window).click(function() {
 
 $('.action--toggle').on('click', function(event) {
     event.stopPropagation();
+    $('.action--toggle--list').removeClass("d-flex");
+    $('.action--toggle--list').addClass("d-none");
     $(this).find('.action--toggle--list').removeClass("d-none");
     $(this).find('.action--toggle--list').addClass("d-flex");
 });
-
-
-// function() {
-//     $('.action--toggle--list').removeClass("d-flex");
-//     $('.action--toggle--list').addClass("d-none");
-// }
