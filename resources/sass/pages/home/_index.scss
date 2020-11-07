@@ -577,7 +577,7 @@
             border-radius: 1rem;
         }
 
-        &__notifications {
+        &__notifications, &__bookmared-users {
             margin-top: 6rem;
             background-color: $color-white-dark-5;
             border-radius: 1rem;
