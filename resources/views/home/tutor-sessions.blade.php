@@ -233,7 +233,7 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
 <script src="{{ asset('js/home/index.js') }}"></script>
-
+<script src="{{ asset('js/home/tutor-sessions.js') }}"></script>
 
 @include('session.session-js')
 

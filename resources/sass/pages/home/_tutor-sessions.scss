@@ -10,9 +10,28 @@
 
     max-height: 40rem;
     overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     @include respond(sm) {
         max-height: 60rem;
     }
 
+    .action--toggle--list {
+        background-color: white;
+        width: 10vw;
+        border-radius: 10px;
+        top: 2rem;
+        right: 2rem;
+        box-shadow: -1px 1px $color-grey-2;
+
+        z-index: 2;
+
+        &--title {
+            margin-left: 2rem;
+        }
+    }
 }
