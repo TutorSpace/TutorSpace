@@ -20,5 +20,16 @@ class Session extends Model
         return $this->belongsTo('App\User', 'student_id');
     }
 
+    // IMPORTANT: must run scheduler in prod env
+    public function changeSessionStatusOnExpiry() {
+        $sessions = Session::all();
+        foreach($sessions as $session) {
+            if($session->session_time_start <= Carbon::now()) {
+                $session->is_upcoming = 0;
+                $session->save();
+            }
+        }
+    }
+
 
 }
