@@ -577,7 +577,7 @@
             border-radius: 1rem;
         }
 
-        &__notifications, &__bookmared-users {
+        &__notifications, &__bookmarked-users {
             margin-top: 6rem;
             background-color: $color-white-dark-5;
             border-radius: 1rem;
@@ -594,6 +594,46 @@
                     color: $color-grey;
                 }
 
+            }
+        }
+
+        .home__side-bar__bookmarked-users .bookmarked-users {
+            .bookmarked-user {
+                display: flex;
+                padding-top: 1.75rem;
+                padding-bottom: 1.75rem;
+                padding-left: 3rem;
+                padding-right: 3rem;
+                align-items: center;
+
+                img {
+                    border-radius: 50%;
+                    object-fit: cover;
+                    width: 4.5rem;
+                    height: 4.5rem;
+                    margin-right: 2rem;
+                }
+
+                &__content {
+                    width: calc(100% - 4.5rem - 2rem);
+                    display: flex;
+                    flex-direction: column;
+
+                    .user-name {
+                        font-size: 1.6rem;
+                        margin-bottom: .5rem;
+                    }
+
+                    .buttons {
+                        display: flex;
+                        justify-content: space-between;
+
+                        a {
+                            font-size: 1.2rem;
+                            width: calc(50% - 1rem);
+                        }
+                    }
+                }
             }
         }
 

@@ -266,25 +266,21 @@ bg-student
             </div>
         </div>
 
-        <div class="home__side-bar__bookmared-users">
+        <div class="home__side-bar__bookmarked-users">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
-                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
+                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-bookmarked-users">View All</button>
             </div>
 
-            <div class="container col-layout-3">
-                <div class="row">
-                    <h5 class="mb-2 w-100">Bookmarked Tutors</h5>
-                    <div class="user-cards bookmarked-tutors">
-                        @forelse (Auth::user()->bookmarkedUsers as $user)
-                            @include('partials.user_card', [
-                                'user' => $user
-                            ])
-                        @empty
-                        <h6 class="no-results">No bookmarked tutors yet</h6>
-                        @endforelse
-                    </div>
-                </div>
+            <div class="bookmarked-users">
+                @forelse (Auth::user()->bookmarkedUsers as $key => $user)
+                    @include('home.partials.bookmarked-tutor', [
+                        'user' => $user,
+                        'hidden' => $key > 2
+                    ])
+                @empty
+                <h6 class="no-results">No bookmarked tutors yet</h6>
+                @endforelse
             </div>
         </div>
 
