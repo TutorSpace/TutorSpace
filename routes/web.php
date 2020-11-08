@@ -208,7 +208,7 @@ Route::group([
     'prefix' => 'session',
     'middleware' => 'auth'
 ], function() {
-    Route::delete('/cancel', 'SessionController@cancelSession')->name('session.cancel');
+    Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
 });
 
 // help center

@@ -32,6 +32,8 @@
 
     });
 
+
+
     $('.btn-cancel-session').on('click',function() {
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
@@ -42,29 +44,38 @@
                 Cancel: {
                     label: 'Cancel Session',
                     className: 'btn btn-primary p-3 px-4 fs-1-4',
-                    callback: function() {
+                    callback: function(e) {
+                        let cancelReasonId = $($('#cancel-reason option:selected')).val();
+
                         $.ajax({
-                            type: 'DELETE',
-                            url: "{{ route('session.cancel') }}",
+                            type: 'POST',
+                            url: `session/cancel/${sessionId}`,
+                            data: {
+                                cancelReasonId: cancelReasonId
+                            },
                             success: function success(data) {
                                 var successMsg = data.successMsg;
                                 toastr.success(successMsg);
+                                console.log(successMsg);
+                                // window.location.reload();
                             },
                             error: function error(error) {
-                                toastr.error(error);
+                                toastr.error("There is an error occurred");
                             }
                         });
                     }
                 },
             }
         });
+
+        let sessionId = $(this).closest('.info-card').attr('data-session-id');
+
     });
 </script>
 
 
 <script>
 $('#tutor-profile-request-session').on('click',function() {
-
     bootbox.dialog({
         message: `@include('session.book-session')`,
         size: 'large',

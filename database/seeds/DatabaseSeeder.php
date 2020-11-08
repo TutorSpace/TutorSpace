@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
             ReplySeeder::class,
             ViewCntSeeder::class,
             TutorRequestSeeder::class,
-            CreateSessionCancelReasonTable::class
+            SessionCancelReasonSeeder::class
         ]);
     }
 }

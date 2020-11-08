@@ -35,6 +35,8 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
+
+
         $currUser = Auth::user();
 
         $isAvailable=true;

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CreateSessionCancelReasonTable extends Seeder
+class SessionCancelReasonSeeder extends Seeder
 {
     /**
      * Run the database seeds.
