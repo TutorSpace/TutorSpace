@@ -598,13 +598,16 @@
         }
 
         .home__side-bar__bookmarked-users .bookmarked-users {
-            .bookmarked-user {
-                display: flex;
+            > * {
                 padding-top: 1.75rem;
                 padding-bottom: 1.75rem;
                 padding-left: 3rem;
                 padding-right: 3rem;
                 align-items: center;
+            }
+
+            .bookmarked-user {
+                display: flex;
 
                 img {
                     border-radius: 50%;
