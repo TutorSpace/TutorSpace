@@ -23,7 +23,7 @@
     @endforeach
 </div>
 <div class="chatting__send-msg-container">
-    <form class="search-bar-container" id="msg-form">
+    <form class="search-bar-container" id="msg-form" method="POST">
         <input type="text" class="search-bar form-control form-control-lg" placeholder="Type here..." id="msg-to-send" name="msg-to-send">
         <input type="hidden" value="{{ $user->id }}" name="other-user-id">
         <button class="btn btn-lg btn-primary btn-send" type="submit">Send</button>

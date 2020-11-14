@@ -37,12 +37,12 @@ class ChattingController extends Controller
 
         // validate the msg
         if(Auth::user()->can('create', [Message::class, User::find($to)])) {
-            $msg = new Message();
-            $msg->from = $from;
-            $msg->to = $to;
-            $msg->message = $content;
-            $msg->is_read = true;
-            $msg->save();
+            Message::create([
+                'from' => $from,
+                'to' => $to,
+                'message' => $content,
+                'is_read' => false
+            ]);
             return 'success';
         }
     }
