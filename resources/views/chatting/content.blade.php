@@ -23,8 +23,9 @@
     @endforeach
 </div>
 <div class="chatting__send-msg-container">
-    <form class="search-bar-container" method="GET" action="#">
-        <input type="text" class="search-bar form-control form-control-lg" placeholder="Type here...">
-        <button class="btn btn-lg btn-primary btn-send" type="button">Send</button>
+    <form class="search-bar-container" id="msg-form">
+        <input type="text" class="search-bar form-control form-control-lg" placeholder="Type here..." id="msg-to-send" name="msg-to-send">
+        <input type="hidden" value="{{ $user->id }}" name="other-user-id">
+        <button class="btn btn-lg btn-primary btn-send" type="submit">Send</button>
     </form>
 </div>

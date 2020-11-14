@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Post' => 'App\Policies\PostPolicy',
+        'App\Message' => 'App\Policies\MessagePolicy'
     ];
 
     /**
@@ -50,5 +51,8 @@ class AuthServiceProvider extends ServiceProvider
             }
             return $user->is_tutor && $isAvailable? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
+
+
+
     }
 }

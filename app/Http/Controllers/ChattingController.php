@@ -33,4 +33,22 @@ class ChattingController extends Controller
         ]);
     }
 
+    public function sendMsg(Request $request) {
+        $content = $request->input('msg-to-send');
+        $to = $request->input('other-user-id');
+        $from = Auth::id();
+
+        // validate the msg
+        if(Auth::user()->can('create', [Message::class, User::find($to)])) {
+            $msg = new Message();
+            $msg->from = $from;
+            $msg->to = $to;
+            $msg->message = $content;
+            $msg->is_read = true;
+            $msg->save();
+            return 'success';
+        }
+    }
+
+
 }

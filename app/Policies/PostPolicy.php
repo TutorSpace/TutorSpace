@@ -42,7 +42,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+
     }
 
     /**
