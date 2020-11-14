@@ -26,5 +26,16 @@ class MessageSeeder extends Seeder
                 'created_at' => Carbon::now()
             ]);
         }
+
+        for($i = 1; $i <= 5; $i++) {
+            for($j = $i + 1; $j <= 5; $j++) {
+                DB::table('chatrooms')->insert([
+                    'user_id_1' => $i,
+                    'user_id_2' => $j,
+                ]);
+            }
+        }
+
+
     }
 }

@@ -6,11 +6,11 @@
     </svg>
 </form>
 <ul class="msgs">
-    @foreach (App\User::all() as $chatroom)
+    @foreach (Auth::user()->getChatrooms() as $chatroom)
         @include('chatting.side-bar-chatting-msg', [
             'unRead' => true,
             'time' => "5:38pm",
-            'user' => $chatroom
+            'user' => App\User::find(Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1)
         ])
     @endforeach
 </ul>

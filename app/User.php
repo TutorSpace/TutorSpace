@@ -7,9 +7,10 @@ use App\Post;
 use App\Message;
 
 use App\Session;
+use App\Chatroom;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -355,6 +356,11 @@ class User extends Authenticatable
         })->get();
 
     }
+
+    public function getChatrooms() {
+        return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->get();
+    }
+
 
 
 
