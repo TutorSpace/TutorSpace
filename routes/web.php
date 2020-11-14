@@ -165,6 +165,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::get('/', 'ChattingController@index')->name('chatting.index');
+    Route::get('/get-messages', 'ChattingController@getMessages')->name('chatting.get-messages');
 });
 
 // add/remove course/tag to the user profile

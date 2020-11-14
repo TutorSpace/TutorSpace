@@ -6,51 +6,11 @@
     </svg>
 </form>
 <ul class="msgs">
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "5:38pm"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "9/3/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
+    @foreach (App\User::all() as $chatroom)
+        @include('chatting.side-bar-chatting-msg', [
+            'unRead' => true,
+            'time' => "5:38pm",
+            'user' => $chatroom
+        ])
+    @endforeach
 </ul>

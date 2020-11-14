@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class MessageSeeder extends Seeder
@@ -21,7 +22,8 @@ class MessageSeeder extends Seeder
             DB::table('messages')->insert([
                 'from' => $from,
                 'to' => $to,
-                'message' => $faker->sentence
+                'message' => $faker->sentence,
+                'created_at' => Carbon::now()
             ]);
         }
     }

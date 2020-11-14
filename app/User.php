@@ -4,12 +4,13 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Session;
+use App\Message;
 
+use App\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\URL;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -338,55 +339,28 @@ class User extends Authenticatable
     }
 
 
-
-
-
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
         return $this
                     ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
                     ->where('is_upcoming', true)
                     ->where('is_canceled', false);
-
-        // $mytime = Carbon::now();
-
-        // $outdatedSessions = Session::where('is_upcoming', 1)
-        //             ->where('is_canceled', 0)
-        //             ->get();
-
-        // foreach($outdatedSessions as $outdatedSession) {
-        //     $sessionTime = User::getTime($outdatedSession->date, $outdatedSession->start_time);
-        //     if($sessionTime <= $mytime) {
-        //         $outdatedSession->is_upcoming = 0;
-        //         $outdatedSession->save();
-        //     }
-        // }
-
-        // if($this->is_tutor) {
-        //     // the returned information is about the student
-        //     $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-        //         ->join('users', 'sessions.student_id', '=', 'users.id')
-        //         ->where('tutor_id', $this->id)
-        //         ->where('is_upcoming', 1)
-        //         ->where('is_canceled', 0)
-        //         ->limit($num)
-        //         ->get();
-
-        //     return $sessions;
-        // }
-        // else {
-        //     // the returned information is about the tutor
-        //     $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-        //     ->join('users', 'sessions.tutor_id', '=', 'users.id')
-        //     ->where('student_id', $this->id)
-        //     ->where('is_upcoming', 1)
-        //     ->where('is_canceled', 0)
-        //     ->limit($num)
-        //     ->get();
-
-        //     return $sessions;
-        // }
     }
+
+    public function getMessages($otherUser) {
+        return Message::where(function($query) use ($otherUser) {
+            $query->where('from', $this->id)->where('to', $otherUser->id);
+        })->orWhere(function($query) use ($otherUser) {
+            $query->where('to', $this->id)->where('from', $otherUser->id);
+        })->get();
+
+    }
+
+
+
+
+
+
 
     public function pastSessions() {
         if($this->is_tutor) {

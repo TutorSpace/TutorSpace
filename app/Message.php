@@ -8,5 +8,4 @@ class Message extends Model
 {
     protected $guarded = [];
 
-
 }
