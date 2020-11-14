@@ -1,4 +1,11 @@
+function scrollToBottom() {
+    $('.chatting__content__messages').animate({
+        scrollTop: $('.chatting__content')[0].scrollHeight
+    }, 0);
+}
+
 $('.msg:first-child .box').addClass('bg-grey-light');
+scrollToBottom();
 
 $('.msg').click(function() {
     $('.msg .box').removeClass('bg-grey-light');
@@ -12,6 +19,7 @@ $('.msg').click(function() {
         },
         success: (data) => {
             $('.chatting__content').html(data);
+            scrollToBottom();
         }
     });
 });
