@@ -23,14 +23,11 @@ class ChattingController extends Controller
         })->orWhere(function($query) use ($otherUserId) {
             $query->where('user_id_2', Auth::id())->where('user_id_1', $otherUserId);
         })->count() == 1) {
+            Chatroom::removeUnreadStatus($otherUserId);
             return view('chatting.content', [
                 'user' => User::find($otherUserId),
             ]);
         }
-
-        return view('chatting.content', [
-            'user' => User::find($otherUserId),
-        ]);
     }
 
     public function sendMsg(Request $request) {

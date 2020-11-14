@@ -13,11 +13,17 @@ class Chatroom extends Model
 
 
     // return true if the CURRENT user has unread messages
-    public function haveUnreadMessages($otherUserId) {
+    public static function haveUnreadMessages($otherUserId) {
         return Message::where('from', $otherUserId)
                         ->where('to', Auth::id())
-                        ->where('is_read', 0)
+                        ->where('is_read', false)
                         ->exists();
+    }
+
+    public static function removeUnreadStatus($otherUserId) {
+        Message::where('from', $otherUserId)
+                ->where('to', Auth::id())
+                ->update(['is_read' => true]);
     }
 
     public function getLatestMessageTime() {

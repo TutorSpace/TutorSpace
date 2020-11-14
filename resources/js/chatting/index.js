@@ -1,11 +1,6 @@
 function scrollToBottom() {
-    $('.chatting__content__messages').animate({
-        scrollTop: $('.chatting__content')[0].scrollHeight
-    }, 0);
+    $('.chatting__content__messages').scrollTop($('.chatting__content__messages')[0].scrollHeight);
 }
-
-$('.msg:first-child .box').addClass('bg-grey-light');
-scrollToBottom();
 
 $('.msg').click(function() {
     $('.msg .box').removeClass('bg-grey-light');
@@ -18,6 +13,7 @@ $('.msg').click(function() {
             'userId': $(this).attr('data-user-id')
         },
         success: (data) => {
+            $(this).removeClass('unread');
             $('.chatting__content').html(data);
             scrollToBottom();
         }

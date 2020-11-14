@@ -30,9 +30,9 @@ bg-student
             @include('chatting.side-bar--left')
         </div>
         <div class="chatting__content">
-            @include('chatting.content', [
+            {{-- @include('chatting.content', [
                 'user' => App\User::find(Auth::user()->getChatrooms()[0]->user_id_1 == Auth::id() ? Auth::user()->getChatrooms()[0]->user_id_2 : Auth::user()->getChatrooms()[0]->user_id_1)
-            ])
+            ]) --}}
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@
             $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
         @endphp
         @include('chatting.side-bar-chatting-msg', [
-            'unRead' => $chatroom->haveUnreadMessages($otherUserId),
+            'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
             'time' => $chatroom->getLatestMessageTime()->diffForHumans(),
             'user' => App\User::find($otherUserId),
             'message' => $chatroom->getLatestMessage()
