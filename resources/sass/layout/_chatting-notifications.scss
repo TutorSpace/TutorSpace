@@ -97,6 +97,7 @@
                     padding: $padding-y $padding-left;
                     padding-left: calc(#{$padding-left} - 5px);
                     display: flex;
+                    position: relative;
                     cursor: pointer;
 
                     &:hover {
@@ -140,7 +141,6 @@
                         .content-1 {
                             display: flex;
                             align-items: center;
-                            position: relative;
 
                             .content-1__content {
                                 font-size: 1.8rem;
@@ -149,15 +149,12 @@
 
                             .time {
                                 position: absolute;
-                                left: calc(100% + 1.6rem);
-                                font-size: 1.2rem;
+                                font-size: 1rem;
                                 color: $color-grey;
                                 text-align: right;
-                                width: $time-width;
-
-                                @include respond(md) {
-                                    left: calc(100% + 3rem);
-                                }
+                                white-space: nowrap;
+                                bottom: .3rem;
+                                right: 2rem;
                             }
                         }
 

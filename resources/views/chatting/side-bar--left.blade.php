@@ -6,11 +6,16 @@
     </svg>
 </form>
 <ul class="msgs">
+
     @foreach (Auth::user()->getChatrooms() as $chatroom)
+        @php
+            $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
+        @endphp
         @include('chatting.side-bar-chatting-msg', [
-            'unRead' => true,
-            'time' => "5:38pm",
-            'user' => App\User::find(Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1)
+            'unRead' => $chatroom->haveUnreadMessages($otherUserId),
+            'time' => $chatroom->getLatestMessageTime()->diffForHumans(),
+            'user' => App\User::find($otherUserId),
+            'message' => $chatroom->getLatestMessage()
         ])
     @endforeach
 </ul>

@@ -12,29 +12,36 @@ class Chatroom extends Model
     public $timestamps = false;
 
 
+    // return true if the CURRENT user has unread messages
+    public function haveUnreadMessages($otherUserId) {
+        return Message::where('from', $otherUserId)
+                        ->where('to', Auth::id())
+                        ->where('is_read', 0)
+                        ->exists();
+    }
 
-    // // return true if the CURRENT user has unread messages
-    // public function haveUnreadMessages($currentUserId, $otherUserId) {
+    public function getLatestMessageTime() {
+        return Message::where(function($query) {
+            $query->where('from', $this->user_id_1)->where('to', $this->user_id_2);
+        })
+        ->orWhere(function($query) {
+            $query->where('to', $this->user_id_1)->where('from', $this->user_id_2);
+        })
+        ->orderBy('created_at', 'desc')
+        ->first()
+        ->created_at;
+    }
 
-    //     $haveUnread = Message::where('from', $otherUserId)
-    //                         ->where('to', $currentUserId)
-    //                         ->where('is_read', 0)
-    //                         ->count() > 0;
+    public function getLatestMessage() {
+        return Message::where(function($query) {
+            $query->where('from', $this->user_id_1)->where('to', $this->user_id_2);
+        })
+        ->orWhere(function($query) {
+            $query->where('to', $this->user_id_1)->where('from', $this->user_id_2);
+        })
+        ->orderBy('created_at', 'desc')
+        ->first()
+        ->message;
+    }
 
-    //     return $haveUnread;
-    // }
-
-    // public function getLatestMessageTime() {
-    //     // get all messages
-    //     $latestMsg = Message::where(function($query) {
-    //         $query->where('from', $this->user_id_1)->where('to', $this->user_id_2);
-    //     })
-    //     ->orWhere(function($query) {
-    //         $query->where('to', $this->user_id_1)->where('from', $this->user_id_2);
-    //     })
-    //     ->orderBy('created_at', 'desc')
-    //     ->first();
-
-    //     return $latestMsg ? $latestMsg->created_at : null;
-    // }
 }
