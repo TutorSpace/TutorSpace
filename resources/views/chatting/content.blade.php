@@ -17,7 +17,8 @@
         @include('chatting.chat-message', [
             'myMessage' => $message->from == Auth::user()->id,
             'content' => $message->message,
-            'time' => $message->created_at->diffForHumans()
+            'time' => $message->created_at->diffForHumans(),
+            'user' => $user
         ])
     @endforeach
 </div>
