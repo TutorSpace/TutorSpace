@@ -14,23 +14,26 @@ function appendSendMsgFunc() {
                     console.log(data);
                 }
             });
-
-            let el = `<div class="message message--self">
-                <div class="time-container">
-                    Now
-                </div>
-                <div class="message-content-container">
-                    ${$('#msg-to-send').val()}
-                </div>
-            </div>`;
-
-            $('.chatting__content__messages').append(el);
-            scrollToBottom();
-
-            $('#msg-to-send').val('');
         }
         return false;
     });
+}
+
+function appendMyMessage() {
+    // append my own message
+    let el = `<div class="message message--self">
+        <div class="time-container">
+            Now
+        </div>
+        <div class="message-content-container">
+            ${$('#msg-to-send').val()}
+        </div>
+    </div>`;
+
+    $('.chatting__content__messages').append(el);
+    scrollToBottom();
+
+    $('#msg-to-send').val('');
 }
 
 $('.msg').click(function() {
@@ -51,5 +54,4 @@ $('.msg').click(function() {
         }
     });
 });
-
 

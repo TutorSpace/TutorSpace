@@ -10,17 +10,18 @@ use App\User;
 use App\View;
 use App\Reply;
 use App\Course;
+use App\Message;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
-use App\TutorRequest;
 
 use Carbon\Carbon;
 
-use App\NewMessage;
+use App\TutorRequest;
 use Facades\App\Post;
 
 use App\Characteristic;
+use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -36,7 +37,7 @@ class testController extends Controller
 
     public function index(Request $request) {
 
-
+        return view('test');
 
         $currUser = Auth::user();
 
@@ -66,6 +67,10 @@ class testController extends Controller
         // return view('test', [
         //     'views' => $views
         // ]);
+    }
+
+    public function index2(Request $request) {
+        event(new NewMessage(Message::find(36)));
     }
 
     public function test(Request $request) {

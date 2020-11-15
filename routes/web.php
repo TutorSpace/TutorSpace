@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // for testing
 Route::post('/test', 'testController@test')->name('test');
 Route::get('/test', 'testController@index');
+Route::get('/test2', 'testController@index2');
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');

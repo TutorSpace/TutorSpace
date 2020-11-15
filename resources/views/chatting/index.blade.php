@@ -2,6 +2,10 @@
 
 @section('title', 'Chatting')
 
+@section('links-in-head')
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+@endsection
+
 @section('body-class')
 bg-white-dark-4
 
