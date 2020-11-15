@@ -21,7 +21,6 @@
 
     var channel = pusher.subscribe('private-message.1-2');
     channel.bind('NewMessage', function(data) {
-        alert("here");
         alert(JSON.stringify(data));
     });
   </script>

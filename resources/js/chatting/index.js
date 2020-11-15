@@ -55,3 +55,20 @@ $('.msg').click(function() {
     });
 });
 
+
+// ================= for chatting =======================
+var pusher = new Pusher('d8a4fc3115898457a40f', {
+    cluster: 'us3',
+    authEndpoint: '/broadcasting/auth',
+    encrypted: true,
+    auth: {
+        headers: {
+            'X-CSRF-Token': $("meta[name=csrf-token]").attr('content')
+        }
+    }
+});
+
+var channel = pusher.subscribe('private-message.1-2');
+channel.bind('NewMessage', function(data) {
+    alert(JSON.stringify(data));
+});
