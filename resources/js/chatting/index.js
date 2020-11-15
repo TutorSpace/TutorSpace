@@ -84,10 +84,8 @@ $('.msg').click(function() {
         data = data.message;
         let {from, to, message, is_read, created_at} = data;
 
-        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image
-        if(to == currentUserId) {
-            appendOtherMessage(message, 'Now');
-        }
+        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image.
+        appendOtherMessage(message, 'Now'); // I am guranteed to receive the message that is not sent by myself
     });
 });
 
