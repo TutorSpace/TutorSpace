@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Message;
 use App\Chatroom;
+use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,12 +38,13 @@ class ChattingController extends Controller
 
         // validate the msg
         if(Auth::user()->can('create', [Message::class, User::find($to)])) {
-            Message::create([
-                'from' => $from,
-                'to' => $to,
-                'message' => $content,
-                'is_read' => false
-            ]);
+            $msg = new Message();
+            $msg->from = $from;
+            $msg->to = $to;
+            $msg->message = $content;
+            $msg->is_read = true;
+            $msg->save();
+            event(new NewMessage($msg));
             return 'success';
         }
     }

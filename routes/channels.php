@@ -19,5 +19,5 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 // chatting
 Broadcast::channel('message.{userId1}-{userId2}', function($user, $userId1, $userId2) {
-    return $user->id == $userId1 || $user == $userId2;
+    return $user->id == $userId1 || $user->id == $userId2;
 });

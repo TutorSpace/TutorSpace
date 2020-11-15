@@ -44,7 +44,9 @@ bg-student
 @endsection
 
 @section('js')
-
+<script>
+    let currentUserId = "{{ Auth::id() }}";
+</script>
 <script src="{{ asset('js/chatting/index.js') }}"></script>
 
 @endsection

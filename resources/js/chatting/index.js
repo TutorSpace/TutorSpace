@@ -1,3 +1,5 @@
+const { success } = require("toastr");
+
 function scrollToBottom() {
     $('.chatting__content__messages').scrollTop($('.chatting__content__messages')[0].scrollHeight);
 }
@@ -14,43 +16,77 @@ function appendSendMsgFunc() {
                     console.log(data);
                 }
             });
+            appendMyMessage($('#msg-to-send').val(), 'Now');
+            $('#msg-to-send').val('');
         }
         return false;
     });
 }
 
-function appendMyMessage() {
+function appendMyMessage(message, time) {
     // append my own message
-    let el = `<div class="message message--self">
+    let el =
+    `<div class="message message--self">
         <div class="time-container">
-            Now
+            ${time}
         </div>
         <div class="message-content-container">
-            ${$('#msg-to-send').val()}
+            ${message}
         </div>
     </div>`;
 
     $('.chatting__content__messages').append(el);
     scrollToBottom();
+}
 
-    $('#msg-to-send').val('');
+function appendOtherMessage(message, time) {
+    // append other's message
+    let el =
+    `<div class="message message--other">
+        <div class="img-container">
+            <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/placeholder.png" alt="user img">
+        </div>
+        <div class="message-content-container">
+            <span class="content">
+                ${message}
+            </span>
+        </div>
+        <div class="time-container">
+            ${time}
+        </div>
+    </div>`;
+
+    $('.chatting__content__messages').append(el);
 }
 
 $('.msg').click(function() {
     $('.msg .box').removeClass('bg-grey-light');
     $(this).find('.box').addClass('bg-grey-light');
-
+    let otherUserId = $(this).attr('data-user-id');
     $.ajax({
         type:'GET',
         url: '/chatting/get-messages',
         data: {
-            'userId': $(this).attr('data-user-id')
+            'userId': otherUserId
         },
         success: (data) => {
             $(this).removeClass('unread');
             $('.chatting__content').html(data);
             scrollToBottom();
             appendSendMsgFunc();
+        }
+    });
+
+    // subscribe to the channel
+    let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+    var channel = pusher.subscribe(channelName);
+    channel.bind('NewMessage', function(data) {
+        data = data.message;
+        let {from, to, message, is_read, created_at} = data;
+
+        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image
+        if(to == currentUserId) {
+            appendOtherMessage(message, 'Now');
         }
     });
 });
@@ -68,7 +104,4 @@ var pusher = new Pusher('d8a4fc3115898457a40f', {
     }
 });
 
-var channel = pusher.subscribe('private-message.1-2');
-channel.bind('NewMessage', function(data) {
-    alert(JSON.stringify(data));
-});
+
