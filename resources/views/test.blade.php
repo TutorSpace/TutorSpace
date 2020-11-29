@@ -50,7 +50,7 @@
     // get the query
     const query = event.target.value;
     // only do the following when user inputs something
-    if (query.length >= 2){
+    if (query.length >= 1){
       // delay
       shortDelay(50).then(()=>{
       if (num === curNum){
