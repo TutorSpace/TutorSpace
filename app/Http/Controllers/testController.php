@@ -19,7 +19,6 @@ use Carbon\Carbon;
 
 use App\TutorRequest;
 use Facades\App\Post;
-
 use App\Characteristic;
 use App\Events\NewMessage;
 use Illuminate\Http\Request;
@@ -28,13 +27,29 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
+use Illuminate\Support\Str;
+
 class testController extends Controller
 {
     public function __construct() {
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+    public function action(Request $request){
 
+        $query= Str::lower($request->input('query')) ;
+
+        $data = Course::select('course')->where('course','like',  $query.'%')->get();
+        echo $data;
+        // if ($request->ajax()){
+        //     $query= $request->get('query');
+        //     if ($query != ''){
+        //         return view('index');
+        //     }else{
+        //         return view('index');
+        //     }
+        // }
+    }
     public function index(Request $request) {
 
         return view('test');
