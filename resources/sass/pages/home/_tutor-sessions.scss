@@ -8,11 +8,51 @@
         }
     }
 
-    max-height: 40rem;
-    overflow: scroll;
-
-    @include respond(sm) {
-        max-height: 60rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
     }
 
+    .action--toggle--list {
+        background-color: white;
+
+        border-radius: 1rem;
+        top: 2rem;
+        left: 2rem;
+        box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+
+        z-index: 2;
+
+        &--title {
+            margin-left: 2rem;
+        }
+
+
+        > div {
+            padding: 1.2rem 2.2rem;
+
+            &:hover {
+                cursor: pointer;
+
+                * {
+                    color: $color-white !important;
+                    fill: $color-white !important;
+                }
+            }
+        }
+    }
+}
+
+
+.bg-tutor .home .past-sessions .action--toggle--list{
+    > div:hover {
+        background-color: $color-purple-primary;
+    }
+}
+
+.bg-student .home .past-sessions .action--toggle--list{
+    > div:hover {
+        background-color: $color-blue-primary;
+    }
 }

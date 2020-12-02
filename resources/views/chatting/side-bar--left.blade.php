@@ -6,51 +6,16 @@
     </svg>
 </form>
 <ul class="msgs">
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "5:38pm"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "9/3/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
 
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'unRead' => true,
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
-    @include('chatting.side-bar-chatting-msg', [
-        'time' => "12/30/20"
-    ])
+    @foreach (Auth::user()->getChatrooms() as $chatroom)
+        @php
+            $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
+        @endphp
+        @include('chatting.side-bar-chatting-msg', [
+            'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
+            'time' => $chatroom->getLatestMessageTime()->diffForHumans(),
+            'user' => App\User::find($otherUserId),
+            'message' => $chatroom->getLatestMessage()
+        ])
+    @endforeach
 </ul>

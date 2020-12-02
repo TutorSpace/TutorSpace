@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::post('/test', 'testController@test')->name('test');
+Route::get('/abc', 'testController@test')->name('abc');
 Route::get('/test', 'testController@index');
+Route::get('/testSearch', 'testController@action')->name('test.action');
+Route::get('/test2', 'testController@index2');
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
@@ -165,6 +167,8 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::get('/', 'ChattingController@index')->name('chatting.index');
+    Route::get('/get-messages', 'ChattingController@getMessages')->name('chatting.get-messages');
+    Route::post('/send-msg', 'ChattingController@sendMsg')->name('chatting.send-msg');
 });
 
 // add/remove course/tag to the user profile
@@ -201,14 +205,18 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
+    // Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 });
+
+// tutor
+Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 
 // sessions
 Route::group([
     'prefix' => 'session',
     'middleware' => 'auth'
 ], function() {
-    Route::delete('/cancel', 'SessionController@cancelSession')->name('session.cancel');
+    Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
 });
 
 // help center
@@ -219,53 +227,8 @@ Route::group([
 });
 
 
+// testing
 
 
 
-
-
-
-// ================= IMPORTANT: DO NOT ADD ROUTES BELOW ==================
-
-
-// // dashboard
-// Route::get('/dashboard', 'GeneralController@getDashboardPosts')->middleware(['auth']);
-// Route::post('/dashboard_add', 'GeneralController@addDashboardPosts')->middleware(['auth']);
-
-// // sessions
-// Route::post('/session_cancel', 'sessionController@cancelSession')->middleware(['auth']);
-// Route::get('/view_session/{session}', 'sessionController@viewSession')->middleware(['auth']);
-
-
-// // subjects
-// Route::post('/remove_fav_subject', 'subjectController@removeFavSubject')->middleware(['auth']);
-// Route::post('/add_fav_subject', 'subjectController@addFavSubject')->middleware(['auth']);
-
-// // courses
-// Route::post('/remove_fav_course', 'courseController@removeFavCourse')->middleware(['auth']);
-// Route::post('/add_fav_course', 'courseController@addFavCourse')->middleware(['auth']);
-
-// // reviews
-// Route::post('/post_review', 'reviewController@postReview')->middleware(['auth']);
-
-
-
-// // reports
-// Route::get('/report/{reportee}', 'reportController@showReport')->middleware(['auth']);
-// Route::post('/report/{reportee}', 'reportController@postReport')->middleware(['auth']);
-
-// // tutor requests
-// Route::post('/tutor_request_reject', 'GeneralController@rejectTutorRequest')->middleware(['auth']);
-// Route::post('/tutor_request_accept', 'GeneralController@acceptTutorRequest')->middleware(['auth']);
-// Route::get('/tutor_request/{tutor}', 'tutorRequestController@showMakeTutorRequest')->middleware(['auth']);
-// Route::get('/edit_availability', 'tutorRequestController@showEditAvailability')->middleware(['auth']);
-// Route::post('/edit_availability', 'tutorRequestController@saveAvailableTime')->middleware(['auth']);
-// Route::post('/tutor_request', 'tutorRequestController@makeTutorRequest')->middleware(['auth']);
-
-
-// // chatting
-// Route::get('/messages', 'chatController@show')->name('chatroom')->middleware(['auth']);
-// Route::post('/messages', 'chatController@sendMessage')->middleware(['auth']);
-// Route::get('/detailedMessages/{otherUserId}', 'chatController@getMessages')->middleware(['auth']);
-// Route::get('/messages/{otherUser}', 'chatController@showChat')->middleware(['auth']);
 

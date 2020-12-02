@@ -24,13 +24,12 @@ class CreateSessionsTable extends Migration
             $table->boolean('is_upcoming')->default(true);
             $table->boolean('is_canceled')->default(false);
             $table->unsignedBigInteger('cancel_reason_id')->nullable();
-            $table->string('cancel_notes', 45)->nullable();
             $table->timestamps();
 
             $table->foreign('tutor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('cancel_reason_id')->references('id')->on('cancel_reasons')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('cancel_reason_id')->references('id')->on('session_cancel_reasons')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

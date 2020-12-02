@@ -10,7 +10,7 @@
 @else
 <div class="message message--other">
     <div class="img-container">
-        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user img">
+        <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user img">
     </div>
     <div class="message-content-container">
         <span class="content">

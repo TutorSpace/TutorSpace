@@ -111,6 +111,16 @@ $('.btn-view-all-notifications').click(function() {
     }
 });
 
+$('.btn-view-all-bookmarked-users').click(function() {
+    $('.home__side-bar__bookmarked-users').find('.bookmarked-users [data-to-hide="true"]').toggleClass("hidden");
+    if($(this).html().includes('View')) {
+        $(this).html('Hide')
+    }
+    else {
+        $(this).html('View All')
+    }
+});
+
 
 $('#btn-confirm-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
@@ -133,3 +143,5 @@ $('#btn-confirm-tutor-session').click(function() {
         }
     });
 })
+
+
