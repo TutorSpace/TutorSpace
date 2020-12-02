@@ -26,7 +26,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        @if (Auth::user()->is_tutor)
+        @if (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
                 <p class="heading">Want to earn experience points more quickly? </p>
@@ -35,6 +35,13 @@ bg-student
                 <p class="home__panel__button__label">Become a Verified Tutor</p>
             </div>
         </div>
+        @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
+        <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
+            <div class="home__panel__text heading-container">
+                <p class="heading">Tutor verification submitted</p>
+            </div>
+        </div>
+     
         @endif
 
         <form class="container col-layout-2 profile" autocomplete="off" action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }}@else {{ route('home.profile.update') }} @endif" method="POST">
@@ -265,7 +272,7 @@ bg-student
             centerVertical: true,
             buttons: {
                 Decline: {
-                    label: 'Decline',
+                    label: 'Cancel',
                     className: 'btn btn-outline-primary mr-2 p-3 px-5',
                     callback: function(){}
                 },
@@ -287,11 +294,62 @@ bg-student
                     Close: {
                     label: 'Close',
                     className: 'btn btn-primary p-3 px-5',
-                    callback: function(){}
+                    callback: storeReportAndSendNotifications()
                 },
-                }
+            }
             });
         }
+
+
+        // TODO: display Error Message
+        function storeReportAndSendNotifications(){
+            var file = $("#tutor-verification-file")[0].files[0];
+            alert(file);
+            if (file){ // not empty
+                uploadFile(file);
+            }else{ // display error message
+            
+            }
+        }
+        
+
+        function uploadFile(file){
+            var formData = new FormData();
+            formData.append('tutor-verification-file', file);
+            return $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: "{{ route('tutor-profile-verification') }}",
+            data: formData,
+            contentType: false,
+            processData: false,
+            
+            success: function success(data) {
+                // toastr.success('Successfully uploaded the image!');
+                alert("sent")
+                // $('#profile-image').attr('src', storageUrl + data.imgUrl);
+                // console.log(storageUrl + data.imgUrl);
+                // $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+                return data;
+            },
+            error: function error(_error) {
+                // toastr.error('Something went wrong. Please try again.');
+                // console.log(_error);
+                return false;
+            }
+            });
+        }
+
+
+
+
+
+
+
+
+
     });
 </script>
 

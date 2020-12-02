@@ -19,7 +19,6 @@ use Carbon\Carbon;
 
 use App\TutorRequest;
 use Facades\App\Post;
-
 use App\Characteristic;
 use App\Events\NewMessage;
 use Illuminate\Http\Request;
@@ -27,6 +26,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\TutorVerificationNotification;
+use App\Notifications\EmailVerification;
+
+use Illuminate\Support\Str;
 
 class testController extends Controller
 {
@@ -34,7 +38,21 @@ class testController extends Controller
         // Auth::login(User::find(2));
         // $this->middleware('auth');
     }
+    public function action(Request $request){
 
+        $query= Str::lower($request->input('query')) ;
+
+        $data = Course::select('course')->where('course','like',  $query.'%')->get();
+        echo $data;
+        // if ($request->ajax()){
+        //     $query= $request->get('query');
+        //     if ($query != ''){
+        //         return view('index');
+        //     }else{
+        //         return view('index');
+        //     }
+        // }
+    }
     public function index(Request $request) {
 
         return view('test');
@@ -74,7 +92,11 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-
+        $user = Auth::user();
+        $user->notify(new TutorVerificationNotification(false));
+        // Notification::route('mail', "huan773@usc.edu")
+        //     ->notify(new TutorVerificationNotification());
+        echo 111;
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
 
@@ -189,12 +211,12 @@ class testController extends Controller
 
         // dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
 
-        $path = $request->file('avatar')->storeAs(
-            '', 'placeholder.png'
-        );
+        // $path = $request->file('avatar')->storeAs(
+        //     '', 'placeholder.png'
+        // );
 
 
-        return $path;
+        // return $path;
 
 
     }

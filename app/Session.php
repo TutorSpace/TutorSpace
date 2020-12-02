@@ -23,6 +23,17 @@ class Session extends Model
     public function cancelReason() {
         return $this->belongsTo('App\SessionCancelReason', 'cancel_reason_id');
     }
+    
+    // IMPORTANT: must run scheduler in prod env
+    public function changeSessionStatusOnExpiry() {
+        $sessions = Session::all();
+        foreach($sessions as $session) {
+            if($session->session_time_start <= Carbon::now()) {
+                $session->is_upcoming = 0;
+                $session->save();
+            }
+        }
+    }
 
 
 }

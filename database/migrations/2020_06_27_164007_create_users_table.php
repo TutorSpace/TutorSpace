@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('school_year_id')->nullable();
             $table->unsignedBigInteger('tutor_level_id')->nullable();
             $table->string('profile_pic_url', 255)->default('user-profile-photos/placeholder.png');
+            $table->string('tutor_verification_status', 255)->default('unsubmitted');
             $table->string('google_id', 255)->nullable();
             $table->string('password', 255)->nullable();
             $table->text('introduction')->nullable();
