@@ -12,6 +12,25 @@
     Try publishing an event to channel <code>my-channel</code>
     with event name <code>my-event</code>.
   </p> -->
+
+
+ 
+    <div class="mb-5">
+        <div class="d-flex flex-column justify-content-center align-items-center position-relative fc-grey fs-2-4 text-center" id="upload-file">
+            Drop files here...
+            <div class="mt-3 btn btn-primary text-center" id="upload-file-button">
+                <label class="pt-1 pb-0 px-5" for="file">or click here</label>
+                <input type="file" name="file" id="tutor-verification-file" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
   <button id="test-btn">testing</button>
   <div>
     <input id="test-input"placeholder="enter"/>
@@ -71,6 +90,88 @@
 
 
   );
+
+
+  $("#test-btn").click(function(){
+    var file = $("#tutor-verification-file")[0].files[0];
+    if (file){ // not empty
+      uploadFile(file);
+    }else{ // display error message
+      
+    }
+
+
+    // email().then(data=>{
+    //   alert(data);
+    // })
+  });
+  function email(){
+      alert("ajax")
+      return $.ajax({
+
+      url:"{{ route('abc') }}",
+      method:'GET',
+      data:{query:"query"},
+      dataType:'json'})
+      .done(function(data){
+        return data;
+      })  
+      alert("ajax")
+  }
+
+  function uploadFile(file){
+    var formData = new FormData();
+    formData.append('tutor-verification-file', file);
+    return $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      type: 'POST',
+      url: "{{ route('tutor-profile-verification') }}",
+      data: formData,
+      contentType: false,
+      processData: false,
+      
+      success: function success(data) {
+        // toastr.success('Successfully uploaded the image!');
+        alert("sent")
+        // $('#profile-image').attr('src', storageUrl + data.imgUrl);
+        // console.log(storageUrl + data.imgUrl);
+        // $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+        return data;
+      },
+      error: function error(_error) {
+        // toastr.error('Something went wrong. Please try again.');
+        // console.log(_error);
+        return false;
+      }
+    });
+  }
+
+  $("#tutor-verification-file").change(function () {
+    var fileInput = $(this)[0];
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('tutor-verification', file);
+
+    // $.ajax({
+    //   type: 'POST',
+    //   url: $('#profile-pic-form').attr('action'),
+    //   data: formData,
+    //   contentType: false,
+    //   processData: false,
+    //   success: function success(data) {
+    //     toastr.success('Successfully uploaded the image!');
+    //     $('#profile-image').attr('src', storageUrl + data.imgUrl);
+    //     console.log(storageUrl + data.imgUrl);
+    //     $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+    //   },
+    //   error: function error(_error) {
+    //     toastr.error('Something went wrong. Please try again.');
+    //     console.log(_error);
+    //   }
+    // });
+}); 
   // Enable pusher logging - don't include this in production
   // Pusher.logToConsole = true;
 

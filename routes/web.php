@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::post('/test', 'testController@test')->name('test');
+Route::get('/abc', 'testController@test')->name('abc');
 Route::get('/test', 'testController@index');
 Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
@@ -205,7 +205,11 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
+    // Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 });
+
+// tutor
+Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 
 // sessions
 Route::group([

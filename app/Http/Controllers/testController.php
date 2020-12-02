@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\TutorVerificationNotification;
+use App\Notifications\EmailVerification;
 
 use Illuminate\Support\Str;
 
@@ -89,7 +92,11 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-
+        $user = Auth::user();
+        $user->notify(new TutorVerificationNotification(false));
+        // Notification::route('mail', "huan773@usc.edu")
+        //     ->notify(new TutorVerificationNotification());
+        echo 111;
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
 
@@ -204,12 +211,12 @@ class testController extends Controller
 
         // dd(Storage::url('csCKCYY5gO9oDR9momyshOT05ZE0tzzLriOUYYlX.png'));
 
-        $path = $request->file('avatar')->storeAs(
-            '', 'placeholder.png'
-        );
+        // $path = $request->file('avatar')->storeAs(
+        //     '', 'placeholder.png'
+        // );
 
 
-        return $path;
+        // return $path;
 
 
     }

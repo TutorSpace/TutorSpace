@@ -14,9 +14,9 @@ def read_from_csv(file_name):
             if line_count == 0:
                 line_count = 1
                 continue
-            if not file_name == 'courses.csv' or (file_name == 'courses.csv' and row[1].startswith('CSCI')):
-                res_list.append(row[1])
-            # res_list.append(row[1])
+            # if not file_name == 'courses.csv' or (file_name == 'courses.csv' and row[1].startswith('CSCI')):
+                # res_list.append(row[1])
+            res_list.append(row[1])
         return res_list
 
 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     tags = []
 
     tags += read_from_csv('courses.csv')
-    # tags += read_from_csv('tags.csv')
+    tags += read_from_csv('tags.csv')
     tags += read_from_csv('buildings.csv')
     tags += read_from_csv('majors.csv')
     tags += read_from_csv('minors.csv')

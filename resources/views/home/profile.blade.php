@@ -265,7 +265,7 @@ bg-student
             centerVertical: true,
             buttons: {
                 Decline: {
-                    label: 'Decline',
+                    label: 'Cancel',
                     className: 'btn btn-outline-primary mr-2 p-3 px-5',
                     callback: function(){}
                 },
@@ -287,11 +287,62 @@ bg-student
                     Close: {
                     label: 'Close',
                     className: 'btn btn-primary p-3 px-5',
-                    callback: function(){}
+                    callback: storeReportAndSendNotifications()
                 },
-                }
+            }
             });
         }
+
+
+        // TODO: display Error Message
+        function storeReportAndSendNotifications(){
+            var file = $("#tutor-verification-file")[0].files[0];
+            alert(file);
+            if (file){ // not empty
+                uploadFile(file);
+            }else{ // display error message
+            
+            }
+        }
+        
+
+        function uploadFile(file){
+            var formData = new FormData();
+            formData.append('tutor-verification-file', file);
+            return $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: "{{ route('tutor-profile-verification') }}",
+            data: formData,
+            contentType: false,
+            processData: false,
+            
+            success: function success(data) {
+                // toastr.success('Successfully uploaded the image!');
+                alert("sent")
+                // $('#profile-image').attr('src', storageUrl + data.imgUrl);
+                // console.log(storageUrl + data.imgUrl);
+                // $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+                return data;
+            },
+            error: function error(_error) {
+                // toastr.error('Something went wrong. Please try again.');
+                // console.log(_error);
+                return false;
+            }
+            });
+        }
+
+
+
+
+
+
+
+
+
     });
 </script>
 
