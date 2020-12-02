@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Facades\App\Tag;
 use Facades\App\User;
 use Facades\App\TutorRequest;
+use Facades\App\Session;
 
 class Kernel extends ConsoleKernel
 {
@@ -40,6 +41,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             TutorRequest::changeTutorRequestStatusOnTimeout();
+            echo "Successfully changed stale tutor request to expired: " . now() . "\n";
+        })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            Session::changeSessionStatusOnExpiry();
             echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
         })->everyThirtyMinutes();
     }
