@@ -191,7 +191,8 @@
     var stripe = Stripe("pk_test_51H6RWlBtUwiw0w2oW1kGPF0AwsekfcKD0mz7Aj5M66bVelryG3uZdcE3lutEIb9ddWDlfpTGm3PjpZk5BjphHvU100pM9tg0rJ");
     // The items the customer wants to buy
     var purchase = {
-        items: [{ id: "xl-tshirt" }]
+        items: [{ id: "xl-tshirt" }],
+        amount: 1234
     };
     // Disable the button until we have Stripe set up on the page
     document.querySelector("button").disabled = true;

@@ -69,12 +69,18 @@ class StripeApiController extends Controller
     // Creates a payment intent with new cards
     public function createPaymentIntent(Request $request) {
         $customer_id = $this->getCustomerId();
+        $amount = intval($request->json('amount'));
         // TODO: target connected account
         $payment_intent = \Stripe\PaymentIntent::create([
-            'amount' => 1099,  // TODO: change amount
+            'amount' => $amount,
             'currency' => 'usd',
             'customer' => $customer_id,
             'receipt_email' => Auth::user()->email,
+            // TODO:
+            // 'application_fee_amount' => 123,
+            // 'transfer_data' => [
+            //     'destination' => '{{CONNECTED_STRIPE_ACCOUNT_ID}}',
+            // ],
         ]);
         return response()->json([
             'clientSecret' => $payment_intent->client_secret
@@ -160,6 +166,7 @@ class StripeApiController extends Controller
 
     // Refunds a charge
     // Request should contain 'charge_id'
+    // TODO:
     public function refundCharge(Request $request) {
         $charge_id = $request->get('charge_id');
         $refund = Refund::create(['charge' => $charge_id]);
@@ -171,6 +178,7 @@ class StripeApiController extends Controller
         return view('payment.stripe_connect');
     }
 
+    // TODO: delete
     // Pays out to current user
     // Request should contain 'amount'
     public function processPayout(Request $request) {
@@ -195,7 +203,7 @@ class StripeApiController extends Controller
             'currency' => 'usd',
             'destination' => Auth::user()->stripe_account_id,
         ]);
-        // TODO: database
+        // TODO: database?
         Session::put('status', 'success');
         return view('payment.stripe_connect');
     }
