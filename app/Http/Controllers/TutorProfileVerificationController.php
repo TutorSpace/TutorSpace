@@ -26,24 +26,22 @@ class TutorProfileVerificationController extends Controller
             'tutor-verification-file' => [
                 'required',
                 'file',
-                'mimes:jpeg,jpg,bmp,png,pdf'
+                'mimes:jpeg,jpg,png,pdf,xls,xlsx,doc,docx,txt,rtf, odt,ppt,msg'
             ]
         ]);
 
         $mimeType = $request->file("tutor-verification-file")->getMimeType();
         
+        // file exists
         if ($request->file("tutor-verification-file")){
             $user = Auth::user();
             // change tutor state to submitted
             $user->tutor_verification_status = "submitted";
             $user->save();
 
-
-
             // store user file
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
          
-            
             // send to user
             $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
             // send to tutorspace

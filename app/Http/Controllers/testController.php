@@ -14,6 +14,7 @@ use App\Message;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
+use App\CourseVerification;
 
 use Carbon\Carbon;
 
@@ -92,11 +93,41 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-        $user = Auth::user();
-        $user->notify(new TutorVerificationNotification(false));
+        $users = User::select("id")->where('is_tutor','1')->get();
+        $test = CourseVerification::select("*")->get();
+        
+        $testCount = count($test);
+
+        $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
+                        ->join("course_verifications", function($join){
+                            $join->on("course_verifications.course_id","=","course_user.course_id")
+                        ->on("course_verifications.user_id","=","course_user.user_id");
+                        })
+                        ->distinct();
+
+        
+        User::whereIn('id',$verifiedUsersQuery)->update([
+            'is_tutor_verified' => '1'
+            ]);              
+        
+        User::whereNotIn('id',$verifiedUsersQuery)->update([
+            'is_tutor_verified' => '0'
+            ]);     
+        // $user = DB::table('course_user')->select("course_user.user_id")
+        //         // ->join("items","items.user_id","=","users.id")
+        //         ->join("jobs",function($join){
+        //             $join->on("jobs.user_id","=","users.id")
+        //                 ->on("jobs.item_id","=","items.id");
+        //         })
+        //         ->get();
+        dd($verifiedUsersQuery->get());
+      
+        // $user = Auth::user();
+        // $user->notify(new TutorVerificationNotification(false));
         // Notification::route('mail', "huan773@usc.edu")
         //     ->notify(new TutorVerificationNotification());
-        echo 111;
+        // dd($test);
+
         // dd(User::find(5)->users);
         // dd(User::find(2)->upcomingSessions());
 
