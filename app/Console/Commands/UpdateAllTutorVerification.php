@@ -39,6 +39,7 @@ class UpdateAllTutorVerification extends Command
      */
     public function handle()
     {
+
         // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
         ->join("course_verifications", function($join){
@@ -52,7 +53,6 @@ class UpdateAllTutorVerification extends Command
             'is_tutor_verified' => '1'
         ]);        
         
-
         // unverified users update
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
