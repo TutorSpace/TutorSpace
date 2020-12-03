@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+
 use Facades\App\Tag;
 use Facades\App\User;
 use Facades\App\TutorRequest;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+      'App\Console\Commands\UpdateAllTutorVerification'
     ];
 
     /**
@@ -48,6 +50,8 @@ class Kernel extends ConsoleKernel
             Session::changeSessionStatusOnExpiry();
             echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
         })->everyThirtyMinutes();
+
+        $schedule->command("command:update-tutor-verification")->everyThirtyMinutes();
     }
 
     /**

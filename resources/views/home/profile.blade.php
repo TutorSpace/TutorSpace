@@ -308,11 +308,28 @@ bg-student
             if (file){ // not empty
                 uploadFile(file);
             }else{ // display error message
-            
+                return false;
             }
         }
         
-
+        $("#tutor-verification-file").change(function () {
+            const fileInput = $(this)[0];
+            const file = fileInput.files[0];
+            console.log($("#tutor-verification-file")[0]);
+            if (file){
+                var fileName = fileInput.value.split("\\").pop();
+                if (fileName.length > 20){
+                    fileName = fileName.substring(0, 20)+"...";
+                }
+                
+                $("#upload-caption").html(fileName);
+            }else{
+                $("#upload-caption").html("Upload File");
+            }
+            // alert(fileInput.value.split("\\").pop());
+            // $("#tutor-verification-file")
+            
+        })
         function uploadFile(file){
             var formData = new FormData();
             formData.append('tutor-verification-file', file);
@@ -328,7 +345,6 @@ bg-student
             
             success: function success(data) {
                 // toastr.success('Successfully uploaded the image!');
-                alert("sent")
                 // $('#profile-image').attr('src', storageUrl + data.imgUrl);
                 // console.log(storageUrl + data.imgUrl);
                 // $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
