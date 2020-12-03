@@ -25,7 +25,7 @@
     <div class="footer__right">
         <ul class="footer__list">
             <li class="footer__heading">
-                <span>OUR SERVICES</span>
+                <span>SOCIAL MEDIA</span>
             </li>
             <li class="footer__item">
                 <span class="d-flex justify-content-center">

@@ -168,8 +168,6 @@ return [
 
         // added socialite
         Laravel\Socialite\SocialiteServiceProvider::class,
-        // added Eloquent Viewable
-        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
 
         /*
          * Application Service Providers...

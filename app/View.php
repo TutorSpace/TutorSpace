@@ -8,6 +8,8 @@ class View extends Model
 {
     public $timestamps = false;
 
+    protected $guarded = [];
+
     public function viewable() {
         return $this->morphTo();
     }

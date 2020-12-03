@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Post;
 use App\User;
+use App\Major;
+use App\Minor;
 use App\Course;
 use App\Session;
 use Carbon\Carbon;
+use App\SchoolYear;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class homeController extends Controller
+class HomeController extends Controller
 {
     public function __construct() {
-        $this->middleware(['auth']);
+
     }
 
     public function index() {
@@ -170,7 +174,55 @@ class homeController extends Controller
         ]);
     }
 
-    public function profile() {
+    public function indexProfile() {
         return view('home.profile');
+    }
+
+    public function store(Request $request) {
+        $currUser = Auth::user();
+        $request->validate([
+            'first-major' => [
+                Rule::requiredIf($currUser->is_tutor),
+                'required_with:second-major',
+                'exists:majors,major',
+                'different:second-major',
+            ],
+            'second-major' => [
+                'nullable',
+                'exists:majors,major'
+            ],
+            'minor' => [
+                'nullable',
+                'exists:minors,minor'
+            ],
+            'introduction' => [
+                'nullable',
+                'size:50'
+            ],
+            "gpa" => [
+                Rule::requiredIf($currUser->is_tutor),
+                'numeric',
+                'min:1',
+                'max:4'
+            ],
+            "school-year" => [
+                Rule::requiredIf($currUser->is_tutor),
+                'exists:school_years,school_year'
+            ]
+        ]);
+
+        foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
+            $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
+            $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->first());
+            $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->first());
+            $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->first());
+            $tmpUser->gpa = $request->input('gpa');
+            $tmpUser->introduction = $tmpUser->is_tutor ? $request->input('introduction') : null;
+
+            $tmpUser->save();
+        }
+
+
+        return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }
 }

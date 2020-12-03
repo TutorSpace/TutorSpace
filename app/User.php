@@ -7,7 +7,6 @@ use App\Post;
 use App\Session;
 
 use Carbon\Carbon;
-use App\Tutor_request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 
@@ -15,19 +14,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use CyrildeWit\EloquentViewable\Contracts\Viewable;
-use CyrildeWit\EloquentViewable\InteractsWithViews;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class User extends Authenticatable implements Viewable
+class User extends Authenticatable
 {
     use Notifiable;
-    use InteractsWithViews;
-    protected $removeViewsOnDelete = true;
 
     /**
      * The attributes that are mass assignable.
@@ -83,7 +77,7 @@ class User extends Authenticatable implements Viewable
     }
 
     public function minor() {
-        return $this->belongsTo('App\Major', 'minor_id');
+        return $this->belongsTo('App\Minor', 'minor_id');
     }
 
     public function schoolYear() {
@@ -139,7 +133,7 @@ class User extends Authenticatable implements Viewable
     }
 
     // This is for the views table. To get the total view count on this post, siimply retrieve the view_count column
-    public function views(): MorphMany {
+    public function views() {
         return $this->morphMany('App\View', 'viewable');
     }
 
@@ -205,6 +199,15 @@ class User extends Authenticatable implements Viewable
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
+    // return users that this user invited
+    public function invitedUsers() {
+        return $this->belongsToMany('App\User', 'invite_user', 'user_id', 'invited_user_id');
+    }
+
+    // return users who invited the current user
+    public function invitedByUsers() {
+        return $this->belongsToMany('App\User', 'invite_user', 'invited_user_id', 'user_id');
+    }
     public function getRecommendedTutorsCacheKey() {
         return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
     }
@@ -234,9 +237,9 @@ class User extends Authenticatable implements Viewable
                                 ->where('users.email', '!=', $this->email)
                                 ->get();
             $recommendedTutors = $recommendedTutors
-                                    ->random(min(5, $recommendedTutors->count()));
+                                    ->random(min(4, $recommendedTutors->count()));
 
-            if($recommendedTutors->count() < 5) {
+            if($recommendedTutors->count() < 4) {
                 $tutorIds = $recommendedTutors->pluck('id');
                 $tutors = User::where('users.is_tutor', true)
                             ->where(function($query) {
@@ -249,20 +252,20 @@ class User extends Authenticatable implements Viewable
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
                             ->get();
-                // I want to get a total of (5 - $recommendedTutors->count()) tutors here
-                $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+                // I want to get a total of (4 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
 
                 $recommendedTutors = $recommendedTutors->merge($tutors);
 
-                // if there are still < 5 tutors, then randomly pick from the tutors
-                if($recommendedTutors->count() < 5) {
+                // if there are still < 4 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 4) {
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::where('users.is_tutor', true)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
                                     ->get();
-                    // I want to get a total of (5 - $recommendedTutors->count()) tutors here
-                    $tutors= $tutors->random(min(5 - $recommendedTutors->count(), $tutors->count()));
+                    // I want to get a total of (4 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
@@ -272,15 +275,17 @@ class User extends Authenticatable implements Viewable
         return [];
     }
 
-
-    // no need for this function seemingly
-    // public function sessions() {
-    //     if($this->is_tutor)
-    //         return $this->hasMany('App\Session', 'tutor_id');
-    //     else
-    //         return $this->hasMany('App\Session', 'student_id');
-    // }
-
+    // switch account
+    public function createStudentIdentityFromTutor() {
+        $newUser = $this->replicate();
+        $newUser->is_tutor = 0;
+        $newUser->is_tutor_verified = 0;
+        $newUser->hourly_rate = null;
+        $newUser->tutor_level_id = null;
+        $newUser->introduction = null;
+        $newUser->save();
+        return $newUser;
+    }
 
     // whenever this function is called, we need to REMOVE the outdated tutor_requests
     public function tutor_requests() {
@@ -331,6 +336,11 @@ class User extends Authenticatable implements Viewable
 
         return $fiveStarCnt / $reviewCnt * 100;
     }
+
+    public function hasDualIdentities() {
+        return User::where('email', $this->email)->count() == 2;
+    }
+
 
 
 
@@ -455,6 +465,12 @@ class User extends Authenticatable implements Viewable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
+    // IMPORTANT: must run scheduler in prod env
+    public function clearTutorAvailableTime() {
+        $tutors = User::where('is_tutor', 1)->get();
+        foreach($tutors as $tutor)
+            $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
+        }
 
     // Payments
     public function paymentMethod() {

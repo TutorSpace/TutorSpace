@@ -5,7 +5,7 @@
 
     .brand-name {
         font-size: 3.3rem;
-        font-family: 'Baloo Bhai', sans-serif;
+        font-family: 'Baloo Bhai', "Arial Black", sans-serif;
         margin: 0 4rem;
         text-decoration: none;
         color: inherit;
@@ -33,6 +33,15 @@
             position: relative;
             width: 5rem;
             visibility: hidden;
+        }
+
+        @include respond(extra-sm) {
+            margin-left: 1rem;
+            margin-right: 1.3rem;
+            position: relative;
+            width: 3.5rem;
+            visibility: hidden;
+            height: 3.5rem;
         }
     }
 
@@ -87,7 +96,7 @@
             margin-right: 0 !important;
             padding: 1rem 2rem;
             display: block;
-            text-align: center;
+            text-align: left;
             text-decoration: none;
             transition: all .2s;
         }
@@ -129,8 +138,13 @@
     .nav__form {
         width: 40rem;
 
-        @include respond(extra-sm) {
-            width: 25rem;
+        // @include respond(extra-sm) {
+        //     width: 25rem;
+        // }
+
+        // 430px
+        @media only screen and (max-width: 28.125em) {
+            width: 30rem;
         }
     }
 
@@ -192,8 +206,35 @@
                 font-size: 2.2rem;
             }
 
+            .notification-indicator {
+                top: -.1rem;
+                right: 0.1rem;
+                width: 0.75rem;
+                height: 0.75rem;
+
+                @include respond(md) {
+                    width: 0.75rem;
+                    height: 0.75rem;
+                }
+            }
+
             @include respond(sm) {
                 margin-right: 1.5rem;
+            }
+        }
+
+        &__notif-message {
+            margin-right: 0rem;
+            .notification-indicator {
+                top: -.3rem;
+                right: 1.5rem;
+                width: 0.75rem;
+                height: 0.75rem;
+
+                @include respond(md) {
+                    width: 0.75rem;
+                    height: 0.75rem;
+                }
             }
         }
 
@@ -239,9 +280,24 @@
     &--student {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-blue-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-blue-primary;
                     color: $color-white;
                 }
@@ -252,9 +308,24 @@
     &--tutor {
         .svg-list-dropdown, .profile-img-dropdown {
             .nav__item {
+                .nav__item__svg {
+                    margin-right: 1.5rem;
+                }
+                .nav__item__svg--light {
+                    display:none;
+                }
+                .nav__item__svg--dark {
+                    display:inline;
+                }
                 background-color: $color-white;
-                color: $color-purple-primary;
+                color: $color-black-3;
                 &:hover {
+                    .nav__item__svg--light {
+                        display:inline;
+                    }
+                    .nav__item__svg--dark {
+                        display:none;
+                    }
                     background-color: $color-purple-primary;
                     color: $color-white;
                 }

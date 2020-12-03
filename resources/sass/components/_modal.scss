@@ -1,8 +1,14 @@
 .modal {
 
-
     .modal-content {
         padding: 1rem 2rem;
+    }
+
+    .modal-dialog {
+        @include respond(extra-sm) {
+            max-width: 80%;
+            margin: auto;
+        }
     }
 
     .modal-title {
@@ -20,7 +26,6 @@
     .modal-body {
         font-size: 1.6rem;
     }
-
 
     .form-check {
 
@@ -52,6 +57,16 @@
     .btn-delete {
         color: $color-white-dark-5;
         background-color: $color-danger;
+    }
+
+    // specific to switch account
+    &-switch-account {
+
+
+        .svg--top {
+            width: 10rem;
+            height: 10rem;
+        }
     }
 
 }
