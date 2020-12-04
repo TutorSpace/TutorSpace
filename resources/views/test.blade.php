@@ -87,18 +87,24 @@
       $("#content").empty();
     } 
   }
-
-
   );
 
 
   $("#test-btn").click(function(){
-    var file = $("#tutor-verification-file")[0].files[0];
-    if (file){ // not empty
-      uploadFile(file);
-    }else{ // display error message
+    // var file = $("#tutor-verification-file")[0].files[0];
+    // if (file){ // not empty
+    //   uploadFile(file);
+    // }else{ // display error message
       
-    }
+    // }
+    return $.ajax({
+      url:"{{ route('abc') }}",
+      method:'GET',
+      data:{query:"query"},
+      dataType:'json'})
+      .done(function(data){
+        console.log(data);
+      })  
 
 
     // email().then(data=>{

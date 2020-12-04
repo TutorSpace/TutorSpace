@@ -284,7 +284,9 @@ bg-student
             }
         });
         function tutorVerification_upload() {
-            bootbox.dialog({
+            var file = $("#tutor-verification-file")[0].files[0];
+            if (file && !fileTypeError){
+                bootbox.dialog({
                 message: `@include('home.partials.tutorVerification--upload_success')`,
                 size: 'medium',
                 onEscape: true,
@@ -295,23 +297,110 @@ bg-student
                     label: 'Close',
                     className: 'btn btn-primary p-3 px-5',
                     callback: storeReportAndSendNotifications()
-                },
+                    },
+                    }
+                });
+            }else if (fileTypeError){
+                toastr.error("unsupported file type");
             }
-            });
+            else{
+                toastr.error("File cannot be empty");
+            }
         }
 
 
         // TODO: display Error Message
         function storeReportAndSendNotifications(){
             var file = $("#tutor-verification-file")[0].files[0];
-            alert(file);
             if (file){ // not empty
+               
                 uploadFile(file);
+                
+                
             }else{ // display error message
-            
+                return false;
             }
         }
-        
+
+        // check mime type promise: return true if it's accepted file type, else false
+        function checkMimeType(file)
+        {
+            return new Promise(function(resolve, reject){
+                try{
+                    const filereader = new FileReader();
+                    filereader.onloadend = function(evt) {
+                        console.log(filereader);
+                        if (evt.target.readyState === FileReader.DONE) {
+                            const uint = new Uint8Array(evt.target.result)
+                            let bytes = []
+                            uint.forEach((byte) => {
+                                bytes.push(byte.toString(16))
+                            })
+                            const hex = bytes.join('').toUpperCase()
+                            console.log(hex);
+                            resolve(correctMimetype(hex));
+                            return;
+                        }
+                    }
+                    const blob = file.slice(0, 4);
+                    filereader.readAsArrayBuffer(blob);
+                }catch (err){
+                    reject("error");
+                }
+            })      
+        }
+
+        const correctMimetype = (signature) => {
+            switch (signature) {
+                // pdf
+                case '25504446':
+                // jpg
+                case 'FFD8FFDB':
+                case 'FFD8FFE0':
+                // jpeg
+                case 'FFD8FFEE':
+                case 'FFD8FFE1':
+                // png
+                case '89504E47':
+                case '504B0304':
+                // doc, xls, ppt, msg
+                case 'D0CF11E0':
+                // rtf
+                case '7B5C7274':
+                // docx
+                case '504B0304':
+                // xlsx
+                case '504B0708':
+                    return true;
+                default:
+                    return false;
+                }
+        }
+
+        var fileTypeError = false;
+        $("#tutor-verification-file").change(function () {
+            const fileInput = $(this)[0];
+            const file = fileInput.files[0];
+            
+            if (file){ // file exists
+                checkMimeType(file).then(acceptedMime =>{
+                    if (acceptedMime){ // accepted mime type 
+                        var fileName = fileInput.value.split("\\").pop();
+                        if (fileName.length > 20){
+                            fileName = fileName.substring(0, 20)+"...";
+                        }
+                        $("#upload-caption").html(fileName);
+                        fileTypeError = false;
+                    }
+                    else{ // unaccepted mime type
+                        $("#upload-caption").html("unsupported file type");
+                        fileTypeError = true;
+                    }
+                });
+            }else{ // file doesn't exist
+                $("#upload-caption").html("Upload File");
+            }
+        })
 
         function uploadFile(file){
             var formData = new FormData();
@@ -327,28 +416,15 @@ bg-student
             processData: false,
             
             success: function success(data) {
-                // toastr.success('Successfully uploaded the image!');
-                alert("sent")
-                // $('#profile-image').attr('src', storageUrl + data.imgUrl);
-                // console.log(storageUrl + data.imgUrl);
-                // $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
-                return data;
+                toastr.success('Successfully uploaded the file!');
+                location.reload();
             },
             error: function error(_error) {
-                // toastr.error('Something went wrong. Please try again.');
-                // console.log(_error);
+                toastr.error('Something went wrong. Please try again.');
                 return false;
             }
             });
         }
-
-
-
-
-
-
-
-
 
     });
 </script>
