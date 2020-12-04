@@ -39,7 +39,7 @@
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
-                <span>Profile Settings</span>
+                <span class="noti">Profile Settings</span>
             </a>
         </li>
     </ul>
@@ -74,10 +74,24 @@
         </li>
         <li @if(Route::current()->getName() == 'home.profile') class="active" @endif>
             <a href="{{ route('home.profile') }}">
-                <span>Profile Settings</span>
+        
+                <div class="menu-bar-notification">
+                    <span>Profile Settings</span>
+                    @if(Auth::user()->tutor_verification_status == "unsubmitted")
+                        <span class="notification-dot">   
+                            <svg  width="7" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                            </svg>
+                        </span>
+                    @endif
+                </div>
+                
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
+                
+                
+
             </a>
         </li>
     </ul>
