@@ -15,12 +15,7 @@ class TutorProfileVerificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
-    {
-        echo 222;
-        dd("ac");
-        //
-    }
+    
     public function sendVerificationEmails(Request $request) {
         $request->validate([
             'tutor-verification-file' => [
@@ -45,11 +40,10 @@ class TutorProfileVerificationController extends Controller
             // send to user
             $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
             // send to tutorspace
-            Notification::route('mail', "huan773@usc.edu")
+            Notification::route('mail', "tutorspaceusc@gmail.com")
             ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
 
             echo $mimeType;
         }
-        
     }
 }
