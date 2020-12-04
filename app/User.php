@@ -467,4 +467,9 @@ class User extends Authenticatable
         foreach($tutors as $tutor)
             $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
     }
+
+    // Payments
+    public function paymentMethod() {
+        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
+    }
 }
