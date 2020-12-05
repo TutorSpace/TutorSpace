@@ -42,7 +42,7 @@ class ChattingController extends Controller
             $msg->from = $from;
             $msg->to = $to;
             $msg->message = $content;
-            $msg->is_read = true;
+            $msg->is_read = false;
             $msg->save();
             broadcast(new NewMessage($msg));
             return 'success';

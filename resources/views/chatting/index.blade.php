@@ -92,10 +92,8 @@ bg-student
                     appendMyMessage(message, 'Now');
                 }
                 scrollToBottom();
-
-
             } else {
-                // todo: upadte the unread status accordingly
+                $(`.msg[data-user-id=${otherUserId}]`).addClass('unread');
             }
 
             $(`.msg[data-user-id=${otherUserId}] .content-2`).html(message);
