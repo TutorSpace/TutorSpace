@@ -71,15 +71,6 @@ bg-student select2-bg-student
                             <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                         </svg>
                         <select class="custom-select" name="tags[]" multiple="multiple" id="create-tags" required>
-                            @foreach (App\Tag::all() as $tag)
-                                <option value="{{ $tag->id }}"
-                                    @if(in_array($tag->id, old('tags') ?? explode(',', $postDraft->tags)))
-                                        selected
-                                    @endif
-                                    >
-                                    {{ $tag->tag }}
-                                </option>
-                            @endforeach
                         </select>
                         <div class="input-group-prepend">
                             <svg>
@@ -120,9 +111,7 @@ bg-student select2-bg-student
 
 @section('js')
 
-@guest
-    @include('partials.nav-auth-js')
-@endguest
+@include('partials.nav-auth-js')
 
 
 <script>

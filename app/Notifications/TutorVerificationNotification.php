@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class TutorVerificationNotification extends Notification
+class TutorVerificationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -47,8 +47,8 @@ class TutorVerificationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        
-        // for user email 
+
+        // for user email
         if ($this->isUserVerifyMessage){
             return (new MailMessage)
                     ->line('We have received your verification request. ')
@@ -69,7 +69,7 @@ class TutorVerificationNotification extends Notification
                       ])
                     ->line('Thank you for using our application!');
         }
-        
+
     }
 
     /**

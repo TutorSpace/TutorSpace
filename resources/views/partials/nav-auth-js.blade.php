@@ -1,4 +1,3 @@
-
 <script>
     @auth
         let loggedIn = true;

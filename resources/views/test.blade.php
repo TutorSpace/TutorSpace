@@ -47,7 +47,7 @@
     var num = 0;
 
     // key down triggers ajax for auto complete
-    $("#test-input").keydown(function () {
+    $("#test-input").keyup(function () {
         // used for avoid redundant ajax
         num += 1;
         var curNum = num;
