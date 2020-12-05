@@ -56,10 +56,7 @@ bg-grey-light body-signup select2-bg-tutor
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                     </svg>
-                    <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
-                        @foreach (App\Course::all() as $course)
-                            <option value="{{ $course->id }}">{{ $course->course }}</option>
-                        @endforeach
+                    <select class="courses" name="courses[]" multiple="multiple" id="courses" required>
                     </select>
                     <div class="input-group-prepend">
                         <svg>

@@ -11,7 +11,17 @@ Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
 
 // autocomplete
-Route::get('/autocomplete/data-source', 'AutoCompleteController@getData')->name('autocomplete');
+Route::group([
+    'prefix' => 'autocomplete'
+], function() {
+    Route::get('/data-source', 'AutoCompleteController@getData')->name('autocomplete');
+    Route::get('/data-source/majors', 'AutoCompleteController@getMajors')->name('autocomplete.majors');
+    Route::get('/data-source/minors', 'AutoCompleteController@getMinors')->name('autocomplete.minors');
+    Route::get('/data-source/courses', 'AutoCompleteController@getCourses')->name('autocomplete.courses');
+    Route::get('/data-source/tags', 'AutoCompleteController@getTags')->name('autocomplete.tags');
+    Route::get('/data-source/school-years', 'AutoCompleteController@getSchoolYears')->name('autocomplete.school-years');
+});
+
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
