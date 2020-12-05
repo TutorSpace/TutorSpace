@@ -53,7 +53,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             User::updateVerifyStatus();
             echo "Successfully update is_tutor_verified: " . now() . "\n";
-        })->everyMinute();
+        })->everyThirtyMinutes();
     }
 
     /**

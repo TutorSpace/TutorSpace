@@ -419,13 +419,13 @@ class User extends Authenticatable
         //verified users update
         User::whereIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '1'
-        ]);        
-        
+        ]);
+
         // unverified users update
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
-        ]);     
-        
+        ]);
+
     }
 
     // check whether the user with $user_id is bookmarked by the current user
@@ -461,7 +461,6 @@ class User extends Authenticatable
         return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
     }
 
-    // IMPORTANT: must run scheduler in prod env
     public function clearTutorAvailableTime() {
         $tutors = User::where('is_tutor', 1)->get();
         foreach($tutors as $tutor)
@@ -470,6 +469,6 @@ class User extends Authenticatable
 
     // Payments
     public function paymentMethod() {
-        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
+        // return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
     }
 }
