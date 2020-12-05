@@ -368,6 +368,7 @@ bg-student
                 // rtf
                 case '7B5C7274':
                 // docx
+                case '504B34':
                 case '504B0304':
                 // xlsx
                 case '504B0708':
@@ -384,6 +385,7 @@ bg-student
             
             if (file){ // file exists
                 checkMimeType(file).then(acceptedMime =>{
+                    
                     if (acceptedMime){ // accepted mime type 
                         var fileName = fileInput.value.split("\\").pop();
                         if (fileName.length > 20){

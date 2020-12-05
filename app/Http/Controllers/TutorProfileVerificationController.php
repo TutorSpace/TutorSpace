@@ -15,7 +15,7 @@ class TutorProfileVerificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
+
     public function sendVerificationEmails(Request $request) {
         $request->validate([
             'tutor-verification-file' => [
@@ -26,7 +26,7 @@ class TutorProfileVerificationController extends Controller
         ]);
 
         $mimeType = $request->file("tutor-verification-file")->getMimeType();
-        
+        dd($mimeType);
         // file exists
         if ($request->file("tutor-verification-file")){
             $user = Auth::user();
@@ -36,7 +36,7 @@ class TutorProfileVerificationController extends Controller
 
             // store user file
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
-         
+            
             // send to user
             $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
             // send to tutorspace
