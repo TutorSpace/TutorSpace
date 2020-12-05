@@ -175,10 +175,6 @@ Route::group([
 Route::post('/course-add-remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth'])->withoutMiddleware(InvalidUser::class);
 Route::post('/tag-add-remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
 
-// autocomplete
-Route::post('/gethint', 'GeneralController@getHint');
-
-
 // notifications
 Route::group([
     'prefix' => 'notifications',
@@ -205,10 +201,9 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
-    // Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 });
 
-// tutor
+// tutor verification
 Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 
 // sessions
@@ -225,9 +220,6 @@ Route::group([
 ], function() {
     Route::get('/', 'HelpCenterController@index')->name('help-center.index');
 });
-
-
-// testing
 
 
 // Stripe testing
