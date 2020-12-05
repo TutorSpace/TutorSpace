@@ -50,4 +50,13 @@ class Chatroom extends Model
         ->message;
     }
 
+    public static function haveChatroom($user1, $user2) {
+        $userId1 = $user1->id;
+        $userId2 = $user2->id;
+
+        return Chatroom::where(function($query) use($userId1, $userId2) {
+            $query->where('user_id_1', $userId1 < $userId2 ? $userId1 : $userId2)->where('user_id_2', $userId1 > $userId2 ? $userId1 : $userId2);
+        })->exists();
+    }
+
 }
