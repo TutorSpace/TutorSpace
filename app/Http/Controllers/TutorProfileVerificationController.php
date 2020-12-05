@@ -10,6 +10,7 @@ use App\Notifications\TutorVerificationNotification;
 class TutorProfileVerificationController extends Controller
 {
     public function sendVerificationEmails(Request $request) {
+
         $request->validate([
             'tutor-verification-file' => [
                 'required',
@@ -37,6 +38,7 @@ class TutorProfileVerificationController extends Controller
             Notification::route('mail', "tutorspaceusc@gmail.com")
             ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
         }
+
 
     }
 }

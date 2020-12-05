@@ -51,11 +51,11 @@ class TutorVerificationNotification extends Notification implements ShouldQueue
         // for user email
         if ($this->isUserVerifyMessage){
             return (new MailMessage)
+                    ->greeting('Dear ' . $notifiable->first_name)
                     ->line('We have received your verification request. ')
                     ->line('We will verify your account as soon as possible.')
                     ->action('Go back to TutorSpace', url('/'))
                     ->line('Thank you for using our application!');
-        // for tutorspace email, need to verify user's screenshot
         }
         else{
             $url = Storage::url($this->fileUrl);

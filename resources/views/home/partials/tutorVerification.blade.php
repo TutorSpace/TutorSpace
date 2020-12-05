@@ -13,7 +13,7 @@
             <p id="upload-caption">Upload File</p>
             <div class="mt-3 btn btn-primary text-center" id="upload-file-button">
                 <label class="pt-1 pb-0 px-5" for="tutor-verification-file">click here</label>
-                <input type="file" name="file" id="tutor-verification-file" />
+                <input type="file" id="tutor-verification-file" />
             </div>
         </div>
     </div>
