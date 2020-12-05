@@ -41,7 +41,6 @@ bg-student
                 <p class="heading">Tutor verification submitted</p>
             </div>
         </div>
-
         @endif
 
         <form class="container col-layout-2 profile" autocomplete="off"
@@ -303,7 +302,7 @@ bg-student
                 Submit: {
                     label: 'Submit',
                     className: 'btn btn-primary p-3 px-5',
-                    callback: 'tutorVerificationUpload'
+                    callback: tutorVerificationUpload
                 },
             }
         });
@@ -311,34 +310,11 @@ bg-student
         function tutorVerificationUpload() {
             var file = $("#tutor-verification-file")[0].files[0];
             if (file && !fileTypeError) {
-                bootbox.dialog({
-                    message: `@include('home.partials.tutorVerification--upload_success')`,
-                    size: 'medium',
-                    onEscape: true,
-                    backdrop: true,
-                    centerVertical: true,
-                    buttons: {
-                        Close: {
-                            label: 'Close',
-                            className: 'btn btn-primary p-3 px-5',
-                            callback: storeReportAndSendNotifications()
-                        },
-                    }
-                });
+                uploadFile(file);
             } else if (fileTypeError) {
                 toastr.error("unsupported file type");
             } else {
                 toastr.error("File cannot be empty");
-            }
-        }
-
-
-        function storeReportAndSendNotifications() {
-            var file = $("#tutor-verification-file")[0].files[0];
-            if (file) { // not empty
-                uploadFile(file);
-            } else { // display error message
-                return false;
             }
         }
 
@@ -430,11 +406,18 @@ bg-student
                 contentType: false,
                 processData: false,
 
-                success: function success(data) {
-                    toastr.success('Successfully uploaded the file!');
-                    location.reload();
+                success: () => {
+                    bootbox.dialog({
+                        message: `@include('home.partials.tutorVerification--upload_success')`,
+                        size: 'medium',
+                        centerVertical: true,
+                    });
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
                 },
-                error: function error(_error) {
+                error: () => {
                     toastr.error('Something went wrong. Please try again.');
                     return false;
                 }

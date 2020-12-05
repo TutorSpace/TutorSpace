@@ -14,7 +14,7 @@ class TutorProfileVerificationController extends Controller
             'tutor-verification-file' => [
                 'required',
                 'file',
-                'mimes:jpeg,jpg,png,pdf,xls,xlsx,doc,docx,txt,rtf, odt,ppt,msg'
+                'mimes:jpeg,jpg,png,pdf,xls,xlsx,doc,docx,txt,rtf,odt,ppt,msg'
             ]
         ]);
 
@@ -32,11 +32,10 @@ class TutorProfileVerificationController extends Controller
 
             // send to user
             $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
-            // send to tutorspace
-            Notification::route('mail', "huan773@usc.edu")
-            ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
 
-            echo $mimeType;
+            // send to tutorspace
+            Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
         }
 
     }
