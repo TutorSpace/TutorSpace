@@ -1,5 +1,14 @@
 $('#tags').select2({
-    placeholder: "Add post tags here..."
+    placeholder: "Add post tags here...",
+    ajax: {
+        url: '/autocomplete/data-source/tags',
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    }
 });
 
 $('.forum-left__list-item').click(function() {
@@ -46,7 +55,16 @@ $(window).resize(function () {
     adjustScrollBtnVisibility();
     if($(window).width() <= 1200) {
         $('#tags').select2({
-            placeholder: "Add post tags here..."
+            placeholder: "Add post tags here...",
+            ajax: {
+                url: '/autocomplete/data-source/tags',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                }
+            }
         });
     }
 });
@@ -58,7 +76,16 @@ $('.forum-content__search__search-by').change(function() {
         $('.forum-content__search .tags-container').removeClass('hidden');
         $('.keyword-search').addClass('hidden');
         $('#tags').select2({
-            placeholder: "Add post tags here..."
+            placeholder: "Add post tags here...",
+            ajax: {
+                url: '/autocomplete/data-source/tags',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                }
+            }
         });
     }
     else {

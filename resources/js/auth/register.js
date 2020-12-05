@@ -82,12 +82,11 @@ $('select').filter('[required]').on('change', function() {
 
 $('svg').click(function() {
     let route = $(this).attr('data-back-href');
-    if(route)
-        window.location.href = route;
+    if(route) window.location.href = route;
 });
 
 
-$('.custom-select').select2({});
+$('.register-select2').select2({});
 
 $('.majors').select2({
     ajax: {

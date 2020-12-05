@@ -289,9 +289,7 @@ index
     });
 
 </script>
-@guest
-    @include('partials.nav-auth-js')
-@endguest
+@include('partials.nav-auth-js')
 @endsection
 
 

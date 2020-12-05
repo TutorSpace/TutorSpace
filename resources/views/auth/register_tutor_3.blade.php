@@ -29,7 +29,7 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('first-major') invalid @enderror">
-                    <select class="majors" name="first-major" required>
+                    <select class="custom-select majors" name="first-major" required>
                         <option selected disabled class="fc-grey" value="">Major</option>
                     </select>
                     <div class="input-group-prepend">
@@ -46,7 +46,7 @@ bg-grey-light body-signup select2-bg-tutor
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('second-major') invalid @enderror">
-                    <select class="majors" name="second-major">
+                    <select class="custom-select majors" name="second-major">
                         <option selected disabled class="fc-grey" value="">Second Major (optional)</option>
                     </select>
                     <div class="input-group-prepend">
@@ -64,7 +64,7 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="multiple-inputs p-relative">
                 <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
-                    <select class="school-years" name="school-year" required>
+                    <select class="custom-select school-years" name="school-year" required>
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
                     </select>
                     <div class="input-group-prepend">
@@ -74,7 +74,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </div>
                 </div>
                 <div class="input-group select-container p-relative @error('gpa') invalid @enderror">
-                    <select class="custom-select" name="gpa" required>
+                    <select class="custom-select register-select2" name="gpa" required>
                         <option selected disabled class="fc-grey" value="">GPA</option>
                         <option value="0">N/A</option>
                         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)

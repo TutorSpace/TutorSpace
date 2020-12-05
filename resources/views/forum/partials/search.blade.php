@@ -18,17 +18,6 @@
         <div class="input-content p-relative tags-container @if(!old('search-by') || old('search-by') == 'keywords') hidden @endif">
             <div class="input-group select-container p-relative select-container-icon">
                 <select class="custom-select hidden" name="tags[]" multiple="multiple" id="tags" required>
-                    @foreach (App\Tag::all() as $tag)
-                        <option value="{{ $tag->id }}"
-                            @if (old('search-by') == 'tags')
-                                @if (in_array($tag->id, old('tags') ?? []))
-                                    selected
-                                @endif
-                            @endif
-                            >
-                            {{ $tag->tag }}
-                        </option>
-                    @endforeach
                 </select>
                 <div class="input-group-prepend forum-search-component">
                     <svg class="select-container__icon" id="svg-tags">

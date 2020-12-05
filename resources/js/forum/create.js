@@ -5,5 +5,14 @@ $('.btn-post-type').click(function() {
 });
 
 $('#create-tags').select2({
-    placeholder: "Add post tags here..."
+    placeholder: "Add post tags here...",
+    ajax: {
+        url: '/autocomplete/data-source/tags',
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    }
 });

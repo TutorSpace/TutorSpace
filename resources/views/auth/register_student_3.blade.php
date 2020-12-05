@@ -30,7 +30,7 @@ bg-grey-light body-signup select2-bg-student
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('first-major') invalid @enderror">
-                    <select class="majors" name="first-major">
+                    <select class="custom-select majors" name="first-major">
                         <option selected disabled class="fc-grey" value="">Major</option>
                     </select>
                     <div class="input-group-prepend">
@@ -47,7 +47,7 @@ bg-grey-light body-signup select2-bg-student
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('second-major') invalid @enderror">
-                    <select class="majors" name="second-major">
+                    <select class="custom-select majors" name="second-major">
                         <option selected disabled class="fc-grey" value="">Second Major (optional)</option>
                     </select>
                     <div class="input-group-prepend">
@@ -64,7 +64,7 @@ bg-grey-light body-signup select2-bg-student
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
-                    <select class="school-years" name="school-year">
+                    <select class="custom-select school-years" name="school-year">
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
                     </select>
                     <div class="input-group-prepend">
