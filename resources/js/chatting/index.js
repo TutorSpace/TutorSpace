@@ -87,7 +87,7 @@ function appendOtherMessage(message, time) {
     let el =
     `<div class="message message--other">
         <div class="img-container">
-            <img src="https://storage.googleapis.com/tutorspace-storage/user-profile-photos/placeholder.png" alt="user img">
+            <img src="${$('.message--other img').attr('src')}" alt="user img">
         </div>
         <div class="message-content-container">
             <span class="content">
