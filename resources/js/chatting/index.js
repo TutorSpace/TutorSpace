@@ -33,11 +33,11 @@ $('.msg').click(function() {
     channel.bind('NewMessage', function(data) {
         let {from, to, message, created_at} = data;
 
-        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image.
+        // todo: upadte the unread status accordingly
         if(from == currentUserId) {
-            appendMyMessage(message, created_at);
+            appendMyMessage(message, 'Now');
         } else {
-            appendOtherMessage(message, created_at);
+            appendOtherMessage(message, 'Now');
         }
         scrollToBottom();
     });
