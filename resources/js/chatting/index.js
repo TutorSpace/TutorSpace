@@ -32,14 +32,19 @@ $('.msg').click(function() {
     var channel = pusher.subscribe(channelName);
     channel.bind('NewMessage', function(data) {
         let {from, to, message, created_at} = data;
+        let currentlyViewingId = $('.msg .box').closest('.msg').attr('data-user-id');
+
+        if(from == currentlyViewingId && to == currentUserId) {
+            appendOtherMessage(message, 'Now');
+            scrollToBottom();
+        } else if(from == currentUserId && to == currentlyViewingId) {
+            appendMyMessage(message, 'Now');
+            scrollToBottom();
+        }
 
         // todo: upadte the unread status accordingly
-        if(from == currentUserId) {
-            appendMyMessage(message, 'Now');
-        } else {
-            appendOtherMessage(message, 'Now');
-        }
-        scrollToBottom();
+
+
     });
 });
 
