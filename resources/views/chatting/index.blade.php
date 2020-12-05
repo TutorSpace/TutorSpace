@@ -81,7 +81,7 @@ bg-student
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
             let {from, to, message, created_at} = data;
-            let currentlyViewingId = $('.msg .box').closest('.msg').attr('data-user-id');
+            let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
 
