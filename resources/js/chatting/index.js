@@ -1,4 +1,44 @@
-const { success } = require("toastr");
+var pusher = new Pusher('d8a4fc3115898457a40f', {
+    cluster: 'us3',
+    authEndpoint: '/broadcasting/auth',
+    encrypted: true,
+    auth: {
+        headers: {
+            'X-CSRF-Token': $("meta[name=csrf-token]").attr('content')
+        }
+    }
+});
+
+$('.msg').click(function() {
+    $('.msg .box').removeClass('bg-grey-light');
+    $(this).find('.box').addClass('bg-grey-light');
+    let otherUserId = $(this).attr('data-user-id');
+    $.ajax({
+        type:'GET',
+        url: '/chatting/get-messages',
+        data: {
+            'userId': otherUserId
+        },
+        success: (data) => {
+            $(this).removeClass('unread');
+            $('.chatting__content').html(data);
+            scrollToBottom();
+            appendSendMsgFunc();
+        }
+    });
+
+    // subscribe to the channel
+    let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+    var channel = pusher.subscribe(channelName);
+    channel.bind('NewMessage', function(data) {
+        data = data.message;
+        let {from, to, message, is_read, created_at} = data;
+
+        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image.
+        appendOtherMessage(message, 'Now'); // I am guranteed to receive the message that is not sent by myself
+    });
+});
+
 
 function scrollToBottom() {
     $('.chatting__content__messages').scrollTop($('.chatting__content__messages')[0].scrollHeight);
@@ -59,47 +99,5 @@ function appendOtherMessage(message, time) {
     $('.chatting__content__messages').append(el);
 }
 
-$('.msg').click(function() {
-    $('.msg .box').removeClass('bg-grey-light');
-    $(this).find('.box').addClass('bg-grey-light');
-    let otherUserId = $(this).attr('data-user-id');
-    $.ajax({
-        type:'GET',
-        url: '/chatting/get-messages',
-        data: {
-            'userId': otherUserId
-        },
-        success: (data) => {
-            $(this).removeClass('unread');
-            $('.chatting__content').html(data);
-            scrollToBottom();
-            appendSendMsgFunc();
-        }
-    });
-
-    // subscribe to the channel
-    let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
-    var channel = pusher.subscribe(channelName);
-    channel.bind('NewMessage', function(data) {
-        data = data.message;
-        let {from, to, message, is_read, created_at} = data;
-
-        // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image.
-        appendOtherMessage(message, 'Now'); // I am guranteed to receive the message that is not sent by myself
-    });
-});
-
-
-// ================= for chatting =======================
-var pusher = new Pusher('d8a4fc3115898457a40f', {
-    cluster: 'us3',
-    authEndpoint: '/broadcasting/auth',
-    encrypted: true,
-    auth: {
-        headers: {
-            'X-CSRF-Token': $("meta[name=csrf-token]").attr('content')
-        }
-    }
-});
 
 
