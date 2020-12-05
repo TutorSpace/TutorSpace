@@ -31,11 +31,15 @@ $('.msg').click(function() {
     let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
     var channel = pusher.subscribe(channelName);
     channel.bind('NewMessage', function(data) {
-        data = data.message;
-        let {from, to, message, is_read, created_at} = data;
+        let {from, to, message, created_at} = data;
 
         // todo: upadte the unread status accordingly, and customize the data being sent from the server to have Human Time and user image.
-        appendOtherMessage(message, 'Now'); // I am guranteed to receive the message that is not sent by myself
+        if(from == currentUserId) {
+            appendMyMessage(message, created_at);
+        } else {
+            appendOtherMessage(message, created_at);
+        }
+        scrollToBottom();
     });
 });
 
@@ -56,7 +60,7 @@ function appendSendMsgFunc() {
                     console.log(data);
                 }
             });
-            appendMyMessage($('#msg-to-send').val(), 'Now');
+            // appendMyMessage($('#msg-to-send').val(), 'Now');
             $('#msg-to-send').val('');
         }
         return false;
@@ -76,7 +80,6 @@ function appendMyMessage(message, time) {
     </div>`;
 
     $('.chatting__content__messages').append(el);
-    scrollToBottom();
 }
 
 function appendOtherMessage(message, time) {

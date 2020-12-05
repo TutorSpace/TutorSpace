@@ -41,7 +41,7 @@ class MessagePolicy
      */
     public function create(User $user, User $otherUser)
     {
-        return true; // if there's really the other user user, then it's correct
+        return $otherUser->id != $user->id; // if there's really the other user, then it's correct
     }
 
     /**
