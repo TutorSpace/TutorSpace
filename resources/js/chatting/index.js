@@ -34,17 +34,24 @@ $('.msg').click(function() {
         let {from, to, message, created_at} = data;
         let currentlyViewingId = $('.msg .box').closest('.msg').attr('data-user-id');
 
-        if(from == currentlyViewingId && to == currentUserId) {
-            appendOtherMessage(message, 'Now');
+        let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
+
+        if(currentViewing) {
+            if(from == currentlyViewingId && to == currentUserId) {
+                appendOtherMessage(message, 'Now');
+            } else if(from == currentUserId && to == currentlyViewingId) {
+                appendMyMessage(message, 'Now');
+            }
             scrollToBottom();
-        } else if(from == currentUserId && to == currentlyViewingId) {
-            appendMyMessage(message, 'Now');
-            scrollToBottom();
+
+
+        } else {
+            // todo: upadte the unread status accordingly
         }
 
-        // todo: upadte the unread status accordingly
-
-
+        let otherUserId = from == currentUserId ? to : from;
+        $(`.msg[data-user-id=${otherUserId}] .content-2`).html(message);
+        $(`.msg[data-user-id=${otherUserId}] .time`).html('Now');
     });
 });
 
