@@ -21,7 +21,7 @@ class TutorProfileVerificationController extends Controller
         $mimeType = $request->file("tutor-verification-file")->getMimeType();
 
         // file exists
-        if ($request->file("tutor-verification-file")){
+        if ($request->file("tutor-verification-file")) {
             $user = Auth::user();
             // change tutor state to submitted
             $user->tutor_verification_status = "submitted";

@@ -38,13 +38,13 @@ bg-student
         @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
-                <p class="heading">Tutor verification submitted</p>
+                <p class="heading">Tutor Verification Submitted</p>
             </div>
         </div>
         @endif
 
         <form class="container col-layout-2 profile" autocomplete="off"
-            action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }}@else {{ route('home.profile.update') }} @endif"
+            action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }} @else {{ route('home.profile.update') }} @endif"
             method="POST">
             @method('PUT')
             @csrf
