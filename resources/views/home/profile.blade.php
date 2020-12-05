@@ -246,21 +246,6 @@ bg-student
 
 {{-- autocomplete --}}
 <script>
-    let majors = [
-        @foreach(App\ Major::all() as $major)
-        "{{ $major->major }}",
-        @endforeach
-    ];
-    let minors = [
-        @foreach(App\ Minor::all() as $minor)
-        "{{ $minor->minor }}",
-        @endforeach
-    ];
-    let schoolYears = [
-        @foreach(App\ SchoolYear::all() as $schoolYear)
-        "{{ $schoolYear->school_year }}",
-        @endforeach
-    ];
     let gpa = [
         @for($i = 4.00; $i >= 1.00; $i -= 0.01)
         "{{ number_format($i, 2) }}",
@@ -270,16 +255,6 @@ bg-student
         @for($i = 10; $i <= 50; $i += 1)
         "{{ number_format($i, 1) }}",
         @endfor
-    ];
-    let courses = [
-        @foreach(App\ Course::all() as $course)
-        "{{ $course->course }}",
-        @endforeach
-    ];
-    let tags = [
-        @foreach(App\ Tag::all() as $tag)
-        "{{ $tag->tag }}",
-        @endforeach
     ];
 
 </script>

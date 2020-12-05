@@ -10,6 +10,9 @@ Route::get('/test', 'testController@index')->middleware('isTutor');;
 Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
 
+// autocomplete
+Route::get('/autocomplete/data-source', 'AutoCompleteController@getData')->name('autocomplete');
+
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
 
