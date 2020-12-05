@@ -130,7 +130,7 @@ bg-student
                     @if (Auth::user()->is_tutor)
                     <div class="profile__form-row mt-3">
                         <div class="input-introduction">
-                            <label for="" class="profile__label">Introduction</label>
+                            <label for="" class="profile__label">Introduction (optional)</label>
                             <textarea name="introduction" rows="5" class="profile__input form-control form-control-lg"
                                 readonly>{{ Auth::user()->introduction }}</textarea>
                         </div>
@@ -272,12 +272,14 @@ bg-student
                 Decline: {
                     label: 'Cancel',
                     className: 'btn btn-outline-primary mr-2 p-3 px-5',
-                    callback: function () {}
+                    callback: function() {}
                 },
                 Submit: {
                     label: 'Submit',
                     className: 'btn btn-primary p-3 px-5',
-                    callback: tutorVerificationUpload
+                    callback: function() {
+                        tutorVerificationUpload();
+                    }
                 },
             }
         });
@@ -381,7 +383,7 @@ bg-student
                 contentType: false,
                 processData: false,
 
-                success: () => {
+                success: (data) => {
                     bootbox.dialog({
                         message: `@include('home.partials.tutorVerification--upload_success')`,
                         size: 'medium',

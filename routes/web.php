@@ -12,14 +12,14 @@ Route::get('/test2', 'testController@index2');
 
 // autocomplete
 Route::group([
-    'prefix' => 'autocomplete'
+    'prefix' => 'autocomplete',
 ], function() {
-    Route::get('/data-source', 'AutoCompleteController@getData')->name('autocomplete');
-    Route::get('/data-source/majors', 'AutoCompleteController@getMajors')->name('autocomplete.majors');
-    Route::get('/data-source/minors', 'AutoCompleteController@getMinors')->name('autocomplete.minors');
-    Route::get('/data-source/courses', 'AutoCompleteController@getCourses')->name('autocomplete.courses');
-    Route::get('/data-source/tags', 'AutoCompleteController@getTags')->name('autocomplete.tags');
-    Route::get('/data-source/school-years', 'AutoCompleteController@getSchoolYears')->name('autocomplete.school-years');
+    Route::get('/data-source', 'AutoCompleteController@getData')->name('autocomplete')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/majors', 'AutoCompleteController@getMajors')->name('autocomplete.majors')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/minors', 'AutoCompleteController@getMinors')->name('autocomplete.minors')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/courses', 'AutoCompleteController@getCourses')->name('autocomplete.courses')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/tags', 'AutoCompleteController@getTags')->name('autocomplete.tags')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/school-years', 'AutoCompleteController@getSchoolYears')->name('autocomplete.school-years')->withoutMiddleware(InvalidUser::class);
 });
 
 

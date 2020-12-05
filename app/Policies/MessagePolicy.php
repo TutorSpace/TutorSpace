@@ -2,8 +2,9 @@
 
 namespace App\Policies;
 
-use App\Message;
 use App\User;
+use App\Message;
+use App\Chatroom;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class MessagePolicy
@@ -41,7 +42,9 @@ class MessagePolicy
      */
     public function create(User $user, User $otherUser)
     {
-        return true; // if there's really the other user user, then it's correct
+        // 1. I am not sending message to myself
+        // 2. There is already such a chatroom
+        return $otherUser->id != $user->id && Chatroom::haveChatroom($user, $otherUser);
     }
 
     /**
