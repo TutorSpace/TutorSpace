@@ -11,6 +11,10 @@ class Chatroom extends Model
 {
     public $timestamps = false;
 
+    // the user should listen to this channel
+    public function getChannelName() {
+        return 'chatroom.' . Auth::user()->id;
+    }
 
     // return true if the CURRENT user has unread messages
     public static function haveUnreadMessages($otherUserId) {
