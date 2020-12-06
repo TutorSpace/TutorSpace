@@ -419,13 +419,13 @@ class User extends Authenticatable
         //verified users update
         User::whereIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '1'
-        ]);        
-        
+        ]);
+
         // unverified users update
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
-        ]);     
-        
+        ]);
+
     }
 
     // check whether the user with $user_id is bookmarked by the current user
@@ -470,6 +470,6 @@ class User extends Authenticatable
 
     // Payments
     public function paymentMethod() {
-        return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
+        return $this->hasOne('App\PaymentMethod')->withDefault();
     }
 }
