@@ -261,7 +261,7 @@ bg-student
     $('.home__panel__button').on('click',function() {
         if($('.modal-verify-tutor')[0]) return;
         @php
-            $callbackFuncName = "tutorVerification_upload";
+            $callbackFuncName = "tutorVerificationUpload";
         @endphp
 
         bootbox.dialog({
@@ -283,42 +283,32 @@ bg-student
                 },
             }
         });
-        function tutorVerification_upload() {
+
+        function tutorVerificationUpload() {
             var file = $("#tutor-verification-file")[0].files[0];
             if (file && !fileTypeError){
-                bootbox.dialog({
-                message: `@include('home.partials.tutorVerification--upload_success')`,
-                size: 'medium',
-                onEscape: true,
-                backdrop: true,
-                centerVertical: true,
-                buttons: {
-                    Close: {
-                    label: 'Close',
-                    className: 'btn btn-primary p-3 px-5',
-                    callback: storeReportAndSendNotifications()
-                    },
-                    }
+                uploadFile(file).then(()=>{
+                    bootbox.dialog({
+                    message: `@include('home.partials.tutorVerification--upload_success')`,
+                    size: 'medium',
+                    onEscape: true,
+                    backdrop: true,
+                    centerVertical: true,
+                    buttons: {
+                        Close: {
+                        label: 'Close',
+                        className: 'btn btn-primary p-3 px-5',
+                        callback: function(){}
+                        },
+                        }
+                    });
                 });
+                
             }else if (fileTypeError){
                 toastr.error("unsupported file type");
             }
             else{
                 toastr.error("File cannot be empty");
-            }
-        }
-
-
-        // TODO: display Error Message
-        function storeReportAndSendNotifications(){
-            var file = $("#tutor-verification-file")[0].files[0];
-            if (file){ // not empty
-               
-                uploadFile(file);
-                
-                
-            }else{ // display error message
-                return false;
             }
         }
 
@@ -417,7 +407,10 @@ bg-student
             
             success: function success(data) {
                 toastr.success('Successfully uploaded the file!');
-                location.reload();
+                setTimeout(function(){
+                    location.reload();
+                }, 3000);
+                
             },
             error: function error(_error) {
                 toastr.error('Something went wrong. Please try again.');

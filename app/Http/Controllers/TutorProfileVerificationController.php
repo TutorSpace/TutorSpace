@@ -17,9 +17,6 @@ class TutorProfileVerificationController extends Controller
      */
     public function __invoke(Request $request)
     {
-        echo 222;
-        dd("ac");
-        //
     }
     public function sendVerificationEmails(Request $request) {
         $request->validate([
@@ -37,7 +34,7 @@ class TutorProfileVerificationController extends Controller
             $user = Auth::user();
             // change tutor state to submitted
             $user->tutor_verification_status = "submitted";
-            $user->save();
+            // $user->save();
 
             // store user file
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
