@@ -9,23 +9,21 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class TutorVerificationNotification extends Notification implements ShouldQueue
+class TutorVerificationNotification extends Notification
 {
     use Queueable;
 
     public $isUserVerifyMessage;
     public $fileUrl;
-    public $mimeType;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($isUserVerifyMessage, $fileUrl, $mimeType)
+    public function __construct($isUserVerifyMessage, $fileUrl)
     {
         $this->isUserVerifyMessage = $isUserVerifyMessage;
         $this->fileUrl = $fileUrl;
-        $this->mimeType= $mimeType;
     }
 
     /**
@@ -62,11 +60,8 @@ class TutorVerificationNotification extends Notification implements ShouldQueue
             $user = Auth::user();
             return (new MailMessage)
                     ->line("User ".$user->first_name." ".$user->last_name." requested a tutor verification.")
+                    ->line($url)
                     ->action('Verify', url('/'))
-                    ->attach($url, [
-                        'as' => 'verification',
-                        'mime' => $this->mimeType,
-                      ])
                     ->line('Thank you for using our application!');
         }
 
