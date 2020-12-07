@@ -15,10 +15,10 @@
     Try publishing an event to channel <code>my-channel</code>
     with event name <code>my-event</code>.
   </p> -->
-
-
-    <input id="test-input" placeholder="enter" />
-    <div id="content"></div>
+    <form action="{{ route('test.action') }}" method="GET">
+        <input type="file" name="file">
+        <button type="submit">submit</button>
+    </form>
 </body>
 <script>
     // delay with specified time, returns a promise

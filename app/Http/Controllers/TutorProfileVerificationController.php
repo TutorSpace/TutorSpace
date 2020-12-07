@@ -19,24 +19,22 @@ class TutorProfileVerificationController extends Controller
             ]
         ]);
 
-        $mimeType = $request->file("tutor-verification-file")->getMimeType();
-
         // file exists
         if ($request->file("tutor-verification-file")) {
             $user = Auth::user();
             // change tutor state to submitted
             $user->tutor_verification_status = "submitted";
-            $user->save();
+            // $user->save();
 
             // store user file
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
 
             // send to user
-            $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
+            $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
 
             // send to tutorspace
-            Notification::route('mail', "tutorspaceusc@gmail.com")
-            ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
+            Notification::route('mail', "shuaiqin@usc.edu")
+            ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
         }
 
 

@@ -18,7 +18,7 @@ class CheckIsTutor
     {
         $response = $next($request);
 
-        if(Auth::check() && Auth::user()->is_tutor) return $next($request);
+        if(Auth::check() && Auth::user()->is_tutor) return $response;
         else return redirect()->route('home');
     }
 }

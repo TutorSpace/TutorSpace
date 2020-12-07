@@ -41,29 +41,24 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
+        $tutor_verification_file = $request->file('file');
 
-        $query= Str::lower($request->input('query')) ;
+        Notification::route('mail', "shuaiqin@usc.edu")
+        ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
+        echo "success";
 
-        $data = Course::select('course')->where('course','like',  $query.'%')->get();
-        echo $data;
-        // if ($request->ajax()){
-        //     $query= $request->get('query');
-        //     if ($query != ''){
-        //         return view('index');
-        //     }else{
-        //         return view('index');
-        //     }
-        // }
     }
     public function index(Request $request) {
-        dd(Chatroom::haveChatroom(User::find(1), User::find(3)));
+
 
         return view('test');
+
+
 
     }
 
     public function index2(Request $request) {
-        event(new NewMessage(Message::find(36)));
+
     }
 
     public function test(Request $request) {
