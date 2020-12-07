@@ -64,10 +64,11 @@ class TutorVerificationNotification extends Notification
             return (new MailMessage)
                     ->line("User ".$user->first_name." ".$user->last_name." requested a tutor verification.")
                     ->action('Verify', url('/'))
-                    ->attach($url, [
-                        'as' => 'verification',
-                        'mime' => $this->mimeType,
-                      ])
+                    ->line($url)
+                    // ->attach($url, [
+                    //     'as' => 'verification',
+                    //     'mime' => $this->mimeType,
+                    //   ])
                     ->line('Thank you for using our application!');
         }
         

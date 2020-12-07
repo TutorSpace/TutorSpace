@@ -34,11 +34,11 @@ class TutorProfileVerificationController extends Controller
             $user = Auth::user();
             // change tutor state to submitted
             $user->tutor_verification_status = "submitted";
-            // $user->save();
+            $user->save();
 
             // store user file
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
-         
+            
             // send to user
             $user->notify(new TutorVerificationNotification(true, $tutor_verification_file, $mimeType));
             // send to tutorspace
@@ -46,6 +46,7 @@ class TutorProfileVerificationController extends Controller
             ->notify(new TutorVerificationNotification(false, $tutor_verification_file, $mimeType));
 
             echo $mimeType;
+
         }
         
     }
