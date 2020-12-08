@@ -232,14 +232,14 @@ Route::group([
 
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
-Route::get('/payment/stripe_pay_index', 'StripeApiController@payIndex');
-Route::get('/payment/stripe_save_card', 'StripeApiController@saveCardIndex');
-Route::get('/payment/list_cards', 'StripeApiController@listCards');
-Route::post('/payment/stripe_onboarding', 'StripeApiController@createAccountLink');
-Route::post('/payment/create_payment_intent', 'StripeApiController@createPaymentIntent');
-Route::post('/payment/create_setup_intent', 'StripeApiController@createSetupIntent');
-Route::post('/payment/stripe_refund', 'StripeApiController@refundCharge');
-Route::post('/payment/stripe_payout', 'StripeApiController@processPayout');
-Route::get('/payment/check', 'StripeApiController@checkAccountDetail');
-Route::post('/payment/create_payment_intent_with_card', 'StripeApiController@createPaymentIntentWithCard');
-Route::post('/payment/confirm_payment_intent', 'StripeApiController@confirmPaymentIntent');
+Route::get('/payment/stripe_pay_index', 'payment\StripeApiController@payIndex');
+Route::get('/payment/stripe_save_card', 'payment\StripeApiController@saveCardIndex');
+Route::get('/payment/list_cards', 'payment\StripeApiController@listCards');
+Route::post('/payment/stripe_onboarding', 'payment\StripeApiController@createAccountLink');
+Route::post('/payment/create_payment_intent', 'payment\StripeApiController@createPaymentIntent');
+Route::post('/payment/create_setup_intent', 'payment\StripeApiController@createSetupIntent');
+Route::post('/payment/stripe_refund', 'payment\StripeApiController@refundCharge');
+Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
+Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
+Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
+Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
