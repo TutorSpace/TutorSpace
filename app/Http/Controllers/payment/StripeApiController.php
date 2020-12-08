@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\payment;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -47,7 +47,7 @@ class StripeApiController extends Controller
         if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
             $account = Account::create([
                 'country' => 'US',
-                'type' => 'express',
+                'type' => 'standard',
             ]);
             $account_links = AccountLink::create([
                 'account' => $account->id,
