@@ -236,9 +236,9 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Forum Settings</h5>
-                    <div class="profile__form-row flex-wrap">
-
+                    <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
+                    <div class="profile__form-row flex-wrap payment">
+                        <a href="#" class="btn btn-link btn-primary btn-setup-payment">Set Up Payment Methods</a>
                     </div>
                 </div>
             </div>
