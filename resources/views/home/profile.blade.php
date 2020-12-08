@@ -166,6 +166,7 @@ bg-student
                             <input type="text"
                                 class="profile__input profile__input__courses form-control form-control-lg" id="course">
                         </div>
+                        @if (Auth::user()->is_tutor)
                         <div class="hourly-rate autocomplete">
                             <label for="hourly-rate" class="profile__label">Hourly Rate</label>
                             <div class="hourly-rate-input-container">
@@ -174,7 +175,7 @@ bg-student
                                     value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
                             </div>
                         </div>
-
+                        @endif
 
                         <div class="boxes boxes__course flex-100">
                             @foreach(Auth::user()->courses as $course)
@@ -233,6 +234,13 @@ bg-student
                         <p class="profile__label font-italic">Note: You can add at most 10 tags.</p>
                     </div>
                 </div>
+
+                <div class="profile__text-container--white">
+                    <h5 class="w-100 font-weight-bold mb-4">Forum Settings</h5>
+                    <div class="profile__form-row flex-wrap">
+
+                    </div>
+                </div>
             </div>
         </form>
 
@@ -248,6 +256,20 @@ bg-student
 
 {{-- autocomplete --}}
 <script>
+
+    $('#hourly-rate').on("change paste keyup", function() {
+        $.ajax({
+            type:'POST',
+            url: '{{ route('home.profile.hourly-rate.update') }}',
+            data: {
+                "hourly-rate": $('#hourly-rate').val()
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    });
+
     let gpa = [
         @for($i = 4.00; $i >= 1.00; $i -= 0.01)
         "{{ number_format($i, 2) }}",

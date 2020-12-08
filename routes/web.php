@@ -165,6 +165,7 @@ Route::group([
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
     Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
+    Route::post('/profile/hourly-rate', 'HomeController@updateHourlyRate')->name('home.profile.hourly-rate.update')->middleware('isTutor');
 });
 
 // view profile
