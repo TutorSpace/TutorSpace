@@ -9,12 +9,9 @@ use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
 use Illuminate\Support\Facades\Session;
-use Stripe\Balance;
 use Stripe\Customer;
 use Stripe\Refund;
 use Stripe\SetupIntent;
-use Stripe\Topup;
-use Stripe\Transfer;
 
 class StripeApiController extends Controller
 {
@@ -76,7 +73,7 @@ class StripeApiController extends Controller
             'currency' => 'usd',
             'customer' => $customer_id,
             'receipt_email' => Auth::user()->email,
-            // TODO:
+            // TODO: add metadata
             // 'application_fee_amount' => 123,
             // 'transfer_data' => [
             //     'destination' => '{{CONNECTED_STRIPE_ACCOUNT_ID}}',
@@ -154,7 +151,6 @@ class StripeApiController extends Controller
         if ($account->details_submitted) {
             $user = User::find(Auth::user()->id);
             $payment_method = $user->paymentMethod;
-            $payment_method->email = $user->email;
             $payment_method->stripe_account_id = $account->id;
             $payment_method->save();
             // TODO: change route
@@ -178,36 +174,6 @@ class StripeApiController extends Controller
         return view('payment.stripe_connect');
     }
 
-    // TODO: delete
-    // Pays out to current user
-    // Request should contain 'amount'
-    public function processPayout(Request $request) {
-        $amount = intval($request->get('amount'));
-        $balance = Balance::retrieve();
-        if ($balance->available[0]->amount < $amount) {
-            // $topup = Topup::create([
-            //     'amount' => $amount - $balance->available[0]->amount,
-            //     'currency' => 'usd',
-            //     'description' => 'Top-up on '.date("Y-m-d H:i:s"),
-            //     'statement_descriptor' => 'One-time top-up',
-            // ]);
-            // if ($topup->status != 'success') {
-            //     Session::put('status', 'failed');
-            //     return view('payment.stripe_connect');
-            // }
-            Session::put('status', 'failed');
-            return view('payment.stripe_connect');
-        }
-        $transfer = Transfer::create([
-            'amount' => $amount,
-            'currency' => 'usd',
-            'destination' => Auth::user()->stripe_account_id,
-        ]);
-        // TODO: database?
-        Session::put('status', 'success');
-        return view('payment.stripe_connect');
-    }
-
     // Gets the customer_id of current user
     // Creates one if it doesn't exist
     private function getCustomerId() {
@@ -220,7 +186,6 @@ class StripeApiController extends Controller
                 'email' => $user->email
             ]);
             $customer_id = $customer->id;
-            $payment_method->email = $user->email;
             $payment_method->stripe_customer_id = $customer_id;
             $payment_method->save();
         } else {
