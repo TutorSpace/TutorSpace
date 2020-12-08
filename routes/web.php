@@ -231,7 +231,7 @@ Route::group([
 
 
 // Stripe testing
-Route::get('/payment/stripe_index', 'StripeApiController@index');
+Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/stripe_pay_index', 'StripeApiController@payIndex');
 Route::get('/payment/stripe_save_card', 'StripeApiController@saveCardIndex');
 Route::get('/payment/list_cards', 'StripeApiController@listCards');
