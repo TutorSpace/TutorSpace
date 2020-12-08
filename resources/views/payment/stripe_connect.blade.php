@@ -4,6 +4,8 @@
     <title>Stripe demo</title>
     <meta name="description" content="A demo of a card payment on Stripe" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script   src="https://code.jquery.com/jquery-3.5.1.min.js"   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="   crossorigin="anonymous"></script>
+
 </head>
 <style>
     .hidden {
@@ -14,8 +16,35 @@
     <p class="result-message1 hidden">
         Login to
         <a href="" target="_blank">Stripe dashboard.</a>
+        
     </p>
+    <button id="setup-stripe-btn">Setup payouts on Stripe</button>
     <script defer>
+        
+        $("#setup-stripe-btn").click(function(){
+            postToConnectAccount().then((response)=>{
+                // redirect to create stripe account
+                if (response.stripe_url){
+                    window.location = response.stripe_url;
+                // TODO: error
+                }else{
+
+                }
+            
+            })
+        });
+
+        function postToConnectAccount(){
+            return $.ajax({
+            url:"{{ route('stripe_onboarding') }}",
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+            }
+            })
+        }
+
         var urls = {
             'refresh_url': "{!! URL::to('/payment/stripe_index') !!}",
             'return_url': "{!! URL::to('/payment/stripe_index') !!}",

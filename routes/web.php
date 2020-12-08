@@ -235,7 +235,7 @@ Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/stripe_pay_index', 'payment\StripeApiController@payIndex');
 Route::get('/payment/stripe_save_card', 'payment\StripeApiController@saveCardIndex');
 Route::get('/payment/list_cards', 'payment\StripeApiController@listCards');
-Route::post('/payment/stripe_onboarding', 'payment\StripeApiController@createAccountLink');
+Route::post('/payment/stripe_onboarding', 'payment\StripeApiController@createAccountLink')->name('stripe_onboarding');
 Route::post('/payment/create_payment_intent', 'payment\StripeApiController@createPaymentIntent');
 Route::post('/payment/create_setup_intent', 'payment\StripeApiController@createSetupIntent');
 Route::post('/payment/stripe_refund', 'payment\StripeApiController@refundCharge');
