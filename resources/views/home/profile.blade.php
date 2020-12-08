@@ -177,10 +177,11 @@ bg-student
 
 
                         <div class="boxes boxes__course flex-100">
-                            @foreach((Auth::user())->courses as $course)
+                            @foreach(Auth::user()->courses as $course)
                             <span class="box p-relative" type="button">
+                                @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id', Auth::id())->exists())
                                 <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512"
-                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z"
                                         fill="#FFCE00" />
@@ -188,6 +189,7 @@ bg-student
                                         d="M385.75 201.75L247.082 340.414C242.922 344.574 237.461 346.668 232 346.668C226.539 346.668 221.078 344.574 216.918 340.414L147.586 271.082C139.242 262.742 139.242 249.258 147.586 240.918C155.926 232.574 169.406 232.574 177.75 240.918L232 295.168L355.586 171.586C363.926 163.242 377.406 163.242 385.75 171.586C394.09 179.926 394.09 193.406 385.75 201.75V201.75Z"
                                         fill="#FAFAFA" />
                                 </svg>
+                                @endif
                                 <span class="label" data-course-id={{$course->id}}>{{ $course->course }}</span>
                                 <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">

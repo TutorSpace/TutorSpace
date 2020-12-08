@@ -50,7 +50,6 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-
         return view('test');
 
 

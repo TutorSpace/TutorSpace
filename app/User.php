@@ -408,11 +408,11 @@ class User extends Authenticatable
     }
 
     public static function updateVerifyStatus() {
-                // get id of verified users
+        // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
-        ->join("course_verifications", function($join){
-            $join->on("course_verifications.course_id","=","course_user.course_id")
-        ->on("course_verifications.user_id","=","course_user.user_id");
+        ->join("verified_courses", function($join){
+            $join->on("verified_courses.course_id","=","course_user.course_id")
+        ->on("verified_courses.user_id","=","course_user.user_id");
         })
         ->distinct();
 
@@ -425,7 +425,6 @@ class User extends Authenticatable
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
         ]);
-
     }
 
     // check whether the user with $user_id is bookmarked by the current user
