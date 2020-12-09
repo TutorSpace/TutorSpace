@@ -239,7 +239,7 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                            <a href="#" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</a>
+                            <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</button>
                         @else
 
                         @endif
@@ -258,6 +258,27 @@ bg-student
 
 @section('js')
 
+<script>
+     $("#btn-setup-payment").click(function(){
+            postToConnectAccount().then((response)=>{
+                // redirect to create stripe account
+                if (response.stripe_url){
+                    window.location = response.stripe_url;
+                // TODO: error
+                }else{
+
+                }
+            
+            })
+        });
+
+        function postToConnectAccount(){
+            return $.ajax({
+                url:"{{ route('stripe_onboarding') }}",
+                method:'POST',
+            })
+        }
+</script>
 {{-- autocomplete --}}
 <script>
 
