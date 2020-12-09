@@ -253,12 +253,19 @@
                 setup_future_usage: 'off_session'
             })
             .then(function(result) {
+                if (result.paymentIntent.status === 'succeeded') {
+                // The payment is complete!
+                    orderComplete(result.paymentIntent.id); 
+                }else{
+                    alert(result.paymentIntent.status)
+                }
+
                 if (result.error) {
                     // Show error to your customer
                     showError(result.error.message);
                 } else {
                     // The payment succeeded!
-                    orderComplete(result.paymentIntent.id);
+                    
                 }
             });
     };
