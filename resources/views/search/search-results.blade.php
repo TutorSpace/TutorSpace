@@ -80,7 +80,7 @@
             ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
-        <a class="btn btn-lg btn-chat btn-animation-y-sm" href="{{ route('chatting.index') }}">
+        <a class="btn btn-lg btn-chat btn-animation-y-sm">
             Chat
         </a>
         <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">

@@ -15,17 +15,15 @@ class TutorVerificationNotification extends Notification
 
     public $isUserVerifyMessage;
     public $fileUrl;
-    public $mimeType;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($isUserVerifyMessage, $fileUrl, $mimeType)
+    public function __construct($isUserVerifyMessage, $fileUrl)
     {
         $this->isUserVerifyMessage = $isUserVerifyMessage;
         $this->fileUrl = $fileUrl;
-        $this->mimeType= $mimeType;
     }
 
     /**
@@ -47,29 +45,26 @@ class TutorVerificationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        
-        // for user email 
+
+        // for user email
         if ($this->isUserVerifyMessage){
             return (new MailMessage)
+                    ->greeting('Dear ' . $notifiable->first_name)
                     ->line('We have received your verification request. ')
                     ->line('We will verify your account as soon as possible.')
                     ->action('Go back to TutorSpace', url('/'))
                     ->line('Thank you for using our application!');
-        // for tutorspace email, need to verify user's screenshot
         }
         else{
             $url = Storage::url($this->fileUrl);
             $user = Auth::user();
             return (new MailMessage)
                     ->line("User ".$user->first_name." ".$user->last_name." requested a tutor verification.")
+                    ->line($url)
                     ->action('Verify', url('/'))
-                    ->attach($url, [
-                        'as' => 'verification',
-                        'mime' => $this->mimeType,
-                      ])
                     ->line('Thank you for using our application!');
         }
-        
+
     }
 
     /**

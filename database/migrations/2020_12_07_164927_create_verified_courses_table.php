@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCourseVerificationsTable extends Migration
+class CreateVerifiedCoursesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class CreateCourseVerificationsTable extends Migration
      */
     public function up()
     {
- 
-        Schema::create('course_verifications', function (Blueprint $table) {
-            
+        Schema::create('verified_courses', function (Blueprint $table) {
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('user_id');
             $table->primary(array('user_id', 'course_id'));
@@ -32,6 +30,6 @@ class CreateCourseVerificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_verifications');
+        Schema::dropIfExists('verified_courses');
     }
 }

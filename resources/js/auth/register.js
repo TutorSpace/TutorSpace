@@ -82,15 +82,47 @@ $('select').filter('[required]').on('change', function() {
 
 $('svg').click(function() {
     let route = $(this).attr('data-back-href');
-    if(route)
-        window.location.href = route;
+    if(route) window.location.href = route;
 });
 
 
-$('.custom-select').select2({});
+$('.register-select2').select2({});
 
-$('#courses').select2({
-    placeholder: "Search by course number"
+$('.majors').select2({
+    ajax: {
+        url: '/autocomplete/data-source/majors',
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    }
+});
+
+$('.school-years').select2({
+    ajax: {
+        url: '/autocomplete/data-source/school-years',
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    }
+});
+
+$('.courses').select2({
+    placeholder: "Search by course number",
+    ajax: {
+        url: '/autocomplete/data-source/courses',
+        dataType: 'json',
+        processResults: function (data) {
+            return {
+                results: data
+            };
+        }
+    }
 });
 
 $('.select-clear').click(function() {

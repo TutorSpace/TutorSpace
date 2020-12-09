@@ -14,7 +14,7 @@ use App\Message;
 use App\Session;
 use App\Subject;
 use App\Bookmark;
-use App\CourseVerification;
+use App\Chatroom;
 
 use Carbon\Carbon;
 
@@ -22,16 +22,17 @@ use App\TutorRequest;
 use Facades\App\Post;
 use App\Characteristic;
 use App\Events\NewMessage;
+use App\CourseVerification;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use App\Notifications\Forum\MarkedAsBestReplyNotification;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\TutorVerificationNotification;
 use App\Notifications\EmailVerification;
+use Illuminate\Support\Facades\Notification;
 
-use Illuminate\Support\Str;
+use App\Notifications\TutorVerificationNotification;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
@@ -40,62 +41,29 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
+        $tutor_verification_file = $request->file('file');
 
-        $query= Str::lower($request->input('query')) ;
+        Notification::route('mail', "shuaiqin@usc.edu")
+        ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
+        echo "success";
 
-        $data = Course::select('course')->where('course','like',  $query.'%')->get();
-        echo $data;
-        // if ($request->ajax()){
-        //     $query= $request->get('query');
-        //     if ($query != ''){
-        //         return view('index');
-        //     }else{
-        //         return view('index');
-        //     }
-        // }
     }
     public function index(Request $request) {
 
         return view('test');
 
-        $currUser = Auth::user();
 
-        $isAvailable=true;
-        $isAvailable=true;
-        dd($isAvailable);
-        dd($currUser->tutorRequests);
-        // Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first()->id);
-        $session_start_time = explode(' ',TutorRequest::first()->session_start_time);
-        $date = $session_start_time[0];
-        $time = $session_start_time[1];
-        $day = Carbon::parse($date)->format('d');
 
-        dd(Carbon::parse(explode(' ',TutorRequest::first()->session_start_time)[0])->format('D'));
-
-        // $view = new View([
-        //     'viewed_at' => Carbon::now()
-        // ]);
-        // dd("here");
-
-        // // get daily post view count from the last 7 days
-        // $views = User::getViewCntWeek(1);
-        // // dd($posts);
-
-        // // dd($views);
-
-        // return view('test', [
-        //     'views' => $views
-        // ]);
     }
 
     public function index2(Request $request) {
-        event(new NewMessage(Message::find(36)));
+
     }
 
     public function test(Request $request) {
         $users = User::select("id")->where('is_tutor','1')->get();
         $test = CourseVerification::select("*")->get();
-        
+
         $testCount = count($test);
 
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
@@ -105,14 +73,14 @@ class testController extends Controller
                         })
                         ->distinct();
 
-        
+
         User::whereIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '1'
-            ]);              
-        
+            ]);
+
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
-            ]);     
+            ]);
         // $user = DB::table('course_user')->select("course_user.user_id")
         //         // ->join("items","items.user_id","=","users.id")
         //         ->join("jobs",function($join){
@@ -121,7 +89,7 @@ class testController extends Controller
         //         })
         //         ->get();
         dd($verifiedUsersQuery->get());
-      
+
         // $user = Auth::user();
         // $user->notify(new TutorVerificationNotification(false));
         // Notification::route('mail', "huan773@usc.edu")

@@ -33,7 +33,7 @@ bg-grey-light body-signup select2-bg-tutor
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
                     </svg>
-                    <select class="custom-select" name="hourly-rate" required>
+                    <select class="custom-select register-select2" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
                         @for ($i = 10; $i <= 50; $i += 1)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
@@ -56,10 +56,7 @@ bg-grey-light body-signup select2-bg-tutor
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-search')}}"></use>
                     </svg>
-                    <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
-                        @foreach (App\Course::all() as $course)
-                            <option value="{{ $course->id }}">{{ $course->course }}</option>
-                        @endforeach
+                    <select class="custom-select courses" name="courses[]" multiple="multiple" id="courses" required>
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -78,14 +75,6 @@ bg-grey-light body-signup select2-bg-tutor
                 </span>
                 @enderror
             </div>
-
-            <!-- Input field to test the livesearch feature
-            <form>
-                <select class="custom-select" name="courses[]" multiple="multiple" id="courses" required>
-                <input type="text" id="getHint" size="30">
-                <div id="livesearch"></div>
-            </form> -->
-
 
             <p class="fc-purple-secondary fs-1-6 font-weight-bold">
                 * You NEED to choose at least one course.

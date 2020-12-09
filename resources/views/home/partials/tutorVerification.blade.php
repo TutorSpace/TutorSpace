@@ -5,18 +5,21 @@
     </svg>
     <h4 class="w-100 text-center mb-5">Become a Verified Tutor</h4>
     <p class="text-dark">Please upload your USC Stars Report or transcript to complete tutor verification.</p>
-    
+
     <h5 class="w-100 mt-5">Submit Your Verification Request</h5>
-  
-    <p class="text-dark mt-5">Report Submission</p> 
-    <div class="mb-5">
+
+    <div class="my-3">
         <div class="d-flex flex-column justify-content-center align-items-center position-relative fc-grey fs-2-4 text-center" id="upload-file">
             <p id="upload-caption">Upload File</p>
             <div class="mt-3 btn btn-primary text-center" id="upload-file-button">
                 <label class="pt-1 pb-0 px-5" for="tutor-verification-file">click here</label>
-                <input type="file" name="file" id="tutor-verification-file" />
+                <input type="file" id="tutor-verification-file" />
             </div>
         </div>
     </div>
-    <p class="text-dark">Questions? Email us at tutorspaceusc@gmail.com</p> 
+
+    <span class="text-dark">
+        Questions? Email us at <a class="text-dark" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a>
+    </span>
+
 </div>

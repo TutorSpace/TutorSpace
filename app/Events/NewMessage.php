@@ -12,6 +12,8 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
+use Carbon\Carbon;
+
 class NewMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -43,5 +45,20 @@ class NewMessage implements ShouldBroadcastNow
     public function broadcastAs()
     {
         return 'NewMessage';
+    }
+
+    /**
+     * Get the data to broadcast.
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'from' => $this->message->from,
+            'to' => $this->message->to,
+            'message' => $this->message->message,
+            // 'created_at' => $this->message->created_at->diffForHumans(),
+        ];
     }
 }

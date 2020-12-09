@@ -66,7 +66,7 @@ Password: password
         1. Routing (*)
         2. Middleware (*)
         3. CSRF Protection
-        4. s (*)
+        4. Controllers (*)
         5. Requests (*)
         6. Responses
         7. Views

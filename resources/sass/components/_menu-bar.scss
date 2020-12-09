@@ -20,15 +20,17 @@
     @include respond(sm) {
         display: none;
     }
-    &-notification{
-        position: relative;
-        .notification-dot{
-            position: absolute;
-            top:-20%;
-            right: -10%;
 
+    &-notification {
+        position: relative;
+
+        .notification-dot {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
         }
     }
+
     &__lists {
         list-style: none;
         margin-top: 15rem;
@@ -54,7 +56,7 @@
                 padding-left: 1.8rem;
                 padding-right: 0;
 
-                svg {
+                svg.arrow {
                     display: none;
                 }
             }
@@ -62,7 +64,7 @@
             &:hover {
                 background-color: white;
 
-                svg {
+                svg.arrow {
                     animation: button-animation-1 1.5s infinite;
                 }
             }
