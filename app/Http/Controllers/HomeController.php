@@ -229,6 +229,18 @@ class HomeController extends Controller
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }
 
+    public function updateHourlyRate(Request $request) {
+        $request->validate([
+            'hourly-rate' => [
+                'required',
+                'numeric',
+                'min:10',
+                'max:50'
+            ]
+        ]);
 
+        Auth::user()->hourly_rate = $request->input('hourly-rate');
+        Auth::user()->save();
+    }
 
 }

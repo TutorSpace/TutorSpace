@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             TutorRequestSeeder::class,
             SessionCancelReasonSeeder::class,
             MessageSeeder::class,
-            CourseVerificationSeeder::class,
+            VerifiedCourseSeeder::class,
         ]);
     }
 }

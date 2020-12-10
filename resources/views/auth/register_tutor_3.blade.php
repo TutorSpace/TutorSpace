@@ -29,11 +29,8 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('first-major') invalid @enderror">
-                    <select class="custom-select" name="first-major" required>
+                    <select class="custom-select majors" name="first-major" required>
                         <option selected disabled class="fc-grey" value="">Major</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -49,11 +46,8 @@ bg-grey-light body-signup select2-bg-tutor
             </div>
             <div class="p-relative">
                 <div class="input-group select-container p-relative @error('second-major') invalid @enderror">
-                    <select class="custom-select" name="second-major">
+                    <select class="custom-select majors" name="second-major">
                         <option selected disabled class="fc-grey" value="">Second Major (optional)</option>
-                        @foreach (App\Major::all() as $major)
-                            <option value="{{ $major->id }}">{{ $major->major }}</option>
-                        @endforeach
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -70,11 +64,8 @@ bg-grey-light body-signup select2-bg-tutor
 
             <div class="multiple-inputs p-relative">
                 <div class="input-group select-container p-relative @error('school-year') invalid @enderror">
-                    <select class="custom-select" name="school-year" required>
+                    <select class="custom-select school-years" name="school-year" required>
                         <option selected disabled class="fc-grey" value="">Class Standing</option>
-                        @foreach (App\SchoolYear::all() as $schoolYear)
-                            <option value="{{ $schoolYear->id }}">{{ $schoolYear->school_year }}</option>
-                        @endforeach
                     </select>
                     <div class="input-group-prepend">
                         <svg>
@@ -83,7 +74,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </div>
                 </div>
                 <div class="input-group select-container p-relative @error('gpa') invalid @enderror">
-                    <select class="custom-select" name="gpa" required>
+                    <select class="custom-select register-select2" name="gpa" required>
                         <option selected disabled class="fc-grey" value="">GPA</option>
                         <option value="0">N/A</option>
                         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)

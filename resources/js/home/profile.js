@@ -100,15 +100,29 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
-autocomplete(document.getElementById("first-major"), majors);
-autocomplete(document.getElementById("second-major"), majors);
-autocomplete(document.getElementById("minor"), minors);
-autocomplete(document.getElementById("school-year"), schoolYears);
-autocomplete(document.getElementById("gpa"), gpa);
-autocomplete(document.getElementById("hourly-rate"), hourlyRate);
-autocomplete(document.getElementById("course"), courses, profile_add_course);
-autocomplete(document.getElementById("tag"), tags,
-profile_add_tag);
+$.ajax({
+    type:'GET',
+    url: '/autocomplete/data-source',
+    data: {
+        "majors": true,
+        "minors": true,
+        "courses": true,
+        "tags": true,
+        "schoolYears": true
+    },
+    success: (data) => {
+        let { majors, minors, schoolYears, courses, tags } = data;
+        autocomplete(document.getElementById("first-major"), majors);
+        autocomplete(document.getElementById("second-major"), majors);
+        autocomplete(document.getElementById("minor"), minors);
+        autocomplete(document.getElementById("school-year"), schoolYears);
+        autocomplete(document.getElementById("gpa"), gpa);
+        autocomplete(document.getElementById("hourly-rate"), hourlyRate);
+        autocomplete(document.getElementById("course"), courses, profile_add_course);
+        autocomplete(document.getElementById("tag"), tags,
+        profile_add_tag);
+    }
+});
 
 $('.profile__text__edit').on('click', function() {
     $(".profile__input").prop("readonly", false);

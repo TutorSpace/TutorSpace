@@ -20,7 +20,7 @@ class ChattingController extends Controller
         $otherUserId = $request->input('userId');
 
         if(Chatroom::where(function($query) use ($otherUserId) {
-            $query->where('user_id_1', Auth::id())->where('user_id_2', $otherUserId);
+        $query->where('user_id_1', Auth::id())->where('user_id_2', $otherUserId);
         })->orWhere(function($query) use ($otherUserId) {
             $query->where('user_id_2', Auth::id())->where('user_id_1', $otherUserId);
         })->count() == 1) {
@@ -42,9 +42,9 @@ class ChattingController extends Controller
             $msg->from = $from;
             $msg->to = $to;
             $msg->message = $content;
-            $msg->is_read = true;
+            $msg->is_read = false;
             $msg->save();
-            broadcast(new NewMessage($msg))->toOthers();
+            broadcast(new NewMessage($msg));
             return 'success';
         }
     }

@@ -6,9 +6,22 @@ use Illuminate\Support\Facades\Route;
 
 // for testing
 Route::get('/abc', 'testController@test')->name('abc');
-Route::get('/test', 'testController@index');
+Route::get('/test', 'testController@index')->middleware('isTutor');;
 Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
+
+// autocomplete
+Route::group([
+    'prefix' => 'autocomplete',
+], function() {
+    Route::get('/data-source', 'AutoCompleteController@getData')->name('autocomplete')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/majors', 'AutoCompleteController@getMajors')->name('autocomplete.majors')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/minors', 'AutoCompleteController@getMinors')->name('autocomplete.minors')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/courses', 'AutoCompleteController@getCourses')->name('autocomplete.courses')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/tags', 'AutoCompleteController@getTags')->name('autocomplete.tags')->withoutMiddleware(InvalidUser::class);
+    Route::get('/data-source/school-years', 'AutoCompleteController@getSchoolYears')->name('autocomplete.school-years')->withoutMiddleware(InvalidUser::class);
+});
+
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
@@ -152,6 +165,7 @@ Route::group([
     Route::get('/forum-activities', 'HomeController@forumActivities')->name('home.forum-activities');
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
     Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
+    Route::post('/profile/hourly-rate', 'HomeController@updateHourlyRate')->name('home.profile.hourly-rate.update')->middleware('isTutor');
 });
 
 // view profile
@@ -174,10 +188,6 @@ Route::group([
 // add/remove course/tag to the user profile
 Route::post('/course-add-remove', 'GeneralController@addRemoveCourseToProfile')->middleware(['auth'])->withoutMiddleware(InvalidUser::class);
 Route::post('/tag-add-remove', 'GeneralController@addRemoveTagToProfile')->middleware(['auth']);
-
-// autocomplete
-Route::post('/gethint', 'GeneralController@getHint');
-
 
 // notifications
 Route::group([
@@ -205,11 +215,10 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
-    // Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
 });
 
-// tutor
-Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification');
+// tutor verification
+Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware('isTutor');
 
 // sessions
 Route::group([
@@ -225,9 +234,6 @@ Route::group([
 ], function() {
     Route::get('/', 'HelpCenterController@index')->name('help-center.index');
 });
-
-
-// testing
 
 
 // Stripe testing

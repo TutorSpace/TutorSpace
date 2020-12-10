@@ -20,7 +20,7 @@ class UpdateAllTutorVerification extends Command
      *
      * @var string
      */
-    protected $description = 'update tutor is_verified column based on course_user and course_verifications tables';
+    protected $description = 'update tutor is_verified column based on course_user and verified_courses tables';
 
     /**
      * Create a new command instance.
@@ -40,24 +40,5 @@ class UpdateAllTutorVerification extends Command
     public function handle()
     {
 
-        // get id of verified users
-        $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
-        ->join("course_verifications", function($join){
-            $join->on("course_verifications.course_id","=","course_user.course_id")
-        ->on("course_verifications.user_id","=","course_user.user_id");
-        })
-        ->distinct();
-
-        //verified users update
-        User::whereIn('id',$verifiedUsersQuery)->update([
-            'is_tutor_verified' => '1'
-        ]);        
-        
-        // unverified users update
-        User::whereNotIn('id',$verifiedUsersQuery)->update([
-            'is_tutor_verified' => '0'
-        ]);     
-
-        echo "Successfully update is_tutor_verified: " . now() . "\n";
     }
 }
