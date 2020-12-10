@@ -253,3 +253,6 @@ Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@conf
 // Stripe Invoice
 Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
 Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
+
+//Stripe set payment as Customer Invoice Default
+Route::post('/payment/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('set_invoice_payment_default');

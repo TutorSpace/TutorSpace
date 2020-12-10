@@ -242,4 +242,17 @@ class StripeApiController extends Controller
             'invoice_id' => $invoice->id,
         ]);
     }
+
+
+
+
+    // save card as Default
+    // Request should contain 'charge_id'
+    // TODO:
+    public function saveCardAsDefault(Request $request) {
+
+        $paymentMethodID = $request->input('paymentMethodID');
+        
+      
+    }
 }
