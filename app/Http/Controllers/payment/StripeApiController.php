@@ -8,6 +8,7 @@ use Stripe\Stripe;
 use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
 use Stripe\Refund;
@@ -148,6 +149,7 @@ class StripeApiController extends Controller
     public function checkAccountDetail(Request $request) {
         $account_id = Session::get('stripe_account_id');
         $account = Account::retrieve($account_id, []);
+        Log::debug('StripeApiController: '.$account);
         if ($account->details_submitted) {
             $user = User::find(Auth::user()->id);
             $payment_method = $user->paymentMethod;
@@ -183,7 +185,9 @@ class StripeApiController extends Controller
         $payment_method = $user->paymentMethod;
         if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {
             $customer = Customer::create([
-                'email' => $user->email
+                'name' => $user->first_name.' '.$user->last_name,
+                // 'email' => $user->email,  // TODO: change back to user email
+                'email' => 'lihanzhu@usc.edu'
             ]);
             $customer_id = $customer->id;
             $payment_method->stripe_customer_id = $customer_id;
@@ -192,5 +196,50 @@ class StripeApiController extends Controller
             $customer_id = $payment_method->stripe_customer_id;
         }
         return $customer_id;
+    }
+
+    // Implementation using Invoice
+    public function invoiceIndex() {
+        return view('payment.stripe_invoice_test');
+    }
+
+    // Request should contain 'amount' and 'destination_account_id'
+    public function createInvoice(Request $request) {
+        $amount = intval($request->get('amount'));
+        $destination_account_id = $request->get('destination_account_id');
+
+        // Create Product and Price
+        $product = \Stripe\Product::create([
+            'name' => 'Tutor Session',
+        ]);
+        $price = \Stripe\Price::create([
+            'product' => $product->id,
+            'unit_amount' => $amount,
+            'currency' => 'usd',
+        ]);
+
+        $customer_id = $this->getCustomerId();
+
+        // Create InvoiceItem and Invoice
+        $invoice_item = \Stripe\InvoiceItem::create([
+            'customer' => $customer_id,
+            'price' => $price->id,
+        ]);
+
+        $invoice = \Stripe\Invoice::create([
+            'customer' => $customer_id,
+            'collection_method' => 'charge_automatically',
+            // 'days_until_due' => 1,  // Needed for send_invoice
+            'transfer_data' => [
+                'destination' => $destination_account_id,
+            ],
+            'application_fee_amount' => 10,
+        ]);
+        $invoice->finalizeInvoice();
+        // $invoice->sendInvoice();
+
+        return redirect()->route('invoice_index')->with([
+            'invoice_id' => $invoice->id,
+        ]);
     }
 }

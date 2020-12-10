@@ -243,3 +243,7 @@ Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout
 Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
 Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
 Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
+
+// Stripe Invoice
+Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
+Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
