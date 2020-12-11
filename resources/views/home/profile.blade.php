@@ -14,9 +14,9 @@ bg-student
 @endsection
 
 @section('links-in-head')
-{{-- fullcalendar --}}
-<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<script src='{{asset('fullcalendar/main.min.js')}}'></script>
+{{-- stripe --}}
+<script src="https://js.stripe.com/v3/"></script>
+
 @endsection
 
 @section('content')
@@ -239,9 +239,13 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                            <a href="#" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</a>
+                            <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</button>
                         @else
-                            <button class="btn btn-primary btn-add-payment" type="button">Add New Payment Method</button>
+                            <button id="btn-add-payment" class="btn btn-primary btn-add-payment">Add New Payment Method</button>
+
+                            <div class="form--add-payment-method">
+                                
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -257,16 +261,36 @@ bg-student
 @endsection
 
 @section('js')
-
 <script>
-    $('.btn-add-payment').click(function() {
-        
+
+     $("#btn-setup-payment").click(function(){
+        postToConnectAccount().then((response)=>{
+            // redirect to create stripe account
+            if (response.stripe_url){
+                window.location = response.stripe_url;
+            // TODO: error
+            }else{
+
+            }
+
+        })
     });
+
+    function postToConnectAccount(){
+        return $.ajax({
+            url:"{{ route('payment.stripe.onboarding') }}",
+            method:'POST',
+        })
+    }
+
+    $('#btn-add-payment').click(function() {
+
+    });
+
 </script>
 
 {{-- autocomplete --}}
 <script>
-
     $('#hourly-rate').on("change paste keyup", function() {
         $.ajax({
             type:'POST',

@@ -1,8 +1,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Stripe demo</title>
-    <meta name="description" content="A demo of a card payment on Stripe" />
+    <title>Add Payment Method</title>
+    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
@@ -188,7 +188,7 @@
 
   <script defer>
     // A reference to Stripe.js initialized with your real test publishable API key.
-    var stripe = Stripe("pk_test_51H6RWlBtUwiw0w2oW1kGPF0AwsekfcKD0mz7Aj5M66bVelryG3uZdcE3lutEIb9ddWDlfpTGm3PjpZk5BjphHvU100pM9tg0rJ");
+    var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
     // The items the customer wants to buy
     var purchase = {
         items: [{ id: "xl-tshirt" }],
@@ -255,7 +255,7 @@
             .then(function(result) {
                 if (result.paymentIntent.status === 'succeeded') {
                 // The payment is complete!
-                    orderComplete(result.paymentIntent.id); 
+                    orderComplete(result.paymentIntent.id);
                 }else{
                     alert(result.paymentIntent.status)
                 }
@@ -265,7 +265,7 @@
                     showError(result.error.message);
                 } else {
                     // The payment succeeded!
-                    
+
                 }
             });
     };

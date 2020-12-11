@@ -8,6 +8,7 @@ use Stripe\Stripe;
 use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
 use Stripe\Refund;
@@ -24,8 +25,8 @@ class StripeApiController extends Controller
         return view('payment.stripe_connect');
     }
 
-    public function payIndex() {
-        return view('payment.stripe_test_form');
+    public function addPaymentMethod() {
+        return view('payment.stripe_add_payment');
     }
 
     public function saveCardIndex() {
@@ -45,6 +46,10 @@ class StripeApiController extends Controller
             $account = Account::create([
                 'country' => 'US',
                 'type' => 'standard',
+                'settings' => ['payouts' => ['schedule' => [
+                    'delay_days' => 2,  // TODO: discuss payout schedule
+                    'interval' => 'daily'
+                ]]]
             ]);
             $account_links = AccountLink::create([
                 'account' => $account->id,
@@ -62,6 +67,10 @@ class StripeApiController extends Controller
             'stripe_url' => $account_links->url
         ]);
     }
+
+    /*
+        Section starts: previous implementation
+    */
 
     // Creates a payment intent with new cards
     public function createPaymentIntent(Request $request) {
@@ -114,11 +123,16 @@ class StripeApiController extends Controller
         ]);
     }
 
+    /*
+        Section ends: previous implementation
+    */
+
     // Saving a card
     public function createSetupIntent(Request $request) {
         $customer_id = $this->getCustomerId();
         $setup_intent = SetupIntent::create([
-            'customer' => $customer_id
+            'customer' => $customer_id,
+            'usage' => 'off_session'
         ]);
         return response()->json([
             'clientSecret' => $setup_intent->client_secret
@@ -148,6 +162,7 @@ class StripeApiController extends Controller
     public function checkAccountDetail(Request $request) {
         $account_id = Session::get('stripe_account_id');
         $account = Account::retrieve($account_id, []);
+        Log::debug('StripeApiController: '.$account);
         if ($account->details_submitted) {
             $user = User::find(Auth::user()->id);
             $payment_method = $user->paymentMethod;
@@ -160,20 +175,6 @@ class StripeApiController extends Controller
         }
     }
 
-    // Refunds a charge
-    // Request should contain 'charge_id'
-    // TODO:
-    public function refundCharge(Request $request) {
-        $charge_id = $request->get('charge_id');
-        $refund = Refund::create(['charge' => $charge_id]);
-        Session::put('status', $refund->status);
-        // TODO: database
-        if ($refund->status != 'succeeded') {
-            Session::put('failure_reason', $refund->failure_reason);
-        }
-        return view('payment.stripe_connect');
-    }
-
     // Gets the customer_id of current user
     // Creates one if it doesn't exist
     private function getCustomerId() {
@@ -183,7 +184,9 @@ class StripeApiController extends Controller
         $payment_method = $user->paymentMethod;
         if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {
             $customer = Customer::create([
-                'email' => $user->email
+                'name' => $user->first_name.' '.$user->last_name,
+                // 'email' => $user->email,  // TODO: change back to user email
+                'email' => 'lihanzhu@usc.edu'
             ]);
             $customer_id = $customer->id;
             $payment_method->stripe_customer_id = $customer_id;
@@ -193,4 +196,83 @@ class StripeApiController extends Controller
         }
         return $customer_id;
     }
+
+    /*
+        Section starts: implementation using Invoice
+    */
+
+    public function invoiceIndex() {
+        return view('payment.stripe_invoice_test');
+    }
+
+    // Request should contain 'amount' and 'destination_account_id'
+    public function createInvoice(Request $request) {
+        $amount = intval($request->get('amount'));
+        $destination_account_id = $request->get('destination_account_id');
+
+        // Create Product and Price
+        $product = \Stripe\Product::create([
+            'name' => 'Tutor Session',
+        ]);
+        $price = \Stripe\Price::create([
+            'product' => $product->id,
+            'unit_amount' => $amount,
+            'currency' => 'usd',
+        ]);
+
+        $customer_id = $this->getCustomerId();
+
+        // Create InvoiceItem and Invoice
+        $invoice_item = \Stripe\InvoiceItem::create([
+            'customer' => $customer_id,
+            'price' => $price->id,
+        ]);
+        $invoice = \Stripe\Invoice::create([
+            'customer' => $customer_id,
+            // 'collection_method' => 'charge_automatically',
+            'collection_method' => 'send_invoice',
+            'days_until_due' => 1,  // Needed for send_invoice only, TODO: needs check
+            'transfer_data' => [
+                'destination' => $destination_account_id,
+            ],
+            'application_fee_amount' => 10,  // TODO: apply application fee
+        ]);
+
+        $this->finalizeInvoice($invoice->id);
+
+        return redirect()->route('invoice_index')->with([
+            'invoice_id' => $invoice->id,
+        ]);
+    }
+
+    // Finalize an Invoice and confirm its PaymentIntent
+    public function finalizeInvoice($invoice_id) {
+        $invoice = \Stripe\Invoice::retrieve($invoice_id);
+        $invoice->finalizeInvoice();
+
+        // Confirm payment intent
+        $payment_intent_id = $invoice->payment_intent;
+        $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+        $payment_intent->confirm();
+        Log::debug('PaymentIntent status: '.$payment_intent->status);
+
+        // Handle the case where the card requires authentication
+        if ($payment_intent->status == 'requires_action') {
+            $invoice->sendInvoice();
+        }
+    }
+
+    // Save card as Default
+    // Request should contain 'paymentMethodID'
+    public function saveCardAsDefault(Request $request) {
+        $payment_method_id = $request->input('paymentMethodID');
+        $customer_id = $this->getCustomerId();
+        $customer = \Stripe\Customer::update($customer_id, [
+            'invoice_settings' => ['default_payment_method' => $payment_method_id]
+        ]);
+    }
+
+    /*
+        Section ends: implementation using Invoice
+    */
 }

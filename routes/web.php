@@ -235,17 +235,28 @@ Route::group([
     Route::get('/', 'HelpCenterController@index')->name('help-center.index');
 });
 
+// Stripe
+Route::group([
+    'prefix' => 'payment/stripe',
+    'middleware' => 'auth'
+], function() {
+    Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+});
 
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
-Route::get('/payment/stripe_pay_index', 'payment\StripeApiController@payIndex');
 Route::get('/payment/stripe_save_card', 'payment\StripeApiController@saveCardIndex');
 Route::get('/payment/list_cards', 'payment\StripeApiController@listCards');
-Route::post('/payment/stripe_onboarding', 'payment\StripeApiController@createAccountLink')->name('stripe_onboarding');
 Route::post('/payment/create_payment_intent', 'payment\StripeApiController@createPaymentIntent');
 Route::post('/payment/create_setup_intent', 'payment\StripeApiController@createSetupIntent');
-Route::post('/payment/stripe_refund', 'payment\StripeApiController@refundCharge');
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
 Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
 Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
 Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
+
+// Stripe Invoice
+Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
+Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
+
+//Stripe set payment as Customer Invoice Default
+Route::post('/payment/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('set_invoice_payment_default');
