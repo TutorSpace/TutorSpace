@@ -261,11 +261,31 @@
                     // Show error to your customer
                     showError(result.error.message);
                 } else {
-                    // The payment succeeded!
-                    orderComplete(result.setupIntent.client_secret);
+                    // save card as default
+                    setCardAsDefault(result.setupIntent.payment_method).then((res)=>{      
+                         // The payment succeeded!                   
+                        orderComplete(result.setupIntent.client_secret);
+                    });
+                   
                 }
             });
     };
+
+
+    const setCardAsDefault = function (paymentMethodID) {
+        var data = {
+            'paymentMethodID':paymentMethodID,
+        };
+        return fetch("{{route('set_invoice_payment_default') }}", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": '{{csrf_token()}}'
+            },
+        })
+    }
+
     /* ------- UI helpers ------- */
     // Shows a success message when the payment is complete
     var orderComplete = function(clientSecret) {
