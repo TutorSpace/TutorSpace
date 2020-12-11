@@ -154,8 +154,10 @@ class StripeApiController extends Controller
                 'last4' => $card->card->last4
             ]);
         }
-        // TODO: change route
-        return view('payment.stripe_reuse_card')->with('cards', $result);
+
+        return response()->json([
+            'cards' => $result
+        ]);
     }
 
     // Redirected by Stripe
@@ -178,9 +180,7 @@ class StripeApiController extends Controller
     // Gets the customer_id of current user
     // Creates one if it doesn't exist
     private function getCustomerId() {
-        // FIXME: Delete this
-        Auth::attempt(['email' => 'student@usc.edu', 'password' => 'password']);
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         $payment_method = $user->paymentMethod;
         if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {
             $customer = Customer::create([

@@ -241,12 +241,12 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+    Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
 });
 
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/stripe_save_card', 'payment\StripeApiController@saveCardIndex');
-Route::get('/payment/list_cards', 'payment\StripeApiController@listCards');
 Route::post('/payment/create_payment_intent', 'payment\StripeApiController@createPaymentIntent');
 Route::post('/payment/create_setup_intent', 'payment\StripeApiController@createSetupIntent');
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');

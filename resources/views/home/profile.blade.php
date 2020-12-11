@@ -241,6 +241,20 @@ bg-student
                         @if (Auth::user()->is_tutor)
                             <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</button>
                         @else
+                            <div class="payment-cards">
+                                <div class="card">
+                                    <div class="brand">
+                                        Brand: xxxx
+                                    </div>
+                                    <div class="exp">
+                                        Expired At: MM/YY
+                                    </div>
+                                    <div class="last4">
+                                        Card Number: xxxx-xxxx-xxxx-1234
+                                    </div>
+                                </div>
+                            </div>
+
                             <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New Payment Method</button>
                         @endif
                     </div>
@@ -258,6 +272,17 @@ bg-student
 
 @section('js')
 <script>
+    $.ajax({
+        url: "{{ route('payment.stripe.list-cards') }}",
+        method: 'GET',
+        success: (data) => {
+            let { cards } = data;
+        },
+        error: (err) => {
+            console.log(err);
+        }
+    })
+
 
      $("#btn-setup-payment").click(function(){
         postToConnectAccount().then((response)=>{
