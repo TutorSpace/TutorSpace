@@ -117,10 +117,10 @@ $.ajax({
         autocomplete(document.getElementById("minor"), minors);
         autocomplete(document.getElementById("school-year"), schoolYears);
         autocomplete(document.getElementById("gpa"), gpa);
-        autocomplete(document.getElementById("hourly-rate"), hourlyRate);
         autocomplete(document.getElementById("course"), courses, profile_add_course);
-        autocomplete(document.getElementById("tag"), tags,
-        profile_add_tag);
+        autocomplete(document.getElementById("tag"), tags, profile_add_tag);
+
+        if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate);
     }
 });
 

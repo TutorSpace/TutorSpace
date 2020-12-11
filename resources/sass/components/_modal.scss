@@ -108,6 +108,24 @@
         }
     }
 
+    &-add-payment-method {
+
+        .form--add-payment-method {
+
+            > div {
+                label {
+                    font-size: 1.4rem;
+                    color: $color-black-post;
+                }
+
+                input {
+                    font-size: 1.8rem;
+                    padding: .5rem 1rem;
+                }
+            }
+        }
+    }
+
 }
 
 

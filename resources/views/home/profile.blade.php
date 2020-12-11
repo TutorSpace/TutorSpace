@@ -241,11 +241,7 @@ bg-student
                         @if (Auth::user()->is_tutor)
                             <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</button>
                         @else
-                            <button id="btn-add-payment" class="btn btn-primary btn-add-payment">Add New Payment Method</button>
-
-                            <div class="form--add-payment-method">
-                                
-                            </div>
+                            <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New Payment Method</button>
                         @endif
                     </div>
                 </div>
@@ -284,7 +280,23 @@ bg-student
     }
 
     $('#btn-add-payment').click(function() {
-
+        bootbox.dialog({
+            message: `@include('payment.partials.add-payment-method')`,
+            size: 'medium',
+            centerVertical: true,
+            buttons: {
+                Decline: {
+                    label: 'Cancel',
+                    className: 'btn btn-outline-primary mr-2 p-3 px-5',
+                    callback: function() {}
+                },
+                Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary p-3 px-5',
+                    callback: function() {}
+                },
+            }
+        });
     });
 
 </script>
