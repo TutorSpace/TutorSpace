@@ -226,7 +226,6 @@ class StripeApiController extends Controller
             'customer' => $customer_id,
             'price' => $price->id,
         ]);
-
         $invoice = \Stripe\Invoice::create([
             'customer' => $customer_id,
             'collection_method' => 'charge_automatically',
@@ -234,8 +233,19 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => 10,
+            'application_fee_amount' => 10,  // TODO: apply application fee
         ]);
+
+        $this->finalizeInvoice($invoice->id);
+
+        return redirect()->route('invoice_index')->with([
+            'invoice_id' => $invoice->id,
+        ]);
+    }
+
+    // Finalize an Invoice and confirm its PaymentIntent
+    public function finalizeInvoice($invoice_id) {
+        $invoice = \Stripe\Invoice::retrieve($invoice_id);
         $invoice->finalizeInvoice();
 
         // Confirm payment intent
@@ -243,22 +253,16 @@ class StripeApiController extends Controller
         $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
         $payment_intent->confirm();
         // $invoice->sendInvoice();
-
-        return redirect()->route('invoice_index')->with([
-            'invoice_id' => $invoice->id,
-        ]);
     }
 
 
-
-
-    // save card as Default
-    // Request should contain 'charge_id'
-    // TODO:
+    // Save card as Default
+    // Request should contain 'paymentMethodID'
     public function saveCardAsDefault(Request $request) {
-
-        $paymentMethodID = $request->input('paymentMethodID');
-        
-      
+        $payment_method_id = $request->input('paymentMethodID');
+        $customer_id = $this->getCustomerId();
+        $customer = \Stripe\Customer::update($customer_id, [
+            'invoice_settings' => ['default_payment_method' => $payment_method_id]
+        ]);
     }
 }
