@@ -17,7 +17,7 @@
         <button id="submit">
             <span id="button-text">Create Invoice</span>
         </button>
-        <?php echo $invoice_id ?? ''; ?>
+        <?php echo Session::get('invoice_id') ?? ''; ?>
     </form>
   </body>
 </html>
