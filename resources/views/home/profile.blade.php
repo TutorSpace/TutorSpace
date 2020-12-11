@@ -241,7 +241,7 @@ bg-student
                         @if (Auth::user()->is_tutor)
                             <a href="#" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</a>
                         @else
-                            
+                            <button class="btn btn-primary btn-add-payment" type="button">Add New Payment Method</button>
                         @endif
                     </div>
                 </div>
@@ -257,6 +257,12 @@ bg-student
 @endsection
 
 @section('js')
+
+<script>
+    $('.btn-add-payment').click(function() {
+        
+    });
+</script>
 
 {{-- autocomplete --}}
 <script>
