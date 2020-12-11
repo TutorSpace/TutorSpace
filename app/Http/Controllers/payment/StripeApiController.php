@@ -119,7 +119,8 @@ class StripeApiController extends Controller
     public function createSetupIntent(Request $request) {
         $customer_id = $this->getCustomerId();
         $setup_intent = SetupIntent::create([
-            'customer' => $customer_id
+            'customer' => $customer_id,
+            'usage' => 'off_session'
         ]);
         return response()->json([
             'clientSecret' => $setup_intent->client_secret
@@ -229,13 +230,18 @@ class StripeApiController extends Controller
         $invoice = \Stripe\Invoice::create([
             'customer' => $customer_id,
             'collection_method' => 'charge_automatically',
-            // 'days_until_due' => 1,  // Needed for send_invoice
+            // 'days_until_due' => 1,  // Needed for send_invoice only
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
             'application_fee_amount' => 10,
         ]);
         $invoice->finalizeInvoice();
+
+        // Confirm payment intent
+        $payment_intent_id = $invoice->payment_intent;
+        $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+        $payment_intent->confirm();
         // $invoice->sendInvoice();
 
         return redirect()->route('invoice_index')->with([
