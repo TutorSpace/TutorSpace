@@ -210,19 +210,42 @@
         &-cards {
             flex-basis: 100%;
 
-            .card {
+            .card-wrapper {
                 display: flex;
-                justify-content: space-around;
-                flex-direction: row;
-                border: 1px solid black;
+                align-items: center;
                 margin-bottom: 1rem;
-                padding: 1rem 2rem;
 
-                > div {
+                .card {
                     flex: 1;
+                    margin-right: 2rem;
+                    display: flex;
+                    justify-content: space-around;
+                    flex-direction: row;
+                    border: 1px solid black;
+                    padding: 1rem 2rem;
+
+                    > div {
+                        font-size: 1.6rem;
+                    }
+
+                    div:nth-child(1) {
+                        flex: 0 0 15rem;
+                    }
+
+                    div:nth-child(2) {
+                        flex: 0 0 20rem;
+                    }
+
+                    div:nth-child(3) {
+                        flex: 1;
+                    }
+                }
+
+                button {
                     font-size: 1.6rem;
                 }
             }
+
         }
 
     }

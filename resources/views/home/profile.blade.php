@@ -244,17 +244,21 @@ bg-student
                             Methods</button>
                         @else
                         <div class="payment-cards">
-                            <div class="card">
-                                <div class="brand">
-                                    Brand: xxxx
+                            <div class="card-wrapper">
+                                <div class="card">
+                                    <div class="brand">
+                                        Brand: xxxx
+                                    </div>
+                                    <div class="exp">
+                                        Expired At: MM/YY
+                                    </div>
+                                    <div class="last4">
+                                        Card Number: xxxx-xxxx-xxxx-1234
+                                    </div>
                                 </div>
-                                <div class="exp">
-                                    Expired At: MM/YY
-                                </div>
-                                <div class="last4">
-                                    Card Number: xxxx-xxxx-xxxx-1234
-                                </div>
+                                <button class="btn btn-danger">Delete</button>
                             </div>
+
                         </div>
 
                         <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
@@ -412,6 +416,8 @@ bg-student
             let {
                 cards
             } = data;
+
+
         },
         error: (err) => {
             console.log(err);
