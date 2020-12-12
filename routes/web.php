@@ -242,6 +242,7 @@ Route::group([
 ], function() {
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
+    Route::get('/add_payment_method', 'payment\StripeApiController@addPaymentMethod');
 });
 
 // Stripe testing
