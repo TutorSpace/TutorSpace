@@ -201,11 +201,30 @@
 
     .payment {
 
-        .btn-setup-payment {
+        .btn-setup-payment, .btn-add-payment {
             font-size: 1.6rem;
             padding: .5rem 1rem;
             border-radius: .75rem;
         }
+
+        &-cards {
+            flex-basis: 100%;
+
+            .card {
+                display: flex;
+                justify-content: space-around;
+                flex-direction: row;
+                border: 1px solid black;
+                margin-bottom: 1rem;
+                padding: 1rem 2rem;
+
+                > div {
+                    flex: 1;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+
     }
 
     .heading--register-to-be-tutor-1 {

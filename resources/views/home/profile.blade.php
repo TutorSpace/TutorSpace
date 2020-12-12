@@ -14,9 +14,9 @@ bg-student
 @endsection
 
 @section('links-in-head')
-{{-- fullcalendar --}}
-<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<script src='{{asset('fullcalendar/main.min.js')}}'></script>
+{{-- stripe --}}
+<script src="https://js.stripe.com/v3/"></script>
+
 @endsection
 
 @section('content')
@@ -180,9 +180,10 @@ bg-student
                         <div class="boxes boxes__course flex-100">
                             @foreach(Auth::user()->courses as $course)
                             <span class="box p-relative" type="button">
-                                @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id', Auth::id())->exists())
+                                @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id',
+                                Auth::id())->exists())
                                 <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512"
-                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z"
                                         fill="#FFCE00" />
@@ -239,9 +240,25 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                            <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment Methods</button>
+                        <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment">Set Up Payment
+                            Methods</button>
                         @else
+                        <div class="payment-cards">
+                            <div class="card">
+                                <div class="brand">
+                                    Brand: xxxx
+                                </div>
+                                <div class="exp">
+                                    Expired At: MM/YY
+                                </div>
+                                <div class="last4">
+                                    Card Number: xxxx-xxxx-xxxx-1234
+                                </div>
+                            </div>
+                        </div>
 
+                        <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
+                            Payment Method</button>
                         @endif
                     </div>
                 </div>
@@ -257,34 +274,187 @@ bg-student
 @endsection
 
 @section('js')
+<script defer>
+    function stripeInit() {
+        // A reference to Stripe.js initialized with your real test publishable API key.
+        var stripe = Stripe(
+            "pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn"
+            );
+        // The items the customer wants to buy
+        var purchase = {
+            items: [{
+                id: "xl-tshirt"
+            }],
+            amount: 1234
+        };
+        // Disable the button until we have Stripe set up on the page
+        document.querySelector("button").disabled = true;
+        fetch("{{ route('payment.stripe.create_payment_intent') }}", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "X-CSRF-Token": '{{csrf_token()}}'
+                },
+                body: JSON.stringify(purchase)
+            })
+            .then(function (result) {
+                return result.json();
+            })
+            .then(function (data) {
+                var elements = stripe.elements();
+                var style = {
+                    base: {
+                        color: "#32325d",
+                        fontFamily: 'Arial, sans-serif',
+                        fontSmoothing: "antialiased",
+                        fontSize: "16px",
+                        "::placeholder": {
+                            color: "#32325d"
+                        }
+                    },
+                    invalid: {
+                        fontFamily: 'Arial, sans-serif',
+                        color: "#fa755a",
+                        iconColor: "#fa755a"
+                    }
+                };
+                var card = elements.create("card", {
+                    style: style
+                });
+                // Stripe injects an iframe into the DOM
+                card.mount("#card-element");
+                card.on("change", function (event) {
+                    // Disable the Pay button if there are no card details in the Element
+                    document.querySelector("button").disabled = event.empty;
+                    document.querySelector("#card-error").textContent = event.error ? event.error.message :
+                        "";
+                });
+                var form = document.getElementById("payment-form");
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    // Complete payment when the submit button is clicked
+                    payWithCard(stripe, card, data.clientSecret);
+                });
+            });
+        // Calls stripe.confirmCardPayment
+        // If the card requires authentication Stripe shows a pop-up modal to
+        // prompt the user to enter authentication details without leaving your page.
+        var payWithCard = function (stripe, card, clientSecret) {
+            loading(true);
+            stripe
+                .confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: card
+                    },
+                    setup_future_usage: 'off_session'
+                })
+                .then(function (result) {
+                    if (result.paymentIntent.status === 'succeeded') {
+                        // The payment is complete!
+                        orderComplete(result.paymentIntent.id);
+                    } else {
+                        alert(result.paymentIntent.status)
+                    }
+
+                    if (result.error) {
+                        // Show error to your customer
+                        showError(result.error.message);
+                    } else {
+                        // The payment succeeded!
+
+                    }
+                });
+        };
+        /* ------- UI helpers ------- */
+        // Shows a success message when the payment is complete
+        var orderComplete = function (paymentIntentId) {
+            loading(false);
+            document
+                .querySelector(".result-message a")
+                .setAttribute(
+                    "href",
+                    "https://dashboard.stripe.com/test/payments/" + paymentIntentId
+                );
+            document.querySelector(".result-message").classList.remove("hidden");
+            document.querySelector("button").disabled = true;
+        };
+        // Show the customer the error from Stripe if their card fails to charge
+        var showError = function (errorMsgText) {
+            loading(false);
+            var errorMsg = document.querySelector("#card-error");
+            errorMsg.textContent = errorMsgText;
+            setTimeout(function () {
+                errorMsg.textContent = "";
+            }, 4000);
+        };
+        // Show a spinner on payment submission
+        var loading = function (isLoading) {
+            if (isLoading) {
+                // Disable the button and show a spinner
+                document.querySelector("button").disabled = true;
+                document.querySelector("#spinner").classList.remove("hidden");
+                document.querySelector("#button-text").classList.add("hidden");
+            } else {
+                document.querySelector("button").disabled = false;
+                document.querySelector("#spinner").classList.add("hidden");
+                document.querySelector("#button-text").classList.remove("hidden");
+            }
+        };
+    }
+
+</script>
 
 <script>
-     $("#btn-setup-payment").click(function(){
-            postToConnectAccount().then((response)=>{
-                // redirect to create stripe account
-                if (response.stripe_url){
-                    window.location = response.stripe_url;
-                // TODO: error
-                }else{
-
-                }
-            
-            })
-        });
-
-        function postToConnectAccount(){
-            return $.ajax({
-                url:"{{ route('stripe_onboarding') }}",
-                method:'POST',
-            })
+    $.ajax({
+        url: "{{ route('payment.stripe.list-cards') }}",
+        method: 'GET',
+        success: (data) => {
+            let {
+                cards
+            } = data;
+        },
+        error: (err) => {
+            console.log(err);
         }
+    })
+
+
+    $("#btn-setup-payment").click(function () {
+        postToConnectAccount().then((response) => {
+            // redirect to create stripe account
+            if (response.stripe_url) {
+                window.location = response.stripe_url;
+                // TODO: error
+            } else {
+
+            }
+
+        })
+    });
+
+    function postToConnectAccount() {
+        return $.ajax({
+            url: "{{ route('payment.stripe.onboarding') }}",
+            method: 'POST',
+        })
+    }
+
+    $('#btn-add-payment').click(function () {
+        bootbox.dialog({
+            message: `@include('payment.partials.add-payment-method')`,
+            size: 'medium',
+            centerVertical: true,
+        });
+        stripeInit();
+    });
+
 </script>
+
 {{-- autocomplete --}}
 <script>
-
-    $('#hourly-rate').on("change paste keyup", function() {
+    $('#hourly-rate').on("change paste keyup", function () {
         $.ajax({
-            type:'POST',
+            type: 'POST',
             url: '{{ route('home.profile.hourly-rate.update') }}',
             data: {
                 "hourly-rate": $('#hourly-rate').val()
@@ -321,12 +491,12 @@ bg-student
                 Decline: {
                     label: 'Cancel',
                     className: 'btn btn-outline-primary mr-2 p-3 px-5',
-                    callback: function() {}
+                    callback: function () {}
                 },
                 Submit: {
                     label: 'Submit',
                     className: 'btn btn-primary p-3 px-5',
-                    callback: function() {
+                    callback: function () {
                         tutorVerificationUpload();
                     }
                 },
@@ -439,7 +609,7 @@ bg-student
                         centerVertical: true,
                     });
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         location.reload();
                     }, 2000);
                 },

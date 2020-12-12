@@ -205,7 +205,6 @@ class Post extends Model
                     ->whereIn('tags.id', $interestedTagIDs)
                     ->where('posts.user_id', '!=', $user->id)
                     ->groupBy(['posts.id'])
-
                     ->take(15)
                     ->get();
 
