@@ -243,12 +243,13 @@ Route::group([
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
     Route::get('/add_payment_method', 'payment\StripeApiController@addPaymentMethod');
+    Route::post('/create_payment_intent', 'payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
 });
 
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/stripe_save_card', 'payment\StripeApiController@saveCardIndex');
-Route::post('/payment/create_payment_intent', 'payment\StripeApiController@createPaymentIntent');
+
 Route::post('/payment/create_setup_intent', 'payment\StripeApiController@createSetupIntent');
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
 Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
