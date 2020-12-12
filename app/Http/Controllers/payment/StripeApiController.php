@@ -262,11 +262,17 @@ class StripeApiController extends Controller
         // Confirm payment intent
         $payment_intent_id = $invoice->payment_intent;
         $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
-        $payment_intent->confirm();
+
+        try {
+            $payment_intent->confirm();
+        } catch (\Stripe\Exception\CardException $e) {
+            Log::debug('Error when confirming payment intent: '.$e->getMessage());
+        }
+
         Log::debug('PaymentIntent status: '.$payment_intent->status);
 
-        // Handle the case where the card requires authentication
-        if ($payment_intent->status == 'requires_action') {
+        // Handle failed payments
+        if ($payment_intent->status != 'success') {
             $invoice->sendInvoice();
         }
     }
@@ -279,6 +285,20 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::update($customer_id, [
             'invoice_settings' => ['default_payment_method' => $payment_method_id]
         ]);
+    }
+
+    // Refunds a PaymentIntent
+    // Request should contain 'payment_intent_id'
+    public function refundPaymentIntent(Request $request) {
+        $payment_intent_id = $request->input('payment_intent_id');
+
+        $refund = \Stripe\Refund::create([
+            'payment_intent' => $payment_intent_id,
+            'reverse_transfer' => true,
+            'refund_application_fee' => true,
+        ]);
+
+        // TODO: save refund id
     }
 
     /*
