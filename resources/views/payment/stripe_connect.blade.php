@@ -16,11 +16,11 @@
     <p class="result-message1 hidden">
         Login to
         <a href="" target="_blank">Stripe dashboard.</a>
-        
+
     </p>
     <button id="setup-stripe-btn">Setup payouts on Stripe</button>
     <script defer>
-        
+
         $("#setup-stripe-btn").click(function(){
             postToConnectAccount().then((response)=>{
                 // redirect to create stripe account
@@ -30,13 +30,13 @@
                 }else{
 
                 }
-            
+
             })
         });
 
         function postToConnectAccount(){
             return $.ajax({
-            url:"{{ route('stripe_onboarding') }}",
+            url:"{{ route('payment.stripe.onboarding') }}",
             method:'POST',
             headers: {
                 'Content-Type': 'application/json',

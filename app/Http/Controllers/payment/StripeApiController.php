@@ -37,12 +37,17 @@ class StripeApiController extends Controller
     // Request should contain 'refresh_url' and 'return url'
     // Returns 'stripe_url'
     public function createAccountLink(Request $request) {
-        // FIXME: Delete this
-        Auth::attempt(['email' => 'student@usc.edu', 'password' => 'password']);
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         $payment_method = $user->paymentMethod;
+
         // Creates account only if user has no account
         if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
+
+            // todo: fix this
+            return response()->json([
+
+            ]);
+
             $account = Account::create([
                 'country' => 'US',
                 'type' => 'standard',
@@ -51,12 +56,16 @@ class StripeApiController extends Controller
                     'interval' => 'daily'
                 ]]]
             ]);
+
             $account_links = AccountLink::create([
                 'account' => $account->id,
                 'refresh_url' => url('/payment/check'),
                 'return_url' => url('/payment/check'),
                 'type' => 'account_onboarding',
             ]);
+
+
+            // todo: examine what this stripe_account_id is for
             Session::put('stripe_account_id', $account->id);
         } else {
             $account_links = Account::createLoginLink(
@@ -253,11 +262,17 @@ class StripeApiController extends Controller
         // Confirm payment intent
         $payment_intent_id = $invoice->payment_intent;
         $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
-        $payment_intent->confirm();
+
+        try {
+            $payment_intent->confirm();
+        } catch (\Stripe\Exception\CardException $e) {
+            Log::debug('Error when confirming payment intent: '.$e->getMessage());
+        }
+
         Log::debug('PaymentIntent status: '.$payment_intent->status);
 
-        // Handle the case where the card requires authentication
-        if ($payment_intent->status == 'requires_action') {
+        // Handle failed payments
+        if ($payment_intent->status != 'success') {
             $invoice->sendInvoice();
         }
     }
@@ -270,6 +285,20 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::update($customer_id, [
             'invoice_settings' => ['default_payment_method' => $payment_method_id]
         ]);
+    }
+
+    // Refunds a PaymentIntent
+    // Request should contain 'payment_intent_id'
+    public function refundPaymentIntent(Request $request) {
+        $payment_intent_id = $request->input('payment_intent_id');
+
+        $refund = \Stripe\Refund::create([
+            'payment_intent' => $payment_intent_id,
+            'reverse_transfer' => true,
+            'refund_application_fee' => true,
+        ]);
+
+        // TODO: save refund id
     }
 
     /*
