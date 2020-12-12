@@ -37,12 +37,17 @@ class StripeApiController extends Controller
     // Request should contain 'refresh_url' and 'return url'
     // Returns 'stripe_url'
     public function createAccountLink(Request $request) {
-        // FIXME: Delete this
-        Auth::attempt(['email' => 'student@usc.edu', 'password' => 'password']);
-        $user = User::find(Auth::user()->id);
+        $user = Auth::user();
         $payment_method = $user->paymentMethod;
+
         // Creates account only if user has no account
         if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
+
+            // todo: fix this
+            return response()->json([
+
+            ]);
+
             $account = Account::create([
                 'country' => 'US',
                 'type' => 'standard',
@@ -51,12 +56,16 @@ class StripeApiController extends Controller
                     'interval' => 'daily'
                 ]]]
             ]);
+
             $account_links = AccountLink::create([
                 'account' => $account->id,
                 'refresh_url' => url('/payment/check'),
                 'return_url' => url('/payment/check'),
                 'type' => 'account_onboarding',
             ]);
+
+
+            // todo: examine what this stripe_account_id is for
             Session::put('stripe_account_id', $account->id);
         } else {
             $account_links = Account::createLoginLink(
