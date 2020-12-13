@@ -253,6 +253,7 @@ Route::group([
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 
+Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
 
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
 Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');

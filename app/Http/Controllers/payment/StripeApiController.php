@@ -310,12 +310,12 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::retrieve($customer_id, []);
         $default_payment_id = $customer->invoice_settings->default_payment_method;
 
-        
+
         // return errors
         if (count($cards) <= 1) {
             return response()->json([
                 'errorMsg' => "need to have at least one payment"
-            ], 400); 
+            ], 400);
         }
 
         if ($payment_method_id == $default_payment_id) {
@@ -331,12 +331,12 @@ class StripeApiController extends Controller
                 []
             );
         }
-         
+
         // success
         return response()->json([
             'success' => "payment deleted successfully!"
         ], 200);
-        
+
     }
 
     // Refunds a PaymentIntent
@@ -362,5 +362,9 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::retrieve($customer_id, []);
         $default_payment_id = $customer->invoice_settings->default_payment_method;
         return $default_payment_id;
+    }
+
+    public function testSaveCard() {
+        return view('payment.stripe_save_card');
     }
 }
