@@ -423,54 +423,76 @@ bg-student
 </script>
 
 <script>
-    
+    displayCards();
+
     function handleDelete(){
         var btnDelete = $(".btn-delete");
         btnDelete.click(function(){
             event.preventDefault();
+            const paymentMethodID = $(this).data("id");
             console.log($(this).data("id"));
+            detachCard(paymentMethodID).then(result=>{
+                return result.json();
+            }).then(res=>{
+                console.log(res);
+            })
+
         });
     }
 
-    function detachCard(cardId){
-
+    function detachCard(paymentMethodID){
+        var data = {
+                'paymentMethodID':paymentMethodID,
+        };
+        return fetch("{{route('payment.stripe.detach_payment') }}", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+                },
+            })
     }
-    $.ajax({
-        url: "{{ route('payment.stripe.list-cards') }}",
-        method: 'GET',
-        success: (data) => {
-            let {
-                cards
-            } = data;
-            console.log(cards);
+    
+    function displayCards(){
+        $.ajax({
+            url: "{{ route('payment.stripe.list-cards') }}",
+            method: 'GET',
+            success: (data) => {
+                let {
+                    cards
+                } = data;
+                console.log(cards);
 
-            cards.forEach(card => {
-                $('.payment-cards').append(`
-                    <div class="card-wrapper">
-                        <div class="card">
-                            <div class="brand">
-                                Brand: ${card.brand}
+                cards.forEach(card => {
+                    $('.payment-cards').append(`
+                        <div class="card-wrapper">
+                            <div class="card">
+                                <div class="brand">
+                                    Brand: ${card.brand}
+                                </div>
+                                <div class="exp">
+                                    Expired At: ${card.exp_month}/${card.exp_year}
+                                </div>
+                                <div class="last4">
+                                    Card Number: xxxx-xxxx-xxxx-${card.last4}
+                                </div>
                             </div>
-                            <div class="exp">
-                                Expired At: ${card.exp_month}/${card.exp_year}
-                            </div>
-                            <div class="last4">
-                                Card Number: xxxx-xxxx-xxxx-${card.last4}
-                            </div>
+                            <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                            <button class="btn btn-primary btn-default">Set As Default</button>
                         </div>
-                        <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
-                        <button class="btn btn-primary btn-default">Set As Default</button>
-                    </div>
-                `);
-            });
+                    `);
+                });
 
-            handleDelete();
-            
-        },
-        error: (err) => {
-            console.log(err);
-        }
-    })
+                handleDelete();
+                
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+
 
 
     $("#btn-setup-payment").click(function () {

@@ -284,6 +284,21 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // detach a payment from customer
+    public function detachPayment(Request $request) {
+        $payment_method_id = $request->input('paymentMethodID');
+        $customer_id = $this->getCustomerId();
+        $stripe = new \Stripe\StripeClient(
+            env('STRIPE_TEST_KEY')
+          );
+          $stripe->paymentMethods->detach(
+            $payment_method_id,
+            []
+          );
+        
+        return json_encode(array($payment_method_id));
+    }
+
     // Refunds a PaymentIntent
     // Request should contain 'payment_intent_id'
     public function refundPaymentIntent(Request $request) {
