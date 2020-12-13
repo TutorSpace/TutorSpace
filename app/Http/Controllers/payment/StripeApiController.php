@@ -153,6 +153,7 @@ class StripeApiController extends Controller
         $result = [];
         foreach ($cards as $card) {
             array_push($result, [
+                'card_id' => $card->id,
                 'brand' => $card->card->brand,
                 'exp_month' => $card->card->exp_month,
                 'exp_year' => $card->card->exp_year,

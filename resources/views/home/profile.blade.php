@@ -244,7 +244,7 @@ bg-student
                             Methods</button>
                         @else
                         <div class="payment-cards">
-                            {{-- <div class="card-wrapper">
+                            <div class="card-wrapper">
                                 <div class="card">
                                     <div class="brand">
                                         Brand: xxxx
@@ -256,9 +256,9 @@ bg-student
                                         Card Number: xxxx-xxxx-xxxx-1234
                                     </div>
                                 </div>
-                                <button class="btn btn-danger mr-2">Delete</button>
+                                <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button class="btn btn-primary">Set As Default</button>
-                            </div> --}}
+                            </div>
                         </div>
 
                         <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
@@ -278,10 +278,23 @@ bg-student
 @endsection
 
 @section('js')
+
+<script>
+    
+    // btnDelete.forEach((btn)=>{
+    //     btn.click(()=>{
+    //         event.preventDefault();
+    //         console.log("delete");
+    //     })
+    // })
+
+</script>
+
+
 <script defer>
     function stripeInit() {
         // A reference to Stripe.js initialized with your real test publishable API key.
-        var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
+        var stripe = Stripe("pk_test_51H6RWlBtUwiw0w2oW1kGPF0AwsekfcKD0mz7Aj5M66bVelryG3uZdcE3lutEIb9ddWDlfpTGm3PjpZk5BjphHvU100pM9tg0rJ");
         // The items the customer wants to buy
         // Disable the button until we have Stripe set up on the page
         document.querySelector("button").disabled = true;
@@ -410,6 +423,18 @@ bg-student
 </script>
 
 <script>
+    
+    function handleDelete(){
+        var btnDelete = $(".btn-delete");
+        btnDelete.click(function(){
+            event.preventDefault();
+            console.log($(this).data("id"));
+        });
+    }
+
+    function detachCard(cardId){
+
+    }
     $.ajax({
         url: "{{ route('payment.stripe.list-cards') }}",
         method: 'GET',
@@ -433,11 +458,14 @@ bg-student
                                 Card Number: xxxx-xxxx-xxxx-${card.last4}
                             </div>
                         </div>
-                        <button class="btn btn-danger mr-2">Delete</button>
-                        <button class="btn btn-primary">Set As Default</button>
+                        <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                        <button class="btn btn-primary btn-default">Set As Default</button>
                     </div>
                 `);
             });
+
+            handleDelete();
+            
         },
         error: (err) => {
             console.log(err);
