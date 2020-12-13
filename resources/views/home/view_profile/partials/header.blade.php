@@ -84,26 +84,28 @@
                 </div>
                 <div class="mt-3">
                     <button class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2">Chat</button>
+                    @if ($user->is_tutor)
                     <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2">Request a Session</button>
+                    @endif
                 </div>
             </div>
             @if ($user->is_tutor)
-            <div class="content-price">
+            <div class="content-price color-primary">
                 <span class="fs-2-4 mr-2">$ {{ $user->hourly_rate }}</span>
                 <span class="pt-3 fc-grey fs-1-4">/hour</span>
             </div>
             @endif
             <div class="content-data">
-                <div class="data">
+                <div class="data color-primary">
                     <span class="number">{{ Carbon\Carbon::now()->diffInDays($user->created_at) }}</span>
                     <span class="classifier">Days</span>
                 </div>
-                <div class="data">
+                <div class="data color-primary">
                     <span class="number">?</span>
                     <span class="classifier">Sessions</span>
                 </div>
                 @if ($user->is_tutor)
-                <div class="data">
+                <div class="data color-primary">
                     <span class="number">?</span>
                     <span class="classifier">Students</span>
                 </div>
