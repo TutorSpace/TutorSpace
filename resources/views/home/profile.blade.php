@@ -357,7 +357,7 @@ bg-student
                         showError(result.error.message);
                     } else {
                         // save card as default
-                        setCardAsDefault(result.setupIntent.payment_method).then((res)=>{
+                        setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
                             // The payment succeeded!
                             orderComplete(result.setupIntent.client_secret);
                         });
@@ -411,10 +411,18 @@ bg-student
 </script>
 
 <script>
-    const setCardAsDefault = function (paymentMethodID) {
+    const setCardAsDefault = function (paymentMethodID, isFake) {
+        var fake = "false";
+        if (isFake){
+            var fake = "true";
+        }
+
         var data = {
             'paymentMethodID':paymentMethodID,
+            'isFake':fake
         };
+        
+        
         return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
         method: "POST",
         body: JSON.stringify(data),
@@ -432,7 +440,7 @@ bg-student
         btnDelete.click(function(){
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
-            detachCard(paymentMethodID).then(result=>{
+            detachCard(paymentMethodID, true).then(result=>{
                 return result.json();
             }).then((result)=>{
                 if (result.errorMsg){
@@ -455,22 +463,33 @@ bg-student
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             console.log(paymentMethodID);
-            setCardAsDefault(paymentMethodID).then((res)=>{
+            setCardAsDefault(paymentMethodID, true).then((res)=>{
                 // TODO: Success
-                toastr.success("successfully set payment as default")
+                if (res.errorMsg){
+                    toastr.error(res.errorMsg)
+                }else{
+                    toastr.success("succesfully set card as default payment method")
+                }
             })
             .catch(error=>{
                 // TODO: error handling
-                toastr(error);
+                toastr.error(error)
             })
 
         });
     }
 
-    function detachCard(paymentMethodID){
+    function detachCard(paymentMethodID, isFake){
+        var fake = "false";
+        if (isFake){
+            var fake = "true";
+        }
+        
         var data = {
-                'paymentMethodID':paymentMethodID,
+            'paymentMethodID':paymentMethodID,
+            'isFake':fake
         };
+       
         return fetch("{{route('payment.stripe.detach_payment') }}", {
             method: "POST",
             body: JSON.stringify(data),
@@ -491,9 +510,7 @@ bg-student
                 let {
                     cards
                 } = data;
-                console.log(cards);
-
-                cards.forEach(card => {
+                cards.forEach((card,idx) => {
                     $('.payment-cards').append(`
                         <div class="card-wrapper">
                             <div class="card">
@@ -511,8 +528,8 @@ bg-student
                            `+
                            
                            (card.is_default == 'false'?`
-                                <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
-                                <button data-id=${card.card_id} class="btn btn-primary btn-setDefault">Set As Default</button>
+                                <button data-id=${idx} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                                <button data-id=${idx} class="btn btn-primary btn-setDefault">Set As Default</button>
                             
                            `:'') 
                            +`
@@ -534,7 +551,6 @@ bg-student
 
     $("#btn-setup-payment").click(function () {
         postToConnectAccount().then((response) => {
-            console.log(response)
             // redirect to create stripe account
             if (response.stripe_url) {
                 window.location = response.stripe_url;

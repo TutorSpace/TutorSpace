@@ -151,15 +151,19 @@ class StripeApiController extends Controller
         ])->data;
 
 
-        $customer_id = $this->getCustomerId();
-        $customer = \Stripe\Customer::retrieve($customer_id, []);
-        $default_payment_id = $customer->invoice_settings->default_payment_method;
+        // get default payment(invoice)
+        $default_payment_id = $this->getCustomerDefaultPaymentId();
 
         $result = [];
+        $payment_method_ids = [];
         foreach ($cards as $card) {
             $is_default = $card->id == $default_payment_id? "true" : "false";
-            array_push($result, [
+            array_push($payment_method_ids,[
                 'card_id' => $card->id,
+            ]);
+
+            array_push($result, [
+                // 'card_id' => $card->id,
                 'brand' => $card->card->brand,
                 'exp_month' => $card->card->exp_month,
                 'exp_year' => $card->card->exp_year,
@@ -167,7 +171,7 @@ class StripeApiController extends Controller
                 'is_default' => $is_default
             ]);
         }
-
+        Session::put("payments",$payment_method_ids);
         return response()->json([
             'cards' => $result
         ]);
@@ -284,7 +288,14 @@ class StripeApiController extends Controller
     // Save card as Default
     // Request should contain 'paymentMethodID'
     public function saveCardAsDefault(Request $request) {
-        $payment_method_id = $request->input('paymentMethodID');
+        // fake id or not, convert to real if fake
+        if ($request->input('isFake') == "false"){
+            $payment_method_id = $request->input('paymentMethodID');
+        }else{
+            $id = $request->input('paymentMethodID');
+            $payment_method_id =  $this->convertFakePaymentIDToRealID($id);
+        }
+
         $customer_id = $this->getCustomerId();
         $customer = \Stripe\Customer::update($customer_id, [
             'invoice_settings' => ['default_payment_method' => $payment_method_id]
@@ -294,7 +305,14 @@ class StripeApiController extends Controller
 
     // detach a payment from customer
     public function detachPayment(Request $request) {
-        $payment_method_id = $request->input('paymentMethodID');
+        // convert to real payment id
+        if ($request->input('isFake') == "false"){
+            $payment_method_id = $request->input('paymentMethodID');
+        }else{
+            $id = $request->input('paymentMethodID');
+            $payment_method_id =  $this->convertFakePaymentIDToRealID($id);
+        }
+        
         $customer_id = $this->getCustomerId();
         $stripe = new \Stripe\StripeClient(
             env('STRIPE_TEST_KEY')
@@ -307,8 +325,7 @@ class StripeApiController extends Controller
         ])->data;
 
         //get default
-        $customer = \Stripe\Customer::retrieve($customer_id, []);
-        $default_payment_id = $customer->invoice_settings->default_payment_method;
+        $default_payment_id = $this->getCustomerDefaultPaymentId();
 
         
         // return errors
@@ -362,5 +379,11 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::retrieve($customer_id, []);
         $default_payment_id = $customer->invoice_settings->default_payment_method;
         return $default_payment_id;
+    }
+
+    private function convertFakePaymentIDToRealID($id){
+        $current_payment = Session::get("payments");
+        $payment_method_id =  $current_payment[$id]["card_id"];
+        return $payment_method_id;
     }
 }
