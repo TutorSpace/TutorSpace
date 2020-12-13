@@ -244,7 +244,7 @@ bg-student
                             Methods</button>
                         @else
                         <div class="payment-cards">
-                            <div class="card-wrapper">
+                            {{-- <div class="card-wrapper">
                                 <div class="card">
                                     <div class="brand">
                                         Brand: xxxx
@@ -258,7 +258,7 @@ bg-student
                                 </div>
                                 <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button class="btn btn-primary">Set As Default</button>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
@@ -367,19 +367,7 @@ bg-student
         };
 
 
-        const setCardAsDefault = function (paymentMethodID) {
-            var data = {
-                'paymentMethodID':paymentMethodID,
-            };
-            return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": '{{csrf_token()}}'
-                },
-            })
-        }
+       
 
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
@@ -423,6 +411,20 @@ bg-student
 </script>
 
 <script>
+    const setCardAsDefault = function (paymentMethodID) {
+        var data = {
+            'paymentMethodID':paymentMethodID,
+        };
+        return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": '{{csrf_token()}}'
+            },
+        })
+    }
+
     displayCards();
 
     function handleDelete(){
@@ -430,11 +432,36 @@ bg-student
         btnDelete.click(function(){
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
-            console.log($(this).data("id"));
             detachCard(paymentMethodID).then(result=>{
                 return result.json();
-            }).then(res=>{
-                console.log(res);
+            }).then((result)=>{
+                if (result.errorMsg){
+                    toastr.error(result.errorMsg)
+                }else{
+                    toastr.success(result.success)
+                }
+            })
+            .catch(error=>{
+                // TODO: error handling
+                toastr.error(error);
+            })
+
+        });
+    }
+
+    function handleSetDefault(){
+        var btnDefault = $(".btn-setDefault");
+        btnDefault.click(function(){
+            event.preventDefault();
+            const paymentMethodID = $(this).data("id");
+            console.log(paymentMethodID);
+            setCardAsDefault(paymentMethodID).then((res)=>{
+                // TODO: Success
+                toastr.success("successfully set payment as default")
+            })
+            .catch(error=>{
+                // TODO: error handling
+                toastr(error);
             })
 
         });
@@ -453,6 +480,8 @@ bg-student
                 },
             })
     }
+
+    
     
     function displayCards(){
         $.ajax({
@@ -478,13 +507,21 @@ bg-student
                                     Card Number: xxxx-xxxx-xxxx-${card.last4}
                                 </div>
                             </div>
-                            <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
-                            <button class="btn btn-primary btn-default">Set As Default</button>
+                            
+                           `+
+                           
+                           (card.is_default == 'false'?`
+                                <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                                <button data-id=${card.card_id} class="btn btn-primary btn-setDefault">Set As Default</button>
+                            
+                           `:'') 
+                           +`
                         </div>
                     `);
                 });
 
                 handleDelete();
+                handleSetDefault();
                 
             },
             error: (err) => {
