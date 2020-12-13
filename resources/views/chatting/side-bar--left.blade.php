@@ -12,7 +12,7 @@
         @endphp
         @include('chatting.side-bar-chatting-msg', [
             'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
-            'time' => $chatroom->getLatestMessageTime()->diffForHumans(),
+            'time' => $chatroom->getLatestMessageTime(),
             'user' => App\User::find($otherUserId),
             'message' => $chatroom->getLatestMessage()
         ])

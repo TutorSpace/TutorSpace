@@ -87,9 +87,9 @@ bg-student
 
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
-                    appendOtherMessage(message, 'Now');
+                    appendOtherMessage(message, created_at);
                 } else if(from == currentUserId && to == currentlyViewingId) {
-                    appendMyMessage(message, 'Now');
+                    appendMyMessage(message, created_at);
                 }
                 scrollToBottom();
             } else {
@@ -97,7 +97,7 @@ bg-student
             }
 
             $(`.msg[data-user-id=${otherUserId}] .content-2`).html(message);
-            $(`.msg[data-user-id=${otherUserId}] .time`).html('Now');
+            $(`.msg[data-user-id=${otherUserId}] .time`).html(created_at);
         });
     }
 
