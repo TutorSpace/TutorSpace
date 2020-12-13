@@ -180,16 +180,18 @@ class HomeController extends Controller
 
     public function update(Request $request) {
         $currUser = Auth::user();
+
+        // todo: fix me
         $request->validate([
+            'second-major' => [
+                'nullable',
+                'exists:majors,major'
+            ],
             'first-major' => [
                 Rule::requiredIf($currUser->is_tutor),
                 'required_with:second-major',
                 'exists:majors,major',
                 'different:second-major',
-            ],
-            'second-major' => [
-                'nullable',
-                'exists:majors,major'
             ],
             'minor' => [
                 'nullable',
@@ -199,16 +201,16 @@ class HomeController extends Controller
                 'nullable',
                 'size:50'
             ],
+            "school-year" => [
+                Rule::requiredIf($currUser->is_tutor),
+                'exists:school_years,school_year'
+            ],
             "gpa" => [
                 Rule::requiredIf($currUser->is_tutor),
                 'numeric',
                 'min:1',
                 'max:4'
             ],
-            "school-year" => [
-                Rule::requiredIf($currUser->is_tutor),
-                'exists:school_years,school_year'
-            ]
         ]);
 
         foreach(User::where('email', $currUser->email)->get() as $tmpUser) {

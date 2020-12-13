@@ -256,7 +256,8 @@ bg-student
                                         Card Number: xxxx-xxxx-xxxx-1234
                                     </div>
                                 </div>
-                                <button class="btn btn-danger">Delete</button>
+                                <button class="btn btn-danger mr-2">Delete</button>
+                                <button class="btn btn-primary">Set As Default</button>
                             </div> --}}
                         </div>
 
@@ -280,118 +281,120 @@ bg-student
 <script defer>
     function stripeInit() {
         // A reference to Stripe.js initialized with your real test publishable API key.
-        var stripe = Stripe(
-            "pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn"
-            );
+        var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
         // The items the customer wants to buy
-        var purchase = {
-            items: [{
-                id: "xl-tshirt"
-            }],
-            amount: 1234
-        };
         // Disable the button until we have Stripe set up on the page
         document.querySelector("button").disabled = true;
-        fetch("{{ route('payment.stripe.create_payment_intent') }}", {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    "X-CSRF-Token": '{{csrf_token()}}'
-                },
-                body: JSON.stringify(purchase)
-            })
-            .then(function (result) {
-                return result.json();
-            })
-            .then(function (data) {
-                var elements = stripe.elements();
-                var style = {
-                    base: {
-                        color: "#32325d",
-                        fontFamily: 'Arial, sans-serif',
-                        fontSmoothing: "antialiased",
-                        fontSize: "16px",
-                        "::placeholder": {
-                            color: "#32325d"
-                        }
-                    },
-                    invalid: {
-                        fontFamily: 'Arial, sans-serif',
-                        color: "#fa755a",
-                        iconColor: "#fa755a"
-                    }
-                };
-                var card = elements.create("card", {
-                    style: style
-                });
-                // Stripe injects an iframe into the DOM
-                card.mount("#card-element");
-                card.on("change", function (event) {
-                    // Disable the Pay button if there are no card details in the Element
-                    document.querySelector("button").disabled = event.empty;
-                    document.querySelector("#card-error").textContent = event.error ? event.error.message :
-                        "";
-                });
-                var form = document.getElementById("payment-form");
-                form.addEventListener("submit", function (event) {
-                    event.preventDefault();
-                    // Complete payment when the submit button is clicked
-                    payWithCard(stripe, card, data.clientSecret);
-                });
+        fetch("{{ route('payment.stripe.create_setup_intent') }}", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+            },
+        })
+        .then(function(result) {
+            return result.json();
+        })
+        .then(function(data) {
+            var elements = stripe.elements();
+            var style = {
+                base: {
+                fontSize: "16px",
+                color: "#32325d",
+                fontFamily:
+                    "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+                fontSmoothing: "antialiased",
+                "::placeholder": {
+                    color: "rgba(0,0,0,0.4)"
+                }
+                }
+            };
+
+            var card = elements.create("card", { style: style });
+            // Stripe injects an iframe into the DOM
+            card.mount("#card-element");
+            card.on("change", function (event) {
+                // Disable the Pay button if there are no card details in the Element
+                document.querySelector("button").disabled = event.empty;
+                document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
             });
+            var form = document.getElementById("payment-form");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                // Complete payment when the submit button is clicked
+                setUpCard(stripe, card, data.clientSecret);
+            });
+        });
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
-        var payWithCard = function (stripe, card, clientSecret) {
+        var setUpCard = function(stripe, card, clientSecret) {
             loading(true);
+            var email = document.getElementById("email").value;
             stripe
-                .confirmCardPayment(clientSecret, {
+                .confirmCardSetup(clientSecret, {
                     payment_method: {
-                        card: card
-                    },
-                    setup_future_usage: 'off_session'
-                })
-                .then(function (result) {
-                    if (result.paymentIntent.status === 'succeeded') {
-                        // The payment is complete!
-                        orderComplete(result.paymentIntent.id);
-                    } else {
-                        alert(result.paymentIntent.status)
+                        card: card,
+                        billing_details: { email: email }
                     }
-
+                })
+                .then(function(result) {
                     if (result.error) {
                         // Show error to your customer
                         showError(result.error.message);
                     } else {
-                        // The payment succeeded!
+                        // save card as default
+                        setCardAsDefault(result.setupIntent.payment_method).then((res)=>{
+                            // The payment succeeded!
+                            orderComplete(result.setupIntent.client_secret);
+                        });
 
                     }
                 });
         };
+
+
+        const setCardAsDefault = function (paymentMethodID) {
+            var data = {
+                'paymentMethodID':paymentMethodID,
+            };
+            return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+                },
+            })
+        }
+
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
-        var orderComplete = function (paymentIntentId) {
-            loading(false);
-            document
-                .querySelector(".result-message a")
-                .setAttribute(
-                    "href",
-                    "https://dashboard.stripe.com/test/payments/" + paymentIntentId
-                );
-            document.querySelector(".result-message").classList.remove("hidden");
-            document.querySelector("button").disabled = true;
+        var orderComplete = function(clientSecret) {
+            stripe.retrieveSetupIntent(clientSecret).then(function(result) {
+                var setupIntent = result.setupIntent;
+                var setupIntentJson = JSON.stringify(setupIntent, null, 2);
+
+                document.querySelector(".sr-result").classList.remove("hidden");
+                document.querySelector("pre").textContent = setupIntentJson;
+                setTimeout(function() {
+                document.querySelector(".sr-result").classList.add("expand");
+                }, 200);
+
+                loading(false);
+            });
         };
         // Show the customer the error from Stripe if their card fails to charge
-        var showError = function (errorMsgText) {
+        var showError = function(errorMsgText) {
             loading(false);
             var errorMsg = document.querySelector("#card-error");
             errorMsg.textContent = errorMsgText;
-            setTimeout(function () {
+            setTimeout(function() {
                 errorMsg.textContent = "";
             }, 4000);
         };
         // Show a spinner on payment submission
-        var loading = function (isLoading) {
+        var loading = function(isLoading) {
             if (isLoading) {
                 // Disable the button and show a spinner
                 document.querySelector("button").disabled = true;
@@ -404,7 +407,6 @@ bg-student
             }
         };
     }
-
 </script>
 
 <script>
@@ -431,7 +433,8 @@ bg-student
                                 Card Number: xxxx-xxxx-xxxx-${card.last4}
                             </div>
                         </div>
-                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-danger mr-2">Delete</button>
+                        <button class="btn btn-primary">Set As Default</button>
                     </div>
                 `);
             });
@@ -465,7 +468,7 @@ bg-student
 
     $('#btn-add-payment').click(function () {
         bootbox.dialog({
-            message: `@include('payment.partials.add-payment-method')`,
+            message: `@include('payment.partials.save-card')`,
             size: 'medium',
             centerVertical: true,
         });

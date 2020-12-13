@@ -113,6 +113,10 @@
     &-add-payment-method {
         #payment-form {
             margin-top: 3rem;
+
+            label {
+                color: $color-black-2;
+            }
         }
 
         input {
@@ -264,13 +268,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        @media only screen and (max-width: 600px) {
-            form {
-                width: 80vw;
-            }
-        }
-
     }
 
 }

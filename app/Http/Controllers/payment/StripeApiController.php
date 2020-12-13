@@ -25,10 +25,6 @@ class StripeApiController extends Controller
         return view('payment.stripe_connect');
     }
 
-    public function addPaymentMethod() {
-        return view('payment.stripe_add_payment');
-    }
-
     public function saveCardIndex() {
         return view('payment.stripe_save_card');
     }

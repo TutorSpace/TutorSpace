@@ -3,26 +3,11 @@
     color: $color-black-2;
     margin-bottom: 18rem;
 
-    .back-container {
-        padding-top: 5rem;
-
-        .btn-back {
-            font-size: 2rem;
-            display: flex;
-            align-items: center;
-
-            svg {
-                font-size: 1.7rem;
-                margin-right: 1rem;
-            }
-        }
-    }
-
     &__header {
         padding: 0;
         border-radius: 1rem;
         position: relative;
-        margin-top: 2rem;
+        margin-top: 5rem;
         margin-bottom: 5rem;
         width: 100%;
         background-color: $color-white-dark-5;
@@ -195,7 +180,6 @@
                         font-size: 4rem;
                         line-height: 1;
                         font-weight: 500;
-                        color: $color-purple-primary;
 
                         @include respond(md) {
                             font-size: 2rem;

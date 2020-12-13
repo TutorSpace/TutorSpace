@@ -113,15 +113,15 @@
                     <span class="classifier">Days</span>
                 </div>
                 <div class="data">
-                    <span class="number">-1</span>
+                    <span class="number">?</span>
                     <span class="classifier">Sessions</span>
                 </div>
                 <div class="data">
                     @if (Auth::user()->is_tutor)
-                    <span class="number">-1</span>
+                    <span class="number">?</span>
                     <span class="classifier">Students</span>
                     @else
-                    <span class="number">-1</span>
+                    <span class="number">?</span>
                     <span class="classifier">Tutors</span>
                     @endif
 
