@@ -244,6 +244,7 @@ Route::group([
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
     Route::get('/add_payment_method', 'payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
     Route::post('/create_payment_intent', 'payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
+    Route::post('/detach_payment', 'payment\StripeApiController@detachPayment')->name('payment.stripe.detach_payment');
     //Stripe set payment as Customer Invoice Default
     Route::post('/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');

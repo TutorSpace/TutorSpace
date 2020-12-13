@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
 use Stripe\Refund;
 use Stripe\SetupIntent;
-
 class StripeApiController extends Controller
 {
     public function __construct()
@@ -46,7 +45,7 @@ class StripeApiController extends Controller
 
             $account = Account::create([
                 'country' => 'US',
-                'type' => 'standard',
+                'type' => 'express',
                 'settings' => ['payouts' => ['schedule' => [
                     'delay_days' => 2,  // TODO: discuss payout schedule
                     'interval' => 'daily'
@@ -150,13 +149,22 @@ class StripeApiController extends Controller
             'customer' => $this->getCustomerId(),
             'type' => 'card'
         ])->data;
+
+
+        $customer_id = $this->getCustomerId();
+        $customer = \Stripe\Customer::retrieve($customer_id, []);
+        $default_payment_id = $customer->invoice_settings->default_payment_method;
+
         $result = [];
         foreach ($cards as $card) {
+            $is_default = $card->id == $default_payment_id? "true" : "false";
             array_push($result, [
+                'card_id' => $card->id,
                 'brand' => $card->card->brand,
                 'exp_month' => $card->card->exp_month,
                 'exp_year' => $card->card->exp_year,
-                'last4' => $card->card->last4
+                'last4' => $card->card->last4,
+                'is_default' => $is_default
             ]);
         }
 
@@ -281,6 +289,54 @@ class StripeApiController extends Controller
         $customer = \Stripe\Customer::update($customer_id, [
             'invoice_settings' => ['default_payment_method' => $payment_method_id]
         ]);
+
+    }
+
+    // detach a payment from customer
+    public function detachPayment(Request $request) {
+        $payment_method_id = $request->input('paymentMethodID');
+        $customer_id = $this->getCustomerId();
+        $stripe = new \Stripe\StripeClient(
+            env('STRIPE_TEST_KEY')
+          );
+
+        // get all cards
+        $cards = \Stripe\PaymentMethod::all([
+            'customer' => $this->getCustomerId(),
+            'type' => 'card'
+        ])->data;
+
+        //get default
+        $customer = \Stripe\Customer::retrieve($customer_id, []);
+        $default_payment_id = $customer->invoice_settings->default_payment_method;
+
+        
+        // return errors
+        if (count($cards) <= 1) {
+            return response()->json([
+                'errorMsg' => "need to have at least one payment"
+            ], 400); 
+        }
+
+        if ($payment_method_id == $default_payment_id) {
+            return response()->json([
+                'errorMsg' => "cannot delete default payment"
+            ], 400);
+        }
+
+        // can delete only when cards > 1 and not the default method
+        if (count($cards) > 1 && $payment_method_id != $default_payment_id){
+            $stripe->paymentMethods->detach(
+                $payment_method_id,
+                []
+            );
+        }
+         
+        // success
+        return response()->json([
+            'success' => "payment deleted successfully!"
+        ], 200);
+        
     }
 
     // Refunds a PaymentIntent
@@ -300,4 +356,11 @@ class StripeApiController extends Controller
     /*
         Section ends: implementation using Invoice
     */
+
+    private function getCustomerDefaultPaymentId(){
+        $customer_id = $this->getCustomerId();
+        $customer = \Stripe\Customer::retrieve($customer_id, []);
+        $default_payment_id = $customer->invoice_settings->default_payment_method;
+        return $default_payment_id;
+    }
 }

@@ -262,7 +262,7 @@ bg-student
                                         Card Number: xxxx-xxxx-xxxx-1234
                                     </div>
                                 </div>
-                                <button class="btn btn-danger mr-2">Delete</button>
+                                <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button class="btn btn-primary">Set As Default</button>
                             </div> --}}
                         </div>
@@ -284,10 +284,23 @@ bg-student
 @endsection
 
 @section('js')
+
+<script>
+    
+    // btnDelete.forEach((btn)=>{
+    //     btn.click(()=>{
+    //         event.preventDefault();
+    //         console.log("delete");
+    //     })
+    // })
+
+</script>
+
+
 <script defer>
     function stripeInit() {
         // A reference to Stripe.js initialized with your real test publishable API key.
-        var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
+        var stripe = Stripe("pk_test_51H6RWlBtUwiw0w2oW1kGPF0AwsekfcKD0mz7Aj5M66bVelryG3uZdcE3lutEIb9ddWDlfpTGm3PjpZk5BjphHvU100pM9tg0rJ");
         // The items the customer wants to buy
         // Disable the button until we have Stripe set up on the page
         document.querySelector("button").disabled = true;
@@ -360,19 +373,7 @@ bg-student
         };
 
 
-        const setCardAsDefault = function (paymentMethodID) {
-            var data = {
-                'paymentMethodID':paymentMethodID,
-            };
-            return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                "X-CSRF-Token": '{{csrf_token()}}'
-                },
-            })
-        }
+       
 
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
@@ -416,39 +417,125 @@ bg-student
 </script>
 
 <script>
-    $.ajax({
-        url: "{{ route('payment.stripe.list-cards') }}",
-        method: 'GET',
-        success: (data) => {
-            let {
-                cards
-            } = data;
-            console.log(cards);
+    const setCardAsDefault = function (paymentMethodID) {
+        var data = {
+            'paymentMethodID':paymentMethodID,
+        };
+        return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": '{{csrf_token()}}'
+            },
+        })
+    }
 
-            cards.forEach(card => {
-                $('.payment-cards').append(`
-                    <div class="card-wrapper">
-                        <div class="card">
-                            <div class="brand">
-                                Brand: ${card.brand}
+    displayCards();
+
+    function handleDelete(){
+        var btnDelete = $(".btn-delete");
+        btnDelete.click(function(){
+            event.preventDefault();
+            const paymentMethodID = $(this).data("id");
+            detachCard(paymentMethodID).then(result=>{
+                return result.json();
+            }).then((result)=>{
+                if (result.errorMsg){
+                    toastr.error(result.errorMsg)
+                }else{
+                    toastr.success(result.success)
+                }
+            })
+            .catch(error=>{
+                // TODO: error handling
+                toastr.error(error);
+            })
+
+        });
+    }
+
+    function handleSetDefault(){
+        var btnDefault = $(".btn-setDefault");
+        btnDefault.click(function(){
+            event.preventDefault();
+            const paymentMethodID = $(this).data("id");
+            console.log(paymentMethodID);
+            setCardAsDefault(paymentMethodID).then((res)=>{
+                // TODO: Success
+                toastr.success("successfully set payment as default")
+            })
+            .catch(error=>{
+                // TODO: error handling
+                toastr(error);
+            })
+
+        });
+    }
+
+    function detachCard(paymentMethodID){
+        var data = {
+                'paymentMethodID':paymentMethodID,
+        };
+        return fetch("{{route('payment.stripe.detach_payment') }}", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+                },
+            })
+    }
+
+    
+    
+    function displayCards(){
+        $.ajax({
+            url: "{{ route('payment.stripe.list-cards') }}",
+            method: 'GET',
+            success: (data) => {
+                let {
+                    cards
+                } = data;
+                console.log(cards);
+
+                cards.forEach(card => {
+                    $('.payment-cards').append(`
+                        <div class="card-wrapper">
+                            <div class="card">
+                                <div class="brand">
+                                    Brand: ${card.brand}
+                                </div>
+                                <div class="exp">
+                                    Expired At: ${card.exp_month}/${card.exp_year}
+                                </div>
+                                <div class="last4">
+                                    Card Number: xxxx-xxxx-xxxx-${card.last4}
+                                </div>
                             </div>
-                            <div class="exp">
-                                Expired At: ${card.exp_month}/${card.exp_year}
-                            </div>
-                            <div class="last4">
-                                Card Number: xxxx-xxxx-xxxx-${card.last4}
-                            </div>
+                            
+                           `+
+                           
+                           (card.is_default == 'false'?`
+                                <button data-id=${card.card_id} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                                <button data-id=${card.card_id} class="btn btn-primary btn-setDefault">Set As Default</button>
+                            
+                           `:'') 
+                           +`
                         </div>
-                        <button class="btn btn-danger mr-2">Delete</button>
-                        <button class="btn btn-primary">Set As Default</button>
-                    </div>
-                `);
-            });
-        },
-        error: (err) => {
-            console.log(err);
-        }
-    })
+                    `);
+                });
+
+                handleDelete();
+                handleSetDefault();
+                
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
+    }
+
 
 
     $("#btn-setup-payment").click(function () {
