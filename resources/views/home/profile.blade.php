@@ -551,11 +551,9 @@ bg-student
     $("#btn-setup-payment").click(function () {
         postToConnectAccount().then((response) => {
             // redirect to create stripe account
-            console.log("response.stripe_url")
-            console.log(response.stripe_url)
+
             if (response.stripe_url) {
                 window.location = response.stripe_url;
-                console.log(response.stripe_url)
                 // TODO: error
             } else {
 
