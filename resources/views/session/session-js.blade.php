@@ -18,8 +18,11 @@
         options.eventClick = null;
         options.headerToolbar = null;
         options.height = 'auto';
+
+        // todo: modify this
         options.slotMinTime = "08:30:00";
         options.slotMaxTime = "11:30:00";
+
         let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
         e.render();
         setTimeout(() => {
@@ -85,6 +88,8 @@ $('#tutor-profile-request-session').on('click',function() {
             },
         }
     });
+
+    $('#session-date').html(startTime);
 
     let options = Object.assign({}, calendarOptions);
     options.height = 350;

@@ -119,7 +119,7 @@ bg-student
 @section('js')
 
 @if ($user->is_tutor)
-    @include('home.partials.calendar-view-profile')
+    @include('home.view_profile.partials.calendar-view-profile')
 @endif
 
 
