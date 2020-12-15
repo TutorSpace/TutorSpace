@@ -39,9 +39,9 @@ class StripeApiController extends Controller
         if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
 
             // todo: fix this
-            return response()->json([
+            // return response()->json([
 
-            ]);
+            // ]);
 
             $account = Account::create([
                 'country' => 'US',
@@ -58,8 +58,6 @@ class StripeApiController extends Controller
                 'return_url' => url('/payment/check'),
                 'type' => 'account_onboarding',
             ]);
-
-
             // todo: examine what this stripe_account_id is for
             Session::put('stripe_account_id', $account->id);
         } else {
@@ -67,6 +65,9 @@ class StripeApiController extends Controller
                 $payment_method->stripe_account_id, []
             );
         }
+        // return response()->json([
+        //     'stripe_url' => "account_links->url"
+        // ]);
         return response()->json([
             'stripe_url' => $account_links->url
         ]);

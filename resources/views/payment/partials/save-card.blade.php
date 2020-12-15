@@ -3,7 +3,7 @@
     <form id="payment-form">
         <div class="sr-form-row">
             <label>
-                Account details
+                Billing account details
             </label>
             <input type="text" id="email" placeholder="Email address" />
         </div>
@@ -12,7 +12,7 @@
             <div id="card-element">
                 <!--Stripe.js injects the Card Element-->
             </div>
-            <button id="submit">
+            <button id="btn-add-payment-submit">
                 <div class="spinner hidden" id="spinner"></div>
                 <span id="button-text">Confirm</span>
             </button>

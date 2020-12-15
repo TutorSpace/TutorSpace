@@ -279,16 +279,6 @@ bg-student
 
 @section('js')
 
-<script>
-    
-    // btnDelete.forEach((btn)=>{
-    //     btn.click(()=>{
-    //         event.preventDefault();
-    //         console.log("delete");
-    //     })
-    // })
-
-</script>
 
 
 <script defer>
@@ -355,6 +345,7 @@ bg-student
                     if (result.error) {
                         // Show error to your customer
                         showError(result.error.message);
+                        toastr.error("An error has occurred");
                     } else {
                         // save card as default
                         setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
@@ -373,16 +364,12 @@ bg-student
         // Shows a success message when the payment is complete
         var orderComplete = function(clientSecret) {
             stripe.retrieveSetupIntent(clientSecret).then(function(result) {
-                var setupIntent = result.setupIntent;
-                var setupIntentJson = JSON.stringify(setupIntent, null, 2);
-
-                document.querySelector(".sr-result").classList.remove("hidden");
-                document.querySelector("pre").textContent = setupIntentJson;
-                setTimeout(function() {
-                document.querySelector(".sr-result").classList.add("expand");
-                }, 200);
-
+                toastr.success("Added card successfully");
+                document.querySelector("#btn-add-payment-submit").disabled = true;
                 loading(false);
+                setTimeout(function () {
+                    location.reload();
+                }, 1000);
             });
         };
         // Show the customer the error from Stripe if their card fails to charge
@@ -447,6 +434,9 @@ bg-student
                     toastr.error(result.errorMsg)
                 }else{
                     toastr.success(result.success)
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
                 }
             })
             .catch(error=>{
@@ -466,9 +456,12 @@ bg-student
             setCardAsDefault(paymentMethodID, true).then((res)=>{
                 // TODO: Success
                 if (res.errorMsg){
-                    toastr.error(res.errorMsg)
+                    toastr.error(res.errorMsg);
                 }else{
                     toastr.success("succesfully set card as default payment method")
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000);
                 }
             })
             .catch(error=>{
@@ -552,8 +545,11 @@ bg-student
     $("#btn-setup-payment").click(function () {
         postToConnectAccount().then((response) => {
             // redirect to create stripe account
+            console.log("response.stripe_url")
+            console.log(response.stripe_url)
             if (response.stripe_url) {
                 window.location = response.stripe_url;
+                console.log(response.stripe_url)
                 // TODO: error
             } else {
 
