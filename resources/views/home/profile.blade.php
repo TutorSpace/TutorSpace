@@ -549,9 +549,12 @@ bg-student
 
 
     $("#btn-setup-payment").click(function () {
+        // TODO: add loading
         postToConnectAccount().then((response) => {
-            // redirect to create stripe account
+            // TODO: hide loading
 
+
+            // redirect to create stripe account
             if (response.stripe_url) {
                 window.location = response.stripe_url;
                 // TODO: error
