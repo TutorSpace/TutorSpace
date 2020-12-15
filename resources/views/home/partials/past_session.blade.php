@@ -73,7 +73,7 @@
                         <circle cx="8" cy="4.5" r="1"/>
                     </svg>
 
-                    <span class="action--toggle--list--title fc-black-2">Help</span>
+                    <span class="action--toggle--list--title fc-black-2">Refund</span>
                 </div>
             </div>
         </div>
