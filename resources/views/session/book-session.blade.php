@@ -10,11 +10,11 @@
     </svg>
 
     <h5 class="w-100 text-center mb-3">Book your Tutor Session</h5>
-    <div>
+    <div class="mb-3">
         <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
         <span class="font-weight-bold ml-2 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
     </div>
-    <span class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</span>
+    <span class="fc-grey fs-1-4 mt-5 mb-2">Drag on the calender to choose the time for your session.</span>
     <div class="row mb-5">
         <div class="col-12 pl-0 fs-1-4">
             <div class="w-100 calendar" id="calendar-request-session"></div>
@@ -29,16 +29,16 @@
 
     <div class="d-flex justify-content-between calendar-details">
         <div class="d-flex flex-column mt-3">
-            <div class="fc-grey fs-1-2">Date:</div>
-            <div class="fc-black-2 fs-1-4">08/02/2020 Thursday</div>
+            <div class="fc-grey fs-1-4">Date:</div>
+            <div class="fc-black-2 fs-1-6" id="session-date">08/02/2020 Thursday</div>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div class="fc-grey fs-1-2">Time:</div>
-            <div class="fc-black-2 fs-1-4">3:30pm - 5:00pm</div>
+            <div class="fc-grey fs-1-4">Time:</div>
+            <div class="fc-black-2 fs-1-6">3:30pm - 5:00pm</div>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div class="fc-grey fs-1-2">Tutor Hourly Rate:</div>
-            <div class="fc-black-2 fs-1-4">$ 16 per hour</div>
+            <div class="fc-grey fs-1-4">Tutor Hourly Rate:</div>
+            <div class="fc-black-2 fs-1-6">$ 16 per hour</div>
         </div>
     </div>
 

@@ -90,7 +90,6 @@ bg-student
                         <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 @endif
-
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // for testing
 Route::get('/abc', 'testController@test')->name('abc');
-Route::get('/test', 'testController@index')->middleware('isTutor');;
+Route::get('/test', 'testController@index');
 Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
 
@@ -180,7 +180,7 @@ Route::group([
     'prefix' => 'chatting',
     'middleware' => 'auth'
 ], function() {
-    Route::get('/', 'ChattingController@index')->name('chatting.index');
+    Route::get('/{user?}', 'ChattingController@index')->name('chatting.index');
     Route::get('/get-messages', 'ChattingController@getMessages')->name('chatting.get-messages');
     Route::post('/send-msg', 'ChattingController@sendMsg')->name('chatting.send-msg');
 });
@@ -253,6 +253,7 @@ Route::group([
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 
+Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
 
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
 Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
@@ -262,5 +263,3 @@ Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@conf
 // Stripe Invoice
 Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
 Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
-
-

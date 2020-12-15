@@ -44,19 +44,22 @@ let calendarOptions = {
         return true;
     },
     select: function (selectionInfo) {
-        let startTime = selectionInfo.start;
-        let endTime = selectionInfo.end;
-        // showAvailableTimeForm(startTime, endTime);
+        startTime = Date.parse(selectionInfo.start);
+        endTime = Date.parse(selectionInfo.end);
+
+        // if the modal appeared
+        if($('.calendar-details')[0]) {
+            $('#session-date').html(startTime);
+        } else {
+            $('#tutor-profile-request-session').click();
+        }
+
     },
     eventClick: function (eventClickInfo) {
         eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
         if (eventClickInfo.event.url) {
             window.open(eventClickInfo.event.url);
         }
-        if(eventClickInfo.event.extendedProps.type == 'available-time') {
-            // showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
-        }
-
     },
     eventTimeFormat: {
         hour: 'numeric',

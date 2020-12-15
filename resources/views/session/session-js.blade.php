@@ -3,7 +3,6 @@
         bootbox.dialog({
             message: `@include('session.view-session-overview')`,
             size: 'large',
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Next: {
@@ -19,8 +18,11 @@
         options.eventClick = null;
         options.headerToolbar = null;
         options.height = 'auto';
+
+        // todo: modify this
         options.slotMinTime = "08:30:00";
         options.slotMaxTime = "11:30:00";
+
         let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
         e.render();
         setTimeout(() => {
@@ -29,16 +31,13 @@
             e.gotoDate('2020-10-25');
         }, 500);
         @endif
-
     });
-
 
 
     $('.btn-cancel-session').on('click',function() {
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
             size: 'large',
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Cancel: {
@@ -80,7 +79,6 @@ $('#tutor-profile-request-session').on('click',function() {
         message: `@include('session.book-session')`,
         size: 'large',
         onEscape: true,
-        backdrop: true,
         centerVertical: true,
         buttons: {
             Next: {
@@ -90,6 +88,8 @@ $('#tutor-profile-request-session').on('click',function() {
             },
         }
     });
+
+    $('#session-date').html(startTime);
 
     let options = Object.assign({}, calendarOptions);
     options.height = 350;
@@ -105,7 +105,6 @@ $('#tutor-profile-request-session').on('click',function() {
             message: `@include('session.session-details')`,
             size: 'large',
             onEscape: true,
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Next: {
@@ -121,7 +120,6 @@ $('#tutor-profile-request-session').on('click',function() {
                 message: `@include('session.session-confirm')`,
                 size: 'large',
                 onEscape: true,
-                backdrop: true,
                 centerVertical: true,
                 buttons: {
                     Submit: {

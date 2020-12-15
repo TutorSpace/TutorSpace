@@ -162,7 +162,13 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
-                            <label for="course" class="profile__label">Courses you would like to tutor in</label>
+                            <label for="course" class="profile__label">
+                                @if (Auth::user()->is_tutor)
+                                Courses you would like to tutor in
+                                @else
+                                Courses you would like to be tutored in
+                                @endif
+                            </label>
                             <input type="text"
                                 class="profile__input profile__input__courses form-control form-control-lg" id="course">
                         </div>

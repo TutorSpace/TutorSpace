@@ -15,7 +15,7 @@
 <div class="chatting__content__messages">
     @foreach (Auth::user()->getMessages($user) as $message)
         @include('chatting.chat-message', [
-            'myMessage' => $message->from == Auth::user()->id,
+            'myMessage' => $message->from == Auth::id(),
             'content' => $message->message,
             'time' => $message->created_at,
             'user' => $user
