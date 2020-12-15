@@ -3,7 +3,6 @@
         bootbox.dialog({
             message: `@include('session.view-session-overview')`,
             size: 'large',
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Next: {
@@ -29,16 +28,13 @@
             e.gotoDate('2020-10-25');
         }, 500);
         @endif
-
     });
-
 
 
     $('.btn-cancel-session').on('click',function() {
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
             size: 'large',
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Cancel: {
@@ -80,7 +76,6 @@ $('#tutor-profile-request-session').on('click',function() {
         message: `@include('session.book-session')`,
         size: 'large',
         onEscape: true,
-        backdrop: true,
         centerVertical: true,
         buttons: {
             Next: {
@@ -105,7 +100,6 @@ $('#tutor-profile-request-session').on('click',function() {
             message: `@include('session.session-details')`,
             size: 'large',
             onEscape: true,
-            backdrop: true,
             centerVertical: true,
             buttons: {
                 Next: {
@@ -121,7 +115,6 @@ $('#tutor-profile-request-session').on('click',function() {
                 message: `@include('session.session-confirm')`,
                 size: 'large',
                 onEscape: true,
-                backdrop: true,
                 centerVertical: true,
                 buttons: {
                     Submit: {

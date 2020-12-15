@@ -8,11 +8,33 @@ use App\Chatroom;
 use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 class ChattingController extends Controller
 {
-    public function index() {
+    public function index(User $user = null) {
+        // Gate::authorize('create-chatroom', $user);
+
+        // // if no chatroom
+        // if(!Chatroom::haveChatroom(Auth::user(), $user)) {
+        //     $chatroom = new Chatroom();
+        //     $chatroom->user_id_1 = Auth::id() < $user->id ? Auth::id() : $user->id;
+
+        //     $chatroom->user_id_2 = Auth::id() < $user->id ? $user->id : Auth::id();
+
+        //     $chatroom->creater_user_id = Auth::id();
+        //     $chatroom->save();
+        // } else {
+        //     $user_id_1 = Auth::id() < $user->id ? Auth::id() : $user->id;
+        //     $user_id_2 = Auth::id() < $user->id ? $user->id : Auth::id();
+
+        //     $chatroom = Chatroom::where('user_id_1', $user_id_1)->where('user_id_2', $user_id_2)->first();
+        //     $chatroom->creater_user_id = Auth::id();
+
+        //     $chatroom->save();
+        // }
+
         return view('chatting.index');
     }
 
@@ -48,6 +70,7 @@ class ChattingController extends Controller
             return 'success';
         }
     }
+
 
 
 }

@@ -3,12 +3,13 @@
 namespace App\Providers;
 
 use App\User;
-use Illuminate\Support\Facades\Gate;
+use App\Chatroom;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
 use App\CustomClass\TimeOverlapManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Log;
-use Carbon\Carbon;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_tutor && $isAvailable? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
+        Gate::define('create-chatroom', function ($user, $otherUser) {
+            return
+            $user->id != $otherUser->id
+            &&
+            !Chatroom::haveChatroomAndIsCreater($user, $otherUser);
+        });
 
 
     }

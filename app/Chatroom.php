@@ -2,14 +2,21 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 use Auth;
-use App\Message;
 
+use App\Message;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
+
+// IMPORTANT: chatroom must have smaller id as user_id_1 and larger as user_id_2
 class Chatroom extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = ['user_id_1', 'user_id_2'];
+    protected $fillable = ['creater_user_id'];
+    public $incrementing = false;
+
 
     // the user should listen to this channel
     public static function getChannelName() {
@@ -42,6 +49,16 @@ class Chatroom extends Model
         ->created_at;
     }
 
+    public function hasMessages() {
+        return Message::where(function($query) {
+            $query->where('from', $this->user_id_1)->where('to', $this->user_id_2);
+        })
+        ->orWhere(function($query) {
+            $query->where('to', $this->user_id_1)->where('from', $this->user_id_2);
+        })
+        ->exists();
+    }
+
     public function getLatestMessage() {
         return Message::where(function($query) {
             $query->where('from', $this->user_id_1)->where('to', $this->user_id_2);
@@ -61,6 +78,23 @@ class Chatroom extends Model
         return Chatroom::where(function($query) use($userId1, $userId2) {
             $query->where('user_id_1', $userId1 < $userId2 ? $userId1 : $userId2)->where('user_id_2', $userId1 > $userId2 ? $userId1 : $userId2);
         })->exists();
+    }
+
+    public static function haveChatroomAndIsCreater($user1, $user2) {
+        $userId1 = $user1->id;
+        $userId2 = $user2->id;
+
+        return Chatroom::where(function($query) use($userId1, $userId2) {
+            $query->where('user_id_1', $userId1 < $userId2 ? $userId1 : $userId2)->where('user_id_2', $userId1 > $userId2 ? $userId1 : $userId2)->where('creater_user_id', Auth::id());
+        })->exists();
+    }
+
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query
+            ->where('user_id_1', $this->user_id_1)
+            ->where('user_id_2', $this->user_id_2)
+            ;
     }
 
 }

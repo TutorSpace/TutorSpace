@@ -53,11 +53,11 @@ class NewChatroom implements ShouldBroadcastNow
     {
         return [
             'otherUserId' => $this->otherUser->id,
-            'view' => view('chatting.side-bar-chatting-msg', [
-                'user' => User::find(2),
-                'message' => 'testing',
-                'time' => 'time'
-            ])->render()
+            // 'view' => view('chatting.side-bar-chatting-msg', [
+            //     'user' => User::find(2),
+            //     'message' => 'testing',
+            //     'time' => 'time'
+            // ])->render()
         ];
     }
 }

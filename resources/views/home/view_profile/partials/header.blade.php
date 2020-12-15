@@ -83,7 +83,7 @@
                     “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
                 </div>
                 <div class="mt-3">
-                    <button class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2">Chat</button>
+                    <a href="{{ route('chatting.index', ['user' => $user]) }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2 mr-3" id="btn-chat">Chat</a>
                     @if ($user->is_tutor)
                     <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2">Request a Session</button>
                     @endif

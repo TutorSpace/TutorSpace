@@ -72,9 +72,7 @@ bg-student
     (function subscribeChatroom() {
         var channel = pusher.subscribe("private-" + "{{ App\Chatroom::getChannelName() }}");
         channel.bind('NewChatroom', function(data) {
-            console.log(data);
             subscribeNewMessageChannel(data.otherUserId);
-
         });
     })();
 
@@ -104,6 +102,12 @@ bg-student
                 }
                 scrollToBottom();
             } else {
+                if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
+                    alert('new chatroom!');
+                    let chatroomClone = $('.msg')[0];
+                    console.log(chatroomClone);
+                    // $('.msgs').append($(`.msg[data-user-id=${otherUserId}]`)[0]);
+                }
                 $(`.msg[data-user-id=${otherUserId}]`).addClass('unread');
             }
 

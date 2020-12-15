@@ -180,7 +180,7 @@ Route::group([
     'prefix' => 'chatting',
     'middleware' => 'auth'
 ], function() {
-    Route::get('/', 'ChattingController@index')->name('chatting.index');
+    Route::get('/{user?}', 'ChattingController@index')->name('chatting.index');
     Route::get('/get-messages', 'ChattingController@getMessages')->name('chatting.get-messages');
     Route::post('/send-msg', 'ChattingController@sendMsg')->name('chatting.send-msg');
 });
