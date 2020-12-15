@@ -19,7 +19,12 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-// chatting
+// chatting - messages
 Broadcast::channel('message.{userId1}-{userId2}', function($user, $userId1, $userId2) {
     return ($user->id == $userId1 || $user->id == $userId2) && Chatroom::haveChatroom(User::find($userId1), User::find($userId2));
+});
+
+// chatting - chatrooms
+Broadcast::channel('chatroom.{userId}', function($user, $userId) {
+    return $user->id == $userId;
 });

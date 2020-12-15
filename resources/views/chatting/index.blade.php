@@ -68,6 +68,17 @@ bg-student
         }
     });
 
+    // subscribe to listen to new chatrooms
+    (function subscribeChatroom() {
+        var channel = pusher.subscribe("private-" + "{{ App\Chatroom::getChannelName() }}");
+        channel.bind('NewChatroom', function(data) {
+            console.log(data);
+            subscribeNewMessageChannel(data.otherUserId);
+
+        });
+    })();
+
+    // subscribe to listen to new messages for existing chatrooms
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php
             $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;

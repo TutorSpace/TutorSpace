@@ -23,14 +23,15 @@ use Facades\App\Post;
 use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
+use App\Events\NewChatroom;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EmailVerification;
-use Illuminate\Support\Facades\Notification;
 
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
@@ -41,18 +42,13 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
-        $tutor_verification_file = $request->file('file');
 
-        Notification::route('mail', "shuaiqin@usc.edu")
-        ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
-        echo "success";
 
     }
     public function index(Request $request) {
 
-        return view('test');
-
-
+        broadcast(new NewChatroom(User::find(2)));
+        // return view('test');
 
     }
 

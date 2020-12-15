@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // for testing
 Route::get('/abc', 'testController@test')->name('abc');
-Route::get('/test', 'testController@index')->middleware('isTutor');;
+Route::get('/test', 'testController@index');
 Route::get('/testSearch', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
 
@@ -263,5 +263,3 @@ Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@conf
 // Stripe Invoice
 Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
 Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
-
-
