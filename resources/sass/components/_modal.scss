@@ -96,6 +96,7 @@
 
     &-session {
         font-size: 1.6rem;
+        color: $color-black-2;
 
         img {
             width: 4.5rem;
@@ -107,6 +108,14 @@
         .modal-svg {
             width: 4rem;
             height: 4rem;
+
+            * {
+                fill: black;
+            }
+        }
+
+        .calendar-details {
+            font-size: 1.4rem;
         }
     }
 
