@@ -65,9 +65,7 @@ class SessionController extends Controller
         $session->student()->associate(Auth::user());
         $session->course()->associate($course);
 
-
-
-        // $session->save();
+        $session->save();
 
 
 
@@ -81,11 +79,11 @@ class SessionController extends Controller
         $sessionFee = $sessionDurationInHour * $hourlyRate;
 
         // get tutor stripe account, TODO: change to $tutorId
-        $tutorStripeAccountId = PaymentMethod::where("user_id",1)->get()[0]->stripe_account_id;
+        $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
+        $stripeApiController = new StripeApiController();
+        $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId);
+
         
-        $test = StripeApiController::initializeInvoice($sessionFee,$tutorStripeAccountId);
-
-
 
 
         return response()->json(
