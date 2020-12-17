@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\payment;
 use App\Http\Controllers\Controller;
+use App\Session as AppSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
 use Stripe\Refund;
 use Stripe\SetupIntent;
+
 class StripeApiController extends Controller
 {
     public function __construct()
@@ -319,7 +321,7 @@ class StripeApiController extends Controller
             $id = $request->input('paymentMethodID');
             $payment_method_id =  $this->convertFakePaymentIDToRealID($id);
         }
-        
+
         $customer_id = $this->getCustomerId();
         $stripe = new \Stripe\StripeClient(
             env('STRIPE_TEST_KEY')
@@ -377,6 +379,20 @@ class StripeApiController extends Controller
         // TODO: save refund id
     }
 
+    // Cancels an Invoice
+    // Request should contain 'session_id'
+    public function cancelInvoice(Request $request) {
+        $session_id = $request->input('session_id');
+        $session = AppSession::find($session_id);
+        $transaction = $session->transaction;
+        $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
+        if ($invoice->status != 'draft') {
+            Log::error('Deleting an invoice that is not draft');
+        } else {
+            $invoice->delete();
+        }
+    }
+
     /*
         Section ends: implementation using Invoice
     */
@@ -393,7 +409,7 @@ class StripeApiController extends Controller
         $payment_method_id =  $current_payment[$id]["card_id"];
         return $payment_method_id;
     }
-    
+
     public function testSaveCard() {
         return view('payment.stripe_save_card');
     }
@@ -441,6 +457,6 @@ class StripeApiController extends Controller
 
         // TODO: Save invoice in database
         return ($this)->test;
-        
+
     }
 }
