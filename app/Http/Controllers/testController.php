@@ -47,9 +47,9 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        broadcast(new NewChatroom(User::find(2)));
+        dd(Auth::user()->pastSessions);
+        // broadcast(new NewChatroom(User::find(2)));
         // return view('test');
-
     }
 
     public function index2(Request $request) {
