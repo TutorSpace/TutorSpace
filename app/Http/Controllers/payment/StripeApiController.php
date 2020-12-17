@@ -256,7 +256,13 @@ class StripeApiController extends Controller
             'application_fee_amount' => 10,  // TODO: apply application fee
         ]);
 
-        $this->finalizeInvoice($invoice->id);
+        // $this->finalizeInvoice($invoice->id);
+        // TODO: Save invoice in database
+
+
+
+
+
 
         return redirect()->route('invoice_index')->with([
             'invoice_id' => $invoice->id,
@@ -390,5 +396,10 @@ class StripeApiController extends Controller
     
     public function testSaveCard() {
         return view('payment.stripe_save_card');
+    }
+
+    // TODO: true or false if there's card
+    public function customerHasCards(){
+
     }
 }
