@@ -55,8 +55,9 @@
                             success: function success(data) {
                                 var successMsg = data.successMsg;
                                 toastr.success(successMsg);
-                                console.log(successMsg);
-                                // window.location.reload();
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
                             },
                             error: function error(error) {
                                 toastr.error("There is an error occurred");
@@ -68,6 +69,9 @@
         });
 
         let sessionId = $(this).closest('.info-card').attr('data-session-id');
+        if(!sesssionId) {
+            sessionId = $(this).closest('.info-box').attr('data-session-id');
+        }
 
     });
 </script>

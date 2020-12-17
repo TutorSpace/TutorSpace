@@ -147,35 +147,6 @@ $("input[type=file]").change(function() {
     $('#file-input-text').html("Uploaded image: " + filename);
 });
 
-$("#getHint").on('keyup', function(){
-    var str = document.getElementById('getHint').value;
-    var select = document.getElementById('courses');
-    if (str.length == 0) {
-    document.getElementById("livesearch").innerHTML = "";
-    return;
-  } else {
-    $.ajax({
-        type:'POST',
-        url: '/gethint',
-        data: {
-            str: str
-        },
-        success: (data) => {
-            let { successMsg } = data;
-            document.getElementById("livesearch").innerHTML = successMsg ;
-        },
-        error: function(error) {
-            toastr.error(error);
-        }
-    });
-  }
-});
-
-// $('#courses').addEventListener("input", function(e)) {
-
-// }
-
-
 //  ========================= register student 2 ===========================
 (function () {
     let totalSeconds = 30;
