@@ -47,6 +47,13 @@ class SessionController extends Controller
 
         ]);
 
+
+        // TODO: DB::transaction(function () {
+            
+
+
+        // });
+        
         $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
         $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
         $course = Course::find($request->input('course'));

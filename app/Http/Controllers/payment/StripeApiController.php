@@ -414,9 +414,18 @@ class StripeApiController extends Controller
         return view('payment.stripe_save_card');
     }
 
-    // TODO: true or false if there's card
+    // TODO: true or false if there's card, format of response??
     public function customerHasCards(){
+        $cards = \Stripe\PaymentMethod::all([
+            'customer' => $this->getCustomerId(),
+            'type' => 'card'
+        ])->data;
 
+        if (count($card) >= 1){
+            return true;
+        }
+        
+        return false;
     }
 
 
@@ -451,7 +460,7 @@ class StripeApiController extends Controller
         ]);
 
         // TODO: Save invoice in database
-
+        
 
 
 
