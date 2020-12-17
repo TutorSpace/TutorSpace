@@ -39,11 +39,14 @@ let calendarOptions = {
     },
     selectAllow: function(selectionInfo) {
         let startTime = moment(selectionInfo.start);
-        if(startTime.isBefore(moment()))
-            return false;
+        if(startTime.isBefore(moment())) return false;
+        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+
         return true;
     },
     select: function (selectionInfo) {
+        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+
         startTime = moment(selectionInfo.start);
         endTime = moment(selectionInfo.end);
         // if the modal appeared

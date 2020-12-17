@@ -85,7 +85,15 @@ $('#tutor-profile-request-session').on('click',function() {
             Next: {
                 label: 'Next',
                 className: 'btn btn-primary p-3 px-4',
-                callback: session_details
+                callback: () => {
+                    if(startTime && endTime) {
+                        session_details();
+                        return true;
+                    } else {
+                        toastr.error('Please select a valid time first');
+                        return false;
+                    }
+                }
             },
         }
     });
@@ -116,10 +124,22 @@ $('#tutor-profile-request-session').on('click',function() {
                 Next: {
                     label: 'Next',
                     className: 'btn btn-primary p-3 px-4',
-                    callback: session_confirm
+                    callback: () => {
+                        // no need for checking, because default select is made. Although backend validation is required.
+                        session_confirm();
+                    },
                 },
             }
         });
+
+
+        for (i = 0; i < courses.length; i++) {
+            let course = courses[i];
+            $('#courses').append(`
+               <option value="${course.id}">${course.course}</option>
+            `)
+        }
+
 
         function session_confirm() {
             bootbox.dialog({
@@ -131,7 +151,9 @@ $('#tutor-profile-request-session').on('click',function() {
                     Submit: {
                         label: 'Book Session',
                         className: 'btn btn-primary p-3 px-5',
-                        callback: function(){},
+                        callback: function() {
+
+                        },
                     },
                 }
             });

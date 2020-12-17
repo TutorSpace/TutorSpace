@@ -90,20 +90,15 @@ bg-student
         </div>
 
         <div class="col-3 pl-5 pr-0">
-            {{-- todo: update this --}}
             <h5 class="mb-3">Courses He Teaches</h5>
+            @php
+                $courses = $user->courses;
+            @endphp
+            @foreach ($courses as $course)
             <p class="view-profile__course">
-                MATH 115
+                {{ $course->course }}
             </p>
-            <p class="view-profile__course">
-                MATH 226
-            </p>
-            <p class="view-profile__course">
-                CSCI 104
-            </p>
-            <p class="view-profile__course">
-                BUAD 304
-            </p>
+            @endforeach
         </div>
     </div>
 
@@ -121,6 +116,14 @@ bg-student
 <script>
     let otherUserId = "{{ $user->id }}";
     let otherUserHourlyRate = "{{ $user->hourly_rate }}";
+    let courses = [
+        @foreach($courses as $course)
+        {
+            id: "{{ $course->id }}",
+            course: "{{ $course->course }}"
+        },
+        @endforeach
+    ]
 </script>
 
 @if ($user->is_tutor)
