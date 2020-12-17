@@ -226,6 +226,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
+    Route::post('/schedule', 'SessionController@scheduleSession')->name('session.create');
 });
 
 // help center

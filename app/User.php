@@ -342,10 +342,14 @@ class User extends Authenticatable
 
     // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
-        return $this
-                    ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
+        return $this->sessions()
                     ->where('is_upcoming', true)
                     ->where('is_canceled', false);
+    }
+
+    public function sessions() {
+        return $this
+                    ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id');
     }
 
     public function getMessages($otherUser) {

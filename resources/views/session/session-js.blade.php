@@ -86,13 +86,13 @@ $('#tutor-profile-request-session').on('click',function() {
                 label: 'Next',
                 className: 'btn btn-primary p-3 px-4',
                 callback: () => {
-                    // if(startTime && endTime) {
+                    if(startTime && endTime) {
                         session_details();
-                        // return true;
-                    // } else {
-                    //     toastr.error('Please select a valid time first');
-                    //     return false;
-                    // }
+                        return true;
+                    } else {
+                        toastr.error('Please select a valid time first');
+                        return false;
+                    }
                 }
             },
         }
@@ -142,6 +142,9 @@ $('#tutor-profile-request-session').on('click',function() {
 
 
         function session_confirm() {
+            let course = $('#courses').val();
+            let sessionType = $('#session-type').val();
+
             bootbox.dialog({
                 message: `@include('session.session-confirm')`,
                 size: 'large',
@@ -152,7 +155,27 @@ $('#tutor-profile-request-session').on('click',function() {
                         label: 'Book Session',
                         className: 'btn btn-primary p-3 px-5',
                         callback: function() {
-
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ route('session.create') }}",
+                                data: {
+                                    startTime: startTime.toISOString(),
+                                    endTime: endTime.toISOString(),
+                                    course: course,
+                                    sessionType: sessionType,
+                                    tutorId: otherUserId
+                                },
+                                success: (data) => {
+                                    console.log(data);
+                                    var successMsg = data.successMsg;
+                                    toastr.success(successMsg);
+                                    console.log(successMsg);
+                                },
+                                error: (error) => {
+                                    console.log(error);
+                                    toastr.error("There is an error occurred. Please schedule your session again or contact tutorspace at tutorspaceusc@gmail.com");
+                                }
+                            });
                         },
                     },
                 }
