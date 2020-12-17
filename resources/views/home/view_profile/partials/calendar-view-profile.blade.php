@@ -46,7 +46,7 @@ let calendarOptions = {
     select: function (selectionInfo) {
         startTime = Date.parse(selectionInfo.start);
         endTime = Date.parse(selectionInfo.end);
-
+        console.log(startTime)
         // if the modal appeared
         if($('.calendar-details')[0]) {
             $('#session-date').html(startTime);

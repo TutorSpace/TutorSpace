@@ -74,6 +74,7 @@
 
 
 <script>
+let startTime;
 $('#tutor-profile-request-session').on('click',function() {
     bootbox.dialog({
         message: `@include('session.book-session')`,
@@ -89,7 +90,10 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     });
 
-    $('#session-date').html(startTime);
+    if(startTime) {
+        $('#session-date').html(startTime);
+    }
+
 
     let options = Object.assign({}, calendarOptions);
     options.height = 350;
