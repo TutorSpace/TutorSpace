@@ -56,6 +56,10 @@ $(document).ready(function(){
     let pathname = window.location.pathname;
     if(pathname.startsWith('/forum')) {
         $('nav .nav__item.link-forum').addClass('active');
+    } else if(pathname.startsWith('/search')) {
+        $('nav .nav__item.link-find-tutor').addClass('active');
+    } else if(pathname.startsWith('/help-center')) {
+        $('nav .nav__item.link-support').addClass('active');
     }
 
     // ===================== for nav animation ========================
