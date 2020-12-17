@@ -35,7 +35,7 @@ class SessionController extends Controller
     }
 
     public function scheduleSession(Request $request) {
-        // validate all the input data before creating a session
+        // todo: validate all the input data before creating a session
         $request->validate([
 
         ]);
