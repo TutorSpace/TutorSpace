@@ -11,19 +11,23 @@
             <div>
                 <span class="content">
                     {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
-                    &nbsp;{{ date("D", strtotime($session->session_time_start)) }}
+                    {{ date("D", strtotime($session->session_time_start)) }}
                 </span>
             </div>
             <span class="title mt-2 show--sm">Time</span>
-            <span class="content">13:30 - 15:00</span>
+            <span class="content">
+                {{ date("H:i", strtotime($session->session_time_start)) }}
+                -
+                {{ date("H:i", strtotime($session->session_time_end)) }}
+            </span>
         </div>
         <div class="course">
             <span class="title show--sm">Course</span>
-            <span class="content">BUAD 304</span>
+            <span class="content">{{ $session->course->course }}</span>
         </div>
         <div class="session-type">
             <span class="title show--sm">Type</span>
-            <div class="content">Online</div>
+            <div class="content">{{ $session->is_in_person ? 'In Person' : 'Online' }}</div>
         </div>
         <div class="status">
             <span class="title show--sm">Status</span>
