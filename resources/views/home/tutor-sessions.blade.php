@@ -143,51 +143,43 @@ bg-student
                 </div>
                 <div class="info-boxes info-boxes--sm-card past-sessions">
                     @if(Auth::user()->is_tutor)
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(1),
-                            'status' => 'pending',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
+                        @foreach (
+                            Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'student',
+                                    'course'
+                                ])
+                                ->get()
+                                as
+                            $session
+                            )
+                            @include('home.partials.past_session', [
+                                'user' => $session->student,
+                                'status' => 'pending', // todo: status can be either 'pending' or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
+                            ])
+                        @endforeach
                     @else
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(1),
-                            'status' => 'paid',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'unpaid',
-                            'currUser' => Auth::user()
-                        ])
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'unpaid',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'paid',
-                            'currUser' => Auth::user()
-                        ])
+                        @foreach (
+                            Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'tutor',
+                                    'course'
+                                ])
+                                ->get()
+                                as
+                            $session
+                            )
+                            @include('home.partials.past_session', [
+                                'user' => $session->tutor,
+                                'status' => 'paid', // todo: status can be 'paid', 'unpaid', or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
+                            ])
+                        @endforeach
                     @endif
                 </div>
             </div>

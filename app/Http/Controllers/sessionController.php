@@ -11,6 +11,8 @@ use App\PaymentMethod;
 use Illuminate\Http\Request;
 use App\CustomClass\TimeFormatter;
 
+use App\Http\Controllers\payment\StripeApiController;
+
 class SessionController extends Controller
 {
 
@@ -37,6 +39,11 @@ class SessionController extends Controller
 
     public function scheduleSession(Request $request) {
         // todo: validate all the input data before creating a session
+        // including:
+        // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, and no conflicting sessions)
+        // 2. the input parameter validation
+        // 3. should not schedule tutor session with oneself
+        // 4. course
         $request->validate([
 
         ]);
@@ -45,7 +52,8 @@ class SessionController extends Controller
         $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
         $course = Course::find($request->input('course'));
         $sessionType = $request->input('sessionType');
-        $tutor = User::find($request->input('tutorId'));
+        $tutorId = $request->input('tutorId');
+        $tutor = User::find($tutorId);
 
         $session = new Session();
         $session->session_time_start = $startTime;
@@ -59,7 +67,7 @@ class SessionController extends Controller
         $session->course()->associate($course);
 
 
-       
+
         // $session->save();
 
 
@@ -71,16 +79,19 @@ class SessionController extends Controller
         $startTimeInTime = strtotime($startTime);
         $endTimeInTime = strtotime($endTime);
         $sessionDurationInHour = round(abs($endTimeInTime - $startTimeInTime)/3600,2);
-        $sessionFee = $sessionDurationInHour*$hourlyRate;
+        $sessionFee = $sessionDurationInHour * $hourlyRate;
 
-        // get tutor stripe account
+        // get tutor stripe account, TODO: change to $tutorId
+        $tutorStripeAccountId = PaymentMethod::where("user_id",1)->get()[0]->stripe_account_id;
+        
+        $test = StripeApiController::initializeInvoice($sessionFee,$tutorStripeAccountId);
 
 
 
 
         return response()->json(
             [
-                'successMsg' => $sessionFee,
+                'successMsg' =>  $test,
             ]
         );
 

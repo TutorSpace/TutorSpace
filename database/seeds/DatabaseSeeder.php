@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ReviewSeeder::class,
             AvailableTimeSeeder::class,
             UpcomingSessionSeeder::class,
+            PastSessionSeeder::class,
 
             PostTypeSeeder::class,
             PostSeeder::class,
