@@ -30,15 +30,21 @@
     <div class="d-flex justify-content-between calendar-details">
         <div class="d-flex flex-column mt-3">
             <div class="fc-grey fs-1-4">Date:</div>
-            <div class="fc-black-2 fs-1-6" id="session-date">08/02/2020 Thursday</div>
+            <div class="fc-black-2 fs-1-6" id="session-date">
+                {{-- 08/02/2020 Thursday --}}
+            </div>
         </div>
         <div class="d-flex flex-column mt-3">
             <div class="fc-grey fs-1-4">Time:</div>
-            <div class="fc-black-2 fs-1-6">3:30pm - 5:00pm</div>
+            <div class="fc-black-2 fs-1-6" id="session-time">
+                {{-- 3:30pm - 5:00pm --}}
+            </div>
         </div>
         <div class="d-flex flex-column mt-3">
             <div class="fc-grey fs-1-4">Tutor Hourly Rate:</div>
-            <div class="fc-black-2 fs-1-6">$ 16 per hour</div>
+            <div class="fc-black-2 fs-1-6" id="hourly-rate">
+                {{-- $ 16 per hour --}}
+            </div>
         </div>
     </div>
 

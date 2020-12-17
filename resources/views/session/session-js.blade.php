@@ -28,7 +28,7 @@
         setTimeout(() => {
             e.destroy();
             e.render();
-            e.gotoDate('2020-10-25');
+            e.gotoDate('2020-10-25'); // todo: change this
         }, 500);
         @endif
     });
@@ -91,7 +91,9 @@ $('#tutor-profile-request-session').on('click',function() {
     });
 
     if(startTime) {
-        $('#session-date').html(startTime);
+        $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+        $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+        $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
 
 

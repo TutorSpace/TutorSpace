@@ -44,12 +44,13 @@ let calendarOptions = {
         return true;
     },
     select: function (selectionInfo) {
-        startTime = Date.parse(selectionInfo.start);
-        endTime = Date.parse(selectionInfo.end);
-        console.log(startTime)
+        startTime = moment(selectionInfo.start);
+        endTime = moment(selectionInfo.end);
         // if the modal appeared
         if($('.calendar-details')[0]) {
-            $('#session-date').html(startTime);
+            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
         } else {
             $('#tutor-profile-request-session').click();
         }

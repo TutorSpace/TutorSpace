@@ -90,6 +90,7 @@ bg-student
         </div>
 
         <div class="col-3 pl-5 pr-0">
+            {{-- todo: update this --}}
             <h5 class="mb-3">Courses He Teaches</h5>
             <p class="view-profile__course">
                 MATH 115
@@ -117,6 +118,10 @@ bg-student
 @endsection
 
 @section('js')
+<script>
+    let otherUserId = "{{ $user->id }}";
+    let otherUserHourlyRate = "{{ $user->hourly_rate }}";
+</script>
 
 @if ($user->is_tutor)
     @include('home.view_profile.partials.calendar-view-profile')
