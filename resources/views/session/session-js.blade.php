@@ -86,13 +86,13 @@ $('#tutor-profile-request-session').on('click',function() {
                 label: 'Next',
                 className: 'btn btn-primary p-3 px-4',
                 callback: () => {
-                    if(startTime && endTime) {
+                    // if(startTime && endTime) {
                         session_details();
-                        return true;
-                    } else {
-                        toastr.error('Please select a valid time first');
-                        return false;
-                    }
+                        // return true;
+                    // } else {
+                    //     toastr.error('Please select a valid time first');
+                    //     return false;
+                    // }
                 }
             },
         }
@@ -157,6 +157,14 @@ $('#tutor-profile-request-session').on('click',function() {
                     },
                 }
             });
+
+            let minutesDiff = endTime.diff(startTime, "minutes");
+            let hoursDiff = minutesDiff / 60;
+            let sessionFee = hoursDiff * otherUserHourlyRate;
+            $('#session-fee').html(sessionFee);
+            $('#hours').html(hoursDiff);
+            $('#hourly-rate').html(otherUserHourlyRate);
+
         }
     }
 });

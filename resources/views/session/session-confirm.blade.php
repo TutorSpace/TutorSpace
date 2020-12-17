@@ -11,11 +11,32 @@
 
     <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
 
-    <p>Price Summary</p>
-    <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
-    <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">Hours<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
+    <p class="font-weight-bold">Price Summary</p>
+    <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">
+        Session Fee (per hour)
+        <span class="fc-theme-color">&nbsp;&nbsp;$
+            <span id="hourly-rate">
+                {{-- 14 --}}
+            </span>
+        </span>
+    </p>
+    <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">
+        Hours
+        <span class="fc-theme-color">
+            <span id="hours">
+                {{-- 2.5 --}}
+            </span>
+        </span>
+    </p>
     <hr class="bc-blue-primary"/>
-    <p class="mt-3 font-weight-bold fc-black-2 d-flex flex-row justify-content-between">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></p>
+    <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between font-weight-bold">
+        Total
+        <span class="fc-theme-color">
+            <span id="session-fee">
+                {{-- 35 --}}
+            </span>
+        </span>
+    </p>
 
     <p class="fc-black-2 mt-5"><span class="font-weight-bold">How to make your payment: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
