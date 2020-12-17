@@ -24,6 +24,10 @@ class Session extends Model
         return $this->belongsTo('App\SessionCancelReason', 'cancel_reason_id');
     }
 
+    public function transaction() {
+        return $this->hasOne('App\Transaction');
+    }
+
     // IMPORTANT: must run scheduler in prod env
     public function changeSessionStatusOnExpiry() {
         $sessions = Session::all();

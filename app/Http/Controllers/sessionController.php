@@ -39,6 +39,13 @@ class SessionController extends Controller
 
     public function scheduleSession(Request $request) {
         // todo: validate all the input data before creating a session
+<<<<<<< HEAD
+=======
+        // including:
+        // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, end time must be after start time, and no conflicting sessions)
+        // 3. should not schedule tutor session with oneself
+        // 4. course must be taught be tutor // no need to validate, because otherwise this session could not be created
+>>>>>>> 02cf68cd6ca09f40031fb4a6fc10342a7734c097
         $request->validate([
 
         ]);
