@@ -16,6 +16,7 @@
 
     .action--toggle--list {
         background-color: white;
+        overflow: hidden;
 
         border-radius: 1rem;
         top: 2rem;
@@ -29,7 +30,7 @@
         }
 
 
-        > div {
+        > * {
             padding: 1.2rem 2.2rem;
 
             &:hover {
@@ -45,14 +46,14 @@
 }
 
 
-.bg-tutor .home .past-sessions .action--toggle--list{
-    > div:hover {
+.bg-tutor {
+    .home .past-sessions .action--toggle--list >:hover {
         background-color: $color-purple-primary;
     }
 }
 
-.bg-student .home .past-sessions .action--toggle--list{
-    > div:hover {
+.bg-student {
+    .home .past-sessions .action--toggle--list >:hover {
         background-color: $color-blue-primary;
     }
 }

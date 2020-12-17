@@ -339,11 +339,15 @@ class User extends Authenticatable
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
     }
 
-
-    // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
         return $this->sessions()
                     ->where('is_upcoming', true)
+                    ->where('is_canceled', false);
+    }
+
+    public function pastSessions() {
+        return $this->sessions()
+                    ->where('is_upcoming', false)
                     ->where('is_canceled', false);
     }
 
@@ -371,32 +375,7 @@ class User extends Authenticatable
 
 
 
-
-    public function pastSessions() {
-        if($this->is_tutor) {
-            // the returned information is about the student
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-                ->join('users', 'sessions.student_id', '=', 'users.id')
-                ->where('tutor_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->get();
-
-            return $sessions;
-        }
-        else {
-            // the returned information is about the tutor
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-                ->join('users', 'sessions.tutor_id', '=', 'users.id')
-                ->where('student_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->get();
-
-            return $sessions;
-        }
-    }
-
+    // ========================= below are legacy code =============
     public function pastTutors($num) {
         $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
                 ->join('users', 'sessions.tutor_id', '=', 'users.id')
