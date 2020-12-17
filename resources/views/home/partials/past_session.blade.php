@@ -9,7 +9,10 @@
         <div class="date">
             <span class="title show--sm">Date</span>
             <div>
-                <span class="content">08/02<span class="info-box__year">/20</span> Wed</span>
+                <span class="content">
+                    {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
+                    &nbsp;{{ date("D", strtotime($session->session_time_start)) }}
+                </span>
             </div>
             <span class="title mt-2 show--sm">Time</span>
             <span class="content">13:30 - 15:00</span>

@@ -147,7 +147,8 @@ bg-student
                             Auth::user()
                                 ->pastSessions()
                                 ->with([
-                                    'student'
+                                    'student',
+                                    'course'
                                 ])
                                 ->get()
                                 as
@@ -155,8 +156,9 @@ bg-student
                             )
                             @include('home.partials.past_session', [
                                 'user' => $session->student,
-                                'status' => 'pending', // status can be either 'pending' or 'completed'
-                                'currUser' => Auth::user()
+                                'status' => 'pending', // todo: status can be either 'pending' or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
                             ])
                         @endforeach
                     @else
@@ -164,7 +166,8 @@ bg-student
                             Auth::user()
                                 ->pastSessions()
                                 ->with([
-                                    'tutor'
+                                    'tutor',
+                                    'course'
                                 ])
                                 ->get()
                                 as
@@ -172,8 +175,9 @@ bg-student
                             )
                             @include('home.partials.past_session', [
                                 'user' => $session->tutor,
-                                'status' => 'paid', // status can be 'paid', 'unpaid', or 'completed'
-                                'currUser' => Auth::user()
+                                'status' => 'paid', // todo: status can be 'paid', 'unpaid', or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
                             ])
                         @endforeach
                     @endif
