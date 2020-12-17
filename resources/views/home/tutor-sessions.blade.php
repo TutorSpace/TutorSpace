@@ -100,10 +100,22 @@ bg-student
                     <h5>Upcoming Sessions</h5>
                     {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
                 </div>
-                <div class="info-boxes info-boxes--sm-card past-sessions">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
+                <div class="info-boxes info-boxes--sm-card">
+                    @foreach (
+                    Auth::user()
+                        ->pastSessions()
+                        ->with([
+                            Auth::user()->is_tutor ? 'student' : 'tutor',
+                            'course'
+                        ])
+                        ->get()
+                            as
+                        $session
+                    )
+                    @include('home.partials.upcoming_session_box', [
+                        'session' => $session
+                    ])
+                    @endforeach
                 </div>
             </div>
         </div>

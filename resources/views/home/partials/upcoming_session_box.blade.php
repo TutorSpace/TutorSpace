@@ -1,27 +1,39 @@
 <div>
     <div class="info-box">
         <div class="user-info">
-            <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
+            <img src="{{ Storage::url(Auth::user()->is_tutor ? $session->student->profile_pic_url : $session->tutor->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
-                Shuaiqing Luo Lorem ipsum dolor sit amet consectetur, adipisicing elit. Harum laborum saepe dolorem hic voluptates obcaecati ipsam deleniti dolorum soluta, laudantium incidunt similique velit laboriosam quos doloremque quasi quas temporibus eius!
+                @if (Auth::user()->is_tutor)
+                    {{ $session->student->first_name }}
+                    {{ $session->student->last_name }}
+                @else
+                    {{ $session->tutor->first_name }}
+                    {{ $session->tutor->last_name }}
+                @endif
             </a>
         </div>
         <div class="date">
             <span class="title">Date</span>
-            <span class="content">08/02<span class="info-box__year">/20</span>
-                Wed</span>
+            <span class="content">
+                {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
+                {{ date("D", strtotime($session->session_time_start)) }}
+            </span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">2:30 - 13:00</span>
+            <span class="content">
+                {{ date("H:i", strtotime($session->session_time_start)) }}
+                -
+                {{ date("H:i", strtotime($session->session_time_end)) }}
+            </span>
         </div>
         <div class="course">
             <span class="title">Course</span>
-            <span class="content">BUAD 304</span>
+            <span class="content">{{ $session->course->course }}</span>
         </div>
         <div class="session-type">
             <span class="title">Type</span>
-            <span class="content">In Person</span>
+            <div class="content">{{ $session->is_in_person ? 'In Person' : 'Online' }}</div>
         </div>
         <div class="flex-100"></div>
         <div class="actions">
