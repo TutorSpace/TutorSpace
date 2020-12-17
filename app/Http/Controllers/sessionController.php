@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Course;
 use App\Session;
+use App\PaymentMethod;
 use Illuminate\Http\Request;
 use App\CustomClass\TimeFormatter;
 
@@ -57,13 +58,39 @@ class SessionController extends Controller
         $session->student()->associate(Auth::user());
         $session->course()->associate($course);
 
-        $session->save();
+
+       
+        // $session->save();
+
+
+
+        //TODO: create transaction
+
+        // calculate session fee
+        $hourlyRate = $tutor->hourly_rate;
+        $startTimeInTime = strtotime($startTime);
+        $endTimeInTime = strtotime($endTime);
+        $sessionDurationInHour = round(abs($endTimeInTime - $startTimeInTime)/3600,2);
+        $sessionFee = $sessionDurationInHour*$hourlyRate;
+
+        // get tutor stripe account
+
+
+
 
         return response()->json(
             [
-                'successMsg' => 'Successfully scheduled the tutor session!',
+                'successMsg' => $sessionFee,
             ]
         );
+
+
+
+        // return response()->json(
+        //     [
+        //         'successMsg' => 'Successfully scheduled the tutor session!',
+        //     ]
+        // );
     }
 
 
