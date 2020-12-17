@@ -45,7 +45,7 @@ class StripeApiController extends Controller
 
             $account = Account::create([
                 'country' => 'US',
-                'type' => 'express',
+                'type' => 'express', 
                 'settings' => ['payouts' => ['schedule' => [
                     'delay_days' => 2,  // TODO: discuss payout schedule
                     'interval' => 'daily'
@@ -404,20 +404,15 @@ class StripeApiController extends Controller
     }
 
 
-
-
-
-
-    public static function initializeInvoice($amount, $destination_account_id) {
-        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
-
+    // amount in dollar
+    public function initializeInvoice($amount, $destination_account_id) {
         // Create Product and Price
         $product = \Stripe\Product::create([
             'name' => 'Tutor Session',
         ]);
         $price = \Stripe\Price::create([
             'product' => $product->id,
-            'unit_amount' => $amount,
+            'unit_amount' => $amount*100, // this is cent!
             'currency' => 'usd',
         ]);
 
@@ -440,7 +435,16 @@ class StripeApiController extends Controller
         ]);
 
         // TODO: Save invoice in database
-        return ($this)->test;
+
+
+
+
+
+
+
+
+        
+        return $amount*100;
         
     }
 }
