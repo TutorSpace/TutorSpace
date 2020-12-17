@@ -223,7 +223,7 @@ class StripeApiController extends Controller
         return view('payment.stripe_invoice_test');
     }
 
-    // Request should contain 'amount' and 'destination_account_id'
+    // Request should contain 'amount' and 'destination_account_id', TODO: delete this method
     public function createInvoice(Request $request) {
         $amount = intval($request->get('amount'));
         $destination_account_id = $request->get('destination_account_id');
@@ -401,5 +401,46 @@ class StripeApiController extends Controller
     // TODO: true or false if there's card
     public function customerHasCards(){
 
+    }
+
+
+
+
+
+
+    public static function initializeInvoice($amount, $destination_account_id) {
+        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+
+        // Create Product and Price
+        $product = \Stripe\Product::create([
+            'name' => 'Tutor Session',
+        ]);
+        $price = \Stripe\Price::create([
+            'product' => $product->id,
+            'unit_amount' => $amount,
+            'currency' => 'usd',
+        ]);
+
+        $customer_id = $this->getCustomerId();
+
+        // Create InvoiceItem and Invoice
+        $invoice_item = \Stripe\InvoiceItem::create([
+            'customer' => $customer_id,
+            'price' => $price->id,
+        ]);
+        $invoice = \Stripe\Invoice::create([
+            'customer' => $customer_id,
+            // 'collection_method' => 'charge_automatically',
+            'collection_method' => 'send_invoice',
+            'days_until_due' => 1,  // Needed for send_invoice only, TODO: needs check
+            'transfer_data' => [
+                'destination' => $destination_account_id,
+            ],
+            'application_fee_amount' => 10,  // TODO: apply application fee
+        ]);
+
+        // TODO: Save invoice in database
+        return ($this)->test;
+        
     }
 }
