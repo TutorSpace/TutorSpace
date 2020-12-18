@@ -250,7 +250,7 @@ bg-student
                             Methods</button>
                         @else
                         <div class="payment-cards">
-                            {{-- <div class="card-wrapper">
+                            <div class="card-wrapper">
                                 <div class="card">
                                     <div class="brand">
                                         Brand: xxxx
@@ -264,7 +264,7 @@ bg-student
                                 </div>
                                 <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button class="btn btn-primary">Set As Default</button>
-                            </div> --}}
+                            </div>
                         </div>
 
                         <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
@@ -364,7 +364,7 @@ bg-student
         };
 
 
-       
+
 
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
@@ -414,8 +414,8 @@ bg-student
             'paymentMethodID':paymentMethodID,
             'isFake':fake
         };
-        
-        
+
+
         return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
         method: "POST",
         body: JSON.stringify(data),
@@ -483,12 +483,12 @@ bg-student
         if (isFake){
             var fake = "true";
         }
-        
+
         var data = {
             'paymentMethodID':paymentMethodID,
             'isFake':fake
         };
-       
+
         return fetch("{{route('payment.stripe.detach_payment') }}", {
             method: "POST",
             body: JSON.stringify(data),
@@ -499,8 +499,8 @@ bg-student
             })
     }
 
-    
-    
+
+
     function displayCards(){
         $.ajax({
             url: "{{ route('payment.stripe.list-cards') }}",
@@ -523,14 +523,14 @@ bg-student
                                     Card Number: xxxx-xxxx-xxxx-${card.last4}
                                 </div>
                             </div>
-                            
+
                            `+
-                           
+
                            (card.is_default == 'false'?`
                                 <button data-id=${idx} class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button data-id=${idx} class="btn btn-primary btn-setDefault">Set As Default</button>
-                            
-                           `:'') 
+
+                           `:'')
                            +`
                         </div>
                     `);
@@ -538,7 +538,7 @@ bg-student
 
                 handleDelete();
                 handleSetDefault();
-                
+
             },
             error: (err) => {
                 console.log(err);

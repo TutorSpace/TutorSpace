@@ -86,11 +86,15 @@
                         <circle cx="8" cy="4.5" r="1"/>
                     </svg>
 
+                    @if ($currUser->is_tutor)
                     <span class="action--toggle--list--title fc-black-2">
-                        @if ($currUser->is_tutor) Help
-                        @else Refund
-                        @endif
+                        Help
                     </span>
+                    @else
+                    <span class="action--toggle--list--title fc-black-2">
+                        Refund
+                    </span>
+                    @endif
                 </a>
             </div>
         </div>

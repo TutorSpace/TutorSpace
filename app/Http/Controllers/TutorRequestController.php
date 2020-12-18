@@ -18,6 +18,7 @@ class TutorRequestController extends Controller
         $gateResponse = Gate::inspect('accept-tutor-request', [$tutorRequest]);
         if($gateResponse->allowed()){
             $session = new Session();
+            $session->hourly_rate = $tutorRequest->hourly_rate;
             $session->tutor()->associate($tutorId);
             $session->student()->associate($user);
             $session->course()->associate($tutorRequest->course_id);

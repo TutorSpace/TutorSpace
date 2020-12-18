@@ -64,6 +64,7 @@ class SessionController extends Controller
         $tutor = User::find($tutorId);
 
         $tutorRequest = new TutorRequest();
+        $tutorRequest->hourly_rate = $tutor->hourly_rate;
         $tutorRequest->session_time_start = $startTime;
         $tutorRequest->session_time_end = $endTime;
         $tutorRequest->is_in_person = $sessionType;
@@ -88,8 +89,6 @@ class SessionController extends Controller
         $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
         $stripeApiController = new StripeApiController();
         $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
-
-
 
         return response()->json(
             [
