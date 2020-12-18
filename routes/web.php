@@ -215,6 +215,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/accept/{tutorRequest}', 'TutorRequestController@acceptTutorRequest');
+    Route::delete('/{tutorRequest}', 'TutorRequestController@declineTutorRequest');
 });
 
 // tutor verification

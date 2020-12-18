@@ -30,7 +30,6 @@ class TutorRequestController extends Controller
 
             // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
 
-
             return response()->json(
                 [
                     'successMsg' => 'Successfully accepted the tutor request!'
@@ -45,15 +44,14 @@ class TutorRequestController extends Controller
         }
     }
 
-    public function rejectTutorRequest(Request $request) {
-        // $tutorRequestId = $request->input('tutor_request_id');
+    // todo: add validation here
+    public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
+        $tutorRequest->delete();
 
-        // TutorRequest::find($tutorRequestId)->delete();
-
-        // return response()->json(
-        //     [
-        //         'successMsg' => 'Successfully rejected the tutor request!'
-        //     ]
-        // );
+        return response()->json(
+            [
+                'successMsg' => 'Successfully declined the tutor request!'
+            ]
+        );
     }
 }

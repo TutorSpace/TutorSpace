@@ -94,6 +94,7 @@ $('.btn-view-request').click(function() {
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .price .content').text(price);
 
     $('#btn-confirm-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
+    $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
     calendarPopUp.render();
@@ -134,15 +135,42 @@ $('#btn-confirm-tutor-session').click(function() {
         url: `/tutor-request/accept/${tutorRequestId}`,
         success: function success(data) {
             console.log(data);
-            let { successMsg } = data.successMsg;
-            toastr.success(successMsg);
-            setTimeout(function() {
-                window.location.reload();
-            }, 1000);
+            let { successMsg, errorMsg } = data;
+            if(successMsg) {
+                toastr.success(successMsg);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
+            }
+            else if(errorMsg) toastr.error(errorMsg);
         },
         error: (error) => {
             console.log(error);
             toastr.error("Something went wrong when accepting the tutor request.");
+        }
+    });
+})
+
+$('#btn-decline-tutor-session').click(function() {
+    var tutorRequestId = $(this).attr("data-tutorRequest-id");
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/tutor-request/${tutorRequestId}`,
+        success: function success(data) {
+            console.log(data);
+            let { successMsg, errorMsg } = data;
+            if(successMsg) {
+                toastr.success(successMsg);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
+            }
+            else if(errorMsg) toastr.error(errorMsg);
+        },
+        error: (error) => {
+            console.log(error);
+            toastr.error("Something went wrong when declining the tutor request.");
         }
     });
 })
