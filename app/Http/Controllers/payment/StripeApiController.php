@@ -434,7 +434,7 @@ class StripeApiController extends Controller
             'type' => 'card'
         ])->data;
 
-        if (count($card) >= 1){
+        if (count($cards) >= 1){
             return true;
         }
 
@@ -460,8 +460,11 @@ class StripeApiController extends Controller
 
         //TODO: change to student id
         $student_id = $session->student_id;
-        $student_stripe_payment_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
+        $customer_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
         //TODO: error checking : has id has payment method
+
+
+
 
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([
@@ -482,7 +485,7 @@ class StripeApiController extends Controller
         // Save transaction in database
         $transaction = new Transaction();
         $transaction->session()->associate($session->id);
-        $transaction->user_id = Auth::user()->id;
+        $transaction->user_id = $student_id;
 
         // TODO: payment intent appear only when finalized
         // $transaction->payment_intent_id = $invoice->payment_intent;
