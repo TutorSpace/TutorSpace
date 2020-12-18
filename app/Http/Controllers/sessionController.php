@@ -17,6 +17,7 @@ class SessionController extends Controller
 {
 
     public function cancelSession(Request $request, Session $session) {
+        // todo: validate that it is truly the current user's session
         $request->validate([
             'cancelReasonId' => [
                 'required',
@@ -83,7 +84,7 @@ class SessionController extends Controller
         $stripeApiController = new StripeApiController();
         $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId);
 
-        
+
 
 
         return response()->json(

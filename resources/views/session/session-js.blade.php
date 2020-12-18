@@ -35,6 +35,9 @@
 
 
     $('.btn-cancel-session').on('click',function() {
+        let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
+        console.log(sessionId);
+
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
             size: 'large',
@@ -48,7 +51,7 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: `session/cancel/${sessionId}`,
+                            url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
                             data: {
                                 cancelReasonId: cancelReasonId
                             },
@@ -68,10 +71,6 @@
             }
         });
 
-        let sessionId = $(this).closest('.info-card').attr('data-session-id');
-        if(!sesssionId) {
-            sessionId = $(this).closest('.info-box').attr('data-session-id');
-        }
 
     });
 </script>
