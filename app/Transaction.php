@@ -14,18 +14,18 @@ class Transaction extends Model
     }
     public static function finalizeInvoice(){
         $invoicesToCharge = Transaction::select("transactions.invoice_id")
-        ->join("sessions","sessions.id","=","transactions.session_id")
+        ->join("sessions","sessions.id","=","transactions.session_id") // join
         ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
-        ->where("transactions.is_successful",0)
-        ->where("transactions.refund_id",NULL)
+        ->where("transactions.is_successful",0) // not successful => unpaid
+        ->where("transactions.refund_id",NULL) // not a refund
         //TODO: add is cancel = 0
-        ->where("transactions.is_cancelled",0)
+        ->where("sessions.is_canceled",0) // not canceled
         ->get();
 
         // charge each one
         $stripeApiController = new StripeApiController();
         forEach($invoicesToCharge as $invoice){
-             $stripeApiController->finalizeInvoice($invoice->invoice_id);
+             $stripeApiController->finalizeInvoice($invoice->invoice_id); // finalize invoice
         }
     }
 }

@@ -471,17 +471,22 @@ class StripeApiController extends Controller
         ]);
 
         // Save transaction in database
-        $transaction = $session->transaction();
+        $transaction = new Transaction();
+        $transaction->session()->associate($session->id);
         $transaction->user_id = Auth::user()->id;
-        $transaction->payment_intent_id = $invoice->payment_intent;
+
+        // TODO: payment intent appear only when finalized
+        // $transaction->payment_intent_id = $invoice->payment_intent;
+        $transaction->payment_intent_id = "placeholder";
+
+
         $transaction->destination_account_id = $destination_account_id;
         $transaction->amount = $amount * 100;
         $transaction->is_successful = 0;
+        $transaction->is_cancelled = 0;
         $transaction->invoice_id = $invoice->id;
         $transaction->save();
 
-
-        return $transaction->destination_account_id;
-
+        return $invoice;
     }
 }
