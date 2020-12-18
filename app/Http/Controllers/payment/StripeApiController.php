@@ -430,7 +430,7 @@ class StripeApiController extends Controller
 
 
     // amount in dollar
-    public function initializeInvoice($amount, $destination_account_id) {
+    public function initializeInvoice($amount, $destination_account_id, $session_id) {
         // Create Product and Price
         $product = \Stripe\Product::create([
             'name' => 'Tutor Session',
