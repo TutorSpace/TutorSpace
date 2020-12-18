@@ -91,20 +91,11 @@ class SessionController extends Controller
 
 
 
-
         return response()->json(
             [
-                'successMsg' =>  $session->id,
+                'successMsg' => 'Successfully scheduled the tutor session!',
             ]
         );
-
-
-
-        // return response()->json(
-        //     [
-        //         'successMsg' => 'Successfully scheduled the tutor session!',
-        //     ]
-        // );
     }
 
 
