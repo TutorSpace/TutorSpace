@@ -190,7 +190,6 @@ $('#tutor-profile-request-session').on('click',function() {
             $('#session-fee').html(sessionFee);
             $('#hours').html(hoursDiff);
             $('#hourly-rate').html(otherUserHourlyRate);
-
         }
     }
 });

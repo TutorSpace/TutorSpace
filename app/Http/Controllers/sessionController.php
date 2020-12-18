@@ -64,6 +64,7 @@ class SessionController extends Controller
         $tutor = User::find($tutorId);
 
         $tutorRequest = new TutorRequest();
+        $tutorRequest->hourly_rate = $tutor->hourly_rate;
         $tutorRequest->session_time_start = $startTime;
         $tutorRequest->session_time_end = $endTime;
         $tutorRequest->is_in_person = $sessionType;
@@ -89,22 +90,11 @@ class SessionController extends Controller
         $stripeApiController = new StripeApiController();
         $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
 
-
-
-
         return response()->json(
             [
-                'successMsg' =>  $test,
+                'successMsg' => 'Successfully scheduled the tutor session!',
             ]
         );
-
-
-
-        // return response()->json(
-        //     [
-        //         'successMsg' => 'Successfully scheduled the tutor session!',
-        //     ]
-        // );
     }
 
 

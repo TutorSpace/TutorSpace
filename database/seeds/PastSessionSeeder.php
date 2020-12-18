@@ -19,7 +19,8 @@ class PastSessionSeeder extends Seeder
             'is_in_person' => true,
             'session_time_start' => Carbon::now()->addHours(-2),
             'session_time_end' => Carbon::now()->addHours(-1),
-            'is_upcoming' => false
+            'is_upcoming' => false,
+            'hourly_rate' => 14,
         ]);
 
         DB::table('sessions')->insert([
@@ -29,7 +30,8 @@ class PastSessionSeeder extends Seeder
             'is_in_person' => false,
             'session_time_start' => Carbon::now()->addHours(-3)->addMinutes(30),
             'session_time_end' => Carbon::now()->addHours(-2)->addMinutes(30),
-            'is_upcoming' => false
+            'is_upcoming' => false,
+            'hourly_rate' => 17,
         ]);
 
         DB::table('sessions')->insert([
@@ -39,7 +41,8 @@ class PastSessionSeeder extends Seeder
             'is_in_person' => false,
             'session_time_start' => Carbon::now()->addHours(-7)->addMinutes(30),
             'session_time_end' => Carbon::now()->addHours(-5)->addMinutes(30),
-            'is_upcoming' => false
+            'is_upcoming' => false,
+            'hourly_rate' => 20,
         ]);
     }
 }
