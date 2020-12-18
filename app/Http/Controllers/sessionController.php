@@ -48,6 +48,13 @@ class SessionController extends Controller
 
         ]);
 
+
+        // TODO: DB::transaction(function () {
+            
+
+
+        // });
+
         $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
         $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
         $course = Course::find($request->input('course'));
@@ -67,6 +74,7 @@ class SessionController extends Controller
         $session->course()->associate($course);
 
         $session->save();
+        $session->refresh();
 
 
 
@@ -82,14 +90,14 @@ class SessionController extends Controller
         // get tutor stripe account, TODO: change to $tutorId
         $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
         $stripeApiController = new StripeApiController();
-        $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId);
+        $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
 
 
 
 
         return response()->json(
             [
-                'successMsg' =>  $test,
+                'successMsg' =>  $session->id,
             ]
         );
 
