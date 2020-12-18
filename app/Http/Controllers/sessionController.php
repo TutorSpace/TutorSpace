@@ -7,10 +7,11 @@ use Auth;
 use App\User;
 use App\Course;
 use App\Session;
+use App\TutorRequest;
 use App\PaymentMethod;
 use Illuminate\Http\Request;
-use App\CustomClass\TimeFormatter;
 
+use App\CustomClass\TimeFormatter;
 use App\Http\Controllers\payment\StripeApiController;
 
 class SessionController extends Controller
