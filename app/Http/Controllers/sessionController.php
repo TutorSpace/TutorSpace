@@ -50,7 +50,7 @@ class SessionController extends Controller
 
 
         // TODO: DB::transaction(function () {
-            
+
 
 
         // });
@@ -62,21 +62,17 @@ class SessionController extends Controller
         $tutorId = $request->input('tutorId');
         $tutor = User::find($tutorId);
 
-        $session = new Session();
-        $session->session_time_start = $startTime;
-        $session->session_time_end = $endTime;
-        $session->is_in_person = $sessionType;
-        $session->is_upcoming = true;
-        $session->is_canceled = false;
+        $tutorRequest = new TutorRequest();
+        $tutorRequest->session_time_start = $startTime;
+        $tutorRequest->session_time_end = $endTime;
+        $tutorRequest->is_in_person = $sessionType;
+        $tutorRequest->is_canceled = false;
 
-        $session->tutor()->associate($tutor);
-        $session->student()->associate(Auth::user());
-        $session->course()->associate($course);
+        $tutorRequest->tutor()->associate($tutor);
+        $tutorRequest->student()->associate(Auth::user());
+        $tutorRequest->course()->associate($course);
 
-        $session->save();
-        $session->refresh();
-
-
+        $tutorRequest->save();
 
         //TODO: create transaction
 
