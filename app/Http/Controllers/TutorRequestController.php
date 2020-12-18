@@ -21,22 +21,22 @@ class TutorRequestController extends Controller
             $session = new Session();
             $session->hourly_rate = $tutorRequest->hourly_rate;
             $session->tutor()->associate($tutorId);
-            $session->student()->associate($user);
+            $session->student()->associate($studentId);
             $session->course()->associate($tutorRequest->course_id);
             $session->session_time_start = $tutorRequest->session_time_start;
             $session->session_time_end = $tutorRequest->session_time_end;
             $session->is_in_person = $tutorRequest->is_in_person;
             $session->save();
             $session->refresh();
-            $tutorRequest->delete();
+            // $tutorRequest->delete();
 
             // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
 
               // calculate session fee
-            $sessionFee = calculateSessionFee($session);
+            $sessionFee = $this->calculateSessionFee($session);
 
             // get tutor stripe account
-            initializeInvoice($sessionFee,$session);
+            $this->initializeInvoice($sessionFee,$session);
             // $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
             // $stripeApiController = new StripeApiController();
             // $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);

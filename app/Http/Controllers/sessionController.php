@@ -74,7 +74,7 @@ class SessionController extends Controller
         $tutorRequest->student()->associate(Auth::user());
         $tutorRequest->course()->associate($course);
 
-        // $tutorRequest->save();
+        $tutorRequest->save();
 
         //TODO: create transaction
 

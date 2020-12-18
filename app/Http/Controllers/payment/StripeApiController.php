@@ -10,6 +10,8 @@ use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
 use App\Transaction;
+use App\PaymentMethod;
+
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
@@ -439,8 +441,11 @@ class StripeApiController extends Controller
         return false;
     }
 
-
-    // amount in dollar
+    // !!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!
+    // !!!!!!!!!!!!!!
+    // amount in dollar, done in tutor's side => CANNOT USE USERID!!!!!!!!!!!! USE STUDENT
     public function initializeInvoice($amount, $destination_account_id, $session) {
         // Create Product and Price
         $product = \Stripe\Product::create([
@@ -452,7 +457,11 @@ class StripeApiController extends Controller
             'currency' => 'usd',
         ]);
 
-        $customer_id = $this->getCustomerId();
+
+        //TODO: change to student id
+        $student_id = $session->student_id;
+        $student_stripe_payment_id = 
+        
 
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([
