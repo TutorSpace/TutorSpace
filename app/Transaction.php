@@ -19,9 +19,11 @@ class Transaction extends Model
         ->where("transactions.is_successful",0)
         ->where("transactions.refund_id",NULL)
         //TODO: add is cancel = 0
+        ->where("transactions.is_cancelled",0)
         ->get();
+
+        // charge each one
         $stripeApiController = new StripeApiController();
-        
         forEach($invoicesToCharge as $invoice){
              $stripeApiController->finalizeInvoice($invoice->invoice_id);
         }

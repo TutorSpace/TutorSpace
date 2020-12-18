@@ -97,7 +97,7 @@ class SessionController extends Controller
 
         return response()->json(
             [
-                'successMsg' =>  $session->id,
+                'successMsg' =>  $test,
             ]
         );
 

@@ -396,6 +396,10 @@ class StripeApiController extends Controller
         if ($invoice->status != 'draft') {
             Log::error('Deleting an invoice that is not draft');
         } else {
+            //TODO: update transaction table
+
+
+
             $invoice->delete();
         }
     }
@@ -467,7 +471,7 @@ class StripeApiController extends Controller
         ]);
 
         // Save transaction in database
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         $transaction->user_id = Auth::user()->id;
         $transaction->payment_intent_id = $invoice->payment_intent;
         $transaction->destination_account_id = $destination_account_id;
@@ -477,7 +481,7 @@ class StripeApiController extends Controller
         $transaction->save();
 
 
-        return $amount*100;
+        return $transaction->destination_account_id;
 
     }
 }

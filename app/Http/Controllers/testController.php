@@ -51,6 +51,7 @@ class testController extends Controller
         ->where("transactions.is_successful",0)
         ->where("transactions.refund_id",NULL)
         //TODO: add is cancel = 0
+        ->where("transactions.is_cancelled",0)
         ->get();
         $stripeApiController = new StripeApiController();
         
