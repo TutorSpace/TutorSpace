@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use App\TutorRequest;
+use App\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-
+use App\Http\Controllers\payment\StripeApiController;
 class TutorRequestController extends Controller
 {
     // TODO: double check this function
@@ -26,10 +27,20 @@ class TutorRequestController extends Controller
             $session->session_time_end = $tutorRequest->session_time_end;
             $session->is_in_person = $tutorRequest->is_in_person;
             $session->save();
-
+            $session->refresh();
             $tutorRequest->delete();
 
             // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
+
+              // calculate session fee
+            $sessionFee = calculateSessionFee($session);
+
+            // get tutor stripe account
+            initializeInvoice($sessionFee,$session);
+            // $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
+            // $stripeApiController = new StripeApiController();
+            // $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
+
 
             return response()->json(
                 [
@@ -54,5 +65,19 @@ class TutorRequestController extends Controller
                 'successMsg' => 'Successfully declined the tutor request!'
             ]
         );
+    }
+
+    public function calculateSessionFee($session){
+        $hourlyRate = $session->hourly_rate;
+        $startTimeInTime = strtotime($session->session_time_start);
+        $endTimeInTime = strtotime($session->session_time_end);
+        $sessionDurationInHour = round(abs($endTimeInTime - $startTimeInTime)/3600,2);
+        $sessionFee = $sessionDurationInHour * $hourlyRate;
+        return $sessionFee;
+    }
+    public function initializeInvoice($sessionFee,$session){
+        $tutorStripeAccountId = PaymentMethod::where("user_id",$session->tutor_id)->get()[0]->stripe_account_id;
+        $stripeApiController = new StripeApiController();
+        $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
     }
 }

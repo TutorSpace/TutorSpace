@@ -68,7 +68,7 @@ class SessionController extends Controller
         $tutorRequest->session_time_start = $startTime;
         $tutorRequest->session_time_end = $endTime;
         $tutorRequest->is_in_person = $sessionType;
-        $tutorRequest->is_canceled = false;
+        // $tutorRequest->is_canceled = false;
 
         $tutorRequest->tutor()->associate($tutor);
         $tutorRequest->student()->associate(Auth::user());
@@ -78,21 +78,11 @@ class SessionController extends Controller
 
         //TODO: create transaction
 
-        // calculate session fee
-        $hourlyRate = $tutor->hourly_rate;
-        $startTimeInTime = strtotime($startTime);
-        $endTimeInTime = strtotime($endTime);
-        $sessionDurationInHour = round(abs($endTimeInTime - $startTimeInTime)/3600,2);
-        $sessionFee = $sessionDurationInHour * $hourlyRate;
-
-        // get tutor stripe account, TODO: change to $tutorId
-        $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
-        $stripeApiController = new StripeApiController();
-        $test = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
+      
 
         return response()->json(
             [
-                'successMsg' => 'Successfully scheduled the tutor session!',
+                'successMsg' => $tutorRequest,
             ]
         );
     }
