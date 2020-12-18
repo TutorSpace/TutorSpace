@@ -74,7 +74,7 @@ class SessionController extends Controller
         $tutorRequest->student()->associate(Auth::user());
         $tutorRequest->course()->associate($course);
 
-        $tutorRequest->save();
+        // $tutorRequest->save();
 
         //TODO: create transaction
 
@@ -82,7 +82,7 @@ class SessionController extends Controller
 
         return response()->json(
             [
-                'successMsg' => $tutorRequest,
+                'successMsg' => 'Successfully scheduled the tutor session!',
             ]
         );
     }
