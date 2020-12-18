@@ -11,7 +11,7 @@ $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
 $hourlyRate = $tutorRequest->hourly_rate;
-$sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime))/3600,2);
+$sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
