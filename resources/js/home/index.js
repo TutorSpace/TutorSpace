@@ -88,7 +88,11 @@ $('.btn-view-request').click(function() {
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .time .content').text($(this).closest('.info-box').find('.time .content').text());
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .course .content').text($(this).closest('.info-box').find('.course .content').text());
     $('.home__tutor-request-modal .tutor-request-modal__content__profile .session-type .content').text($(this).closest('.info-box').find('.session-type .content').text());
-    // $('.home__tutor-request-modal .tutor-request-modal__content__profile .price .content').text($(this).closest('.info-box').find('.price .content').text());
+
+    // todo: update the price here
+    let price = 0;
+    $('.home__tutor-request-modal .tutor-request-modal__content__profile .price .content').text(price);
+
     $('#btn-confirm-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
@@ -127,19 +131,18 @@ $('#btn-confirm-tutor-session').click(function() {
 
     $.ajax({
         type: 'POST',
-        url: '/tutor-request/accept',
-        data: {
-          tutorRequestId: tutorRequestId
-        },
+        url: `/tutor-request/accept/${tutorRequestId}`,
         success: function success(data) {
-            var successMsg = data.successMsg;
-            if(successMsg)
-                toastr.success(successMsg);
-            else
-                toastr.error(data.errorMsg);
+            console.log(data);
+            let { successMsg } = data.successMsg;
+            toastr.success(successMsg);
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         },
-        error: function error(_error3) {
-          toastr.error(_error3);
+        error: (error) => {
+            console.log(error);
+            toastr.error("Something went wrong when accepting the tutor request.");
         }
     });
 })

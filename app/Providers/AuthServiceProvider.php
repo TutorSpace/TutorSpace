@@ -51,7 +51,8 @@ class AuthServiceProvider extends ServiceProvider
             foreach($user->upcomingSessions as $session) {
                 if(!TimeOverlapManager::noTimeOverlap($tutorRequest->session_time_start, $tutorRequest->session_time_end, $session->session_time_start, $session->session_time_end)) $isAvailable = false;
             }
-            return $user->is_tutor && $isAvailable? Response::allow() : Response::deny('This session conflicts with an existing session!');
+
+            return $user->is_tutor && $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
         Gate::define('create-chatroom', function ($user, $otherUser) {
