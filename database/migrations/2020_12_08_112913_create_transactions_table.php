@@ -19,8 +19,8 @@ class CreateTransactionsTable extends Migration
             $table->string('payment_intent_id');
             $table->string('destination_account_id');
             $table->bigInteger('amount');
-            $table->boolean('is_refund');
-            $table->boolean('is_successful');
+            $table->boolean('is_refund')->default(0);
+            $table->boolean('is_successful')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

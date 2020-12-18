@@ -25,7 +25,7 @@ class Session extends Model
     }
 
     public function transaction() {
-        return $this->hasOne('App\Transaction');
+        return $this->hasOne('App\Transaction')->withDefault();
     }
 
     // IMPORTANT: must run scheduler in prod env
