@@ -12,7 +12,6 @@ use App\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
-use Stripe\Refund;
 use Stripe\SetupIntent;
 
 class StripeApiController extends Controller
@@ -47,7 +46,7 @@ class StripeApiController extends Controller
 
             $account = Account::create([
                 'country' => 'US',
-                'type' => 'express', 
+                'type' => 'express',
                 'settings' => ['payouts' => ['schedule' => [
                     'delay_days' => 2,  // TODO: discuss payout schedule
                     'interval' => 'daily'
@@ -424,20 +423,20 @@ class StripeApiController extends Controller
         if (count($card) >= 1){
             return true;
         }
-        
+
         return false;
     }
 
 
     // amount in dollar
-    public function initializeInvoice($amount, $destination_account_id, $session_id) {
+    public function initializeInvoice($amount, $destination_account_id, $session) {
         // Create Product and Price
         $product = \Stripe\Product::create([
             'name' => 'Tutor Session',
         ]);
         $price = \Stripe\Price::create([
             'product' => $product->id,
-            'unit_amount' => $amount*100, // this is cent!
+            'unit_amount' => $amount * 100, // this is cent!
             'currency' => 'usd',
         ]);
 
@@ -459,17 +458,18 @@ class StripeApiController extends Controller
             'application_fee_amount' => 10,  // TODO: apply application fee
         ]);
 
-        // TODO: Save invoice in database
-        
+        // Save transaction in database
+        $transaction = $session->transaction;
+        $transaction->user_id = Auth::user()->id;
+        $transaction->payment_intent_id = $invoice->payment_intent;
+        $transaction->destination_account_id = $destination_account_id;
+        $transaction->amount = $amount * 100;
+        $transaction->is_successful = 0;
+        $transaction->invoice_id = $invoice->id;
+        $transaction->save();
 
 
-
-
-
-
-
-        
         return $amount*100;
-        
+
     }
 }

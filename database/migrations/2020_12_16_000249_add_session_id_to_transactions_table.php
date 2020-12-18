@@ -15,7 +15,7 @@ class AddSessionIdToTransactionsTable extends Migration
     {
         Schema::table('transactions', function (Blueprint $table) {
             $table->dropColumn('is_refund');
-            $table->string('refund_id');
+            $table->string('refund_id')->nullable();
             $table->string('invoice_id');
             $table->unsignedBigInteger('session_id');
 
