@@ -8,6 +8,7 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
 use Facades\App\Tag;
 use Facades\App\User;
+use Facades\App\Transaction;
 use Facades\App\TutorRequest;
 use Facades\App\Session;
 
@@ -53,6 +54,11 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             User::updateVerifyStatus();
             echo "Successfully update is_tutor_verified: " . now() . "\n";
+        })->everyThirtyMinutes();
+
+        $schedule->call(function () {
+            Transaction::finalizeInvoice();
+            echo "Successfully charge invoices: " . now() . "\n";
         })->everyThirtyMinutes();
     }
 

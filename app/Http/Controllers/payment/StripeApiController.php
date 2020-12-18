@@ -9,6 +9,7 @@ use Stripe\Stripe;
 use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
+use App\Transaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
@@ -289,6 +290,13 @@ class StripeApiController extends Controller
 
         // Handle failed payments
         if ($payment_intent->status != 'success') {
+            //TODO: update is successful
+            $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
+            $transaction->is_successful = 1;
+            $transaction->save();
+
+
+
             $invoice->sendInvoice();
         }
     }
@@ -388,6 +396,10 @@ class StripeApiController extends Controller
         if ($invoice->status != 'draft') {
             Log::error('Deleting an invoice that is not draft');
         } else {
+            //TODO: update transaction table
+
+
+
             $invoice->delete();
         }
     }
@@ -459,7 +471,7 @@ class StripeApiController extends Controller
         ]);
 
         // Save transaction in database
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         $transaction->user_id = Auth::user()->id;
         $transaction->payment_intent_id = $invoice->payment_intent;
         $transaction->destination_account_id = $destination_account_id;
@@ -469,7 +481,7 @@ class StripeApiController extends Controller
         $transaction->save();
 
 
-        return $amount*100;
+        return $transaction->destination_account_id;
 
     }
 }
