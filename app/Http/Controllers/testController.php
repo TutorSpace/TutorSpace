@@ -15,6 +15,7 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
+use App\Transaction;
 
 use Carbon\Carbon;
 
@@ -35,6 +36,8 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
+use App\Http\Controllers\payment\StripeApiController;
+
 class testController extends Controller
 {
     public function __construct() {
@@ -42,7 +45,41 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
+        $invoicesToCharge = Transaction::select("transactions.invoice_id")
+        ->join("sessions","sessions.id","=","transactions.session_id")
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
+        ->where("transactions.is_successful",0)
+        ->where("transactions.refund_id",NULL)
+        //TODO: add is cancel = 0
+        ->get();
+        $stripeApiController = new StripeApiController();
+        
+        forEach($invoicesToCharge as $invoice){
+            // $test = Transaction::where("invoice_id",$invoice->invoice_id)->get()[0];
+            // $test->is_successful = 0;
+            // echo($test->invoice_id."  ");
+            // $test->save();
+             $stripeApiController->finalizeInvoice($invoice->invoice_id);
+        }
 
+
+
+        
+        // ->join("verified_courses", function($join){
+        //     $join->on("verified_courses.course_id","=","course_user.course_id")
+        // ->on("verified_courses.user_id","=","course_user.user_id");
+        // })
+        // ->distinct();
+
+        // //verified users update
+        // User::whereIn('id',$verifiedUsersQuery)->update([
+        //     'is_tutor_verified' => '1'
+        // ]);
+
+        // // unverified users update
+        // User::whereNotIn('id',$verifiedUsersQuery)->update([
+        //     'is_tutor_verified' => '0'
+        // ]);
 
     }
     public function index(Request $request) {

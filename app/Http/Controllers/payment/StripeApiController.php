@@ -9,6 +9,7 @@ use Stripe\Stripe;
 use Stripe\Account;
 use Stripe\AccountLink;
 use App\User;
+use App\Transaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
@@ -289,6 +290,13 @@ class StripeApiController extends Controller
 
         // Handle failed payments
         if ($payment_intent->status != 'success') {
+            //TODO: update is successful
+            $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
+            $transaction->is_successful = 1;
+            $transaction->save();
+
+
+
             $invoice->sendInvoice();
         }
     }

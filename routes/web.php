@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 // for testing
 Route::get('/abc', 'testController@test')->name('abc');
 Route::get('/test', 'testController@index');
-Route::get('/testSearch', 'testController@action')->name('test.action');
+Route::get('/test1', 'testController@action')->name('test.action');
 Route::get('/test2', 'testController@index2');
 
 // autocomplete
