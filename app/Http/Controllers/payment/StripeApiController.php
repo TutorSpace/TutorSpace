@@ -460,8 +460,8 @@ class StripeApiController extends Controller
 
         //TODO: change to student id
         $student_id = $session->student_id;
-        $student_stripe_payment_id = 
-        
+        $student_stripe_payment_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
+        //TODO: error checking : has id has payment method
 
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([

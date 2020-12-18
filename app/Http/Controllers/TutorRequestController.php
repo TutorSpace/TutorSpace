@@ -28,6 +28,9 @@ class TutorRequestController extends Controller
             $session->is_in_person = $tutorRequest->is_in_person;
             $session->save();
             $session->refresh();
+
+
+            //TODO: uncomment
             // $tutorRequest->delete();
 
             // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')

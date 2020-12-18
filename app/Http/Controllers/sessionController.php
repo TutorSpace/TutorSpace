@@ -50,11 +50,20 @@ class SessionController extends Controller
         ]);
 
 
-        // TODO: DB::transaction(function () {
+        // TODO: check if customer has >= 1 payment methods
+        $stripeApiController = new StripeApiController();
+        
+        if ($stripeApiController->customerHasCards()){
+            // has cards
+
+        }else{
+            // no cards: redirect to add payment page
+
+        }
 
 
 
-        // });
+
 
         $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
         $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
