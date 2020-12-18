@@ -266,6 +266,7 @@ bg-student
             </div>
         </div>
 
+        @if (!Auth::user()->is_tutor)
         <div class="home__side-bar__bookmarked-users">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
@@ -283,6 +284,7 @@ bg-student
                 @endforelse
             </div>
         </div>
+        @endif
 
     </section>
 </div>
