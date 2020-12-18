@@ -124,7 +124,7 @@ $('.btn-view-all-bookmarked-users').click(function() {
 
 $('#btn-confirm-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
-    alert(tutorRequestId);
+
     $.ajax({
         type: 'POST',
         url: '/tutor-request/accept',

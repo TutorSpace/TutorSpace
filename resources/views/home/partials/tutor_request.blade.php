@@ -40,7 +40,7 @@ $student = App\User::find($tutorRequest->student_id);
         </div>
         <div class="session-type">
             <span class="title">Type</span>
-            <span class="content">In-person</span>
+            <span class="content">{{ $tutorRequest->is_in_person ? 'In Person' : 'Online' }}</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
