@@ -214,7 +214,8 @@ Route::group([
     'prefix' => 'tutor-request',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/accept', 'tutorRequestController@acceptTutorRequest');
+    Route::post('/accept/{tutorRequest}', 'TutorRequestController@acceptTutorRequest');
+    Route::delete('/{tutorRequest}', 'TutorRequestController@declineTutorRequest');
 });
 
 // tutor verification

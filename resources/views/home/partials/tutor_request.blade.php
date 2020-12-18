@@ -40,7 +40,7 @@ $student = App\User::find($tutorRequest->student_id);
         </div>
         <div class="session-type">
             <span class="title">Type</span>
-            <span class="content">In-person</span>
+            <span class="content">{{ $tutorRequest->is_in_person ? 'In Person' : 'Online' }}</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
@@ -105,7 +105,7 @@ $student = App\User::find($tutorRequest->student_id);
                         <div class="flex-100"></div>
                         <div class="price">
                             <span class="title">Price</span>
-                            <span class="content">$13.5</span>
+                            <span class="content"></span>
                         </div>
                     </div>
                 </div>
@@ -120,8 +120,15 @@ $student = App\User::find($tutorRequest->student_id);
                     <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
-                    <button class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5">Decline</button>
-                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">Confirm Tutor Session</button>
+                    <button
+                        class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5"
+                        id="btn-decline-tutor-session">
+                        Decline
+                    </button>
+                    <button
+                        class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">
+                        Confirm Tutor Session
+                    </button>
                 </div>
             </div>
         </div>
