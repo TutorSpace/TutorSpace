@@ -103,7 +103,7 @@ bg-student
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (
                     Auth::user()
-                        ->pastSessions()
+                        ->upcomingSessions()
                         ->with([
                             Auth::user()->is_tutor ? 'student' : 'tutor',
                             'course'

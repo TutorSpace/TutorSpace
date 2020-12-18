@@ -1,5 +1,5 @@
 <div>
-    <div class="info-box">
+    <div class="info-box" data-session-id="{{ $session->id }}">
         <div class="user-info">
             <img src="{{ Storage::url(Auth::user()->is_tutor ? $session->student->profile_pic_url : $session->tutor->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">

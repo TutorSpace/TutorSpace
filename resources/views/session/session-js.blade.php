@@ -35,6 +35,9 @@
 
 
     $('.btn-cancel-session').on('click',function() {
+        let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
+        console.log(sessionId);
+
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
             size: 'large',
@@ -48,15 +51,16 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: `session/cancel/${sessionId}`,
+                            url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
                             data: {
                                 cancelReasonId: cancelReasonId
                             },
                             success: function success(data) {
                                 var successMsg = data.successMsg;
                                 toastr.success(successMsg);
-                                console.log(successMsg);
-                                // window.location.reload();
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
                             },
                             error: function error(error) {
                                 toastr.error("There is an error occurred");
@@ -67,7 +71,6 @@
             }
         });
 
-        let sessionId = $(this).closest('.info-card').attr('data-session-id');
 
     });
 </script>
