@@ -40,7 +40,7 @@
     @endif
 </body>
 <script defer>
-    var stripe = Stripe("pk_test_51H6RWlBtUwiw0w2oW1kGPF0AwsekfcKD0mz7Aj5M66bVelryG3uZdcE3lutEIb9ddWDlfpTGm3PjpZk5BjphHvU100pM9tg0rJ");
+    var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
     var form = document.getElementById("payment-form");
     form.addEventListener("submit", function(event) {
         event.preventDefault();
