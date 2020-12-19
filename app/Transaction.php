@@ -12,13 +12,12 @@ class Transaction extends Model
     public function session() {
         return $this->belongsTo('App\Session');
     }
-    public static function finalizeInvoice(){
+    public static function finalizeInvoice() {
         $invoicesToCharge = Transaction::select("transactions.invoice_id")
         ->join("sessions","sessions.id","=","transactions.session_id") // join
         ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
         ->where("transactions.is_successful",0) // not successful => unpaid
         ->where("transactions.refund_id",NULL) // not a refund
-        //TODO: add is cancel = 0
         ->where("sessions.is_canceled",0) // not canceled
         ->get();
 
