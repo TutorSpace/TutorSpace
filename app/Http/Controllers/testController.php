@@ -65,32 +65,37 @@ class testController extends Controller
 
 
 
+        // $stripe = new StripeApiController();
+        // $stripe->sendOpenInvoiceToCustomer(5);
 
 
 
-
-
-        $invoicesToCharge = Transaction::select("transactions.invoice_id")
-        ->join("sessions","sessions.id","=","transactions.session_id") // join
-        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
-        ->where("transactions.invoice_status","draft") // invoice status => draft
-        ->where("transactions.refund_id",NULL) // not a refund
-        ->where("sessions.is_canceled",0) // not canceled
-        ->get();
-
-        $stripeApiController = new StripeApiController();
+        // $hoursAfterLastUpdate = "48";
+        // $invoicesToSend = Transaction::selectRaw("invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
+        // ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
+        // ->where("invoice_status","open")
+        // ->get();
         
-        forEach($invoicesToCharge as $invoice){
-            // $test = Transaction::where("invoice_id",$invoice->invoice_id)->get()[0];
-            // $test->is_successful = 0;
-            echo($invoice."  ");
-            // $test->save();
-             $stripeApiController->finalizeInvoice($invoice->invoice_id);
-        }
+        
+        // forEach ($invoicesToSend as $curInvoice) {
+        //     echo $curInvoice->invoice_id;
+        // }
+
+
+        // echo($invoicesToSend);
+
+
+
+
+        $this->finalizeInvoice();
 
 
 
         
+    
+
+    }
+    public function updateVerifiedCourse(){
         // ->join("verified_courses", function($join){
         //     $join->on("verified_courses.course_id","=","course_user.course_id")
         // ->on("verified_courses.user_id","=","course_user.user_id");
@@ -106,7 +111,24 @@ class testController extends Controller
         // User::whereNotIn('id',$verifiedUsersQuery)->update([
         //     'is_tutor_verified' => '0'
         // ]);
+    }
+    public function finalizeInvoice(){
 
+        $invoicesToCharge = Transaction::select("transactions.invoice_id")
+        ->join("sessions","sessions.id","=","transactions.session_id") // join
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
+        ->where("transactions.invoice_status","draft") // invoice status => draft
+        ->where("transactions.refund_id",NULL) // not a refund
+        ->where("sessions.is_canceled",0) // not canceled
+        ->get();
+
+        $stripeApiController = new StripeApiController();
+
+        forEach($invoicesToCharge as $invoice){
+            echo($invoice."  ");
+            // finalize invoice
+             $stripeApiController->finalizeInvoice($invoice->invoice_id);
+        }
     }
     public function index(Request $request) {
 

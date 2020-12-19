@@ -41,12 +41,6 @@ class StripeApiController extends Controller
 
         // Creates account only if user has no account
         if (!isset($payment_method->stripe_account_id) || trim($payment_method->stripe_account_id) === '') {
-
-            // todo: fix this
-            // return response()->json([
-
-            // ]);
-
             $account = Account::create([
                 'country' => 'US',
                 'type' => 'express',
@@ -73,13 +67,10 @@ class StripeApiController extends Controller
         return response()->json([
             'stripe_url' => $account_links->url
         ]);
-
-
-       
     }
 
     /*
-        Section starts: previous implementation
+        Section starts: previous implementation, deprecated
     */
 
     // Creates a payment intent with new cards
@@ -264,11 +255,6 @@ class StripeApiController extends Controller
         // $this->finalizeInvoice($invoice->id);
         // TODO: Save invoice in database
 
-
-
-
-
-
         return redirect()->route('invoice_index')->with([
             'invoice_id' => $invoice->id,
         ]);
@@ -290,12 +276,10 @@ class StripeApiController extends Controller
             Log::debug('Error when confirming payment intent: '.$e->getMessage());
         }
 
-        Log::debug('PaymentIntent status: '.$payment_intent->status);
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
         // Handle failed payments
         if ($invoice->status != 'paid') {
             // send invoice
-           
             $invoice->sendInvoice();
         }
         
@@ -303,10 +287,6 @@ class StripeApiController extends Controller
         $transaction->payment_intent_id = $payment_intent_id;
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
-    
-        Log::debug('invoice status: '.$invoice->status);
-
-
     }
 
     // Save card as Default
@@ -471,10 +451,12 @@ class StripeApiController extends Controller
         switch ($event->type) {
             case 'invoice.paid':
                 $invoice = $event->data->object;
+                // change database transaction invoice_status => paid
                 Log::debug('invoice.paid received'.$invoice->id);
                 break;
             case 'charge.refund.updated':
                 $refund = $event->data->object;
+                // TODO: check refund using email?
                 Log::debug('charge.refund.updated received'.$refund->id);
                 break;
             // Handle other event types
@@ -575,7 +557,19 @@ class StripeApiController extends Controller
 
         $transaction->invoice_id = $invoice->id;
         $transaction->save();
+    }
 
-
+    // open means unpaid
+    public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
+        $transactionsToSend = Transaction::selectRaw("invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
+        ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
+        ->where("invoice_status","open")
+        ->get();
+        
+        forEach ($transactionsToSend as $transaction) {
+            $invoiceId = $transaction->invoice_id;
+            $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
+            $invoiceToSend->sendInvoice();
+        }
     }
 }
