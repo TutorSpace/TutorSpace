@@ -40,7 +40,9 @@
     @endif
 </body>
 <script defer>
-    var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
+    const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+    // A reference to Stripe.js initialized with your real test publishable API key.
+    var stripe = stripeApiKey;
     var form = document.getElementById("payment-form");
     form.addEventListener("submit", function(event) {
         event.preventDefault();

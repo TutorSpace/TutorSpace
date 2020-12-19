@@ -199,7 +199,8 @@
 
   <script defer>
       // A reference to Stripe.js initialized with your real test publishable API key.
-      var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
+      const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+      var stripe = Stripe(stripeApiKey);
         // The items the customer wants to buy
         // Disable the button until we have Stripe set up on the page
         document.querySelector("button").disabled = true;

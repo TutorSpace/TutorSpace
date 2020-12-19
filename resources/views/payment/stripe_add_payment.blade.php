@@ -52,8 +52,9 @@
   </body>
 
   <script defer>
+    const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
     // A reference to Stripe.js initialized with your real test publishable API key.
-    var stripe = Stripe("pk_test_51HvqSrGxwAT7uYY4xEdsjjJD8HcIC4en1jSFwH0Qrhe2TSSM1r1KqkbcweDkdsCwYkEpaPP63mmCgys4DGBfPz9200cmsSAtZn");
+    var stripe = Stripe(stripeApiKey);
     // The items the customer wants to buy
     var purchase = {
         items: [{ id: "xl-tshirt" }],
