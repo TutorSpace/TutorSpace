@@ -411,6 +411,42 @@ class StripeApiController extends Controller
         Section ends: implementation using Invoice
     */
 
+    // Handle all Stripe webhooks
+    public function handleWebhook(Request $request) {
+        $payload = $request->all();
+        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
+        $sig_header = $request->header('HTTP_STRIPE_SIGNATURE');
+
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload, $sig_header, $endpoint_secret
+            );
+        } catch(\UnexpectedValueException $e) {
+            // Invalid payload
+            return response(null, 400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            return response(null, 400);
+        }
+        
+        // Handle the event
+        switch ($event->type) {
+            case 'payment_intent.succeeded':
+                $paymentIntent = $event->data->object; // contains a StripePaymentIntent
+                handlePaymentIntentSucceeded($paymentIntent);
+                break;
+            case 'payment_method.attached':
+                $paymentMethod = $event->data->object; // contains a StripePaymentMethod
+                handlePaymentMethodAttached($paymentMethod);
+                break;
+            // Handle other event types
+            default:
+                echo 'Received unknown event type ' . $event->type;
+        }
+        
+        return response(null, 200);
+    }
+
     private function getCustomerDefaultPaymentId(){
         $customer_id = $this->getCustomerId();
         $customer = \Stripe\Customer::retrieve($customer_id, []);

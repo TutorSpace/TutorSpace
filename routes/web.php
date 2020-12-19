@@ -265,3 +265,4 @@ Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@conf
 // Stripe Invoice
 Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
 Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
+Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
