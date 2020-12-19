@@ -274,6 +274,7 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // TODO: change to invoice status
     // Finalize an Invoice and confirm its PaymentIntent
     public function finalizeInvoice($invoice_id) {
         $invoice = \Stripe\Invoice::retrieve($invoice_id);
@@ -290,22 +291,20 @@ class StripeApiController extends Controller
         }
 
         Log::debug('PaymentIntent status: '.$payment_intent->status);
-
+        $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
         // Handle failed payments
-        if ($payment_intent->status != 'success') {
-            //TODO: update is successful
-            $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
-            
-
-
-
+        if ($invoice->status != 'paid') {
+            // send invoice
+           
             $invoice->sendInvoice();
         }
-        // 
-        else{
-            $transaction->is_successful = 1;
-            $transaction->save();
-        }
+        
+
+        
+        $transaction->invoice_status = $invoice->status;
+        $transaction->save();
+    
+        Log::debug('invoice status: '.$invoice->status);
 
 
     }
@@ -496,16 +495,18 @@ class StripeApiController extends Controller
 
         // TODO: payment intent appear only when finalized
         // $transaction->payment_intent_id = $invoice->payment_intent;
-        // $transaction->payment_intent_id = "placeholder";
 
-
+        $transaction->invoice_status = "draft";
         $transaction->destination_account_id = $destination_account_id;
         $transaction->amount = $amount * 100;
-        $transaction->is_successful = 0;
+        // TODO: delete
         $transaction->is_cancelled = 0;
+
+
+
         $transaction->invoice_id = $invoice->id;
         $transaction->save();
 
-        return $invoice;
+
     }
 }
