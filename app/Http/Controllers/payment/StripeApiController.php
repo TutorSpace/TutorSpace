@@ -69,12 +69,13 @@ class StripeApiController extends Controller
                 $payment_method->stripe_account_id, []
             );
         }
-        // return response()->json([
-        //     'stripe_url' => "account_links->url"
-        // ]);
+      
         return response()->json([
             'stripe_url' => $account_links->url
         ]);
+
+
+       
     }
 
     /*
@@ -390,8 +391,8 @@ class StripeApiController extends Controller
 
     // Cancels an Invoice
     // Request should contain 'session_id'
-    public function cancelInvoice(Request $request) {
-        $session_id = $request->input('session_id');
+    public function cancelInvoice($session_id) {
+        // $session_id = $request->input('session_id');
         $session = AppSession::find($session_id);
         $transaction = $session->transaction;
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);

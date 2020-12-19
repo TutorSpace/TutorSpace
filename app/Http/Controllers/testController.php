@@ -46,9 +46,10 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
-        $student_stripe_payment_id = PaymentMethod::where("user_id",1)->get()[0]->stripe_customer_id;
-        echo($student_stripe_payment_id);
-
+        // $student_stripe_payment_id = PaymentMethod::where("user_id",1)->get()[0]->stripe_customer_id;
+        // echo($student_stripe_payment_id);
+        $invoiceId = Transaction::where("session_id",1)->get()[0]->id;
+        echo $invoiceId;
 
         // $transaction = new Transaction();
         // $transaction->session()->associate(1);
@@ -69,14 +70,15 @@ class testController extends Controller
 
 
 
-        // $invoicesToCharge = Transaction::selectRaw("invoice_id")
-        // ->join("sessions","sessions.id","=","transactions.session_id")
+        // $invoicesToCharge = Transaction::select("transactions.invoice_id")
+        // ->join("sessions","sessions.id","=","transactions.session_id") // join
         // ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
-        // ->where("transactions.is_successful",0)
-        // ->where("transactions.refund_id",NULL)
+        // ->where("transactions.is_successful",0) // not successful => unpaid
+        // ->where("transactions.refund_id",NULL) // not a refund
         // //TODO: add is cancel = 0
-        // ->where("sessions.is_canceled",0)
+        // ->where("sessions.is_canceled",0) // not canceled
         // ->get();
+
         // $stripeApiController = new StripeApiController();
         
         // forEach($invoicesToCharge as $invoice){

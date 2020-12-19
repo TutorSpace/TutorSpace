@@ -26,11 +26,25 @@ class SessionController extends Controller
             ]
         ]);
 
+         // TODO: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
+        $stripeApiController = new StripeApiController();
+        $stripeApiController->cancelInvoice($session->id);
+
+        
+
+
         $session->is_canceled = true;
 
         $session->cancelReason()->associate($request->input('cancelReasonId'));
 
         $session->save();
+
+
+       
+
+
+
+
 
         return response()->json(
             [
