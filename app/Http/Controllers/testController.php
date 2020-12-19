@@ -48,8 +48,8 @@ class testController extends Controller
     public function action(Request $request){
         // $student_stripe_payment_id = PaymentMethod::where("user_id",1)->get()[0]->stripe_customer_id;
         // echo($student_stripe_payment_id);
-        $invoiceId = Transaction::where("session_id",1)->get()[0]->id;
-        echo $invoiceId;
+        // $invoiceId = Transaction::where("session_id",1)->get()[0]->id;
+        // echo $invoiceId;
 
         // $transaction = new Transaction();
         // $transaction->session()->associate(1);
@@ -70,24 +70,23 @@ class testController extends Controller
 
 
 
-        // $invoicesToCharge = Transaction::select("transactions.invoice_id")
-        // ->join("sessions","sessions.id","=","transactions.session_id") // join
-        // ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
-        // ->where("transactions.is_successful",0) // not successful => unpaid
-        // ->where("transactions.refund_id",NULL) // not a refund
-        // //TODO: add is cancel = 0
-        // ->where("sessions.is_canceled",0) // not canceled
-        // ->get();
+        $invoicesToCharge = Transaction::select("transactions.invoice_id")
+        ->join("sessions","sessions.id","=","transactions.session_id") // join
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
+        ->where("transactions.invoice_status","draft") // invoice status => draft
+        ->where("transactions.refund_id",NULL) // not a refund
+        ->where("sessions.is_canceled",0) // not canceled
+        ->get();
 
-        // $stripeApiController = new StripeApiController();
+        $stripeApiController = new StripeApiController();
         
-        // forEach($invoicesToCharge as $invoice){
-        //     // $test = Transaction::where("invoice_id",$invoice->invoice_id)->get()[0];
-        //     // $test->is_successful = 0;
-        //     echo($invoice."  ");
-        //     // $test->save();
-        //      $stripeApiController->finalizeInvoice($invoice->invoice_id);
-        // }
+        forEach($invoicesToCharge as $invoice){
+            // $test = Transaction::where("invoice_id",$invoice->invoice_id)->get()[0];
+            // $test->is_successful = 0;
+            echo($invoice."  ");
+            // $test->save();
+             $stripeApiController->finalizeInvoice($invoice->invoice_id);
+        }
 
 
 
