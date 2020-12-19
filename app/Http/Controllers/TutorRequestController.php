@@ -8,6 +8,7 @@ use App\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\payment\StripeApiController;
 class TutorRequestController extends Controller
 {
@@ -15,35 +16,36 @@ class TutorRequestController extends Controller
     public function acceptTutorRequest(Request $request, TutorRequest $tutorRequest) {
         $tutorId = $tutorRequest->tutor_id;
         $studentId = $tutorRequest->student_id;
-        $user = Auth::user();
         $gateResponse = Gate::inspect('accept-tutor-request', [$tutorRequest]);
+
         if($gateResponse->allowed()){
-            $session = new Session();
-            $session->hourly_rate = $tutorRequest->hourly_rate;
-            $session->tutor()->associate($tutorId);
-            $session->student()->associate($studentId);
-            $session->course()->associate($tutorRequest->course_id);
-            $session->session_time_start = $tutorRequest->session_time_start;
-            $session->session_time_end = $tutorRequest->session_time_end;
-            $session->is_in_person = $tutorRequest->is_in_person;
-            $session->save();
-            $session->refresh();
+
+            // wrap in DB::transaction
+            DB::transaction(function () use($tutorRequest,$tutorId,$studentId) {
+                //create new tutor session
+                $session = new Session();
+                $session->hourly_rate = $tutorRequest->hourly_rate;
+                $session->tutor()->associate($tutorId);
+                $session->student()->associate($studentId);
+                $session->course()->associate($tutorRequest->course_id);
+                $session->session_time_start = $tutorRequest->session_time_start;
+                $session->session_time_end = $tutorRequest->session_time_end;
+                $session->is_in_person = $tutorRequest->is_in_person;
+                $session->save();
+                $session->refresh();
+                // delete tutor request
+                $tutorRequest->delete();
+
+                // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
+
+                // calculate session fee
+                $sessionFee = $this->calculateSessionFee($session);
+                // // create a transaction in our database and invoice in stripe
+                $this->initializeInvoice($sessionFee,$session);
+            });
 
 
-            //TODO: uncomment
-            // $tutorRequest->delete();
-
-            // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
-
-              // calculate session fee
-            $sessionFee = $this->calculateSessionFee($session);
-
-            // get tutor stripe account
-            $this->initializeInvoice($sessionFee,$session);
-            // $tutorStripeAccountId = PaymentMethod::where("user_id",$tutorId)->get()[0]->stripe_account_id;
-            // $stripeApiController = new StripeApiController();
-            // $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
-
+            
 
             return response()->json(
                 [

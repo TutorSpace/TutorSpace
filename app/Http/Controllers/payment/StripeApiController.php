@@ -209,7 +209,7 @@ class StripeApiController extends Controller
             $customer = Customer::create([
                 'name' => $user->first_name.' '.$user->last_name,
                 // 'email' => $user->email,  // TODO: change back to user email
-                'email' => 'lihanzhu@usc.edu'
+                'email' => 'nateohuang@gmail.com'
             ]);
             $customer_id = $customer->id;
             $payment_method->stripe_customer_id = $customer_id;
@@ -299,8 +299,8 @@ class StripeApiController extends Controller
             $invoice->sendInvoice();
         }
         
-
-        
+        // TODO: unnecessary
+        $transaction->payment_intent_id = $payment_intent_id;
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
     
@@ -394,21 +394,37 @@ class StripeApiController extends Controller
         // TODO: save refund id
     }
 
+    
     // Cancels an Invoice
-    // Request should contain 'session_id'
+    // return 400 response code for error
+    // return 200 response code for success
     public function cancelInvoice($session_id) {
-        // $session_id = $request->input('session_id');
         $session = AppSession::find($session_id);
         $transaction = $session->transaction;
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
-        if ($invoice->status != 'draft') {
+        Log::debug('invoice status before'.$invoice->status);
+
+        // invoice doesn't exist
+        if (!$invoice){
+            Log::error('cannot find the invoice!');
+            return response()->json([
+                'errorMsg' => "cannot find the invoice!"
+            ], 400); 
+        }
+
+        // delete an invoice
+        if ( $invoice->status != 'draft') {
             Log::error('Deleting an invoice that is not draft');
+            return response()->json([
+                'errorMsg' => "Deleting an invoice that is not draft"
+            ], 400); 
         } else {
-            //TODO: update transaction table
-
-
-
             $invoice->delete();
+            $transaction->delete();
+            return response()->json([
+                'success' => "successfully deleted the invoice"
+            ], 200); 
+
         }
     }
 
