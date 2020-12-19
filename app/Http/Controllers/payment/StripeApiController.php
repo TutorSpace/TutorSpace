@@ -420,30 +420,47 @@ class StripeApiController extends Controller
     // Handle all Stripe webhooks
     public function handleWebhook(Request $request) {
         $payload = $request->all();
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
-        $sig_header = $request->header('HTTP_STRIPE_SIGNATURE');
+        
+        // // 1 - Using signature
+        // $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
+        // $sig_header = $request->header('stripe-signature');
 
+        // Log::debug('Signature: '.$sig_header);
+        // try {
+        //     $event = \Stripe\Webhook::constructEvent(
+        //         json_encode($payload), $sig_header, $endpoint_secret
+        //     );
+        // } catch(\UnexpectedValueException $e) {
+        //     // Invalid payload
+        //     Log::error($e->getMessage());
+        //     return response(null, 400);
+        // } catch(\Stripe\Exception\SignatureVerificationException $e) {
+        //     // Invalid signature
+        //     Log::error($e->getMessage());
+        //     return response(null, 400);
+        // }
+
+        // 2 - Using API
         try {
-            $event = \Stripe\Webhook::constructEvent(
-                $payload, $sig_header, $endpoint_secret
+            $event = \Stripe\Event::constructFrom(
+                $payload
             );
         } catch(\UnexpectedValueException $e) {
             // Invalid payload
-            return response(null, 400);
-        } catch(\Stripe\Exception\SignatureVerificationException $e) {
-            // Invalid signature
+            Log::error($e->getMessage());
             return response(null, 400);
         }
-        
-        // Handle the event
+
+        Log::debug('Webhook received: '.$event->type);
+        // Handle the event depending on its type
         switch ($event->type) {
-            case 'payment_intent.succeeded':
-                $paymentIntent = $event->data->object; // contains a StripePaymentIntent
-                handlePaymentIntentSucceeded($paymentIntent);
+            case 'invoice.paid':
+                $invoice = $event->data->object;
+                Log::debug('invoice.paid received'.$invoice->id);
                 break;
-            case 'payment_method.attached':
-                $paymentMethod = $event->data->object; // contains a StripePaymentMethod
-                handlePaymentMethodAttached($paymentMethod);
+            case 'charge.refund.updated':
+                $refund = $event->data->object;
+                Log::debug('charge.refund.updated received'.$refund->id);
                 break;
             // Handle other event types
             default:
