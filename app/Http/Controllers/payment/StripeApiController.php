@@ -295,13 +295,19 @@ class StripeApiController extends Controller
         if ($payment_intent->status != 'success') {
             //TODO: update is successful
             $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
-            $transaction->is_successful = 1;
-            $transaction->save();
+            
 
 
 
             $invoice->sendInvoice();
         }
+        // 
+        else{
+            $transaction->is_successful = 1;
+            $transaction->save();
+        }
+
+
     }
 
     // Save card as Default
@@ -490,7 +496,7 @@ class StripeApiController extends Controller
 
         // TODO: payment intent appear only when finalized
         // $transaction->payment_intent_id = $invoice->payment_intent;
-        $transaction->payment_intent_id = "placeholder";
+        // $transaction->payment_intent_id = "placeholder";
 
 
         $transaction->destination_account_id = $destination_account_id;
