@@ -432,6 +432,59 @@ class StripeApiController extends Controller
         Section ends: implementation using Invoice
     */
 
+    // Handle all Stripe webhooks
+    public function handleWebhook(Request $request) {
+        $payload = $request->all();
+        
+        // // 1 - Using signature
+        // $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
+        // $sig_header = $request->header('stripe-signature');
+
+        // Log::debug('Signature: '.$sig_header);
+        // try {
+        //     $event = \Stripe\Webhook::constructEvent(
+        //         json_encode($payload), $sig_header, $endpoint_secret
+        //     );
+        // } catch(\UnexpectedValueException $e) {
+        //     // Invalid payload
+        //     Log::error($e->getMessage());
+        //     return response(null, 400);
+        // } catch(\Stripe\Exception\SignatureVerificationException $e) {
+        //     // Invalid signature
+        //     Log::error($e->getMessage());
+        //     return response(null, 400);
+        // }
+
+        // 2 - Using API
+        try {
+            $event = \Stripe\Event::constructFrom(
+                $payload
+            );
+        } catch(\UnexpectedValueException $e) {
+            // Invalid payload
+            Log::error($e->getMessage());
+            return response(null, 400);
+        }
+
+        Log::debug('Webhook received: '.$event->type);
+        // Handle the event depending on its type
+        switch ($event->type) {
+            case 'invoice.paid':
+                $invoice = $event->data->object;
+                Log::debug('invoice.paid received'.$invoice->id);
+                break;
+            case 'charge.refund.updated':
+                $refund = $event->data->object;
+                Log::debug('charge.refund.updated received'.$refund->id);
+                break;
+            // Handle other event types
+            default:
+                echo 'Received unknown event type ' . $event->type;
+        }
+        
+        return response(null, 200);
+    }
+
     private function getCustomerDefaultPaymentId(){
         $customer_id = $this->getCustomerId();
         $customer = \Stripe\Customer::retrieve($customer_id, []);
