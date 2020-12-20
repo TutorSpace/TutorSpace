@@ -40,12 +40,9 @@ class TutorRequestController extends Controller
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
-                // // create a transaction in our database and invoice in stripe
+                // create a transaction in our database and invoice in stripe
                 $this->initializeInvoice($sessionFee,$session);
             });
-
-
-            
 
             return response()->json(
                 [
@@ -72,7 +69,7 @@ class TutorRequestController extends Controller
         );
     }
 
-    public function calculateSessionFee($session){
+    public function calculateSessionFee($session) {
         $hourlyRate = $session->hourly_rate;
         $startTimeInTime = strtotime($session->session_time_start);
         $endTimeInTime = strtotime($session->session_time_end);
@@ -80,7 +77,8 @@ class TutorRequestController extends Controller
         $sessionFee = $sessionDurationInHour * $hourlyRate;
         return $sessionFee;
     }
-    public function initializeInvoice($sessionFee,$session){
+
+    public function initializeInvoice($sessionFee,$session) {
         $tutorStripeAccountId = PaymentMethod::where("user_id",$session->tutor_id)->get()[0]->stripe_account_id;
         $stripeApiController = new StripeApiController();
         $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);

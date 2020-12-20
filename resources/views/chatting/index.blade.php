@@ -89,24 +89,21 @@ bg-student
         let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
-            let {from, to, message, created_at} = data;
+            let {from, to, message, created_at, chatroomView, imgUrl} = data;
             let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
 
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
-                    appendOtherMessage(message, created_at);
+                    appendOtherMessage(message, created_at, imgUrl);
                 } else if(from == currentUserId && to == currentlyViewingId) {
                     appendMyMessage(message, created_at);
                 }
                 scrollToBottom();
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
-                    alert('new chatroom!');
-                    let chatroomClone = $('.msg')[0];
-                    console.log(chatroomClone);
-                    // $('.msgs').append($(`.msg[data-user-id=${otherUserId}]`)[0]);
+                    $('.msgs').append(chatroomView);
                 }
                 $(`.msg[data-user-id=${otherUserId}]`).addClass('unread');
             }
@@ -116,7 +113,7 @@ bg-student
         });
     }
 
-    $('.msg').click(function() {
+    $('.msgs').on('click', '.msg', function () {
         $('.msg .box').removeClass('bg-grey-light');
         $(this).find('.box').addClass('bg-grey-light');
         let otherUserId = $(this).attr('data-user-id');
@@ -133,8 +130,11 @@ bg-student
                 appendSendMsgFunc();
             }
         });
-
     });
+
+    @if(isset($toViewOtherUserId))
+    $(".msg[data-user-id={{ $toViewOtherUserId }}]").click();
+    @endif
 
     function scrollToBottom() {
         $('.chatting__content__messages').scrollTop($('.chatting__content__messages')[0].scrollHeight);
@@ -150,9 +150,11 @@ bg-student
                     data: $('#msg-form').serialize(),
                     success: (data) => {
                         console.log(data);
+                    },
+                    error: (err) => {
+                        console.log(err);
                     }
                 });
-                // appendMyMessage($('#msg-to-send').val(), 'Now');
                 $('#msg-to-send').val('');
             }
             return false;
@@ -174,12 +176,12 @@ bg-student
         $('.chatting__content__messages').append(el);
     }
 
-    function appendOtherMessage(message, time) {
+    function appendOtherMessage(message, time, imgUrl) {
         // append other's message
         let el =
         `<div class="message message--other">
             <div class="img-container">
-                <img src="${$('.message--other img').attr('src')}" alt="user img">
+                <img src="${imgUrl}" alt="user img">
             </div>
             <div class="message-content-container">
                 <span class="content">

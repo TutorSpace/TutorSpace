@@ -17,7 +17,7 @@
                 'user' => App\User::find($otherUserId),
                 'message' => $chatroom->getLatestMessage()
             ])
-        @elseif($chatroom->creater_user_id == Auth::id())
+        @elseif($chatroom->creator_user_id == Auth::id())
             @include('chatting.side-bar-chatting-msg', [
                 'unRead' => false,
                 'time' => '',
@@ -25,6 +25,5 @@
                 'message' => ''
             ])
         @endif
-
     @endforeach
 </ul>

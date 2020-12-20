@@ -416,54 +416,52 @@ class StripeApiController extends Controller
 
     // Handle all Stripe webhooks
     public function handleWebhook(Request $request) {
-        $payload = $request->all();
+        $payload = $request->getContent();  // Get raw content
         
-        // // 1 - Using signature
-        // $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
-        // $sig_header = $request->header('stripe-signature');
+        // Check signature
+        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
+        $sig_header = $request->header('stripe-signature');
 
-        // Log::debug('Signature: '.$sig_header);
-        // try {
-        //     $event = \Stripe\Webhook::constructEvent(
-        //         json_encode($payload), $sig_header, $endpoint_secret
-        //     );
-        // } catch(\UnexpectedValueException $e) {
-        //     // Invalid payload
-        //     Log::error($e->getMessage());
-        //     return response(null, 400);
-        // } catch(\Stripe\Exception\SignatureVerificationException $e) {
-        //     // Invalid signature
-        //     Log::error($e->getMessage());
-        //     return response(null, 400);
-        // }
-
-        // 2 - Using API
+        Log::debug('Signature: '.$sig_header);
         try {
-            $event = \Stripe\Event::constructFrom(
-                $payload
+            $event = \Stripe\Webhook::constructEvent(
+                $payload, $sig_header, $endpoint_secret
             );
         } catch(\UnexpectedValueException $e) {
             // Invalid payload
             Log::error($e->getMessage());
             return response(null, 400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            Log::error($e->getMessage());
+            Log::error($e->getSigHeader());
+            Log::error($e->getHttpBody());
+            return response(null, 400);
         }
 
-        Log::debug('Webhook received: '.$event->type);
+        Log::info('Webhook received: ' . $event->type);
         // Handle the event depending on its type
         switch ($event->type) {
             case 'invoice.paid':
                 $invoice = $event->data->object;
-                // change database transaction invoice_status => paid
-                Log::debug('invoice.paid received'.$invoice->id);
+                Log::debug('invoice.paid received' . $invoice->id);
+
+                // Change database transaction invoice_status => paid
+                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+                $transaction->invoice_status = 'paid';
+                $transaction->save();
                 break;
+
             case 'charge.refund.updated':
                 $refund = $event->data->object;
+                Log::debug('charge.refund.updated received' . $refund->id);
                 // TODO: check refund using email?
-                Log::debug('charge.refund.updated received'.$refund->id);
+                
                 break;
+                
             // Handle other event types
             default:
-                echo 'Received unknown event type ' . $event->type;
+                Log::debug('Received unknown event type ' . $event->type);
         }
         
         return response(null, 200);

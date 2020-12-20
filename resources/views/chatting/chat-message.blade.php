@@ -16,7 +16,6 @@
         <span class="content">
             {{ $content }}
         </span>
-
     </div>
     <div class="time-container">
         {{ $time }}

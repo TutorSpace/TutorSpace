@@ -15,8 +15,8 @@ class MessageSeeder extends Seeder
         $faker = Faker\Factory::create();
         for($i = 0; $i < 150; $i++) {
             do {
-                $from = rand(1, 5);
-                $to = rand(1, 5);
+                $from = rand(1, 4);
+                $to = rand(1, 4);
             } while($from == $to);
 
             DB::table('messages')->insert([
@@ -27,12 +27,12 @@ class MessageSeeder extends Seeder
             ]);
         }
 
-        for($i = 1; $i <= 5; $i++) {
-            for($j = $i + 1; $j <= 5; $j++) {
+        for($i = 1; $i <= 4; $i++) {
+            for($j = $i + 1; $j <= 4; $j++) {
                 DB::table('chatrooms')->insert([
                     'user_id_1' => $i,
                     'user_id_2' => $j,
-                    'creater_user_id' => $i
+                    'creator_user_id' => $i
                 ]);
             }
         }
