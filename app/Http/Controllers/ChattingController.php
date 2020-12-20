@@ -43,11 +43,11 @@ class ChattingController extends Controller
     public function getMessages(Request $request) {
         $otherUserId = $request->input('userId');
 
-        if(Chatroom::where(function($query) use ($otherUserId) {
-        $query->where('user_id_1', Auth::id())->where('user_id_2', $otherUserId);
-        })->orWhere(function($query) use ($otherUserId) {
-            $query->where('user_id_2', Auth::id())->where('user_id_1', $otherUserId);
-        })->count() == 1) {
+        if(
+            Chatroom::where(function($query) use ($otherUserId) {
+                $query->where('user_id_1', Auth::id() < $otherUserId ? Auth::id() : $otherUserId)->where('user_id_2', Auth::id() < $otherUserId ? $otherUserId : Auth::id());
+            })
+            ->count() == 1) {
             Chatroom::removeUnreadStatus($otherUserId);
             return view('chatting.content', [
                 'user' => User::find($otherUserId),
