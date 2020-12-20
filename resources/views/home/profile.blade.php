@@ -250,7 +250,7 @@ bg-student
                             Methods</button>
                         @else
                         <div class="payment-cards">
-                            <div class="card-wrapper">
+                            {{-- <div class="card-wrapper">
                                 <div class="card">
                                     <div class="brand">
                                         Brand: xxxx
@@ -264,7 +264,7 @@ bg-student
                                 </div>
                                 <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
                                 <button class="btn btn-primary">Set As Default</button>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New

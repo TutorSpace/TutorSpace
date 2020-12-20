@@ -133,8 +133,11 @@ bg-student
                 appendSendMsgFunc();
             }
         });
-
     });
+
+    @if(isset($toViewOtherUserId))
+    $(".msg[data-user-id={{ $toViewOtherUserId }}]").click();
+    @endif
 
     function scrollToBottom() {
         $('.chatting__content__messages').scrollTop($('.chatting__content__messages')[0].scrollHeight);

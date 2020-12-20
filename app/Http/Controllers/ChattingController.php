@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ChattingController extends Controller
 {
-    public function index(User $user = null) {
+    public function index(Request $request) {
         // Gate::authorize('create-chatroom', $user);
 
         // // if no chatroom
@@ -35,7 +35,9 @@ class ChattingController extends Controller
         //     $chatroom->save();
         // }
 
-        return view('chatting.index');
+        return view('chatting.index', [
+            'toViewOtherUserId' => $request->input('toViewOtherUserId')
+        ]);
     }
 
     public function getMessages(Request $request) {

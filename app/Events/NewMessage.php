@@ -58,7 +58,7 @@ class NewMessage implements ShouldBroadcastNow
             'from' => $this->message->from,
             'to' => $this->message->to,
             'message' => $this->message->message,
-            'created_at' => $this->message->created_at,
+            'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at)),
         ];
     }
 }
