@@ -7,11 +7,12 @@ use App\Message;
 use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Broadcasting\InteractsWithSockets;
 
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
@@ -20,16 +21,14 @@ class NewMessage implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-    public $shouldShowNewChatroom;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Message $message, $shouldShowNewChatroom)
+    public function __construct(Message $message)
     {
         $this->message = $message;
-        $this->shouldShowNewChatroom = $shouldShowNewChatroom;
     }
 
     /**
@@ -61,6 +60,7 @@ class NewMessage implements ShouldBroadcastNow
             'to' => $this->message->to,
             'message' => $this->message->message,
             'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at)),
+            'imgUrl' => Storage::url(User::find($this->message->from)->profile_pic_url),
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
                 'user' => User::find($this->message->from),
                 'message' => $this->message->message,
