@@ -369,6 +369,10 @@ class User extends Authenticatable
         return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->get();
     }
 
+    public function getChattingRoute() {
+        return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
+    }
+
 
 
 
