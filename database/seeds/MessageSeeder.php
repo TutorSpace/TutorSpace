@@ -32,7 +32,7 @@ class MessageSeeder extends Seeder
                 DB::table('chatrooms')->insert([
                     'user_id_1' => $i,
                     'user_id_2' => $j,
-                    'creater_user_id' => $i
+                    'creator_user_id' => $i
                 ]);
             }
         }

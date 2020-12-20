@@ -89,7 +89,7 @@ bg-student
         let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
-            let {from, to, message, created_at} = data;
+            let {from, to, message, created_at, chatroomView} = data;
             let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
@@ -103,10 +103,10 @@ bg-student
                 scrollToBottom();
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
-                    alert('new chatroom!');
-                    let chatroomClone = $('.msg')[0];
-                    console.log(chatroomClone);
-                    // $('.msgs').append($(`.msg[data-user-id=${otherUserId}]`)[0]);
+                    // TODO: new chatroom
+                    alert('here');
+                    $('.msgs').append(chatroomView);
+                    console.log(chatroomView);
                 }
                 $(`.msg[data-user-id=${otherUserId}]`).addClass('unread');
             }
@@ -153,9 +153,11 @@ bg-student
                     data: $('#msg-form').serialize(),
                     success: (data) => {
                         console.log(data);
+                    },
+                    error: (err) => {
+                        console.log(err);
                     }
                 });
-                // appendMyMessage($('#msg-to-send').val(), 'Now');
                 $('#msg-to-send').val('');
             }
             return false;

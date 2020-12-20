@@ -16,7 +16,7 @@ class Chatroom extends Model
 {
     use HasCompositePrimaryKey;
 
-    protected $primaryKey = ['user_id_1', 'user_id_2', 'creater_user_id'];
+    protected $primaryKey = ['user_id_1', 'user_id_2', 'creator_user_id'];
     public $incrementing = false;
 
     // the user should listen to this channel
@@ -81,11 +81,11 @@ class Chatroom extends Model
         })->exists();
     }
 
-    public static function haveChatroomAndIsCreater($otherUser) {
+    public static function haveChatroomAndIsCreator($otherUser) {
         $otherUserId = $otherUser->id;
 
         return Chatroom::where(function($query) use($otherUserId) {
-            $query->where('user_id_1', $otherUserId < Auth::id() ? $otherUserId : Auth::id())->where('user_id_2', $otherUserId < Auth::id() ? Auth::id() : $otherUserId)->where('creater_user_id', Auth::id());
+            $query->where('user_id_1', $otherUserId < Auth::id() ? $otherUserId : Auth::id())->where('user_id_2', $otherUserId < Auth::id() ? Auth::id() : $otherUserId)->where('creator_user_id', Auth::id());
         })->exists();
     }
 
