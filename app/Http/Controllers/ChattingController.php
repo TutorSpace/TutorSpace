@@ -13,39 +13,67 @@ use Illuminate\Support\Facades\Validator;
 
 class ChattingController extends Controller
 {
-    public function index(User $user = null) {
-        // Gate::authorize('create-chatroom', $user);
+    public function index(Request $request) {
+        if(!$request->input('toViewOtherUserId') || $request->input('toViewOtherUserId') == Auth::id()) {
+            return view('chatting.index', [
+            ]);
+        }
 
-        // // if no chatroom
-        // if(!Chatroom::haveChatroom(Auth::user(), $user)) {
-        //     $chatroom = new Chatroom();
-        //     $chatroom->user_id_1 = Auth::id() < $user->id ? Auth::id() : $user->id;
+        $otherUser = User::find($request->input('toViewOtherUserId'));
+        $user_id_1 = Auth::id() < $otherUser->id ? Auth::id() : $otherUser->id;
+        $user_id_2 = Auth::id() < $otherUser->id ? $otherUser->id : Auth::id();
 
-        //     $chatroom->user_id_2 = Auth::id() < $user->id ? $user->id : Auth::id();
+        // if no chatroom
+        if(!Chatroom::haveChatroom(Auth::user(), $otherUser)) {
+            $newChatroom = new Chatroom();
+            $newChatroom->user_id_1 = $user_id_1;
+            $newChatroom->user_id_2 = $user_id_2;
+            $newChatroom->creater_user_id = Auth::id();
+            $newChatroom->save();
 
-        //     $chatroom->creater_user_id = Auth::id();
-        //     $chatroom->save();
-        // } else {
-        //     $user_id_1 = Auth::id() < $user->id ? Auth::id() : $user->id;
-        //     $user_id_2 = Auth::id() < $user->id ? $user->id : Auth::id();
+            return view('chatting.index', [
+                'toViewOtherUserId' => $request->input('toViewOtherUserId')
+            ]);
+        } else {
+            // if have chatroom
+            $chatroom = Chatroom::where('user_id_1', $user_id_1)->where('user_id_2', $user_id_2)->first();
 
-        //     $chatroom = Chatroom::where('user_id_1', $user_id_1)->where('user_id_2', $user_id_2)->first();
-        //     $chatroom->creater_user_id = Auth::id();
+            // 1. have messages sent
+            if($chatroom->hasMessages()) {
+                return view('chatting.index', [
+                    'toViewOtherUserId' => $request->input('toViewOtherUserId')
+                ]);
+            } else {
+                // 2. no messages sent
+                if(Chatroom::haveChatroomAndIsCreater($otherUser)) {
+                    dd('here');
+                } else {
+                    $newChatroom = new Chatroom();
+                    $newChatroom->user_id_1 = $user_id_1;
+                    $newChatroom->user_id_2 = $user_id_2;
+                    $newChatroom->creater_user_id = Auth::id();
+                    $newChatroom->save();
 
-        //     $chatroom->save();
-        // }
+                    return view('chatting.index', [
+                        'toViewOtherUserId' => $request->input('toViewOtherUserId')
+                    ]);
+                }
+            }
+        }
 
-        return view('chatting.index');
+
     }
 
     public function getMessages(Request $request) {
         $otherUserId = $request->input('userId');
 
-        if(Chatroom::where(function($query) use ($otherUserId) {
-        $query->where('user_id_1', Auth::id())->where('user_id_2', $otherUserId);
-        })->orWhere(function($query) use ($otherUserId) {
-            $query->where('user_id_2', Auth::id())->where('user_id_1', $otherUserId);
-        })->count() == 1) {
+        if(
+            // if there is such a chatroom between the two users
+            Chatroom::where(function($query) use ($otherUserId) {
+                $query->where('user_id_1', Auth::id() < $otherUserId ? Auth::id() : $otherUserId)->where('user_id_2', Auth::id() < $otherUserId ? $otherUserId : Auth::id());
+            })
+            ->exists()
+        ) {
             Chatroom::removeUnreadStatus($otherUserId);
             return view('chatting.content', [
                 'user' => User::find($otherUserId),

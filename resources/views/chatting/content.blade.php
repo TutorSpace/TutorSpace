@@ -1,5 +1,5 @@
 <div class="chatting__content__header">
-    <a class="user-name" href="#">
+    <a class="user-name" href="{{ $user->getChattingRoute() }}">
         {{ $user->first_name }} {{ $user->last_name }}
     </a>
     <span class="other-info">

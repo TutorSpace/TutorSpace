@@ -18,6 +18,7 @@ class CreateChatroomsTable extends Migration
             $table->unsignedBigInteger('user_id_2');
             $table->unsignedBigInteger('creater_user_id');
             $table->primary(array('user_id_1', 'user_id_2'));
+            $table->timestamps();
             $table->foreign('user_id_1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id_2')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('creater_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

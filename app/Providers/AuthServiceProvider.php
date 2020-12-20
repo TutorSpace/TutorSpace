@@ -55,12 +55,6 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_tutor && $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
-        Gate::define('create-chatroom', function ($user, $otherUser) {
-            return
-            $user->id != $otherUser->id
-            &&
-            !Chatroom::haveChatroomAndIsCreater($user, $otherUser);
-        });
 
 
     }
