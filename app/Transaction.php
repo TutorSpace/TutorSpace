@@ -27,4 +27,9 @@ class Transaction extends Model
              $stripeApiController->finalizeInvoice($invoice->invoice_id); // finalize invoice
         }
     }
+
+    public static function sendUnpaidInvoices($hoursAfterLastUpdate){
+        $stripeApiController = new StripeApiController();
+        $stripeApiController->sendOpenInvoiceToCustomer($hoursAfterLastUpdate);
+    }
 }

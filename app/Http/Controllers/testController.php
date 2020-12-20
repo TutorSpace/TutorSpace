@@ -65,8 +65,9 @@ class testController extends Controller
 
 
 
-        // $stripe = new StripeApiController();
-        // $stripe->sendOpenInvoiceToCustomer(5);
+       
+
+        // Transaction::sendUnpaidInvoices(24);
 
 
 

@@ -11,7 +11,7 @@ use Stripe\AccountLink;
 use App\User;
 use App\Transaction;
 use App\PaymentMethod;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
@@ -60,7 +60,9 @@ class StripeApiController extends Controller
             Session::put('stripe_account_id', $account->id);
         } else {
             $account_links = Account::createLoginLink(
-                $payment_method->stripe_account_id, []
+                $payment_method->stripe_account_id, [
+                    'redirect_url' => route('index'),
+                ]
             );
         }
       
@@ -561,15 +563,20 @@ class StripeApiController extends Controller
 
     // open means unpaid
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
-        $transactionsToSend = Transaction::selectRaw("invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
+        $transactionsToSend = Transaction::selectRaw("id, invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
         ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
         ->where("invoice_status","open")
         ->get();
-        
+        // send to each
         forEach ($transactionsToSend as $transaction) {
-            $invoiceId = $transaction->invoice_id;
+            $invoiceId = $transaction->invoice_id;            
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
+            echo $invoiceId;
+            // send invoice
             $invoiceToSend->sendInvoice();
+            // update last update time
+            $model = Transaction::find($transaction->id);
+            $model->touch();
         }
     }
 }

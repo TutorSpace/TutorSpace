@@ -56,10 +56,19 @@ class Kernel extends ConsoleKernel
             echo "Successfully update is_tutor_verified: " . now() . "\n";
         })->everyThirtyMinutes();
 
+        // finalize means invoice_status from draft => open, may not be paid yet
         $schedule->call(function () {
             Transaction::finalizeInvoice();
-            echo "Successfully charge invoices: " . now() . "\n";
+            echo "Successfully finalize invoices: " . now() . "\n";
         })->everyThirtyMinutes();
+
+        // ask users to pay their bills!!!
+        $schedule->call(function () {
+            // send one invoice after 24 hours since last_updated on database transaction table
+            Transaction::sendUnpaidInvoices(24);
+            echo "Successfully send emails to users that haven't paid their invoices: " . now() . "\n";
+        })->twiceDaily(9, 20);
+
     }
 
     /**
