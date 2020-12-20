@@ -286,7 +286,7 @@ class StripeApiController extends Controller
         }
         
         // TODO: unnecessary
-        $transaction->payment_intent_id = $payment_intent_id;
+        // $transaction->payment_intent_id = $payment_intent_id;
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
     }
@@ -551,7 +551,7 @@ class StripeApiController extends Controller
         $transaction->destination_account_id = $destination_account_id;
         $transaction->amount = $amount * 100;
         // TODO: delete
-        $transaction->is_cancelled = 0;
+        // $transaction->is_cancelled = 0;
 
 
 
