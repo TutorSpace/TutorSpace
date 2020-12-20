@@ -442,14 +442,21 @@ class StripeApiController extends Controller
         switch ($event->type) {
             case 'invoice.paid':
                 $invoice = $event->data->object;
-                // change database transaction invoice_status => paid
                 Log::debug('invoice.paid received' . $invoice->id);
+
+                // Change database transaction invoice_status => paid
+                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+                $transaction->invoice_status = 'paid';
+                $transaction->save();
                 break;
+
             case 'charge.refund.updated':
                 $refund = $event->data->object;
-                // TODO: check refund using email?
                 Log::debug('charge.refund.updated received' . $refund->id);
+                // TODO: check refund using email?
+                
                 break;
+                
             // Handle other event types
             default:
                 Log::debug('Received unknown event type ' . $event->type);
