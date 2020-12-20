@@ -48,6 +48,9 @@ class User extends Authenticatable
         $this->notify(new CustomResetPasswordNotification($token, request()->is_tutor));
     }
 
+    public function getChattingRoute() {
+        return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
+    }
 
     public function getIntroduction() {
         $secondMajor = $this->secondMajor;
@@ -362,16 +365,13 @@ class User extends Authenticatable
         })->orWhere(function($query) use ($otherUser) {
             $query->where('to', $this->id)->where('from', $otherUser->id);
         })->get();
-
     }
 
     public function getChatrooms() {
-        return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->get();
+        return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->orderBy('created_at', 'desc')->get();
     }
 
-    public function getChattingRoute() {
-        return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
-    }
+
 
 
 
