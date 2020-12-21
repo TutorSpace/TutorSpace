@@ -58,6 +58,7 @@ class Kernel extends ConsoleKernel
 
         // finalize means invoice_status from draft => open, may not be paid yet
         $schedule->call(function () {
+            // input: minutes after session to finalize
             Transaction::finalizeInvoice(0);
             echo "Successfully finalize invoices: " . now() . "\n";
         })->everyThirtyMinutes();
