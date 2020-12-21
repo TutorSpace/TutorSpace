@@ -456,7 +456,7 @@ class StripeApiController extends Controller
                 $charge = $event->data->object;
                 $refund = $charge->refunds[0];
                 $transaction = Transaction::where("refund_id", $refund->id)->get()[0];
-                
+                // TODO: send email
 
                 break;
 
