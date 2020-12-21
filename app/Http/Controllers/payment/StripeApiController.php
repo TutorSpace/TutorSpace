@@ -262,7 +262,7 @@ class StripeApiController extends Controller
         ]);
     }
 
-    // TODO: change to invoice status
+    // TODO: change invoice status
     // Finalize an Invoice and confirm its PaymentIntent
     public function finalizeInvoice($invoice_id) {
         $invoice = \Stripe\Invoice::retrieve($invoice_id);
@@ -274,19 +274,19 @@ class StripeApiController extends Controller
 
         try {
             $payment_intent->confirm();
+            
         } catch (\Stripe\Exception\CardException $e) {
             Log::debug('Error when confirming payment intent: '.$e->getMessage());
         }
 
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
+        
         // Handle failed payments
         if ($invoice->status != 'paid') {
             // send invoice
             $invoice->sendInvoice();
         }
         
-        // TODO: unnecessary
-        // $transaction->payment_intent_id = $payment_intent_id;
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
     }
@@ -514,13 +514,10 @@ class StripeApiController extends Controller
             'currency' => 'usd',
         ]);
 
-
         //TODO: change to student id
         $student_id = $session->student_id;
         $customer_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
         //TODO: error checking : has id has payment method
-
-
 
 
         // Create InvoiceItem and Invoice
@@ -553,15 +550,13 @@ class StripeApiController extends Controller
         // TODO: delete
         // $transaction->is_cancelled = 0;
 
-
-
         $transaction->invoice_id = $invoice->id;
         $transaction->save();
     }
 
     // open means unpaid
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
-        $transactionsToSend = Transaction::selectRaw("id, invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
+        $transactionsToSend = Transaction::selectRaw("invoice_id")
         ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
         ->where("invoice_status","open")
         ->get();
@@ -569,7 +564,7 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;            
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            echo $invoiceId;
+            // echo $invoiceId;
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time
