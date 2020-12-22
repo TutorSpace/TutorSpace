@@ -60,6 +60,8 @@ $(document).ready(function(){
         $('nav .nav__item.link-find-tutor').addClass('active');
     } else if(pathname.startsWith('/help-center')) {
         $('nav .nav__item.link-support').addClass('active');
+    } else if(pathname.startsWith('/invite')) {
+        $('nav .nav__item.link-invite').addClass('active');
     }
 
     // ===================== for nav animation ========================
