@@ -88,7 +88,8 @@ class testController extends Controller
 
 
 
-        $this->finalizeInvoice();
+        // $this->finalizeInvoice(0);
+        echo Auth::user()->is_tutor;
 
 
 
@@ -113,22 +114,20 @@ class testController extends Controller
         //     'is_tutor_verified' => '0'
         // ]);
     }
-    public function finalizeInvoice(){
+    public function finalizeInvoice($timeAfterSessionEnd){
 
         $invoicesToCharge = Transaction::select("transactions.invoice_id")
         ->join("sessions","sessions.id","=","transactions.session_id") // join
-        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= 120") // 2 hours after end
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= ?", $timeAfterSessionEnd) // ? minutes after session end
         ->where("transactions.invoice_status","draft") // invoice status => draft
-        ->where("transactions.refund_id",NULL) // not a refund
+        ->where("transactions.refund_id",NULL) // not a refund : refund id must be null when status is draft (for now)
         ->where("sessions.is_canceled",0) // not canceled
         ->get();
 
+        // charge each one
         $stripeApiController = new StripeApiController();
-
         forEach($invoicesToCharge as $invoice){
-            echo($invoice."  ");
-            // finalize invoice
-             $stripeApiController->finalizeInvoice($invoice->invoice_id);
+             $stripeApiController->finalizeInvoice($invoice->invoice_id); // finalize invoice
         }
     }
     public function index(Request $request) {

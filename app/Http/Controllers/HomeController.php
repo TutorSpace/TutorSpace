@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use App\SchoolYear;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -181,17 +183,16 @@ class HomeController extends Controller
     public function update(Request $request) {
         $currUser = Auth::user();
 
-        // todo: fix me
-        $request->validate([
-            'second-major' => [
-                'nullable',
-                'exists:majors,major'
-            ],
+        $validator = Validator::make($request->all(), [
             'first-major' => [
-                Rule::requiredIf($currUser->is_tutor),
+                'nullable',
                 'required_with:second-major',
                 'exists:majors,major',
                 'different:second-major',
+            ],
+            'second-major' => [
+                'nullable',
+                'exists:majors,major'
             ],
             'minor' => [
                 'nullable',
@@ -201,17 +202,24 @@ class HomeController extends Controller
                 'nullable',
                 'size:50'
             ],
-            "school-year" => [
-                Rule::requiredIf($currUser->is_tutor),
-                'exists:school_years,school_year'
-            ],
             "gpa" => [
-                Rule::requiredIf($currUser->is_tutor),
+                'nullable',
                 'numeric',
                 'min:1',
                 'max:4'
             ],
+            "school-year" => [
+                "nullable",
+                'exists:school_years,school_year'
+            ],
         ]);
+        $validator->sometimes(['first-major','gpa','school-year'], 'required', function($input) use($currUser){
+            return $currUser->is_tutor;
+        });
+
+        $validator->validate();
+
+        
 
         foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
             $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
