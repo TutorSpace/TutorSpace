@@ -452,11 +452,20 @@ class StripeApiController extends Controller
                 $transaction->save();
                 break;
 
+            case 'charge.refunded':
+                $charge = $event->data->object;
+                $refund = $charge->refunds[0];
+                $transaction = Transaction::where("refund_id", $refund->id)->get()[0];
+                // TODO: send email
+
+                break;
+
             case 'charge.refund.updated':
                 $refund = $event->data->object;
                 Log::debug('charge.refund.updated received' . $refund->id);
-                // TODO: check refund using email?
-                
+                // TODO: check refund using email
+                $failure_reason = $refund->failure_reason;
+
                 break;
                 
             // Handle other event types

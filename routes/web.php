@@ -34,7 +34,12 @@ Route::post('/subscription/subscribe', 'SubscriptionController@store')->name('su
 Route::get('/subscription/unsubscribe', 'SubscriptionController@destroy')->name('subscription.destroy');
 
 // invite to be tutor
-Route::post('/invite-to-be-tutor/{user}', 'GeneralController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
+Route::group([
+    'prefix' => 'invite',
+], function() {
+    Route::get('/', 'InviteController@index')->name('invite.index');
+    Route::post('/{user}', 'InviteController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
+});
 
 // upload photo
 Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
