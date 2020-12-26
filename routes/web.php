@@ -249,8 +249,10 @@ Route::group([
 ], function() {
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
+    
     Route::get('/add_payment_method', 'payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
     Route::post('/create_payment_intent', 'payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
+    Route::get('/check', 'payment\StripeApiController@checkAccountDetail')->name('payment.stripe.check');
     Route::post('/detach_payment', 'payment\StripeApiController@detachPayment')->name('payment.stripe.detach_payment');
     //Stripe set payment as Customer Invoice Default
     Route::post('/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
@@ -263,7 +265,7 @@ Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
 
 Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
-Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
+// Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
 Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
 Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
 

@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
+
+use Illuminate\Support\Facades\Log;
+
+
 class PostController extends Controller
 {
     private static $POSTS_PER_PAGE = 5;
@@ -84,6 +88,7 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
+        Log::debug('message create');
         return view('forum.create', [
             'postDraft' => PostDraft::firstOrNew([
                 'user_id' => Auth::user()->id,
@@ -103,6 +108,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        Log::debug('message store');
         $request->validate([
             'post-type' => [
                 'required',
@@ -127,7 +133,7 @@ class PostController extends Controller
                 'exists:tags,id'
             ]
         ]);
-
+        Log::debug('m111essage');
         DB::transaction(function () use($request) {
             $post = new Post();
             $post->title = $request->input('post-title');
@@ -157,6 +163,7 @@ class PostController extends Controller
     }
 
     public function storeAsDraft(Request $request) {
+        Log::debug('message draft');
         $request->validate([
             'post-type' => [
                 'required',
