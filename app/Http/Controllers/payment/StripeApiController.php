@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
 use Stripe\SetupIntent;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\InvoicePaid;
+use App\Notifications\ChargeRefunded;
+use App\Notifications\ChargeRefundUpdated;
 
 class StripeApiController extends Controller
 {
@@ -404,22 +408,31 @@ class StripeApiController extends Controller
                 $transaction->save();
 
                 // todo: send email
+                Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new InvoicePaid());
+
                 break;
 
             case 'charge.refunded':
                 $charge = $event->data->object;
                 $refund = $charge->refunds[0];
                 $transaction = Transaction::where("refund_id", $refund->id)->get()[0];
+
                 // TODO: send email
+                Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new ChargeRefunded());
 
                 break;
 
             case 'charge.refund.updated':
                 $refund = $event->data->object;
                 Log::debug('charge.refund.updated received' . $refund->id);
-                // TODO: check refund using email
+                
                 $failure_reason = $refund->failure_reason;
 
+                // TODO: check refund using email
+                Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new ChargeRefundUpdated());
                 break;
                 
             // Handle other event types
