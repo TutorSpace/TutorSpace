@@ -23,12 +23,12 @@ use App\Notifications\ChargeRefundUpdated;
 class StripeApiController extends Controller
 {
     // TODO:: facade, other places: instantiate change
-    public function __construct()
+    static function init()
     {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
-    // FIXME: Testing functions
+    // todo: there are Testing functions
     public function index() {
         return view('payment.stripe_connect');
     }

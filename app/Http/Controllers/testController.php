@@ -132,7 +132,7 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        dd(Auth::user()->upcomingSessions);
+        dd(StripeApiController::API_KEY);
         // broadcast(new NewChatroom(User::find(2)));
         // return view('test');
     }
