@@ -11,7 +11,6 @@ use Stripe\AccountLink;
 use App\User;
 use App\Transaction;
 use App\PaymentMethod;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
@@ -25,21 +24,22 @@ class StripeApiController extends Controller
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
-    // TEST
+    // FIXME: Testing functions
     public function index() {
         return view('payment.stripe_connect');
     }
+
     public function saveCardIndex() {
         return view('payment.stripe_save_card');
     }
+
     public function invoiceIndex() {
         return view('payment.stripe_invoice_test');
     }
+
     public function refundIndex() {
         return view('payment.stripe_refund');
     }
-
-
 
 
 
@@ -192,10 +192,6 @@ class StripeApiController extends Controller
         }
         return $customer_id;
     }
-
-    /*
-        Section starts: implementation using Invoice
-    */
 
     // Finalize an Invoice and confirm its PaymentIntent
     public function finalizeInvoice($invoice_id) {
@@ -370,10 +366,6 @@ class StripeApiController extends Controller
         }
     }
 
-    /*
-        Section ends: implementation using Invoice
-    */
-
     // Handle all Stripe webhooks
     public function handleWebhook(Request $request) {
         $payload = $request->getContent();  // Get raw content
@@ -435,7 +427,6 @@ class StripeApiController extends Controller
         
         return response(null, 200);
     }
-
 
     // amount in dollar, done in tutor's side => CANNOT USE USERID!!!!!!!!!!!! USE STUDENT
     public function initializeInvoice($amount, $destination_account_id, $session) {
