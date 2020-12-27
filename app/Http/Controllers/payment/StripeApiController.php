@@ -28,6 +28,9 @@ class StripeApiController extends Controller
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
+    public function __construct() {
+        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+    }
     // todo: there are Testing functions
     public function index() {
         return view('payment.stripe_connect');
