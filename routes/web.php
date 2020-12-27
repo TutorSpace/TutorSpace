@@ -257,10 +257,13 @@ Route::group([
     //Stripe set payment as Customer Invoice Default
     Route::post('/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
+    Route::post('/create_refund', 'payment\StripeApiController@createRefund')->name('payment.stripe.create_refund');
+    
 });
 
 // Stripe testing
 Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
+Route::get('/payment/refund', 'payment\StripeApiController@refundIndex');
 
 Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
 

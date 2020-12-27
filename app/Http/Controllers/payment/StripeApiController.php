@@ -35,6 +35,9 @@ class StripeApiController extends Controller
     public function invoiceIndex() {
         return view('payment.stripe_invoice_test');
     }
+    public function refundIndex() {
+        return view('payment.stripe_refund');
+    }
 
 
 
@@ -295,23 +298,45 @@ class StripeApiController extends Controller
 
     }
 
-    // Refunds a PaymentIntent
-    // Request should contain 'payment_intent_id'
-    public function refundPaymentIntent(Request $request) {
-        $payment_intent_id = $request->input('payment_intent_id');
+    // Refunds a transaction
+    // Request should contain 'transaction_id'
+    public function createRefund(Request $request) {
+        $transaction_id = $request->input('transaction_id');
+        $transaction = Transaction::find($transaction_id);
+        // Already refunded
+        if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
+            Log::error('Trying to refund a refunded transaction');
+            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+        }
 
-        $refund = \Stripe\Refund::create([
-            'payment_intent' => $payment_intent_id,
-            'reverse_transfer' => true,
-            'refund_application_fee' => true,
-        ]);
+        $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
+        // Handle depending on status of invoice
+        switch ($invoice->status) {
+            case 'open':  // Waiting to be paid
+                Log::info('Refund open invoice');
+                $invoice->voidInvoice();
+                $transaction->invoice_status = 'void';
+                $transaction->save();
+                break;
+            
+            case 'paid':  // Already paid
+                Log::info('Refund paid invoice');
+                $payment_intent_id = $invoice->payment_intent;
+                $refund = \Stripe\Refund::create([
+                    'payment_intent' => $payment_intent_id,
+                    'reverse_transfer' => true,
+                    'refund_application_fee' => true,
+                ]);
+                $transaction->refund_id = $refund->id;
+                $transaction->save();
+                break;
+            
+            default:  // Other cases
+                Log::error('Invalid invoice status when deleting invoice with id: ' . $invoice->id);
+                return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+        }
 
-        // TODO: save refund id
-
-
-
-
-
+        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Cancels an Invoice
