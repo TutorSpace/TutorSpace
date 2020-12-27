@@ -492,13 +492,3 @@ class StripeApiController extends Controller
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
