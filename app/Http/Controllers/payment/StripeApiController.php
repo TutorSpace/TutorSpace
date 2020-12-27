@@ -402,6 +402,8 @@ class StripeApiController extends Controller
                 $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
                 $transaction->invoice_status = 'paid';
                 $transaction->save();
+
+                // todo: send email
                 break;
 
             case 'charge.refunded':
