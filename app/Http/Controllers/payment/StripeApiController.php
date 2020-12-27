@@ -138,9 +138,9 @@ class StripeApiController extends Controller
 
     // true or false if there's card
     // facade
-    public function customerHasCards(){
+    public static function customerHasCards(){
         $cards = \Stripe\PaymentMethod::all([
-            'customer' => $this->getCustomerId(),
+            'customer' => Self::getCustomerId(),
             'type' => 'card'
         ])->data;
 
@@ -182,7 +182,7 @@ class StripeApiController extends Controller
 
     // Gets the customer_id of current user
     // Creates one if it doesn't exist
-    private function getCustomerId() {
+    private static function getCustomerId() {
         $user = Auth::user();
         $payment_method = $user->paymentMethod;
         if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {

@@ -89,7 +89,10 @@ class testController extends Controller
 
 
         // $this->finalizeInvoice(0);
-        echo Auth::user()->is_tutor;
+        // echo Auth::user()->is_tutor;
+        // StripeApiController::init();
+        StripeApiController::customerHasCards();
+       
 
 
 
