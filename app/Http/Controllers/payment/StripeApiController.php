@@ -24,14 +24,11 @@ class StripeApiController extends Controller
 {
     
     // TODO:: facade, other places: instantiate change
-    public function __construct()
-    {
-        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
-    }
 
     public function __construct() {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
+    
     // todo: there are Testing functions
     public function index() {
         return view('payment.stripe_connect');
