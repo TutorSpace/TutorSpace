@@ -132,9 +132,9 @@ class testController extends Controller
     }
     public function index(Request $request) {
 
-        dd(StripeApiController::API_KEY);
+        
         // broadcast(new NewChatroom(User::find(2)));
-        // return view('test');
+        return view('test');
     }
 
     public function index2(Request $request) {
