@@ -30,7 +30,7 @@ class SessionController extends Controller
         $stripeApiController = new StripeApiController();
         $stripeApiController->cancelInvoice($session->id);
 
-        
+
 
 
         $session->is_canceled = true;
@@ -40,7 +40,7 @@ class SessionController extends Controller
         $session->save();
 
 
-       
+
 
 
 
@@ -66,7 +66,7 @@ class SessionController extends Controller
 
         // TODO: check if customer has >= 1 payment methods
         $stripeApiController = new StripeApiController();
-        
+
         if ($stripeApiController->customerHasCards()){
             // has cards
 
@@ -98,10 +98,6 @@ class SessionController extends Controller
         $tutorRequest->course()->associate($course);
 
         $tutorRequest->save();
-
-        //TODO: create transaction
-
-      
 
         return response()->json(
             [
