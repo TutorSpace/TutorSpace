@@ -39,6 +39,7 @@ Route::group([
 ], function() {
     Route::get('/', 'InviteController@index')->name('invite.index');
     Route::post('/{user}', 'InviteController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
+    Route::post('/', 'InviteController@inviteToBeTutorWithEmail')->middleware('auth')->name('invite-to-be-tutor--email');
 });
 
 // upload photo
@@ -249,7 +250,7 @@ Route::group([
 ], function() {
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
-    
+
     Route::get('/add_payment_method', 'payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
     Route::post('/create_payment_intent', 'payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
     Route::get('/check', 'payment\StripeApiController@checkAccountDetail')->name('payment.stripe.check');
@@ -258,7 +259,7 @@ Route::group([
     Route::post('/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
     Route::post('/create_refund', 'payment\StripeApiController@createRefund')->name('payment.stripe.create_refund');
-    
+
 });
 
 // Stripe testing

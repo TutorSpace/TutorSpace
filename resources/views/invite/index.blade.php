@@ -26,10 +26,10 @@ bg-student
         <div class="content-container">
             <h2 class="heading">Earn $5 for tutors you invite.</h2>
             <p class="content">Invite a friend to become a tutor at TutorSpace. You both get $5 bonus. (They have to achieve A or A- in the course they want to teach)</p>
-            <form class="input-container" method="POST" action="#">
+            <form class="input-container" method="POST" action="{{ route('invite-to-be-tutor--email') }}">
                 @csrf
                 <input type="email" placeholder="Add your friend's email" name="email" required>
-                <button class="btn" type="submit">Send Invitation</button>
+                <button class="btn" type="button" id="btn-submit">Send Invitation</button>
             </form>
         </div>
         <div class="svg-container">
@@ -85,8 +85,15 @@ bg-student
 
 @section('js')
 <script>
-
-
+@auth
+$('#btn-submit').click(function() {
+    $('form').submit();
+});
+@else
+$('#btn-submit').click(function() {
+    $('.overlay-student').show();
+});
+@endauth
 </script>
 @include('partials.nav-auth-js')
 @endsection
