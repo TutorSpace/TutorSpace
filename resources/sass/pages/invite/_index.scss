@@ -1,4 +1,77 @@
 .invite {
     background-color: $color-grey-2;
     min-height: 100vh;
+    position: relative;
+
+    &__header-bg {
+        position: absolute;
+        height: 65vh;
+        width: 100vw;
+        border-radius: 0 0 10vw 0;
+        margin: 0 -15px;
+    }
+
+    .invite-content {
+        padding-top: 25rem;
+        display: flex;
+        color: $color-white;
+        padding-left: 12vw;
+
+        .content-container {
+            max-width: 50vw;
+            margin-right: 5rem;
+
+            @include respond(md) {
+                max-width: calc(100vw - 12vw - 30px);
+            }
+
+            .content {
+                font-size: 1.6rem;
+                margin-top: 2rem;
+            }
+
+            .input-container {
+                font-size: 1.8rem;
+                margin-top: 1rem;
+
+                > * {
+                    padding: 1.2rem 2rem;
+                    margin-top: 1rem;
+                }
+
+                input {
+                    margin-right: 1rem;
+                    min-width: 50rem;
+                    outline: none;
+                    border-radius: .5rem;
+                    border: none;
+
+                    @include respond(md) {
+                        min-width: 30rem;
+                    }
+                }
+
+                button {
+                    background-color: $color-notification--tutorspace;
+                    color: $color-white;
+                    font-size: 1.6rem !important;
+                    vertical-align: unset;
+                }
+            }
+        }
+
+        .svg-container {
+            transform: translateY(-10rem);
+
+            @include respond(md) {
+                display: none;
+            }
+
+            svg {
+                width: 30rem;
+            }
+        }
+
+
+    }
 }
