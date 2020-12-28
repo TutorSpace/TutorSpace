@@ -71,6 +71,12 @@ bg-student
             </svg>
         </div>
     </div>
+
+    <div class="invite__footer d-flex flex-column justify-content-center align-items-center">
+        <h4 class="color-primary font-weight-bold mb-3">Still have a question?</h4>
+        <p class="fc-grey fs-1-4 mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a class="btn text-white fs-1-8 invite__footer__button btn-primary btn-animation-y" href="mailto:tutorspaceusc@gmail.com">Contact Us</a>
+    </div>
 </div>
 
 @endsection
