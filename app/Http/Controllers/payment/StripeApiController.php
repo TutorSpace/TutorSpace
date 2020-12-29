@@ -435,6 +435,22 @@ class StripeApiController extends Controller
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefundUpdated());
                 break;
+
+            case 'payout.paid':
+                $stripe_account_id = $event->account;
+                $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
+                $user = $payment_method->user();
+
+                // TODO: notify user using email
+
+                break;
+
+            case 'payout.failed':
+                $stripe_account_id = $event->account;
+                $payout = $event->data->object;
+
+                // TODO: handle failed payout
+                break;
                 
             // Handle other event types
             default:
