@@ -14,6 +14,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'first_name' => 'shuaiqing',
+            'last_name' => 'luo',
+            'email' => 'shuaiqin@usc.edu',
+            'is_tutor' => 0,
+            'password' => Hash::make('password'),
+            'created_at' => Carbon::now()->subHours('23')
+        ]);
+
+        DB::table('users')->insert([
             'first_name' => 'student',
             'last_name' => 'tester',
             'email' => 'student@usc.edu',

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
+use App\InviteUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\InviteToBeTutorNotification;
 
 class InviteController extends Controller
@@ -12,40 +15,48 @@ class InviteController extends Controller
 
     // todo: modify the database and the relationship so that we only keep track of the emails instead of the user ids, because non-users can also be invited
     public function inviteToBeTutor(User $user) {
-        if(!User::existTutor($user->email)) {
-            if(Auth::user()->invitedUsers()->where('invited_user_id', $user->id)->exists()) {
-                return response()->json(
-                    [
-                        'successMsg' => "This request has already been sent to $user->first_name $user->last_name"
-                    ]
-                );
-            }
-            else {
-                Auth::user()->invitedUsers()->attach($user->id);
-            }
-            $user->notify(new InviteToBeTutorNotification(Auth::user()));
-            return response()->json(
-                [
-                    'successMsg' => "Successfully invited $user->first_name $user->last_name to be a tutor!"
-                ]
-            );
-        }
-        else {
-            return response()->json(
-                [
-                    'errorMsg' => 'The user already has a tutor account.'
-                ]
-            );
-        }
+        return $this->inviteHelper($user->email, true);
     }
 
     public function inviteToBeTutorWithEmail(Request $request) {
         $email = $request->input('email');
-        // todo: finish this function
+        return $this->inviteHelper($email, false);
     }
 
     public function index() {
         return view('invite.index');
+    }
+
+    private function inviteHelper($email, $ajax) {
+        if(!User::existTutor($email)) {
+            $invitedBefore = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->exists();
+            $lastInvitation = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->first();
+            // if sent within 1 day ago and have sent before
+            if($invitedBefore && $lastInvitation->updated_at->diff(Carbon::now())->days < 1) {
+                $result = [
+                    'errorMsg' => 'You have already sent the invitation recently. Please try again tomorrow.'
+                ];
+            } else {
+                $result = [
+                    'successMsg' => 'Successfully sent the invitation.'
+                ];
+                if(!$invitedBefore) {
+                    $lastInvitation = new InviteUser();
+                    $lastInvitation->user_id = Auth::id();
+                    $lastInvitation->invited_user_email = $email;
+                }
+                $lastInvitation->invite_code = uniqid();
+                $lastInvitation->save();
+                Notification::route('mail', $email)
+                ->notify(new InviteToBeTutorNotification(Auth::user(), $lastInvitation->invite_code));
+            }
+        } else {
+            $result = [
+                    'errorMsg' => 'The user already has a tutor account.'
+            ];
+        }
+
+        return $ajax ? response()->json($result) : redirect()->route('invite.index')->with($result);
     }
 
 }

@@ -426,7 +426,8 @@ $('.user-card .btn-invite').click(function() {
         type:'POST',
         url: "{{ route('invite-to-be-tutor', $post->user) }}",
         success: (data) => {
-            toastr.success(data.successMsg);
+            if(data.successMsg) toastr.success(data.successMsg);
+            else toastr.error(data.errorMsg);
         },
         error: function(error) {
             toastr.error('Something went wrong!');

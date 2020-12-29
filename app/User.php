@@ -203,15 +203,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
-    // return users that this user invited
-    public function invitedUsers() {
-        return $this->belongsToMany('App\User', 'invite_user', 'user_id', 'invited_user_id');
-    }
-
-    // return users who invited the current user
-    public function invitedByUsers() {
-        return $this->belongsToMany('App\User', 'invite_user', 'invited_user_id', 'user_id');
-    }
     public function getRecommendedTutorsCacheKey() {
         return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
     }
