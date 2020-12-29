@@ -22,13 +22,11 @@ use App\Notifications\ChargeRefundUpdated;
 
 class StripeApiController extends Controller
 {
-    
     // TODO:: facade, other places: instantiate change
-
     public function __construct() {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
-    
+
     // todo: there are Testing functions
     public function index() {
         return view('payment.stripe_connect');
@@ -186,7 +184,7 @@ class StripeApiController extends Controller
         if (!isset($payment_method->stripe_customer_id) || trim($payment_method->stripe_customer_id) === '') {
             $customer = Customer::create([
                 'name' => $user->first_name.' '.$user->last_name,
-                'email' => $user->email, 
+                'email' => $user->email,
                 // 'email' => 'nateohuang@gmail.com' // Testing
             ]);
             $customer_id = $customer->id;
@@ -215,7 +213,7 @@ class StripeApiController extends Controller
         }
 
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
-        
+
         // Handle failed payments
         if ($invoice->status != 'paid') {
             // send invoice
@@ -319,7 +317,7 @@ class StripeApiController extends Controller
                 $transaction->invoice_status = 'void';
                 $transaction->save();
                 break;
-            
+
             case 'paid':  // Already paid
                 Log::info('Refund paid invoice');
                 $payment_intent_id = $invoice->payment_intent;
@@ -331,7 +329,7 @@ class StripeApiController extends Controller
                 $transaction->refund_id = $refund->id;
                 $transaction->save();
                 break;
-            
+
             default:  // Other cases
                 Log::error('Invalid invoice status when deleting invoice with id: ' . $invoice->id);
                 return redirect()->route('index')->with(['errorMsg' => 'Failed']);
@@ -353,7 +351,7 @@ class StripeApiController extends Controller
             Log::error('cannot find the invoice!');
             return response()->json([
                 'errorMsg' => "cannot find the invoice!"
-            ], 400); 
+            ], 400);
         }
 
         // delete an invoice
@@ -361,20 +359,20 @@ class StripeApiController extends Controller
             Log::error('Deleting an invoice that is not draft');
             return response()->json([
                 'errorMsg' => "Deleting an invoice that is not draft"
-            ], 400); 
+            ], 400);
         } else {
             $invoice->delete();
             $transaction->delete();
             return response()->json([
                 'success' => "successfully deleted the invoice"
-            ], 200); 
+            ], 200);
         }
     }
 
     // Handle all Stripe webhooks
     public function handleWebhook(Request $request) {
         $payload = $request->getContent();  // Get raw content
-        
+
         // Check signature
         $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
         $sig_header = $request->header('stripe-signature');
@@ -428,7 +426,7 @@ class StripeApiController extends Controller
             case 'charge.refund.updated':
                 $refund = $event->data->object;
                 Log::debug('charge.refund.updated received' . $refund->id);
-                
+
                 $failure_reason = $refund->failure_reason;
 
                 // TODO: check refund using email
@@ -451,12 +449,12 @@ class StripeApiController extends Controller
 
                 // TODO: handle failed payout
                 break;
-                
+
             // Handle other event types
             default:
                 Log::debug('Received unknown event type ' . $event->type);
         }
-        
+
         return response(null, 200);
     }
 
@@ -498,7 +496,7 @@ class StripeApiController extends Controller
         // change invoice status
         $transaction->invoice_status = "draft";
         $transaction->destination_account_id = $destination_account_id;
-        // amount 
+        // amount
         $transaction->amount = $amount * 100;
         $transaction->invoice_id = $invoice->id;
         $transaction->save();
@@ -508,12 +506,12 @@ class StripeApiController extends Controller
     // FACADE
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
         $transactionsToSend = Transaction::selectRaw("invoice_id")
-        ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
+        ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
         ->where("invoice_status","open")
         ->get();
         // send to each
         forEach ($transactionsToSend as $transaction) {
-            $invoiceId = $transaction->invoice_id;            
+            $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
             // echo $invoiceId;
             // send invoice
