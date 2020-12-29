@@ -80,7 +80,6 @@ class TutorRequestController extends Controller
 
     public function initializeInvoice($sessionFee,$session) {
         $tutorStripeAccountId = PaymentMethod::where("user_id",$session->tutor_id)->get()[0]->stripe_account_id;
-        $stripeApiController = new StripeApiController();
-        $initializeInvoiceResponse = $stripeApiController->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
+        $initializeInvoiceResponse = app(StripeApiController::class)->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
     }
 }

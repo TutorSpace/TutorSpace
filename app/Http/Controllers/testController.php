@@ -65,7 +65,7 @@ class testController extends Controller
 
 
 
-       
+
 
         // Transaction::sendUnpaidInvoices(24);
 
@@ -73,11 +73,11 @@ class testController extends Controller
 
         // $hoursAfterLastUpdate = "48";
         // $invoicesToSend = Transaction::selectRaw("invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
-        // ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate) 
+        // ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
         // ->where("invoice_status","open")
         // ->get();
-        
-        
+
+
         // forEach ($invoicesToSend as $curInvoice) {
         //     echo $curInvoice->invoice_id;
         // }
@@ -92,12 +92,12 @@ class testController extends Controller
         // echo Auth::user()->is_tutor;
         // StripeApiController::init();
         StripeApiController::customerHasCards();
-       
 
 
 
-        
-    
+
+
+
 
     }
     public function updateVerifiedCourse(){
@@ -117,25 +117,10 @@ class testController extends Controller
         //     'is_tutor_verified' => '0'
         // ]);
     }
-    public function finalizeInvoice($timeAfterSessionEnd){
 
-        $invoicesToCharge = Transaction::select("transactions.invoice_id")
-        ->join("sessions","sessions.id","=","transactions.session_id") // join
-        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= ?", $timeAfterSessionEnd) // ? minutes after session end
-        ->where("transactions.invoice_status","draft") // invoice status => draft
-        ->where("transactions.refund_id",NULL) // not a refund : refund id must be null when status is draft (for now)
-        ->where("sessions.is_canceled",0) // not canceled
-        ->get();
-
-        // charge each one
-        $stripeApiController = new StripeApiController();
-        forEach($invoicesToCharge as $invoice){
-             $stripeApiController->finalizeInvoice($invoice->invoice_id); // finalize invoice
-        }
-    }
     public function index(Request $request) {
 
-        
+
         // broadcast(new NewChatroom(User::find(2)));
         return view('test');
     }

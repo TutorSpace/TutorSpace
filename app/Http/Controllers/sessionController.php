@@ -27,8 +27,7 @@ class SessionController extends Controller
         ]);
 
          // TODO: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
-        $stripeApiController = new StripeApiController();
-        $stripeApiController->cancelInvoice($session->id);
+         app(StripeApiController::class)->cancelInvoice($session->id);
 
 
 
@@ -38,13 +37,6 @@ class SessionController extends Controller
         $session->cancelReason()->associate($request->input('cancelReasonId'));
 
         $session->save();
-
-
-
-
-
-
-
 
         return response()->json(
             [
@@ -65,9 +57,8 @@ class SessionController extends Controller
 
 
         // TODO: check if customer has >= 1 payment methods
-        $stripeApiController = new StripeApiController();
 
-        if ($stripeApiController->customerHasCards()){
+        if (app(StripeApiController::class)->customerHasCards()){
             // has cards
 
         }else{

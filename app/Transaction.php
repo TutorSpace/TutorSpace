@@ -23,14 +23,12 @@ class Transaction extends Model
         ->get();
 
         // charge each one
-        $stripeApiController = new StripeApiController();
         forEach($invoicesToCharge as $invoice){
-             $stripeApiController->finalizeInvoice($invoice->invoice_id); // finalize invoice
+             app(StripeApiController::class)->finalizeInvoice($invoice->invoice_id); // finalize invoice
         }
     }
 
     public static function sendUnpaidInvoices($hoursAfterLastUpdate){
-        $stripeApiController = new StripeApiController();
-        $stripeApiController->sendOpenInvoiceToCustomer($hoursAfterLastUpdate);
+        app(StripeApiController::class)->sendOpenInvoiceToCustomer($hoursAfterLastUpdate);
     }
 }
