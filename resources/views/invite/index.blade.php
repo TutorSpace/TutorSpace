@@ -90,6 +90,10 @@ $('#btn-submit').click(function() {
     $('form').submit();
 });
 @else
+$('form').submit(function() {
+    $('.overlay-student').show();
+    return false;
+})
 $('#btn-submit').click(function() {
     $('.overlay-student').show();
 });
