@@ -62,6 +62,7 @@ class Kernel extends ConsoleKernel
             Transaction::finalizeInvoice(0);
             echo "Successfully finalize invoices: " . now() . "\n";
         })->everyThirtyMinutes();
+        // })->everyMinute();
 
         // ask users to pay their bills!!!
         $schedule->call(function () {

@@ -260,20 +260,26 @@ Route::group([
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
     Route::post('/create_refund', 'payment\StripeApiController@createRefund')->name('payment.stripe.create_refund');
 
+
+    // Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth']);
+
 });
 
+Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
 // Stripe testing
-Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
+
+
+// Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/refund', 'payment\StripeApiController@refundIndex');
 
-Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
+// Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
 
-Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
-// Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
-Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
-Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
+// Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
+// // Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
+// Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
+// Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
 
-// Stripe Invoice
-Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
-Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
-Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
+// // Stripe Invoice
+// Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
+// Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
+

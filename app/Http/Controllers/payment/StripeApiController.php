@@ -416,7 +416,8 @@ class StripeApiController extends Controller
 
             case 'charge.refunded':
                 $charge = $event->data->object;
-                $refund = $charge->refunds[0];
+                // TODO: error check
+                $refund = $charge->refunds->data[0];
                 $transaction = Transaction::where("refund_id", $refund->id)->get()[0];
 
                 // TODO: send email
