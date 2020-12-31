@@ -362,6 +362,10 @@ class User extends Authenticatable
         return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->orderBy('created_at', 'desc')->get();
     }
 
+    public function isAdmin() {
+        return Admin::where('email', $this->email)->exists();
+    }
+
 
 
 

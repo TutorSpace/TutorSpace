@@ -14,8 +14,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'first_name' => 'shuaiqing',
-            'last_name' => 'luo',
+            'first_name' => 'Shuaiqing',
+            'last_name' => 'Luo',
             'email' => 'shuaiqin@usc.edu',
             'is_tutor' => 0,
             'password' => Hash::make('password'),
@@ -114,6 +114,69 @@ class UserSeeder extends Seeder
             'gpa' => '3.13',
             'hourly_rate' => '35',
             'school_year_id' => 3,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 4,
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('193')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Nate',
+            'last_name' => 'Huang',
+            'email' => 'huan773@usc.edu',
+            'is_tutor' => 0,
+            'password' => Hash::make('password'),
+            'created_at' => Carbon::now()->subHours('23')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Nate',
+            'last_name' => 'Huang',
+            'email' => 'huan773@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 8,
+            'gpa' => '3.13',
+            'hourly_rate' => '35',
+            'school_year_id' => 3,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 4,
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('193')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Lihan',
+            'last_name' => 'Zhu',
+            'email' => 'lihanzhu@usc.edu',
+            'is_tutor' => 0,
+            'password' => Hash::make('password'),
+            'created_at' => Carbon::now()->subHours('23')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Lihan',
+            'last_name' => 'Zhu',
+            'email' => 'lihanzhu@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 8,
+            'gpa' => '3.13',
+            'hourly_rate' => '35',
+            'school_year_id' => 3,
+            'password' => Hash::make('password'),
+            'tutor_level_id' => 4,
+            'is_tutor_verified' => true,
+            'created_at' => Carbon::now()->subHours('193')
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Shuaiqing',
+            'last_name' => 'Luo',
+            'email' => 'shuaiqin@usc.edu',
+            'is_tutor' => 1,
+            'first_major_id' => 14,
+            'gpa' => '3.33',
+            'hourly_rate' => '32',
+            'school_year_id' => 4,
             'password' => Hash::make('password'),
             'tutor_level_id' => 4,
             'is_tutor_verified' => true,
