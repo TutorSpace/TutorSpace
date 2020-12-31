@@ -28,6 +28,10 @@ class Session extends Model
         return $this->hasOne('App\Transaction')->withDefault();
     }
 
+    public function sessionBonus() {
+        return $this->hasOne('App\SessionBonus')->withDefault();
+    }
+
     // IMPORTANT: must run scheduler in prod env
     public function changeSessionStatusOnExpiry() {
         $sessions = Session::all();

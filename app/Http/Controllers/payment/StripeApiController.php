@@ -377,7 +377,6 @@ class StripeApiController extends Controller
         $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
         $sig_header = $request->header('stripe-signature');
 
-        Log::debug('Signature: '.$sig_header);
         try {
             $event = \Stripe\Webhook::constructEvent(
                 $payload, $sig_header, $endpoint_secret
@@ -399,14 +398,13 @@ class StripeApiController extends Controller
         switch ($event->type) {
             case 'invoice.paid':
                 $invoice = $event->data->object;
-                Log::debug('invoice.paid received' . $invoice->id);
 
                 // Change database transaction invoice_status => paid
                 $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
                 $transaction->invoice_status = 'paid';
                 $transaction->save();
 
-                // todo: send email
+                // TODO: send email
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new InvoicePaid());
 
@@ -416,21 +414,25 @@ class StripeApiController extends Controller
                 $charge = $event->data->object;
                 // TODO: error check
                 $refund = $charge->refunds->data[0];
-                $transaction = Transaction::where("refund_id", $refund->id)->get()[0];
+                $transaction = Transaction::firstWhere("refund_id", $refund->id);
 
-                // TODO: send email
+                Log::debug('Transaction refunded: ' . $transaction->id);
+
+                // TODO: send email to user of 'transaction'. Refund succeeded
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefunded());
 
                 break;
 
-            case 'charge.refund.updated':
+            case 'charge.refund.updated':  // Unlikely to happen
                 $refund = $event->data->object;
-                Log::debug('charge.refund.updated received' . $refund->id);
 
                 $failure_reason = $refund->failure_reason;
+                $transaction = Transaction::firstWhere("refund_id", $refund->id);
 
-                // TODO: check refund using email
+                Log::debug('Transaction refund failed: ' . $transaction->id);
+
+                // TODO: send email to user of 'transaction'. Refund failed for 'failure_reason'
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefundUpdated());
                 break;
@@ -440,7 +442,7 @@ class StripeApiController extends Controller
                 $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
                 $user = $payment_method->user();
 
-                // TODO: notify user using email
+                // TODO: send email to 'user'. Payout is sent to bank account
 
                 break;
 
@@ -448,7 +450,8 @@ class StripeApiController extends Controller
                 $stripe_account_id = $event->account;
                 $payout = $event->data->object;
 
-                // TODO: handle failed payout
+                // TODO: send email to 'user'. Payout failed. They should update bank info
+
                 break;
 
             // Handle other event types
