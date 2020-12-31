@@ -9,8 +9,8 @@
     <!-- Display a payment form -->
     <form id="refund-form" method="POST" action="{!! URL::to('/payment/stripe/create_refund') !!}">
         {{ csrf_field() }}
-        <p>Transaction ID:</p>
-        <input type="text" name='transaction_id'/>
+        <p>Session ID:</p>
+        <input type="text" name='session_id'/>
         <br/>
         <button id="submit">
             <span id="button-text">Create Refund</span>
