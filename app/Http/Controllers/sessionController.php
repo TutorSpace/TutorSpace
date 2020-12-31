@@ -48,16 +48,14 @@ class SessionController extends Controller
     public function scheduleSession(Request $request) {
         // todo: validate all the input data before creating a session
         // including:
-        // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, end time must be after start time, and no conflicting sessions)
-        // 3. should not schedule tutor session with oneself
-        // 4. course must be taught be tutor // no need to validate, because otherwise this session could not be created
+        // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
+        // 3. should not schedule tutor session with oneself (using email, not id)
+        // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
         $request->validate([
 
         ]);
 
-
         // TODO: check if customer has >= 1 payment methods
-
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards
 
@@ -65,9 +63,6 @@ class SessionController extends Controller
             // no cards: redirect to add payment page
 
         }
-
-
-
 
 
         $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
@@ -82,7 +77,6 @@ class SessionController extends Controller
         $tutorRequest->session_time_start = $startTime;
         $tutorRequest->session_time_end = $endTime;
         $tutorRequest->is_in_person = $sessionType;
-        // $tutorRequest->is_canceled = false;
 
         $tutorRequest->tutor()->associate($tutor);
         $tutorRequest->student()->associate(Auth::user());

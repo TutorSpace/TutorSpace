@@ -20,7 +20,7 @@ class CreateSessionBonusesTable extends Migration
             $table->string('transfer_reversal_id')->nullable();  // Stripe TransferReversal object id
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('session_id');
-            $table->enum('refund_status', ['succeeded', 'failed'])->nullable();
+            $table->boolean('is_refunded')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

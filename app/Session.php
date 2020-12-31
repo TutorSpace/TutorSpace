@@ -29,7 +29,7 @@ class Session extends Model
     }
 
     public function sessionBonus() {
-        return $this->hasOne('App\SessionBonus')->withDefault();
+        return $this->hasOne('App\SessionBonus');
     }
 
     // IMPORTANT: must run scheduler in prod env

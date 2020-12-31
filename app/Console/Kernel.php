@@ -49,13 +49,14 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Session::changeSessionStatusOnExpiry();
             echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
-        })->everyMinute();
+        })->everyThirtyMinutes();
 
         $schedule->call(function () {
             User::updateVerifyStatus();
             echo "Successfully update is_tutor_verified: " . now() . "\n";
         })->everyThirtyMinutes();
 
+        // todo: check this
         // finalize means invoice_status from draft => open, may not be paid yet
         $schedule->call(function () {
             // input: minutes after session to finalize
@@ -64,6 +65,7 @@ class Kernel extends ConsoleKernel
         })->everyThirtyMinutes();
         // })->everyMinute();
 
+        // todo: check this
         // ask users to pay their bills!!!
         $schedule->call(function () {
             // send one invoice after 24 hours since last_updated on database transaction table

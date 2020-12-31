@@ -19,8 +19,6 @@ class TutorRequestController extends Controller
         $gateResponse = Gate::inspect('accept-tutor-request', [$tutorRequest]);
 
         if($gateResponse->allowed()){
-
-            // wrap in DB::transaction
             DB::transaction(function () use($tutorRequest,$tutorId,$studentId) {
                 //create new tutor session
                 $session = new Session();
@@ -33,13 +31,13 @@ class TutorRequestController extends Controller
                 $session->is_in_person = $tutorRequest->is_in_person;
                 $session->save();
                 $session->refresh();
+
                 // delete tutor request
                 $tutorRequest->delete();
 
-                // todo: start payment for the student here (wrap it inside an event called 'TutorRequestAccepted')
-
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
+
                 // create a transaction in our database and invoice in stripe
                 $this->initializeInvoice($sessionFee,$session);
             });

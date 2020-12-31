@@ -19,31 +19,19 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\InvoicePaid;
 use App\Notifications\ChargeRefunded;
 use App\Notifications\ChargeRefundUpdated;
+use App\SessionBonus;
 
 class StripeApiController extends Controller
 {
-    // TODO:: facade, other places: instantiate change
     public function __construct() {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
-    // todo: there are Testing functions
-    public function index() {
-        return view('payment.stripe_connect');
-    }
-
-    public function saveCardIndex() {
-        return view('payment.stripe_save_card');
-    }
-
-    public function invoiceIndex() {
-        return view('payment.stripe_invoice_test');
-    }
-
+    // =========== stripe testing start =================
     public function refundIndex() {
-        return view('payment.stripe_refund');
+        return view('payment.refund');
     }
-
+    // =========== stripe testing end =================
 
 
 
@@ -86,7 +74,6 @@ class StripeApiController extends Controller
 
 
     // Saving a card
-    // TODO: facade
     public function createSetupIntent(Request $request) {
         $customer_id = $this->getCustomerId();
         $setup_intent = SetupIntent::create([
@@ -99,7 +86,6 @@ class StripeApiController extends Controller
     }
 
     // Lists all cards of the current user
-    // TODO: facade
     public function listCards(Request $request) {
         $cards = \Stripe\PaymentMethod::all([
             'customer' => $this->getCustomerId(),
@@ -227,7 +213,6 @@ class StripeApiController extends Controller
 
     // Save card as Default
     // Request should contain 'paymentMethodID'
-    // TODO: facade
     public function saveCardAsDefault(Request $request) {
         // fake id or not, convert to real if fake
         if ($request->input('isFake') == "false"){
@@ -242,7 +227,6 @@ class StripeApiController extends Controller
         ]);
     }
 
-    // TODO: facade
     // detach a payment from customer
     public function detachPayment(Request $request) {
         // convert to real payment id
@@ -299,16 +283,20 @@ class StripeApiController extends Controller
     }
 
     // Refunds a transaction
-    // Request should contain 'transaction_id'
-    public function createRefund(Request $request) {
-        $transaction_id = $request->input('transaction_id');
-        $transaction = Transaction::find($transaction_id);
+    // Request should contain 'session_id'
+    public function createRefund(Request $request, AppSession $session) {
+        $transaction = $session->transaction;
+
         // Already refunded
         if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
             Log::error('Trying to refund a refunded transaction');
             return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
 
+        // 1 - Refund session bonus if exists
+        $this->refundSessionBonus($session);
+
+        // 2 - Refund invoice
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
         // Handle depending on status of invoice
         switch ($invoice->status) {
@@ -316,6 +304,7 @@ class StripeApiController extends Controller
                 Log::info('Refund open invoice');
                 $invoice->voidInvoice();
                 $transaction->invoice_status = 'void';
+                $transaction->refund_status = 'canceled';
                 $transaction->save();
                 break;
 
@@ -328,6 +317,7 @@ class StripeApiController extends Controller
                     'refund_application_fee' => true,
                 ]);
                 $transaction->refund_id = $refund->id;
+                $transaction->refund_status = 'pending';
                 $transaction->save();
                 break;
 
@@ -337,6 +327,41 @@ class StripeApiController extends Controller
         }
 
         return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+    }
+
+    // Refund a session bonus given 'session'
+    private function refundSessionBonus(AppSession $session) {
+        if ($session->sessionBonus) {
+            $session_bonus = $session->sessionBonus;
+            $transfer_reversal = \Stripe\Transfer::createReversal($session_bonus->transfer_id);
+            $session_bonus->transfer_reversal_id = $transfer_reversal->id;
+            $session_bonus->is_refunded = 1;
+            $session_bonus->save();
+        }
+    }
+
+    // Create a session bonus for the tutor of 'session'
+    // 'amount' should be in dollars
+    public function createSessionBonus($amount, AppSession $session) {
+        $amount = $amount * 100;  // convert 'amount' to cents
+        $tutor = $session->tutor;
+        $tutor_payment_method = $tutor->paymentMethod;
+
+        // Create transfer
+        $transfer = \Stripe\Transfer::create([
+            'amount' => $amount,
+            'currency' => 'usd',
+            'destination' => $tutor_payment_method->stripe_account_id,
+        ]);
+        Log::info('Transfer created with id: ' . $transfer->id);
+
+        // Save to database
+        $session_bonus = new SessionBonus();
+        $session_bonus->session()->associate($session->id);
+        $session_bonus->amount = $amount;
+        $session_bonus->transfer_id = $transfer->id;
+        $session_bonus->user_id = $tutor->id;
+        $session_bonus->save();
     }
 
     // Cancels an Invoice
@@ -413,9 +438,10 @@ class StripeApiController extends Controller
 
             case 'charge.refunded':
                 $charge = $event->data->object;
-                // TODO: error check
                 $refund = $charge->refunds->data[0];
                 $transaction = Transaction::firstWhere("refund_id", $refund->id);
+                $transaction->refund_status = 'succeeded';
+                $transaction->save();
 
                 Log::debug('Transaction refunded: ' . $transaction->id);
 
@@ -430,6 +456,8 @@ class StripeApiController extends Controller
 
                 $failure_reason = $refund->failure_reason;
                 $transaction = Transaction::firstWhere("refund_id", $refund->id);
+                $transaction->refund_status = 'failed';
+                $transaction->save();
 
                 Log::debug('Transaction refund failed: ' . $transaction->id);
 

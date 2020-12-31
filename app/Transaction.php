@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    public $timestamp = true;
-
     public function session() {
         return $this->belongsTo('App\Session');
     }
@@ -20,7 +18,6 @@ class Transaction extends Model
         ->join("sessions","sessions.id","=","transactions.session_id") // join
         ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= ?", $timeAfterSessionEnd) // ? minutes after session end
         ->where("transactions.invoice_status","draft") // invoice status => draft
-        ->where("transactions.refund_id",NULL) // not a refund : refund id must be null when status is draft (for now)
         ->where("sessions.is_canceled",0) // not canceled
         ->get();
 
