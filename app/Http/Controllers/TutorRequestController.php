@@ -19,8 +19,6 @@ class TutorRequestController extends Controller
         $gateResponse = Gate::inspect('accept-tutor-request', [$tutorRequest]);
 
         if($gateResponse->allowed()){
-
-            // wrap in DB::transaction
             DB::transaction(function () use($tutorRequest,$tutorId,$studentId) {
                 //create new tutor session
                 $session = new Session();
