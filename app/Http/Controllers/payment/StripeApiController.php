@@ -546,7 +546,6 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // echo $invoiceId;
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time
