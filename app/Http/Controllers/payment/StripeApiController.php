@@ -353,7 +353,7 @@ class StripeApiController extends Controller
             $session_bonus = $session->sessionBonus;
             $transfer_reversal = \Stripe\Transfer::createReversal($session_bonus->transfer_id);
             $session_bonus->transfer_reversal_id = $transfer_reversal->id;
-            $session_bonus->refund_status = 'succeeded';
+            $session_bonus->is_refunded = 1;
             $session_bonus->save();
         }
     }
