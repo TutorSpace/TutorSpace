@@ -29,7 +29,7 @@ class StripeApiController extends Controller
 
     // =========== stripe testing start =================
     public function refundIndex() {
-        return view('payment.stripe_refund');
+        return view('payment.refund');
     }
     // =========== stripe testing end =================
 
@@ -283,9 +283,7 @@ class StripeApiController extends Controller
 
     // Refunds a transaction
     // Request should contain 'session_id'
-    public function createRefund(Request $request) {
-        $session_id = $request->input('session_id');
-        $session = AppSession::find($session_id);
+    public function createRefund(Request $request, AppSession $session) {
         $transaction = $session->transaction;
 
         // Already refunded
