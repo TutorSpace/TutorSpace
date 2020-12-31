@@ -88,7 +88,9 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        Log::debug('message create');
+
+        $oldPostData = session()->get('oldPostData');
+
         return view('forum.create', [
             'postDraft' => PostDraft::firstOrNew([
                 'user_id' => Auth::user()->id,
@@ -96,7 +98,8 @@ class PostController extends Controller
                 'post_type_id' => 0
             ]),
             'trendingTags' => Tag::getTrendingTags(),
-            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'oldPostData' => $oldPostData,
         ]);
     }
 
@@ -108,7 +111,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        Log::debug('message store');
+        // store old form data in session
+        $oldPostData = [
+            'post-type'=>$request['post-type'],
+            'post-title'=>$request["post-title"],
+            'post-content'=>$request["post-content"],
+            'tags'=>$request["tags"],
+        ];
+        $request->session()->put('oldPostData', $oldPostData);
+        
+        // validate
         $request->validate([
             'post-type' => [
                 'required',
@@ -133,7 +145,9 @@ class PostController extends Controller
                 'exists:tags,id'
             ]
         ]);
-        Log::debug('m111essage');
+        // clear old form data
+        $request->session()->forget('old-post-content');
+
         DB::transaction(function () use($request) {
             $post = new Post();
             $post->title = $request->input('post-title');
@@ -163,7 +177,16 @@ class PostController extends Controller
     }
 
     public function storeAsDraft(Request $request) {
-        Log::debug('message draft');
+        // store old form data in session
+        $oldPostData = [
+            'post-type'=>$request['post-type'],
+            'post-title'=>$request["post-title"],
+            'post-content'=>$request["post-content"],
+            'tags'=>$request["tags"],
+        ];
+        $request->session()->put('oldPostData', $oldPostData);
+
+        // validate
         $request->validate([
             'post-type' => [
                 'required',
@@ -187,6 +210,11 @@ class PostController extends Controller
                 'exists:tags,id'
             ]
         ]);
+
+        // clear old post data
+        if ($request->session()->has('oldPostData')){
+            $request->session()->forget('oldPostData');
+        }
 
         $postDraft = PostDraft::updateOrCreate([
             'user_id' => Auth::user()->id,

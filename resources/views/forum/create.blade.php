@@ -33,12 +33,14 @@ bg-student select2-bg-student
             @include('forum.partials.search')
 
             <form class="post-create" action="#" method="POST">
-                <h5 class="font-weight-bold mb-5">Create a new post</h5>
+                <h5 class="font-weight-bold mb-5"> 
+                    Create a new post
+                </h5>
                 <p class="input-title">Post Type</p>
                 <div class="input-content p-relative">
-                    <button class="btn btn-lg btn-post-type @if((old('post-type') ?? $postDraft->post_type_id) == 1) btn-selected @endif" type="button" data-post-type-id=1>Question</button>
-                    <button class="btn btn-lg btn-post-type @if((old('post-type') ?? $postDraft->post_type_id) == 2) btn-selected @endif" type="button" data-post-type-id=2>Note</button>
-                    <button class="btn btn-lg btn-post-type @if((old('post-type') ?? $postDraft->post_type_id) == 3) btn-selected @endif" type="button" data-post-type-id=3>Other</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 1) btn-selected @endif" type="button" data-post-type-id=1>Question</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 2) btn-selected @endif" type="button" data-post-type-id=2>Note</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 3) btn-selected @endif" type="button" data-post-type-id=3>Other</button>
 
                     @error('post-type')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 left-0 fc-red mt-1">
@@ -48,7 +50,7 @@ bg-student select2-bg-student
                 </div>
                 <p class="input-title">Title</p>
                 <div class="input-content p-relative">
-                    <input type="text" class="post-title" placeholder="Enter your post title here..." value="{{ old('post-title') ?? $postDraft->title }}" name="post-title" required>
+                    <input type="text" class="post-title" placeholder="Enter your post title here..." value="{{ $oldPostData['post-title'] ?? $postDraft->title }}" name="post-title" required>
                     @error('post-title')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-1">
                         {{ $message }}
@@ -57,7 +59,7 @@ bg-student select2-bg-student
                 </div>
                 <p class="input-title">Content</p>
                 <div class="input-content p-relative">
-                    <textarea name="post-content" class="post-content">{!! old('post-content') ?? $postDraft->content !!}</textarea>
+                    <textarea name="post-content" class="post-content">{!! $oldPostData['post-content'] ?? $postDraft->content !!}</textarea>
                     @error('post-content')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 right-0 fc-red mt-1">
                         {{ $message }}
@@ -94,7 +96,7 @@ bg-student select2-bg-student
                     <button class="btn btn-lg btn-create btn-animation-y">Create Post</button>
                 </div>
 
-                <input type="hidden" id="input-hidden-post-type" name="post-type" value="{{ old('post-type') ?? $postDraft->post_type_id}}">
+                <input type="hidden" id="input-hidden-post-type" name="post-type" value="{{ $oldPostData['post-type'] ?? $postDraft->post_type_id}}">
                 @csrf
             </form>
 
