@@ -261,14 +261,14 @@ Route::group([
     Route::post('/create_refund', 'payment\StripeApiController@createRefund')->name('payment.stripe.create_refund');
 
 
-    // Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth']);
+    Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
 
 });
 
-Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
-// Stripe testing
+// Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
 
 
+// ================== Stripe testing ======================
 // Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
 Route::get('/payment/refund', 'payment\StripeApiController@refundIndex');
 
