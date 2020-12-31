@@ -119,6 +119,7 @@ class StripeApiController extends Controller
             ]);
 
             array_push($result, [
+                'card_holder' => $card->name,
                 'brand' => $card->card->brand,
                 'exp_month' => $card->card->exp_month,
                 'exp_year' => $card->card->exp_year,

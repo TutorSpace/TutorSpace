@@ -33,9 +33,7 @@ bg-student select2-bg-student
             @include('forum.partials.search')
 
             <form class="post-create" action="#" method="POST">
-                <h5 class="font-weight-bold mb-5"> 
-                    Create a new post
-                </h5>
+                <h5 class="font-weight-bold mb-5">Create a new post</h5>
                 <p class="input-title">Post Type</p>
                 <div class="input-content p-relative">
                     <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 1) btn-selected @endif" type="button" data-post-type-id=1>Question</button>
