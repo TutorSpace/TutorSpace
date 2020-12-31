@@ -1,5 +1,5 @@
 <div>
-    <div class="info-box">
+    <div class="info-box" data-route-url="{{ route('payment.stripe.refund.user_request_refund', $session->id) }}">
         <div class="user-info">
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
@@ -91,7 +91,7 @@
                         Help
                     </span>
                     @else
-                    <span class="action--toggle--list--title fc-black-2">
+                    <span class="action--toggle--list--title fc-black-2" id="action-refund">
                         Refund
                     </span>
                     @endif

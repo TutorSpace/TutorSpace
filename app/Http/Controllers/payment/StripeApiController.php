@@ -1,25 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\payment;
-use App\Http\Controllers\Controller;
-use App\Session as AppSession;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\User;
+use Carbon\Carbon;
 use Stripe\Stripe;
 use Stripe\Account;
-use Stripe\AccountLink;
-use App\User;
 use App\Transaction;
-use App\PaymentMethod;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Session;
 use Stripe\Customer;
-use Stripe\SetupIntent;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\InvoicePaid;
-use App\Notifications\ChargeRefunded;
-use App\Notifications\ChargeRefundUpdated;
 use App\SessionBonus;
+use App\PaymentMethod;
+use Stripe\AccountLink;
+use Stripe\SetupIntent;
+use Illuminate\Http\Request;
+use App\Session as AppSession;
+use App\Notifications\InvoicePaid;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Notifications\ChargeRefunded;
+use Illuminate\Support\Facades\Session;
+use App\Notifications\ChargeRefundUpdated;
+use Illuminate\Support\Facades\Notification;
 
 class StripeApiController extends Controller
 {
@@ -282,9 +283,38 @@ class StripeApiController extends Controller
 
     }
 
+    public function userRequestRefund(Request $request, AppSession $session) {
+        // todo: add validation here
+        // 1. the authenticated must be the student in that session
+        // 2. not cancelled and already past
+
+        $transaction = $session->transaction;
+
+        if($transaction->refund_status == null) {
+            $transaction->refund_status = 'user_initiated';
+            $transaction->refund_requested_time = Carbon::now();
+            $transaction->save();
+            $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
+        } else if($transaction->refund_status == 'user_intiated') {
+            $msg = "You already made the request. Please wait it to be processed.";
+        } else if($transaction->refund_status == 'pending') {
+            $msg = "You already made the request. Please wait it to be processed.";
+        } else if($transaction->refund_status == 'canceled') {
+            $msg = "Your refund request is canceled. Please contact tutorspaceusc@gmail.com for more details.";
+        } else if($transaction->refund_status == 'successed') {
+            $msg = "Your refund request is successful. You cannot make another refund request for the same session.";
+        } else if($transaction->refund_status == 'failed') {
+            $msg = "Your refund request failed. Please contact tutorspaceusc@gmail.com for more details.";
+        }
+
+        return response()->json([
+            'successMsg' => $msg
+        ]);
+    }
+
     // Refunds a transaction
     // Request should contain 'session_id'
-    public function createRefund(Request $request, AppSession $session) {
+    public function approveRefund(Request $request, AppSession $session) {
         $transaction = $session->transaction;
 
         // Already refunded
@@ -546,7 +576,6 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // echo $invoiceId;
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time

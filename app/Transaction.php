@@ -14,7 +14,7 @@ class Transaction extends Model
     // todo: henry
     // specify time to finalize after session end
     public static function finalizeInvoice($timeAfterSessionEnd) {
-        $invoicesToCharge = Transaction::select("transactions.invoice_id")
+        $transactionsToCharge = Transaction::select("transactions.invoice_id")
         ->join("sessions","sessions.id","=","transactions.session_id") // join
         ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= ?", $timeAfterSessionEnd) // ? minutes after session end
         ->where("transactions.invoice_status","draft") // invoice status => draft
@@ -22,8 +22,9 @@ class Transaction extends Model
         ->get();
 
         // charge each one
-        forEach($invoicesToCharge as $invoice){
-             app(StripeApiController::class)->finalizeInvoice($invoice->invoice_id); // finalize invoice
+        forEach($transactionsToCharge as $transaction){
+            app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
+            // TODO: create session bonus
         }
     }
 
