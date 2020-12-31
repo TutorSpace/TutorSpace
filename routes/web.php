@@ -263,6 +263,7 @@ Route::group([
 
     Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
 
+    Route::get('/refund', 'payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index');
 });
 
 // Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');

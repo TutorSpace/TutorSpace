@@ -23,28 +23,15 @@ use App\SessionBonus;
 
 class StripeApiController extends Controller
 {
-    // TODO:: facade, other places: instantiate change
     public function __construct() {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
 
-    // todo: there are Testing functions
-    public function index() {
-        return view('payment.stripe_connect');
-    }
-
-    public function saveCardIndex() {
-        return view('payment.stripe_save_card');
-    }
-
-    public function invoiceIndex() {
-        return view('payment.stripe_invoice_test');
-    }
-
+    // =========== stripe testing start =================
     public function refundIndex() {
         return view('payment.stripe_refund');
     }
-
+    // =========== stripe testing end =================
 
 
 
@@ -87,7 +74,6 @@ class StripeApiController extends Controller
 
 
     // Saving a card
-    // TODO: facade
     public function createSetupIntent(Request $request) {
         $customer_id = $this->getCustomerId();
         $setup_intent = SetupIntent::create([
@@ -100,7 +86,6 @@ class StripeApiController extends Controller
     }
 
     // Lists all cards of the current user
-    // TODO: facade
     public function listCards(Request $request) {
         $cards = \Stripe\PaymentMethod::all([
             'customer' => $this->getCustomerId(),
@@ -227,7 +212,6 @@ class StripeApiController extends Controller
 
     // Save card as Default
     // Request should contain 'paymentMethodID'
-    // TODO: facade
     public function saveCardAsDefault(Request $request) {
         // fake id or not, convert to real if fake
         if ($request->input('isFake') == "false"){
@@ -242,7 +226,6 @@ class StripeApiController extends Controller
         ]);
     }
 
-    // TODO: facade
     // detach a payment from customer
     public function detachPayment(Request $request) {
         // convert to real payment id
