@@ -249,26 +249,116 @@ bg-student
                         <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">Set Up Payment
                             Methods</button>
                         @else
+
+
+                        
                         <div class="payment-cards">
-                            {{-- <div class="card-wrapper">
-                                <div class="card">
-                                    <div class="brand">
-                                        Brand: xxxx
-                                    </div>
-                                    <div class="exp">
-                                        Expired At: MM/YY
-                                    </div>
-                                    <div class="last4">
-                                        Card Number: xxxx-xxxx-xxxx-1234
+                            {{-- <div class="bank-card bg-non-default m-3">
+                                <div class="overlay"></div>
+                                <div class="bank-card-row-one">
+                                    <div class="brand">Brand: xxxx</div>
+                                </div>
+                                
+                                <div class="bank-card-row-two">
+                                    <div class="number">
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>1234</span>
                                     </div>
                                 </div>
-                                <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
-                                <button class="btn btn-primary">Set As Default</button>
+                                <div class="bank-card-row-three">
+                                    <div class="card-holder">
+                                        <div>Card-holder</div>
+                                        <div class="user-info">Shihao Huang</div>
+                                    </div>
+                                    <div class="expiration">
+                                        <div>Exp Date</div>
+                                        <div class="user-info">08/20</div>
+                                    </div>
+                                </div>
+                                    
+                                <div class="bank-card-btns">
+                                    <button class="btn btn-delete">Delete</button>
+                                    <button class="btn btn-set-default">Set As Default</button>
+                                </div>
+                                
+                            </div>
+
+
+
+                            <div class="bank-card bg-default m-3">
+                                <div class="overlay"></div>
+                                <div class="bank-card-row-one">
+                                    <div class="brand">Brand: xxxx</div>
+                                </div>
+                                
+                                <div class="bank-card-row-two">
+                                    <div class="number">
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>1234</span>
+                                    </div>
+                                </div>
+                                <div class="bank-card-row-three">
+                                    <div class="card-holder">
+                                        <div>Card-holder</div>
+                                        <div class="user-info">Shihao Huang</div>
+                                    </div>
+                                    <div class="expiration">
+                                        <div>Exp Date</div>
+                                        <div class="user-info">08/20</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bank-card-btns">
+                                    <button class="btn btn-delete">Delete</button>
+                                    <button class="btn btn-set-default">Set As Default</button>
+                                </div>
+                            </div>
+
+
+                            <div class="bank-card bg-default m-3">
+                                <div class="bank-card-row-one">
+                                    <div class="brand">Brand: xxxx</div>
+                                </div>
+                                
+                                <div class="bank-card-row-two">
+                                    <div class="number">
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>1234</span>
+                                    </div>
+                                </div>
+                                <div class="bank-card-row-three">
+                                    <div class="card-holder">
+                                        <div>Card-holder</div>
+                                        <div class="user-info">Shihao Huang</div>
+                                    </div>
+                                    <div class="expiration">
+                                        <div>Exp Date</div>
+                                        <div class="user-info">08/20</div>
+                                    </div>
+                                </div>
+                                <div class="bank-card-btns">
+                                    <button class="btn btn-delete">Delete</button>
+                                    <button class="btn btn-set-default">Set As Default</button>
+                                </div>
                             </div> --}}
+
+                          
+                            <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
+                                <div>+</div>
+                                <div>Add New Payment</div>
+                            </div>
+
                         </div>
 
-                        <button id="btn-add-payment" class="btn btn-primary btn-add-payment" type="button">Add New
-                            Payment Method</button>
+                     
+
+    
                         @endif
                     </div>
                 </div>
@@ -454,7 +544,7 @@ bg-student
     }
 
     function handleSetDefault(){
-        var btnDefault = $(".btn-setDefault");
+        var btnDefault = $(".btn-set-default");
         btnDefault.click(function(){
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
@@ -510,29 +600,56 @@ bg-student
                     cards
                 } = data;
                 cards.forEach((card,idx) => {
-                    $('.payment-cards').append(`
-                        <div class="card-wrapper">
-                            <div class="card">
-                                <div class="brand">
-                                    Brand: ${card.brand}
+                    $('.payment-cards').prepend(`
+
+
+                            <div class="bank-card `+
+                            (card.is_default == 'false'? `bg-non-default`:`bg-default`)
+                            
+                            +`
+                             m-3">
+                                <div class="overlay"></div>
+                                <div class="bank-card-row-one">
+                                    <div class="brand">Brand: ${card.brand}</div>
                                 </div>
-                                <div class="exp">
-                                    Expired At: ${card.exp_month}/${card.exp_year}
+                                
+                                <div class="bank-card-row-two">
+                                    <div class="number">
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>****</span>
+                                        <span>${card.last4}</span>
+                                    </div>
                                 </div>
-                                <div class="last4">
-                                    Card Number: xxxx-xxxx-xxxx-${card.last4}
+                                <div class="bank-card-row-three">
+                                    <div class="card-holder">
+                                        <div>Card-holder</div>
+                                        <div class="user-info">${card.card_holder}</div>
+                                    </div>
+                                    <div class="expiration">
+                                        <div>Exp Date</div>
+                                        <div class="user-info">${card.exp_month}/${card.exp_year}</div>
+                                    </div>
                                 </div>
+                                    
+
+
+
+                                `+
+
+                                (card.is_default == 'false'?`
+                                    <div class="bank-card-btns">
+                                        <button data-id=${idx} class="btn btn-delete">Delete</button>
+                                        <button data-id=${idx} class="btn btn-set-default">Set As Default</button>
+                                    </div>
+
+                                `:`
+                                    <div class="bank-card-btns">Default Payment</div>
+                                `)
+                                +`
+                                
                             </div>
 
-                           `+
-
-                           (card.is_default == 'false'?`
-                                <button data-id=${idx} class="btn btn-danger mr-2 btn-delete">Delete</button>
-                                <button data-id=${idx} class="btn btn-primary btn-setDefault">Set As Default</button>
-
-                           `:'')
-                           +`
-                        </div>
                     `);
                 });
 
@@ -547,7 +664,28 @@ bg-student
     }
 
 
+             // <div class="card-wrapper">
+                        //     <div class="card">
+                        //         <div class="brand">
+                        //             Brand: ${card.brand}
+                        //         </div>
+                        //         <div class="exp">
+                        //             Expired At: ${card.exp_month}/${card.exp_year}
+                        //         </div>
+                        //         <div class="last4">
+                        //             Card Number: xxxx-xxxx-xxxx-${card.last4}
+                        //         </div>
+                        //     </div>
 
+                        //    `+
+
+                        //    (card.is_default == 'false'?`
+                        //         <button data-id=${idx} class="btn btn-danger mr-2 btn-delete">Delete</button>
+                        //         <button data-id=${idx} class="btn btn-primary btn-set-default">Set As Default</button>
+
+                        //    `:'')
+                        //    +`
+                        // </div>
     $("#btn-setup-payment").click(function () {
         // TODO: add loading
         postToConnectAccount().then((response) => {
