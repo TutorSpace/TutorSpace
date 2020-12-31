@@ -250,28 +250,10 @@ bg-student
                             Methods</button>
                         @else
 
-                        
-                        {{-- <div class="payment-cards">
-                            <div class="card-wrapper">
-                                <div class="card">
-                                    <div class="brand">
-                                        Brand: xxxx
-                                    </div>
-                                    <div class="exp">
-                                        Expired At: MM/YY
-                                    </div>
-                                    <div class="last4">
-                                        Card Number: xxxx-xxxx-xxxx-1234
-                                    </div>
-                                </div>
-                                <button id = "btn-delete" class="btn btn-danger mr-2 btn-delete">Delete</button>
-                                <button class="btn btn-primary">Set As Default</button>
-                            </div>
-                        </div> --}}
 
                         
                         <div class="payment-cards">
-                            <div class="bank-card bg-non-default m-3">
+                            {{-- <div class="bank-card bg-non-default m-3">
                                 <div class="overlay"></div>
                                 <div class="bank-card-row-one">
                                     <div class="brand">Brand: xxxx</div>
@@ -364,7 +346,7 @@ bg-student
                                     <button class="btn btn-delete">Delete</button>
                                     <button class="btn btn-set-default">Set As Default</button>
                                 </div>
-                            </div>
+                            </div> --}}
 
                           
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
