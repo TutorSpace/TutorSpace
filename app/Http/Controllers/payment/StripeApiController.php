@@ -301,7 +301,7 @@ class StripeApiController extends Controller
             $msg = "You already made the request. Please wait it to be processed.";
         } else if($transaction->refund_status == 'canceled') {
             $msg = "Your refund request is canceled. Please contact tutorspaceusc@gmail.com for more details.";
-        } else if($transaction->refund_status == 'successed') {
+        } else if($transaction->refund_status == 'succeeded') {
             $msg = "Your refund request is successful. You cannot make another refund request for the same session.";
         } else if($transaction->refund_status == 'failed') {
             $msg = "Your refund request failed. Please contact tutorspaceusc@gmail.com for more details.";
