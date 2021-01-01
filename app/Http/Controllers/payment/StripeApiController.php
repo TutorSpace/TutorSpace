@@ -287,6 +287,7 @@ class StripeApiController extends Controller
         // todo: add validation here
         // 1. the authenticated must be the student in that session
         // 2. not cancelled and already past
+        // 3. transaction is paid
 
         $transaction = $session->transaction;
 
@@ -330,14 +331,6 @@ class StripeApiController extends Controller
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
         // Handle depending on status of invoice
         switch ($invoice->status) {
-            case 'open':  // Waiting to be paid
-                Log::info('Refund open invoice');
-                $invoice->voidInvoice();
-                $transaction->invoice_status = 'void';
-                $transaction->refund_status = 'canceled';
-                $transaction->save();
-                break;
-
             case 'paid':  // Already paid
                 Log::info('Refund paid invoice');
                 $payment_intent_id = $invoice->payment_intent;
@@ -368,6 +361,11 @@ class StripeApiController extends Controller
             $session_bonus->is_refunded = 1;
             $session_bonus->save();
         }
+    }
+
+    // TODO: refund_status: canceled
+    public function declineRefundRequest(Request $request, AppSession $session) {
+
     }
 
     // Create a session bonus for the tutor of 'session'
@@ -576,7 +574,6 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // echo $invoiceId;
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time

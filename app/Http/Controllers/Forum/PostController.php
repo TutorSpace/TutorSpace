@@ -118,7 +118,7 @@ class PostController extends Controller
             'post-content'=>$request["post-content"],
             'tags'=>$request["tags"],
         ];
-        $request->session()->put('oldPostData', $oldPostData);
+        $request->session()->flash('oldPostData', $oldPostData);
         
         // validate
         $request->validate([
@@ -145,8 +145,6 @@ class PostController extends Controller
                 'exists:tags,id'
             ]
         ]);
-        // clear old form data
-        $request->session()->forget('old-post-content');
 
         DB::transaction(function () use($request) {
             $post = new Post();
@@ -184,7 +182,7 @@ class PostController extends Controller
             'post-content'=>$request["post-content"],
             'tags'=>$request["tags"],
         ];
-        $request->session()->put('oldPostData', $oldPostData);
+        $request->session()->flash('oldPostData', $oldPostData);
 
         // validate
         $request->validate([
@@ -210,11 +208,6 @@ class PostController extends Controller
                 'exists:tags,id'
             ]
         ]);
-
-        // clear old post data
-        if ($request->session()->has('oldPostData')){
-            $request->session()->forget('oldPostData');
-        }
 
         $postDraft = PostDraft::updateOrCreate([
             'user_id' => Auth::user()->id,
