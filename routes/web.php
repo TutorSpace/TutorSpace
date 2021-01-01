@@ -266,8 +266,6 @@ Route::group([
     Route::post('/refund/{session}', 'payment\StripeApiController@approveRefund')->name('payment.stripe.approve_refund')->middleware('isAdmin');
 });
 
-// Route::post('/payment/webhook', 'payment\StripeApiController@handleWebhook');
-
 
 // ================== Stripe testing ======================
 // Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
