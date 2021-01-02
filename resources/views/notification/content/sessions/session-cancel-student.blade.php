@@ -50,7 +50,7 @@
                 </div>
             </div>
 
-            <div class="calendar"></div>
+            <div id="calendar" class="my-5 calendar"></div>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>

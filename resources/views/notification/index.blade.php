@@ -2,6 +2,12 @@
 
 @section('title', 'Notifications')
 
+@section('links-in-head')
+{{-- fullcalendar --}}
+<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+<script src='{{asset('fullcalendar/main.min.js')}}'></script>
+@endsection
+
 @section('body-class')
 bg-white-dark-4
 
@@ -34,7 +40,25 @@ bg-student
 @endsection
 
 @section('js')
+@include('home.partials.calendar-tutor', ['user' => Auth::user()])
+<script>
+    let options = Object.assign({}, calendarOptions);
+    options.selectAllow = false;
+    options.eventClick = null;
+    options.headerToolbar = null;
+    options.height = 'auto';
 
-<script src="{{ asset('js/notification/index.js') }}"></script>
+    // todo: modify this
+    options.slotMinTime = "08:30:00";
+    options.slotMaxTime = "11:30:00";
+
+    let e = new FullCalendar.Calendar($('#calendar')[0], options);
+    e.render();
+    setTimeout(() => {
+        e.destroy();
+        e.render();
+        e.gotoDate('2020-10-25'); // todo: change this
+    }, 500);
+</script>
 
 @endsection
