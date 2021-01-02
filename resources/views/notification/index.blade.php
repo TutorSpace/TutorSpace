@@ -32,38 +32,15 @@ bg-student
         <div class="notification__content">
             {{-- @include('notification.content.sessions.session-complete-tutor') --}}
             {{-- @include('notification.content.sessions.session-complete-student') --}}
-            @include('notification.content.sessions.session-cancel')
+            {{-- @include('notification.content.sessions.session-cancel') --}}
+            {{-- @include('notification.content.sessions.session-decline') --}}
+            {{-- @include('notification.content.sessions.session-confirmation-student') --}}
+            @include('notification.content.sessions.session-confirmation-tutor')
+
+
         </div>
     </div>
 </div>
 
 @endsection
 
-@section('js')
-@include('home.partials.calendar-tutor', ['user' => Auth::user()])
-<script>
-    let options = Object.assign({}, calendarOptions);
-    options.selectAllow = false;
-    options.eventClick = null;
-    options.headerToolbar = null;
-    options.height = 'auto';
-
-    // todo: modify this
-    options.slotMinTime = "08:30:00";
-    options.slotMaxTime = "11:30:00";
-
-    let e = new FullCalendar.Calendar($('#calendar')[0], options);
-
-    $('#calendar').hide();
-
-    e.render();
-    setTimeout(() => {
-        $('#calendar').show();
-        e.destroy();
-        e.render();
-        e.gotoDate('2020-10-25'); // todo: change this
-
-    }, 500);
-</script>
-
-@endsection

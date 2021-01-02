@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Cancelled (08/02/2020 Thursday)
+    Your tutor tequest has been declined (08/02/2020 Thursday)
 </div>
 <div class="notification__content__info">
 
@@ -12,7 +12,7 @@
             <p class="pt-3 fs-2-4 text-center fw-500">Neno Enim</p>
 
             <p class="mt-5 fs-1-8">
-                Your session has been <span class="font-weight-bold">CANCELED</span></span> by Nemo Enim. Session details:
+                Your session has been <span class="font-weight-bold">DECLINED</span></span> by Nemo Enim. Session details:
             </p>
 
             <div class="d-flex justify-content-between mt-4">
