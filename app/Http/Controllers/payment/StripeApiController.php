@@ -313,7 +313,7 @@ class StripeApiController extends Controller
         ]);
     }
 
-    // Refunds a transaction
+    // Approve a refund request for a session
     // Request should contain 'session_id'
     public function approveRefund(Request $request, AppSession $session) {
         $transaction = $session->transaction;
@@ -363,9 +363,16 @@ class StripeApiController extends Controller
         }
     }
 
-    // TODO: refund_status: canceled
+    // Decline a refund request for a session
     public function declineRefundRequest(Request $request, AppSession $session) {
-
+        $transaction = $session->transaction;
+        if ($transaction->refund_status != 'user_intiated') {  // Invalid status
+            Log::error('Refund status is not user_intiated. Unable to decline.');
+            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+        }
+        $transaction->refund_status = 'canceled';
+        $transaction->save();
+        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Create a session bonus for the tutor of 'session'
@@ -546,7 +553,7 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => 10,  // TODO: apply application fee (cent)
+            'application_fee_amount' => $amount * 10,  // TODO: apply application fee (cent)
         ]);
 
         // Save transaction in database
@@ -580,5 +587,18 @@ class StripeApiController extends Controller
             $model = Transaction::find($transaction->id);
             $model->touch();
         }
+    }
+
+    // Get the payment URL of the invoice for 'session'
+    // Return URL string
+    public function getPaymentUrl(AppSession $session) {
+        $transaction = $session->transaction;
+        if ($transaction->invoice_status != 'open') {  // Invalid status
+            Log::error('Unable to generate payment URL. Invoice status is not open.');
+            return "";
+        }
+        $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
+        $payment_url = $invoice->hosted_invoice_url;
+        return $payment_url;
     }
 }
