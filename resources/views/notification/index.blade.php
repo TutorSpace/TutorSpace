@@ -36,7 +36,13 @@ bg-student
             {{-- @include('notification.content.sessions.session-decline') --}}
             {{-- @include('notification.content.sessions.session-confirmation-student') --}}
             {{-- @include('notification.content.sessions.session-confirmation-tutor') --}}
-            @include('notification.content.sessions.tutor-request')
+            {{-- @include('notification.content.sessions.tutor-request') --}}
+            {{-- @include('notification.content.tutorspace.refund-request-initiated') --}}
+            {{-- @include('notification.content.tutorspace.refund-request-success') --}}
+            {{-- @include('notification.content.tutorspace.refund-request-fail') --}}
+            {{-- @include('notification.content.tutorspace.invite-to-be-tutor') --}}
+            @include('notification.content.tutorspace.welcome-msg')
+
 
 
 

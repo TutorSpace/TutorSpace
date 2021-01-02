@@ -89,6 +89,37 @@
                         margin-left: 10rem;
                     }
                 }
+
+                .display-cards {
+
+                    .display-card {
+                        margin-top: 2rem;
+                        background-color: #ffffff;
+                        padding: 3rem 3rem;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 1rem;
+
+                        svg {
+                            width: 35rem;
+                        }
+
+                        &__content-container {
+                            margin-left: 5rem;
+
+                            .display-card__content {
+                                font-size: 1.6rem;
+                            }
+
+                            a, button {
+                                font-size: 1.4rem;
+                                padding: .6rem 2rem;
+                                border-radius: 1.5rem;
+                                color: $color-white;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
