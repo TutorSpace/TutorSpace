@@ -35,7 +35,9 @@ bg-student
             {{-- @include('notification.content.sessions.session-cancel') --}}
             {{-- @include('notification.content.sessions.session-decline') --}}
             {{-- @include('notification.content.sessions.session-confirmation-student') --}}
-            @include('notification.content.sessions.session-confirmation-tutor')
+            {{-- @include('notification.content.sessions.session-confirmation-tutor') --}}
+            @include('notification.content.sessions.tutor-request')
+
 
 
         </div>
