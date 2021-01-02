@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Completed
+    Session Completed (08/02/2020 Thursday)
 </div>
 <div class="notification__content__info">
 

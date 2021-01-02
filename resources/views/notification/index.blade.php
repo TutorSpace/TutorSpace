@@ -25,7 +25,8 @@ bg-student
         </div>
         <div class="notification__content">
             {{-- @include('notification.content.sessions.session-complete-tutor') --}}
-            @include('notification.content.sessions.session-complete-student')
+            {{-- @include('notification.content.sessions.session-complete-student') --}}
+            @include('notification.content.sessions.session-cancel-student')
         </div>
     </div>
 </div>
