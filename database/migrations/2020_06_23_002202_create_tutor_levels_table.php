@@ -16,6 +16,7 @@ class CreateTutorLevelsTable extends Migration
         Schema::create('tutor_levels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tutor_level', 64);
+            $table->double('bonus_rate', 10, 5);
         });
     }
 
