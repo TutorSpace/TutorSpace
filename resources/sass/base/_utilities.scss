@@ -60,9 +60,10 @@
 .bg-student .bg-primary { background-color: $color-blue-primary !important; }
 .bg-tutor .bg-primary { background-color: $color-purple-primary !important; }
 
-.bg-color-notification--sessions { background-color: $color-notification--session !important; }
-.bg-color-notification--forum { background-color: $color-notification--forum !important; }
-.bg-color-notification--tutorspace { background-color: $color-notification--tutorspace !important; }
+.bg-color-notification--sessions { background-color: #F0847D !important; }
+.bg-color-notification--forum { background-color: #FBB752 !important; }
+.bg-student .bg-color-notification--tutorspace { background-color: $color-blue-primary !important; }
+.bg-tutor .bg-color-notification--tutorspace { background-color: $color-purple-primary !important; }
 
 // ======================= color ====================
 .bg-student .color-primary { color: $color-blue-primary; }
