@@ -24,7 +24,8 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content">
-            @include('notification.content.sessions.session-complete-tutor')
+            {{-- @include('notification.content.sessions.session-complete-tutor') --}}
+            @include('notification.content.sessions.session-complete-student')
         </div>
     </div>
 </div>

@@ -4,22 +4,14 @@
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
-        <div class="notification__content__info__header bg-primary"></div>
+        <div class="notification__content__info__header bg-primary">
+            <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo" class="user-image">
+        </div>
 
         <div class="container content">
-            <h5 class="color-primary">You would receive your payments in x days</h5>
-            <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
-            </p>
+            <p class="pt-3 fs-2-4 text-center fw-500">Neno Enim</p>
 
-            <div class="mt-5 color-primary d-flex align-items-center">
-                <h5>Tutor Growth Plan</h5>
-                <h5 class="fs-1-8 ml-5">(+ 20 exp)</h5>
-            </div>
-
-            <h5 class="mt-5 color-primary">Session Details</h5>
+            <h5 class="mt-3 color-primary">Session Details</h5>
 
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
@@ -57,11 +49,11 @@
             </div>
 
             <h5 class="color-primary">Price Summary</h5>
-            <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Income
-                <span class="color-primary">$ 26</span>
+            <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Fee (per hour)
+                <span class="color-primary">$ 24</span>
             </p>
-            <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Service Fee (10%)
-                <span class="color-primary">($ 2)</span>
+            <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Hours
+                <span class="color-primary">x 2</span>
             </p>
             <hr class="bc-primary mt-3"/>
             <p class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Total
@@ -72,11 +64,11 @@
 
             <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
 
+            <p class="fc-black-2 fs-1-6"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
             </div>
         </div>
     </div>
-
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
 </div>
