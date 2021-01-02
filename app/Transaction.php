@@ -24,7 +24,8 @@ class Transaction extends Model
         // charge each one
         forEach($transactionsToCharge as $transaction){
             app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
-            // TODO: create session bonus
+            // TODO: change bonus amount
+            app(StripeApiController::class)->createSessionBonus(10, $transaction->session);
         }
     }
 
