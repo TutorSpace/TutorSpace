@@ -32,7 +32,7 @@ bg-student
         <div class="notification__content">
             {{-- @include('notification.content.sessions.session-complete-tutor') --}}
             {{-- @include('notification.content.sessions.session-complete-student') --}}
-            @include('notification.content.sessions.session-cancel-student')
+            @include('notification.content.sessions.session-cancel')
         </div>
     </div>
 </div>
@@ -53,11 +53,16 @@ bg-student
     options.slotMaxTime = "11:30:00";
 
     let e = new FullCalendar.Calendar($('#calendar')[0], options);
+
+    $('#calendar').hide();
+
     e.render();
     setTimeout(() => {
+        $('#calendar').show();
         e.destroy();
         e.render();
         e.gotoDate('2020-10-25'); // todo: change this
+
     }, 500);
 </script>
 
