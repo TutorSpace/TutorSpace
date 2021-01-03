@@ -49,11 +49,9 @@
                 sequi! Molestiae?
             </p>
 
-            <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
-            </div>
+            <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about tutor growth plan? Click here: <br />
+                <a href="#" class="color-primary">https://tutorspace.joinme.us</a>
+            </p>
         </div>
     </div>
-
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
 </div>

@@ -48,7 +48,9 @@ bg-student
             {{-- @include('notification.content.tutorspace.payment-fail') --}}
             {{-- @include('notification.content.tutorspace.payment-fail-again') --}}
             {{-- @include('notification.content.tutorspace.session-fee-received') --}}
-            @include('notification.content.tutorspace.tutor-level-up')
+            {{-- @include('notification.content.tutorspace.tutor-level-up') --}}
+            {{-- @include('notification.content.forum.post-reported') --}}
+            @include('notification.content.forum.be-marked-as-best-reply')
 
 
 
