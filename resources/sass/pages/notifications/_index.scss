@@ -2,7 +2,7 @@
 
     &__side-bar--left {
         .msgs {
-            height: calc(100% - 16rem);
+            height: calc(100% - 16rem + 16rem);
         }
     }
 
@@ -43,7 +43,131 @@
             padding: $padding;
             flex: 1;
             overflow: scroll;
+        }
 
+        .notification__content__info {
+
+            &__wrapper {
+                border-radius: 1rem;
+                overflow: hidden;
+                background-color: $color-white-dark-5;
+            }
+
+            &__header {
+                height: 7.5rem;
+                position: relative;
+
+                .user-image, svg {
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 7.5rem;
+                    height: 7.5rem;
+                    border-radius: 50%;
+                }
+            }
+
+            .content {
+                padding: 1rem 5rem 3rem 5rem;
+
+                > * {
+                    margin: 2.5rem 0 0 0;
+                }
+
+                .button-container {
+                    display: flex;
+                    justify-content: center;
+
+                    a, button {
+                        font-size: 1.8rem;
+                        padding: 1.2rem 5rem;
+                        border-radius: 2.5rem;
+                    }
+
+                    a:not(:first-child), button:not(:first-child) {
+                        margin-left: 10rem;
+                    }
+                }
+
+                .display-cards {
+
+                    .display-card {
+                        margin-top: 2rem;
+                        background-color: #ffffff;
+                        padding: 3rem 3rem;
+                        display: flex;
+                        align-items: center;
+                        border-radius: 1rem;
+
+                        svg {
+                            width: 35rem;
+                        }
+
+                        &__content-container {
+                            margin-left: 5rem;
+
+                            .display-card__content {
+                                font-size: 1.6rem;
+                            }
+
+                            a, button {
+                                font-size: 1.4rem;
+                                padding: .6rem 2rem;
+                                border-radius: 1.5rem;
+                                color: $color-white;
+                            }
+                        }
+                    }
+                }
+
+                .tutor-level-progress {
+                    position: relative;
+                    margin-top: 5rem;
+                    padding: 0 10%;
+                    padding-bottom: 2rem;
+
+                    .progress {
+                        height: 1.8rem;
+                        background-color: $color-white;
+
+                        .progress-bar {
+                            background-color: $color-purple-primary-2;
+                        }
+                    }
+
+                    .tutor-level {
+                        font-size: 1.4rem;
+                        position: absolute;
+                        top: 2.4rem;
+
+                        &--current {
+                            left: 10%;
+                        }
+
+                        &--next {
+                            right: 10%;
+                        }
+                    }
+                }
+
+                .quote {
+                    padding: 0 5rem;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 1.6rem;
+
+                    > :not(:first-child) {
+                        margin-left: 2rem;
+                    }
+
+                    svg {
+                        width: 3rem;
+                    }
+                }
+            }
         }
     }
+
+
 }

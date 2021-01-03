@@ -23,7 +23,6 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/home/tutor-sessions.js', 'public/js/home')
     .js('resources/js/view_profile/index.js', 'public/js/view_profile')
     .js('resources/js/chatting/index.js', 'public/js/chatting')
-    .js('resources/js/notification/index.js', 'public/js/notification')
     .js('resources/js/help-center/index.js', 'public/js/help-center')
     .sass('resources/sass/main.scss', 'public/css');
 

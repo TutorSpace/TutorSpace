@@ -12,19 +12,19 @@ class UpcomingSessionSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('sessions')->insert([
-        //     'tutor_id' => '2',
-        //     'student_id' => '1',
-        //     'course_id' => '1',
-        //     'is_in_person' => true,
-        //     'session_time_start' => Carbon::now()->addHours(1),
-        //     'session_time_end' => Carbon::now()->addHours(2),
-        //     'hourly_rate' => 14,
-        // ]);
+        DB::table('sessions')->insert([
+            'tutor_id' => '3',
+            'student_id' => '1',
+            'course_id' => '1',
+            'is_in_person' => true,
+            'session_time_start' => Carbon::now()->addHours(1),
+            'session_time_end' => Carbon::now()->addHours(2),
+            'hourly_rate' => 14,
+        ]);
 
         // DB::table('sessions')->insert([
-        //     'tutor_id' => '2',
-        //     'student_id' => '1',
+        //     'tutor_id' => '3',
+        //     'student_id' => '2',
         //     'course_id' => '5',
         //     'is_in_person' => false,
         //     'session_time_start' => Carbon::now()->addHours(2)->addMinutes(30),
@@ -33,8 +33,8 @@ class UpcomingSessionSeeder extends Seeder
         // ]);
 
         // DB::table('sessions')->insert([
-        //     'tutor_id' => '2',
-        //     'student_id' => '1',
+        //     'tutor_id' => '3',
+        //     'student_id' => '2',
         //     'course_id' => '7',
         //     'is_in_person' => false,
         //     'session_time_start' => Carbon::now()->addHours(5)->addMinutes(30),
