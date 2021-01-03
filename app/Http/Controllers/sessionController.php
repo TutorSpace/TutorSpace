@@ -47,7 +47,8 @@ class SessionController extends Controller
         );
     }
 
-    // todo: Henry
+    // todo: NATE
+    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
         // todo: validate all the input data before creating a session
         // including:
