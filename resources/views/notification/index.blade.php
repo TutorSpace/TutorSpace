@@ -41,7 +41,11 @@ bg-student
             {{-- @include('notification.content.tutorspace.refund-request-success') --}}
             {{-- @include('notification.content.tutorspace.refund-request-fail') --}}
             {{-- @include('notification.content.tutorspace.invite-to-be-tutor') --}}
-            @include('notification.content.tutorspace.welcome-msg')
+            {{-- @include('notification.content.tutorspace.welcome-msg-student') --}}
+            {{-- @include('notification.content.tutorspace.welcome-msg-tutor') --}}
+            {{-- @include('notification.content.tutorspace.tutor-verification-initiated') --}}
+            {{-- @include('notification.content.tutorspace.tutor-verification-processed') --}}
+            @include('notification.content.tutorspace.payment-fail')
 
 
 
