@@ -213,6 +213,7 @@
 
     </script>
     @yield('js')
+    @yield('js-2')
 
 </body>
 </html>
