@@ -366,11 +366,11 @@ class StripeApiController extends Controller
         $transaction = $session->transaction;
         if ($transaction->refund_status != 'user_intiated') {  // Invalid status
             Log::error('Refund status is not user_intiated. Unable to decline.');
-            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
         }
         $transaction->refund_status = 'canceled';
         $transaction->save();
-        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Create a session bonus for the tutor of 'session'
@@ -551,7 +551,7 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => $amount * 10,  // TODO: apply application fee (cent)
+            'application_fee_amount' => $amount * 10,
         ]);
 
         // Save transaction in database
