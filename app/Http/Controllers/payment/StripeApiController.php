@@ -479,6 +479,9 @@ class StripeApiController extends Controller
                 Log::debug('Transaction refunded: ' . $transaction->id);
 
                 // TODO: send email to user of 'transaction'. Refund succeeded
+
+                // send to user
+                // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefunded());
 
