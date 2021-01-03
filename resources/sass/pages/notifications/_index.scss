@@ -57,7 +57,7 @@
                 height: 7.5rem;
                 position: relative;
 
-                .user-image {
+                .user-image, svg {
                     position: absolute;
                     top: 100%;
                     left: 50%;
@@ -117,6 +117,36 @@
                                 border-radius: 1.5rem;
                                 color: $color-white;
                             }
+                        }
+                    }
+                }
+
+                .tutor-level-progress {
+                    position: relative;
+                    margin-top: 5rem;
+                    padding: 0 10%;
+                    padding-bottom: 2rem;
+
+                    .progress {
+                        height: 1.8rem;
+                        background-color: $color-white;
+
+                        .progress-bar {
+                            background-color: $color-purple-primary-2;
+                        }
+                    }
+
+                    .tutor-level {
+                        font-size: 1.2rem;
+                        position: absolute;
+                        top: 2.4rem;
+
+                        &--current {
+                            left: 10%;
+                        }
+
+                        &--next {
+                            right: 10%;
                         }
                     }
                 }

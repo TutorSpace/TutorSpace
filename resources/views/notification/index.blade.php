@@ -45,7 +45,10 @@ bg-student
             {{-- @include('notification.content.tutorspace.welcome-msg-tutor') --}}
             {{-- @include('notification.content.tutorspace.tutor-verification-initiated') --}}
             {{-- @include('notification.content.tutorspace.tutor-verification-processed') --}}
-            @include('notification.content.tutorspace.payment-fail')
+            {{-- @include('notification.content.tutorspace.payment-fail') --}}
+            {{-- @include('notification.content.tutorspace.payment-fail-again') --}}
+            {{-- @include('notification.content.tutorspace.session-fee-received') --}}
+            @include('notification.content.tutorspace.tutor-level-up')
 
 
 

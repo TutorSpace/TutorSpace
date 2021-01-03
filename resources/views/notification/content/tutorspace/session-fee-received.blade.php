@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Session Completed (08/02/2020 Thursday)
+    Session Fee Received
 </div>
 <div class="notification__content__info">
 
@@ -7,17 +7,12 @@
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h5 class="color-primary">You would receive your payment in x days</h5>
+            <h5 class="color-primary">You have received your session fee.</h5>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
-
-            <div class="mt-5 color-primary d-flex align-items-center">
-                <h5>Tutor Growth Plan</h5>
-                <h5 class="fs-1-8 ml-5">(+ 20 exp)</h5>
-            </div>
 
             <h5 class="mt-5 color-primary">Session Details</h5>
 
@@ -63,14 +58,15 @@
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Service Fee (10%)
                 <span class="color-primary">($ 2)</span>
             </p>
+            <p class="d-flex flex-row justify-content-between fs-1-6 mt-3 color-primary">TGP Bonus (Beginner)
+                <span class="color-primary">$ 2.4</span>
+            </p>
             <hr class="bc-primary mt-3"/>
             <p class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Total
                 <span class="color-primary">$ 24</span>
             </p>
 
             <h5 class="color-primary">Having Trouble with this session?</h5>
-
-            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
