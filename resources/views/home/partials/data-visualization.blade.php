@@ -118,4 +118,5 @@
     $(window).resize(function() {
         drawGraph();
     });
+    
 </script>

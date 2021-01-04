@@ -17,6 +17,7 @@ bg-student
 
 {{-- plotly --}}
 <script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
+{{-- <script src="{{ asset('vendor/chartjs/dist/Chart.js') }}"></script> --}}
 @endsection
 
 @section('content')
@@ -44,6 +45,10 @@ bg-student
                     <div class="graph-1">
                         <div id="scatter-chart"></div>
                     </div>
+                    {{-- <div class="graph-2">
+                        <div id="gauge-chart"></div>
+                    </div> --}}
+                    <canvas id="myChart" width="400" height="400"></canvas>
                     <div class="graph-2">
                         <div id="gauge-chart"></div>
                     </div>

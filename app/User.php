@@ -452,4 +452,11 @@ class User extends Authenticatable
     public function paymentMethod() {
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
+
+    // add user experience and update level
+    // $experienceToAdd : double
+    public function addExperience($experienceToAdd){
+        echo $this->id;
+        
+    }
 }
