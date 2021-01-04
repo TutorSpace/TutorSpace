@@ -17,8 +17,10 @@ use App\Http\Controllers\payment\StripeApiController;
 class SessionController extends Controller
 {
 
+    // todo: NATE
+    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function cancelSession(Request $request, Session $session) {
-        // todo: validate that it is truly the current user's session
+        // todo: NATE validate that it is truly the current user's session
         $request->validate([
             'cancelReasonId' => [
                 'required',
@@ -26,8 +28,8 @@ class SessionController extends Controller
             ]
         ]);
 
-         // TODO: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
-         app(StripeApiController::class)->cancelInvoice($session->id);
+        // TODO: NATE check this: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
+        app(StripeApiController::class)->cancelInvoice($session->id);
 
 
 
@@ -45,6 +47,8 @@ class SessionController extends Controller
         );
     }
 
+    // todo: NATE
+    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
         // todo: validate all the input data before creating a session
         // including:
@@ -58,37 +62,34 @@ class SessionController extends Controller
         // TODO: check if customer has >= 1 payment methods
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards
+            $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
+            $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
+            $course = Course::find($request->input('course'));
+            $sessionType = $request->input('sessionType');
+            $tutorId = $request->input('tutorId');
+            $tutor = User::find($tutorId);
 
-        }else{
-            // no cards: redirect to add payment page
+            $tutorRequest = new TutorRequest();
+            $tutorRequest->hourly_rate = $tutor->hourly_rate;
+            $tutorRequest->session_time_start = $startTime;
+            $tutorRequest->session_time_end = $endTime;
+            $tutorRequest->is_in_person = $sessionType;
+
+            $tutorRequest->tutor()->associate($tutor);
+            $tutorRequest->student()->associate(Auth::user());
+            $tutorRequest->course()->associate($course);
+
+            $tutorRequest->save();
+
+            return response()->json(
+                [
+                    'successMsg' => 'Successfully scheduled the tutor session!',
+                ]
+            );
+        } else{
+            // TODO: no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
 
         }
-
-
-        $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
-        $endTime = TimeFormatter::getTime($request->input('endTime'), $request->input('endTime'));
-        $course = Course::find($request->input('course'));
-        $sessionType = $request->input('sessionType');
-        $tutorId = $request->input('tutorId');
-        $tutor = User::find($tutorId);
-
-        $tutorRequest = new TutorRequest();
-        $tutorRequest->hourly_rate = $tutor->hourly_rate;
-        $tutorRequest->session_time_start = $startTime;
-        $tutorRequest->session_time_end = $endTime;
-        $tutorRequest->is_in_person = $sessionType;
-
-        $tutorRequest->tutor()->associate($tutor);
-        $tutorRequest->student()->associate(Auth::user());
-        $tutorRequest->course()->associate($course);
-
-        $tutorRequest->save();
-
-        return response()->json(
-            [
-                'successMsg' => 'Successfully scheduled the tutor session!',
-            ]
-        );
     }
 
 

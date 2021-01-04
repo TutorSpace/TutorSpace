@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Notification;
 
 class StripeApiController extends Controller
 {
+    // todo: NATE (根据.env里的app_env来决定用那个key)
+    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
         Stripe::setApiKey(env('STRIPE_TEST_KEY'));
     }
@@ -240,11 +242,6 @@ class StripeApiController extends Controller
 
         $customer_id = $this->getCustomerId();
 
-        // TODO: change
-        $stripe = new \Stripe\StripeClient(
-            env('STRIPE_TEST_KEY')
-          );
-
         // get all cards
         $cards = \Stripe\PaymentMethod::all([
             'customer' => $this->getCustomerId(),
@@ -268,9 +265,10 @@ class StripeApiController extends Controller
             ], 400);
         }
 
+        // todo: make sure this works
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
-            $stripe->paymentMethods->detach(
+            app(StripeApiController::class)->paymentMethods->detach(
                 $payment_method_id,
                 []
             );
@@ -368,11 +366,11 @@ class StripeApiController extends Controller
         $transaction = $session->transaction;
         if ($transaction->refund_status != 'user_intiated') {  // Invalid status
             Log::error('Refund status is not user_intiated. Unable to decline.');
-            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
         }
         $transaction->refund_status = 'canceled';
         $transaction->save();
-        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Create a session bonus for the tutor of 'session'
@@ -481,6 +479,9 @@ class StripeApiController extends Controller
                 Log::debug('Transaction refunded: ' . $transaction->id);
 
                 // TODO: send email to user of 'transaction'. Refund succeeded
+
+                // send to user
+                // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefunded());
 
@@ -553,7 +554,7 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => $amount * 10,  // TODO: apply application fee (cent)
+            'application_fee_amount' => $amount * 10,
         ]);
 
         // Save transaction in database

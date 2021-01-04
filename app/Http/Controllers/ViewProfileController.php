@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
 class ViewProfileController extends Controller
 {
     public function index(User $user) {
-
         // todo: update this
-        return view('home.view_profile.index', [
-            'user' => $user,
-            'posts' => Post::all()->take(5)
-        ]);
+        if($user->is_tutor) {
+            return view('home.view_profile.index', [
+                'user' => $user,
+                'posts' => Post::all()->take(5)
+            ]);
+        }
     }
 }

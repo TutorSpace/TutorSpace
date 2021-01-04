@@ -13,7 +13,6 @@ use App\Notifications\InviteToBeTutorNotification;
 class InviteController extends Controller
 {
 
-    // todo: modify the database and the relationship so that we only keep track of the emails instead of the user ids, because non-users can also be invited
     public function inviteToBeTutor(User $user) {
         return $this->inviteHelper($user->email, true);
     }

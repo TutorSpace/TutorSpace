@@ -28,10 +28,10 @@
     <div id="calendar-view-session" class="my-5 calendar"></div>
 
     <p class="mb-2">Price Summary</p>
-    <div class="mb-2 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">&nbsp;&nbsp;$ 14</span></div>
-    <div class="fc-black-2 d-flex flex-row justify-content-between">Hours<span class="fc-theme-color">&nbsp;&nbsp;x 2</span></div>
+    <div class="mb-2 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">$ 14</span></div>
+    <div class="fc-black-2 d-flex flex-row justify-content-between">Hours<span class="fc-theme-color">x 2</span></div>
     <hr class="bc-primary"/>
-    <div class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between">Total <span class="fc-theme-color">&nbsp;&nbsp;$ 28</span></div>
+    <div class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between">Total <span class="fc-theme-color">$ 28</span></div>
 
     <p class="fc-black-2 mt-5 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
     <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
