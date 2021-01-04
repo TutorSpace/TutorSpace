@@ -457,11 +457,11 @@ class User extends Authenticatable
     // add user experience and update level
     // $experienceToAdd : double
     public function addExperience($experienceToAdd){
-        echo $this->experience_points ." ";
-
+        // calculate points
         $this->experience_points += $experienceToAdd;
-        echo $this->experience_points;
+        // update tutor level id in user
         $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+        // save
         $this->save();
     }
 }

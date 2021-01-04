@@ -92,8 +92,8 @@ class testController extends Controller
         // echo Auth::user()->is_tutor;
         // StripeApiController::init();
         // StripeApiController::customerHasCards();
-        Auth::user()->addExperience(11);
-
+        Auth::user()->addExperience(11000);
+        // $this->testTutorLevel(11000);
 
 
 
