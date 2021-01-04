@@ -8,6 +8,7 @@ use App\Message;
 
 use App\Session;
 use App\Chatroom;
+use App\TutorLevel;
 use Carbon\Carbon;
 
 use Illuminate\Support\Str;
@@ -456,7 +457,11 @@ class User extends Authenticatable
     // add user experience and update level
     // $experienceToAdd : double
     public function addExperience($experienceToAdd){
-        echo $this->id;
-        
+        echo $this->experience_points ." ";
+
+        $this->experience_points += $experienceToAdd;
+        echo $this->experience_points;
+        $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+        $this->save();
     }
 }

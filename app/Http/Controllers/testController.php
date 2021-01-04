@@ -17,7 +17,7 @@ use App\Bookmark;
 use App\Chatroom;
 use App\Transaction;
 use App\PaymentMethod;
-
+use App\TutorLevel;
 use Carbon\Carbon;
 
 use App\TutorRequest;
@@ -100,6 +100,9 @@ class testController extends Controller
 
 
 
+    }
+    public function testTutorLevel($experience){
+        TutorLevel::getLevelFromExperience($experience);
     }
     public function updateVerifiedCourse(){
         // ->join("verified_courses", function($join){

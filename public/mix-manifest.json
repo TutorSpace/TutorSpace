@@ -10,6 +10,7 @@
     "/js/home/index.js": "/js/home/index.js",
     "/js/home/profile.js": "/js/home/profile.js",
     "/js/home/tutor-sessions.js": "/js/home/tutor-sessions.js",
+    "/js/notification/index.js": "/js/notification/index.js",
     "/js/search/index.js": "/js/search/index.js",
     "/js/view_profile/index.js": "/js/view_profile/index.js"
 }
