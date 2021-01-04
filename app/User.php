@@ -464,4 +464,10 @@ class User extends Authenticatable
         // save
         $this->save();
     }
+
+    // return tutor level bonus rate of current user
+    // return: double
+    public function getUserBonusRate(){
+        return $this->tutorLevel()->get()[0]->bonus_rate;
+    }
 }
