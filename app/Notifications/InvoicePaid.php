@@ -7,18 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+use App\Session;
+
 class InvoicePaid extends Notification
 {
     use Queueable;
+
+    private Session $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Session $session)
     {
-        //
+        $this->session = $session;
     }
 
     /**
@@ -41,9 +45,9 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    // ->line('The introduction to the notification.')
-                    // ->action('Notification Action', url('/'))
-                    ->line('Invoice Paid.');
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . date('m/d/Y', $this->session->session_time_start) . '.')
+                    ->line('Thank you for using our platform!');
     }
 
     /**
