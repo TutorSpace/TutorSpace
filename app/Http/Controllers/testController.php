@@ -15,7 +15,9 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
-
+use App\Transaction;
+use App\PaymentMethod;
+use App\TutorLevel;
 use Carbon\Carbon;
 
 use App\TutorRequest;
@@ -23,16 +25,19 @@ use Facades\App\Post;
 use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
+use App\Events\NewChatroom;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EmailVerification;
-use Illuminate\Support\Facades\Notification;
 
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
+
+use App\Http\Controllers\payment\StripeApiController;
 
 class testController extends Controller
 {
@@ -41,20 +46,91 @@ class testController extends Controller
         // $this->middleware('auth');
     }
     public function action(Request $request){
-        $tutor_verification_file = $request->file('file');
+        // $student_stripe_payment_id = PaymentMethod::where("user_id",1)->get()[0]->stripe_customer_id;
+        // echo($student_stripe_payment_id);
+        // $invoiceId = Transaction::where("session_id",1)->get()[0]->id;
+        // echo $invoiceId;
 
-        Notification::route('mail', "shuaiqin@usc.edu")
-        ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
-        echo "success";
+        // $transaction = new Transaction();
+        // $transaction->session()->associate(1);
+        // $transaction->user_id = Auth::user()->id;
+        // $transaction->payment_intent_id = "111";
+        // $transaction->destination_account_id ="222";
+        // $transaction->amount = 100;
+        // $transaction->is_successful = 0;
+        // $transaction->is_cancelled = 0;
+        // $transaction->invoice_id = "111";
+        // $transaction->save();
+        // dd($transaction);
+
+
+
+
+
+        // Transaction::sendUnpaidInvoices(24);
+
+
+
+        // $hoursAfterLastUpdate = "48";
+        // $invoicesToSend = Transaction::selectRaw("invoice_id, TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) as time")
+        // ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
+        // ->where("invoice_status","open")
+        // ->get();
+
+
+        // forEach ($invoicesToSend as $curInvoice) {
+        //     echo $curInvoice->invoice_id;
+        // }
+
+
+        // echo($invoicesToSend);
+
+
+
+
+        // $this->finalizeInvoice(0);
+        // echo Auth::user()->is_tutor;
+        // StripeApiController::init();
+        // StripeApiController::customerHasCards();
+
+        $user = Auth::user();
+        $user->getUserBonusRate();
+
+        
+        // $this->testTutorLevel(11000);
+
+
+
+
+
 
     }
+    public function testTutorLevel($experience){
+        TutorLevel::getLevelFromExperience($experience);
+    }
+    public function updateVerifiedCourse(){
+        // ->join("verified_courses", function($join){
+        //     $join->on("verified_courses.course_id","=","course_user.course_id")
+        // ->on("verified_courses.user_id","=","course_user.user_id");
+        // })
+        // ->distinct();
+
+        // //verified users update
+        // User::whereIn('id',$verifiedUsersQuery)->update([
+        //     'is_tutor_verified' => '1'
+        // ]);
+
+        // // unverified users update
+        // User::whereNotIn('id',$verifiedUsersQuery)->update([
+        //     'is_tutor_verified' => '0'
+        // ]);
+    }
+
     public function index(Request $request) {
 
 
+        // broadcast(new NewChatroom(User::find(2)));
         return view('test');
-
-
-
     }
 
     public function index2(Request $request) {

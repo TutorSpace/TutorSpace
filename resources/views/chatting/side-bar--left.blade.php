@@ -10,11 +10,20 @@
         @php
             $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
         @endphp
-        @include('chatting.side-bar-chatting-msg', [
-            'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
-            'time' => $chatroom->getLatestMessageTime()->diffForHumans(),
-            'user' => App\User::find($otherUserId),
-            'message' => $chatroom->getLatestMessage()
-        ])
+        @if ($chatroom->hasMessages())
+            @include('chatting.side-bar-chatting-msg', [
+                'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
+                'time' => $chatroom->getLatestMessageTime(),
+                'user' => App\User::find($otherUserId),
+                'message' => $chatroom->getLatestMessage()
+            ])
+        @elseif($chatroom->creator_user_id == Auth::id())
+            @include('chatting.side-bar-chatting-msg', [
+                'unRead' => false,
+                'time' => '',
+                'user' => App\User::find($otherUserId),
+                'message' => ''
+            ])
+        @endif
     @endforeach
 </ul>

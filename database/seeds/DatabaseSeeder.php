@@ -19,10 +19,12 @@ class DatabaseSeeder extends Seeder
             TutorLevelSeeder::class,
             SchoolYearSeeder::class,
             UserSeeder::class,
+            AdminSeeder::class,
             ReportReasonSeeder::class,
             ReviewSeeder::class,
             AvailableTimeSeeder::class,
             UpcomingSessionSeeder::class,
+            PastSessionSeeder::class,
 
             PostTypeSeeder::class,
             PostSeeder::class,
@@ -31,7 +33,7 @@ class DatabaseSeeder extends Seeder
             TutorRequestSeeder::class,
             SessionCancelReasonSeeder::class,
             MessageSeeder::class,
-            CourseVerificationSeeder::class,
+            VerifiedCourseSeeder::class,
         ]);
     }
 }

@@ -9,7 +9,8 @@
         scatterGraphLayout.height = height;
         gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-        Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+        // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+        
     }
 
     var postViewCntData = {
@@ -118,4 +119,58 @@
     $(window).resize(function() {
         drawGraph();
     });
+    
+
+
+
+
+    var ratingChart = document.getElementById('rating-chart');
+    console.log(ratingChart)
+    data = {
+        datasets: [{
+            // 5 star rating: {{ Auth::user()->getFiveStarReviewPercentage() }}
+            data: [0.7 , {{1-Auth::user()->getFiveStarReviewPercentage() }}],
+            backgroundColor: [
+                '#dc3545',
+                '#FFBC00',
+            ]
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: [
+            'Five Star Rating',
+            'Other Ratings',
+        ],
+        
+    };
+
+    const ratingChartOption = {
+        position: 'right',
+
+    }
+    var ratingChart = new Chart(ratingChart, {
+        type: 'doughnut',
+        data: data,
+        options: {
+            legend: {
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Tutor Session Ratings (percentage)',
+                // lineHeight: 0.1,
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+            aspectRatio: 1
+        },
+        
+    });
+
 </script>

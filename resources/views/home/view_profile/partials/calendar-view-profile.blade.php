@@ -39,24 +39,31 @@ let calendarOptions = {
     },
     selectAllow: function(selectionInfo) {
         let startTime = moment(selectionInfo.start);
-        if(startTime.isBefore(moment()))
-            return false;
+        if(startTime.isBefore(moment())) return false;
+        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+
         return true;
     },
     select: function (selectionInfo) {
-        let startTime = selectionInfo.start;
-        let endTime = selectionInfo.end;
-        // showAvailableTimeForm(startTime, endTime);
+        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+
+        startTime = moment(selectionInfo.start);
+        endTime = moment(selectionInfo.end);
+        // if the modal appeared
+        if($('.calendar-details')[0]) {
+            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
+        } else {
+            $('#tutor-profile-request-session').click();
+        }
+
     },
     eventClick: function (eventClickInfo) {
         eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate
         if (eventClickInfo.event.url) {
             window.open(eventClickInfo.event.url);
         }
-        if(eventClickInfo.event.extendedProps.type == 'available-time') {
-            // showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
-        }
-
     },
     eventTimeFormat: {
         hour: 'numeric',

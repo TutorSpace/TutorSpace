@@ -5,7 +5,7 @@ window.toastr = require('toastr');
 window.ColorHash = require('color-hash');
 
 window.bootbox = require('bootbox');
-
+window.Chart = require('chart.js');
 window.moment = require('moment');
 window.Pikaday = require('pikaday');
 require('timepicker');
@@ -56,6 +56,12 @@ $(document).ready(function(){
     let pathname = window.location.pathname;
     if(pathname.startsWith('/forum')) {
         $('nav .nav__item.link-forum').addClass('active');
+    } else if(pathname.startsWith('/search')) {
+        $('nav .nav__item.link-find-tutor').addClass('active');
+    } else if(pathname.startsWith('/help-center')) {
+        $('nav .nav__item.link-support').addClass('active');
+    } else if(pathname.startsWith('/invite')) {
+        $('nav .nav__item.link-invite').addClass('active');
     }
 
     // ===================== for nav animation ========================

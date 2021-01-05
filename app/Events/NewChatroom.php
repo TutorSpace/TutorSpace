@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\User;
 use App\Chatroom;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -16,16 +17,16 @@ class NewChatroom implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $chatroom;
+    public $otherUser;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Chatroom $chatroom)
+    public function __construct($otherUser)
     {
-        $this->chatroom = $chatroom;
+        $this->otherUser = $otherUser;
     }
 
     /**
@@ -35,11 +36,23 @@ class NewChatroom implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel($this->chatroom->getChannelName());
+        return new PrivateChannel(Chatroom::getChannelName());
     }
 
     public function broadcastAs()
     {
         return 'NewChatroom';
+    }
+
+        /**
+     * Get the data to broadcast.
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'otherUserId' => $this->otherUser->id,
+        ];
     }
 }

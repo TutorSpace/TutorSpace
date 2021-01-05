@@ -13,6 +13,8 @@ use Carbon\Carbon;
 use App\SchoolYear;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -180,9 +182,10 @@ class HomeController extends Controller
 
     public function update(Request $request) {
         $currUser = Auth::user();
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'first-major' => [
-                Rule::requiredIf($currUser->is_tutor),
+                'nullable',
                 'required_with:second-major',
                 'exists:majors,major',
                 'different:second-major',
@@ -200,16 +203,23 @@ class HomeController extends Controller
                 'size:50'
             ],
             "gpa" => [
-                Rule::requiredIf($currUser->is_tutor),
+                'nullable',
                 'numeric',
                 'min:1',
                 'max:4'
             ],
             "school-year" => [
-                Rule::requiredIf($currUser->is_tutor),
+                "nullable",
                 'exists:school_years,school_year'
-            ]
+            ],
         ]);
+        $validator->sometimes(['first-major','gpa','school-year'], 'required', function($input) use($currUser){
+            return $currUser->is_tutor;
+        });
+
+        $validator->validate();
+
+        
 
         foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
             $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
@@ -229,6 +239,18 @@ class HomeController extends Controller
         return redirect()->route('home.profile')->with('successMsg', 'Successfully updated your profile.');
     }
 
+    public function updateHourlyRate(Request $request) {
+        $request->validate([
+            'hourly-rate' => [
+                'required',
+                'numeric',
+                'min:10',
+                'max:50'
+            ]
+        ]);
 
+        Auth::user()->hourly_rate = $request->input('hourly-rate');
+        Auth::user()->save();
+    }
 
 }

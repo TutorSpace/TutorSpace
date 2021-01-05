@@ -15,10 +15,11 @@ class CreateInviteUserTable extends Migration
     {
         Schema::create('invite_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('invited_user_id');
-            $table->primary(array('user_id', 'invited_user_id'));
+            $table->string('invited_user_email');
+            $table->primary(array('user_id', 'invited_user_email'));
+            $table->string('invite_code');
+            $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('invited_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

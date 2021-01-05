@@ -8,6 +8,7 @@ use App\Message;
 
 use App\Session;
 use App\Chatroom;
+use App\TutorLevel;
 use Carbon\Carbon;
 
 use Illuminate\Support\Str;
@@ -48,6 +49,9 @@ class User extends Authenticatable
         $this->notify(new CustomResetPasswordNotification($token, request()->is_tutor));
     }
 
+    public function getChattingRoute() {
+        return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
+    }
 
     public function getIntroduction() {
         $secondMajor = $this->secondMajor;
@@ -200,15 +204,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'bookmark_user', 'bookmarked_user_id', 'user_id');
     }
 
-    // return users that this user invited
-    public function invitedUsers() {
-        return $this->belongsToMany('App\User', 'invite_user', 'user_id', 'invited_user_id');
-    }
-
-    // return users who invited the current user
-    public function invitedByUsers() {
-        return $this->belongsToMany('App\User', 'invite_user', 'invited_user_id', 'user_id');
-    }
     public function getRecommendedTutorsCacheKey() {
         return self::RECOMMENDED_TUTORS_CACHE_KEY . ".$this->id";
     }
@@ -339,13 +334,21 @@ class User extends Authenticatable
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
     }
 
-
-    // whenever calling this function, we need to turn the ones that are outdated to PAST
     public function upcomingSessions() {
-        return $this
-                    ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id')
+        return $this->sessions()
                     ->where('is_upcoming', true)
                     ->where('is_canceled', false);
+    }
+
+    public function pastSessions() {
+        return $this->sessions()
+                    ->where('is_upcoming', false)
+                    ->where('is_canceled', false);
+    }
+
+    public function sessions() {
+        return $this
+                    ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id');
     }
 
     public function getMessages($otherUser) {
@@ -354,11 +357,14 @@ class User extends Authenticatable
         })->orWhere(function($query) use ($otherUser) {
             $query->where('to', $this->id)->where('from', $otherUser->id);
         })->get();
-
     }
 
     public function getChatrooms() {
-        return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->get();
+        return Chatroom::where('user_id_1', $this->id)->orWhere('user_id_2', $this->id)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function isAdmin() {
+        return Admin::where('email', $this->email)->exists();
     }
 
 
@@ -368,31 +374,8 @@ class User extends Authenticatable
 
 
 
-    public function pastSessions() {
-        if($this->is_tutor) {
-            // the returned information is about the student
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-                ->join('users', 'sessions.student_id', '=', 'users.id')
-                ->where('tutor_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->get();
 
-            return $sessions;
-        }
-        else {
-            // the returned information is about the tutor
-            $sessions = Session::select(DB::raw('sessions.id as session_id, is_course, course_id, subject_id, date, start_time, location, end_time, users.*'))
-                ->join('users', 'sessions.tutor_id', '=', 'users.id')
-                ->where('student_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->get();
-
-            return $sessions;
-        }
-    }
-
+    // ========================= below are legacy code =============
     public function pastTutors($num) {
         $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
                 ->join('users', 'sessions.tutor_id', '=', 'users.id')
@@ -408,11 +391,11 @@ class User extends Authenticatable
     }
 
     public static function updateVerifyStatus() {
-                // get id of verified users
+        // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
-        ->join("course_verifications", function($join){
-            $join->on("course_verifications.course_id","=","course_user.course_id")
-        ->on("course_verifications.user_id","=","course_user.user_id");
+        ->join("verified_courses", function($join){
+            $join->on("verified_courses.course_id","=","course_user.course_id")
+        ->on("verified_courses.user_id","=","course_user.user_id");
         })
         ->distinct();
 
@@ -425,7 +408,6 @@ class User extends Authenticatable
         User::whereNotIn('id',$verifiedUsersQuery)->update([
             'is_tutor_verified' => '0'
         ]);
-
     }
 
     // check whether the user with $user_id is bookmarked by the current user
@@ -469,6 +451,23 @@ class User extends Authenticatable
 
     // Payments
     public function paymentMethod() {
-        // return $this->belongsTo('App\PaymentMethod', 'email', 'email')->withDefault();
+        return $this->hasOne('App\PaymentMethod')->withDefault();
+    }
+
+    // add user experience and update level
+    // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
+    public function addExperience($experienceToAdd){
+        // calculate points
+        $this->experience_points += $experienceToAdd;
+        // update tutor level id in user
+        $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+        // save
+        $this->save();
+    }
+
+    // return tutor level bonus rate of current user
+    // return: double
+    public function getUserBonusRate(){
+        return $this->tutorLevel()->get()[0]->bonus_rate;
     }
 }

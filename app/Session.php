@@ -24,6 +24,14 @@ class Session extends Model
         return $this->belongsTo('App\SessionCancelReason', 'cancel_reason_id');
     }
 
+    public function transaction() {
+        return $this->hasOne('App\Transaction')->withDefault();
+    }
+
+    public function sessionBonus() {
+        return $this->hasOne('App\SessionBonus');
+    }
+
     // IMPORTANT: must run scheduler in prod env
     public function changeSessionStatusOnExpiry() {
         $sessions = Session::all();

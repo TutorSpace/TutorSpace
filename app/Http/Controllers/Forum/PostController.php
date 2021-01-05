@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
 
+
+use Illuminate\Support\Facades\Log;
+
+
 class PostController extends Controller
 {
     private static $POSTS_PER_PAGE = 5;
@@ -84,6 +88,9 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
+
+        $oldPostData = session()->get('oldPostData');
+
         return view('forum.create', [
             'postDraft' => PostDraft::firstOrNew([
                 'user_id' => Auth::user()->id,
@@ -91,7 +98,8 @@ class PostController extends Controller
                 'post_type_id' => 0
             ]),
             'trendingTags' => Tag::getTrendingTags(),
-            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith()
+            'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
+            'oldPostData' => $oldPostData,
         ]);
     }
 
@@ -103,6 +111,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // store old form data in session
+        $oldPostData = [
+            'post-type'=>$request['post-type'],
+            'post-title'=>$request["post-title"],
+            'post-content'=>$request["post-content"],
+            'tags'=>$request["tags"],
+        ];
+        $request->session()->flash('oldPostData', $oldPostData);
+        
+        // validate
         $request->validate([
             'post-type' => [
                 'required',
@@ -157,6 +175,16 @@ class PostController extends Controller
     }
 
     public function storeAsDraft(Request $request) {
+        // store old form data in session
+        $oldPostData = [
+            'post-type'=>$request['post-type'],
+            'post-title'=>$request["post-title"],
+            'post-content'=>$request["post-content"],
+            'tags'=>$request["tags"],
+        ];
+        $request->session()->flash('oldPostData', $oldPostData);
+
+        // validate
         $request->validate([
             'post-type' => [
                 'required',

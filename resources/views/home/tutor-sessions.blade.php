@@ -60,37 +60,36 @@ bg-student
                         <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
                     </div>
                     @if (Auth::user()->is_tutor)
-                    @php
-                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
-                    @endphp
-                    @if ($upcomingSessions->count() > 0)
-                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
-                            @include('home.partials.upcoming_session_card', [
-                                'session' => $upcomingSessions->get($i),
-                                'user' => $upcomingSessions->get($i)->student,
-                                'hidden' => $i > 1
-                            ])
-                        @endfor
+                        @php
+                            $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
+                        @endphp
+                        @if ($upcomingSessions->count() > 0)
+                            @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                                @include('home.partials.upcoming_session_card', [
+                                    'session' => $upcomingSessions->get($i),
+                                    'user' => $upcomingSessions->get($i)->student,
+                                    'hidden' => $i > 1
+                                ])
+                            @endfor
+                        @else
+                            <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                        @endif
                     @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                        @php
+                            $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
+                        @endphp
+                        @if ($upcomingSessions->count() > 0)
+                            @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                                @include('home.partials.upcoming_session_card', [
+                                    'session' => $upcomingSessions->get($i),
+                                    'user' => $upcomingSessions->get($i)->tutor,
+                                    'hidden' => $i > 1
+                                ])
+                            @endfor
+                        @else
+                            <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                        @endif
                     @endif
-                @else
-                    @php
-                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
-                    @endphp
-                    @if ($upcomingSessions->count() > 0)
-                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
-                            @include('home.partials.upcoming_session_card', [
-                                'session' => $upcomingSessions->get($i),
-                                'user' => $upcomingSessions->get($i)->tutor,
-                                'hidden' => $i > 1
-                            ])
-                        @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
-                    @endif
-                @endif
-
                 </div>
             </div>
         </div>
@@ -101,10 +100,22 @@ bg-student
                     <h5>Upcoming Sessions</h5>
                     {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
                 </div>
-                <div class="info-boxes info-boxes--sm-card past-sessions">
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
-                    @include('home.partials.upcoming_session_box')
+                <div class="info-boxes info-boxes--sm-card">
+                    @foreach (
+                    Auth::user()
+                        ->upcomingSessions()
+                        ->with([
+                            Auth::user()->is_tutor ? 'student' : 'tutor',
+                            'course'
+                        ])
+                        ->get()
+                            as
+                        $session
+                    )
+                    @include('home.partials.upcoming_session_box', [
+                        'session' => $session
+                    ])
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -144,51 +155,43 @@ bg-student
                 </div>
                 <div class="info-boxes info-boxes--sm-card past-sessions">
                     @if(Auth::user()->is_tutor)
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(1),
-                            'status' => 'pending',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'completed',
-                            'currUser' => Auth::user()
-                        ])
+                        @foreach (
+                            Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'student',
+                                    'course'
+                                ])
+                                ->get()
+                                as
+                            $session
+                            )
+                            @include('home.partials.past_session', [
+                                'user' => $session->student,
+                                'status' => 'pending', // todo: status can be either 'pending' or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
+                            ])
+                        @endforeach
                     @else
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(1),
-                            'status' => 'paid',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'unpaid',
-                            'currUser' => Auth::user()
-                        ])
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'unpaid',
-                            'currUser' => Auth::user()
-                        ])
-
-                        @include('home.partials.past_session', [
-                            'user' => App\User::find(2),
-                            'status' => 'paid',
-                            'currUser' => Auth::user()
-                        ])
+                        @foreach (
+                            Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'tutor',
+                                    'course'
+                                ])
+                                ->get()
+                                as
+                            $session
+                            )
+                            @include('home.partials.past_session', [
+                                'user' => $session->tutor,
+                                'status' => 'paid', // todo: status can be 'paid', 'unpaid', or 'completed'
+                                'currUser' => Auth::user(),
+                                'course' => $session->course
+                            ])
+                        @endforeach
                     @endif
                 </div>
             </div>

@@ -3,12 +3,13 @@
 namespace App\Providers;
 
 use App\User;
-use Illuminate\Support\Facades\Gate;
+use App\Chatroom;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
 use App\CustomClass\TimeOverlapManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Log;
-use Carbon\Carbon;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -42,14 +43,16 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_tutor && $isAvailable;
         });
 
-        Gate::define('add-tutor-sesssion', function ($user, $tutorRequest) {
+        Gate::define('accept-tutor-request', function ($user, $tutorRequest) {
             if($user->id != $tutorRequest->tutor_id || $tutorRequest->session_time_start <= Carbon::now()->addMinutes(10))
                 return Response::deny('This session conflicts with an existing session!');
+
             $isAvailable = true;
             foreach($user->upcomingSessions as $session) {
                 if(!TimeOverlapManager::noTimeOverlap($tutorRequest->session_time_start, $tutorRequest->session_time_end, $session->session_time_start, $session->session_time_end)) $isAvailable = false;
             }
-            return $user->is_tutor && $isAvailable? Response::allow() : Response::deny('This session conflicts with an existing session!');
+
+            return $user->is_tutor && $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
 

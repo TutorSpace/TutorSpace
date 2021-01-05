@@ -2,24 +2,25 @@
 
 namespace App\Events;
 
+use App\User;
 use App\Message;
+use Carbon\Carbon;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
+
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
-
-use Carbon\Carbon;
 
 class NewMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
-
     /**
      * Create a new event instance.
      *
@@ -58,7 +59,13 @@ class NewMessage implements ShouldBroadcastNow
             'from' => $this->message->from,
             'to' => $this->message->to,
             'message' => $this->message->message,
-            // 'created_at' => $this->message->created_at->diffForHumans(),
+            'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at)),
+            'imgUrl' => Storage::url(User::find($this->message->from)->profile_pic_url),
+            'chatroomView' => view('chatting.side-bar-chatting-msg', [
+                'user' => User::find($this->message->from),
+                'message' => $this->message->message,
+                'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at))
+            ])->render(),
         ];
     }
 }

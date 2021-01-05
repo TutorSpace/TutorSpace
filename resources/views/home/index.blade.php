@@ -57,7 +57,7 @@ bg-student
 
         <div class="container col-layout-3 col-layout-3--hidden">
             <div class="row">
-                <h5 class="mb-2 w-100">New Notifications</h5>
+                <h5 class="mb-2 w-100">Forum Notifications</h5>
                 <div class="info-boxes">
                     @include('home.partials.notification', [
                         'isCancellationNotification' => true,
@@ -174,8 +174,10 @@ bg-student
                         <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
                     <div class="forum-data">
+                        {{-- TODO: NATE (PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
+                        {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">x</a>
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>
@@ -233,7 +235,7 @@ bg-student
         </div>
         <div class="home__side-bar__notifications">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                <span class="mb-0 ws-no-wrap">New Notifications</span>
+                <span class="mb-0 ws-no-wrap">Forum Notifications</span>
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
             </div>
             <div class="notifications--sidebar">
@@ -266,6 +268,7 @@ bg-student
             </div>
         </div>
 
+        @if (!Auth::user()->is_tutor)
         <div class="home__side-bar__bookmarked-users">
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
@@ -283,6 +286,7 @@ bg-student
                 @endforelse
             </div>
         </div>
+        @endif
 
     </section>
 </div>

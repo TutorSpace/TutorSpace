@@ -25,16 +25,10 @@ bg-student
 
 <main class="container view-profile p-relative">
     @if ($user->is_tutor)
-    <div class="row back-container">
-        <a class="btn btn-lg btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('posts.index')) }}">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-            </svg>
-            Back
-        </a>
-    </div>
     <div class="row view-profile__header-container">
-        @include('home.view_profile.partials.header')
+        @include('home.view_profile.partials.header', [
+            'user' => $user
+        ])
     </div>
 
     <div class="row">
@@ -97,18 +91,14 @@ bg-student
 
         <div class="col-3 pl-5 pr-0">
             <h5 class="mb-3">Courses He Teaches</h5>
+            @php
+                $courses = $user->courses;
+            @endphp
+            @foreach ($courses as $course)
             <p class="view-profile__course">
-                MATH 115
+                {{ $course->course }}
             </p>
-            <p class="view-profile__course">
-                MATH 226
-            </p>
-            <p class="view-profile__course">
-                CSCI 104
-            </p>
-            <p class="view-profile__course">
-                BUAD 304
-            </p>
+            @endforeach
         </div>
     </div>
 
@@ -123,13 +113,26 @@ bg-student
 @endsection
 
 @section('js')
+<script>
+    let otherUserId = "{{ $user->id }}";
+    let otherUserHourlyRate = "{{ $user->hourly_rate }}";
+    let courses = [
+        @foreach($courses as $course)
+        {
+            id: "{{ $course->id }}",
+            course: "{{ $course->course }}"
+        },
+        @endforeach
+    ]
+</script>
 
 @if ($user->is_tutor)
-    @include('home.partials.calendar-view-profile')
+    @include('home.view_profile.partials.calendar-view-profile')
 @endif
 
 
 @include('session.session-js')
 
 <script src="{{ asset('js/view_profile/index.js') }}"></script>
+
 @endsection

@@ -1,0 +1,180 @@
+.payment-cards {
+    $bank-card-height: 20rem;
+    $bank-card-width: calc(#{$bank-card-height}*1.75);
+    $bank-card-border-radius: 1rem;
+    $gray-overlay-z-index: 5;
+    $buttons-z-index: 10;
+
+    @mixin bank-card-dimension-style {
+        position: relative;
+        padding: 2.75rem;
+        min-width: calc(20rem*1.75);
+        max-width: $bank-card-width;
+        min-height: 20rem;
+        height: $bank-card-height;
+        flex-wrap: wrap;
+        border-radius: $bank-card-border-radius;
+    }
+
+    width: 100%;
+    display: grid;
+    font-size: 1.25rem;
+    color: $color-white;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+
+    @include respond(md) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .bank-card {
+
+        @include bank-card-dimension-style;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .overlay {
+            display: none;
+            width: 100%;
+            position: absolute;
+            border-radius: $bank-card-border-radius;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 15, 15, 0.5);
+        }
+
+        &-row-one {
+            height: 35%;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        &-row-two {
+            height: 30%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        &-row-three {
+            height: 30%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .brand {}
+
+        .number {
+            font-size: 2rem;
+
+            span {
+                padding-left: 2rem;
+            }
+
+        }
+
+        .card-holder {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expiration {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &:hover {
+            .bank-card-btns {
+                display: flex;
+                z-index: $buttons-z-index;
+            }
+
+            .overlay {
+                display: block;
+                transition: display 2s;
+                z-index: $gray-overlay-z-index;
+            }
+        }
+
+        // buttons, only show when hover
+        &-btns {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            /* position the top  edge of the element at the middle of the parent */
+            left: 50%;
+            /* position the left edge of the element at the middle of the parent */
+            transform: translate(-50%, -50%);
+            position: absolute;
+
+            button {
+                border-radius: 20px;
+                font-size: 1.5rem;
+                outline: none;
+                margin: 1rem;
+                width: 40%;
+                height: 4rem;
+            }
+        }
+
+        .btn-delete {
+            background-color: white;
+            color: red;
+
+        }
+
+        .btn-set-default {
+            background-color: rgb(103, 71, 231);
+            color: white;
+        }
+
+    }
+
+    .user-info {
+        font-weight: bold;
+        font-size: 1.3rem;
+    }
+
+    // add payment button
+    .btn-add-payment {
+        @include bank-card-dimension-style;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.25rem;
+        color: #626262;
+        border: #9A9898 dotted 1px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    // background colors:
+    // default
+    .bg-default {
+        background: linear-gradient(rgba(253, 192, 101, 1), rgba(189, 150, 49, 1));
+    }
+
+    // not default
+    .bg-non-default {
+        background: linear-gradient(rgba(131, 101, 253, 1), rgba(77, 49, 189, 1));
+    }
+
+    .bg-add-card {
+        background: $color-white-dark-5;
+    }
+
+    // helper class
+
+}

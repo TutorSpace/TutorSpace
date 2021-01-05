@@ -10,6 +10,9 @@ $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
+$hourlyRate = $tutorRequest->hourly_rate;
+$sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
+$price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div>
@@ -36,11 +39,15 @@ $student = App\User::find($tutorRequest->student_id);
         </div>
         <div class="course">
             <span class="title">Course</span>
-            <span class="content">{{App\Course::find($tutorRequest->course_id)->course}}</span>
+            <span class="content">{{ $tutorRequest->course->course }}</span>
         </div>
         <div class="session-type">
             <span class="title">Type</span>
-            <span class="content">In-person</span>
+            <span class="content">{{ $tutorRequest->is_in_person ? 'In Person' : 'Online' }}</span>
+        </div>
+        <div class="price hidden">
+            <span class="title">Price</span>
+            <span class="content">{{ $price }}</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
@@ -105,7 +112,7 @@ $student = App\User::find($tutorRequest->student_id);
                         <div class="flex-100"></div>
                         <div class="price">
                             <span class="title">Price</span>
-                            <span class="content">$13.5</span>
+                            <span class="content"></span>
                         </div>
                     </div>
                 </div>
@@ -120,8 +127,15 @@ $student = App\User::find($tutorRequest->student_id);
                     <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
-                    <button class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5">Decline</button>
-                    <button class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">Confirm Tutor Session</button>
+                    <button
+                        class="btn btn-outline-primary tutor-request-modal__content__confirm--decline btn-animation-y-sm mr-5"
+                        id="btn-decline-tutor-session">
+                        Decline
+                    </button>
+                    <button
+                        class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">
+                        Confirm Tutor Session
+                    </button>
                 </div>
             </div>
         </div>

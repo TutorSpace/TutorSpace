@@ -1,5 +1,5 @@
 <div class="chatting__content__header">
-    <a class="user-name" href="#">
+    <a class="user-name" href="{{ $user->getChattingRoute() }}">
         {{ $user->first_name }} {{ $user->last_name }}
     </a>
     <span class="other-info">
@@ -15,9 +15,9 @@
 <div class="chatting__content__messages">
     @foreach (Auth::user()->getMessages($user) as $message)
         @include('chatting.chat-message', [
-            'myMessage' => $message->from == Auth::user()->id,
+            'myMessage' => $message->from == Auth::id(),
             'content' => $message->message,
-            'time' => $message->created_at->diffForHumans(),
+            'time' => $message->created_at,
             'user' => $user
         ])
     @endforeach

@@ -8,20 +8,22 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class InviteToBeTutorNotification extends Notification implements ShouldQueue
+class InviteToBeTutorNotification extends Notification
 {
     use Queueable;
 
     public $user;
+    public $inviteCode;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $inviteCode)
     {
         $this->user = $user;
+        $this->inviteCode = $inviteCode;
     }
 
     /**
@@ -32,7 +34,7 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -44,9 +46,10 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->greeting('Hi there,')
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
-                    ->action('View the notification', url('/'))
+                    ->line('Please register to be a tutor and earn your bonus!')
+                    ->action('Register Here', url('/'))
                     ->line('Thank you for using TutorSpace!');
     }
 
@@ -58,8 +61,6 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-        return [
-            'user' => $this->user
-        ];
+
     }
 }

@@ -13,15 +13,16 @@ class CreatePaymentMethodsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('payment_methods', function (Blueprint $table) {
-        //     $table->bigIncrements('id')->unique();
-        //     $table->string('email', 64);
-        //     $table->string('stripe_account_id');
-        //     $table->string('stripe_customer_id');
-        //     $table->timestamps();
+        Schema::create('payment_methods', function (Blueprint $table) {
+            $table->bigIncrements('id')->unique();
+            $table->unsignedBigInteger('user_id');
 
-        //     $table->foreign('email')->references('email')->on('users')->onDelete('cascade')->onUpdate('cascade');
-        // });
+            $table->string('stripe_account_id');
+            $table->string('stripe_customer_id');
+            $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        });
     }
 
     /**
