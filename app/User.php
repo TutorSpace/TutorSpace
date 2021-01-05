@@ -455,7 +455,7 @@ class User extends Authenticatable
     }
 
     // add user experience and update level
-    // $experienceToAdd : double
+    // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
         // calculate points
         $this->experience_points += $experienceToAdd;

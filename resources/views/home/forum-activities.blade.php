@@ -48,9 +48,9 @@ bg-student
                     {{-- <div class="graph-2">
                         <div id="gauge-chart"></div>
                     </div> --}}
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    
                     <div class="graph-2">
-                        <div id="gauge-chart"></div>
+                        <canvas id="rating-chart" width="400" height="400"></canvas>
                     </div>
                 </div>
             </div>
