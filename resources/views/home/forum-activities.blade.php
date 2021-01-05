@@ -50,7 +50,7 @@ bg-student
                     </div> --}}
                     
                     <div class="graph-2">
-                        <canvas id="rating-chart" width="400" height="400"></canvas>
+                        <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
                 </div>
             </div>
