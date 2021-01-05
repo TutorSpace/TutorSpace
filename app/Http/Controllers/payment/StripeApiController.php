@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\PayoutFailed;
+use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
 
 class StripeApiController extends Controller
@@ -463,9 +465,11 @@ class StripeApiController extends Controller
                 $transaction->invoice_status = 'paid';
                 $transaction->save();
 
-                // TODO: send email
-                Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new InvoicePaid());
+                // TODO: send email to user
+                $user = $transaction->session->student;
+                $user->notify(new InvoicePaid());
+                // Notification::route('mail', 'tutorspaceusc@gmail.com')
+                // ->notify(new InvoicePaid());
 
                 break;
 
@@ -482,8 +486,8 @@ class StripeApiController extends Controller
 
                 // send to user
                 // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
-                Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new ChargeRefunded());
+                $user = $transaction->session->student;
+                $user->notify(new ChargeRefunded());
 
                 break;
 
@@ -497,17 +501,24 @@ class StripeApiController extends Controller
 
                 Log::debug('Transaction refund failed: ' . $transaction->id);
 
-                // TODO: send email to user of 'transaction'. Refund failed for 'failure_reason'
+                // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
+                $user = $transaction->session->student;
+                $user->notify(new ChargeRefunded());
+
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefundUpdated());
+
                 break;
 
             case 'payout.paid':
                 $stripe_account_id = $event->account;
+                $payout = $event->data->object;
+                
                 $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
-                $user = $payment_method->user();
+                $user = $payment_method->user;
 
                 // TODO: send email to 'user'. Payout is sent to bank account
+                $user->notify(new PayoutPaid());
 
                 break;
 
@@ -515,7 +526,14 @@ class StripeApiController extends Controller
                 $stripe_account_id = $event->account;
                 $payout = $event->data->object;
 
-                // TODO: send email to 'user'. Payout failed. They should update bank info
+                $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
+                $user = $payment_method->user;
+
+                // TODO: send email to 'user' and us. Payout failed. They should update bank info
+                $user->notify(new PayoutFailed());
+
+                Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new PayoutFailed());
 
                 break;
 
