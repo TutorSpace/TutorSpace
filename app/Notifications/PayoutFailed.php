@@ -11,14 +11,20 @@ class PayoutFailed extends Notification
 {
     use Queueable;
 
+    private $is_sending_to_user;
+    private $failure_code;
+    private $stripe_account_id;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($is_sending_to_user, $failure_code, $stripe_account_id = null)
     {
-        //
+        $this->is_sending_to_user = $is_sending_to_user;
+        $this->failure_code = $failure_code;
+        $this->stripe_account_id = $stripe_account_id;
     }
 
     /**
@@ -40,10 +46,17 @@ class PayoutFailed extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        if ($this->is_sending_to_user) {
+            return (new MailMessage)
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('A recent payout to you has failed.')
+                    ->line('The failure reason is ' . $this->failure_code . '.')
+                    ->line('Thank you for using our platform!');
+        } else {
+            return (new MailMessage)
+                    ->greeting('Dear staff')
+                    ->line('A payout to ' . $this->stripe_account_id . ' has failed for ' . $this->failure_code . '.');
+        }
     }
 
     /**

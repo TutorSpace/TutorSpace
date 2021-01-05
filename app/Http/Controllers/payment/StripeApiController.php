@@ -501,10 +501,10 @@ class StripeApiController extends Controller
 
                 // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
                 $user = $transaction->session->student;
-                $user->notify(new ChargeRefunded());
+                $user->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new ChargeRefundUpdated());
+                ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
 
                 break;
 
@@ -516,7 +516,7 @@ class StripeApiController extends Controller
                 $user = $payment_method->user;
 
                 // TODO: send email to 'user'. Payout is sent to bank account
-                $user->notify(new PayoutPaid());
+                $user->notify(new PayoutPaid($payout->amount));
 
                 break;
 
@@ -528,10 +528,10 @@ class StripeApiController extends Controller
                 $user = $payment_method->user;
 
                 // TODO: send email to 'user' and us. Payout failed. They should update bank info
-                $user->notify(new PayoutFailed());
+                $user->notify(new PayoutFailed(true, $payout->failure_code));
 
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new PayoutFailed());
+                ->notify(new PayoutFailed(false, $payout->failure_code, $stripe_account_id));
 
                 break;
 

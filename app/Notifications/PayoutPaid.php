@@ -11,14 +11,16 @@ class PayoutPaid extends Notification
 {
     use Queueable;
 
+    private $amount;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($amount)
     {
-        //
+        $this->amount = $amount;
     }
 
     /**
@@ -41,9 +43,9 @@ class PayoutPaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('You have received a payout of ' . $this->amount . ' dollars.')
+                    ->line('Thank you for using our platform!');
     }
 
     /**
