@@ -7,13 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Session;
-
 class ChargeRefundUpdated extends Notification
 {
     use Queueable;
 
-    private Session $session;
+    private $session;
     private $is_sending_to_user;
     private $failure_reason;
 
@@ -22,7 +20,7 @@ class ChargeRefundUpdated extends Notification
      *
      * @return void
      */
-    public function __construct(Session $session, $is_sending_to_user, $failure_reason)
+    public function __construct($session, $is_sending_to_user, $failure_reason)
     {
         $this->session = $session;
         $this->is_sending_to_user = $is_sending_to_user;
