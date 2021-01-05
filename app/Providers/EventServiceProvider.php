@@ -21,6 +21,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\PostViewed' => [
             'App\Listeners\IncrementPostViewCount',
         ],
+        // increment profile view count
+        'App\Events\ProfileViewed' => [
+            'App\Listeners\IncrementProfileViewCount',
+        ],
     ];
 
     /**
