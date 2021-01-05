@@ -485,7 +485,7 @@ class StripeApiController extends Controller
                 // send to user
                 // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
                 $user = $transaction->session->student;
-                $user->notify(new ChargeRefunded());
+                $user->notify(new ChargeRefunded($transaction->session));
 
                 break;
 
