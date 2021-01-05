@@ -11,14 +11,16 @@ class InvoicePaid extends Notification
 {
     use Queueable;
 
+    private $session;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($session)
     {
-        //
+        $this->session = $session;
     }
 
     /**
@@ -41,9 +43,9 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    // ->line('The introduction to the notification.')
-                    // ->action('Notification Action', url('/'))
-                    ->line('Invoice Paid.');
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('We have received your payment for your tutoring session with' . $this->session->tutor->first_name)
+                    ->line('Thank you for using our platform!');
     }
 
     /**

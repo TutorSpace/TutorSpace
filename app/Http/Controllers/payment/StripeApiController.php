@@ -467,9 +467,7 @@ class StripeApiController extends Controller
 
                 // TODO: send email to user
                 $user = $transaction->session->student;
-                $user->notify(new InvoicePaid());
-                // Notification::route('mail', 'tutorspaceusc@gmail.com')
-                // ->notify(new InvoicePaid());
+                $user->notify(new InvoicePaid($transaction->session));
 
                 break;
 
