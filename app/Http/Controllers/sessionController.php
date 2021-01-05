@@ -10,9 +10,11 @@ use App\Session;
 use App\TutorRequest;
 use App\PaymentMethod;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
 use App\Http\Controllers\payment\StripeApiController;
+use Illuminate\Support\Facades\Log;
 
 class SessionController extends Controller
 {
@@ -21,12 +23,26 @@ class SessionController extends Controller
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function cancelSession(Request $request, Session $session) {
         // todo: NATE validate that it is truly the current user's session
+        $userId = Auth::user()->id;
         $request->validate([
             'cancelReasonId' => [
                 'required',
                 'exists:session_cancel_reasons,id'
             ]
         ]);
+
+        // $acceptedUserIds = array($session->tutor_id, $session->student_id);
+        $acceptedUserIds = array(10, 20);
+        if (!in_array($userId, $acceptedUserIds)) {
+            return response()->json(
+                [
+                    'errorMsg' => 'Successfully cancelled the tutor session!'
+                ]
+            );
+        }
+
+        Log::debug("after");
+
 
         // TODO: NATE check this: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
         app(StripeApiController::class)->cancelInvoice($session->id);
