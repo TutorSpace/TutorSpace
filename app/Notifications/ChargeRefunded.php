@@ -7,20 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Session;
-
 class ChargeRefunded extends Notification
 {
     use Queueable;
 
-    private Session $session;
+    private $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Session $session)
+    public function __construct($session)
     {
         $this->session = $session;
     }
