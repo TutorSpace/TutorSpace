@@ -518,8 +518,8 @@ class StripeApiController extends Controller
                 Log::debug('Transaction refund failed: ' . $transaction->id);
 
                 // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
-                $user = $transaction->session->student;
-                $user->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
+                $student = $transaction->session->student;
+                $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
