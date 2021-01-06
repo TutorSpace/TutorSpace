@@ -161,6 +161,8 @@ class PostController extends Controller
             $post->save();
 
             $post->tags()->attach($request->input('tags'));
+
+            // TODO: add experience
         });
 
 
@@ -314,6 +316,8 @@ class PostController extends Controller
 
         $post->markAsBestReply($reply);
 
+        // TODO: add experience
+
         return redirect()->back()->with([
             'successMsg' => 'Marked as best reply.'
         ]);
@@ -385,6 +389,8 @@ class PostController extends Controller
         else {
             $user->upvotedPosts()->attach($post);
         }
+
+        // TODO: add experience
 
         return response()->json([
             'num' => $post->usersUpvoted()->count()
