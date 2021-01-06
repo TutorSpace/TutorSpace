@@ -70,7 +70,20 @@
     </div>
 
     <section class="section tutor-sessions">
-        <a href="#" class="active bg-primary">My Tutor Sessions</a>
+        <a href="#" class="active bg-primary">His/Her Tutor Sessions</a>
+        <div class="tutor-sesssions__content">
+            <p class="heading">Courses He/She Teaches</p>
+            <div class="courses">
+                @php
+                    $courses = $user->courses;
+                @endphp
+                @foreach ($courses as $course)
+                <span class="course">
+                    {{ $course->course }}
+                </span>
+                @endforeach
+            </div>
+        </div>
     </section>
 
     <section class="forum-activities"></section>

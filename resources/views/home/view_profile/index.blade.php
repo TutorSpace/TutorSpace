@@ -64,7 +64,7 @@ bg-student
 @endif
 
 
-@include('session.session-js')
+{{-- @include('session.session-js') --}}
 
 <script src="{{ asset('js/view_profile/index.js') }}"></script>
 

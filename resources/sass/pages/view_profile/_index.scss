@@ -4,7 +4,7 @@
     margin-bottom: 18rem;
 
     .btn-back {
-        margin-top: 3.5rem;
+        margin-top: 2.5rem;
         display: inline-flex;
         align-items: center;
 
@@ -20,10 +20,11 @@
 
     .view-profile--left {
         background-color: $color-white-dark-5;
+        border-radius: 1rem;
 
         .view-profile__user-info {
-            padding: 3rem 1rem;
-            margin-top: 3rem;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -143,6 +144,34 @@
 
                         color: $color-white;
                     }
+                }
+            }
+
+            .tutor-sessions {
+                .heading {
+                    font-size: 1.4rem;
+                    padding: 1.25rem;
+                    text-align: center;
+                }
+
+                .courses {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    width: 20rem;
+                    margin: 0 auto;
+                    grid-gap: 1rem 1rem;
+
+                    .course {
+                        padding: .3rem .5rem;
+                        display: inline-flex;
+                        align-items: center;
+                        border-radius: .5rem;
+                        font-size: 1.2rem;
+
+                        width: 9rem;
+                        justify-content: center;
+                    }
+
                 }
             }
 
