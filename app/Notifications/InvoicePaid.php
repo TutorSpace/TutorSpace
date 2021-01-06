@@ -44,7 +44,7 @@ class InvoicePaid extends Notification
     {
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . date('m/d/Y', $this->session->session_time_start) . '.')
+                    ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
                     ->line('Thank you for using our platform!');
     }
 

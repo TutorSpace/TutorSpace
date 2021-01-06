@@ -590,8 +590,7 @@ class StripeApiController extends Controller
     // open means unpaid, used for cronjob
     // FACADE
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
-        $transactionsToSend = Transaction::selectRaw("invoice_id")
-        ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
+        $transactionsToSend = Transaction::whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
         ->where("invoice_status","open")
         ->get();
         // send to each
@@ -601,10 +600,12 @@ class StripeApiController extends Controller
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time
-            $model = Transaction::find($transaction->id);
-            $model->touch();
+            $transaction->touch();
+            echo "Succesfully send unpaid invoices to customer\n";
         }
+
     }
+
 
     // Get the payment URL of the invoice for 'session'
     // Return URL string
