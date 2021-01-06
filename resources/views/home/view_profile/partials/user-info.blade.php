@@ -29,12 +29,12 @@
     </div>
     @endif
 
-    <p class="detail-info">
+    <div class="detail-info">
         <span>{{ $user->firstMajor->major ?? "No info about your major" }}</span>@if ($user->secondMajor)&nbsp;&nbsp;&#8226;&nbsp;&nbsp;<span>{{ $user->secondMajor->major }}</span>@endif&nbsp;&nbsp;&#8226;&nbsp;&nbsp;<span>{{ $user->schoolYear->school_year ?? "No info about his/her school year" }}</span>
-    </p>
+    </div>
 
     @if ($user->is_tutor)
-    <p class="tutor-level">
+    <div class="tutor-level">
         @if ($user->is_tutor_verified)
         <svg class="mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <rect width="12" height="12" fill="url(#pattern10)"/>
@@ -47,16 +47,25 @@
         </svg>
         @endif
         <span>{{ $user->tutorLevel->tutor_level }} Tutor</span>
-    </p>
+    </div>
     @endif
 
-    <div class="review font-italic mt-3 fs-1-4 fc-grey">
+    <div class="intro-toggle fc-grey">
+        <span>More about Him/Her</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color" viewBox="0 0 16 16" id="intro-toggle--before">
+            <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color hidden-2" viewBox="0 0 16 16" id="intro-toggle--after">
+            <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
+          </svg>
+    </div>
+    <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
     </div>
-    <div class="mt-3">
-        <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2 mr-3" id="btn-chat">Chat</a>
+    <div class="button-container">
+        <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2" id="btn-chat">Chat</a>
         @if ($user->is_tutor)
-        <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2">Request a Session</button>
+        <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Request a Session</button>
         @endif
     </div>
 
