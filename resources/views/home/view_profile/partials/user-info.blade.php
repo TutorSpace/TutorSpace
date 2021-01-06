@@ -69,6 +69,12 @@
         @endif
     </div>
 
+    <section class="tutor-sessions">
+
+    </section>
+
+    <section class="forum-activities"></section>
+
     <div class="content-data">
         <div class="data color-primary">
             <span class="number">{{ Carbon\Carbon::now()->diffInDays($user->created_at) }}</span>
