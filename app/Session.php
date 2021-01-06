@@ -43,6 +43,13 @@ class Session extends Model
         }
     }
 
+    // Calculate the duration in hour (with two decimal places)
+    public function getDurationInHour() {
+        $startTimeInTime = strtotime($this->session_time_start);
+        $endTimeInTime = strtotime($this->session_time_end);
+        return round(abs($endTimeInTime - $startTimeInTime) / 3600, 2);;
+    }
+
     public static function hasOverlapSession($startTime, $endTime, $user){
 
     }
