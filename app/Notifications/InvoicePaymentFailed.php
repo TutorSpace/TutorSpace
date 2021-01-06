@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ChargeRefunded extends Notification
+class InvoicePaymentFailed extends Notification
 {
     use Queueable;
 
@@ -44,7 +44,8 @@ class ChargeRefunded extends Notification
     {
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('You have successfully refunded your payment for session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
+                    ->line('Your payment for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
+                    ->line('You should receive an email from Stripe to pay or authenticate.')
                     ->line('Thank you for using our platform!');
     }
 

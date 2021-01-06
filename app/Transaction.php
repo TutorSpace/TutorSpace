@@ -26,7 +26,10 @@ class Transaction extends Model
             app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
             // TODO: change bonus amount
             $user = $transaction->session->tutor;
-            app(StripeApiController::class)->createSessionBonus($transaction->amount * $user->getUserBonusRate(), $transaction->session);
+            $bonus_rate = $user->getUserBonusRate();
+            if ($bonus_rate > 0) {
+                app(StripeApiController::class)->createSessionBonus($transaction->amount * $bonus_rate, $transaction->session);
+            }
         }
     }
 
