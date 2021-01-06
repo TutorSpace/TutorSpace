@@ -49,7 +49,7 @@ class ChargeRefundUpdated extends Notification
         if ($this->is_sending_to_user) {
             return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . date('m/d/Y', $this->session->session_time_start) . ' has failed.')
+                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
                     ->line('The failure reason is ' . $this->failure_reason . '.')
                     ->line('Thank you for using our platform!');
         } else {

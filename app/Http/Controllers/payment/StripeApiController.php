@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\PayoutFailed;
 use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
@@ -466,8 +467,25 @@ class StripeApiController extends Controller
                 $transaction->save();
 
                 // TODO: send email to user
-                $user = $transaction->session->student;
-                $user->notify(new InvoicePaid($transaction->session));
+                $student = $transaction->session->student;
+                $student->notify(new InvoicePaid($transaction->session, true));
+                $tutor = $transaction->session->tutor;
+                $tutor->notify(new InvoicePaid($transaction->session, false));
+
+                break;
+
+            case 'invoice.payment_failed':
+            case 'invoice.payment_action_required':
+                $invoice = $event->data->object;
+
+                // Change database transaction invoice_status => paid
+                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+                $transaction->invoice_status = 'paid';
+                $transaction->save();
+
+                // TODO: send email to user
+                $student = $transaction->session->student;
+                $student->notify(new InvoicePaymentFailed($transaction->session));
 
                 break;
 
@@ -484,8 +502,8 @@ class StripeApiController extends Controller
 
                 // send to user
                 // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
-                $user = $transaction->session->student;
-                $user->notify(new ChargeRefunded($transaction->session));
+                $student = $transaction->session->student;
+                $student->notify(new ChargeRefunded($transaction->session));
 
                 break;
 
