@@ -43,5 +43,9 @@ class Session extends Model
         }
     }
 
+    public static function hasOverlapSession($startTime, $endTime, $user){
+
+    }
+
 
 }

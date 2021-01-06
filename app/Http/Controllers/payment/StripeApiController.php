@@ -23,6 +23,7 @@ use App\Notifications\ChargeRefundUpdated;
 use App\Notifications\PayoutFailed;
 use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\UnpaidInvoiceReminder;
 
 class StripeApiController extends Controller
 {
@@ -400,33 +401,34 @@ class StripeApiController extends Controller
     }
 
     // Cancels an Invoice
-    // return 400 response code for error
-    // return 200 response code for success
+    // return false for error
+    // return true for success
     public function cancelInvoice($session_id) {
         $session = AppSession::find($session_id);
+        // sesson doesn't exist
+        if (!$session){
+            Log::error('cannot find the session when canceling invoice');
+            return false;
+        }
+
         $transaction = $session->transaction;
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
 
         // invoice doesn't exist
         if (!$invoice){
-            Log::error('cannot find the invoice!');
-            return response()->json([
-                'errorMsg' => "cannot find the invoice!"
-            ], 400);
+            Log::error('cannot find the invoice when canceling invoice!');
+            return false;
         }
 
         // delete an invoice
         if ( $invoice->status != 'draft') {
             Log::error('Deleting an invoice that is not draft');
-            return response()->json([
-                'errorMsg' => "Deleting an invoice that is not draft"
-            ], 400);
+            return false;
         } else {
             $invoice->delete();
             $transaction->delete();
-            return response()->json([
-                'success' => "successfully deleted the invoice"
-            ], 200);
+            Log::info('successfully deleted the invoice');
+            return true;
         }
     }
 
@@ -601,6 +603,14 @@ class StripeApiController extends Controller
             $invoiceToSend->sendInvoice();
             // update last update time
             $transaction->touch();
+
+            // send unpaid invoice mail reminder to tutorspace and user
+            $user = User::find($transaction->user_id);
+            Notification::route('mail', $user->email)
+            ->notify(new UnpaidInvoiceReminder($user));
+            Notification::route('mail', "tutorspace@gmail.edu")
+            ->notify(new UnpaidInvoiceReminder($user));
+
             echo "Succesfully send unpaid invoices to customer\n";
         }
 

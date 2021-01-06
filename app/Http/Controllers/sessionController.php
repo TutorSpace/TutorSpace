@@ -31,24 +31,20 @@ class SessionController extends Controller
             ]
         ]);
 
-        // $acceptedUserIds = array($session->tutor_id, $session->student_id);
-        $acceptedUserIds = array(10, 20);
+        $acceptedUserIds = array($session->tutor_id, $session->student_id);
+        // neither student nor tutor for the session
         if (!in_array($userId, $acceptedUserIds)) {
-            return response()->json(
-                [
-                    'errorMsg' => 'Successfully cancelled the tutor session!'
-                ]
-            );
+            return response()->json([
+                'errorMsg' => "Validation fails"
+            ], 400);
         }
 
-        Log::debug("after");
-
-
         // TODO: NATE check this: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
-        app(StripeApiController::class)->cancelInvoice($session->id);
-
-
-
+        if (!app(StripeApiController::class)->cancelInvoice($session->id)){
+            return response()->json([
+                'errorMsg' => "Cannot cancel invoice"
+            ], 400);
+        }
 
         $session->is_canceled = true;
 
