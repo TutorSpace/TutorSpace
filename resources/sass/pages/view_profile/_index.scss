@@ -127,6 +127,25 @@
                     padding: .75rem !important;
                 }
             }
+
+            .section {
+                margin-top: 3rem;
+                width: calc(100% + 15px * 2 + 1rem * 2);
+
+                a {
+                    display: block;
+                    text-align: center;
+                    text-decoration: none;
+
+                    &.active {
+                        font-size: 1.4rem;
+                        padding: 1.25rem;
+
+                        color: $color-white;
+                    }
+                }
+            }
+
         }
 
         .view-profile--right {

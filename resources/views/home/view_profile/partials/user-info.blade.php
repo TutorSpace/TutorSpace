@@ -2,7 +2,7 @@
     <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img" id="profile-image" class="user-img">
 
     <h6 class="name">
-        {{ $user->first_name }} {{ $user->last_name }} anrgdgasggs
+        {{ $user->first_name }} {{ $user->last_name }}
     </h6>
 
     @if ($user->is_tutor)
@@ -30,7 +30,7 @@
     @endif
 
     <div class="detail-info">
-        <span>{{ $user->firstMajor->major ?? "No info about your major" }}</span>@if ($user->secondMajor)&nbsp;&nbsp;&#8226;&nbsp;&nbsp;<span>{{ $user->secondMajor->major }}</span>@endif&nbsp;&nbsp;&#8226;&nbsp;&nbsp;<span>{{ $user->schoolYear->school_year ?? "No info about his/her school year" }}</span>
+        {{ $user->firstMajor->major ?? "No info about your major" }}@if ($user->secondMajor)&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->secondMajor->major }}@endif&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->schoolYear->school_year ?? "No info about his/her school year" }}
     </div>
 
     @if ($user->is_tutor)
@@ -52,12 +52,12 @@
 
     <div class="intro-toggle fc-grey">
         <span>More about Him/Her</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color" viewBox="0 0 16 16" id="intro-toggle--before">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color hidden-2" viewBox="0 0 16 16" id="intro-toggle--before">
             <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color hidden-2" viewBox="0 0 16 16" id="intro-toggle--after">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color" viewBox="0 0 16 16" id="intro-toggle--after">
             <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
-          </svg>
+        </svg>
     </div>
     <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
@@ -69,8 +69,8 @@
         @endif
     </div>
 
-    <section class="tutor-sessions">
-
+    <section class="section tutor-sessions">
+        <a href="#" class="active bg-primary">My Tutor Sessions</a>
     </section>
 
     <section class="forum-activities"></section>
