@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Events\MarkedAsBestReply;
+use App\Events\NotePosted;
+use App\Events\PostLikeReceived;
 use App\Post;
 use App\Reply;
 use App\PostType;
@@ -27,11 +30,6 @@ use Illuminate\Support\Facades\Log;
 class PostController extends Controller
 {
     private static $POSTS_PER_PAGE = 5;
-
-    // Experience amounts
-    private static $NOTE_EXP = 10;
-    private static $LIKE_EXP = 1;
-    private static $BEST_REPLY_EXP = 25;
 
     public function __construct() {
         $this->middleware(['auth'])->except([
@@ -167,9 +165,9 @@ class PostController extends Controller
 
             $post->tags()->attach($request->input('tags'));
 
-            // Add experience
-            if ($post->post_type == 'Note') {
-                $post->user->addExperience(self::$NOTE_EXP);
+            // Trigger event to add experience
+            if ($post->post_type->id == 2) {  // 2 means Note
+                event(new NotePosted($post));
             }
         });
 
@@ -324,9 +322,9 @@ class PostController extends Controller
 
         $post->markAsBestReply($reply);
 
-        // Add experience
+        // Trigger event to add experience
         if ($post->view_count >= 100) {
-            $post->user->addExperience(self::$BEST_REPLY_EXP);
+            event(new MarkedAsBestReply($reply));
         }
 
         return redirect()->back()->with([
@@ -396,13 +394,13 @@ class PostController extends Controller
         $user = Auth::user();
         if($user->hasUpvotedPost($post)) {
             $user->upvotedPosts()->detach($post);
-            // Add experience
-            $post->user->addExperience(self::$LIKE_EXP);
+            // Trigger event to add experience
+            event(new PostLikeReceived($post, false));
         }
         else {
             $user->upvotedPosts()->attach($post);
-            // Add experience
-            $post->user->addExperience(-self::$LIKE_EXP);
+            // Trigger event to add experience
+            event(new PostLikeReceived($post, true));
         }
 
         return response()->json([
