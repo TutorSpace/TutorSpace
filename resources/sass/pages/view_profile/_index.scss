@@ -23,14 +23,14 @@
         border-radius: 1rem;
 
         .view-profile__user-info {
-            padding: 2rem 1rem;
+            padding: 2rem 1rem 1rem 1rem;
             margin-top: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
 
             > * {
-                margin-bottom: 1.2rem;
+                margin-bottom: 1rem;
             }
 
             .user-img {
@@ -40,8 +40,8 @@
                 object-fit: cover;
 
                 @include respond(md) {
-                    width: 10rem;
-                    height: 10rem;
+                    width: 8rem;
+                    height: 8rem;
                 }
             }
 
@@ -125,12 +125,12 @@
                 button, a {
                     width: 100%;
 
-                    padding: .75rem !important;
+                    padding: .5rem !important;
                 }
             }
 
             .section {
-                margin-top: 3rem;
+                margin-top: 2rem;
                 width: calc(100% + 15px * 2 + 1rem * 2);
 
                 a {
@@ -151,6 +151,7 @@
                 .heading {
                     font-size: 1.4rem;
                     padding: 1.25rem;
+                    margin-bottom: 0;
                     text-align: center;
                 }
 
@@ -197,6 +198,8 @@
                         .classifier {
                             color: $color-grey;
                             font-size: 1.4rem;
+                            position: relative;
+                            bottom: .65rem;
                         }
                     }
                 }
