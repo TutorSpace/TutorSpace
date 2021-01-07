@@ -28,6 +28,11 @@ class PostController extends Controller
 {
     private static $POSTS_PER_PAGE = 5;
 
+    // Experience amounts
+    private static $NOTE_EXP = 10;
+    private static $LIKE_EXP = 1;
+    private static $BEST_REPLY_EXP = 25;
+
     public function __construct() {
         $this->middleware(['auth'])->except([
             'index',
@@ -162,7 +167,10 @@ class PostController extends Controller
 
             $post->tags()->attach($request->input('tags'));
 
-            // TODO: add experience
+            // Add experience
+            if ($post->post_type == 'Note') {
+                $post->user->addExperience(self::$NOTE_EXP);
+            }
         });
 
 
@@ -316,7 +324,10 @@ class PostController extends Controller
 
         $post->markAsBestReply($reply);
 
-        // TODO: add experience
+        // Add experience
+        if ($post->view_count >= 100) {
+            $post->user->addExperience(self::$BEST_REPLY_EXP);
+        }
 
         return redirect()->back()->with([
             'successMsg' => 'Marked as best reply.'
@@ -385,12 +396,14 @@ class PostController extends Controller
         $user = Auth::user();
         if($user->hasUpvotedPost($post)) {
             $user->upvotedPosts()->detach($post);
+            // Add experience
+            $post->user->addExperience(self::$LIKE_EXP);
         }
         else {
             $user->upvotedPosts()->attach($post);
+            // Add experience
+            $post->user->addExperience(-self::$LIKE_EXP);
         }
-
-        // TODO: add experience
 
         return response()->json([
             'num' => $post->usersUpvoted()->count()

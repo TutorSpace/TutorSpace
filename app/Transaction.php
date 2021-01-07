@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    private static $RATE_HOUR_EXP = 5;
+
     public function session() {
         return $this->belongsTo('App\Session');
     }
@@ -24,12 +26,19 @@ class Transaction extends Model
         // charge each one
         forEach($transactionsToCharge as $transaction){
             app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
-            // TODO: change bonus amount
-            $user = $transaction->session->tutor;
-            $bonus_rate = $user->getUserBonusRate();
+            $session = $transaction->session;
+
+            // Create bonus if tutor has bonus rate
+            $tutor = $session->tutor;
+            $bonus_rate = $tutor->getUserBonusRate();
             if ($bonus_rate > 0) {
                 app(StripeApiController::class)->createSessionBonus($transaction->amount * $bonus_rate, $transaction->session);
             }
+
+            // Add experience
+            $avg_rating = (float)$tutor->aboutReviews()->avg('star_rating');
+            $total_exp = round(self::$RATE_HOUR_EXP * $avg_rating * $session->getDurationInHour());
+            $tutor->addExperience($total_exp);
         }
     }
 
