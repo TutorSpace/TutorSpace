@@ -107,6 +107,23 @@
 
     <section class="section forum-activities">
         <a href="{{ route('view.profile', $user) . "?display-forum-activities=true" }}" class="@if($displayForumActivities) active @else inactive @endif">Forum Activities</a>
+        @if($displayForumActivities)
+
+        <div class="statistics-container">
+            <div class="statistics color-primary">
+                <span class="number color-primary">{{ $user->posts()->count() }}</span>
+                <span class="classifier">Posts</span>
+            </div>
+            <div class="statistics color-primary">
+                <span class="number color-primary">?</span>
+                <span class="classifier">Followed</span>
+            </div>
+            <div class="statistics color-primary">
+                <span class="number color-primary">{{ $user->followedPosts()->count() }}</span>
+                <span class="classifier">Participated</span>
+            </div>
+        </div>
+        @endif
     </section>
 
 </section>
