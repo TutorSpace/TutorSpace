@@ -319,17 +319,20 @@ class User extends Authenticatable
         return number_format((float)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
     }
 
-    public function getFiveStarReviewPercentage() {
+
+    // return  0 <= double <= 1
+    public function getStarReviewPercentage($numStars) {
         $reviewCnt = $this->aboutReviews()->count();
         if($reviewCnt == 0)
             return 0;
 
         $fiveStarCnt = $this->aboutReviews()
-                            ->where('star_rating', 5)
+                            ->where('star_rating', $numStars)
                             ->count();
 
-        return $fiveStarCnt / $reviewCnt * 100;
+        return $fiveStarCnt / $reviewCnt;
     }
+    
 
     public function hasDualIdentities() {
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
@@ -368,6 +371,8 @@ class User extends Authenticatable
         return Admin::where('email', $this->email)->exists();
     }
 
+    // get all distinct participated posts
+    // participated: my own posts, I followed, I reply directly
     public function getParticipatedPosts(){
         return Post::select("posts.*")
             ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
