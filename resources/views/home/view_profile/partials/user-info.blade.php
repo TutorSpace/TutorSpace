@@ -70,7 +70,7 @@
     </div>
 
     <section class="section tutor-sessions">
-        <a href="#" class="active bg-primary">His/Her Tutor Sessions</a>
+        <a href="#" class="active">Tutor Sessions</a>
         <div class="tutor-sesssions__content">
             <p class="heading">Courses He/She Teaches</p>
             <div class="courses">
@@ -103,6 +103,8 @@
         </div>
     </section>
 
-    <section class="forum-activities"></section>
+    <section class="section forum-activities">
+        <a href="#" class="inactive">Forum Activities</a>
+    </section>
 
 </section>

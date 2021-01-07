@@ -7,24 +7,25 @@
         margin-top: 1.5rem;
         display: inline-flex;
         align-items: center;
+        margin-bottom: 1rem;
 
         svg {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
         }
 
         span {
-            margin-left: 1.5rem;
-            font-size: 2rem;
+            margin-left: 1.2rem;
+            font-size: 1.6rem;
         }
     }
 
     .view-profile--left {
         background-color: $color-white-dark-5;
         border-radius: 1rem;
+        overflow: hidden;
 
         .view-profile__user-info {
-            padding: 2rem 1rem 1rem 1rem;
-            margin-top: 1rem;
+            padding: 1.75rem 1rem 0rem 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -129,50 +130,25 @@
                 }
             }
 
+
             .section {
-                margin-top: 2rem;
+                margin-bottom: 0;
                 width: calc(100% + 15px * 2 + 1rem * 2);
 
                 a {
                     display: block;
                     text-align: center;
                     text-decoration: none;
-
-                    &.active {
-                        font-size: 1.4rem;
-                        padding: 1.25rem;
-
-                        color: $color-white;
-                    }
+                    color: $color-black-2;
+                    font-size: 1.4rem;
+                    padding: 1.25rem;
                 }
-            }
 
-            .tutor-sessions {
                 .heading {
                     font-size: 1.4rem;
                     padding: 1.25rem;
                     margin-bottom: 0;
                     text-align: center;
-                }
-
-                .courses {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    width: 20rem;
-                    margin: 0 auto;
-                    grid-gap: 1rem 1rem;
-
-                    .course {
-                        padding: .3rem .5rem;
-                        display: inline-flex;
-                        align-items: center;
-                        border-radius: .5rem;
-                        font-size: 1.2rem;
-
-                        width: 9rem;
-                        justify-content: center;
-                    }
-
                 }
 
                 .statistics-container {
@@ -203,6 +179,36 @@
                         }
                     }
                 }
+            }
+
+            .tutor-sessions {
+                margin-top: 2rem;
+                border-bottom: 5px solid $color-white-dark-4;
+                border-top: 5px solid $color-white-dark-4;
+                padding-bottom: .5rem;
+
+                .courses {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    width: 20rem;
+                    margin: 0 auto;
+                    grid-gap: 1rem 1rem;
+
+                    .course {
+                        padding: .3rem .5rem;
+                        display: inline-flex;
+                        align-items: center;
+                        border-radius: .5rem;
+                        font-size: 1.2rem;
+
+                        width: 9rem;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .forum-activities {
+                margin-bottom: 5rem;
             }
 
         }
@@ -385,5 +391,28 @@
         //         }
         //     }
         // }
+    }
+}
+
+
+.bg-student {
+
+    .view-profile .view-profile--left .section {
+        a.active {
+            color: $color-white;
+            background-color: $color-blue-primary;
+
+            &:hover {
+                background-color: $color-blue-primary-2;
+            }
+        }
+
+        a.inactive {
+
+            &:hover {
+                color: $color-white;
+                background-color: $color-blue-primary-2;
+            }
+        }
     }
 }
