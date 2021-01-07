@@ -1,10 +1,10 @@
 .view-profile {
     margin-top: $nav-height;
     color: $color-black-2;
-    margin-bottom: 18rem;
+    margin-bottom: 5rem;
 
     .btn-back {
-        margin-top: 2.5rem;
+        margin-top: 1.5rem;
         display: inline-flex;
         align-items: center;
 
@@ -24,7 +24,7 @@
 
         .view-profile__user-info {
             padding: 2rem 1rem;
-            margin-top: 2rem;
+            margin-top: 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,8 +34,8 @@
             }
 
             .user-img {
-                width: 12rem;
-                height: 12rem;
+                width: 10rem;
+                height: 10rem;
                 border-radius: 50%;
                 object-fit: cover;
 
@@ -172,6 +172,33 @@
                         justify-content: center;
                     }
 
+                }
+
+                .statistics-container {
+                    margin-top: 2rem;
+                    display: flex;
+                    justify-content: center;
+
+
+                    .statistics {
+                        display: grid;
+                        grid-template-rows: 2;
+
+                        &:not(:last-child) {
+                            margin-right: 2.5rem;
+                        }
+
+                        .number {
+                            font-size: 2.4rem;
+                            font-weight: bolder;
+                            text-align: center;
+                        }
+
+                        .classifier {
+                            color: $color-grey;
+                            font-size: 1.4rem;
+                        }
+                    }
                 }
             }
 

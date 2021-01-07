@@ -83,25 +83,26 @@
                 </span>
                 @endforeach
             </div>
+
+            <div class="statistics-container">
+                <div class="statistics color-primary">
+                    <span class="number color-primary">{{ Carbon\Carbon::now()->diffInDays($user->created_at) }}</span>
+                    <span class="classifier">Days</span>
+                </div>
+                <div class="statistics color-primary">
+                    <span class="number color-primary">?</span>
+                    <span class="classifier">Sessions</span>
+                </div>
+                @if ($user->is_tutor)
+                <div class="statistics color-primary">
+                    <span class="number color-primary">?</span>
+                    <span class="classifier">Students</span>
+                </div>
+                @endif
+            </div>
         </div>
     </section>
 
     <section class="forum-activities"></section>
 
-    <div class="content-data">
-        <div class="data color-primary">
-            <span class="number">{{ Carbon\Carbon::now()->diffInDays($user->created_at) }}</span>
-            <span class="classifier">Days</span>
-        </div>
-        <div class="data color-primary">
-            <span class="number">?</span>
-            <span class="classifier">Sessions</span>
-        </div>
-        @if ($user->is_tutor)
-        <div class="data color-primary">
-            <span class="number">?</span>
-            <span class="classifier">Students</span>
-        </div>
-        @endif
-    </div>
 </section>
