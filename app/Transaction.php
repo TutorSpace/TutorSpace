@@ -2,13 +2,12 @@
 
 namespace App;
 
+use App\Events\TutoringHourEnded;
 use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    private static $RATE_HOUR_EXP = 5;
-
     public function session() {
         return $this->belongsTo('App\Session');
     }
@@ -35,10 +34,8 @@ class Transaction extends Model
                 app(StripeApiController::class)->createSessionBonus($transaction->amount * $bonus_rate, $transaction->session);
             }
 
-            // Add experience
-            $avg_rating = (float)$tutor->aboutReviews()->avg('star_rating');
-            $total_exp = round(self::$RATE_HOUR_EXP * $avg_rating * $session->getDurationInHour());
-            $tutor->addExperience($total_exp);
+            // Trigger event to add experience
+            event(new TutoringHourEnded($tutor, $session));
         }
     }
 

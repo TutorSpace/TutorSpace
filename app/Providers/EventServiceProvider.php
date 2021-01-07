@@ -7,6 +7,8 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+use App\Listeners\GainExperienceSubscriber;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -25,6 +27,15 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ProfileViewed' => [
             'App\Listeners\IncrementProfileViewCount',
         ],
+    ];
+
+    /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        GainExperienceSubscriber::class,
     ];
 
     /**
