@@ -5,7 +5,6 @@
         {{ $user->first_name }} {{ $user->last_name }}
     </h6>
 
-    @if ($user->is_tutor)
     <div class="rating-container d-flex align-items-center">
             @php
                 $starRating = $user->getAvgRating();
@@ -27,13 +26,11 @@
                 {{ $starRating }}
             </span>
     </div>
-    @endif
 
     <div class="detail-info">
-        {{ $user->firstMajor->major ?? "No info about your major" }}@if ($user->secondMajor)&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->secondMajor->major }}@endif&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->schoolYear->school_year ?? "No info about his/her school year" }}
+        {{ $user->firstMajor->major ?? "No info about his/her major" }}@if ($user->secondMajor)&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->secondMajor->major }}@endif&nbsp;&nbsp;&#8226;&nbsp;&nbsp;{{ $user->schoolYear->school_year ?? "No info about his/her school year" }}
     </div>
 
-    @if ($user->is_tutor)
     <div class="tutor-level">
         @if ($user->is_tutor_verified)
         <svg class="mr-1" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -48,7 +45,6 @@
         @endif
         <span>{{ $user->tutorLevel->tutor_level }} Tutor</span>
     </div>
-    @endif
 
     <div class="intro-toggle fc-grey">
         <span>More about Him/Her</span>
@@ -64,11 +60,7 @@
     </div>
     <div class="button-container">
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2" id="btn-chat">Chat</a>
-        @if ($user->is_tutor)
         <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Request a Session</button>
-        @else
-        <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Invite to be a Tutor</button>
-        @endif
     </div>
 
     <section class="section tutor-sessions">
@@ -96,12 +88,10 @@
                     <span class="number color-primary">?</span>
                     <span class="classifier">Sessions</span>
                 </div>
-                @if ($user->is_tutor)
                 <div class="statistics color-primary">
                     <span class="number color-primary">?</span>
                     <span class="classifier">Students</span>
                 </div>
-                @endif
             </div>
         </div>
         @endif

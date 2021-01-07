@@ -33,9 +33,15 @@ bg-student
     </a>
 
     <div class="view-profile--left col-3">
-        @include('home.view_profile.partials.user-info', [
+        @if ($user->is_tutor)
+        @include('home.view_profile.partials.tutor-user-info', [
             'user' => $user
         ])
+        @else
+        @include('home.view_profile.partials.student-user-info', [
+            'user' => $user
+        ])
+        @endif
     </div>
     {{-- <div class="row">
         <h5 class="w-100 mb-3 calendar-heading">Calendar</h5>
