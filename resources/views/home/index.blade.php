@@ -177,7 +177,8 @@ bg-student
                         {{-- TODO: NATE (PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
                         {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">x</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
+                         {{-- {{ Auth::user()->getParticipatedPosts()->count() }} --}}
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>

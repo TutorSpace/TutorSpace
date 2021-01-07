@@ -93,12 +93,27 @@ class testController extends Controller
         // StripeApiController::init();
         // StripeApiController::customerHasCards();
 
-        $user = Auth::user();
-        $user->getUserBonusRate();
+        // $user = Auth::user();
+        // $user->getUserBonusRate();
 
         
         // $this->testTutorLevel(11000);
+        // echo (Session::where('session_time_start', '<=', '2021-01-09 21:00:00')
+        // ->where('session_time_end','>=', '2021-01-09 21:00:00')
+        // ->where(function ($query) {
+        //     $query->where('tutor_id', '=', 4)
+        //           ->orWhere('student_id', '=', 2);
+        // })
+        // ->get());
 
+        dd (Post::select("posts.*")
+        ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
+        ->leftJoin('replies','replies.post_id','=','posts.id')
+        ->where('posts.user_id',1)
+        ->orWhere('post_user.user_id',1)
+        ->orWhere('replies.is_direct_reply',1)
+        ->distinct()
+        ->get()->count());
 
 
 

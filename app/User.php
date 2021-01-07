@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 
 class User extends Authenticatable
@@ -365,6 +366,20 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return Admin::where('email', $this->email)->exists();
+    }
+
+    public function getParticipatedPosts(){
+        return Post::select("posts.*")
+            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
+            ->leftJoin('replies','replies.post_id','=','posts.id')
+            ->where('posts.user_id',$this->id)
+            ->orWhere('post_user.user_id',$this->id)
+            ->orWhere(function ($query) {
+                $query->where('replies.is_direct_reply', '=', 1)
+                      ->Where('replies.user_id', '=', $this->id);
+            })
+            ->distinct()
+            ->get();
     }
 
 

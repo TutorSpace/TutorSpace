@@ -15,6 +15,9 @@ use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
 use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Support\Facades\Log;
+use App\Rules\SessionOverlap;
+use App\Rules\SessionDifferentUser;
+use Carbon\Carbon;
 
 class SessionController extends Controller
 {
@@ -67,8 +70,36 @@ class SessionController extends Controller
         // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
+        Log::debug($request);
+        $validStartTime = Carbon::now()->addMinutes(30);
         $request->validate([
-
+            'tutorId' => [
+                'required',
+                'exists:users,id',
+                new SessionDifferentUser(),
+            ],
+            'startTime' => [
+                'required',
+                'date',
+                'after_or_equal:'.$validStartTime,
+                new SessionOverlap($request['tutorId'], Auth::user()->id),
+            ],
+            'endTime' => [
+                'required',
+                'date',
+                'after:startTime',
+                new SessionOverlap($request['tutorId'], Auth::user()->id),
+            ],
+            'course' => [
+                'required',
+                'exists:courses,id',
+            ],
+            'sessionType' => [
+                'required',
+                //TODO: check?
+                
+            ],
+           
         ]);
 
         // TODO: check if customer has >= 1 payment methods
@@ -91,7 +122,7 @@ class SessionController extends Controller
             $tutorRequest->student()->associate(Auth::user());
             $tutorRequest->course()->associate($course);
 
-            $tutorRequest->save();
+            // $tutorRequest->save();
 
             return response()->json(
                 [
