@@ -118,7 +118,9 @@ bg-student
 
     $('.msgs').on('click', '.msg', function () {
         $('.msg .box').removeClass('bg-grey-light');
+        $('.msg').removeClass('bg-grey-light');
         $(this).find('.box').addClass('bg-grey-light');
+        $(this).addClass('bg-grey-light');
         let otherUserId = $(this).attr('data-user-id');
         $.ajax({
             type:'GET',

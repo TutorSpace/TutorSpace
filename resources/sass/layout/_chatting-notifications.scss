@@ -89,6 +89,10 @@
                     border-left: 5px solid $color-yellow-primary;
                 }
 
+                &:hover {
+                    background-color: rgba(240, 240, 240, 0.9);
+                }
+
                 .box {
                     $padding-y: 1.75rem;
                     $img-size: 5.5rem;
@@ -100,9 +104,7 @@
                     position: relative;
                     cursor: pointer;
 
-                    &:hover {
-                        background-color: rgba(240, 240, 240, 0.9);;
-                    }
+
 
 
                     .img-container {
