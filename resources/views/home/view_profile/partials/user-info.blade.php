@@ -66,11 +66,13 @@
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2" id="btn-chat">Chat</a>
         @if ($user->is_tutor)
         <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Request a Session</button>
+        @else
+        <button id="tutor-profile-request-session" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Invite to be a Tutor</button>
         @endif
     </div>
 
     <section class="section tutor-sessions">
-        <a href="#" class="active">Tutor Sessions</a>
+        <a href="{{ route('view.profile', $user) }}" class="@if(!$displayForumActivities) active @else inactive @endif">Tutor Sessions</a>
         <div class="tutor-sesssions__content">
             <p class="heading">Courses He/She Teaches</p>
             <div class="courses">
@@ -104,7 +106,7 @@
     </section>
 
     <section class="section forum-activities">
-        <a href="#" class="inactive">Forum Activities</a>
+        <a href="{{ route('view.profile', $user) . "?display-forum-activities=true" }}" class="@if($displayForumActivities) active @else inactive @endif">Forum Activities</a>
     </section>
 
 </section>

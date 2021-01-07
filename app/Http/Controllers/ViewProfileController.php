@@ -8,17 +8,16 @@ use Illuminate\Http\Request;
 
 class ViewProfileController extends Controller
 {
-    public function index(User $user) {
-        if($user->is_tutor) {
-            // todo: update this
-            // return view('home.view_profile.index', [
-            //     'user' => $user,
-            //     'posts' => Post::all()->take(5)
-            // ]);
+    public function index(Request $request, User $user) {
+        // todo: update this
+        // return view('home.view_profile.index', [
+        //     'user' => $user,
+        //     'posts' => Post::all()->take(5)
+        // ]);
 
-            return view('home.view_profile.index', [
-                'user' => $user
-            ]);
-        }
+        return view('home.view_profile.index', [
+            'user' => $user,
+            'displayForumActivities' => $request->input('display-forum-activities')
+        ]);
     }
 }
