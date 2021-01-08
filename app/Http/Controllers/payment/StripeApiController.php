@@ -31,17 +31,12 @@ class StripeApiController extends Controller
     // todo: NATE (根据.env里的app_env来决定用那个key)
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
-<<<<<<< HEAD
-        // if env == prod or local
         if (env('APP_ENV') == 'local'){
             Stripe::setApiKey(env('STRIPE_TEST_KEY'));
         }
         else if (env('APP_ENV') == 'prod'){
             Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
         }
-=======
-        Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
->>>>>>> 8d1e7230a3c5e6737f3ae447a44f9d1053ecfea8
     }
 
     // =========== stripe testing start =================

@@ -68,7 +68,6 @@ class SessionController extends Controller
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
         $validStartTime = Carbon::now()->addMinutes(30);
-        Log::debug($request->input('sessionType'));
         $request->validate([
             'tutorId' => [
                 'required',
@@ -95,8 +94,7 @@ class SessionController extends Controller
             ],
             'sessionType' => [
                 'required',
-                //TODO: check in-person / online, 
-
+                'in:in-person,online'
             ],
            
         ]);
@@ -115,8 +113,11 @@ class SessionController extends Controller
             $tutorRequest->session_time_start = $startTime;
             $tutorRequest->session_time_end = $endTime;
             // TODO: nate change to boolean
-            $tutorRequest->is_in_person = $sessionType;
-
+            if ($sessionType == "in-person"){
+                $tutorRequest->is_in_person = 1;
+            }else if ($sessionType == "online"){
+                $tutorRequest->is_in_person = 0;
+            }
             $tutorRequest->tutor()->associate($tutor);
             $tutorRequest->student()->associate(Auth::user());
             $tutorRequest->course()->associate($course);

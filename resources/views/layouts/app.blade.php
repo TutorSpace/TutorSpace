@@ -28,10 +28,11 @@
     <script>
         // ============== STRIPE =======================
         // TODO: check env
+        var stripeApiKey;
         if ("{{env('APP_ENV')}}" == "local"){
-            const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+            stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
         }else if ("{{env('APP_ENV')}}" == "prod"){
-            const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_LIVE_KEY') }}";
+            stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_LIVE_KEY') }}";
         }
         
     </script>
