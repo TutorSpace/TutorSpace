@@ -106,8 +106,8 @@
         }
 
         .modal-svg {
-            width: 4rem;
-            height: 4rem;
+            width: 3rem;
+            height: 3rem;
 
             * {
                 fill: black;
@@ -283,7 +283,25 @@
 
 
 #modal-book-session {
+    .fc-toolbar-title {
+        font-size: 1.6rem !important;
+    }
 
+    span.fa {
+        font-size: 1rem;
+    }
+
+    .fc-toolbar-chunk {
+        > * {
+            margin-left: 0rem !important;
+            margin-top: 0 !important;
+        }
+    }
+
+    .calendar-note {
+        font-size: 1.2rem !important;
+        margin-top: 1rem !important;
+    }
 }
 
 .bg-student {
