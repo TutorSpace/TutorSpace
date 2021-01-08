@@ -63,6 +63,15 @@ bg-student
 <script>
     let otherUserId = "{{ $user->id }}";
     let otherUserHourlyRate = "{{ $user->hourly_rate }}";
+
+    let courses = [
+        @foreach($user->courses as $course)
+        {
+            id: "{{ $course->id }}",
+            course: "{{ $course->course }}"
+        },
+        @endforeach
+    ]
 </script>
 
 @if ($user->is_tutor)
