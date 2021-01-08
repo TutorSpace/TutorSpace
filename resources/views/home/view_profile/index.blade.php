@@ -78,8 +78,9 @@ bg-student
     @include('home.view_profile.partials.calendar-view-profile')
 @endif
 
-
+@auth
 @include('session.session-js')
+@endauth
 
 <script src="{{ asset('js/view_profile/index.js') }}"></script>
 
@@ -100,13 +101,9 @@ $('#btn-invite').click(function() {
     });
 });
 @else
-$('.user-card button').click(function() {
+$('#btn-invite, #tutor-profile-request-session, #btn-chat').click(function() {
     $('.overlay-student').show();
 });
-
-$('.svg-bookmark').click(function() {
-    $('.overlay-student').show();
-})
 @endauth
 </script>
 @endsection

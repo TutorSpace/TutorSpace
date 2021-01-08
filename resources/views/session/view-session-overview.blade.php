@@ -35,6 +35,4 @@
     <p class="fc-black-2 mt-4 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
     <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
     <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">USC Integrity Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,  dolore magna aliqua. </p>
-
-
 </div>
