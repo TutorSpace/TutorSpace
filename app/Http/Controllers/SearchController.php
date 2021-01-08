@@ -101,6 +101,7 @@ class SearchController extends Controller
             return view('search.index');
         }
 
+        // use join here instead of leftJoin, because we know tutors must have at least one course associated
         $usersQuery = User::with([
                         'firstMajor',
                         'tutorLevel',
@@ -197,7 +198,7 @@ class SearchController extends Controller
 
                 $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
-            
+
             $numDays = Carbon::parse($request->input('available-start-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-end-date') . " " . $endTimes[0]));
 
             $times = collect([]);
@@ -230,18 +231,18 @@ class SearchController extends Controller
                     foreach($availableTimes as $availableTime) {
                         $keep = true;
                         $availableTimeStart = $availableTime->available_time_start;
-                        $availableTimeEnd = $availableTime->available_time_end;                    
+                        $availableTimeEnd = $availableTime->available_time_end;
 
-                        if(TimeOverlapManager::noTimeOverlap($startTime, $endTime, $availableTimeStart, $availableTimeEnd)) {    
+                        if(TimeOverlapManager::noTimeOverlap($startTime, $endTime, $availableTimeStart, $availableTimeEnd)) {
                             $keep = false;
                         }
                         if($keep && !$results->contains($user)) {
                             $results->push($user);
                             break;
                         }
-                        
+
                     }
-                    
+
                 }
             };
 

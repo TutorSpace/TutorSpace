@@ -416,3 +416,26 @@
         }
     }
 }
+
+
+.bg-tutor {
+
+    .view-profile .view-profile--left .section {
+        a.active {
+            color: $color-white;
+            background-color: $color-purple-primary;
+
+            &:hover {
+                background-color: $color-purple-primary-2;
+            }
+        }
+
+        a.inactive {
+
+            &:hover {
+                color: $color-white;
+                background-color: $color-purple-primary-2;
+            }
+        }
+    }
+}

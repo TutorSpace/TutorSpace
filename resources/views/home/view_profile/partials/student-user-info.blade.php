@@ -26,10 +26,9 @@
         <button id="" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Invite to be a Tutor</button>
     </div>
 
-    <section class="section tutor-sessions">
-        <a href="#" class="active">Tutor Sessions</a>
+    <section class="section tutor-sessions pt-2">
         <div class="tutor-sesssions__content">
-            <p class="heading">Courses He/She Teaches</p>
+            <p class="heading">Courses He/She would like to Take</p>
             <div class="courses">
                 @php
                     $courses = $user->courses;
@@ -54,9 +53,9 @@
         </div>
     </section>
 
-    <section class="section forum-activities">
-        <a href="#" class="active">Forum Activities</a>
-        <div class="statistics-container">
+    <section class="section forum-activities pt-2">
+        <a href="#" class="hover--pointer-none">Forum Activities</a>
+        <div class="statistics-container mt-0">
             <div class="statistics color-primary">
                 <span class="number color-primary">{{ $user->posts()->count() }}</span>
                 <span class="classifier">Posts</span>

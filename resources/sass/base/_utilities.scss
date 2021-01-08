@@ -205,6 +205,8 @@
 
 .hover--pointer { cursor: pointer; }
 
+.hover--pointer-none { cursor: default; }
+
 .bg-student .hover--primary-color:hover {
     fill: $color-blue-primary;
     color: $color-blue-primary;
