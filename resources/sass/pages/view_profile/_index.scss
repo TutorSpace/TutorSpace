@@ -125,7 +125,7 @@
             .button-container {
                 button, a {
                     width: 100%;
-
+                    min-width: 16ch;
                     padding: .5rem !important;
                 }
             }

@@ -83,4 +83,30 @@ bg-student
 
 <script src="{{ asset('js/view_profile/index.js') }}"></script>
 
+<script>
+@auth
+$('#btn-invite').click(function() {
+    $.ajax({
+        type:'POST',
+        url: "{{ route('invite-to-be-tutor', $user) }}",
+        success: (data) => {
+            if(data.successMsg) toastr.success(data.successMsg);
+            else toastr.error(data.errorMsg);
+        },
+        error: function(error) {
+            toastr.error('Something went wrong!');
+            console.log(error);
+        }
+    });
+});
+@else
+$('.user-card button').click(function() {
+    $('.overlay-student').show();
+});
+
+$('.svg-bookmark').click(function() {
+    $('.overlay-student').show();
+})
+@endauth
+</script>
 @endsection

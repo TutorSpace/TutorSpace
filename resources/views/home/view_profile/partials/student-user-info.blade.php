@@ -21,9 +21,11 @@
     <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
     </div>
-    <div class="button-container">
-        <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2" id="btn-chat">Chat</a>
-        <button id="" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2 mt-3">Invite to be a Tutor</button>
+    <div class="button-containe mt-3">
+        @if (Auth::id() != $user->id)
+        <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm px-5 py-2" id="btn-chat">Chat</a>
+        @endif
+        <button id="btn-invite" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm px-5 py-2">Invite to be a Tutor</button>
     </div>
 
     <section class="section tutor-sessions pt-2">
