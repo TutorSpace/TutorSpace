@@ -17,7 +17,7 @@ class ViewProfileController extends Controller
 
         return view('home.view_profile.index', [
             'user' => $user,
-            'displayForumActivities' => $request->input('display-forum-activities')
+            'displayForumActivities' => $request->input('display-forum-activities') || !$user->is_tutor
         ]);
     }
 }

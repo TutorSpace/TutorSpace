@@ -23,25 +23,33 @@ bg-student
 
 @include('partials.nav')
 
-<main class="container view-profile p-relative">
+<main class="container p-relative view-profile">
+    <div class="row">
+        <a class="btn btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('search.index')) }}">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+            </svg>
+            <span>Back</span>
+        </a>
+    </div>
+    <div class="row">
+        <div class="view-profile--left col-3">
+            @if ($user->is_tutor)
+            @include('home.view_profile.partials.tutor-user-info', [
+                'user' => $user
+            ])
+            @else
+            @include('home.view_profile.partials.student-user-info', [
+                'user' => $user
+            ])
+            @endif
+        </div>
 
-    <a class="btn btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('search.index')) }}">
-        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-        <span>Back</span>
-    </a>
-
-    <div class="view-profile--left col-3">
-        @if ($user->is_tutor)
-        @include('home.view_profile.partials.tutor-user-info', [
-            'user' => $user
-        ])
-        @else
-        @include('home.view_profile.partials.student-user-info', [
-            'user' => $user
-        ])
-        @endif
+        <div class="view-profile--right col-9">
+            @if($displayForumActivities)
+            <h1>here</h1>
+            @endif
+        </div>
     </div>
     {{-- <div class="row">
         <h5 class="w-100 mb-3 calendar-heading">Calendar</h5>
