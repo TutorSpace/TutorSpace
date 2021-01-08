@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Http\Controllers\payment\StripeApiController;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
                     $this->forPage($page, $perPage), $this->count(), $perPage, $page, $options))
                     ->withPath('');
             });
-    }
+        }
+        URL::forceScheme('https');
     }
 }
