@@ -106,14 +106,14 @@ class testController extends Controller
         // })
         // ->get());
 
-        dd (Post::select("posts.*")
-        ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
-        ->leftJoin('replies','replies.post_id','=','posts.id')
-        ->where('posts.user_id',1)
-        ->orWhere('post_user.user_id',1)
-        ->orWhere('replies.is_direct_reply',1)
-        ->distinct()
-        ->get()->count());
+        echo Session::where('session_time_start', '<=','2021-01-09 23:35:00')
+            ->where('session_time_end','>=', '2021-01-09 11:32:00')
+            // either student or tutor
+            ->where(function ($query) {
+                $query->where('tutor_id', '=', 3)
+                      ->orWhere('student_id', '=', 2);
+            })
+            ->count();
 
 
 

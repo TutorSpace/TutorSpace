@@ -9,7 +9,7 @@ use App\View;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
-class IncrementProfileViewCount
+class IncrementProfileViewCount implements shouldQueue
 {
     /**
      * Create the event listener.
@@ -29,8 +29,6 @@ class IncrementProfileViewCount
      */
     public function handle(ProfileViewed $event)
     {
-        //
-        Log::debug('handle');
         $user = $event->user;
         $view = new View([
             'viewed_at' => Carbon::now()

@@ -17,11 +17,16 @@ class SessionOverlap implements Rule
 
     public $tutorId;
     public $studentId;
-    public function __construct($tutorId, $studentId)
+    public $startTime;
+    public $endTime;
+
+    public function __construct($tutorId, $studentId, $startTime, $endTime)
     {
         //
         $this->tutorId = $tutorId;
         $this->studentId = $studentId;
+        $this->startTime = TimeFormatter::getTime($startTime, $startTime);
+        $this->endTime = TimeFormatter::getTime($endTime, $endTime);
     }
 
     /**
@@ -33,12 +38,12 @@ class SessionOverlap implements Rule
      */
     public function passes($attribute, $value)
     {
-
-        $time = TimeFormatter::getTime($value, $value);
         // check if there's any overlap
         // return true if count == 0, else false
-        return Session::where('session_time_start', '<=', $time)
-            ->where('session_time_end','>=', $time)
+        // if (StartA <= EndB)  and  (EndA >= StartB), then overlap exists
+        // https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
+        return Session::where('session_time_start', '<=',$this->endTime)
+            ->where('session_time_end','>=', $this->startTime)
             // either student or tutor
             ->where(function ($query) {
                 $query->where('tutor_id', '=', $this->tutorId)

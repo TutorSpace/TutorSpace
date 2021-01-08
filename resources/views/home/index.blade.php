@@ -156,7 +156,7 @@ bg-student
                         <div id="scatter-chart"></div>
                     </div>
                     <div class="graph-2">
-                        <div id="gauge-chart"></div>
+                        <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
                 </div>
             </div>

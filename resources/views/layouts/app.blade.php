@@ -27,7 +27,13 @@
     {{-- my js --}}
     <script>
         // ============== STRIPE =======================
-        const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+        // TODO: check env
+        if ("{{env('APP_ENV')}}" == "local"){
+            const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+        }else if ("{{env('APP_ENV')}}" == "prod"){
+            const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_LIVE_KEY') }}";
+        }
+        
     </script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>

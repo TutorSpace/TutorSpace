@@ -25,7 +25,6 @@ class SessionController extends Controller
     // todo: NATE
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function cancelSession(Request $request, Session $session) {
-        // todo: NATE validate that it is truly the current user's session
         $userId = Auth::user()->id;
         $request->validate([
             'cancelReasonId' => [
@@ -42,7 +41,6 @@ class SessionController extends Controller
             ], 400);
         }
 
-        // TODO: NATE check this: cancel invoice in transaction, must have an invoice associated with it. otherwise will raise error
         if (!app(StripeApiController::class)->cancelInvoice($session->id)){
             return response()->json([
                 'errorMsg' => "Cannot cancel invoice"
@@ -65,13 +63,12 @@ class SessionController extends Controller
     // todo: NATE
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
-        // todo: validate all the input data before creating a session
         // including:
-        // 1. the upcoming session time validation (must be at least 30 minutes after current time, and be the same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
+        // 1. the upcoming session time validation (must be at least 30 minutes after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
-        Log::debug($request);
         $validStartTime = Carbon::now()->addMinutes(30);
+        Log::debug($request->input('sessionType'));
         $request->validate([
             'tutorId' => [
                 'required',
@@ -82,13 +79,15 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-                new SessionOverlap($request['tutorId'], Auth::user()->id),
+
+                //TODO:check same day, overlap
+                new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [
                 'required',
                 'date',
                 'after:startTime',
-                new SessionOverlap($request['tutorId'], Auth::user()->id),
+                //TODO:check same day, overlap
             ],
             'course' => [
                 'required',
@@ -96,13 +95,12 @@ class SessionController extends Controller
             ],
             'sessionType' => [
                 'required',
-                //TODO: check?
-                
+                //TODO: check in-person / online, 
+
             ],
            
         ]);
 
-        // TODO: check if customer has >= 1 payment methods
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards
             $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
@@ -116,13 +114,14 @@ class SessionController extends Controller
             $tutorRequest->hourly_rate = $tutor->hourly_rate;
             $tutorRequest->session_time_start = $startTime;
             $tutorRequest->session_time_end = $endTime;
+            // TODO: nate change to boolean
             $tutorRequest->is_in_person = $sessionType;
 
             $tutorRequest->tutor()->associate($tutor);
             $tutorRequest->student()->associate(Auth::user());
             $tutorRequest->course()->associate($course);
 
-            // $tutorRequest->save();
+            $tutorRequest->save();
 
             return response()->json(
                 [
@@ -131,7 +130,11 @@ class SessionController extends Controller
             );
         } else{
             // TODO: no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
-
+            return response()->json(
+                [
+                    'redirectMsg' => route('home.profile'),
+                ]
+            );
         }
     }
 
