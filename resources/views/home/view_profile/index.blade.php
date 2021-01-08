@@ -47,7 +47,7 @@ bg-student
 
         <div class="view-profile--right col-9">
             @if($displayForumActivities)
-            <h1>here</h1>
+            @include('home.view_profile.partials.forum')
             @endif
         </div>
     </div>

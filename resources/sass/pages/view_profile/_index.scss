@@ -214,11 +214,33 @@
             }
 
         }
+    }
 
-        .view-profile--right {
-            background-color: orangered;
-            height: 100%;
+    .view-profile--right {
+
+        height: 100%;
+
+        .filter {
+            background-color: $color-white-dark-5;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.6rem 3rem;
+
+            select {
+                font-size: 1.6rem;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                text-align-last: right;
+                padding: 0 1rem 0 0;
+
+                option {
+                    direction: rtl;
+                }
+            }
         }
+    }
 
         // &__header {
 
@@ -393,7 +415,7 @@
         //         }
         //     }
         // }
-    }
+
 }
 
 
