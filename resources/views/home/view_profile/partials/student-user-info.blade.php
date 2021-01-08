@@ -22,7 +22,7 @@
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::id() != $user->id)
+        @if (Auth::check() && Auth::id() != $user->id)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
         <button id="btn-invite" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm mt-3">Invite to be a Tutor</button>
