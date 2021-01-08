@@ -301,6 +301,10 @@
     .calendar-note {
         font-size: 1.2rem !important;
         margin-top: 1rem !important;
+
+        .available-time {
+            margin-right: 0;
+        }
     }
 }
 
