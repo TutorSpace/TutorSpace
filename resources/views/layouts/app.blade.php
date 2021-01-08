@@ -27,7 +27,7 @@
     {{-- my js --}}
     <script>
         // ============== STRIPE =======================
-        const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_TEST_KEY') }}";
+        const stripeApiKey = "{{ env('STRIPE_PUBLISHABLE_LIVE_KEY') }}";
     </script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>

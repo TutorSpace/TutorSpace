@@ -31,7 +31,7 @@ class StripeApiController extends Controller
     // todo: NATE (根据.env里的app_env来决定用那个key)
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
-        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+        Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
     }
 
     // =========== stripe testing start =================
@@ -384,6 +384,8 @@ class StripeApiController extends Controller
         $tutor = $session->tutor;
         $tutor_payment_method = $tutor->paymentMethod;
 
+        // TODO: send email if no balance
+
         // Create transfer
         $transfer = \Stripe\Transfer::create([
             'amount' => $amount,
@@ -504,6 +506,7 @@ class StripeApiController extends Controller
 
                 // send to user
                 // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
+                // TODO: send email to tutor
                 $student = $transaction->session->student;
                 $student->notify(new ChargeRefunded($transaction->session));
 
