@@ -45,9 +45,6 @@ bg-student
                     <div class="graph-1">
                         <div id="scatter-chart"></div>
                     </div>
-                    {{-- <div class="graph-2">
-                        <div id="gauge-chart"></div>
-                    </div> --}}
                     
                     <div class="graph-2">
                         <canvas id="rating-chart" class="rating-chart"></canvas>
@@ -85,7 +82,8 @@ bg-student
                     </div>
                     <div class="forum-data">
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->postsReplied()->count() }}</a>
+                        {{-- TODO: nate --}}
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
                     </div>
                     <div class="forum-data" id="forum-data-my-follows">
                         <span class="title">Followed</span>

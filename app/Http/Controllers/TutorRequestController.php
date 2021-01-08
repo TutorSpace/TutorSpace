@@ -69,10 +69,7 @@ class TutorRequestController extends Controller
 
     public function calculateSessionFee($session) {
         $hourlyRate = $session->hourly_rate;
-        $startTimeInTime = strtotime($session->session_time_start);
-        $endTimeInTime = strtotime($session->session_time_end);
-        $sessionDurationInHour = round(abs($endTimeInTime - $startTimeInTime)/3600,2);
-        $sessionFee = $sessionDurationInHour * $hourlyRate;
+        $sessionFee = $session->getDurationInHour() * $hourlyRate;
         return $sessionFee;
     }
 

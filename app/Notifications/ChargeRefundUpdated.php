@@ -7,13 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Session;
-
 class ChargeRefundUpdated extends Notification
 {
     use Queueable;
 
-    private Session $session;
+    private $session;
     private $is_sending_to_user;
     private $failure_reason;
 
@@ -22,7 +20,7 @@ class ChargeRefundUpdated extends Notification
      *
      * @return void
      */
-    public function __construct(Session $session, $is_sending_to_user, $failure_reason)
+    public function __construct($session, $is_sending_to_user, $failure_reason)
     {
         $this->session = $session;
         $this->is_sending_to_user = $is_sending_to_user;
@@ -37,7 +35,7 @@ class ChargeRefundUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -51,7 +49,7 @@ class ChargeRefundUpdated extends Notification
         if ($this->is_sending_to_user) {
             return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . date('m/d/Y', $this->session->session_time_start) . ' has failed.')
+                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
                     ->line('The failure reason is ' . $this->failure_reason . '.')
                     ->line('Thank you for using our platform!');
         } else {

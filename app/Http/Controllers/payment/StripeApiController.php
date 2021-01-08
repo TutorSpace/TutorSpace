@@ -20,16 +20,23 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\PayoutFailed;
 use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\UnpaidInvoiceReminder;
 
 class StripeApiController extends Controller
 {
     // todo: NATE (根据.env里的app_env来决定用那个key)
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
-        Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+        if (env('APP_ENV') == 'local'){
+            Stripe::setApiKey(env('STRIPE_TEST_KEY'));
+        }
+        else if (env('APP_ENV') == 'prod'){
+            Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
+        }
     }
 
     // =========== stripe testing start =================
@@ -382,6 +389,8 @@ class StripeApiController extends Controller
         $tutor = $session->tutor;
         $tutor_payment_method = $tutor->paymentMethod;
 
+        // TODO: send email if no balance
+
         // Create transfer
         $transfer = \Stripe\Transfer::create([
             'amount' => $amount,
@@ -400,33 +409,34 @@ class StripeApiController extends Controller
     }
 
     // Cancels an Invoice
-    // return 400 response code for error
-    // return 200 response code for success
+    // return false for error
+    // return true for success
     public function cancelInvoice($session_id) {
         $session = AppSession::find($session_id);
+        // sesson doesn't exist
+        if (!$session){
+            Log::error('cannot find the session when canceling invoice');
+            return false;
+        }
+
         $transaction = $session->transaction;
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
 
         // invoice doesn't exist
         if (!$invoice){
-            Log::error('cannot find the invoice!');
-            return response()->json([
-                'errorMsg' => "cannot find the invoice!"
-            ], 400);
+            Log::error('cannot find the invoice when canceling invoice!');
+            return false;
         }
 
         // delete an invoice
         if ( $invoice->status != 'draft') {
             Log::error('Deleting an invoice that is not draft');
-            return response()->json([
-                'errorMsg' => "Deleting an invoice that is not draft"
-            ], 400);
+            return false;
         } else {
             $invoice->delete();
             $transaction->delete();
-            return response()->json([
-                'success' => "successfully deleted the invoice"
-            ], 200);
+            Log::info('successfully deleted the invoice');
+            return true;
         }
     }
 
@@ -466,8 +476,25 @@ class StripeApiController extends Controller
                 $transaction->save();
 
                 // TODO: send email to user
-                $user = $transaction->session->student;
-                $user->notify(new InvoicePaid($transaction->session));
+                $student = $transaction->session->student;
+                $student->notify(new InvoicePaid($transaction->session, true));
+                $tutor = $transaction->session->tutor;
+                $tutor->notify(new InvoicePaid($transaction->session, false));
+
+                break;
+
+            case 'invoice.payment_failed':
+            case 'invoice.payment_action_required':
+                $invoice = $event->data->object;
+
+                // Change database transaction invoice_status => paid
+                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+                $transaction->invoice_status = 'paid';
+                $transaction->save();
+
+                // TODO: send email to user
+                $student = $transaction->session->student;
+                $student->notify(new InvoicePaymentFailed($transaction->session));
 
                 break;
 
@@ -481,11 +508,10 @@ class StripeApiController extends Controller
                 Log::debug('Transaction refunded: ' . $transaction->id);
 
                 // TODO: send email to user of 'transaction'. Refund succeeded
-
-                // send to user
-                // $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
-                $user = $transaction->session->student;
-                $user->notify(new ChargeRefunded($transaction->session));
+                $student = $transaction->session->student;
+                $student->notify(new ChargeRefunded($transaction->session, true));
+                $tutor = $transaction->session->tutor;
+                $tutor->notify(new ChargeRefunded($transaction->session, false));
 
                 break;
 
@@ -500,8 +526,8 @@ class StripeApiController extends Controller
                 Log::debug('Transaction refund failed: ' . $transaction->id);
 
                 // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
-                $user = $transaction->session->student;
-                $user->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
+                $student = $transaction->session->student;
+                $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
                 Notification::route('mail', 'tutorspaceusc@gmail.com')
                 ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
@@ -590,8 +616,7 @@ class StripeApiController extends Controller
     // open means unpaid, used for cronjob
     // FACADE
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
-        $transactionsToSend = Transaction::selectRaw("invoice_id")
-        ->whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
+        $transactionsToSend = Transaction::whereRaw("TIMESTAMPDIFF (HOUR, updated_at,CURRENT_TIMESTAMP()) >= ?", $hoursAfterLastUpdate)
         ->where("invoice_status","open")
         ->get();
         // send to each
@@ -601,10 +626,20 @@ class StripeApiController extends Controller
             // send invoice
             $invoiceToSend->sendInvoice();
             // update last update time
-            $model = Transaction::find($transaction->id);
-            $model->touch();
+            $transaction->touch();
+
+            // send unpaid invoice mail reminder to tutorspace and user
+            $user = User::find($transaction->user_id);
+            Notification::route('mail', $user->email)
+            ->notify(new UnpaidInvoiceReminder($user));
+            Notification::route('mail', "tutorspace@gmail.edu")
+            ->notify(new UnpaidInvoiceReminder($user));
+
+            echo "Succesfully send unpaid invoices to customer\n";
         }
+
     }
+
 
     // Get the payment URL of the invoice for 'session'
     // Return URL string

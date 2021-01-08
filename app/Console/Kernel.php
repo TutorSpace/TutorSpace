@@ -61,15 +61,16 @@ class Kernel extends ConsoleKernel
             // input: minutes after session to finalize
             Transaction::finalizeInvoice(0);
             echo "Successfully finalize invoices: " . now() . "\n";
-        })->everyThirtyMinutes();
-        // })->everyMinute();
+        // })->everyThirtyMinutes();
+        })->everyMinute();
 
         // ask users to pay their bills!!!
         $schedule->call(function () {
             // send one invoice after 24 hours since last_updated on database transaction table
             Transaction::sendUnpaidInvoices(24);
             echo "Successfully send emails to users that haven't paid their invoices: " . now() . "\n";
-        })->twiceDaily(9, 20);
+        // })->twiceDaily(9, 20);
+        })->everyMinute();
 
     }
 
