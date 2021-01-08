@@ -123,10 +123,12 @@
             }
 
             .button-container {
+                min-width: 16rem;
+
                 button, a {
                     width: 100%;
-                    min-width: 16ch;
-                    padding: .5rem !important;
+                    padding: .75rem 1.5rem;
+                    display: block;
                 }
             }
 
