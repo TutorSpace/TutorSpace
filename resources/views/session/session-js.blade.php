@@ -101,6 +101,10 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     });
 
+    // $('.modal-session #user-img').attr('src', $('.view-profile__user-info .user-img').attr('src'));
+
+    // $('.modal-session #user-name').html($('.view-profile__user-info .name').html());
+
     if(startTime) {
         $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
