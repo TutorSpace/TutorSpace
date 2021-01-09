@@ -86,7 +86,10 @@ bg-student
 
     function subscribeNewMessageChannel(otherUserId) {
         // subscribe to the channel
-        let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+        let channelName = Number(currentUserId) < Number(otherUserId) ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+
+        console.log('channelName: ' + channelName);
+
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
             let {from, to, message, created_at, chatroomView, imgUrl} = data;
@@ -115,7 +118,9 @@ bg-student
 
     $('.msgs').on('click', '.msg', function () {
         $('.msg .box').removeClass('bg-grey-light');
+        $('.msg').removeClass('bg-grey-light');
         $(this).find('.box').addClass('bg-grey-light');
+        $(this).addClass('bg-grey-light');
         let otherUserId = $(this).attr('data-user-id');
         $.ajax({
             type:'GET',

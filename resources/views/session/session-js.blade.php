@@ -7,7 +7,7 @@
             buttons: {
                 Next: {
                     label: 'Done',
-                    className: 'btn btn-primary p-3 px-4 fs-1-4',
+                    className: 'btn btn-primary p-2 px-4 fs-1-6',
                 },
             }
         });
@@ -45,7 +45,7 @@
             buttons: {
                 Cancel: {
                     label: 'Cancel Session',
-                    className: 'btn btn-primary p-3 px-4 fs-1-4',
+                    className: 'btn btn-primary p-2 px-4 fs-1-6',
                     callback: function(e) {
                         let cancelReasonId = $($('#cancel-reason option:selected')).val();
 
@@ -87,7 +87,7 @@ $('#tutor-profile-request-session').on('click',function() {
         buttons: {
             Next: {
                 label: 'Next',
-                className: 'btn btn-primary p-3 px-4',
+                className: 'btn btn-primary p-2 px-4 fs-1-6',
                 callback: () => {
                     if(startTime && endTime) {
                         session_details();
@@ -101,6 +101,10 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     });
 
+    // $('.modal-session #user-img').attr('src', $('.view-profile__user-info .user-img').attr('src'));
+
+    // $('.modal-session #user-name').html($('.view-profile__user-info .name').html());
+
     if(startTime) {
         $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
@@ -109,7 +113,7 @@ $('#tutor-profile-request-session').on('click',function() {
 
 
     let options = Object.assign({}, calendarOptions);
-    options.height = 350;
+    options.height = 300;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
     e.render();
     setTimeout(() => {
@@ -126,7 +130,7 @@ $('#tutor-profile-request-session').on('click',function() {
             buttons: {
                 Next: {
                     label: 'Next',
-                    className: 'btn btn-primary p-3 px-4',
+                    className: 'btn btn-primary p-2 px-4 fs-1-6',
                     callback: () => {
                         // no need for checking, because default select is made. Although backend validation is required.
                         session_confirm();
@@ -156,7 +160,7 @@ $('#tutor-profile-request-session').on('click',function() {
                 buttons: {
                     Submit: {
                         label: 'Book Session',
-                        className: 'btn btn-primary p-3 px-5',
+                        className: 'btn btn-primary p-2 px-4 fs-1-6',
                         callback: function() {
                             $.ajax({
                                 type: 'POST',

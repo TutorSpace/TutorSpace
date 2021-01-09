@@ -9,12 +9,12 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
+    <h6 class="w-100 text-center mb-5">Book your Tutor Session</h6>
     <div>
         <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img">
         <span class="font-weight-bold ml-4 fc-black-2">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span>
     </div>
-    <p class="fc-grey fs-1-2 mt-5">Drag on the calender to choose the time for your session.</p>
+    <p class="fc-grey fs-1-2 mt-4">Drag on the calender to choose the time for your session.</p>
     <div class="row">
         <div class="col-9 pl-0">
             <div id="calendar" class="w-100"></div>
@@ -42,6 +42,6 @@
         </div>
     </div>
 
-    <p class="mt-5 fc-red">Warning: Your selected time is not in thte tutor’s available time. <br/>The Tutor may cancel your request if he/she is not available during that time.</p>
+    <p class="mt-4 fc-red">Warning: Your selected time is not in thte tutor’s available time. <br/>The Tutor may cancel your request if he/she is not available during that time.</p>
 
 </div>

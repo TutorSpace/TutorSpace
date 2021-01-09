@@ -205,6 +205,17 @@
 
 .hover--pointer { cursor: pointer; }
 
+.hover--pointer-none { cursor: default; }
+
+.bg-student .hover--primary-color:hover {
+    fill: $color-blue-primary;
+    color: $color-blue-primary;
+}
+.bg-tutor .hover--primary-color:hover {
+    fill: $color-purple-primary;
+    color: $color-purple-primary;
+}
+
 .placeholder {
     margin-top: 0 !important;
     margin-bottom: 0 !important;

@@ -132,7 +132,6 @@ class StripeApiController extends Controller
     }
 
     // true or false if there's card
-    // facade
     public static function customerHasCards(){
         $cards = \Stripe\PaymentMethod::all([
             'customer' => Self::getCustomerId(),
@@ -145,7 +144,6 @@ class StripeApiController extends Controller
         return false;
     }
 
-    // FACADE!!!
     private function getCustomerDefaultPaymentId(){
         $customer_id = $this->getCustomerId();
         $customer = \Stripe\Customer::retrieve($customer_id, []);

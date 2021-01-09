@@ -122,6 +122,13 @@
 .fc-view-harness {
     max-height: 63rem;
     overflow: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .fc .fc-timegrid-col-events {

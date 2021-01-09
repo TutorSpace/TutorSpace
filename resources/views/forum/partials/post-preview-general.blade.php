@@ -68,5 +68,5 @@
 
 </div>
 @empty
-<h5 class="mt-4">No posts yet.</h5>
+<h5 class="mt-4 no-posts">No posts yet.</h5>
 @endforelse

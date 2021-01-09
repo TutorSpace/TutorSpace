@@ -1,7 +1,5 @@
 <div class="container modal-session-cancel">
-    <h5 class="w-100 text-center my-5">Are you sure you want to cancel the session with Nemo Enim?</h5>
-
-    <p class="fc-grey text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <h6 class="w-100 text-center my-5">Are you sure you want to cancel the session with Nemo Enim?</h6>
 
     <p class="font-weight-bold fc-black-2 mt-5">Why do you want to cancel the session?</p>
     <div class="mb-3">

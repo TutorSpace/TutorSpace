@@ -178,7 +178,6 @@ bg-student
                         {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
                         <span class="title">Participated</span>
                         <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
-                         {{-- {{ Auth::user()->getParticipatedPosts()->count() }} --}}
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>

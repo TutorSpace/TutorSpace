@@ -45,7 +45,7 @@ bg-student
                     <div class="graph-1">
                         <div id="scatter-chart"></div>
                     </div>
-                    
+
                     <div class="graph-2">
                         <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
