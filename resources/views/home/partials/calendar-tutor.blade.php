@@ -6,7 +6,7 @@ let calendarOptions = {
     headerToolbar: {
         left: 'prev title next',
         center: '',
-        right: 'today timeGridDay timeGridThreeDay'
+        right: 'today timeGridDay timeGridFiveDay'
     },
     eventColor: 'rgb(213, 208, 223)',
     height: 'auto',
@@ -26,7 +26,7 @@ let calendarOptions = {
     // editable: true,
     expandRows: true,
     views: {
-        timeGridThreeDay: {
+        timeGridFiveDay: {
             type: 'timeGrid',
             duration: { days: 5 },
             buttonText: '5 days'

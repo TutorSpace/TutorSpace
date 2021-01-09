@@ -49,26 +49,28 @@ bg-student
             @if($displayForumActivities)
             @include('home.view_profile.partials.forum')
             @else
-            <div id="calendar"></div>
-            <div class="calendar-note">
-                <span class="available-time">Available Time</span>
-                <span class="online">Online</span>
-                <span class="in-person">In Person</span>
-                <span class="note">Note: All time in the calender are based on PST.</span>
+            <div class="calendar-container">
+                <div class="heading">
+                    <span class="fs-1-8 fc-grey">Book a Tutor Session</span>
+                    <span class="hourly-rate">
+                        <span class="color-primary fs-2">
+                            $ {{ $user->hourly_rate }}</span>
+                            <span class="fs-1-4 fc-grey">
+                                /hour
+                            </span>
+                        </span>
+                </div>
+                <div id="calendar"></div>
+                <div class="calendar-note">
+                    <span class="available-time">Available Time</span>
+                    <span class="online">Online</span>
+                    <span class="in-person">In Person</span>
+                    <span class="note">Note: All time in the calender are based on PST.</span>
+                </div>
             </div>
             @endif
         </div>
     </div>
-    {{-- <div class="row">
-        <h5 class="w-100 mb-3 calendar-heading">Calendar</h5>
-        <div id="calendar" class="w-100"></div>
-        <div class="calendar-note">
-            <span class="available-time">Available Time</span>
-            <span class="online">Online</span>
-            <span class="in-person">In Person</span>
-            <span class="note">Note: All time in the calender are based on PST.</span>
-        </div>
-    </div> --}}
 
 </main>
 

@@ -251,9 +251,25 @@
             }
         }
 
-        #calendar {
+        .calendar-container {
+            background-color: $color-white-dark-5;
+            padding: 2rem 3rem 4.5rem 3rem;
+            border-radius: 1rem;
 
+            .heading {
+                display: flex;
+                justify-content: space-between;
+
+                .hourly-rate {
+
+                }
+            }
+
+            #calendar {
+                margin-top: 1.5rem;
+            }
         }
+
     }
 
 }
