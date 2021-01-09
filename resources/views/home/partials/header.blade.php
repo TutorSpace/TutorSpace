@@ -118,7 +118,7 @@
                 </div>
                 @if (Auth::user()->is_tutor)
                 <div class="data">
-                    <span class="number">?</span>
+                    <span class="number">{{ Auth::user()->numStudents() }}</span>
                     <span class="classifier">Students</span>
                 </div>
                 @endif

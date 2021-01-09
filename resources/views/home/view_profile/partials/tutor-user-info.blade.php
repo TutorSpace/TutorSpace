@@ -93,7 +93,7 @@
                     <span class="classifier">Sessions</span>
                 </div>
                 <div class="statistics color-primary">
-                    <span class="number color-primary">?</span>
+                    <span class="number color-primary">{{ $user->numStudents() }}</span>
                     <span class="classifier">Students</span>
                 </div>
             </div>

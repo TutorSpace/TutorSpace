@@ -5,10 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/abc', 'testController@test')->name('abc');
+Route::get('/abc', 'testController@test');
 Route::get('/test', 'testController@index');
-Route::get('/test1', 'testController@action')->name('test.action');
-Route::get('/test2', 'testController@index2');
 
 // autocomplete
 Route::group([

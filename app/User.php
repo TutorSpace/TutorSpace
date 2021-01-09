@@ -360,6 +360,16 @@ class User extends Authenticatable
                     ->count();
     }
 
+    // todo: improve the query with select count
+    public function numStudents() {
+        return Session::join('users', 'sessions.tutor_id', '=', 'users.id')
+        ->where('sessions.tutor_id', $this->id)
+        ->where('sessions.is_canceled', false)
+        ->groupBy('sessions.student_id')
+        ->get()
+        ->count();
+    }
+
     public function sessions() {
         return $this
                     ->hasMany('App\Session', $this->is_tutor ? 'tutor_id' : 'student_id');
@@ -423,7 +433,6 @@ class User extends Authenticatable
             $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
     }
 
-    // Payments
     public function paymentMethod() {
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
@@ -439,8 +448,7 @@ class User extends Authenticatable
             $this->save();
     }
 
-    // return tutor level bonus rate of current user
-    // return: double
+    // return tutor level bonus rate of current user as DOUBLE
     public function getUserBonusRate(){
         return $this->tutorLevel()->get()[0]->bonus_rate;
     }
