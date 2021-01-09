@@ -49,7 +49,7 @@ bg-student
             @if($displayForumActivities)
             @include('home.view_profile.partials.forum')
             @else
-            <div id="calendar" class="w-100"></div>
+            <div id="calendar"></div>
             <div class="calendar-note">
                 <span class="available-time">Available Time</span>
                 <span class="online">Online</span>
