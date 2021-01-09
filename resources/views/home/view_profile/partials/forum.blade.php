@@ -8,22 +8,6 @@
        </select>
     </div>
     <div class="post-previews">
-        @php
-            $posts = App\Post::with([
-                            'tags',
-                            'user'
-                        ])
-                        ->withCount([
-                            'usersUpvoted',
-                            'replies',
-                            'tags'
-                        ])
-                        // todo: modify the formula
-                        ->where('user_id', $user->id)
-                        ->orderByRaw(App\POST::POPULARITY_FORMULA)
-                        ->get()
-                        ->paginate(3);
-        @endphp
         @include('forum.partials.post-preview-general', [
             'posts' => $posts
         ])
