@@ -251,14 +251,14 @@ bg-student
                         @else
 
 
-                        
+
                         <div class="payment-cards">
                             {{-- <div class="bank-card bg-non-default m-3">
                                 <div class="overlay"></div>
                                 <div class="bank-card-row-one">
                                     <div class="brand">Brand: xxxx</div>
                                 </div>
-                                
+
                                 <div class="bank-card-row-two">
                                     <div class="number">
                                         <span>****</span>
@@ -277,12 +277,12 @@ bg-student
                                         <div class="user-info">08/20</div>
                                     </div>
                                 </div>
-                                    
+
                                 <div class="bank-card-btns">
                                     <button class="btn btn-delete">Delete</button>
                                     <button class="btn btn-set-default">Set As Default</button>
                                 </div>
-                                
+
                             </div>
 
 
@@ -292,7 +292,7 @@ bg-student
                                 <div class="bank-card-row-one">
                                     <div class="brand">Brand: xxxx</div>
                                 </div>
-                                
+
                                 <div class="bank-card-row-two">
                                     <div class="number">
                                         <span>****</span>
@@ -311,7 +311,7 @@ bg-student
                                         <div class="user-info">08/20</div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="bank-card-btns">
                                     <button class="btn btn-delete">Delete</button>
                                     <button class="btn btn-set-default">Set As Default</button>
@@ -323,7 +323,7 @@ bg-student
                                 <div class="bank-card-row-one">
                                     <div class="brand">Brand: xxxx</div>
                                 </div>
-                                
+
                                 <div class="bank-card-row-two">
                                     <div class="number">
                                         <span>****</span>
@@ -348,7 +348,7 @@ bg-student
                                 </div>
                             </div> --}}
 
-                          
+
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
                                 <div>Add New Payment</div>
@@ -356,9 +356,9 @@ bg-student
 
                         </div>
 
-                     
 
-    
+
+
                         @endif
                     </div>
                 </div>
@@ -605,14 +605,14 @@ bg-student
 
                             <div class="bank-card `+
                             (card.is_default == 'false'? `bg-non-default`:`bg-default`)
-                            
+
                             +`
                              m-3">
                                 <div class="overlay"></div>
                                 <div class="bank-card-row-one">
                                     <div class="brand">Brand: ${card.brand}</div>
                                 </div>
-                                
+
                                 <div class="bank-card-row-two">
                                     <div class="number">
                                         <span>****</span>
@@ -631,7 +631,7 @@ bg-student
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
                                     </div>
                                 </div>
-                                    
+
 
 
 
@@ -647,7 +647,7 @@ bg-student
                                     <div class="bank-card-btns">Default Payment</div>
                                 `)
                                 +`
-                                
+
                             </div>
 
                     `);
@@ -664,28 +664,7 @@ bg-student
     }
 
 
-             // <div class="card-wrapper">
-                        //     <div class="card">
-                        //         <div class="brand">
-                        //             Brand: ${card.brand}
-                        //         </div>
-                        //         <div class="exp">
-                        //             Expired At: ${card.exp_month}/${card.exp_year}
-                        //         </div>
-                        //         <div class="last4">
-                        //             Card Number: xxxx-xxxx-xxxx-${card.last4}
-                        //         </div>
-                        //     </div>
 
-                        //    `+
-
-                        //    (card.is_default == 'false'?`
-                        //         <button data-id=${idx} class="btn btn-danger mr-2 btn-delete">Delete</button>
-                        //         <button data-id=${idx} class="btn btn-primary btn-set-default">Set As Default</button>
-
-                        //    `:'')
-                        //    +`
-                        // </div>
     $("#btn-setup-payment").click(function () {
         // TODO: add loading
         postToConnectAccount().then((response) => {
