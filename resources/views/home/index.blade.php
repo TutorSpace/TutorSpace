@@ -191,6 +191,10 @@ bg-student
 
     <section class="home__side-bar">
         <div class="home__board">
+            @if (Auth::user()->is_tutor)
+            <h4>Want to earn bonus more quickly?</h4>
+            <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
+            @endif
         </div>
 
         <div class="home__side-bar__upcoming-sessions">

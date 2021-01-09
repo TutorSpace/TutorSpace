@@ -574,7 +574,6 @@
 
         .home__board {
             margin-top: 8rem;
-            background-color: $color-grey;
             height: 20rem;
             border-radius: 1rem;
         }
@@ -659,6 +658,22 @@
             }
         }
 
+        &__board {
+            background-image: radial-gradient(rgba(103, 73, 223, 1), rgba(98, 70, 210, 1));
+            padding: 3rem 4rem;
+
+            color: $color-white;
+
+            a {
+                margin-top: 1rem;
+                padding: .75rem 2.25rem;
+                font-size: 1.6rem;
+                color: $color-white;
+                border-radius: 2rem;
+                background-image: linear-gradient(to right, rgba(254, 211, 92, 1), rgba(255, 188, 0, 1));
+            }
+        }
+
         .welcome-msg {
             color: $color-purple-primary;
         }
@@ -694,6 +709,10 @@
             .content-info {
                 margin-bottom: 4.5rem;
             }
+        }
+
+        &__board {
+            background: $color-white-dark-5;
         }
 
         .welcome-msg {
