@@ -79,7 +79,7 @@ class SessionController extends Controller
                 'date',
                 'after_or_equal:'.$validStartTime,
 
-                //TODO:check same day, overlap
+                //TODO: nate check same day, overlap
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [
