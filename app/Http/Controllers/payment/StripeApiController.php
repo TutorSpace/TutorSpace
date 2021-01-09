@@ -212,7 +212,7 @@ class StripeApiController extends Controller
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
 
         // $invoice->sendInvoice();
-        
+
         // change invoice status
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
@@ -351,7 +351,7 @@ class StripeApiController extends Controller
                 return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
 
-        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Refund a session bonus given 'session'
@@ -368,8 +368,8 @@ class StripeApiController extends Controller
     // Decline a refund request for a session
     public function declineRefundRequest(Request $request, AppSession $session) {
         $transaction = $session->transaction;
-        if ($transaction->refund_status != 'user_intiated') {  // Invalid status
-            Log::error('Refund status is not user_intiated. Unable to decline.');
+        if ($transaction->refund_status != 'user_initiated') {  // Invalid status
+            Log::error('Refund status is not user_initiated. Unable to decline.');
             return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
         }
         $transaction->refund_status = 'canceled';
@@ -532,7 +532,7 @@ class StripeApiController extends Controller
             case 'payout.paid':
                 $stripe_account_id = $event->account;
                 $payout = $event->data->object;
-                
+
                 $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
                 $user = $payment_method->user;
 
