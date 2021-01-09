@@ -31,12 +31,15 @@
             e.gotoDate('2020-10-25'); // todo: change this
         }, 500);
         @endif
+
+
     });
+
 
 
     $('.btn-cancel-session').on('click',function() {
         let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
-        console.log(sessionId);
+        let name = $(this).closest('.info-card').find('.user-name').html();
 
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
@@ -63,7 +66,7 @@
                                 }, 1000);
                             },
                             error: function error(error) {
-                                toastr.error("There is an error occurred");
+                                toastr.error("Something went wrong when canceling the session. Please contact tutorspaceusc@gmail.com for more details.");
                             }
                         });
                     }
@@ -71,6 +74,7 @@
             }
         });
 
+        $('.modal-session-cancel .name').html(name);
 
     });
 </script>
