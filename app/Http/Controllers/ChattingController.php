@@ -81,9 +81,9 @@ class ChattingController extends Controller
             // remove the zombie chatrooms
             if(Chatroom::where('user_id_1', $to < $from ? $to : $from)->where('user_id_2', $to < $from ? $from : $to)->count() > 1) {
                 Chatroom::where('user_id_1', $to < $from ? $to : $from)->where('user_id_2', $to < $from ? $from : $to)->where('creator_user_id', $to)->first()->delete();
-                broadcast(new NewMessage($msg, true));
+                broadcast(new NewMessage($msg));
             } else {
-                broadcast(new NewMessage($msg, false));
+                broadcast(new NewMessage($msg));
             }
             return 'success';
         }

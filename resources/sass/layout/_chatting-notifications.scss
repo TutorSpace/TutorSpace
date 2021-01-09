@@ -78,6 +78,13 @@
             margin-top: 2rem;
             overflow: scroll;
 
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+
             > *:not(:first-child) {
                 paddings-top: 1rem;
             }
@@ -87,6 +94,10 @@
 
                 &.unread {
                     border-left: 5px solid $color-yellow-primary;
+                }
+
+                &:hover {
+                    background-color: rgba(240, 240, 240, 0.9);
                 }
 
                 .box {
@@ -100,9 +111,7 @@
                     position: relative;
                     cursor: pointer;
 
-                    &:hover {
-                        background-color: rgba(240, 240, 240, 0.9);;
-                    }
+
 
 
                     .img-container {

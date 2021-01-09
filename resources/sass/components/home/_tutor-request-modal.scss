@@ -38,12 +38,12 @@
         }
 
         .tutor-request-modal__content {
-            padding: 4rem;
+            padding: 2rem 4rem;
             padding-bottom: 3rem;
             margin-bottom: 5rem;
 
             @include respond(sm) {
-                padding: 3rem;
+                padding: 1.5rem 3rem;
             }
 
             .tutor-request-modal__content__header {
@@ -53,7 +53,7 @@
                 align-items: center;
                 color: $color-purple-primary;
                 font-size: 2.2rem;
-                margin-bottom: 1.3rem;
+                // margin-bottom: 1.3rem;
                 font-weight: 500;
 
                 &--title {
@@ -87,7 +87,7 @@
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
                     font-size: 1.6rem;
 
                     img {

@@ -9,26 +9,26 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h4 class="w-100 text-center mb-5">Book your Tutor Session</h4>
-    <p class="fc-black-2 mt-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <h6 class="w-100 text-center mb-5">Book your Tutor Session</h6>
+    <p class="fc-black-2 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
-    <p class="font-weight-bold fc-black-2 mt-5">Choose the course you would like to be tutored in </p>
+    <p class="font-weight-bold fc-black-2 mt-4">Choose the course you would like to be tutored in </p>
     <div class="mb-3">
         <select name="courses" class="form-control form-control-lg fs-1-6" id="courses">
         </select>
     </div>
 
-    <p class="font-weight-bold fc-black-2 mt-5">Do you want to meet your tutor online or in person? </p>
+    <p class="font-weight-bold fc-black-2 mt-4">Do you want to meet your tutor online or in person? </p>
     <div class="mb-3">
         <select name="session-type" class="form-control form-control-lg fs-1-6" id="session-type">
             <option value="in-person">In Person</option>
             <option value="online">Online</option>
         </select>
     </div>
-    {{-- <p class="font-weight-bold fc-black-2 mt-5">Is there anything you would like your tutor to know prior to the session? </p>
+    {{-- <p class="font-weight-bold fc-black-2 mt-4">Is there anything you would like your tutor to know prior to the session? </p>
     <div class="mb-3">
         <textarea class="form-control form-control-lg" rows="3"></textarea>
     </div> --}}
 
-    <p class="fc-black-2 mt-5"><span class="font-weight-bold">USC Integrity Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">USC Integrity Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 </div>

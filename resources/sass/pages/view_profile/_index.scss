@@ -1,295 +1,366 @@
 .view-profile {
     margin-top: $nav-height;
     color: $color-black-2;
-    margin-bottom: 18rem;
+    margin-bottom: 5rem;
 
-    &__header {
-        padding: 0;
-        border-radius: 1rem;
-        position: relative;
-        margin-top: 5rem;
-        margin-bottom: 5rem;
-        width: 100%;
+    .btn-back {
+        margin-top: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        svg {
+            font-size: 1.3rem;
+        }
+
+        span {
+            margin-left: 1.2rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    .view-profile--left {
         background-color: $color-white-dark-5;
+        border-radius: 1rem;
+        overflow: hidden;
+        height: fit-content;
 
-        .content {
-            height: auto;
+        .view-profile__user-info {
+            padding: 1.75rem 1rem 0rem 1rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
 
-            &-img {
-                margin-right: 4.5rem;
-                margin-bottom: 0;
-                margin-left: 4rem;
-                position: relative;
-                width: 12rem;
-                min-width: 12rem;
-                height: 12rem;
+            > * {
+                margin-bottom: 1rem;
+            }
+
+            .user-img {
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                object-fit: cover;
 
                 @include respond(md) {
-                    width: 10rem;
-                    min-width: 10rem;
-                    height: 10rem;
-                    margin-right: 3rem;
+                    width: 8rem;
+                    height: 8rem;
+                }
+            }
+
+            .name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 100%;
+            }
+
+            .rating-container {
+                svg {
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    margin-right: .4rem;
+                    position: relative;
+                    bottom: .2rem;
+
+                    @include respond(md) {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        margin-right: .3rem;
+                    }
+
+                    &.full {
+                        fill: $color-yellow-primary;
+                    }
+
+                    &.empty {
+                        fill: $color-grey;
+                    }
                 }
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    transition: all .1s;
-                }
-
-                .caption {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(calc(-50%), calc(-50%));
-                    text-transform: uppercase;
+                .rating {
                     font-size: 1.4rem;
-                    text-align: center;
-                    font-weight: 500;
-                    opacity: 0;
-                    transition: all .1s;
-                    backface-visibility: hidden;
+                    margin-left: .5rem;
+
+                    @include respond(md) {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+
+            .detail-info {
+                font-size: 1.4rem;
+                display: flex;
+                align-items: center;
+                max-width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .tutor-level {
+                font-size: 1.4rem;
+            }
+
+            .intro-toggle {
+                display: flex;
+                align-items: center;
+
+                span {
+                    margin-right: .8rem;
+                    font-size: 1.4rem;
+                }
+
+                svg {
                     cursor: pointer;
                 }
+
+                .hover-animation--before {
+                    transition: transform .1s;
+                    transform: rotate(180deg);
+                }
+
+                .hover-animation--after {
+                    transition: transform .1s;
+                    transform: rotate(-180deg);
+                }
             }
 
-            .content-info {
+            .button-container {
+                min-width: 16rem;
 
-                .name-container {
+                button, a {
+                    width: 100%;
+                    padding: .75rem 1.5rem;
+                    display: block;
+                }
+            }
+
+
+            .section {
+                margin-bottom: 0;
+                width: calc(100% + 15px * 2 + 1rem * 2);
+
+                a {
+                    display: block;
+                    text-align: center;
+                    text-decoration: none;
+                    color: $color-black-2;
+                    font-size: 1.4rem;
+                    padding: 1.25rem;
+                }
+
+                .heading {
+                    font-size: 1.4rem;
+                    padding: 1.25rem;
+                    margin-bottom: 0;
+                    text-align: center;
+                }
+
+                .statistics-container {
+                    margin-top: 2rem;
                     display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    margin-bottom: .25rem;
+                    justify-content: center;
 
-                    .name {
-                        font-weight: 600;
-                        margin-bottom: 0;
-                        margin-right: 3rem;
-                        max-width: 30rem;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
 
-                        @include respond(md) {
-                            margin-right: 1.8rem;
-                        }
-                    }
+                    .statistics {
+                        display: grid;
+                        grid-template-rows: 2;
 
-                    svg {
-                        width: 1.8rem;
-                        height: 1.8rem;
-                        margin-right: .4rem;
-                        position: relative;
-                        bottom: .2rem;
-
-                        @include respond(md) {
-                            width: 1.5rem;
-                            height: 1.5rem;
-                            margin-right: .3rem;
+                        &:not(:last-child) {
+                            margin-right: 2.5rem;
                         }
 
-                        &.full {
-                            fill: $color-yellow-primary;
+                        .number {
+                            font-size: 2.4rem;
+                            font-weight: bolder;
+                            text-align: center;
                         }
 
-                        &.empty {
-                            fill: $color-white;
-                        }
-                    }
-
-                    .rating {
-                        font-size: 1.4rem;
-                        margin-left: .5rem;
-
-                        @include respond(md) {
-                            font-size: 1.2rem;
-                        }
-                    }
-                }
-                .review {
-                    max-width: 75%;
-
-                    @include respond(extra-sm) {
-                        max-width: 95%;
-                    }
-                }
-
-                .sub {
-                    font-size: 1.5rem;
-                    margin-bottom: .75rem;
-
-                    .sub--3 {
-
-                        svg {
-                            transition: all .1s;
-                            cursor: pointer;
-                            &:hover {
-                                transform: scale(1.4);
-                            }
-
-                            &:active {
-                                transform: scale(1.4) translateY(2px);
-                            }
+                        .classifier {
+                            color: $color-grey;
+                            font-size: 1.4rem;
+                            position: relative;
+                            bottom: .65rem;
                         }
                     }
                 }
             }
 
-            .content-price {
-                position: absolute;
-                display: flex;
-                top: 0rem;
-                right: 4rem;
+            .tutor-sessions {
+                margin-top: 2rem;
+                border-bottom: 5px solid $color-white-dark-4;
+                border-top: 5px solid $color-white-dark-4;
+                padding-bottom: .5rem;
 
-                @include respond(md) {
-                    right: 2rem;
-                    top: 0rem;
+                .courses {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    width: 20rem;
+                    margin: 0 auto;
+                    grid-gap: 1rem 1rem;
+
+                    .course {
+                        padding: .3rem .5rem;
+                        display: inline-flex;
+                        align-items: center;
+                        border-radius: .5rem;
+                        font-size: 1.2rem;
+
+                        width: 9rem;
+                        justify-content: center;
+                    }
                 }
             }
 
-            .content-data {
-                position: absolute;
-                display: flex;
-                bottom: 0rem;
-                right: 4rem;
+            .forum-activities {
+                margin-bottom: 2rem;
+            }
 
-                @include respond(md) {
-                    right: 2rem;
-                    bottom: 0rem;
+        }
+    }
+
+    .view-profile--right {
+
+        .filter {
+            background-color: $color-white-dark-5;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.6rem 3rem 1.4rem 3rem;
+
+            select {
+                font-size: 1.4rem;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                text-align-last: right;
+                padding: 0 1rem 0 0;
+
+                option {
+                    direction: rtl;
                 }
+            }
+        }
 
-                @include respond(extra-sm) {
+        .post-previews {
+
+            .post-preview {
+
+            }
+
+            .no-posts {
+                padding: 0 3rem;
+            }
+        }
+
+        .calendar-container {
+            background-color: $color-white-dark-5;
+            padding: 2rem 3rem 4.5rem 3rem;
+            border-radius: 1rem;
+
+            .heading {
+                display: flex;
+                justify-content: space-between;
+
+                .hourly-rate {
+
+                }
+            }
+
+            #calendar {
+                margin-top: 1.5rem;
+            }
+        }
+
+        .reviews {
+            background-color: $color-white-dark-5;
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            margin-top: 3rem;
+
+            .heading {
+
+            }
+
+            .info-boxes {
+                max-height: 25rem;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
                     display: none;
                 }
 
-                .data {
-                    &:not(:last-child) {
-                        margin-right: 3rem;
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
 
-                        @include respond(md) {
-                            margin-right: 1.5rem;
-                        }
-                    }
+                &::-webkit-scrollbar {
+                    display: none;
+                }
 
-                    .number {
-                        display: block;
-                        font-size: 4rem;
-                        line-height: 1;
-                        font-weight: 500;
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
 
-                        @include respond(md) {
-                            font-size: 2rem;
-                        }
-                    }
 
-                    .classifier {
-                        color: $color-grey;
-                        font-size: 1.4rem;
+                > * {
+                    margin-top: 0;
+                }
 
-                        @include respond(md) {
-                            font-size: 1.2rem;
-                        }
-                    }
+                .info-box {
+                    padding: 2rem 0;
+                    border: none;
+
+                    box-shadow: none;
+                    border-bottom: 1px solid rgba($color-grey, .15);
+                    margin-bottom: 0;
+                    border-radius: 0;
                 }
             }
         }
 
-        .welcome-msg {
-            @include absCenter;
+    }
+
+}
+
+
+.bg-student {
+
+    .view-profile .view-profile--left .section {
+        a.active {
             color: $color-white;
-        }
+            background-color: $color-blue-primary;
 
-    }
-
-
-    &__course {
-        border-radius: 1rem;
-        font-size: 1.8rem;
-        padding: 1rem 2rem;
-        text-align: center;
-        color: $color-white-dark-5;
-    }
-
-    .reviews {
-        margin-top: 7rem;
-    }
-
-    .forum {
-        margin-top: 7rem;
-        .post-previews {
-
-            @include respond(sm) {
-                order: 1;
-                margin-top: 3rem;
+            &:hover {
+                background-color: $color-blue-primary-2;
             }
         }
 
+        a.inactive {
 
-        .forum-data-container {
-            position: relative;
-            right: -15px;
-
-            @include respond(sm) {
-                right: 0;
-                padding: 0;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .forum-data {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: $color-white-dark-5;
-                box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
-                padding: 1rem 2rem;
-                border-radius: .5rem;
-
-                @include respond(sm) {
-                    flex: 1;
-
-                    &:not(:last-child) {
-                        margin-right: 2.5rem;
-                    }
-                }
-
-                &:first-child {
-                    margin-top: 2rem;
-                }
-
-                &:not(:first-child) {
-                    margin-top: 1.5rem;
-                }
-
-                .title {
-                    font-size: 1.5rem;
-                    color: $color-grey;
-                }
-
-                .number {
-                    font-size: 1.8rem;
-                    color: $color-black-post;
-                    font-weight: 500;
-                }
+            &:hover {
+                color: $color-white;
+                background-color: $color-blue-primary-2;
             }
         }
     }
 }
 
+
 .bg-tutor {
 
-    .view-profile {
-
-        &__course {
+    .view-profile .view-profile--left .section {
+        a.active {
+            color: $color-white;
             background-color: $color-purple-primary;
+
+            &:hover {
+                background-color: $color-purple-primary-2;
+            }
+        }
+
+        a.inactive {
+
+            &:hover {
+                color: $color-white;
+                background-color: $color-purple-primary-2;
+            }
         }
     }
-
 }

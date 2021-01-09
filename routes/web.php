@@ -264,6 +264,7 @@ Route::group([
     Route::get('/refund', 'payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index')->middleware('isAdmin');
     Route::post('/user-request-refund/{session}', 'payment\StripeApiController@userRequestRefund')->name('payment.stripe.refund.user_request_refund');
     Route::post('/refund/{session}', 'payment\StripeApiController@approveRefund')->name('payment.stripe.approve_refund')->middleware('isAdmin');
+    Route::post('/refund/decline/{session}', 'payment\StripeApiController@declineRefundRequest')->name('payment.stripe.decline_refund')->middleware('isAdmin');
 });
 
 

@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
@@ -51,7 +52,12 @@ class User extends Authenticatable
     }
 
     public function getChattingRoute() {
-        return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
+        if(Auth::check()) {
+            return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
+        } else {
+            return "#";
+        }
+
     }
 
     public function getIntroduction() {

@@ -2,14 +2,14 @@
 let calendarOptions = {
     // timeZone: 'PST',
     themeSystem: 'bootstrap',
-    initialView: 'timeGridDay',
+    initialView: 'timeGridFiveDay',
     headerToolbar: {
         left: 'prev title next',
         center: '',
-        right: 'today timeGridDay timeGridThreeDay'
+        right: 'today timeGridDay timeGridFiveDay'
     },
     eventColor: 'rgb(213, 208, 3)',
-    height: 'auto',
+    height: 400,
     navLinks: true, // can click day/week names to navigate views
     selectable: true,
     selectMirror: true,
@@ -28,7 +28,7 @@ let calendarOptions = {
     // editable: true,
     expandRows: true,
     views: {
-        timeGridThreeDay: {
+        timeGridFiveDay: {
             type: 'timeGrid',
             duration: { days: 5 },
             buttonText: '5 days'
@@ -38,13 +38,18 @@ let calendarOptions = {
         return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
     },
     selectAllow: function(selectionInfo) {
+        @if(Auth::check() && Auth::user()->is_tutor)
+        return false;
+        @else
         let startTime = moment(selectionInfo.start);
         if(startTime.isBefore(moment())) return false;
         if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
 
         return true;
+        @endif
     },
     select: function (selectionInfo) {
+        @auth
         if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
 
         startTime = moment(selectionInfo.start);
@@ -57,6 +62,9 @@ let calendarOptions = {
         } else {
             $('#tutor-profile-request-session').click();
         }
+        @else
+        $('.overlay-student').show();
+        @endauth
 
     },
     eventClick: function (eventClickInfo) {
