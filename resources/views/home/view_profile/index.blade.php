@@ -63,8 +63,6 @@ bg-student
                 <div id="calendar"></div>
                 <div class="calendar-note">
                     <span class="available-time">Available Time</span>
-                    <span class="online">Online</span>
-                    <span class="in-person">In Person</span>
                     <span class="note">Note: All time in the calender are based on PST.</span>
                 </div>
             </div>
