@@ -214,7 +214,7 @@ bg-student
                     @endphp
                     @for ($i = 0; $i < $reviewCount; $i++)
                         @include('home.partials.review', [
-                            'content' => $reviews->get($i)->review,
+                            'review' => $reviews->get($i),
                             'dateCreated' => $reviews->get($i)->created_at ?? $today,
                             'hidden' => $i >= 2
                         ])

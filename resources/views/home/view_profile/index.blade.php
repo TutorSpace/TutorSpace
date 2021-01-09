@@ -68,6 +68,27 @@ bg-student
                     <span class="note">Note: All time in the calender are based on PST.</span>
                 </div>
             </div>
+
+            <div class="reviews">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    @php
+                    $reviewCount = $user->aboutReviews->count();
+                    @endphp
+                    <h5>Reviews ({{ $reviewCount }})</h5>
+                </div>
+                <div class="info-boxes">
+                    @php
+                    $reviews = $user->aboutReviews;
+                    $today = \Carbon\Carbon::today();
+                    @endphp
+                    @foreach($reviews as $review)
+                        @include('home.view_profile.partials.review', [
+                            'review' => $review,
+                            'dateCreated' => $review->created_at ?? $today
+                    ])
+                    @endforeach
+                </div>
+            </div>
             @endif
         </div>
     </div>
