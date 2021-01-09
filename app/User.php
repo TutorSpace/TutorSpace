@@ -284,7 +284,6 @@ class User extends Authenticatable
         $newUser->is_tutor = 0;
         $newUser->is_tutor_verified = 0;
         $newUser->hourly_rate = null;
-        $newUser->tutor_level_id = null;
         $newUser->introduction = null;
         $newUser->is_invalid = false;
         $newUser->save();
@@ -295,7 +294,6 @@ class User extends Authenticatable
         $newUser = $this->replicate();
         $newUser->is_tutor = 1;
         $newUser->is_invalid = true;
-        $newUser->tutor_level_id = 1;
         $newUser->invalid_reason = 'The user did not finish all the steps when registering from a student to a tutor.';
         $newUser->invalid_redirect_route_name = 'switch-account.register-to-be-tutor';
         $newUser->save();
@@ -338,7 +336,7 @@ class User extends Authenticatable
 
         return $fiveStarCnt / $reviewCnt;
     }
-    
+
 
     public function hasDualIdentities() {
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
@@ -354,6 +352,12 @@ class User extends Authenticatable
         return $this->sessions()
                     ->where('is_upcoming', false)
                     ->where('is_canceled', false);
+    }
+
+    public function numSessions() {
+        return $this->sessions()
+                    ->where('is_canceled', false)
+                    ->count();
     }
 
     public function sessions() {
@@ -393,11 +397,53 @@ class User extends Authenticatable
             ->get();
     }
 
+    public static function updateVerifyStatus() {
+        // get id of verified users
+        $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
+        ->join("verified_courses", function($join){
+            $join->on("verified_courses.course_id","=","course_user.course_id")
+        ->on("verified_courses.user_id","=","course_user.user_id");
+        })
+        ->distinct();
 
+        // verified users update
+        User::whereIn('id',$verifiedUsersQuery)->update([
+            'is_tutor_verified' => '1'
+        ]);
 
+        // unverified users update
+        User::whereNotIn('id',$verifiedUsersQuery)->update([
+            'is_tutor_verified' => '0'
+        ]);
+    }
 
+    public function clearTutorAvailableTime() {
+        $tutors = User::where('is_tutor', 1)->get();
+        foreach($tutors as $tutor)
+            $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
+    }
 
+    // Payments
+    public function paymentMethod() {
+        return $this->hasOne('App\PaymentMethod')->withDefault();
+    }
 
+    // add user experience and update level
+    // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
+    public function addExperience($experienceToAdd){
+             // calculate points
+            $this->experience_points += $experienceToAdd;
+            // update tutor level id in user
+            $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+            // save
+            $this->save();
+    }
+
+    // return tutor level bonus rate of current user
+    // return: double
+    public function getUserBonusRate(){
+        return $this->tutorLevel()->get()[0]->bonus_rate;
+    }
 
 
 
@@ -416,85 +462,8 @@ class User extends Authenticatable
         return $pastTutors;
     }
 
-    public static function updateVerifyStatus() {
-        // get id of verified users
-        $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
-        ->join("verified_courses", function($join){
-            $join->on("verified_courses.course_id","=","course_user.course_id")
-        ->on("verified_courses.user_id","=","course_user.user_id");
-        })
-        ->distinct();
-
-        //verified users update
-        User::whereIn('id',$verifiedUsersQuery)->update([
-            'is_tutor_verified' => '1'
-        ]);
-
-        // unverified users update
-        User::whereNotIn('id',$verifiedUsersQuery)->update([
-            'is_tutor_verified' => '0'
-        ]);
-    }
-
     // check whether the user with $user_id is bookmarked by the current user
     public function bookmarked($userId) {
         return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
-    }
-
-    // check whether the course with $course_id is already faved by the current user
-    public function favedCourse($course_id) {
-        return $this->courses()->where('id', '=', $course_id)->count() > 0;
-    }
-
-    // check whether the characteristic with $characteristic_id is already faved by the current userrating
-    public function favedCharacteristic($characteristic_id) {
-        return $this->characteristics()->where('id', '=', $characteristic_id)->count() > 0;
-    }
-
-    // get the  of the user as the reviewee
-    public function getRating() {
-        $avg = User::join('reviews', 'reviewee_id', '=', 'users.id')
-                    ->where('users.id', '=', $this->id)
-                    ->avg('star_rating');
-
-        return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
-    }
-
-    // get the rating of the user as the reviewer
-    public function getRatingAsReviewer() {
-        $avg = User::join('reviews', 'reviewer_id', '=', 'users.id')
-                    ->where('users.id', '=', $this->id)
-                    ->avg('star_rating');
-
-        return $avg ? number_format((float)$avg, 1, '.', '') : NULL;
-    }
-
-    public function clearTutorAvailableTime() {
-        $tutors = User::where('is_tutor', 1)->get();
-        foreach($tutors as $tutor)
-            $tutor->availableTimes()->where('available_time_end','<=', Carbon::now())->delete();
-    }
-
-    // Payments
-    public function paymentMethod() {
-        return $this->hasOne('App\PaymentMethod')->withDefault();
-    }
-
-    // only for tutor
-    // add user experience and update level
-    // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
-    public function addExperience($experienceToAdd){
-             // calculate points
-            $this->experience_points += $experienceToAdd;
-            // update tutor level id in user
-            $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
-            // save
-            $this->save();
-    }
-
-    // return tutor level bonus rate of current user
-    // return: double
-    public function getUserBonusRate(){
-        return $this->tutorLevel()->get()[0]->bonus_rate;
     }
 }
