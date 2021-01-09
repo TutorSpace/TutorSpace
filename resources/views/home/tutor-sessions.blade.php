@@ -44,7 +44,7 @@ bg-student
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
-                <div class="col-lg-8">
+                <div class="col-lg-8" id="calendar-container">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">

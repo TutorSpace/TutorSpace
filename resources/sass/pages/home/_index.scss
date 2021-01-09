@@ -327,24 +327,6 @@
                 }
             }
 
-            #calendar-container {
-
-                // 1370 px
-                @media only screen and (max-width: 85.624em) {
-                    padding-right: 30px !important;
-                    flex: 0 0 66.6666666667%;
-                    max-width: 66.6666666667%;
-                }
-
-                @include respond(md) {
-                    padding-right: 0 !important;
-                    flex: 0 0 100%;
-                    max-width: 100%;
-                }
-
-            }
-
-
             @media only screen and (max-width: 85.624em) {
                 #upcoming-sessions-container {
                     flex: 0 0 33.3333333333%;
@@ -362,6 +344,41 @@
         }
 
         .col-layout-2, .col-layout-3 {
+
+            #calendar-container {
+
+                background-color: $color-white-dark-5;
+                padding: 2rem 3rem 4.5rem 3rem;
+                border-radius: 1rem;
+
+                .heading {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .hourly-rate {
+
+                    }
+                }
+
+                #calendar {
+                    margin-top: 1.5rem;
+                }
+
+                // 1370 px
+                @media only screen and (max-width: 85.624em) {
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;
+                    margin-right: 3rem;
+                    flex: 0 0 calc(66.6666666667% - 3rem);
+                    max-width: calc(66.6666666667% - 3rem);
+                }
+
+                @include respond(md) {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+
+            }
 
             @include respond(lg) {
                 max-width: 70vw;

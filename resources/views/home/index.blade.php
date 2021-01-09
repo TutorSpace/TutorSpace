@@ -73,7 +73,7 @@ bg-student
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
-                <div class="pr-0" id="calendar-container">
+                <div class="" id="calendar-container">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
