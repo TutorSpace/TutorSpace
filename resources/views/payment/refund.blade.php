@@ -66,7 +66,7 @@ index
                         @csrf
                         <button class="btn btn-primary btn-lg">Approve</button>
                     </form>
-                    <form action="" method="POST">
+                    <form action="{{  }}" method="POST">
                         @csrf
                         <button class="btn btn-danger btn-lg mt-2">Decline</button>
                     </form>

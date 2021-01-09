@@ -133,7 +133,6 @@ class StripeApiController extends Controller
         return false;
     }
 
-    // FACADE!!!
     private function getCustomerDefaultPaymentId(){
         $customer_id = $this->getCustomerId();
         $customer = \Stripe\Customer::retrieve($customer_id, []);
