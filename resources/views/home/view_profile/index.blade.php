@@ -23,7 +23,7 @@ bg-student
 
 @include('partials.nav')
 
-<main class="container p-relative view-profile">
+<main class="container-lg p-relative view-profile">
     <div class="row">
         <a class="btn btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('search.index')) }}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@ bg-student
         </a>
     </div>
     <div class="row">
-        <div class="view-profile--left col-3">
+        <div class="view-profile--left col-sm-3 col-12">
             @if ($user->is_tutor)
             @include('home.view_profile.partials.tutor-user-info', [
                 'user' => $user
@@ -45,7 +45,7 @@ bg-student
             @endif
         </div>
 
-        <div class="view-profile--right col-9">
+        <div class="view-profile--right col-sm-9 col-12">
             @if($displayForumActivities)
             @include('home.view_profile.partials.forum')
             @else
