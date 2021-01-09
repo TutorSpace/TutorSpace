@@ -48,7 +48,7 @@
                     <span class="classifier">Days</span>
                 </div>
                 <div class="statistics color-primary">
-                    <span class="number color-primary">?</span>
+                    <span class="number color-primary">{{ $user->numSessions() }}</span>
                     <span class="classifier">Sessions</span>
                 </div>
             </div>
