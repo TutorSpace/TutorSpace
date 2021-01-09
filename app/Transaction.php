@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\TutoringHourEnded;
 use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +25,17 @@ class Transaction extends Model
         // charge each one
         forEach($transactionsToCharge as $transaction){
             app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
-            // TODO: create session bonus
+            $session = $transaction->session;
+
+            // Create bonus if tutor has bonus rate
+            $tutor = $session->tutor;
+            $bonus_rate = $tutor->getUserBonusRate();
+            if ($bonus_rate > 0) {
+                app(StripeApiController::class)->createSessionBonus($transaction->amount * $bonus_rate, $transaction->session);
+            }
+
+            // Trigger event to add experience
+            event(new TutoringHourEnded($tutor, $session));
         }
     }
 

@@ -156,7 +156,7 @@ bg-student
                         <div id="scatter-chart"></div>
                     </div>
                     <div class="graph-2">
-                        <div id="gauge-chart"></div>
+                        <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
                 </div>
             </div>
@@ -174,8 +174,10 @@ bg-student
                         <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
                     <div class="forum-data">
+                        {{-- TODO: NATE (PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
+                        {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">X</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>

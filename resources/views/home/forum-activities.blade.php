@@ -17,6 +17,7 @@ bg-student
 
 {{-- plotly --}}
 <script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
+{{-- <script src="{{ asset('vendor/chartjs/dist/Chart.js') }}"></script> --}}
 @endsection
 
 @section('content')
@@ -44,8 +45,9 @@ bg-student
                     <div class="graph-1">
                         <div id="scatter-chart"></div>
                     </div>
+
                     <div class="graph-2">
-                        <div id="gauge-chart"></div>
+                        <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
                 </div>
             </div>
@@ -80,7 +82,8 @@ bg-student
                     </div>
                     <div class="forum-data">
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}"> X </a>
+                        {{-- TODO: nate --}}
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
                     </div>
                     <div class="forum-data" id="forum-data-my-follows">
                         <span class="title">Followed</span>

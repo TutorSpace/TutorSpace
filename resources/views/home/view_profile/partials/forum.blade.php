@@ -1,6 +1,6 @@
 <section class="view-profile__forum">
     <div class="filter">
-       <h5>Top Rated Posts</h5>
+       <h6>Top Rated Posts</h6>
        <select name="" id="">
            <option value="">Sort by Popularity</option>
            <option value="">Sort by Time (Ascending)</option>

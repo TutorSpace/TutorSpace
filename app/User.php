@@ -8,6 +8,7 @@ use App\Message;
 
 use App\Session;
 use App\Chatroom;
+use App\TutorLevel;
 use Carbon\Carbon;
 
 use Illuminate\Support\Str;
@@ -19,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Log;
 
 
 class User extends Authenticatable
@@ -323,17 +325,20 @@ class User extends Authenticatable
         return number_format((float)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
     }
 
-    public function getFiveStarReviewPercentage() {
+
+    // return  0 <= double <= 1
+    public function getStarReviewPercentage($numStars) {
         $reviewCnt = $this->aboutReviews()->count();
         if($reviewCnt == 0)
             return 0;
 
         $fiveStarCnt = $this->aboutReviews()
-                            ->where('star_rating', 5)
+                            ->where('star_rating', $numStars)
                             ->count();
 
-        return $fiveStarCnt / $reviewCnt * 100;
+        return $fiveStarCnt / $reviewCnt;
     }
+    
 
     public function hasDualIdentities() {
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
@@ -370,6 +375,22 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return Admin::where('email', $this->email)->exists();
+    }
+
+    // get all distinct participated posts
+    // participated: my own posts, I followed, I reply directly
+    public function getParticipatedPosts(){
+        return Post::select("posts.*")
+            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
+            ->leftJoin('replies','replies.post_id','=','posts.id')
+            ->where('posts.user_id',$this->id)
+            ->orWhere('post_user.user_id',$this->id)
+            ->orWhere(function ($query) {
+                $query->where('replies.is_direct_reply', '=', 1)
+                      ->Where('replies.user_id', '=', $this->id);
+            })
+            ->distinct()
+            ->get();
     }
 
 
@@ -457,5 +478,22 @@ class User extends Authenticatable
     // Payments
     public function paymentMethod() {
         return $this->hasOne('App\PaymentMethod')->withDefault();
+    }
+
+    // add user experience and update level
+    // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
+    public function addExperience($experienceToAdd){
+        // calculate points
+        $this->experience_points += $experienceToAdd;
+        // update tutor level id in user
+        $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+        // save
+        $this->save();
+    }
+
+    // return tutor level bonus rate of current user
+    // return: double
+    public function getUserBonusRate(){
+        return $this->tutorLevel()->get()[0]->bonus_rate;
     }
 }

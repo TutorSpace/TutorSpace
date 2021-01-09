@@ -3,8 +3,10 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
+use App\User;
+use Auth;
 
-class EmailUSC implements Rule
+class SessionDifferentUser implements Rule
 {
     /**
      * Create a new rule instance.
@@ -25,8 +27,12 @@ class EmailUSC implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(explode("@", $value)[1] !== 'usc.edu') return false;
-        return true;
+        //
+        $tutor = User::find($value);
+        $student = Auth::user();
+
+        return $tutor->email != $student->email;
+
     }
 
     /**
@@ -36,6 +42,6 @@ class EmailUSC implements Rule
      */
     public function message()
     {
-        return 'Your email must be a USC email.';
+        return 'Same user cannot be student/tutor at the same time';
     }
 }

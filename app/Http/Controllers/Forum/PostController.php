@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Events\MarkedAsBestReply;
+use App\Events\NotePosted;
+use App\Events\PostLikeReceived;
 use App\Post;
 use App\Reply;
 use App\PostType;
@@ -161,6 +164,11 @@ class PostController extends Controller
             $post->save();
 
             $post->tags()->attach($request->input('tags'));
+
+            // Trigger event to add experience
+            if ($post->post_type->id == 2) {  // 2 means Note
+                event(new NotePosted($post));
+            }
         });
 
 
@@ -314,6 +322,11 @@ class PostController extends Controller
 
         $post->markAsBestReply($reply);
 
+        // Trigger event to add experience
+        if ($post->view_count >= 100) {
+            event(new MarkedAsBestReply($reply));
+        }
+
         return redirect()->back()->with([
             'successMsg' => 'Marked as best reply.'
         ]);
@@ -381,9 +394,13 @@ class PostController extends Controller
         $user = Auth::user();
         if($user->hasUpvotedPost($post)) {
             $user->upvotedPosts()->detach($post);
+            // Trigger event to add experience
+            event(new PostLikeReceived($post, false));
         }
         else {
             $user->upvotedPosts()->attach($post);
+            // Trigger event to add experience
+            event(new PostLikeReceived($post, true));
         }
 
         return response()->json([

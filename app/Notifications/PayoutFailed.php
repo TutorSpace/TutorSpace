@@ -7,22 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoicePaid extends Notification
+class PayoutFailed extends Notification
 {
     use Queueable;
 
-    private $session;
-    private $is_student_receiver;
+    private $is_sending_to_user;
+    private $failure_code;
+    private $stripe_account_id;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($session, $is_student_receiver)
+    public function __construct($is_sending_to_user, $failure_code, $stripe_account_id = null)
     {
-        $this->session = $session;
-        $this->is_student_receiver = $is_student_receiver;
+        $this->is_sending_to_user = $is_sending_to_user;
+        $this->failure_code = $failure_code;
+        $this->stripe_account_id = $stripe_account_id;
     }
 
     /**
@@ -44,16 +46,16 @@ class InvoicePaid extends Notification
      */
     public function toMail($notifiable)
     {
-        if ($this->is_student_receiver) {
+        if ($this->is_sending_to_user) {
             return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
+                    ->line('A recent payout to you has failed.')
+                    ->line('The failure reason is ' . $this->failure_code . '.')
                     ->line('Thank you for using our platform!');
         } else {
             return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your tutoring session on ' . $this->session->session_time_start . ' has been paid.')
-                    ->line('Thank you for using our platform!');
+                    ->greeting('Dear staff')
+                    ->line('A payout to ' . $this->stripe_account_id . ' has failed for ' . $this->failure_code . '.');
         }
     }
 

@@ -174,9 +174,16 @@ $('#tutor-profile-request-session').on('click',function() {
                                 },
                                 success: (data) => {
                                     console.log(data);
-                                    var successMsg = data.successMsg;
-                                    toastr.success(successMsg);
-                                    console.log(successMsg);
+                                    if (successMsg = data.successMsg){
+                                        toastr.success(successMsg);
+                                        console.log(successMsg);
+                                    }
+                                    if (redirectMsg = data.redirectMsg){
+                                        toastr.error("Please add a bank card before booking a tutor session");
+                                        setTimeout(function() {
+                                            window.location.href = redirectMsg;
+                                        }, 2000);
+                                    }
                                 },
                                 error: (error) => {
                                     console.log(error);

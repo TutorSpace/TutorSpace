@@ -523,21 +523,23 @@
         justify-content: space-between;
 
         .graph-1 {
-            flex: 0 0 calc(65% - 3rem);
+            flex: 0 0 calc(60% - 3rem);
         }
 
         .graph-2 {
-            flex: 0 0 calc(35%);
+            background-color: $color-white-dark-5;
+            box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+            flex: 0 0 calc(40%);
+            border-radius: 1rem;
+            overflow: hidden;
+            padding: 0 2rem 2rem 2rem;
         }
 
         .graph-1, .graph-2 {
             margin-top: 1.6rem;
-            height: 100%;
-            max-height: 350px;
 
             @include respond(md) {
                 flex: 0 0 100%;
-                max-height: 200px;
             }
         }
 

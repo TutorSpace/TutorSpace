@@ -9,7 +9,8 @@
         scatterGraphLayout.height = height;
         gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-        Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+        // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
+        
     }
 
     var postViewCntData = {
@@ -81,7 +82,7 @@
     // for the gauge chart
     var gaugeData = [{
         domain: { row: 1, column: 1 },
-        value: {{ Auth::user()->getFiveStarReviewPercentage() }},
+        value: 1,
         type: "indicator",
         mode: "gauge+number+delta",
         number: {
@@ -118,4 +119,75 @@
     $(window).resize(function() {
         drawGraph();
     });
+    
+
+
+    const oneStar = {{Auth::user()->getStarReviewPercentage(1)}} ;
+    const twoStar = {{Auth::user()->getStarReviewPercentage(2)}};
+    const threeStar = {{Auth::user()->getStarReviewPercentage(3)}};
+    const fourStar = {{Auth::user()->getStarReviewPercentage(4)}};
+    const fiveStar = {{Auth::user()->getStarReviewPercentage(5)}};
+    
+    var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+
+    if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
+        data = [];
+    }
+
+
+    var ratingChart = document.getElementById('rating-chart');
+    console.log(ratingChart)
+    data = {
+        datasets: [{
+            data: data,
+            backgroundColor: [
+                '#dc3545',
+                '#FFBC00',
+                '#dc3545',
+                '#dc3545',
+                '#dc3545',
+            ]
+        }],
+
+        // These labels appear in the legend and in the tooltips when hovering different arcs
+        labels: [
+            'Five Star Ratings',
+            'Four Star Ratings',
+            'Three Star Ratings',
+            'Two Star Ratings',
+            'one Star Ratings',
+        ],
+        
+    };
+
+    const ratingChartOption = {
+        position: 'right',
+
+    }
+    var ratingChart = new Chart(ratingChart, {
+        type: 'doughnut',
+        data: data,
+        options: {
+            legend: {
+                position: 'right',
+            },
+            title: {
+                display: true,
+                text: 'Tutor Session Ratings (percentage)',
+                // lineHeight: 0.1,
+            },
+            layout: {
+                padding: {
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0
+                }
+            },
+            aspectRatio: 1,
+            maintainAspectRatio: false
+        },
+        
+    });
+
 </script>
