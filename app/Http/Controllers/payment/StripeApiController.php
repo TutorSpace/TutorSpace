@@ -211,11 +211,8 @@ class StripeApiController extends Controller
 
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
 
-        // Handle failed payments
-        if ($invoice->status != 'paid') {
-            // send invoice
-            $invoice->sendInvoice();
-        }
+        // $invoice->sendInvoice();
+        
         // change invoice status
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
