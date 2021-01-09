@@ -232,6 +232,7 @@ Route::group([
 ], function() {
     Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
     Route::post('/schedule', 'SessionController@scheduleSession')->name('session.create');
+    Route::get('/view/{session}', 'SessionController@viewDetails')->name('session.view-details');
 });
 
 // help center

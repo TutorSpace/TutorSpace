@@ -1,38 +1,50 @@
 <script>
     $('.btn-view-session').on('click',function() {
-        bootbox.dialog({
-            message: `@include('session.view-session-overview')`,
-            size: 'large',
-            centerVertical: true,
-            buttons: {
-                Next: {
-                    label: 'Done',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
-                },
+        let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
+
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('/') . '/session/view/' }}" + sessionId,
+            success: (view) => {
+                bootbox.dialog({
+                    message: view,
+                    size: 'large',
+                    centerVertical: true,
+                    buttons: {
+                        Next: {
+                            label: 'Done',
+                            className: 'btn btn-primary p-2 px-4 fs-1-6',
+                        },
+                    }
+                });
+
+                @if(Auth::user()->is_tutor)
+                let options = Object.assign({}, calendarOptions);
+                options.selectAllow = false;
+                options.eventClick = null;
+                options.headerToolbar = null;
+                options.height = 'auto';
+
+                // todo: modify this
+                options.slotMinTime = "08:30:00";
+                options.slotMaxTime = "11:30:00";
+
+                let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
+                e.render();
+                setTimeout(() => {
+                    e.destroy();
+                    e.render();
+                    e.gotoDate('2020-10-25'); // todo: change this
+                }, 500);
+                @endif
+
+
+            },
+            error: (error) => {
+                console.log(error);
+
             }
         });
-
-        @if(Auth::user()->is_tutor)
-        let options = Object.assign({}, calendarOptions);
-        options.selectAllow = false;
-        options.eventClick = null;
-        options.headerToolbar = null;
-        options.height = 'auto';
-
-        // todo: modify this
-        options.slotMinTime = "08:30:00";
-        options.slotMaxTime = "11:30:00";
-
-        let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
-        e.render();
-        setTimeout(() => {
-            e.destroy();
-            e.render();
-            e.gotoDate('2020-10-25'); // todo: change this
-        }, 500);
-        @endif
-
-
     });
 
 

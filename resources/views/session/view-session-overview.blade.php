@@ -1,11 +1,20 @@
+@php
+    $date = $session->session_time_start->format('m/d/y D');
+
+    $hourlyRate = $session->hourly_rate;
+    $sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
+    $price = $sessionDurationInHour * $hourlyRate;
+@endphp
+
 <div class="container modal-session">
     <h6 class="text-center color-primary mt-4">Session Overview</h6>
-    <p class="fc-grey mb-3 mt-3">{{ Auth::user()->is_tutor ? 'Student Name' : 'Tutor Name' }}:<span class="ml-2 fc-black-2">firstname lastname</span><p>
+    <p class="fc-grey mb-3 mt-3">{{ Auth::user()->is_tutor ? 'Student Name' : 'Tutor Name' }}:<span class="ml-2 fc-black-2">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->student->last_name }} {{ Auth::user()->is_tutor ? $session->tutor->first_name : $session->tutor->last_name  }}</span><p>
 
     <div class="d-flex justify-content-between">
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Date:</p>
-            <p class="fc-black-2 fs-1-4">08/02/2020 Thursday</p>
+            {{-- <p class="fc-black-2 fs-1-4">08/02/2020 Thursday</p> --}}
+            <p class="fc-black-2 fs-1-4">{{ $date }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Time:</p>

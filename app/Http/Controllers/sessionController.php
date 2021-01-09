@@ -60,6 +60,16 @@ class SessionController extends Controller
         );
     }
 
+    public function viewDetails(Request $request, Session $session) {
+        if($session->student->id != Auth::id() && $session->tutor->id != Auth::id()) {
+            return abort(403);
+        }
+
+        return view('session.view-session-overview', [
+            'session' => $session
+        ])->render();
+    }
+
     // todo: NATE
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
@@ -96,7 +106,7 @@ class SessionController extends Controller
                 'required',
                 'in:in-person,online'
             ],
-           
+
         ]);
 
         if (app(StripeApiController::class)->customerHasCards()){
