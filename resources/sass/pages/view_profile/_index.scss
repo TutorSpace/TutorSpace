@@ -270,6 +270,26 @@
             }
         }
 
+        .reviews {
+            background-color: $color-white-dark-5;
+            padding: 2rem 3rem;
+            border-radius: 1rem;
+            margin-top: 3rem;
+
+            .heading {
+
+            }
+
+            .info-boxes {
+
+                .info-box {
+                    padding: 0;
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+        }
+
     }
 
 }

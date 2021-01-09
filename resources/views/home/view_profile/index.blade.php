@@ -70,11 +70,11 @@ bg-student
             </div>
 
             <div class="reviews">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                <div class="d-flex justify-content-between align-items-center">
                     @php
                     $reviewCount = $user->aboutReviews->count();
                     @endphp
-                    <h5>Reviews ({{ $reviewCount }})</h5>
+                    <span class="heading fs-1-8 fc-grey">Session Reviews ({{ $reviewCount }})</span>
                 </div>
                 <div class="info-boxes">
                     @php
