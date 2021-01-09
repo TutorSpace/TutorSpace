@@ -8,8 +8,8 @@
        </select>
     </div>
     <div class="post-previews">
-        @include('forum.partials.post-preview-general', [
-            'posts' => App\Post::with([
+        @php
+            $posts = App\Post::with([
                             'tags',
                             'user'
                         ])
@@ -22,6 +22,11 @@
                         ->where('user_id', $user->id)
                         ->orderByRaw(App\POST::POPULARITY_FORMULA)
                         ->get()
+                        ->paginate(3);
+        @endphp
+        @include('forum.partials.post-preview-general', [
+            'posts' => $posts
         ])
+        {{ $posts->withQueryString()->links() }}
     </div>
 </section>

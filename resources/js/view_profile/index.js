@@ -23,7 +23,7 @@ let colorHash = new ColorHash({
     hue: [ {min: 70, max: 90}, {min: 180, max: 210}, {min: 270, max: 285} ]
 });
 
-$.each($('.course'), (idx, ele) => {
+$.each($('.course, .tag'), (idx, ele) => {
     var color = colorHash.rgb($(ele).html());
 
     var d = 0;
