@@ -480,15 +480,16 @@ class User extends Authenticatable
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
 
+    // only for tutor
     // add user experience and update level
     // $experienceToAdd : double, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
-        // calculate points
-        $this->experience_points += $experienceToAdd;
-        // update tutor level id in user
-        $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
-        // save
-        $this->save();
+             // calculate points
+            $this->experience_points += $experienceToAdd;
+            // update tutor level id in user
+            $this->tutor_level_id = TutorLevel::getLevelFromExperience($this->experience_points)->id;
+            // save
+            $this->save();
     }
 
     // return tutor level bonus rate of current user

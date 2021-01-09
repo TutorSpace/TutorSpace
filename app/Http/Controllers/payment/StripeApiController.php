@@ -351,7 +351,7 @@ class StripeApiController extends Controller
                 return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
 
-        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Refund a session bonus given 'session'
