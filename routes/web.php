@@ -260,6 +260,7 @@ Route::group([
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
 
     Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
+    Route::post('/webhook_connect', 'payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook_connect');
 
     Route::get('/refund', 'payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index')->middleware('isAdmin');
     Route::post('/user-request-refund/{session}', 'payment\StripeApiController@userRequestRefund')->name('payment.stripe.refund.user_request_refund');

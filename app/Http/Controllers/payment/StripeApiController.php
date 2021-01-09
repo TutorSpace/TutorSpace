@@ -351,7 +351,7 @@ class StripeApiController extends Controller
                 return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
 
-        return redirect()->route('index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
     // Refund a session bonus given 'session'
@@ -435,12 +435,12 @@ class StripeApiController extends Controller
         }
     }
 
-    // Handle all Stripe webhooks
+    // Handle Stripe Account webhooks
     public function handleWebhook(Request $request) {
         $payload = $request->getContent();  // Get raw content
 
         // Check signature
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET');
+        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_ACCOUNT');
         $sig_header = $request->header('stripe-signature');
 
         try {
@@ -463,97 +463,20 @@ class StripeApiController extends Controller
         // Handle the event depending on its type
         switch ($event->type) {
             case 'invoice.paid':
-                $invoice = $event->data->object;
-
-                // Change database transaction invoice_status => paid
-                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
-                $transaction->invoice_status = 'paid';
-                $transaction->save();
-
-                // TODO: send email to user
-                $student = $transaction->session->student;
-                $student->notify(new InvoicePaid($transaction->session, true));
-                $tutor = $transaction->session->tutor;
-                $tutor->notify(new InvoicePaid($transaction->session, false));
-
+                $this->handleInvoicePaidEvent($event);
                 break;
 
             case 'invoice.payment_failed':
             case 'invoice.payment_action_required':
-                $invoice = $event->data->object;
-
-                // Change database transaction invoice_status => paid
-                $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
-                $transaction->invoice_status = 'paid';
-                $transaction->save();
-
-                // TODO: send email to user
-                $student = $transaction->session->student;
-                $student->notify(new InvoicePaymentFailed($transaction->session));
-
+                $this->handleInvoiceFailedEvent($event);
                 break;
 
             case 'charge.refunded':
-                $charge = $event->data->object;
-                $refund = $charge->refunds->data[0];
-                $transaction = Transaction::firstWhere("refund_id", $refund->id);
-                $transaction->refund_status = 'succeeded';
-                $transaction->save();
-
-                Log::debug('Transaction refunded: ' . $transaction->id);
-
-                // TODO: send email to user of 'transaction'. Refund succeeded
-                $student = $transaction->session->student;
-                $student->notify(new ChargeRefunded($transaction->session, true));
-                $tutor = $transaction->session->tutor;
-                $tutor->notify(new ChargeRefunded($transaction->session, false));
-
+                $this->handleChargeRefundedEvent($event);
                 break;
 
             case 'charge.refund.updated':  // Unlikely to happen
-                $refund = $event->data->object;
-
-                $failure_reason = $refund->failure_reason;
-                $transaction = Transaction::firstWhere("refund_id", $refund->id);
-                $transaction->refund_status = 'failed';
-                $transaction->save();
-
-                Log::debug('Transaction refund failed: ' . $transaction->id);
-
-                // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
-                $student = $transaction->session->student;
-                $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
-
-                Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
-
-                break;
-
-            case 'payout.paid':
-                $stripe_account_id = $event->account;
-                $payout = $event->data->object;
-                
-                $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
-                $user = $payment_method->user;
-
-                // TODO: send email to 'user'. Payout is sent to bank account
-                $user->notify(new PayoutPaid($payout->amount));
-
-                break;
-
-            case 'payout.failed':
-                $stripe_account_id = $event->account;
-                $payout = $event->data->object;
-
-                $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
-                $user = $payment_method->user;
-
-                // TODO: send email to 'user' and us. Payout failed. They should update bank info
-                $user->notify(new PayoutFailed(true, $payout->failure_code));
-
-                Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new PayoutFailed(false, $payout->failure_code, $stripe_account_id));
-
+                $this->handleChargeRefundUpdatedEvent($event);
                 break;
 
             // Handle other event types
@@ -563,6 +486,144 @@ class StripeApiController extends Controller
 
         return response(null, 200);
     }
+
+    // Handle Stripe Connect webhooks
+    public function handleConnectWebhook(Request $request) {
+        $payload = $request->getContent();  // Get raw content
+
+        // Check signature
+        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_CONNECT');
+        $sig_header = $request->header('stripe-signature');
+
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload, $sig_header, $endpoint_secret
+            );
+        } catch(\UnexpectedValueException $e) {
+            // Invalid payload
+            Log::error($e->getMessage());
+            return response(null, 400);
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            Log::error($e->getMessage());
+            Log::error($e->getSigHeader());
+            Log::error($e->getHttpBody());
+            return response(null, 400);
+        }
+
+        Log::info('connect webhook received: ' . $event->type);
+        // Handle the event depending on its type
+        switch ($event->type) {
+            case 'payout.paid':
+                $this->handlePayoutPaid($event);
+                break;
+
+            case 'payout.failed':
+                $this->handlePayoutFailed($event);
+                break;
+
+            // Handle other event types
+            default:
+                Log::debug('Received unknown event type ' . $event->type);
+        }
+
+        return response(null, 200);
+    }
+    
+    /*
+        Section starts: webhook helper functions
+    */
+
+    private function handleInvoicePaidEvent($event) {
+        $invoice = $event->data->object;
+
+        // Change database transaction invoice_status => paid
+        $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+        $transaction->invoice_status = 'paid';
+        $transaction->save();
+
+        // TODO: send email to user
+        $student = $transaction->session->student;
+        $student->notify(new InvoicePaid($transaction->session, true));
+        $tutor = $transaction->session->tutor;
+        $tutor->notify(new InvoicePaid($transaction->session, false));
+    }
+
+    private function handleInvoiceFailedEvent($event) {
+        $invoice = $event->data->object;
+
+        // Change database transaction invoice_status => paid
+        $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
+        $transaction->invoice_status = 'paid';
+        $transaction->save();
+
+        // TODO: send email to user
+        $student = $transaction->session->student;
+        $student->notify(new InvoicePaymentFailed($transaction->session));
+    }
+
+    private function handleChargeRefundedEvent($event) {
+        $charge = $event->data->object;
+        $refund = $charge->refunds->data[0];
+        $transaction = Transaction::firstWhere("refund_id", $refund->id);
+        $transaction->refund_status = 'succeeded';
+        $transaction->save();
+
+        Log::debug('Transaction refunded: ' . $transaction->id);
+
+        // TODO: send email to user of 'transaction'. Refund succeeded
+        $student = $transaction->session->student;
+        $student->notify(new ChargeRefunded($transaction->session, true));
+        $tutor = $transaction->session->tutor;
+        $tutor->notify(new ChargeRefunded($transaction->session, false));
+    }
+
+    private function handleChargeRefundUpdatedEvent($event) {
+        $refund = $event->data->object;
+
+        $failure_reason = $refund->failure_reason;
+        $transaction = Transaction::firstWhere("refund_id", $refund->id);
+        $transaction->refund_status = 'failed';
+        $transaction->save();
+
+        Log::debug('Transaction refund failed: ' . $transaction->id);
+
+        // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
+        $student = $transaction->session->student;
+        $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
+
+        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
+    }
+
+    private function handlePayoutPaid($event) {
+        $stripe_account_id = $event->account;
+        $payout = $event->data->object;
+        
+        $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
+        $user = $payment_method->user;
+
+        // TODO: send email to 'user'. Payout is sent to bank account
+        $user->notify(new PayoutPaid($payout->amount));
+    }
+
+    private function handlePayoutFailed($event) {
+        $stripe_account_id = $event->account;
+        $payout = $event->data->object;
+
+        $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
+        $user = $payment_method->user;
+
+        // TODO: send email to 'user' and us. Payout failed. They should update bank info
+        $user->notify(new PayoutFailed(true, $payout->failure_code));
+
+        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        ->notify(new PayoutFailed(false, $payout->failure_code, $stripe_account_id));
+    }
+
+    /*
+        Section ends: webhook helper functions
+    */
 
     // amount in dollar, done in tutor's side => CANNOT USE USERID!!!!!!!!!!!! USE STUDENT
     public function initializeInvoice($amount, $destination_account_id, $session) {
