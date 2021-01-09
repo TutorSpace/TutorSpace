@@ -281,11 +281,36 @@
             }
 
             .info-boxes {
+                max-height: 25rem;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+
+
+                > * {
+                    margin-top: 0;
+                }
 
                 .info-box {
-                    padding: 0;
+                    padding: 2rem 0;
                     border: none;
+
                     box-shadow: none;
+                    border-bottom: 1px solid rgba($color-grey, .15);
+                    margin-bottom: 0;
+                    border-radius: 0;
                 }
             }
         }

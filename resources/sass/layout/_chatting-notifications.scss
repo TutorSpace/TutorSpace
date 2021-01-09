@@ -78,6 +78,13 @@
             margin-top: 2rem;
             overflow: scroll;
 
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+
             > *:not(:first-child) {
                 paddings-top: 1rem;
             }

@@ -43,6 +43,13 @@
             padding: $padding;
             flex: 1;
             overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
 
         .notification__content__info {
