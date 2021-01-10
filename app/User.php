@@ -450,7 +450,16 @@ class User extends Authenticatable
 
     // return tutor level bonus rate of current user as DOUBLE
     public function getUserBonusRate(){
-        return $this->tutorLevel()->get()[0]->bonus_rate;
+        return $this->tutorLevel->bonus_rate;
+    }
+
+    public function currentLevel() {
+        return $this->tutorLevel->tutor_level;
+    }
+
+    // IMPORTANT: make sure the tutor level in the database are ranking from lower to higher
+    public function nextLevel() {
+        return TutorLevel::find($this->tutorLevel->id + 1)->tutor_level;
     }
 
 

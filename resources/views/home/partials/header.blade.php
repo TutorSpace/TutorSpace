@@ -63,18 +63,19 @@
                         &middot;
                     </span>
                     <span class="sub--2">
-                        ??? points
+                        {{ Auth::user()->experience_points }} points
                     </span>
                 </p>
+                {{-- TODO: Nate (change the progress bar percentage and length according to the tutor's experience) --}}
                 <div class="tutor-level-progress">
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="tutor-level tutor-level--current">
-                        ??????
+                        {{ Auth::user()->currentLevel() }}
                     </span>
                     <span class="tutor-level tutor-level--next">
-                        ??????????
+                        {{ Auth::user()->nextLevel() }}
                     </span>
                 </div>
                 @else
