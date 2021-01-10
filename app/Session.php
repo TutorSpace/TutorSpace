@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Session extends Model
 {
+    protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];
 
     public function course() {
         return $this->belongsTo('App\Course');

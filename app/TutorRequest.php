@@ -9,6 +9,8 @@ class TutorRequest extends Model
 {
     protected $table = "tutor_requests";
 
+    protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];
+
     public function course() {
         return $this->belongsTo('App\Course');
     }
