@@ -54,7 +54,6 @@ let calendarOptions = {
         if(eventClickInfo.event.extendedProps.type == 'available-time') {
             showAvailableTimeDeleteForm(eventClickInfo.event.start, eventClickInfo.event.end, eventClickInfo.event.id);
         }
-
     },
     eventTimeFormat: {
         hour: 'numeric',
@@ -108,10 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, calendarOptions);
     calendar.render();
-
-    // for the calendar in tutor request
-    var calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
-    calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
 });
 
 

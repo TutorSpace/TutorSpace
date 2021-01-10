@@ -13,6 +13,13 @@
         z-index: 100 !important;
     }
 
+    .tutor-request {
+        width: 100%;
+        background-color: $color-calendar-tutor-request !important;
+        border-color: $color-calendar-tutor-request !important;
+        z-index: 101 !important;
+    }
+
     .online-session {
         width: 100%;
         background-color: $color-calendar-online !important;
@@ -89,6 +96,10 @@
 
     .in-person::before {
         background-color: $color-calendar-inperson;
+    }
+
+    .tutor-request::before {
+        background-color: $color-calendar-tutor-request;
     }
 
     .available-time::before {

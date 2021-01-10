@@ -39,7 +39,6 @@ $("#input-profile-pic").change(function() {
         success: (data) => {
             toastr.success('Successfully uploaded the image!');
             $('#profile-image').attr('src', storageUrl + data.imgUrl);
-            console.log(storageUrl + data.imgUrl);
             $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
         },
         error: function(error) {
@@ -94,8 +93,28 @@ $('.btn-view-request').click(function() {
     $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
-    // calendarPopUpOptions.slotMinTime =
-    // calendarPopUpOptions.slotMaxTime =
+    calendarPopUpOptions.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
+    calendarPopUpOptions.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
+
+    let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
+    let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
+
+    calendarPopUpOptions.events.push({
+        title: 'Current Tutor Request',
+        classNames: ['tutor-request'],
+        start: sessionTimeStart,
+        end: sessionTimeEnd,
+        description: "",
+        type: "tutor-request",
+    });
+
+    calendarPopUpOptions.displayEventTime = false;
+
+    // for the calendar in tutor request
+    let calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
+
+    calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
+
     calendarPopUp.render();
 })
 
@@ -133,7 +152,6 @@ $('#btn-confirm-tutor-session').click(function() {
         type: 'POST',
         url: `/tutor-request/accept/${tutorRequestId}`,
         success: function success(data) {
-            console.log(data);
             let { successMsg, errorMsg } = data;
             if(successMsg) {
                 toastr.success(successMsg);
@@ -157,7 +175,6 @@ $('#btn-decline-tutor-session').click(function() {
         type: 'DELETE',
         url: `/tutor-request/${tutorRequestId}`,
         success: function success(data) {
-            console.log(data);
             let { successMsg, errorMsg } = data;
             if(successMsg) {
                 toastr.success(successMsg);

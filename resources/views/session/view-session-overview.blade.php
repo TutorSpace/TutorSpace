@@ -13,31 +13,31 @@
     <div class="d-flex justify-content-between mt-3">
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">{{ Auth::user()->is_tutor ? 'Student Name' : 'Tutor Name' }}:</p>
-            <p class="fc-black-2 fs-1-4">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->student->last_name }} {{ Auth::user()->is_tutor ? $session->tutor->first_name : $session->tutor->last_name  }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->student->last_name }} {{ Auth::user()->is_tutor ? $session->tutor->first_name : $session->tutor->last_name  }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Date:</p>
-            <p class="fc-black-2 fs-1-4">{{ $date }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $date }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Time:</p>
-            <p class="fc-black-2 fs-1-4">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Course:</p>
-            <p class="fc-black-2 fs-1-4">{{ $session->course->course }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->course->course }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-2 mb-0">Format:</p>
-            <p class="fc-black-2 fs-1-4">{{ $session->is_in_person ? 'In Person' : 'Online' }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->is_in_person ? 'In Person' : 'Online' }}</p>
         </div>
         {{-- <div class="d-flex flex-column">
             <p class="fc-grey fs-1-2 mb-0">Price:</p>
-            <p class="fs-1-4">${{ $price }}</p>
+            <p class="fs-1-5 fw-500">${{ $price }}</p>
         </div> --}}
     </div>
 
-    <div id="calendar-view-session" class="mb-5 mt-3 calendar"></div>
+    <div id="calendar-view-session" class="mb-4 mt-3 calendar"></div>
 
     <div class="mb-2 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">$ {{ $session->hourly_rate }}</span></div>
     <div class="fc-black-2 d-flex flex-row justify-content-between">Hours<span class="fc-theme-color">x {{ $sessionDurationInHour }}</span></div>
