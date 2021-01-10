@@ -65,9 +65,14 @@ class SessionController extends Controller
             return abort(403);
         }
 
-        return view('session.view-session-overview', [
-            'session' => $session
-        ])->render();
+        return response()->json([
+            'view' => view('session.view-session-overview', [
+                'session' => $session
+            ])->render(),
+            'minTime' => $session->session_time_start->addHours(-1)->format('H:i:s'),
+            'maxTime' => $session->session_time_end->addHours(1)->format('H:i:s'),
+            'date' => $session->session_time_start->format('Y-m-d')
+        ]);
     }
 
     // todo: NATE

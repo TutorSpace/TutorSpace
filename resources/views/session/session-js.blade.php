@@ -5,7 +5,9 @@
         $.ajax({
             type: 'GET',
             url: "{{ url('/') . '/session/view/' }}" + sessionId,
-            success: (view) => {
+            success: (data) => {
+                let { view, minTime, maxTime, date } = data;
+
                 bootbox.dialog({
                     message: view,
                     size: 'large',
@@ -25,16 +27,18 @@
                 options.headerToolbar = null;
                 options.height = 'auto';
 
-                // todo: modify this
-                options.slotMinTime = "08:30:00";
-                options.slotMaxTime = "11:30:00";
+                // options.slotMinTime = "08:30:00";
+                // options.slotMaxTime = "11:30:00";
+                options.slotMinTime = minTime;
+                options.slotMaxTime = maxTime;
 
                 let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
                 e.render();
                 setTimeout(() => {
                     e.destroy();
                     e.render();
-                    e.gotoDate('2020-10-25'); // todo: change this
+                    // e.gotoDate('2020-10-25');
+                    e.gotoDate(date);
                 }, 500);
                 @endif
 
