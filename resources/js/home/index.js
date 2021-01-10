@@ -94,6 +94,8 @@ $('.btn-view-request').click(function() {
     $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
+    // calendarPopUpOptions.slotMinTime =
+    // calendarPopUpOptions.slotMaxTime =
     calendarPopUp.render();
 })
 

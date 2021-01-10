@@ -99,7 +99,7 @@ let calendarOptions = {
 let calendar;
 let calendarPopUp;
 let calendarPopUpOptions = Object.assign({}, calendarOptions);
-calendarPopUpOptions.height = 300;
+calendarPopUpOptions.height = 'auto';
 calendarPopUpOptions.selectAllow = false;
 calendarPopUpOptions.eventClick = null;
 
