@@ -15,7 +15,7 @@
                     buttons: {
                         Next: {
                             label: 'Done',
-                            className: 'btn btn-primary p-2 px-4 fs-1-6',
+                            className: 'btn btn-primary px-4 fs-1-6',
                         },
                     }
                 });
@@ -25,7 +25,7 @@
                 options.selectAllow = false;
                 options.eventClick = null;
                 options.headerToolbar = null;
-                options.height = 'auto';
+                options.height = 150;
 
                 // options.slotMinTime = "08:30:00";
                 // options.slotMaxTime = "11:30:00";
@@ -64,7 +64,7 @@
             buttons: {
                 Cancel: {
                     label: 'Cancel Session',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
+                    className: 'btn btn-primary px-4 fs-1-6',
                     callback: function(e) {
                         let cancelReasonId = $($('#cancel-reason option:selected')).val();
 
@@ -107,7 +107,7 @@ $('#tutor-profile-request-session').on('click',function() {
         buttons: {
             Next: {
                 label: 'Next',
-                className: 'btn btn-primary p-2 px-4 fs-1-6',
+                className: 'btn btn-primary px-4 fs-1-6',
                 callback: () => {
                     if(startTime && endTime) {
                         session_details();
@@ -150,7 +150,7 @@ $('#tutor-profile-request-session').on('click',function() {
             buttons: {
                 Next: {
                     label: 'Next',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
+                    className: 'btn btn-primary px-4 fs-1-6',
                     callback: () => {
                         // no need for checking, because default select is made. Although backend validation is required.
                         session_confirm();
@@ -180,7 +180,7 @@ $('#tutor-profile-request-session').on('click',function() {
                 buttons: {
                     Submit: {
                         label: 'Book Session',
-                        className: 'btn btn-primary p-2 px-4 fs-1-6',
+                        className: 'btn btn-primary px-4 fs-1-6',
                         callback: function() {
                             $.ajax({
                                 type: 'POST',
