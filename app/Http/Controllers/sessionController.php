@@ -82,7 +82,7 @@ class SessionController extends Controller
         // 1. the upcoming session time validation (must be at least 30 minutes after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
-        $validStartTime = Carbon::now()->addMinutes(15);
+        $validStartTime = Carbon::now()->addMinutes(30);
         $request->validate([
             'tutorId' => [
                 'required',
