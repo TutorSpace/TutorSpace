@@ -459,6 +459,10 @@ class User extends Authenticatable
 
     // IMPORTANT: make sure the tutor level in the database are ranking from lower to higher
     public function nextLevel() {
+        if($this->tutorLevel->id + 1 >  TutorLevel::all()->count()) {
+            return "";
+        }
+
         return TutorLevel::find($this->tutorLevel->id + 1)->tutor_level;
     }
 

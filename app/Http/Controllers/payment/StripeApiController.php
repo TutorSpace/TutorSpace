@@ -292,7 +292,7 @@ class StripeApiController extends Controller
         // 2. not cancelled and already past
         // 3. transaction is paid
 
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
 
         if($transaction->refund_status == null) {
             $transaction->refund_status = 'user_initiated';
@@ -319,7 +319,7 @@ class StripeApiController extends Controller
     // Approve a refund request for a session
     // Request should contain 'session_id'
     public function approveRefund(Request $request, AppSession $session) {
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
 
         // Already refunded
         if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
@@ -368,7 +368,7 @@ class StripeApiController extends Controller
 
     // Decline a refund request for a session
     public function declineRefundRequest(Request $request, AppSession $session) {
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         if ($transaction->refund_status != 'user_initiated') {  // Invalid status
             Log::error('Refund status is not user_initiated. Unable to decline.');
             return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
@@ -431,7 +431,7 @@ class StripeApiController extends Controller
             return false;
         }
 
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
 
         // invoice doesn't exist
@@ -546,7 +546,7 @@ class StripeApiController extends Controller
 
         return response(null, 200);
     }
-    
+
     /*
         Section starts: webhook helper functions
     */
@@ -616,7 +616,7 @@ class StripeApiController extends Controller
     private function handlePayoutPaid($event) {
         $stripe_account_id = $event->account;
         $payout = $event->data->object;
-        
+
         $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
         $user = $payment_method->user;
 
@@ -717,7 +717,7 @@ class StripeApiController extends Controller
     // Get the payment URL of the invoice for 'session'
     // Return URL string
     public function getPaymentUrl(AppSession $session) {
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         if ($transaction->invoice_status != 'open') {  // Invalid status
             Log::error('Unable to generate payment URL. Invoice status is not open.');
             return "";
