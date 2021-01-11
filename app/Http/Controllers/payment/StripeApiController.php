@@ -21,6 +21,7 @@ use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\ChargeRefundUpdated;
 use App\Notifications\InvoicePaymentFailed;
+use App\Notifications\NotEnoughBalance;
 use App\Notifications\PayoutFailed;
 use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
@@ -385,6 +386,12 @@ class StripeApiController extends Controller
         $tutor_payment_method = $tutor->paymentMethod;
 
         // TODO: send email if no balance
+        if (!$this->hasAvailableBalance($amount)) {
+            Log::warning('Not enough balance to cover session bonus for session ' . $session->id);
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new NotEnoughBalance($session));
+            return;
+        }
 
         // Create transfer
         $transfer = \Stripe\Transfer::create([
@@ -401,6 +408,16 @@ class StripeApiController extends Controller
         $session_bonus->transfer_id = $transfer->id;
         $session_bonus->user_id = $tutor->id;
         $session_bonus->save();
+    }
+
+    // Check if platform account has available balance for 'amount'
+    private function hasAvailableBalance($amount) {
+        $balance = \Stripe\Balance::retrieve();
+        $total = 0;
+        foreach ($balance->available as $available_fund) {
+            $total += $available_fund->amount;
+        }
+        return $total >= $amount;
     }
 
     // Cancels an Invoice
