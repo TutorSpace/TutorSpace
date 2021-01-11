@@ -299,7 +299,7 @@ class StripeApiController extends Controller
             $transaction->refund_requested_time = Carbon::now();
             $transaction->save();
             $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
-        } else if($transaction->refund_status == 'user_intiated') {
+        } else if($transaction->refund_status == 'user_initiated') {
             $msg = "You already made the request. Please wait it to be processed.";
         } else if($transaction->refund_status == 'pending') {
             $msg = "You already made the request. Please wait it to be processed.";
