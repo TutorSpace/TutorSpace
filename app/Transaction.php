@@ -5,6 +5,7 @@ namespace App;
 use App\Events\TutoringHourEnded;
 use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Transaction extends Model
 {
@@ -16,7 +17,8 @@ class Transaction extends Model
     // specify time to finalize after session end
     public static function finalizeInvoice($timeAfterSessionEnd) {
         $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
-        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end,CURRENT_TIMESTAMP()) >= ?", $timeAfterSessionEnd) // ? minutes after session end
+
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end, '" . Carbon::now() . "' ) >= ?", $timeAfterSessionEnd) // ? minutes after session end
         ->where("transactions.invoice_status","draft") // invoice status => draft
         ->where("sessions.is_canceled",0) // not canceled
         ->get();
