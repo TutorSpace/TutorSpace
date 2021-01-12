@@ -28,7 +28,7 @@
             <p class="fc-black-2 fs-1-5 fw-500">{{ $session->course->course }}</p>
         </div>
         <div class="d-flex flex-column">
-            <p class="fc-grey fs-1-2 mb-0">Format:</p>
+            <p class="fc-grey fs-1-2 mb-0">Type:</p>
             <p class="fc-black-2 fs-1-5 fw-500">{{ $session->is_in_person ? 'In Person' : 'Online' }}</p>
         </div>
         {{-- <div class="d-flex flex-column">

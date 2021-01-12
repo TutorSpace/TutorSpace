@@ -25,7 +25,7 @@
                 options.selectAllow = false;
                 options.eventClick = null;
                 options.headerToolbar = null;
-                options.height = 300;
+                options.height = 250;
                 options.displayEventTime = false;
 
                 // options.slotMinTime = "08:30:00";
@@ -134,7 +134,7 @@ $('#tutor-profile-request-session').on('click',function() {
 
 
     let options = Object.assign({}, calendarOptions);
-    options.height = 300;
+    options.height = 250;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
     e.render();
     setTimeout(() => {
