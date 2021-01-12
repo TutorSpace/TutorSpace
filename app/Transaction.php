@@ -13,7 +13,6 @@ class Transaction extends Model
         return $this->belongsTo('App\Session');
     }
 
-    // todo: henry
     // specify time to finalize after session end
     public static function finalizeInvoice($timeAfterSessionEnd) {
         $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
