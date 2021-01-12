@@ -506,6 +506,7 @@ bg-student
                 } = data;
                 cards.forEach((card,idx) => {
 
+                    // get card brand and include svg
                     var cardBrand;
                     if (card.brand == "american express"){
                         cardBrand = `@include('payment.partials.card-svg.american-express-svg')`;
@@ -520,6 +521,8 @@ bg-student
                     }else{
                         cardBrand = `Brand: ${card.brand}`;
                     }
+
+                    // prepend cards
                     $('.payment-cards').prepend(`
 
 
@@ -529,13 +532,8 @@ bg-student
                             +`
                              m-3">
                                 <div class="overlay"></div>
-                                <div class="bank-card-row-one">  <div class="brand">`+
-                                    
-                                        cardBrand
-
-                                    +` </div>
-                                    
-
+                                <div class="bank-card-row-one">  <div class="brand">
+                                    `+ cardBrand +` </div>
                                 </div>
 
                                 <div class="bank-card-row-two">

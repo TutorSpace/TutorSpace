@@ -53,6 +53,6 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-
+        Auth::user()->addExperience(1000);
     }
 }
