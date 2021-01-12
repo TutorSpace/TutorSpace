@@ -8,7 +8,6 @@
 
         scatterGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-
     }
 
     var postViewCntData = {
@@ -93,8 +92,6 @@
         drawGraph();
     });
 
-
-
     const oneStar = {{Auth::user()->getStarReviewCounts(1)}} ;
     const twoStar = {{Auth::user()->getStarReviewCounts(2)}};
     const threeStar = {{Auth::user()->getStarReviewCounts(3)}};
@@ -104,19 +101,20 @@
     // var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
     var data = [1,2,3,4,5];
     var backgroundColor = [
-                '#dc3545',
-                '#FFBC00',
-                '#dc3545',
-                '#dc3545',
-                '#dc3545',
-            ];
+        '#dc3545',
+        '#FFBC00',
+        '#dc3545',
+        '#dc3545',
+        '#dc3545',
+    ];
+
     var labels =  [
-            'Five Star',
-            'Four Star',
-            'Three Star',
-            'Two Star',
-            'One Star',
-        ]
+        'Five Star',
+        'Four Star',
+        'Three Star',
+        'Two Star',
+        'One Star',
+    ];
 
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
         // data = [1];
@@ -126,7 +124,6 @@
 
 
     var ratingChart = document.getElementById('rating-chart');
-    console.log(ratingChart)
     data = {
         datasets: [{
             data: data,
@@ -161,7 +158,6 @@
                 fontStyle: 200,
                 fontColor:"#474747",
                 lineHeight: 1.3
-                // lineHeight: 0.1,
             },
             layout: {
                 padding: {

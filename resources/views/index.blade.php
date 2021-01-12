@@ -32,7 +32,7 @@ index
     <section class="index__story container">
         <h3 class="index__story__heading text-center">Our Story</h3>
         <p class="index__story__content">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio ipsum beatae cupiditate dolorum, ratione possimus totam enim minima iure aspernatur vel ex soluta doloremque et tenetur. Molestias nulla incidunt ullam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis dicta eius illo in animi explicabo harum neque tenetur similique nesciunt suscipit ut consequatur earum, doloremque eligendi voluptates corrupti repellendus alias? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur quam voluptatum labore perferendis quisquam, ipsum enim deserunt commodi, ratione dolore adipisci eum autem cupiditate id nobis, dolor totam quasi tempore?
+            TutorSpace was founded in May 2020 by three founders, among whom two of them are from USC and one from UCSD. With such an attitude and an original intention to do something positive for our peers during such an uncertain period in our generation’s history and encourage everyone to engage themselves in their daily school lives better, we decided to create TutorSpace.
         </p>
     </section>
 
@@ -40,7 +40,7 @@ index
         <div class="index__mission-container">
             <h3 class="index__mission__heading text-center">Our Mission</h3>
             <p class="index__mission__content">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio ipsum beatae cupiditate dolorum, ratione possimus totam enim minima iure aspernatur vel ex soluta doloremque et tenetur. Molestias nulla incidunt ullam? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis dicta eius illo in animi explicabo harum neque tenetur similique nesciunt suscipit ut consequatur earum
+                TutorSpace is an online platform with providing tutor matching and online community learning as our core services. Besides offering academic and financial benefits to students, we are also striving to foster students’ deeper connection with each other through an innovative forum and help them seize opportunities.
             </p>
         </div>
     </section>
@@ -64,11 +64,20 @@ index
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M91.7565 188.43C95.0673 181.911 98.5343 174.272 101.913 166.367C102.267 175.38 103.304 184.484 105.797 189.491L91.7565 188.43Z" fill="black" fill-opacity="0.1"/>
             </svg>
             <div class="index__feature-container">
-                <h3 class="index__feature__heading text-center">Our Feature 1</h3>
-                <p class="index__feature__content">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus quidem sequi qui tenetur suscipit laboriosam, ad iure?
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus
-                </p>
+                <h3 class="index__feature__heading text-center">STUDY CAN BE EASY</h3>
+                <div class="index__feature__content">
+                    <ul>
+                        <li>
+                            Find a tutor of any one of more than 100 majors at USC
+                        </li>
+                        <li>
+                            Student users pay zero commission fee for tutoring sessions
+                        </li>
+                        <li>
+                            No communication barriers with tutors through direct chatting on our platform
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -92,10 +101,19 @@ index
 
             <div class="index__feature-container">
                 <h3 class="index__feature__heading text-center">Our Feature 2</h3>
-                <p class="index__feature__content">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus quidem sequi qui tenetur suscipit laboriosam, ad iure?
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus
-                </p>
+                <div class="index__feature__content">
+                    <ul>
+                        <li>
+                            Set your own hourly rate
+                        </li>
+                        <li>
+                            Earn extra bonus by tutoring more
+                        </li>
+                        <li>
+                            Everybody can be a tutor; teach what you are good at
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -135,10 +153,19 @@ index
 
             <div class="index__feature-container">
                 <h3 class="index__feature__heading text-center">Our Feature 3</h3>
-                <p class="index__feature__content">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus quidem sequi qui tenetur suscipit laboriosam, ad iure?
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi quos eius dolores laboriosam molestias at provident deleniti eligendi, repellat voluptatibus. Nihil temporibus
-                </p>
+                <div class="index__feature__content">
+                    <ul>
+                        <li>
+                            Tell us how you like an upper-level class
+                        </li>
+                        <li>
+                            Build your connections through our one-of-a-kind online community
+                        </li>
+                        <li>
+                            Share experience with people of the same interests
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

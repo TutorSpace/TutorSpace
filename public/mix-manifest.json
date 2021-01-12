@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/css/main.css": "/css/main.css",
     "/js/auth/login.js": "/js/auth/login.js",
     "/js/auth/register.js": "/js/auth/register.js",
     "/js/chatting/index.js": "/js/chatting/index.js",
@@ -10,6 +11,5 @@
     "/js/home/profile.js": "/js/home/profile.js",
     "/js/home/tutor-sessions.js": "/js/home/tutor-sessions.js",
     "/js/search/index.js": "/js/search/index.js",
-    "/js/view_profile/index.js": "/js/view_profile/index.js",
-    "/css/main.css": "/css/main.css"
+    "/js/view_profile/index.js": "/js/view_profile/index.js"
 }
