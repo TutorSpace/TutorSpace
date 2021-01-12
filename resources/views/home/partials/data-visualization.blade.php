@@ -101,14 +101,14 @@
     const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
     const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
-    // var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
-    var data = [1,2,3,4,5];
+    var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+    // var data = [1,2,3,4,5];
     var backgroundColor = [
-                '#dc3545',
-                '#FFBC00',
-                '#dc3545',
-                '#dc3545',
-                '#dc3545',
+                '#6749DF',
+                '#8B73EB',
+                '#A28FF0',
+                '#BDB0F1',
+                '#D9D2F4',
             ];
     var labels =  [
             'Five Star',
@@ -117,11 +117,12 @@
             'Two Star',
             'One Star',
         ]
-
+    var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
-        // data = [1];
-        // backgroundColor = ['#a8a497'];
-        // labels = ["No Available Ratings"]
+        data = [1];
+        backgroundColor = ['#c2c0b8'];
+        labels = ["No Available Ratings"];
+        legendPosition = "bottom";
     }
 
 
@@ -146,7 +147,7 @@
         data: data,
         options: {
             legend: {
-                position: 'right',
+                position: legendPosition,
                 labels: {
                     fontFamily: "Avenir, sans-serif",
                     fontSize: 10,
