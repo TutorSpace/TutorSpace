@@ -149,7 +149,7 @@
                 display: true,
                 text: 'Tutor Session Ratings',
                 fontFamily: "Avenir, sans-serif",
-                fontSize: 15,
+                fontSize: 16,
                 fontStyle: "normal",
                 fontColor:"#474747",
                 lineHeight: 1.3
