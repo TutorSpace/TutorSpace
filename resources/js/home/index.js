@@ -111,6 +111,7 @@ $('.btn-view-request').click(function() {
     });
 
     calendarPopUpOptions.events = events;
+    calendarPopUpOptions.height = 300;
 
     calendarPopUpOptions.displayEventTime = false;
 
@@ -120,6 +121,8 @@ $('.btn-view-request').click(function() {
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
 
     calendarPopUp.render();
+
+    console.log(calendarPopUpOptions);
 })
 
 $('.tutor-request-modal__close').click(function() {

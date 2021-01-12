@@ -25,7 +25,7 @@
                 options.selectAllow = false;
                 options.eventClick = null;
                 options.headerToolbar = null;
-                options.height = 160;
+                options.height = 300;
                 options.displayEventTime = false;
 
                 // options.slotMinTime = "08:30:00";

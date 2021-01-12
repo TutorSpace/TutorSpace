@@ -23,6 +23,7 @@ class TutorRequest extends Model
         return $this->belongsTo('App\User', 'student_id');
     }
 
+    // todo: check the time used here
     // IMPORTANT: must run scheduler in prod env
     public function changeTutorRequestStatusOnTimeout() {
         $tutorRequests = TutorRequest::all();
