@@ -7,7 +7,7 @@
         }
 
         scatterGraphLayout.height = height;
-        gaugeGraphLayout.height = height;
+        // gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
         // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
 
@@ -53,7 +53,8 @@
         showlegend: true,
         font: {
             size: 10,
-            family: 'Arial',
+            family: 'Avenir, sans-serif',
+            color: '#474747',
         },
         legend: {
             xanchor: 'right',
@@ -73,7 +74,14 @@
 
     // create a deep copy of layout
     var scatterGraphLayout = Object.assign({}, layout);
-    scatterGraphLayout.title = 'Post/Profile View Count Data';
+    scatterGraphLayout.title = {
+        text: 'Post/Profile View Count Data',
+        font: {
+            family: 'Avenir, sans-serif',
+            size: 16,
+            color: '#474747'
+        }
+    };
 
     var options = {
         scrollZoom: true,
