@@ -444,6 +444,10 @@ class User extends Authenticatable
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
 
+    public function cancellationPenalty() {
+        return $this->hasMany('App\CancellationPenalty');
+    }
+
     // IMPORTANT! : NOTE this function updates all users with the same email
     // add user experience and update level 
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
