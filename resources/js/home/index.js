@@ -30,6 +30,7 @@ $("#input-profile-pic").change(function() {
     var formData = new FormData();
     formData.append('profile-pic', file);
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: $('#profile-pic-form').attr('action'),
@@ -44,6 +45,9 @@ $("#input-profile-pic").change(function() {
         error: function(error) {
             toastr.error('Something went wrong. Please try again.');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });
@@ -155,6 +159,7 @@ $('.btn-view-all-bookmarked-users').click(function() {
 $('#btn-confirm-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: `/tutor-request/accept/${tutorRequestId}`,
@@ -171,6 +176,9 @@ $('#btn-confirm-tutor-session').click(function() {
         error: (error) => {
             console.log(error);
             toastr.error("Something went wrong when accepting the tutor request.");
+        },
+        complete: () => {
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
         }
     });
 })
@@ -178,6 +186,7 @@ $('#btn-confirm-tutor-session').click(function() {
 $('#btn-decline-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'DELETE',
         url: `/tutor-request/${tutorRequestId}`,
@@ -194,6 +203,9 @@ $('#btn-decline-tutor-session').click(function() {
         error: (error) => {
             console.log(error);
             toastr.error("Something went wrong when declining the tutor request.");
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 })

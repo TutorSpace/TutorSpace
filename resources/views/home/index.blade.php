@@ -308,6 +308,7 @@ bg-student
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'GET',
             url: '{{ route('recommended-tutors') }}?refresh=true',
@@ -317,6 +318,9 @@ let storageUrl = "{{ Storage::url('') }}";
             },
             error: function(error) {
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     }

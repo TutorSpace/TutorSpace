@@ -124,6 +124,7 @@ bg-student
 <script>
 @auth
 $('#btn-invite').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'POST',
         url: "{{ route('invite-to-be-tutor', $user) }}",
@@ -134,6 +135,9 @@ $('#btn-invite').click(function() {
         error: function(error) {
             toastr.error('Something went wrong!');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });

@@ -497,9 +497,13 @@ bg-student
 
 
     function displayCards(){
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             url: "{{ route('payment.stripe.list-cards') }}",
             method: 'GET',
+            complete: () => {
+                JsLoadingOverlay.hide();
+            },
             success: (data) => {
                 let {
                     cards
@@ -603,9 +607,13 @@ bg-student
     });
 
     function postToConnectAccount() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         return $.ajax({
             url: "{{ route('payment.stripe.onboarding') }}",
             method: 'POST',
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
         })
     }
 
@@ -765,13 +773,16 @@ bg-student
         function uploadFile(file) {
             var formData = new FormData();
             formData.append('tutor-verification-file', file);
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             return $.ajax({
                 type: 'POST',
                 url: "{{ route('tutor-profile-verification') }}",
                 data: formData,
                 contentType: false,
                 processData: false,
-
+                complete: () => {
+                    JsLoadingOverlay.hide();
+                },
                 success: (data) => {
                     bootbox.dialog({
                         message: `@include('home.partials.tutorVerification--upload_success')`,

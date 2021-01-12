@@ -12,6 +12,19 @@ require('timepicker');
 
 require('bootstrap-slider');
 
+require('js-loading-overlay');
+window.jsLoadingOverlayOptions = {
+    'overlayBackgroundColor': '#484848',
+    'overlayOpacity': 0.3,
+    'spinnerIcon': 'ball-atom',
+    'spinnerColor': '#000',
+    'spinnerSize': '1x',
+    'overlayIDName': 'overlay',
+    'spinnerIDName': 'spinner',
+};
+
+
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {

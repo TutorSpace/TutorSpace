@@ -161,6 +161,7 @@ $("input[type=file]").change(function() {
     }
 
     $('#resend-code').click(function () {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         if (!currentTimeInterval) {
             // use ajax to send the email
             $.ajax({
@@ -177,6 +178,9 @@ $("input[type=file]").change(function() {
                 error: function(error) {
                     console.log(error);
                     toastr.error(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide();
                 }
             });
             startTimeLabel();

@@ -13,6 +13,7 @@ $('.action--toggle').on('click', function(event) {
 });
 
 $('.action-refund').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: $(this).closest('.info-box').attr('data-route-url'),
@@ -23,6 +24,9 @@ $('.action-refund').click(function() {
         error: function(error) {
             toastr.error('Something went wrong. Please try again.');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });

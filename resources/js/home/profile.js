@@ -222,6 +222,7 @@ function appendNewBox(dataType, tagName, tagId, parentSelector) {
 
 
 function ajaxAddRemoveCourse(courseInfo) {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'POST',
         url: '/course-add-remove',
@@ -233,11 +234,15 @@ function ajaxAddRemoveCourse(courseInfo) {
                 appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
                 toastr.success('Successfully addedd the course.')
             }
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 }
 
 function ajaxAddRemoveTag(tagInfo) {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'POST',
         url: '/tag-add-remove',
@@ -249,6 +254,9 @@ function ajaxAddRemoveTag(tagInfo) {
                 appendNewBox('data-tag-id', tagName, tagId, '.boxes__forum');
                 toastr.success('Successfully addedd the tag.')
             }
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 }
