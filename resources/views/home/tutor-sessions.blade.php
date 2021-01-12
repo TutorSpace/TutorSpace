@@ -31,7 +31,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content tutor-sessions">
-        <div class="container col-layout-2 home__header-container box-shadow-none">
+        <div class="container col-layout-2 home__header-container">
             <div class="heading-container mb-5">
                 <p class="heading">Tutor Sessions</p>
                 <span>
