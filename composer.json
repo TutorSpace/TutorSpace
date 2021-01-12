@@ -22,7 +22,8 @@
         "pusher/pusher-php-server": "^4.1",
         "stripe/stripe-php": "^7.66",
         "superbalist/laravel-google-cloud-storage": "^2.2",
-        "wildbit/swiftmailer-postmark": "^3.3"
+        "wildbit/swiftmailer-postmark": "^3.3",
+        "ext-bcmath": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -39,7 +40,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-                "laravel/telescope"
+
             ]
         }
     },

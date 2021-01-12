@@ -179,6 +179,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // added in `set-up-telescope-in-production` branch
+        App\Providers\TelescopeServiceProvider::class,
     ],
 
     /*
