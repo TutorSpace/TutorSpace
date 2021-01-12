@@ -35,7 +35,7 @@ class StripeApiController extends Controller
         if (env('APP_ENV') == 'local'){
             Stripe::setApiKey(env('STRIPE_TEST_KEY'));
         }
-        else if (env('APP_ENV') == 'prod'){
+        else if (env('APP_ENV') == 'production'){
             Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
         }
     }
