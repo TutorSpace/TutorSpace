@@ -7,9 +7,7 @@
         }
 
         scatterGraphLayout.height = height;
-        // gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-        // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
 
     }
 
@@ -97,16 +95,33 @@
 
 
 
-    const oneStar = {{Auth::user()->getStarReviewPercentage(1)}} ;
-    const twoStar = {{Auth::user()->getStarReviewPercentage(2)}};
-    const threeStar = {{Auth::user()->getStarReviewPercentage(3)}};
-    const fourStar = {{Auth::user()->getStarReviewPercentage(4)}};
-    const fiveStar = {{Auth::user()->getStarReviewPercentage(5)}};
+    const oneStar = {{Auth::user()->getStarReviewCounts(1)}} ;
+    const twoStar = {{Auth::user()->getStarReviewCounts(2)}};
+    const threeStar = {{Auth::user()->getStarReviewCounts(3)}};
+    const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
+    const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
-    var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+    // var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+    var data = [1,2,3,4,5];
+    var backgroundColor = [
+                '#dc3545',
+                '#FFBC00',
+                '#dc3545',
+                '#dc3545',
+                '#dc3545',
+            ];
+    var labels =  [
+            'Five Star Ratings',
+            'Four Star Ratings',
+            'Three Star Ratings',
+            'Two Star Ratings',
+            'one Star Ratings',
+        ]
 
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
-        data = [];
+        // data = [1];
+        // backgroundColor = ['#a8a497'];
+        // labels = ["No Available Ratings"]
     }
 
 
@@ -115,28 +130,15 @@
     data = {
         datasets: [{
             data: data,
-            backgroundColor: [
-                '#dc3545',
-                '#FFBC00',
-                '#dc3545',
-                '#dc3545',
-                '#dc3545',
-            ]
+            backgroundColor: backgroundColor
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Five Star Ratings',
-            'Four Star Ratings',
-            'Three Star Ratings',
-            'Two Star Ratings',
-            'one Star Ratings',
-        ],
-
+        labels: labels
     };
 
     const ratingChartOption = {
-        position: 'right',
+        position: 'bottom',
 
     }
     var ratingChart = new Chart(ratingChart, {
@@ -145,10 +147,20 @@
         options: {
             legend: {
                 position: 'right',
+                labels: {
+                    fontFamily: "Avenir, sans-serif",
+                    fontSize: 10,
+                    fontColor: "#474747"
+                }
             },
             title: {
                 display: true,
-                text: 'Tutor Session Ratings (percentage)',
+                text: 'Tutor Session Ratings',
+                fontFamily: "Avenir, sans-serif",
+                fontSize: 16,
+                fontStyle: "normal",
+                fontColor:"#474747",
+                lineHeight: 1.3
                 // lineHeight: 0.1,
             },
             layout: {
