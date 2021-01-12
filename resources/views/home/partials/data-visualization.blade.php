@@ -103,11 +103,11 @@
                 '#dc3545',
             ];
     var labels =  [
-            'Five Star Ratings',
-            'Four Star Ratings',
-            'Three Star Ratings',
-            'Two Star Ratings',
-            'one Star Ratings',
+            'Five Star',
+            'Four Star',
+            'Three Star',
+            'Two Star',
+            'One Star',
         ]
     
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
@@ -138,7 +138,7 @@
         data: data,
         options: {
             legend: {
-                position: 'right',
+                position: 'bottom',
                 labels: {
                     fontFamily: "Avenir, sans-serif",
                     fontSize: 10,
