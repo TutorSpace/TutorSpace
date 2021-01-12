@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\payment;
+
+use App\CancellationPenalty;
 use App\User;
 use Carbon\Carbon;
 use Stripe\Stripe;
@@ -16,6 +18,7 @@ use App\Session as AppSession;
 use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Notifications\CancellationPenaltyFailed;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
@@ -29,6 +32,8 @@ use App\Notifications\UnpaidInvoiceReminder;
 
 class StripeApiController extends Controller
 {
+    private static $CANCEL_PENALTY_AMOUNT = 500;
+
     // todo: NATE (根据.env里的app_env来决定用那个key)
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
@@ -195,7 +200,8 @@ class StripeApiController extends Controller
     }
 
     // Finalize an Invoice and confirm its PaymentIntent
-    public function finalizeInvoice($invoice_id) {
+    // Metadata differentiates transaction and penalty
+    public function finalizeInvoice($invoice_id, $is_cancellation_penalty = false) {
         $invoice = \Stripe\Invoice::retrieve($invoice_id);
         $invoice->finalizeInvoice();
 
@@ -207,6 +213,9 @@ class StripeApiController extends Controller
             $payment_intent->confirm();
         } catch (\Stripe\Exception\CardException $e) {
             Log::debug('Error when confirming payment intent: '.$e->getMessage());
+            return;
+        }
+        if ($is_cancellation_penalty) {
             return;
         }
 
@@ -488,6 +497,14 @@ class StripeApiController extends Controller
                 $this->handleInvoiceFailedEvent($event);
                 break;
 
+            case 'charge.succeeded':
+                $this->handleChargeSucceededEvent($event);
+                break;
+
+            case 'charge.failed':
+                $this->handleChargeFailedEvent($event);
+                break;
+
             case 'charge.refunded':
                 $this->handleChargeRefundedEvent($event);
                 break;
@@ -554,6 +571,14 @@ class StripeApiController extends Controller
     private function handleInvoicePaidEvent($event) {
         $invoice = $event->data->object;
 
+        // Is a cancellation penalty
+        if ($invoice->metadata->is_cancellation_penalty == 'true') {
+            $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $invoice->id);
+            $cancellation_penalty->is_successful = 1;
+            $cancellation_penalty->save();
+            return;
+        }
+
         // Change database transaction invoice_status => paid
         $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
         $transaction->invoice_status = 'paid';
@@ -569,6 +594,14 @@ class StripeApiController extends Controller
     private function handleInvoiceFailedEvent($event) {
         $invoice = $event->data->object;
 
+        // Is a cancellation penalty
+        if ($invoice->metadata->is_cancellation_penalty == 'true') {
+            $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $invoice->id);
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $invoice->id));
+            return;
+        }
+
         // Change database transaction invoice_status => paid
         $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
         $transaction->invoice_status = 'paid';
@@ -577,6 +610,28 @@ class StripeApiController extends Controller
         // TODO: send email to user
         $student = $transaction->session->student;
         $student->notify(new InvoicePaymentFailed($transaction->session));
+    }
+
+    private function handleChargeSucceededEvent($event) {
+        $charge = $event->data->object;
+
+        // Is a cancellation penalty
+        if ($charge->metadata->is_cancellation_penalty == 'true') {
+            $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $charge->id);
+            $cancellation_penalty->is_successful = 1;
+            $cancellation_penalty->save();
+        }
+    }
+
+    private function handleChargeFailedEvent($event) {
+        $charge = $event->data->object;
+
+        // Is a cancellation penalty
+        if ($charge->metadata->is_cancellation_penalty == 'true') {
+            $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $charge->id);
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $charge->id));
+        }
     }
 
     private function handleChargeRefundedEvent($event) {
@@ -713,7 +768,6 @@ class StripeApiController extends Controller
 
     }
 
-
     // Get the payment URL of the invoice for 'session'
     // Return URL string
     public function getPaymentUrl(AppSession $session) {
@@ -725,5 +779,47 @@ class StripeApiController extends Controller
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
         $payment_url = $invoice->hosted_invoice_url;
         return $payment_url;
+    }
+
+    // Charge 'user' an amount for cancellation
+    public function chargeForCancellation($user) {
+        $cancellation_penalty = new CancellationPenalty();
+        if ($user->is_tutor) {  // For tutor, create charge
+            $account_id = $user->paymentMethod->stripe_account_id;
+            $charge = \Stripe\Charge::create([
+                'amount' => self::$CANCEL_PENALTY_AMOUNT,
+                'currency' => 'usd',
+                'description' => 'Cancellation Penalty',
+                'source' => $account_id,
+                'metadata' => ['is_cancellation_penalty' => 'true']
+            ]);
+
+            $cancellation_penalty->stripe_object_id = $charge->id;
+        } else {  // For student, create invoice
+            $customer_id = $user->paymentMethod->stripe_customer_id;
+            $product = \Stripe\Product::create([
+                'name' => 'Cancellation Penalty',
+            ]);
+            $price = \Stripe\Price::create([
+                'product' => $product->id,
+                'unit_amount' => self::$CANCEL_PENALTY_AMOUNT,
+                'currency' => 'usd',
+            ]);
+            $invoice_item = \Stripe\InvoiceItem::create([
+                'customer' => $customer_id,
+                'price' => $price->id,
+            ]);
+            $invoice = \Stripe\Invoice::create([
+                'customer' => $customer_id,
+                'collection_method' => 'send_invoice',
+                'days_until_due' => 7,  // Needed for send_invoice only
+                'metadata' => ['is_cancellation_penalty' => 'true']
+            ]);
+            $this->finalizeInvoice($invoice->id, true);
+
+            $cancellation_penalty->stripe_object_id = $invoice->id;
+        }
+        $cancellation_penalty->user()->associate($user);
+        $cancellation_penalty->save();
     }
 }
