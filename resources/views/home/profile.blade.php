@@ -253,101 +253,6 @@ bg-student
 
 
                         <div class="payment-cards">
-                            {{-- <div class="bank-card bg-non-default m-3">
-                                <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="bank-card bg-default m-3">
-                                <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-                            </div>
-
-
-                            <div class="bank-card bg-default m-3">
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-                            </div> --}}
-
 
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
@@ -600,6 +505,21 @@ bg-student
                     cards
                 } = data;
                 cards.forEach((card,idx) => {
+
+                    var cardBrand;
+                    if (card.brand == "american express"){
+                        cardBrand = `@include('payment.partials.card-svg.american-express-svg')`;
+                    }else if (card.brand == "discover"){
+                        cardBrand = `@include('payment.partials.card-svg.discover-svg')`;
+                    }else if (card.brand == "jcb"){
+                        cardBrand = `@include('payment.partials.card-svg.jcb-svg')`;
+                    }else if (card.brand == "mastercard"){
+                        cardBrand = `@include('payment.partials.card-svg.master-svg')`;
+                    }else if (card.brand == "visa"){
+                        cardBrand = `@include('payment.partials.card-svg.visa-svg')`;
+                    }else{
+                        cardBrand = `Brand: ${card.brand}`;
+                    }
                     $('.payment-cards').prepend(`
 
 
@@ -609,8 +529,13 @@ bg-student
                             +`
                              m-3">
                                 <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: ${card.brand}</div>
+                                <div class="bank-card-row-one">  <div class="brand">`+
+                                    
+                                        cardBrand
+
+                                    +` </div>
+                                    
+
                                 </div>
 
                                 <div class="bank-card-row-two">
@@ -622,10 +547,7 @@ bg-student
                                     </div>
                                 </div>
                                 <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">${card.card_holder}</div>
-                                    </div>
+
                                     <div class="expiration">
                                         <div>Exp Date</div>
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>

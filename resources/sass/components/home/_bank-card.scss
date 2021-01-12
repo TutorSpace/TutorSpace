@@ -62,11 +62,15 @@
         &-row-three {
             height: 30%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: flex-start;
         }
 
-        .brand {}
+        .brand {
+            svg {
+                width: 6rem;
+            }
+        }
 
         .number {
             font-size: 2rem;
