@@ -7,10 +7,8 @@
         }
 
         scatterGraphLayout.height = height;
-        gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-        // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
-        
+
     }
 
     var postViewCntData = {
@@ -51,7 +49,10 @@
 
     var layout = {
         showlegend: true,
-        font: {size: 10},
+        font: {
+            size: 10,
+            family: 'Arial',
+        },
         legend: {
             xanchor: 'right',
         },
@@ -73,53 +74,17 @@
     scatterGraphLayout.title = 'Post/Profile View Count Data';
 
     var options = {
-            scrollZoom: true,
-            displaylogo: false,
-            displayModeBar: false,
-            responsive: true,
-        };
-
-    // for the gauge chart
-    var gaugeData = [{
-        domain: { row: 1, column: 1 },
-        value: 1,
-        type: "indicator",
-        mode: "gauge+number+delta",
-        number: {
-            suffix: "%"
-        },
-        delta: {
-            // todo: modify the reference
-            reference: 70,
-            increasing: {
-                // color: ""
-            }
-        },
-        gauge: {
-            axis: { range: [0, 100] },
-            // bgcolor: "white",
-            color: "red",
-            bar: {
-                color: "#FFBC00"
-            }
-        }
-    }];
-
-    var gaugeGraphLayout = Object.assign({}, layout);
-    gaugeGraphLayout.title = '5-Star Rating';
-    gaugeGraphLayout.margin = {
-        l: 30,
-        r: 30,
-        b: 35,
-        t: 50,
-        pad: 0
+        scrollZoom: true,
+        displaylogo: false,
+        displayModeBar: false,
+        responsive: true,
     };
 
     drawGraph();
     $(window).resize(function() {
         drawGraph();
     });
-    
+
 
 
     const oneStar = {{Auth::user()->getStarReviewCounts(1)}} ;
@@ -201,7 +166,7 @@
             aspectRatio: 1,
             maintainAspectRatio: false
         },
-        
+
     });
 
 </script>

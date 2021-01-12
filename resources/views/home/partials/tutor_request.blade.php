@@ -46,7 +46,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
         <div class="price hidden">
             <span class="title">Price</span>
-            <span class="content">{{ $price }}</span>
+            <span class="content">$ {{ $price }}</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>

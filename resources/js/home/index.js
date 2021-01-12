@@ -99,7 +99,9 @@ $('.btn-view-request').click(function() {
     let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
     let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
 
-    calendarPopUpOptions.events.push({
+    let events = Array.from(calendarPopUpOptions.events)
+
+    events.push({
         title: 'Current Tutor Request',
         classNames: ['tutor-request'],
         start: sessionTimeStart,
@@ -107,6 +109,9 @@ $('.btn-view-request').click(function() {
         description: "",
         type: "tutor-request",
     });
+
+    calendarPopUpOptions.events = events;
+    calendarPopUpOptions.height = 300;
 
     calendarPopUpOptions.displayEventTime = false;
 
@@ -116,6 +121,8 @@ $('.btn-view-request').click(function() {
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
 
     calendarPopUp.render();
+
+    console.log(calendarPopUpOptions);
 })
 
 $('.tutor-request-modal__close').click(function() {
