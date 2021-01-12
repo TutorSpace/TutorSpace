@@ -111,7 +111,7 @@ $('.btn-view-request').click(function() {
     });
 
     calendarPopUpOptions.events = events;
-    calendarPopUpOptions.height = 300;
+    calendarPopUpOptions.height = 250;
 
     calendarPopUpOptions.displayEventTime = false;
 

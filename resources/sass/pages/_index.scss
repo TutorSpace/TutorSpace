@@ -92,6 +92,15 @@
     &__content {
         font-size: 2.2rem;
         line-height: 2;
+        width: 100%;
+
+        ul {
+            li {
+                &:not(:first-child) {
+                    margin-top: 1.5rem;
+                }
+            }
+        }
     }
 }
 
@@ -161,6 +170,15 @@
 
         &__content {
             font-size: 2.2rem;
+            width: 100%;
+
+            ul {
+                li {
+                    &:not(:first-child) {
+                        margin-top: 1.5rem;
+                    }
+                }
+            }
         }
     }
 
