@@ -51,7 +51,8 @@
         showlegend: true,
         font: {
             size: 10,
-            family: 'Arial',
+            family: 'Avenir, sans-serif',
+            color: '#474747',
         },
         legend: {
             xanchor: 'right',
@@ -71,7 +72,14 @@
 
     // create a deep copy of layout
     var scatterGraphLayout = Object.assign({}, layout);
-    scatterGraphLayout.title = 'Post/Profile View Count Data';
+    scatterGraphLayout.title = {
+        text: 'Post/Profile View Count Data',
+        font: {
+            family: 'Avenir, sans-serif',
+            size: 16,
+            color: '#474747'
+        }
+    };
 
     var options = {
         scrollZoom: true,
@@ -92,7 +100,7 @@
     const threeStar = {{Auth::user()->getStarReviewCounts(3)}};
     const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
     const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
-    
+
     // var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
     var data = [1,2,3,4,5];
     var backgroundColor = [
@@ -109,7 +117,7 @@
             'Two Star',
             'One Star',
         ]
-    
+
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
         // data = [1];
         // backgroundColor = ['#a8a497'];
