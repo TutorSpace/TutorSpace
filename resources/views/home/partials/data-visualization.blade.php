@@ -146,7 +146,7 @@
         data: data,
         options: {
             legend: {
-                position: 'bottom',
+                position: 'right',
                 labels: {
                     fontFamily: "Avenir, sans-serif",
                     fontSize: 10,
@@ -158,7 +158,7 @@
                 text: 'Tutor Session Ratings',
                 fontFamily: "Avenir, sans-serif",
                 fontSize: 16,
-                fontStyle: "normal",
+                fontStyle: 200,
                 fontColor:"#474747",
                 lineHeight: 1.3
                 // lineHeight: 0.1,
