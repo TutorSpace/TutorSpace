@@ -287,8 +287,8 @@ class StripeApiController extends Controller
     }
 
     public function userRequestRefund(Request $request, AppSession $session) {
-        // todo: add validation here
-        // 1. the authenticated must be the student in that session
+        // todo: Nate add validation here
+        // 1. the authenticated user must be the student in that session
         // 2. not cancelled and already past
         // 3. transaction is paid
 
