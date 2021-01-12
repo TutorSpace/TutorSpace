@@ -337,6 +337,13 @@ class User extends Authenticatable
         return $fiveStarCnt / $reviewCnt;
     }
 
+    public function getStarReviewCounts($numStars) {
+        $starCnt = $this->aboutReviews()
+                            ->where('star_rating', $numStars)
+                            ->count();
+        return $starCnt;
+    }
+
 
     public function hasDualIdentities() {
         return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
