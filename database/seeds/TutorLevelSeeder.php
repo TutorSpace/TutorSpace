@@ -14,7 +14,7 @@ class TutorLevelSeeder extends Seeder
         DB::table('tutor_levels')->insert([
             'tutor_level' => 'Beginner',
             'bonus_rate' => 0,
-            'level_experience_lower_bound' => -999999999999999,
+            'level_experience_lower_bound' => -1000000,
             'level_experience_upper_bound' => 30
         ]);
 
@@ -72,7 +72,7 @@ class TutorLevelSeeder extends Seeder
             'tutor_level' => 'Master III',
             'bonus_rate' => 0.20,
             'level_experience_lower_bound' => 11000,
-            'level_experience_upper_bound' => 999999999999999999
+            'level_experience_upper_bound' => 10000000
         ]);
 
     }
