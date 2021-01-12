@@ -35,7 +35,7 @@ class StripeApiController extends Controller
         if (env('APP_ENV') == 'local'){
             Stripe::setApiKey(env('STRIPE_TEST_KEY'));
         }
-        else if (env('APP_ENV') == 'prod'){
+        else if (env('APP_ENV') == 'production'){
             Stripe::setApiKey(env('STRIPE_LIVE_KEY'));
         }
     }
@@ -287,8 +287,8 @@ class StripeApiController extends Controller
     }
 
     public function userRequestRefund(Request $request, AppSession $session) {
-        // todo: add validation here
-        // 1. the authenticated must be the student in that session
+        // todo: Nate add validation here
+        // 1. the authenticated user must be the student in that session
         // 2. not cancelled and already past
         // 3. transaction is paid
 

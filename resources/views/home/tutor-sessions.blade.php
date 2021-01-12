@@ -31,7 +31,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content tutor-sessions">
-        <div class="container col-layout-2 home__header-container">
+        <div class="container col-layout-2 home__header-container box-shadow-none">
             <div class="heading-container mb-5">
                 <p class="heading">Tutor Sessions</p>
                 <span>
@@ -170,7 +170,8 @@ bg-student
                                 'user' => $session->student,
                                 'status' => 'pending', // todo: status can be either 'pending' or 'completed'
                                 'currUser' => Auth::user(),
-                                'course' => $session->course
+                                'course' => $session->course,
+                                'session' => $session
                             ])
                         @endforeach
                     @else
@@ -189,7 +190,8 @@ bg-student
                                 'user' => $session->tutor,
                                 'status' => 'paid', // todo: status can be 'paid', 'unpaid', or 'completed'
                                 'currUser' => Auth::user(),
-                                'course' => $session->course
+                                'course' => $session->course,
+                                'session' => $session
                             ])
                         @endforeach
                     @endif

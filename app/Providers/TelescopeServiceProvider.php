@@ -17,13 +17,9 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     public function register()
     {
-        // Telescope::night();
-
         $this->hideSensitiveRequestDetails();
 
         Telescope::filter(function (IncomingEntry $entry) {
-            return true; // todo: to remove this line in prod
-
             if ($this->app->environment('local')) {
                 return true;
             }
@@ -32,7 +28,10 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
                    $entry->isScheduledTask() ||
-                   $entry->hasMonitoredTag() || $entry->type == EntryType::MAIL;
+                   $entry->hasMonitoredTag() ||
+                   // below are customized code to listen to when in production environment
+                   $entry->type == EntryType::LOG ||
+                   $entry->type == EntryType::MAIL;
         });
     }
 

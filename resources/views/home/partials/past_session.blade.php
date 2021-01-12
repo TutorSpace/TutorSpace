@@ -91,7 +91,7 @@
                         Help
                     </span>
                     @else
-                    <span class="action--toggle--list--title fc-black-2" id="action-refund">
+                    <span class="action--toggle--list--title fc-black-2 action-refund">
                         Refund
                     </span>
                     @endif
