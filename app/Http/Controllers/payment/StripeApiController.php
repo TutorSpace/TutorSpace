@@ -224,7 +224,6 @@ class StripeApiController extends Controller
         // $invoice->sendInvoice();
 
         // change invoice status
-        Log::debug("finalize".$invoice->status);
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
     }
