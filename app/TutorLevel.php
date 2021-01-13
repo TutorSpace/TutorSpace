@@ -20,6 +20,10 @@ class TutorLevel extends Model
         return $resultLevel[0];
     }
 
+    // calculate the percentage of current experience within prev and next level
+    // input:  $experience : int
+    // return: percentage: double
+    // edge case: returns 0 if <= 0, returns 1 if at highest level
     public static function getCurrentPercentageToNextLevel($experience){
         // edge case: before first, after last
         $currentLevel = self::getLevelFromExperience($experience);
@@ -45,9 +49,13 @@ class TutorLevel extends Model
                 ($currentLevel->level_experience_upper_bound - $currentLevel->level_experience_lower_bound);
     }
 
+    // get the next tutor level from given experience
+    // input: $experience: int
+    // return: a tutorLevel model
     public static function getNextLevel($experience){
         $currentLevel = self::getLevelFromExperience($experience);
         $nextLevel = TutorLevel::where("level_experience_lower_bound",$currentLevel->level_experience_upper_bound);
+        // at highest level currently
         if ($nextLevel->count() == 0){
             return "";
         }

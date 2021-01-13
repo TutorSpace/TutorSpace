@@ -53,7 +53,7 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-        echo Auth::user()->nextLevel();
+        Auth::user()->addExperience(1);
         
     }
 }

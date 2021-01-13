@@ -492,6 +492,7 @@ class User extends Authenticatable
 
 
 
+    
     // ========================= below are legacy code =============
     public function pastTutors($num) {
         $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
