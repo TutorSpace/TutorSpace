@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Cookie;
 
 class ViewProfileController extends Controller
 {
-    public function index(Request $request, User $user) {
+    // optional parameter orderByOption: popularity(default), timeAsc, timeDesc
+    public function index(Request $request, User $user, $orderByOption = "popularity") {
         // create cookie name
         $cookieName = "viewed-"."user-".$user->id;
         // check if cookie exists
@@ -22,10 +23,22 @@ class ViewProfileController extends Controller
             Cookie::queue(Cookie::make($cookieName, 'true', 60));
         }
 
+        
         $toDisplayPosts = $request->input('display-forum-activities') || !$user->is_tutor;
+        
+        // decide orderBy query
+        $orderByQuery = POST::POPULARITY_FORMULA;
+        if ($orderByOption == "popularity"){
+            $orderByQuery = POST::POPULARITY_FORMULA;
+        }else if ($orderByOption == "timeAsc"){
+            $orderByQuery = "created_at ASC";
+        }else if ($orderByOption == "timeDesc"){
+            $orderByQuery = "created_at DESC";
+        }
 
         return view('home.view_profile.index', [
             'user' => $user,
+            'orderByOption' => $orderByOption,
             'displayForumActivities' => $toDisplayPosts,
             'posts' => $toDisplayPosts ? Post::with([
                 'tags',
@@ -38,7 +51,7 @@ class ViewProfileController extends Controller
             ])
             // todo: modify the formula
             ->where('user_id', $user->id)
-            ->orderByRaw(POST::POPULARITY_FORMULA)
+            ->orderByRaw($orderByQuery)
             ->get()
             ->paginate(3) : []
         ]);

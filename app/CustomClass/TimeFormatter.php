@@ -7,5 +7,8 @@ class TimeFormatter {
         $date = date('Y-m-d', strtotime($date));
         return "$date $time";
     }
-
+    public static function getDate($date){
+        $date = date('Y-m-d', strtotime($date));
+        return "$date";
+    }
 }

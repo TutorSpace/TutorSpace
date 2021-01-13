@@ -471,17 +471,28 @@ class User extends Authenticatable
         return $this->tutorLevel->tutor_level;
     }
 
-    // IMPORTANT: make sure the tutor level in the database are ranking from lower to higher
+    
+    // return tutor_level : String
+    // edge case: returns "" if there's no next level
     public function nextLevel() {
-        if($this->tutorLevel->id + 1 >  TutorLevel::all()->count()) {
+        $nextTutorLevel = TutorLevel::getNextLevel($this->experience_points);
+        if ($nextTutorLevel){
+            return $nextTutorLevel->tutor_level;
+        }else{
             return "";
         }
+    }
 
-        return TutorLevel::find($this->tutorLevel->id + 1)->tutor_level;
+    // progress percentage from current level to next level
+    // return : 0 <= Double <= 1
+    // edge cases : return 0 if <= 0, return 1 if >= highest level
+    public function getLevelProgressPercentage(){
+        return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
     }
 
 
 
+    
     // ========================= below are legacy code =============
     public function pastTutors($num) {
         $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))

@@ -17,6 +17,7 @@ use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Support\Facades\Log;
 use App\Rules\SessionOverlap;
 use App\Rules\SessionDifferentUser;
+use App\Rules\SameDay;
 use Carbon\Carbon;
 
 class SessionController extends Controller
@@ -96,8 +97,9 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-
+                
                 //TODO: nate check same day, overlap
+                new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [

@@ -29,7 +29,7 @@ bg-student
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
             </svg>
-            <span>Back</span>
+        <span>Back</span>
         </a>
     </div>
     <div class="row">
@@ -97,6 +97,22 @@ bg-student
 @endsection
 
 @section('js')
+<script>
+@auth
+    let forumPostOrderOptions = $("#forum-post-order-options");
+    forumPostOrderOptions.change(function(){
+        const orderByOption = forumPostOrderOptions.val();
+        postPreviews = $(".post-previews");
+
+        // if there's order by option
+        if (orderByOption){
+            window.location.href = orderByOption;
+        }
+    })
+@endauth
+</script>
+
+
 <script>
     let otherUserId = "{{ $user->id }}";
     let otherUserHourlyRate = "{{ $user->hourly_rate }}";
