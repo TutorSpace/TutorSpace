@@ -97,15 +97,15 @@ $('.btn-view-request').click(function() {
     $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
-    calendarPopUpOptions.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
-    calendarPopUpOptions.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
+
+    let options = Object.assign({}, calendarPopUpOptions);
+    options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
+    options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
 
     let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
     let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
 
-    let events = Array.from(calendarPopUpOptions.events)
-
-    events.push({
+    options.events.push({
         title: 'Current Tutor Request',
         classNames: ['tutor-request'],
         start: sessionTimeStart,
@@ -114,19 +114,16 @@ $('.btn-view-request').click(function() {
         type: "tutor-request",
     });
 
-    calendarPopUpOptions.events = events;
-    calendarPopUpOptions.height = 250;
+    options.height = 250;
 
-    calendarPopUpOptions.displayEventTime = false;
+    options.displayEventTime = false;
 
     // for the calendar in tutor request
     let calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
 
-    calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, calendarPopUpOptions);
+    calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
 
     calendarPopUp.render();
-
-    console.log(calendarPopUpOptions);
 })
 
 $('.tutor-request-modal__close').click(function() {
