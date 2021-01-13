@@ -13,6 +13,16 @@ class Transaction extends Model
         return $this->belongsTo('App\Session');
     }
 
+    public function user() {
+        return $this->belongsTo('App\User');
+    }
+
+    // chain this function with other functions
+    // e.g. unpaidPayments()->get(), unpaidPayments()->count()
+    public static function unpaidPayments() {
+        return Transaction::where('invoice_status', 'open');
+    }
+
     // specify time to finalize after session end
     public static function finalizeInvoice($timeAfterSessionEnd) {
         $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join

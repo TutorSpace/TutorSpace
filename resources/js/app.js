@@ -14,8 +14,8 @@ require('bootstrap-slider');
 
 require('js-loading-overlay');
 window.jsLoadingOverlayOptions = {
-    'overlayBackgroundColor': '#484848',
-    'overlayOpacity': 0.3,
+    'overlayBackgroundColor': '#666666',
+    'overlayOpacity': 0.05,
     'spinnerIcon': 'ball-atom',
     'spinnerColor': '#000',
     'spinnerSize': '1x',
