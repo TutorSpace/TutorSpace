@@ -1,10 +1,15 @@
 <script>
+
     $('.btn-view-session').on('click',function() {
         let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
 
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type: 'GET',
             url: "{{ url('/') . '/session/view/' }}" + sessionId,
+            complete: () => {
+                JsLoadingOverlay.hide();
+            },
             success: (data) => {
                 let { view, minTime, maxTime, date } = data;
 
@@ -68,7 +73,7 @@
                     className: 'btn btn-primary px-4 fs-1-6',
                     callback: function(e) {
                         let cancelReasonId = $($('#cancel-reason option:selected')).val();
-
+                        JsLoadingOverlay.show(jsLoadingOverlayOptions);
                         $.ajax({
                             type: 'POST',
                             url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
@@ -84,6 +89,9 @@
                             },
                             error: function error(error) {
                                 toastr.error("Something went wrong when canceling the session. Please contact tutorspaceusc@gmail.com for more details.");
+                            },
+                            complete: () => {
+                                JsLoadingOverlay.hide();
                             }
                         });
                     }
@@ -183,6 +191,7 @@ $('#tutor-profile-request-session').on('click',function() {
                         label: 'Book Session',
                         className: 'btn btn-primary px-4 fs-1-6',
                         callback: function() {
+                            JsLoadingOverlay.show(jsLoadingOverlayOptions);
                             $.ajax({
                                 type: 'POST',
                                 url: "{{ route('session.create') }}",
@@ -209,6 +218,9 @@ $('#tutor-profile-request-session').on('click',function() {
                                 error: (error) => {
                                     console.log(error);
                                     toastr.error("There is an error occurred. Please schedule your session again or contact tutorspace at tutorspaceusc@gmail.com");
+                                },
+                                complete: () => {
+                                    JsLoadingOverlay.hide();
                                 }
                             });
                         },

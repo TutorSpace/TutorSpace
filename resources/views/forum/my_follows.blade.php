@@ -52,6 +52,7 @@ bg-student
 <script>
     $('.post-preview-tag').click(function() {
         let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'POST',
             url: 'follow/' + postSlug,
@@ -62,6 +63,9 @@ bg-student
             error: function(error) {
                 toastr.error('Something went wrong!');
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     });

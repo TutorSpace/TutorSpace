@@ -113,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 $('#availableTimeConfirmationModal form').submit(function(e) {
     e.preventDefault();
     let data = $(this).serialize();
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: "{{ route('availableTime.store') }}",
@@ -134,12 +135,17 @@ $('#availableTimeConfirmationModal form').submit(function(e) {
         error: function error(_error) {
             console.log(_error);
             toastr.error("There is an error when submitting your availability. Please try again.");
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });
 $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
     e.preventDefault();
     let data = $(this).serialize();
+
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'DELETE',
         url: "{{ route('availableTime.delete') }}",
@@ -153,6 +159,9 @@ $('#availableTimeDeleteConfirmationModal form').submit(function(e) {
         error: function error(_error) {
             console.log(_error);
             toastr.error("There is an error when canceling your availability. Please try again.");
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });

@@ -17,7 +17,6 @@ bg-student
 
 {{-- plotly --}}
 <script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
-{{-- <script src="{{ asset('vendor/chartjs/dist/Chart.js') }}"></script> --}}
 @endsection
 
 @section('content')
@@ -128,6 +127,7 @@ let storageUrl = "{{ Storage::url('') }}";
         }
         else {
             let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type:'POST',
                 url: "{{ url('forum/posts/follow') }}" + `/${postSlug}`,
@@ -140,6 +140,9 @@ let storageUrl = "{{ Storage::url('') }}";
                 error: function(error) {
                     toastr.error('Something went wrong!');
                     console.log(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide()
                 }
             });
         }
@@ -147,6 +150,7 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
     $('#deleteModal .btn-delete').click(function() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'DELETE',
             url: '/forum/posts/' + postSlug,
@@ -160,6 +164,9 @@ let storageUrl = "{{ Storage::url('') }}";
             error: function(error) {
                 toastr.error('Something went wrong!');
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     });

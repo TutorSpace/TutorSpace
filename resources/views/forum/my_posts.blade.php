@@ -60,6 +60,7 @@ bg-student
     });
 
     $('#deleteModal .btn-delete').click(function() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'DELETE',
             url: '/forum/posts/' + postSlug,
@@ -71,6 +72,9 @@ bg-student
             error: function(error) {
                 toastr.error('Something went wrong!');
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     });

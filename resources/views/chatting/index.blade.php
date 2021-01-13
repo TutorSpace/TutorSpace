@@ -122,6 +122,7 @@ bg-student
         $(this).find('.box').addClass('bg-grey-light');
         $(this).addClass('bg-grey-light');
         let otherUserId = $(this).attr('data-user-id');
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'GET',
             url: '/chatting/get-messages',
@@ -133,6 +134,9 @@ bg-student
                 $('.chatting__content').html(data);
                 scrollToBottom();
                 appendSendMsgFunc();
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     });

@@ -56,6 +56,8 @@
                 toastr.error('Please enter your email!');
                 return;
             }
+
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type:'POST',
                 url: "{{ route('subscription.store') }}",
@@ -74,6 +76,9 @@
                     if(error.errorMsg) {
                         toastr.error(error.errorMsg);
                     }
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide();
                 }
             });
         });
@@ -94,6 +99,7 @@
                 var requestType = 'DELETE';
             }
             let userId = $(this).attr('data-user-id');
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type:requestType,
                 url: `/bookmark/${userId}`,
@@ -103,6 +109,9 @@
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');
                     console.log(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide();
                 }
             });
             $(this).find('use').toggleClass('hidden');
@@ -167,6 +176,7 @@
 
         function callbackNotHaveDualIdentity() {
             @if($currUser->is_tutor)
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type: 'POST',
                 url: "{{ route('switch-account.register') }}",
@@ -193,6 +203,9 @@
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');
                     console.log(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide();
                 }
             });
             @else
@@ -202,6 +215,7 @@
         }
 
         function callbackHaveDualIdentity() {
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type: 'GET',
                 url: "{{ route('switch-account.switch') }}",
@@ -211,6 +225,9 @@
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');
                     console.log(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide();
                 }
             })
         }
