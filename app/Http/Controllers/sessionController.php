@@ -48,11 +48,14 @@ class SessionController extends Controller
             ], 400);
         }
 
-        $session->is_canceled = true;
 
-        $session->cancelReason()->associate($request->input('cancelReasonId'));
+        DB::transaction(function () {
+            $session->is_canceled = true;
+            $session->cancelReason()->associate($request->input('cancelReasonId'));
+            $session->save();
 
-        $session->save();
+            app(StripeApiController::class)->chargeForCancellation(Auth::user());
+        });
 
         return response()->json(
             [
