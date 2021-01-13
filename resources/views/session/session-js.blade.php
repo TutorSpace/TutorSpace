@@ -33,8 +33,6 @@
                 options.height = 250;
                 options.displayEventTime = false;
 
-                // options.slotMinTime = "08:30:00";
-                // options.slotMaxTime = "11:30:00";
                 options.slotMinTime = minTime;
                 options.slotMaxTime = maxTime;
 
@@ -108,6 +106,7 @@
 <script>
 let startTime;
 $('#tutor-profile-request-session').on('click',function() {
+
     bootbox.dialog({
         message: `@include('session.book-session')`,
         size: 'large',
@@ -142,6 +141,7 @@ $('#tutor-profile-request-session').on('click',function() {
 
 
     let options = Object.assign({}, calendarOptions);
+
     options.height = 250;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
     e.render();
