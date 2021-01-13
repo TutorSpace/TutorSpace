@@ -59,7 +59,7 @@
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::check() && Auth::id() != $user->id)
+        @if (Auth::check() && Auth::user()->email != $user->email)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
         @if (Auth::check() && Auth::user()->email != $user->email && !Auth::user()->is_tutor)
