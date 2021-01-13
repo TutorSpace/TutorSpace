@@ -53,7 +53,16 @@ class testController extends Controller
     }
 
     public function test(Request $request) {
-        Auth::user()->addExperience(1);
+
+
+        $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
+
+        ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end, '" . Carbon::now() . "' ) >= ?", 0) // ? minutes after session end
+        ->where("transactions.invoice_status","draft") // invoice status => draft
+        ->where("sessions.is_canceled",0) // not canceled
+        ->get();
+
+        echo $transactionsToCharge->count();
         
     }
 }
