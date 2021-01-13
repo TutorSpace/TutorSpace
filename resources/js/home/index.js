@@ -175,7 +175,7 @@ $('#btn-confirm-tutor-session').click(function() {
             toastr.error("Something went wrong when accepting the tutor request.");
         },
         complete: () => {
-            JsLoadingOverlay.show(jsLoadingOverlayOptions);
+            JsLoadingOverlay.hide();
         }
     });
 })
