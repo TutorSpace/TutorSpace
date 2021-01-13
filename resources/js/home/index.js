@@ -98,7 +98,8 @@ $('.btn-view-request').click(function() {
 
     $('.home__tutor-request-modal').toggle();
 
-    let options = Object.assign({}, calendarPopUpOptions);
+    let options = JSON.parse(JSON.stringify(calendarPopUpOptions));
+
     options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
     options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
 

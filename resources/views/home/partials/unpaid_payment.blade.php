@@ -1,14 +1,12 @@
 <div>
     <div class="info-box">
-        @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
         </svg>
-        @endif
         <div class="user-info">
-            <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
+            <img src="{{ Storage::url($transaction->user->profile_pic_url) }}" alt="profile-img">
             <a class="content" href="#">
-                Shuaiqing Luo
+                {{ $transaction->user->first_name . ' ' . $transaction->user->last_name }}
             </a>
         </div>
         <div class="date">
@@ -32,6 +30,4 @@
             <button class="btn btn-lg btn-animation-y-sm btn-pay">Pay</button>
         </div>
     </div>
-
-
 </div>

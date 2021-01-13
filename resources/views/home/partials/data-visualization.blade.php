@@ -70,7 +70,7 @@
     };
 
     // create a deep copy of layout
-    var scatterGraphLayout = Object.assign({}, layout);
+    var scatterGraphLayout = JSON.parse(JSON.stringify(layout));
     scatterGraphLayout.title = {
         text: 'Post/Profile View Count Data',
         font: {

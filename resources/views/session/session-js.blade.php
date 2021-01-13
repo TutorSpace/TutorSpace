@@ -26,15 +26,13 @@
                 });
 
                 @if(Auth::user()->is_tutor)
-                let options = Object.assign({}, calendarOptions);
+                let options = JSON.parse(JSON.stringify(calendarOptions));
                 options.selectAllow = false;
                 options.eventClick = null;
                 options.headerToolbar = null;
                 options.height = 250;
                 options.displayEventTime = false;
 
-                // options.slotMinTime = "08:30:00";
-                // options.slotMaxTime = "11:30:00";
                 options.slotMinTime = minTime;
                 options.slotMaxTime = maxTime;
 
@@ -108,6 +106,7 @@
 <script>
 let startTime;
 $('#tutor-profile-request-session').on('click',function() {
+
     bootbox.dialog({
         message: `@include('session.book-session')`,
         size: 'large',
@@ -140,8 +139,8 @@ $('#tutor-profile-request-session').on('click',function() {
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
 
+    let options = JSON.parse(JSON.stringify(calendarOptions));
 
-    let options = Object.assign({}, calendarOptions);
     options.height = 250;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
     e.render();
