@@ -444,6 +444,16 @@ class User extends Authenticatable
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
 
+    // check if tutor has stripe account already
+    // return: boolean
+    // has account: true, no account or not a tutor: false
+    public function tutorHasStripeAccount(){
+        if ($this->is_tutor){
+            return $this->paymentMethod != null && $this->paymentMethod->stripe_account_id != null;
+        }
+        return false;
+    }
+
     public function cancellationPenalty() {
         return $this->hasMany('App\CancellationPenalty');
     }
@@ -492,7 +502,7 @@ class User extends Authenticatable
 
 
 
-    
+
     // ========================= below are legacy code =============
     public function pastTutors($num) {
         $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
