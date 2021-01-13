@@ -545,7 +545,10 @@
         justify-content: space-between;
 
         .graph-1 {
-            flex: 0 0 calc(60% - 3rem);
+            flex: 0 0 calc(100%);
+            &--tutor{
+                flex: 0 0 calc(60% - 3rem);
+            }
         }
 
         .graph-2 {

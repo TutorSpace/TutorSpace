@@ -3,6 +3,7 @@
 namespace App\Rules;
 use App\CustomClass\TimeFormatter;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Log;
 
 class SameDay implements Rule
 {

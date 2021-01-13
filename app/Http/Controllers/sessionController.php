@@ -106,7 +106,6 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after:startTime',
-                //TODO:check same day, overlap
             ],
             'course' => [
                 'required',
@@ -116,7 +115,6 @@ class SessionController extends Controller
                 'required',
                 'in:in-person,online'
             ],
-
         ]);
 
         if (app(StripeApiController::class)->customerHasCards()){

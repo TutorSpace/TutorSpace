@@ -152,12 +152,14 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div class="graph-1">
+                    <div class="graph-1 graph-1{{Auth::user()->is_tutor == 1 ? "--tutor":""}}">
                         <div id="scatter-chart"></div>
                     </div>
+                    @if(Auth::user()->is_tutor == 1)
                     <div class="graph-2">
                         <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
