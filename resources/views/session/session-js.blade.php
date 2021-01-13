@@ -26,7 +26,7 @@
                 });
 
                 @if(Auth::user()->is_tutor)
-                let options = Object.assign({}, calendarOptions);
+                let options = JSON.parse(JSON.stringify(calendarOptions));
                 options.selectAllow = false;
                 options.eventClick = null;
                 options.headerToolbar = null;
@@ -139,8 +139,7 @@ $('#tutor-profile-request-session').on('click',function() {
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
 
-
-    let options = Object.assign({}, calendarOptions);
+    let options = JSON.parse(JSON.stringify(calendarOptions));
 
     options.height = 250;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);

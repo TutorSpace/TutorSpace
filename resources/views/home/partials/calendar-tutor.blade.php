@@ -97,7 +97,7 @@ let calendarOptions = {
 
 let calendar;
 let calendarPopUp;
-let calendarPopUpOptions = Object.assign({}, calendarOptions);
+let calendarPopUpOptions = JSON.parse(JSON.stringify(calendarOptions));
 calendarPopUpOptions.selectAllow = false;
 calendarPopUpOptions.eventClick = null;
 

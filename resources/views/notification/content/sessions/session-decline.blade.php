@@ -62,7 +62,7 @@
 @section('js')
 @include('home.partials.calendar-tutor', ['user' => Auth::user()])
 <script>
-    let options = Object.assign({}, calendarOptions);
+    let options = JSON.parse(JSON.stringify(calendarOptions));
     options.selectAllow = false;
     options.eventClick = null;
     options.headerToolbar = null;
