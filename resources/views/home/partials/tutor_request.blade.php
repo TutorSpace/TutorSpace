@@ -15,7 +15,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div>
-    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ $tutorRequest->session_time_start->addHours(-2)->format('H:i:s') }}" data-max-time="{{ $tutorRequest->session_time_end->addHours(2)->format('H:i:s') }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
