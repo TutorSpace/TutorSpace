@@ -246,8 +246,8 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                        <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">Set Up Payment
-                            Methods</button>
+                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
+                        Methods"}}</button>
                         @else
 
 

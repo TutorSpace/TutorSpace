@@ -54,6 +54,7 @@ class testController extends Controller
 
     public function test(Request $request) {
 
+        Auth::user()->tutorHasStripeAccount();
         // echo Auth::user()->firstMajor->id;
         // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
 
