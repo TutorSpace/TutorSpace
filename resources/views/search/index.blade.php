@@ -18,11 +18,9 @@ bg-student
 
 @include('partials.nav')
 
-
-
 <div class="container search">
     <h4 class="ml-2">
-        Search Results ({{ isset($users) ? $users->count() : 0 }})
+        Search Results ({{ isset($users) ? $users->total() : 0 }})
     </h4>
     <div class="row mt-5">
         <div class="col-lg-4">
