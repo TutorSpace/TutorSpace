@@ -120,6 +120,7 @@ class SessionController extends Controller
             ],
         ]);
 
+
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards
             $startTime = TimeFormatter::getTime($request->input('startTime'), $request->input('startTime'));
