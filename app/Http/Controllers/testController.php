@@ -54,7 +54,7 @@ class testController extends Controller
 
     public function test(Request $request) {
 
-        Auth::user()->tutorHasStripeAccount();
+        // Auth::user()->tutorHasStripeAccount();
         // echo Auth::user()->firstMajor->id;
         // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
 
@@ -64,6 +64,13 @@ class testController extends Controller
         // ->get();
 
         // echo $transactionsToCharge->count();
-        
+        // Auth::user()->addExperience(10000);
+        $tutor = User::find(10);
+        $bonus_rate = $tutor->getUserBonusRate();
+        $transaction = Transaction::find(4);
+        echo $transaction->amount * $bonus_rate;
+        if ($bonus_rate > 0) {
+            app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
+        }
     }
 }

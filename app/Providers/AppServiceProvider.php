@@ -59,6 +59,6 @@ class AppServiceProvider extends ServiceProvider
                     ->withPath('');
             });
         }
-        // URL::forceScheme('https');
+        URL::forceScheme('https');
     }
 }

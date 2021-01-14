@@ -19,6 +19,7 @@ use App\Rules\SessionOverlap;
 use App\Rules\SessionDifferentUser;
 use App\Rules\SameDay;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -42,20 +43,19 @@ class SessionController extends Controller
             ], 400);
         }
 
-        if (!app(StripeApiController::class)->cancelInvoice($session->id)){
-            return response()->json([
-                'errorMsg' => "Cannot cancel invoice"
-            ], 400);
-        }
-
-
-        DB::transaction(function () {
+        DB::transaction(function () use($session, $request) {
             $session->is_canceled = true;
             $session->cancelReason()->associate($request->input('cancelReasonId'));
             $session->save();
 
             app(StripeApiController::class)->chargeForCancellation(Auth::user());
         });
+
+        if (!app(StripeApiController::class)->cancelInvoice($session->id)){
+            return response()->json([
+                'errorMsg' => "Cannot cancel invoice"
+            ], 400);
+        }
 
         return response()->json(
             [

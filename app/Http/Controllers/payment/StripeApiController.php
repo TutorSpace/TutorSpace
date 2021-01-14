@@ -402,19 +402,18 @@ class StripeApiController extends Controller
     }
 
     // Create a session bonus for the tutor of 'session'
-    // 'amount' should be in dollars
+    // 'amount' should be in cents
     public function createSessionBonus($amount, AppSession $session) {
-        $amount = $amount * 100;  // convert 'amount' to cents
         $tutor = $session->tutor;
         $tutor_payment_method = $tutor->paymentMethod;
 
         // TODO: send email if no balance
-        if (!$this->hasAvailableBalance($amount)) {
-            Log::warning('Not enough balance to cover session bonus for session ' . $session->id);
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
-                ->notify(new NotEnoughBalance($session));
-            return;
-        }
+        // if (!$this->hasAvailableBalance($amount)) {
+        //     Log::warning('Not enough balance to cover session bonus for session ' . $session->id);
+        //     Notification::route('mail', 'tutorspaceusc@gmail.com')
+        //         ->notify(new NotEnoughBalance($session));
+        //     return;
+        // }
 
         // Create transfer
         $transfer = \Stripe\Transfer::create([
@@ -440,6 +439,7 @@ class StripeApiController extends Controller
         foreach ($balance->available as $available_fund) {
             $total += $available_fund->amount;
         }
+        Log::debug('Balance: ' . $balance);
         return $total >= $amount;
     }
 
@@ -507,7 +507,7 @@ class StripeApiController extends Controller
                 break;
 
             case 'invoice.payment_failed':
-            case 'invoice.payment_action_required':
+            // case 'invoice.payment_action_required':
                 $this->handleInvoiceFailedEvent($event);
                 break;
 
@@ -595,14 +595,12 @@ class StripeApiController extends Controller
 
         // Change database transaction invoice_status => paid
         $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
-        $transaction->invoice_status = 'paid';
+        $transaction->invoice_status = $invoice->status;
         $transaction->save();
 
         // TODO: send email to user
         $student = $transaction->session->student;
-        $student->notify(new InvoicePaid($transaction->session, true));
-        $tutor = $transaction->session->tutor;
-        $tutor->notify(new InvoicePaid($transaction->session, false));
+        $student->notify(new InvoicePaid($transaction->session));
     }
 
     private function handleInvoiceFailedEvent($event) {
@@ -616,9 +614,9 @@ class StripeApiController extends Controller
             return;
         }
 
-        // Change database transaction invoice_status => paid
+        // Change database transaction invoice_status => failed
         $transaction = Transaction::where("invoice_id", $invoice->id)->get()[0];
-        $transaction->invoice_status = 'paid';
+        $transaction->invoice_status = $invoice->status;
         $transaction->save();
 
         // TODO: send email to user
@@ -766,10 +764,11 @@ class StripeApiController extends Controller
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
             // send invoice
-            $invoiceToSend->sendInvoice();
+            // $invoiceToSend->sendInvoice();
             // update last update time
             $transaction->touch();
 
+            // TODO: add link
             // send unpaid invoice mail reminder to tutorspace and user
             $user = User::find($transaction->user_id);
             Notification::route('mail', $user->email)

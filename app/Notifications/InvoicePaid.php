@@ -12,17 +12,15 @@ class InvoicePaid extends Notification
     use Queueable;
 
     private $session;
-    private $is_student_receiver;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($session, $is_student_receiver)
+    public function __construct($session)
     {
         $this->session = $session;
-        $this->is_student_receiver = $is_student_receiver;
     }
 
     /**
@@ -44,17 +42,10 @@ class InvoicePaid extends Notification
      */
     public function toMail($notifiable)
     {
-        if ($this->is_student_receiver) {
-            return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
-                    ->line('Thank you for using our platform!');
-        } else {
-            return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your tutoring session on ' . $this->session->session_time_start . ' has been paid.')
-                    ->line('Thank you for using our platform!');
-        }
+        return (new MailMessage)
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
+                ->line('Thank you for using our platform!');
     }
 
     /**
