@@ -188,7 +188,7 @@ bg-student
                         @for ($i = 0; $i < $sessions->count(); $i++)
                             @include('home.partials.past_session', [
                                 'user' => $sessions->get($i)->tutor,
-                                'status' => 'unpaid', // todo: status can be 'paid' or 'unpaid'
+                                'status' => $sessions->get($i)->transaction()->, // status can be 'paid' or 'unpaid'
                                 'currUser' => Auth::user(),
                                 'course' => $sessions->get($i)->course,
                                 'session' => $sessions->get($i),
