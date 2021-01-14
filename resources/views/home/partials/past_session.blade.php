@@ -32,17 +32,17 @@
         @if (!$currUser->is_tutor)
         <div class="status">
             <span class="title show--sm">Status</span>
-            @if ($status == 'pending')
+            {{-- @if ($status == 'pending')
             <div class="content pending hide--sm">
                 Pending <br />
                 Payment
             </div>
             <div class="content pending show--sm">
                 Pending Payment
-            </div>
-            @elseif($status == 'paid')
+            </div> --}}
+            @if($status == 'paid')
             <div class="content paid">Paid</div>
-            @elseif($status == 'unpaid')
+            @else
             <div class="content unpaid">Unpaid</div>
             @endif
         </div>

@@ -31,6 +31,14 @@ class Session extends Model
         return Transaction::where('session_id', $this->id)->first();
     }
 
+    public function transactionStatus() {
+        return $this->transaction()->invoice_status;
+    }
+
+    public function paidSuccess() {
+        return $this->transaction()->invoice_status == 'paid';
+    }
+
     public function sessionBonus() {
         return $this->hasOne('App\SessionBonus');
     }

@@ -400,9 +400,8 @@ class User extends Authenticatable
 
     // get all distinct participated posts
     // participated: my own posts, I followed, I reply directly
-    public function getParticipatedPosts(){
-        return Post::select("posts.*")
-            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
+    public function participatedPosts(){
+        return Post::leftJoin('post_user', 'post_user.post_id','=','posts.id')
             ->leftJoin('replies','replies.post_id','=','posts.id')
             ->where('posts.user_id',$this->id)
             ->orWhere('post_user.user_id',$this->id)
@@ -410,8 +409,7 @@ class User extends Authenticatable
                 $query->where('replies.is_direct_reply', '=', 1)
                       ->Where('replies.user_id', '=', $this->id);
             })
-            ->distinct()
-            ->get();
+            ->distinct();
     }
 
     public static function updateVerifyStatus() {
@@ -459,7 +457,7 @@ class User extends Authenticatable
     }
 
     // IMPORTANT! : NOTE this function updates all users with the same email
-    // add user experience and update level 
+    // add user experience and update level
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
             $allUsersWithEmail = User::where("email",$this->email)->get();
@@ -481,7 +479,7 @@ class User extends Authenticatable
         return $this->tutorLevel->tutor_level;
     }
 
-    
+
     // return tutor_level : String
     // edge case: returns "" if there's no next level
     public function nextLevel() {
