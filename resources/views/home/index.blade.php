@@ -44,7 +44,7 @@ bg-student
                 <h5 class="mb-2 w-100">You Have {{ Auth::user()->tutorRequests()->count() }} New Tutor Requests!</h5>
 
                 <div class="info-boxes info-boxes--sm-card">
-                    @foreach (Auth::user()->tutorRequests as $tutorRequest)
+                    @foreach (Auth::user()->tutorRequests()->orderBy('session_time_start', 'asc')->orderBy('session_time_start', 'asc')->get() as $tutorRequest)
                         @include('home.partials.tutor_request', [
                             'isNotification' => true,
                             'isFirstOne' => $loop->first,
@@ -84,14 +84,17 @@ bg-student
                     </div>
                 </div>
                 <div class="info-cards col-layout-3--hidden" id="upcoming-sessions-container">
-                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                    </div>
-
                     @php
                         $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
                     @endphp
+                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+
+                        @if ($upcomingSessions->count() > 2)
+                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                        @endif
+                    </div>
+
                     @if ($upcomingSessions->count() > 0)
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
@@ -192,14 +195,16 @@ bg-student
 
         <div class="home__side-bar__upcoming-sessions">
             <div class="info-cards">
+                @php
+                    $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->orderBy('session_time_start', 'asc')->orderBy('session_time_end', 'asc')->get();
+                @endphp
                 <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                     <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                    @if ($upcomingSessions->count() > 2)
                     <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                    @endif
                 </div>
                 @if (Auth::user()->is_tutor)
-                    @php
-                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
-                    @endphp
                     @if ($upcomingSessions->count() > 0)
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [

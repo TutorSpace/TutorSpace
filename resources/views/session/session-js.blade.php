@@ -45,12 +45,9 @@
                     e.gotoDate(date);
                 }, 500);
                 @endif
-
-
             },
             error: (error) => {
                 console.log(error);
-
             }
         });
     });

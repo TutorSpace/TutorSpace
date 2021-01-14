@@ -125,6 +125,7 @@ $('.btn-view-request').click(function() {
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
 
     calendarPopUp.render();
+    calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-date'));
 })
 
 $('.tutor-request-modal__close').click(function() {

@@ -16,22 +16,19 @@ class TimeFormatter {
 
     // important: make sure the time is already parsed as a carbon object
     public static function getTimeForCalendarWithHours($time, $hours) {
-
+        $substr = ':' . explode(':', $time)[1];
 
         $hourInt = (int)($time->format('H'));
 
         if($hourInt == 0) $hourInt = 24;
 
-        // Log::debug("hourInt ini: " . $hourInt);
         $hourInt += $hours;
-
-        // Log::debug("hourInt after: " . $hourInt);
 
         $hourInt = max(8, $hourInt);
         $hourInt = min(24, $hourInt);
 
-        if($hourInt < 10) $result = '0' . $hourInt . ':00:00';
-        else $result = '' . $hourInt . ':00:00';
+        if($hourInt < 10) $result = '0' . $hourInt . $substr;
+        else $result = '' . $hourInt . $substr;
 
         return $result;
     }
