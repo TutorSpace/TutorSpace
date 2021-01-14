@@ -13,8 +13,8 @@ $sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) 
 $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
-{{-- <form action="{{ app(App\Http\Controllers\payment\StripeApiController::class)->getPaymentUrl($transaction->session) }}" method="GET"> --}}
-<form action="#" method="GET">
+<form action="{{ app(App\Http\Controllers\payment\StripeApiController::class)->getPaymentUrl($transaction->session) }}" method="GET">
+{{-- <form action="#" method="GET"> --}}
     <div class="info-box">
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
