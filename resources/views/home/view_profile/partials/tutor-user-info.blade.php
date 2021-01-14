@@ -56,7 +56,7 @@
         </svg>
     </div>
     <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
-        “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
+        “{{ $user->getIntroduction() }}”
     </div>
     <div class="button-container mt-3">
         @if (Auth::check() && Auth::user()->email != $user->email)

@@ -324,11 +324,10 @@ class User extends Authenticatable
     public function getAvgRating() {
         $reviews = $this->aboutReviews();
         if($reviews->exists()) {
-            return number_format((float)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
+            return number_format((double)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
         } else {
             return 'N/A';
         }
-
     }
 
 
