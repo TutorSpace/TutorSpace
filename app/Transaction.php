@@ -20,7 +20,7 @@ class Transaction extends Model
     // chain this function with other functions
     // e.g. unpaidPayments()->get(), unpaidPayments()->count()
     public static function unpaidPayments() {
-        return Transaction::where('invoice_status', 'open');
+        return Transaction::where('invoice_status', 'open')->where('user_id', Auth::id());
     }
 
     // specify time to finalize after session end
