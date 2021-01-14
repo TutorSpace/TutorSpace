@@ -18,13 +18,13 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->text('content');
             $table->unsignedBigInteger('view_count')->default(0);
-
             $table->string('thumbNail')->nullable();
-
             $table->string('slug')->unique();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('best_reply_id')->nullable();
+
+            $table->uuid('user_id');
+            $table->uuid('best_reply_id')->nullable();
             $table->unsignedBigInteger('post_type_id');
+
             $table->timestamps();
         });
     }
