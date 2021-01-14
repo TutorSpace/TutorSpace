@@ -512,7 +512,7 @@ bg-student
 
                     // get card brand and include svg
                     var cardBrand;
-                    if (card.brand == "american express"){
+                    if (card.brand == "amex"){
                         cardBrand = `@include('payment.partials.card-svg.american-express-svg')`;
                     }else if (card.brand == "discover"){
                         cardBrand = `@include('payment.partials.card-svg.discover-svg')`;

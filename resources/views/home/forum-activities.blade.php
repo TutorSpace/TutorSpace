@@ -82,7 +82,7 @@ bg-student
                     </div>
                     <div class="forum-data">
                         <span class="title">Participated</span>
-                        {{-- TODO: nate --}}
+                        {{-- TODO: shuaiqing --}}
                         <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->getParticipatedPosts()->count() }}</a>
                     </div>
                     <div class="forum-data" id="forum-data-my-follows">

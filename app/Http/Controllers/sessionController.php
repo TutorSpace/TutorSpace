@@ -22,9 +22,6 @@ use Carbon\Carbon;
 
 class SessionController extends Controller
 {
-
-    // todo: NATE
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function cancelSession(Request $request, Session $session) {
         $userId = Auth::user()->id;
         $request->validate([
@@ -77,16 +74,13 @@ class SessionController extends Controller
         ]);
     }
 
-    // todo: NATE
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
         // including:
-        // 1. the upcoming session time validation (must be at least 30 minutes after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
+        // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
 
-        // todo: decide the time that the student make a tutor request and the tutor can accept the tutor request
-        $validStartTime = Carbon::now()->addMinutes(30);
+        $validStartTime = Carbon::now()->addMinutes(120);
         $request->validate([
             'tutorId' => [
                 'required',
@@ -97,8 +91,6 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-
-                //TODO: nate check same day, overlap
                 new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
@@ -130,7 +122,6 @@ class SessionController extends Controller
             $tutorRequest->hourly_rate = $tutor->hourly_rate;
             $tutorRequest->session_time_start = $startTime;
             $tutorRequest->session_time_end = $endTime;
-            // TODO: nate change to boolean
             if ($sessionType == "in-person"){
                 $tutorRequest->is_in_person = 1;
             }else if ($sessionType == "online"){
@@ -148,7 +139,7 @@ class SessionController extends Controller
                 ]
             );
         } else{
-            // TODO: no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
+            // no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
             return response()->json(
                 [
                     'redirectMsg' => route('home.profile'),
