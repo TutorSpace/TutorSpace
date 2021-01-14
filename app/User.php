@@ -8,10 +8,12 @@ use App\Message;
 
 use App\Session;
 use App\Chatroom;
-use App\TutorLevel;
 use Carbon\Carbon;
+use App\TutorLevel;
 
+use App\CustomTrait\Uuid;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -20,12 +22,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Log;
 
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Uuid;
 
     /**
      * The attributes that are mass assignable.

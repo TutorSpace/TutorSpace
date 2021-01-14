@@ -4,11 +4,14 @@ namespace App;
 
 use Carbon\Carbon;
 use App\Transaction;
+use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Session extends Model
 {
+    use Uuid;
+
     protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];
 
     public function course() {

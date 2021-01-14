@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
+    use Uuid;
+
     protected $guarded = [];
 
     public function getChannelName() {

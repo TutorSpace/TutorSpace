@@ -5,6 +5,7 @@ namespace App;
 use App\View;
 use App\Reply;
 use Carbon\Carbon;
+use App\CustomTrait\Uuid;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class Post extends Model
 {
+    use Uuid;
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';

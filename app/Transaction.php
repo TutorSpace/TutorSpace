@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\CustomTrait\Uuid;
 use App\Events\TutoringHourEnded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,8 @@ use App\Http\Controllers\payment\StripeApiController;
 
 class Transaction extends Model
 {
+    use Uuid;
+
     public function session() {
         return $this->belongsTo('App\Session');
     }

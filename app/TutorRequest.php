@@ -3,10 +3,13 @@
 namespace App;
 
 use Carbon\Carbon;
+use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class TutorRequest extends Model
 {
+    use Uuid;
+
     protected $table = "tutor_requests";
 
     protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];

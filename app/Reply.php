@@ -3,10 +3,12 @@
 namespace App;
 
 use App\Reply;
+use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
+    use Uuid;
     protected $guarded = [];
 
     // get all the followups with this reply as their base reply (contain the followups of the followups...)
