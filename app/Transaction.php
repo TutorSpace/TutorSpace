@@ -2,10 +2,11 @@
 
 namespace App;
 
-use App\Events\TutoringHourEnded;
-use App\Http\Controllers\payment\StripeApiController;
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use App\Events\TutoringHourEnded;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\payment\StripeApiController;
 
 class Transaction extends Model
 {
