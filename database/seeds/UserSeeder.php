@@ -42,7 +42,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '15',
             'school_year_id' => 1,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 1,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('173')
         ]);
@@ -57,7 +56,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 1,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 1,
             'created_at' => Carbon::now()->subHours('103')
         ]);
 
@@ -71,7 +69,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 2,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 2,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('199')
         ]);
@@ -86,7 +83,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '22',
             'school_year_id' => 3,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 3,
             'created_at' => Carbon::now()->subHours('143')
         ]);
 
@@ -100,7 +96,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '25',
             'school_year_id' => 4,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('11')
         ]);
@@ -115,7 +110,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '35',
             'school_year_id' => 3,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('193')
         ]);
@@ -139,7 +133,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '35',
             'school_year_id' => 3,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('193')
         ]);
@@ -163,7 +156,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '35',
             'school_year_id' => 3,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('193')
         ]);
@@ -178,7 +170,6 @@ class UserSeeder extends Seeder
             'hourly_rate' => '32',
             'school_year_id' => 4,
             'password' => Hash::make('password'),
-            'tutor_level_id' => 4,
             'is_tutor_verified' => true,
             'created_at' => Carbon::now()->subHours('193')
         ]);
@@ -257,7 +248,25 @@ class UserSeeder extends Seeder
                 'course_id' => 3
             ],[
                 'user_id' => 7,
-                'course_id' => 5
+                'course_id' => 52
+            ],[
+                'user_id' => 8,
+                'course_id' => 65
+            ],[
+                'user_id' => 9,
+                'course_id' => 55
+            ],[
+                'user_id' => 10,
+                'course_id' => 45
+            ],[
+                'user_id' => 11,
+                'course_id' => 35
+            ],[
+                'user_id' => 12,
+                'course_id' => 25
+            ],[
+                'user_id' => 13,
+                'course_id' => 15
             ]
         ];
         DB::table('course_user')->insert($courseUsers);

@@ -17,7 +17,6 @@ bg-student
 
 {{-- plotly --}}
 <script src="{{ asset('vendor/plotly/plotly.js') }}"></script>
-{{-- <script src="{{ asset('vendor/chartjs/dist/Chart.js') }}"></script> --}}
 @endsection
 
 @section('content')
@@ -42,13 +41,14 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div class="graph-1">
+                <div class="graph-1 graph-1{{Auth::user()->is_tutor == 1 ? "--tutor":""}}">
                         <div id="scatter-chart"></div>
                     </div>
-
+                    @if(Auth::user()->is_tutor == 1)
                     <div class="graph-2">
                         <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -128,6 +128,7 @@ let storageUrl = "{{ Storage::url('') }}";
         }
         else {
             let postSlug = $(this).closest('.post-preview').attr('data-post-slug');
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             $.ajax({
                 type:'POST',
                 url: "{{ url('forum/posts/follow') }}" + `/${postSlug}`,
@@ -140,6 +141,9 @@ let storageUrl = "{{ Storage::url('') }}";
                 error: function(error) {
                     toastr.error('Something went wrong!');
                     console.log(error);
+                },
+                complete: () => {
+                    JsLoadingOverlay.hide()
                 }
             });
         }
@@ -147,6 +151,7 @@ let storageUrl = "{{ Storage::url('') }}";
 
 
     $('#deleteModal .btn-delete').click(function() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'DELETE',
             url: '/forum/posts/' + postSlug,
@@ -160,6 +165,9 @@ let storageUrl = "{{ Storage::url('') }}";
             error: function(error) {
                 toastr.error('Something went wrong!');
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     });

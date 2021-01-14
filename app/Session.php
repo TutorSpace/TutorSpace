@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use App\Transaction;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Session extends Model
 {
+    protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];
 
     public function course() {
         return $this->belongsTo('App\Course');
@@ -25,7 +28,7 @@ class Session extends Model
     }
 
     public function transaction() {
-        return $this->hasOne('App\Transaction')->withDefault();
+        return Transaction::where('session_id', $this->id)->first();
     }
 
     public function sessionBonus() {

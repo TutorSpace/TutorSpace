@@ -73,7 +73,7 @@ bg-student
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
-                <div class="pr-0" id="calendar-container">
+                <div class="" id="calendar-container">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
@@ -108,30 +108,22 @@ bg-student
         </div>
 
         @else
+
+        @if (App\Transaction::unpaidPayments()->exists())
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have 2 Unpaid Payments.</h5>
+                <h5 class="mb-2 w-100">You Have {{ App\Transaction::unpaidPayments()->count() }} Unpaid Payments.</h5>
                 <div class="info-boxes info-boxes--sm-card">
-                    @include('home.partials.unpaid_payment', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1),
-                        'isFirstOne' => true
-                    ])
-                    @include('home.partials.unpaid_payment', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1)
-                    ])
-                    @include('home.partials.unpaid_payment', [
-                        'isNotification' => true,
-                        'forTutor' => true,
-                        'user' => App\User::find(1)
-                    ])
-
+                    @foreach (App\Transaction::unpaidPayments()->get() as $transaction)
+                        @include('home.partials.unpaid_payment', [
+                            'user' => App\User::find(1),
+                            'transaction' => $transaction
+                        ])
+                    @endforeach
                 </div>
             </div>
         </div>
+        @endif
 
 
         <div class="container col-layout-3">
@@ -152,12 +144,14 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
                 <div class="home__data-visualizations">
-                    <div class="graph-1">
+                    <div class="graph-1 graph-1{{Auth::user()->is_tutor == 1 ? "--tutor":""}}">
                         <div id="scatter-chart"></div>
                     </div>
+                    @if(Auth::user()->is_tutor == 1)
                     <div class="graph-2">
                         <canvas id="rating-chart" class="rating-chart"></canvas>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -191,6 +185,10 @@ bg-student
 
     <section class="home__side-bar">
         <div class="home__board">
+            @if (Auth::user()->is_tutor)
+            <h4>Want to earn bonus more quickly?</h4>
+            <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
+            @endif
         </div>
 
         <div class="home__side-bar__upcoming-sessions">
@@ -304,6 +302,7 @@ bg-student
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type:'GET',
             url: '{{ route('recommended-tutors') }}?refresh=true',
@@ -313,6 +312,9 @@ let storageUrl = "{{ Storage::url('') }}";
             },
             error: function(error) {
                 console.log(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
             }
         });
     }

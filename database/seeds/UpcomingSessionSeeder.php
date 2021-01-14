@@ -13,7 +13,7 @@ class UpcomingSessionSeeder extends Seeder
     public function run()
     {
         DB::table('sessions')->insert([
-            'tutor_id' => '3',
+            'tutor_id' => '5',
             'student_id' => '1',
             'course_id' => '1',
             'is_in_person' => true,
@@ -23,7 +23,7 @@ class UpcomingSessionSeeder extends Seeder
         ]);
 
         DB::table('sessions')->insert([
-            'tutor_id' => '3',
+            'tutor_id' => '5',
             'student_id' => '2',
             'course_id' => '5',
             'is_in_person' => false,
@@ -33,7 +33,7 @@ class UpcomingSessionSeeder extends Seeder
         ]);
 
         DB::table('sessions')->insert([
-            'tutor_id' => '3',
+            'tutor_id' => '5',
             'student_id' => '2',
             'course_id' => '7',
             'is_in_person' => false,

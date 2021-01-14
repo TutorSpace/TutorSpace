@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
+use Laravel\Telescope\EntryType;
 use Laravel\Telescope\IncomingEntry;
 use Laravel\Telescope\Telescope;
 use Laravel\Telescope\TelescopeApplicationServiceProvider;
@@ -16,8 +17,6 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
      */
     public function register()
     {
-        // Telescope::night();
-
         $this->hideSensitiveRequestDetails();
 
         Telescope::filter(function (IncomingEntry $entry) {
@@ -29,7 +28,10 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->isFailedRequest() ||
                    $entry->isFailedJob() ||
                    $entry->isScheduledTask() ||
-                   $entry->hasMonitoredTag();
+                   $entry->hasMonitoredTag() ||
+                   // below are customized code to listen to when in production environment
+                   $entry->type == EntryType::LOG ||
+                   $entry->type == EntryType::MAIL;
         });
     }
 
@@ -64,7 +66,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function ($user) {
             return in_array($user->email, [
-                //
+                // 'shuaiqin@usc.edu'
             ]);
         });
     }

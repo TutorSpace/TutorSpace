@@ -23,7 +23,7 @@
                         @php
                             $starRating = Auth::user()->getAvgRating();
                         @endphp
-                        @for ($i = 0; $i < 5; $i++)
+                        @for ($i = 1; $i <= 5; $i++)
                             @if ($i < $starRating)
                             <svg class="full" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                                 <title>star-full</title>
@@ -63,18 +63,19 @@
                         &middot;
                     </span>
                     <span class="sub--2">
-                        ??? points
+                        {{ Auth::user()->experience_points }} points
                     </span>
                 </p>
+                {{-- TODO: Nate (change the progress bar percentage and length according to the tutor's experience) --}}
                 <div class="tutor-level-progress">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{{ Auth::user()->getLevelProgressPercentage()*100 }}}%;" aria-valuenow="{{{ Auth::user()->getLevelProgressPercentage()*100 }}}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="tutor-level tutor-level--current">
-                        ??????
+                        {{ Auth::user()->currentLevel() }}
                     </span>
                     <span class="tutor-level tutor-level--next">
-                        ??????????
+                        {{ Auth::user()->nextLevel() }}
                     </span>
                 </div>
                 @else
@@ -98,7 +99,7 @@
                     </span>
                     <span class="sub--3 ml-1">
                         <a href="{{ route('home.profile') }}">
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil  fc-blue-primary" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil  fc-white" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z"/>
                                 <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z"/>
                             </svg>
@@ -113,19 +114,15 @@
                     <span class="classifier">Days</span>
                 </div>
                 <div class="data">
-                    <span class="number">?</span>
+                    <span class="number">{{ Auth::user()->numSessions() }}</span>
                     <span class="classifier">Sessions</span>
                 </div>
+                @if (Auth::user()->is_tutor)
                 <div class="data">
-                    @if (Auth::user()->is_tutor)
-                    <span class="number">?</span>
+                    <span class="number">{{ Auth::user()->numStudents() }}</span>
                     <span class="classifier">Students</span>
-                    @else
-                    <span class="number">?</span>
-                    <span class="classifier">Tutors</span>
-                    @endif
-
                 </div>
+                @endif
             </div>
         </div>
     </div>

@@ -3,9 +3,9 @@
 $session_time_start = explode(' ',$session->session_time_start);
 $session_time_end = explode(' ',$session->session_time_end);
 $date = $session_time_start[0];
-$month = Carbon\Carbon::parse($date)->format('m');;
-$day_date = Carbon\Carbon::parse($date)->format('d');;
-$year = Carbon\Carbon::parse($date)->format('y');;
+$month = Carbon\Carbon::parse($date)->format('m');
+$day_date = Carbon\Carbon::parse($date)->format('d');
+$year = Carbon\Carbon::parse($date)->format('y');
 $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');

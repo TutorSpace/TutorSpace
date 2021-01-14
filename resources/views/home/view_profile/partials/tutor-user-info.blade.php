@@ -9,7 +9,7 @@
             @php
                 $starRating = $user->getAvgRating();
             @endphp
-            @for ($i = 0; $i < 5; $i++)
+            @for ($i = 1; $i <= 5; $i++)
                 @if ($i < $starRating)
                 <svg class="full" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                     <title>star-full</title>
@@ -48,10 +48,10 @@
 
     <div class="intro-toggle fc-grey">
         <span>More about Him/Her</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color hidden-2" viewBox="0 0 16 16" id="intro-toggle--before">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color" viewBox="0 0 16 16" id="intro-toggle--before">
             <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659l4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color" viewBox="0 0 16 16" id="intro-toggle--after">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up hover--primary-color hidden-2" viewBox="0 0 16 16" id="intro-toggle--after">
             <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659l4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
         </svg>
     </div>
@@ -59,7 +59,7 @@
         “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::check() && Auth::id() != $user->id)
+        @if (Auth::check() && Auth::user()->email != $user->email)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
         @if (Auth::check() && Auth::user()->email != $user->email && !Auth::user()->is_tutor)
@@ -89,11 +89,11 @@
                     <span class="classifier">Days</span>
                 </div>
                 <div class="statistics color-primary">
-                    <span class="number color-primary">?</span>
+                    <span class="number color-primary">{{ $user->numSessions() }}</span>
                     <span class="classifier">Sessions</span>
                 </div>
                 <div class="statistics color-primary">
-                    <span class="number color-primary">?</span>
+                    <span class="number color-primary">{{ $user->numStudents() }}</span>
                     <span class="classifier">Students</span>
                 </div>
             </div>
@@ -111,11 +111,11 @@
                 <span class="classifier">Posts</span>
             </div>
             <div class="statistics color-primary">
-                <span class="number color-primary">?</span>
+                <span class="number color-primary">{{ $user->followedPosts()->count() }}</span>
                 <span class="classifier">Followed</span>
             </div>
             <div class="statistics color-primary">
-                <span class="number color-primary">{{ $user->followedPosts()->count() }}</span>
+                <span class="number color-primary">{{ $user->getParticipatedPosts()->count() }}</span>
                 <span class="classifier">Participated</span>
             </div>
         </div>

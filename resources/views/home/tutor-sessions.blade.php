@@ -30,7 +30,7 @@ bg-student
 
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
-    <main class="home__content">
+    <main class="home__content tutor-sessions">
         <div class="container col-layout-2 home__header-container">
             <div class="heading-container mb-5">
                 <p class="heading">Tutor Sessions</p>
@@ -44,7 +44,7 @@ bg-student
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
-                <div class="col-lg-8">
+                <div class="col-lg-8" id="calendar-container">
                     <h5 class="w-100 calendar-heading">Calendar</h5>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
@@ -126,7 +126,7 @@ bg-student
             <div class="row mt-5">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Past Sessions</h5>
-                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
+                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                 </div>
                 <div class="info-boxes info-boxes">
                     <div class="info-box info-box--explanation ">
@@ -142,9 +142,11 @@ bg-student
                         <div class="session-type">
                             TYPE
                         </div>
+                        @if (!Auth::user()->is_tutor)
                         <div class="status">
                             STATUS
                         </div>
+                        @endif
                         <div class="price">
                             TOTAL
                         </div>
@@ -155,43 +157,44 @@ bg-student
                 </div>
                 <div class="info-boxes info-boxes--sm-card past-sessions">
                     @if(Auth::user()->is_tutor)
-                        @foreach (
-                            Auth::user()
+                        @php
+                            $sessions = Auth::user()
                                 ->pastSessions()
                                 ->with([
                                     'student',
                                     'course'
                                 ])
-                                ->get()
-                                as
-                            $session
-                            )
+                                ->get();
+                        @endphp
+                        @for ($i = 0; $i < $sessions->count(); $i++)
                             @include('home.partials.past_session', [
-                                'user' => $session->student,
-                                'status' => 'pending', // todo: status can be either 'pending' or 'completed'
+                                'user' => $sessions->get($i)->student,
                                 'currUser' => Auth::user(),
-                                'course' => $session->course
+                                'course' => $sessions->get($i)->course,
+                                'session' => $sessions->get($i),
+                                'hidden' => $i > 1
                             ])
-                        @endforeach
+                        @endfor
                     @else
-                        @foreach (
-                            Auth::user()
+                        @php
+                            $sessions = Auth::user()
                                 ->pastSessions()
                                 ->with([
                                     'tutor',
                                     'course'
                                 ])
-                                ->get()
-                                as
-                            $session
-                            )
+                                ->get();
+                        @endphp
+                        @for ($i = 0; $i < $sessions->count(); $i++)
                             @include('home.partials.past_session', [
-                                'user' => $session->tutor,
-                                'status' => 'paid', // todo: status can be 'paid', 'unpaid', or 'completed'
+                                'user' => $sessions->get($i)->tutor,
+                                'status' => 'unpaid', // todo: status can be 'paid' or 'unpaid'
                                 'currUser' => Auth::user(),
-                                'course' => $session->course
+                                'course' => $sessions->get($i)->course,
+                                'session' => $sessions->get($i),
+                                'hidden' => $i > 1
                             ])
-                        @endforeach
+                        @endfor
                     @endif
                 </div>
             </div>
@@ -216,7 +219,7 @@ bg-student
                         @include('home.partials.review', [
                             'review' => $reviews->get($i),
                             'dateCreated' => $reviews->get($i)->created_at ?? $today,
-                            'hidden' => $i >= 2
+                            'hidden' => $i > 1
                         ])
                     @endfor
                 </div>

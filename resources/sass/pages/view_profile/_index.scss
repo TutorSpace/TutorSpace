@@ -3,6 +3,25 @@
     color: $color-black-2;
     margin-bottom: 5rem;
 
+    @include respond(md) {
+        > * {
+            padding-left: 15px;
+        }
+    }
+
+    @include respond(extra-sm) {
+
+        > * {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .view-profile--right {
+            padding: 0;
+            margin-top: 4.5rem;
+        }
+    }
+
     .btn-back {
         margin-top: 1.5rem;
         display: inline-flex;
@@ -24,6 +43,7 @@
         border-radius: 1rem;
         overflow: hidden;
         height: fit-content;
+        box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
         .view-profile__user-info {
             padding: 1.75rem 1rem 0rem 1rem;
@@ -225,6 +245,7 @@
             display: flex;
             justify-content: space-between;
             padding: 1.6rem 3rem 1.4rem 3rem;
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
             select {
                 font-size: 1.4rem;
@@ -255,6 +276,7 @@
             background-color: $color-white-dark-5;
             padding: 2rem 3rem 4.5rem 3rem;
             border-radius: 1rem;
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
             .heading {
                 display: flex;
@@ -275,6 +297,7 @@
             padding: 2rem 3rem;
             border-radius: 1rem;
             margin-top: 3rem;
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
             .heading {
 

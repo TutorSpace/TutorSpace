@@ -90,6 +90,7 @@
 // ======================== font color & size ==================
 .fs-1-2 { font-size: 1.2rem; }
 .fs-1-4 { font-size: 1.4rem !important; }
+.fs-1-5 { font-size: 1.5rem !important; }
 .fs-1-6 { font-size: 1.6rem !important; }
 .fs-1-8 { font-size: 1.8rem !important; }
 .fs-2 { font-size: 2rem !important; }
@@ -99,6 +100,7 @@
 .bg-student .fc-theme-color { color: $color-blue-primary; }
 .bg-tutor .fc-theme-color { color: $color-purple-primary; }
 .fc-grey { color: $color-grey !important; }
+.fc-white { color: $color-white !important; }
 .fc-black { color: $color-black !important; }
 .fc-black-2 { color: $color-black-2 !important; }
 .fc-red { color: red; }
@@ -191,7 +193,7 @@
     }
 }
 
-
+.box-shadow-none { box-shadow: none !important; }
 
 .disabled {
     &:hover {

@@ -178,7 +178,10 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
+        // only needed to put it here the first time using telescope
+        // Laravel\Telescope\TelescopeServiceProvider::class,
     ],
 
     /*

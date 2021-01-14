@@ -19,6 +19,10 @@
         .heading-container {
             font-size: 1.5rem;
         }
+
+        .home__header {
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+        }
     }
 
     .heading__forum-activities {
@@ -111,7 +115,7 @@
             }
 
             .content-info {
-                color: $color-black-2;
+                color: $color-white;
 
                 .name-container {
                     display: flex;
@@ -192,10 +196,10 @@
 
                     .progress {
                         height: 1rem;
-                        background-color: $color-white;
+                        background-color: $color-purple-primary-2;
 
                         .progress-bar {
-                            background-color: $color-purple-primary-2;
+                            background-color: $color-white;
                         }
                     }
 
@@ -238,7 +242,7 @@
                     }
 
                     .number {
-                        color: $color-black-2;
+                        color: $color-white;
                         display: block;
                         font-size: 3rem;
                         line-height: 1;
@@ -257,7 +261,7 @@
                     }
 
                     .classifier {
-                        color: $color-grey;
+                        color: $color-white-dark-5;
                         font-size: 1.4rem;
 
                         @include respond(md) {
@@ -327,24 +331,6 @@
                 }
             }
 
-            #calendar-container {
-
-                // 1370 px
-                @media only screen and (max-width: 85.624em) {
-                    padding-right: 30px !important;
-                    flex: 0 0 66.6666666667%;
-                    max-width: 66.6666666667%;
-                }
-
-                @include respond(md) {
-                    padding-right: 0 !important;
-                    flex: 0 0 100%;
-                    max-width: 100%;
-                }
-
-            }
-
-
             @media only screen and (max-width: 85.624em) {
                 #upcoming-sessions-container {
                     flex: 0 0 33.3333333333%;
@@ -362,6 +348,42 @@
         }
 
         .col-layout-2, .col-layout-3 {
+
+            #calendar-container {
+
+                background-color: $color-white-dark-5;
+                padding: 2rem 3rem 4.5rem 3rem;
+                border-radius: 1rem;
+                box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
+
+                .heading {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .hourly-rate {
+
+                    }
+                }
+
+                #calendar {
+                    margin-top: 1.5rem;
+                }
+
+                // 1370 px
+                @media only screen and (max-width: 85.624em) {
+                    padding-left: 15px !important;
+                    padding-right: 15px !important;
+                    margin-right: 3rem;
+                    flex: 0 0 calc(66.6666666667% - 3rem);
+                    max-width: calc(66.6666666667% - 3rem);
+                }
+
+                @include respond(md) {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+
+            }
 
             @include respond(lg) {
                 max-width: 70vw;
@@ -399,7 +421,7 @@
                 margin-right: 2rem;
                 color: $color-blue-primary;
 
-                // every 5 child
+                // every 4 children
                 &:nth-child(4n + 4) {
                     margin-right: 0;
                 }
@@ -523,7 +545,10 @@
         justify-content: space-between;
 
         .graph-1 {
-            flex: 0 0 calc(60% - 3rem);
+            flex: 0 0 calc(100%);
+            &--tutor{
+                flex: 0 0 calc(60% - 3rem);
+            }
         }
 
         .graph-2 {
@@ -574,9 +599,9 @@
 
         .home__board {
             margin-top: 8rem;
-            background-color: $color-grey;
             height: 20rem;
             border-radius: 1rem;
+            box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
         }
 
         &__notifications, &__bookmarked-users {
@@ -652,15 +677,31 @@
 .bg-tutor {
     .home {
         &__header {
-            // background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
+            background-image: linear-gradient(to right, rgba(103, 73, 223, 1), rgba(73, 47, 175, 1));
 
             .content-info {
                 margin-top: -2.5rem;
             }
         }
 
+        &__board {
+            background-image: radial-gradient(rgba(103, 73, 223, 1), rgba(98, 70, 210, 1));
+            padding: 3rem 4rem;
+
+            color: $color-white;
+
+            a {
+                margin-top: 1rem;
+                padding: .75rem 2.25rem;
+                font-size: 1.6rem;
+                color: $color-white;
+                border-radius: 2rem;
+                background-image: linear-gradient(to right, rgba(254, 211, 92, 1), rgba(255, 188, 0, 1));
+            }
+        }
+
         .welcome-msg {
-            color: $color-purple-primary;
+            color: $color-white;
         }
 
         .info-box {
@@ -689,15 +730,19 @@
 .bg-student {
     .home {
         &__header {
-            // background-image: linear-gradient(to bottom, rgba($color-blue-primary, 1), rgba($color-blue-primary-3, 1));
+            background-image: linear-gradient(to right, rgba(60, 138, 253, 1), rgba(0, 89, 220, 1));
 
             .content-info {
                 margin-bottom: 4.5rem;
             }
         }
 
+        &__board {
+            background: $color-white-dark-5;
+        }
+
         .welcome-msg {
-            color: $color-blue-primary;
+            color: $color-white;
         }
 
         .info-box {

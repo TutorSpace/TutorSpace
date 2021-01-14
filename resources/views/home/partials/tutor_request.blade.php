@@ -1,11 +1,10 @@
 @php
-
 $session_time_start = explode(' ',$tutorRequest->session_time_start);
 $session_time_end = explode(' ',$tutorRequest->session_time_end);
 $date = $session_time_start[0];
-$month = Carbon\Carbon::parse($date)->format('m');;
-$day_date = Carbon\Carbon::parse($date)->format('d');;
-$year = Carbon\Carbon::parse($date)->format('y');;
+$month = Carbon\Carbon::parse($date)->format('m');
+$day_date = Carbon\Carbon::parse($date)->format('d');
+$year = Carbon\Carbon::parse($date)->format('y');
 $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
@@ -16,7 +15,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div>
-    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -47,7 +46,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
         <div class="price hidden">
             <span class="title">Price</span>
-            <span class="content">{{ $price }}</span>
+            <span class="content">$ {{ $price }}</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view-request">View</button>
@@ -114,8 +113,8 @@ $price = $sessionDurationInHour * $hourlyRate;
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">
-                    <p><span class="font-weight-bold">Cancellation Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <p><span class="font-weight-bold">Cancellation Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
                     <button

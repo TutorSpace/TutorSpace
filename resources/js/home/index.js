@@ -30,6 +30,7 @@ $("#input-profile-pic").change(function() {
     var formData = new FormData();
     formData.append('profile-pic', file);
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: $('#profile-pic-form').attr('action'),
@@ -39,12 +40,14 @@ $("#input-profile-pic").change(function() {
         success: (data) => {
             toastr.success('Successfully uploaded the image!');
             $('#profile-image').attr('src', storageUrl + data.imgUrl);
-            console.log(storageUrl + data.imgUrl);
             $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
         },
         error: function(error) {
             toastr.error('Something went wrong. Please try again.');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });
@@ -94,6 +97,33 @@ $('.btn-view-request').click(function() {
     $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
 
     $('.home__tutor-request-modal').toggle();
+
+    let options = JSON.parse(JSON.stringify(calendarPopUpOptions));
+
+    options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
+    options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
+
+    let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
+    let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
+
+    options.events.push({
+        title: 'Current Tutor Request',
+        classNames: ['tutor-request'],
+        start: sessionTimeStart,
+        end: sessionTimeEnd,
+        description: "",
+        type: "tutor-request",
+    });
+
+    options.height = 250;
+
+    options.displayEventTime = false;
+
+    // for the calendar in tutor request
+    let calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
+
+    calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
+
     calendarPopUp.render();
 })
 
@@ -127,11 +157,11 @@ $('.btn-view-all-bookmarked-users').click(function() {
 $('#btn-confirm-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: `/tutor-request/accept/${tutorRequestId}`,
         success: function success(data) {
-            console.log(data);
             let { successMsg, errorMsg } = data;
             if(successMsg) {
                 toastr.success(successMsg);
@@ -144,6 +174,9 @@ $('#btn-confirm-tutor-session').click(function() {
         error: (error) => {
             console.log(error);
             toastr.error("Something went wrong when accepting the tutor request.");
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 })
@@ -151,11 +184,11 @@ $('#btn-confirm-tutor-session').click(function() {
 $('#btn-decline-tutor-session').click(function() {
     var tutorRequestId = $(this).attr("data-tutorRequest-id");
 
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'DELETE',
         url: `/tutor-request/${tutorRequestId}`,
         success: function success(data) {
-            console.log(data);
             let { successMsg, errorMsg } = data;
             if(successMsg) {
                 toastr.success(successMsg);
@@ -168,6 +201,9 @@ $('#btn-decline-tutor-session').click(function() {
         error: (error) => {
             console.log(error);
             toastr.error("Something went wrong when declining the tutor request.");
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 })

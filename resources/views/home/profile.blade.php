@@ -246,108 +246,13 @@ bg-student
                     <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                        <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">Set Up Payment
-                            Methods</button>
+                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
+                        Methods"}}</button>
                         @else
 
 
 
                         <div class="payment-cards">
-                            {{-- <div class="bank-card bg-non-default m-3">
-                                <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="bank-card bg-default m-3">
-                                <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-                            </div>
-
-
-                            <div class="bank-card bg-default m-3">
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: xxxx</div>
-                                </div>
-
-                                <div class="bank-card-row-two">
-                                    <div class="number">
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>****</span>
-                                        <span>1234</span>
-                                    </div>
-                                </div>
-                                <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">Shihao Huang</div>
-                                    </div>
-                                    <div class="expiration">
-                                        <div>Exp Date</div>
-                                        <div class="user-info">08/20</div>
-                                    </div>
-                                </div>
-                                <div class="bank-card-btns">
-                                    <button class="btn btn-delete">Delete</button>
-                                    <button class="btn btn-set-default">Set As Default</button>
-                                </div>
-                            </div> --}}
-
 
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
@@ -592,14 +497,36 @@ bg-student
 
 
     function displayCards(){
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             url: "{{ route('payment.stripe.list-cards') }}",
             method: 'GET',
+            complete: () => {
+                JsLoadingOverlay.hide();
+            },
             success: (data) => {
                 let {
                     cards
                 } = data;
                 cards.forEach((card,idx) => {
+
+                    // get card brand and include svg
+                    var cardBrand;
+                    if (card.brand == "american express"){
+                        cardBrand = `@include('payment.partials.card-svg.american-express-svg')`;
+                    }else if (card.brand == "discover"){
+                        cardBrand = `@include('payment.partials.card-svg.discover-svg')`;
+                    }else if (card.brand == "jcb"){
+                        cardBrand = `@include('payment.partials.card-svg.jcb-svg')`;
+                    }else if (card.brand == "mastercard"){
+                        cardBrand = `@include('payment.partials.card-svg.master-svg')`;
+                    }else if (card.brand == "visa"){
+                        cardBrand = `@include('payment.partials.card-svg.visa-svg')`;
+                    }else{
+                        cardBrand = `Brand: ${card.brand}`;
+                    }
+
+                    // prepend cards
                     $('.payment-cards').prepend(`
 
 
@@ -609,8 +536,8 @@ bg-student
                             +`
                              m-3">
                                 <div class="overlay"></div>
-                                <div class="bank-card-row-one">
-                                    <div class="brand">Brand: ${card.brand}</div>
+                                <div class="bank-card-row-one">  <div class="brand">
+                                    `+ cardBrand +` </div>
                                 </div>
 
                                 <div class="bank-card-row-two">
@@ -622,10 +549,7 @@ bg-student
                                     </div>
                                 </div>
                                 <div class="bank-card-row-three">
-                                    <div class="card-holder">
-                                        <div>Card-holder</div>
-                                        <div class="user-info">${card.card_holder}</div>
-                                    </div>
+
                                     <div class="expiration">
                                         <div>Exp Date</div>
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
@@ -683,9 +607,13 @@ bg-student
     });
 
     function postToConnectAccount() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         return $.ajax({
             url: "{{ route('payment.stripe.onboarding') }}",
             method: 'POST',
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
         })
     }
 
@@ -845,13 +773,16 @@ bg-student
         function uploadFile(file) {
             var formData = new FormData();
             formData.append('tutor-verification-file', file);
+            JsLoadingOverlay.show(jsLoadingOverlayOptions);
             return $.ajax({
                 type: 'POST',
                 url: "{{ route('tutor-profile-verification') }}",
                 data: formData,
                 contentType: false,
                 processData: false,
-
+                complete: () => {
+                    JsLoadingOverlay.hide();
+                },
                 success: (data) => {
                     bootbox.dialog({
                         message: `@include('home.partials.tutorVerification--upload_success')`,

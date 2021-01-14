@@ -1,8 +1,8 @@
-<div>
+<div class="{{ $hidden ? 'hidden-2' : '' }}">
     <div class="info-box" data-route-url="{{ route('payment.stripe.refund.user_request_refund', $session->id) }}">
         <div class="user-info">
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img">
-            <a class="content" href="#">
+            <a class="content" href="{{ route('view.profile', $user) }}">
                 {{ $user->first_name }} {{ $user->last_name }}
             </a>
         </div>
@@ -29,6 +29,7 @@
             <span class="title show--sm">Type</span>
             <div class="content">{{ $session->is_in_person ? 'In Person' : 'Online' }}</div>
         </div>
+        @if (!$currUser->is_tutor)
         <div class="status">
             <span class="title show--sm">Status</span>
             @if ($status == 'pending')
@@ -39,15 +40,13 @@
             <div class="content pending show--sm">
                 Pending Payment
             </div>
-
-            @elseif($status == 'completed')
-            <div class="content completed">Completed</div>
             @elseif($status == 'paid')
             <div class="content paid">Paid</div>
             @elseif($status == 'unpaid')
             <div class="content unpaid">Unpaid</div>
             @endif
         </div>
+        @endif
         <div class="price">
             <span class="title show--sm">Price</span>
             <div class="content">$12.5</div>
@@ -91,7 +90,7 @@
                         Help
                     </span>
                     @else
-                    <span class="action--toggle--list--title fc-black-2" id="action-refund">
+                    <span class="action--toggle--list--title fc-black-2 action-refund">
                         Refund
                     </span>
                     @endif

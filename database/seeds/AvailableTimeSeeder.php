@@ -13,25 +13,19 @@ class AvailableTimeSeeder extends Seeder
     public function run()
     {
         DB::table('available_times')->insert([
-            'user_id' => '2',
-            'available_time_start' => Carbon::now()->subHours(5),
-            'available_time_end' => Carbon::now()->addHours(7)
+            'user_id' => '5',
+            'available_time_start' => Carbon::now()->subHours(24 + 8),
+            'available_time_end' => Carbon::now()->addHours(24 + 7)
         ]);
 
         DB::table('available_times')->insert([
-            'user_id' => '3',
-            'available_time_start' => Carbon::now()->addHours(1),
-            'available_time_end' => Carbon::now()->addHours(2)
+            'user_id' => '5',
+            'available_time_start' => Carbon::now()->addHours(24 + 1),
+            'available_time_end' => Carbon::now()->addHours(24 + 2)
         ]);
 
         DB::table('available_times')->insert([
-            'user_id' => '4',
-            'available_time_start' => Carbon::now()->addHours(1),
-            'available_time_end' => Carbon::now()->addHours(2)
-        ]);
-
-        DB::table('available_times')->insert([
-            'user_id' => '4',
+            'user_id' => '5',
             'available_time_start' => Carbon::now()->addHours(2),
             'available_time_end' => Carbon::now()->addHours(3)
         ]);

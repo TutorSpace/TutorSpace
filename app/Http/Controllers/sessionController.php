@@ -17,7 +17,9 @@ use App\Http\Controllers\payment\StripeApiController;
 use Illuminate\Support\Facades\Log;
 use App\Rules\SessionOverlap;
 use App\Rules\SessionDifferentUser;
+use App\Rules\SameDay;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class SessionController extends Controller
 {
@@ -41,23 +43,41 @@ class SessionController extends Controller
             ], 400);
         }
 
+        DB::transaction(function () use($session, $request) {
+            $session->is_canceled = true;
+            $session->cancelReason()->associate($request->input('cancelReasonId'));
+            $session->save();
+
+            app(StripeApiController::class)->chargeForCancellation(Auth::user());
+        });
+
         if (!app(StripeApiController::class)->cancelInvoice($session->id)){
             return response()->json([
                 'errorMsg' => "Cannot cancel invoice"
             ], 400);
         }
 
-        $session->is_canceled = true;
-
-        $session->cancelReason()->associate($request->input('cancelReasonId'));
-
-        $session->save();
-
         return response()->json(
             [
                 'successMsg' => 'Successfully cancelled the tutor session!'
             ]
         );
+    }
+
+    public function viewDetails(Request $request, Session $session) {
+        if($session->student->id != Auth::id() && $session->tutor->id != Auth::id()) {
+            return abort(403);
+        }
+
+        return response()->json([
+            'view' => view('session.view-session-overview', [
+                'session' => $session
+            ])->render(),
+            // need to ensure the time is between 8 - 24
+            'minTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_start, -2),
+            'maxTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_end, 2),
+            'date' => $session->session_time_start->format('Y-m-d')
+        ]);
     }
 
     // todo: NATE
@@ -67,6 +87,8 @@ class SessionController extends Controller
         // 1. the upcoming session time validation (must be at least 30 minutes after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
+
+        // todo: decide the time that the student make a tutor request and the tutor can accept the tutor request
         $validStartTime = Carbon::now()->addMinutes(30);
         $request->validate([
             'tutorId' => [
@@ -80,13 +102,13 @@ class SessionController extends Controller
                 'after_or_equal:'.$validStartTime,
 
                 //TODO: nate check same day, overlap
+                new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [
                 'required',
                 'date',
                 'after:startTime',
-                //TODO:check same day, overlap
             ],
             'course' => [
                 'required',
@@ -96,8 +118,8 @@ class SessionController extends Controller
                 'required',
                 'in:in-person,online'
             ],
-           
         ]);
+
 
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards

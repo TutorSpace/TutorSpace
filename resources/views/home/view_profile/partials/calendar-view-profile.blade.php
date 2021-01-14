@@ -43,6 +43,7 @@ let calendarOptions = {
         @else
         let startTime = moment(selectionInfo.start);
         if(startTime.isBefore(moment())) return false;
+
         if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
 
         return true;

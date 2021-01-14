@@ -23,17 +23,17 @@ bg-student
 
 @include('partials.nav')
 
-<main class="container p-relative view-profile">
+<main class="container-lg p-relative view-profile">
     <div class="row">
         <a class="btn btn-back" href="{{ App\CustomClass\URLManager::getBackURL(route('search.index')) }}">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
             </svg>
-            <span>Back</span>
+        <span>Back</span>
         </a>
     </div>
     <div class="row">
-        <div class="view-profile--left col-3">
+        <div class="view-profile--left col-sm-3 col-12">
             @if ($user->is_tutor)
             @include('home.view_profile.partials.tutor-user-info', [
                 'user' => $user
@@ -45,7 +45,7 @@ bg-student
             @endif
         </div>
 
-        <div class="view-profile--right col-9">
+        <div class="view-profile--right col-sm-9 col-12">
             @if($displayForumActivities)
             @include('home.view_profile.partials.forum')
             @else
@@ -63,8 +63,6 @@ bg-student
                 <div id="calendar"></div>
                 <div class="calendar-note">
                     <span class="available-time">Available Time</span>
-                    <span class="online">Online</span>
-                    <span class="in-person">In Person</span>
                     <span class="note">Note: All time in the calender are based on PST.</span>
                 </div>
             </div>
@@ -100,6 +98,22 @@ bg-student
 
 @section('js')
 <script>
+@auth
+    let forumPostOrderOptions = $("#forum-post-order-options");
+    forumPostOrderOptions.change(function(){
+        const orderByOption = forumPostOrderOptions.val();
+        postPreviews = $(".post-previews");
+
+        // if there's order by option
+        if (orderByOption){
+            window.location.href = orderByOption;
+        }
+    })
+@endauth
+</script>
+
+
+<script>
     let otherUserId = "{{ $user->id }}";
     let otherUserHourlyRate = "{{ $user->hourly_rate }}";
 
@@ -126,6 +140,7 @@ bg-student
 <script>
 @auth
 $('#btn-invite').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'POST',
         url: "{{ route('invite-to-be-tutor', $user) }}",
@@ -136,6 +151,9 @@ $('#btn-invite').click(function() {
         error: function(error) {
             toastr.error('Something went wrong!');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });

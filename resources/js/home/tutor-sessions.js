@@ -12,16 +12,21 @@ $('.action--toggle').on('click', function(event) {
     $(this).find('.action--toggle--list').addClass("d-flex");
 });
 
-$('#action-refund').click(function() {
+$('.action-refund').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type: 'POST',
         url: $(this).closest('.info-box').attr('data-route-url'),
         success: (data) => {
             toastr.success(data.successMsg);
+            console.log(data);
         },
         error: function(error) {
             toastr.error('Something went wrong. Please try again.');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });

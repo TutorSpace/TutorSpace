@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->decimal('gpa', 3)->nullable();
             $table->unsignedBigInteger('hourly_rate')->nullable();
             $table->unsignedBigInteger('school_year_id')->nullable();
-            $table->unsignedBigInteger('tutor_level_id')->nullable();
+            $table->unsignedBigInteger('tutor_level_id')->default(1);
             $table->string('profile_pic_url', 255)->default('user-profile-photos/placeholder.png');
             $table->string('tutor_verification_status', 255)->default('unsubmitted');
             $table->string('google_id', 255)->nullable();
@@ -35,7 +35,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_invalid')->default(false);
             $table->string('invalid_reason', 256)->nullable();
             $table->string('invalid_redirect_route_name', 64)->nullable();
-            $table->double('experience_points', 30, 2)->default(0);
+            $table->bigInteger('experience_points')->default(0);
             $table->timestamps();
 
             $table->foreign('first_major_id')->references('id')->on('majors')->onDelete('cascade')->onUpdate('cascade');

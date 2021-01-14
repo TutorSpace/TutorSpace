@@ -1,42 +1,65 @@
 <script>
+
     $('.btn-view-session').on('click',function() {
-        bootbox.dialog({
-            message: `@include('session.view-session-overview')`,
-            size: 'large',
-            centerVertical: true,
-            buttons: {
-                Next: {
-                    label: 'Done',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
-                },
+        let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
+
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'GET',
+            url: "{{ url('/') . '/session/view/' }}" + sessionId,
+            complete: () => {
+                JsLoadingOverlay.hide();
+            },
+            success: (data) => {
+                let { view, minTime, maxTime, date } = data;
+
+                bootbox.dialog({
+                    message: view,
+                    size: 'large',
+                    centerVertical: true,
+                    buttons: {
+                        Next: {
+                            label: 'Done',
+                            className: 'btn btn-primary px-4 fs-1-6',
+                        },
+                    }
+                });
+
+                @if(Auth::user()->is_tutor)
+                let options = JSON.parse(JSON.stringify(calendarOptions));
+                options.selectAllow = false;
+                options.eventClick = null;
+                options.headerToolbar = null;
+                options.height = 250;
+                options.displayEventTime = false;
+
+                options.slotMinTime = minTime;
+                options.slotMaxTime = maxTime;
+
+                let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
+                e.render();
+                setTimeout(() => {
+                    e.destroy();
+                    e.render();
+                    // e.gotoDate('2020-10-25');
+                    e.gotoDate(date);
+                }, 500);
+                @endif
+
+
+            },
+            error: (error) => {
+                console.log(error);
+
             }
         });
-
-        @if(Auth::user()->is_tutor)
-        let options = Object.assign({}, calendarOptions);
-        options.selectAllow = false;
-        options.eventClick = null;
-        options.headerToolbar = null;
-        options.height = 'auto';
-
-        // todo: modify this
-        options.slotMinTime = "08:30:00";
-        options.slotMaxTime = "11:30:00";
-
-        let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
-        e.render();
-        setTimeout(() => {
-            e.destroy();
-            e.render();
-            e.gotoDate('2020-10-25'); // todo: change this
-        }, 500);
-        @endif
     });
+
 
 
     $('.btn-cancel-session').on('click',function() {
         let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
-        console.log(sessionId);
+        let name = $(this).closest('.info-card').find('.user-name').html();
 
         bootbox.dialog({
             message: `@include('session.session-cancel')`,
@@ -45,10 +68,10 @@
             buttons: {
                 Cancel: {
                     label: 'Cancel Session',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
+                    className: 'btn btn-primary px-4 fs-1-6',
                     callback: function(e) {
                         let cancelReasonId = $($('#cancel-reason option:selected')).val();
-
+                        JsLoadingOverlay.show(jsLoadingOverlayOptions);
                         $.ajax({
                             type: 'POST',
                             url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
@@ -63,7 +86,10 @@
                                 }, 1000);
                             },
                             error: function error(error) {
-                                toastr.error("There is an error occurred");
+                                toastr.error("Something went wrong when canceling the session. Please contact tutorspaceusc@gmail.com for more details.");
+                            },
+                            complete: () => {
+                                JsLoadingOverlay.hide();
                             }
                         });
                     }
@@ -71,6 +97,7 @@
             }
         });
 
+        $('.modal-session-cancel .name').html(name);
 
     });
 </script>
@@ -79,6 +106,7 @@
 <script>
 let startTime;
 $('#tutor-profile-request-session').on('click',function() {
+
     bootbox.dialog({
         message: `@include('session.book-session')`,
         size: 'large',
@@ -87,7 +115,7 @@ $('#tutor-profile-request-session').on('click',function() {
         buttons: {
             Next: {
                 label: 'Next',
-                className: 'btn btn-primary p-2 px-4 fs-1-6',
+                className: 'btn btn-primary px-4 fs-1-6',
                 callback: () => {
                     if(startTime && endTime) {
                         session_details();
@@ -111,9 +139,9 @@ $('#tutor-profile-request-session').on('click',function() {
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
 
+    let options = JSON.parse(JSON.stringify(calendarOptions));
 
-    let options = Object.assign({}, calendarOptions);
-    options.height = 300;
+    options.height = 250;
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
     e.render();
     setTimeout(() => {
@@ -130,7 +158,7 @@ $('#tutor-profile-request-session').on('click',function() {
             buttons: {
                 Next: {
                     label: 'Next',
-                    className: 'btn btn-primary p-2 px-4 fs-1-6',
+                    className: 'btn btn-primary px-4 fs-1-6',
                     callback: () => {
                         // no need for checking, because default select is made. Although backend validation is required.
                         session_confirm();
@@ -160,8 +188,9 @@ $('#tutor-profile-request-session').on('click',function() {
                 buttons: {
                     Submit: {
                         label: 'Book Session',
-                        className: 'btn btn-primary p-2 px-4 fs-1-6',
+                        className: 'btn btn-primary px-4 fs-1-6',
                         callback: function() {
+                            JsLoadingOverlay.show(jsLoadingOverlayOptions);
                             $.ajax({
                                 type: 'POST',
                                 url: "{{ route('session.create') }}",
@@ -188,6 +217,9 @@ $('#tutor-profile-request-session').on('click',function() {
                                 error: (error) => {
                                     console.log(error);
                                     toastr.error("There is an error occurred. Please schedule your session again or contact tutorspace at tutorspaceusc@gmail.com");
+                                },
+                                complete: () => {
+                                    JsLoadingOverlay.hide();
                                 }
                             });
                         },

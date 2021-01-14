@@ -7,20 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoicePaid extends Notification
+class CancellationPenaltyFailed extends Notification
 {
     use Queueable;
 
-    private $session;
+    private $user_id;
+    private $stripe_object_id;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($session)
+    public function __construct($user_id, $stripe_object_id)
     {
-        $this->session = $session;
+        $this->user_id = $user_id;
+        $this->stripe_object_id = $stripe_object_id;
     }
 
     /**
@@ -43,9 +45,9 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                ->greeting('Dear ' . $notifiable->first_name)
-                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
-                ->line('Thank you for using our platform!');
+                    ->greeting('Dear staff')
+                    ->line('The cancellation penalty for user with id ' . $this->user_id . ' has failed.')
+                    ->line('The stripe object id is ' . $this->stripe_object_id);
     }
 
     /**

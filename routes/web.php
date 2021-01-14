@@ -5,10 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/abc', 'testController@test')->name('abc');
+Route::get('/abc', 'testController@test');
 Route::get('/test', 'testController@index');
-Route::get('/test1', 'testController@action')->name('test.action');
-Route::get('/test2', 'testController@index2');
 
 // autocomplete
 Route::group([
@@ -178,7 +176,8 @@ Route::group([
 Route::group([
     'prefix' => 'view-profile',
 ], function() {
-    Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
+    // optional parameter orderByOption
+    Route::get('/{user}/{orderByOption?}', 'ViewProfileController@index')->name('view.profile');
 });
 
 // chatting
@@ -234,6 +233,7 @@ Route::group([
 ], function() {
     Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
     Route::post('/schedule', 'SessionController@scheduleSession')->name('session.create');
+    Route::get('/view/{session}', 'SessionController@viewDetails')->name('session.view-details');
 });
 
 // help center
@@ -260,6 +260,7 @@ Route::group([
     Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
 
     Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
+    Route::post('/connect/webhook', 'payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.connect.webhook');
 
     Route::get('/refund', 'payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index')->middleware('isAdmin');
     Route::post('/user-request-refund/{session}', 'payment\StripeApiController@userRequestRefund')->name('payment.stripe.refund.user_request_refund');

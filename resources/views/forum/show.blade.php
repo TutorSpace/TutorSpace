@@ -340,6 +340,7 @@ $('.action').click(function() {
         // if for the post
         if(postSlug) {
             if($(this).hasClass('action-upvote')) {
+                JsLoadingOverlay.show(jsLoadingOverlayOptions);
                 $.ajax({
                     type:'POST',
                     url: 'upvote/' + postSlug,
@@ -350,10 +351,14 @@ $('.action').click(function() {
                     error: function(error) {
                         toastr.error('Something went wrong!');
                         console.log(error);
+                    },
+                    complete: () => {
+                        JsLoadingOverlay.hide();
                     }
                 });
             }
             else if($(this).hasClass('action-follow')){
+                JsLoadingOverlay.show(jsLoadingOverlayOptions);
                 $.ajax({
                     type:'POST',
                     url: 'follow/' + postSlug,
@@ -365,6 +370,9 @@ $('.action').click(function() {
                     error: function(error) {
                         toastr.error('Something went wrong!');
                         console.log(error);
+                    },
+                    complete: () => {
+                        JsLoadingOverlay.hide()
                     }
                 });
             }
@@ -380,6 +388,7 @@ $('.action').click(function() {
         else if(replyId) {
             if($(this).hasClass('action-upvote')) {
                 let url = '{{ url('/forum/posts/replies') }}' + `/${replyId}/upvote`;
+                JsLoadingOverlay.show(jsLoadingOverlayOptions);
                 $.ajax({
                     type:'POST',
                     url: url,
@@ -390,6 +399,9 @@ $('.action').click(function() {
                     error: function(error) {
                         toastr.error('Something went wrong!');
                         console.log(error);
+                    },
+                    complete: () => {
+                        JsLoadingOverlay.hide()
                     }
                 });
             }
@@ -422,6 +434,7 @@ $('.btn-toggle-follow-up').click(function() {
 
 @auth
 $('.user-card .btn-invite').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'POST',
         url: "{{ route('invite-to-be-tutor', $post->user) }}",
@@ -432,6 +445,9 @@ $('.user-card .btn-invite').click(function() {
         error: function(error) {
             toastr.error('Something went wrong!');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 });
@@ -471,6 +487,7 @@ $('.post-detail-tag').click(function() {
 });
 
 $('#deleteModal .btn-delete').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
     $.ajax({
         type:'DELETE',
         url: '{{ route('posts.destroy', $post) }}',
@@ -483,6 +500,9 @@ $('#deleteModal .btn-delete').click(function() {
         error: function(error) {
             toastr.error('Something went wrong!');
             console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
         }
     });
 })

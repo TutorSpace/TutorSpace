@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoicePaid extends Notification
+class NotEnoughBalance extends Notification
 {
     use Queueable;
 
@@ -31,7 +31,7 @@ class InvoicePaid extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -43,9 +43,9 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                ->greeting('Dear ' . $notifiable->first_name)
-                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
-                ->line('Thank you for using our platform!');
+                    ->greeting('Dear staff')
+                    ->line('While creating session bonus for session ' . $this->session->id . ', there is not enough balance.')
+                    ->line('Please top up balance on dashboard immediately.');
     }
 
     /**

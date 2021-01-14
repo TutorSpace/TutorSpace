@@ -15,6 +15,10 @@
         text-align: center !important;
     }
 
+    td {
+        text-align: center
+    }
+
     thead {
         color: white;
     }
@@ -49,6 +53,7 @@ index
           <tr>
             <th scope="col">Session ID</th>
             <th scope="col">Refund Status</th>
+            <th scope="col" colspan="2">Student</th>
             <th scope="col">Refund Requested Time</th>
             <th scope="col">Action</th>
           </tr>
@@ -59,17 +64,25 @@ index
                 <th scope="row">{{ $transaction->session_id }}</th>
                 <td>{{ $transaction->refund_status }}</td>
                 <td>
+                    Student Name: {{ $transaction->session->student->first_name . $transaction->session->student->last_name }}
+                </td>
+                <td>
+                    Student Id: {{ $transaction->session->student->id }}
+                </td>
+                <td>
                     {{ $transaction->refund_requested_time }}
                 </td>
                 <td class="d-flex actions">
+                    @if ($transaction->refund_status == 'user_initiated')
                     <form action="{{ route('payment.stripe.approve_refund', $transaction->session) }}" method="POST">
                         @csrf
                         <button class="btn btn-primary btn-lg">Approve</button>
                     </form>
-                    <form action="{{  }}" method="POST">
+                    <form action="{{ route('payment.stripe.decline_refund', $transaction->session) }}" method="POST">
                         @csrf
                         <button class="btn btn-danger btn-lg mt-2">Decline</button>
                     </form>
+                    @endif
                 </td>
             </tr>
             @endforeach

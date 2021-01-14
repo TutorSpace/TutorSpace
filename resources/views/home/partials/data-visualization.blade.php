@@ -7,10 +7,7 @@
         }
 
         scatterGraphLayout.height = height;
-        gaugeGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
-        // Plotly.newPlot('gauge-chart', gaugeData, gaugeGraphLayout, options);
-        
     }
 
     var postViewCntData = {
@@ -51,7 +48,11 @@
 
     var layout = {
         showlegend: true,
-        font: {size: 10},
+        font: {
+            size: 10,
+            family: 'Avenir, sans-serif',
+            color: '#474747',
+        },
         legend: {
             xanchor: 'right',
         },
@@ -69,99 +70,72 @@
     };
 
     // create a deep copy of layout
-    var scatterGraphLayout = Object.assign({}, layout);
-    scatterGraphLayout.title = 'Post/Profile View Count Data';
+    var scatterGraphLayout = JSON.parse(JSON.stringify(layout));
+    scatterGraphLayout.title = {
+        text: 'Post/Profile View Count Data',
+        font: {
+            family: 'Avenir, sans-serif',
+            size: 16,
+            color: '#474747'
+        }
+    };
 
     var options = {
-            scrollZoom: true,
-            displaylogo: false,
-            displayModeBar: false,
-            responsive: true,
-        };
-
-    // for the gauge chart
-    var gaugeData = [{
-        domain: { row: 1, column: 1 },
-        value: 1,
-        type: "indicator",
-        mode: "gauge+number+delta",
-        number: {
-            suffix: "%"
-        },
-        delta: {
-            // todo: modify the reference
-            reference: 70,
-            increasing: {
-                // color: ""
-            }
-        },
-        gauge: {
-            axis: { range: [0, 100] },
-            // bgcolor: "white",
-            color: "red",
-            bar: {
-                color: "#FFBC00"
-            }
-        }
-    }];
-
-    var gaugeGraphLayout = Object.assign({}, layout);
-    gaugeGraphLayout.title = '5-Star Rating';
-    gaugeGraphLayout.margin = {
-        l: 30,
-        r: 30,
-        b: 35,
-        t: 50,
-        pad: 0
+        scrollZoom: true,
+        displaylogo: false,
+        displayModeBar: false,
+        responsive: true,
     };
 
     drawGraph();
     $(window).resize(function() {
         drawGraph();
     });
-    
 
+    const oneStar = {{Auth::user()->getStarReviewCounts(1)}} ;
+    const twoStar = {{Auth::user()->getStarReviewCounts(2)}};
+    const threeStar = {{Auth::user()->getStarReviewCounts(3)}};
+    const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
+    const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
-    const oneStar = {{Auth::user()->getStarReviewPercentage(1)}} ;
-    const twoStar = {{Auth::user()->getStarReviewPercentage(2)}};
-    const threeStar = {{Auth::user()->getStarReviewPercentage(3)}};
-    const fourStar = {{Auth::user()->getStarReviewPercentage(4)}};
-    const fiveStar = {{Auth::user()->getStarReviewPercentage(5)}};
-    
     var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
-
+    // data = [1,2,3,4,5];
+    var backgroundColor = [
+                '#6749DF',
+                '#8B73EB',
+                '#A28FF0',
+                '#BDB0F1',
+                '#D9D2F4',
+            ];
+    var labels =  [
+            'Five Star',
+            'Four Star',
+            'Three Star',
+            'Two Star',
+            'One Star',
+        ]
+    var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
-        data = [];
+        data = [1];
+        backgroundColor = ['#c2c0b8'];
+        labels = ["No Available Ratings"];
+        legendPosition = "bottom";
     }
 
 
     var ratingChart = document.getElementById('rating-chart');
-    console.log(ratingChart)
     data = {
         datasets: [{
             data: data,
-            backgroundColor: [
-                '#dc3545',
-                '#FFBC00',
-                '#dc3545',
-                '#dc3545',
-                '#dc3545',
-            ]
+            backgroundColor: backgroundColor
         }],
 
         // These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Five Star Ratings',
-            'Four Star Ratings',
-            'Three Star Ratings',
-            'Two Star Ratings',
-            'one Star Ratings',
-        ],
-        
+        labels: labels
     };
 
     const ratingChartOption = {
-        position: 'right',
+        position: 'bottom',
 
     }
     var ratingChart = new Chart(ratingChart, {
@@ -169,12 +143,21 @@
         data: data,
         options: {
             legend: {
-                position: 'right',
+                position: legendPosition,
+                labels: {
+                    fontFamily: "Avenir, sans-serif",
+                    fontSize: 10,
+                    fontColor: "#474747"
+                }
             },
             title: {
                 display: true,
-                text: 'Tutor Session Ratings (percentage)',
-                // lineHeight: 0.1,
+                text: 'Tutor Session Ratings',
+                fontFamily: "Avenir, sans-serif",
+                fontSize: 16,
+                fontStyle: 200,
+                fontColor:"#474747",
+                lineHeight: 1.3
             },
             layout: {
                 padding: {
@@ -187,7 +170,7 @@
             aspectRatio: 1,
             maintainAspectRatio: false
         },
-        
+
     });
 
 </script>

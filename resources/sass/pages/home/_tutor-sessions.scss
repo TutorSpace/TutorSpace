@@ -1,3 +1,19 @@
+.home .tutor-sessions {
+
+    #calendar-container {
+        margin-right: 3rem;
+        flex: 0 0 calc(66.6666666667% - 3rem);
+        max-width: calc(66.6666666667% - 3rem);
+
+        @include respond(md) {
+            margin-right: 0;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+
+}
+
 .home .past-sessions {
 
     > * {
