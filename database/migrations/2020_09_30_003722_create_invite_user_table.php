@@ -14,7 +14,7 @@ class CreateInviteUserTable extends Migration
     public function up()
     {
         Schema::create('invite_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->string('invited_user_email');
             $table->primary(array('user_id', 'invited_user_email'));
             $table->string('invite_code');

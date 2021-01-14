@@ -58,6 +58,12 @@ class Session extends Model
     public function getDurationInHour() {
         $startTimeInTime = strtotime($this->session_time_start);
         $endTimeInTime = strtotime($this->session_time_end);
-        return round(abs($endTimeInTime - $startTimeInTime) / 3600, 2);;
+        return round(abs($endTimeInTime - $startTimeInTime) / 3600, 2);
+    }
+
+    public function calculateSessionFee() {
+        $hourlyRate = $this->hourly_rate;
+        $sessionFee = $this->getDurationInHour() * $hourlyRate;
+        return $sessionFee;
     }
 }

@@ -34,8 +34,6 @@ class StripeApiController extends Controller
 {
     private static $CANCEL_PENALTY_AMOUNT = 500;
 
-    // todo: NATE (根据.env里的app_env来决定用那个key)
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
         if (env('APP_ENV') == 'local'){
             Stripe::setApiKey(env('STRIPE_TEST_KEY'));
@@ -45,13 +43,9 @@ class StripeApiController extends Controller
         }
     }
 
-    // =========== stripe testing start =================
-    public function refundIndex() {
-        return view('payment.refund');
+    public function redirectToPayment(AppSession $session) {
+        return redirect($this->getPaymentUrl($session));
     }
-    // =========== stripe testing end =================
-
-
 
     // Generates a link for user to create/update account
     // Request should contain 'refresh_url' and 'return url'

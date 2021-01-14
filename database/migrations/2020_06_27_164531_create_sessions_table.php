@@ -14,9 +14,9 @@ class CreateSessionsTable extends Migration
     public function up()
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('tutor_id');
-            $table->unsignedBigInteger('student_id');
+            $table->uuid('id')->primary();
+            $table->uuid('tutor_id');
+            $table->uuid('student_id');
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('hourly_rate');
             $table->timestamp('session_time_start');

@@ -14,8 +14,8 @@ class CreatePostUserUpvoteTable extends Migration
     public function up()
     {
         Schema::create('post_user_upvote', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('post_id');
+            $table->uuid('user_id');
+            $table->uuid('post_id');
             $table->primary(array('user_id', 'post_id'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

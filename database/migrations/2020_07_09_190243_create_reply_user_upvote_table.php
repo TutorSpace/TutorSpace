@@ -14,8 +14,8 @@ class CreateReplyUserUpvoteTable extends Migration
     public function up()
     {
         Schema::create('reply_user_upvote', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('reply_id');
+            $table->uuid('user_id');
+            $table->uuid('reply_id');
             $table->primary(array('user_id', 'reply_id'));
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

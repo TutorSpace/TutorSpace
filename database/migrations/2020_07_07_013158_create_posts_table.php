@@ -14,14 +14,10 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title')->unique();
             $table->text('content');
             $table->unsignedBigInteger('view_count')->default(0);
-
-            // // I put these two columns for faster rendering time in preview. Remember to always update the upvote count and reply count of the POST if any upvote/reply updates
-            // $table->unsignedBigInteger('upvote_count')->default(0);
-            // $table->unsignedBigInteger('reply_count')->default(0);
 
             $table->string('thumbNail')->nullable();
 

@@ -15,7 +15,7 @@ class CreateVerifiedCoursesTable extends Migration
     {
         Schema::create('verified_courses', function (Blueprint $table) {
             $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->primary(array('user_id', 'course_id'));
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

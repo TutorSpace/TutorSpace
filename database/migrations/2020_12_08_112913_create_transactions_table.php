@@ -14,14 +14,11 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
             $table->string('payment_intent_id');
             $table->string('destination_account_id');
             $table->bigInteger('amount');
-            $table->boolean('is_refund')->default(0);
-            $table->boolean('is_successful')->default(0);
-            $table->boolean('is_cancelled')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

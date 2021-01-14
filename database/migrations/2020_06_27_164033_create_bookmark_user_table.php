@@ -14,8 +14,8 @@ class CreateBookmarkUserTable extends Migration
     public function up()
     {
         Schema::create('bookmark_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('bookmarked_user_id');
+            $table->uuid('user_id');
+            $table->uuid('bookmarked_user_id');
             $table->primary(array('user_id', 'bookmarked_user_id'));
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('bookmarked_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
