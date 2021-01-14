@@ -177,99 +177,99 @@ class UserSeeder extends Seeder
 
 
 
-        $userTags = [
-            [
-                'user_id' => 1,
-                'tag_id' => 2
-            ],[
-                'user_id' => 1,
-                'tag_id' => 3
-            ],[
-                'user_id' => 1,
-                'tag_id' => 1
-            ],[
-                'user_id' => 2,
-                'tag_id' => 17
-            ],[
-                'user_id' => 1,
-                'tag_id' => 16
-            ],[
-                'user_id' => 2,
-                'tag_id' => 15
-            ],[
-                'user_id' => 1,
-                'tag_id' => 14
-            ],[
-                'user_id' => 2,
-                'tag_id' => 1
-            ]
-        ];
-        DB::table('tag_user')->insert($userTags);
+        // $userTags = [
+        //     [
+        //         'user_id' => 1,
+        //         'tag_id' => 2
+        //     ],[
+        //         'user_id' => 1,
+        //         'tag_id' => 3
+        //     ],[
+        //         'user_id' => 1,
+        //         'tag_id' => 1
+        //     ],[
+        //         'user_id' => 2,
+        //         'tag_id' => 17
+        //     ],[
+        //         'user_id' => 1,
+        //         'tag_id' => 16
+        //     ],[
+        //         'user_id' => 2,
+        //         'tag_id' => 15
+        //     ],[
+        //         'user_id' => 1,
+        //         'tag_id' => 14
+        //     ],[
+        //         'user_id' => 2,
+        //         'tag_id' => 1
+        //     ]
+        // ];
+        // DB::table('tag_user')->insert($userTags);
 
-        $courseUsers = [
-            [
-                'user_id' => 1,
-                'course_id' => 2
-            ],
-            [
-                'user_id' => 2,
-                'course_id' => 2
-            ],[
-                'user_id' => 2,
-                'course_id' => 4
-            ],[
-                'user_id' => 2,
-                'course_id' => 5
-            ],[
-                'user_id' => 2,
-                'course_id' => 6
-            ],[
-                'user_id' => 2,
-                'course_id' => 7
-            ],[
-                'user_id' => 2,
-                'course_id' => 8
-            ],[
-                'user_id' => 2,
-                'course_id' => 9
-            ],[
-                'user_id' => 3,
-                'course_id' => 3
-            ],[
-                'user_id' => 4,
-                'course_id' => 5
-            ],[
-                'user_id' => 4,
-                'course_id' => 6
-            ],[
-                'user_id' => 5,
-                'course_id' => 1
-            ],[
-                'user_id' => 6,
-                'course_id' => 3
-            ],[
-                'user_id' => 7,
-                'course_id' => 52
-            ],[
-                'user_id' => 8,
-                'course_id' => 65
-            ],[
-                'user_id' => 9,
-                'course_id' => 55
-            ],[
-                'user_id' => 10,
-                'course_id' => 45
-            ],[
-                'user_id' => 11,
-                'course_id' => 35
-            ],[
-                'user_id' => 12,
-                'course_id' => 25
-            ],[
-                'user_id' => 13,
-                'course_id' => 15
-            ]
-        ];
-        DB::table('course_user')->insert($courseUsers);
+        // $courseUsers = [
+        //     [
+        //         'user_id' => 1,
+        //         'course_id' => 2
+        //     ],
+        //     [
+        //         'user_id' => 2,
+        //         'course_id' => 2
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 4
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 5
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 6
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 7
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 8
+        //     ],[
+        //         'user_id' => 2,
+        //         'course_id' => 9
+        //     ],[
+        //         'user_id' => 3,
+        //         'course_id' => 3
+        //     ],[
+        //         'user_id' => 4,
+        //         'course_id' => 5
+        //     ],[
+        //         'user_id' => 4,
+        //         'course_id' => 6
+        //     ],[
+        //         'user_id' => 5,
+        //         'course_id' => 1
+        //     ],[
+        //         'user_id' => 6,
+        //         'course_id' => 3
+        //     ],[
+        //         'user_id' => 7,
+        //         'course_id' => 52
+        //     ],[
+        //         'user_id' => 8,
+        //         'course_id' => 65
+        //     ],[
+        //         'user_id' => 9,
+        //         'course_id' => 55
+        //     ],[
+        //         'user_id' => 10,
+        //         'course_id' => 45
+        //     ],[
+        //         'user_id' => 11,
+        //         'course_id' => 35
+        //     ],[
+        //         'user_id' => 12,
+        //         'course_id' => 25
+        //     ],[
+        //         'user_id' => 13,
+        //         'course_id' => 15
+        //     ]
+        // ];
+        // DB::table('course_user')->insert($courseUsers);
     }
 }
