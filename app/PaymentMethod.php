@@ -2,12 +2,15 @@
 
 namespace App;
 
-use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class PaymentMethod extends Model
 {
     use Uuid;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function user() {
         return $this->belongsTo('App\User');

@@ -10,8 +10,6 @@ use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
 use App\TutorLevel;
-
-use App\CustomTrait\Uuid;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
@@ -22,6 +20,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 
 class User extends Authenticatable
@@ -45,6 +44,9 @@ class User extends Authenticatable
     ];
 
     CONST RECOMMENDED_TUTORS_CACHE_KEY = 'RECOMMENDED_TUTORS';
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     // customized reset password
     public function sendPasswordResetNotification($token)

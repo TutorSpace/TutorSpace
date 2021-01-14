@@ -2,13 +2,15 @@
 
 namespace App;
 
-use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class CancellationPenalty extends Model
 {
     use Uuid;
-    public $timestamp = true;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function user() {
         return $this->belongsTo('App\User');

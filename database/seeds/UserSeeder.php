@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Shuaiqing',
             'last_name' => 'Luo',
             'email' => 'shuaiqin@usc.edu',
@@ -22,7 +23,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'student',
             'last_name' => 'tester',
             'email' => 'student@usc.edu',
@@ -31,7 +32,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tutor',
             'last_name' => 'tester',
             'email' => 'tutor@usc.edu',
@@ -46,7 +47,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('173')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tester',
             'last_name' => '1',
             'email' => 'tester1@usc.edu',
@@ -59,7 +60,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('103')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tester',
             'last_name' => '2',
             'email' => 'tester2@usc.edu',
@@ -73,7 +74,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('199')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tester',
             'last_name' => '3',
             'email' => 'tester3@usc.edu',
@@ -86,7 +87,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('143')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tester',
             'last_name' => '4',
             'email' => 'tester4@usc.edu',
@@ -100,7 +101,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('11')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'tester',
             'last_name' => '5',
             'email' => 'tester5@usc.edu',
@@ -114,7 +115,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Nate',
             'last_name' => 'Huang',
             'email' => 'huan773@usc.edu',
@@ -123,7 +124,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Nate',
             'last_name' => 'Huang',
             'email' => 'huan773@usc.edu',
@@ -137,7 +138,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Lihan',
             'last_name' => 'Zhu',
             'email' => 'lihanzhu@usc.edu',
@@ -146,7 +147,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Lihan',
             'last_name' => 'Zhu',
             'email' => 'lihanzhu@usc.edu',
@@ -160,7 +161,7 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
             'first_name' => 'Shuaiqing',
             'last_name' => 'Luo',
             'email' => 'shuaiqin@usc.edu',

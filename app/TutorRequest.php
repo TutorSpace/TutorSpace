@@ -3,8 +3,8 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\CustomTrait\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class TutorRequest extends Model
 {
@@ -13,6 +13,9 @@ class TutorRequest extends Model
     protected $table = "tutor_requests";
 
     protected $dates = ['created_at', 'updated_at', 'session_time_start', 'session_time_end'];
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function course() {
         return $this->belongsTo('App\Course');

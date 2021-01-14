@@ -17,7 +17,7 @@ class CreateChatroomsTable extends Migration
             $table->uuid('user_id_1');
             $table->uuid('user_id_2');
             $table->uuid('creator_user_id');
-            $table->primary(array('user_id_1', 'user_id_2'));
+            $table->primary(array('user_id_1', 'user_id_2', 'creator_user_id'));
             $table->timestamps();
             $table->foreign('user_id_1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id_2')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

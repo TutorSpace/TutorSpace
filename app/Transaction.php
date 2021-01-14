@@ -3,15 +3,18 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\CustomTrait\Uuid;
 use App\Events\TutoringHourEnded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Controllers\payment\StripeApiController;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Transaction extends Model
 {
     use Uuid;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public function session() {
         return $this->belongsTo('App\Session');

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Traits\HasCompositePrimaryKey;
 
-
-
 // IMPORTANT: chatroom must have smaller id as user_id_1 and larger as user_id_2
 class Chatroom extends Model
 {
