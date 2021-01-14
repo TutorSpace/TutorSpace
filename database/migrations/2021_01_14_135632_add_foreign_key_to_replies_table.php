@@ -29,7 +29,10 @@ class AddForeignKeyToRepliesTable extends Migration
     public function down()
     {
         Schema::table('replies', function (Blueprint $table) {
-            $table->dropForeign(['post_id', 'reply_id', 'base_reply_id', 'user_id']);
+            $table->dropForeign(['post_id']);
+            $table->dropForeign(['reply_id']);
+            $table->dropForeign(['base_reply_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }

@@ -22,7 +22,6 @@
         "pusher/pusher-php-server": "^4.1",
         "stripe/stripe-php": "^7.66",
         "superbalist/laravel-google-cloud-storage": "^2.2",
-        "webpatser/laravel-uuid": "^3.0",
         "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {

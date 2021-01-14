@@ -57,7 +57,6 @@ class User extends Authenticatable
         } else {
             return "#";
         }
-
     }
 
     public function getIntroduction() {
