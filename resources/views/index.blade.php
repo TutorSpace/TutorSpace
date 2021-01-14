@@ -32,7 +32,7 @@ index
     <section class="index__story container">
         <h3 class="index__story__heading text-center">Our Story</h3>
         <p class="index__story__content">
-            TutorSpace was founded in May 2020 by three founders, among whom two of them are from USC and one from UCSD. With such an attitude and an original intention to do something positive for our peers during such an uncertain period in our generation’s history and encourage everyone to engage themselves in their daily school lives better, we decided to create TutorSpace.
+            TutorSpace was founded in May 2020 by a group of students from USC and UCSD. With such an attitude and an original intention to do something positive for our peers during such an uncertain period in our generation’s history and encourage everyone to engage themselves in their daily school lives better, we decided to create TutorSpace.
         </p>
     </section>
 
@@ -100,7 +100,7 @@ index
 
 
             <div class="index__feature-container">
-                <h3 class="index__feature__heading text-center">Our Feature 2</h3>
+                <h3 class="index__feature__heading text-center">TEACHING CAN BE REWARDING</h3>
                 <div class="index__feature__content">
                     <ul>
                         <li>
@@ -152,7 +152,7 @@ index
 
 
             <div class="index__feature-container">
-                <h3 class="index__feature__heading text-center">Our Feature 3</h3>
+                <h3 class="index__feature__heading text-center">CONNECTION CAN BE OPPORTUNITIES</h3>
                 <div class="index__feature__content">
                     <ul>
                         <li>
