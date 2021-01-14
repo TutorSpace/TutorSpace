@@ -18,7 +18,7 @@ class CreateRepliesTable extends Migration
             $table->uuid('post_id');
 
             // the reply that this followup is directly responding to
-            $table->uuid('reply_id')->nullable();
+            $table->uuid('reply_id')->nullable()->constrained();
 
             // the base reply that this followup is responding to
             $table->uuid('base_reply_id')->nullable();
