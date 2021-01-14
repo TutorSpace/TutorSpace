@@ -42,7 +42,7 @@ class Transaction extends Model
             $tutor = $session->tutor;
             $bonus_rate = $tutor->getUserBonusRate();
             if ($bonus_rate > 0) {
-                app(StripeApiController::class)->createSessionBonus($transaction->amount * $bonus_rate, $transaction->session);
+                app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
             }
 
             // Trigger event to add experience
