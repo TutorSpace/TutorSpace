@@ -87,7 +87,7 @@
         @endif
 
         @if (!Auth::check() || (Auth::check() && !Auth::user()->is_tutor))
-        <a class="btn btn-lg btn-request btn-animation-y-sm" @auth href="{{ route('view.profile', $user->id) }}" @endauth>
+        <a class="btn btn-lg btn-request btn-animation-y-sm" @auth href="{{ route('view.profile', $user->id) . '?request=true' }}" @endauth>
             Request a Session
         </a>
         @else
