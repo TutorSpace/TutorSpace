@@ -171,12 +171,8 @@ bg-student
                         <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
                     <div class="forum-data">
-<<<<<<< HEAD
-                        {{-- PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
-=======
                         {{-- TODO: shuaiqing (PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
                         {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
->>>>>>> 0d778f44db1dfbe88d93bfabfcb8bb5ee9585cf2
                         <span class="title">Participated</span>
                         <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->count() }}</a>
                     </div>
