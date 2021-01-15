@@ -20,8 +20,8 @@ class ChattingController extends Controller
         }
 
         $otherUser = User::find($request->input('toViewOtherUserId'));
-        $user_id_1 = Auth::id() < $otherUser->id ? Auth::id() : $otherUser->id;
-        $user_id_2 = Auth::id() < $otherUser->id ? $otherUser->id : Auth::id();
+        $user_id_1 = strcmp(Auth::id(), $otherUser->id) < 0 ? Auth::id() : $otherUser->id;
+        $user_id_2 = strcmp(Auth::id(), $otherUser->id) < 0 ? $otherUser->id : Auth::id();
         $chatroom = Chatroom::where('user_id_1', $user_id_1)->where('user_id_2', $user_id_2)->first();
 
         // if no chatroom
@@ -53,7 +53,7 @@ class ChattingController extends Controller
         if(
             // if there is such a chatroom between the two users
             Chatroom::where(function($query) use ($otherUserId) {
-                $query->where('user_id_1', Auth::id() < $otherUserId ? Auth::id() : $otherUserId)->where('user_id_2', Auth::id() < $otherUserId ? $otherUserId : Auth::id());
+                $query->where('user_id_1', strcmp(Auth::id(), $otherUserId) < 0 ? Auth::id() : $otherUserId)->where('user_id_2', strcmp(Auth::id(), $otherUserId) < 0 ? $otherUserId : Auth::id());
             })
             ->exists()
         ) {
@@ -79,8 +79,8 @@ class ChattingController extends Controller
             $msg->save();
 
             // remove the zombie chatrooms
-            if(Chatroom::where('user_id_1', $to < $from ? $to : $from)->where('user_id_2', $to < $from ? $from : $to)->count() > 1) {
-                Chatroom::where('user_id_1', $to < $from ? $to : $from)->where('user_id_2', $to < $from ? $from : $to)->where('creator_user_id', $to)->first()->delete();
+            if(Chatroom::where('user_id_1', strcmp($to, $from) < 0 ? $to : $from)->where('user_id_2', strcmp($to, $from) < 0 ? $from : $to)->count() > 1) {
+                Chatroom::where('user_id_1', strcmp($to, $from) < 0 ? $to : $from)->where('user_id_2', strcmp($to, $from) < 0 ? $from : $to)->where('creator_user_id', $to)->first()->delete();
                 broadcast(new NewMessage($msg));
             } else {
                 broadcast(new NewMessage($msg));

@@ -75,7 +75,7 @@ class Chatroom extends Model
         $userId2 = $user2->id;
 
         return Chatroom::where(function($query) use($userId1, $userId2) {
-            $query->where('user_id_1', $userId1 < $userId2 ? $userId1 : $userId2)->where('user_id_2', $userId1 > $userId2 ? $userId1 : $userId2);
+            $query->where('user_id_1', strcmp($userId1, $userId2) < 0 ? $userId1 : $userId2)->where('user_id_2', strcmp($userId1, $userId2) < 0 ? $userId2 : $userId1);
         })->exists();
     }
 
@@ -83,7 +83,7 @@ class Chatroom extends Model
         $otherUserId = $otherUser->id;
 
         return Chatroom::where(function($query) use($otherUserId) {
-            $query->where('user_id_1', $otherUserId < Auth::id() ? $otherUserId : Auth::id())->where('user_id_2', $otherUserId < Auth::id() ? Auth::id() : $otherUserId)->where('creator_user_id', Auth::id());
+            $query->where('user_id_1', strcmp($otherUserId, Auth::id()) < 0 ? $otherUserId : Auth::id())->where('user_id_2', strcmp($otherUserId, Auth::id()) < 0 ? Auth::id() : $otherUserId)->where('creator_user_id', Auth::id());
         })->exists();
     }
 
