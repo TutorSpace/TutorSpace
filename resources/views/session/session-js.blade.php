@@ -132,6 +132,7 @@ $('#tutor-profile-request-session').on('click',function() {
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
     // console.log(calendarOptions.select);
+    // JSON.parse(JSON.stringify(calendarOptions)) => will lose the function
     // let options = JSON.parse(JSON.stringify(calendarOptions));
     // console.log(options.select);
     // options.height = 250;
