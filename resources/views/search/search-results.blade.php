@@ -2,7 +2,7 @@
 <div class="search-result bg-white-dark-5">
     <div class="d-flex align-items-center mb-3">
         <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-photo mr-3">
-        <a class="user-name mr-3" href="#">{{ $user->first_name }} {{ $user->last_name }}</a>
+        <a class="user-name mr-3" href="{{ route('view.profile', $user) }}">{{ $user->first_name }} {{ $user->last_name }}</a>
         @if ($user->is_tutor_verified)
         @include('partials.svg-tutor-verified')
         @endif
@@ -76,7 +76,7 @@
         <span class="rating">
             {{ $starRating }}
         </span>
-        <a class="review-cnt" href="#">
+        <a class="review-cnt" href="{{ route('view.profile', $user) }}">
             ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
