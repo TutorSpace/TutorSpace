@@ -55,6 +55,10 @@ class testController extends Controller
     public function test(Request $request) {
 
         // Auth::user()->tutorHasStripeAccount();
+<<<<<<< HEAD
+=======
+        Auth::user()->addExperience(-2000000);
+>>>>>>> 0d778f44db1dfbe88d93bfabfcb8bb5ee9585cf2
         // echo Auth::user()->firstMajor->id;
         // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
 

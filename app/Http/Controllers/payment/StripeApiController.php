@@ -290,12 +290,11 @@ class StripeApiController extends Controller
     }
 
     public function userRequestRefund(Request $request, AppSession $session) {
-        // todo: Nate add validation here
         // 1. the authenticated user must be the student in that session
         // 2. not refunded and already past
         // 3. transaction is paid
         $userId = Auth::user()->id;
-        $acceptedUserIds = array($session->tutor_id, $session->student_id);
+        $acceptedUserIds = array($session->student_id);
         // session validation
         if (!$session || !in_array($userId, $acceptedUserIds) || $session->is_cancel == 1 || $session->is_upcoming == 1 ) {
             return response()->json([
