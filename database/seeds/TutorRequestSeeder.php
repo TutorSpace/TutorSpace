@@ -2,6 +2,7 @@
 
 use App\User;
 use Carbon\Carbon;
+use App\TutorRequest;
 use Illuminate\Database\Seeder;
 
 class TutorRequestSeeder extends Seeder
@@ -14,7 +15,7 @@ class TutorRequestSeeder extends Seeder
     public function run()
     {
         $userIds = DatabaseSeeder::$userIds;
-        DB::table('tutor_requests')->insert([
+        TutorRequest::create([
             'tutor_id' => $userIds[4],
             'student_id' => $userIds[0],
             'course_id' => '101',
@@ -24,7 +25,7 @@ class TutorRequestSeeder extends Seeder
             'hourly_rate' => User::find($userIds[4])->hourly_rate,
         ]);
 
-        DB::table('tutor_requests')->insert([
+        TutorRequest::create([
             'tutor_id' => $userIds[4],
             'student_id' => $userIds[0],
             'course_id' => '501',
