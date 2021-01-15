@@ -232,8 +232,8 @@ class PostSeeder extends Seeder
             <pre class="language-python"><code>str = "Hello, World!"
             print(str)</code></pre>',
             'slug' => 'random-post-7',
-            'user_id' => 1,
-            'post_type_id' => $userIds[8],
+            'user_id' => $userIds[8],
+            'post_type_id' => 2,
             'view_count' => 10,
             'created_at' => '2020-11-15 16:55:30'
         ]);
@@ -246,7 +246,7 @@ class PostSeeder extends Seeder
             print(str)</code></pre>',
             'slug' => 'random-post-8',
             'user_id' => $userIds[9],
-            'post_type_id' => 304,
+            'post_type_id' => 3,
             'view_count' => 10,
             'created_at' => '2020-12-16 16:55:30'
         ]);

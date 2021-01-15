@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         'eeab9385-9709-4f20-bf7d-e84c1cb38b97',
         'eeab9385-9709-4f20-bf7d-e84c1cb38b98',
         'eeab9385-9709-4f20-bf7d-e84c1cb38b99',
-    ]
+    ];
 
     /**
      * Seed the application's database.
