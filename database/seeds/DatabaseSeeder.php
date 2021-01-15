@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
         '9acedcf4-a71b-42a0-9f4c-9e0cfe5e1fbe',
         'b6198a50-4a86-4f87-b528-a317d9973e45',
         'eeab4380-9709-4f20-bf7d-e84c1cb38b94',
-        'f6bf6b53-bbfa-49d8-9efd-0789030f05a0'
+        'f6bf6b53-bbfa-49d8-9efd-0789030f05a0',
+    ];
+
+    public static $pastSessionIds = [
+        'g6bg6e53-bcea-49d9-9efd-2789030f05a0',
+        'ff3g0153-bcea-49d9-9efd-2789030f05a0',
+        'gf301153-bcea-49d9-9efd-2789030f05a0',
     ];
 
     /**
