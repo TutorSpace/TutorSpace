@@ -19,9 +19,11 @@ bg-student
 @include('partials.nav')
 
 <div class="container search">
+    @if (url()->full() != route('search.index'))
     <h4 class="ml-2">
         Search Results ({{ isset($users) ? $users->total() : 0 }})
     </h4>
+    @endif
     <div class="row mt-5">
         <div class="col-lg-4">
             {{-- filter --}}
