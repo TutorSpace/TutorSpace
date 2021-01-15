@@ -15,7 +15,7 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->morphs('viewable');
+            $table->uuidMorphs('viewable');
             $table->text('visitor')->nullable();
             $table->string('collection')->nullable();
             $table->date('viewed_at')->default(date("Y-m-d"));
