@@ -31,6 +31,19 @@ class DatabaseSeeder extends Seeder
         'gf301153-bcea-49d9-9efd-2789030f05a0',
     ];
 
+    public static $postIds = [
+        'eeab4380-9709-4f20-bf7d-e84c1cb38b94',
+        'eeab5381-9709-4f20-bf7d-e84c1cb38b94',
+        'eeab6382-9709-4f20-bf7d-e84c1cb38b94',
+        'eeab7383-9709-4f20-bf7d-e84c1cb38b94',
+        'eeab8384-9709-4f20-bf7d-e84c1cb38b94',
+        'eeab9385-9709-4f20-bf7d-e84c1cb38b95',
+        'eeab9385-9709-4f20-bf7d-e84c1cb38b96',
+        'eeab9385-9709-4f20-bf7d-e84c1cb38b97',
+        'eeab9385-9709-4f20-bf7d-e84c1cb38b98',
+        'eeab9385-9709-4f20-bf7d-e84c1cb38b99',
+    ]
+
     /**
      * Seed the application's database.
      *
