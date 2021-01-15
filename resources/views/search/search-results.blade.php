@@ -80,12 +80,22 @@
             ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
-        <a class="btn btn-lg btn-chat btn-animation-y-sm">
+        @if (!Auth::check() || (Auth::check() && $user->email != Auth::user()->email))
+        <a class="btn btn-lg btn-chat btn-animation-y-sm" href="{{ $user->getChattingRoute() }}">
             Chat
         </a>
+        @endif
+
+        @if (!Auth::check() || (Auth::check() && !Auth::user()->is_tutor))
         <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">
             Request a Session
         </a>
+        @else
+        <a class="btn btn-lg btn-view btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">
+            View Profile
+        </a>
+        @endif
+
 
     </div>
 </div>
