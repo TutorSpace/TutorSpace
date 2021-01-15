@@ -131,11 +131,13 @@ $('#tutor-profile-request-session').on('click',function() {
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
+    // console.log(calendarOptions.select);
+    // let options = JSON.parse(JSON.stringify(calendarOptions));
+    // console.log(options.select);
+    // options.height = 250;
 
-    let options = JSON.parse(JSON.stringify(calendarOptions));
-
-    options.height = 250;
-    let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
+    calendarOptions.height = 300
+    let e = new FullCalendar.Calendar($('#calendar-request-session')[0], calendarOptions);
     e.render();
     setTimeout(() => {
         e.destroy();
