@@ -50,7 +50,7 @@
             </p>
 
             <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about tutor growth plan? Click here: <br />
-                <a href="#" class="color-primary">https://tutorspace.joinme.us</a>
+                <a href="{{ route('index') }}" class="color-primary">https://tutorspace.joinme.us</a>
             </p>
         </div>
     </div>

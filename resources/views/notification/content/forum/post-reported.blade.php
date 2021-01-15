@@ -16,7 +16,7 @@
                 sequi! Molestiae?
             </p>
             <p class="fc-grey fs-1-6">To view the post, click on the link below <br />
-                <a class="color-primary" href="#">https://tutorspace.joinme.us</a>
+                <a class="color-primary" href="{{ route('index') }}">https://tutorspace.joinme.us</a>
             </p>
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>

@@ -20,7 +20,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         </svg>
         <div class="user-info">
             <img src="{{ Storage::url($transaction->session->tutor->profile_pic_url) }}" alt="profile-img">
-            <a class="content" href="#">
+            <a class="content" href="{{ route('view.profile', $transaction->session->tutor) }}">
                 {{ $transaction->session->tutor->first_name . ' ' . $transaction->session->tutor->last_name }}
             </a>
         </div>

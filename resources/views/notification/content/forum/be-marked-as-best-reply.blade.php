@@ -24,7 +24,7 @@
             </div>
 
             <p class="fc-grey fs-1-6 text-center">To view the post, click on the link below <br />
-                <a class="color-primary" href="#">https://tutorspace.joinme.us</a>
+                <a class="color-primary" href="{{ route('index') }}">https://tutorspace.joinme.us</a>
             </p>
         </div>
     </div>

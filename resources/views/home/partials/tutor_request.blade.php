@@ -23,7 +23,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         @endif
         <div class="user-info">
             <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
-            <a class="content" href="#">
+            <a class="content" href="{{ route('view.profile', $student) }}">
                 {{ $student->first_name . " " . $student->last_name }}
             </a>
         </div>
@@ -76,8 +76,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                     <div>
                         <div class="user-info">
                             <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
-                            <a class="content" href="#">
-                                <!-- tutor name -->
+                            <a class="content" href="{{ route('view.profile', $student) }}">
                             </a>
                         </div>
                     </div>
