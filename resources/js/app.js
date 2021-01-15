@@ -179,7 +179,6 @@ $(document).ready(function(){
         $('.toggle-customized').removeClass('toggle-expand-animation');
     });
 
-
     $('.toggle-after-list-item').click(function() {
         let href = $(this).attr('data-location-href');
         window.location.href = href;

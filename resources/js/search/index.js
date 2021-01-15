@@ -147,6 +147,3 @@ $('.btn-clear').click(function() {
 if($('#checkbox-specify-detail-time').prop('checked')) {
     $('#select-detail-time').addClass('hidden');
 }
-
-
-

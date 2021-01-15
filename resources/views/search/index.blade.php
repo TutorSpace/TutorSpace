@@ -272,6 +272,13 @@ bg-student
 </script>
 @endif
 
+@guest
+<script>
+$('.btn-chat, .btn-request').click(function() {
+    $('.overlay-student').show();
+});
+</script>
+@endguest
 
 @php
     session()->forget('_old_input');
