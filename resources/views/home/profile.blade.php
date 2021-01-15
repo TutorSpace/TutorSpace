@@ -509,7 +509,6 @@ bg-student
                     cards
                 } = data;
                 cards.forEach((card,idx) => {
-
                     // get card brand and include svg
                     var cardBrand;
                     if (card.brand == "amex"){
@@ -528,11 +527,8 @@ bg-student
 
                     // prepend cards
                     $('.payment-cards').prepend(`
-
-
                             <div class="bank-card `+
                             (card.is_default == 'false'? `bg-non-default`:`bg-default`)
-
                             +`
                              m-3">
                                 <div class="overlay"></div>
@@ -555,25 +551,17 @@ bg-student
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
                                     </div>
                                 </div>
-
-
-
-
                                 `+
-
                                 (card.is_default == 'false'?`
                                     <div class="bank-card-btns">
                                         <button data-id=${idx} class="btn btn-delete">Delete</button>
                                         <button data-id=${idx} class="btn btn-set-default">Set As Default</button>
                                     </div>
-
                                 `:`
                                     <div class="bank-card-btns">Default Payment</div>
                                 `)
                                 +`
-
                             </div>
-
                     `);
                 });
 
