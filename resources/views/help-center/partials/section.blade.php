@@ -251,19 +251,28 @@
 <div class="help-center__section hidden-2" id="section-report">
     <h4 class="header fc-black-2">Report</h4>
     <div class="content">
-        <p class="section-description fc-black-2">
+        {{-- <p class="section-description fc-black-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
-        </p>
+        </p> --}}
         <details class="my-4">
-            <summary>I finished my session one hour ago. When can I have my payment?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibh in nunc pretium. Semper platea scelerisque volutpat iaculis pellentesque dapibus in id. Tortor malesuada non lacinia nibh. Risus justo, amet sit nisl in egestas donec. Congue vestibulum, vulputate et nisi, faucibus. Tristique iaculis magna vitae at convallis sed. Turpis netus ac varius commodo quisque ac, suspendisse nulla vitae. Magna mauris, vehicula feugiat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
+            <summary>Will there be background checks on tutors?
+            </summary>
+            <p class="fc-black-2">
+                No. TutorSpace currently is only operating within the University of Southern California, so only individuals with an official USC email address will be able to register accounts. TutorSpace only asks for basic and necessary information from users and does not perform background checks. However, if you and your tutor are meeting in person, we still strongly encourage you to interview all potential tutors by phone and meet in a public place for the first time as a safety measure.
+            </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspaceusc@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>How can I blahblahblah?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
+            <summary>How to report a tutor/tutoring session?
+            </summary>
+            <p class="fc-black-2">
+                Please go directly to the Help Center at the top bar and click on the “Report” section button. Type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. TutorSpace’s staff will contact you within 24 hours.
+            </p>
+            <p class="fc-black-2">
+                Note: completing the report process does not mean you will not be charged your tutoring fee, but we will arrange a full refund for you after we have a full understanding of your situation.
+            </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspaceusc@gmail.com">Still having trouble? Send us an email!</a>
             </p>
