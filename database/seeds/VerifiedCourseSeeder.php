@@ -11,24 +11,26 @@ class VerifiedCourseSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('verified_courses')->insert([
-        //     'user_id' => '2',
-        //     'course_id' => '6'
-        // ]);
+        $userIds = DatabaseSeeder::$userIds;
 
-        // DB::table('verified_courses')->insert([
-        //     'user_id' => '2',
-        //     'course_id' => '4'
-        // ]);
+        DB::table('verified_courses')->insert([
+            'user_id' => $userIds[2],
+            'course_id' => '6'
+        ]);
 
-        // DB::table('verified_courses')->insert([
-        //     'user_id' => '2',
-        //     'course_id' => '5'
-        // ]);
+        DB::table('verified_courses')->insert([
+            'user_id' => $userIds[2],
+            'course_id' => '4'
+        ]);
 
-        // DB::table('verified_courses')->insert([
-        //     'user_id' => '7',
-        //     'course_id' => '5'
-        // ]);
+        DB::table('verified_courses')->insert([
+            'user_id' => $userIds[2],
+            'course_id' => '5'
+        ]);
+
+        DB::table('verified_courses')->insert([
+            'user_id' => $userIds[7],
+            'course_id' => '5'
+        ]);
     }
 }

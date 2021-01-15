@@ -14,30 +14,32 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        // $faker = Faker\Factory::create();
-        // for($i = 0; $i < 150; $i++) {
-        //     do {
-        //         $from = rand(1, 4);
-        //         $to = rand(1, 4);
-        //     } while($from == $to);
+        $userIds = DatabaseSeeder::$userIds;
 
-        //     Message::create([
-        //         'from' => $from,
-        //         'to' => $to,
-        //         'message' => $faker->sentence,
-        //         'created_at' => Carbon::now()
-        //     ]);
-        // }
+        $faker = Faker\Factory::create();
+        for($i = 0; $i < 150; $i++) {
+            do {
+                $from = rand(1, 10);
+                $to = rand(1, 10);
+            } while($from == $to);
 
-        // for($i = 1; $i <= 4; $i++) {
-        //     for($j = $i + 1; $j <= 4; $j++) {
-        //         Chatroom::create([
-        //             'user_id_1' => $i,
-        //             'user_id_2' => $j,
-        //             'creator_user_id' => $i
-        //         ]);
-        //     }
-        // }
+            Message::create([
+                'from' => $userIds[$from],
+                'to' => $userIds[$to],
+                'message' => $faker->sentence,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        for($i = 1; $i <= 10; $i++) {
+            for($j = $i + 1; $j <= 10; $j++) {
+                Chatroom::create([
+                    'user_id_1' => $userIds[$i],
+                    'user_id_2' => $userIds[$j],
+                    'creator_user_id' => $userIds[$i]
+                ]);
+            }
+        }
 
 
     }
