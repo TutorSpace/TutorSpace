@@ -247,10 +247,17 @@ $('.action-review').click(function() {
                 label: 'Submit',
                 className: 'btn btn-primary px-4 fs-1-6',
                 callback: function(e) {
+                    if (!$.trim($(".modal-session-report textarea").val())) {
+                        // textarea is empty or contains only white-space
+                        toastr.error('Please enter the details.')
+                        return false;
+                    }
                     JsLoadingOverlay.show(jsLoadingOverlayOptions);
+
                     $.ajax({
                         type: 'POST',
                         url: url,
+                        data: $('.modal-session-report').serialize(),
                         success: (data) => {
                             toastr.success(data.successMsg);
                             setTimeout(function() {

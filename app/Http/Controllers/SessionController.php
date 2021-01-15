@@ -6,6 +6,7 @@ use Auth;
 
 use App\User;
 use App\Course;
+use App\Review;
 use App\Session;
 use Carbon\Carbon;
 use App\TutorRequest;
@@ -78,8 +79,28 @@ class SessionController extends Controller
         ]);
     }
 
-    public function review(Request $request, Session $session, User $tutor) {
-        Gate::authorize('review-session', [$session, $tutor]);
+    public function review(Request $request, Session $session) {
+        Gate::authorize('review-session', $session);
+
+        $request->validate([
+            'review' => [
+                'required'
+            ],
+            'star-rating' => [
+                'required',
+                'integer',
+                'max:5',
+                'min:1'
+            ]
+        ]);
+
+        $review = new Review();
+        $review->star_rating = $request->input('star-rating');
+        $review->review = $request->input('review');
+        $review->reviewer_id = Auth::id();
+        $review->session_id = $session->id;
+        $review->reviewee_id = $session->tutor->id;
+        $review->save();
 
         return response()->json([
             'successMsg' => 'Successfully posted the review!'

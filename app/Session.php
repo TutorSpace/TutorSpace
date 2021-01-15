@@ -28,6 +28,10 @@ class Session extends Model
         return $this->belongsTo('App\User', 'student_id');
     }
 
+    public function review() {
+        return $this->belongsTo('App\Review');
+    }
+
     public function cancelReason() {
         return $this->belongsTo('App\SessionCancelReason', 'cancel_reason_id');
     }
