@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\User;
+use App\Review;
 use App\Chatroom;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -55,7 +56,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_tutor && $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
-
+        Gate::define('review-session', function($user, $session, $tutor) {
+            // 1) the reviewer is the student and the reviewee is the tutor of this session, 2) have not reviewed this session before
+            return $user->id == $session->student_id && $tutor->id == $session->tutor_id && !Review::where('session_id', $session->id)->exists();
+        });
 
     }
 }

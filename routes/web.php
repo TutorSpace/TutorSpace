@@ -234,7 +234,7 @@ Route::group([
     Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
     Route::post('/schedule', 'SessionController@scheduleSession')->name('session.create');
     Route::get('/view/{session}', 'SessionController@viewDetails')->name('session.view-details');
-    Route::post('/review/{session}', 'SessionController@review')->name('session.review');
+    Route::post('/review/{session}/{user}', 'SessionController@review')->name('session.review');
 });
 
 // help center

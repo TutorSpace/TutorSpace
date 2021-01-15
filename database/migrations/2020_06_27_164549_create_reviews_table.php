@@ -18,7 +18,7 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('star_rating');
             $table->uuid('reviewer_id');
             $table->uuid('reviewee_id');
-            $table->uuid('session_id');
+            $table->uuid('session_id')->unique();
             $table->text('review');
             $table->timestamps();
             $table->foreign('reviewer_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

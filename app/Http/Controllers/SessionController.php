@@ -7,19 +7,20 @@ use Auth;
 use App\User;
 use App\Course;
 use App\Session;
+use Carbon\Carbon;
 use App\TutorRequest;
 use App\PaymentMethod;
+use App\Rules\SameDay;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Rules\SessionOverlap;
 use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
-use App\Http\Controllers\payment\StripeApiController;
-use Illuminate\Support\Facades\Log;
-use App\Rules\SessionOverlap;
-use App\Rules\SessionDifferentUser;
-use App\Rules\SameDay;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Rules\SessionDifferentUser;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\payment\StripeApiController;
 
 class SessionController extends Controller
 {
@@ -77,8 +78,8 @@ class SessionController extends Controller
         ]);
     }
 
-    public function review(Request $request, Session $session) {
-        // todo: validate that 1) the reviewer is the student and the reviewee is the tutor of this session, 2) have not reviewed this session before
+    public function review(Request $request, Session $session, User $tutor) {
+        Gate::authorize('review-session', [$session, $tutor]);
 
         return response()->json([
             'successMsg' => 'Successfully posted the review!'
