@@ -15,7 +15,8 @@ class Message extends Model
 
     protected $guarded = [];
 
+    // important: this function and subscribeNewMessageChannel() are tightly connected. Needs to change the other when either one of them is changed
     public function getChannelName() {
-        return $this->to < $this->from ? ("message." . $this->to . ';' . $this->from) : ("message." . $this->from . ';' . $this->to);
+        return $this->to < $this->from ? ("message." . $this->to . '.' . $this->from) : ("message." . $this->from . '.' . $this->to);
     }
 }

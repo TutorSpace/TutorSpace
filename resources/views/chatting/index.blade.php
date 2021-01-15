@@ -86,7 +86,7 @@ bg-student
 
     function subscribeNewMessageChannel(otherUserId) {
         // subscribe to the channel
-        let channelName = Number(currentUserId) < Number(otherUserId) ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+        let channelName = Number(currentUserId) < Number(otherUserId) ? `private-message.${currentUserId}.${otherUserId}` : `private-message.${otherUserId}.${currentUserId}`;
 
         console.log('channelName: ' + channelName);
 

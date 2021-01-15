@@ -394,7 +394,8 @@ class User extends Authenticatable
             $query->where('from', $this->id)->where('to', $otherUser->id);
         })->orWhere(function($query) use ($otherUser) {
             $query->where('to', $this->id)->where('from', $otherUser->id);
-        })->get();
+        })->orderBy('created_at')
+        ->get();
     }
 
     public function getChatrooms() {

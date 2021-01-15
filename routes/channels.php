@@ -21,7 +21,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 // chatting - messages
-Broadcast::channel('message.{userId1};{userId2}', function($user, $userId1, $userId2) {
+Broadcast::channel('message.{userId1}.{userId2}', function($user, $userId1, $userId2) {
     Log::debug('user id 1: ' . $userId1);
     Log::debug('user id 2: ' . $userId2);
     // Log::debug(Chatroom::haveChatroom(User::find($userId1), User::find($userId2)));
