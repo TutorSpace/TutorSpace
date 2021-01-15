@@ -9,6 +9,7 @@
 
     .filter {
         padding: 3rem 3rem;
+        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
 
         @include respond(md) {
             margin-bottom: 3rem;
