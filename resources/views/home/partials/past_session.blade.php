@@ -64,7 +64,7 @@
                     </svg>
                     <span class="action--toggle--list--title fc-black-2">Pay</span>
                 </a>
-                <a class="d-flex flex-row" href="#">
+                <a class="d-flex flex-row action-review" data-route-url="{{ route('session.review', $session) }}">
                     <svg width="2rem" height="2rem" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="#626262" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h2.5a2 2 0 0 1 1.6.8L8 14.333 9.9 11.8a2 2 0 0 1 1.6-.8H14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                         <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
@@ -73,12 +73,7 @@
                 </a>
                 @endif
 
-                <a
-                class="d-flex flex-row"
-                @if ($currUser->is_tutor)
-                href="{{ route('help-center.index') }}"
-                @endif
-                >
+                <a class="d-flex flex-row" @if ($currUser->is_tutor) href="{{ route('help-center.index') }}"@endif>
                     <svg width="2rem" height="2rem" viewBox="0 0 16 16" class="bi bi-info-square" fill="#626262" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>

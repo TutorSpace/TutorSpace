@@ -126,10 +126,6 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     });
 
-    // $('.modal-session #user-img').attr('src', $('.view-profile__user-info .user-img').attr('src'));
-
-    // $('.modal-session #user-name').html($('.view-profile__user-info .name').html());
-
     if(startTime) {
         $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
@@ -233,4 +229,46 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     }
 });
+
+$('.action-review').click(function() {
+    let url = $(this).attr('data-route-url');
+
+    bootbox.dialog({
+        message: `@include('session.report-session')`,
+        size: 'large',
+        centerVertical: true,
+        buttons: {
+            Cancel: {
+                label: 'Cancel',
+                className: 'btn btn-outline-primary px-4 fs-1-6',
+                callback: function(e) {}
+            },
+            Submit: {
+                label: 'Submit',
+                className: 'btn btn-primary px-4 fs-1-6',
+                callback: function(e) {
+                    JsLoadingOverlay.show(jsLoadingOverlayOptions);
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        success: (data) => {
+                            toastr.success(data.successMsg);
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1000);
+                        },
+                        error: function(error) {
+                            toastr.error('Something went wrong. Please try again.');
+                            console.log(error);
+                        },
+                        complete: () => {
+                            JsLoadingOverlay.hide();
+                        }
+                    });
+                }
+            }
+        }
+    });
+});
+
 </script>

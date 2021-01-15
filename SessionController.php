@@ -80,6 +80,14 @@ class SessionController extends Controller
         ]);
     }
 
+    public function review(Request $request, Session $session) {
+        // todo: validate that 1) the reviewer is the student and the reviewee is the tutor of this session, 2) have not reviewed this session before
+
+        return response()->json([
+            'successMsg' => 'Successfully posted the review!'
+        ]);
+    }
+
     // todo: NATE
     // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
