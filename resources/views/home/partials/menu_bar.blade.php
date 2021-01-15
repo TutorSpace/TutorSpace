@@ -11,7 +11,7 @@
     </div>
     <ul class="toggle-after-list">
         <li class="toggle-after-list-item">
-            <a class="toggle-after-list-content" href="#">
+            <a class="toggle-after-list-content" href="{{ route('home') }}">
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class="toggle-after-list-item">
-            <a class="toggle-after-list-content" href="#">
+            <a class="toggle-after-list-content" href="{{ route('home.tutor-sessions') }}">
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
@@ -27,7 +27,7 @@
             </a>
         </li>
         <li class="toggle-after-list-item">
-            <a class="toggle-after-list-content" href="#">
+            <a class="toggle-after-list-content" href="{{ route('home.forum-activities') }}">
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
@@ -35,7 +35,7 @@
             </a>
         </li>
         <li class="toggle-after-list-item">
-            <a class="toggle-after-list-content" href="#">
+            <a class="toggle-after-list-content" href="{{ route('home.profile') }}">
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-home')}}"></use>
                 </svg>
@@ -54,7 +54,6 @@
                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </a>
-
         </li>
         <li @if(Route::current()->getName() == 'home.tutor-sessions') class="active" @endif>
             <a href="{{ route('home.tutor-sessions') }}">
@@ -79,7 +78,7 @@
                     @if(
                     (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
 
-                    // todo: also true if user did 
+                    // todo: also true if user did
                     )
                         <span class="notification-dot">
                         <svg width="7" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
