@@ -60,7 +60,7 @@
             $starRating = $user->getAvgRating();
         @endphp
         @for ($i = 1; $i <= 5; $i++)
-            @if ($i < $starRating)
+            @if ($i <= $starRating)
             <svg class="full">
                 <use xlink:href="assets/sprite.svg#icon-star-full"></use>
             </svg>
