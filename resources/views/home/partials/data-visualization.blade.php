@@ -92,6 +92,7 @@
         drawGraph();
     });
 
+    @if(Auth::user()->is_tutor)
     const oneStar = {{Auth::user()->getStarReviewCounts(1)}} ;
     const twoStar = {{Auth::user()->getStarReviewCounts(2)}};
     const threeStar = {{Auth::user()->getStarReviewCounts(3)}};
@@ -99,7 +100,6 @@
     const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
     var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
-    // data = [1,2,3,4,5];
     var backgroundColor = [
                 '#6749DF',
                 '#8B73EB',
@@ -108,11 +108,11 @@
                 '#D9D2F4',
             ];
     var labels =  [
-            'Five Star',
-            'Four Star',
-            'Three Star',
-            'Two Star',
-            'One Star',
+            'Five-Star',
+            'Four-Star',
+            'Three-Star',
+            'Two-Star',
+            'One-Star',
         ]
     var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
@@ -121,7 +121,6 @@
         labels = ["No Available Ratings"];
         legendPosition = "bottom";
     }
-
 
     var ratingChart = document.getElementById('rating-chart');
     data = {
@@ -172,5 +171,5 @@
         },
 
     });
-
+    @endif
 </script>
