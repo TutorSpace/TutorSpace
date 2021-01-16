@@ -22,7 +22,7 @@ bg-student
 
 @include('partials.nav')
 
-<div class="chatting container-fluid">
+<div class="chatting container-lg">
     <div class="row chatting-container">
         <div class="chatting__side-bar--left">
             @include('chatting.side-bar--left')

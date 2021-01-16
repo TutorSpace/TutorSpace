@@ -9,7 +9,8 @@
     $padding-left: 2.5rem;
 
     &-container {
-        padding: $outer-padding-y $outer-padding-x;
+        // padding: $outer-padding-y $outer-padding-x;
+        padding: 3rem 3rem;
         height: calc(100vh - #{$nav-height});
     }
 
@@ -46,6 +47,42 @@
 
         @include respond(md) {
             flex: 0 0 28rem;
+        }
+
+        @include respond(extra-sm) {
+            flex: 0 0 15rem;
+
+            .heading {
+                font-size: 2.2rem !important;
+                margin-left: 1rem !important;
+            }
+
+            .msg {
+                .box {
+                    padding: 1rem 1.5rem 1rem .5rem !important;
+                }
+
+                .img-container {
+                    display: none;
+                }
+
+                .content-container {
+                    width: 100% !important;
+                    padding: 0 !important;
+
+                    .content-1__content {
+                        font-size: 1.4rem !important;
+                    }
+
+                    .content-2 {
+                        font-size: 1.2rem !important;
+                    }
+                }
+
+                .time {
+                    display: none;
+                }
+            }
         }
 
         #btn-back {
