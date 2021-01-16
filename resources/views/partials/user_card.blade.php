@@ -6,7 +6,7 @@
     "
     data-user-id="{{ $user->id }}"
 >
-    @can('show-bookmark-svg', $user)
+    @can('bookmark-tutor', $user)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
         <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
@@ -38,7 +38,7 @@
         {{ $user->tutorLevel->tutor_level }} Tutor
     </span>
     <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ route('chatting.index') }}">Chat</a>
-    <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">Request a Session</a>
+    <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) . '?request=true' }}">Request a Session</a>
 
     @else
     <span class="user-info mt-1">Student</span>

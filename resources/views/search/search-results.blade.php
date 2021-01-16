@@ -9,7 +9,7 @@
         <span class="user-level mr-auto">
             {{ $user->tutorLevel->tutor_level }} Tutor
         </span>
-        @can('show-bookmark-svg', $user)
+        @can('bookmark-tutor', $user)
         <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
             @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
             <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
@@ -80,13 +80,13 @@
             ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
-        @if (!Auth::check() || (Auth::check() && $user->email != Auth::user()->email))
+        @if (!Auth::check())
         <a class="btn btn-lg btn-chat btn-animation-y-sm" href="{{ $user->getChattingRoute() }}">
             Chat
         </a>
         @endif
 
-        @if (!Auth::check() || (Auth::check() && !Auth::user()->is_tutor))
+        @if (!Auth::check() || !Auth::user()->is_tutor)
         <a class="btn btn-lg btn-request btn-animation-y-sm" @auth href="{{ route('view.profile', $user->id) . '?request=true' }}" @endauth>
             Request a Session
         </a>

@@ -64,7 +64,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // users are allowed to bookmark their own tutor account
-        Gate::define('show-bookmark-svg', function($user, $bookmarkedUser) {
+        Gate::define('bookmark-tutor', function($user, $bookmarkedUser) {
             return
                 !Auth::check()
                 || (!Auth::user()->is_tutor && $bookmarkedUser->is_tutor);

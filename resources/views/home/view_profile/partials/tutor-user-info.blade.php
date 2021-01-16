@@ -1,5 +1,5 @@
 <section class="view-profile__user-info">
-    @can('show-bookmark-svg', $user)
+    @can('bookmark-tutor', $user)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
         <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
