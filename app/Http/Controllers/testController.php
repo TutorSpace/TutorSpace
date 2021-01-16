@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
-use App\Http\Controllers\payment\StripeApiController;
+use App\Http\Controllers\Payment\StripeApiController;
 
 class testController extends Controller
 {

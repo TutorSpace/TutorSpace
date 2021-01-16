@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\payment;
+namespace App\Http\Controllers\Payment;
 
 use App\CancellationPenalty;
 use App\User;
