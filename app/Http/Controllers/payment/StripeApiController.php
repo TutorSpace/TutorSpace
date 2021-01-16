@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\payment;
+namespace App\Http\Controllers\Payment;
 
 use App\CancellationPenalty;
 use App\User;
@@ -34,8 +34,6 @@ class StripeApiController extends Controller
 {
     private static $CANCEL_PENALTY_AMOUNT = 500;
 
-    // todo: NATE (根据.env里的app_env来决定用那个key)
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function __construct() {
         if (env('APP_ENV') == 'local'){
             Stripe::setApiKey(env('STRIPE_TEST_KEY'));
@@ -45,13 +43,9 @@ class StripeApiController extends Controller
         }
     }
 
-    // =========== stripe testing start =================
-    public function refundIndex() {
-        return view('payment.refund');
+    public function redirectToPayment(AppSession $session) {
+        return redirect($this->getPaymentUrl($session));
     }
-    // =========== stripe testing end =================
-
-
 
     // Generates a link for user to create/update account
     // Request should contain 'refresh_url' and 'return url'
@@ -296,12 +290,11 @@ class StripeApiController extends Controller
     }
 
     public function userRequestRefund(Request $request, AppSession $session) {
-        // todo: Nate add validation here
         // 1. the authenticated user must be the student in that session
         // 2. not refunded and already past
         // 3. transaction is paid
         $userId = Auth::user()->id;
-        $acceptedUserIds = array($session->tutor_id, $session->student_id);
+        $acceptedUserIds = array($session->student_id);
         // session validation
         if (!$session || !in_array($userId, $acceptedUserIds) || $session->is_cancel == 1 || $session->is_upcoming == 1 ) {
             return response()->json([

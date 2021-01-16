@@ -4,12 +4,25 @@
         .msgs {
             height: calc(100% - 16rem + 16rem);
         }
+
+        @include respond(md) {
+
+            .type-container {
+                display: none !important;
+            }
+
+            .notification-type-info {
+                padding-bottom: .5rem !important;
+            }
+        }
     }
 
     .notification-type-info {
         display: flex;
         justify-content: center;
         margin-top: 2rem;
+        border-bottom: 1px solid $color-grey-4;
+        padding-bottom: 2rem;
 
         .type-container {
             display: flex;
@@ -27,20 +40,6 @@
     }
 
     &__content {
-        margin-left: 2rem;
-        flex: 1;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        background-color: $color-grey-4;
-        overflow: scroll;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
 
         $padding: 3rem;
         &__header {
@@ -51,6 +50,7 @@
             padding: $padding;
             flex: 1;
             overflow: scroll;
+            background-color: #E3E3E3;
 
             &::-webkit-scrollbar {
                 display: none;

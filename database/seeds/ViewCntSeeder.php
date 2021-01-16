@@ -12,11 +12,14 @@ class ViewCntSeeder extends Seeder
      */
     public function run()
     {
+        $userIds = DatabaseSeeder::$userIds;
+        $postIds = DatabaseSeeder::$postIds;
+
         // generate post views
         for($i = 0; $i < 1000; $i++) {
             DB::table('views')->insert([
                 'viewable_type' => 'App\Post',
-                'viewable_id' => rand(1, 14),
+                'viewable_id' => $userIds[rand(0, 11)],
                 'viewed_at' => Carbon::now()->subDays($i % 3 == 0 ? 0 : rand(1, 30))
             ]);
         }
@@ -25,11 +28,10 @@ class ViewCntSeeder extends Seeder
         for($i = 0; $i < 1000; $i++) {
             DB::table('views')->insert([
                 'viewable_type' => 'App\User',
-                'viewable_id' => rand(1, 7),
+                'viewable_id' => $userIds[rand(1, 7)],
                 'viewed_at' => Carbon::now()->subDays($i % 3 == 0 ? 0 : rand(1, 30))
             ]);
         }
-
 
     }
 }

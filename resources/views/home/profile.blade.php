@@ -159,7 +159,14 @@ bg-student
                         Please Enter a Valid Hourly Rate.
                     </p>
                     @endif
-                    <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        @if(Auth::user()->is_tutor) Tutor @else Student @endif Information
+                        @if (Auth::user()->courses()->doesntExist())
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
                             <label for="course" class="profile__label">
@@ -185,7 +192,7 @@ bg-student
 
                         <div class="boxes boxes__course flex-100">
                             @foreach(Auth::user()->courses as $course)
-                            <span class="box p-relative" type="button">
+                            <span class="box p-relative" type="button" style="background-color: {{ $course->color }}; color: white;">
                                 @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id',
                                 Auth::id())->exists())
                                 <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512"
@@ -218,7 +225,14 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Forum Settings</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        Forum Settings
+                        @if (Auth::user()->tags()->doesntExist())
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
                             <label for="tag" class="profile__label">Tags you are interested in</label>
@@ -228,7 +242,7 @@ bg-student
 
                         <div class="boxes boxes__forum flex-100">
                             @foreach((Auth::user())->tags as $tag)
-                            <span class="box p-relative">
+                            <span class="box p-relative" style="background-color: {{ $tag->color }}; color: white;">
                                 <span class="label" data-tag-id={{$tag->id}}>{{ $tag->tag }}</span>
                                 <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -243,7 +257,16 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        Payment Methods
+                        @if (
+                        (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
+                        || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards()))
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
                     <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
@@ -260,9 +283,6 @@ bg-student
                             </div>
 
                         </div>
-
-
-
 
                         @endif
                     </div>
@@ -421,7 +441,9 @@ bg-student
         })
     }
 
+@if (!Auth::user()->is_invalid)
     displayCards();
+@endif
 
     function handleDelete(){
         var btnDelete = $(".btn-delete");
@@ -509,10 +531,9 @@ bg-student
                     cards
                 } = data;
                 cards.forEach((card,idx) => {
-
                     // get card brand and include svg
                     var cardBrand;
-                    if (card.brand == "american express"){
+                    if (card.brand == "amex"){
                         cardBrand = `@include('payment.partials.card-svg.american-express-svg')`;
                     }else if (card.brand == "discover"){
                         cardBrand = `@include('payment.partials.card-svg.discover-svg')`;
@@ -528,11 +549,8 @@ bg-student
 
                     // prepend cards
                     $('.payment-cards').prepend(`
-
-
                             <div class="bank-card `+
                             (card.is_default == 'false'? `bg-non-default`:`bg-default`)
-
                             +`
                              m-3">
                                 <div class="overlay"></div>
@@ -555,25 +573,17 @@ bg-student
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
                                     </div>
                                 </div>
-
-
-
-
                                 `+
-
                                 (card.is_default == 'false'?`
                                     <div class="bank-card-btns">
                                         <button data-id=${idx} class="btn btn-delete">Delete</button>
                                         <button data-id=${idx} class="btn btn-set-default">Set As Default</button>
                                     </div>
-
                                 `:`
                                     <div class="bank-card-btns">Default Payment</div>
                                 `)
                                 +`
-
                             </div>
-
                     `);
                 });
 

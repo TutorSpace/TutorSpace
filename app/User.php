@@ -8,10 +8,10 @@ use App\Message;
 
 use App\Session;
 use App\Chatroom;
-use App\TutorLevel;
 use Carbon\Carbon;
-
+use App\TutorLevel;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -20,12 +20,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Log;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Uuid;
 
     /**
      * The attributes that are mass assignable.
@@ -45,6 +45,9 @@ class User extends Authenticatable
 
     CONST RECOMMENDED_TUTORS_CACHE_KEY = 'RECOMMENDED_TUTORS';
 
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     // customized reset password
     public function sendPasswordResetNotification($token)
     {
@@ -52,12 +55,11 @@ class User extends Authenticatable
     }
 
     public function getChattingRoute() {
-        if(Auth::check()) {
+        if(Auth::check() && Auth::id() != $this->id) {
             return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
         } else {
             return "#";
         }
-
     }
 
     public function getIntroduction() {
@@ -240,9 +242,9 @@ class User extends Authenticatable
                                 ->where('users.email', '!=', $this->email)
                                 ->get();
             $recommendedTutors = $recommendedTutors
-                                    ->random(min(4, $recommendedTutors->count()));
+                                    ->random(min(3, $recommendedTutors->count()));
 
-            if($recommendedTutors->count() < 4) {
+            if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
                 $tutors = User::where('users.is_tutor', true)
                             ->where(function($query) {
@@ -255,20 +257,20 @@ class User extends Authenticatable
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
                             ->get();
-                // I want to get a total of (4 - $recommendedTutors->count()) tutors here
-                $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
+                // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
 
                 $recommendedTutors = $recommendedTutors->merge($tutors);
 
-                // if there are still < 4 tutors, then randomly pick from the tutors
-                if($recommendedTutors->count() < 4) {
+                // if there are still < 3 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::where('users.is_tutor', true)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
                                     ->get();
-                    // I want to get a total of (4 - $recommendedTutors->count()) tutors here
-                    $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
+                    // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
@@ -320,7 +322,12 @@ class User extends Authenticatable
     }
 
     public function getAvgRating() {
-        return number_format((float)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
+        $reviews = $this->aboutReviews();
+        if($reviews->exists()) {
+            return number_format((double)$this->aboutReviews()->avg('star_rating'), 1, '.', '');
+        } else {
+            return 'N/A';
+        }
     }
 
 
@@ -387,7 +394,8 @@ class User extends Authenticatable
             $query->where('from', $this->id)->where('to', $otherUser->id);
         })->orWhere(function($query) use ($otherUser) {
             $query->where('to', $this->id)->where('from', $otherUser->id);
-        })->get();
+        })->orderBy('created_at')
+        ->get();
     }
 
     public function getChatrooms() {
@@ -400,9 +408,8 @@ class User extends Authenticatable
 
     // get all distinct participated posts
     // participated: my own posts, I followed, I reply directly
-    public function getParticipatedPosts(){
-        return Post::select("posts.*")
-            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
+    public function participatedPosts(){
+        return Post::leftJoin('post_user', 'post_user.post_id','=','posts.id')
             ->leftJoin('replies','replies.post_id','=','posts.id')
             ->where('posts.user_id',$this->id)
             ->orWhere('post_user.user_id',$this->id)
@@ -410,8 +417,7 @@ class User extends Authenticatable
                 $query->where('replies.is_direct_reply', '=', 1)
                       ->Where('replies.user_id', '=', $this->id);
             })
-            ->distinct()
-            ->get();
+            ->distinct();
     }
 
     public static function updateVerifyStatus() {
@@ -459,7 +465,7 @@ class User extends Authenticatable
     }
 
     // IMPORTANT! : NOTE this function updates all users with the same email
-    // add user experience and update level 
+    // add user experience and update level
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
             $allUsersWithEmail = User::where("email",$this->email)->get();
@@ -481,7 +487,7 @@ class User extends Authenticatable
         return $this->tutorLevel->tutor_level;
     }
 
-    
+
     // return tutor_level : String
     // edge case: returns "" if there's no next level
     public function nextLevel() {
@@ -500,26 +506,4 @@ class User extends Authenticatable
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
     }
 
-
-
-
-    // ========================= below are legacy code =============
-    public function pastTutors($num) {
-        $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
-                ->join('users', 'sessions.tutor_id', '=', 'users.id')
-                ->where('student_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->groupBy('sessions.tutor_id')
-                ->limit($num)
-                ->orderBy('date', 'DESC')
-                ->get();
-
-        return $pastTutors;
-    }
-
-    // check whether the user with $user_id is bookmarked by the current user
-    public function bookmarked($userId) {
-        return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
-    }
 }

@@ -19,7 +19,6 @@ $('.action-refund').click(function() {
         url: $(this).closest('.info-box').attr('data-route-url'),
         success: (data) => {
             toastr.success(data.successMsg);
-            console.log(data);
         },
         error: function(error) {
             toastr.error('Something went wrong. Please try again.');
@@ -30,3 +29,6 @@ $('.action-refund').click(function() {
         }
     });
 });
+
+
+

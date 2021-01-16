@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\payment\StripeApiController;
+use App\Http\Controllers\Payment\StripeApiController;
 class TutorRequestController extends Controller
 {
     // TODO: double check this function
+    // todo: must be at least 1 hour prior to the session start time
+    // todo: must have already set up the payment method
     public function acceptTutorRequest(Request $request, TutorRequest $tutorRequest) {
         $tutorId = $tutorRequest->tutor_id;
         $studentId = $tutorRequest->student_id;

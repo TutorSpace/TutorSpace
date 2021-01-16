@@ -51,3 +51,6 @@ html,body
     overflow-x: hidden;
 }
 
+img {
+    border: 1px solid transparentize($color: $color-grey, $amount: .5);
+}

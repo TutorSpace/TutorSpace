@@ -51,7 +51,9 @@ let calendarOptions = {
     },
     select: function (selectionInfo) {
         @auth
-        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) {
+            return false;
+        }
 
         startTime = moment(selectionInfo.start);
         endTime = moment(selectionInfo.end);
@@ -66,7 +68,6 @@ let calendarOptions = {
         @else
         $('.overlay-student').show();
         @endauth
-
     },
     eventClick: function (eventClickInfo) {
         eventClickInfo.jsEvent.preventDefault(); // don't let the browser navigate

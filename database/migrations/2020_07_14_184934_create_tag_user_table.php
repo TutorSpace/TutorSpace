@@ -14,7 +14,7 @@ class CreateTagUserTable extends Migration
     public function up()
     {
         Schema::create('tag_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->unsignedBigInteger('tag_id');
             $table->primary(array('user_id', 'tag_id'));
 

@@ -15,8 +15,8 @@ class CreatePostUserTable extends Migration
     {
         // this table is for the follow relationship
         Schema::create('post_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('post_id');
+            $table->uuid('user_id');
             $table->primary(array('post_id', 'user_id'));
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');

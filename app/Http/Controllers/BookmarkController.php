@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BookmarkController extends Controller
 {
@@ -18,24 +19,22 @@ class BookmarkController extends Controller
         ]);
     }
 
+    // users are allowed
     public function store(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->email) {
-            Auth::user()->bookmarkedUsers()->attach($user);
+        Gate::authorize('bookmark-tutor', $user);
+        Auth::user()->bookmarkedUsers()->attach($user);
 
-            return response()->json([
-                'successMsg' => 'Successfully bookmarked the user.'
-            ]);
-        }
+        return response()->json([
+            'successMsg' => 'Successfully bookmarked the user.'
+        ]);
     }
 
     public function delete(Request $request, User $user) {
-        if($user->is_tutor && !Auth::user()->is_tutor && $user->email != Auth::user()->email) {
-            Auth::user()->bookmarkedUsers()->detach($user);
+        Gate::authorize('bookmark-tutor', $user);
+        Auth::user()->bookmarkedUsers()->detach($user);
 
-            return response()->json([
-                'successMsg' => 'Successfully unbookmarked the user.'
-            ]);
-        }
-
+        return response()->json([
+            'successMsg' => 'Successfully unbookmarked the user.'
+        ]);
     }
 }

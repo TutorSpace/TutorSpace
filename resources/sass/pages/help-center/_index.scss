@@ -69,11 +69,19 @@
                     color: $color-black-2;
                     outline: none !important;
                     font-weight: bolder;
-                    font-size: 1.8rem;
+                    font-size: 2rem;
                     margin-bottom: 1.5rem;
                 }
 
+                p {
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                }
             }
+        }
+
+        a {
+            color: currentColor;
         }
     }
 

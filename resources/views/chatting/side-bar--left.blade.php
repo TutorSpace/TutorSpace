@@ -1,4 +1,6 @@
-<h4 class="heading">Message</h4>
+<div class="heading-container">
+    <h4 class="heading">Messages</h4>
+</div>
 {{-- <form class="search-bar-container" method="GET" action="#">
     <input type="text" class="search-bar form-control form-control-lg" placeholder="Search...">
     <svg>
@@ -12,7 +14,7 @@
         @endphp
         @if ($chatroom->hasMessages())
             @include('chatting.side-bar-chatting-msg', [
-                'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
+                'unRead' => App\Chatroom::haveUnreadMessagesWith($otherUserId),
                 'time' => $chatroom->getLatestMessageTime(),
                 'user' => App\User::find($otherUserId),
                 'message' => $chatroom->getLatestMessage()

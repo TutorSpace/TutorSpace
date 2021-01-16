@@ -11,32 +11,15 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('reviews')->insert([
-            'star_rating' => 5,
-            'reviewer_id' => 1,
-            'reviewee_id' => 5,
-            'review' => 'This is testing review 1.'
-        ]);
+        // $userIds = DatabaseSeeder::$userIds;
+        // $pastSessionIds = DatabaseSeeder::$pastSessionIds;
 
-        DB::table('reviews')->insert([
-            'star_rating' => 3,
-            'reviewer_id' => 1,
-            'reviewee_id' => 5,
-            'review' => 'This is testing review 2.'
-        ]);
-
-        DB::table('reviews')->insert([
-            'star_rating' => 5,
-            'reviewer_id' => 1,
-            'reviewee_id' => 5,
-            'review' => 'This is testing review 3.'
-        ]);
-
-        DB::table('reviews')->insert([
-            'star_rating' => 4,
-            'reviewer_id' => 1,
-            'reviewee_id' => 5,
-            'review' => 'This is testing review 4.'
-        ]);
+        // DB::table('reviews')->insert([
+        //     'star_rating' => 4,
+        //     'reviewer_id' => $userIds[0],
+        //     'reviewee_id' => $userIds[2],
+        //     'review' => 'This is testing review 1.',
+        //     'session_id' => $pastSessionIds[0],
+        // ]);
     }
 }

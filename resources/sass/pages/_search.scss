@@ -9,6 +9,7 @@
 
     .filter {
         padding: 3rem 3rem;
+        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
 
         @include respond(md) {
             margin-bottom: 3rem;
@@ -303,26 +304,25 @@
                     }
                 }
 
-                .btn-request, .btn-chat {
+                .btn-request, .btn-chat, .btn-view {
                     position: absolute;
                     right: 0;
                     font-size: 1.6rem;
+                    width: 17ch;
 
                     @include respond(sm) {
                         font-size: 1.4rem;
                         padding: .4rem .8rem;
                     }
-
                 }
 
-                .btn-request {
+                .btn-request, .btn-view {
                     bottom: 0;
                     color: $color-white-dark-5;
                 }
 
                 .btn-chat {
                     bottom: 5rem;
-                    width: 17ch;
                     border: 1px solid currentColor;
 
                     @include respond(sm) {
@@ -347,7 +347,7 @@
 
 .bg-student {
     .search-results .search-result {
-        .btn-request {
+        .btn-request, .btn-view {
             background-color: $color-blue-primary;
         }
 
@@ -359,7 +359,7 @@
 
 .bg-tutor {
     .search-results .search-result {
-        .btn-request {
+        .btn-request, .btn-view {
             background-color: $color-purple-primary;
         }
 

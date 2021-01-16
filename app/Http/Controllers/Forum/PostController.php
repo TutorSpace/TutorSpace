@@ -122,7 +122,7 @@ class PostController extends Controller
             'tags'=>$request["tags"],
         ];
         $request->session()->flash('oldPostData', $oldPostData);
-        
+
         // validate
         $request->validate([
             'post-type' => [
@@ -344,7 +344,7 @@ class PostController extends Controller
         return view('forum.index', [
             'trendingTags' => Tag::getTrendingTags(),
             'youMayHelpWithPosts' => \Facades\App\Post::getYouMayHelpWith(),
-            'posts' => Auth::user()->postsReplied()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE),
+            'posts' => Auth::user()->participatedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Participated Posts'
         ]);
     }
@@ -515,7 +515,7 @@ class PostController extends Controller
                             'replies',
                             'tags'
                         ])
-                        ->whereDate('created_at', '>=', Carbon::now()->subDays(14))
+                        ->whereDate('created_at', '>=', Carbon::now()->subDays(60))
                         ->orderBy('created_at', 'desc')
                         ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Latest Posts',

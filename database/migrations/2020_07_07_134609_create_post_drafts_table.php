@@ -14,12 +14,12 @@ class CreatePostDraftsTable extends Migration
     public function up()
     {
         Schema::create('post_drafts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->text('content');
             $table->unsignedBigInteger('post_type_id');
             $table->string('tags');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

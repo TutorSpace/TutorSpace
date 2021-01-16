@@ -14,12 +14,12 @@ class CreateSessionBonusesTable extends Migration
     public function up()
     {
         Schema::create('session_bonuses', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
+            $table->uuid('id')->primary();
             $table->bigInteger('amount');
             $table->string('transfer_id');  // Stripe Transfer object id
             $table->string('transfer_reversal_id')->nullable();  // Stripe TransferReversal object id
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('session_id');
+            $table->uuid('user_id');
+            $table->uuid('session_id');
             $table->boolean('is_refunded')->default(0);
             $table->timestamps();
 

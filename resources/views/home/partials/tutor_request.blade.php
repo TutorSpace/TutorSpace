@@ -15,7 +15,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div>
-    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}" data-date="{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start) }}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -23,7 +23,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         @endif
         <div class="user-info">
             <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
-            <a class="content" href="#">
+            <a class="content" href="{{ route('view.profile', $student) }}">
                 {{ $student->first_name . " " . $student->last_name }}
             </a>
         </div>
@@ -76,8 +76,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                     <div>
                         <div class="user-info">
                             <img src="{{ Storage::url($student->profile_pic_url) }}" alt="profile-img">
-                            <a class="content" href="#">
-                                <!-- tutor name -->
+                            <a class="content" href="{{ route('view.profile', $student) }}">
                             </a>
                         </div>
                     </div>

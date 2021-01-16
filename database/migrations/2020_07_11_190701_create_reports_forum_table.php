@@ -15,7 +15,7 @@ class CreateReportsForumTable extends Migration
     {
         Schema::create('report_forum', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('reporter_id');
+            $table->uuid('reporter_id');
             $table->unsignedBigInteger('report_reason_id');
             $table->text('report');
             $table->string('report_for');

@@ -50,7 +50,7 @@ bg-student
                         <span class="mr-3 fc-black-post">Posted By</span>
                         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
-                        <a href="#" class="poster-name mr-4">
+                        <a href="{{ route('view.profile', $post->user) }}" class="poster-name mr-4">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}
                         </a>
                         @else
@@ -80,6 +80,7 @@ bg-student
                                             $tag->id
                                         ]
                                     ]) }}"
+                                    style="background-color: {{ $tag->color }}; color: white;"
                                 >{{ $tag->tag }}</a>
                             @endforeach
                         </div>
@@ -186,7 +187,7 @@ bg-student
                         <div class="left-container">
                             <img class="" src="{{ Storage::url($reply->user->profile_pic_url) }}" alt="user photo">
                             @if (!Auth::check() || (Auth::check() && Auth::user()->id != $reply->user->id))
-                            <a class="user-name user-info" href="#">
+                            <a class="user-name user-info" href="{{ route('view.profile', $reply->user) }}">
                                 {{ $reply->user->first_name }}
                             </a>
                             <span class="user-info fc-grey mt-1">
@@ -257,7 +258,7 @@ bg-student
                         >
                             <div class="followup__content">
                                 @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
-                                <a class="followup-to" href="#">
+                                <a class="followup-to" href="{{ route('view.profile', $followup->reply->user) }}">
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
                                 @endif
@@ -268,7 +269,7 @@ bg-student
                                     <span class="mr-1">{{ $followup->created_at }}</span>
                                     <span class="mr-1">by</span>
                                     @if (!Auth::check() || Auth::user()->id != $followup->user->id)
-                                    <a href="#" class="followup__user">
+                                    <a href="{{ route('view.profile', $followup->user) }}" class="followup__user">
                                         {{ $followup->user->first_name }}
                                     </a>
                                     @else

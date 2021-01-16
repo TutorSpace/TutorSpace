@@ -1,3 +1,4 @@
+import random
 import csv
 import mysql.connector
 import os
@@ -14,8 +15,6 @@ def read_from_csv(file_name):
             if line_count == 0:
                 line_count = 1
                 continue
-            # if not file_name == 'courses.csv' or (file_name == 'courses.csv' and row[1].startswith('CSCI')):
-                # res_list.append(row[1])
             res_list.append(row[1])
         return res_list
 
@@ -41,6 +40,29 @@ if __name__ == '__main__':
     # print('current directory:', os.getcwd())
     os.chdir('python_web_scraping')
 
+    # color pool
+    colorPool = [
+        '#DF7649',
+        '#A5D2D4',
+        '#D2C2FF',
+        '#F59300',
+    ]
+
+    colorDict = {}
+
+    # Courses
+    courses = []
+    courses += read_from_csv('courses.csv')
+
+    for course in courses:
+        prefix = course.split(" ")[0]
+        if not prefix in colorDict:
+            colorDict[prefix] = random.choice(colorPool)
+
+    values = [[item, colorDict[item.split(" ")[0]] if item.split(" ")[0] in colorDict else random.choice(colorPool)] for item in courses]
+
+    my_cursor.executemany(u"INSERT INTO `courses`(`course`, `color`) VALUES (%s, %s)", values)
+
     # Tags
     tags = []
 
@@ -50,15 +72,8 @@ if __name__ == '__main__':
     tags += read_from_csv('majors.csv')
     tags += read_from_csv('minors.csv')
 
-    values = [[item] for item in tags]
-    my_cursor.executemany(u"INSERT INTO `tags`(`tag`) VALUES (%s)", values)
-
-    # Courses
-    courses = []
-    courses += read_from_csv('courses.csv')
-
-    values = [[item] for item in courses]
-    my_cursor.executemany(u"INSERT INTO `courses`(`course`) VALUES (%s)", values)
+    values = [[item, colorDict[item.split(" ")[0]] if item.split(" ")[0] in colorDict else random.choice(colorPool)] for item in tags]
+    my_cursor.executemany(u"INSERT INTO `tags`(`tag`, `color`) VALUES (%s, %s)", values)
 
     # Majors
     majors = []

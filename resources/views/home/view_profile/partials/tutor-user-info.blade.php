@@ -1,4 +1,16 @@
 <section class="view-profile__user-info">
+    @can('bookmark-tutor', $user)
+    <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
+        @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
+        <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @else
+        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @endif
+    </svg>
+    @endcan
+
     <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img" id="profile-image" class="user-img">
 
     <h6 class="name">
@@ -56,13 +68,13 @@
         </svg>
     </div>
     <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
-        “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
+        “{{ $user->getIntroduction() }}”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::check() && Auth::user()->email != $user->email)
+        @if (!Auth::check() || Auth::id() != $user->id)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
-        @if (Auth::check() && Auth::user()->email != $user->email && !Auth::user()->is_tutor)
+        @if (!Auth::check() || !Auth::user()->is_tutor)
         <button id="tutor-profile-request-session" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm mt-3">Request a Session</button>
         @endif
     </div>
@@ -77,7 +89,7 @@
                     $courses = $user->courses;
                 @endphp
                 @foreach ($courses as $course)
-                <span class="course">
+                <span class="course" style="background-color: {{ $course->color }}; color: white;">
                     {{ $course->course }}
                 </span>
                 @endforeach
@@ -115,7 +127,7 @@
                 <span class="classifier">Followed</span>
             </div>
             <div class="statistics color-primary">
-                <span class="number color-primary">{{ $user->getParticipatedPosts()->count() }}</span>
+                <span class="number color-primary">{{ $user->participatedPosts()->count() }}</span>
                 <span class="classifier">Participated</span>
             </div>
         </div>

@@ -31,7 +31,7 @@ class SubscriptionController extends Controller
             ->notify(new EmailSubscription('Visitor', $request->input('email')));
 
         return response()->json([
-            'successMsg' => 'You successfully subscribed!'
+            'successMsg' => 'You have successfully subscribed to TutorSpace!'
         ]);
     }
 

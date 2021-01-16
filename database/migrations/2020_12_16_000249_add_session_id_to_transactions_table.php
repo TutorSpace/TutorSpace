@@ -14,10 +14,10 @@ class AddSessionIdToTransactionsTable extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->dropColumn('is_refund');
             $table->string('refund_id')->nullable();
             $table->string('invoice_id');
-            $table->unsignedBigInteger('session_id');
+            $table->uuid('session_id');
+            $table->timestamp('refund_requested_time')->nullable();
 
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade')->onUpdate('cascade');
         });
@@ -35,7 +35,7 @@ class AddSessionIdToTransactionsTable extends Migration
             $table->dropColumn('session_id');
             $table->dropColumn('invoice_id');
             $table->dropColumn('refund_id');
-            $table->boolean('is_refund');
+            $table->dropColumn('refund_requested_time');
         });
     }
 }

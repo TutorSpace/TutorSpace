@@ -6,26 +6,26 @@ use Auth;
 
 use App\User;
 use App\Course;
+use App\Review;
 use App\Session;
+use Carbon\Carbon;
 use App\TutorRequest;
 use App\PaymentMethod;
+use App\Rules\SameDay;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Rules\SessionOverlap;
 use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
-use App\Http\Controllers\payment\StripeApiController;
-use Illuminate\Support\Facades\Log;
-use App\Rules\SessionOverlap;
-use App\Rules\SessionDifferentUser;
-use App\Rules\SameDay;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Rules\SessionDifferentUser;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Payment\StripeApiController;
 
 class SessionController extends Controller
 {
-
-    // todo: NATE
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
+    // todo: check situations to cancel
     public function cancelSession(Request $request, Session $session) {
         $userId = Auth::user()->id;
         $request->validate([
@@ -80,16 +80,41 @@ class SessionController extends Controller
         ]);
     }
 
-    // todo: NATE
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
+    public function review(Request $request, Session $session) {
+        Gate::authorize('review-session', $session);
+
+        $request->validate([
+            'review' => [
+                'required'
+            ],
+            'star-rating' => [
+                'required',
+                'integer',
+                'max:5',
+                'min:1'
+            ]
+        ]);
+
+        $review = new Review();
+        $review->star_rating = $request->input('star-rating');
+        $review->review = $request->input('review');
+        $review->reviewer_id = Auth::id();
+        $review->session_id = $session->id;
+        $review->reviewee_id = $session->tutor->id;
+        $review->save();
+
+        return response()->json([
+            'successMsg' => 'Successfully posted the review!'
+        ]);
+    }
+
     public function scheduleSession(Request $request) {
         // including:
-        // 1. the upcoming session time validation (must be at least 30 minutes after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
+        // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
 
-        // todo: decide the time that the student make a tutor request and the tutor can accept the tutor request
-        $validStartTime = Carbon::now()->addMinutes(30);
+        $validStartTime = Carbon::now()->addMinutes(120);
         $request->validate([
             'tutorId' => [
                 'required',
@@ -100,8 +125,6 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-
-                //TODO: nate check same day, overlap
                 new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
@@ -134,7 +157,6 @@ class SessionController extends Controller
             $tutorRequest->hourly_rate = $tutor->hourly_rate;
             $tutorRequest->session_time_start = $startTime;
             $tutorRequest->session_time_end = $endTime;
-            // TODO: nate change to boolean
             if ($sessionType == "in-person"){
                 $tutorRequest->is_in_person = 1;
             }else if ($sessionType == "online"){
@@ -152,7 +174,7 @@ class SessionController extends Controller
                 ]
             );
         } else{
-            // TODO: no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
+            // no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
             return response()->json(
                 [
                     'redirectMsg' => route('home.profile'),

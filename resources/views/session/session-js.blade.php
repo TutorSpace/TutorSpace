@@ -45,12 +45,9 @@
                     e.gotoDate(date);
                 }, 500);
                 @endif
-
-
             },
             error: (error) => {
                 console.log(error);
-
             }
         });
     });
@@ -129,20 +126,19 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     });
 
-    // $('.modal-session #user-img').attr('src', $('.view-profile__user-info .user-img').attr('src'));
-
-    // $('.modal-session #user-name').html($('.view-profile__user-info .name').html());
-
     if(startTime) {
         $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
+    // console.log(calendarOptions.select);
+    // JSON.parse(JSON.stringify(calendarOptions)) => will lose the function
+    // let options = JSON.parse(JSON.stringify(calendarOptions));
+    // console.log(options.select);
+    // options.height = 250;
 
-    let options = JSON.parse(JSON.stringify(calendarOptions));
-
-    options.height = 250;
-    let e = new FullCalendar.Calendar($('#calendar-request-session')[0], options);
+    calendarOptions.height = 300
+    let e = new FullCalendar.Calendar($('#calendar-request-session')[0], calendarOptions);
     e.render();
     setTimeout(() => {
         e.destroy();
@@ -236,4 +232,53 @@ $('#tutor-profile-request-session').on('click',function() {
         }
     }
 });
+
+$('.action-review').click(function() {
+    let url = $(this).attr('data-route-url');
+
+    bootbox.dialog({
+        message: `@include('session.report-session')`,
+        size: 'large',
+        centerVertical: true,
+        buttons: {
+            Cancel: {
+                label: 'Cancel',
+                className: 'btn btn-outline-primary px-4 fs-1-6',
+                callback: function(e) {}
+            },
+            Submit: {
+                label: 'Submit',
+                className: 'btn btn-primary px-4 fs-1-6',
+                callback: function(e) {
+                    if (!$.trim($(".modal-session-report textarea").val())) {
+                        // textarea is empty or contains only white-space
+                        toastr.error('Please enter the details.')
+                        return false;
+                    }
+                    JsLoadingOverlay.show(jsLoadingOverlayOptions);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: $('.modal-session-report').serialize(),
+                        success: (data) => {
+                            toastr.success(data.successMsg);
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1000);
+                        },
+                        error: function(error) {
+                            toastr.error('Something went wrong. Please try again.');
+                            console.log(error);
+                        },
+                        complete: () => {
+                            JsLoadingOverlay.hide();
+                        }
+                    });
+                }
+            }
+        }
+    });
+});
+
 </script>

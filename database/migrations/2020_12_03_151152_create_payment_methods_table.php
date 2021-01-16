@@ -14,8 +14,8 @@ class CreatePaymentMethodsTable extends Migration
     public function up()
     {
         Schema::create('payment_methods', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
 
             $table->string('stripe_account_id');
             $table->string('stripe_customer_id');

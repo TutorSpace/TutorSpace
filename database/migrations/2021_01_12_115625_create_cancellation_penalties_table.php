@@ -14,8 +14,8 @@ class CreateCancellationPenaltiesTable extends Migration
     public function up()
     {
         Schema::create('cancellation_penalties', function (Blueprint $table) {
-            $table->bigIncrements('id')->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('id')->primary();
+            $table->uuid('user_id');
             $table->string('stripe_object_id');
             $table->boolean('is_successful')->default(0);
             $table->timestamps();

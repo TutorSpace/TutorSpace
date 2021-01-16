@@ -416,13 +416,13 @@
 
             .user-card {
                 margin-top: 1.5rem;
-                width: calc((100% - 2rem * 3) / 4);
-                min-width: 17.5rem;
+                width: calc((100% - 2rem * 2) / 3);
                 margin-right: 2rem;
+                max-width: 27rem;
                 color: $color-blue-primary;
 
-                // every 4 children
-                &:nth-child(4n + 4) {
+                // every 3 children
+                &:nth-child(3n + 3) {
                     margin-right: 0;
                 }
 

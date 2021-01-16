@@ -7,6 +7,12 @@
             <li class="footer__item">
                 <a href="{{ route('posts.index') }}" target="_blank">Forum</a>
             </li>
+            <li class="footer__item">
+                <a href="{{ route('invite.index') }}" target="_blank">Invite Center</a>
+            </li>
+            <li class="footer__item">
+                <a href="{{ route('search.index') }}" target="_blank">Find a Tutor</a>
+            </li>
         </ul>
 
         <ul class="footer__list">
@@ -14,7 +20,7 @@
                 <span>SUPPORT</span>
             </li>
             <li class="footer__item">
-                <a href="#" target="_blank">FAQ</a>
+                <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
             </li>
             <li class="footer__item">
                 <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>
@@ -74,7 +80,13 @@
             <span>OUR SERVICES</span>
         </li>
         <li class="footer-sm__item">
-            <a href="#" target="_blank">Forum</a>
+            <a href="{{ route('posts.index') }}" target="_blank">Forum</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('invite.index') }}" target="_blank">Invite Center</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('search.index') }}" target="_blank">Find a Tutor</a>
         </li>
     </ul>
 
@@ -83,7 +95,7 @@
             <span>SUPPORT</span>
         </li>
         <li class="footer-sm__item">
-            <a href="#" target="_blank">FAQ</a>
+            <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
         </li>
         <li class="footer-sm__item">
             <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>

@@ -11,9 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Post extends Model
 {
+    use Uuid;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected $guarded = [];
 
     CONST CACHE_KEY = 'POSTS';

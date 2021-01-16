@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $userIds = DatabaseSeeder::$userIds;
+
+        User::create([
+            'id' => $userIds[0],
             'first_name' => 'Shuaiqing',
             'last_name' => 'Luo',
             'email' => 'shuaiqin@usc.edu',
@@ -22,7 +26,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[1],
             'first_name' => 'student',
             'last_name' => 'tester',
             'email' => 'student@usc.edu',
@@ -31,7 +36,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[2],
             'first_name' => 'tutor',
             'last_name' => 'tester',
             'email' => 'tutor@usc.edu',
@@ -46,7 +52,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('173')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[3],
             'first_name' => 'tester',
             'last_name' => '1',
             'email' => 'tester1@usc.edu',
@@ -59,7 +66,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('103')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[4],
             'first_name' => 'tester',
             'last_name' => '2',
             'email' => 'tester2@usc.edu',
@@ -73,7 +81,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('199')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[5],
             'first_name' => 'tester',
             'last_name' => '3',
             'email' => 'tester3@usc.edu',
@@ -86,7 +95,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('143')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[6],
             'first_name' => 'tester',
             'last_name' => '4',
             'email' => 'tester4@usc.edu',
@@ -100,7 +110,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('11')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[7],
             'first_name' => 'tester',
             'last_name' => '5',
             'email' => 'tester5@usc.edu',
@@ -114,7 +125,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[8],
             'first_name' => 'Nate',
             'last_name' => 'Huang',
             'email' => 'huan773@usc.edu',
@@ -123,7 +135,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[9],
             'first_name' => 'Nate',
             'last_name' => 'Huang',
             'email' => 'huan773@usc.edu',
@@ -137,7 +150,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[10],
             'first_name' => 'Lihan',
             'last_name' => 'Zhu',
             'email' => 'lihanzhu@usc.edu',
@@ -146,7 +160,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('23')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[11],
             'first_name' => 'Lihan',
             'last_name' => 'Zhu',
             'email' => 'lihanzhu@usc.edu',
@@ -160,7 +175,8 @@ class UserSeeder extends Seeder
             'created_at' => Carbon::now()->subHours('193')
         ]);
 
-        DB::table('users')->insert([
+        User::create([
+            'id' => $userIds[12],
             'first_name' => 'Shuaiqing',
             'last_name' => 'Luo',
             'email' => 'shuaiqin@usc.edu',
@@ -178,28 +194,28 @@ class UserSeeder extends Seeder
 
         $userTags = [
             [
-                'user_id' => 1,
+                'user_id' => $userIds[0],
                 'tag_id' => 2
             ],[
-                'user_id' => 1,
+                'user_id' => $userIds[0],
                 'tag_id' => 3
             ],[
-                'user_id' => 1,
+                'user_id' => $userIds[0],
                 'tag_id' => 1
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[1],
                 'tag_id' => 17
             ],[
-                'user_id' => 1,
+                'user_id' => $userIds[1],
                 'tag_id' => 16
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[1],
                 'tag_id' => 15
             ],[
-                'user_id' => 1,
+                'user_id' => $userIds[2],
                 'tag_id' => 14
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[3],
                 'tag_id' => 1
             ]
         ];
@@ -207,66 +223,48 @@ class UserSeeder extends Seeder
 
         $courseUsers = [
             [
-                'user_id' => 1,
+                'user_id' => $userIds[0],
                 'course_id' => 2
             ],
             [
-                'user_id' => 2,
+                'user_id' => $userIds[1],
                 'course_id' => 2
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[1],
                 'course_id' => 4
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[2],
                 'course_id' => 5
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[3],
                 'course_id' => 6
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[4],
                 'course_id' => 7
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[5],
                 'course_id' => 8
             ],[
-                'user_id' => 2,
+                'user_id' => $userIds[6],
                 'course_id' => 9
             ],[
-                'user_id' => 3,
+                'user_id' => $userIds[7],
                 'course_id' => 3
             ],[
-                'user_id' => 4,
+                'user_id' => $userIds[8],
                 'course_id' => 5
             ],[
-                'user_id' => 4,
+                'user_id' => $userIds[9],
                 'course_id' => 6
             ],[
-                'user_id' => 5,
+                'user_id' => $userIds[10],
                 'course_id' => 1
             ],[
-                'user_id' => 6,
+                'user_id' => $userIds[11],
                 'course_id' => 3
             ],[
-                'user_id' => 7,
+                'user_id' => $userIds[12],
                 'course_id' => 52
-            ],[
-                'user_id' => 8,
-                'course_id' => 65
-            ],[
-                'user_id' => 9,
-                'course_id' => 55
-            ],[
-                'user_id' => 10,
-                'course_id' => 45
-            ],[
-                'user_id' => 11,
-                'course_id' => 35
-            ],[
-                'user_id' => 12,
-                'course_id' => 25
-            ],[
-                'user_id' => 13,
-                'course_id' => 15
             ]
         ];
         DB::table('course_user')->insert($courseUsers);

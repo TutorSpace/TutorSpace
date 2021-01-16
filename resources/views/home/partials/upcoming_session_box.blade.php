@@ -2,15 +2,17 @@
     <div class="info-box" data-session-id="{{ $session->id }}">
         <div class="user-info">
             <img src="{{ Storage::url(Auth::user()->is_tutor ? $session->student->profile_pic_url : $session->tutor->profile_pic_url) }}" alt="profile-img">
-            <a class="content" href="#">
-                @if (Auth::user()->is_tutor)
-                    {{ $session->student->first_name }}
-                    {{ $session->student->last_name }}
-                @else
-                    {{ $session->tutor->first_name }}
-                    {{ $session->tutor->last_name }}
-                @endif
+            @if (Auth::user()->is_tutor)
+            <a class="content" href="{{ route('view.profile', $session->student) }}">
+                {{ $session->student->first_name }}
+                {{ $session->student->last_name }}
             </a>
+            @else
+            <a class="content" href="{{ route('view.profile', $session->tutor) }}">
+                {{ $session->tutor->first_name }}
+                {{ $session->tutor->last_name }}
+            </a>
+            @endif
         </div>
         <div class="date">
             <span class="title">Date</span>

@@ -2,14 +2,14 @@
 <div class="search-result bg-white-dark-5">
     <div class="d-flex align-items-center mb-3">
         <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-photo mr-3">
-        <a class="user-name mr-3" href="#">{{ $user->first_name }} {{ $user->last_name }}</a>
+        <a class="user-name mr-3" href="{{ route('view.profile', $user) }}">{{ $user->first_name }} {{ $user->last_name }}</a>
         @if ($user->is_tutor_verified)
         @include('partials.svg-tutor-verified')
         @endif
         <span class="user-level mr-auto">
             {{ $user->tutorLevel->tutor_level }} Tutor
         </span>
-        @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
+        @can('bookmark-tutor', $user)
         <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
             @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
             <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
@@ -19,7 +19,7 @@
             <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
             @endif
         </svg>
-        @endunless
+        @endcan
 
     </div>
 
@@ -60,7 +60,7 @@
             $starRating = $user->getAvgRating();
         @endphp
         @for ($i = 1; $i <= 5; $i++)
-            @if ($i < $starRating)
+            @if ($i <= $starRating)
             <svg class="full">
                 <use xlink:href="assets/sprite.svg#icon-star-full"></use>
             </svg>
@@ -76,16 +76,24 @@
         <span class="rating">
             {{ $starRating }}
         </span>
-        <a class="review-cnt" href="#">
+        <a class="review-cnt" href="{{ route('view.profile', $user) }}">
             ({{ $user->about_reviews_count }} {{ $user->about_reviews_count == 0 ? 'review' : 'reviews' }})
         </a>
 
-        <a class="btn btn-lg btn-chat btn-animation-y-sm">
+        <a class="btn btn-lg btn-chat btn-animation-y-sm" href="{{ $user->getChattingRoute() }}">
             Chat
         </a>
-        <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">
+
+        @if (!Auth::check() || !Auth::user()->is_tutor)
+        <a class="btn btn-lg btn-request btn-animation-y-sm" @auth href="{{ route('view.profile', $user->id) . '?request=true' }}" @endauth>
             Request a Session
         </a>
+        @else
+        <a class="btn btn-lg btn-view btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">
+            View Profile
+        </a>
+        @endif
+
 
     </div>
 </div>

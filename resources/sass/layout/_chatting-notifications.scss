@@ -9,8 +9,22 @@
     $padding-left: 2.5rem;
 
     &-container {
-        padding: $outer-padding-y $outer-padding-x;
+        // padding: $outer-padding-y $outer-padding-x;
+        padding: 3rem 3rem;
         height: calc(100vh - #{$nav-height});
+        flex-wrap: nowrap;
+
+        @include respond(md) {
+            padding: 3rem 2rem;
+        }
+
+        @include respond(extra-sm) {
+            padding: 0 0;
+
+            .chatting__content {
+                margin-left: 0;
+            }
+        }
     }
 
     .search-bar-container {
@@ -42,9 +56,66 @@
         padding: 2rem 0 3rem 0;
         overflow: hidden;
         border-radius: 1rem;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 
         @include respond(md) {
-            flex: 0 0 28rem;
+            flex: 0 0 23rem;
+
+            .heading {
+                font-size: 3rem !important;
+                margin-left: 2rem !important;
+            }
+
+            .msg {
+                .img-container {
+                    display: none;
+                }
+
+                .box {
+                    padding-left: .5rem !important;
+                }
+
+                .content-container {
+                    width: 100% !important;
+
+                    .time {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @include respond(sm) {
+            .msg {
+                border-width: 4px !important;
+            }
+        }
+
+        @include respond(extra-sm) {
+            flex: 0 0 20rem;
+
+            .heading {
+                font-size: 2.8rem !important;
+                margin-left: 1.5rem !important;
+            }
+
+            .msg {
+                border-width: 3px !important;
+
+                .content-container {
+                    padding: 0 !important;
+
+                    .content-1__content {
+                        font-size: 1.8rem !important;
+                    }
+
+                    .content-2 {
+                        font-size: 1.6rem !important;
+                    }
+                }
+
+
+            }
         }
 
         #btn-back {
@@ -75,7 +146,6 @@
         }
 
         .msgs {
-            margin-top: 2rem;
             overflow: scroll;
 
             &::-webkit-scrollbar {
@@ -192,6 +262,7 @@
             width: 100%;
             box-shadow: 0px 1px 3rem rgba(0, 0, 0, 0.05);
             border-radius: 1rem 1rem 0px 0px;
+            border-bottom: 2px solid #E3E3E3;
             display: flex;
             align-items: center;
 

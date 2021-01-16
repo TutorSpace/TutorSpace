@@ -4,9 +4,14 @@ namespace App;
 
 use App\Reply;
 use Illuminate\Database\Eloquent\Model;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Reply extends Model
 {
+    use Uuid;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
     protected $guarded = [];
 
     // get all the followups with this reply as their base reply (contain the followups of the followups...)

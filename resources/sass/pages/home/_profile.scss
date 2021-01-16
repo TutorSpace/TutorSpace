@@ -40,6 +40,17 @@
 .profile {
     margin-top: unset !important;
 
+    .has-notification-dot {
+        position: relative;
+
+        svg {
+            position: absolute;
+            top: 0;
+            width: .9rem;
+            height: .9rem;
+        }
+    }
+
     &__text-container--white {
         background-color: $color-white-dark-5;
         width: 100%;

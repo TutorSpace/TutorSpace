@@ -162,5 +162,9 @@ $('#btn-invite, #tutor-profile-request-session, #btn-chat').click(function() {
     $('.overlay-student').show();
 });
 @endauth
+
+@if($request)
+$('#tutor-profile-request-session').click();
+@endif
 </script>
 @endsection

@@ -23,9 +23,8 @@ class ViewProfileController extends Controller
             Cookie::queue(Cookie::make($cookieName, 'true', 60));
         }
 
-        
         $toDisplayPosts = $request->input('display-forum-activities') || !$user->is_tutor;
-        
+
         // decide orderBy query
         $orderByQuery = POST::POPULARITY_FORMULA;
         if ($orderByOption == "popularity"){
@@ -53,7 +52,8 @@ class ViewProfileController extends Controller
             ->where('user_id', $user->id)
             ->orderByRaw($orderByQuery)
             ->get()
-            ->paginate(3) : []
+            ->paginate(3) : [],
+            'request' => $request->input('request')
         ]);
     }
 }

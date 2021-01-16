@@ -25,10 +25,7 @@ bg-student
         @include("forum.partials.forum-left")
         <section class="col-12 col-md-9 col-lg-55-p forum-content">
             <div class="forum-heading-img"></div>
-
-
             @include('forum.partials.search')
-
             <div class="post-previews">
                 @include('forum.partials.post-preview-general')
             </div>

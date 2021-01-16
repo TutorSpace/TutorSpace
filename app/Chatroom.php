@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Traits\HasCompositePrimaryKey;
 
-
-
 // IMPORTANT: chatroom must have smaller id as user_id_1 and larger as user_id_2
 class Chatroom extends Model
 {
@@ -24,10 +22,16 @@ class Chatroom extends Model
         return 'chatroom.' . Auth::id();
     }
 
-    // return true if the CURRENT user has unread messages
-    public static function haveUnreadMessages($otherUserId) {
+    // return true if the CURRENT user has unread messages with another user
+    public static function haveUnreadMessagesWith($otherUserId) {
         return Message::where('from', $otherUserId)
                         ->where('to', Auth::id())
+                        ->where('is_read', false)
+                        ->exists();
+    }
+
+    public static function haveUnreadMessages() {
+        return Message::where('to', Auth::id())
                         ->where('is_read', false)
                         ->exists();
     }
@@ -77,7 +81,7 @@ class Chatroom extends Model
         $userId2 = $user2->id;
 
         return Chatroom::where(function($query) use($userId1, $userId2) {
-            $query->where('user_id_1', $userId1 < $userId2 ? $userId1 : $userId2)->where('user_id_2', $userId1 > $userId2 ? $userId1 : $userId2);
+            $query->where('user_id_1', strcmp($userId1, $userId2) < 0 ? $userId1 : $userId2)->where('user_id_2', strcmp($userId1, $userId2) < 0 ? $userId2 : $userId1);
         })->exists();
     }
 
@@ -85,7 +89,7 @@ class Chatroom extends Model
         $otherUserId = $otherUser->id;
 
         return Chatroom::where(function($query) use($otherUserId) {
-            $query->where('user_id_1', $otherUserId < Auth::id() ? $otherUserId : Auth::id())->where('user_id_2', $otherUserId < Auth::id() ? Auth::id() : $otherUserId)->where('creator_user_id', Auth::id());
+            $query->where('user_id_1', strcmp($otherUserId, Auth::id()) < 0 ? $otherUserId : Auth::id())->where('user_id_2', strcmp($otherUserId, Auth::id()) < 0 ? Auth::id() : $otherUserId)->where('creator_user_id', Auth::id());
         })->exists();
     }
 

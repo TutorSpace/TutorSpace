@@ -22,7 +22,7 @@ bg-student
 
 @include('partials.nav')
 
-<div class="chatting container-fluid">
+<div class="chatting container-lg">
     <div class="row chatting-container">
         <div class="chatting__side-bar--left">
             @include('chatting.side-bar--left')
@@ -55,6 +55,7 @@ bg-student
 @endsection
 
 @section('js')
+
 <script>
     let currentUserId = "{{ Auth::id() }}";
     var pusher = new Pusher('d8a4fc3115898457a40f', {
@@ -86,7 +87,7 @@ bg-student
 
     function subscribeNewMessageChannel(otherUserId) {
         // subscribe to the channel
-        let channelName = Number(currentUserId) < Number(otherUserId) ? `private-message.${currentUserId}-${otherUserId}` : `private-message.${otherUserId}-${currentUserId}`;
+        let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}.${otherUserId}` : `private-message.${otherUserId}.${currentUserId}`;
 
         console.log('channelName: ' + channelName);
 

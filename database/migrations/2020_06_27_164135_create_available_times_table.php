@@ -15,7 +15,7 @@ class CreateAvailableTimesTable extends Migration
     {
         Schema::create('available_times', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('available_time_start');
             $table->timestamp('available_time_end');

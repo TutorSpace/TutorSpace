@@ -1,5 +1,5 @@
 <div class="chatting__content__header">
-    <a class="user-name" href="{{ $user->getChattingRoute() }}">
+    <a class="user-name" href="{{ route('view.profile', $user) }}">
         {{ $user->first_name }} {{ $user->last_name }}
     </a>
     <span class="other-info">
@@ -11,6 +11,11 @@
         {{ $user->tutorLevel->tutor_level }} Tutor
         @endif
     </span>
+    @if (!Auth::check() || !Auth::user()->is_tutor)
+    <a class="btn btn-request btn-primary" href="{{ route('view.profile', $user->id) . '?request=true' }}" target="_blank">
+        Request a Session
+    </a>
+    @endif
 </div>
 <div class="chatting__content__messages">
     @foreach (Auth::user()->getMessages($user) as $message)
