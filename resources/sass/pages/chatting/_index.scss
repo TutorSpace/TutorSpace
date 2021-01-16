@@ -14,6 +14,7 @@
     &__content {
         $padding: 3rem;
         &__header {
+            display: flex;
 
             .user-name {
                 color: $color-black-2;
@@ -25,6 +26,13 @@
                 margin-left: 1.3rem;
                 display: flex;
                 align-items: center;
+            }
+
+            #btn-request-session {
+                margin-left: auto;
+                font-size: 1.4rem;
+                padding: .8rem 2rem;
+                border-radius: 2rem;
             }
         }
 

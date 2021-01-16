@@ -55,6 +55,7 @@ bg-student
 @endsection
 
 @section('js')
+
 <script>
     let currentUserId = "{{ Auth::id() }}";
     var pusher = new Pusher('d8a4fc3115898457a40f', {
