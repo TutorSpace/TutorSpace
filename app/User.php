@@ -242,9 +242,9 @@ class User extends Authenticatable
                                 ->where('users.email', '!=', $this->email)
                                 ->get();
             $recommendedTutors = $recommendedTutors
-                                    ->random(min(4, $recommendedTutors->count()));
+                                    ->random(min(3, $recommendedTutors->count()));
 
-            if($recommendedTutors->count() < 4) {
+            if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
                 $tutors = User::where('users.is_tutor', true)
                             ->where(function($query) {
@@ -257,20 +257,20 @@ class User extends Authenticatable
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
                             ->get();
-                // I want to get a total of (4 - $recommendedTutors->count()) tutors here
-                $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
+                // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
 
                 $recommendedTutors = $recommendedTutors->merge($tutors);
 
-                // if there are still < 4 tutors, then randomly pick from the tutors
-                if($recommendedTutors->count() < 4) {
+                // if there are still < 3 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::where('users.is_tutor', true)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
                                     ->get();
-                    // I want to get a total of (4 - $recommendedTutors->count()) tutors here
-                    $tutors= $tutors->random(min(4 - $recommendedTutors->count(), $tutors->count()));
+                    // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
