@@ -33,6 +33,7 @@ use App\Notifications\UnpaidInvoiceReminder;
 class StripeApiController extends Controller
 {
     private static $CANCEL_PENALTY_AMOUNT = 500;
+    private static $APPLICATION_FEE_PERCENT = 0.1;
 
     public function __construct() {
         if (env('APP_ENV') == 'local'){
@@ -729,7 +730,7 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => $amount * 10,
+            'application_fee_amount' => round($amount * 100 * self::$APPLICATION_FEE_PERCENT),
         ]);
 
         // Save transaction in database
@@ -827,5 +828,25 @@ class StripeApiController extends Controller
         }
         $cancellation_penalty->user()->associate($user);
         $cancellation_penalty->save();
+    }
+
+    // Get the detailed amount of transaction for 'session'
+    public function retrieveTransactionDetails(AppSession $session) {
+        $tutor = $session->tutor;
+        $transaction = $session->transaction;
+
+        $bonus_rate = $tutor->getUserBonusRate();
+        $bonus = round($transaction->amount * $bonus_rate);
+        $application_fee = round($transaction->amount * self::$APPLICATION_FEE_PERCENT);
+        $stripe_payment_fee = round($transaction->amount * 0.029) + 30;  // https://stripe.com/pricing
+
+        return [
+            'amount' => $transaction->amount,
+            'application_fee' => $application_fee,
+            'bonus' => $bonus,
+            'stripe_payment_fee' => $stripe_payment_fee,
+            'tutor_receive' => $transaction->amount - $application_fee + $bonus,
+            'platform_receive' => $application_fee - $bonus - $stripe_payment_fee,
+        ];
     }
 }
