@@ -258,7 +258,7 @@ bg-student
 
                 <div class="profile__text-container--white">
                     <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
-                        Payment Methods
+                        Payment Methods (Powered by Stripe)
                         @if (
                         (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
                         || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards()))
@@ -320,6 +320,7 @@ bg-student
             return result.json();
         })
         .then(function(data) {
+            // console.log(data);
             var elements = stripe.elements();
             var style = {
                 base: {
@@ -388,6 +389,8 @@ bg-student
                 toastr.success("Added card successfully");
                 document.querySelector("#btn-add-payment-submit").disabled = true;
                 loading(false);
+
+                // console.log(result);
                 setTimeout(function () {
                     location.reload();
                 }, 1000);
@@ -430,7 +433,6 @@ bg-student
             'isFake':fake
         };
 
-
         return fetch("{{route('payment.stripe.set_invoice_payment_default') }}", {
         method: "POST",
         body: JSON.stringify(data),
@@ -463,10 +465,8 @@ bg-student
                 }
             })
             .catch(error=>{
-                // TODO: error handling
                 toastr.error(error);
             })
-
         });
     }
 
@@ -475,20 +475,17 @@ bg-student
         btnDefault.click(function(){
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
-            console.log(paymentMethodID);
             setCardAsDefault(paymentMethodID, true).then((res)=>{
-                // TODO: Success
                 if (res.errorMsg){
                     toastr.error(res.errorMsg);
                 }else{
-                    toastr.success("succesfully set card as default payment method")
+                    toastr.success("Succesfully set card as default payment method")
                     setTimeout(function () {
                         location.reload();
                     }, 1000);
                 }
             })
             .catch(error=>{
-                // TODO: error handling
                 toastr.error(error)
             })
 
@@ -603,7 +600,6 @@ bg-student
         // TODO: add loading
         postToConnectAccount().then((response) => {
             // TODO: hide loading
-
 
             // redirect to create stripe account
             if (response.stripe_url) {
