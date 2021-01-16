@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/abc', 'testController@test');
 Route::get('/test', 'testController@index');
 
 // autocomplete
@@ -19,7 +18,6 @@ Route::group([
     Route::get('/data-source/tags', 'AutoCompleteController@getTags')->name('autocomplete.tags')->withoutMiddleware(InvalidUser::class);
     Route::get('/data-source/school-years', 'AutoCompleteController@getSchoolYears')->name('autocomplete.school-years')->withoutMiddleware(InvalidUser::class);
 });
-
 
 // index page
 Route::get('/', 'GeneralController@index')->name('index');

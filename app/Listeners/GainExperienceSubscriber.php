@@ -33,8 +33,9 @@ class GainExperienceSubscriber
         Log::info('handleNotePosted triggered.');
         $post = $event->post;
         $user = $post->user;
-        // At most one post can be added to experience
+        // At most one post can be added to experience in one day
         if ($user->posts()->where('id', '!=', $post->id)
+                        // important: make sure post_type_id is "note"
                         ->where('post_type_id', 2)
                         ->whereDate('created_at', '=', Carbon::today()->toDateString())
                         ->exists()) {

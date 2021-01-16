@@ -185,7 +185,7 @@ bg-student
 
                         <div class="boxes boxes__course flex-100">
                             @foreach(Auth::user()->courses as $course)
-                            <span class="box p-relative" type="button">
+                            <span class="box p-relative" type="button" style="background-color: {{ $course->color }}; color: white;">
                                 @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id',
                                 Auth::id())->exists())
                                 <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512"
@@ -228,7 +228,7 @@ bg-student
 
                         <div class="boxes boxes__forum flex-100">
                             @foreach((Auth::user())->tags as $tag)
-                            <span class="box p-relative">
+                            <span class="box p-relative" style="background-color: {{ $tag->color }}; color: white;">
                                 <span class="label" data-tag-id={{$tag->id}}>{{ $tag->tag }}</span>
                                 <svg class="p-absolute remove" width="1em" height="1em" viewBox="0 0 16 16"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -260,9 +260,6 @@ bg-student
                             </div>
 
                         </div>
-
-
-
 
                         @endif
                     </div>

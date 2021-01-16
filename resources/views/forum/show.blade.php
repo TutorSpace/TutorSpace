@@ -80,6 +80,7 @@ bg-student
                                             $tag->id
                                         ]
                                     ]) }}"
+                                    style="background-color: {{ $tag->color }}; color: white;"
                                 >{{ $tag->tag }}</a>
                             @endforeach
                         </div>

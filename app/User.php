@@ -506,26 +506,4 @@ class User extends Authenticatable
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
     }
 
-
-
-
-    // ========================= below are legacy code =============
-    public function pastTutors($num) {
-        $pastTutors = Session::select('*', DB::raw('count(*) as count, max(date) as date'))
-                ->join('users', 'sessions.tutor_id', '=', 'users.id')
-                ->where('student_id', $this->id)
-                ->where('is_upcoming', 0)
-                ->where('is_canceled', 0)
-                ->groupBy('sessions.tutor_id')
-                ->limit($num)
-                ->orderBy('date', 'DESC')
-                ->get();
-
-        return $pastTutors;
-    }
-
-    // check whether the user with $user_id is bookmarked by the current user
-    public function bookmarked($userId) {
-        return $this->bookmarks()->where('id', '=', $userId)->count() > 0;
-    }
 }
