@@ -24,7 +24,7 @@ bg-student
 
 @include('partials.nav')
 
-<div class="notification container-fluid">
+<div class="notification container-lg">
     <div class="row notification-container">
         <div class="notification__side-bar--left">
             @include('notification.side-bar--left')

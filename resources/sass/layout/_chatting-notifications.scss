@@ -12,6 +12,18 @@
         // padding: $outer-padding-y $outer-padding-x;
         padding: 3rem 3rem;
         height: calc(100vh - #{$nav-height});
+
+        @include respond(md) {
+            padding: 3rem 2rem;
+        }
+
+        @include respond(extra-sm) {
+            padding: 0 0;
+
+            .chatting__content {
+                margin-left: 0;
+            }
+        }
     }
 
     .search-bar-container {
@@ -46,42 +58,59 @@
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 
         @include respond(md) {
-            flex: 0 0 28rem;
-        }
-
-        @include respond(extra-sm) {
-            flex: 0 0 15rem;
+            flex: 0 0 25rem;
 
             .heading {
-                font-size: 2.2rem !important;
-                margin-left: 1rem !important;
+                font-size: 3rem !important;
+                margin-left: 2rem !important;
             }
 
             .msg {
-                .box {
-                    padding: 1rem 1.5rem 1rem .5rem !important;
-                }
-
                 .img-container {
                     display: none;
                 }
 
+                .box {
+                    padding-left: .5rem !important;
+                }
+
                 .content-container {
                     width: 100% !important;
+
+                    .time {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @include respond(sm) {
+
+        }
+
+        @include respond(extra-sm) {
+            flex: 0 0 20rem;
+
+            .heading {
+                font-size: 2.8rem !important;
+                margin-left: 1.5rem !important;
+            }
+
+            .msg {
+
+                .content-container {
                     padding: 0 !important;
 
                     .content-1__content {
-                        font-size: 1.4rem !important;
+                        font-size: 1.8rem !important;
                     }
 
                     .content-2 {
-                        font-size: 1.2rem !important;
+                        font-size: 1.6rem !important;
                     }
                 }
 
-                .time {
-                    display: none;
-                }
+
             }
         }
 

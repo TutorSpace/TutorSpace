@@ -4,6 +4,17 @@
         .msgs {
             height: calc(100% - 16rem + 16rem);
         }
+
+        @include respond(md) {
+
+            .type-container {
+                display: none !important;
+            }
+
+            .notification-type-info {
+                padding-bottom: .5rem !important;
+            }
+        }
     }
 
     .notification-type-info {
