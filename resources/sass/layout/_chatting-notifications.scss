@@ -12,6 +12,7 @@
         // padding: $outer-padding-y $outer-padding-x;
         padding: 3rem 3rem;
         height: calc(100vh - #{$nav-height});
+        flex-wrap: nowrap;
 
         @include respond(md) {
             padding: 3rem 2rem;
@@ -58,7 +59,7 @@
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.05);
 
         @include respond(md) {
-            flex: 0 0 25rem;
+            flex: 0 0 23rem;
 
             .heading {
                 font-size: 3rem !important;
@@ -85,7 +86,9 @@
         }
 
         @include respond(sm) {
-
+            .msg {
+                border-width: 4px !important;
+            }
         }
 
         @include respond(extra-sm) {
@@ -97,6 +100,7 @@
             }
 
             .msg {
+                border-width: 3px !important;
 
                 .content-container {
                     padding: 0 !important;
