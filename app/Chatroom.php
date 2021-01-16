@@ -22,10 +22,16 @@ class Chatroom extends Model
         return 'chatroom.' . Auth::id();
     }
 
-    // return true if the CURRENT user has unread messages
-    public static function haveUnreadMessages($otherUserId) {
+    // return true if the CURRENT user has unread messages with another user
+    public static function haveUnreadMessagesWith($otherUserId) {
         return Message::where('from', $otherUserId)
                         ->where('to', Auth::id())
+                        ->where('is_read', false)
+                        ->exists();
+    }
+
+    public static function haveUnreadMessages() {
+        return Message::where('to', Auth::id())
                         ->where('is_read', false)
                         ->exists();
     }

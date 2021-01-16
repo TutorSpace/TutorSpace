@@ -14,7 +14,7 @@
         @endphp
         @if ($chatroom->hasMessages())
             @include('chatting.side-bar-chatting-msg', [
-                'unRead' => App\Chatroom::haveUnreadMessages($otherUserId),
+                'unRead' => App\Chatroom::haveUnreadMessagesWith($otherUserId),
                 'time' => $chatroom->getLatestMessageTime(),
                 'user' => App\User::find($otherUserId),
                 'message' => $chatroom->getLatestMessage()
