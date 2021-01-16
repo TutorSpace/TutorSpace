@@ -127,7 +127,7 @@
                 <span class="classifier">Followed</span>
             </div>
             <div class="statistics color-primary">
-                <span class="number color-primary">{{ $user->getParticipatedPosts()->count() }}</span>
+                <span class="number color-primary">{{ $user->participatedPosts()->count() }}</span>
                 <span class="classifier">Participated</span>
             </div>
         </div>
