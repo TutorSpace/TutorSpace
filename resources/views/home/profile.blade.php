@@ -421,7 +421,7 @@ bg-student
         })
     }
 
-@if (Auth::user()->is_invalid == false && Auth::user()->is_tutor == false)
+@if (!Auth::user()->is_invalid)
     displayCards();
 @endif
 
