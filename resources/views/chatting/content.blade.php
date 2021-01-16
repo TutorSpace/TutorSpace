@@ -11,9 +11,11 @@
         {{ $user->tutorLevel->tutor_level }} Tutor
         @endif
     </span>
-    <a class="btn btn-primary" id="btn-request-session" href="{{ route('view.profile', $user) . '?request=true' }}" target="_blank">
+    @if (!Auth::check() || !Auth::user()->is_tutor)
+    <a class="btn btn-request btn-primary" href="{{ route('view.profile', $user->id) . '?request=true' }}" target="_blank">
         Request a Session
     </a>
+    @endif
 </div>
 <div class="chatting__content__messages">
     @foreach (Auth::user()->getMessages($user) as $message)

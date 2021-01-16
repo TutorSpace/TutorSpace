@@ -71,10 +71,10 @@
         “{{ $user->getIntroduction() }}”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::check() && Auth::user()->email != $user->email)
+        @if (!Auth::check() || Auth::id() != $user->id)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
-        @if (Auth::check() && Auth::user()->email != $user->email && !Auth::user()->is_tutor)
+        @if (!Auth::check() || !Auth::user()->is_tutor)
         <button id="tutor-profile-request-session" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm mt-3">Request a Session</button>
         @endif
     </div>

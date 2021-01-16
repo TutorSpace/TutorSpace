@@ -19,10 +19,10 @@
         </svg>
     </div>
     <div class="intro font-italic fs-1-4 fc-grey hidden-2" data-target="intro-toggle">
-        “Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper ornare ut sapien eu nunc. Condimentum nisl tellus.”
+        “{{ $user->getIntroduction() }}”
     </div>
     <div class="button-container mt-3">
-        @if (Auth::check() && Auth::id() != $user->id)
+        @if (!Auth::check() || Auth::id() != $user->id)
         <a href="{{ $user->getChattingRoute() }}" class="btn fs-1-4 btn-primary btn-animation-y-sm" id="btn-chat">Chat</a>
         @endif
         <button id="btn-invite" class="btn fs-1-4 btn-outline-primary btn-animation-y-sm mt-3">Invite to be a Tutor</button>
