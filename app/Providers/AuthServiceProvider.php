@@ -9,6 +9,7 @@ use App\Chatroom;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\CustomClass\TimeOverlapManager;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -63,7 +64,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // users are allowed to bookmark their own tutor account
-        Gate::define('bookmark-tutor', function($user, $bookmarkedUser) {
+        Gate::define('show-bookmark-svg', function($user, $bookmarkedUser) {
             return
                 !Auth::check()
                 || (!Auth::user()->is_tutor && $bookmarkedUser->is_tutor);

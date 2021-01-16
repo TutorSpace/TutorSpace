@@ -6,7 +6,7 @@
     "
     data-user-id="{{ $user->id }}"
 >
-    @unless ((Auth::check() && Auth::user()->is_tutor) || !$user->is_tutor)
+    @can('show-bookmark-svg', $user)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
         <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
@@ -16,7 +16,7 @@
         <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
         @endif
     </svg>
-    @endunless
+    @endcan
 
     <img class="user-image" src="{{ Storage::url($user->profile_pic_url) }}" alt="user image">
 
