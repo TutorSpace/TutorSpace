@@ -232,9 +232,16 @@
                 width: 0.75rem;
                 height: 0.75rem;
 
+                @include respond(lg) {
+                    right: 1.3rem;
+                }
+
                 @include respond(md) {
-                    width: 0.75rem;
-                    height: 0.75rem;
+                    right: 1.1rem;
+                }
+
+                @include respond(sm) {
+                    right: 1rem;
                 }
             }
         }
