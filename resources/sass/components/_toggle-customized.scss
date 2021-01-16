@@ -42,7 +42,7 @@
                     transition: all .5s;
 
                     svg {
-                        stroke: $color-white;
+                        stroke: currentColor;
                         fill: currentColor;
                     }
                 }
@@ -51,7 +51,7 @@
                     width: 4rem;
                     height: 4rem;
                     fill: $color-white;
-                    margin-right: 1rem;
+                    margin-right: 2rem;
                 }
 
                 span {
