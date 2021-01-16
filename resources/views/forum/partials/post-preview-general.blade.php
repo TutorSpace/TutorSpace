@@ -34,7 +34,7 @@
         <div class="post__bottom">
             <div class="tags">
                 @foreach ($post->tags->take(3) as $tag)
-                    <span class="tag">{{ $tag->tag }}</span>
+                    <span class="tag" style="background-color: {{ $tag->color }}; color: white;">{{ $tag->tag }}</span>
                 @endforeach
                 @if ($post->tags_count > 3)
                     <span class="fc-grey">and {{ $post->tags_count - 3 }} more...</span>

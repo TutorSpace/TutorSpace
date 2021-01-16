@@ -191,7 +191,6 @@ $('#btn-reset').click(function() {
     location.reload(true);
 });
 
-// appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
 function appendNewBox(dataType, tagName, tagId, parentSelector) {
     if(dataType == 'data-course-id') {
         // todo: make ajax call to see whether the course is verified
@@ -203,9 +202,7 @@ function appendNewBox(dataType, tagName, tagId, parentSelector) {
         </svg>` : '';
     }
 
-
-
-    let ele = `<span class="box p-relative" style="background-color: rgb(83, 150, 172); color: rgb(0, 0, 0);">
+    let ele = `<span class="box p-relative" style="background-color: #F59300; color: white;">
     ${svgVerify ?? ''}`
         +
         `<span class="label" ` + dataType  + `=` + tagId + `>` + tagName + `</span>
@@ -214,8 +211,6 @@ function appendNewBox(dataType, tagName, tagId, parentSelector) {
         </svg>
     </span>
     `;
-
-    console.log(ele);
 
     $(parentSelector).append(ele);
 }

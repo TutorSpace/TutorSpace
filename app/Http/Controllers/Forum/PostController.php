@@ -515,7 +515,7 @@ class PostController extends Controller
                             'replies',
                             'tags'
                         ])
-                        ->whereDate('created_at', '>=', Carbon::now()->subDays(14))
+                        ->whereDate('created_at', '>=', Carbon::now()->subDays(60))
                         ->orderBy('created_at', 'desc')
                         ->paginate(self::$POSTS_PER_PAGE),
             'pageTitle' => 'Forum - Latest Posts',
