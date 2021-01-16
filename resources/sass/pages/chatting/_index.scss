@@ -1,6 +1,11 @@
 .chatting {
 
     &__side-bar--left {
+        .heading-container {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid $color-grey-4;
+        }
+
         .msgs {
             height: calc(100% - 12.5rem + 12.5rem);
         }

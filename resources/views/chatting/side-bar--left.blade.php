@@ -1,4 +1,6 @@
-<h4 class="heading">Message</h4>
+<div class="heading-container">
+    <h4 class="heading">Messages</h4>
+</div>
 {{-- <form class="search-bar-container" method="GET" action="#">
     <input type="text" class="search-bar form-control form-control-lg" placeholder="Search...">
     <svg>

@@ -10,6 +10,8 @@
         display: flex;
         justify-content: center;
         margin-top: 2rem;
+        border-bottom: 1px solid $color-grey-4;
+        padding-bottom: 2rem;
 
         .type-container {
             display: flex;
