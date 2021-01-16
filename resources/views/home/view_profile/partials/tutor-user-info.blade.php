@@ -1,4 +1,16 @@
 <section class="view-profile__user-info">
+    @can('show-bookmark-svg', $user)
+    <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
+        @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
+        <use class="" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="hidden bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @else
+        <use class="hidden" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-empty')}}"></use>
+        <use class="bookmarked" xlink:href="{{asset('assets/sprite.svg#icon-bookmark-fill')}}"></use>
+        @endif
+    </svg>
+    @endcan
+
     <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img" id="profile-image" class="user-img">
 
     <h6 class="name">
