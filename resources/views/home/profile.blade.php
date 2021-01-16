@@ -810,6 +810,9 @@ bg-student
 
 </script>
 
+<script>
+    let isTutor = {{ Auth::user()->is_tutor }};
+</script>
 <script src="{{ asset('js/home/profile.js') }}"></script>
 
 @if ((isset($registerToBeTutor1) && $registerToBeTutor1))

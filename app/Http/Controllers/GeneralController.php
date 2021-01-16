@@ -94,6 +94,10 @@ class GeneralController extends Controller
 
     //add or remove the course id to/from the user
     public function addRemoveCourseToProfile(Request $request) {
+        if(Auth::user()->is_tutor && Auth::user()->courses()->count() < 2) {
+            return abort(401);
+        }
+
         $courseId = $request->input('courseId') ?? Course::where('course', $request->input('courseName'))->first()->id;
 
         if(Auth::user()->courses()->find($courseId)) {
