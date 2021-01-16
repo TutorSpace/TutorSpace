@@ -22,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Post' => 'App\Policies\PostPolicy',
-        'App\Message' => 'App\Policies\MessagePolicy'
+        'App\Message' => 'App\Policies\MessagePolicy' // users are allowed to chat with the account of the opposite identity but can not chat with themselves
     ];
 
     /**
@@ -62,5 +62,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->id == $session->student_id && !Review::where('session_id', $session->id)->exists();
         });
 
+        // users are allowed to bookmark their own tutor account
+        Gate::define('bookmark-tutor', function($user, $bookmarkedUser) {
+            return
+                !Auth::check()
+                || (!Auth::user()->is_tutor && $bookmarkedUser->is_tutor);
+        });
     }
 }
