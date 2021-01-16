@@ -43,7 +43,7 @@ $("#input-profile-pic").change(function() {
             $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
         },
         error: function(error) {
-            toastr.error('Something went wrong. Please try again.');
+            toastr.error('The file you uploaded is either not supported or too large. Please try uploading another image again.');
             console.log(error);
         },
         complete: () => {
