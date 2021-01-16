@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 class GainExperienceSubscriber
 {
     // Experience amounts
-    private static $RATE_HOUR_EXP = 5;
+    private static $RATE_HOUR_EXP = 10;
     private static $NOTE_EXP = 10;
     private static $LIKE_EXP = 1;
     private static $BEST_REPLY_EXP = 25;
@@ -21,8 +21,7 @@ class GainExperienceSubscriber
         Log::info('handleTutoringHourEnded triggered.');
         $tutor = $event->tutor;
         $session = $event->session;
-        $avg_rating = (float)$tutor->aboutReviews()->avg('star_rating');
-        $total_exp = round(self::$RATE_HOUR_EXP * $avg_rating * $session->getDurationInHour());
+        $total_exp = round(self::$RATE_HOUR_EXP * $session->getDurationInHour());
         $tutor->addExperience($total_exp);
     }
 
