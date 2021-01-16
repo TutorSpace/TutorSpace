@@ -107,8 +107,6 @@ class SessionController extends Controller
         ]);
     }
 
-    // todo: NATE
-    // 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok
     public function scheduleSession(Request $request) {
         // including:
         // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)

@@ -24,23 +24,30 @@
     @endif
 
     @if ($user->is_tutor)
-    <span class="user-info text-capitalize mt-1 d-flex justify-content-center align-items-center">
-        @if ($user->is_tutor_verified)
-        @include('partials.svg-tutor-verified')
+        <span class="user-info text-capitalize mt-1 d-flex justify-content-center align-items-center">
+            @if ($user->is_tutor_verified)
+            @include('partials.svg-tutor-verified')
+            @endif
+            {{ $user->tutorLevel->tutor_level }} Tutor
+        </span>
+        {{-- no need to do validation for chat here, as validation is inside User.php --}}
+        <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
+        @if (!Auth::check() || !Auth::user()->is_tutor)
+        <a class="btn btn-lg btn-request btn-animation-y-sm" @auth href="{{ route('view.profile', $user->id) . '?request=true' }}" @endauth>
+            Request a Session
+        </a>
+        @else
+        <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) }}">
+            View Profile
+        </a>
         @endif
-        {{ $user->tutorLevel->tutor_level }} Tutor
-    </span>
-    {{-- no need to do validation for chat here, as validation is inside User.php --}}
-    <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
-    <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) . '?request=true' }}">Request a Session</a>
-
     @else
-    <span class="user-info mt-1">Student</span>
-    <a class="btn btn-chat btn-animation-y-sm mt-4" href="{{ route('chatting.index') }}">Chat</a>
+        <span class="user-info mt-1">Student</span>
+        <a class="btn btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
 
-    @if (!App\User::existTutor($user->email))
-    <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
-    @endif
+        {{-- @if (!App\User::existTutor($user->email)) --}}
+        <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
+        {{-- @endif --}}
     @endif
 
 </div>
