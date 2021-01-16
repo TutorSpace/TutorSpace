@@ -30,10 +30,11 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content" id="notification__content">
-            <div>
+            {{-- <div> --}}
                 @include('notification.content.sessions.session-complete-tutor')
-            </div>
+            {{-- </div> --}}
 
+{{--
             <div>
                 @include('notification.content.sessions.session-complete-student')
             </div>
@@ -93,7 +94,7 @@ bg-student
             </div>
             <div>
                 @include('notification.content.forum.be-marked-as-best-reply')
-            </div>
+            </div> --}}
 
 
 
@@ -106,16 +107,16 @@ bg-student
 
 @section('js-2')
 <script>
-    $('#notification__content > *').addClass('hidden');
-    $(document).on("click",".msgs .msg", function () {
-        $('#notification__content > *').addClass('hidden');
-        var children = $('.msgs')[0].children;
-        for (var i = 0; i < children.length; i++) {
-            var tableChild = children[i];
-            if(tableChild == $(this)[0]) {
-                $(`#notification__content > :nth-child(${i+1})`).removeClass('hidden');
-            }
-        }
-    });
+    // $('#notification__content > *').addClass('hidden');
+    // $(document).on("click",".msgs .msg", function () {
+    //     $('#notification__content > *').addClass('hidden');
+    //     var children = $('.msgs')[0].children;
+    //     for (var i = 0; i < children.length; i++) {
+    //         var tableChild = children[i];
+    //         if(tableChild == $(this)[0]) {
+    //             $(`#notification__content > :nth-child(${i+1})`).removeClass('hidden');
+    //         }
+    //     }
+    // });
 </script>
 @endsection
