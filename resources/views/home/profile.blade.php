@@ -597,16 +597,15 @@ bg-student
 
 
     $("#btn-setup-payment").click(function () {
-        // TODO: add loading
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
         postToConnectAccount().then((response) => {
-            // TODO: hide loading
+            JsLoadingOverlay.hide();
 
             // redirect to create stripe account
             if (response.stripe_url) {
                 window.location = response.stripe_url;
-                // TODO: error
             } else {
-
+                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.')
             }
 
         })
