@@ -21,7 +21,7 @@ use App\Rules\SessionDifferentUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\payment\StripeApiController;
+use App\Http\Controllers\Payment\StripeApiController;
 
 class SessionController extends Controller
 {

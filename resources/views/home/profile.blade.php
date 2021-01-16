@@ -159,7 +159,14 @@ bg-student
                         Please Enter a Valid Hourly Rate.
                     </p>
                     @endif
-                    <h5 class="w-100 font-weight-bold mb-4">Tutor Information</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        @if(Auth::user()->is_tutor) Tutor @else Student @endif Information
+                        @if (Auth::user()->courses()->doesntExist())
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
                             <label for="course" class="profile__label">
@@ -218,7 +225,14 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Forum Settings</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        Forum Settings
+                        @if (Auth::user()->tags()->doesntExist())
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
                             <label for="tag" class="profile__label">Tags you are interested in</label>
@@ -243,7 +257,16 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4">Payment Methods</h5>
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        Payment Methods
+                        @if (
+                        (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
+                        || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards()))
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
+                        </svg>
+                        @endif
+                    </h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
                     <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
