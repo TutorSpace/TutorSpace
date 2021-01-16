@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     public function getChattingRoute() {
-        if(Auth::check()) {
+        if(Auth::check() && Auth::id() != $this->id) {
             return route('chatting.index') . "?toViewOtherUserId=" . $this->id;
         } else {
             return "#";

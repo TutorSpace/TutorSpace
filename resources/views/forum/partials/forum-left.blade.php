@@ -93,7 +93,10 @@
         @endauth
     </ul>
 
-    @if(in_array(Route::current()->getName(), ['posts.show']))
+    @if(
+        in_array(Route::current()->getName(), ['posts.show'])
+        // && (!Auth::check() || $user->email == Auth::user()->email)
+    )
         @include('partials.user_card', ['user' => $post->user])
     @endif
 

@@ -1,11 +1,4 @@
-<div class="
-    user-card
-    @if (Route::current()->getName() == 'posts.show' && Auth::check() && $user->email == Auth::user()->email)
-    hidden
-    @endif
-    "
-    data-user-id="{{ $user->id }}"
->
+<div class="user-card" data-user-id="{{ $user->id }}">
     @can('bookmark-tutor', $user)
     <svg class="svg-bookmark" data-user-id="{{ $user->id }}">
         @if(!Auth::check() || Auth::user()->bookmarkedUsers()->where('id', $user->id)->doesntExist()))
@@ -37,7 +30,8 @@
         @endif
         {{ $user->tutorLevel->tutor_level }} Tutor
     </span>
-    <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ route('chatting.index') }}">Chat</a>
+    {{-- no need to do validation for chat here, as validation is inside User.php --}}
+    <a class="btn btn-lg btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
     <a class="btn btn-lg btn-request btn-animation-y-sm" href="{{ route('view.profile', $user->id) . '?request=true' }}">Request a Session</a>
 
     @else
