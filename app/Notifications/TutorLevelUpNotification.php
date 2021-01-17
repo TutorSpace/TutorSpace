@@ -7,22 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Http\Controllers\payment\StripeApiController;
-
-class InvoicePaymentFailed extends Notification
+class TutorLevelUpNotification extends Notification
 {
     use Queueable;
-
-    private $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($session)
+    public function __construct()
     {
-        $this->session = $session;
+        //
     }
 
     /**
@@ -33,7 +29,7 @@ class InvoicePaymentFailed extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -44,14 +40,10 @@ class InvoicePaymentFailed extends Notification
      */
     public function toMail($notifiable)
     {
-        // Retrieve payment url and send
-        $payment_url = app(StripeApiController::class)->getPaymentUrl($this->session);
         return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your payment for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
-                    ->line('Payment URL: ' . $payment_url)
-                    ->action('Pay', $payment_url)
-                    ->line('Thank you for using our platform!');
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**

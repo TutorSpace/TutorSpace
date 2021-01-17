@@ -55,6 +55,7 @@
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\InvoicePaymentFailed')
+            {{-- todo: finish this --}}
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
@@ -63,6 +64,26 @@
                     'notificationContent' => '',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\InvoicePayment')
+            {{-- todo: finish this --}}
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => '',
+                    'notificationContent' => '',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\TutorLevelUpNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => '',
+                    'notificationContent' => '',
+                    'notifId' => $notification->id
+            ])
+        @endif
         @endif
     @endforeach
 

@@ -102,10 +102,6 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Course');
     }
 
-    public function characteristics() {
-        return $this->belongsToMany('App\Characteristic');
-    }
-
     public function tutorLevel() {
         return $this->belongsTo('App\TutorLevel');
     }
@@ -421,7 +417,7 @@ class User extends Authenticatable
     }
 
     public function verifiedCourses() {
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course', 'verified_courses', 'user_id', 'course_id');
     }
 
     public static function updateVerifyStatus() {
