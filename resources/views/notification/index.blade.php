@@ -75,7 +75,7 @@ bg-student
 
             </div>
             <div>
-                @include('notification.content.tutorspace.payment-fail')
+
             </div>
             <div>
                 @include('notification.content.tutorspace.payment-fail-again')

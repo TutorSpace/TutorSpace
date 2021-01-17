@@ -18,20 +18,16 @@ class NotificationController extends Controller
 
         if($notif->type == 'App\Notifications\WelcomeMessageNotification') {
             $view = view(
-                Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [
-
-            ])->render();
+                Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [])->render();
         } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
             $view = view(
-                'notification.content.tutorspace.tutor-verification-initiated', [
-
-            ])->render();
+                'notification.content.tutorspace.tutor-verification-initiated', [])->render();
         } else if($notif->type == 'App\Notifications\TutorVerificationCompleted') {
             $view = view(
-                'notification.content.tutorspace.tutor-verification-processed', [
-
-            ])->render();
-
+                'notification.content.tutorspace.tutor-verification-processed', [])->render();
+        } else if($notif->type == 'App\Notifications\InvoicePaymentFailed') {
+            $view = view(
+                'notification.content.tutorspace.payment-fail', [])->render();
         }
 
         $notif->markAsRead();

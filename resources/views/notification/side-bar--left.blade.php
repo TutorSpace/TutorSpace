@@ -54,6 +54,15 @@
                     'notificationContent' => 'We have successfully processed your tutor verification request.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\InvoicePaymentFailed')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => '',
+                    'notificationContent' => '',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 
