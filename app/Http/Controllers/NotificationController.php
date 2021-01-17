@@ -32,12 +32,13 @@ class NotificationController extends Controller
                 'notification.content.tutorspace.payment-fail', [
                     'paymentUrl' => app(StripeApiController::class)->getPaymentUrl(Session::find($notif->data['session']['id'])),
                     'session' => Session::find($notif->data['session']['id'])
-
                 ])->render();
-        } else if($notif->type == 'App\Notifications\InvoicePayment') {
+        } else if($notif->type == 'App\Notifications\InvoicePaid') {
             // todo: test & finish this
             $view = view(
-                'notification.content.tutorspace.invoice-success', [])->render();
+                'notification.content.tutorspace.invoice-success', [
+                    'session' => Session::find($notif->data['session']['id'])
+                ])->render();
         } else if($notif->type == 'App\Notifications\TutorLevelUpNotification') {
             $view = view(
                 'notification.content.tutorspace.tutor-level-up', [
