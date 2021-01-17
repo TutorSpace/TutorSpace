@@ -60,8 +60,8 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => '',
-                    'notificationContent' => '',
+                    'notificationHeader' => 'Payment Failed',
+                    'notificationContent' => 'Oops. Your auto-payment failed. Please use the link below to make the payment.',
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\InvoicePayment')

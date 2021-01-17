@@ -63,7 +63,7 @@ class InvoicePaymentFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'session' => $this->session
         ];
     }
 }

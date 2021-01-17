@@ -15,13 +15,13 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
-use App\Transaction;
-use App\PaymentMethod;
-use App\TutorLevel;
 use Carbon\Carbon;
-
+use App\TutorLevel;
+use App\Transaction;
 use App\TutorRequest;
+
 use Facades\App\Post;
+use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
@@ -33,11 +33,12 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EmailVerification;
 
+use App\Notifications\InvoicePaymentFailed;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
-use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 use App\Http\Controllers\payment\StripeApiController;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
@@ -46,7 +47,8 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        Auth::user()->addExperience(10000);
+        // Auth::user()->addExperience(10000);
+        Auth::user()->notify(new InvoicePaymentFailed(Session::find('957de7ab-0037-4bc6-bdec-88e26daa9660')));
     }
 
 }

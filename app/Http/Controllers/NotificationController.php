@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Session;
 use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Payment\StripeApiController;
 
 class NotificationController extends Controller
 {
@@ -26,9 +28,12 @@ class NotificationController extends Controller
             $view = view(
                 'notification.content.tutorspace.tutor-verification-processed', [])->render();
         } else if($notif->type == 'App\Notifications\InvoicePaymentFailed') {
-            // todo: test & finish this
             $view = view(
-                'notification.content.tutorspace.payment-fail', [])->render();
+                'notification.content.tutorspace.payment-fail', [
+                    'paymentUrl' => app(StripeApiController::class)->getPaymentUrl(Session::find($notif->data['session']['id'])),
+                    'session' => Session::find($notif->data['session']['id'])
+
+                ])->render();
         } else if($notif->type == 'App\Notifications\InvoicePayment') {
             // todo: test & finish this
             $view = view(
