@@ -7,14 +7,14 @@
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h5 class="color-primary">You have received your session fee.</h5>
+            <h6 class="color-primary">You have received your session fee.</h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
 
-            <h5 class="mt-5 color-primary">Session Details</h5>
+            <h6 class="mt-5 color-primary">Session Details</h6>
 
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <h5 class="color-primary">Price Summary</h5>
+            <h6 class="color-primary">Price Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Income
                 <span class="color-primary">$ 26</span>
             </p>
@@ -66,7 +66,7 @@
                 <span class="color-primary">$ 24</span>
             </p>
 
-            <h5 class="color-primary">Having Trouble with this session?</h5>
+            <h6 class="color-primary">Having Trouble with this session?</h6>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>

@@ -7,7 +7,7 @@
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h5 class="color-primary">Your refund request has been accepted.</h5>
+            <h6 class="color-primary">Your refund request has been accepted.</h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,

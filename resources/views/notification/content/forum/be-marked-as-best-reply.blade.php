@@ -7,9 +7,9 @@
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h5 class=" text-center">
+            <h6 class=" text-center">
                 Your reply has been Marked as Best Reply.
-            </h5>
+            </h6>
 
             <div class="quote">
                 <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">

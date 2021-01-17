@@ -11,7 +11,7 @@
         <div class="container content">
             <p class="pt-3 fs-2-4 text-center fw-500">Neno Enim</p>
 
-            <h5 class="mt-3 color-primary">Session Details</h5>
+            <h6 class="mt-3 color-primary">Session Details</h6>
 
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <h5 class="color-primary">Price Summary</h5>
+            <h6 class="color-primary">Price Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Fee (per hour)
                 <span class="color-primary">$ 24</span>
             </p>

@@ -17,7 +17,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         <div class="container content">
             <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}</p>
 
-            <h5 class="mt-5 color-primary">Session Details</h5>
+            <h6 class="mt-5 color-primary">Session Details</h6>
 
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
@@ -46,7 +46,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 </div>
             </div>
 
-            <h5 class="color-primary">Price Summary</h5>
+            <h6 class="color-primary">Price Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Fee (per hour)
                 <span class="color-primary">$ {{ $hourlyRate }}</span>
             </p>
@@ -58,7 +58,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <span class="color-primary">$ {{ $price }}</span>
             </p>
 
-            <h5 class="color-primary">Having Trouble with this session?</h5>
+            <h6 class="color-primary">Having Trouble with this session?</h6>
 
             <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
 
