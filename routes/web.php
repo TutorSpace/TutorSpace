@@ -198,6 +198,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::get('/', 'NotificationController@index')->name('notifications.index');
+    Route::get('/{notifId}', 'NotificationController@show')->name('notifications.show');
 });
 
 // switch account
@@ -206,7 +207,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
-    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
+    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch')->withoutMiddleware(InvalidUser::class);
     Route::get('/register-to-be-tutor', 'SwitchAccountController@indexRegisterToBeTutor')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor');
     Route::get('/register-to-be-tutor-2', 'SwitchAccountController@indexRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.index.register-to-be-tutor-2');
     Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
@@ -223,6 +224,16 @@ Route::group([
 
 // tutor verification
 Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware('isTutor');
+
+// admin routes
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'isAdmin']
+], function() {
+    Route::get('/tutor-verification', 'AdminController@indexTutorVerification')->name('admin.tutor-verification');
+    Route::post('/add-verified-course/{user}', 'AdminController@addVerifiedCourse')->name('admin.course.post');
+    Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
+});
 
 // sessions
 Route::group([
@@ -272,7 +283,6 @@ Route::group([
 
 // ================== Stripe testing ======================
 // Route::get('/payment/stripe_index', 'Payment\StripeApiController@index');
-// Route::get('/payment/refund', 'Payment\StripeApiController@refundIndex');
 
 // Route::get('/payment/save_card', 'Payment\StripeApiController@testSaveCard');
 

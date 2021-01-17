@@ -351,9 +351,9 @@ class User extends Authenticatable
         return $starCnt;
     }
 
-
+    // no need to check invalid
     public function hasDualIdentities() {
-        return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
+        return User::where('email', $this->email)->count() == 2;
     }
 
     public function upcomingSessions() {
@@ -420,6 +420,10 @@ class User extends Authenticatable
             ->distinct();
     }
 
+    public function verifiedCourses() {
+        return $this->belongsToMany('App\Course');
+    }
+
     public static function updateVerifyStatus() {
         // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
@@ -468,14 +472,14 @@ class User extends Authenticatable
     // add user experience and update level
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
-            $allUsersWithEmail = User::where("email",$this->email)->get();
-            foreach ($allUsersWithEmail as $user) {
-                $user->experience_points += $experienceToAdd;
-                // update tutor level id in user
-                $user->tutor_level_id = TutorLevel::getLevelFromExperience($user->experience_points)->id;
-                // save
-                $user->save();
-            }
+        $allUsersWithEmail = User::where("email",$this->email)->get();
+        foreach ($allUsersWithEmail as $user) {
+            $user->experience_points += $experienceToAdd;
+            // update tutor level id in user
+            $user->tutor_level_id = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+            // save
+            $user->save();
+        }
     }
 
     // return tutor level bonus rate of current user as DOUBLE

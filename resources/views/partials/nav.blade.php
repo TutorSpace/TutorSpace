@@ -53,9 +53,14 @@
                     Invite
                 </a>
                 @if (isset($isAdmin))
-                <a class="nav__item link-refund" href="{{ route('payment.stripe.refund.index') }}">
-                    Refund
-                </a>
+                <div>
+                    <a class="nav__item" href="{{ route('payment.stripe.refund.index') }}">
+                        Refund
+                    </a>
+                    <a class="nav__item" href="{{ route('admin.tutor-verification') }}">
+                        Tutor Verification
+                    </a>
+                </div>
                 @endif
             </div>
             <div class="nav-toggle-sm">

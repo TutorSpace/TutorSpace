@@ -30,8 +30,9 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content" id="notification__content">
+            @include('notification.content.placeholder')
             {{-- <div> --}}
-                @include('notification.content.sessions.session-complete-tutor')
+                {{-- @include('notification.content.sessions.session-complete-tutor') --}}
             {{-- </div> --}}
 
 {{--
@@ -65,17 +66,13 @@ bg-student
             <div>
                 @include('notification.content.tutorspace.invite-to-be-tutor')
             </div>
-            <div>
-                @include('notification.content.tutorspace.welcome-msg-student')
+
             </div>
             <div>
-                @include('notification.content.tutorspace.welcome-msg-tutor')
+
             </div>
             <div>
-                @include('notification.content.tutorspace.tutor-verification-initiated')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.tutor-verification-processed')
+
             </div>
             <div>
                 @include('notification.content.tutorspace.payment-fail')
@@ -118,5 +115,28 @@ bg-student
     //         }
     //     }
     // });
+
+    $(document).on("click",".msgs .msg", function () {
+        let notifId = $(this).attr('data-notif-id');
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type:'GET',
+            url: '{{ url('/notifications') }}' + '/' + notifId,
+            success: (data) => {
+                let { view } = data;
+
+                $('#notification__content').html(view);
+
+                $(`.msgs .msg[data-notif-id=${notifId}]`).removeClass('unread');
+            },
+            error: function(error) {
+                console.log(error);
+                toastr.error(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
 </script>
 @endsection

@@ -49,7 +49,7 @@
             Courses:
         </span>
         @foreach ($user->courses as $course)
-        <span class="course">
+        <span class="course" style="background-color: {{ $course->color }}; color: white;">
             {{ $course->course }}
         </span>
         @endforeach

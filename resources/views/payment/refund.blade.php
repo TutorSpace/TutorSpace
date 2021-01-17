@@ -3,12 +3,15 @@
 
 @section('links-in-head')
 <style>
+    h3 {
+        margin-top: 12rem;
+    }
     main {
-        margin-top: 15rem;
+        margin-top: 3rem;
         font-size: 16px;
     }
     table {
-        max-width: 80vw;
+        max-width: 90vw;
     }
 
     th {
@@ -40,13 +43,22 @@
 @endsection
 
 @section('body-class')
-index
+
+bg-white-dark-4
+
+@if(Auth::check() && Auth::user()->is_tutor)
+bg-tutor
+@else
+bg-student
+@endif
+
 @endsection
 
 @section('content')
 
 @include('partials.nav')
 
+<h3 class="text-center">Refund</h3>
 <main class="d-flex justify-content-center">
     <table class="table">
         <thead class="bg-primary">

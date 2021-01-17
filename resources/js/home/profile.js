@@ -131,6 +131,11 @@ $('.profile__text__edit').on('click', function() {
 
 
 $('.boxes__course').on('click', '.box .remove', function() {
+    if(isTutor && $('.boxes__course .box').length < 2) {
+        toastr.error('You must have at least one course.')
+        return;
+    }
+
     var courseId = $(this).siblings('.label').attr('data-course-id');
     $(this).parent().remove();
     ajaxAddRemoveCourse({
@@ -191,10 +196,9 @@ $('#btn-reset').click(function() {
     location.reload(true);
 });
 
-function appendNewBox(dataType, tagName, tagId, parentSelector) {
+function appendNewBox(dataType, tagName, tagId, parentSelector, isVerifiedCourse = false) {
     if(dataType == 'data-course-id') {
-        // todo: make ajax call to see whether the course is verified
-        let isVerified = true;
+        let isVerified = isVerifiedCourse;
 
         var svgVerify = isVerified ? `<svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M256 0C114.836 0 0 114.836 0 256C0 397.164 114.836 512 256 512C397.164 512 512 397.164 512 256C512 114.836 397.164 0 256 0Z" fill="#FFCE00"/>
@@ -225,8 +229,8 @@ function ajaxAddRemoveCourse(courseInfo) {
         success: (data) => {
             // if for adding course
             if(courseInfo.toAdd) {
-                let { courseId, courseName } = data;
-                appendNewBox('data-course-id', courseName, courseId, '.boxes__course');
+                let { courseId, courseName, isVerified } = data;
+                appendNewBox('data-course-id', courseName, courseId, '.boxes__course', isVerified);
                 toastr.success('Successfully addedd the course.')
             }
         },

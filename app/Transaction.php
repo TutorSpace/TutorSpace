@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Events\TutoringHourEnded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Controllers\Payment\StripeApiController;
+use App\Http\Controllers\payment\StripeApiController;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Transaction extends Model
