@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\TutorVerificationNotification;
+use App\Notifications\TutorVerificationInitiatedNotification;
 
 class TutorProfileVerificationController extends Controller
 {
@@ -30,11 +30,11 @@ class TutorProfileVerificationController extends Controller
             $tutor_verification_file = $request->file('tutor-verification-file')->store('/tutor-verification-files');
 
             // send to user
-            $user->notify(new TutorVerificationNotification(true, $tutor_verification_file));
+            $user->notify(new TutorVerificationInitiatedNotification(true, $tutor_verification_file));
 
             // send to tutorspace
-            Notification::route('mail', "shuaiqin@usc.edu")
-            ->notify(new TutorVerificationNotification(false, $tutor_verification_file));
+            Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new TutorVerificationInitiatedNotification(false, $tutor_verification_file));
         }
 
 

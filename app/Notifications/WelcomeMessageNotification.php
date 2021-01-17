@@ -6,9 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
-use App\User;
-class UnpaidInvoiceReminder extends Notification
+
+class WelcomeMessageNotification extends Notification
 {
     use Queueable;
 
@@ -17,10 +16,9 @@ class UnpaidInvoiceReminder extends Notification
      *
      * @return void
      */
-    public $user;
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -31,7 +29,7 @@ class UnpaidInvoiceReminder extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -43,11 +41,10 @@ class UnpaidInvoiceReminder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Dear ' . $this->user->first_name . ' ' . $this->user->last_name)
-            ->line('You have an unpaid invoice for your recent tutor session. Please pay your invoice on stripe as soon as possible.')
-            //TODO: change to stripe link
-            ->action('Visit TutorSpace', url('/'))
-            ->line('Thank you for using our application!');
+                    ->greeting('Dear ' . $notifiable->first_name . ' ' . $notifiable->last_name)
+                    ->line('Welcome to TutorSpace!')
+                    ->action('Explore from Here', route('index'))
+                    ->line('Thank you for using our application!');
     }
 
     /**

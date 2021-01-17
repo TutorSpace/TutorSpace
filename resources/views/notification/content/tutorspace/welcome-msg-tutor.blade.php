@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Hey, Enim! Welcome to TutorSpace!
+    Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
 </div>
 <div class="notification__content__info">
 
@@ -8,7 +8,7 @@
 
         <div class="container content">
             <h5 class="color-primary">
-                Hey, Enim! Welcome to TutorSpace!
+                Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
             </h5>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
@@ -73,7 +73,7 @@
                         <p class="display-card__content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
                         </p>
-                        <a class="btn btn-primary">Complete Your Profile</a>
+                        <a class="btn btn-primary" href="{{ route('home.profile') }}" target="_blank">Complete Your Profile</a>
                     </div>
                 </div>
 
@@ -139,7 +139,7 @@
                         <p class="display-card__content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
                         </p>
-                        <a class="btn btn-primary">Explore Forum</a>
+                        <a class="btn btn-primary" href="{{ route('posts.index') }}" target="_blank">Explore Forum</a>
                     </div>
                 </div>
             </div>

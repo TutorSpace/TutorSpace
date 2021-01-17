@@ -351,9 +351,9 @@ class User extends Authenticatable
         return $starCnt;
     }
 
-
+    // no need to check invalid
     public function hasDualIdentities() {
-        return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
+        return User::where('email', $this->email)->count() == 2;
     }
 
     public function upcomingSessions() {
@@ -420,6 +420,10 @@ class User extends Authenticatable
             ->distinct();
     }
 
+    public function verifiedCourses() {
+        return $this->belongsToMany('App\Course');
+    }
+
     public static function updateVerifyStatus() {
         // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
@@ -476,6 +480,27 @@ class User extends Authenticatable
             // save
             $user->save();
         }
+    }
+
+    public function cancelSessionExperienceDeduction(){
+        $lowerBound = $this->tutorLevel->level_experience_lower_bound;
+        $upperBound = $this->tutorLevel->level_experience_upper_bound;
+        $nextLevel = TutorLevel::where("level_experience_lower_bound",$upperBound);
+        $experienceToSubstract = 0;
+        if ($lowerBound < 0){
+            $experienceToSubstract = ($upperBound - 0) * 0.2;
+        }
+        else if ($nextLevel->count() == 0) {
+            $experienceToSubstract = $this->experience_points - $lowerBound;
+        }
+        else {
+            // TODO: modify
+            $experienceToSubstract = ($upperBound - $lowerBound) * 0.2;
+        }
+
+        $this->addExperience(0-$experienceToSubstract);
+
+
     }
 
     // return tutor level bonus rate of current user as DOUBLE

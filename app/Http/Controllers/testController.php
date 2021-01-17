@@ -62,12 +62,15 @@ class testController extends Controller
 
         // echo $transactionsToCharge->count();
         // Auth::user()->addExperience(10000);
-        $tutor = User::find(10);
-        $bonus_rate = $tutor->getUserBonusRate();
-        $transaction = Transaction::find(4);
-        echo $transaction->amount * $bonus_rate;
-        if ($bonus_rate > 0) {
-            app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
-        }
+        // $tutor = User::find(10);
+        // $bonus_rate = $tutor->getUserBonusRate();
+        // $transaction = Transaction::find(4);
+        // echo $transaction->amount * $bonus_rate;
+        // if ($bonus_rate > 0) {
+        //     app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
+        // }
+        // app(StripeApiController::class)->checkIfCardAlreadyExists();
+        Auth::user()->cancelSessionExperienceDeduction();
+
     }
 }

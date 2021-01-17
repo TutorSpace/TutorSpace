@@ -30,11 +30,13 @@ use App\Notifications\PayoutFailed;
 use App\Notifications\PayoutPaid;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\UnpaidInvoiceReminder;
+use Illuminate\Support\Facades\Cache;
 
 class StripeApiController extends Controller
 {
     private static $CANCEL_PENALTY_AMOUNT = 500;
     private static $APPLICATION_FEE_PERCENT = 0.1;
+    CONST CUSTOMER_HAS_CARDS_CACHE_KEY = 'CUSTOMER_HAS_CARDS';
 
     public function __construct() {
         if (env('APP_ENV') == 'local'){
@@ -100,7 +102,31 @@ class StripeApiController extends Controller
     }
 
     // input: a stripe card
+    // Request $request
     public function checkIfCardAlreadyExists(Request $request){
+        $requestToken = $request->input("token");
+
+
+        $token = \Stripe\Token::retrieve(
+            $requestToken["token"]["id"],
+            []
+          );
+
+        $cards = \Stripe\PaymentMethod::all([
+            'customer' => $this->getCustomerId(),
+            'type' => 'card'
+        ])->data;
+
+        foreach($cards as $card) {
+            if ($card->card->fingerprint == $token->card->fingerprint){
+                return response()->json([
+                    'error' => "card already exists"
+                ],400);
+            }
+        }
+        return response()->json([
+            'success' => "card is unique"
+        ]);
 
     }
 
@@ -110,6 +136,19 @@ class StripeApiController extends Controller
             'customer' => $this->getCustomerId(),
             'type' => 'card'
         ])->data;
+
+        // cache values
+        Cache::forget(self::getCustomerHasCardsCacheKey());
+        $hasCard = false;
+        if (count($cards) >= 1){
+            $hasCard = true;
+        }else{
+            $hasCard = false;
+        }
+        // cache value
+        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($hasCard) {
+            return $hasCard;
+        });
 
         // get default payment(invoice)
         $default_payment_id = $this->getCustomerDefaultPaymentId();
@@ -139,16 +178,31 @@ class StripeApiController extends Controller
     }
 
     // true or false if there's card
+    public static function getCustomerHasCardsCacheKey(){
+        return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
+    }
     public static function customerHasCards(){
+        $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
+        if ($hasCard){
+            return $hasCard;
+        }
         $cards = \Stripe\PaymentMethod::all([
             'customer' => Self::getCustomerId(),
             'type' => 'card'
         ])->data;
 
         if (count($cards) >= 1){
-            return true;
+            $hasCard = true;
+        }else{
+            $hasCard = false;
         }
-        return false;
+
+        // cache value
+        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($hasCard) {
+            return $hasCard;
+        });
+
+        return $hasCard;
     }
 
     private function getCustomerDefaultPaymentId(){
@@ -272,7 +326,8 @@ class StripeApiController extends Controller
         //get default
         $default_payment_id = $this->getCustomerDefaultPaymentId();
 
-
+        Log::debug('default '. $default_payment_id);
+        Log::debug('$payment_method_id '. $payment_method_id);
         // return errors
         if (count($cards) <= 1) {
             return response()->json([
@@ -289,7 +344,10 @@ class StripeApiController extends Controller
         // todo: make sure this works
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
-            app(StripeApiController::class)->paymentMethods->detach(
+            $stripe = new \Stripe\StripeClient(
+                'sk_test_51HvqSrGxwAT7uYY4grQo8qKPddrqdR7XUxdmpdaell1YQfUIxA76fgg0bFZrnheH0JJioaQ8WjArCs7ZS0zzdPTu00TB4XWOth'
+              );
+              $stripe->paymentMethods->detach(
                 $payment_method_id,
                 []
             );
@@ -837,5 +895,9 @@ class StripeApiController extends Controller
             'tutor_receive' => $tutor_receive,
             'platform_receive' => $platform_receive,
         ];
+    }
+
+    public function refundIndex() {
+        return view('payment.refund');
     }
 }

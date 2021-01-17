@@ -17,7 +17,7 @@
             </p>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>
             </div>
         </div>
     </div>
