@@ -30,8 +30,16 @@ class NotificationController extends Controller
             $view = view(
                 'notification.content.tutorspace.payment-fail', [])->render();
         } else if($notif->type == 'App\Notifications\InvoicePayment') {
+            // todo: test & finish this
             $view = view(
                 'notification.content.tutorspace.invoice-success', [])->render();
+        } else if($notif->type == 'App\Notifications\TutorLevelUpNotification') {
+            $view = view(
+                'notification.content.tutorspace.tutor-level-up', [
+                    'currLevel' => $notif->data['currLevel'],
+                    'nextLevel' => $notif->data['nextLevel'],
+                    'levelProgressPercentage' => $notif->data['levelProgressPercentage']
+                ])->render();
         }
 
         $notif->markAsRead();

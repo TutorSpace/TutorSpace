@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
@@ -471,8 +472,17 @@ class User extends Authenticatable
         $allUsersWithEmail = User::where("email",$this->email)->get();
         foreach ($allUsersWithEmail as $user) {
             $user->experience_points += $experienceToAdd;
+
+            $newTutorLevelId = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+
+            // important: tutor level are assumed to be larger with higher tutor level id
+            if($newTutorLevelId > $user->tutor_level_id) {
+                $user->notify(new TutorLevelUpNotification());
+            }
+
             // update tutor level id in user
-            $user->tutor_level_id = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+            $user->tutor_level_id = $newTutorLevelId;
+
             // save
             $user->save();
         }
@@ -486,7 +496,6 @@ class User extends Authenticatable
     public function currentLevel() {
         return $this->tutorLevel->tutor_level;
     }
-
 
     // return tutor_level : String
     // edge case: returns "" if there's no next level

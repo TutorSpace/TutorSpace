@@ -79,11 +79,10 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => '',
-                    'notificationContent' => '',
+                    'notificationHeader' => 'New Tutor Level',
+                    'notificationContent' => 'Congratulations! You reached the next tutor level!',
                     'notifId' => $notification->id
             ])
-        @endif
         @endif
     @endforeach
 

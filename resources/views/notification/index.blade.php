@@ -84,7 +84,6 @@ bg-student
                 @include('notification.content.tutorspace.session-fee-received')
             </div>
             <div>
-                @include('notification.content.tutorspace.tutor-level-up')
             </div>
             <div>
                 @include('notification.content.forum.post-reported')

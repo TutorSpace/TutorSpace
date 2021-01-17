@@ -11,6 +11,8 @@ class TutorLevelUpNotification extends Notification
 {
     use Queueable;
 
+    private $exp;
+
     /**
      * Create a new notification instance.
      *
@@ -18,7 +20,7 @@ class TutorLevelUpNotification extends Notification
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -29,7 +31,7 @@ class TutorLevelUpNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -41,8 +43,9 @@ class TutorLevelUpNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('Congrats! You just reached the ' . $notifiable->tutorLevel->tutor_level . ' level.')
+                    ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our application!');
     }
 
@@ -55,7 +58,9 @@ class TutorLevelUpNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'levelProgressPercentage' => $notifiable->getLevelProgressPercentage(),
+            'currLevel' => $notifiable->currentLevel(),
+            'nextLevel' => $notifiable->nextLevel(),
         ];
     }
 }

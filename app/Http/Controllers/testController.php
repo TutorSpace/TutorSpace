@@ -46,28 +46,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-
+        Auth::user()->addExperience(10000);
     }
 
-    public function test(Request $request) {
-
-        // Auth::user()->tutorHasStripeAccount();
-        // echo Auth::user()->firstMajor->id;
-        // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
-
-        // ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end, '" . Carbon::now() . "' ) >= ?", 0) // ? minutes after session end
-        // ->where("transactions.invoice_status","draft") // invoice status => draft
-        // ->where("sessions.is_canceled",0) // not canceled
-        // ->get();
-
-        // echo $transactionsToCharge->count();
-        // Auth::user()->addExperience(10000);
-        $tutor = User::find(10);
-        $bonus_rate = $tutor->getUserBonusRate();
-        $transaction = Transaction::find(4);
-        echo $transaction->amount * $bonus_rate;
-        if ($bonus_rate > 0) {
-            app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
-        }
-    }
 }
