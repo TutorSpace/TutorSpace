@@ -96,7 +96,7 @@ class SearchController extends Controller
 
 
         if ($validator->fails()) {
-            $request->session()->flash('filterErrors', $validator->errors());
+            $request->session()->flash('filterErrors', $validator->errors()->first());
 
             return view('search.index');
         }

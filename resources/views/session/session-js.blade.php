@@ -211,8 +211,8 @@ $('#tutor-profile-request-session').on('click',function() {
                                     }
                                 },
                                 error: (error) => {
-                                    console.log(error.responseJSON.errors);
-                                    toastr.error("error");
+                                    console.log(error.responseJSON.error);
+                                    toastr.error(error.responseJSON.error);
                                 },
                                 complete: () => {
                                     JsLoadingOverlay.hide();
