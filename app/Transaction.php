@@ -43,13 +43,7 @@ class Transaction extends Model
         forEach($transactionsToCharge as $transaction){
             app(StripeApiController::class)->finalizeInvoice($transaction->invoice_id); // finalize invoice
             $session = $transaction->session;
-
-            // Create bonus if tutor has bonus rate
             $tutor = $session->tutor;
-            $bonus_rate = $tutor->getUserBonusRate();
-            if ($bonus_rate > 0) {
-                app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
-            }
 
             // Trigger event to add experience
             event(new TutoringHourEnded($tutor, $session));

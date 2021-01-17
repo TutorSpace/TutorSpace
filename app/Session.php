@@ -48,10 +48,6 @@ class Session extends Model
         return $this->transaction()->invoice_status == 'paid';
     }
 
-    public function sessionBonus() {
-        return $this->hasOne('App\SessionBonus');
-    }
-
     // IMPORTANT: must run scheduler in prod env
     public function changeSessionStatusOnExpiry() {
         $sessions = Session::all();
