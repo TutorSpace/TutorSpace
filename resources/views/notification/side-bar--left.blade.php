@@ -26,157 +26,36 @@
     </div>
 </div>
 <ul class="msgs">
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "5:38pm",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "9/3/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
+    @foreach (Auth::user()->notifications as $notification)
+        @if ($notification->type == 'App\Notifications\WelcomeMessageNotification')
+            @include('notification.side-bar-notification-msg', [
+                'unRead' => $notification->unread(),
+                'time' => $notification->created_at,
+                'notificationType' => 'tutorspace',
+                'notificationHeader' => 'Welcome to TutorSpace',
+                'notificationContent' => 'Welcome to TutorSpace!'
+            ])
+        @endif
+    @endforeach
 
     @include('notification.side-bar-notification-msg', [
         'unRead' => true,
         'time' => "5:38pm",
         'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "9/3/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
+        'notificationHeader' => 'Marked as Best Reply',
+        'notificationContent' => 'Welcome to TutorSpace!'
     ])
     @include('notification.side-bar-notification-msg', [
         'time' => "12/30/20",
         'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
+        'notificationHeader' => 'New Tutor Request',
+        'notificationContent' => 'Welcome to TutorSpace!'
     ])
     @include('notification.side-bar-notification-msg', [
         'unRead' => true,
         'time' => "12/30/20",
         'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-
-    @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply'
-    ])
-    @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace'
+        'notificationHeader' => 'TutorSpace',
+        'notificationContent' => 'Welcome to TutorSpace!'
     ])
 </ul>

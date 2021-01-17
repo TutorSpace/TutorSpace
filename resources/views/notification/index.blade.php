@@ -30,8 +30,11 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content" id="notification__content">
+            @foreach (Auth::user()->notifications as $notification)
+
+            @endforeach
             {{-- <div> --}}
-                @include('notification.content.sessions.session-complete-tutor')
+                {{-- @include('notification.content.sessions.session-complete-tutor') --}}
             {{-- </div> --}}
 
 {{--
@@ -96,7 +99,7 @@ bg-student
                 @include('notification.content.forum.be-marked-as-best-reply')
             </div> --}}
 
-
+            @include('notification.content.placeholder')
 
 
         </div>
@@ -118,5 +121,7 @@ bg-student
     //         }
     //     }
     // });
+
+    $('notification')
 </script>
 @endsection

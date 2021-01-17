@@ -19,7 +19,7 @@
                 </p>
             </span>
             <span class="content-2">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima beatae veritatis aperiam laudantium. Voluptatibus doloremque ad ipsa, asperiores necessitatibus totam quaerat quia aliquam, adipisci, mollitia cum nemo enim? Accusamus, aut?
+                {{ $notificationContent }}
             </span>
         </div>
     </div>
