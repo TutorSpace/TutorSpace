@@ -131,6 +131,11 @@ $('.profile__text__edit').on('click', function() {
 
 
 $('.boxes__course').on('click', '.box .remove', function() {
+    if(isTutor && $('.boxes__course .box').length < 2) {
+        toastr.error('You must have at least one course.')
+        return;
+    }
+
     var courseId = $(this).siblings('.label').attr('data-course-id');
     $(this).parent().remove();
     ajaxAddRemoveCourse({

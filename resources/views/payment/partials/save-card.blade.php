@@ -21,7 +21,7 @@
                 <p>Card setup completed<br /></p>
                 <pre>
                     <code></code>
-                    </pre>
+                </pre>
             </div>
         </div>
         {{-- TODO: nate add policy --}}

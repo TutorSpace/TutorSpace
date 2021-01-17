@@ -308,7 +308,8 @@
                     position: absolute;
                     right: 0;
                     font-size: 1.6rem;
-                    width: 17ch;
+                    width: 18ch;
+                    white-space: nowrap;
 
                     @include respond(sm) {
                         font-size: 1.4rem;
@@ -331,7 +332,7 @@
 
                     @include respond(extra-sm) {
                         bottom: 0;
-                        right: 18ch;
+                        right: 19ch;
                         width: 10ch;
                     }
                 }

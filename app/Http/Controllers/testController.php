@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
-use App\Http\Controllers\Payment\StripeApiController;
+use App\Http\Controllers\payment\StripeApiController;
 
 class testController extends Controller
 {
@@ -47,9 +47,6 @@ class testController extends Controller
 
     public function index(Request $request) {
 
-        dd(User::find(5)->numStudents());
-
-        return view('test');
     }
 
     public function test(Request $request) {

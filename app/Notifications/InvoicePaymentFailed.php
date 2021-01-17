@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-use App\Http\Controllers\Payment\StripeApiController;
+use App\Http\Controllers\payment\StripeApiController;
 
 class InvoicePaymentFailed extends Notification
 {
