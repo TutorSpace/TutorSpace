@@ -1,3 +1,9 @@
+@php
+$hourlyRate = $session->hourly_rate;
+$sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
+$price = $sessionDurationInHour * $hourlyRate;
+@endphp
+
 <div class="notification__content__header font-weight-bold text-danger">
     You have an unpaid payment [Action Required]
 </div>
@@ -8,7 +14,7 @@
 
         <div class="container content">
             <h6 class="color-primary">
-                You have an unpaid payment.
+                You have an unpaid tutor session.
             </h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
@@ -17,7 +23,7 @@
             </p>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="#">One-time Payment Link</a>
+                <a class="btn btn-primary" href="{{ $paymentUrl }}">One-time Payment Link</a>
             </div>
 
             <h6 class="mt-5 color-primary">Session Details</h6>
@@ -25,55 +31,45 @@
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Date:</div>
-                    <div class="fc-black-2 fs-1-6" id="session-date">
-                        08/02/2020 Thursday
-                    </div>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Time:</div>
-                    <div class="fc-black-2 fs-1-6" id="session-time">
-                        3:30pm - 5:00pm
-                    </div>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Course:</div>
-                    <div class="fc-black-2 fs-1-6">
-                        Computer Science
-                    </div>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->course->course }}</p>
                 </div>
 
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Type:</div>
-                    <div class="fc-black-2 fs-1-6">
-                        In Person
-                    </div>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->is_in_person ? 'In Person' : 'Online' }}</p>
                 </div>
 
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Price:</div>
-                    <div class="fs-1-6 color-primary">
-                        $ 25
-                    </div>
+                    <p class="color-primary fs-1-5 fw-500">
+                        {{ $price }}
+                    </p>
                 </div>
             </div>
 
             <h6 class="color-primary">Price Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Fee (per hour)
-                <span class="color-primary">$ 24</span>
+                <span class="color-primary">$ {{ $hourlyRate }}</span>
             </p>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Hours
-                <span class="color-primary">x 2</span>
+                <span class="color-primary">x {{ $sessionDurationInHour }}</span>
             </p>
             <hr class="bc-primary mt-3"/>
             <p class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Total
-                <span class="color-primary">$ 24</span>
+                <span class="color-primary">$ {{ $price }}</span>
             </p>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>
             </div>
         </div>
     </div>
-
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
 </div>

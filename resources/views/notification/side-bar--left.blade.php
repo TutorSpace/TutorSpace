@@ -26,7 +26,7 @@
     </div>
 </div>
 <ul class="msgs">
-    @foreach (Auth::user()->notifications as $notification)
+    @foreach (Auth::user()->notifications()->orderBy('created_at', 'desc')->get() as $notification)
         @if ($notification->type == 'App\Notifications\WelcomeMessageNotification')
             @include('notification.side-bar-notification-msg', [
                 'unRead' => $notification->unread(),
@@ -81,7 +81,16 @@
                     'notificationContent' => 'Congratulations! You reached the next tutor level!',
                     'notifId' => $notification->id
             ])
-        @elseif($notification->type == 'App\Notifications\')
+        @elseif($notification->type == 'App\Notifications\UnpaidInvoiceReminder')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Unpaid Tutor Session',
+                    'notificationContent' => 'You have an unapid tutor session.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\1')
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,

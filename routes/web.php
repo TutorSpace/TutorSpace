@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/test', 'testController@test');
+Route::get('/test', 'testController@index');
 
 // autocomplete
 Route::group([

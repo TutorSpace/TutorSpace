@@ -45,6 +45,12 @@ class NotificationController extends Controller
                     'nextLevel' => $notif->data['nextLevel'],
                     'levelProgressPercentage' => $notif->data['levelProgressPercentage']
                 ])->render();
+        } else if($notif->type == 'App\Notifications\UnpaidInvoiceReminder') {
+            $view = view(
+                'notification.content.tutorspace.payment-fail-again', [
+                    'paymentUrl' => app(StripeApiController::class)->getPaymentUrl(Session::find($notif->data['session']['id'])),
+                    'session' => Session::find($notif->data['session']['id']),
+                ])->render();
         }
 
         $notif->markAsRead();

@@ -807,18 +807,16 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // send invoice
-            // $invoiceToSend->sendInvoice();
+
             // update last update time
             $transaction->touch();
 
-            // TODO: add link
             // send unpaid invoice mail reminder to tutorspace and user
             $user = User::find($transaction->user_id);
-            Notification::route('mail', $user->email)
-            ->notify(new UnpaidInvoiceReminder($user));
-            Notification::route('mail', "tutorspace@gmail.edu")
-            ->notify(new UnpaidInvoiceReminder($user));
+
+            $user->notify(new UnpaidInvoiceReminder($session, true));
+            Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new UnpaidInvoiceReminder($session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";
         }
