@@ -351,9 +351,9 @@ class User extends Authenticatable
         return $starCnt;
     }
 
-
+    // no need to check invalid
     public function hasDualIdentities() {
-        return User::where('email', $this->email)->where('is_invalid', false)->count() == 2;
+        return User::where('email', $this->email)->count() == 2;
     }
 
     public function upcomingSessions() {
@@ -418,6 +418,10 @@ class User extends Authenticatable
                       ->Where('replies.user_id', '=', $this->id);
             })
             ->distinct();
+    }
+
+    public function verifiedCourses() {
+        return $this->belongsToMany('App\Course');
     }
 
     public static function updateVerifyStatus() {
