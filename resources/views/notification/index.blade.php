@@ -66,14 +66,10 @@ bg-student
             <div>
                 @include('notification.content.tutorspace.invite-to-be-tutor')
             </div>
-            <div>
-                @include('notification.content.tutorspace.welcome-msg-student')
+
             </div>
             <div>
-                @include('notification.content.tutorspace.welcome-msg-tutor')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.tutor-verification-initiated')
+
             </div>
             <div>
                 @include('notification.content.tutorspace.tutor-verification-processed')

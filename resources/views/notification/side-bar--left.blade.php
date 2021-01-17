@@ -36,15 +36,15 @@
                 'notificationContent' => 'Welcome to TutorSpace!',
                 'notifId' => $notification->id
             ])
-        {{-- @elseif($notification->type == 'App\Notifications\WelcomeMessageNotification')
+        @elseif($notification->type == 'App\Notifications\TutorVerificationInitiatedNotification')
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => 'Welcome to TutorSpace',
-                    'notificationContent' => 'Welcome to TutorSpace!',
+                    'notificationHeader' => 'Tutor Verification',
+                    'notificationContent' => 'We have received your request to be a verified tutor.',
                     'notifId' => $notification->id
-            ]) --}}
+            ])
         @endif
     @endforeach
 

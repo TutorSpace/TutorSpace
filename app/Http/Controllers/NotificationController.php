@@ -21,8 +21,11 @@ class NotificationController extends Controller
                 Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [
 
             ])->render();
-        } else if($notif->type == 'App\'') {
+        } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
+            $view = view(
+                'notification.content.tutorspace.tutor-verification-initiated', [
 
+            ])->render();
         }
 
         $notif->markAsRead();
