@@ -76,6 +76,4 @@ $price = $sessionDurationInHour * $hourlyRate;
             </div>
         </div>
     </div>
-
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
 </div>

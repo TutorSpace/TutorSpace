@@ -55,7 +55,6 @@
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\InvoicePaymentFailed')
-            {{-- todo: finish this --}}
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
@@ -70,7 +69,7 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => '',
+                    'notificationHeader' => 'Payment Success',
                     'notificationContent' => '',
                     'notifId' => $notification->id
             ])
