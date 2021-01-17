@@ -488,6 +488,27 @@ class User extends Authenticatable
         }
     }
 
+    public function cancelSessionExperienceDeduction(){
+        $lowerBound = $this->tutorLevel->level_experience_lower_bound;
+        $upperBound = $this->tutorLevel->level_experience_upper_bound;
+        $nextLevel = TutorLevel::where("level_experience_lower_bound",$upperBound);
+        $experienceToSubstract = 0;
+        if ($lowerBound < 0){
+            $experienceToSubstract = ($upperBound - 0) * 0.2;
+        }
+        else if ($nextLevel->count() == 0) {
+            $experienceToSubstract = $this->experience_points - $lowerBound;
+        }
+        else {
+            // TODO: modify
+            $experienceToSubstract = ($upperBound - $lowerBound) * 0.2;
+        }
+
+        $this->addExperience(0-$experienceToSubstract);
+
+
+    }
+
     // return tutor level bonus rate of current user as DOUBLE
     public function getUserBonusRate(){
         return $this->tutorLevel->bonus_rate;

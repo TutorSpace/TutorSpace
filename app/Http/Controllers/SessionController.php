@@ -47,7 +47,8 @@ class SessionController extends Controller
             $session->is_canceled = true;
             $session->cancelReason()->associate($request->input('cancelReasonId'));
             $session->save();
-
+            // TODO: testing -> experience reduction
+            Auth::user()->cancelSessionExperienceDeduction();
             app(StripeApiController::class)->chargeForCancellation(Auth::user());
         });
 
@@ -145,7 +146,7 @@ class SessionController extends Controller
             'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
         ]);
 
-        // return resonse error messages
+        // return validation error messages
         if ($validator->fails()){
            return response()->json(
                 [

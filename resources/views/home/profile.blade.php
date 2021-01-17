@@ -91,19 +91,19 @@ bg-student
                         <div class="autocomplete">
                             <label for="first-major" class="profile__label">First Major</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major"
+                                value="{{ Auth::user()->firstMajor->major ??  old('first-major')  }}" name="first-major" id="first-major"
                                 readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="second-major" class="profile__label">Second Major (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major"
+                                value="{{ Auth::user()->secondMajor->major ??  old('second-major')  }}" name="second-major"
                                 id="second-major" readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="minor" class="profile__label">Minor (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor" readonly>
+                                value="{{ Auth::user()->minor->minor ?? old('minor') }}" name="minor" id="minor" readonly>
                         </div>
                     </div>
 
@@ -111,13 +111,13 @@ bg-student
                         <div class="autocomplete">
                             <label for="school-year" class="profile__label">Class Standing</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year"
+                                value="{{ Auth::user()->schoolYear->school_year ?? old('school-year') }}" name="school-year"
                                 id="school-year" readonly>
                         </div>
                         <div class="gpa autocomplete mr-3">
                             <label for="gpa" class="profile__label">GPA</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa" readonly>
+                                value="{{ Auth::user()->gpa ?? old('gpa') }}" name="gpa" id="gpa" readonly>
                         </div>
                         <div class="gpa-note">
                             <span class="font-italic">
@@ -132,7 +132,7 @@ bg-student
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction (optional)</label>
                             <textarea name="introduction" rows="5" class="profile__input form-control form-control-lg"
-                                readonly>{{ Auth::user()->introduction }}</textarea>
+                                readonly>{{ Auth::user()->introduction ?? old('introduction') }}</textarea>
                         </div>
                     </div>
                     @endif
@@ -184,8 +184,9 @@ bg-student
                             <label for="hourly-rate" class="profile__label">Hourly Rate</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
+                                <div>here</div>
                                 <input type="text" class="profile__input form-control form-control-lg"
-                                    value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
+                                    value="{{ old("hourly-rate") }}" name="hourly-rate" id="hourly-rate">
                             </div>
                         </div>
                         @endif
@@ -356,9 +357,29 @@ bg-student
         var setUpCard = function(stripe, card, clientSecret) {
             // TODO: nate check if card already exists
             // # Retrieve the customer we're adding this token to
-            
+            loading(true);
+            stripe.createToken(card).then((token)=>{
+                return $.ajax({
+                    type: 'POST',
+                    url: '{{ route('payment.stripe.verify_card_exists') }}',
+                    data: {
+                        "token": token
+                    },
+                    success: (msg) =>{
+                        confirmCard(stripe, card, clientSecret)
+                    },
+                    error: (err) => {
+                        if (err.responseJSON.error){
+                            loading(false);
+                            showError(err.responseJSON.error);
+                        }
+                    }
+                 });
+            })
 
-            // // # Retrieve the token 
+
+
+            // // # Retrieve the token
             // token = Stripe::Token.retrieve(params[:stripeToken])
 
             // // # The fingerprint of the card is stored in `card.fingerprint`
@@ -369,32 +390,34 @@ bg-student
 
 
 
-            loading(true);
-            var email = document.getElementById("email").value;
-            stripe
-                .confirmCardSetup(clientSecret, {
-                    payment_method: {
-                        card: card,
-                        billing_details: { email: email }
-                    }
-                })
-                .then(function(result) {
-                    if (result.error) {
-                        // Show error to your customer
-                        showError(result.error.message);
-                        toastr.error("An error has occurred");
-                    } else {
-                        // save card as default
-                        setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
-                            // The payment succeeded!
-                            orderComplete(result.setupIntent.client_secret);
-                        });
 
-                    }
-                });
+
         };
 
+        function confirmCard(stripe, card, clientSecret){
+            var email = document.getElementById("email").value;
+                stripe
+                    .confirmCardSetup(clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: { email: email }
+                        }
+                    })
+                    .then(function(result) {
+                        if (result.error) {
+                            // Show error to your customer
+                            showError(result.error.message);
+                            toastr.error("An error has occurred");
+                        } else {
+                            // save card as default
+                            setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
+                                // The payment succeeded!
+                                orderComplete(result.setupIntent.client_secret);
+                            });
 
+                        }
+                });
+        }
 
 
         /* ------- UI helpers ------- */
@@ -405,10 +428,10 @@ bg-student
                 document.querySelector("#btn-add-payment-submit").disabled = true;
                 loading(false);
 
-                // console.log(result);
+                // TODO: nate uncomment
                 setTimeout(function () {
                     location.reload();
-                }, 1000);
+                }, 700);
             });
         };
         // Show the customer the error from Stripe if their card fails to charge
