@@ -36,6 +36,15 @@
                 'notificationContent' => 'Welcome to TutorSpace!',
                 'notifId' => $notification->id
             ])
+        {{-- @elseif($notification->type == 'App\Notifications\WelcomeMessageNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Welcome to TutorSpace',
+                    'notificationContent' => 'Welcome to TutorSpace!',
+                    'notifId' => $notification->id
+            ]) --}}
         @endif
     @endforeach
 
