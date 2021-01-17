@@ -401,6 +401,14 @@ class StripeApiController extends Controller
         $tutor = $session->tutor;
         $tutor_payment_method = $tutor->paymentMethod;
 
+        // TODO: send email if no balance
+        // if (!$this->hasAvailableBalance($amount)) {
+        //     Log::warning('Not enough balance to cover session bonus for session ' . $session->id);
+        //     Notification::route('mail', 'tutorspaceusc@gmail.com')
+        //         ->notify(new NotEnoughBalance($session));
+        //     return;
+        // }
+
         // Create transfer
         $transfer = \Stripe\Transfer::create([
             'amount' => $amount,
