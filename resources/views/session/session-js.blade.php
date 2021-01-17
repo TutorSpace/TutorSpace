@@ -211,8 +211,8 @@ $('#tutor-profile-request-session').on('click',function() {
                                     }
                                 },
                                 error: (error) => {
-                                    console.log(error);
-                                    toastr.error("There is an error occurred. Please schedule your session again or contact tutorspace at tutorspaceusc@gmail.com");
+                                    console.log(error.responseJSON.errors);
+                                    toastr.error("error");
                                 },
                                 complete: () => {
                                     JsLoadingOverlay.hide();

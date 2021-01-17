@@ -98,6 +98,11 @@ class StripeApiController extends Controller
         ]);
     }
 
+    // input: a stripe card
+    public function checkIfCardAlreadyExists(Request $request){
+
+    }
+
     // Lists all cards of the current user
     public function listCards(Request $request) {
         $cards = \Stripe\PaymentMethod::all([
