@@ -45,6 +45,15 @@
                     'notificationContent' => 'We have received your request to be a verified tutor.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\TutorVerificationCompleted')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Tutor Verification',
+                    'notificationContent' => 'We have successfully processed your tutor verification request.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

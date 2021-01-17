@@ -26,6 +26,12 @@ class NotificationController extends Controller
                 'notification.content.tutorspace.tutor-verification-initiated', [
 
             ])->render();
+        } else if($notif->type == 'App\Notifications\TutorVerificationCompleted') {
+            $view = view(
+                'notification.content.tutorspace.tutor-verification-processed', [
+
+            ])->render();
+
         }
 
         $notif->markAsRead();
