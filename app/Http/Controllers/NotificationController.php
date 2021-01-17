@@ -34,7 +34,6 @@ class NotificationController extends Controller
                     'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         } else if($notif->type == 'App\Notifications\InvoicePaid') {
-            // todo: test & finish this
             $view = view(
                 'notification.content.tutorspace.invoice-success', [
                     'session' => Session::find($notif->data['session']['id'])

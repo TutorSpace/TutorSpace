@@ -64,7 +64,6 @@
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\InvoicePaid')
-            {{-- todo: finish this --}}
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
@@ -82,7 +81,7 @@
                     'notificationContent' => 'Congratulations! You reached the next tutor level!',
                     'notifId' => $notification->id
             ])
-        @elseif($notification->type == 'App\Notifications')
+        @elseif($notification->type == 'App\Notifications\')
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
