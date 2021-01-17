@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Hey, Enim! Welcome to TutorSpace!
+    Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
 </div>
 <div class="notification__content__info">
 
@@ -8,7 +8,7 @@
 
         <div class="container content">
             <h5 class="color-primary">
-                Hey, Enim! Welcome to TutorSpace!
+                Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
             </h5>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
