@@ -220,7 +220,11 @@
                 type: 'GET',
                 url: "{{ route('switch-account.switch') }}",
                 success: (data) => {
+                    @if(Illuminate\Support\Str::of(url()->current())->contains('switch-account'))
+                    window.location.href = "{{ route('home.profile') }}";
+                    @else
                     window.location.reload();
+                    @endif
                 },
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');

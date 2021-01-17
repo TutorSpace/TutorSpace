@@ -50,7 +50,7 @@ bg-student
             @csrf
             <div class="row">
                 <div
-                    class="profile__text-container--white p-relative @if (isset($registerToBeTutor1) && $registerToBeTutor1) z-index-9999 @endif">
+                    class="profile__text-container--white p-relative @if (isset($registerToBeTutor1) && $registerToBeTutor1) z-index-2000 @endif">
                     @if ($errors->any())
                     <p
                         class="fs-1-4 fc-red mb-2 @if (isset($registerToBeTutor1) && $registerToBeTutor1) p-absolute top-0-5 @endif">
@@ -150,7 +150,7 @@ bg-student
                 </div>
 
                 <div
-                    class="profile__text-container--white p-relative @if (isset($registerToBeTutor2) && $registerToBeTutor2) z-index-9999 @endif">
+                    class="profile__text-container--white p-relative @if (isset($registerToBeTutor2) && $registerToBeTutor2) z-index-2000 @endif">
                     @if (isset($registerToBeTutor2) && $registerToBeTutor2)
                     <h4 class="heading--register-to-be-tutor-2">Step 2: Complete your tutor information</h4>
                     @endif

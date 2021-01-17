@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,6 +35,7 @@ class SwitchAccountController extends Controller
     public function switch() {
         $currUser = Auth::user();
         Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first());
+        Log::debug('here');
 
         return response()->json([
             'successMsg' => 'Successfully switched the account!'

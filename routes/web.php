@@ -206,7 +206,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/register', 'SwitchAccountController@register')->name('switch-account.register');
-    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch');
+    Route::get('/switch', 'SwitchAccountController@switch')->name('switch-account.switch')->withoutMiddleware(InvalidUser::class);
     Route::get('/register-to-be-tutor', 'SwitchAccountController@indexRegisterToBeTutor')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor');
     Route::get('/register-to-be-tutor-2', 'SwitchAccountController@indexRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.index.register-to-be-tutor-2');
     Route::put('/register-to-be-tutor-2', 'SwitchAccountController@updateRegisterToBeTutor2')->withoutMiddleware(InvalidUser::class)->name('switch-account.register-to-be-tutor-2');
