@@ -30,9 +30,7 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content" id="notification__content">
-            @foreach (Auth::user()->notifications as $notification)
-
-            @endforeach
+            @include('notification.content.placeholder')
             {{-- <div> --}}
                 {{-- @include('notification.content.sessions.session-complete-tutor') --}}
             {{-- </div> --}}
@@ -99,7 +97,7 @@ bg-student
                 @include('notification.content.forum.be-marked-as-best-reply')
             </div> --}}
 
-            @include('notification.content.placeholder')
+
 
 
         </div>
@@ -122,6 +120,27 @@ bg-student
     //     }
     // });
 
-    $('notification')
+    $(document).on("click",".msgs .msg", function () {
+        let notifId = $(this).attr('data-notif-id');
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type:'GET',
+            url: '{{ url('/notifications') }}' + '/' + notifId,
+            success: (data) => {
+                let { view } = data;
+
+                $('#notification__content').html(view);
+
+                $(`.msgs .msg[data-notif-id=${notifId}]`).removeClass('unread');
+            },
+            error: function(error) {
+                console.log(error);
+                toastr.error(error);
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
 </script>
 @endsection

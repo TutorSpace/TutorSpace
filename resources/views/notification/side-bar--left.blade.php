@@ -33,29 +33,33 @@
                 'time' => $notification->created_at,
                 'notificationType' => 'tutorspace',
                 'notificationHeader' => 'Welcome to TutorSpace',
-                'notificationContent' => 'Welcome to TutorSpace!'
+                'notificationContent' => 'Welcome to TutorSpace!',
+                'notifId' => $notification->id
             ])
         @endif
     @endforeach
 
-    @include('notification.side-bar-notification-msg', [
+    {{-- @include('notification.side-bar-notification-msg', [
         'unRead' => true,
         'time' => "5:38pm",
         'notificationType' => 'forum',
         'notificationHeader' => 'Marked as Best Reply',
         'notificationContent' => 'Welcome to TutorSpace!'
-    ])
-    @include('notification.side-bar-notification-msg', [
+    ]) --}}
+
+    {{-- @include('notification.side-bar-notification-msg', [
         'time' => "12/30/20",
         'notificationType' => 'sessions',
         'notificationHeader' => 'New Tutor Request',
         'notificationContent' => 'Welcome to TutorSpace!'
-    ])
-    @include('notification.side-bar-notification-msg', [
+    ]) --}}
+
+    {{-- @include('notification.side-bar-notification-msg', [
         'unRead' => true,
         'time' => "12/30/20",
         'notificationType' => 'tutorspace',
         'notificationHeader' => 'TutorSpace',
         'notificationContent' => 'Welcome to TutorSpace!'
-    ])
+    ]) --}}
+
 </ul>

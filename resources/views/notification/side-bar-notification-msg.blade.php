@@ -1,4 +1,4 @@
-<li class="msg @if(isset($unRead) && $unRead) unread @endif">
+<li class="msg @if(isset($unRead) && $unRead) unread @endif" data-notif-id="{{ $notifId }}">
     <div class="box">
         <div class="img-container">
             @if ($notificationType == 'sessions')

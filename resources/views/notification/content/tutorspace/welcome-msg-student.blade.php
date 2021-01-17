@@ -64,7 +64,7 @@
                         <p class="display-card__content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
                         </p>
-                        <a class="btn btn-primary">Complete Your Profile</a>
+                        <a class="btn btn-primary" href="{{ route('home.profile') }}" target="_blank">Complete Your Profile</a>
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@
                         <p class="display-card__content">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
                         </p>
-                        <a class="btn btn-primary">Explore Forum</a>
+                        <a class="btn btn-primary" href="{{ route('posts.index') }}" target="_blank">Explore Forum</a>
                     </div>
                 </div>
             </div>

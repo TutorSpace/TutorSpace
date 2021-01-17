@@ -198,6 +198,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::get('/', 'NotificationController@index')->name('notifications.index');
+    Route::get('/{notifId}', 'NotificationController@show')->name('notifications.show');
 });
 
 // switch account
