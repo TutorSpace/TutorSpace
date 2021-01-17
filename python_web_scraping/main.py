@@ -42,6 +42,7 @@ if __name__ == '__main__':
 
     # color pool
     colorPool = [
+        '#A5BE0D',
         '#DF7649',
         '#A5D2D4',
         '#D2C2FF',
