@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\ReportForum;
 use App\TutorRequest;
 use App\Dashboard_post;
+use App\VerifiedCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -113,7 +114,8 @@ class GeneralController extends Controller
             return response()->json([
                 'successMsg' => 'Successfully added the course.',
                 'courseName' => $request->input('courseName'),
-                'courseId' => $courseId
+                'courseId' => $courseId,
+                'isVerified' => VerifiedCourse::where('course_id', $courseId)->where('user_id', Auth::id())->exists()
             ]);
         }
     }
