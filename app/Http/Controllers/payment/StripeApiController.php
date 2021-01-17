@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
 use Illuminate\Support\Facades\Session;
 use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\ExtraSessionBonus;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\NotEnoughBalance;
 use App\Notifications\PayoutFailed;
@@ -226,6 +227,12 @@ class StripeApiController extends Controller
         // change invoice status
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
+
+        // Send email if extra bonus exists
+        if ($transaction->extra_bonus_amount > 0) {
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+                ->notify(new ExtraSessionBonus($transaction->session, $transaction->extra_bonus_amount));
+        }
     }
 
     // Save card as Default
@@ -349,10 +356,7 @@ class StripeApiController extends Controller
             return redirect()->route('index')->with(['errorMsg' => 'Failed']);
         }
 
-        // 1 - Refund session bonus if exists
-        $this->refundSessionBonus($session);
-
-        // 2 - Refund invoice
+        // Refund invoice
         $invoice = \Stripe\Invoice::retrieve($transaction->invoice_id);
         // Handle depending on status of invoice
         switch ($invoice->status) {
@@ -398,48 +402,6 @@ class StripeApiController extends Controller
         $transaction->refund_status = 'canceled';
         $transaction->save();
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
-    }
-
-    // Create a session bonus for the tutor of 'session'
-    // 'amount' should be in cents
-    public function createSessionBonus($amount, AppSession $session) {
-        $tutor = $session->tutor;
-        $tutor_payment_method = $tutor->paymentMethod;
-
-        // TODO: send email if no balance
-        // if (!$this->hasAvailableBalance($amount)) {
-        //     Log::warning('Not enough balance to cover session bonus for session ' . $session->id);
-        //     Notification::route('mail', 'tutorspaceusc@gmail.com')
-        //         ->notify(new NotEnoughBalance($session));
-        //     return;
-        // }
-
-        // Create transfer
-        $transfer = \Stripe\Transfer::create([
-            'amount' => $amount,
-            'currency' => 'usd',
-            'destination' => $tutor_payment_method->stripe_account_id,
-        ]);
-        Log::info('Transfer created with id: ' . $transfer->id);
-
-        // Save to database
-        $session_bonus = new SessionBonus();
-        $session_bonus->session()->associate($session->id);
-        $session_bonus->amount = $amount;
-        $session_bonus->transfer_id = $transfer->id;
-        $session_bonus->user_id = $tutor->id;
-        $session_bonus->save();
-    }
-
-    // Check if platform account has available balance for 'amount'
-    private function hasAvailableBalance($amount) {
-        $balance = \Stripe\Balance::retrieve();
-        $total = 0;
-        foreach ($balance->available as $available_fund) {
-            $total += $available_fund->amount;
-        }
-        Log::debug('Balance: ' . $balance);
-        return $total >= $amount;
     }
 
     // Cancels an Invoice
@@ -710,18 +672,32 @@ class StripeApiController extends Controller
 
     // amount in dollar, done in tutor's side => CANNOT USE USERID!!!!!!!!!!!! USE STUDENT
     public function initializeInvoice($amount, $destination_account_id, $session) {
+        $amount = $amount * 100;  // Convert to cent
         // Create Product and Price
         $product = \Stripe\Product::create([
             'name' => 'Tutor Session',
         ]);
         $price = \Stripe\Price::create([
             'product' => $product->id,
-            'unit_amount' => $amount * 100, // this is cent!
+            'unit_amount' => $amount,
             'currency' => 'usd',
         ]);
 
         $student_id = $session->student_id;
         $customer_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
+        
+        // Calculate application fee and session bonus
+        $tutor = $session->tutor;
+        $bonus_rate = $tutor->getUserBonusRate();
+        $bonus_amount = round($amount * $bonus_rate);
+        $original_application_fee_amount = round($amount * self::$APPLICATION_FEE_PERCENT);
+        if ($original_application_fee_amount >= $bonus_amount) {
+            $application_fee_amount = $original_application_fee_amount - $bonus_amount;
+            $extra_bonus_amount = 0;
+        } else {
+            $application_fee_amount = 0;
+            $extra_bonus_amount = $bonus_amount - $original_application_fee_amount;
+        }
 
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([
@@ -735,7 +711,7 @@ class StripeApiController extends Controller
             'transfer_data' => [
                 'destination' => $destination_account_id,
             ],
-            'application_fee_amount' => round($amount * 100 * self::$APPLICATION_FEE_PERCENT),
+            'application_fee_amount' => $application_fee_amount,
         ]);
 
         // Save transaction in database
@@ -747,8 +723,10 @@ class StripeApiController extends Controller
         $transaction->invoice_status = "draft";
         $transaction->destination_account_id = $destination_account_id;
         // amount
-        $transaction->amount = $amount * 100;
+        $transaction->amount = $amount;
         $transaction->invoice_id = $invoice->id;
+        $transaction->bonus_amount = $bonus_amount;
+        $transaction->extra_bonus_amount = $extra_bonus_amount;
         $transaction->save();
     }
 
@@ -839,19 +817,25 @@ class StripeApiController extends Controller
     public function retrieveTransactionDetails(AppSession $session) {
         $tutor = $session->tutor;
         $transaction = $session->transaction;
-
-        $bonus_rate = $tutor->getUserBonusRate();
-        $bonus = round($transaction->amount * $bonus_rate);
-        $application_fee = round($transaction->amount * self::$APPLICATION_FEE_PERCENT);
         $stripe_payment_fee = round($transaction->amount * 0.029) + 30;  // https://stripe.com/pricing
+
+        if ($transaction->extra_bonus_amount == 0) {
+            $application_fee = round($transaction->amount * self::$APPLICATION_FEE_PERCENT) - $transaction->bonus_amount;
+            $tutor_receive = $transaction->amount - $application_fee;
+            $platform_receive = $application_fee - $stripe_payment_fee;
+        } else {
+            $application_fee = 0;
+            $tutor_receive = $transaction->amount + $transaction->extra_bonus_amount;
+            $platform_receive = - $transaction->extra_bonus_amount - $stripe_payment_fee;
+        }
 
         return [
             'amount' => $transaction->amount,
             'application_fee' => $application_fee,
-            'bonus' => $bonus,
+            'bonus' => $transaction->bonus_amount,
             'stripe_payment_fee' => $stripe_payment_fee,
-            'tutor_receive' => $transaction->amount - $application_fee + $bonus,
-            'platform_receive' => $application_fee - $bonus - $stripe_payment_fee,
+            'tutor_receive' => $tutor_receive,
+            'platform_receive' => $platform_receive,
         ];
     }
 }
