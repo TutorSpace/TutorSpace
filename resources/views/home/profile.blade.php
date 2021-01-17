@@ -354,6 +354,21 @@ bg-student
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
         var setUpCard = function(stripe, card, clientSecret) {
+            // TODO: nate check if card already exists
+            // # Retrieve the customer we're adding this token to
+            
+
+            // // # Retrieve the token 
+            // token = Stripe::Token.retrieve(params[:stripeToken])
+
+            // // # The fingerprint of the card is stored in `card.fingerprint`
+            // card_fingerprint = token.card.fingerprint
+
+
+
+
+
+
             loading(true);
             var email = document.getElementById("email").value;
             stripe

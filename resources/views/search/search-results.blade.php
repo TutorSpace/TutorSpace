@@ -116,7 +116,6 @@
         @else
         We couldn't find any results.
         @endif
-
         Please try another keyword or filter.
     </p>
 </h5>

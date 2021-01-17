@@ -59,6 +59,6 @@ class SessionOverlap implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'There is a time conflict for your schedule session.';
     }
 }

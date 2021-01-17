@@ -115,7 +115,7 @@ class SessionController extends Controller
         // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
 
         $validStartTime = Carbon::now()->addMinutes(120);
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',
                 'exists:users,id',
@@ -141,8 +141,18 @@ class SessionController extends Controller
                 'required',
                 'in:in-person,online'
             ],
+        ],[
+            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
         ]);
 
+        // return resonse error messages
+        if ($validator->fails()){
+           return response()->json(
+                [
+                    'error' => $validator->errors()->first()
+                ], 400
+            );
+        }
 
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards

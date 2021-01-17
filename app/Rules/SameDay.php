@@ -40,6 +40,6 @@ class SameDay implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Your session start and end time must be on the same day.';
     }
 }
