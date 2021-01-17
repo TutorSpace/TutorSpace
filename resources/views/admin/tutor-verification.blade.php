@@ -58,15 +58,14 @@ bg-student
 
 @include('partials.nav')
 
-<h3 class="text-center">Refund</h3>
+<h3 class="text-center">Tutor Verification</h3>
 <main class="d-flex justify-content-center">
     <table class="table">
         <thead class="bg-primary">
           <tr>
-            <th scope="col">Session ID</th>
-            <th scope="col">Refund Status</th>
-            <th scope="col" colspan="2">Student</th>
-            <th scope="col">Refund Requested Time</th>
+            <th scope="col">Tutor Verification Id</th>
+            <th scope="col" colspan="2">Tutor</th>
+            <th scope="col">Verification Requested Time</th>
             <th scope="col">Action</th>
           </tr>
         </thead>

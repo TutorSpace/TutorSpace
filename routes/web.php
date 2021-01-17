@@ -225,6 +225,14 @@ Route::group([
 // tutor verification
 Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware('isTutor');
 
+// admin routes
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'isAdmin']
+], function() {
+    Route::get('/tutor-verification', 'AdminController@indexTutorVerification')->name('admin.tutor-verification');
+});
+
 // sessions
 Route::group([
     'prefix' => 'session',
@@ -248,41 +256,40 @@ Route::group([
     'prefix' => 'payment/stripe',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
-    Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
+    Route::post('/onboarding', 'Payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+    Route::get('/list_cards', 'Payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
 
-    Route::get('/add_payment_method', 'payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
-    Route::post('/create_payment_intent', 'payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
-    Route::get('/check', 'payment\StripeApiController@checkAccountDetail')->name('payment.stripe.check');
-    Route::post('/detach_payment', 'payment\StripeApiController@detachPayment')->name('payment.stripe.detach_payment');
+    Route::get('/add_payment_method', 'Payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
+    Route::post('/create_payment_intent', 'Payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
+    Route::get('/check', 'Payment\StripeApiController@checkAccountDetail')->name('payment.stripe.check');
+    Route::post('/detach_payment', 'Payment\StripeApiController@detachPayment')->name('payment.stripe.detach_payment');
     //Stripe set payment as Customer Invoice Default
-    Route::post('/set_payment_invoice_default', 'payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
-    Route::post('/create_setup_intent', 'payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
+    Route::post('/set_payment_invoice_default', 'Payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
+    Route::post('/create_setup_intent', 'Payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
 
-    Route::post('/webhook', 'payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
-    Route::post('/connect/webhook', 'payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.connect.webhook');
+    Route::post('/webhook', 'Payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
+    Route::post('/connect/webhook', 'Payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.connect.webhook');
 
-    Route::get('/refund', 'payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index')->middleware('isAdmin');
-    Route::post('/user-request-refund/{session}', 'payment\StripeApiController@userRequestRefund')->name('payment.stripe.refund.user_request_refund');
-    Route::post('/refund/{session}', 'payment\StripeApiController@approveRefund')->name('payment.stripe.approve_refund')->middleware('isAdmin');
-    Route::post('/refund/decline/{session}', 'payment\StripeApiController@declineRefundRequest')->name('payment.stripe.decline_refund')->middleware('isAdmin');
+    Route::get('/refund', 'Payment\StripeApiController@refundIndex')->name('payment.stripe.refund.index')->middleware('isAdmin');
+    Route::post('/user-request-refund/{session}', 'Payment\StripeApiController@userRequestRefund')->name('payment.stripe.refund.user_request_refund');
+    Route::post('/refund/{session}', 'Payment\StripeApiController@approveRefund')->name('payment.stripe.approve_refund')->middleware('isAdmin');
+    Route::post('/refund/decline/{session}', 'Payment\StripeApiController@declineRefundRequest')->name('payment.stripe.decline_refund')->middleware('isAdmin');
 
-    Route::get('/redirect-to-payment/{session}', 'payment\StripeApiController@redirectToPayment')->name('payment.stripe.redirect-payment');
+    Route::get('/redirect-to-payment/{session}', 'Payment\StripeApiController@redirectToPayment')->name('payment.stripe.redirect-payment');
 });
 
 
 // ================== Stripe testing ======================
-// Route::get('/payment/stripe_index', 'payment\StripeApiController@index');
-// Route::get('/payment/refund', 'payment\StripeApiController@refundIndex');
+// Route::get('/payment/stripe_index', 'Payment\StripeApiController@index');
 
-// Route::get('/payment/save_card', 'payment\StripeApiController@testSaveCard');
+// Route::get('/payment/save_card', 'Payment\StripeApiController@testSaveCard');
 
-// Route::post('/payment/stripe_payout', 'payment\StripeApiController@processPayout');
-// // Route::get('/payment/check', 'payment\StripeApiController@checkAccountDetail');
-// Route::post('/payment/create_payment_intent_with_card', 'payment\StripeApiController@createPaymentIntentWithCard');
-// Route::post('/payment/confirm_payment_intent', 'payment\StripeApiController@confirmPaymentIntent');
+// Route::post('/payment/stripe_payout', 'Payment\StripeApiController@processPayout');
+// // Route::get('/payment/check', 'Payment\StripeApiController@checkAccountDetail');
+// Route::post('/payment/create_payment_intent_with_card', 'Payment\StripeApiController@createPaymentIntentWithCard');
+// Route::post('/payment/confirm_payment_intent', 'Payment\StripeApiController@confirmPaymentIntent');
 
 // // Stripe Invoice
-// Route::get('/payment/invoice_index', 'payment\StripeApiController@invoiceIndex')->name('invoice_index');
-// Route::post('/payment/create_invoice', 'payment\StripeApiController@createInvoice');
+// Route::get('/payment/invoice_index', 'Payment\StripeApiController@invoiceIndex')->name('invoice_index');
+// Route::post('/payment/create_invoice', 'Payment\StripeApiController@createInvoice');
 
