@@ -70,26 +70,25 @@ bg-student
           </tr>
         </thead>
         <tbody>
-            @foreach (App\Transaction::where('refund_status', '!=', null)->get() as $transaction)
+            @foreach (Illuminate\Support\Facades\DB::table('notifications')->where('type', 'App\Notifications\TutorVerificationInitiatedNotification')->get() as $notif)
             <tr>
-                <th scope="row">{{ $transaction->session_id }}</th>
-                <td>{{ $transaction->refund_status }}</td>
+                <th scope="row">{{ $notif->id }}</th>
                 <td>
-                    Student Name: {{ $transaction->session->student->first_name . $transaction->session->student->last_name }}
+                    {{ App\User::find($notif->notifiable_id)->first_name }}
                 </td>
                 <td>
-                    Student Id: {{ $transaction->session->student->id }}
+                    Student Id: {{ $notif->session->student->id }}
                 </td>
                 <td>
-                    {{ $transaction->refund_requested_time }}
+                    {{ $notif->refund_requested_time }}
                 </td>
                 <td class="d-flex actions">
-                    @if ($transaction->refund_status == 'user_initiated')
-                    <form action="{{ route('payment.stripe.approve_refund', $transaction->session) }}" method="POST">
+                    @if ($notif->refund_status == 'user_initiated')
+                    <form action="{{ route('payment.stripe.approve_refund', $notif->session) }}" method="POST">
                         @csrf
                         <button class="btn btn-primary btn-lg">Approve</button>
                     </form>
-                    <form action="{{ route('payment.stripe.decline_refund', $transaction->session) }}" method="POST">
+                    <form action="{{ route('payment.stripe.decline_refund', $notif->session) }}" method="POST">
                         @csrf
                         <button class="btn btn-danger btn-lg mt-2">Decline</button>
                     </form>
