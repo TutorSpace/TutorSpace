@@ -94,8 +94,14 @@ bg-student
                 <td>
                     <form action="{{ route('admin.course.post', App\User::find($notif->notifiable_id)) }}" method="POST" style="width: 100%">
                         @csrf
-                        <input type="text" placeholder="course name" class="form-control form-control-lg course" name="course">
+                        <input type="text" placeholder="course name" class="form-control form-control-lg course fs-1-6" name="course">
                     </form>
+                    @if (App\User::find($notif->notifiable_id)->notifications()->where('type', 'App\Notifications\TutorVerificationCompleted')->doesntExist())
+                    <form action="{{ route('admin.tutor-verification.completed', $notif->notifiable_id) }}" style="width: 100%;" method="POST">
+                        @csrf
+                        <button class="mt-3 btn btn-primary btn-lg fs-1-6" style="width: 100%">Send Verified Success Notifi</button>
+                    </form>
+                    @endif
                 </td>
             </tr>
             @endforeach

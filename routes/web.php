@@ -231,7 +231,8 @@ Route::group([
     'middleware' => ['auth', 'isAdmin']
 ], function() {
     Route::get('/tutor-verification', 'AdminController@indexTutorVerification')->name('admin.tutor-verification');
-    Route::post('/addVerifiedCourse/{user}', 'AdminController@addVerifiedCourse')->name('admin.course.post');
+    Route::post('/add-verified-course/{user}', 'AdminController@addVerifiedCourse')->name('admin.course.post');
+    Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
 });
 
 // sessions

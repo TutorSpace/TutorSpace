@@ -2,28 +2,23 @@
 
 namespace App\Notifications;
 
-use Storage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Auth;
 
-class TutorVerificationInitiatedNotification extends Notification
+class TutorVerificationCompleted extends Notification
 {
     use Queueable;
 
-    public $isUserVerifyMessage;
-    public $fileUrl;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($isUserVerifyMessage, $fileUrl)
+    public function __construct()
     {
-        $this->isUserVerifyMessage = $isUserVerifyMessage;
-        $this->fileUrl = $fileUrl;
+        //
     }
 
     /**
@@ -45,26 +40,11 @@ class TutorVerificationInitiatedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-
-        // for user email
-        if ($this->isUserVerifyMessage){
-            return (new MailMessage)
+        return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('We have received your verification request. ')
-                    ->line('We will verify your account as soon as possible.')
+                    ->line('We have successfully processed your tutor verification request.')
                     ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our application!');
-        }
-        else{
-            $url = Storage::url($this->fileUrl);
-            $user = Auth::user();
-            return (new MailMessage)
-                    ->line("User ".$user->first_name." ".$user->last_name." requested a tutor verification.")
-                    ->line($url)
-                    ->action('Verify', url('/'))
-                    ->line('Thank you for using our application!');
-        }
-
     }
 
     /**

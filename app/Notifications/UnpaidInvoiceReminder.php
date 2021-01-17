@@ -46,7 +46,7 @@ class UnpaidInvoiceReminder extends Notification
             ->greeting('Dear ' . $this->user->first_name . ' ' . $this->user->last_name)
             ->line('You have an unpaid invoice for your recent tutor session. Please pay your invoice on stripe as soon as possible.')
             //TODO: change to stripe link
-            ->action('Go back to TutorSpace', url('/'))
+            ->action('Visit TutorSpace', url('/'))
             ->line('Thank you for using our application!');
     }
 
