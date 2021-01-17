@@ -91,19 +91,19 @@ bg-student
                         <div class="autocomplete">
                             <label for="first-major" class="profile__label">First Major</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major"
+                                value="{{ Auth::user()->firstMajor->major ??  old('first-major')  }}" name="first-major" id="first-major"
                                 readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="second-major" class="profile__label">Second Major (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major"
+                                value="{{ Auth::user()->secondMajor->major ??  old('second-major')  }}" name="second-major"
                                 id="second-major" readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="minor" class="profile__label">Minor (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor" readonly>
+                                value="{{ Auth::user()->minor->minor ?? old('minor') }}" name="minor" id="minor" readonly>
                         </div>
                     </div>
 
@@ -111,13 +111,13 @@ bg-student
                         <div class="autocomplete">
                             <label for="school-year" class="profile__label">Class Standing</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year"
+                                value="{{ Auth::user()->schoolYear->school_year ?? old('school-year') }}" name="school-year"
                                 id="school-year" readonly>
                         </div>
                         <div class="gpa autocomplete mr-3">
                             <label for="gpa" class="profile__label">GPA</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa" readonly>
+                                value="{{ Auth::user()->gpa ?? old('gpa') }}" name="gpa" id="gpa" readonly>
                         </div>
                         <div class="gpa-note">
                             <span class="font-italic">
@@ -132,7 +132,7 @@ bg-student
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction (optional)</label>
                             <textarea name="introduction" rows="5" class="profile__input form-control form-control-lg"
-                                readonly>{{ Auth::user()->introduction }}</textarea>
+                                readonly>{{ Auth::user()->introduction ?? old('introduction') }}</textarea>
                         </div>
                     </div>
                     @endif
