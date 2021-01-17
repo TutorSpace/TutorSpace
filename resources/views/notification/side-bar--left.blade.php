@@ -70,7 +70,7 @@
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
                     'notificationHeader' => 'Payment Success',
-                    'notificationContent' => '',
+                    'notificationContent' => 'Your session is completed. We have successfully received your payment.',
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\TutorLevelUpNotification')

@@ -237,7 +237,7 @@ $('.action-review').click(function() {
     let url = $(this).attr('data-route-url');
 
     bootbox.dialog({
-        message: `@include('session.report-session')`,
+        message: `@include('session.review-session')`,
         size: 'large',
         centerVertical: true,
         buttons: {

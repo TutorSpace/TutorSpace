@@ -58,6 +58,10 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <span class="color-primary">$ {{ $price }}</span>
             </p>
 
+            <h6 class="color-primary">Rate Your Tutor</h6>
+
+            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate your tutor.</p>
+
             <h6 class="color-primary">Having Trouble with this session?</h6>
 
             <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
