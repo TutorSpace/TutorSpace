@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\WelcomeMessageNotification;
 
 class SwitchAccountController extends Controller
 {
@@ -20,7 +21,10 @@ class SwitchAccountController extends Controller
             if($user) {
                 Auth::login($user);
             } else {
-                Auth::login($currUser->createStudentIdentityFromTutor());
+                $newUser = $currUser->createStudentIdentityFromTutor();
+                Auth::login($newUser);
+
+                $newUser->notify(new WelcomeMessageNotification());
             }
 
             $successMsg = view('switch-account.partials.switch-account-register-success', compact('currUser'))->render();
@@ -35,7 +39,6 @@ class SwitchAccountController extends Controller
     public function switch() {
         $currUser = Auth::user();
         Auth::login(User::where('email', $currUser->email)->where('is_tutor', !$currUser->is_tutor)->first());
-        Log::debug('here');
 
         return response()->json([
             'successMsg' => 'Successfully switched the account!'
@@ -93,7 +96,6 @@ class SwitchAccountController extends Controller
             ]);
         }
 
-
         $currUser->hourly_rate = $request->input('hourly-rate');
 
         if($currUser->is_tutor && $currUser->is_invalid && $currUser->first_major_id && $currUser->gpa && $currUser->hourly_rate && $currUser->school_year_id && $currUser->tutor_level_id) {
@@ -101,6 +103,8 @@ class SwitchAccountController extends Controller
             $currUser->invalid_reason = null;
             $currUser->invalid_redirect_route_name = null;
             $currUser->save();
+
+            $currUser->notify(new WelcomeMessageNotification());
 
             return redirect()->route('home.profile')->with('successMsg', 'You successfully created a tutor account!');
         }
