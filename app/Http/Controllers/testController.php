@@ -69,7 +69,8 @@ class testController extends Controller
         // if ($bonus_rate > 0) {
         //     app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
         // }
-        app(StripeApiController::class)->checkIfCardAlreadyExists();
+        // app(StripeApiController::class)->checkIfCardAlreadyExists();
+        Auth::user()->cancelSessionExperienceDeduction();
 
     }
 }
