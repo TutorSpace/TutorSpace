@@ -184,8 +184,9 @@ bg-student
                             <label for="hourly-rate" class="profile__label">Hourly Rate</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
+                                <div>here</div>
                                 <input type="text" class="profile__input form-control form-control-lg"
-                                    value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
+                                    value="{{ old("hourly-rate") }}" name="hourly-rate" id="hourly-rate">
                             </div>
                         </div>
                         @endif
@@ -428,9 +429,9 @@ bg-student
                 loading(false);
 
                 // TODO: nate uncomment
-                // setTimeout(function () {
-                //     location.reload();
-                // }, 1000);
+                setTimeout(function () {
+                    location.reload();
+                }, 700);
             });
         };
         // Show the customer the error from Stripe if their card fails to charge

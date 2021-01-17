@@ -89,7 +89,7 @@ class HomeController extends Controller
             ],
             'introduction' => [
                 'nullable',
-                'size:50'
+                // 'size:50'
             ],
             "gpa" => [
                 'nullable',

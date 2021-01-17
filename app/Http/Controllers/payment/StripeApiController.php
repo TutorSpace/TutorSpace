@@ -326,8 +326,6 @@ class StripeApiController extends Controller
         //get default
         $default_payment_id = $this->getCustomerDefaultPaymentId();
 
-        Log::debug('default '. $default_payment_id);
-        Log::debug('$payment_method_id '. $payment_method_id);
         // return errors
         if (count($cards) <= 1) {
             return response()->json([
@@ -344,9 +342,17 @@ class StripeApiController extends Controller
         // todo: make sure this works
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
-            $stripe = new \Stripe\StripeClient(
-                'sk_test_51HvqSrGxwAT7uYY4grQo8qKPddrqdR7XUxdmpdaell1YQfUIxA76fgg0bFZrnheH0JJioaQ8WjArCs7ZS0zzdPTu00TB4XWOth'
-              );
+
+            if (env('APP_ENV') == 'local'){
+                $stripe = new \Stripe\StripeClient(
+                    env("STRIPE_TEST_KEY")
+                  );
+            }
+            else if (env('APP_ENV') == 'production'){
+                $stripe = new \Stripe\StripeClient(
+                    env('STRIPE_LIVE_KEY')
+                  );
+            }
               $stripe->paymentMethods->detach(
                 $payment_method_id,
                 []
@@ -743,7 +749,7 @@ class StripeApiController extends Controller
 
         $student_id = $session->student_id;
         $customer_id = PaymentMethod::where("user_id",$student_id)->get()[0]->stripe_customer_id;
-        
+
         // Calculate application fee and session bonus
         $tutor = $session->tutor;
         $bonus_rate = $tutor->getUserBonusRate();
