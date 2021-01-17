@@ -181,11 +181,14 @@ class StripeApiController extends Controller
     public static function getCustomerHasCardsCacheKey(){
         return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
     }
+
+    // todo: 优化代码
     public static function customerHasCards(){
         $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
         if ($hasCard){
             return $hasCard;
         }
+
         $cards = \Stripe\PaymentMethod::all([
             'customer' => Self::getCustomerId(),
             'type' => 'card'
