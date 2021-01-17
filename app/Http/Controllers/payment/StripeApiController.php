@@ -854,4 +854,8 @@ class StripeApiController extends Controller
             'platform_receive' => $application_fee - $bonus - $stripe_payment_fee,
         ];
     }
+
+    public function refundIndex() {
+        return view('payment.refund');
+    }
 }

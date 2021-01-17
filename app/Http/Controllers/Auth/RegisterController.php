@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\WelcomeMessageNotification;
 
 
 class RegisterController extends Controller
@@ -325,6 +326,8 @@ class RegisterController extends Controller
         // login the user
         Auth::login($user);
 
+        $user->notify(new WelcomeMessageNotification());
+
         return redirect()->route('home')->with([
             'registerSuccess' => true,
             'showWelcome' => true
@@ -475,6 +478,8 @@ class RegisterController extends Controller
 
         // login the user
         Auth::login($user);
+
+        $user->notify(new WelcomeMessageNotification());
 
         return redirect()->route('home')->with([
             'registerSuccess' => true,
