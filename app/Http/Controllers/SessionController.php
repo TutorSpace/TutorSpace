@@ -145,7 +145,7 @@ class SessionController extends Controller
             'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
         ]);
 
-        // return resonse error messages
+        // return validation error messages
         if ($validator->fails()){
            return response()->json(
                 [

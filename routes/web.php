@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // for testing
-Route::get('/test', 'testController@index');
+Route::get('/test', 'testController@test');
 
 // autocomplete
 Route::group([
@@ -248,6 +248,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+    Route::post('/verify_card_exists', 'payment\StripeApiController@checkIfCardAlreadyExists')->name('payment.stripe.verify_card_exists');
     Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
 
     Route::get('/add_payment_method', 'payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');

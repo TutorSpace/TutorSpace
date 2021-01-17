@@ -356,9 +356,29 @@ bg-student
         var setUpCard = function(stripe, card, clientSecret) {
             // TODO: nate check if card already exists
             // # Retrieve the customer we're adding this token to
-            
+            loading(true);
+            stripe.createToken(card).then((token)=>{
+                return $.ajax({
+                    type: 'POST',
+                    url: '{{ route('payment.stripe.verify_card_exists') }}',
+                    data: {
+                        "token": token
+                    },
+                    success: (msg) =>{
+                        confirmCard(stripe, card, clientSecret)
+                    },
+                    error: (err) => {
+                        if (err.responseJSON.error){
+                            loading(false);
+                            showError(err.responseJSON.error);
+                        }
+                    }
+                 });
+            })
 
-            // // # Retrieve the token 
+
+
+            // // # Retrieve the token
             // token = Stripe::Token.retrieve(params[:stripeToken])
 
             // // # The fingerprint of the card is stored in `card.fingerprint`
@@ -369,32 +389,34 @@ bg-student
 
 
 
-            loading(true);
-            var email = document.getElementById("email").value;
-            stripe
-                .confirmCardSetup(clientSecret, {
-                    payment_method: {
-                        card: card,
-                        billing_details: { email: email }
-                    }
-                })
-                .then(function(result) {
-                    if (result.error) {
-                        // Show error to your customer
-                        showError(result.error.message);
-                        toastr.error("An error has occurred");
-                    } else {
-                        // save card as default
-                        setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
-                            // The payment succeeded!
-                            orderComplete(result.setupIntent.client_secret);
-                        });
 
-                    }
-                });
+
         };
 
+        function confirmCard(stripe, card, clientSecret){
+            var email = document.getElementById("email").value;
+                stripe
+                    .confirmCardSetup(clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: { email: email }
+                        }
+                    })
+                    .then(function(result) {
+                        if (result.error) {
+                            // Show error to your customer
+                            showError(result.error.message);
+                            toastr.error("An error has occurred");
+                        } else {
+                            // save card as default
+                            setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
+                                // The payment succeeded!
+                                orderComplete(result.setupIntent.client_secret);
+                            });
 
+                        }
+                });
+        }
 
 
         /* ------- UI helpers ------- */
@@ -405,10 +427,10 @@ bg-student
                 document.querySelector("#btn-add-payment-submit").disabled = true;
                 loading(false);
 
-                // console.log(result);
-                setTimeout(function () {
-                    location.reload();
-                }, 1000);
+                // TODO: nate uncomment
+                // setTimeout(function () {
+                //     location.reload();
+                // }, 1000);
             });
         };
         // Show the customer the error from Stripe if their card fails to charge
