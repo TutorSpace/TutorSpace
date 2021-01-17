@@ -11,7 +11,7 @@
         font-size: 16px;
     }
     table {
-        max-width: 80vw;
+        max-width: 90vw;
     }
 
     th {

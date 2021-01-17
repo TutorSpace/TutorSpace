@@ -420,6 +420,10 @@ class User extends Authenticatable
             ->distinct();
     }
 
+    public function verifiedCourses() {
+        return $this->belongsToMany('App\Course');
+    }
+
     public static function updateVerifyStatus() {
         // get id of verified users
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
