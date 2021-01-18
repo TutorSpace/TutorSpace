@@ -1,17 +1,5 @@
 <div class="side-bar__notification @if(isset($hidden) && $hidden) hidden @endif" @if(isset($hidden) && $hidden) data-to-hide="true" @endif>
-@if (isset($isCancellationNotification) && $isCancellationNotification)
-    <div class="side-bar__notification--left">
-        <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img">
-    </div>
-    <div class="side-bar__notification--content">
-        <span>Session Cancelled</span>
-        <span class="subtitle">{{ $notificationContent }} &middot; 08/21 Wed</span>
-    </div>
-
-    <div class="side-bar__notification--right">
-        <span>15 hours ago</span>
-    </div>
-@elseif(isset($isBestReplyNotification) && $isBestReplyNotification)
+@if(isset($isBestReplyNotification) && $isBestReplyNotification)
     <div class="side-bar__notification--left">
         <div class="side-bar__notification--best-reply"></div>
     </div>

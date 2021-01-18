@@ -41,7 +41,7 @@ bg-student
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ Auth::user()->pendingTutorRequests()->count() }} New Tutor Requests!</h5>
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->pendingTutorRequests()->count() }} New Tutor Request(s)!</h5>
 
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (Auth::user()->pendingTutorRequests()->orderBy('session_time_start', 'asc')->orderBy('session_time_start', 'asc')->get() as $tutorRequest)
@@ -59,14 +59,16 @@ bg-student
             <div class="row">
                 <h5 class="mb-2 w-100">Forum Notifications</h5>
                 <div class="info-boxes">
-                    @include('home.partials.notification', [
-                        'isCancellationNotification' => true,
-                        'notificationContent' => 'Nemo Enim'
-                    ])
-                    @include('home.partials.notification', [
-                        'isBestReplyNotification' => true,
-                        'notificationContent' => 'Testing Post 1'
-                    ])
+                    @foreach (Auth::user()->notifications()
+                        ->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
+                        ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
+                        ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification')
+                        ->orderBy('created_at', 'desc')
+                        ->get() as $notif)
+                        @include('home.partials.notification', [
+                            'notif' => $notif
+                        ])
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -254,57 +256,52 @@ bg-student
             </div>
         </div>
         <div class="home__side-bar__notifications">
+            @if ($forumNotifs->count() == 0)
+            <div class="d-flex align-items-center justify-content-between mb-1 flex-100 no-data p-relative">
+                <span class="mb-0 ws-no-wrap">Forum Notifications</span>
+                <span class="no-data__content">No Forum Notifications</span>
+            </div>
+            @else
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Forum Notifications</span>
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
             </div>
             <div class="notifications--sidebar">
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science',
-                    'hidden' => true
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1',
-                    'hidden' => true
-                ])
+                @foreach ($forumNotifs as $notif)
+                    @include('home.partials.notification--sidebar', [
+                        'notif' => $notif
+                    ])
+                @endforeach
             </div>
+            @endif
         </div>
 
         @if (!Auth::user()->is_tutor)
         <div class="home__side-bar__bookmarked-users">
+            @php
+                $bookmarkedUsers = Auth::user()->bookmarkedUsers;
+            @endphp
+            @if ($bookmarkedUsers->count() == 0)
+            <div class="d-flex align-items-center justify-content-between mb-1 flex-100 no-data p-relative">
+                <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
+                <span class="no-data__content">No Bookmarked Tutors</span>
+            </div>
+            @else
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-bookmarked-users">View All</button>
             </div>
 
             <div class="bookmarked-users">
-                @forelse (Auth::user()->bookmarkedUsers as $key => $user)
+                @foreach ($bookmarkedUsers as $key => $user)
                     @include('home.partials.bookmarked-tutor', [
                         'user' => $user,
                         'hidden' => $key > 2
                     ])
-                @empty
-                <h6 class="no-results">No bookmarked tutors yet</h6>
-                @endforelse
+                @endforeach
             </div>
+
+            @endif
         </div>
         @endif
 

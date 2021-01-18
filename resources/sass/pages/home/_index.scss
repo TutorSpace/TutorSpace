@@ -597,6 +597,16 @@
             display: none;
         }
 
+        .no-data {
+            padding-bottom: 15rem;
+
+            &__content {
+                @include absCenter;
+                white-space: nowrap;
+                top: calc(50% + 1rem);
+            }
+        }
+
         .home__board {
             margin-top: 8rem;
             height: 20rem;

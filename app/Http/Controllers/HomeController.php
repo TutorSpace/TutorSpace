@@ -49,7 +49,13 @@ class HomeController extends Controller
         }
 
         return view('home.index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'forumNotifs' => Auth::user()->notifications()
+            ->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
+            ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
+            ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification')
+            ->orderBy('created_at', 'desc')
+            ->get()
         ]);
 
     }
