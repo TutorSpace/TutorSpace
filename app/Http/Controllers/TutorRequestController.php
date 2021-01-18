@@ -34,8 +34,10 @@ class TutorRequestController extends Controller
                 $session->save();
                 $session->refresh();
 
-                // delete tutor request
-                $tutorRequest->delete();
+                // should not delete tutor request, because we need to show it.
+                $tutorRequest->status = 'accepted';
+                $tutorRequest->save();
+
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
@@ -60,7 +62,8 @@ class TutorRequestController extends Controller
 
     // todo: add validation here
     public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
-        $tutorRequest->delete();
+        $tutorRequest->status = 'declined';
+        $tutorRequest->save();
 
         return response()->json(
             [

@@ -304,9 +304,12 @@ class User extends Authenticatable
         return $newUser;
     }
 
-
     public function tutorRequests() {
         return $this->hasMany('App\TutorRequest', $this->is_tutor ? 'tutor_id' : 'student_id');
+    }
+
+    public function pendingTutorRequests() {
+        return $this->tutorRequests()->where('status', 'pending');
     }
 
     public function availableTimes() {

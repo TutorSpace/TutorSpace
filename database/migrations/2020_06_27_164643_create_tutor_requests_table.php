@@ -22,6 +22,7 @@ class CreateTutorRequestsTable extends Migration
             $table->timestamp('session_time_start');
             $table->timestamp('session_time_end');
             $table->boolean('is_in_person');
+            $table->string('status')->default('pending'); // status can be pending, accepted, and declined
             $table->text('message_to_tutor')->nullable();
             $table->timestamps();
 
