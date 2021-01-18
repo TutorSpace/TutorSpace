@@ -108,12 +108,13 @@
                 '#D9D2F4',
             ];
     var labels =  [
-            'Five-Star',
-            'Four-Star',
-            'Three-Star',
-            'Two-Star',
-            'One-Star',
-        ]
+        'One-Star',
+        'Two-Star',
+        'Three-Star',
+        'Four-Star',
+        'Five-Star',
+    ];
+
     var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
         data = [1];
