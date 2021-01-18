@@ -48,7 +48,7 @@
         </p>
     </section>
 
-    <div class="forum-heading-img mt-5"></div>
+    <div class="forum-heading-img forum-heading-img--right mt-5"></div>
 
     <div class="you-may-help-with">
         <h6 class="you-may-help-with__heading">
