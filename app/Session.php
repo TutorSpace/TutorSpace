@@ -79,15 +79,15 @@ class Session extends Model
     }
 
 
-    // todo: should not bother user too often
-    public static function requestReviewForTutor() {
-        $sessions = Session::where('is_canceled', false)->where('is_upcoming', false)->get();
+    // // todo: should not bother user too often
+    // public static function requestReviewForTutor() {
+    //     $sessions = Session::where('is_canceled', false)->where('is_upcoming', false)->get();
 
-        foreach($sessions as $session) {
-            if(Review::where('session_id', $session->id)->doesntExist()) {
-                $session->student->notify(new UnratedTutorNotification($session));
-            }
-        }
-    }
+    //     foreach($sessions as $session) {
+    //         if(Review::where('session_id', $session->id)->doesntExist()) {
+    //             $session->student->notify(new UnratedTutorNotification($session));
+    //         }
+    //     }
+    // }
 
 }
