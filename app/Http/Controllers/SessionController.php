@@ -128,6 +128,9 @@ class SessionController extends Controller
         $review->reviewee_id = $session->tutor->id;
         $review->save();
 
+        // TUTOR EXPERIENCE += 5 * RATING
+        $session->tutor->addExperience(5 * $request->input('star-rating'));
+
         return response()->json([
             'successMsg' => 'Successfully posted the review!'
         ]);
