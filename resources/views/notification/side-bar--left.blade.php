@@ -149,8 +149,8 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'sessions',
-                    'notificationHeader' => '',
-                    'notificationContent' => '',
+                    'notificationHeader' => 'New Tutor Request',
+                    'notificationContent' => 'You just received a new Tutor Session Request!',
                     'notifId' => $notification->id
             ])
         @endif

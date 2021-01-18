@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Session;
 use App\Notification;
+use App\TutorRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -70,23 +71,23 @@ class NotificationController extends Controller
                 ])->render();
         } else if($notif->type == 'App\Notifications\UserRequestedRefundNotification') {
             $view = view(
-                'notification.content.tutorspace.refund-request-initiated', [
+                'notification.content.sessions.refund-request-initiated', [
                     'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         } else if($notif->type == 'App\Notifications\RefundRequestApprovedNotification') {
             $view = view(
-                'notification.content.tutorspace.refund-request-success', [
+                'notification.content.sessions.refund-request-success', [
                     'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         } else if($notif->type == 'App\Notifications\RefundDeclinedNotification') {
             $view = view(
-                'notification.content.tutorspace.refund-request-fail', [
+                'notification.content.sessions.refund-request-fail', [
                     'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         } else if($notif->type == 'App\Notifications\NewTutorRequest') {
             $view = view(
-                'notification.content.tutorspace.', [
-
+                'notification.content.sessions.tutor-request', [
+                    'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
                 ])->render();
         }
 

@@ -2,23 +2,26 @@
 
 namespace App\Notifications;
 
+use App\TutorRequest;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewTutorRequest extends Notification
 {
     use Queueable;
+
+    private $tutorRequest;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(TutorRequest $tutorRequest)
     {
-        //
+        $this->tutorRequest = $tutorRequest;
     }
 
     /**
@@ -41,9 +44,10 @@ class NewTutorRequest extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('You just received a New Tutor Request from ' . $this->tutorRequest->student->first_name . '!')
+                ->action('Visit TutorSpace', url('/'))
+                ->line('Thank you for using our platform!');
     }
 
     /**
@@ -55,7 +59,7 @@ class NewTutorRequest extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'tutorRequest' => $this->tutorRequest
         ];
     }
 }
