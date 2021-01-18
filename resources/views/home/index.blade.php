@@ -159,7 +159,6 @@ bg-student
         </div>
         @endif
 
-
         <div class="container col-layout-3">
             <div class="row">
                 <h5 class="mb-2 w-100">Data Visualization</h5>
@@ -215,17 +214,17 @@ bg-student
 
         <div class="home__side-bar__upcoming-sessions">
             <div class="info-cards">
-                @php
-                    $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->orderBy('session_time_start', 'asc')->orderBy('session_time_end', 'asc')->get();
-                @endphp
-                <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                    <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                    @if ($upcomingSessions->count() > 2)
-                    <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                    @endif
-                </div>
                 @if (Auth::user()->is_tutor)
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->orderBy('session_time_start', 'asc')->orderBy('session_time_end', 'asc')->get();
+                    @endphp
                     @if ($upcomingSessions->count() > 0)
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
@@ -233,14 +232,18 @@ bg-student
                                 'hidden' => $i > 1
                             ])
                         @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 @else
                     @php
                         $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
                     @endphp
                     @if ($upcomingSessions->count() > 0)
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
@@ -248,8 +251,6 @@ bg-student
                                 'hidden' => $i > 1
                             ])
                         @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 @endif
 
