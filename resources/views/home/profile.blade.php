@@ -346,14 +346,24 @@ bg-student
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {
                 event.preventDefault();
+                var checkeAgreement = document.getElementById("add-card-agreement");
+                var email = document.getElementById("email").value;
+                var name = document.getElementById("card-holder").value;
+                if (!checkeAgreement.checked){
+                    showError("Please read our terms of agreement");
+                }else if (!email || !name){
+                    showError("Please enter billing account details");
+                }else{
+                    setUpCard(stripe, card, data.clientSecret, email, name);
+                }
                 // Complete payment when the submit button is clicked
-                setUpCard(stripe, card, data.clientSecret);
+
             });
         });
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
-        var setUpCard = function(stripe, card, clientSecret) {
+        var setUpCard = function(stripe, card, clientSecret, email, name) {
             // TODO: nate check if card already exists
             // # Retrieve the customer we're adding this token to
             loading(true);
@@ -366,7 +376,7 @@ bg-student
                         "token": token
                     },
                     success: (msg) =>{
-                        confirmCard(stripe, card, clientSecret)
+                        confirmCard(stripe, card, clientSecret, email, name)
                     },
                     error: (err) => {
                         loading(false);
@@ -378,13 +388,12 @@ bg-student
             })
         };
 
-        function confirmCard(stripe, card, clientSecret){
-            var email = document.getElementById("email").value;
+        function confirmCard(stripe, card, clientSecret, email, name){
                 stripe
                     .confirmCardSetup(clientSecret, {
                         payment_method: {
                             card: card,
-                            billing_details: { email: email }
+                            billing_details: { email: email, name: name }
                         }
                     })
                     .then(function(result) {
@@ -611,7 +620,10 @@ bg-student
                                     </div>
                                 </div>
                                 <div class="bank-card-row-three">
-
+                                    <div class="card-holder">
+                                        <div>Card Holder</div>
+                                        <div class="user-info">${card.card_holder}</div>
+                                    </div>
                                     <div class="expiration">
                                         <div>Exp Date</div>
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
