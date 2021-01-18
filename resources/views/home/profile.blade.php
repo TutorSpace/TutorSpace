@@ -303,7 +303,9 @@ bg-student
 
 
 <script defer>
+
     function stripeInit() {
+
         // A reference to Stripe.js initialized with your real test publishable API key.
         var stripe = Stripe(stripeApiKey);
         // The items the customer wants to buy
@@ -345,21 +347,27 @@ bg-student
             });
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {
+                processing(true);
                 event.preventDefault();
                 var checkeAgreement = document.getElementById("add-card-agreement");
-                var email = document.getElementById("email").value;
-                var name = document.getElementById("card-holder").value;
+                var email = document.getElementById("email").value.trim();
+                var name = document.getElementById("card-holder").value.trim();
                 if (!checkeAgreement.checked){
                     showError("Please read our terms of agreement");
                 }else if (!email || !name){
                     showError("Please enter billing account details");
                 }else{
+
+                    paymentActionProcessing = true;
                     setUpCard(stripe, card, data.clientSecret, email, name);
+
                 }
                 // Complete payment when the submit button is clicked
 
             });
         });
+
+
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
@@ -380,6 +388,7 @@ bg-student
                     },
                     error: (err) => {
                         loading(false);
+                        processing(false);
                         if (err.responseJSON.error){
                             showError(err.responseJSON.error);
                         }
@@ -400,6 +409,8 @@ bg-student
                         if (result.error) {
                             // Show error to your customer
                             showError(result.error.message);
+                            loading(false);
+                            processing(false);
                             toastr.error("An error has occurred");
                         } else {
                             // save card as default
@@ -421,11 +432,12 @@ bg-student
                 // store last bank card action in session
                 sendLastBankCardAction("addNew").then(()=>{
                         toastr.success("Added card successfully");
-                        document.querySelector("#btn-add-payment-submit").disabled = true;
+                        var submitBtn = document.querySelector("#btn-add-payment-submit");
+                        if (submitBtn) submitBtn.disabled = true;
                         loading(false);
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                 });
             });
         };
@@ -440,21 +452,36 @@ bg-student
         };
         // Show a spinner on payment submission
         var loading = function(isLoading) {
+            const button = document.querySelector("button");
+            const spinner = document.querySelector("#spinner");
+            const buttonText = document.querySelector("#button-text");
             if (isLoading) {
                 // Disable the button and show a spinner
-                document.querySelector("button").disabled = true;
-                document.querySelector("#spinner").classList.remove("hidden");
-                document.querySelector("#button-text").classList.add("hidden");
+                if (button) button.disabled = true;
+                if (spinner) spinner.classList.remove("hidden");
+                if (buttonText) buttonText.classList.add("hidden");
             } else {
-                document.querySelector("button").disabled = false;
-                document.querySelector("#spinner").classList.add("hidden");
-                document.querySelector("#button-text").classList.remove("hidden");
+                if (button) button.disabled = false;
+                if (spinner) spinner.classList.add("hidden");
+                if (buttonText) buttonText.classList.remove("hidden");
             }
         };
+
     }
 </script>
 
 <script>
+
+        var processing = function(isProcessing){
+            if (isProcessing){
+                $(".btn-delete").attr("disabled",true);
+                $(".btn-set-default").attr("disabled",true);
+            }else{
+                $(".btn-delete").attr("disabled",false);
+                $(".btn-set-default").attr("disabled",false);
+            }
+        }
+
     const setCardAsDefault = function (paymentMethodID, isFake) {
         var fake = "false";
         if (isFake){
@@ -481,8 +508,10 @@ bg-student
 @endif
 
     function handleDelete(){
+
         var btnDelete = $(".btn-delete");
         btnDelete.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             detachCard(paymentMethodID, true).then(result=>{
@@ -495,12 +524,13 @@ bg-student
                         toastr.success(result.success);
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                     });
                 }
             })
             .catch(error=>{
                 toastr.error(error);
+                processing(false);
             })
         });
     }
@@ -508,6 +538,7 @@ bg-student
     function handleSetDefault(){
         var btnDefault = $(".btn-set-default");
         btnDefault.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             setCardAsDefault(paymentMethodID, true).then((res)=>{
@@ -518,12 +549,12 @@ bg-student
                         toastr.success("Succesfully set card as default payment method");
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                     });
-
                 }
             })
             .catch(error=>{
+                processing(false);
                 toastr.error(error)
             })
 

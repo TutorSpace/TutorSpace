@@ -189,8 +189,9 @@
     align-items: center;
 
     input{
-        width: 5%;
+        width: 1rem;
         margin-right: 1rem;
+        min-width: 15px;
     }
 }
 
