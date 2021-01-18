@@ -71,7 +71,7 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\UserRequestedRefundNotification') {
             $view = view(
                 'notification.content.tutorspace.refund-request-initiated', [
-
+                    'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         }
 

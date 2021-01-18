@@ -122,8 +122,8 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => '',
-                    'notificationContent' => '',
+                    'notificationHeader' => 'Refund Request',
+                    'notificationContent' => 'We have received your refund request.',
                     'notifId' => $notification->id
             ])
         @endif
