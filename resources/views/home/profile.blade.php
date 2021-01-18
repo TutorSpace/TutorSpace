@@ -347,10 +347,11 @@ bg-student
             });
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {
+                processing(true);
                 event.preventDefault();
                 var checkeAgreement = document.getElementById("add-card-agreement");
-                var email = document.getElementById("email").value;
-                var name = document.getElementById("card-holder").value;
+                var email = document.getElementById("email").value.trim();
+                var name = document.getElementById("card-holder").value.trim();
                 if (!checkeAgreement.checked){
                     showError("Please read our terms of agreement");
                 }else if (!email || !name){
@@ -387,6 +388,7 @@ bg-student
                     },
                     error: (err) => {
                         loading(false);
+                        processing(false);
                         if (err.responseJSON.error){
                             showError(err.responseJSON.error);
                         }
@@ -407,6 +409,8 @@ bg-student
                         if (result.error) {
                             // Show error to your customer
                             showError(result.error.message);
+                            loading(false);
+                            processing(false);
                             toastr.error("An error has occurred");
                         } else {
                             // save card as default
@@ -428,7 +432,8 @@ bg-student
                 // store last bank card action in session
                 sendLastBankCardAction("addNew").then(()=>{
                         toastr.success("Added card successfully");
-                        document.querySelector("#btn-add-payment-submit").disabled = true;
+                        var submitBtn = document.querySelector("#btn-add-payment-submit");
+                        if (submitBtn) submitBtn.disabled = true;
                         loading(false);
                         setTimeout(function () {
                             location.reload();
@@ -447,15 +452,18 @@ bg-student
         };
         // Show a spinner on payment submission
         var loading = function(isLoading) {
+            const button = document.querySelector("button");
+            const spinner = document.querySelector("#spinner");
+            const buttonText = document.querySelector("#button-text");
             if (isLoading) {
                 // Disable the button and show a spinner
-                document.querySelector("button").disabled = true;
-                document.querySelector("#spinner").classList.remove("hidden");
-                document.querySelector("#button-text").classList.add("hidden");
+                if (button) button.disabled = true;
+                if (spinner) spinner.classList.remove("hidden");
+                if (buttonText) buttonText.classList.add("hidden");
             } else {
-                document.querySelector("button").disabled = false;
-                document.querySelector("#spinner").classList.add("hidden");
-                document.querySelector("#button-text").classList.remove("hidden");
+                if (button) button.disabled = false;
+                if (spinner) spinner.classList.add("hidden");
+                if (buttonText) buttonText.classList.remove("hidden");
             }
         };
 
