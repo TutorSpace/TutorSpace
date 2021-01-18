@@ -55,7 +55,8 @@ bg-student
             </div>
         </div>
 
-        <div class="container col-layout-3 col-layout-3--hidden">
+        {{-- not needed to account for small screen for now --}}
+        {{-- <div class="container col-layout-3 col-layout-3--hidden">
             <div class="row">
                 <h5 class="mb-2 w-100">Forum Notifications</h5>
                 <div class="info-boxes">
@@ -71,7 +72,7 @@ bg-student
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
@@ -259,17 +260,21 @@ bg-student
             @if ($forumNotifs->count() == 0)
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100 no-data p-relative">
                 <span class="mb-0 ws-no-wrap">Forum Notifications</span>
-                <span class="no-data__content">No Forum Notifications</span>
+                <span class="no-data__content">No Recent Forum Notifications</span>
             </div>
             @else
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Forum Notifications</span>
+                @if ($forumNotifs->count() > 2 + 1)
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
+                @endif
+
             </div>
             <div class="notifications--sidebar">
-                @foreach ($forumNotifs as $notif)
+                @foreach ($forumNotifs as $key => $notif)
                     @include('home.partials.notification--sidebar', [
-                        'notif' => $notif
+                        'notif' => $notif,
+                        'hidden' => $key > 2
                     ])
                 @endforeach
             </div>
@@ -289,7 +294,9 @@ bg-student
             @else
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
+                @if ($bookmarkedUsers->count() > 2 + 1)
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-bookmarked-users">View All</button>
+                @endif
             </div>
 
             <div class="bookmarked-users">
