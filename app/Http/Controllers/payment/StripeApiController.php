@@ -846,9 +846,9 @@ class StripeApiController extends Controller
             // send unpaid invoice mail reminder to tutorspace and user
             $user = User::find($transaction->user_id);
 
-            $user->notify(new UnpaidInvoiceReminder($user->session, true));
+            $user->notify(new UnpaidInvoiceReminder($transaction->session, true));
             Notification::route('mail', "tutorspaceusc@gmail.com")
-            ->notify(new UnpaidInvoiceReminder($user->session, false));
+            ->notify(new UnpaidInvoiceReminder($transaction->session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";
         }
