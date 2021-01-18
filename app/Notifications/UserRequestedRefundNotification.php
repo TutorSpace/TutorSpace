@@ -1,28 +1,32 @@
 <?php
 
-namespace App\Notifications\Forum;
+namespace App\Notifications;
 
-use App\Post;
 use App\User;
+use App\Session;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MarkedAsBestReplyNotification extends Notification
+class UserRequestedRefundNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $user;
+    private $session;
+    private $toUser;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(User $user, Session $session, $toUser)
     {
-        $this->post = $post;
+        $this->user = $user;
+        $this->session = $session;
+        $this->toUser = $toUser;
     }
 
     /**
@@ -44,11 +48,17 @@ class MarkedAsBestReplyNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
-                    ->action('View the Post', route('posts.show', $this->post->slug))
-                    ->line('Thank you for using TutorSpace!');
+        // if sending to users
+        if($this->toUser) {
+            return (new MailMessage)
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('You have successfully requested a refund.')
+                ->action('Visit TutorSpace', url('/'))
+                ->line('Thank you for using our platform!');
+        } else {
+            return (new MailMessage)
+                ->line('A user requested a refund');
+        }
     }
 
     /**
@@ -60,7 +70,8 @@ class MarkedAsBestReplyNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'user' => $this->user,
+            'session' => $this->session
         ];
     }
 }

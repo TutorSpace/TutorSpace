@@ -49,8 +49,8 @@ class InvoicePaymentFailed extends Notification
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
                     ->line('Your payment for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
-                    ->line('You should receive an email from Stripe to pay or authenticate.')
                     ->line('Payment URL: ' . $payment_url)
+                    ->action('Pay', $payment_url)
                     ->line('Thank you for using our platform!');
     }
 
@@ -63,7 +63,7 @@ class InvoicePaymentFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'session' => $this->session
         ];
     }
 }

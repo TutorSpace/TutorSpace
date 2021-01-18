@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\DB;
 use App\Rules\SessionDifferentUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\NewTutorRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\payment\StripeApiController;
 
@@ -178,6 +179,10 @@ class SessionController extends Controller
             $tutorRequest->course()->associate($course);
 
             $tutorRequest->save();
+
+            $tutorRequest->refresh();
+
+            $tutor->notify(new NewTutorRequest($tutorRequest));
 
             return response()->json(
                 [

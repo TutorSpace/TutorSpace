@@ -68,7 +68,7 @@
                 </p>
                 <div class="tutor-level-progress">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{{ Auth::user()->getLevelProgressPercentage()*100 }}}%;" aria-valuenow="{{{ Auth::user()->getLevelProgressPercentage()*100 }}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{ Auth::user()->getLevelProgressPercentage()*100 }}%;" aria-valuenow="{{ Auth::user()->getLevelProgressPercentage()*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="tutor-level tutor-level--current">
                         {{ Auth::user()->currentLevel() }}

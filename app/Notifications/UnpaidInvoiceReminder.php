@@ -2,12 +2,15 @@
 
 namespace App\Notifications;
 
+use App\User;
+use App\Session;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
-use App\User;
+use App\Http\Controllers\Payment\StripeApiController;
+
 class UnpaidInvoiceReminder extends Notification
 {
     use Queueable;
@@ -17,10 +20,14 @@ class UnpaidInvoiceReminder extends Notification
      *
      * @return void
      */
-    public $user;
-    public function __construct(User $user)
+
+    private $session;
+    private $toUser;
+
+    public function __construct(Session $session, $toUser)
     {
-        $this->user = $user;
+        $this->session = $session;
+        $this->toUser = $toUser;
     }
 
     /**
@@ -31,7 +38,7 @@ class UnpaidInvoiceReminder extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -42,12 +49,23 @@ class UnpaidInvoiceReminder extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->greeting('Dear ' . $this->user->first_name . ' ' . $this->user->last_name)
-            ->line('You have an unpaid invoice for your recent tutor session. Please pay your invoice on stripe as soon as possible.')
-            //TODO: change to stripe link
-            ->action('Visit TutorSpace', url('/'))
-            ->line('Thank you for using our application!');
+        // if sending to users
+        if($this->toUser) {
+            // Retrieve payment url and send
+            $payment_url = app(StripeApiController::class)->getPaymentUrl($this->session);
+
+            return (new MailMessage)
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('You have an unpaid tutor session. Please pay your invoice on stripe as soon as possible.')
+                ->line('Payment URL: ' . $payment_url)
+                ->action('Pay', $payment_url)
+                ->line('Thank you for using our platform!');
+        } else {
+            return (new MailMessage)
+                ->line('Session (' . $this->session->id . ') has an unpaid tutor session.');
+        }
+
+
     }
 
     /**
@@ -59,7 +77,7 @@ class UnpaidInvoiceReminder extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'session' => $this->session
         ];
     }
 }

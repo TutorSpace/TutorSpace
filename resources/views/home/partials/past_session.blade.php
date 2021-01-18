@@ -57,6 +57,7 @@
             </svg>
             <div class="action--toggle--list p-absolute d-none flex-column">
                 @if (!$currUser->is_tutor)
+                @if($status != 'paid')
                 <a class="d-flex flex-row" href="{{ route('payment.stripe.redirect-payment', $session) }}">
                     <svg width="2rem" height="2rem" viewBox="0 0 16 16" class="bi bi-credit-card" fill="#626262" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z"/>
@@ -64,6 +65,7 @@
                     </svg>
                     <span class="action--toggle--list--title fc-black-2">Pay</span>
                 </a>
+                @endif
                 @can('review-session', $session)
                 <a class="d-flex flex-row action-review" data-route-url="{{ route('session.review', $session) }}">
                     <svg width="2rem" height="2rem" viewBox="0 0 16 16" class="bi bi-chat-square-dots" fill="#626262" xmlns="http://www.w3.org/2000/svg">

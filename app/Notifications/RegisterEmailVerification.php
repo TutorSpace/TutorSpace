@@ -48,7 +48,6 @@ class RegisterEmailVerification extends Notification
         return (new MailMessage)
                     ->greeting('Dear ' . $this->userName)
                     ->line('Your verification code is ' . $this->verificationCode)
-                    ->action('Continue to register', route('login.index.student'))
                     ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
     }
 

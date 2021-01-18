@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\CancellationPenalty;
 use App\User;
 use Carbon\Carbon;
 use Stripe\Stripe;
@@ -13,24 +12,28 @@ use App\SessionBonus;
 use App\PaymentMethod;
 use Stripe\AccountLink;
 use Stripe\SetupIntent;
+use App\CancellationPenalty;
 use Illuminate\Http\Request;
 use App\Session as AppSession;
+use App\Notifications\PayoutPaid;
 use App\Notifications\InvoicePaid;
+use App\Notifications\PayoutFailed;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Notifications\CancellationPenaltyFailed;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
-use Illuminate\Support\Facades\Session;
-use App\Notifications\ChargeRefundUpdated;
-use App\Notifications\ExtraSessionBonus;
-use App\Notifications\InvoicePaymentFailed;
-use App\Notifications\NotEnoughBalance;
-use App\Notifications\PayoutFailed;
-use App\Notifications\PayoutPaid;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Cache;
+use App\Notifications\NotEnoughBalance;
+use Illuminate\Support\Facades\Session;
+use App\Notifications\ExtraSessionBonus;
+use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\InvoicePaymentFailed;
+use App\Notifications\UnpaidInvoiceReminder;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CancellationPenaltyFailed;
+use App\Notifications\RefundDeclinedNotification;
+use App\Notifications\UserRequestedRefundNotification;
+use App\Notifications\RefundRequestApprovedNotification;
 
 class StripeApiController extends Controller
 {
@@ -215,12 +218,14 @@ class StripeApiController extends Controller
     public static function getCustomerHasCardsCacheKey(){
         return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
     }
+
+    // todo: 优化代码
     public static function customerHasCards(){
         $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
         if ($hasCard){
             return $hasCard;
         }
-        $cards =  self::retrieveAllCards();
+        $cards = self::retrieveAllCards();
 
         self::cacheCustomerHasCards($cards);
 
@@ -358,7 +363,7 @@ class StripeApiController extends Controller
             ], 400);
         }
 
-        // todo: make sure this works
+        // nate todo: restore to the previous version with app(StripeApiController)
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
 
@@ -410,6 +415,11 @@ class StripeApiController extends Controller
             $transaction->refund_status = 'user_initiated';
             $transaction->refund_requested_time = Carbon::now();
             $transaction->save();
+
+            Auth::user()->notify(new UserRequestedRefundNotification(Auth::user(), $session, true));
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            ->notify(new UserRequestedRefundNotification(Auth::user(), $session, false));
+
             $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
         } else if($transaction->refund_status == 'user_initiated') {
             $msg = "You already made the request. Please wait it to be processed.";
@@ -436,7 +446,7 @@ class StripeApiController extends Controller
         // Already refunded
         if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
             Log::error('Trying to refund a refunded transaction');
-            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
         }
 
         // Refund invoice
@@ -454,6 +464,9 @@ class StripeApiController extends Controller
                 $transaction->refund_id = $refund->id;
                 $transaction->refund_status = 'pending';
                 $transaction->save();
+
+                $session->student->notify(new RefundRequestApprovedNotification($session));
+
                 break;
 
             default:  // Other cases
@@ -484,6 +497,9 @@ class StripeApiController extends Controller
         }
         $transaction->refund_status = 'canceled';
         $transaction->save();
+
+        $session->student->notify(new RefundDeclinedNotification($session));
+
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
@@ -731,7 +747,7 @@ class StripeApiController extends Controller
         $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
         $user = $payment_method->user;
 
-        // TODO: send email to 'user'. Payout is sent to bank account
+        // send email to 'user'. Payout is sent to bank account
         $user->notify(new PayoutPaid($payout->amount));
     }
 
@@ -742,7 +758,7 @@ class StripeApiController extends Controller
         $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
         $user = $payment_method->user;
 
-        // TODO: send email to 'user' and us. Payout failed. They should update bank info
+        // send email to 'user' and us. Payout failed. They should update bank info
         $user->notify(new PayoutFailed(true, $payout->failure_code));
 
         Notification::route('mail', 'tutorspaceusc@gmail.com')
@@ -771,7 +787,7 @@ class StripeApiController extends Controller
 
         // Calculate application fee and session bonus
         $tutor = $session->tutor;
-        $bonus_rate = $tutor->getUserBonusRate();
+        $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
         $bonus_amount = round($amount * $bonus_rate);
         $original_application_fee_amount = round($amount * self::$APPLICATION_FEE_PERCENT);
         if ($original_application_fee_amount >= $bonus_amount) {
@@ -823,18 +839,16 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // send invoice
-            // $invoiceToSend->sendInvoice();
+
             // update last update time
             $transaction->touch();
 
-            // TODO: add link
             // send unpaid invoice mail reminder to tutorspace and user
             $user = User::find($transaction->user_id);
-            Notification::route('mail', $user->email)
-            ->notify(new UnpaidInvoiceReminder($user));
-            Notification::route('mail', "tutorspace@gmail.edu")
-            ->notify(new UnpaidInvoiceReminder($user));
+
+            $user->notify(new UnpaidInvoiceReminder($user->session, true));
+            Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new UnpaidInvoiceReminder($user->session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";
         }

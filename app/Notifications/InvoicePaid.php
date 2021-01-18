@@ -45,6 +45,7 @@ class InvoicePaid extends Notification
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
                 ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
+                ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }
 
@@ -57,7 +58,7 @@ class InvoicePaid extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'session' => $this->session
         ];
     }
 }

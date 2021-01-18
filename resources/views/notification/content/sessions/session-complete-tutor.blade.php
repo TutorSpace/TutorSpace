@@ -7,7 +7,7 @@
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h5 class="color-primary">You would receive your payment in x days</h5>
+            <h6 class="color-primary">You would receive your payment in x days</h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
@@ -15,11 +15,11 @@
             </p>
 
             <div class="mt-5 color-primary d-flex align-items-center">
-                <h5>Tutor Growth Plan</h5>
-                <h5 class="fs-1-8 ml-5">(+ 20 exp)</h5>
+                <h6>Tutor Growth Plan</h6>
+                <h6 class="fs-1-8 ml-5">(+ 20 exp)</h6>
             </div>
 
-            <h5 class="mt-5 color-primary">Session Details</h5>
+            <h6 class="mt-5 color-primary">Session Details</h6>
 
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <h5 class="color-primary">Price Summary</h5>
+            <h6 class="color-primary">Price Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Income
                 <span class="color-primary">$ 26</span>
             </p>
@@ -68,7 +68,7 @@
                 <span class="color-primary">$ 24</span>
             </p>
 
-            <h5 class="color-primary">Having Trouble with this session?</h5>
+            <h6 class="color-primary">Having Trouble with this session?</h6>
 
             <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
 

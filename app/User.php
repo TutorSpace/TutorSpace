@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
@@ -64,10 +65,15 @@ class User extends Authenticatable
     }
 
     public function getIntroduction() {
-        $secondMajor = $this->secondMajor;
-        $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
+        if($this->is_tutor) {
+            $secondMajor = $this->secondMajor;
+            $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
 
-        return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+        } else {
+            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutor sessions on this platform.";
+        }
+
     }
 
     // check whether a user with an email exists and is a student
@@ -101,10 +107,6 @@ class User extends Authenticatable
 
     public function courses() {
         return $this->belongsToMany('App\Course');
-    }
-
-    public function characteristics() {
-        return $this->belongsToMany('App\Characteristic');
     }
 
     public function tutorLevel() {
@@ -422,7 +424,7 @@ class User extends Authenticatable
     }
 
     public function verifiedCourses() {
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course', 'verified_courses', 'user_id', 'course_id');
     }
 
     public static function updateVerifyStatus() {
@@ -476,8 +478,17 @@ class User extends Authenticatable
         $allUsersWithEmail = User::where("email",$this->email)->get();
         foreach ($allUsersWithEmail as $user) {
             $user->experience_points += $experienceToAdd;
+
+            $newTutorLevelId = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+
+            // important: tutor level are assumed to be larger with higher tutor level id
+            if($newTutorLevelId > $user->tutor_level_id) {
+                $user->notify(new TutorLevelUpNotification());
+            }
+
             // update tutor level id in user
-            $user->tutor_level_id = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+            $user->tutor_level_id = $newTutorLevelId;
+
             // save
             $user->save();
         }
@@ -512,7 +523,6 @@ class User extends Authenticatable
     public function currentLevel() {
         return $this->tutorLevel->tutor_level;
     }
-
 
     // return tutor_level : String
     // edge case: returns "" if there's no next level

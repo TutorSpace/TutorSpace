@@ -2,29 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Session;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-class PayoutFailed extends Notification
+class RefundRequestApprovedNotification extends Notification
 {
     use Queueable;
 
-    private $is_sending_to_user;
-    private $failure_code;
-    private $stripe_account_id;
+    private $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($is_sending_to_user, $failure_code, $stripe_account_id = null)
+    public function __construct(Session $session)
     {
-        $this->is_sending_to_user = $is_sending_to_user;
-        $this->failure_code = $failure_code;
-        $this->stripe_account_id = $stripe_account_id;
+        $this->session = $session;
     }
 
     /**
@@ -46,18 +43,11 @@ class PayoutFailed extends Notification
      */
     public function toMail($notifiable)
     {
-        if ($this->is_sending_to_user) {
-            return (new MailMessage)
+        return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('A recent payout to you has failed.')
-                    ->line('The failure reason is ' . $this->failure_code . '.')
-                    ->line('Please contact TutorSpace for more details.')
+                    ->line('Your refund request with session ' . $this->session->id . ' has been approved.')
                     ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
-        } else {
-            return (new MailMessage)
-                    ->line('A payout to ' . $this->stripe_account_id . ' has failed for ' . $this->failure_code . '.');
-        }
     }
 
     /**
@@ -69,8 +59,7 @@ class PayoutFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            'failureCode' => $this->failure_code,
-            'stripeAccountId' => $this->stripe_account_id
+            'session' => $this->session
         ];
     }
 }

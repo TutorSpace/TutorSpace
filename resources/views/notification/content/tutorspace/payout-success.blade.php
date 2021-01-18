@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    We have received your request to be a verified tutor.
+    Payout Success
 </div>
 <div class="notification__content__info">
 
@@ -8,13 +8,8 @@
 
         <div class="container content">
             <h6 class="color-primary">
-                We have received your request to be a verified tutor.
+                You have received a payout of {{ $amount }} dollars. You should be able to see it in the bank account you registered with us.
             </h6>
-            <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
-            </p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>

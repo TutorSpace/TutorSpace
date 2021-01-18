@@ -7,24 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PayoutFailed extends Notification
+class TutorLevelUpNotification extends Notification
 {
     use Queueable;
 
-    private $is_sending_to_user;
-    private $failure_code;
-    private $stripe_account_id;
+    private $exp;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($is_sending_to_user, $failure_code, $stripe_account_id = null)
+    public function __construct()
     {
-        $this->is_sending_to_user = $is_sending_to_user;
-        $this->failure_code = $failure_code;
-        $this->stripe_account_id = $stripe_account_id;
+
     }
 
     /**
@@ -46,18 +42,11 @@ class PayoutFailed extends Notification
      */
     public function toMail($notifiable)
     {
-        if ($this->is_sending_to_user) {
-            return (new MailMessage)
+        return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('A recent payout to you has failed.')
-                    ->line('The failure reason is ' . $this->failure_code . '.')
-                    ->line('Please contact TutorSpace for more details.')
+                    ->line('Congrats! You just reached the ' . $notifiable->tutorLevel->tutor_level . ' level.')
                     ->action('Visit TutorSpace', url('/'))
-                    ->line('Thank you for using our platform!');
-        } else {
-            return (new MailMessage)
-                    ->line('A payout to ' . $this->stripe_account_id . ' has failed for ' . $this->failure_code . '.');
-        }
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -69,8 +58,9 @@ class PayoutFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            'failureCode' => $this->failure_code,
-            'stripeAccountId' => $this->stripe_account_id
+            'levelProgressPercentage' => $notifiable->getLevelProgressPercentage(),
+            'currLevel' => $notifiable->currentLevel(),
+            'nextLevel' => $notifiable->nextLevel(),
         ];
     }
 }

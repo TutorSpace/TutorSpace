@@ -1,28 +1,27 @@
 <?php
 
-namespace App\Notifications\Forum;
+namespace App\Notifications;
 
-use App\Post;
-use App\User;
+use App\TutorRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MarkedAsBestReplyNotification extends Notification
+class NewTutorRequest extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $tutorRequest;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(TutorRequest $tutorRequest)
     {
-        $this->post = $post;
+        $this->tutorRequest = $tutorRequest;
     }
 
     /**
@@ -45,10 +44,10 @@ class MarkedAsBestReplyNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
-                    ->action('View the Post', route('posts.show', $this->post->slug))
-                    ->line('Thank you for using TutorSpace!');
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('You just received a New Tutor Request from ' . $this->tutorRequest->student->first_name . '!')
+                ->action('Visit TutorSpace', url('/'))
+                ->line('Thank you for using our platform!');
     }
 
     /**
@@ -60,7 +59,7 @@ class MarkedAsBestReplyNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'tutorRequest' => $this->tutorRequest
         ];
     }
 }
