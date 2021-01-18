@@ -42,6 +42,7 @@ use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
 use App\Http\Controllers\payment\StripeApiController;
+use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
@@ -51,13 +52,14 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        // Auth::user()->addExperience(10000);
         echo Auth::id();
 
         $session = Session::find('957de7ab-0037-4bc6-bdec-88e26daa9660');
         $user = User::find('04c9b829-f027-4ff2-a4ea-0410ba684134');
 
-        $user->notify(new PayoutPaid('5'));
+        $user->notify(new UserRequestedRefundNotification($user, $session, true));
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            ->notify(new UserRequestedRefundNotification($user, $session, false));
     }
 
 }

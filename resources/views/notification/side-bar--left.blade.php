@@ -117,6 +117,15 @@
                     'notificationContent' => 'You are invited to be a tutor.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\UserRequestedRefundNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => '',
+                    'notificationContent' => '',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

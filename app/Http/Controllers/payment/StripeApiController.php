@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Payment;
 
-use App\CancellationPenalty;
 use App\User;
 use Carbon\Carbon;
 use Stripe\Stripe;
@@ -13,24 +12,26 @@ use App\SessionBonus;
 use App\PaymentMethod;
 use Stripe\AccountLink;
 use Stripe\SetupIntent;
+use App\CancellationPenalty;
 use Illuminate\Http\Request;
 use App\Session as AppSession;
+use App\Notifications\PayoutPaid;
 use App\Notifications\InvoicePaid;
+use App\Notifications\PayoutFailed;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Notifications\CancellationPenaltyFailed;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ChargeRefunded;
-use Illuminate\Support\Facades\Session;
-use App\Notifications\ChargeRefundUpdated;
-use App\Notifications\ExtraSessionBonus;
-use App\Notifications\InvoicePaymentFailed;
-use App\Notifications\NotEnoughBalance;
-use App\Notifications\PayoutFailed;
-use App\Notifications\PayoutPaid;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Cache;
+use App\Notifications\NotEnoughBalance;
+use Illuminate\Support\Facades\Session;
+use App\Notifications\ExtraSessionBonus;
+use App\Notifications\ChargeRefundUpdated;
+use App\Notifications\InvoicePaymentFailed;
+use App\Notifications\UnpaidInvoiceReminder;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CancellationPenaltyFailed;
+use App\Notifications\UserRequestedRefundNotification;
 
 class StripeApiController extends Controller
 {
@@ -394,6 +395,11 @@ class StripeApiController extends Controller
             $transaction->refund_status = 'user_initiated';
             $transaction->refund_requested_time = Carbon::now();
             $transaction->save();
+
+            Auth::user()->notify(new UserRequestedRefundNotification(Auth::user(), $session, true));
+            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            ->notify(new UserRequestedRefundNotification(Auth::user(), $session, false));
+
             $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
         } else if($transaction->refund_status == 'user_initiated') {
             $msg = "You already made the request. Please wait it to be processed.";

@@ -68,6 +68,11 @@ class NotificationController extends Controller
                     'user' => User::find($notif->data['user']['id']),
                     'inviteCode' => $notif->data['inviteCode'],
                 ])->render();
+        } else if($notif->type == 'App\Notifications\UserRequestedRefundNotification') {
+            $view = view(
+                'notification.content.tutorspace.refund-request-initiated', [
+
+                ])->render();
         }
 
         $notif->markAsRead();
