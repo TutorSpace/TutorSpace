@@ -189,3 +189,6 @@ $('#btn-decline-tutor-session').click(function() {
 })
 
 
+$('#btn-register-to-be-tutor').click(function() {
+    $('.nav__item__svg--switch-account').click();
+});

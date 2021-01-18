@@ -128,7 +128,7 @@
         $('.nav__item__svg--switch-account').on('click',function() {
             if($('.modal-switch-account')[0]) return;
 
-            $('.nav-right__profile-img').click();
+            $('nav .profile-img-dropdown').hide();
 
             @php
                 $currUser = Auth::user();

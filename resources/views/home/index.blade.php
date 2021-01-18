@@ -191,6 +191,9 @@ bg-student
             @if (Auth::user()->is_tutor)
             <h4>Want to earn bonus more quickly?</h4>
             <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
+            @else
+            <h4>Want to become a tutor?</h4>
+            <button class="btn" id="btn-register-to-be-tutor">Register to be a Tutor</button>
             @endif
         </div>
 

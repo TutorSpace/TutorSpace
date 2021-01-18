@@ -184,7 +184,7 @@
                         </svg>
                         Profile
                     </a>
-                    <a class="nav__item mt-2 nav__item__svg--switch-account" href="#">
+                    <a class="nav__item mt-2 nav__item__svg--switch-account hover--pointer">
                         <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
                                 <path d="M418.133 104.533C416 104.533 413.867 104.533 411.733 102.4C369.067 63.9999 313.6 42.6666 256 42.6666C200.533 42.6666 145.067 61.8666 102.4 100.267C98.1335 102.4 91.7335 102.4 87.4668 98.1333C83.2001 93.8666 85.3335 87.4666 89.6001 83.1999C134.4 42.6666 194.133 21.3333 256 21.3333C317.867 21.3333 379.734 44.7999 426.667 85.3333C430.934 89.5999 430.934 95.9999 426.667 100.267C424.534 102.4 422.4 104.533 418.133 104.533V104.533Z" fill="#595959"/>
