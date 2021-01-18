@@ -135,7 +135,14 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification') {
             $view = view(
                 'notification.content.forum.be-marked-as-best-reply', [
-                    'post' => Post::find($notif->data['post']['id']),
+                    'post' => Post::find($notif->data['postId']),
+                    'content' => $notif->data['content'],
+                    'forFollowers' => $notif->data['forFollowers'],
+                ])->render();
+        } else if($notif->type == 'App\Notifications\Forum\NewReplyAddedNotification') {
+            $view = view(
+                'notification.content.forum.new-reply', [
+                    'post' => Post::find($notif->data['postId']),
                     'content' => $notif->data['content'],
                     'forFollowers' => $notif->data['forFollowers'],
                 ])->render();

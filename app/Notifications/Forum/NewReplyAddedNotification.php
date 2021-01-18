@@ -12,16 +12,20 @@ class NewReplyAddedNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $post;
+    private $content;
+    private $forFollowers;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, $content, $forFollowers)
     {
         $this->post = $post;
+        $this->content = $content;
+        $this->forFollowers = $forFollowers;
     }
 
     /**
@@ -58,7 +62,9 @@ class NewReplyAddedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'postId' => $this->post->id,
+            'content' => $this->content,
+            'forFollowers' => $this->forFollowers
         ];
     }
 }

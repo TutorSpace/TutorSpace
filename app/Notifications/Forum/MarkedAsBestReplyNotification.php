@@ -72,7 +72,7 @@ class MarkedAsBestReplyNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post,
+            'postId' => $this->post->id,
             'content' => $this->content,
             'forFollowers' => $this->forFollowers
         ];
