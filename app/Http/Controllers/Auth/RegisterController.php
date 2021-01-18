@@ -425,7 +425,8 @@ class RegisterController extends Controller
         $request->validate([
             'profile-pic' => [
                 'file',
-                'mimes:jpeg,bmp,png'
+                'mimes:jpeg,bmp,png',
+                'max:2000'
             ]
         ]);
 
