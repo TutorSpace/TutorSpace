@@ -30,6 +30,7 @@ use App\Notifications\ChargeRefundUpdated;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\UnratedTutorNotification;
 use App\Notifications\CancellationPenaltyFailed;
 use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\UserRequestedRefundNotification;
@@ -316,8 +317,6 @@ class StripeApiController extends Controller
 
         $transaction = Transaction::where("invoice_id",$invoice_id)->get()[0];
 
-        // $invoice->sendInvoice();
-
         // change invoice status
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
@@ -477,17 +476,6 @@ class StripeApiController extends Controller
         }
 
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
-    }
-
-    // Refund a session bonus given 'session'
-    private function refundSessionBonus(AppSession $session) {
-        if ($session->sessionBonus) {
-            $session_bonus = $session->sessionBonus;
-            $transfer_reversal = \Stripe\Transfer::createReversal($session_bonus->transfer_id);
-            $session_bonus->transfer_reversal_id = $transfer_reversal->id;
-            $session_bonus->is_refunded = 1;
-            $session_bonus->save();
-        }
     }
 
     // Decline a refund request for a session
@@ -831,8 +819,10 @@ class StripeApiController extends Controller
         $transaction->save();
     }
 
+    // IMPORTANT: the updated_at property in transaction table is updated and used here
     // open means unpaid, used for cronjob
     // FACADE
+    // todo: use notifications table instead of using the updaated at property
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
         $transactionsToSend = Transaction::whereRaw("TIMESTAMPDIFF (HOUR, updated_at,'" . Carbon::now() . "') >= ?", $hoursAfterLastUpdate)
         ->where("invoice_status","open")

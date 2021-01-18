@@ -457,7 +457,7 @@
             }
         }
 
-        .btn-pay {
+        .btn-pay, .btn-review {
             background-color: $color-blue-primary;
             color: $color-white-dark-5;
         }
@@ -690,7 +690,7 @@
 
             color: $color-white;
 
-            a {
+            a, button {
                 margin-top: 1rem;
                 padding: .75rem 2.25rem;
                 font-size: 1.6rem;
@@ -738,7 +738,19 @@
         }
 
         &__board {
-            background: $color-white-dark-5;
+            background-image: radial-gradient(rgba(60, 138, 253, 1), rgba(0, 89, 220, 1));
+            padding: 3rem 4rem;
+
+            color: $color-white;
+
+            a, button {
+                margin-top: 1rem;
+                padding: .75rem 2.25rem;
+                font-size: 1.6rem;
+                color: $color-white;
+                border-radius: 2rem;
+                background-image: linear-gradient(to right, rgba(254, 211, 92, 1), rgba(255, 188, 0, 1));
+            }
         }
 
         .welcome-msg {

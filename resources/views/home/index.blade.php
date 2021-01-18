@@ -115,12 +115,26 @@ bg-student
         @if (App\Transaction::unpaidPayments()->exists())
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ App\Transaction::unpaidPayments()->count() }} Unpaid Payments.</h5>
+                <h5 class="mb-2 w-100">You Have {{ App\Transaction::unpaidPayments()->count() }} Unpaid Payment(s).</h5>
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (App\Transaction::unpaidPayments()->get() as $transaction)
                         @include('home.partials.unpaid_payment', [
-                            'user' => App\User::find(1),
                             'transaction' => $transaction
+                        ])
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if (Auth::user()->unratedSessions()->count() > 0)
+        <div class="container col-layout-3">
+            <div class="row">
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutor Session(s).</h5>
+                <div class="info-boxes info-boxes--sm-card">
+                    @foreach (Auth::user()->unratedSessions() as $session)
+                        @include('home.partials.unrated-session', [
+                            'session' => $session
                         ])
                     @endforeach
                 </div>
@@ -191,6 +205,9 @@ bg-student
             @if (Auth::user()->is_tutor)
             <h4>Want to earn bonus more quickly?</h4>
             <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
+            @else
+            <h4>Want to become a tutor?</h4>
+            <button class="btn" id="btn-register-to-be-tutor">Register to be a Tutor</button>
             @endif
         </div>
 

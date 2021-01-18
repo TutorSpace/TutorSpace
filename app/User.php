@@ -4,8 +4,9 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Message;
+use App\Review;
 
+use App\Message;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
@@ -17,10 +18,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
+use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
@@ -495,6 +496,20 @@ class User extends Authenticatable
             // save
             $user->save();
         }
+    }
+
+    public function ratedSessions() {
+        return Session::join('reviews', 'sessions.id', '=', 'reviews.session_id')
+                ->where('sessions.is_upcoming', false)
+                ->get();
+    }
+
+    public function unratedSessions() {
+        return Session::select('sessions.*')
+                ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
+                ->where('sessions.is_upcoming', false)
+                ->where('reviews.session_id', null)
+                ->get();
     }
 
     // deduct experience from users after canceling a session (both tutor and student)
