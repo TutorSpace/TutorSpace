@@ -357,6 +357,7 @@ bg-student
             // TODO: nate check if card already exists
             // # Retrieve the customer we're adding this token to
             loading(true);
+
             stripe.createToken(card).then((token)=>{
                 return $.ajax({
                     type: 'POST',
@@ -368,29 +369,13 @@ bg-student
                         confirmCard(stripe, card, clientSecret)
                     },
                     error: (err) => {
+                        loading(false);
                         if (err.responseJSON.error){
-                            loading(false);
                             showError(err.responseJSON.error);
                         }
                     }
                  });
             })
-
-
-
-            // // # Retrieve the token
-            // token = Stripe::Token.retrieve(params[:stripeToken])
-
-            // // # The fingerprint of the card is stored in `card.fingerprint`
-            // card_fingerprint = token.card.fingerprint
-
-
-
-
-
-
-
-
         };
 
         function confirmCard(stripe, card, clientSecret){
@@ -423,14 +408,16 @@ bg-student
         // Shows a success message when the payment is complete
         var orderComplete = function(clientSecret) {
             stripe.retrieveSetupIntent(clientSecret).then(function(result) {
-                toastr.success("Added card successfully");
-                document.querySelector("#btn-add-payment-submit").disabled = true;
-                loading(false);
-
                 // TODO: nate uncomment
-                setTimeout(function () {
-                    location.reload();
-                }, 700);
+                // store last bank card action in session
+                sendLastBankCardAction("addNew").then(()=>{
+                        toastr.success("Added card successfully");
+                        document.querySelector("#btn-add-payment-submit").disabled = true;
+                        loading(false);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                });
             });
         };
         // Show the customer the error from Stripe if their card fails to charge
@@ -493,12 +480,14 @@ bg-student
                 return result.json();
             }).then((result)=>{
                 if (result.errorMsg){
-                    toastr.error(result.errorMsg)
+                    toastr.error(result.errorMsg);
                 }else{
-                    toastr.success(result.success)
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
+                    sendLastBankCardAction("deleteCard").then(()=>{
+                        toastr.success(result.success);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    });
                 }
             })
             .catch(error=>{
@@ -516,10 +505,13 @@ bg-student
                 if (res.errorMsg){
                     toastr.error(res.errorMsg);
                 }else{
-                    toastr.success("Succesfully set card as default payment method")
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
+                    sendLastBankCardAction("setDefault").then(()=>{
+                        toastr.success("Succesfully set card as default payment method");
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000);
+                    });
+
                 }
             })
             .catch(error=>{
@@ -535,7 +527,7 @@ bg-student
             var fake = "true";
         }
 
-        var data = {
+        const data = {
             'paymentMethodID':paymentMethodID,
             'isFake':fake
         };
@@ -550,7 +542,20 @@ bg-student
             })
     }
 
-
+    // save bank card action in session
+    function sendLastBankCardAction(action){
+        const data = {
+            "bankCardActionToStore": action
+        }
+        return fetch("{{route('payment.stripe.store_bank_card_action_in_session') }}", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+                },
+            })
+    }
 
     function displayCards(){
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
@@ -577,7 +582,12 @@ bg-student
                         cardBrand = `@include('payment.partials.card-svg.master-svg')`;
                     }else if (card.brand == "visa"){
                         cardBrand = `@include('payment.partials.card-svg.visa-svg')`;
-                    }else{
+                    }else if (card.brand == "diners"){
+                        cardBrand = `@include('payment.partials.card-svg.diners-club-svg')`;
+                    }else if (card.brand == "unionpay"){
+                        cardBrand = `@include('payment.partials.card-svg.union-pay-svg')`;
+                    }
+                    else{
                         cardBrand = `Brand: ${card.brand}`;
                     }
 

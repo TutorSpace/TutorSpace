@@ -11,7 +11,7 @@ use App\View;
 use App\Reply;
 use App\Course;
 use App\Message;
-use App\Session;
+use App\Session as AppSession;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
@@ -35,6 +35,7 @@ use App\Notifications\PayoutFailed;
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use App\Notifications\EmailVerification;
 
 use App\Notifications\InvoicePaymentFailed;
@@ -56,10 +57,40 @@ class testController extends Controller
     public function index(Request $request) {
         echo Auth::id();
 
-        $session = Session::find('fb25b945-f2d4-4587-9683-eabe0d401d73');
-        $user = User::find('04c9b829-f027-4ff2-a4ea-0410ba684134');
+    }
 
-        $user->notify(new RefundDeclinedNotification($session));
+    public function test(Request $request) {
+
+        // Auth::user()->tutorHasStripeAccount();
+        // echo Auth::user()->firstMajor->id;
+        // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
+
+        // ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end, '" . Carbon::now() . "' ) >= ?", 0) // ? minutes after session end
+        // ->where("transactions.invoice_status","draft") // invoice status => draft
+        // ->where("sessions.is_canceled",0) // not canceled
+        // ->get();
+
+        // echo $transactionsToCharge->count();
+        // Auth::user()->addExperience(10000);
+        // $tutor = User::find(10);
+        // $bonus_rate = $tutor->getUserBonusRate();
+        // $transaction = Transaction::find(4);
+        // echo $transaction->amount * $bonus_rate;
+        // if ($bonus_rate > 0) {
+        //     app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
+        // }
+        // app(StripeApiController::class)->checkIfCardAlreadyExists();
+        // Auth::user()->cancelSessionExperienceDeduction();
+        // $lastAction = Session::get("lastBankCardAction");
+
+        // if (!Session::has('lastBankCardAction')){
+        //     echo "nothing";
+        // }
+        // Auth::user()->storeBankCardActionInSession("addNewa");
+        // echo Session::get("lastBankCardAction");
+        dump(Session::get("bankCards"));
+
+        // $user->notify(new RefundDeclinedNotification($session));
     }
 
 }

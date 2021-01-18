@@ -269,6 +269,7 @@ Route::group([
     //Stripe set payment as Customer Invoice Default
     Route::post('/set_payment_invoice_default', 'Payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
     Route::post('/create_setup_intent', 'Payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
+    Route::post('/store_bank_card_action', 'Payment\StripeApiController@storeBankCardActionInSession')->name('payment.stripe.store_bank_card_action_in_session');
 
     Route::post('/webhook', 'Payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
     Route::post('/connect/webhook', 'Payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.connect.webhook');

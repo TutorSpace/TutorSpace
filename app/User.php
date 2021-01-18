@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
