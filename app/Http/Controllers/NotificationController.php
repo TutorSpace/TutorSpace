@@ -83,6 +83,11 @@ class NotificationController extends Controller
                 'notification.content.tutorspace.refund-request-fail', [
                     'session' => Session::find($notif->data['session']['id'])
                 ])->render();
+        } else if($notif->type == 'App\Notifications\NewTutorRequest') {
+            $view = view(
+                'notification.content.tutorspace.', [
+
+                ])->render();
         }
 
         $notif->markAsRead();

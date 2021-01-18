@@ -1,28 +1,24 @@
 <?php
 
-namespace App\Notifications\Forum;
+namespace App\Notifications;
 
-use App\Post;
-use App\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class MarkedAsBestReplyNotification extends Notification
+class NewTutorRequest extends Notification
 {
     use Queueable;
-
-    public $post;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct()
     {
-        $this->post = $post;
+        //
     }
 
     /**
@@ -45,10 +41,9 @@ class MarkedAsBestReplyNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
-                    ->action('View the Post', route('posts.show', $this->post->slug))
-                    ->line('Thank you for using TutorSpace!');
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -60,7 +55,7 @@ class MarkedAsBestReplyNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            //
         ];
     }
 }
