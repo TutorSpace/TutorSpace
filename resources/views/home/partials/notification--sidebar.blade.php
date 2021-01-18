@@ -1,4 +1,4 @@
-<div class="side-bar__notification @if(isset($hidden) && $hidden) hidden @endif" @if(isset($hidden) && $hidden) data-to-hide="true" @endif data-notifi-id="{{ $notif->id }}">
+<div class="side-bar__notification @if(isset($hidden) && $hidden) hidden @endif" @if(isset($hidden) && $hidden) data-to-hide="true" @endif data-route="{{ route('notifications.index', '?show-notif=' . $notif->id) }}">
     @if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification')
     <div class="side-bar__notification--left">
         <div class="side-bar__notification--best-reply"></div>

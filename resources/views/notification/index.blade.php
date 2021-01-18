@@ -107,5 +107,9 @@ bg-student
             }
         });
     });
+
+    @if(isset($showNotif))
+    $('.msgs .msg[data-notif-id={{ $showNotif }}]').click();
+    @endif
 </script>
 @endsection
