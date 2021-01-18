@@ -126,6 +126,15 @@
                     'notificationContent' => 'We have received your refund request.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\RefundRequestApprovedNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Refund Success',
+                    'notificationContent' => 'We have approved your refund request.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

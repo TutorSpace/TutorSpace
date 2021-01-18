@@ -32,6 +32,7 @@ use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CancellationPenaltyFailed;
 use App\Notifications\UserRequestedRefundNotification;
+use App\Notifications\RefundRequestApprovedNotification;
 
 class StripeApiController extends Controller
 {
@@ -426,7 +427,7 @@ class StripeApiController extends Controller
         // Already refunded
         if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
             Log::error('Trying to refund a refunded transaction');
-            return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
         }
 
         // Refund invoice
@@ -444,6 +445,9 @@ class StripeApiController extends Controller
                 $transaction->refund_id = $refund->id;
                 $transaction->refund_status = 'pending';
                 $transaction->save();
+
+                $session->student->notify(new RefundRequestApprovedNotification($session));
+
                 break;
 
             default:  // Other cases

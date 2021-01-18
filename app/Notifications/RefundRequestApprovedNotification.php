@@ -2,28 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Session;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
-
-class RegisterEmailVerification extends Notification
+class RefundRequestApprovedNotification extends Notification
 {
     use Queueable;
 
-    public $verificationCode;
-    public $userName;
+    private $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($verificationCode, $userName)
+    public function __construct(Session $session)
     {
-        $this->verificationCode = $verificationCode;
-        $this->userName = $userName;
+        $this->session = $session;
     }
 
     /**
@@ -34,7 +32,7 @@ class RegisterEmailVerification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -46,9 +44,10 @@ class RegisterEmailVerification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $this->userName)
-                    ->line('Your verification code is ' . $this->verificationCode)
-                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('Your refund request with session ' . $this->session->id . ' has been approved.')
+                    ->action('Visit TutorSpace', url('/'))
+                    ->line('Thank you for using our platform!');
     }
 
     /**
@@ -60,7 +59,7 @@ class RegisterEmailVerification extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'session' => $this->session
         ];
     }
 }

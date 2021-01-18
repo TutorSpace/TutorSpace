@@ -7,23 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
-class RegisterEmailVerification extends Notification
+class RefundDeclinedNotification extends Notification
 {
     use Queueable;
-
-    public $verificationCode;
-    public $userName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($verificationCode, $userName)
+    public function __construct()
     {
-        $this->verificationCode = $verificationCode;
-        $this->userName = $userName;
+        //
     }
 
     /**
@@ -46,9 +41,9 @@ class RegisterEmailVerification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $this->userName)
-                    ->line('Your verification code is ' . $this->verificationCode)
-                    ->line('Please feel free to checkout the latest news of TutorSpace at https://www.tutorspace.info. Thank you for joining TutorSpace!');
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
