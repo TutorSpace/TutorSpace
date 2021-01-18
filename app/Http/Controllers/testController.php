@@ -40,6 +40,7 @@ use App\Notifications\EmailVerification;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\TutorVerificationNotification;
 use App\Http\Controllers\payment\StripeApiController;
 use App\Notifications\UserRequestedRefundNotification;
@@ -58,7 +59,7 @@ class testController extends Controller
         $session = Session::find('fb25b945-f2d4-4587-9683-eabe0d401d73');
         $user = User::find('04c9b829-f027-4ff2-a4ea-0410ba684134');
 
-        $user->notify(new RefundRequestApprovedNotification($session));
+        $user->notify(new RefundDeclinedNotification($session));
     }
 
 }

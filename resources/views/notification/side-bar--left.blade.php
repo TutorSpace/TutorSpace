@@ -135,6 +135,15 @@
                     'notificationContent' => 'We have approved your refund request.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\RefundDeclinedNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Refund Declined',
+                    'notificationContent' => 'We are sorry that your refund request is declined.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

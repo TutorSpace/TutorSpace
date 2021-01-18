@@ -31,6 +31,7 @@ use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\CancellationPenaltyFailed;
+use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 
@@ -478,6 +479,9 @@ class StripeApiController extends Controller
         }
         $transaction->refund_status = 'canceled';
         $transaction->save();
+
+        $session->student->notify(new RefundDeclinedNotification($session));
+
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
