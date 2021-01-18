@@ -621,7 +621,7 @@ bg-student
                                 </div>
                                 <div class="bank-card-row-three">
                                     <div class="card-holder">
-                                        <div>Card holder</div>
+                                        <div>Card Holder</div>
                                         <div class="user-info">${card.card_holder}</div>
                                     </div>
                                     <div class="expiration">
