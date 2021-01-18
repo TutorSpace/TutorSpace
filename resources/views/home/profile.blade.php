@@ -303,7 +303,9 @@ bg-student
 
 
 <script defer>
+
     function stripeInit() {
+
         // A reference to Stripe.js initialized with your real test publishable API key.
         var stripe = Stripe(stripeApiKey);
         // The items the customer wants to buy
@@ -354,12 +356,17 @@ bg-student
                 }else if (!email || !name){
                     showError("Please enter billing account details");
                 }else{
+
+                    paymentActionProcessing = true;
                     setUpCard(stripe, card, data.clientSecret, email, name);
+
                 }
                 // Complete payment when the submit button is clicked
 
             });
         });
+
+
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
@@ -425,7 +432,7 @@ bg-student
                         loading(false);
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                 });
             });
         };
@@ -451,10 +458,22 @@ bg-student
                 document.querySelector("#button-text").classList.remove("hidden");
             }
         };
+
     }
 </script>
 
 <script>
+
+        var processing = function(isProcessing){
+            if (isProcessing){
+                $(".btn-delete").attr("disabled",true);
+                $(".btn-set-default").attr("disabled",true);
+            }else{
+                $(".btn-delete").attr("disabled",false);
+                $(".btn-set-default").attr("disabled",false);
+            }
+        }
+
     const setCardAsDefault = function (paymentMethodID, isFake) {
         var fake = "false";
         if (isFake){
@@ -481,8 +500,10 @@ bg-student
 @endif
 
     function handleDelete(){
+
         var btnDelete = $(".btn-delete");
         btnDelete.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             detachCard(paymentMethodID, true).then(result=>{
@@ -495,12 +516,13 @@ bg-student
                         toastr.success(result.success);
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                     });
                 }
             })
             .catch(error=>{
                 toastr.error(error);
+                processing(false);
             })
         });
     }
@@ -508,6 +530,7 @@ bg-student
     function handleSetDefault(){
         var btnDefault = $(".btn-set-default");
         btnDefault.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             setCardAsDefault(paymentMethodID, true).then((res)=>{
@@ -518,12 +541,12 @@ bg-student
                         toastr.success("Succesfully set card as default payment method");
                         setTimeout(function () {
                             location.reload();
-                        }, 1000);
+                        }, 500);
                     });
-
                 }
             })
             .catch(error=>{
+                processing(false);
                 toastr.error(error)
             })
 
