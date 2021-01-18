@@ -111,11 +111,21 @@ class SessionController extends Controller
     }
 
     public function scheduleSession(Request $request) {
-        // including:
         // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
-        // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
+        // 4. course must be taught by tutor
+        // 5. current user must be a student and the requested user must be a tutor
 
+        // rule 4 & 5
+        if(
+            !User::find($request->input('tutorId'))->is_tutor
+            || User::find($request->input('tutorId'))->courses()->where('id', $request->input('course'))->doesntExist()
+        ) {
+            return abort(401);
+        }
+
+
+        // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
         $validator = Validator::make($request->all(), [
             'tutorId' => [
