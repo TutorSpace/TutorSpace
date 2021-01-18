@@ -189,6 +189,15 @@
                     'notificationContent' => 'You just finished a tutor session.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\UnratedTutorNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Rate your Tutor',
+                    'notificationContent' => 'You have not yet rated this tutor. We would really appreciate if you could leave some reviews about your tutor.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

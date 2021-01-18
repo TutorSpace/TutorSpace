@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\Review;
 use Carbon\Carbon;
 use App\Transaction;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\UnratedTutorNotification;
 use App\Notifications\TutorSessionFinishedNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
@@ -75,4 +77,17 @@ class Session extends Model
         $sessionFee = $this->getDurationInHour() * $hourlyRate;
         return $sessionFee;
     }
+
+    // should run once a week
+    // todo: should not bother user too often
+    public static function requestReviewForTutor() {
+        $sessions = Session::where('is_canceled', false)->where('is_upcoming', false)->get();
+
+        foreach($sessions as $session) {
+            if(Review::where('session_id', $session->id)->doesntExist()) {
+                $session->student->notify(new UnratedTutorNotification($session));
+            }
+        }
+    }
+
 }

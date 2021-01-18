@@ -126,6 +126,11 @@ class NotificationController extends Controller
                     'session' => Session::find($notif->data['session']['id']),
                     'transactionDetails' => app(StripeApiController::class)->retrieveTransactionDetails(Session::find($notif->data['session']['id'])),
                 ])->render();
+        } else if($notif->type == 'App\Notifications\UnratedTutorNotification') {
+            $view = view(
+                'notification.content.sessions.unrate-tutor', [
+                    'session' => Session::find($notif->data['session']['id']),
+                ])->render();
         }
 
         $notif->markAsRead();

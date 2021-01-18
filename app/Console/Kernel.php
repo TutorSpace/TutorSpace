@@ -77,6 +77,11 @@ class Kernel extends ConsoleKernel
         // })->twiceDaily(9, 20);
         })->everyMinute();
 
+        // ask users to rate their turors
+        $schedule->call(function() {
+            Session::requestReviewForTutor();
+            echo "Successfully request students for reviews about the tutors: " . now() . "\n";
+        });
     }
 
     /**
