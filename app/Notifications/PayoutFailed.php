@@ -51,10 +51,11 @@ class PayoutFailed extends Notification
                     ->greeting('Dear ' . $notifiable->first_name)
                     ->line('A recent payout to you has failed.')
                     ->line('The failure reason is ' . $this->failure_code . '.')
+                    ->line('Please contact TutorSpace for more details.')
+                    ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
         } else {
             return (new MailMessage)
-                    ->greeting('Dear staff')
                     ->line('A payout to ' . $this->stripe_account_id . ' has failed for ' . $this->failure_code . '.');
         }
     }
@@ -68,7 +69,8 @@ class PayoutFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'failureCode' => $this->failure_code,
+            'stripeAccountId' => $this->stripe_account_id
         ];
     }
 }

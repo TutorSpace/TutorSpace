@@ -90,7 +90,25 @@
                     'notificationContent' => 'You have an unapid tutor session.',
                     'notifId' => $notification->id
             ])
-        @elseif($notification->type == 'App\Notifications\1')
+        @elseif($notification->type == 'App\Notifications\PayoutFailed')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Payout Failed',
+                    'notificationContent' => 'A recent payout to you has failed.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\PayoutPaid')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Payout Success',
+                    'notificationContent' => 'You have received a payout.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\InviteToBeTutorNotification')
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,

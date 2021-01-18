@@ -51,6 +51,18 @@ class NotificationController extends Controller
                     'paymentUrl' => app(StripeApiController::class)->getPaymentUrl(Session::find($notif->data['session']['id'])),
                     'session' => Session::find($notif->data['session']['id']),
                 ])->render();
+        } else if($notif->type == 'App\Notifications\PayoutFailed') {
+            $view = view(
+                'notification.content.tutorspace.payout-failed', [
+                    'failureCode' => $notif->data['failureCode'],
+                ])->render();
+        } else if($notif->type == 'App\Notifications\PayoutPaid') {
+            $view = view(
+                'notification.content.tutorspace.payout-success', [
+                    'amount' => $notif->data['amount']
+                ])->render();
+        } else if($notif->type == 'App\Notifications\InviteToBeTutorNotification') {
+
         }
 
         $notif->markAsRead();

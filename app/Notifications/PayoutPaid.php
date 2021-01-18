@@ -44,7 +44,8 @@ class PayoutPaid extends Notification
     {
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('You have received a payout of ' . $this->amount . ' dollars.')
+                    ->line('You have received a payout of ' . $this->amount . ' dollars. You should be able to see it in the bank account you registered with us.')
+                    ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
     }
 
@@ -57,7 +58,7 @@ class PayoutPaid extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'amount' => $this->amount
         ];
     }
 }

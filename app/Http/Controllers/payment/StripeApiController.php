@@ -715,7 +715,7 @@ class StripeApiController extends Controller
         $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
         $user = $payment_method->user;
 
-        // TODO: send email to 'user'. Payout is sent to bank account
+        // send email to 'user'. Payout is sent to bank account
         $user->notify(new PayoutPaid($payout->amount));
     }
 
@@ -726,7 +726,7 @@ class StripeApiController extends Controller
         $payment_method = PaymentMethod::firstWhere('stripe_account_id', $stripe_account_id);
         $user = $payment_method->user;
 
-        // TODO: send email to 'user' and us. Payout failed. They should update bank info
+        // send email to 'user' and us. Payout failed. They should update bank info
         $user->notify(new PayoutFailed(true, $payout->failure_code));
 
         Notification::route('mail', 'tutorspaceusc@gmail.com')
