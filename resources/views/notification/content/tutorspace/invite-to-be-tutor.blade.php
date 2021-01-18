@@ -1,23 +1,27 @@
 <div class="notification__content__header font-weight-bold">
-    Neno Enim invited you to be a tutor
+    {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor
 </div>
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
-            <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo" class="user-image">
+            <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-image">
         </div>
 
         <div class="container content">
-            <p class="pt-3 fs-2-4 text-center fw-500">Neno Enim</p>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $user->first_name . ' ' . $user->last_name}}</p>
             <h6 class="color-primary">
-                Neno Enim invited you to be a tutor.
+                {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor.
             </h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
+
+            <h6 class="color-primary fw-500">
+                Your Referral Code is {{ $inviteCode }}
+            </h6>
 
             <div class="display-cards">
                 <div class="display-card">

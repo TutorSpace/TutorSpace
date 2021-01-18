@@ -64,10 +64,15 @@ class User extends Authenticatable
     }
 
     public function getIntroduction() {
-        $secondMajor = $this->secondMajor;
-        $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
+        if($this->is_tutor) {
+            $secondMajor = $this->secondMajor;
+            $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
 
-        return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+        } else {
+            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutor sessions on this platform.";
+        }
+
     }
 
     // check whether a user with an email exists and is a student

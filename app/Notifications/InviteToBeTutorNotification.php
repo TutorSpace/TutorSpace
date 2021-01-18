@@ -20,7 +20,7 @@ class InviteToBeTutorNotification extends Notification
      *
      * @return void
      */
-    public function __construct(User $user, $inviteCode)
+    public function __construct($inviteCode, User $user)
     {
         $this->user = $user;
         $this->inviteCode = $inviteCode;
@@ -46,10 +46,12 @@ class InviteToBeTutorNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Hi there,')
+                    ->greeting('Dear ' . $notifiable->first_name)
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
+                    ->line('Your referral code is ' . $this->inviteCode)
+                    // todo: 具体化bonus是多少
                     ->line('Please register to be a tutor and earn your bonus!')
-                    ->action('Register Here', url('/'))
+                    ->action('Register Now', url('/'))
                     ->line('Thank you for using TutorSpace!');
     }
 
@@ -61,6 +63,9 @@ class InviteToBeTutorNotification extends Notification
      */
     public function toArray($notifiable)
     {
-
+        return [
+            'user' => $this->user,
+            'inviteCode' => $this->inviteCode
+        ];
     }
 }

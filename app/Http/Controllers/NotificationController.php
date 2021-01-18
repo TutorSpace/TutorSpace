@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Session;
 use App\Notification;
 use Illuminate\Http\Request;
@@ -62,7 +63,11 @@ class NotificationController extends Controller
                     'amount' => $notif->data['amount']
                 ])->render();
         } else if($notif->type == 'App\Notifications\InviteToBeTutorNotification') {
-
+            $view = view(
+                'notification.content.tutorspace.invite-to-be-tutor', [
+                    'user' => User::find($notif->data['user']['id']),
+                    'inviteCode' => $notif->data['inviteCode'],
+                ])->render();
         }
 
         $notif->markAsRead();
