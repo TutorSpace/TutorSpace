@@ -88,12 +88,12 @@ class Post extends Model
         ]);
 
         // notify the reply's owner
-        $reply->user->notify(new MarkedAsBestReplyNotification($this));
+        $reply->user->notify(new MarkedAsBestReplyNotification($this, $reply->reply_content));
 
         // notify all the people who are following this post
         foreach($this->usersFollowing as $user) {
             if($reply->user->id != $user->id)
-                $user->notify(new MarkedAsBestReplyNotification($this));
+                $user->notify(new MarkedAsBestReplyNotification($this, $reply->reply_content));
         }
     }
 

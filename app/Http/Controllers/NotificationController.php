@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\User;
 use App\Session;
 use App\Notification;
@@ -130,6 +131,12 @@ class NotificationController extends Controller
             $view = view(
                 'notification.content.sessions.unrate-tutor', [
                     'session' => Session::find($notif->data['session']['id']),
+                ])->render();
+        } else if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification') {
+            $view = view(
+                'notification.content.forum.be-marked-as-best-reply', [
+                    'post' => Post::find($notif->data['post']['id']),
+                    'content' => $notif->data['content'],
                 ])->render();
         }
 

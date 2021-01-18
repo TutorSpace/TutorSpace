@@ -13,16 +13,18 @@ class MarkedAsBestReplyNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $post;
+    private $content;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, $content)
     {
         $this->post = $post;
+        $this->content = $content;
     }
 
     /**
@@ -60,7 +62,8 @@ class MarkedAsBestReplyNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'post' => $this->post,
+            'content' => $this->content
         ];
     }
 }

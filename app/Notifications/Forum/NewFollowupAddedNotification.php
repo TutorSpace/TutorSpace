@@ -44,9 +44,10 @@ class NewFollowupAddedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                        ->greeting('Dear ' . $notifiable->first_name)
+                        ->line('Someone replied to you in the post: "' . $this->post->title . '."')
+                        ->action('View the Post', route('posts.show', $this->post->slug))
+                        ->line('Thank you for using TutorSpace!');
     }
 
     /**

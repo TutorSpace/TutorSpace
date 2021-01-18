@@ -198,30 +198,15 @@
                     'notificationContent' => 'You have not yet rated this tutor. We would really appreciate if you could leave some reviews about your tutor.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'forum',
+                    'notificationHeader' => 'Marked as Best Reply',
+                    'notificationContent' => 'Your reply is marked as best reply.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
-
-    {{-- @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "5:38pm",
-        'notificationType' => 'forum',
-        'notificationHeader' => 'Marked as Best Reply',
-        'notificationContent' => 'Welcome to TutorSpace!'
-    ]) --}}
-
-    {{-- @include('notification.side-bar-notification-msg', [
-        'time' => "12/30/20",
-        'notificationType' => 'sessions',
-        'notificationHeader' => 'New Tutor Request',
-        'notificationContent' => 'Welcome to TutorSpace!'
-    ]) --}}
-
-    {{-- @include('notification.side-bar-notification-msg', [
-        'unRead' => true,
-        'time' => "12/30/20",
-        'notificationType' => 'tutorspace',
-        'notificationHeader' => 'TutorSpace',
-        'notificationContent' => 'Welcome to TutorSpace!'
-    ]) --}}
-
 </ul>

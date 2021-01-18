@@ -11,12 +11,12 @@
 
 
     .left-container {
-        overflow: hidden;
         margin-right: 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        max-width: 12rem;
         flex: 0 0 8rem;
 
 

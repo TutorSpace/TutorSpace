@@ -665,5 +665,11 @@
 
 .post-detail {
     padding: 4rem 4rem 2.5rem 4rem;
+
+    .post__content {
+        img {
+            border: unset !important;
+        }
+    }
 }
 
