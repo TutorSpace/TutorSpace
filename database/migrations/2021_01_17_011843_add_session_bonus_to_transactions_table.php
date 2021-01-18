@@ -16,6 +16,7 @@ class AddSessionBonusToTransactionsTable extends Migration
         Schema::table('transactions', function (Blueprint $table) {
             $table->bigInteger('bonus_amount');
             $table->bigInteger('extra_bonus_amount')->default(0);
+            $table->boolean('extra_bonus_sent')->default(0);
         });
     }
 
