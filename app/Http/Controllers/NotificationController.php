@@ -120,6 +120,12 @@ class NotificationController extends Controller
                     'expLost' => $notif->data['expLost'],
                     'tooLate' => $notif->data['tooLate'],
                 ])->render();
+        } else if($notif->type == 'App\Notifications\TutorSessionFinishedNotification') {
+            $view = view(
+                'notification.content.sessions.session-complete-tutor', [
+                    'session' => Session::find($notif->data['session']['id']),
+                    'transactionDetails' => app(StripeApiController::class)->retrieveTransactionDetails(Session::find($notif->data['session']['id'])),
+                ])->render();
         }
 
         $notif->markAsRead();

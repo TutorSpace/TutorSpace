@@ -49,6 +49,7 @@ class SessionOverlap implements Rule
                 $query->where('tutor_id', '=', $this->tutorId)
                       ->orWhere('student_id', '=', $this->studentId);
             })
+            ->where('is_canceled', false)
             ->count() == 0;
     }
 

@@ -53,7 +53,8 @@ class Session extends Model
     public static function changeSessionStatusOnExpiry() {
         $sessions = Session::where('is_canceled', false)->get();
         foreach($sessions as $session) {
-            if($session->session_time_start <= Carbon::now()) {
+            // IMPORTANT: use session_time_end here, because otherwise a long session will not appear on calendar
+            if($session->session_time_end <= Carbon::now()) {
                 $session->is_upcoming = 0;
                 $session->save();
 

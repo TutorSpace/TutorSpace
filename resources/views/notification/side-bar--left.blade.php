@@ -180,6 +180,15 @@
                     'notificationContent' => 'Your session is canceled.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\TutorSessionFinishedNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Session Finished',
+                    'notificationContent' => 'You just finished a tutor session.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

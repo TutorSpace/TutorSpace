@@ -27,7 +27,6 @@ use App\Http\Controllers\payment\StripeApiController;
 
 class SessionController extends Controller
 {
-    // todo: check situations to cancel
     public function cancelSession(Request $request, Session $session) {
         $userId = Auth::user()->id;
         $request->validate([

@@ -915,7 +915,7 @@ class StripeApiController extends Controller
     // Get the detailed amount of transaction for 'session'
     public function retrieveTransactionDetails(AppSession $session) {
         $tutor = $session->tutor;
-        $transaction = $session->transaction;
+        $transaction = $session->transaction();
         $stripe_payment_fee = round($transaction->amount * 0.029) + 30;  // https://stripe.com/pricing
 
         if ($transaction->extra_bonus_amount == 0) {
