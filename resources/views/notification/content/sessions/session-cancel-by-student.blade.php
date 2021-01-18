@@ -18,7 +18,7 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}</p>
 
             <p class="mt-5 fs-1-8">
-                Your session has been <span class="font-weight-bold text-danger">CANCELED</span>. You will be charged <span class="font-weight-bold text-danger">$5</span> for this cancelation.
+                Your session has been <span class="font-weight-bold text-danger">CANCELED</span>. @if($tooLate) You will be charged <span class="font-weight-bold text-danger">$5</span> for this cancelation. @endif
             </p>
 
             <h6 class="color-primary">

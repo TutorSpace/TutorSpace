@@ -15,17 +15,19 @@ class CancelSessionNotification extends Notification
     private $session;
     private $canceledByTutor;
     private $expLost;
+    private $tooLate;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Session $session, $canceledByTutor, $expLost = 0)
+    public function __construct(Session $session, $canceledByTutor, $expLost, $tooLate)
     {
         $this->session = $session;
         $this->canceledByTutor = $canceledByTutor;
         $this->expLost = $expLost;
+        $this->tooLate = $tooLate;
     }
 
     /**
@@ -65,7 +67,8 @@ class CancelSessionNotification extends Notification
         return [
             'session' => $this->session,
             'canceledByTutor' => $this->canceledByTutor,
-            'expLost' => $this->expLost
+            'expLost' => $this->expLost,
+            'tooLate' => $this->tooLate,
         ];
     }
 }

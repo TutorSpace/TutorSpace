@@ -54,23 +54,27 @@ class SessionController extends Controller
 
             if(Auth::user()->is_tutor) {
                 $expLost = 0;
+                $tooLate = false;
                 // if too late
                 if(Carbon::now()->addHours(24) > $session->session_time_start) {
                     $expLost = Auth::user()->cancelSessionExperienceDeduction();
                     app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                    $tooLate = true;
                 }
 
-                Auth::user()->notify(new CancelSessionNotification($session, true, $expLost));
-                $session->student->notify(new CancelSessionNotification($session, true, $expLost));
+                Auth::user()->notify(new CancelSessionNotification($session, true, $expLost, $tooLate));
+                $session->student->notify(new CancelSessionNotification($session, true, $expLost, $tooLate));
 
             } else {
+                $tooLate = false;
                 // if too late
                 if(Carbon::now()->addHours(12) > $session->session_time_start) {
                     // student will not be deducted the exp points
                     app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                    $tooLate = true;
                 }
-                Auth::user()->notify(new CancelSessionNotification($session, false));
-                $session->tutor->notify(new CancelSessionNotification($session, false));
+                Auth::user()->notify(new CancelSessionNotification($session, false, 0, $tooLate));
+                $session->tutor->notify(new CancelSessionNotification($session, false, 0, $tooLate));
             }
         });
 
