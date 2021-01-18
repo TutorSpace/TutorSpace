@@ -498,9 +498,18 @@ class User extends Authenticatable
         }
     }
 
-    public function unratedSessions() {
+    public function ratedSessions() {
         return Session::join('reviews', 'sessions.id', '=', 'reviews.session_id')
-                ->where('sessions.is_upcoming', false);
+                ->where('sessions.is_upcoming', false)
+                ->get();
+    }
+
+    public function unratedSessions() {
+        return Session::select('sessions.*')
+                ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
+                ->where('sessions.is_upcoming', false)
+                ->where('reviews.session_id', null)
+                ->get();
     }
 
     // deduct experience from users after canceling a session (both tutor and student)

@@ -42,7 +42,7 @@ $price = $sessionDurationInHour * $hourlyRate;
             <span class="content">$ {{ $price }}</span>
         </div>
         <div class="action">
-            <button class="btn btn-lg btn-animation-y-sm btn-review">Review</button>
+            <button class="btn btn-lg btn-animation-y-sm btn-review action-review" data-route-url="{{ route("session.review", $session) }}">Review</button>
         </div>
     </div>
 </div>
