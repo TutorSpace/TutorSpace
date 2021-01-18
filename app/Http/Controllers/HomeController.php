@@ -151,4 +151,12 @@ class HomeController extends Controller
         Auth::user()->save();
     }
 
+    public function getBookmarkSideBar(Request $request) {
+        $view = view('home.partials.bookmarked-tutors--sidebar')->render();
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
 }
