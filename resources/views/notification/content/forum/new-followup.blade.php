@@ -24,7 +24,7 @@
             </div>
 
             <p class="fc-grey fs-1-6 text-center">To view the post, click on the link below <br />
-                <a class="color-primary" href="{{ route('posts.show', $post) }}">{{ route('posts.show', $post) }}</a>
+                <a class="color-primary" href="{{ route('posts.show', $post) }}" target="_blank">{{ route('posts.show', $post) }}</a>
             </p>
         </div>
     </div>
