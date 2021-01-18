@@ -78,7 +78,7 @@ class Session extends Model
         return $sessionFee;
     }
 
-    // should run once a week
+
     // todo: should not bother user too often
     public static function requestReviewForTutor() {
         $sessions = Session::where('is_canceled', false)->where('is_upcoming', false)->get();

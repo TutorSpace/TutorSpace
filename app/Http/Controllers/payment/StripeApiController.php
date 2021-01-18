@@ -831,6 +831,7 @@ class StripeApiController extends Controller
         $transaction->save();
     }
 
+    // IMPORTANT: the updated_at property in transaction table is updated and used here
     // open means unpaid, used for cronjob
     // FACADE
     public function sendOpenInvoiceToCustomer($hoursAfterLastUpdate){
