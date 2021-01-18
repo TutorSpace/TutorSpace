@@ -171,6 +171,15 @@
                     'notificationContent' => 'Your tutor request is declined.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\CancelSessionNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Session Canceled',
+                    'notificationContent' => 'Your session is canceled.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

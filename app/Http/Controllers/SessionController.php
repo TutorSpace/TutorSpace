@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\NewTutorRequest;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\CancelSessionNotification;
 use App\Http\Controllers\payment\StripeApiController;
 
 class SessionController extends Controller
@@ -37,20 +38,31 @@ class SessionController extends Controller
         ]);
 
         $acceptedUserIds = array($session->tutor_id, $session->student_id);
-        // neither student nor tutor for the session
-        if (!in_array($userId, $acceptedUserIds)) {
+        // neither student nor tutor for the session, or it is already a past session
+        if (!in_array($userId, $acceptedUserIds) || $session->session_time_start <= Carbon::now()) {
             return response()->json([
-                'errorMsg' => "Validation fails"
+                'errorMsg' => "You are not authorized to cancel this session."
             ], 400);
         }
 
         DB::transaction(function () use($session, $request) {
-            $session->is_canceled = true;
-            $session->cancelReason()->associate($request->input('cancelReasonId'));
-            $session->save();
+            // todo: uncomment back
+            // $session->is_canceled = true;
+            // $session->cancelReason()->associate($request->input('cancelReasonId'));
+            // $session->save();
 
-            Auth::user()->cancelSessionExperienceDeduction();
-            app(StripeApiController::class)->chargeForCancellation(Auth::user());
+            // Auth::user()->cancelSessionExperienceDeduction();
+            // app(StripeApiController::class)->chargeForCancellation(Auth::user());
+
+            if(Auth::user()->is_tutor) {
+                Auth::user()->notify(new CancelSessionNotification($session, true));
+                $session->student->notify(new CancelSessionNotification($session, true));
+            } else {
+                Auth::user()->notify(new CancelSessionNotification($session, false));
+                $session->student->notify(new CancelSessionNotification($session, false));
+            }
+
+
         });
 
         if (!app(StripeApiController::class)->cancelInvoice($session->id)){
