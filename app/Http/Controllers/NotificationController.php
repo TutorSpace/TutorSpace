@@ -89,6 +89,11 @@ class NotificationController extends Controller
                 'notification.content.sessions.tutor-request', [
                     'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
                 ])->render();
+        } else if($notif->type == 'App\Notifications\TutorRequestAccepted') {
+            $view = view(
+                'notification.content.sessions.session-confirmation-student', [
+                    'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
+                ])->render();
         }
 
         $notif->markAsRead();

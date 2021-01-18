@@ -11,14 +11,16 @@ class TutorRequestDeclined extends Notification
 {
     use Queueable;
 
+    private $tutorRequest;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(TutorRequest $tutorRequest)
     {
-        //
+        $this->tutorRequest = $tutorRequest;
     }
 
     /**
@@ -29,7 +31,7 @@ class TutorRequestDeclined extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -41,9 +43,10 @@ class TutorRequestDeclined extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                ->greeting('Dear ' . $notifiable->first_name)
+                ->line('Your tutor request from ' . $this->tutorRequest->session_time_start . ' to ' . $this->tutorRequest->session_time_end . ' is declined.')
+                ->action('Visit TutorSpace', url('/'))
+                ->line('Thank you for using our platform!');
     }
 
     /**
@@ -55,7 +58,7 @@ class TutorRequestDeclined extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'tutorRequest' => $this->tutorRequest
         ];
     }
 }

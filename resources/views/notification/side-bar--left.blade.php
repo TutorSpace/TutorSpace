@@ -153,6 +153,15 @@
                     'notificationContent' => 'You just received a new Tutor Session Request!',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\TutorRequestAccepted')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Tutor Request Accepted',
+                    'notificationContent' => 'Your tutor request is accepted.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 

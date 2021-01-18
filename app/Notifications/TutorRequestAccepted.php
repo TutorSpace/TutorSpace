@@ -45,7 +45,7 @@ class TutorRequestAccepted extends Notification
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('Your tutor request on ' . $this->tutorRequest->session_time_start . ' is accepted')
+                ->line('Your tutor request from ' . $this->tutorRequest->session_time_start . ' to ' . $this->tutorRequest->session_time_end . ' is accepted')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }
