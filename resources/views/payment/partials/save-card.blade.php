@@ -1,7 +1,7 @@
 <div class="container modal-add-payment-method">
     <!-- Display a payment form -->
     <form id="payment-form">
-        <div class="sr-form-row">
+        <div class="sr-form-row mb-3">
             <label>
                 Billing account details
             </label>
