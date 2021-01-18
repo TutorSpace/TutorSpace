@@ -121,7 +121,7 @@
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
-                    'notificationType' => 'tutorspace',
+                    'notificationType' => 'sessions',
                     'notificationHeader' => 'Refund Request',
                     'notificationContent' => 'We have received your refund request.',
                     'notifId' => $notification->id
@@ -130,7 +130,7 @@
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
-                    'notificationType' => 'tutorspace',
+                    'notificationType' => 'sessions',
                     'notificationHeader' => 'Refund Success',
                     'notificationContent' => 'We have approved your refund request.',
                     'notifId' => $notification->id
@@ -139,7 +139,7 @@
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
-                    'notificationType' => 'tutorspace',
+                    'notificationType' => 'sessions',
                     'notificationHeader' => 'Refund Declined',
                     'notificationContent' => 'We are sorry that your refund request is declined.',
                     'notifId' => $notification->id
