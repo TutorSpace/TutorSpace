@@ -55,7 +55,7 @@ class ReplyController extends Controller
 
         // send notifications to the reply's user
         if($reply->user->id != Auth::id()) {
-            $reply->user->notify(new NewFollowupAddedNotification($baseReply->post));
+            $reply->user->notify(new NewFollowupAddedNotification($baseReply->post, $request->input('content'), Auth::user()->first_name . ' ' . Auth::user()->last_name));
         }
 
 

@@ -146,6 +146,13 @@ class NotificationController extends Controller
                     'content' => $notif->data['content'],
                     'forFollowers' => $notif->data['forFollowers'],
                 ])->render();
+        } else if($notif->type == 'App\Notifications\Forum\NewFollowupAddedNotification') {
+            $view = view(
+                'notification.content.forum.new-followup', [
+                    'post' => Post::find($notif->data['postId']),
+                    'content' => $notif->data['content'],
+                    'userName' => $notif->data['userName'],
+                ])->render();
         }
 
         $notif->markAsRead();

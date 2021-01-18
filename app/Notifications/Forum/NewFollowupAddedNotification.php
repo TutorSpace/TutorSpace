@@ -12,16 +12,20 @@ class NewFollowupAddedNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $post;
+    private $content;
+    private $userName;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, $content, $userName)
     {
         $this->post = $post;
+        $this->content = $content;
+        $this->userName = $userName;
     }
 
     /**
@@ -45,7 +49,7 @@ class NewFollowupAddedNotification extends Notification
     {
         return (new MailMessage)
                         ->greeting('Dear ' . $notifiable->first_name)
-                        ->line('Someone replied to you in the post: "' . $this->post->title . '."')
+                        ->line('Someone replied you in the post: "' . $this->post->title . '."')
                         ->action('View the Post', route('posts.show', $this->post->slug))
                         ->line('Thank you for using TutorSpace!');
     }
@@ -59,7 +63,9 @@ class NewFollowupAddedNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'postId' => $this->post->id,
+            'content' => $this->content,
+            'userName' => $this->userName
         ];
     }
 }

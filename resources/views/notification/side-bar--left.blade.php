@@ -216,6 +216,15 @@
                     'notificationContent' => 'A new reply is added.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\Forum\NewFollowupAddedNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'forum',
+                    'notificationHeader' => 'Someone Replied to You',
+                    'notificationContent' => 'Someone replied to you in a post.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 </ul>
