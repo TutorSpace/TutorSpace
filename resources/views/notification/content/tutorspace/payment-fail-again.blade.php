@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold text-danger">
-    You have an unpaid payment [Action Required]
+    You have an unpaid tutor session [Action Required]
 </div>
 <div class="notification__content__info">
 
