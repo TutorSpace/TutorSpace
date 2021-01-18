@@ -162,6 +162,15 @@
                     'notificationContent' => 'Your tutor request is accepted.',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\TutorRequestDeclined')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Tutor Request Declined',
+                    'notificationContent' => 'Your tutor request is declined.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 
