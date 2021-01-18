@@ -113,8 +113,8 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at,
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => '',
-                    'notificationContent' => '',
+                    'notificationHeader' => 'Invite to be Tutor',
+                    'notificationContent' => 'You are invited to be a tutor.',
                     'notifId' => $notification->id
             ])
         @endif
