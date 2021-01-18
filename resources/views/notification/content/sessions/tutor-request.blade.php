@@ -128,7 +128,7 @@ $price = $sessionDurationInHour * $hourlyRate;
     $('#btn-decline').click(function() {
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
-            type: 'POST',
+            type: 'DELETE',
             url: "{{ route('tutor-request.decline', $tutorRequest) }}",
             success: function success(data) {
                 let { successMsg, errorMsg } = data;
