@@ -46,10 +46,9 @@ class SessionController extends Controller
         }
 
         DB::transaction(function () use($session, $request) {
-            // todo: uncomment back
-            // $session->is_canceled = true;
-            // $session->cancelReason()->associate($request->input('cancelReasonId'));
-            // $session->save();
+            $session->is_canceled = true;
+            $session->cancelReason()->associate($request->input('cancelReasonId'));
+            $session->save();
 
 
             if(Auth::user()->is_tutor) {

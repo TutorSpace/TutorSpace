@@ -2,15 +2,15 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
-use Illuminate\Support\Facades\DB;
+use App\Session;
 use Facades\App\Tag;
+
+use App\TutorRequest;
 use Facades\App\User;
 use Facades\App\Transaction;
-use Facades\App\TutorRequest;
-use Facades\App\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {

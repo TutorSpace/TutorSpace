@@ -32,8 +32,8 @@ class TutorRequest extends Model
     }
 
     // IMPORTANT: must run scheduler in prod env
-    public function changeTutorRequestStatusOnTimeout() {
-        $tutorRequests = TutorRequest::all();
+    public static function changeTutorRequestStatusOnTimeout() {
+        $tutorRequests = TutorRequest::where('status', 'pending')->get();
         foreach($tutorRequests as $tutorRequest) {
 
             // must accept the tutor request at least 60 minutes before the session starts

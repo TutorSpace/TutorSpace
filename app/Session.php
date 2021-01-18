@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use App\Transaction;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\TutorSessionFinishedNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 
@@ -49,12 +50,14 @@ class Session extends Model
     }
 
     // IMPORTANT: must run scheduler in prod env
-    public function changeSessionStatusOnExpiry() {
-        $sessions = Session::all();
+    public static function changeSessionStatusOnExpiry() {
+        $sessions = Session::where('is_canceled', false)->get();
         foreach($sessions as $session) {
             if($session->session_time_start <= Carbon::now()) {
                 $session->is_upcoming = 0;
                 $session->save();
+
+                $session->tutor->notify(new TutorSessionFinishedNotification($session));
             }
         }
     }
