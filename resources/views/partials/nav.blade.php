@@ -170,7 +170,23 @@
                     </svg>
                     @endif
                 </div>
-                <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
+
+                <div class="profile-img-container">
+                    <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
+                    @if(
+                    (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
+                    || (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
+                    || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards())
+                    || Auth::user()->tags()->doesntExist()
+                    || Auth::user()->courses()->doesntExist()
+                    )
+                    <svg class="notification-indicator" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="2.5" cy="2.5" r="2.5" fill="#FFBC00"/>
+                    </svg>
+                    @endif
+                </div>
+
+
                 <div class="profile-img-dropdown">
                     <a class="nav__item" href="{{ route('home') }}">
                         <svg class="nav__item__svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
