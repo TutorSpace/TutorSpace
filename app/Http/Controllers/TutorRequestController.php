@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Session;
 use App\TutorRequest;
 use App\PaymentMethod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\DB;
+use App\Notifications\TutorRequestAccepted;
+use App\Notifications\TutorRequestDeclined;
 use App\Http\Controllers\payment\StripeApiController;
+
 class TutorRequestController extends Controller
 {
     // TODO: double check this function
@@ -34,8 +38,14 @@ class TutorRequestController extends Controller
                 $session->save();
                 $session->refresh();
 
-                // delete tutor request
-                $tutorRequest->delete();
+                // should not delete tutor request, because we need to show it.
+                $tutorRequest->status = 'accepted';
+                $tutorRequest->save();
+
+                $tutorRequest->refresh();
+
+                User::find($studentId)->notify(new TutorRequestAccepted($tutorRequest));
+
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
@@ -60,7 +70,12 @@ class TutorRequestController extends Controller
 
     // todo: add validation here
     public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
-        $tutorRequest->delete();
+        $tutorRequest->status = 'declined';
+        $tutorRequest->save();
+
+        $tutorRequest->refresh();
+
+        $tutorRequest->student->notify(new TutorRequestDeclined($tutorRequest));
 
         return response()->json(
             [

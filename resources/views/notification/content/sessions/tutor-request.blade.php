@@ -53,8 +53,8 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
             <div class="button-container">
-                <button class="btn btn-outline-primary">Decline</button>
-                <button class="btn btn-primary">Accept</button>
+                <button class="btn btn-outline-primary" id="btn-decline">Decline</button>
+                <button class="btn btn-primary" id="btn-accept">Accept</button>
             </div>
         </div>
     </div>
@@ -95,4 +95,56 @@ $price = $sessionDurationInHour * $hourlyRate;
         e.gotoDate("{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start) }}");
 
     }, 500);
+
+    $('#btn-accept').click(function() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('tutor-request.accept', $tutorRequest) }}",
+            success: function success(data) {
+                let { successMsg, errorMsg } = data;
+                if(successMsg) {
+                    toastr.success(successMsg);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else if(errorMsg) toastr.error(errorMsg);
+            },
+            error: (error) => {
+                console.log(error);
+                toastr.error("Something went wrong when accepting the tutor request.");
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
+
+    $('#btn-decline').click(function() {
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'POST',
+            url: "{{ route('tutor-request.decline', $tutorRequest) }}",
+            success: function success(data) {
+                let { successMsg, errorMsg } = data;
+                if(successMsg) {
+                    toastr.success(successMsg);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                }
+                else if(errorMsg) toastr.error(errorMsg);
+            },
+            error: (error) => {
+                console.log(error);
+                toastr.error("Something went wrong when declining the tutor request.");
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
+
+
 </script>

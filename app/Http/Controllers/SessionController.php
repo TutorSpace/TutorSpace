@@ -48,7 +48,7 @@ class SessionController extends Controller
             $session->is_canceled = true;
             $session->cancelReason()->associate($request->input('cancelReasonId'));
             $session->save();
-            // TODO: testing -> experience reduction
+
             Auth::user()->cancelSessionExperienceDeduction();
             app(StripeApiController::class)->chargeForCancellation(Auth::user());
         });
