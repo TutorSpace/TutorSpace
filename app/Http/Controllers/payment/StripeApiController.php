@@ -755,7 +755,7 @@ class StripeApiController extends Controller
 
         // Calculate application fee and session bonus
         $tutor = $session->tutor;
-        $bonus_rate = $tutor->getUserBonusRate();
+        $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
         $bonus_amount = round($amount * $bonus_rate);
         $original_application_fee_amount = round($amount * self::$APPLICATION_FEE_PERCENT);
         if ($original_application_fee_amount >= $bonus_amount) {
