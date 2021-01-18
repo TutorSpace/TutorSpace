@@ -5,12 +5,18 @@
             <label>
                 Billing account details
             </label>
-            <input type="text" id="email" placeholder="Email address" />
+            <input class="billing-account-inputs" type="text" id="card-holder" placeholder="Card holder" />
+            <input class="billing-account-inputs" type="text" id="email" placeholder="Email address" />
         </div>
         <div class="sr-form-row">
             <label>Payment details</label>
             <div id="card-element">
                 <!--Stripe.js injects the Card Element-->
+            </div>
+            <div class="add-card-agreement">
+                <input type="checkbox" id="add-card-agreement" class="add-card-agreement-input" name="agreement"
+                       >
+                <label >By checking this box, I agree to ...</label>
             </div>
             <button id="btn-add-payment-submit">
                 <div class="spinner hidden" id="spinner"></div>

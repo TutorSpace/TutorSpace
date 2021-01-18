@@ -50,6 +50,19 @@ class StripeApiController extends Controller
         }
     }
 
+    public static function getStripeInstance(){
+        if (env('APP_ENV') == 'local'){
+            return new \Stripe\StripeClient(
+                env("STRIPE_TEST_KEY")
+              );
+        }
+        else if (env('APP_ENV') == 'production'){
+            return new \Stripe\StripeClient(
+                env('STRIPE_LIVE_KEY')
+              );
+        }
+    }
+
     public function redirectToPayment(AppSession $session) {
         return redirect($this->getPaymentUrl($session));
     }
@@ -163,7 +176,7 @@ class StripeApiController extends Controller
             ]);
 
             array_push($result, [
-                'card_holder' => $card->name,
+                'card_holder' => $card->billing_details->name,
                 'brand' => $card->card->brand,
                 'exp_month' => $card->card->exp_month,
                 'exp_year' => $card->card->exp_year,
@@ -366,18 +379,7 @@ class StripeApiController extends Controller
         // nate todo: restore to the previous version with app(StripeApiController)
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
-
-            if (env('APP_ENV') == 'local'){
-                $stripe = new \Stripe\StripeClient(
-                    env("STRIPE_TEST_KEY")
-                  );
-            }
-            else if (env('APP_ENV') == 'production'){
-                $stripe = new \Stripe\StripeClient(
-                    env('STRIPE_LIVE_KEY')
-                  );
-            }
-              $stripe->paymentMethods->detach(
+              self::getStripeInstance()->paymentMethods->detach(
                 $payment_method_id,
                 []
             );
