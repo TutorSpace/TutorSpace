@@ -86,6 +86,11 @@ bg-student
     });
 
     $(document).on("click",".msgs .msg", function () {
+        $('.msg .box').removeClass('bg-grey-light');
+        $('.msg').removeClass('bg-grey-light');
+        $(this).find('.box').addClass('bg-grey-light');
+        $(this).addClass('bg-grey-light');
+
         let notifId = $(this).attr('data-notif-id');
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
