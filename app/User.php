@@ -497,19 +497,23 @@ class User extends Authenticatable
         }
     }
 
+    // deduct experience from users after canceling a session (both tutor and student)
     public function cancelSessionExperienceDeduction(){
         $lowerBound = $this->tutorLevel->level_experience_lower_bound;
         $upperBound = $this->tutorLevel->level_experience_upper_bound;
         $nextLevel = TutorLevel::where("level_experience_lower_bound",$upperBound);
         $experienceToSubstract = 0;
+        // lowest level: (upper bound - 0) * 20%
         if ($lowerBound < 0){
             $experienceToSubstract = ($upperBound - 0) * 0.2;
         }
+        // highest level: (set experience to previous level's lowerbound + 1)
         else if ($nextLevel->count() == 0) {
-            $experienceToSubstract = $this->experience_points - $lowerBound;
+            $prevLevel = TutorLevel::where("level_experience_upper_bound",$lowerBound)->first();
+            $experienceToSubstract = $this->experience_points - $prevLevel->level_experience_lower_bound - 1;
         }
+        // normal cases: 20% of current level range
         else {
-            // TODO: modify
             $experienceToSubstract = ($upperBound - $lowerBound) * 0.2;
         }
 

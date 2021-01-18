@@ -55,7 +55,11 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        echo Auth::id();
+        // echo Auth::id();
+        $prevLevel = TutorLevel::where("level_experience_upper_bound", 30)->first();
+        // Auth::user()->addExperience(10000);
+        //  Auth::user()->cancelSessionExperienceDeduction();
+        echo Auth::user()->experience_points;
 
     }
 
@@ -88,9 +92,11 @@ class testController extends Controller
         // }
         // Auth::user()->storeBankCardActionInSession("addNewa");
         // echo Session::get("lastBankCardAction");
-        dump(Session::get("bankCards"));
+        // dump(Session::get("bankCards"));
 
         // $user->notify(new RefundDeclinedNotification($session));
+
+        // echo $prevLevel->level_experience_upper_bound;
     }
 
 }
