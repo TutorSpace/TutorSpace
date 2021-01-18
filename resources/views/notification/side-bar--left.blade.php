@@ -204,7 +204,16 @@
                     'time' => $notification->created_at,
                     'notificationType' => 'forum',
                     'notificationHeader' => 'Marked as Best Reply',
-                    'notificationContent' => 'Your reply is marked as best reply.',
+                    'notificationContent' => 'A reply is marked as best reply.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\Forum')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'forum',
+                    'notificationHeader' => 'Marked as Best Reply',
+                    'notificationContent' => 'A reply is marked as best reply.',
                     'notifId' => $notification->id
             ])
         @endif

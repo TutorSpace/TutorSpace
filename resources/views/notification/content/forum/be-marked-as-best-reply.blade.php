@@ -1,5 +1,9 @@
 <div class="notification__content__header font-weight-bold">
+    @if ($forFollowers)
+    A Reply has been Marked as Best Reply
+    @else
     Your Reply has been Marked as Best Reply
+    @endif
 </div>
 <div class="notification__content__info">
 
@@ -8,7 +12,11 @@
 
         <div class="container content">
             <h6 class=" text-center">
-                Your reply has been Marked as Best Reply.
+                @if ($forFollowers)
+                A Reply has been Marked as Best Reply.
+                @else
+                Your Reply has been Marked as Best Reply.
+                @endif
             </h6>
 
             <div class="quote">

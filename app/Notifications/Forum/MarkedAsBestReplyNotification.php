@@ -15,16 +15,18 @@ class MarkedAsBestReplyNotification extends Notification
 
     private $post;
     private $content;
+    private $forFollowers;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post, $content)
+    public function __construct(Post $post, $content, $forFollowers)
     {
         $this->post = $post;
         $this->content = $content;
+        $this->forFollowers = $forFollowers;
     }
 
     /**
@@ -46,11 +48,19 @@ class MarkedAsBestReplyNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
-                    ->action('View the Post', route('posts.show', $this->post->slug))
-                    ->line('Thank you for using TutorSpace!');
+        if($this->forFollowers) {
+            return (new MailMessage)
+                        ->greeting('Dear ' . $notifiable->first_name)
+                        ->line('A reply to post: "' . $this->post->title . '" is marked as best reply.')
+                        ->action('View the Post', route('posts.show', $this->post->slug))
+                        ->line('Thank you for using TutorSpace!');
+        } else {
+            return (new MailMessage)
+                        ->greeting('Dear ' . $notifiable->first_name)
+                        ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
+                        ->action('View the Post', route('posts.show', $this->post->slug))
+                        ->line('Thank you for using TutorSpace!');
+        }
     }
 
     /**
@@ -63,7 +73,8 @@ class MarkedAsBestReplyNotification extends Notification
     {
         return [
             'post' => $this->post,
-            'content' => $this->content
+            'content' => $this->content,
+            'forFollowers' => $this->forFollowers
         ];
     }
 }

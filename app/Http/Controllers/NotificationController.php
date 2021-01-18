@@ -137,6 +137,7 @@ class NotificationController extends Controller
                 'notification.content.forum.be-marked-as-best-reply', [
                     'post' => Post::find($notif->data['post']['id']),
                     'content' => $notif->data['content'],
+                    'forFollowers' => $notif->data['forFollowers'],
                 ])->render();
         }
 
