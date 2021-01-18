@@ -14,8 +14,11 @@ use App\Http\Controllers\Payment\StripeApiController;
 
 class NotificationController extends Controller
 {
-    public function index() {
-        return view('notification.index');
+    public function index(Request $request) {
+
+        return view('notification.index', [
+            'showNotif' => $request->input('show-notif')
+        ]);
     }
 
     public function show(Request $request, $notifId) {

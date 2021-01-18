@@ -192,3 +192,7 @@ $('#btn-decline-tutor-session').click(function() {
 $('#btn-register-to-be-tutor').click(function() {
     $('.nav__item__svg--switch-account').click();
 });
+
+$('.side-bar__notification > *').click(function() {
+    window.location.href = $(this).closest('.side-bar__notification').attr('data-route');
+})

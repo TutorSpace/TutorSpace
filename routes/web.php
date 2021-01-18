@@ -168,6 +168,7 @@ Route::group([
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
     Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
     Route::post('/profile/hourly-rate', 'HomeController@updateHourlyRate')->name('home.profile.hourly-rate.update')->middleware('isTutor');
+    Route::get('/bookmark-sidebar', 'HomeController@getBookmarkSideBar')->name('home.get.bookmark.sidebar');
 });
 
 // view profile

@@ -597,6 +597,16 @@
             display: none;
         }
 
+        .no-data {
+            padding-bottom: 15rem;
+
+            &__content {
+                @include absCenter;
+                white-space: nowrap;
+                top: calc(50% + 1rem);
+            }
+        }
+
         .home__board {
             margin-top: 8rem;
             height: 20rem;
@@ -639,13 +649,13 @@
                 img {
                     border-radius: 50%;
                     object-fit: cover;
-                    width: 4.5rem;
-                    height: 4.5rem;
+                    width: 5.5rem;
+                    height: 5.5rem;
                     margin-right: 2rem;
                 }
 
                 &__content {
-                    width: calc(100% - 4.5rem - 2rem);
+                    width: calc(100% - 5.5rem - 2rem);
                     display: flex;
                     flex-direction: column;
 

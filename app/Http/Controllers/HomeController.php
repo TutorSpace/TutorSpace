@@ -49,7 +49,16 @@ class HomeController extends Controller
         }
 
         return view('home.index', [
-            'posts' => $posts
+            'posts' => $posts,
+
+            // always get the past 7 days' forum notifications
+            'forumNotifs' => Auth::user()->notifications()
+            ->where('created_at', '>=', Carbon::now()->subDays(7))
+            ->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
+            ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
+            ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification')
+            ->orderBy('created_at', 'desc')
+            ->get()
         ]);
 
     }
@@ -140,6 +149,14 @@ class HomeController extends Controller
 
         Auth::user()->hourly_rate = $request->input('hourly-rate');
         Auth::user()->save();
+    }
+
+    public function getBookmarkSideBar(Request $request) {
+        $view = view('home.partials.bookmarked-tutors--sidebar')->render();
+
+        return response()->json([
+            'view' => $view
+        ]);
     }
 
 }
