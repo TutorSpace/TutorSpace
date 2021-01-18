@@ -105,17 +105,20 @@ class StripeApiController extends Controller
     // Request $request
     public function checkIfCardAlreadyExists(Request $request){
         $requestToken = $request->input("token");
-
+        if (!$requestToken || !isset($requestToken["token"]) || !isset($requestToken["token"]["id"]) ){
+            return response()->json([],400);
+        }
 
         $token = \Stripe\Token::retrieve(
             $requestToken["token"]["id"],
             []
           );
 
-        $cards = \Stripe\PaymentMethod::all([
-            'customer' => $this->getCustomerId(),
-            'type' => 'card'
-        ])->data;
+        if (!$token){
+            return response()->json([],400);
+        }
+
+        $cards = self::retrieveAllCards();
 
         foreach($cards as $card) {
             if ($card->card->fingerprint == $token->card->fingerprint){
@@ -132,23 +135,17 @@ class StripeApiController extends Controller
 
     // Lists all cards of the current user
     public function listCards(Request $request) {
-        $cards = \Stripe\PaymentMethod::all([
-            'customer' => $this->getCustomerId(),
-            'type' => 'card'
-        ])->data;
-
-        // cache values
-        Cache::forget(self::getCustomerHasCardsCacheKey());
-        $hasCard = false;
-        if (count($cards) >= 1){
-            $hasCard = true;
-        }else{
-            $hasCard = false;
+        // check if we need to retrieve new results
+        $lastAction = Session::get("lastBankCardAction");
+        if (!Session::has('lastBankCardAction') || !Session::has("bankCards") || $lastAction == "setDefault" || $lastAction == "addNew" || $lastAction == "deleteCard"){
+            // retrieve all cards from stripe
+            $cards = self::retrieveAllCards();
+            Session::put("bankCards",$cards);
+            Session::put('lastBankCardAction', "getCards");
+            $this->cacheCustomerHasCards($cards);
+        }else{ // no last action and cards already in sessions
+            $cards = Session::get("bankCards");
         }
-        // cache value
-        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($hasCard) {
-            return $hasCard;
-        });
 
         // get default payment(invoice)
         $default_payment_id = $this->getCustomerDefaultPaymentId();
@@ -171,10 +168,47 @@ class StripeApiController extends Controller
                 'is_default' => $is_default
             ]);
         }
-        Session::put("payments",$payment_method_ids);
+        // used for storing real payment method ids
+        Session::put("paymentsMethodIds",$payment_method_ids);
         return response()->json([
             'cards' => $result
         ]);
+    }
+
+    private static function cacheCustomerHasCards($cards){
+        // forget keys
+        Cache::forget(self::getCustomerHasCardsCacheKey());
+        // cache value
+        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($cards) {
+            if (count($cards) >= 1){
+                return true;
+            }else{
+                return false;
+            }
+        });
+    }
+    // helper function to get all cards
+    private static function retrieveAllCards(){
+        $cards = \Stripe\PaymentMethod::all([
+            'customer' => self::getCustomerId(),
+            'type' => 'card'
+        ])->data;
+        return $cards;
+    }
+
+    // store last payment card Action in session
+    // input: $action: string => "setDefault", "addNew", "deleteCard"
+    public function storeBankCardActionInSession(Request $request){
+        $action = $request->input("bankCardActionToStore");
+        if ($action == "setDefault") {
+            Session::put("lastBankCardAction", $action);
+        }else if ($action == "addNew") {
+            Session::put("lastBankCardAction", $action);
+        }else if ($action == "deleteCard") {
+            Session::put("lastBankCardAction", $action);
+        }else {
+            Session::forget("lastBankCardAction");
+        }
     }
 
     // true or false if there's card
@@ -186,21 +220,9 @@ class StripeApiController extends Controller
         if ($hasCard){
             return $hasCard;
         }
-        $cards = \Stripe\PaymentMethod::all([
-            'customer' => Self::getCustomerId(),
-            'type' => 'card'
-        ])->data;
+        $cards =  self::retrieveAllCards();
 
-        if (count($cards) >= 1){
-            $hasCard = true;
-        }else{
-            $hasCard = false;
-        }
-
-        // cache value
-        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($hasCard) {
-            return $hasCard;
-        });
+        self::cacheCustomerHasCards($cards);
 
         return $hasCard;
     }
@@ -213,7 +235,7 @@ class StripeApiController extends Controller
     }
 
     private function convertFakePaymentIDToRealID($id){
-        $current_payment = Session::get("payments");
+        $current_payment = Session::get("paymentsMethodIds");
         $payment_method_id =  $current_payment[$id]["card_id"];
         return $payment_method_id;
     }
@@ -318,10 +340,7 @@ class StripeApiController extends Controller
         $customer_id = $this->getCustomerId();
 
         // get all cards
-        $cards = \Stripe\PaymentMethod::all([
-            'customer' => $this->getCustomerId(),
-            'type' => 'card'
-        ])->data;
+        $cards = self::retrieveAllCards();
 
         //get default
         $default_payment_id = $this->getCustomerDefaultPaymentId();

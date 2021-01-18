@@ -11,7 +11,7 @@ use App\View;
 use App\Reply;
 use App\Course;
 use App\Message;
-use App\Session;
+use App\Session as AppSession;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
@@ -19,6 +19,7 @@ use App\Transaction;
 use App\PaymentMethod;
 use App\TutorLevel;
 use Carbon\Carbon;
+
 
 use App\TutorRequest;
 use Facades\App\Post;
@@ -31,6 +32,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use App\Notifications\EmailVerification;
 
 use Illuminate\Support\Facades\Notification;
@@ -70,7 +72,15 @@ class testController extends Controller
         //     app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
         // }
         // app(StripeApiController::class)->checkIfCardAlreadyExists();
-        Auth::user()->cancelSessionExperienceDeduction();
+        // Auth::user()->cancelSessionExperienceDeduction();
+        // $lastAction = Session::get("lastBankCardAction");
+
+        // if (!Session::has('lastBankCardAction')){
+        //     echo "nothing";
+        // }
+        // Auth::user()->storeBankCardActionInSession("addNewa");
+        // echo Session::get("lastBankCardAction");
+        dump(Session::get("bankCards"));
 
     }
 }
