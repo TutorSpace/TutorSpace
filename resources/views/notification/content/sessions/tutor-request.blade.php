@@ -53,8 +53,14 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
             <div class="button-container">
+                @if ($tutorRequest->status == 'declined')
+                <button class="btn btn-outline-primary disabled">Declined</button>
+                @elseif($tutorRequest->status == 'accepted')
+                <button class="btn btn-primary disabled">Accepted</button>
+                @elseif($tutorRequest->status == 'pending')
                 <button class="btn btn-outline-primary" id="btn-decline">Decline</button>
                 <button class="btn btn-primary" id="btn-accept">Accept</button>
+                @endif
             </div>
         </div>
     </div>
@@ -105,9 +111,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 let { successMsg, errorMsg } = data;
                 if(successMsg) {
                     toastr.success(successMsg);
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1000);
+                    $('.button-container').html('<button class="btn btn-primary disabled">Accepted</button>');
                 }
                 else if(errorMsg) toastr.error(errorMsg);
             },
@@ -124,15 +128,13 @@ $price = $sessionDurationInHour * $hourlyRate;
     $('#btn-decline').click(function() {
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
-            type: 'POST',
+            type: 'DELETE',
             url: "{{ route('tutor-request.decline', $tutorRequest) }}",
             success: function success(data) {
                 let { successMsg, errorMsg } = data;
                 if(successMsg) {
                     toastr.success(successMsg);
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1000);
+                    $('.button-container').html('<button class="btn btn-outline-primary disabled">Declined</button>');
                 }
                 else if(errorMsg) toastr.error(errorMsg);
             },

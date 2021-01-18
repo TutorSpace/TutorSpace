@@ -89,6 +89,35 @@ class NotificationController extends Controller
                 'notification.content.sessions.tutor-request', [
                     'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
                 ])->render();
+        } else if($notif->type == 'App\Notifications\TutorRequestAccepted') {
+            $view = view(
+                'notification.content.sessions.session-confirmation-student', [
+                    'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
+                ])->render();
+        } else if($notif->type == 'App\Notifications\TutorRequestDeclined') {
+            $view = view(
+                'notification.content.sessions.session-decline', [
+                    'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
+                ])->render();
+        } else if($notif->type == 'App\Notifications\CancelSessionNotification') {
+            if(Auth::user()->is_tutor) {
+                if($notif->data['canceledByTutor']) {
+                    $viewName = 'notification.content.sessions.session-cancel-by-tutor';
+                } else {
+                    $viewName = 'notification.content.sessions.session-cancel-notify-tutor';
+                }
+            } else {
+                if($notif->data['canceledByTutor']) {
+                    $viewName = 'notification.content.sessions.session-cancel-notify-student';
+                } else {
+                    $viewName = 'notification.content.sessions.session-cancel-by-student';
+                }
+            }
+
+            $view = view(
+                $viewName, [
+                    'session' => Session::find($notif->data['session']['id']),
+                ])->render();
         }
 
         $notif->markAsRead();

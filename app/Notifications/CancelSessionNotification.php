@@ -2,26 +2,28 @@
 
 namespace App\Notifications;
 
-use App\TutorRequest;
+use App\Session;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class TutorRequestAccepted extends Notification
+class CancelSessionNotification extends Notification
 {
     use Queueable;
 
-    private $tutorRequest;
+    private $session;
+    private $canceledByTutor;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(TutorRequest $tutorRequest)
+    public function __construct(Session $session, $canceledByTutor)
     {
-        $this->tutorRequest = $tutorRequest;
+        $this->session = $session;
+        $this->canceledByTutor = $canceledByTutor;
     }
 
     /**
@@ -45,7 +47,7 @@ class TutorRequestAccepted extends Notification
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('Your tutor request from ' . $this->tutorRequest->session_time_start . ' to ' . $this->tutorRequest->session_time_end . ' is accepted')
+                ->line('Your session from ' . $this->session->session_time_start . ' to ' . $this->session->session_time_end . ' is canceled.')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }
@@ -59,7 +61,8 @@ class TutorRequestAccepted extends Notification
     public function toArray($notifiable)
     {
         return [
-            'tutorRequest' => $this->tutorRequest
+            'session' => $this->session,
+            'canceledByTutor' => $this->canceledByTutor
         ];
     }
 }

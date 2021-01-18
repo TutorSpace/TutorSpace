@@ -7,6 +7,7 @@ use App\Review;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\TutorRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\Access\Response;
 use Illuminate\Support\Facades\Auth;
@@ -46,16 +47,28 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_tutor && $isAvailable;
         });
 
-        Gate::define('accept-tutor-request', function ($user, $tutorRequest) {
-            if($user->id != $tutorRequest->tutor_id || $tutorRequest->session_time_start <= Carbon::now()->addMinutes(10))
-                return Response::deny('This session conflicts with an existing session!');
+        // must be at least 1 hour prior to the session start time
+        // must not conflicts with any tutor sessions
+        // todo: must have already set up the payment method
+        // must be in pending status
+        // must be the tutor of this tutor request
+        Gate::define('accept-tutor-request', function ($user, TutorRequest $tutorRequest) {
+            if($user->id != $tutorRequest->tutor_id) {
+                return Response::deny('You are not authorized to accept this tutor request.');
+            } else if($tutorRequest->status != 'pending') {
+                return Response::deny('You are not authorized to accept this tutor request.');
+            } else if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(60)) {
+                return Response::deny('You can only accept tutor requests that are at least two hours before the current time.');
+            } else if(!Auth::user()->tutorHasStripeAccount()) {
+                return Response::deny('You must first set up your payment method in the profile page before accepting any tutor request.');
+            } else {
+                $isAvailable = true;
+                foreach($user->upcomingSessions as $session) {
+                    if(!TimeOverlapManager::noTimeOverlap($tutorRequest->session_time_start, $tutorRequest->session_time_end, $session->session_time_start, $session->session_time_end)) $isAvailable = false;
+                }
 
-            $isAvailable = true;
-            foreach($user->upcomingSessions as $session) {
-                if(!TimeOverlapManager::noTimeOverlap($tutorRequest->session_time_start, $tutorRequest->session_time_end, $session->session_time_start, $session->session_time_end)) $isAvailable = false;
+                return $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
             }
-
-            return $user->is_tutor && $isAvailable ? Response::allow() : Response::deny('This session conflicts with an existing session!');
         });
 
         Gate::define('review-session', function($user, $session) {

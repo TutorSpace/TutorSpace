@@ -153,6 +153,33 @@
                     'notificationContent' => 'You just received a new Tutor Session Request!',
                     'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\TutorRequestAccepted')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Tutor Request Accepted',
+                    'notificationContent' => 'Your tutor request is accepted.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\TutorRequestDeclined')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Tutor Request Declined',
+                    'notificationContent' => 'Your tutor request is declined.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\CancelSessionNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'sessions',
+                    'notificationHeader' => 'Session Canceled',
+                    'notificationContent' => 'Your session is canceled.',
+                    'notifId' => $notification->id
+            ])
         @endif
     @endforeach
 
