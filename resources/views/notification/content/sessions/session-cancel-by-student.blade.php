@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Canceled ({{ $session->session_time_start->format('m/d/y D') }})
+    Session Cancelled ({{ $session->session_time_start->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 
@@ -18,10 +18,14 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}</p>
 
             <p class="mt-5 fs-1-8">
-                Your session has been <span class="font-weight-bold text-danger">CANCELED</span> by {{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}. Session details:
+                Your session has been <span class="font-weight-bold text-danger">CANCELED</span>. You will be charged <span class="font-weight-bold text-danger">$5</span> for this cancelation.
             </p>
 
-            <div class="d-flex justify-content-between mt-4">
+            <h6 class="color-primary">
+                Session Details
+            </h6>
+
+            <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Date:</div>
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('m/d/y D') }}</p>

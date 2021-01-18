@@ -51,18 +51,27 @@ class SessionController extends Controller
             // $session->cancelReason()->associate($request->input('cancelReasonId'));
             // $session->save();
 
-            // Auth::user()->cancelSessionExperienceDeduction();
-            // app(StripeApiController::class)->chargeForCancellation(Auth::user());
 
             if(Auth::user()->is_tutor) {
-                Auth::user()->notify(new CancelSessionNotification($session, true));
-                $session->student->notify(new CancelSessionNotification($session, true));
+                $expLost = 0;
+                // if too late
+                if(Carbon::now()->addHours(24) > $session->session_time_start) {
+                    $expLost = Auth::user()->cancelSessionExperienceDeduction();
+                    app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                }
+
+                Auth::user()->notify(new CancelSessionNotification($session, true, $expLost));
+                $session->student->notify(new CancelSessionNotification($session, true, $expLost));
+
             } else {
+                // if too late
+                if(Carbon::now()->addHours(12) > $session->session_time_start) {
+                    // student will not be deducted the exp points
+                    app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                }
                 Auth::user()->notify(new CancelSessionNotification($session, false));
-                $session->student->notify(new CancelSessionNotification($session, false));
+                $session->tutor->notify(new CancelSessionNotification($session, false));
             }
-
-
         });
 
         if (!app(StripeApiController::class)->cancelInvoice($session->id)){

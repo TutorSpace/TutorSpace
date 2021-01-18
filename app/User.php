@@ -515,7 +515,7 @@ class User extends Authenticatable
 
         $this->addExperience(0-$experienceToSubstract);
 
-
+        return $experienceToSubstract;
     }
 
     // return tutor level bonus rate of current user as DOUBLE

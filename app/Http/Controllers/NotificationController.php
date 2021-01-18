@@ -117,6 +117,7 @@ class NotificationController extends Controller
             $view = view(
                 $viewName, [
                     'session' => Session::find($notif->data['session']['id']),
+                    'expLost' => $notif->data['expLost'],
                 ])->render();
         }
 

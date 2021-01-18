@@ -11,14 +11,14 @@ $price = $sessionDurationInHour * $hourlyRate;
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
-            <img src="{{ Storage::url($session->tutor->profile_pic_url) }}" alt="user photo" class="user-image">
+            <img src="{{ Storage::url($session->student->profile_pic_url) }}" alt="user photo" class="user-image">
         </div>
 
         <div class="container content">
-            <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}</p>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->student->first_name . ' ' . $session->student->last_name }}</p>
 
             <p class="mt-5 fs-1-8">
-                Your session has been <span class="font-weight-bold text-danger">CANCELED</span> by {{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}. Session details:
+                Your session has been <span class="font-weight-bold text-danger">CANCELED</span> by {{ $session->student->first_name . ' ' . $session->student->last_name }}. Session details:
             </p>
 
             <div class="d-flex justify-content-between mt-4">
