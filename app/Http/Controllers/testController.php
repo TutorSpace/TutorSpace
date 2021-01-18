@@ -59,8 +59,10 @@ class testController extends Controller
         $prevLevel = TutorLevel::where("level_experience_upper_bound", 30)->first();
         // Auth::user()->addExperience(10000);
         //  Auth::user()->cancelSessionExperienceDeduction();
-        echo Auth::user()->experience_points;
-
+        $cards = app(StripeApiController::class)::retrieveAllCards();
+        forEach($cards as $card){
+            echo $card->id;
+        }
     }
 
     public function test(Request $request) {

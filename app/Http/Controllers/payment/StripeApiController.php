@@ -339,9 +339,22 @@ class StripeApiController extends Controller
             $payment_method_id =  $this->convertFakePaymentIDToRealID($id);
         }
         $customer_id = $this->getCustomerId();
-        $customer = \Stripe\Customer::update($customer_id, [
-            'invoice_settings' => ['default_payment_method' => $payment_method_id]
-        ]);
+        $cards = self::retrieveAllCards();
+        forEach($cards as $card){
+            if ($card->id == $payment_method_id){
+                $customer = \Stripe\Customer::update($customer_id, [
+                    'invoice_settings' => ['default_payment_method' => $payment_method_id]
+                ]);
+                return response()->json([
+                    'success' => "updated default payment method"
+                ], 200);
+            }
+        }
+        return response()->json([
+            'errorMsg' => "Something went wrong"
+        ], 400);
+
+
     }
 
     // detach a payment from customer
