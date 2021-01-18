@@ -478,17 +478,6 @@ class StripeApiController extends Controller
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
     }
 
-    // Refund a session bonus given 'session'
-    private function refundSessionBonus(AppSession $session) {
-        if ($session->sessionBonus) {
-            $session_bonus = $session->sessionBonus;
-            $transfer_reversal = \Stripe\Transfer::createReversal($session_bonus->transfer_id);
-            $session_bonus->transfer_reversal_id = $transfer_reversal->id;
-            $session_bonus->is_refunded = 1;
-            $session_bonus->save();
-        }
-    }
-
     // Decline a refund request for a session
     public function declineRefundRequest(Request $request, AppSession $session) {
         $transaction = $session->transaction();
