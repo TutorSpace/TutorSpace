@@ -181,11 +181,14 @@ class StripeApiController extends Controller
     public static function getCustomerHasCardsCacheKey(){
         return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
     }
+
+    // todo: 优化代码
     public static function customerHasCards(){
         $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
         if ($hasCard){
             return $hasCard;
         }
+
         $cards = \Stripe\PaymentMethod::all([
             'customer' => Self::getCustomerId(),
             'type' => 'card'
@@ -339,7 +342,7 @@ class StripeApiController extends Controller
             ], 400);
         }
 
-        // todo: make sure this works
+        // nate todo: restore to the previous version with app(StripeApiController)
         // can delete only when cards > 1 and not the default method
         if (count($cards) > 1 && $payment_method_id != $default_payment_id){
 
@@ -804,18 +807,16 @@ class StripeApiController extends Controller
         forEach ($transactionsToSend as $transaction) {
             $invoiceId = $transaction->invoice_id;
             $invoiceToSend = \Stripe\Invoice::retrieve($invoiceId);
-            // send invoice
-            // $invoiceToSend->sendInvoice();
+
             // update last update time
             $transaction->touch();
 
-            // TODO: add link
             // send unpaid invoice mail reminder to tutorspace and user
             $user = User::find($transaction->user_id);
-            Notification::route('mail', $user->email)
-            ->notify(new UnpaidInvoiceReminder($user));
-            Notification::route('mail', "tutorspace@gmail.edu")
-            ->notify(new UnpaidInvoiceReminder($user));
+
+            $user->notify(new UnpaidInvoiceReminder($session, true));
+            Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new UnpaidInvoiceReminder($session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";
         }

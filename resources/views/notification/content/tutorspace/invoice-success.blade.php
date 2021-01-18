@@ -4,27 +4,18 @@ $sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($
 $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
-<div class="notification__content__header font-weight-bold text-danger">
-    You have an unpaid payment [Action Required]
+<div class="notification__content__header font-weight-bold">
+    Session Completed ({{ $session->session_time_start->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
-        <div class="notification__content__info__header bg-primary"></div>
+        <div class="notification__content__info__header bg-primary">
+            <img src="{{ Storage::url($session->tutor->profile_pic_url) }}" alt="user photo" class="user-image">
+        </div>
 
         <div class="container content">
-            <h6 class="color-primary">
-                You have an unpaid tutor session.
-            </h6>
-            <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
-            </p>
-
-            <div class="button-container">
-                <a class="btn btn-primary" href="{{ $paymentUrl }}">One-time Payment Link</a>
-            </div>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}</p>
 
             <h6 class="mt-5 color-primary">Session Details</h6>
 
@@ -66,6 +57,14 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Total
                 <span class="color-primary">$ {{ $price }}</span>
             </p>
+
+            <h6 class="color-primary">Rate Your Tutor</h6>
+
+            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate your tutor.</p>
+
+            <h6 class="color-primary">Having Trouble with this session?</h6>
+
+            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>

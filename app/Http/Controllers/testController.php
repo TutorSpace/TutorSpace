@@ -15,29 +15,32 @@ use App\Session;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
-use App\Transaction;
-use App\PaymentMethod;
-use App\TutorLevel;
 use Carbon\Carbon;
-
+use App\TutorLevel;
+use App\Transaction;
 use App\TutorRequest;
+
 use Facades\App\Post;
+use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
 use App\Events\NewChatroom;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+
 use App\Notifications\EmailVerification;
+use App\Notifications\InvoicePaymentFailed;
+use App\Notifications\UnpaidInvoiceReminder;
 
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\TutorVerificationNotification;
-use App\Notifications\Forum\MarkedAsBestReplyNotification;
-
 use App\Http\Controllers\payment\StripeApiController;
+use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
 class testController extends Controller
 {
@@ -46,31 +49,14 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-
-    }
-
-    public function test(Request $request) {
-
-        // Auth::user()->tutorHasStripeAccount();
-        // echo Auth::user()->firstMajor->id;
-        // $transactionsToCharge = Transaction::join("sessions","sessions.id","=","transactions.session_id") // join
-
-        // ->whereRaw("TIMESTAMPDIFF (MINUTE, sessions.session_time_end, '" . Carbon::now() . "' ) >= ?", 0) // ? minutes after session end
-        // ->where("transactions.invoice_status","draft") // invoice status => draft
-        // ->where("sessions.is_canceled",0) // not canceled
-        // ->get();
-
-        // echo $transactionsToCharge->count();
         // Auth::user()->addExperience(10000);
-        // $tutor = User::find(10);
-        // $bonus_rate = $tutor->getUserBonusRate();
-        // $transaction = Transaction::find(4);
-        // echo $transaction->amount * $bonus_rate;
-        // if ($bonus_rate > 0) {
-        //     app(StripeApiController::class)->createSessionBonus(round($transaction->amount * $bonus_rate), $transaction->session);
-        // }
-        // app(StripeApiController::class)->checkIfCardAlreadyExists();
-        Auth::user()->cancelSessionExperienceDeduction();
+        echo Auth::id();
 
+        $session = Session::find('957de7ab-0037-4bc6-bdec-88e26daa9660');
+        $user = User::find('04c9b829-f027-4ff2-a4ea-0410ba684134');
+
+        Notification::route('mail', "tutorspaceusc@gmail.com")->notify(new UnpaidInvoiceReminder($session, false));
+        $user->notify(new UnpaidInvoiceReminder($session, true));
     }
+
 }

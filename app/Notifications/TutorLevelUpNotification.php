@@ -7,20 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvoicePaid extends Notification
+class TutorLevelUpNotification extends Notification
 {
     use Queueable;
 
-    private $session;
+    private $exp;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($session)
+    public function __construct()
     {
-        $this->session = $session;
+
     }
 
     /**
@@ -43,10 +43,10 @@ class InvoicePaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                ->greeting('Dear ' . $notifiable->first_name)
-                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
-                ->action('Visit TutorSpace', url('/'))
-                ->line('Thank you for using our platform!');
+                    ->greeting('Dear ' . $notifiable->first_name)
+                    ->line('Congrats! You just reached the ' . $notifiable->tutorLevel->tutor_level . ' level.')
+                    ->action('Visit TutorSpace', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**
@@ -58,7 +58,9 @@ class InvoicePaid extends Notification
     public function toArray($notifiable)
     {
         return [
-            'session' => $this->session
+            'levelProgressPercentage' => $notifiable->getLevelProgressPercentage(),
+            'currLevel' => $notifiable->currentLevel(),
+            'nextLevel' => $notifiable->nextLevel(),
         ];
     }
 }

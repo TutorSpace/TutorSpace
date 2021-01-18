@@ -75,7 +75,7 @@ bg-student
 
             </div>
             <div>
-                @include('notification.content.tutorspace.payment-fail')
+
             </div>
             <div>
                 @include('notification.content.tutorspace.payment-fail-again')
@@ -84,7 +84,6 @@ bg-student
                 @include('notification.content.tutorspace.session-fee-received')
             </div>
             <div>
-                @include('notification.content.tutorspace.tutor-level-up')
             </div>
             <div>
                 @include('notification.content.forum.post-reported')
@@ -104,17 +103,51 @@ bg-student
 
 @section('js-2')
 <script>
-    // $('#notification__content > *').addClass('hidden');
-    // $(document).on("click",".msgs .msg", function () {
-    //     $('#notification__content > *').addClass('hidden');
-    //     var children = $('.msgs')[0].children;
-    //     for (var i = 0; i < children.length; i++) {
-    //         var tableChild = children[i];
-    //         if(tableChild == $(this)[0]) {
-    //             $(`#notification__content > :nth-child(${i+1})`).removeClass('hidden');
-    //         }
-    //     }
-    // });
+
+    $(document).on('click', '#btn-rate-tutor', function() {
+        let url = $(this).attr('data-route-url');
+
+        bootbox.dialog({
+            message: `@include('session.review-session')`,
+            size: 'large',
+            centerVertical: true,
+            buttons: {
+                Cancel: {
+                    label: 'Cancel',
+                    className: 'btn btn-outline-primary px-4 fs-1-6',
+                    callback: function(e) {}
+                },
+                Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary px-4 fs-1-6',
+                    callback: function(e) {
+                        if (!$.trim($(".modal-session-report textarea").val())) {
+                            // textarea is empty or contains only white-space
+                            toastr.error('Please enter the details.')
+                            return false;
+                        }
+                        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: $('.modal-session-report').serialize(),
+                            success: (data) => {
+                                toastr.success(data.successMsg);
+                            },
+                            error: function(error) {
+                                toastr.error('You can not review the same session twice!');
+                                console.log(error);
+                            },
+                            complete: () => {
+                                JsLoadingOverlay.hide();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
 
     $(document).on("click",".msgs .msg", function () {
         let notifId = $(this).attr('data-notif-id');

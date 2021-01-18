@@ -26,7 +26,7 @@
     </div>
 </div>
 <ul class="msgs">
-    @foreach (Auth::user()->notifications as $notification)
+    @foreach (Auth::user()->notifications()->orderBy('created_at', 'desc')->get() as $notification)
         @if ($notification->type == 'App\Notifications\WelcomeMessageNotification')
             @include('notification.side-bar-notification-msg', [
                 'unRead' => $notification->unread(),
@@ -52,6 +52,51 @@
                     'notificationType' => 'tutorspace',
                     'notificationHeader' => 'Tutor Verification',
                     'notificationContent' => 'We have successfully processed your tutor verification request.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\InvoicePaymentFailed')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Payment Failed',
+                    'notificationContent' => 'Oops. Your auto-payment failed. Please use the link below to make the payment.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\InvoicePaid')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Payment Success',
+                    'notificationContent' => 'Your session is completed. We have successfully received your payment.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\TutorLevelUpNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'New Tutor Level',
+                    'notificationContent' => 'Congratulations! You reached the next tutor level!',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\UnpaidInvoiceReminder')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Unpaid Tutor Session',
+                    'notificationContent' => 'You have an unapid tutor session.',
+                    'notifId' => $notification->id
+            ])
+        @elseif($notification->type == 'App\Notifications\1')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at,
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => '',
+                    'notificationContent' => '',
                     'notifId' => $notification->id
             ])
         @endif
