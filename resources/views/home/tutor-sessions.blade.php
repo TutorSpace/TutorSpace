@@ -235,7 +235,7 @@ bg-student
                 @if($reviewCount > 0)
                 <div class="info-boxes">
                     @php
-                    $reviews = Auth::user()->aboutReviews;
+                    $reviews = Auth::user()->aboutReviews()->orderBy('created_at', 'desc')->get();
                     $today = \Carbon\Carbon::today();
                     @endphp
                     @for ($i = 0; $i < $reviewCount; $i++)
