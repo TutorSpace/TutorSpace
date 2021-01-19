@@ -16,7 +16,6 @@ class TutorProfileVerificationController extends Controller
                 'required',
                 'file',
                 'mimes:jpeg,jpg,png,pdf,xls,xlsx,doc,docx,txt,rtf,odt,ppt,msg',
-                'max:2000'
             ]
         ]);
 
