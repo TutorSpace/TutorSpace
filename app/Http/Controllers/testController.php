@@ -56,13 +56,14 @@ class testController extends Controller
 
     public function index(Request $request) {
         // echo Auth::id();
-        $prevLevel = TutorLevel::where("level_experience_upper_bound", 30)->first();
-        // Auth::user()->addExperience(10000);
+        // $prevLevel = TutorLevel::where("level_experience_upper_bound", 30)->first();
+        // Auth::user()->addExperience(1000);
         //  Auth::user()->cancelSessionExperienceDeduction();
-        $cards = app(StripeApiController::class)::retrieveAllCards();
-        forEach($cards as $card){
-            echo $card->id;
-        }
+        // $cards = app(StripeApiController::class)::retrieveAllCards();
+        // forEach($cards as $card){
+        //     echo $card->id;
+        // }
+        return view('test');
     }
 
     public function test(Request $request) {

@@ -479,22 +479,23 @@ class User extends Authenticatable
     // add user experience and update level
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
-        $allUsersWithEmail = User::where("email",$this->email)->get();
+        $allUsersWithEmail = User::where("email", $this->email)->get();
+        $oldLevelId = $this->tutor_level_id;
         foreach ($allUsersWithEmail as $user) {
             $user->experience_points += $experienceToAdd;
-
             $newTutorLevelId = TutorLevel::getLevelFromExperience($user->experience_points)->id;
-
-            // important: tutor level are assumed to be larger with higher tutor level id
-            if($newTutorLevelId > $user->tutor_level_id) {
-                $user->notify(new TutorLevelUpNotification());
-            }
 
             // update tutor level id in user
             $user->tutor_level_id = $newTutorLevelId;
 
             // save
             $user->save();
+        }
+        $this->refresh();  // $this !== $user
+
+        // important: tutor level are assumed to be larger with higher tutor level id
+        if($newTutorLevelId > $oldLevelId) {
+            $this->notify(new TutorLevelUpNotification());
         }
     }
 
