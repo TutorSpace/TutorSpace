@@ -164,7 +164,7 @@ class PostController extends Controller
             $post->tags()->attach($request->input('tags'));
 
             // Trigger event to add experience
-            if ($post->post_type->id == 2) {  // 2 means Note
+            if ($post->post_type->id == 2) {  // 2 means Class Note
                 event(new NotePosted($post));
             }
         });

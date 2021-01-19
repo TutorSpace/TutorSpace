@@ -16,7 +16,11 @@ class PostTypeSeeder extends Seeder
         ]);
 
         DB::table('post_types')->insert([
-            'post_type' => 'Note'
+            'post_type' => 'Class Note'
+        ]);
+
+        DB::table('post_types')->insert([
+            'post_type' => 'Class Review'
         ]);
 
         DB::table('post_types')->insert([
