@@ -54,11 +54,11 @@ class Session extends Model
 
     // IMPORTANT: must run scheduler in prod env
     public static function changeSessionStatusOnExpiry() {
-        $sessions = Session::where('is_canceled', false)->get();
+        $sessions = Session::where('is_canceled', false)->where('is_upcoming', true)->get();
         foreach($sessions as $session) {
             // IMPORTANT: use session_time_end here, because otherwise a long session will not appear on calendar
             if($session->session_time_end <= Carbon::now()) {
-                $session->is_upcoming = 0;
+                $session->is_upcoming = false;
                 $session->save();
 
                 $session->tutor->notify(new TutorSessionFinishedNotification($session));
