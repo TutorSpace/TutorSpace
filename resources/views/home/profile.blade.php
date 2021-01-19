@@ -902,7 +902,6 @@ bg-student
 @if ((isset($registerToBeTutor1) && $registerToBeTutor1))
 <script>
     $('.profile__text__edit').click();
-
 </script>
 @endif
 
