@@ -667,7 +667,7 @@ bg-student
                                         <button data-id=${idx} class="btn btn-set-default">Set As Default</button>
                                     </div>
                                 `:`
-                                    <div class="bank-card-btns">Default Payment</div>
+                                    <div class="bank-card-btns default-payment-font">Default Payment</div>
                                 `)
                                 +`
                             </div>
