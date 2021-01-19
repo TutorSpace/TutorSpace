@@ -8,3 +8,9 @@
     <p class="text-center fs-2-2">Test</p>
 </div>
 @endsection
+
+@section('js')
+<script>
+    toastr.success('here');
+</script>
+@endsection
