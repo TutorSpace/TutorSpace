@@ -17,6 +17,7 @@ use App\Rules\SessionOverlap;
 use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\DB;
+use App\Events\SessionReviewPosted;
 use App\Rules\SessionDifferentUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
@@ -129,7 +130,7 @@ class SessionController extends Controller
         $review->save();
 
         // TUTOR EXPERIENCE += 5 * RATING
-        $session->tutor->addExperience(5 * $request->input('star-rating'));
+        event(new SessionReviewPosted($session, $request->input('review')));
 
         return response()->json([
             'successMsg' => 'Successfully posted the review!'

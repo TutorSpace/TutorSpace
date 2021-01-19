@@ -11,7 +11,6 @@ use App\View;
 use App\Reply;
 use App\Course;
 use App\Message;
-use App\Session as AppSession;
 use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
@@ -19,8 +18,8 @@ use Carbon\Carbon;
 use App\TutorLevel;
 use App\Transaction;
 use App\TutorRequest;
-
 use Facades\App\Post;
+
 use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
@@ -28,16 +27,17 @@ use App\CourseVerification;
 use App\Events\NewChatroom;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Session as Session;
 use App\Notifications\PayoutPaid;
 use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\DB;
-use App\Notifications\PayoutFailed;
+use App\Events\SessionReviewPosted;
 
+use App\Notifications\PayoutFailed;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
-use App\Notifications\EmailVerification;
 
+use App\Notifications\EmailVerification;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
@@ -55,15 +55,9 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        // echo Auth::id();
-        // $prevLevel = TutorLevel::where("level_experience_upper_bound", 30)->first();
-        // Auth::user()->addExperience(1000);
-        //  Auth::user()->cancelSessionExperienceDeduction();
-        // $cards = app(StripeApiController::class)::retrieveAllCards();
-        // forEach($cards as $card){
-        //     echo $card->id;
-        // }
-        return view('test');
+        event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
+
+        // return view('test');
     }
 
     public function test(Request $request) {
