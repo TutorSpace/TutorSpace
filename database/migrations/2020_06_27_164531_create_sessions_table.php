@@ -25,6 +25,7 @@ class CreateSessionsTable extends Migration
             $table->boolean('is_upcoming')->default(true);
             $table->boolean('is_canceled')->default(false);
             $table->unsignedBigInteger('cancel_reason_id')->nullable();
+            $table->boolean('is_notified')->default(false);
             $table->timestamps();
 
             $table->foreign('tutor_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

@@ -1,5 +1,13 @@
 .post-previews {
     margin-bottom: 30rem;
+    position: relative;
+
+    .no-posts {
+        color: $color-grey;
+        @include absCenter;
+        top: 5rem;
+        white-space: nowrap;
+    }
 
     .post-preview {
 

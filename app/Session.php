@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Transaction;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\UnratedTutorNotification;
+use App\Notifications\UpcomingSessionNotification;
 use App\Notifications\TutorSessionFinishedNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
@@ -61,6 +62,20 @@ class Session extends Model
                 $session->save();
 
                 $session->tutor->notify(new TutorSessionFinishedNotification($session));
+            }
+        }
+    }
+
+    // notify users 1 hour before the session starts
+    public static function notifyUpcomingSessions() {
+        $sessions = Session::where('is_canceled', false)->get();
+        foreach($sessions as $session) {
+            if(Carbon::now()->addHours(1) >= $session->session_time_start && !$session->is_notified) {
+                $session->tutor->notify(new UpcomingSessionNotification($session));
+                $session->student->notify(new UpcomingSessionNotification($session));
+
+                $session->is_notified = true;
+                $session->save();
             }
         }
     }

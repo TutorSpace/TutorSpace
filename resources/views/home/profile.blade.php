@@ -256,9 +256,11 @@ bg-student
                     </div>
                 </div>
 
-                <div class="profile__text-container--white">
+                <div class="profile__text-container--white p-relative">
+                    <div class="stripe-svg-container">
+                    </div>
                     <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
-                        Payment Methods (Powered by Stripe)
+                        Payment Methods
                         @if (
                         (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
                         || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards()))
@@ -269,21 +271,15 @@ bg-student
                     </h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
+                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment px-5 py-3 ws-no-wrap" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
                         Methods"}}</button>
                         @else
-
-
-
                         <div class="payment-cards">
-
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
                                 <div>Add New Payment</div>
                             </div>
-
                         </div>
-
                         @endif
                     </div>
                 </div>

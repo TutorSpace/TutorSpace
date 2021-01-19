@@ -98,18 +98,20 @@ bg-student
 
 @section('js')
 <script>
-@auth
-    let forumPostOrderOptions = $("#forum-post-order-options");
-    forumPostOrderOptions.change(function(){
-        const orderByOption = forumPostOrderOptions.val();
-        postPreviews = $(".post-previews");
+let forumPostOrderOptions = $("#forum-post-order-options");
+forumPostOrderOptions.change(function(){
+    const orderByOption = forumPostOrderOptions.val();
 
-        // if there's order by option
-        if (orderByOption){
-            window.location.href = orderByOption;
-        }
-    })
-@endauth
+    // if there's order by option
+    if (orderByOption){
+        @if(Illuminate\Support\Str::of(url()->full())->contains('display-forum-activities=true'))
+        let url = '{{ url()->current() }}' + '?display-forum-activities=true&order-by-option=' + orderByOption;
+        @else
+        let url = '{{ url()->current() }}' + '?order-by-option=' + orderByOption;
+        @endif
+        window.location.href = url;
+    }
+})
 </script>
 
 

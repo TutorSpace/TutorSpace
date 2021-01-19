@@ -49,7 +49,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // must be at least 1 hour prior to the session start time
         // must not conflicts with any tutor sessions
-        // todo: must have already set up the payment method
+        // must have already set up the payment method
         // must be in pending status
         // must be the tutor of this tutor request
         Gate::define('accept-tutor-request', function ($user, TutorRequest $tutorRequest) {

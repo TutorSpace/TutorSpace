@@ -41,6 +41,35 @@ bg-student
             @include('home.partials.header')
         </div>
 
+        @if (!Auth::user()->is_tutor && Auth::user()->pendingTutorRequests()->exists())
+        <div class="container col-layout-2">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    @php
+                    $count = Auth::user()->pendingTutorRequests()->count();
+                    @endphp
+                    <h5>Pending Tutor Requests</h5>
+
+                    @if($count > 2 + 1)
+                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
+                    @endif
+                </div>
+                <div class="info-boxes">
+                    @php
+                    $requests = Auth::user()->pendingTutorRequests()->with(['tutor', 'course'])->orderBy('created_at', 'desc')->get();
+                    @endphp
+                    @for ($i = 0; $i < $count; $i++)
+                        @include('home.partials.pending_tutor_request', [
+                            'request' => $requests->get($i),
+                            'user' => $requests->get($i)->tutor,
+                            'hidden' => $i > 2
+                        ])
+                    @endfor
+                </div>
+            </div>
+        </div>
+        @endif
+
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
@@ -55,39 +84,43 @@ bg-student
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">
-                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                    </div>
                     @if (Auth::user()->is_tutor)
                         @php
                             $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
                         @endphp
                         @if ($upcomingSessions->count() > 0)
-                            @for ($i = 0; $i < $upcomingSessions->count(); $i++)
-                                @include('home.partials.upcoming_session_card', [
-                                    'session' => $upcomingSessions->get($i),
-                                    'user' => $upcomingSessions->get($i)->student,
-                                    'hidden' => $i > 1
-                                ])
-                            @endfor
-                        @else
-                            <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2 + 1)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->student,
+                                'hidden' => $i > 2
+                            ])
+                        @endfor
                         @endif
                     @else
                         @php
                             $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
                         @endphp
                         @if ($upcomingSessions->count() > 0)
-                            @for ($i = 0; $i < $upcomingSessions->count(); $i++)
-                                @include('home.partials.upcoming_session_card', [
-                                    'session' => $upcomingSessions->get($i),
-                                    'user' => $upcomingSessions->get($i)->tutor,
-                                    'hidden' => $i > 1
-                                ])
-                            @endfor
-                        @else
-                            <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2 + 1)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
+                        @for ($i = 0; $i < $upcomingSessions->count(); $i++)
+                            @include('home.partials.upcoming_session_card', [
+                                'session' => $upcomingSessions->get($i),
+                                'user' => $upcomingSessions->get($i)->tutor,
+                                'hidden' => $i > 2
+                            ])
+                        @endfor
                         @endif
                     @endif
                 </div>
@@ -96,19 +129,22 @@ bg-student
         @else
         <div class="container col-layout-2">
             <div class="row mt-5">
-                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
-                    <h5>Upcoming Sessions</h5>
-                    {{-- <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button> --}}
-                </div>
-                <div class="info-boxes info-boxes--sm-card">
-                    @foreach (
-                    Auth::user()
+                @php
+                    $upcomingSessions = Auth::user()
                         ->upcomingSessions()
                         ->with([
                             Auth::user()->is_tutor ? 'student' : 'tutor',
                             'course'
                         ])
-                        ->get()
+                        ->get();
+                @endphp
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
+                    <h5>Upcoming Sessions</h5>
+                </div>
+                @if ($upcomingSessions->count() > 0)
+                <div class="info-boxes info-boxes--sm-card">
+                    @foreach (
+                        $upcomingSessions
                             as
                         $session
                     )
@@ -117,6 +153,9 @@ bg-student
                     ])
                     @endforeach
                 </div>
+                @else
+                <h5 class="no-data">No Upcoming Sessions yet.</h5>
+                @endif
             </div>
         </div>
         @endif
@@ -126,8 +165,34 @@ bg-student
             <div class="row mt-5">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Past Sessions</h5>
+                    @if(Auth::user()->is_tutor)
+                        @php
+                            $sessions = Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'student',
+                                    'course'
+                                ])
+                                ->get();
+                        @endphp
+                    @else
+                        @php
+                            $sessions = Auth::user()
+                                ->pastSessions()
+                                ->with([
+                                    'tutor',
+                                    'course'
+                                ])
+                                ->get();
+                        @endphp
+                    @endif
+                    @if ($sessions->count() > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
+                    @endif
                 </div>
+                @if ($sessions->count() == 0)
+                <h5 class="no-data">No Past Sessions yet.</h5>
+                @else
                 <div class="info-boxes info-boxes">
                     <div class="info-box info-box--explanation ">
                         <div class="user-info">
@@ -157,34 +222,16 @@ bg-student
                 </div>
                 <div class="info-boxes info-boxes--sm-card past-sessions">
                     @if(Auth::user()->is_tutor)
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'student',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
                         @for ($i = 0; $i < $sessions->count(); $i++)
                             @include('home.partials.past_session', [
                                 'user' => $sessions->get($i)->student,
                                 'currUser' => Auth::user(),
                                 'course' => $sessions->get($i)->course,
                                 'session' => $sessions->get($i),
-                                'hidden' => $i > 1
+                                'hidden' => $i > 2
                             ])
                         @endfor
                     @else
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'tutor',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
                         @for ($i = 0; $i < $sessions->count(); $i++)
                             @include('home.partials.past_session', [
                                 'user' => $sessions->get($i)->tutor,
@@ -192,11 +239,12 @@ bg-student
                                 'currUser' => Auth::user(),
                                 'course' => $sessions->get($i)->course,
                                 'session' => $sessions->get($i),
-                                'hidden' => $i > 1
+                                'hidden' => $i > 2
                             ])
                         @endfor
                     @endif
                 </div>
+                @endif
             </div>
         </div>
 
@@ -208,21 +256,28 @@ bg-student
                     $reviewCount = Auth::user()->aboutReviews()->count();
                     @endphp
                     <h5>Reviews ({{ $reviewCount }})</h5>
+
+                    @if($reviewCount > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
+                    @endif
                 </div>
+                @if($reviewCount > 0)
                 <div class="info-boxes">
                     @php
-                    $reviews = Auth::user()->aboutReviews;
+                    $reviews = Auth::user()->aboutReviews()->orderBy('created_at', 'desc')->get();
                     $today = \Carbon\Carbon::today();
                     @endphp
                     @for ($i = 0; $i < $reviewCount; $i++)
                         @include('home.partials.review', [
                             'review' => $reviews->get($i),
                             'dateCreated' => $reviews->get($i)->created_at ?? $today,
-                            'hidden' => $i > 1
+                            'hidden' => $i > 2
                         ])
                     @endfor
                 </div>
+                @else
+                <h5 class="no-data">No Reviews yet.</h5>
+                @endif
             </div>
         </div>
         @endif
@@ -243,6 +298,28 @@ bg-student
 
 <script>
 let storageUrl = "{{ Storage::url('') }}";
+
+$('.btn-cancel-request').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('data-route-url'),
+        success: (data) => {
+            toastr.success(data.successMsg);
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
+        },
+        error: (error) => {
+            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspaceusc@gmail.com for more details.')
+            console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
+        }
+    });
+});
+
 </script>
 
 
