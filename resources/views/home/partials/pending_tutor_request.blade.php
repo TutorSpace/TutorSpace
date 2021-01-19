@@ -39,7 +39,7 @@
         </div>
         <div class="flex-100"></div>
         <div class="action">
-            <button class="btn btn-lg btn-animation-y-sm btn-cancel-request">Cancel</button>
+            <button class="btn btn-lg btn-animation-y-sm btn-cancel-request" data-route-url="{{ route('tutor-request.cancel', $request) }}">Cancel</button>
         </div>
 
     </div>

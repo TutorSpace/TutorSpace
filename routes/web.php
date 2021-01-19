@@ -221,6 +221,7 @@ Route::group([
 ], function() {
     Route::post('/accept/{tutorRequest}', 'TutorRequestController@acceptTutorRequest')->name('tutor-request.accept');
     Route::delete('/{tutorRequest}', 'TutorRequestController@declineTutorRequest')->name('tutor-request.decline');
+    Route::post('/cancel/{tutorRequest}', 'TutorRequestController@cancelTutorRequest')->name('tutor-request.cancel');
 });
 
 // tutor verification

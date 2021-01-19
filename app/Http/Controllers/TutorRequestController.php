@@ -91,4 +91,15 @@ class TutorRequestController extends Controller
         $tutorStripeAccountId = PaymentMethod::where("user_id",$session->tutor_id)->get()[0]->stripe_account_id;
         $initializeInvoiceResponse = app(StripeApiController::class)->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
     }
+
+    public function cancelTutorRequest(Request $request, TutorRequest $tutorRequest) {
+        $tutorRequest->status = 'canceled';
+        $tutorRequest->save();
+
+        return response()->json(
+            [
+                'successMsg' => 'Successfully canceled the tutor request!'
+            ]
+        );
+    }
 }

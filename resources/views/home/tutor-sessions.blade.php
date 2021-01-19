@@ -298,6 +298,28 @@ bg-student
 
 <script>
 let storageUrl = "{{ Storage::url('') }}";
+
+$('.btn-cancel-request').click(function() {
+    JsLoadingOverlay.show(jsLoadingOverlayOptions);
+    $.ajax({
+        type:'POST',
+        url: $(this).attr('data-route-url'),
+        success: (data) => {
+            toastr.success(data.successMsg);
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
+        },
+        error: (error) => {
+            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspaceusc@gmail.com for more details.')
+            console.log(error);
+        },
+        complete: () => {
+            JsLoadingOverlay.hide();
+        }
+    });
+});
+
 </script>
 
 
