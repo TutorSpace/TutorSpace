@@ -53,10 +53,12 @@ class HomeController extends Controller
 
             // always get the past 7 days' forum notifications
             'forumNotifs' => Auth::user()->notifications()
+            ->where(function($query) {
+                $query->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
+                ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
+                ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification');
+            })
             ->where('created_at', '>=', Carbon::now()->subDays(7))
-            ->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
-            ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
-            ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification')
             ->orderBy('created_at', 'desc')
             ->get()
         ]);
@@ -98,7 +100,7 @@ class HomeController extends Controller
             ],
             'introduction' => [
                 'nullable',
-                // 'size:50'
+                'size:50'
             ],
             "gpa" => [
                 'nullable',
@@ -118,7 +120,7 @@ class HomeController extends Controller
         $validator->validate();
 
 
-
+        // todo: should not change both users if is student
         foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
             $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
             $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->first());
