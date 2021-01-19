@@ -240,7 +240,7 @@ bg-student
                     @if ($upcomingSessions->count() > 0)
                         <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                             <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                            @if ($upcomingSessions->count() > 2)
+                            @if ($upcomingSessions->count() > 2 + 1)
                             <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
                             @endif
                         </div>
@@ -248,7 +248,7 @@ bg-student
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
                                 'user' => $upcomingSessions->get($i)->tutor,
-                                'hidden' => $i > 1
+                                'hidden' => $i > 2
                             ])
                         @endfor
                     @endif
