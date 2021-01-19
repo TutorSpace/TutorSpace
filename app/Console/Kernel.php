@@ -77,7 +77,12 @@ class Kernel extends ConsoleKernel
         // })->twiceDaily(9, 20);
         })->everyMinute();
 
-        
+        // notify the users that they have an upcoming session
+        $schedule->call(function () {
+            Session::notifyUpcomingSessions();
+            echo "Successfully notify the users about their upcoming sessions: " . now() . "\n";
+        // })->hourly();
+        })->everyMinute();
 
     }
 
