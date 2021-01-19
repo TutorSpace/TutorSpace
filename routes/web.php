@@ -235,6 +235,8 @@ Route::group([
     Route::get('/tutor-verification', 'AdminController@indexTutorVerification')->name('admin.tutor-verification');
     Route::post('/add-verified-course/{user}', 'AdminController@addVerifiedCourse')->name('admin.course.post');
     Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
+    Route::get('/extra-bonus', 'AdminController@extraBonusIndex')->name('admin.extra-bonus.index');
+    Route::post('/extra-bonus/{transaction}', 'AdminController@extraBonusSent')->name('admin.extra-bonus-sent');
 });
 
 // sessions

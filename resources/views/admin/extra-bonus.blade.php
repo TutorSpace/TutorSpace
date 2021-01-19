@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tutor Verification')
+@section('title', 'Extra Bonus')
 
 @section('links-in-head')
 <style>
@@ -58,48 +58,40 @@ bg-student
 
 @include('partials.nav')
 
-<h3 class="text-center">Tutor Verification</h3>
+<h3 class="text-center">Extra Bonus</h3>
 <main class="d-flex justify-content-center">
     <table class="table">
         <thead class="bg-primary">
           <tr>
-            <th scope="col">Tutor Verification Id</th>
+            <th scope="col">Transaction Id</th>
             <th scope="col">Tutor</th>
-            <th scope="col">Requested Time</th>
-            <th scope="col">Verified Courses</th>
+            <th scope="col">Transaction Time</th>
+            <th scope="col">Extra Bonus to Send</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-            @foreach (Illuminate\Support\Facades\DB::table('notifications')->where('type', 'App\Notifications\TutorVerificationInitiatedNotification')->get() as $notif)
+            @foreach (App\Transaction::where('extra_bonus_amount', '>', 0)->get() as $transaction)
             <tr>
-                <th scope="row" style="width: 10rem">{{ $notif->id }}</th>
+                <th scope="row" style="width: 10rem">{{ $transaction->id }}</th>
                 <td style="width: 15rem">
-                    <div>
-                        {{ App\User::find($notif->notifiable_id)->first_name . ' ' . App\User::find($notif->notifiable_id)->last_name }}
-                    </div>
-                    <div>
-                        {{ $notif->notifiable_id }}
-                    </div>
-
+                        {{ $transaction->session->tutor->first_name . ' ' . $transaction->session->tutor->last_name }}
                 </td>
                 <td>
-                    {{ $notif->created_at }}
+                    {{ $transaction->created_at }}
                 </td>
                 <td>
-                    @foreach (App\User::find($notif->notifiable_id)->verifiedCourses as $course)
-                        {{ $course->course }},
-                    @endforeach
+                    $ {{ $transaction->extra_bonus_amount/100 }}
                 </td>
                 <td>
-                    <form action="{{ route('admin.course.post', App\User::find($notif->notifiable_id)) }}" method="POST" style="width: 100%">
+                    {{ $transaction->extra_bonus_sent ? 'Sent' : 'Unsent' }}
+                </td>
+                <td style="width: 40rem;">
+                    @if (!$transaction->extra_bonus_sent)
+                    <form action="{{ route('admin.extra-bonus-sent', $transaction) }}" method="POST" style="width: 100%">
                         @csrf
-                        <input type="text" placeholder="course name" class="form-control form-control-lg course fs-1-6" name="course">
-                    </form>
-                    @if (App\User::find($notif->notifiable_id)->notifications()->where('type', 'App\Notifications\TutorVerificationCompleted')->doesntExist())
-                    <form action="{{ route('admin.tutor-verification.completed', $notif->notifiable_id) }}" style="width: 100%;" method="POST">
-                        @csrf
-                        <button class="mt-3 btn btn-primary btn-lg fs-1-6" style="width: 100%">Send Verified Success Notifi</button>
+                        <button class="mt-3 btn btn-primary btn-lg fs-1-6" style="width: 100%">Update Extra Bonus Sent Status</button>
                     </form>
                     @endif
                 </td>

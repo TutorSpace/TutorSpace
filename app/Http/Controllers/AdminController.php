@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Course;
+use App\Transaction;
 use Illuminate\Http\Request;
 use App\Notifications\TutorVerificationCompleted;
 
@@ -31,4 +32,19 @@ class AdminController extends Controller
             'successMsg' => 'Successfully sent the tutor verification!'
         ]);
     }
+
+    public function extraBonusIndex() {
+        return view('admin.extra-bonus');
+    }
+
+    public function extraBonusSent(Request $request, Transaction $transaction) {
+        $transaction->extra_bonus_sent = true;
+        $transaction->save();
+
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully updated the extra_bonus_sent column to sent!'
+        ]);
+    }
+
+
 }

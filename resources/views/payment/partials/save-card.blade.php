@@ -16,7 +16,7 @@
             <div class="add-card-agreement">
                 <input type="checkbox" id="add-card-agreement" class="add-card-agreement-input" name="agreement"
                        >
-                <label >By checking this box, I agree to ...</label>
+                <label for="add-card-agreement">By checking this box, I agree to ...</label>
             </div>
             <button id="btn-add-payment-submit">
                 <div class="spinner hidden" id="spinner"></div>

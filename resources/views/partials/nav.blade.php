@@ -60,6 +60,9 @@
                     <a class="nav__item" href="{{ route('admin.tutor-verification') }}">
                         Tutor Verification
                     </a>
+                    <a class="nav__item" href="{{ route('admin.extra-bonus.index') }}">
+                        Extra Bonus
+                    </a>
                 </div>
                 @endif
             </div>

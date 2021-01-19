@@ -263,15 +263,15 @@ class StripeApiController extends Controller
     public function checkAccountDetail(Request $request) {
         $account_id = Session::get('stripe_account_id');
         $account = Account::retrieve($account_id, []);
-        // Log::debug('StripeApiController: '.$account);
+
         if ($account->details_submitted) {
             $user = User::find(Auth::user()->id);
             $payment_method = $user->paymentMethod;
             $payment_method->stripe_account_id = $account->id;
             $payment_method->save();
-            return redirect()->route('home.profile')->with(['successMsg' => 'Succeeded']);
+            return redirect()->route('home.profile')->with(['successMsg' => 'Successfully registered the bank account.']);
         } else {
-            return redirect()->route('home.profile')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('home.profile')->with(['errorMsg' => 'Something went wrong when registering the bank account.']);
         }
     }
 
@@ -284,7 +284,6 @@ class StripeApiController extends Controller
             $customer = Customer::create([
                 'name' => $user->first_name.' '.$user->last_name,
                 'email' => $user->email,
-                // 'email' => 'nateohuang@gmail.com' // Testing
             ]);
             $customer_id = $customer->id;
             $payment_method->stripe_customer_id = $customer_id;
@@ -460,7 +459,7 @@ class StripeApiController extends Controller
         // Already refunded
         if (isset($transaction->refund_id) && trim($transaction->refund_id) != '') {
             Log::error('Trying to refund a refunded transaction');
-            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Something went wrong when approving the refund.']);
         }
 
         // Refund invoice
@@ -485,10 +484,10 @@ class StripeApiController extends Controller
 
             default:  // Other cases
                 Log::error('Invalid invoice status when deleting invoice with id: ' . $invoice->id);
-                return redirect()->route('index')->with(['errorMsg' => 'Failed']);
+                return redirect()->route('index')->with(['errorMsg' => 'Something went wrong when approving the refund request.']);
         }
 
-        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Successfully approved the refund request.']);
     }
 
     // Decline a refund request for a session
@@ -496,14 +495,14 @@ class StripeApiController extends Controller
         $transaction = $session->transaction();
         if ($transaction->refund_status != 'user_initiated') {  // Invalid status
             Log::error('Refund status is not user_initiated. Unable to decline.');
-            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Failed']);
+            return redirect()->route('payment.stripe.refund.index')->with(['errorMsg' => 'Something went wrong when declining the refund request.']);
         }
         $transaction->refund_status = 'canceled';
         $transaction->save();
 
         $session->student->notify(new RefundDeclinedNotification($session));
 
-        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Succeeded']);
+        return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Successfully declined the refund request.']);
     }
 
     // Cancels an Invoice
@@ -533,7 +532,7 @@ class StripeApiController extends Controller
         } else {
             $invoice->delete();
             $transaction->delete();
-            Log::info('successfully deleted the invoice');
+            Log::info('Successfully deleted the invoice');
             return true;
         }
     }
