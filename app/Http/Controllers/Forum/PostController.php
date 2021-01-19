@@ -56,7 +56,6 @@ class PostController extends Controller
             $posts = $posts->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
                             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                             ->whereIn('tags.id', $interestedTagIDs)
-                            ->where('posts.user_id', '!=', $user->id)
                             ->groupBy(['posts.id'])
                             ->orderByRaw(POST::POPULARITY_FORMULA)
                             ->get();
@@ -65,7 +64,6 @@ class PostController extends Controller
             $posts = $posts->merge(
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
-                    ->where('posts.user_id', '!=', $user->id)
                     ->orderByRaw(POST::POPULARITY_FORMULA)
                     ->get()
             );
