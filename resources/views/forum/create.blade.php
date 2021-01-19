@@ -37,8 +37,9 @@ bg-student select2-bg-student
                 <p class="input-title">Post Type</p>
                 <div class="input-content p-relative">
                     <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 1) btn-selected @endif" type="button" data-post-type-id=1>Question</button>
-                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 2) btn-selected @endif" type="button" data-post-type-id=2>Note</button>
-                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 3) btn-selected @endif" type="button" data-post-type-id=3>Other</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 2) btn-selected @endif" type="button" data-post-type-id=2>Class Note</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 3) btn-selected @endif" type="button" data-post-type-id=3>Class Review</button>
+                    <button class="btn btn-lg btn-post-type @if(($oldPostData['post-type'] ?? $postDraft->post_type_id) == 4) btn-selected @endif" type="button" data-post-type-id=3>Other</button>
 
                     @error('post-type')
                     <span class="fs-1-4 ws-no-wrap p-absolute top-100 left-0 fc-red mt-1">
