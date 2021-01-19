@@ -68,6 +68,6 @@
 
 </div>
 @empty
-<h5 class="mt-4">You have not followed any posts yet.</h5>
+<h5 class="no-posts">You have not followed any posts yet.</h5>
 @endforelse
 

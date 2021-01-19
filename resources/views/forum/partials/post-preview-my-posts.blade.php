@@ -69,5 +69,5 @@
 
 </div>
 @empty
-<h5 class="mt-4">You have not posted any posts yet.</h5>
+<h5 class="no-posts">You have not posted any posts yet.</h5>
 @endforelse
