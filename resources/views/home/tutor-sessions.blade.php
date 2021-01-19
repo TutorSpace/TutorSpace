@@ -41,6 +41,35 @@ bg-student
             @include('home.partials.header')
         </div>
 
+        @if (!Auth::user()->is_tutor && Auth::user()->pendingTutorRequests()->exists())
+        <div class="container col-layout-2">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center w-100 mb-2">
+                    @php
+                    $count = Auth::user()->pendingTutorRequests()->count();
+                    @endphp
+                    <h5>Pending Tutor Requests</h5>
+
+                    @if($count > 2 + 1)
+                    <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
+                    @endif
+                </div>
+                <div class="info-boxes">
+                    @php
+                    $requests = Auth::user()->pendingTutorRequests()->with(['tutor', 'course'])->orderBy('created_at', 'desc')->get();
+                    @endphp
+                    @for ($i = 0; $i < $count; $i++)
+                        @include('home.partials.pending_tutor_request', [
+                            'request' => $requests->get($i),
+                            'user' => $requests->get($i)->tutor,
+                            'hidden' => $i > 2
+                        ])
+                    @endfor
+                </div>
+            </div>
+        </div>
+        @endif
+
         @if (Auth::user()->is_tutor)
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
