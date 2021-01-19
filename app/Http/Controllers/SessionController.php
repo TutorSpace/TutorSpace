@@ -150,7 +150,6 @@ class SessionController extends Controller
             return abort(401);
         }
 
-
         // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
         $validator = Validator::make($request->all(), [

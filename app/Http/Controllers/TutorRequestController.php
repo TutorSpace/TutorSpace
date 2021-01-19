@@ -16,7 +16,7 @@ use App\Http\Controllers\payment\StripeApiController;
 
 class TutorRequestController extends Controller
 {
-    // TODO: double check this function
+
     public function acceptTutorRequest(Request $request, TutorRequest $tutorRequest) {
         $tutorId = $tutorRequest->tutor_id;
         $studentId = $tutorRequest->student_id;
