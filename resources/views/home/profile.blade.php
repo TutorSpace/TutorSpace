@@ -272,18 +272,12 @@ bg-student
                     <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment px-5 ws-no-wrap" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
                         Methods"}}</button>
                         @else
-
-
-
                         <div class="payment-cards">
-
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
                                 <div>Add New Payment</div>
                             </div>
-
                         </div>
-
                         @endif
                     </div>
                 </div>
