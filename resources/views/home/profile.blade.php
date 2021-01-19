@@ -127,7 +127,6 @@ bg-student
                         </div>
                     </div>
 
-                    @if (Auth::user()->is_tutor)
                     <div class="profile__form-row mt-3">
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction (optional)</label>
@@ -135,7 +134,6 @@ bg-student
                                 readonly>{{ Auth::user()->introduction ?? old('introduction') }}</textarea>
                         </div>
                     </div>
-                    @endif
 
                     {{-- buttons --}}
                     <div class="w-100 profile__buttons d-none">
@@ -185,7 +183,7 @@ bg-student
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
                                 <input type="text" class="profile__input form-control form-control-lg"
-                                    value="" name="hourly-rate" id="hourly-rate">
+                                    value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate">
                             </div>
                         </div>
                         @endif

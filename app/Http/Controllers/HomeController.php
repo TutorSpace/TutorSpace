@@ -113,24 +113,22 @@ class HomeController extends Controller
                 'exists:school_years,school_year'
             ],
         ]);
+
         $validator->sometimes(['first-major','gpa','school-year'], 'required', function($input) use($currUser){
             return $currUser->is_tutor;
         });
 
         $validator->validate();
 
+        // should only change the current user
+        $currUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
+        $currUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->first());
+        $currUser->minor()->associate(Minor::where('minor', $request->input('minor'))->first());
+        $currUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->first());
+        $currUser->gpa = $request->input('gpa');
+        $currUser->introduction = $request->input('introduction');
 
-        // todo: should not change both users if is student
-        foreach(User::where('email', $currUser->email)->get() as $tmpUser) {
-            $tmpUser->firstMajor()->associate(Major::where('major', $request->input('first-major'))->first());
-            $tmpUser->secondMajor()->associate(Major::where('major', $request->input('second-major'))->first());
-            $tmpUser->minor()->associate(Minor::where('minor', $request->input('minor'))->first());
-            $tmpUser->schoolYear()->associate(SchoolYear::where('school_year', $request->input('school-year'))->first());
-            $tmpUser->gpa = $request->input('gpa');
-            $tmpUser->introduction = $tmpUser->is_tutor ? $request->input('introduction') : null;
-
-            $tmpUser->save();
-        }
+        $currUser->save();
 
         if($currUser->is_invalid) {
             return redirect()->route('switch-account.index.register-to-be-tutor-2');
