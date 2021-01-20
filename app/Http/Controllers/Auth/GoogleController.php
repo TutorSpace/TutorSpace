@@ -36,8 +36,9 @@ class GoogleController extends Controller
         $loginGoogleStudent = $request->session()->has('loginGoogleStudent');
         $loginGoogleTutor = $request->session()->has('loginGoogleTutor');
 
+        // todo: remove true here in production
         // only allow people with @usc.edu to login
-        if(explode("@", $user->email)[1] !== 'usc.edu'){
+        if(explode("@", $user->email)[1] !== 'usc.edu' || true){
             // if for registration
             if($registerGoogleStudent){
                 return redirect()->route('register.index.student.1')->with([
@@ -119,10 +120,11 @@ class GoogleController extends Controller
                 ]);
             }
 
-            // if the user wants to register as a student and is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
+            // if the user wants to register as a student and was registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
             if($registerGoogleStudent && $existTutor) {
-                echo "<h1>if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him</h1>";
-                dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
+                Auth::login(User::where('email', $user->email)->where('is_tutor', $existTutor)->first());
+
+                return redirect()->route('switch-account.register');
             }
 
             // if the user wants to register as a tutor and is registered as a student before, he should be redirected to the specific page that is specifically designed for him
