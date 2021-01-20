@@ -9,6 +9,7 @@ use App\TutorRequest;
 use Facades\App\User;
 use Facades\App\Transaction;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -33,31 +34,31 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             Tag::updateTrendingTags();
-            echo "Successfully updated trending tags at: " . now() . "\n";
+            Log::debug("Successfully updated trending tags at: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 
         $schedule->call(function () {
             User::clearTutorAvailableTime();
-            echo "Successfully removed stale available time of tutors at: " . now() . "\n";
+            Log::debug("Successfully removed stale available time of tutors at: " . now() . "\n");
         // })->daily();
         })->everyMinute();
 
         $schedule->call(function () {
             TutorRequest::changeTutorRequestStatusOnTimeout();
-            echo "Successfully changed stale tutor request to expired: " . now() . "\n";
+            Log::debug("Successfully changed stale tutor request to expired: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 
         $schedule->call(function () {
             Session::changeSessionStatusOnExpiry();
-            echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
+            Log::debug("Successfully changed stale tutor sessions to expired: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 
         $schedule->call(function () {
             User::updateVerifyStatus();
-            echo "Successfully update is_tutor_verified: " . now() . "\n";
+            Log::debug("Successfully update is_tutor_verified: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 
@@ -65,7 +66,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // input: minutes after session to finalize
             Transaction::finalizeInvoice(0);
-            echo "Successfully finalize invoices: " . now() . "\n";
+            Log::debug("Successfully finalize invoices: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 
@@ -73,14 +74,14 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             // send one invoice after 24 hours since last_updated on database transaction table
             Transaction::sendUnpaidInvoices(24);
-            echo "Successfully send emails to users that haven't paid their invoices: " . now() . "\n";
+            Log::debug("Successfully send emails to users that haven't paid their invoices: " . now() . "\n");
         // })->twiceDaily(9, 20);
         })->everyMinute();
 
         // notify the users that they have an upcoming session
         $schedule->call(function () {
             Session::notifyUpcomingSessions();
-            echo "Successfully notify the users about their upcoming sessions: " . now() . "\n";
+            Log::debug("Successfully notify the users about their upcoming sessions: " . now() . "\n");
         // })->hourly();
         })->everyMinute();
 
