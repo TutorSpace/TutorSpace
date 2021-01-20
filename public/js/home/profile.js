@@ -250,9 +250,14 @@ $.ajax({
     autocomplete(document.getElementById("gpa"), gpa);
     autocomplete(document.getElementById("course"), courses, profile_add_course);
     autocomplete(document.getElementById("tag"), tags, profile_add_tag);
-    if (hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, updateHourlyRate);
+    if (hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, test);
   }
 });
+
+function test() {
+  alert('here');
+}
+
 $('.profile__text__edit').on('click', function () {
   $(".profile__input").prop("readonly", false);
   $(".profile__buttons").removeClass("d-none");
