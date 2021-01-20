@@ -62,18 +62,24 @@ class DatabaseSeeder extends Seeder
             ReportReasonSeeder::class,
             PostTypeSeeder::class,
             SessionCancelReasonSeeder::class,
-
-            UserSeeder::class,
-            AvailableTimeSeeder::class,
-            UpcomingSessionSeeder::class,
-            PastSessionSeeder::class,
-            ReviewSeeder::class,
-            PostSeeder::class,
-            ReplySeeder::class,
-            ViewCntSeeder::class,
-            TutorRequestSeeder::class,
-            MessageSeeder::class,
-            VerifiedCourseSeeder::class,
         ]);
+
+        // only run the following seeder in local mode
+        if(env('APP_ENV') == 'local') {
+            $this->call([
+                UserSeeder::class,
+                AvailableTimeSeeder::class,
+                UpcomingSessionSeeder::class,
+                PastSessionSeeder::class,
+                ReviewSeeder::class,
+                PostSeeder::class,
+                ReplySeeder::class,
+                ViewCntSeeder::class,
+                TutorRequestSeeder::class,
+                MessageSeeder::class,
+                VerifiedCourseSeeder::class,
+            ]);
+        }
+
     }
 }
