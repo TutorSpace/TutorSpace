@@ -133,8 +133,13 @@ class GoogleController extends Controller
 
             // if the user wants to register as a tutor and is registered as a student before, he should be redirected to the specific page that is specifically designed for him
             if($registerGoogleTutor && $existStudent) {
-                echo "<h1>if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him</h1>";
-                dd("if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him");
+                Auth::login(User::where('email', $user->email)->where('is_tutor', !$existStudent)->first());
+
+                return redirect()->route('home')->with([
+                    'errorMsg' => 'You already have a student account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                    'toSwitchAccount',
+                    'toSwitchAccount' => true
+                ]);
             }
 
             // clear all the session data
