@@ -720,6 +720,10 @@ bg-student
 {{-- autocomplete --}}
 <script>
     $('#hourly-rate').on("change paste keyup", function () {
+
+    });
+
+    function updateHourlyRate() {
         alert('here');
         $.ajax({
             type: 'POST',
@@ -731,7 +735,7 @@ bg-student
                 console.log(err);
             }
         });
-    });
+    }
 
     let gpa = [
         @for($i = 4.00; $i >= 1.00; $i -= 0.01)
