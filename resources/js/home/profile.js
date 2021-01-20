@@ -100,6 +100,8 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
+
+
 $.ajax({
     type:'GET',
     url: '/autocomplete/data-source',
@@ -120,7 +122,7 @@ $.ajax({
         autocomplete(document.getElementById("course"), courses, profile_add_course);
         autocomplete(document.getElementById("tag"), tags, profile_add_tag);
 
-        if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate);
+        // if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, updateHourlyRate);
     }
 });
 

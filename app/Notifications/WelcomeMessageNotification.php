@@ -41,7 +41,7 @@ class WelcomeMessageNotification extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name . ' ' . $notifiable->last_name)
+                    ->greeting('Dear ' . $notifiable->first_name)
                     ->line('Welcome to TutorSpace!')
                     ->action('Explore from Here', route('index'))
                     ->line('Thank you for using our application!');

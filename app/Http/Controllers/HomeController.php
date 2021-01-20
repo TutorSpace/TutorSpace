@@ -149,6 +149,10 @@ class HomeController extends Controller
 
         Auth::user()->hourly_rate = $request->input('hourly-rate');
         Auth::user()->save();
+
+        return response()->json([
+            'successMsg' => 'Successfully updated the hourly rate.'
+        ]);
     }
 
     public function getBookmarkSideBar(Request $request) {

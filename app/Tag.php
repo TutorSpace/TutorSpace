@@ -49,8 +49,6 @@ class Tag extends Model
                                 $query->withCount('replies');
                             }
                         ])
-                        // todo: make this post count a larger number in the future
-                        ->having('posts_count', '>' , 1)
                         ->orderBy('posts_count', 'desc')
                         ->get();
 

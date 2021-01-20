@@ -182,8 +182,9 @@ bg-student
                             <label for="hourly-rate" class="profile__label">Hourly Rate</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
-                                <input type="text" class="profile__input form-control form-control-lg"
-                                    value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate">
+                                <input type="number" class="profile__input form-control form-control-lg"
+                                    value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate"
+                                    min="10" max="50">
                             </div>
                         </div>
                         @endif
@@ -720,6 +721,10 @@ bg-student
 {{-- autocomplete --}}
 <script>
     $('#hourly-rate').on("change paste keyup", function () {
+        updateHourlyRate();
+    });
+
+    function updateHourlyRate() {
         $.ajax({
             type: 'POST',
             url: '{{ route('home.profile.hourly-rate.update') }}',
@@ -730,7 +735,7 @@ bg-student
                 console.log(err);
             }
         });
-    });
+    }
 
     let gpa = [
         @for($i = 4.00; $i >= 1.00; $i -= 0.01)
