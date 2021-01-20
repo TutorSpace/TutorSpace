@@ -169,4 +169,6 @@ $('#btn-invite, #tutor-profile-request-session, #btn-chat').click(function() {
 $('#tutor-profile-request-session').click();
 @endif
 </script>
+
+@include('partials.nav-auth-js')
 @endsection
