@@ -58,20 +58,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TutorLevelSeeder::class,
             SchoolYearSeeder::class,
-            UserSeeder::class,
             AdminSeeder::class,
             ReportReasonSeeder::class,
+            PostTypeSeeder::class,
+            SessionCancelReasonSeeder::class,
+
+            UserSeeder::class,
             AvailableTimeSeeder::class,
             UpcomingSessionSeeder::class,
             PastSessionSeeder::class,
             ReviewSeeder::class,
-
-            PostTypeSeeder::class,
             PostSeeder::class,
             ReplySeeder::class,
             ViewCntSeeder::class,
             TutorRequestSeeder::class,
-            SessionCancelReasonSeeder::class,
             MessageSeeder::class,
             VerifiedCourseSeeder::class,
         ]);
