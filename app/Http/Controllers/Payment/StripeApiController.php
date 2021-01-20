@@ -716,12 +716,6 @@ class StripeApiController extends Controller
         $transaction->save();
 
         Log::debug('Transaction refunded: ' . $transaction->id);
-
-        // TODO: send email to user of 'transaction'. Refund succeeded
-        $student = $transaction->session->student;
-        $student->notify(new ChargeRefunded($transaction->session, true));
-        $tutor = $transaction->session->tutor;
-        $tutor->notify(new ChargeRefunded($transaction->session, false));
     }
 
     private function handleChargeRefundUpdatedEvent($event) {
@@ -734,7 +728,7 @@ class StripeApiController extends Controller
 
         Log::debug('Transaction refund failed: ' . $transaction->id);
 
-        // TODO: send email to user of 'transaction' and us. Refund failed for 'failure_reason'
+        // send email to user of 'transaction' and us. Refund failed for 'failure_reason'
         $student = $transaction->session->student;
         $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
