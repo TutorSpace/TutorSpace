@@ -100,6 +100,8 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
+alert('here');
+
 $.ajax({
     type:'GET',
     url: '/autocomplete/data-source',
