@@ -223,7 +223,6 @@ window.autocomplete = function (inp, arr, clickCallBackFunc) {
 
 
   document.addEventListener("click", function (e) {
-    if (clickCallBackFunc) clickCallBackFunc();
     closeAllLists(e.target);
   });
 };
@@ -252,6 +251,7 @@ $.ajax({
     autocomplete(document.getElementById("course"), courses, profile_add_course);
     autocomplete(document.getElementById("tag"), tags, profile_add_tag);
     if (hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, test);
+    alert('here 2');
   }
 });
 
