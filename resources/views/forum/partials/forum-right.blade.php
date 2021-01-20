@@ -61,7 +61,6 @@
             @foreach ($youMayHelpWithPosts as $post)
             <a href="{{ route('posts.show', $post->slug) }}" class="question">
                 {{ $post->title }}
-                gdsghdsl
             </a>
             @endforeach
             <p class="fs-1-2 bottom-0 right-0 fc-grey mb-0 mt-4 text-right">
