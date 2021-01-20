@@ -120,14 +120,9 @@ $.ajax({
         autocomplete(document.getElementById("course"), courses, profile_add_course);
         autocomplete(document.getElementById("tag"), tags, profile_add_tag);
 
-        if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, test);
-        alert('here 2');
+        if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, updateHourlyRate);
     }
 });
-
-function test() {
-    alert('here');
-}
 
 $('.profile__text__edit').on('click', function() {
     $(".profile__input").prop("readonly", false);
