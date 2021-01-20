@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class RefundRequestApprovedNotification extends Notification
+class RefundRequestApprovedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

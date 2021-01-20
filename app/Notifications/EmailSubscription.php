@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\Messages\SubscriptionMessage;
 
 
-class EmailSubscription extends Notification
+class EmailSubscription extends Notification implements ShouldQueue
 {
     use Queueable;
 

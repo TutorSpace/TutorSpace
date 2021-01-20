@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ChargeRefundUpdated extends Notification
+class ChargeRefundUpdated extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -35,7 +35,7 @@ class ChargeRefundUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -71,7 +71,7 @@ class ChargeRefundUpdated extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+
         ];
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CancellationPenaltyFailed extends Notification
+class CancellationPenaltyFailed extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -33,7 +33,7 @@ class CancellationPenaltyFailed extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ExtraSessionBonus extends Notification
+class ExtraSessionBonus extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -33,7 +33,7 @@ class ExtraSessionBonus extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**

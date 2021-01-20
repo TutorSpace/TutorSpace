@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserRequestedRefundNotification extends Notification
+class UserRequestedRefundNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
