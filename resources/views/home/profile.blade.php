@@ -720,11 +720,10 @@ bg-student
 {{-- autocomplete --}}
 <script>
     $('#hourly-rate').on("change paste keyup", function () {
-
+        updateHourlyRate();
     });
 
     function updateHourlyRate() {
-        alert('here');
         $.ajax({
             type: 'POST',
             url: '{{ route('home.profile.hourly-rate.update') }}',

@@ -100,7 +100,7 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
-alert('here');
+
 
 $.ajax({
     type:'GET',
@@ -123,7 +123,6 @@ $.ajax({
         autocomplete(document.getElementById("tag"), tags, profile_add_tag);
 
         if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, updateHourlyRate);
-        alert('here');
     }
 });
 
