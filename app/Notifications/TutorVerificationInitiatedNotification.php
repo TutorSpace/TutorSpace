@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class TutorVerificationInitiatedNotification extends Notification
+class TutorVerificationInitiatedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

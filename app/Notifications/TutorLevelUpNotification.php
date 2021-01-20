@@ -7,11 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TutorLevelUpNotification extends Notification
+class TutorLevelUpNotification extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    private $exp;
 
     /**
      * Create a new notification instance.

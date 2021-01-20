@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 
 use App\Http\Controllers\payment\StripeApiController;
 
-class InvoicePaymentFailed extends Notification
+class InvoicePaymentFailed extends Notification implements ShouldQueue
 {
     use Queueable;
 

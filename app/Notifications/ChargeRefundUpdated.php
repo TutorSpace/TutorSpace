@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ChargeRefundUpdated extends Notification
+class ChargeRefundUpdated extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -35,7 +35,7 @@ class ChargeRefundUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail'];
     }
 
     /**
@@ -51,10 +51,13 @@ class ChargeRefundUpdated extends Notification
                     ->greeting('Dear ' . $notifiable->first_name)
                     ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
                     ->line('The failure reason is ' . $this->failure_reason . '.')
+                    ->line('Please contact tutorspaceusc@gamil.com for more details.')
+                    ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
         } else {
             return (new MailMessage)
                     ->greeting('Dear staff')
+                    ->action('Visit TutorSpace', url('/'))
                     ->line('The refund request for session ' . $this->session->id . ' has failed for ' . $this->failure_reason . '.');
         }
     }
@@ -68,7 +71,7 @@ class ChargeRefundUpdated extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+
         ];
     }
 }

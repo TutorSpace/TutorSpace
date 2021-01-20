@@ -11,7 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\Http\Controllers\Payment\StripeApiController;
 
-class UnpaidInvoiceReminder extends Notification
+class UnpaidInvoiceReminder extends Notification implements ShouldQueue
 {
     use Queueable;
 

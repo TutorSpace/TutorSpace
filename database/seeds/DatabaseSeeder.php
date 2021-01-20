@@ -51,21 +51,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // adding tags
-        $command = escapeshellcmd('python python_web_scraping/main.py');
-        $output = shell_exec($command);
-
-        $this->call([
-            TutorLevelSeeder::class,
-            SchoolYearSeeder::class,
-            AdminSeeder::class,
-            ReportReasonSeeder::class,
-            PostTypeSeeder::class,
-            SessionCancelReasonSeeder::class,
-        ]);
 
         // only run the following seeder in local mode
         if(env('APP_ENV') == 'local') {
+            // adding tags
+            $command = escapeshellcmd('python python_web_scraping/main.py');
+            $output = shell_exec($command);
+
+            $this->call([
+                TutorLevelSeeder::class,
+                SchoolYearSeeder::class,
+                AdminSeeder::class,
+                ReportReasonSeeder::class,
+                PostTypeSeeder::class,
+                SessionCancelReasonSeeder::class,
+            ]);
+
             $this->call([
                 UserSeeder::class,
                 AvailableTimeSeeder::class,

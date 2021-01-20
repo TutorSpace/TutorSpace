@@ -495,7 +495,7 @@ class User extends Authenticatable
 
         // important: tutor level are assumed to be larger with higher tutor level id
         if($newTutorLevelId > $oldLevelId) {
-            $this->notify(new TutorLevelUpNotification());
+            $this->notify(new TutorLevelUpNotification($oldLevelId, $newTutorLevelId));
         }
     }
 

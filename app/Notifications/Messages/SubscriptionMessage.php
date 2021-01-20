@@ -5,7 +5,7 @@ namespace App\Notifications\Messages;
 use Illuminate\Notifications\Messages\MailMessage;
 
 
-class SubscriptionMessage extends MailMessage
+class SubscriptionMessage extends MailMessage implements ShouldQueue
 {
     public $email;
 
