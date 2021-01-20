@@ -4,18 +4,33 @@
     $bank-card-border-radius: 1rem;
     $gray-overlay-z-index: 5;
     $buttons-z-index: 10;
+    // @include respond(md) {
+    //     $bank-card-height: 8rem;
+    //     $bank-card-width: 40%;
+    // }
 
     @mixin bank-card-dimension-style {
         position: relative;
         padding: 2.75rem;
-        min-width: calc(20rem*1.75);
-        max-width: $bank-card-width;
-        min-height: 20rem;
+        min-width: calc(6rem*1.75);
+        width: $bank-card-width;
+        min-height: 6rem;
         height: $bank-card-height;
+        @include respond(md) {
+            height: 22rem;
+            width: calc(22rem*1.75);
+        }
+        @include respond(extra-sm) {
+            height: 18rem;
+            width: calc(18rem*1.75);
+        }
+        @include respond(extra-sm-0) {
+            height: 20rem;
+            width: calc(20rem*1.75);
+        }
         flex-wrap: wrap;
         border-radius: $bank-card-border-radius;
     }
-
     width: 100%;
     display: grid;
     font-size: 1.25rem;
@@ -24,6 +39,12 @@
     grid-gap: 1rem;
 
     @include respond(md) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    @include respond(extra-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(extra-sm-0) {
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -62,7 +83,7 @@
         &-row-three {
             height: 30%;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: flex-start;
         }
 
@@ -89,7 +110,7 @@
         .expiration {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-end;
         }
 
         &:hover {
@@ -167,7 +188,7 @@
     // background colors:
     // default
     .bg-default {
-        background: linear-gradient(rgba(253, 192, 101, 1), rgba(189, 150, 49, 1));
+        background: linear-gradient(rgb(233, 156, 40), rgb(195, 149, 31));
     }
 
     // not default
@@ -180,5 +201,24 @@
     }
 
     // helper class
+    .default-payment-font{
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+}
 
+.add-card-agreement{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    input{
+        width: 1rem;
+        margin-right: 1rem;
+        min-width: 15px;
+    }
+}
+
+.billing-account-inputs{
+    margin-bottom: 1rem;
 }

@@ -3,8 +3,8 @@
     <div class="bookmarked-user__content">
         <span class="user-name">{{ $user->first_name }} {{ $user->last_name }}</span>
         <div class="buttons">
-            <a class="btn btn-outline-primary" href="{{ route('chatting.index') }}">Message</a>
-            <a class="btn btn-primary" href="{{ route('view.profile', $user->id) }}">Request</a>
+            <a class="btn btn-outline-primary" href="{{ $user->getChattingRoute() }}">Message</a>
+            <a class="btn btn-primary" href="{{ route('view.profile', $user->id) . '?request=true' }}">Request</a>
         </div>
     </div>
 </div>

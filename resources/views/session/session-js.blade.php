@@ -211,8 +211,8 @@ $('#tutor-profile-request-session').on('click',function() {
                                     }
                                 },
                                 error: (error) => {
-                                    console.log(error);
-                                    toastr.error("There is an error occurred. Please schedule your session again or contact tutorspace at tutorspaceusc@gmail.com");
+                                    console.log(error.responseJSON.error);
+                                    toastr.error(error.responseJSON.error);
                                 },
                                 complete: () => {
                                     JsLoadingOverlay.hide();
@@ -237,7 +237,7 @@ $('.action-review').click(function() {
     let url = $(this).attr('data-route-url');
 
     bootbox.dialog({
-        message: `@include('session.report-session')`,
+        message: `@include('session.review-session')`,
         size: 'large',
         centerVertical: true,
         buttons: {

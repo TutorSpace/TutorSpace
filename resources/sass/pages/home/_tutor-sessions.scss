@@ -12,6 +12,13 @@
         }
     }
 
+    .no-data {
+        color: $color-grey;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        top: .5rem;
+    }
 }
 
 .home .past-sessions {

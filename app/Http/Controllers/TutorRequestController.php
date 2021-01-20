@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Session;
 use App\TutorRequest;
 use App\PaymentMethod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\DB;
+use App\Notifications\TutorRequestAccepted;
+use App\Notifications\TutorRequestDeclined;
 use App\Http\Controllers\payment\StripeApiController;
+
 class TutorRequestController extends Controller
 {
-    // TODO: double check this function
-    // todo: must be at least 1 hour prior to the session start time
-    // todo: must have already set up the payment method
+
     public function acceptTutorRequest(Request $request, TutorRequest $tutorRequest) {
         $tutorId = $tutorRequest->tutor_id;
         $studentId = $tutorRequest->student_id;
@@ -34,8 +36,13 @@ class TutorRequestController extends Controller
                 $session->save();
                 $session->refresh();
 
-                // delete tutor request
-                $tutorRequest->delete();
+                // should not delete tutor request, because we need to show it.
+                $tutorRequest->status = 'accepted';
+                $tutorRequest->save();
+
+                $tutorRequest->refresh();
+
+                User::find($studentId)->notify(new TutorRequestAccepted($tutorRequest));
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
@@ -60,7 +67,12 @@ class TutorRequestController extends Controller
 
     // todo: add validation here
     public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
-        $tutorRequest->delete();
+        $tutorRequest->status = 'declined';
+        $tutorRequest->save();
+
+        $tutorRequest->refresh();
+
+        $tutorRequest->student->notify(new TutorRequestDeclined($tutorRequest));
 
         return response()->json(
             [
@@ -78,5 +90,16 @@ class TutorRequestController extends Controller
     public function initializeInvoice($sessionFee,$session) {
         $tutorStripeAccountId = PaymentMethod::where("user_id",$session->tutor_id)->get()[0]->stripe_account_id;
         $initializeInvoiceResponse = app(StripeApiController::class)->initializeInvoice($sessionFee,$tutorStripeAccountId, $session);
+    }
+
+    public function cancelTutorRequest(Request $request, TutorRequest $tutorRequest) {
+        $tutorRequest->status = 'canceled';
+        $tutorRequest->save();
+
+        return response()->json(
+            [
+                'successMsg' => 'Successfully canceled the tutor request!'
+            ]
+        );
     }
 }

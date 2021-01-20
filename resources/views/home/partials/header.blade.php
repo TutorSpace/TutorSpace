@@ -24,7 +24,7 @@
                             $starRating = Auth::user()->getAvgRating();
                         @endphp
                         @for ($i = 1; $i <= 5; $i++)
-                            @if ($i < $starRating)
+                            @if ($i <= $starRating)
                             <svg class="full" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                                 <title>star-full</title>
                                 <path d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z"></path>
@@ -68,7 +68,7 @@
                 </p>
                 <div class="tutor-level-progress">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{{ Auth::user()->getLevelProgressPercentage()*100 }}}%;" aria-valuenow="{{{ Auth::user()->getLevelProgressPercentage()*100 }}}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar" style="width: {{ Auth::user()->getLevelProgressPercentage()*100 }}%;" aria-valuenow="{{ Auth::user()->getLevelProgressPercentage()*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <span class="tutor-level tutor-level--current">
                         {{ Auth::user()->currentLevel() }}

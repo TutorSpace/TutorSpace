@@ -11,9 +11,13 @@
         {{ $user->tutorLevel->tutor_level }} Tutor
         @endif
     </span>
-    @if (!Auth::check() || !Auth::user()->is_tutor)
+    @if ((!Auth::check() || !Auth::user()->is_tutor) && $user->is_tutor)
     <a class="btn btn-request btn-primary" href="{{ route('view.profile', $user->id) . '?request=true' }}" target="_blank">
         Request a Session
+    </a>
+    @else
+    <a class="btn btn-view btn-primary" href="{{ route('view.profile', $user->id) }}" target="_blank">
+        View Profile
     </a>
     @endif
 </div>

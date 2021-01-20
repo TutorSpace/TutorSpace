@@ -40,6 +40,20 @@
 .profile {
     margin-top: unset !important;
 
+    .stripe-svg-container {
+        top: 1.5rem;
+        right: 5rem;
+        width: 12rem;
+        height: 5rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+
+        position: absolute;
+        background-image: url(../../../../public/assets/images/stripe.jpeg);
+    }
+
     .has-notification-dot {
         position: relative;
 

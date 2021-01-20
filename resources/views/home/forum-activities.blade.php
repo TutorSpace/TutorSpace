@@ -136,6 +136,9 @@ let storageUrl = "{{ Storage::url('') }}";
                     let num = parseInt($('#forum-data-my-follows .number').html());
                     $('#forum-data-my-follows .number').html(num - 1);
                     toastr.success('Successfully unfollowed the post.');
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
                 },
                 error: function(error) {
                     toastr.error('Something went wrong!');
@@ -160,6 +163,9 @@ let storageUrl = "{{ Storage::url('') }}";
                 let num = parseInt($('#forum-data-my-posts .number').html());
                 $('#forum-data-my-posts .number').html(num - 1);
                 toastr.success(data.successMsg);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
             },
             error: function(error) {
                 toastr.error('Something went wrong!');

@@ -95,6 +95,12 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 */
 @mixin respond($breakpoint) {
+    @if $breakpoint == extra-sm-0 {
+        @media only screen and (max-width: 28.99em) { //576px
+            // @content can pass content into a mixin
+            @content
+        };
+    }
     @if $breakpoint == extra-sm {
         @media only screen and (max-width: 35.99em) { //576px
             // @content can pass content into a mixin

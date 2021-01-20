@@ -29,7 +29,6 @@ class Post extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
-
     public function getRouteKeyName() {
         return 'slug';
     }
@@ -88,12 +87,12 @@ class Post extends Model
         ]);
 
         // notify the reply's owner
-        $reply->user->notify(new MarkedAsBestReplyNotification($this));
+        $reply->user->notify(new MarkedAsBestReplyNotification($this, $reply->reply_content, false));
 
         // notify all the people who are following this post
         foreach($this->usersFollowing as $user) {
             if($reply->user->id != $user->id)
-                $user->notify(new MarkedAsBestReplyNotification($this));
+                $user->notify(new MarkedAsBestReplyNotification($this, $reply->reply_content, true));
         }
     }
 

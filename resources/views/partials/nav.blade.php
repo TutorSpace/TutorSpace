@@ -60,6 +60,9 @@
                     <a class="nav__item" href="{{ route('admin.tutor-verification') }}">
                         Tutor Verification
                     </a>
+                    <a class="nav__item" href="{{ route('admin.extra-bonus.index') }}">
+                        Extra Bonus
+                    </a>
                 </div>
                 @endif
             </div>
@@ -123,14 +126,6 @@
                         </svg>
                         Invite
                     </a>
-                    @if(isset($isAdmin))
-                    <a class="nav__item" href="{{ route('payment.stripe.refund.index') }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people nav__item__svg" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1h7.956a.274.274 0 0 0 .014-.002l.008-.002c-.002-.264-.167-1.03-.76-1.72C13.688 10.629 12.718 10 11 10c-1.717 0-2.687.63-3.24 1.276-.593.69-.759 1.457-.76 1.72a1.05 1.05 0 0 0 .022.004zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10c-1.668.02-2.615.64-3.16 1.276C1.163 11.97 1 12.739 1 13h3c0-1.045.323-2.086.92-3zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
-                        </svg>
-                        Refund
-                    </a>
-                    @endif
                 </div>
             </div>
 
@@ -170,7 +165,23 @@
                     </svg>
                     @endif
                 </div>
-                <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
+
+                <div class="profile-img-container">
+                    <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
+                    @if(
+                    (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
+                    || (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
+                    || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards())
+                    || Auth::user()->tags()->doesntExist()
+                    || Auth::user()->courses()->doesntExist()
+                    )
+                    <svg class="notification-indicator" viewBox="0 0 5 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="2.5" cy="2.5" r="2.5" fill="#FFBC00"/>
+                    </svg>
+                    @endif
+                </div>
+
+
                 <div class="profile-img-dropdown">
                     <a class="nav__item" href="{{ route('home') }}">
                         <svg class="nav__item__svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +195,7 @@
                         </svg>
                         Profile
                     </a>
-                    <a class="nav__item mt-2 nav__item__svg--switch-account" href="#">
+                    <a class="nav__item mt-2 nav__item__svg--switch-account hover--pointer">
                         <svg class="nav__item__svg nav__item__svg--dark" width="1em" height="1em" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0)">
                                 <path d="M418.133 104.533C416 104.533 413.867 104.533 411.733 102.4C369.067 63.9999 313.6 42.6666 256 42.6666C200.533 42.6666 145.067 61.8666 102.4 100.267C98.1335 102.4 91.7335 102.4 87.4668 98.1333C83.2001 93.8666 85.3335 87.4666 89.6001 83.1999C134.4 42.6666 194.133 21.3333 256 21.3333C317.867 21.3333 379.734 44.7999 426.667 85.3333C430.934 89.5999 430.934 95.9999 426.667 100.267C424.534 102.4 422.4 104.533 418.133 104.533V104.533Z" fill="#595959"/>

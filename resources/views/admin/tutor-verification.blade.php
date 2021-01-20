@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Refund')
+@section('title', 'Tutor Verification')
 
 @section('links-in-head')
 <style>

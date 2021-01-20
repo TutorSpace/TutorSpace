@@ -39,12 +39,14 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
+
+        @if (Auth::user()->pendingTutorRequests()->count() > 0)
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ Auth::user()->tutorRequests()->count() }} New Tutor Requests!</h5>
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->pendingTutorRequests()->count() }} New Tutor Request(s)!</h5>
 
                 <div class="info-boxes info-boxes--sm-card">
-                    @foreach (Auth::user()->tutorRequests()->orderBy('session_time_start', 'asc')->orderBy('session_time_start', 'asc')->get() as $tutorRequest)
+                    @foreach (Auth::user()->pendingTutorRequests()->orderBy('session_time_start', 'asc')->orderBy('session_time_start', 'asc')->get() as $tutorRequest)
                         @include('home.partials.tutor_request', [
                             'isNotification' => true,
                             'isFirstOne' => $loop->first,
@@ -54,22 +56,26 @@ bg-student
                 </div>
             </div>
         </div>
+        @endif
 
-        <div class="container col-layout-3 col-layout-3--hidden">
+        {{-- not needed to account for small screen for now --}}
+        {{-- <div class="container col-layout-3 col-layout-3--hidden">
             <div class="row">
                 <h5 class="mb-2 w-100">Forum Notifications</h5>
                 <div class="info-boxes">
-                    @include('home.partials.notification', [
-                        'isCancellationNotification' => true,
-                        'notificationContent' => 'Nemo Enim'
-                    ])
-                    @include('home.partials.notification', [
-                        'isBestReplyNotification' => true,
-                        'notificationContent' => 'Testing Post 1'
-                    ])
+                    @foreach (Auth::user()->notifications()
+                        ->where('type', 'App\Notifications\Forum\NewFollowupAddedNotification')
+                        ->orWhere('type', 'App\Notifications\Forum\NewReplyAddedNotification')
+                        ->orWhere('type', 'App\Notifications\Forum\MarkedAsBestReplyNotification')
+                        ->orderBy('created_at', 'desc')
+                        ->get() as $notif)
+                        @include('home.partials.notification', [
+                            'notif' => $notif
+                        ])
+                    @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
@@ -87,24 +93,21 @@ bg-student
                     @php
                         $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->get();
                     @endphp
-                    <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                        <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-
-                        @if ($upcomingSessions->count() > 2)
-                        <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                        @endif
-                    </div>
-
                     @if ($upcomingSessions->count() > 0)
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+
+                            @if ($upcomingSessions->count() > 2 + 1)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
                                 'user' => $upcomingSessions->get($i)->student,
-                                'hidden' => $i > 1
+                                'hidden' => $i > 2
                             ])
                         @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 </div>
             </div>
@@ -115,12 +118,26 @@ bg-student
         @if (App\Transaction::unpaidPayments()->exists())
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ App\Transaction::unpaidPayments()->count() }} Unpaid Payments.</h5>
+                <h5 class="mb-2 w-100">You Have {{ App\Transaction::unpaidPayments()->count() }} Unpaid Payment(s).</h5>
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (App\Transaction::unpaidPayments()->get() as $transaction)
                         @include('home.partials.unpaid_payment', [
-                            'user' => App\User::find(1),
                             'transaction' => $transaction
+                        ])
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if (Auth::user()->unratedSessions()->count() > 0)
+        <div class="container col-layout-3">
+            <div class="row">
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutor Session(s).</h5>
+                <div class="info-boxes info-boxes--sm-card">
+                    @foreach (Auth::user()->unratedSessions() as $session)
+                        @include('home.partials.unrated-session', [
+                            'session' => $session
                         ])
                     @endforeach
                 </div>
@@ -141,7 +158,6 @@ bg-student
             </div>
         </div>
         @endif
-
 
         <div class="container col-layout-3">
             <div class="row">
@@ -171,8 +187,7 @@ bg-student
                         <a class="number" href="{{ route('posts.my-posts') }}">{{ Auth::user()->posts()->count() }}</a>
                     </div>
                     <div class="forum-data">
-                        {{-- TODO: shuaiqing (PARTICIPATED POSTS ARE 我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
-                        {{-- 做完以后别把我留下的todo comment删掉，我们之后要一起过一遍代码确保ok --}}
+                        {{-- PARTICIPATED POSTS 是我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
                         <span class="title">Participated</span>
                         <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->count() }}</a>
                     </div>
@@ -191,22 +206,25 @@ bg-student
             @if (Auth::user()->is_tutor)
             <h4>Want to earn bonus more quickly?</h4>
             <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
+            @else
+            <h4>Want to become a tutor?</h4>
+            <button class="btn" id="btn-register-to-be-tutor">Register to be a Tutor</button>
             @endif
         </div>
 
         <div class="home__side-bar__upcoming-sessions">
             <div class="info-cards">
-                @php
-                    $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->orderBy('session_time_start', 'asc')->orderBy('session_time_end', 'asc')->get();
-                @endphp
-                <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                    <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
-                    @if ($upcomingSessions->count() > 2)
-                    <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
-                    @endif
-                </div>
                 @if (Auth::user()->is_tutor)
+                    @php
+                        $upcomingSessions = Auth::user()->upcomingSessions()->with(['student', 'course'])->orderBy('session_time_start', 'asc')->orderBy('session_time_end', 'asc')->get();
+                    @endphp
                     @if ($upcomingSessions->count() > 0)
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
@@ -214,81 +232,59 @@ bg-student
                                 'hidden' => $i > 1
                             ])
                         @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 @else
                     @php
                         $upcomingSessions = Auth::user()->upcomingSessions()->with(['tutor', 'course'])->get();
                     @endphp
                     @if ($upcomingSessions->count() > 0)
+                        <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
+                            <h5 class="mb-0 ws-no-wrap">Upcoming Sessions</h5>
+                            @if ($upcomingSessions->count() > 2 + 1)
+                            <button class="btn btn-link fs-1-2 fc-grey btn-view-all-info-cards ws-no-wrap">View All</button>
+                            @endif
+                        </div>
                         @for ($i = 0; $i < $upcomingSessions->count(); $i++)
                             @include('home.partials.upcoming_session_card', [
                                 'session' => $upcomingSessions->get($i),
                                 'user' => $upcomingSessions->get($i)->tutor,
-                                'hidden' => $i > 1
+                                'hidden' => $i > 2
                             ])
                         @endfor
-                    @else
-                        <p class="fs-1-6 mt-2">No Upcoming Sessions Yet...</p>
                     @endif
                 @endif
 
             </div>
         </div>
         <div class="home__side-bar__notifications">
+            @if ($forumNotifs->count() == 0)
+            <div class="d-flex align-items-center justify-content-between mb-1 flex-100 no-data p-relative">
+                <span class="mb-0 ws-no-wrap">Forum Notifications</span>
+                <span class="no-data__content">No Recent Forum Notifications</span>
+            </div>
+            @else
             <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
                 <span class="mb-0 ws-no-wrap">Forum Notifications</span>
+                @if ($forumNotifs->count() > 2 + 1)
                 <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-notifications">View All</button>
+                @endif
+
             </div>
             <div class="notifications--sidebar">
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1'
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isCancellationNotification' => true,
-                    'notificationContent' => 'Computer Science',
-                    'hidden' => true
-                ])
-                @include('home.partials.notification--sidebar', [
-                    'isBestReplyNotification' => true,
-                    'notificationContent' => 'Testing Post 1',
-                    'hidden' => true
-                ])
+                @foreach ($forumNotifs as $key => $notif)
+                    @include('home.partials.notification--sidebar', [
+                        'notif' => $notif,
+                        'hidden' => $key > 2
+                    ])
+                @endforeach
             </div>
+            @endif
         </div>
 
         @if (!Auth::user()->is_tutor)
-        <div class="home__side-bar__bookmarked-users">
-            <div class="d-flex align-items-center justify-content-between mb-1 flex-100">
-                <span class="mb-0 ws-no-wrap">Bookmarked Tutors</span>
-                <button class="btn btn-link fs-1-2 fc-grey ws-no-wrap btn-view-all-bookmarked-users">View All</button>
+            <div class="home__side-bar__bookmarked-users">
+                @include('home.partials.bookmarked-tutors--sidebar')
             </div>
-
-            <div class="bookmarked-users">
-                @forelse (Auth::user()->bookmarkedUsers as $key => $user)
-                    @include('home.partials.bookmarked-tutor', [
-                        'user' => $user,
-                        'hidden' => $key > 2
-                    ])
-                @empty
-                <h6 class="no-results">No bookmarked tutors yet</h6>
-                @endforelse
-            </div>
-        </div>
         @endif
 
     </section>
@@ -326,6 +322,21 @@ let storageUrl = "{{ Storage::url('') }}";
     // refresh recommended tutors
     $('#btn-refresh').click(function() {
         getRecommendedTutors();
+    });
+
+    // this will be called after the bookmark behavior (in app.blade.php)
+    $(document).on('click', '.svg-bookmark', function() {
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('home.get.bookmark.sidebar') }}",
+            success: (data) => {
+                $('.home__side-bar__bookmarked-users').html(data.view);
+            },
+            error: function(error) {
+                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                console.log(error);
+            }
+        });
     });
 @endif
 </script>

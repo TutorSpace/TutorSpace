@@ -49,6 +49,7 @@ class SessionOverlap implements Rule
                 $query->where('tutor_id', '=', $this->tutorId)
                       ->orWhere('student_id', '=', $this->studentId);
             })
+            ->where('is_canceled', false)
             ->count() == 0;
     }
 
@@ -59,6 +60,6 @@ class SessionOverlap implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'There is a time conflict for your schedule session.';
     }
 }

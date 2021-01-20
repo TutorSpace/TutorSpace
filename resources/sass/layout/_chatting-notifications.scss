@@ -21,7 +21,7 @@
         @include respond(extra-sm) {
             padding: 0 0;
 
-            .chatting__content {
+            .chatting__content, .notification__content {
                 margin-left: 0;
             }
         }
@@ -220,6 +220,15 @@
                         .content-1 {
                             display: flex;
                             align-items: center;
+                            width: 25rem;
+
+                            @include respond(md) {
+                                width: 18rem;
+                            }
+
+                            @include respond(extra-sm) {
+                                width: 17rem;
+                            }
 
                             .content-1__content {
                                 font-size: 1.8rem;

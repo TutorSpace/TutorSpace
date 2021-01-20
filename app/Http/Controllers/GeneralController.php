@@ -64,7 +64,8 @@ class GeneralController extends Controller
             'profile-pic' => [
                 'required',
                 'file',
-                'mimes:jpeg,bmp,png'
+                'mimes:jpeg,bmp,png',
+                'max:2000'
             ]
         ]);
 
@@ -95,13 +96,14 @@ class GeneralController extends Controller
 
     //add or remove the course id to/from the user
     public function addRemoveCourseToProfile(Request $request) {
-        if(Auth::user()->is_tutor && Auth::user()->courses()->count() < 2 && !Auth::user()->is_invalid) {
-            return abort(401);
-        }
 
         $courseId = $request->input('courseId') ?? Course::where('course', $request->input('courseName'))->first()->id;
 
         if(Auth::user()->courses()->find($courseId)) {
+            if(Auth::user()->is_tutor && Auth::user()->courses()->count() < 2) {
+                return abort(401);
+            }
+
             Auth::user()->courses()->detach($courseId);
 
             return response()->json([

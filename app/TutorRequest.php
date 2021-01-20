@@ -3,7 +3,9 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\TutorRequestDeclined;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class TutorRequest extends Model
@@ -29,15 +31,19 @@ class TutorRequest extends Model
         return $this->belongsTo('App\User', 'student_id');
     }
 
-    // todo: check the time used here
     // IMPORTANT: must run scheduler in prod env
-    public function changeTutorRequestStatusOnTimeout() {
-        $tutorRequests = TutorRequest::all();
+    public static function changeTutorRequestStatusOnTimeout() {
+        $tutorRequests = TutorRequest::where('status', 'pending')->get();
         foreach($tutorRequests as $tutorRequest) {
-            // must accept the tutor request at least 10 minutes before the session starts
-            if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(10)) {
-                $tutorRequest->status = 'expired';
+
+            // must accept the tutor request at least 60 minutes before the session starts
+            if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(60)) {
+                $tutorRequest->status = 'declined';
                 $tutorRequest->save();
+
+                $tutorRequest->refresh();
+
+                $tutorRequest->student->notify(new TutorRequestDeclined($tutorRequest));
             }
         }
     }

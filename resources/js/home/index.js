@@ -22,7 +22,7 @@ $("#input-profile-pic").change(function() {
             $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
         },
         error: function(error) {
-            toastr.error('The file you uploaded is either not supported or too large. Please try uploading another image again.');
+            toastr.error('The file you uploaded is either too large (should be smaller than 2MB) or not supported by our platform. Please try uploading another image again.');
             console.log(error);
         },
         complete: () => {
@@ -189,3 +189,10 @@ $('#btn-decline-tutor-session').click(function() {
 })
 
 
+$('#btn-register-to-be-tutor').click(function() {
+    $('.nav__item__svg--switch-account').click();
+});
+
+$('.side-bar__notification > *').click(function() {
+    window.location.href = $(this).closest('.side-bar__notification').attr('data-route');
+})

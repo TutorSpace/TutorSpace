@@ -26,6 +26,14 @@ class GainExperienceSubscriber
     }
 
     /**
+     * Handle tutoring hour ended
+     */
+    public function handleReviewPosted($event) {
+        Log::info('handleReviewPosted triggered.');
+        $event->session->tutor->addExperience(5 * $event->rating);
+    }
+
+    /**
      * Handle note posted
      */
     public function handleNotePosted($event) {
@@ -78,6 +86,11 @@ class GainExperienceSubscriber
             'App\Events\TutoringHourEnded',
             // [GainExperienceSubscriber::class, 'handleTutoringHourEnded']
             'App\Listeners\GainExperienceSubscriber@handleTutoringHourEnded'
+        );
+
+        $events->listen(
+            'App\Events\SessionReviewPosted',
+            'App\Listeners\GainExperienceSubscriber@handleReviewPosted'
         );
 
         $events->listen(

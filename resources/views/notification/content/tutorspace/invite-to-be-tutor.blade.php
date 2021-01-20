@@ -1,23 +1,27 @@
 <div class="notification__content__header font-weight-bold">
-    Neno Enim invited you to be a tutor
+    {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor
 </div>
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
-            <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="user photo" class="user-image">
+            <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-image">
         </div>
 
         <div class="container content">
-            <p class="pt-3 fs-2-4 text-center fw-500">Neno Enim</p>
-            <h5 class="color-primary">
-                Neno Enim invited you to be a tutor.
-            </h5>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $user->first_name . ' ' . $user->last_name}}</p>
+            <h6 class="color-primary">
+                {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor.
+            </h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
+
+            <h6 class="color-primary fw-500">
+                Your Referral Code is {{ $inviteCode }}
+            </h6>
 
             <div class="display-cards">
                 <div class="display-card">
@@ -32,7 +36,7 @@
                         <path d="M114.837 67.25H104.385V70.7882H114.837V67.25Z" fill="#3F3D56"/>
                         <path d="M103.819 69.939H96.1914V70.9296H103.819V69.939Z" fill="#6C63FF"/>
                         <path d="M26.9082 40.8551H68.0124L74.3851 43.9657L84.5388 48.922L91.1776 36.4678H109.964" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
-                        <path d="M43.0703 40.855L46.1178 48.0728H53.6041" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M43.0703 40.855L46.1178 48.0728h63.6041" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
                         <path d="M54.4961 40.8554L64.9053 35.1943H72.2504" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
                         <path d="M43.0115 42.129C43.7136 42.129 44.2828 41.5587 44.2828 40.8553C44.2828 40.1518 43.7136 39.5815 43.0115 39.5815C42.3094 39.5815 41.7402 40.1518 41.7402 40.8553C41.7402 41.5587 42.3094 42.129 43.0115 42.129Z" fill="#6C63FF"/>
                         <path d="M54.8767 42.129C55.5788 42.129 56.148 41.5587 56.148 40.8553C56.148 40.1518 55.5788 39.5815 54.8767 39.5815C54.1746 39.5815 53.6055 40.1518 53.6055 40.8553C53.6055 41.5587 54.1746 42.129 54.8767 42.129Z" fill="#6C63FF"/>
@@ -42,7 +46,7 @@
                         <path d="M74.3689 45.2428C75.071 45.2428 75.6402 44.6725 75.6402 43.969C75.6402 43.2656 75.071 42.6953 74.3689 42.6953C73.6668 42.6953 73.0977 43.2656 73.0977 43.969C73.0977 44.6725 73.6668 45.2428 74.3689 45.2428Z" fill="#6C63FF"/>
                         <path d="M101.771 37.7418C102.473 37.7418 103.043 37.1715 103.043 36.4681C103.043 35.7646 102.473 35.1943 101.771 35.1943C101.069 35.1943 100.5 35.7646 100.5 36.4681C100.5 37.1715 101.069 37.7418 101.771 37.7418Z" fill="#6C63FF"/>
                         <path d="M88.4939 42.6949C89.196 42.6949 89.7652 42.1247 89.7652 41.4212C89.7652 40.7177 89.196 40.1475 88.4939 40.1475C87.7918 40.1475 87.2227 40.7177 87.2227 41.4212C87.2227 42.1247 87.7918 42.6949 88.4939 42.6949Z" fill="#6C63FF"/>
-                        <path d="M46.2598 49.2056H53.6048" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
+                        <path d="M46.2598 49.2056h63.6048" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
                         <path d="M114.348 12.7777C115.499 12.7777 116.432 11.8427 116.432 10.6894C116.432 9.53603 115.499 8.60107 114.348 8.60107C113.197 8.60107 112.264 9.53603 112.264 10.6894C112.264 11.8427 113.197 12.7777 114.348 12.7777Z" stroke="#3F3D56" stroke-width="2" stroke-miterlimit="10"/>
                         <path d="M21.4702 109C33.3279 109 42.9405 107.226 42.9405 105.037C42.9405 102.849 33.3279 101.075 21.4702 101.075C9.61255 101.075 0 102.849 0 105.037C0 107.226 9.61255 109 21.4702 109Z" fill="#F2F2F2"/>
                         <path d="M36.2151 69.8652L32.3848 71.8014L32.6327 72.2961L36.4628 70.3599L36.2151 69.8652Z" fill="#6C63FF"/>

@@ -27,13 +27,13 @@
 
             <div class="tutor-level-progress">
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ $levelProgressPercentage*100 }}%;" aria-valuenow="{{ $levelProgressPercentage*100 }}" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <span class="tutor-level tutor-level--current">
-                    ??????
+                    {{ $currLevel }}
                 </span>
                 <span class="tutor-level tutor-level--next">
-                    ??????????
+                    {{ $nextLevel }}
                 </span>
             </div>
 
@@ -49,8 +49,8 @@
                 sequi! Molestiae?
             </p>
 
-            <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about tutor growth plan? Click here: <br />
-                <a href="{{ route('index') }}" class="color-primary">https://tutorspace.joinme.us</a>
+            {{-- todo: change the link here --}}
+            <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about tutor growth plan? <a href="{{ route('index') }}" class="color-primary" target="_blank">Click here</a>.
             </p>
         </div>
     </div>

@@ -4,8 +4,9 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Message;
+use App\Review;
 
+use App\Message;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
+use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
@@ -63,10 +66,15 @@ class User extends Authenticatable
     }
 
     public function getIntroduction() {
-        $secondMajor = $this->secondMajor;
-        $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
+        if($this->is_tutor) {
+            $secondMajor = $this->secondMajor;
+            $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
 
-        return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+        } else {
+            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutor sessions on this platform.";
+        }
+
     }
 
     // check whether a user with an email exists and is a student
@@ -100,10 +108,6 @@ class User extends Authenticatable
 
     public function courses() {
         return $this->belongsToMany('App\Course');
-    }
-
-    public function characteristics() {
-        return $this->belongsToMany('App\Characteristic');
     }
 
     public function tutorLevel() {
@@ -302,9 +306,12 @@ class User extends Authenticatable
         return $newUser;
     }
 
-
     public function tutorRequests() {
         return $this->hasMany('App\TutorRequest', $this->is_tutor ? 'tutor_id' : 'student_id');
+    }
+
+    public function pendingTutorRequests() {
+        return $this->tutorRequests()->where('status', 'pending');
     }
 
     public function availableTimes() {
@@ -421,7 +428,7 @@ class User extends Authenticatable
     }
 
     public function verifiedCourses() {
-        return $this->belongsToMany('App\Course');
+        return $this->belongsToMany('App\Course', 'verified_courses', 'user_id', 'course_id');
     }
 
     public static function updateVerifyStatus() {
@@ -472,14 +479,63 @@ class User extends Authenticatable
     // add user experience and update level
     // $experienceToAdd : integer, when $experienceToAdd is negative, it means subtracting experience
     public function addExperience($experienceToAdd){
-        $allUsersWithEmail = User::where("email",$this->email)->get();
+        $allUsersWithEmail = User::where("email", $this->email)->get();
+        $oldLevelId = $this->tutor_level_id;
         foreach ($allUsersWithEmail as $user) {
             $user->experience_points += $experienceToAdd;
+            $newTutorLevelId = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+
             // update tutor level id in user
-            $user->tutor_level_id = TutorLevel::getLevelFromExperience($user->experience_points)->id;
+            $user->tutor_level_id = $newTutorLevelId;
+
             // save
             $user->save();
         }
+        $this->refresh();  // $this !== $user
+
+        // important: tutor level are assumed to be larger with higher tutor level id
+        if($newTutorLevelId > $oldLevelId) {
+            $this->notify(new TutorLevelUpNotification());
+        }
+    }
+
+    public function ratedSessions() {
+        return Session::join('reviews', 'sessions.id', '=', 'reviews.session_id')
+                ->where('sessions.is_upcoming', false)
+                ->get();
+    }
+
+    public function unratedSessions() {
+        return Session::select('sessions.*')
+                ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
+                ->where('sessions.is_upcoming', false)
+                ->where('reviews.session_id', null)
+                ->get();
+    }
+
+    // deduct experience from users after canceling a session (both tutor and student)
+    public function cancelSessionExperienceDeduction(){
+        $lowerBound = $this->tutorLevel->level_experience_lower_bound;
+        $upperBound = $this->tutorLevel->level_experience_upper_bound;
+        $nextLevel = TutorLevel::where("level_experience_lower_bound",$upperBound);
+        $experienceToSubstract = 0;
+        // lowest level: (upper bound - 0) * 20%
+        if ($lowerBound < 0){
+            $experienceToSubstract = ($upperBound - 0) * 0.2;
+        }
+        // highest level: (set experience to previous level's lowerbound + 1)
+        else if ($nextLevel->count() == 0) {
+            $prevLevel = TutorLevel::where("level_experience_upper_bound",$lowerBound)->first();
+            $experienceToSubstract = $this->experience_points - $prevLevel->level_experience_lower_bound - 1;
+        }
+        // normal cases: 20% of current level range
+        else {
+            $experienceToSubstract = ($upperBound - $lowerBound) * 0.2;
+        }
+
+        $this->addExperience(0-$experienceToSubstract);
+
+        return $experienceToSubstract;
     }
 
     // return tutor level bonus rate of current user as DOUBLE
@@ -490,7 +546,6 @@ class User extends Authenticatable
     public function currentLevel() {
         return $this->tutorLevel->tutor_level;
     }
-
 
     // return tutor_level : String
     // edge case: returns "" if there's no next level

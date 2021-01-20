@@ -46,8 +46,6 @@
         }
     }
 
-
-
     button {
         max-width: 7rem;
         line-height: 1.4;
@@ -251,7 +249,7 @@
             justify-content: flex-end;
             min-width: 6rem;
 
-            button {
+            button, a {
                 width: 100%;
             }
         }
@@ -269,7 +267,7 @@
             @include respond(sm) {
                 justify-content: flex-end;
 
-                button {
+                button, a {
                     padding: .75rem 1rem;
                 }
             }

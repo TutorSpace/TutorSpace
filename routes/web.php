@@ -168,6 +168,7 @@ Route::group([
     Route::get('/profile', 'HomeController@indexProfile')->name('home.profile');
     Route::put('/profile', 'HomeController@update')->name('home.profile.update')->withoutMiddleware(InvalidUser::class);
     Route::post('/profile/hourly-rate', 'HomeController@updateHourlyRate')->name('home.profile.hourly-rate.update')->middleware('isTutor');
+    Route::get('/bookmark-sidebar', 'HomeController@getBookmarkSideBar')->name('home.get.bookmark.sidebar');
 });
 
 // view profile
@@ -218,8 +219,9 @@ Route::group([
     'prefix' => 'tutor-request',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/accept/{tutorRequest}', 'TutorRequestController@acceptTutorRequest');
-    Route::delete('/{tutorRequest}', 'TutorRequestController@declineTutorRequest');
+    Route::post('/accept/{tutorRequest}', 'TutorRequestController@acceptTutorRequest')->name('tutor-request.accept');
+    Route::delete('/{tutorRequest}', 'TutorRequestController@declineTutorRequest')->name('tutor-request.decline');
+    Route::post('/cancel/{tutorRequest}', 'TutorRequestController@cancelTutorRequest')->name('tutor-request.cancel');
 });
 
 // tutor verification
@@ -233,6 +235,8 @@ Route::group([
     Route::get('/tutor-verification', 'AdminController@indexTutorVerification')->name('admin.tutor-verification');
     Route::post('/add-verified-course/{user}', 'AdminController@addVerifiedCourse')->name('admin.course.post');
     Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
+    Route::get('/extra-bonus', 'AdminController@extraBonusIndex')->name('admin.extra-bonus.index');
+    Route::post('/extra-bonus/{transaction}', 'AdminController@extraBonusSent')->name('admin.extra-bonus-sent');
 });
 
 // sessions
@@ -258,8 +262,9 @@ Route::group([
     'prefix' => 'payment/stripe',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/onboarding', 'Payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
-    Route::get('/list_cards', 'Payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
+    Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+    Route::post('/verify_card_exists', 'payment\StripeApiController@checkIfCardAlreadyExists')->name('payment.stripe.verify_card_exists');
+    Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
 
     Route::get('/add_payment_method', 'Payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
     Route::post('/create_payment_intent', 'Payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');
@@ -268,6 +273,7 @@ Route::group([
     //Stripe set payment as Customer Invoice Default
     Route::post('/set_payment_invoice_default', 'Payment\StripeApiController@saveCardAsDefault')->name('payment.stripe.set_invoice_payment_default');
     Route::post('/create_setup_intent', 'Payment\StripeApiController@createSetupIntent')->name('payment.stripe.create_setup_intent');
+    Route::post('/store_bank_card_action', 'Payment\StripeApiController@storeBankCardActionInSession')->name('payment.stripe.store_bank_card_action_in_session');
 
     Route::post('/webhook', 'Payment\StripeApiController@handleWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.webhook');
     Route::post('/connect/webhook', 'Payment\StripeApiController@handleConnectWebhook')->withoutMiddleware(['auth'])->name('payment.stripe.connect.webhook');

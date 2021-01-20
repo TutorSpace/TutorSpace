@@ -31,71 +31,6 @@ bg-student
         </div>
         <div class="notification__content" id="notification__content">
             @include('notification.content.placeholder')
-            {{-- <div> --}}
-                {{-- @include('notification.content.sessions.session-complete-tutor') --}}
-            {{-- </div> --}}
-
-{{--
-            <div>
-                @include('notification.content.sessions.session-complete-student')
-            </div>
-            <div>
-                @include('notification.content.sessions.session-cancel')
-            </div>
-            <div>
-                @include('notification.content.sessions.session-decline')
-            </div>
-            <div>
-                @include('notification.content.sessions.session-confirmation-student')
-            </div>
-            <div>
-                @include('notification.content.sessions.session-confirmation-tutor')
-            </div>
-            <div>
-                @include('notification.content.sessions.tutor-request')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.refund-request-initiated')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.refund-request-success')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.refund-request-fail')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.invite-to-be-tutor')
-            </div>
-
-            </div>
-            <div>
-
-            </div>
-            <div>
-
-            </div>
-            <div>
-                @include('notification.content.tutorspace.payment-fail')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.payment-fail-again')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.session-fee-received')
-            </div>
-            <div>
-                @include('notification.content.tutorspace.tutor-level-up')
-            </div>
-            <div>
-                @include('notification.content.forum.post-reported')
-            </div>
-            <div>
-                @include('notification.content.forum.be-marked-as-best-reply')
-            </div> --}}
-
-
-
-
         </div>
     </div>
 </div>
@@ -104,19 +39,58 @@ bg-student
 
 @section('js-2')
 <script>
-    // $('#notification__content > *').addClass('hidden');
-    // $(document).on("click",".msgs .msg", function () {
-    //     $('#notification__content > *').addClass('hidden');
-    //     var children = $('.msgs')[0].children;
-    //     for (var i = 0; i < children.length; i++) {
-    //         var tableChild = children[i];
-    //         if(tableChild == $(this)[0]) {
-    //             $(`#notification__content > :nth-child(${i+1})`).removeClass('hidden');
-    //         }
-    //     }
-    // });
+
+    $(document).on('click', '#btn-rate-tutor', function() {
+        let url = $(this).attr('data-route-url');
+
+        bootbox.dialog({
+            message: `@include('session.review-session')`,
+            size: 'large',
+            centerVertical: true,
+            buttons: {
+                Cancel: {
+                    label: 'Cancel',
+                    className: 'btn btn-outline-primary px-4 fs-1-6',
+                    callback: function(e) {}
+                },
+                Submit: {
+                    label: 'Submit',
+                    className: 'btn btn-primary px-4 fs-1-6',
+                    callback: function(e) {
+                        if (!$.trim($(".modal-session-report textarea").val())) {
+                            // textarea is empty or contains only white-space
+                            toastr.error('Please enter the details.')
+                            return false;
+                        }
+                        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            data: $('.modal-session-report').serialize(),
+                            success: (data) => {
+                                toastr.success(data.successMsg);
+                            },
+                            error: function(error) {
+                                toastr.error('You can not review the same session twice!');
+                                console.log(error);
+                            },
+                            complete: () => {
+                                JsLoadingOverlay.hide();
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
 
     $(document).on("click",".msgs .msg", function () {
+        $('.msg .box').removeClass('bg-grey-light');
+        $('.msg').removeClass('bg-grey-light');
+        $(this).find('.box').addClass('bg-grey-light');
+        $(this).addClass('bg-grey-light');
+
         let notifId = $(this).attr('data-notif-id');
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
@@ -138,5 +112,9 @@ bg-student
             }
         });
     });
+
+    @if(isset($showNotif))
+    $('.msgs .msg[data-notif-id={{ $showNotif }}]').click();
+    @endif
 </script>
 @endsection

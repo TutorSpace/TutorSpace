@@ -8,20 +8,24 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewReplyAddedNotification extends Notification implements ShouldQueue
+class NewReplyAddedNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $post;
+    private $content;
+    private $forFollowers;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, $content, $forFollowers)
     {
         $this->post = $post;
+        $this->content = $content;
+        $this->forFollowers = $forFollowers;
     }
 
     /**
@@ -32,7 +36,7 @@ class NewReplyAddedNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database'];
     }
 
     /**
@@ -43,10 +47,10 @@ class NewReplyAddedNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        // return (new MailMessage)
+        //             ->line('The introduction to the notification.')
+        //             ->action('Notification Action', url('/'))
+        //             ->line('Thank you for using our application!');
     }
 
     /**
@@ -58,7 +62,9 @@ class NewReplyAddedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'postId' => $this->post->id,
+            'content' => $this->content,
+            'forFollowers' => $this->forFollowers
         ];
     }
 }

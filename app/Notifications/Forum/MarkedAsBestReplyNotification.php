@@ -8,22 +8,25 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Notifications\Messages\SubscriptionMessage;
 
-class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
+class MarkedAsBestReplyNotification extends Notification
 {
     use Queueable;
 
-    public $post;
+    private $post;
+    private $content;
+    private $forFollowers;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, $content, $forFollowers)
     {
         $this->post = $post;
+        $this->content = $content;
+        $this->forFollowers = $forFollowers;
     }
 
     /**
@@ -45,11 +48,19 @@ class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
-                    ->action('View the Post', route('posts.show', $this->post->slug))
-                    ->line('Thank you for using TutorSpace!');
+        if($this->forFollowers) {
+            return (new MailMessage)
+                        ->greeting('Dear ' . $notifiable->first_name)
+                        ->line('A reply to post: "' . $this->post->title . '" is marked as best reply.')
+                        ->action('View the Post', route('posts.show', $this->post->slug))
+                        ->line('Thank you for using TutorSpace!');
+        } else {
+            return (new MailMessage)
+                        ->greeting('Dear ' . $notifiable->first_name)
+                        ->line('Your reply to post: "' . $this->post->title . '" is marked as best reply.')
+                        ->action('View the Post', route('posts.show', $this->post->slug))
+                        ->line('Thank you for using TutorSpace!');
+        }
     }
 
     /**
@@ -61,7 +72,9 @@ class MarkedAsBestReplyNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'post' => $this->post
+            'postId' => $this->post->id,
+            'content' => $this->content,
+            'forFollowers' => $this->forFollowers
         ];
     }
 }

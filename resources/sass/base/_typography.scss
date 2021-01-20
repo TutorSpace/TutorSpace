@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: Avenir, sans-serif;
+    font-family: Avenir, 'Noto Sans KR';
 }
 
 h1, h2, h3 {
@@ -39,3 +39,6 @@ h5 {
 h6 {
     font-size: 2rem;
 }
+
+.toast-message { font-size: 1.6rem !important; }
+

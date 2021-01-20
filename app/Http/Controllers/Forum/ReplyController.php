@@ -27,12 +27,12 @@ class ReplyController extends Controller
 
         // notify the post's owner
         if($post->user->id != Auth::id()) {
-            $post->user->notify(new NewReplyAddedNotification($post));
+            $post->user->notify(new NewReplyAddedNotification($post, $request->input('content'), false));
         }
 
         // notify all people who are following this post
         foreach($post->usersFollowing as $user) {
-            $user->notify(new NewReplyAddedNotification($post));
+            $user->notify(new NewReplyAddedNotification($post, $request->input('content'), true));
         }
 
         return redirect()->back()->with([
@@ -55,7 +55,7 @@ class ReplyController extends Controller
 
         // send notifications to the reply's user
         if($reply->user->id != Auth::id()) {
-            $reply->user->notify(new NewFollowupAddedNotification($baseReply->post));
+            $reply->user->notify(new NewFollowupAddedNotification($baseReply->post, $request->input('content'), Auth::user()->first_name . ' ' . Auth::user()->last_name));
         }
 
 

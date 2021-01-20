@@ -1,6 +1,14 @@
 require('./bootstrap');
 require('select2');
+
 window.toastr = require('toastr');
+toastr.options.preventDuplicates = true;
+// toastr.options.progressBar = true;
+// toastr.options.closeButton = true;
+// toastr.options.timeOut = 0;
+// toastr.options.extendedTimeOut = 0;
+
+
 
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');

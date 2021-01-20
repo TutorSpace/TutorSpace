@@ -56,7 +56,6 @@ class PostController extends Controller
             $posts = $posts->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
                             ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
                             ->whereIn('tags.id', $interestedTagIDs)
-                            ->where('posts.user_id', '!=', $user->id)
                             ->groupBy(['posts.id'])
                             ->orderByRaw(POST::POPULARITY_FORMULA)
                             ->get();
@@ -65,7 +64,6 @@ class PostController extends Controller
             $posts = $posts->merge(
                 Post::with(['tags', 'user'])
                     ->withCount(['usersUpvoted', 'replies', 'tags'])
-                    ->where('posts.user_id', '!=', $user->id)
                     ->orderByRaw(POST::POPULARITY_FORMULA)
                     ->get()
             );
@@ -165,8 +163,9 @@ class PostController extends Controller
 
             $post->tags()->attach($request->input('tags'));
 
+            // important: post_type id=2 must be class note, and if this changes, 'handlenoteposted' must also be changed!
             // Trigger event to add experience
-            if ($post->post_type->id == 2) {  // 2 means Note
+            if ($post->post_type->id == 2) {  // 2 means Class Note
                 event(new NotePosted($post));
             }
         });

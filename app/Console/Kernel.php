@@ -2,15 +2,15 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
-use Illuminate\Support\Facades\DB;
+use App\Session;
 use Facades\App\Tag;
+
+use App\TutorRequest;
 use Facades\App\User;
 use Facades\App\Transaction;
-use Facades\App\TutorRequest;
-use Facades\App\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
@@ -34,27 +34,32 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Tag::updateTrendingTags();
             echo "Successfully updated trending tags at: " . now() . "\n";
-        })->everyThirtyMinutes();
+        // })->everyThirtyMinutes();
+        })->everyMinute();
 
         $schedule->call(function () {
             User::clearTutorAvailableTime();
             echo "Successfully removed stale available time of tutors at: " . now() . "\n";
-        })->daily();
+        // })->daily();
+        })->everyMinute();
 
         $schedule->call(function () {
             TutorRequest::changeTutorRequestStatusOnTimeout();
             echo "Successfully changed stale tutor request to expired: " . now() . "\n";
-        })->everyThirtyMinutes();
+        // })->everyThirtyMinutes();
+        })->everyMinute();
 
         $schedule->call(function () {
             Session::changeSessionStatusOnExpiry();
             echo "Successfully changed stale tutor sessions to expired: " . now() . "\n";
-        })->everyThirtyMinutes();
+        // })->everyThirtyMinutes();
+        })->everyMinute();
 
         $schedule->call(function () {
             User::updateVerifyStatus();
             echo "Successfully update is_tutor_verified: " . now() . "\n";
-        })->everyThirtyMinutes();
+        // })->everyThirtyMinutes();
+        })->everyMinute();
 
         // finalize means invoice_status from draft => open, may not be paid yet
         $schedule->call(function () {
@@ -70,6 +75,13 @@ class Kernel extends ConsoleKernel
             Transaction::sendUnpaidInvoices(24);
             echo "Successfully send emails to users that haven't paid their invoices: " . now() . "\n";
         // })->twiceDaily(9, 20);
+        })->everyMinute();
+
+        // notify the users that they have an upcoming session
+        $schedule->call(function () {
+            Session::notifyUpcomingSessions();
+            echo "Successfully notify the users about their upcoming sessions: " . now() . "\n";
+        // })->hourly();
         })->everyMinute();
 
     }

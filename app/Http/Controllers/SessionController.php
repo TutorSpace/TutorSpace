@@ -17,15 +17,17 @@ use App\Rules\SessionOverlap;
 use Illuminate\Validation\Rule;
 use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\DB;
+use App\Events\SessionReviewPosted;
 use App\Rules\SessionDifferentUser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\NewTutorRequest;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\CancelSessionNotification;
 use App\Http\Controllers\payment\StripeApiController;
 
 class SessionController extends Controller
 {
-    // todo: check situations to cancel
     public function cancelSession(Request $request, Session $session) {
         $userId = Auth::user()->id;
         $request->validate([
@@ -36,10 +38,10 @@ class SessionController extends Controller
         ]);
 
         $acceptedUserIds = array($session->tutor_id, $session->student_id);
-        // neither student nor tutor for the session
-        if (!in_array($userId, $acceptedUserIds)) {
+        // neither student nor tutor for the session, or it is already a past session
+        if (!in_array($userId, $acceptedUserIds) || $session->session_time_start <= Carbon::now()) {
             return response()->json([
-                'errorMsg' => "Validation fails"
+                'errorMsg' => "You are not authorized to cancel this session."
             ], 400);
         }
 
@@ -48,7 +50,31 @@ class SessionController extends Controller
             $session->cancelReason()->associate($request->input('cancelReasonId'));
             $session->save();
 
-            app(StripeApiController::class)->chargeForCancellation(Auth::user());
+
+            if(Auth::user()->is_tutor) {
+                $expLost = 0;
+                $tooLate = false;
+                // if too late
+                if(Carbon::now()->addHours(24) > $session->session_time_start) {
+                    $expLost = Auth::user()->cancelSessionExperienceDeduction();
+                    app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                    $tooLate = true;
+                }
+
+                Auth::user()->notify(new CancelSessionNotification($session, true, $expLost, $tooLate));
+                $session->student->notify(new CancelSessionNotification($session, true, $expLost, $tooLate));
+
+            } else {
+                $tooLate = false;
+                // if too late
+                if(Carbon::now()->addHours(12) > $session->session_time_start) {
+                    // student will not be deducted the exp points
+                    app(StripeApiController::class)->chargeForCancellation(Auth::user());
+                    $tooLate = true;
+                }
+                Auth::user()->notify(new CancelSessionNotification($session, false, 0, $tooLate));
+                $session->tutor->notify(new CancelSessionNotification($session, false, 0, $tooLate));
+            }
         });
 
         if (!app(StripeApiController::class)->cancelInvoice($session->id)){
@@ -103,19 +129,31 @@ class SessionController extends Controller
         $review->reviewee_id = $session->tutor->id;
         $review->save();
 
+        // TUTOR EXPERIENCE += 5 * RATING
+        event(new SessionReviewPosted($session, $request->input('review')));
+
         return response()->json([
             'successMsg' => 'Successfully posted the review!'
         ]);
     }
 
     public function scheduleSession(Request $request) {
-        // including:
         // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
         // 3. should not schedule tutor session with oneself (using email, not id)
-        // 4. course must be taught by tutor // no need to validate with code here, because otherwise this session could not be created
+        // 4. course must be taught by tutor
+        // 5. current user must be a student and the requested user must be a tutor
 
+        // rule 4 & 5
+        if(
+            !User::find($request->input('tutorId'))->is_tutor
+            || User::find($request->input('tutorId'))->courses()->where('id', $request->input('course'))->doesntExist()
+        ) {
+            return abort(401);
+        }
+
+        // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',
                 'exists:users,id',
@@ -141,8 +179,18 @@ class SessionController extends Controller
                 'required',
                 'in:in-person,online'
             ],
+        ],[
+            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
         ]);
 
+        // return validation error messages
+        if ($validator->fails()){
+           return response()->json(
+                [
+                    'error' => $validator->errors()->first()
+                ], 400
+            );
+        }
 
         if (app(StripeApiController::class)->customerHasCards()){
             // has cards
@@ -167,6 +215,10 @@ class SessionController extends Controller
             $tutorRequest->course()->associate($course);
 
             $tutorRequest->save();
+
+            $tutorRequest->refresh();
+
+            $tutor->notify(new NewTutorRequest($tutorRequest));
 
             return response()->json(
                 [

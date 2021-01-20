@@ -91,19 +91,19 @@ bg-student
                         <div class="autocomplete">
                             <label for="first-major" class="profile__label">First Major</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->firstMajor->major ?? "" }}" name="first-major" id="first-major"
+                                value="{{ Auth::user()->firstMajor->major ??  old('first-major')  }}" name="first-major" id="first-major"
                                 readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="second-major" class="profile__label">Second Major (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->secondMajor->major ?? "" }}" name="second-major"
+                                value="{{ Auth::user()->secondMajor->major ??  old('second-major')  }}" name="second-major"
                                 id="second-major" readonly>
                         </div>
                         <div class="autocomplete">
                             <label for="minor" class="profile__label">Minor (optional)</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->minor->minor ?? "" }}" name="minor" id="minor" readonly>
+                                value="{{ Auth::user()->minor->minor ?? old('minor') }}" name="minor" id="minor" readonly>
                         </div>
                     </div>
 
@@ -111,13 +111,13 @@ bg-student
                         <div class="autocomplete">
                             <label for="school-year" class="profile__label">Class Standing</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->schoolYear->school_year ?? "" }}" name="school-year"
+                                value="{{ Auth::user()->schoolYear->school_year ?? old('school-year') }}" name="school-year"
                                 id="school-year" readonly>
                         </div>
                         <div class="gpa autocomplete mr-3">
                             <label for="gpa" class="profile__label">GPA</label>
                             <input type="text" class="profile__input form-control form-control-lg"
-                                value="{{ Auth::user()->gpa ?? "" }}" name="gpa" id="gpa" readonly>
+                                value="{{ Auth::user()->gpa ?? old('gpa') }}" name="gpa" id="gpa" readonly>
                         </div>
                         <div class="gpa-note">
                             <span class="font-italic">
@@ -127,15 +127,13 @@ bg-student
                         </div>
                     </div>
 
-                    @if (Auth::user()->is_tutor)
                     <div class="profile__form-row mt-3">
                         <div class="input-introduction">
                             <label for="" class="profile__label">Introduction (optional)</label>
                             <textarea name="introduction" rows="5" class="profile__input form-control form-control-lg"
-                                readonly>{{ Auth::user()->introduction }}</textarea>
+                                readonly>{{ Auth::user()->introduction ?? old('introduction') }}</textarea>
                         </div>
                     </div>
-                    @endif
 
                     {{-- buttons --}}
                     <div class="w-100 profile__buttons d-none">
@@ -185,7 +183,7 @@ bg-student
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
                                 <input type="text" class="profile__input form-control form-control-lg"
-                                    value="{{ Auth::user()->hourly_rate ?? "" }}" name="hourly-rate" id="hourly-rate">
+                                    value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate">
                             </div>
                         </div>
                         @endif
@@ -256,9 +254,11 @@ bg-student
                     </div>
                 </div>
 
-                <div class="profile__text-container--white">
+                <div class="profile__text-container--white p-relative">
+                    <div class="stripe-svg-container">
+                    </div>
                     <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
-                        Payment Methods (Powered by Stripe)
+                        Payment Methods
                         @if (
                         (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
                         || (!Auth::user()->is_tutor && !app(App\Http\Controllers\Payment\StripeApiController::class)->customerHasCards()))
@@ -269,21 +269,15 @@ bg-student
                     </h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
+                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment px-5 py-3 ws-no-wrap" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
                         Methods"}}</button>
                         @else
-
-
-
                         <div class="payment-cards">
-
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
                                 <div>+</div>
                                 <div>Add New Payment</div>
                             </div>
-
                         </div>
-
                         @endif
                     </div>
                 </div>
@@ -303,7 +297,9 @@ bg-student
 
 
 <script defer>
+
     function stripeInit() {
+
         // A reference to Stripe.js initialized with your real test publishable API key.
         var stripe = Stripe(stripeApiKey);
         // The items the customer wants to buy
@@ -345,55 +341,98 @@ bg-student
             });
             var form = document.getElementById("payment-form");
             form.addEventListener("submit", function(event) {
+                processing(true);
                 event.preventDefault();
+                var checkeAgreement = document.getElementById("add-card-agreement");
+                var email = document.getElementById("email").value.trim();
+                var name = document.getElementById("card-holder").value.trim();
+                if (!checkeAgreement.checked){
+                    showError("Please read our terms of agreement");
+                }else if (!email || !name){
+                    showError("Please enter billing account details");
+                }else{
+
+                    paymentActionProcessing = true;
+                    setUpCard(stripe, card, data.clientSecret, email, name);
+
+                }
                 // Complete payment when the submit button is clicked
-                setUpCard(stripe, card, data.clientSecret);
+
             });
         });
+
+
         // Calls stripe.confirmCardPayment
         // If the card requires authentication Stripe shows a pop-up modal to
         // prompt the user to enter authentication details without leaving your page.
-        var setUpCard = function(stripe, card, clientSecret) {
+        var setUpCard = function(stripe, card, clientSecret, email, name) {
+            // TODO: nate check if card already exists
+            // # Retrieve the customer we're adding this token to
             loading(true);
-            var email = document.getElementById("email").value;
-            stripe
-                .confirmCardSetup(clientSecret, {
-                    payment_method: {
-                        card: card,
-                        billing_details: { email: email }
-                    }
-                })
-                .then(function(result) {
-                    if (result.error) {
-                        // Show error to your customer
-                        showError(result.error.message);
-                        toastr.error("An error has occurred");
-                    } else {
-                        // save card as default
-                        setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
-                            // The payment succeeded!
-                            orderComplete(result.setupIntent.client_secret);
-                        });
 
+            stripe.createToken(card).then((token)=>{
+                return $.ajax({
+                    type: 'POST',
+                    url: '{{ route('payment.stripe.verify_card_exists') }}',
+                    data: {
+                        "token": token
+                    },
+                    success: (msg) =>{
+                        confirmCard(stripe, card, clientSecret, email, name)
+                    },
+                    error: (err) => {
+                        loading(false);
+                        processing(false);
+                        if (err.responseJSON.error){
+                            showError(err.responseJSON.error);
+                        }
                     }
-                });
+                 });
+            })
         };
 
+        function confirmCard(stripe, card, clientSecret, email, name){
+                stripe
+                    .confirmCardSetup(clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: { email: email, name: name }
+                        }
+                    })
+                    .then(function(result) {
+                        if (result.error) {
+                            // Show error to your customer
+                            showError(result.error.message);
+                            loading(false);
+                            processing(false);
+                            toastr.error("An error has occurred");
+                        } else {
+                            // save card as default
+                            setCardAsDefault(result.setupIntent.payment_method, false).then((res)=>{
+                                // The payment succeeded!
+                                orderComplete(result.setupIntent.client_secret);
+                            });
 
+                        }
+                });
+        }
 
 
         /* ------- UI helpers ------- */
         // Shows a success message when the payment is complete
         var orderComplete = function(clientSecret) {
             stripe.retrieveSetupIntent(clientSecret).then(function(result) {
-                toastr.success("Added card successfully");
-                document.querySelector("#btn-add-payment-submit").disabled = true;
-                loading(false);
-
-                // console.log(result);
-                setTimeout(function () {
-                    location.reload();
-                }, 1000);
+                // TODO: nate uncomment
+                // store last bank card action in session
+                sendLastBankCardAction("addNew").then(()=>{
+                        toastr.success("Added card successfully");
+                        var submitBtn = document.querySelector("#btn-add-payment-submit");
+                        if (submitBtn) submitBtn.disabled = true;
+                        loading(false);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                });
             });
         };
         // Show the customer the error from Stripe if their card fails to charge
@@ -407,21 +446,36 @@ bg-student
         };
         // Show a spinner on payment submission
         var loading = function(isLoading) {
+            const button = document.querySelector("button");
+            const spinner = document.querySelector("#spinner");
+            const buttonText = document.querySelector("#button-text");
             if (isLoading) {
                 // Disable the button and show a spinner
-                document.querySelector("button").disabled = true;
-                document.querySelector("#spinner").classList.remove("hidden");
-                document.querySelector("#button-text").classList.add("hidden");
+                if (button) button.disabled = true;
+                if (spinner) spinner.classList.remove("hidden");
+                if (buttonText) buttonText.classList.add("hidden");
             } else {
-                document.querySelector("button").disabled = false;
-                document.querySelector("#spinner").classList.add("hidden");
-                document.querySelector("#button-text").classList.remove("hidden");
+                if (button) button.disabled = false;
+                if (spinner) spinner.classList.add("hidden");
+                if (buttonText) buttonText.classList.remove("hidden");
             }
         };
+
     }
 </script>
 
 <script>
+
+        var processing = function(isProcessing){
+            if (isProcessing){
+                $(".btn-delete").attr("disabled",true);
+                $(".btn-set-default").attr("disabled",true);
+            }else{
+                $(".btn-delete").attr("disabled",false);
+                $(".btn-set-default").attr("disabled",false);
+            }
+        }
+
     const setCardAsDefault = function (paymentMethodID, isFake) {
         var fake = "false";
         if (isFake){
@@ -448,24 +502,29 @@ bg-student
 @endif
 
     function handleDelete(){
+
         var btnDelete = $(".btn-delete");
         btnDelete.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             detachCard(paymentMethodID, true).then(result=>{
                 return result.json();
             }).then((result)=>{
                 if (result.errorMsg){
-                    toastr.error(result.errorMsg)
+                    toastr.error(result.errorMsg);
                 }else{
-                    toastr.success(result.success)
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
+                    sendLastBankCardAction("deleteCard").then(()=>{
+                        toastr.success(result.success);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    });
                 }
             })
             .catch(error=>{
                 toastr.error(error);
+                processing(false);
             })
         });
     }
@@ -473,19 +532,23 @@ bg-student
     function handleSetDefault(){
         var btnDefault = $(".btn-set-default");
         btnDefault.click(function(){
+            processing(true);
             event.preventDefault();
             const paymentMethodID = $(this).data("id");
             setCardAsDefault(paymentMethodID, true).then((res)=>{
                 if (res.errorMsg){
                     toastr.error(res.errorMsg);
                 }else{
-                    toastr.success("Succesfully set card as default payment method")
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
+                    sendLastBankCardAction("setDefault").then(()=>{
+                        toastr.success("Succesfully set card as default payment method");
+                        setTimeout(function () {
+                            location.reload();
+                        }, 500);
+                    });
                 }
             })
             .catch(error=>{
+                processing(false);
                 toastr.error(error)
             })
 
@@ -498,7 +561,7 @@ bg-student
             var fake = "true";
         }
 
-        var data = {
+        const data = {
             'paymentMethodID':paymentMethodID,
             'isFake':fake
         };
@@ -513,7 +576,20 @@ bg-student
             })
     }
 
-
+    // save bank card action in session
+    function sendLastBankCardAction(action){
+        const data = {
+            "bankCardActionToStore": action
+        }
+        return fetch("{{route('payment.stripe.store_bank_card_action_in_session') }}", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                "X-CSRF-Token": '{{csrf_token()}}'
+                },
+            })
+    }
 
     function displayCards(){
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
@@ -540,7 +616,12 @@ bg-student
                         cardBrand = `@include('payment.partials.card-svg.master-svg')`;
                     }else if (card.brand == "visa"){
                         cardBrand = `@include('payment.partials.card-svg.visa-svg')`;
-                    }else{
+                    }else if (card.brand == "diners"){
+                        cardBrand = `@include('payment.partials.card-svg.diners-club-svg')`;
+                    }else if (card.brand == "unionpay"){
+                        cardBrand = `@include('payment.partials.card-svg.union-pay-svg')`;
+                    }
+                    else{
                         cardBrand = `Brand: ${card.brand}`;
                     }
 
@@ -564,7 +645,10 @@ bg-student
                                     </div>
                                 </div>
                                 <div class="bank-card-row-three">
-
+                                    <div class="card-holder">
+                                        <div>Card Holder</div>
+                                        <div class="user-info">${card.card_holder}</div>
+                                    </div>
                                     <div class="expiration">
                                         <div>Exp Date</div>
                                         <div class="user-info">${card.exp_month}/${card.exp_year}</div>
@@ -577,7 +661,7 @@ bg-student
                                         <button data-id=${idx} class="btn btn-set-default">Set As Default</button>
                                     </div>
                                 `:`
-                                    <div class="bank-card-btns">Default Payment</div>
+                                    <div class="bank-card-btns default-payment-font">Default Payment</div>
                                 `)
                                 +`
                             </div>
@@ -818,7 +902,6 @@ bg-student
 @if ((isset($registerToBeTutor1) && $registerToBeTutor1))
 <script>
     $('.profile__text__edit').click();
-
 </script>
 @endif
 
