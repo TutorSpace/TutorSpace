@@ -104,7 +104,19 @@
                 type:requestType,
                 url: `/bookmark/${userId}`,
                 success: (data) => {
-
+                    @if(isset($useBookmarkSidebar) && $useBookmarkSidebar)
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('home.get.bookmark.sidebar') }}",
+                        success: (data) => {
+                            $('.home__side-bar__bookmarked-users').html(data.view);
+                        },
+                        error: function(error) {
+                            toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                            console.log(error);
+                        }
+                    });
+                    @endif
                 },
                 error: function(error) {
                     toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');

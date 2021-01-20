@@ -50,6 +50,7 @@ class HomeController extends Controller
 
         return view('home.index', [
             'posts' => $posts,
+            'useBookmarkSidebar' => true,
 
             // always get the past 7 days' forum notifications
             'forumNotifs' => Auth::user()->notifications()

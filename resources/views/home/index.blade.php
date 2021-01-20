@@ -324,20 +324,6 @@ let storageUrl = "{{ Storage::url('') }}";
         getRecommendedTutors();
     });
 
-    // this will be called after the bookmark behavior (in app.blade.php)
-    $(document).on('click', '.svg-bookmark', function() {
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('home.get.bookmark.sidebar') }}",
-            success: (data) => {
-                $('.home__side-bar__bookmarked-users').html(data.view);
-            },
-            error: function(error) {
-                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
-                console.log(error);
-            }
-        });
-    });
 @endif
 </script>
 
