@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SwitchAccountController;
 
 class GoogleController extends Controller
 {
@@ -36,7 +37,7 @@ class GoogleController extends Controller
         $loginGoogleStudent = $request->session()->has('loginGoogleStudent');
         $loginGoogleTutor = $request->session()->has('loginGoogleTutor');
 
-        // todo: remove true here in production
+        // todo: remove false here in production
         // only allow people with @usc.edu to login
         if(explode("@", $user->email)[1] !== 'usc.edu' && false){
             // if for registration
@@ -122,9 +123,11 @@ class GoogleController extends Controller
 
             // if the user wants to register as a student and was registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
             if($registerGoogleStudent && $existTutor) {
-                Auth::login(User::where('email', $user->email)->where('is_tutor', $existTutor)->first());
 
-                return redirect()->route('switch-account.register');
+
+                return redirect()->route('home')->with([
+                    'errorMsg' => 'You already have a tutor account. Please use the switch account functionality in the toggle down menu after clicking your profile image.'
+                ]);
             }
 
             // if the user wants to register as a tutor and is registered as a student before, he should be redirected to the specific page that is specifically designed for him
