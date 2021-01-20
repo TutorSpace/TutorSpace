@@ -38,7 +38,7 @@ class GoogleController extends Controller
 
         // todo: remove true here in production
         // only allow people with @usc.edu to login
-        if(explode("@", $user->email)[1] !== 'usc.edu' || true){
+        if(explode("@", $user->email)[1] !== 'usc.edu' && false){
             // if for registration
             if($registerGoogleStudent){
                 return redirect()->route('register.index.student.1')->with([
