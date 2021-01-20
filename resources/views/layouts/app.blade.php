@@ -237,6 +237,9 @@
         }
         @endauth
 
+        @if ($toSwitchAccount)
+            $('.nav__item__svg--switch-account').click();
+        @endif
 
     </script>
     @yield('js')

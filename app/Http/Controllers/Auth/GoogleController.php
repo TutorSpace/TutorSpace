@@ -125,7 +125,9 @@ class GoogleController extends Controller
                 Auth::login(User::where('email', $user->email)->where('is_tutor', $existTutor)->first());
 
                 return redirect()->route('home')->with([
-                    'errorMsg' => 'You already have a tutor account. Please use the switch account functionality in the toggle down menu after clicking your profile image.'
+                    'errorMsg' => 'You already have a tutor account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                    'toSwitchAccount',
+                    'toSwitchAccount' => true
                 ]);
             }
 
