@@ -98,8 +98,13 @@ class RegisterController extends Controller
 
         // if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him
         if(User::existTutor($request->input('email'))) {
-            echo "<h1>if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him</h1>";
-            dd("if the user is registered as a tutor before, he should be redirected to the specific page that is specifically designed for him");
+            Auth::login(User::where('email', $request->input('email'))->where('is_tutor', true)->first());
+
+            return redirect()->route('home')->with([
+                'errorMsg' => 'You already have a tutor account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                'toSwitchAccount',
+                'toSwitchAccount' => true
+            ]);
         }
 
         // clear all the session data for safety concerns (no one can play around with the email verification process)
@@ -154,8 +159,13 @@ class RegisterController extends Controller
 
         // if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him
         if(User::existStudent($request->input('email'))) {
-            echo "<h1>if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him</h1>";
-            dd("if the user is registered as a student before, he should be redirected to the specific page that is specifically designed for him");
+            Auth::login(User::where('email', $user->email)->where('is_tutor', false)->first());
+
+            return redirect()->route('home')->with([
+                'errorMsg' => 'You already have a student account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                'toSwitchAccount',
+                'toSwitchAccount' => true
+            ]);
         }
 
         // clear all the session data for safety concerns (no one can play around with the email verification process)
