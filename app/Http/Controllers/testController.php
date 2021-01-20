@@ -43,7 +43,7 @@ use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\TutorVerificationNotification;
-use App\Http\Controllers\payment\StripeApiController;
+use App\Http\Controllers\Payment\StripeApiController;
 use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;

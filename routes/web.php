@@ -262,9 +262,9 @@ Route::group([
     'prefix' => 'payment/stripe',
     'middleware' => 'auth'
 ], function() {
-    Route::post('/onboarding', 'payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
-    Route::post('/verify_card_exists', 'payment\StripeApiController@checkIfCardAlreadyExists')->name('payment.stripe.verify_card_exists');
-    Route::get('/list_cards', 'payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
+    Route::post('/onboarding', 'Payment\StripeApiController@createAccountLink')->name('payment.stripe.onboarding');
+    Route::post('/verify_card_exists', 'Payment\StripeApiController@checkIfCardAlreadyExists')->name('payment.stripe.verify_card_exists');
+    Route::get('/list_cards', 'Payment\StripeApiController@listCards')->name('payment.stripe.list-cards');
 
     Route::get('/add_payment_method', 'Payment\StripeApiController@saveCardIndex')->name('payment.stripe.save-card');
     Route::post('/create_payment_intent', 'Payment\StripeApiController@createPaymentIntent')->name('payment.stripe.create_payment_intent');

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Notifications\TutorRequestAccepted;
 use App\Notifications\TutorRequestDeclined;
-use App\Http\Controllers\payment\StripeApiController;
+use App\Http\Controllers\Payment\StripeApiController;
 
 class TutorRequestController extends Controller
 {
