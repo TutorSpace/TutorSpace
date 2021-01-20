@@ -23,5 +23,13 @@ class AdminSeeder extends Seeder
             'email' => 'huan773@usc.edu',
         ]);
 
+        DB::table('admins')->insert([
+            'email' => 'yidieling@gmail.com',
+        ]);
+
+        DB::table('admins')->insert([
+            'email' => 'zhongwez@usc.edu',
+        ]);
+
     }
 }
