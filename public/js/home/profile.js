@@ -223,6 +223,7 @@ window.autocomplete = function (inp, arr, clickCallBackFunc) {
 
 
   document.addEventListener("click", function (e) {
+    if (clickCallBackFunc) clickCallBackFunc();
     closeAllLists(e.target);
   });
 };
