@@ -51,6 +51,33 @@ class StripeApiController extends Controller
         }
     }
 
+    // get endpoint secrets
+    private static function getStripeAccountEndPointSecret(){
+        if (env('APP_ENV') == 'local'){
+            return new \Stripe\StripeClient(
+                env("STRIPE_TEST_ENDPOINT_SECRET_ACCOUNT")
+              );
+        }
+        else if (env('APP_ENV') == 'production'){
+            return new \Stripe\StripeClient(
+                env('STRIPE_LIVE_ENDPOINT_SECRET_ACCOUNT')
+              );
+        }
+    }
+
+    private static function getStripeConnectEndPointSecret(){
+        if (env('APP_ENV') == 'local'){
+            return new \Stripe\StripeClient(
+                env("STRIPE_TEST_ENDPOINT_SECRET_CONNECT")
+              );
+        }
+        else if (env('APP_ENV') == 'production'){
+            return new \Stripe\StripeClient(
+                env('STRIPE_LIVE_ENDPOINT_SECRET_CONNECT')
+              );
+        }
+    }
+
     public static function getStripeInstance(){
         if (env('APP_ENV') == 'local'){
             return new \Stripe\StripeClient(
@@ -542,7 +569,7 @@ class StripeApiController extends Controller
         $payload = $request->getContent();  // Get raw content
 
         // Check signature
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_ACCOUNT');
+        $endpoint_secret = self::getStripeAccountEndPointSecret();
         $sig_header = $request->header('stripe-signature');
 
         try {
@@ -602,7 +629,7 @@ class StripeApiController extends Controller
         $payload = $request->getContent();  // Get raw content
 
         // Check signature
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_CONNECT');
+        $endpoint_secret = self::getStripeConnectEndPointSecret();
         $sig_header = $request->header('stripe-signature');
 
         try {
