@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 // for testing
 Route::get('/test', 'testController@index');
 
+Route::post('/report', 'GeneralController@report')->name('report');
+
 // autocomplete
 Route::group([
     'prefix' => 'autocomplete',

@@ -21,6 +21,7 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    @include('partials.report-box')
     @yield('content')
 
 

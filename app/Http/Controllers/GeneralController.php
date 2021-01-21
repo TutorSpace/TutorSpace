@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\ReportBoxNotification;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\InviteToBeTutorNotification;
 
 class GeneralController extends Controller
@@ -28,6 +30,15 @@ class GeneralController extends Controller
             return redirect()->route('home');
         }
         return view('index');
+    }
+
+    public function report(Request $request) {
+        Notification::route('mail', "tutorspaceusc@gmail.com")
+            ->notify(new ReportBoxNotification($request->input('star-rating'), $request->input('report-content')));
+
+        return redirect()->back()->with([
+            'successMsg' => 'We have successfully received your feedback. Thank you letting us know your thoughts!'
+        ]);
     }
 
     // private policy

@@ -168,4 +168,26 @@ $(document).ready(function(){
         window.location.href = href;
     });
 
+    // report box
+    $('.report-box .heading').click(function() {
+        $('.report-box').toggleClass('report-box--animated');
+    });
+
+    $('.report-box .star-rating svg').click(function() {
+        $(this).prevAll().each(function(idx, el) {
+            $(el).find('path').addClass('fill-color-yellow-primary');
+        })
+        $(this).find('path').addClass('fill-color-yellow-primary');
+
+        $(this).nextAll().each(function(idx, el) {
+            $(el).find('path').removeClass('fill-color-yellow-primary');
+        })
+    });
+
+    $('#report-box-form').submit(function(event) {
+        let rating = $('.report-box .star-rating path.fill-color-yellow-primary').length;
+        $(this).find('input[name=star-rating]').val(rating);
+
+        return true;
+    });
 })
