@@ -152,7 +152,8 @@ class SessionController extends Controller
         }
 
         // rule 1, 2, 3
-        $validStartTime = Carbon::now()->addMinutes(120);
+        // $validStartTime = Carbon::now()->addMinutes(120);
+        $validStartTime = Carbon::now()->addMinutes(5);
         $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',
