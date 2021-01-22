@@ -120,8 +120,7 @@ class SearchController extends Controller
                         $letters = preg_replace('/[^a-zA-Z]/', '', $request->input('nav-search-content'));
                         $courseNumber = $letters . " " . $numbers;
                         $query
-                            ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%")
+                            ->whereRaw("CONCAT(`first_name`, ' ', `last_name`) LIKE ?", ['%'. $request->input('nav-search-content') .'%'])
                             ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
 
