@@ -210,13 +210,15 @@ $('#tutor-profile-request-session').on('click',function() {
                                     console.log(data);
                                     if (successMsg = data.successMsg){
                                         toastr.success(successMsg);
-                                        console.log(successMsg);
+                                        setTimeout(function() {
+                                            window.location.reload()
+                                        }, 1000);
                                     }
                                     if (redirectMsg = data.redirectMsg){
                                         toastr.error("Please add a bank card before booking a tutor session");
                                         setTimeout(function() {
                                             window.location.href = redirectMsg;
-                                        }, 2000);
+                                        }, 1000);
                                     }
                                 },
                                 error: (error) => {
