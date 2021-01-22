@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use App\Providers\RouteServiceProvider;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -56,7 +57,10 @@ class ResetPasswordController extends Controller
             );
         }
         else {
-            dd("error!");
+            Log::debug('error in reset password controller.');
+            return redirect()->route('index')->with([
+                'errorMsg' => 'Something went wrong when resetting the password. Please contact tutorspaceusc@gmail.com for more details'
+            ]);
         }
     }
 
@@ -85,15 +89,18 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
 
+        // should put the variable out of the forloop, because hash make is different even with the same content.
+        $password = Hash::make($password);
+
         // reset the password of all the users with the same email
         foreach(User::where('email', $user->email)->get() as $tempUser) {
-            $tempUser->password = Hash::make($password);
+            $tempUser->password = $password;
             $tempUser->save();
         }
 
         event(new PasswordReset($user));
 
-        request()->session()->put('successMsg', 'Successfully reset your password!');
+        request()->session()->put('successMsg', 'Successfully reset your password.');
         $this->guard()->login($user);
     }
 }
