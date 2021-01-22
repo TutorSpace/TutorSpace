@@ -15,7 +15,7 @@ class CreateTutorLevelsTable extends Migration
     {
         Schema::create('tutor_levels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tutor_level', 64);
+            $table->string('tutor_level', 64)->unique();
             $table->bigInteger('level_experience_lower_bound');
             $table->bigInteger('level_experience_upper_bound');
             $table->double('bonus_rate', 10, 5);

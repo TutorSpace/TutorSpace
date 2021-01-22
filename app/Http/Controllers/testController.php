@@ -57,6 +57,8 @@ class testController extends Controller
     public function index(Request $request) {
         // event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
 
+        Auth::login(User::find('id', '45550663-c999-44aa-9057-1474bb28f4e4'));
+
         // return view('test');
         Tag::getTrendingTags();
         $trendingTags = Tag::withCount([
