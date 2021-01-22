@@ -14,16 +14,18 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
 
     private $user;
     private $inviteCode;
+    private $toSendUser;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($inviteCode, User $user)
+    public function __construct($inviteCode, User $user, $toSendUser)
     {
         $this->user = $user;
         $this->inviteCode = $inviteCode;
+        $this->toSendUser = $toSendUser;
     }
 
     /**
@@ -45,8 +47,19 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Dear ' . isset($notifiable) ? $notifiable->first_name : 'Student')
+        if($this->toSendUser) {
+            return (new MailMessage)
+            ->greeting('Dear ' . $notifiable->first_name)
+            ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
+            ->line('Your referral code is ' . $this->inviteCode)
+            // todo: 具体化bonus是多少
+            ->line('Register now and earn a bonus between 1 to 5 dollars!')
+            // todo: 修改url
+            ->action('Register Now', url('/'))
+            ->line('Thank you for using TutorSpace!');
+        } else {
+            return (new MailMessage)
+                    ->greeting('Dear Student')
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
                     ->line('Your referral code is ' . $this->inviteCode)
                     // todo: 具体化bonus是多少
@@ -54,6 +67,7 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
                     // todo: 修改url
                     ->action('Register Now', url('/'))
                     ->line('Thank you for using TutorSpace!');
+        }
 
     }
 
