@@ -45,9 +45,7 @@
         <span class="user-info mt-1">Student</span>
         <a class="btn btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
 
-        {{-- @if (!App\User::existTutor($user->email)) --}}
         <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
-        {{-- @endif --}}
     @endif
 
 </div>
