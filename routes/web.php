@@ -38,6 +38,7 @@ Route::group([
     Route::get('/', 'InviteController@index')->name('invite.index');
     Route::post('/{user}', 'InviteController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
     Route::post('/', 'InviteController@inviteToBeTutorWithEmail')->middleware('auth')->name('invite-to-be-tutor--email');
+    Route::get('/{inviteUser}', 'InviteController@attemptClaimBonus')->name('invite-to-be-tutor.attempt-claim-bonus');
 });
 
 // upload photo

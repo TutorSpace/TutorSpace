@@ -1,6 +1,6 @@
 <script>
 let calendarOptions = {
-    timeZone: 'PST',
+    // timeZone: 'PST',
     themeSystem: 'bootstrap',
     initialView: 'timeGridDay',
     headerToolbar: {

@@ -72,4 +72,25 @@ class InviteController extends Controller
         return $ajax ? response()->json($result) : redirect()->route('invite.index')->with($result);
     }
 
+    public function attemptClaimBonus(Request $request, InviteUser $inviteUser) {
+        $inviteUser->attempt_to_use = true;
+        $inviteUser->save();
+
+        // if already have a student identity
+        if(User::where('email', $inviteUser->email)->where('is_tutor', false)->exists()) {
+            Auth::login(User::where('email', $request->input('email'))->where('is_tutor', false)->first());
+
+            return redirect()->route('home')->with([
+                'errorMsg' => 'You already have a student account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                'toSwitchAccount',
+                'toSwitchAccount' => true
+            ]);
+        } else {
+            return redirect()->route('register.index.tutor.1')->with([
+                'successMsg' => 'You have successfully acclaimed your bonus. Please register now to claim your rewards!'
+            ]);
+        }
+
+    }
+
 }

@@ -253,7 +253,7 @@
         }
         @endauth
 
-        @if (session()->get('toSwitchAccount'))
+        @if (session()->get('toSwitchAccount') || (isset($toSwitchAccount) && $toSwitchAccount))
             $('.nav__item__svg--switch-account').click();
         @endif
 

@@ -8,8 +8,6 @@ toastr.options.preventDuplicates = true;
 // toastr.options.timeOut = 0;
 // toastr.options.extendedTimeOut = 0;
 
-
-
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
 window.moment = require('moment-timezone');
