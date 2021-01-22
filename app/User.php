@@ -279,6 +279,8 @@ class User extends Authenticatable
                 }
             }
 
+            Log::debug($recommendedTutors);
+
             return $recommendedTutors;
         }
         return [];
