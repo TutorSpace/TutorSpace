@@ -123,7 +123,15 @@ $('#tutor-profile-request-session').on('click',function() {
                     }
                 }
             },
-        }
+        },
+        // onShow: function(e) {
+        //     $('.calendar').addClass('hidden');
+        // },
+        // onShown: function(e) {
+        //     setTimeout(function () {
+        //         $('.calendar').removeClass('hidden');
+        //     }, 1000);
+        // }
     });
 
     if(startTime) {
