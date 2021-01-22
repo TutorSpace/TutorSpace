@@ -509,6 +509,7 @@ class User extends Authenticatable
         return Session::select('sessions.*')
                 ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
                 ->where('sessions.is_upcoming', false)
+                ->where('sessions.student_id', Auth::id())
                 ->where('reviews.session_id', null)
                 ->get();
     }
