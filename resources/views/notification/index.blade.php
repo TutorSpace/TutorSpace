@@ -30,7 +30,22 @@ bg-student
             @include('notification.side-bar--left')
         </div>
         <div class="notification__content" id="notification__content">
-            @include('notification.content.placeholder')
+            @php
+                $session = App\Session::first();
+                $user = App\User::first();
+                $tutorRequest = App\TutorRequest::first();
+            @endphp
+            @include('notification.content.sessions.session-complete-tutor', [
+                'session' => $session,
+                'transactionDetails' => [
+                        'amount' => 100,
+                        'application_fee' => 100,
+                        'bonus' => 100,
+                        'stripe_payment_fee' => 100,
+                        'tutor_receive' => true,
+                        'platform_receive' => true,
+                    ],
+            ])
         </div>
     </div>
 </div>
