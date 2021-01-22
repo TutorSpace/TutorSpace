@@ -1,6 +1,6 @@
 <script>
 let calendarOptions = {
-    timeZone: 'America/Los_Angeles',
+    timeZone: 'local',
     themeSystem: 'bootstrap',
     initialView: 'timeGridFiveDay',
     headerToolbar: {
@@ -89,10 +89,8 @@ let calendarOptions = {
             start: '{{$time->available_time_start}}',
             end: '{{$time->available_time_end}}',
             description: "",
-            id: "{{ $time->id }}",
-            type: "available-time",
             display: "background",
-            classNames: ['my-available-time', 'hover--pointer']
+            classNames: ['my-available-time']
         },
         @endforeach
 
@@ -113,6 +111,17 @@ let calendarOptions = {
             start: '{{ $upcomingSession->session_time_start }}',
             end: '{{ $upcomingSession->session_time_end }}',
             description: "",
+        },
+        @endforeach
+
+        @foreach($user->pendingTutorRequests as $request)
+        {
+            title: 'Your Tutor Request',
+            start: '{{$request->session_time_start}}',
+            end: '{{$request->session_time_end}}',
+            description: "",
+            display: "background",
+            classNames: ['tutor-request--view-profile', 'text-center']
         },
         @endforeach
     ],

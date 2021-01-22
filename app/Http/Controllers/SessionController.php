@@ -224,7 +224,7 @@ class SessionController extends Controller
 
             return response()->json(
                 [
-                    'successMsg' => 'Successfully scheduled the tutor session!',
+                    'successMsg' => 'Successfully requested the tutor session!',
                 ]
             );
         } else{

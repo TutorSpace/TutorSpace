@@ -14501,6 +14501,10 @@ h6 {
   background-color: #6749DF !important;
 }
 
+.bg-color-notification--tutore-requests {
+  background-color: rgba(165, 190, 13, 0.8);
+}
+
 .bg-student .color-primary {
   color: #1F7AFF;
 }
@@ -16977,6 +16981,15 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: rgba(165, 190, 13, 0.8) !important;
   border-color: rgba(165, 190, 13, 0.8) !important;
   z-index: 101 !important;
+}
+
+#calendar .tutor-request--view-profile,
+.calendar .tutor-request--view-profile {
+  width: 100%;
+  background-color: #a5be0d !important;
+  border-color: #a5be0d !important;
+  color: #626262 !important;
+  opacity: 0.8;
 }
 
 #calendar .online-session,
