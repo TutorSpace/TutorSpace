@@ -123,7 +123,7 @@ $('.btn-view-all-notifications').click(function() {
     }
 });
 
-$('.btn-view-all-bookmarked-users').click(function() {
+$(document).on('click', '.btn-view-all-bookmarked-users', function() {
     $('.home__side-bar__bookmarked-users').find('.bookmarked-users [data-to-hide="true"]').toggleClass("hidden");
     if($(this).html().includes('View')) {
         $(this).html('Hide')
