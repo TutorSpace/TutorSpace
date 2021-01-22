@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Completed ({{ $session->session_time_start->format('m/d/y D') }})
+    Rate Your Tutor ({{ $session->session_time_start->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 

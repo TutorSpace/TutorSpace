@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Refund Request Received
+    Refund Request Received [{{ $session->id }}]
 </div>
 <div class="notification__content__info">
 

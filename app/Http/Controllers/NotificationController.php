@@ -132,7 +132,7 @@ class NotificationController extends Controller
                 ])->render();
         } else if($notif->type == 'App\Notifications\UnratedTutorNotification') {
             $view = view(
-                'notification.content.sessions.unrate-tutor', [
+                'notification.content.sessions.unrated-tutor', [
                     'session' => Session::find($notif->data['session']['id']),
                 ])->render();
         } else if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification') {

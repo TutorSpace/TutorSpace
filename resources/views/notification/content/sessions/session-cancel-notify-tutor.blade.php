@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Cancelled ({{ $session->session_time_start->format('m/d/y D') }})
+    Session Cancelled [{{ $session->id }}]
 </div>
 <div class="notification__content__info">
 
