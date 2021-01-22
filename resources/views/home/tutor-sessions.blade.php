@@ -102,6 +102,10 @@ bg-student
                                 'hidden' => $i > 2
                             ])
                         @endfor
+                        @else
+                        <div class="white-large-board">
+                            <span>No Upcoming Sessions.</span>
+                        </div>
                         @endif
                     @else
                         @php
