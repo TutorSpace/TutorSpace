@@ -124,6 +124,7 @@ $('#tutor-profile-request-session').on('click',function() {
                 }
             },
         },
+        // to avoid calendar loading issue
         onShow: function(e) {
             $('.calendar').addClass('invisible');
         },
