@@ -131,7 +131,6 @@ $('#tutor-profile-request-session').on('click',function() {
             setTimeout(function () {
                 $('.calendar').removeClass('invisible');
             }, 100);
-
         }
     });
 
