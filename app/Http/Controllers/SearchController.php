@@ -154,7 +154,6 @@ class SearchController extends Controller
         }
 
 
-        // TODO: change this part about the available time
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
