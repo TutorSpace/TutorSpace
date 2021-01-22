@@ -13,7 +13,7 @@ toastr.options.preventDuplicates = true;
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
 window.moment = require('moment');
-moment().tz("America/Los_Angeles").format();
+// window.moment.tz("America/Los_Angeles").format();
 
 window.Pikaday = require('pikaday');
 require('timepicker');
