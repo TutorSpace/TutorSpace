@@ -96,7 +96,6 @@
     @if(
         in_array(Route::current()->getName(), ['posts.show'])
         && $post->user->email != Auth::user()->email)
-    )
         @include('partials.user_card', ['user' => $post->user])
     @endif
 
