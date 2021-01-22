@@ -41,9 +41,9 @@ let calendarOptions = {
         @if(Auth::check() && Auth::user()->is_tutor)
         return false;
         @else
-        alert(selectionInfo.start);
+        // alert(selectionInfo.start);
         let startTime = moment(selectionInfo.start);
-        alert(startTime);
+        // alert(startTime);
         if(startTime.isBefore(moment())) return false;
 
         if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
