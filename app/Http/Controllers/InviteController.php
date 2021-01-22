@@ -27,7 +27,11 @@ class InviteController extends Controller
     }
 
     private function inviteHelper($email, $ajax) {
-        if(Auth::user()->email == $email) {
+        if (!$email || ctype_space($email)) {
+            $result = [
+                'errorMsg' => 'Please enter a valid email!'
+            ];
+        } else if(Auth::user()->email == $email) {
             $result = [
                 'errorMsg' => 'You can not invite yourself to be a tutor.'
             ];
