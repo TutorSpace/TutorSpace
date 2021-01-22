@@ -1,6 +1,6 @@
 <script>
 let calendarOptions = {
-    // timeZone: 'PST',
+    timeZone: 'America/Los_Angeles',
     themeSystem: 'bootstrap',
     initialView: 'timeGridFiveDay',
     headerToolbar: {
@@ -41,7 +41,9 @@ let calendarOptions = {
         @if(Auth::check() && Auth::user()->is_tutor)
         return false;
         @else
+        alert(selectionInfo.start);
         let startTime = moment(selectionInfo.start);
+        alert(startTime);
         if(startTime.isBefore(moment())) return false;
 
         if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
@@ -59,8 +61,8 @@ let calendarOptions = {
         endTime = moment(selectionInfo.end);
         // if the modal appeared
         if($('.calendar-details')[0]) {
-            $('#session-date').html(startTime.tz("America/Los_Angeles").format("MM/DD/YYYY dddd"));
-            $('#session-time').html(startTime.tz("America/Los_Angeles").format("h:mma") + " - " + endTime.format("h:mma"));
+            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
             $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
         } else {
             $('#tutor-profile-request-session').click();
