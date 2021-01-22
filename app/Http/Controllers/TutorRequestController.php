@@ -42,7 +42,7 @@ class TutorRequestController extends Controller
 
                 $tutorRequest->refresh();
 
-                User::find($studentId)->notify(new TutorRequestAccepted($tutorRequest));
+                User::find($studentId)->notify(new TutorRequestAccepted($session));
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);

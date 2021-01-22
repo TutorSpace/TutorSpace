@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\TutorRequest;
+use App\Session;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,16 +12,16 @@ class TutorRequestAccepted extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $tutorRequest;
+    private $session;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(TutorRequest $tutorRequest)
+    public function __construct(Session $session)
     {
-        $this->tutorRequest = $tutorRequest;
+        $this->session = $session;
     }
 
     /**
@@ -45,7 +45,7 @@ class TutorRequestAccepted extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('Your tutor request from ' . $this->tutorRequest->session_time_start . ' to ' . $this->tutorRequest->session_time_end . ' is accepted')
+                ->line('Your tutor request from ' . $this->session->session_time_start . ' to ' . $this->session->session_time_end . ' is accepted')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }
@@ -59,7 +59,7 @@ class TutorRequestAccepted extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'tutorRequest' => $this->tutorRequest
+            'session' => $this->session
         ];
     }
 }
