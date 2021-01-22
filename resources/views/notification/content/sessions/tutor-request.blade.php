@@ -15,7 +15,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
 
         <div class="container content">
-            <p class="pt-3 fs-2-4 text-center fw-500">{{ $tutorRequest->tutor->first_name . ' ' . $tutorRequest->tutor->last_name }}</p>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $tutorRequest->student->first_name . ' ' . $tutorRequest->student->last_name }}</p>
 
             <h6 class="mt-3 color-primary">Session Details</h6>
 
