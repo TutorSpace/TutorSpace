@@ -34,17 +34,13 @@ bg-student
                 $session = App\Session::first();
                 $user = App\User::first();
                 $tutorRequest = App\TutorRequest::first();
+
+                $post = App\Post::first();
             @endphp
-            @include('notification.content.sessions.session-complete-tutor', [
-                'session' => $session,
-                'transactionDetails' => [
-                        'amount' => 100,
-                        'application_fee' => 100,
-                        'bonus' => 100,
-                        'stripe_payment_fee' => 100,
-                        'tutor_receive' => true,
-                        'platform_receive' => true,
-                    ],
+            @include('notification.content.forum.new-reply', [
+                'post' => $post,
+                'content' => 'content',
+                'forFollowers' => false,
             ])
         </div>
     </div>
