@@ -43,7 +43,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Price:</div>
                     <p class="color-primary fs-1-5 fw-500">
-                        {{ $price }}
+                       $ {{ $price }}
                     </p>
                 </div>
             </div>
