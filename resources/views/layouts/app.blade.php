@@ -21,7 +21,10 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    @if (Route::current()->getName() != 'index')
     @include('partials.report-box')
+    @endif
+
     @yield('content')
 
 
