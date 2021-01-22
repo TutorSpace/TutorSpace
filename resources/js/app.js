@@ -12,8 +12,9 @@ toastr.options.preventDuplicates = true;
 
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
-window.moment = require('moment');
-// window.moment.tz("America/Los_Angeles").format();
+window.moment = require('moment-timezone');
+
+window.moment.tz.setDefault("America/Los_Angeles");
 
 window.Pikaday = require('pikaday');
 require('timepicker');
