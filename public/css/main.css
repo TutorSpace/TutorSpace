@@ -21303,6 +21303,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.4rem;
   padding: 0.3rem 0.5rem;
   align-self: center;
+  max-width: 10rem;
 }
 
 .search .search-results .search-result .user-rating {
@@ -22842,18 +22843,34 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 20rem;
+  padding: 0 3rem;
   margin: 0 auto;
   grid-gap: 1rem 1rem;
+  justify-items: center;
+}
+
+@media only screen and (max-width: 47.99em) {
+  .view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 35.99em) {
+  .view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 55rem;
+  }
 }
 
 .view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses .course {
-  padding: 0.3rem 0.5rem;
+  padding: 0.6rem 1rem;
   display: inline-flex;
+  white-space: nowrap;
   align-items: center;
   border-radius: 0.5rem;
-  font-size: 1.2rem;
-  width: 9rem;
+  font-size: 1.4rem;
+  width: 100%;
+  max-width: 12rem;
   justify-content: center;
 }
 
