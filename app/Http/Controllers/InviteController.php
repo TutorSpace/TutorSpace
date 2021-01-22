@@ -47,7 +47,14 @@ class InviteController extends Controller
                 $lastInvitation->invite_code = uniqid();
                 $lastInvitation->save();
 
-                User::where('email', $email)->where('is_tutor', false)->first()->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user()));
+                if(User::existStudent($email)) {
+                    User::where('email', $email)->where('is_tutor', false)->first()->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user()));
+                } else {
+                    // if not a user on our platform
+                    Notification::route('mail', $email)
+                    ->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user()));
+                }
+
             }
         } else {
             $result = [
