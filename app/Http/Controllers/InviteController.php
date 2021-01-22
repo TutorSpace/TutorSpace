@@ -35,8 +35,7 @@ class InviteController extends Controller
             $result = [
                 'errorMsg' => 'You can not invite yourself to be a tutor.'
             ];
-        }
-        else if(!User::existTutor($email)) {
+        } else if(!User::existTutor($email)) {
             $invitedBefore = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->exists();
             $lastInvitation = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->first();
             // if sent within 1 day ago and have sent before
