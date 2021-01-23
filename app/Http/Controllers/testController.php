@@ -25,18 +25,19 @@ use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
 use App\Events\NewChatroom;
+use App\Session as Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Session as Session;
 use App\Notifications\PayoutPaid;
+use App\CustomClass\TimeFormatter;
 use App\Notifications\InvoicePaid;
+
 use Illuminate\Support\Facades\DB;
 use App\Events\SessionReviewPosted;
-
 use App\Notifications\PayoutFailed;
+
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
-
 use App\Notifications\EmailVerification;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
@@ -57,23 +58,11 @@ class testController extends Controller
     public function index(Request $request) {
         // event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
 
-        // Auth::login(User::find('45550663-c999-44aa-9057-1474bb28f4e4'));
-
-        // // return view('test');
-        // Tag::getTrendingTags();
-        // $trendingTags = Tag::withCount([
-        //     'posts'
-        // ])
-        // ->with([
-        //     'posts' => function($query) {
-        //         $query->withCount('replies');
-        //     }
-        // ])
-        // ->orderBy('posts_count', 'desc')
-        // ->get();
-        echo Auth::user()->recommendedTutors();
-
-
+        $ip = file_get_contents("http://ipecho.net/plain");
+                $url = 'http://ip-api.com/json/'.$ip;
+                $tz = file_get_contents($url);
+                $tz = json_decode($tz,true)['timezone'];
+        echo ($ip);
     }
 
     public function test(Request $request) {

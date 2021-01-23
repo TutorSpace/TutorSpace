@@ -5,13 +5,14 @@ namespace App\Events;
 use App\User;
 use App\Message;
 use Carbon\Carbon;
+use App\CustomClass\TimeFormatter;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Foundation\Events\Dispatchable;
 
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
@@ -55,6 +56,7 @@ class NewMessage implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
+        $tz = TimeFormatter::getTZ();
         return [
             'from' => $this->message->from,
             'to' => $this->message->to,
@@ -64,7 +66,7 @@ class NewMessage implements ShouldBroadcastNow
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
                 'user' => User::find($this->message->from),
                 'message' => $this->message->message,
-                'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at))
+                'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz)))
             ])->render(),
         ];
     }
