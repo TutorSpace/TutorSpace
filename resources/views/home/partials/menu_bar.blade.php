@@ -23,7 +23,7 @@
                 <svg class="toggle-after-list-svg">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-study')}}"></use>
                 </svg>
-                <span>tutoring sessions</span>
+                <span>Tutoring sessions</span>
             </a>
         </li>
         <li class="toggle-after-list-item">
@@ -57,7 +57,7 @@
         </li>
         <li @if(Route::current()->getName() == 'home.tutor-sessions') class="active" @endif>
             <a href="{{ route('home.tutor-sessions') }}">
-                <span>tutoring sessions</span>
+                <span>Tutoring sessions</span>
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-right arrow" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
