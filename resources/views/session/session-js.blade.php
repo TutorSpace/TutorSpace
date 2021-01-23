@@ -138,13 +138,17 @@ $('#tutor-profile-request-session').on('click',function() {
     if(startTime) {
         $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
         $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+        // not same day
+        if(startTime.format("MM/DD/YYYY") != endTime.format('MM/DD/YYYY')) {
+            $('#session-date').html(startTime.format("MM/DD/YYYY dddd") + ' to ' + endTime.format("MM/DD/YYYY dddd"));
+            $('#session-time').html(startTime.format("MM/DD h:mma") + " - " + endTime.format("MM/DD h:mma"));
+        } else {
+            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+        }
+
         $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
     }
-    // console.log(calendarOptions.select);
-    // JSON.parse(JSON.stringify(calendarOptions)) => will lose the function
-    // let options = JSON.parse(JSON.stringify(calendarOptions));
-    // console.log(options.select);
-    // options.height = 250;
 
     calendarOptions.height = 300
     let e = new FullCalendar.Calendar($('#calendar-request-session')[0], calendarOptions);

@@ -143,8 +143,6 @@ class SessionController extends Controller
         // 4. course must be taught by tutor
         // 5. current user must be a student and the requested user must be a tutor
 
-        Log::debug($request['startTime'] . ' to ' . $request['endTime']);
-
         // rule 4 & 5
         if(
             !User::find($request->input('tutorId'))->is_tutor
@@ -153,10 +151,11 @@ class SessionController extends Controller
             return abort(401);
         }
 
-        // rule 1, 2, 3
+        // important: the input time must all be in utc timezone
 
-        // todo: double check the time used here
+        // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
+
         $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',
@@ -167,7 +166,6 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-                new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [
@@ -184,7 +182,7 @@ class SessionController extends Controller
                 'in:in-person,online'
             ],
         ],[
-            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
+            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time."
         ]);
 
         // return validation error messages

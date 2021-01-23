@@ -18,12 +18,10 @@ class CalendarController extends Controller
         $request->validate([
             'start-time' => [
                 'required',
-                // 'date_format:Y-m-d H:i:00',
                 'after_or_equal:today'
             ],
             'end-time' => [
                 'required',
-                // 'date_format:Y-m-d H:i:00',
                 'after_or_equal:today',
                 'after_or_equal:start-time'
             ]

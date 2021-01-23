@@ -53,12 +53,21 @@ let calendarOptions = {
         endTime = moment(selectionInfo.end);
         // if the modal appeared
         if($('.calendar-details')[0]) {
-            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
-            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            // not same day
+            if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) {
+                $('#session-date').html(startTime.format("MM/DD/YYYY dddd") + ' to ' + endTime.format("MM/DD/YYYY dddd"));
+                $('#session-time').html(startTime.format("MM/DD h:mma") + " - " + endTime.format("MM/DD h:mma"));
+            } else {
+                $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+                $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            }
+
             $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
         } else {
             $('#tutor-profile-request-session').click();
         }
+        startTime = moment.utc(selectionInfo.start);
+        endTime = moment.utc(selectionInfo.end);
         @else
         $('.overlay-student').show();
         @endauth
