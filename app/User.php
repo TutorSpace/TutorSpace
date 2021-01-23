@@ -240,19 +240,20 @@ class User extends Authenticatable
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::select("users.*")
+
                                 ->where('users.is_tutor', true)
                                 ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
                                 ->where('users.email', '!=', $this->email)
+                                 ->inRandomOrder()
                                 ->distinct()
                                 ->get();
 
 
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
-            echo "jere";
 
             if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
