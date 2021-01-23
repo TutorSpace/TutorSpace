@@ -249,6 +249,7 @@ class User extends Authenticatable
                                 ->distinct()
                                 ->get();
 
+            echo $recommendedTutors;
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
 
@@ -272,7 +273,7 @@ class User extends Authenticatable
                 $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
 
                 $recommendedTutors = $recommendedTutors->merge($tutors);
-                echo $recommendedTutors;
+
                 // if there are still < 3 tutors, then randomly pick from the tutors
                 if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
