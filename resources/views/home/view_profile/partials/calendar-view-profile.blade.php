@@ -1,6 +1,6 @@
 <script>
 let calendarOptions = {
-    // timeZone: 'PST',
+    timeZone: 'local',
     themeSystem: 'bootstrap',
     initialView: 'timeGridFiveDay',
     headerToolbar: {
@@ -14,7 +14,7 @@ let calendarOptions = {
     selectable: true,
     selectMirror: true,
     nowIndicator: true,
-    slotMinTime: "08:00:00",
+    slotMinTime: "00:00:00",
     slotMaxTime: "24:00:00",
     allDaySlot: false,
     selectOverlap: function(event) {
@@ -34,37 +34,40 @@ let calendarOptions = {
             buttonText: '5 days'
         }
     },
-    now: function () {
-        return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
-    },
     selectAllow: function(selectionInfo) {
         @if(Auth::check() && Auth::user()->is_tutor)
         return false;
         @else
         let startTime = moment(selectionInfo.start);
-        if(startTime.isBefore(moment())) return false;
-
-        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+        if(startTime.isBefore(moment().add(2, 'hours'))) {
+            toastr.error('Tutor session must be scheduled 2 hours ahead of start time.');
+            return false;
+        }
 
         return true;
         @endif
     },
     select: function (selectionInfo) {
         @auth
-        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) {
-            return false;
-        }
-
         startTime = moment(selectionInfo.start);
         endTime = moment(selectionInfo.end);
         // if the modal appeared
         if($('.calendar-details')[0]) {
-            $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
-            $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            // not same day
+            if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) {
+                $('#session-date').html(startTime.format("MM/DD/YYYY dddd") + ' to ' + endTime.format("MM/DD/YYYY dddd"));
+                $('#session-time').html(startTime.format("MM/DD h:mma") + " - " + endTime.format("MM/DD h:mma"));
+            } else {
+                $('#session-date').html(startTime.format("MM/DD/YYYY dddd"));
+                $('#session-time').html(startTime.format("h:mma") + " - " + endTime.format("h:mma"));
+            }
+
             $('#hourly-rate').html(`$ ${otherUserHourlyRate} per hour`);
         } else {
             $('#tutor-profile-request-session').click();
         }
+        startTime = moment.utc(selectionInfo.start);
+        endTime = moment.utc(selectionInfo.end);
         @else
         $('.overlay-student').show();
         @endauth
@@ -84,13 +87,11 @@ let calendarOptions = {
         @foreach($user->availableTimes as $time)
         {
             textColor: 'transparent',
-            start: '{{$time->available_time_start}}',
-            end: '{{$time->available_time_end}}',
+            start: moment.utc('{{$time->available_time_start}}').format(),
+            end: moment.utc('{{$time->available_time_end}}').format(),
             description: "",
-            id: "{{ $time->id }}",
-            type: "available-time",
             display: "background",
-            classNames: ['my-available-time', 'hover--pointer']
+            classNames: ['my-available-time']
         },
         @endforeach
 
@@ -108,9 +109,19 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: '{{ $upcomingSession->session_time_start }}',
-            end: '{{ $upcomingSession->session_time_end }}',
+            start: moment.utc('{{$upcomingSession->session_time_start}}').format(),
+            end:  moment.utc('{{$upcomingSession->session_time_emd}}').format(),
+        },
+        @endforeach
+
+        @foreach($user->pendingTutorRequests as $request)
+        {
+            title: 'Your Tutor Request',
+            start: moment.utc('{{$request->session_time_start}}').format(),
+            end: moment.utc('{{$request->session_time_end}}').format(),
             description: "",
+            display: "background",
+            classNames: ['tutor-request--view-profile', 'text-center']
         },
         @endforeach
     ],

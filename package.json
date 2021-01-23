@@ -32,6 +32,7 @@
         "js-loading-overlay": "^1.2.0",
         "metrics-graphics": "^2.15.6",
         "moment": "^2.27.0",
+        "moment-timezone": "^0.5.32",
         "pikaday": "^1.8.0",
         "select2": "^4.0.13",
         "timepicker": "^1.13.11",

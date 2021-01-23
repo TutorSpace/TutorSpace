@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Refund Request Declined
+    Refund Request Declined [{{ $session->id }}]
 </div>
 <div class="notification__content__info">
 
@@ -45,13 +45,13 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Price:</div>
                     <p class="color-primary fs-1-5 fw-500">
-                        {{ $price }}
+                       $ {{ $price }}
                     </p>
                 </div>
             </div>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ class TutorProfileVerificationController extends Controller
             $user->notify(new TutorVerificationInitiatedNotification(true, $tutor_verification_file));
 
             // send to tutorspace
-            Notification::route('mail', "tutorspaceusc@gmail.com")
+            Notification::route('mail', "tutorspacehelp@gmail.com")
             ->notify(new TutorVerificationInitiatedNotification(false, $tutor_verification_file));
         }
 

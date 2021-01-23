@@ -241,6 +241,7 @@ class User extends Authenticatable
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::select("users.*")
                                 ->where('users.is_tutor', true)
+                                ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
@@ -254,6 +255,7 @@ class User extends Authenticatable
                 $tutorIds = $recommendedTutors->pluck('id');
                 $tutors = User::select("users.*")
                             ->where('users.is_tutor', true)
+                            ->where('users.is_invalid', false)
                             ->where(function($query) {
                                 // if is null, then assign -1 to it so that null != null
                                 $query->where('users.first_major_id', $this->first_major_id ?? -1)
@@ -275,6 +277,7 @@ class User extends Authenticatable
                     $tutorIds = $recommendedTutors->pluck('id');
                     $tutors = User::select("users.*")
                                     ->where('users.is_tutor', true)
+                                    ->where('users.is_invalid', false)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
                                     ->distinct()
@@ -284,6 +287,8 @@ class User extends Authenticatable
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
+
+            Log::debug($recommendedTutors);
 
             return $recommendedTutors;
         }
@@ -515,6 +520,7 @@ class User extends Authenticatable
         return Session::select('sessions.*')
                 ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
                 ->where('sessions.is_upcoming', false)
+                ->where('sessions.student_id', Auth::id())
                 ->where('reviews.session_id', null)
                 ->get();
     }

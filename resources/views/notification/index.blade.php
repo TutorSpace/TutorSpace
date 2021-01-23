@@ -113,6 +113,11 @@ bg-student
         });
     });
 
+    $('.msg .time').each((idx, el) => {
+        let timeUTC = moment.utc($(el).html(), "YYYY-MM-DD H:mm:s A");
+        $(el).html(moment(timeUTC).tz(moment.tz.guess()).format('YYYY-MM-DD H:mm:s'));
+    });
+
     @if(isset($showNotif))
     $('.msgs .msg[data-notif-id={{ $showNotif }}]').click();
     @endif

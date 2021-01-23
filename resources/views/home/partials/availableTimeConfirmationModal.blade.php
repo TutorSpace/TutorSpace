@@ -12,7 +12,6 @@
                     </button>
                 </div>
                 <div class="modal-body fc-black-post">
-
                         <input type="hidden" value="" name="start-time">
                         <input type="hidden" value="" name="end-time">
                         Are you sure you are available from <br/>

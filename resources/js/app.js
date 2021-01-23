@@ -8,11 +8,11 @@ toastr.options.preventDuplicates = true;
 // toastr.options.timeOut = 0;
 // toastr.options.extendedTimeOut = 0;
 
-
-
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
-window.moment = require('moment');
+window.moment = require('moment-timezone');
+// window.moment.tz.setDefault("UTC");
+
 window.Pikaday = require('pikaday');
 require('timepicker');
 
@@ -28,8 +28,6 @@ window.jsLoadingOverlayOptions = {
     'overlayIDName': 'overlay',
     'spinnerIDName': 'spinner',
 };
-
-
 
 $(document).ready(function(){
     $.ajaxSetup({

@@ -21,7 +21,10 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    @if (Route::current()->getName() != 'index')
     @include('partials.report-box')
+    @endif
+
     @yield('content')
 
 
@@ -113,14 +116,14 @@
                             $('.home__side-bar__bookmarked-users').html(data.view);
                         },
                         error: function(error) {
-                            toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                            toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
                             console.log(error);
                         }
                     });
                     @endif
                 },
                 error: function(error) {
-                    toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                    toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
                     console.log(error);
                 },
                 complete: () => {
@@ -250,7 +253,7 @@
         }
         @endauth
 
-        @if (session()->get('toSwitchAccount'))
+        @if (session()->get('toSwitchAccount') || (isset($toSwitchAccount) && $toSwitchAccount))
             $('.nav__item__svg--switch-account').click();
         @endif
 

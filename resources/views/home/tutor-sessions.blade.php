@@ -80,7 +80,7 @@ bg-student
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: Note: All time shown are based on your local timezone.</span>
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">
@@ -102,6 +102,10 @@ bg-student
                                 'hidden' => $i > 2
                             ])
                         @endfor
+                        @else
+                        <div class="white-large-board">
+                            <span>No Upcoming Sessions.</span>
+                        </div>
                         @endif
                     @else
                         @php
@@ -311,7 +315,7 @@ $('.btn-cancel-request').click(function() {
             }, 1000);
         },
         error: (error) => {
-            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspaceusc@gmail.com for more details.')
+            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspacehelp@gmail.com for more details.')
             console.log(error);
         },
         complete: () => {

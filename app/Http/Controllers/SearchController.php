@@ -118,10 +118,9 @@ class SearchController extends Controller
                     ->where(function ($query) use($request) {
                         $numbers = preg_replace('/[^0-9]/', '', $request->input('nav-search-content'));
                         $letters = preg_replace('/[^a-zA-Z]/', '', $request->input('nav-search-content'));
-                        $courseNumber = $letters . " " . $numbers;
+                        $courseNumber = trim(trim($letters) . " " . trim($numbers));
                         $query
-                            ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%")
+                            ->whereRaw("CONCAT(`first_name`, ' ', `last_name`) LIKE ?", ['%'. $request->input('nav-search-content') .'%'])
                             ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
 
@@ -154,10 +153,10 @@ class SearchController extends Controller
         }
 
 
-        // TODO: change this part about the available time
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
+                // change time zone in frontend
                 $availableTimeRange = $request->input('available-time-range');
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
                     $startTimes = ["8:00:00"];

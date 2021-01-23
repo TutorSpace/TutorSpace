@@ -49,7 +49,7 @@ class ChargeRefundUpdated extends Notification implements ShouldQueue
         if ($this->is_sending_to_user) {
             return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
+                    ->line('Your refund request for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' (PST Time Zone) has failed.')
                     ->line('The failure reason is ' . $this->failure_reason . '.')
                     ->line('Please contact tutorspaceusc@gamil.com for more details.')
                     ->action('Visit TutorSpace', url('/'))

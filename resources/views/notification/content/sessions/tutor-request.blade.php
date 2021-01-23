@@ -15,7 +15,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
 
         <div class="container content">
-            <p class="pt-3 fs-2-4 text-center fw-500">{{ $tutorRequest->tutor->first_name . ' ' . $tutorRequest->tutor->last_name }}</p>
+            <p class="pt-3 fs-2-4 text-center fw-500">{{ $tutorRequest->student->first_name . ' ' . $tutorRequest->student->last_name }}</p>
 
             <h6 class="mt-3 color-primary">Session Details</h6>
 
@@ -41,7 +41,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Price:</div>
                     <p class="color-primary fs-1-5 fw-500">
-                        {{ $price }}
+                        ${{ $price }}
                     </p>
                 </div>
             </div>

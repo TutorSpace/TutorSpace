@@ -33,7 +33,7 @@ class GeneralController extends Controller
     }
 
     public function report(Request $request) {
-        Notification::route('mail', "tutorspaceusc@gmail.com")
+        Notification::route('mail', "tutorspacehelp@gmail.com")
             ->notify(new ReportBoxNotification($request->input('star-rating'), $request->input('report-content')));
 
         return redirect()->back()->with([

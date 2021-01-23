@@ -19,10 +19,10 @@
                 <a class="color-primary" href="{{ route('index') }}">https://tutorspace.joinme.us</a>
             </p>
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com">Contact TutorSpace</a>
             </div>
         </div>
     </div>
 
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
+    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspacehelp@gmail.com">tutorspacehelp@gmail.com</a></p> --}}
 </div>

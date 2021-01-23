@@ -220,18 +220,30 @@
                 .courses {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
-                    width: 20rem;
+                    padding: 0 3rem;
                     margin: 0 auto;
                     grid-gap: 1rem 1rem;
+                    justify-items: center;
+
+                    @include respond(sm) {
+                        grid-template-columns: 1fr;
+                    }
+
+                    @include respond(extra-sm) {
+                        grid-template-columns: 1fr 1fr 1fr 1fr;
+                        width: 55rem;
+                    }
 
                     .course {
-                        padding: .3rem .5rem;
+                        padding: .6rem 1rem;
                         display: inline-flex;
+                        white-space: nowrap;
                         align-items: center;
                         border-radius: .5rem;
-                        font-size: 1.2rem;
+                        font-size: 1.4rem;
 
-                        width: 9rem;
+                        width: 100%;
+                        max-width: 12rem;
                         justify-content: center;
                     }
                 }

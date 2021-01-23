@@ -36,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // todo: check this overlap
         Gate::define('add-available-time', function ($user, $startTime, $endTime) {
             $isAvailable = true;
             foreach($user->availableTimes as $availableTime) {

@@ -19,6 +19,27 @@
         position: relative;
         top: .5rem;
     }
+
+    .white-large-board {
+        background-color: $color-white-dark-5;
+        height: 100%;
+        border-radius: 1rem;
+        box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+
+        position: relative;
+
+        @include respond(md) {
+            display: none;
+        }
+
+        span {
+            font-size: 2rem;
+            color: $color-grey;
+            white-space: nowrap;
+
+            @include absCenter;
+        }
+    }
 }
 
 .home .past-sessions {

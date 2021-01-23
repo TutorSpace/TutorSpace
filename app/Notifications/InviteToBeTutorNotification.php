@@ -12,18 +12,20 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $user;
-    public $inviteCode;
+    private $user;
+    private $inviteCode;
+    private $toSendUser;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($inviteCode, User $user)
+    public function __construct($inviteCode, User $user, $toSendUser)
     {
         $this->user = $user;
         $this->inviteCode = $inviteCode;
+        $this->toSendUser = $toSendUser;
     }
 
     /**
@@ -45,14 +47,26 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->greeting('Dear ' . $notifiable->first_name)
+        if($this->toSendUser) {
+            return (new MailMessage)
+            ->greeting('Dear ' . $notifiable->first_name)
+            ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
+            ->line('Your referral code is ' . $this->inviteCode)
+            // todo: 具体化bonus是多少
+            ->line('Register now and earn a bonus between 1 to 5 dollars!')
+            ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
+            ->line('Thank you for using TutorSpace!');
+        } else {
+            return (new MailMessage)
+                    ->greeting('Dear Student')
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
                     ->line('Your referral code is ' . $this->inviteCode)
                     // todo: 具体化bonus是多少
-                    ->line('Please register to be a tutor and earn your bonus!')
-                    ->action('Register Now', url('/'))
+                    ->line('Register now and earn a bonus between 1 to 5 dollars!')
+                    ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
                     ->line('Thank you for using TutorSpace!');
+        }
+
     }
 
     /**

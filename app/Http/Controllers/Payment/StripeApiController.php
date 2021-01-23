@@ -349,7 +349,7 @@ class StripeApiController extends Controller
 
         // Send email if extra bonus exists
         if ($transaction->extra_bonus_amount > 0) {
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new ExtraSessionBonus($transaction->session, $transaction->extra_bonus_amount));
         }
     }
@@ -457,7 +457,7 @@ class StripeApiController extends Controller
             $transaction->save();
 
             Auth::user()->notify(new UserRequestedRefundNotification(Auth::user(), $session, true));
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
             ->notify(new UserRequestedRefundNotification(Auth::user(), $session, false));
 
             $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
@@ -466,11 +466,11 @@ class StripeApiController extends Controller
         } else if($transaction->refund_status == 'pending') {
             $msg = "You already made the request. Please wait it to be processed.";
         } else if($transaction->refund_status == 'canceled') {
-            $msg = "Your refund request is declined. Please contact tutorspaceusc@gmail.com for more details.";
+            $msg = "Your refund request is declined. Please contact tutorspacehelp@gmail.com for more details.";
         } else if($transaction->refund_status == 'succeeded') {
             $msg = "Your refund request is successful. You cannot make another refund request for the same session.";
         } else if($transaction->refund_status == 'failed') {
-            $msg = "Your refund request failed. Please contact tutorspaceusc@gmail.com for more details.";
+            $msg = "Your refund request failed. Please contact tutorspacehelp@gmail.com for more details.";
         }
 
         return response()->json([
@@ -698,7 +698,7 @@ class StripeApiController extends Controller
         // Is a cancellation penalty
         if ($invoice->metadata->is_cancellation_penalty == 'true') {
             $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $invoice->id);
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $invoice->id));
             return;
         }
@@ -730,7 +730,7 @@ class StripeApiController extends Controller
         // Is a cancellation penalty
         if ($charge->metadata->is_cancellation_penalty == 'true') {
             $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $charge->id);
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $charge->id));
         }
     }
@@ -759,7 +759,7 @@ class StripeApiController extends Controller
         $student = $transaction->session->student;
         $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
-        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        Notification::route('mail', 'tutorspacehelp@gmail.com')
         ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
     }
 
@@ -784,7 +784,7 @@ class StripeApiController extends Controller
         // send email to 'user' and us. Payout failed. They should update bank info
         $user->notify(new PayoutFailed(true, $payout->failure_code));
 
-        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        Notification::route('mail', 'tutorspacehelp@gmail.com')
         ->notify(new PayoutFailed(false, $payout->failure_code, $stripe_account_id));
     }
 
@@ -872,7 +872,7 @@ class StripeApiController extends Controller
             $user = User::find($transaction->user_id);
 
             $user->notify(new UnpaidInvoiceReminder($transaction->session, true));
-            Notification::route('mail', "tutorspaceusc@gmail.com")
+            Notification::route('mail', "tutorspacehelp@gmail.com")
             ->notify(new UnpaidInvoiceReminder($transaction->session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";

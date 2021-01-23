@@ -63,7 +63,7 @@ bg-student
                 <div id="calendar"></div>
                 <div class="calendar-note">
                     <span class="available-time">Available Time</span>
-                    <span class="note">Note: All time in the calender are based on PST.</span>
+                    <span class="note">Note: Note: All time shown are based on your local timezone.</span>
                 </div>
             </div>
 
@@ -168,6 +168,7 @@ $('#btn-invite, #tutor-profile-request-session, #btn-chat').click(function() {
 @if($request)
 $('#tutor-profile-request-session').click();
 @endif
+
 </script>
 
 @include('partials.nav-auth-js')

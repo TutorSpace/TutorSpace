@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSchoolYearsTable extends Migration
+class AddInviteStatusToInviteUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateSchoolYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_years', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('school_year', 64)->unique();
+        Schema::table('invite_user', function (Blueprint $table) {
+            $table->boolean('attempt_to_use')->default(false);
         });
     }
 
@@ -26,6 +25,8 @@ class CreateSchoolYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_years');
+        Schema::table('invite_user', function (Blueprint $table) {
+            //
+        });
     }
 }

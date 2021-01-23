@@ -27,7 +27,15 @@ class InviteController extends Controller
     }
 
     private function inviteHelper($email, $ajax) {
-        if(!User::existTutor($email)) {
+        if (!$email || ctype_space($email)) {
+            $result = [
+                'errorMsg' => 'Please enter a valid email!'
+            ];
+        } else if(Auth::user()->email == $email) {
+            $result = [
+                'errorMsg' => 'You can not invite yourself to be a tutor.'
+            ];
+        } else if(!User::existTutor($email)) {
             $invitedBefore = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->exists();
             $lastInvitation = InviteUser::where('user_id', Auth::id())->where('invited_user_email', $email)->first();
             // if sent within 1 day ago and have sent before
@@ -47,7 +55,13 @@ class InviteController extends Controller
                 $lastInvitation->invite_code = uniqid();
                 $lastInvitation->save();
 
-                User::where('email', $email)->where('is_tutor', false)->first()->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user()));
+                if(User::existStudent($email)) {
+                    User::where('email', $email)->where('is_tutor', false)->first()->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user(), true));
+                } else {
+                    // if not a user on our platform
+                    Notification::route('mail', $email)
+                    ->notify(new InviteToBeTutorNotification($lastInvitation->invite_code, Auth::user(), false));
+                }
             }
         } else {
             $result = [
@@ -56,6 +70,27 @@ class InviteController extends Controller
         }
 
         return $ajax ? response()->json($result) : redirect()->route('invite.index')->with($result);
+    }
+
+    public function attemptClaimBonus(Request $request, InviteUser $inviteUser) {
+        $inviteUser->attempt_to_use = true;
+        $inviteUser->save();
+
+        // if already have a student identity
+        if(User::where('email', $inviteUser->email)->where('is_tutor', false)->exists()) {
+            Auth::login(User::where('email', $request->input('email'))->where('is_tutor', false)->first());
+
+            return redirect()->route('home')->with([
+                'errorMsg' => 'You already have a student account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
+                'toSwitchAccount',
+                'toSwitchAccount' => true
+            ]);
+        } else {
+            return redirect()->route('register.index.tutor.1')->with([
+                'successMsg' => 'You have successfully acclaimed your bonus. Please register now to claim your rewards!'
+            ]);
+        }
+
     }
 
 }

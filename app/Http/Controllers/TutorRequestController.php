@@ -42,7 +42,7 @@ class TutorRequestController extends Controller
 
                 $tutorRequest->refresh();
 
-                User::find($studentId)->notify(new TutorRequestAccepted($tutorRequest));
+                User::find($studentId)->notify(new TutorRequestAccepted($session));
 
                 // calculate session fee
                 $sessionFee = $this->calculateSessionFee($session);
@@ -67,6 +67,8 @@ class TutorRequestController extends Controller
 
     // todo: add validation here
     public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
+        if($tutorRequest->tutor->id != Auth::id()) return abort(401);
+
         $tutorRequest->status = 'declined';
         $tutorRequest->save();
 

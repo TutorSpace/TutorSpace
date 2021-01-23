@@ -117,7 +117,7 @@ bg-student select2-bg-student
 
 <script>
     tinymce.init({
-        selector: 'textarea',  // change this value according to your HTML
+        selector: '.forum textarea',  // change this value according to your HTML
         plugins: [
             'advlist autolink link image lists charmap print preview hr spellchecker',
             'wordcount fullscreen insertdatetime',
