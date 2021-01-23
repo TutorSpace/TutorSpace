@@ -249,9 +249,10 @@ class User extends Authenticatable
                                 ->distinct()
                                 ->get();
 
-            echo $recommendedTutors;
+
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
+            echo $recommendedTutors;
 
             if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
