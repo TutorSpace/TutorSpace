@@ -54,27 +54,19 @@ class StripeApiController extends Controller
     // get endpoint secrets
     private static function getStripeAccountEndPointSecret(){
         if (env('APP_ENV') == 'local'){
-            return new \Stripe\StripeClient(
-                env("STRIPE_TEST_ENDPOINT_SECRET_ACCOUNT")
-              );
+            return env("STRIPE_TEST_ENDPOINT_SECRET_ACCOUNT");
         }
         else if (env('APP_ENV') == 'production'){
-            return new \Stripe\StripeClient(
-                env('STRIPE_LIVE_ENDPOINT_SECRET_ACCOUNT')
-              );
+            return env('STRIPE_LIVE_ENDPOINT_SECRET_ACCOUNT');
         }
     }
 
     private static function getStripeConnectEndPointSecret(){
         if (env('APP_ENV') == 'local'){
-            return new \Stripe\StripeClient(
-                env("STRIPE_TEST_ENDPOINT_SECRET_CONNECT")
-              );
+            return env("STRIPE_TEST_ENDPOINT_SECRET_CONNECT");
         }
         else if (env('APP_ENV') == 'production'){
-            return new \Stripe\StripeClient(
-                env('STRIPE_LIVE_ENDPOINT_SECRET_CONNECT')
-              );
+            return env('STRIPE_LIVE_ENDPOINT_SECRET_CONNECT');
         }
     }
 
