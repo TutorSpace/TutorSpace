@@ -143,6 +143,8 @@ class SessionController extends Controller
         // 4. course must be taught by tutor
         // 5. current user must be a student and the requested user must be a tutor
 
+        Log::debug($request['startTime'] . ' to ' . $request['endTime']);
+
         // rule 4 & 5
         if(
             !User::find($request->input('tutorId'))->is_tutor
@@ -152,9 +154,9 @@ class SessionController extends Controller
         }
 
         // rule 1, 2, 3
-        // todo: comment back the following line
-        // $validStartTime = Carbon::now()->addMinutes(120);
-        $validStartTime = Carbon::now()->addMinutes(0);
+
+        // todo: double check the time used here
+        $validStartTime = Carbon::now()->addMinutes(120);
         $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',

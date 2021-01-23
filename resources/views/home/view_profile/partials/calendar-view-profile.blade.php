@@ -14,7 +14,7 @@ let calendarOptions = {
     selectable: true,
     selectMirror: true,
     nowIndicator: true,
-    slotMinTime: "08:00:00",
+    slotMinTime: "00:00:00",
     slotMaxTime: "24:00:00",
     allDaySlot: false,
     selectOverlap: function(event) {
@@ -34,29 +34,21 @@ let calendarOptions = {
             buttonText: '5 days'
         }
     },
-    now: function () {
-        return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
-    },
     selectAllow: function(selectionInfo) {
         @if(Auth::check() && Auth::user()->is_tutor)
         return false;
         @else
-        // alert(selectionInfo.start);
         let startTime = moment(selectionInfo.start);
-        // alert(startTime);
-        if(startTime.isBefore(moment())) return false;
-
-        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) return false;
+        if(startTime.isBefore(moment().add(2, 'hours'))) {
+            toastr.error('Tutor session must be scheduled 2 hours ahead of start time.');
+            return false;
+        }
 
         return true;
         @endif
     },
     select: function (selectionInfo) {
         @auth
-        if(moment(selectionInfo.start).format("MM/DD/YYYY") != moment(selectionInfo.end).format('MM/DD/YYYY')) {
-            return false;
-        }
-
         startTime = moment(selectionInfo.start);
         endTime = moment(selectionInfo.end);
         // if the modal appeared
@@ -86,8 +78,8 @@ let calendarOptions = {
         @foreach($user->availableTimes as $time)
         {
             textColor: 'transparent',
-            start: '{{$time->available_time_start}}',
-            end: '{{$time->available_time_end}}',
+            start: moment.utc('{{$time->available_time_start}}').format(),
+            end: moment.utc('{{$time->available_time_end}}').format(),
             description: "",
             display: "background",
             classNames: ['my-available-time']
@@ -108,17 +100,16 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: '{{ $upcomingSession->session_time_start }}',
-            end: '{{ $upcomingSession->session_time_end }}',
-            description: "",
+            start: moment.utc('{{$upcomingSession->session_time_start}}').format(),
+            end:  moment.utc('{{$upcomingSession->session_time_emd}}').format(),
         },
         @endforeach
 
         @foreach($user->pendingTutorRequests as $request)
         {
             title: 'Your Tutor Request',
-            start: '{{$request->session_time_start}}',
-            end: '{{$request->session_time_end}}',
+            start: moment.utc('{{$request->session_time_start}}').format(),
+            end: moment.utc('{{$request->session_time_end}}').format(),
             description: "",
             display: "background",
             classNames: ['tutor-request--view-profile', 'text-center']

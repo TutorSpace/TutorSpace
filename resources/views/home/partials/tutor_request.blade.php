@@ -108,7 +108,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="tutor-request-modal__content__calendar">
                     <div class="calendar"></div>
                     <div class="calendar-note">
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: Note: All time shown are based on your local timezone.</span>
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">

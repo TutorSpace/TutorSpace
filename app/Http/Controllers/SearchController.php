@@ -156,6 +156,7 @@ class SearchController extends Controller
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
+                // change time zone in frontend
                 $availableTimeRange = $request->input('available-time-range');
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
                     $startTimes = ["8:00:00"];

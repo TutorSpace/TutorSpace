@@ -86825,8 +86825,8 @@ toastr.options.preventDuplicates = true; // toastr.options.progressBar = true;
 
 window.bootbox = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/bootbox.all.js");
 window.Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
-window.moment = __webpack_require__(/*! moment-timezone */ "./node_modules/moment-timezone/index.js");
-window.moment.tz.setDefault("America/Los_Angeles");
+window.moment = __webpack_require__(/*! moment-timezone */ "./node_modules/moment-timezone/index.js"); // window.moment.tz.setDefault("UTC");
+
 window.Pikaday = __webpack_require__(/*! pikaday */ "./node_modules/pikaday/pikaday.js");
 
 __webpack_require__(/*! timepicker */ "./node_modules/timepicker/jquery.timepicker.min.js");

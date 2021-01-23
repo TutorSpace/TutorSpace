@@ -34,12 +34,11 @@ $("#input-profile-pic").change(function() {
 
 // calendar
 window.showAvailableTimeForm = (startTime, endTime) => {
-    $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
-    $('#availableTimeConfirmationModal input[name="end-time"]').val(moment(endTime).format("YYYY-MM-DD HH:mm:00"));
+    $('#availableTimeConfirmationModal input[name="start-time"]').val(moment.utc(startTime).format());
+    $('#availableTimeConfirmationModal input[name="end-time"]').val(moment.utc(endTime).format());
 
     startTime = moment(startTime).format("HH:mm on MM/DD/YYYY dddd");
     endTime = moment(endTime).format("HH:mm on MM/DD/YYYY dddd");
-
 
     $('#availableTimeConfirmationModal .start-time').html(startTime);
     $('#availableTimeConfirmationModal .end-time').html(endTime);

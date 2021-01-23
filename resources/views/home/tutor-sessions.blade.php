@@ -80,7 +80,7 @@ bg-student
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: Note: All time shown are based on your local timezone.</span>
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">
