@@ -99,7 +99,6 @@ $(document).ready(function(){
 
     // ===================== for nav animation ========================
     if($('.message-welcome').length) {
-        $(this).addClass('message-welcome--animated');
         setTimeout(function() {
             $('.message-welcome').hide();
             $('.message-welcome').removeClass('message-welcome--animated');
