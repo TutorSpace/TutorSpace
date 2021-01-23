@@ -437,7 +437,7 @@ class User extends Authenticatable
             ->orWhere('post_user.user_id',$this->id)
             ->orWhere(function ($query) {
                 $query->where('replies.is_direct_reply', '=', 1)
-                      ->Where('replies.user_id', '=', $this->id);
+                      ->where('replies.user_id', '=', $this->id);
             })
             ->distinct();
     }
