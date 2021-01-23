@@ -86894,7 +86894,6 @@ $(document).ready(function () {
 
 
   if ($('.message-welcome').length) {
-    $(this).addClass('message-welcome--animated');
     setTimeout(function () {
       $('.message-welcome').hide();
       $('.message-welcome').removeClass('message-welcome--animated');
@@ -87054,8 +87053,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
