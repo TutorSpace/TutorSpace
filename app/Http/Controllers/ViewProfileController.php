@@ -35,6 +35,7 @@ class ViewProfileController extends Controller
             $orderByOption = 'popularity';
         }
 
+        // should not show the request session popup every time the page reloads
         $toRequest = $request->input('request') && url()->previous() != url()->full();
 
         return view('home.view_profile.index', [
