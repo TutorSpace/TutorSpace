@@ -1,6 +1,6 @@
 <?php
 
-return [
+$geoipConfig = [
 
     /*
     |--------------------------------------------------------------------------
@@ -163,3 +163,9 @@ return [
     ],
 
 ];
+
+if (env('APP_ENV') == 'local'){
+    $geoipConfig['cache_tags'] = '';
+}
+
+return $geoipConfig;

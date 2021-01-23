@@ -22,26 +22,9 @@ class TimeFormatter {
     */
     // Get User's Geolocation
     public static function getTZ() {
-        // if(!session()->has('ip')) {
-        //     $ip = file_get_contents("http://ipecho.net/plain");
-        //     session()->put('ip', $ip);
-        // }
-
-        // $ip = session()->get('ip');
-
-        $ip = file_get_contents("http://ipecho.net/plain");
-
-        return Cache::remember(
-            'TIME_FORMATTER-IP-' . $ip,
-            3600,
-            function() use($ip) {
-                $url = 'http://ip-api.com/json/'.$ip;
-                $tz = file_get_contents($url);
-                $tz = json_decode($tz,true)['timezone'];
-                return $tz;
-            }
-        );
-
+        $userLocation = geoip()->getLocation();
+        $timezone = $userLocation['timezone'];
+        return $timezone;
     }
 
     // todo: modify this, as the session can have muiltiple days!
