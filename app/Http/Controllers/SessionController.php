@@ -236,6 +236,4 @@ class SessionController extends Controller
             );
         }
     }
-
-
 }
