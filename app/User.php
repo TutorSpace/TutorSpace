@@ -269,6 +269,7 @@ class User extends Authenticatable
                             })
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
+                            ->inRandomOrder()
                             ->distinct()
                             ->get();
                 // I want to get a total of (3 - $recommendedTutors->count()) tutors here
@@ -284,6 +285,7 @@ class User extends Authenticatable
                                     ->where('users.is_invalid', false)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
+                                    ->inRandomOrder()
                                     ->distinct()
                                     ->get();
                     // I want to get a total of (3 - $recommendedTutors->count()) tutors here
