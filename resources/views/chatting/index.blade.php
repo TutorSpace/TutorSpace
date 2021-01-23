@@ -99,8 +99,8 @@ bg-student
                     appendOtherMessage(message, created_at, imgUrl);
                     scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
-                    appendMyMessage(message, created_at);
-                    scrollToBottom();
+                    // appendMyMessage(message, created_at);
+                    // scrollToBottom();
                 }
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
