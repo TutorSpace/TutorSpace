@@ -26,7 +26,7 @@ bg-student
         <div class="content-container">
             <h2 class="heading">Earn $5 for tutors you invite.</h2>
             <p class="content">Invite a friend to become a tutor at TutorSpace. You both get $5 bonus. (They have to achieve A or A- in the course they want to teach)</p>
-            <form class="input-container" method="POST" action="{{ route('invite-to-be-tutor--email') }}">
+            <form id="invite-form" class="input-container" method="POST" action="{{ route('invite-to-be-tutor--email') }}">
                 @csrf
                 <input type="email" placeholder="Add your friend's email" name="email" required>
                 <button class="btn" type="button" id="btn-submit">Send Invitation</button>
@@ -90,7 +90,7 @@ $('#btn-submit').click(function() {
     $('form').submit();
 });
 @else
-$('form').submit(function() {
+$('#invite-form').submit(function() {
     $('.overlay-student').show();
     return false;
 })

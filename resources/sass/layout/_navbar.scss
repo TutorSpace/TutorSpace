@@ -165,7 +165,7 @@
             font-weight: bold;
 
             animation: fade-in-out-animation 4s ease-in-out forwards;
-
+            // todo: change after animation ends
             ~ * {
                 display: none;
             }
