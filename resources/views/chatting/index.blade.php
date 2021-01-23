@@ -28,9 +28,6 @@ bg-student
             @include('chatting.side-bar--left')
         </div>
         <div class="chatting__content">
-            {{-- @include('chatting.content', [
-                'user' => App\User::find(Auth::user()->getChatrooms()[0]->user_id_1 == Auth::id() ? Auth::user()->getChatrooms()[0]->user_id_2 : Auth::user()->getChatrooms()[0]->user_id_1)
-            ]) --}}
             <div class="chatting__content__header">
                 <a class="user-name invisible" href="#">
                     placeholder
@@ -77,6 +74,7 @@ bg-student
         });
     })();
 
+    // todo: debug this when there
     // subscribe to listen to new messages for existing chatrooms
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php
@@ -88,8 +86,6 @@ bg-student
     function subscribeNewMessageChannel(otherUserId) {
         // subscribe to the channel
         let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}.${otherUserId}` : `private-message.${otherUserId}.${currentUserId}`;
-
-        console.log('channelName: ' + channelName);
 
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {

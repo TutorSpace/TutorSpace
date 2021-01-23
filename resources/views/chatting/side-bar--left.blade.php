@@ -8,6 +8,7 @@
     </svg>
 </form> --}}
 <ul class="msgs">
+    {{-- todo: debug this when there are two inactive chatrooms --}}
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php
             $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
