@@ -35,6 +35,8 @@ class ViewProfileController extends Controller
             $orderByOption = 'popularity';
         }
 
+        $toRequest = $request->input('request') && url()->previous() != url()->full();
+
         return view('home.view_profile.index', [
             'user' => $user,
             'orderByOption' => $orderByOption,
@@ -53,7 +55,7 @@ class ViewProfileController extends Controller
             ->orderByRaw($orderByQuery)
             ->get()
             ->paginate(3) : [],
-            'request' => $request->input('request')
+            'request' => $toRequest
         ]);
     }
 }

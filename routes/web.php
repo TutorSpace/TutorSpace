@@ -179,7 +179,7 @@ Route::group([
     'prefix' => 'view-profile',
 ], function() {
     // optional parameter orderByOption
-    Route::get('/{user}/{orderByOption?}', 'ViewProfileController@index')->name('view.profile');
+    Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
 });
 
 // chatting
