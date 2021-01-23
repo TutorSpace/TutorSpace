@@ -81,58 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/home/tutor-sessions.js":
-/*!*********************************************!*\
-  !*** ./resources/js/home/tutor-sessions.js ***!
-  \*********************************************/
+/***/ "./resources/js/notification/index.js":
+/*!********************************************!*\
+  !*** ./resources/js/notification/index.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(window).click(function () {
-  //Hide the menus if visible
-  $('.action--toggle--list').removeClass("d-flex");
-  $('.action--toggle--list').addClass("d-none");
-});
-$('.action--toggle').on('click', function (event) {
-  event.stopPropagation();
-  $('.action--toggle--list').removeClass("d-flex");
-  $('.action--toggle--list').addClass("d-none");
-  $(this).find('.action--toggle--list').removeClass("d-none");
-  $(this).find('.action--toggle--list').addClass("d-flex");
-});
-$('.action-refund').click(function () {
-  JsLoadingOverlay.show(jsLoadingOverlayOptions);
-  $.ajax({
-    type: 'POST',
-    url: $(this).closest('.info-box').attr('data-route-url'),
-    success: function success(data) {
-      toastr.success(data.successMsg);
-    },
-    error: function error(_error) {
-      toastr.error('Something went wrong. Please try again.');
-      console.log(_error);
-    },
-    complete: function complete() {
-      JsLoadingOverlay.hide();
-    }
-  });
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/natehuang/Desktop/TutorSpace/resources/js/notification/index.js'");
 
 /***/ }),
 
-/***/ 8:
-/*!***************************************************!*\
-  !*** multi ./resources/js/home/tutor-sessions.js ***!
-  \***************************************************/
+/***/ 11:
+/*!**************************************************!*\
+  !*** multi ./resources/js/notification/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/home/tutor-sessions.js */"./resources/js/home/tutor-sessions.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/notification/index.js */"./resources/js/notification/index.js");
 
 
 /***/ })
