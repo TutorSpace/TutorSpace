@@ -95,7 +95,11 @@
 
 $(".help-center__card").click(function () {
   $(".help-center__section").addClass("hidden-2");
-  $('#' + $(this).attr('data-section-id')).removeClass("hidden-2");
+  var el = $('#' + $(this).attr('data-section-id'));
+  el.removeClass("hidden-2");
+  $('html, body').animate({
+    scrollTop: el.offset().top - 100
+  }, 700);
 });
 
 /***/ }),
