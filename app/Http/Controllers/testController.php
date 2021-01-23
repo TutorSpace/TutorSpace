@@ -58,11 +58,15 @@ class testController extends Controller
     public function index(Request $request) {
         // event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
 
-        $ip = file_get_contents("http://ipecho.net/plain");
-                $url = 'http://ip-api.com/json/'.$ip;
-                $tz = file_get_contents($url);
-                $tz = json_decode($tz,true)['timezone'];
-        echo ($ip);
+        // $ip = file_get_contents("http://ipecho.net/plain");
+        //         $url = 'http://ip-api.com/json/'.$ip;
+        //         $tz = file_get_contents($url);
+        //         $tz = json_decode($tz,true)['timezone'];
+        // echo ($ip);
+        // geoip($ip = null);
+        $userLocation = geoip()->getLocation();
+        $timezone = $userLocation['timezone'];
+        echo $timezone;
     }
 
     public function test(Request $request) {
