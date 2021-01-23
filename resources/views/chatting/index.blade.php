@@ -101,10 +101,11 @@ bg-student
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
                     appendOtherMessage(message, created_at, imgUrl);
+                    scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
-                    appendMyMessage(message, created_at);
+                    // appendMyMessage(message, created_at);
+                    // scrollToBottom();
                 }
-                scrollToBottom();
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
                     $('.msgs').append(chatroomView);
@@ -159,12 +160,15 @@ bg-student
                     url: '/chatting/send-msg',
                     data: $('#msg-form').serialize(),
                     success: (data) => {
-                        console.log(data);
+
                     },
                     error: (err) => {
+                        toastr.error('Something went wrong when sending message. Please contact tutorspacehelp@gmail.com for more details.')
                         console.log(err);
                     }
                 });
+                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:s'));
+                scrollToBottom();
                 $('#msg-to-send').val('');
             }
             return false;
