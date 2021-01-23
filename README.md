@@ -9,7 +9,7 @@
 <!-- ## Prototype project: https://tutor.joinme.us
 ### This prototype project is created by Shuaiqing Luo in Spring 2020 and is already fully functional. Wishing to build the largest tutor matching service platform in California that provides best user experience, he decided to revamp all the frontend design and backend functionalities, which then turned into the current product of TutorSpace. 
 
-### TutorSpace has gathered a group of professional and passionate developers, designers, and marketing specialists. If you are interested in joining TutorSpace, please contact us at tutorspaceusc@gmail.com -->
+### TutorSpace has gathered a group of professional and passionate developers, designers, and marketing specialists. If you are interested in joining TutorSpace, please contact us at tutorspacehelp@gmail.com -->
 
 ## Sample Tutor Account:
 ```

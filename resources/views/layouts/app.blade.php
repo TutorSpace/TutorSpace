@@ -116,14 +116,14 @@
                             $('.home__side-bar__bookmarked-users').html(data.view);
                         },
                         error: function(error) {
-                            toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                            toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
                             console.log(error);
                         }
                     });
                     @endif
                 },
                 error: function(error) {
-                    toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                    toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
                     console.log(error);
                 },
                 complete: () => {

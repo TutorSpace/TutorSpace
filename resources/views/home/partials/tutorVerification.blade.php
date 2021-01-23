@@ -19,7 +19,7 @@
     </div>
 
     <span class="text-dark">
-        Questions? Email us at <a class="text-dark" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a>
+        Questions? Email us at <a class="text-dark" href="mailto:tutorspacehelp@gmail.com">tutorspacehelp@gmail.com</a>
     </span>
 
 </div>

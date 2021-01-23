@@ -315,7 +315,7 @@ $('.btn-cancel-request').click(function() {
             }, 1000);
         },
         error: (error) => {
-            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspaceusc@gmail.com for more details.')
+            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspacehelp@gmail.com for more details.')
             console.log(error);
         },
         complete: () => {

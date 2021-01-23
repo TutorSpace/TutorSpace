@@ -63,7 +63,7 @@ $price = $sessionDurationInHour * $hourlyRate;
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>
             </div>
         </div>
     </div>

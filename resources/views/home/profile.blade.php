@@ -690,7 +690,7 @@ bg-student
             if (response.stripe_url) {
                 window.location = response.stripe_url;
             } else {
-                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.')
+                toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.')
             }
 
         })

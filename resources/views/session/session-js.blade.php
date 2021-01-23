@@ -83,7 +83,7 @@
                                 }, 1000);
                             },
                             error: function error(error) {
-                                toastr.error("Something went wrong when canceling the session. Please contact tutorspaceusc@gmail.com for more details.");
+                                toastr.error("Something went wrong when canceling the session. Please contact tutorspacehelp@gmail.com for more details.");
                             },
                             complete: () => {
                                 JsLoadingOverlay.hide();

@@ -59,7 +59,7 @@ class ResetPasswordController extends Controller
         else {
             Log::debug('error in reset password controller.');
             return redirect()->route('index')->with([
-                'errorMsg' => 'Something went wrong when resetting the password. Please contact tutorspaceusc@gmail.com for more details'
+                'errorMsg' => 'Something went wrong when resetting the password. Please contact tutorspacehelp@gmail.com for more details'
             ]);
         }
     }

@@ -50,7 +50,7 @@ bg-grey-light body-signup
             <div class="signup-container-bottom mt-5 p-relative">
                 <span class="fs-2 fc-grey p-relative left-n-2 inline-grid">
                     Questions? Email us at
-                    <a href="mailto:tutorspaceusc@gmail.com" class="btn-link-student">tutorspaceusc@gmail.com</a>
+                    <a href="mailto:tutorspacehelp@gmail.com" class="btn-link-student">tutorspacehelp@gmail.com</a>
                 </span>
                 {{-- btn-next --}}
                 <button class="btn btn-next bg-grey ml-auto">
