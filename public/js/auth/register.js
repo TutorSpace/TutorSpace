@@ -277,7 +277,11 @@ $("input[type=file]").change(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/auth/register.js */"./resources/js/auth/register.js");
+=======
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/auth/register.js */"./resources/js/auth/register.js");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 
 
 /***/ })

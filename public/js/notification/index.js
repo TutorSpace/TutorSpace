@@ -81,128 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/forum/forum.js":
-/*!*************************************!*\
-  !*** ./resources/js/forum/forum.js ***!
-  \*************************************/
+/***/ "./resources/js/notification/index.js":
+/*!********************************************!*\
+  !*** ./resources/js/notification/index.js ***!
+  \********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$('#tags').select2({
-  placeholder: "Add post tags here...",
-  ajax: {
-    url: '/autocomplete/data-source/tags',
-    dataType: 'json',
-    processResults: function processResults(data) {
-      return {
-        results: data
-      };
-    }
-  }
-});
-$('.forum-left__list-item').click(function () {
-  var href = $(this).attr('data-location-href');
-  window.location.href = href;
-});
-
-function isInViewPort(elem) {
-  var distance = elem.getBoundingClientRect();
-  return distance.top >= 0 && distance.left >= 0 && distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) && distance.right <= (window.innerWidth || document.documentElement.clientWidth);
-}
-
-;
-
-function adjustScrollBtnVisibility() {
-  if (!isInViewPort(addPostBtn[0]) || addPostBtn.is(":hidden")) {
-    $('.btn-add-post-scroll').show();
-  } else {
-    $('.btn-add-post-scroll').hide();
-  }
-
-  if ($(document).scrollTop() > 400) {
-    $('.btn-go-top').show();
-  } else {
-    $('.btn-go-top').hide();
-  }
-}
-
-var addPostBtn = $('.btn-add-post');
-adjustScrollBtnVisibility();
-$(window).scroll(function () {
-  adjustScrollBtnVisibility();
-});
-$(window).resize(function () {
-  adjustScrollBtnVisibility();
-
-  if ($(window).width() <= 1200) {
-    $('#tags').select2({
-      placeholder: "Add post tags here...",
-      ajax: {
-        url: '/autocomplete/data-source/tags',
-        dataType: 'json',
-        processResults: function processResults(data) {
-          return {
-            results: data
-          };
-        }
-      }
-    });
-  }
-});
-$('.forum-content__search__search-by').change(function () {
-  var val = $(this).find("option:selected").attr('value');
-
-  if (val == 'tags') {
-    $('.forum-content__search .tags-container').removeClass('hidden');
-    $('.keyword-search').addClass('hidden');
-    $('#tags').select2({
-      placeholder: "Add post tags here...",
-      ajax: {
-        url: '/autocomplete/data-source/tags',
-        dataType: 'json',
-        processResults: function processResults(data) {
-          return {
-            results: data
-          };
-        }
-      }
-    });
-  } else {
-    $('.forum-content__search .tags-container').addClass('hidden');
-    $('.keyword-search').removeClass('hidden');
-  }
-});
-$('#forum__input-search-keyword').keypress(function (e) {
-  if (e.keyCode == 13) {
-    $('.forum-content__search').submit();
-  }
-});
-$('#svg-tags, #svg-keyword').click(function () {
-  $('.forum-content__search').submit();
-});
-$('.btn-filter').click(function () {
-  $('.filter-container__content').toggleClass('hidden');
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/natehuang/Desktop/TutorSpace/resources/js/notification/index.js'");
 
 /***/ }),
 
-/***/ 3:
-/*!*******************************************!*\
-  !*** multi ./resources/js/forum/forum.js ***!
-  \*******************************************/
+/***/ 11:
+/*!**************************************************!*\
+  !*** multi ./resources/js/notification/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/forum.js */"./resources/js/forum/forum.js");
-=======
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/forum/forum.js */"./resources/js/forum/forum.js");
->>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/notification/index.js */"./resources/js/notification/index.js");
 
 
 /***/ })

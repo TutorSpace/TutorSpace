@@ -132,7 +132,11 @@ $('.action-refund').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/tutor-sessions.js */"./resources/js/home/tutor-sessions.js");
+=======
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/home/tutor-sessions.js */"./resources/js/home/tutor-sessions.js");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 
 
 /***/ })

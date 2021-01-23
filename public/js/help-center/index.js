@@ -95,11 +95,15 @@
 
 $(".help-center__card").click(function () {
   $(".help-center__section").addClass("hidden-2");
+<<<<<<< HEAD
   var el = $('#' + $(this).attr('data-section-id'));
   el.removeClass("hidden-2");
   $('html, body').animate({
     scrollTop: el.offset().top - 100
   }, 700);
+=======
+  $('#' + $(this).attr('data-section-id')).removeClass("hidden-2");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 });
 
 /***/ }),
@@ -111,7 +115,11 @@ $(".help-center__card").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/help-center/index.js */"./resources/js/help-center/index.js");
+=======
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/help-center/index.js */"./resources/js/help-center/index.js");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 
 
 /***/ })

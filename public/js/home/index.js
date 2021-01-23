@@ -125,8 +125,13 @@ $("#input-profile-pic").change(function () {
 }); // calendar
 
 window.showAvailableTimeForm = function (startTime, endTime) {
+<<<<<<< HEAD
   $('#availableTimeConfirmationModal input[name="start-time"]').val(moment.utc(startTime).format());
   $('#availableTimeConfirmationModal input[name="end-time"]').val(moment.utc(endTime).format());
+=======
+  $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
+  $('#availableTimeConfirmationModal input[name="end-time"]').val(moment(endTime).format("YYYY-MM-DD HH:mm:00"));
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   startTime = moment(startTime).format("HH:mm on MM/DD/YYYY dddd");
   endTime = moment(endTime).format("HH:mm on MM/DD/YYYY dddd");
   $('#availableTimeConfirmationModal .start-time').html(startTime);
@@ -190,7 +195,11 @@ $('.btn-view-all-notifications').click(function () {
     $(this).html('View All');
   }
 });
+<<<<<<< HEAD
 $(document).on('click', '.btn-view-all-bookmarked-users', function () {
+=======
+$('.btn-view-all-bookmarked-users').click(function () {
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   $('.home__side-bar__bookmarked-users').find('.bookmarked-users [data-to-hide="true"]').toggleClass("hidden");
 
   if ($(this).html().includes('View')) {
@@ -267,7 +276,11 @@ $('.side-bar__notification > *').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
+=======
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 
 
 /***/ })

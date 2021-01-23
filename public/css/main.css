@@ -14501,10 +14501,13 @@ h6 {
   background-color: #6749DF !important;
 }
 
+<<<<<<< HEAD
 .bg-color-notification--tutore-requests {
   background-color: rgba(165, 190, 13, 0.8);
 }
 
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 .bg-student .color-primary {
   color: #1F7AFF;
 }
@@ -15504,6 +15507,7 @@ h6 {
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .report-box {
   position: fixed;
   bottom: 0;
@@ -15580,6 +15584,8 @@ h6 {
   transform: none;
 }
 
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 .post-reply {
   margin-top: 2rem;
   display: flex;
@@ -15597,8 +15603,13 @@ h6 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   max-width: 10rem;
   flex: 0 0 10rem;
+=======
+  max-width: 12rem;
+  flex: 0 0 8rem;
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 }
 
 .post-reply .left-container > :not(:first-child) {
@@ -15617,7 +15628,12 @@ h6 {
 
 .post-reply .left-container .user-name {
   font-size: 1.6rem !important;
+<<<<<<< HEAD
   padding-top: 0.5rem;
+=======
+  line-height: 1.2;
+  margin-top: 0.5rem;
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   color: #3F3F3F;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -15627,11 +15643,16 @@ h6 {
 
 .post-reply .left-container .user-info {
   text-align: center;
+<<<<<<< HEAD
   font-size: 1.2rem;
   line-height: 1.2;
   max-height: 2.4rem;
   overflow: hidden;
   margin-top: 0;
+=======
+  font-size: 1.4rem;
+  line-height: 1.1;
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 }
 
 .post-reply .right-container {
@@ -16985,6 +17006,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   z-index: 101 !important;
 }
 
+<<<<<<< HEAD
 #calendar .tutor-request--view-profile,
 .calendar .tutor-request--view-profile {
   width: 100%;
@@ -16995,6 +17017,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   z-index: 101 !important;
 }
 
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 #calendar .online-session,
 .calendar .online-session {
   width: 100%;
@@ -21319,7 +21343,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.4rem;
   padding: 0.3rem 0.5rem;
   align-self: center;
+<<<<<<< HEAD
   max-width: 10rem;
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 }
 
 .search .search-results .search-result .user-rating {
@@ -22109,7 +22136,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-top: 6rem;
   background-color: #F9F9F9;
   border-radius: 1rem;
+<<<<<<< HEAD
   padding-bottom: 1rem;
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -22572,6 +22602,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   top: 0.5rem;
 }
 
+<<<<<<< HEAD
 .home .tutor-sessions .white-large-board {
   background-color: #F9F9F9;
   height: 100%;
@@ -22596,6 +22627,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
 }
 
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 .home .past-sessions {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -22883,6 +22916,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses {
   display: grid;
   grid-template-columns: 1fr 1fr;
+<<<<<<< HEAD
   padding: 0 3rem;
   margin: 0 auto;
   grid-gap: 1rem 1rem;
@@ -22911,6 +22945,20 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.4rem;
   width: 100%;
   max-width: 12rem;
+=======
+  width: 20rem;
+  margin: 0 auto;
+  grid-gap: 1rem 1rem;
+}
+
+.view-profile .view-profile--left .view-profile__user-info .tutor-sessions .courses .course {
+  padding: 0.3rem 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  width: 9rem;
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   justify-content: center;
 }
 

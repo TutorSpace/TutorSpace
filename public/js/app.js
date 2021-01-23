@@ -54123,6 +54123,7 @@ return jQuery;
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ "./node_modules/moment-timezone/data/packed/latest.json":
 /*!**************************************************************!*\
   !*** ./node_modules/moment-timezone/data/packed/latest.json ***!
@@ -54855,6 +54856,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 /***/ }),
 
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 /***/ "./node_modules/moment/locale sync recursive ^\\.\\/.*$":
 /*!**************************************************!*\
   !*** ./node_modules/moment/locale sync ^\.\/.*$ ***!
@@ -86825,8 +86828,12 @@ toastr.options.preventDuplicates = true; // toastr.options.progressBar = true;
 
 window.bootbox = __webpack_require__(/*! bootbox */ "./node_modules/bootbox/bootbox.all.js");
 window.Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+<<<<<<< HEAD
 window.moment = __webpack_require__(/*! moment-timezone */ "./node_modules/moment-timezone/index.js"); // window.moment.tz.setDefault("UTC");
 
+=======
+window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 window.Pikaday = __webpack_require__(/*! pikaday */ "./node_modules/pikaday/pikaday.js");
 
 __webpack_require__(/*! timepicker */ "./node_modules/timepicker/jquery.timepicker.min.js");
@@ -86966,6 +86973,7 @@ $(document).ready(function () {
   $('.toggle-after-list-item').click(function () {
     var href = $(this).attr('data-location-href');
     window.location.href = href;
+<<<<<<< HEAD
   }); // report box
 
   $('.report-box .heading').click(function () {
@@ -86984,6 +86992,8 @@ $(document).ready(function () {
     var rating = $('.report-box .star-rating path.fill-color-yellow-primary').length;
     $(this).find('input[name=star-rating]').val(rating);
     return true;
+=======
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
   });
 });
 
@@ -87052,8 +87062,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
+=======
+__webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
+>>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
 
 
 /***/ })
