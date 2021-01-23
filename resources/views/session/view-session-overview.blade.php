@@ -8,12 +8,11 @@
 
 <div class="container modal-session">
     <h6 class="text-center color-primary mt-3">Session Overview</h6>
-    {{-- <p class="fc-grey mb-3 mt-3">{{ Auth::user()->is_tutor ? 'Student Name' : 'Tutor Name' }}:<span class="ml-2 fc-black-2">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->student->last_name }} {{ Auth::user()->is_tutor ? $session->tutor->first_name : $session->tutor->last_name  }}</span><p> --}}
 
     <div class="d-flex justify-content-between mt-3">
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">{{ Auth::user()->is_tutor ? 'Student Name' : 'Tutor Name' }}:</p>
-            <p class="fc-black-2 fs-1-5 fw-500">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->student->last_name }} {{ Auth::user()->is_tutor ? $session->tutor->first_name : $session->tutor->last_name  }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ Auth::user()->is_tutor ? $session->student->first_name : $session->tutor->first_name }} {{ Auth::user()->is_tutor ? $session->student->last_name : $session->tutor->last_name  }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Date:</p>
