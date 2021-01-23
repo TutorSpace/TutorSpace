@@ -51,7 +51,7 @@ class CancelSessionNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('Your session from ' . $this->session->session_time_start . ' to ' . $this->session->session_time_end . ' is canceled.')
+                ->line('Your session from ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' to ' . $this->session->session_time_end->setTimezone('America/Los_Angeles') . ' (PST Time Zone) is canceled.')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }
