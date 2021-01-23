@@ -33,7 +33,7 @@ bg-student
     <main class="home__content tutor-sessions">
         <div class="container col-layout-2 home__header-container">
             <div class="heading-container mb-5">
-                <p class="heading">tutoring sessions</p>
+                <p class="heading">Tutoring Sessions</p>
                 <span>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
                 </span>
