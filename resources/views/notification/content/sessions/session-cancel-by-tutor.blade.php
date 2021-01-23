@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Cancelled [{{ $session->id }}]
+    Session Cancelled [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
@@ -53,7 +53,7 @@ $price = $sessionDurationInHour * $hourlyRate;
             </div>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>
+                <a class="btn btn-primary" href="mailto:tutorspaceusc@gmail.com" target="_blank">Contact TutorSpace</a>
             </div>
         </div>
     </div>

@@ -86894,8 +86894,10 @@ $(document).ready(function () {
 
 
   if ($('.message-welcome').length) {
+    $(this).addClass('message-welcome--animated');
     setTimeout(function () {
       $('.message-welcome').hide();
+      $('.message-welcome').removeClass('message-welcome--animated');
       $('.nav-right__svg-container').addClass('nav-fade-in-animation');
       $('.nav-right__profile-img').addClass('nav-fade-in-animation');
       $('.nav-right__svg-container').show();

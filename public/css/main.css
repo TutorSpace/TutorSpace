@@ -18047,11 +18047,14 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 ._nav .nav-right .message-welcome {
   font-size: 2.4rem;
   font-weight: bold;
+}
+
+._nav .nav-right .message-welcome--animated {
   -webkit-animation: fade-in-out-animation 4s ease-in-out forwards;
           animation: fade-in-out-animation 4s ease-in-out forwards;
 }
 
-._nav .nav-right .message-welcome ~ * {
+._nav .nav-right .message-welcome--animated ~ * {
   display: none;
 }
 

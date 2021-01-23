@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Refund Request Declined [{{ $session->id }}]
+    Refund Request Declined [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
