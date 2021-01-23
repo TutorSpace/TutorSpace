@@ -99,8 +99,8 @@ bg-student
                     appendOtherMessage(message, created_at, imgUrl);
                     scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
-                    // appendMyMessage(message, created_at);
-                    // scrollToBottom();
+                    appendMyMessage(message, created_at);
+                    scrollToBottom();
                 }
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
@@ -163,8 +163,8 @@ bg-student
                         console.log(err);
                     }
                 });
-                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:s'));
-                scrollToBottom();
+                // appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:s'));
+                // scrollToBottom();
                 $('#msg-to-send').val('');
             }
             return false;
