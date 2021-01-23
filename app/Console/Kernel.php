@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             Session::changeSessionStatusOnExpiry();
-            Log::debug("Successfully changed stale tutor sessions to expired: " . now() . "\n");
+            Log::debug("Successfully changed stale tutoring sessions to expired: " . now() . "\n");
         // })->everyThirtyMinutes();
         })->everyMinute();
 

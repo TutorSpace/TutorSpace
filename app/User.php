@@ -72,7 +72,7 @@ class User extends Authenticatable
 
             return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
         } else {
-            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutor sessions on this platform.";
+            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutoring sessions on this platform.";
         }
 
     }

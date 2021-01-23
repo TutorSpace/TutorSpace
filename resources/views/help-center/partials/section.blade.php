@@ -63,7 +63,7 @@
         <details class="my-4">
             <summary>Why do I still get charged after I report a tutor/tutoring session?
             </summary>
-            <p class="fc-black-2">Our payment system will auto-charge the students upon the end of each session no matter what. However, you can make a refund request under the 'Tutor Sessions' section in your home page.
+            <p class="fc-black-2">Our payment system will auto-charge the students upon the end of each session no matter what. However, you can make a refund request under the 'tutoring sessions' section in your home page.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>

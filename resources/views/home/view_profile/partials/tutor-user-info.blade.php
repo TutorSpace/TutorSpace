@@ -80,7 +80,7 @@
     </div>
 
     <section class="section tutor-sessions">
-        <a href="{{ route('view.profile', $user) }}" class="@if(!$displayForumActivities) active @else inactive @endif">Tutor Sessions</a>
+        <a href="{{ route('view.profile', $user) }}" class="@if(!$displayForumActivities) active @else inactive @endif">tutoring sessions</a>
         @if(!$displayForumActivities)
         <div class="tutor-sesssions__content">
             <p class="heading">Courses He/She Teaches</p>
