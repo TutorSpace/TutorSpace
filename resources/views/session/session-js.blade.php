@@ -155,7 +155,12 @@ $('#tutor-profile-request-session').on('click',function() {
     e.render();
     setTimeout(() => {
         e.destroy();
+         if (startTime && endTime){
+            console.log("selected")
+            e.select(startTime, endTime);
+        }
         e.render();
+
     }, 500);
 
     function session_details() {
