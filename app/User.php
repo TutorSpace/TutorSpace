@@ -236,24 +236,23 @@ class User extends Authenticatable
         );
     }
 
-    public function recommendedTutors() {
+    private function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
-            $recommendedTutors = User::select('users.*')
-                                ->where('users.is_tutor', true)
+            $recommendedTutors = User::where('users.is_tutor', true)
+                                ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
                                 ->where('users.email', '!=', $this->email)
-                                ->distinct()
                                 ->get();
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
 
             if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
-                $tutors = User::select('users.*')
-                            ->where('users.is_tutor', true)
+                $tutors = User::where('users.is_tutor', true)
+                            ->where('users.is_invalid', false)
                             ->where(function($query) {
                                 // if is null, then assign -1 to it so that null != null
                                 $query->where('users.first_major_id', $this->first_major_id ?? -1)
@@ -263,7 +262,6 @@ class User extends Authenticatable
                             })
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
-                            ->distinct()
                             ->get();
                 // I want to get a total of (3 - $recommendedTutors->count()) tutors here
                 $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
@@ -273,11 +271,10 @@ class User extends Authenticatable
                 // if there are still < 3 tutors, then randomly pick from the tutors
                 if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
-                    $tutors = User::select('users.*')
-                                    ->where('users.is_tutor', true)
+                    $tutors = User::where('users.is_tutor', true)
+                                    ->where('users.is_invalid', false)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
-                                    ->distinct()
                                     ->get();
                     // I want to get a total of (3 - $recommendedTutors->count()) tutors here
                     $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
