@@ -248,6 +248,7 @@ class User extends Authenticatable
                                 ->where('users.email', '!=', $this->email)
                                 ->distinct()
                                 ->get();
+
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
 
@@ -271,7 +272,7 @@ class User extends Authenticatable
                 $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
 
                 $recommendedTutors = $recommendedTutors->merge($tutors);
-
+                echo $recommendedTutors;
                 // if there are still < 3 tutors, then randomly pick from the tutors
                 if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
@@ -284,6 +285,7 @@ class User extends Authenticatable
                                     ->get();
                     // I want to get a total of (3 - $recommendedTutors->count()) tutors here
                     $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
+
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
