@@ -239,13 +239,8 @@ class User extends Authenticatable
     public function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
-<<<<<<< HEAD
-            $recommendedTutors = User::where('users.is_tutor', true)
-                                ->where('users.is_invalid', false)
-=======
             $recommendedTutors = User::select('users.*')
                                 ->where('users.is_tutor', true)
->>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
@@ -257,13 +252,8 @@ class User extends Authenticatable
 
             if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
-<<<<<<< HEAD
-                $tutors = User::where('users.is_tutor', true)
-                            ->where('users.is_invalid', false)
-=======
                 $tutors = User::select('users.*')
                             ->where('users.is_tutor', true)
->>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
                             ->where(function($query) {
                                 // if is null, then assign -1 to it so that null != null
                                 $query->where('users.first_major_id', $this->first_major_id ?? -1)
@@ -283,13 +273,8 @@ class User extends Authenticatable
                 // if there are still < 3 tutors, then randomly pick from the tutors
                 if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
-<<<<<<< HEAD
-                    $tutors = User::where('users.is_tutor', true)
-                                    ->where('users.is_invalid', false)
-=======
                     $tutors = User::select('users.*')
                                     ->where('users.is_tutor', true)
->>>>>>> 4d8b834bd1a9725ded9f808ca12536d1c68ebd07
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
                                     ->distinct()
