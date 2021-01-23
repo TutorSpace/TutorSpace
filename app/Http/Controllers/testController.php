@@ -64,7 +64,9 @@ class testController extends Controller
         //         $tz = json_decode($tz,true)['timezone'];
         // echo ($ip);
         // geoip($ip = null);
-        dd(geoip()->getLocation());
+        $userLocation = geoip()->getLocation();
+        $timezone = $userLocation['timezone'];
+        echo $timezone;
     }
 
     public function test(Request $request) {
