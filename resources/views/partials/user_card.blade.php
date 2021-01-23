@@ -42,7 +42,7 @@
         </a>
         @endif
     @else
-        <span class="user-info mt-1">Student</span>
+        <span class="user-info">Student</span>
         <a class="btn btn-chat btn-animation-y-sm mt-4" href="{{ $user->getChattingRoute() }}">Chat</a>
 
         <button class="btn btn-lg btn-invite btn-animation-y-sm">Invite to be a Tutor</button>
