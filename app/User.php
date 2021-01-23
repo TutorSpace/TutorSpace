@@ -236,7 +236,7 @@ class User extends Authenticatable
         );
     }
 
-    private function recommendedTutors() {
+    public function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::select("users.*")
