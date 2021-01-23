@@ -239,6 +239,7 @@ class User extends Authenticatable
     public function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
+            echo "courseIds:" . $courseIds;
             $recommendedTutors = User::select("users.*")
                                 ->where('users.is_tutor', true)
                                 ->where('users.is_invalid', false)
