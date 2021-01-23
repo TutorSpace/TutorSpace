@@ -239,7 +239,6 @@ class User extends Authenticatable
     public function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
-            echo "courseIds:" . $courseIds;
             $recommendedTutors = User::select("users.*")
                                 ->where('users.is_tutor', true)
                                 ->where('users.is_invalid', false)
@@ -249,47 +248,45 @@ class User extends Authenticatable
                                 ->where('users.email', '!=', $this->email)
                                 ->distinct()
                                 ->get();
-            // $recommendedTutors = $recommendedTutors
-            //                         ->random(min(3, $recommendedTutors->count()));
+            $recommendedTutors = $recommendedTutors
+                                    ->random(min(3, $recommendedTutors->count()));
 
-            // if($recommendedTutors->count() < 3) {
-            //     $tutorIds = $recommendedTutors->pluck('id');
-            //     $tutors = User::select("users.*")
-            //                 ->where('users.is_tutor', true)
-            //                 ->where('users.is_invalid', false)
-            //                 ->where(function($query) {
-            //                     // if is null, then assign -1 to it so that null != null
-            //                     $query->where('users.first_major_id', $this->first_major_id ?? -1)
-            //                         ->orWhere('users.second_major_id', $this->first_major_id ?? -1)
-            //                         ->orWhere('users.first_major_id', $this->second_major_id ?? -1)
-            //                         ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
-            //                 })
-            //                 ->whereNotIn('id', $tutorIds)
-            //                 ->where('users.email', '!=', $this->email)
-            //                 ->distinct()
-            //                 ->get();
-            //     // I want to get a total of (3 - $recommendedTutors->count()) tutors here
-            //     $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
+            if($recommendedTutors->count() < 3) {
+                $tutorIds = $recommendedTutors->pluck('id');
+                $tutors = User::select("users.*")
+                            ->where('users.is_tutor', true)
+                            ->where('users.is_invalid', false)
+                            ->where(function($query) {
+                                // if is null, then assign -1 to it so that null != null
+                                $query->where('users.first_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->first_major_id ?? -1)
+                                    ->orWhere('users.first_major_id', $this->second_major_id ?? -1)
+                                    ->orWhere('users.second_major_id', $this->second_major_id ?? -1);
+                            })
+                            ->whereNotIn('id', $tutorIds)
+                            ->where('users.email', '!=', $this->email)
+                            ->distinct()
+                            ->get();
+                // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
 
-            //     $recommendedTutors = $recommendedTutors->merge($tutors);
+                $recommendedTutors = $recommendedTutors->merge($tutors);
 
-            //     // if there are still < 3 tutors, then randomly pick from the tutors
-            //     if($recommendedTutors->count() < 3) {
-            //         $tutorIds = $recommendedTutors->pluck('id');
-            //         $tutors = User::select("users.*")
-            //                         ->where('users.is_tutor', true)
-            //                         ->where('users.is_invalid', false)
-            //                         ->whereNotIn('id', $tutorIds)
-            //                         ->where('users.email', '!=', $this->email)
-            //                         ->distinct()
-            //                         ->get();
-            //         // I want to get a total of (3 - $recommendedTutors->count()) tutors here
-            //         $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
-            //         $recommendedTutors = $recommendedTutors->merge($tutors);
-            //     }
-            // }
-
-            // Log::debug($recommendedTutors);
+                // if there are still < 3 tutors, then randomly pick from the tutors
+                if($recommendedTutors->count() < 3) {
+                    $tutorIds = $recommendedTutors->pluck('id');
+                    $tutors = User::select("users.*")
+                                    ->where('users.is_tutor', true)
+                                    ->where('users.is_invalid', false)
+                                    ->whereNotIn('id', $tutorIds)
+                                    ->where('users.email', '!=', $this->email)
+                                    ->distinct()
+                                    ->get();
+                    // I want to get a total of (3 - $recommendedTutors->count()) tutors here
+                    $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
+                    $recommendedTutors = $recommendedTutors->merge($tutors);
+                }
+            }
 
             return $recommendedTutors;
         }
