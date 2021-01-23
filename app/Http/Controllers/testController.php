@@ -71,7 +71,7 @@ class testController extends Controller
         // ])
         // ->orderBy('posts_count', 'desc')
         // ->get();
-        Auth::user()->recommendedTutors();
+        echo Auth::user()->recommendedTutors();
 
 
     }
