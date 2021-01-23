@@ -22,11 +22,14 @@
     @endif
 </div>
 <div class="chatting__content__messages">
+    @php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    @endphp
     @foreach (Auth::user()->getMessages($user) as $message)
         @include('chatting.chat-message', [
             'myMessage' => $message->from == Auth::id(),
             'content' => $message->message,
-            'time' => $message->created_at,
+            'time' => $message->created_at->setTimeZone($tz),
             'user' => $user
         ])
     @endforeach
