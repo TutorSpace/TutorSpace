@@ -29,8 +29,6 @@ window.jsLoadingOverlayOptions = {
     'spinnerIDName': 'spinner',
 };
 
-
-
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
