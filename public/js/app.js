@@ -86843,7 +86843,23 @@ window.jsLoadingOverlayOptions = {
   'spinnerSize': '1x',
   'overlayIDName': 'overlay',
   'spinnerIDName': 'spinner'
+}; // get url parameter
+
+window.getUrlParameter = function (sParam) {
+  var sPageURL = window.location.search.substring(1),
+      sURLVariables = sPageURL.split('&'),
+      sParameterName,
+      i;
+
+  for (i = 0; i < sURLVariables.length; i++) {
+    sParameterName = sURLVariables[i].split('=');
+
+    if (sParameterName[0] === sParam) {
+      return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+    }
+  }
 };
+
 $(document).ready(function () {
   $.ajaxSetup({
     headers: {
@@ -87053,8 +87069,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

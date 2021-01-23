@@ -231,7 +231,7 @@ class SessionController extends Controller
             // no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
             return response()->json(
                 [
-                    'redirectMsg' => route('home.profile'),
+                    'redirectMsg' => route('home.profile') .'?payment-section-redirect=true',
                 ]
             );
         }

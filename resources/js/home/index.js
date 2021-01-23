@@ -148,7 +148,19 @@ $('#btn-confirm-tutor-session').click(function() {
                     window.location.reload();
                 }, 1000);
             }
-            else if(errorMsg) toastr.error(errorMsg);
+            else if(errorMsg) {
+                console.log("here");
+                if (errorMsg == "Payment Missing"){
+                    toastr.error("You must first set up your payment method in the profile page before accepting any tutor request.");
+                    setTimeout(function() {
+                        window.location.href = redirectMissingPaymentUrl;
+                    }, 1000);
+                }else{
+                    toastr.error(errorMsg);
+                }
+
+                // redirect to payment: todo: nate
+            }
         },
         error: (error) => {
             console.log(error);

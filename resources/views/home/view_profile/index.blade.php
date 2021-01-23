@@ -63,7 +63,7 @@ bg-student
                 <div id="calendar"></div>
                 <div class="calendar-note">
                     <span class="available-time">Available Time</span>
-                    <span class="note">Note: Note: All time shown are based on your local timezone.</span>
+                    <span class="note">Note: All time shown are based on your local timezone.</span>
                 </div>
             </div>
 

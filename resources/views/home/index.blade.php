@@ -300,6 +300,7 @@ bg-student
 @endif
 
 <script>
+const redirectMissingPaymentUrl = '{{route("home.profile")}}'+ "?payment-section-redirect=true";
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
