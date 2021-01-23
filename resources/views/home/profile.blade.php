@@ -258,7 +258,7 @@ bg-student
                 <div class="profile__text-container--white p-relative">
                     <div class="stripe-svg-container">
                     </div>
-                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot" id="payment-method-section">
                         Payment Methods
                         @if (
                         (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
@@ -901,6 +901,13 @@ bg-student
 
 <script>
     let isTutor = {{ Auth::user()->is_tutor }};
+
+    const isPaymentRedirect = getUrlParameter('payment-section-redirect');
+    if (isPaymentRedirect){
+        $('html, body').animate({
+            scrollTop: $('#payment-method-section').offset().top - 100
+        }   , 700);
+    }
 </script>
 <script src="{{ asset('js/home/profile.js') }}"></script>
 

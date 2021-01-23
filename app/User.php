@@ -240,7 +240,6 @@ class User extends Authenticatable
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::select("users.*")
-
                                 ->where('users.is_tutor', true)
                                 ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
