@@ -15597,8 +15597,8 @@ h6 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 12rem;
-  flex: 0 0 8rem;
+  max-width: 10rem;
+  flex: 0 0 10rem;
 }
 
 .post-reply .left-container > :not(:first-child) {
