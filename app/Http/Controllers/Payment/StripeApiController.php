@@ -211,18 +211,6 @@ class StripeApiController extends Controller
         ]);
     }
 
-    private static function cacheCustomerHasCards($cards){
-        // forget keys
-        Cache::forget(self::getCustomerHasCardsCacheKey());
-        // cache value
-        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($cards) {
-            if (count($cards) >= 1){
-                return true;
-            }else{
-                return false;
-            }
-        });
-    }
     // helper function to get all cards
     private static function retrieveAllCards(){
         $cards = \Stripe\PaymentMethod::all([
@@ -252,17 +240,15 @@ class StripeApiController extends Controller
         return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
     }
 
-    // todo: 优化代码
     public static function customerHasCards(){
-        $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
-        if ($hasCard){
-            return $hasCard;
-        }
-        $cards = self::retrieveAllCards();
-
-        self::cacheCustomerHasCards($cards);
-
-        return $hasCard;
+        return Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () {
+            $cards = self::retrieveAllCards();
+            if (count($cards) >= 1){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 
     private function getCustomerDefaultPaymentId(){

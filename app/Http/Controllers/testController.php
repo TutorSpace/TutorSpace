@@ -56,6 +56,8 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
+        $test = app(StripeApiController::class)->customerHasCards();
+        dd ($test);
         // event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
 
         // $ip = file_get_contents("http://ipecho.net/plain");
