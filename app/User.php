@@ -24,7 +24,7 @@ use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-
+use App\CustomClass\TimeFormatter;
 
 class User extends Authenticatable
 {
@@ -122,12 +122,16 @@ class User extends Authenticatable
 
     // return the profile' daily view count in the past week
     public function viewCntWeek() {
+        $timezone = TimeFormatter::getTZ();
+        $beginDate = Carbon::now()->subDays(7 - 1)->setTimeZone($timezone)->format('Y-m-d');
+        $endDate = Carbon::now()->setTimeZone($timezone)->format('Y-m-d');
+
         return $this->views()
                     ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
                     ->whereBetween('viewed_at', [
                         // a week is 7 -1 + 1 days including today
-                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
-                        Carbon::now()->format('Y-m-d')
+                        $beginDate,
+                        $endDate
                     ])
                     ->groupBy('viewed_at');
     }

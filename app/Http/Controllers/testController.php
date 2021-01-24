@@ -66,7 +66,12 @@ class testController extends Controller
         // geoip($ip = null);
         $userLocation = geoip()->getLocation();
         $timezone = $userLocation['timezone'];
-        echo $timezone;
+        // echo $timezone;
+
+         $startTime = Carbon::now()->setTimeZone($timezone);
+         echo $startTime;
+        // $endTime = Carbon::now()->format('Y-m-d');
+    //    echo Post::getViewCntWeek(Auth::user()->id);
     }
 
     public function test(Request $request) {
