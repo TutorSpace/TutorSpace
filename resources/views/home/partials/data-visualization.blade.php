@@ -1,4 +1,7 @@
 <script>
+    @php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    @endphp
     function drawGraph() {
         let height = 350;
 
@@ -13,7 +16,7 @@
     var postViewCntData = {
         x: [
             @foreach(App\Post::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
@@ -30,7 +33,7 @@
     var profileViewCntData = {
         x: [
             @foreach(App\User::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
