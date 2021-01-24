@@ -42,7 +42,7 @@ Route::group([
 });
 
 // upload photo
-Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
+Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware(['auth', 'optimizeImages'])->name('upload-profile-pic');
 
 // calendar
 Route::group([
@@ -107,7 +107,7 @@ Route::group([
     Route::get('/register/tutor/4', 'Auth\RegisterController@indexTutor4')->name('register.index.tutor.4');
     Route::post('/register/tutor/4', 'Auth\RegisterController@storeTutor4')->name('register.store.tutor.4');
     Route::get('/register/tutor/5', 'Auth\RegisterController@indexTutor5')->name('register.index.tutor.5');
-    Route::post('/register/tutor/5', 'Auth\RegisterController@storeTutor5')->name('register.store.tutor.5');
+    Route::post('/register/tutor/5', 'Auth\RegisterController@storeTutor5')->middleware('optimizeImages')->name('register.store.tutor.5');
 
     // =============== login student ===============
     Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student');
@@ -228,7 +228,7 @@ Route::group([
 });
 
 // tutor verification
-Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware('isTutor');
+Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware(['isTutor', 'optimizeImages']);
 
 // admin routes
 Route::group([
