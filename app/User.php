@@ -436,7 +436,8 @@ class User extends Authenticatable
     // get all distinct participated posts
     // participated: my own posts, I followed, I reply directly
     public function participatedPosts(){
-        return Post::leftJoin('post_user', 'post_user.post_id','=','posts.id')
+        return Post::select('posts.*')
+            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
             ->leftJoin('replies','replies.post_id','=','posts.id')
             ->where('posts.user_id',$this->id)
             ->orWhere('post_user.user_id',$this->id)
