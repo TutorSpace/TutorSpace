@@ -1,4 +1,7 @@
 <script>
+    @php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    @endphp
     function drawGraph() {
         let height = 350;
 
@@ -9,11 +12,13 @@
         scatterGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
     }
-
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
     var postViewCntData = {
         x: [
             @foreach(App\Post::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
@@ -30,7 +35,7 @@
     var profileViewCntData = {
         x: [
             @foreach(App\User::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
@@ -152,7 +157,7 @@
             },
             title: {
                 display: true,
-                text: 'Tutor Session Ratings',
+                text: 'Tutoring Session Ratings',
                 fontFamily: "Avenir, sans-serif",
                 fontSize: 16,
                 fontStyle: 200,

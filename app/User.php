@@ -24,7 +24,7 @@ use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-
+use App\CustomClass\TimeFormatter;
 
 class User extends Authenticatable
 {
@@ -70,7 +70,7 @@ class User extends Authenticatable
             $secondMajor = $this->secondMajor;
             $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
 
-            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutoring session with me or ask me anything.";
         } else {
             return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutoring sessions on this platform.";
         }
@@ -122,12 +122,15 @@ class User extends Authenticatable
 
     // return the profile' daily view count in the past week
     public function viewCntWeek() {
+        $beginDate = Carbon::now()->subDays(7 - 1)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
+
         return $this->views()
                     ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
                     ->whereBetween('viewed_at', [
                         // a week is 7 -1 + 1 days including today
-                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
-                        Carbon::now()->format('Y-m-d')
+                        $beginDate,
+                        $endDate
                     ])
                     ->groupBy('viewed_at');
     }
@@ -240,7 +243,6 @@ class User extends Authenticatable
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
             $recommendedTutors = User::select("users.*")
-
                                 ->where('users.is_tutor', true)
                                 ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
@@ -438,7 +440,7 @@ class User extends Authenticatable
             ->orWhere('post_user.user_id',$this->id)
             ->orWhere(function ($query) {
                 $query->where('replies.is_direct_reply', '=', 1)
-                      ->Where('replies.user_id', '=', $this->id);
+                      ->where('replies.user_id', '=', $this->id);
             })
             ->distinct();
     }

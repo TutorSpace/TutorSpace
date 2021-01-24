@@ -8,7 +8,7 @@
         <path d="M24.1667 26.6667H5.83333C5.37333 26.6667 5 26.2933 5 25.8333C5 25.3733 5.37333 25 5.83333 25H24.1667C24.6267 25 25 25.3733 25 25.8333C25 26.2933 24.6267 26.6667 24.1667 26.6667Z" fill="#1F7AFF"/>
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
-    <h6 class="w-100 text-center mb-3">Book your Tutor Session</h6>
+    <h6 class="w-100 text-center mb-3">Book your Tutoring Session</h6>
     {{-- <div class="mb-3">
         <img src="" alt="profile-img" id="user-img">
         <span class="font-weight-bold ml-2 fc-black-2" id="user-name">

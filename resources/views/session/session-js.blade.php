@@ -155,7 +155,12 @@ $('#tutor-profile-request-session').on('click',function() {
     e.render();
     setTimeout(() => {
         e.destroy();
+         if (startTime && endTime){
+            console.log("selected")
+            e.select(startTime, endTime);
+        }
         e.render();
+
     }, 500);
 
     function session_details() {
@@ -219,7 +224,7 @@ $('#tutor-profile-request-session').on('click',function() {
                                         }, 1000);
                                     }
                                     if (redirectMsg = data.redirectMsg){
-                                        toastr.error("Please add a bank card before booking a tutor session");
+                                        toastr.error("Please add a bank card before booking a tutoring session");
                                         setTimeout(function() {
                                             window.location.href = redirectMsg;
                                         }, 1000);

@@ -1,3 +1,6 @@
+@php
+$tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
 <div>
     <div class="info-box" data-session-id="{{ $request->id }}">
         <div class="user-info">
@@ -17,16 +20,16 @@
         <div class="date">
             <span class="title">Date</span>
             <span class="content">
-                {{ date("m/d", strtotime($request->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($request->session_time_start)) }}</span>
-                {{ date("D", strtotime($request->session_time_start)) }}
+                {{ $request->session_time_start->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ $request->session_time_start->setTimeZone($tz)->format('/y') }}</span>
+                {{ $request->session_time_start->setTimeZone($tz)->format('D') }}
             </span>
         </div>
         <div class="time">
             <span class="title">Time</span>
             <span class="content">
-                {{ date("H:i", strtotime($request->session_time_start)) }}
+                {{ $request->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ date("H:i", strtotime($request->session_time_end)) }}
+                {{ $request->session_time_end->setTimeZone($tz)->format('H:i') }}
             </span>
         </div>
         <div class="course">

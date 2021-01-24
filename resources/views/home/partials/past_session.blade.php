@@ -1,3 +1,7 @@
+@php
+$tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 <div class="{{ $hidden ? 'hidden-2' : '' }}">
     <div class="info-box" data-route-url="{{ route('payment.stripe.refund.user_request_refund', $session->id) }}">
         <div class="user-info">
@@ -10,15 +14,15 @@
             <span class="title show--sm">Date</span>
             <div>
                 <span class="content">
-                    {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
-                    {{ date("D", strtotime($session->session_time_start)) }}
+                    {{ $session->session_time_start->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ $session->session_time_start->setTimeZone($tz)->format('/y') }}</span>
+                    {{ $session->session_time_start->setTimeZone($tz)->format('D') }}
                 </span>
             </div>
             <span class="title mt-2 show--sm">Time</span>
             <span class="content">
-                {{ date("H:i", strtotime($session->session_time_start)) }}
+                {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ date("H:i", strtotime($session->session_time_end)) }}
+                {{ $session->session_time_end->setTimeZone($tz)->format('H:i') }}
             </span>
         </div>
         <div class="course">

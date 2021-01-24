@@ -9,7 +9,7 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h6 class="w-100 text-center mb-5">Book your Tutor Session</h6>
+    <h6 class="w-100 text-center mb-5">Book your Tutoring Session</h6>
 
     <p class="font-weight-bold">Price Summary</p>
     <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard - tutoring sessions')
+@section('title', 'Dashboard - Tutoring Sessions')
 
 @section('body-class')
 bg-white-dark-4

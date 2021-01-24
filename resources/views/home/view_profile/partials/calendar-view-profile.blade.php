@@ -40,7 +40,7 @@ let calendarOptions = {
         @else
         let startTime = moment(selectionInfo.start);
         if(startTime.isBefore(moment().add(2, 'hours'))) {
-            toastr.error('Tutor session must be scheduled 2 hours ahead of start time.');
+            toastr.error('Tutoring session must be scheduled 2 hours ahead of start time.');
             return false;
         }
 

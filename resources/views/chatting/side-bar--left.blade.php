@@ -8,14 +8,16 @@
     </svg>
 </form> --}}
 <ul class="msgs">
+    {{-- todo: debug this when there are two inactive chatrooms --}}
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php
             $otherUserId = Auth::id() == $chatroom->user_id_1 ? $chatroom->user_id_2 : $chatroom->user_id_1;
+            $tz = App\CustomClass\TimeFormatter::getTZ();
         @endphp
         @if ($chatroom->hasMessages())
             @include('chatting.side-bar-chatting-msg', [
                 'unRead' => App\Chatroom::haveUnreadMessagesWith($otherUserId),
-                'time' => $chatroom->getLatestMessageTime(),
+                'time' => $chatroom->getLatestMessageTime()->setTimeZone($tz),
                 'user' => App\User::find($otherUserId),
                 'message' => $chatroom->getLatestMessage()
             ])

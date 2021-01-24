@@ -51,7 +51,7 @@ bg-student
             @else
             <div class="calendar-container">
                 <div class="heading">
-                    <span class="fs-1-8 fc-grey">Book a Tutor Session</span>
+                    <span class="fs-1-8 fc-grey">Book a Tutoring Session</span>
                     <span class="hourly-rate">
                         <span class="color-primary fs-2">
                             $ {{ $user->hourly_rate }}</span>
@@ -63,7 +63,7 @@ bg-student
                 <div id="calendar"></div>
                 <div class="calendar-note">
                     <span class="available-time">Available Time</span>
-                    <span class="note">Note: Note: All time shown are based on your local timezone.</span>
+                    <span class="note">Note: All time shown are based on your local timezone.</span>
                 </div>
             </div>
 

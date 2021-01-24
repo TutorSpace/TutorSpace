@@ -9,7 +9,7 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h6 class="w-100 text-center mb-5">Book your Tutor Session</h6>
+    <h6 class="w-100 text-center mb-5">Book your Tutoring Session</h6>
     <p class="fc-black-2 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
     <p class="font-weight-bold fc-black-2 mt-4">Choose the course you would like to be tutored in </p>

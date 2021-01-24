@@ -61,7 +61,7 @@ class AuthServiceProvider extends ServiceProvider
             } else if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(60)) {
                 return Response::deny('You can only accept tutor requests that are at least two hours before the current time.');
             } else if(!Auth::user()->tutorHasStripeAccount()) {
-                return Response::deny('You must first set up your payment method in the profile page before accepting any tutor request.');
+                return Response::deny('Payment Missing');
             } else {
                 $isAvailable = true;
                 foreach($user->upcomingSessions as $session) {

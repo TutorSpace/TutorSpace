@@ -24,6 +24,7 @@
         "spatie/laravel-image-optimizer": "^1.6",
         "stripe/stripe-php": "^7.66",
         "superbalist/laravel-google-cloud-storage": "^2.2",
+        "torann/geoip": "^1.1",
         "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {

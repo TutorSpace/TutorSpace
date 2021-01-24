@@ -6,10 +6,10 @@
         </p>
         <details class="my-4">
             <summary>
-                How to schedule a tutor session?
+                How to schedule a tutoring session?
             </summary>
             <p class="fc-black-2">
-                There are two ways to schedule a tutor session. First, you can click on the “Find a Tutor” button at the top bar and, meanwhile, filter your results. Second, you can also schedule a session by going to the profile page of active tutors in the forum.
+                There are two ways to schedule a tutoring session. First, you can click on the “Find a Tutor” button at the top bar and, meanwhile, filter your results. Second, you can also schedule a session by going to the profile page of active tutors in the forum.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -33,7 +33,7 @@
             </p>
         </details>
         <details class="my-4">
-            <summary>I have an emergency and cannot attend the tutor session. Can I ask for a refund?</summary>
+            <summary>I have an emergency and cannot attend the tutoring session. Can I ask for a refund?</summary>
             <p class="fc-black-2">This depends on a lot of factors and needs investigation, and you also need to notify your tutor about your situation so that they will not waste their time waiting for you.   According to our Cancellation Policy, student users can usually be allowed to cancel their sessions at least 12 hours away from their tutoring sessions. You will not be granted a full refund if you cancel your session when there are less than 12 hours to your session.
             </p>
             <p class="fc-theme-color">
@@ -88,7 +88,7 @@
             </p>
         </details>
         <details class="my-4">
-            <summary>Can a tutor session have multiple students？
+            <summary>Can a tutoring session have multiple students？
             </summary>
             <p class="fc-black-2">This is up to the tutor. We think a tutoring session with multiple students would be beneficial for both tutors and students. For students, they can split the bill to save some money. For tutors, it increases the chance of being invited as a tutor since each student pays less.
             </p>
@@ -115,9 +115,9 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
         </p>
         <details class="my-4">
-            <summary>Do I have to add a bank card before scheduling a tutor session?
+            <summary>Do I have to add a bank card before scheduling a tutoring session?
             </summary>
-            <p class="fc-black-2">Yes, you will need to have at least one card in your account to schedule a tutor session.
+            <p class="fc-black-2">Yes, you will need to have at least one card in your account to schedule a tutoring session.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -151,9 +151,9 @@
             </p>
         </details>
         <details class="my-4">
-            <summary>When will I be charged after a tutor session?
+            <summary>When will I be charged after a tutoring session?
             </summary>
-            <p class="fc-black-2">We will charge your account using your default payment method right after your tutor session ends. There may be half an hour delay in the charging process. We will notify you after collecting the payment, and we would ask you to authenticate or pay your tutor session manually through email if we failed to make a charge.
+            <p class="fc-black-2">We will charge your account using your default payment method right after your tutoring session ends. There may be half an hour delay in the charging process. We will notify you after collecting the payment, and we would ask you to authenticate or pay your tutoring session manually through email if we failed to make a charge.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>

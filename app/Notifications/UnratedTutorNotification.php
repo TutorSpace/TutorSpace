@@ -45,7 +45,7 @@ class UnratedTutorNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('You have not yet rated the tutor session (from ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' to ' . $this->session->session_time_end->setTimezone('America/Los_Angeles') . ') (PST Time Zone). We would really appreciate if you could leave some reviews about your tutor.')
+                ->line('You have not yet rated the tutoring session (from ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' to ' . $this->session->session_time_end->setTimezone('America/Los_Angeles') . ') (PST Time Zone). We would really appreciate if you could leave some reviews about your tutor.')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }

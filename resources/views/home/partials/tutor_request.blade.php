@@ -1,6 +1,7 @@
 @php
-$session_time_start = explode(' ',$tutorRequest->session_time_start);
-$session_time_end = explode(' ',$tutorRequest->session_time_end);
+$tz = App\CustomClass\TimeFormatter::getTZ();
+$session_time_start = explode(' ',$tutorRequest->session_time_start->setTimeZone($tz));
+$session_time_end = explode(' ',$tutorRequest->session_time_end->setTimeZone($tz));
 $date = $session_time_start[0];
 $month = Carbon\Carbon::parse($date)->format('m');
 $day_date = Carbon\Carbon::parse($date)->format('d');
@@ -15,7 +16,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div>
-    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}" data-date="{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start) }}">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="" data-max-time="" data-session-time-start="{{ $tutorRequest->session_time_start->setTimeZone($tz) }}" data-session-time-end="{{ $tutorRequest->session_time_end->setTimeZone($tz) }}" data-date="{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start->setTimeZone($tz)) }}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -108,7 +109,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="tutor-request-modal__content__calendar">
                     <div class="calendar"></div>
                     <div class="calendar-note">
-                        <span class="note">Note: Note: All time shown are based on your local timezone.</span>
+                        <span class="note">Note: All time shown are based on your local timezone.</span>
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">
@@ -123,7 +124,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                     </button>
                     <button
                         class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">
-                        Confirm Tutor Session
+                        Confirm Tutoring Session
                     </button>
                 </div>
             </div>

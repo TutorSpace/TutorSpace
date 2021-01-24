@@ -314,8 +314,8 @@ index
     $('.icon-social-media').click(function() {
         window.open($(this).attr('data-social-href'), '_blank');
     });
-
 </script>
+
 @include('partials.nav-auth-js')
 @endsection
 

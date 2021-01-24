@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Confirmation [{{ $session->id }}]
+    Session Confirmation [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 

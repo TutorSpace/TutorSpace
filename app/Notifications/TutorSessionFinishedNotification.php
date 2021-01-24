@@ -45,7 +45,7 @@ class TutorSessionFinishedNotification extends Notification implements ShouldQue
     {
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Congrats! Your just finished a tutor session!')
+                    ->line('Congrats! Your just finished a tutoring session!')
                     ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
     }

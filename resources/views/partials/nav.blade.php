@@ -141,7 +141,7 @@
             @auth
                 @if(session()->has('showWelcome')
                 && Route::current()->getName() != 'home')
-                <span class="message-welcome">
+                <span class="message-welcome message-welcome--animated">
                     Hello, {{ Auth::user()->first_name }}!
                 </span>
                 @endif

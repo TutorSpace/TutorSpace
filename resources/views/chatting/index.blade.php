@@ -28,9 +28,6 @@ bg-student
             @include('chatting.side-bar--left')
         </div>
         <div class="chatting__content">
-            {{-- @include('chatting.content', [
-                'user' => App\User::find(Auth::user()->getChatrooms()[0]->user_id_1 == Auth::id() ? Auth::user()->getChatrooms()[0]->user_id_2 : Auth::user()->getChatrooms()[0]->user_id_1)
-            ]) --}}
             <div class="chatting__content__header">
                 <a class="user-name invisible" href="#">
                     placeholder
@@ -77,6 +74,7 @@ bg-student
         });
     })();
 
+    // todo: debug this when there
     // subscribe to listen to new messages for existing chatrooms
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php
@@ -89,8 +87,6 @@ bg-student
         // subscribe to the channel
         let channelName = currentUserId < otherUserId ? `private-message.${currentUserId}.${otherUserId}` : `private-message.${otherUserId}.${currentUserId}`;
 
-        console.log('channelName: ' + channelName);
-
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
             let {from, to, message, created_at, chatroomView, imgUrl} = data;
@@ -101,10 +97,11 @@ bg-student
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
                     appendOtherMessage(message, created_at, imgUrl);
+                    scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
-                    appendMyMessage(message, created_at);
+                    // appendMyMessage(message, created_at);
+                    // scrollToBottom();
                 }
-                scrollToBottom();
             } else {
                 if(!$(`.msg[data-user-id=${otherUserId}]`)[0]) {
                     $('.msgs').append(chatroomView);
@@ -159,12 +156,15 @@ bg-student
                     url: '/chatting/send-msg',
                     data: $('#msg-form').serialize(),
                     success: (data) => {
-                        console.log(data);
+
                     },
                     error: (err) => {
+                        toastr.error('Something went wrong when sending message. Please contact tutorspacehelp@gmail.com for more details.')
                         console.log(err);
                     }
                 });
+                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:s'));
+                scrollToBottom();
                 $('#msg-to-send').val('');
             }
             return false;

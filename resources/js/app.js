@@ -29,6 +29,22 @@ window.jsLoadingOverlayOptions = {
     'spinnerIDName': 'spinner',
 };
 
+// get url parameter
+window.getUrlParameter = function(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {
@@ -85,6 +101,7 @@ $(document).ready(function(){
     if($('.message-welcome').length) {
         setTimeout(function() {
             $('.message-welcome').hide();
+            $('.message-welcome').removeClass('message-welcome--animated');
             $('.nav-right__svg-container').addClass('nav-fade-in-animation');
             $('.nav-right__profile-img').addClass('nav-fade-in-animation');
             $('.nav-right__svg-container').show();
@@ -188,4 +205,8 @@ $(document).ready(function(){
 
         return true;
     });
+
+
+
 })
+
