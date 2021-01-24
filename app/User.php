@@ -37,6 +37,8 @@ class User extends Authenticatable
      */
     protected $fillable = [];
 
+    protected $dates = ['created_at', 'updated_at'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
