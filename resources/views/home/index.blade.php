@@ -133,7 +133,7 @@ bg-student
         @if (Auth::user()->unratedSessions()->count() > 0)
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutor Session(s).</h5>
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutoring Session(s).</h5>
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (Auth::user()->unratedSessions() as $session)
                         @include('home.partials.unrated-session', [
