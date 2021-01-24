@@ -60,6 +60,8 @@ class testController extends Controller
         echo Auth::user()->participatedPosts()->get()->count();
 
         dd(Auth::user()->participatedPosts()->get());
+
+        dd(Auth::user()->participatedPosts()->with(['tags', 'user'])->withCount(['usersUpvoted', 'replies', 'tags'])->orderBy('posts.created_at', 'DESC')->get())
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
