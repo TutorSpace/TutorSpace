@@ -20,9 +20,9 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             </div>
             <span class="title mt-2 show--sm">Time</span>
             <span class="content">
-                {{ date("H:i", strtotime($session->session_time_start)) }}
+                {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ date("H:i", strtotime($session->session_time_end)) }}
+                {{ $session->session_time_end->setTimeZone($tz)->format('D') }}
             </span>
         </div>
         <div class="course">
