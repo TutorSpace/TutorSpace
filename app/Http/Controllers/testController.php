@@ -57,9 +57,9 @@ class testController extends Controller
 
     public function index(Request $request) {
         $tz = TimeFormatter::getTZ();
-        echo Auth::user()->participatedPosts()->get()->count();
+        // echo Auth::user()->participatedPosts()->get()->count();
 
-        dd(Auth::user()->participatedPosts()->get());
+        // dd(Auth::user()->participatedPosts()->get());
 
         echo "here";
 
