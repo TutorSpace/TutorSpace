@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Dashboard - Tutoring Sessions')
@@ -269,12 +273,12 @@ bg-student
                 <div class="info-boxes">
                     @php
                     $reviews = Auth::user()->aboutReviews()->orderBy('created_at', 'desc')->get();
-                    $today = \Carbon\Carbon::today();
+                    $today = \Carbon\Carbon::today($tz);
                     @endphp
                     @for ($i = 0; $i < $reviewCount; $i++)
                         @include('home.partials.review', [
                             'review' => $reviews->get($i),
-                            'dateCreated' => $reviews->get($i)->created_at ?? $today,
+                            'dateCreated' => $reviews->get($i)->created_at->setTimeZone($tz) ?? $today,
                             'hidden' => $i > 2
                         ])
                     @endfor

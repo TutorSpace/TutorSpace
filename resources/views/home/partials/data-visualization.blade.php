@@ -12,9 +12,6 @@
         scatterGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
     }
-@php
-    $tz = App\CustomClass\TimeFormatter::getTZ();
-@endphp
     var postViewCntData = {
         x: [
             @foreach(App\Post::getViewCntWeek(Auth::id()) as $view)

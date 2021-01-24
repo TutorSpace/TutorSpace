@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', "$user->first_name's Profile")
@@ -77,12 +81,12 @@ bg-student
                 <div class="info-boxes">
                     @php
                     $reviews = $user->aboutReviews;
-                    $today = \Carbon\Carbon::today();
+                    $today = \Carbon\Carbon::today($tz);
                     @endphp
                     @foreach($reviews as $review)
                         @include('home.view_profile.partials.review', [
                             'review' => $review,
-                            'dateCreated' => $review->created_at ?? $today
+                            'dateCreated' => $review->created_at->setTimeZone($tz) ?? $today
                     ])
                     @endforeach
                 </div>

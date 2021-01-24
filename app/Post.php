@@ -64,6 +64,11 @@ class Post extends Model
         return $this->created_at->format('M d Y');
     }
 
+    // return time in local (user's local time)
+    public function getTimeInTimeZone($timeZone) {
+        return $this->created_at->setTimeZone($timeZone)->format('M d Y');
+    }
+
     // get all the direct replies for the post
     public function replies() {
         return $this->hasMany('App\Reply')->where('is_direct_reply', true);

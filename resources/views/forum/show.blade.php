@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Forum')
@@ -21,6 +25,7 @@ bg-student
 @include ('forum.partials.forum-helper-btn')
 
 @include('forum.partials.report-modal')
+
 @include('forum.partials.delete-post-modal')
 
 <div class="container forum">
@@ -58,7 +63,7 @@ bg-student
                             Me
                         </span>
                         @endif
-                        <span class="mr-4">{{ $post->getTime() }}</span>
+                        <span class="mr-4">{{ $post->getTimeInTimeZone($tz) }}</span>
                         <svg class="mr-6px mb-1px">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                         </svg>
@@ -204,7 +209,7 @@ bg-student
                                 {{ $reply->reply_content }}
                             </div>
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
-                                <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
+                                <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at->setTimeZone($tz) }}</span>
                                 @if ($reply->replies_count > 0)
                                     <button class="btn btn-link btn-toggle-follow-up" type="button">
                                         <span class="keyword">Display</span>
@@ -266,7 +271,7 @@ bg-student
                             </div>
                             <div class="followup__info" data-reply-id="{{ $followup->id }}">
                                 <div class="followup__info__left">
-                                    <span class="mr-1">{{ $followup->created_at }}</span>
+                                    <span class="mr-1">{{ $followup->created_at->setTimeZone($tz) }}</span>
                                     <span class="mr-1">by</span>
                                     @if (!Auth::check() || Auth::user()->id != $followup->user->id)
                                     <a href="{{ route('view.profile', $followup->user) }}" class="followup__user">
