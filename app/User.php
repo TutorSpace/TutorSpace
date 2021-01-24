@@ -122,9 +122,8 @@ class User extends Authenticatable
 
     // return the profile' daily view count in the past week
     public function viewCntWeek() {
-        $timezone = TimeFormatter::getTZ();
-        $beginDate = Carbon::now()->subDays(7 - 1)->setTimeZone($timezone)->format('Y-m-d');
-        $endDate = Carbon::now()->setTimeZone($timezone)->format('Y-m-d');
+        $beginDate = Carbon::now()->subDays(7 - 1)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
 
         return $this->views()
                     ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
