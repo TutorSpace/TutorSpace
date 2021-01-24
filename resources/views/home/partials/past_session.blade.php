@@ -14,8 +14,8 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             <span class="title show--sm">Date</span>
             <div>
                 <span class="content">
-                    {{ $session->session_time_start->format('m/d') }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
-                    {{ date("D", strtotime($session->session_time_start)) }}
+                    {{ $session->session_time_start->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ $session->session_time_start->setTimeZone($tz)->format('/y') }}</span>
+                    {{ $session->session_time_start->setTimeZone($tz)->format('D') }}
                 </span>
             </div>
             <span class="title mt-2 show--sm">Time</span>
