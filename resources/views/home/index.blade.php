@@ -189,7 +189,7 @@ bg-student
                     <div class="forum-data">
                         {{-- PARTICIPATED POSTS 是我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->count() }}</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->get()->count() }}</a>
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>
