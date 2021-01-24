@@ -57,10 +57,9 @@ class testController extends Controller
 
     public function index(Request $request) {
         $tz = TimeFormatter::getTZ();
-        echo $tz;
-        echo cache('TAGS.TRENDING-TAGS-UPDATE-TIME')->setTimeZone($tz);
+        echo Auth::user()->participatedPosts()->get()->count();
 
-        echo Auth::user()->created_at->setTimeZone($tz);
+        dd(Auth::user()->participatedPosts()->get())
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
