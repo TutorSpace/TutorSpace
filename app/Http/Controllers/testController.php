@@ -60,7 +60,7 @@ class testController extends Controller
         echo $tz;
         echo cache('TAGS.TRENDING-TAGS-UPDATE-TIME')->setTimeZone($tz);
 
-
+        echo Auth::user()->created_at->setTimeZone($tz);
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
