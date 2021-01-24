@@ -1,5 +1,6 @@
 @php
 $tz = App\CustomClass\TimeFormatter::getTZ();
+date_default_timezone_set($tz);
 @endphp
 
 <div class="{{ $hidden ? 'hidden-2' : '' }}">
@@ -14,7 +15,7 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             <span class="title show--sm">Date</span>
             <div>
                 <span class="content">
-                    {{ date("m/d", strtotime($session->session_time_start))->setTimezone(new DateTimeZone($tz)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
+                    {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
                     {{ date("D", strtotime($session->session_time_start)) }}
                 </span>
             </div>
