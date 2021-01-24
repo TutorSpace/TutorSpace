@@ -5,7 +5,7 @@
     <div class="mb-3">
         <select name="star-rating" class="form-control form-control-lg fs-1-6" required>
             @for ($i = 1; $i <= 5; $i++)
-                <option value="{{ $i }}">{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
+                <option value={{ $i }}>{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
             @endfor
         </select>
     </div>
