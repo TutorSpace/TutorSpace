@@ -69,7 +69,7 @@ class testController extends Controller
         // echo $timezone;
 
          $startTime = Carbon::now()->setTimeZone($timezone);
-         echo $startTime;
+         echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
     //    echo Post::getViewCntWeek(Auth::user()->id);
     }
