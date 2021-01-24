@@ -16,7 +16,7 @@
     var postViewCntData = {
         x: [
             @foreach(App\Post::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at->setTimeZone($tz) }}",
+            "{{ $view->viewed_at }}",
             @endforeach
         ],
         y: [
@@ -33,7 +33,7 @@
     var profileViewCntData = {
         x: [
             @foreach(App\User::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at->setTimeZone($tz) }}",
+            "{{ $view->viewed_at }}",
             @endforeach
         ],
         y: [
