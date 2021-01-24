@@ -139,9 +139,8 @@ class Post extends Model
     }
 
     public static function getViewCntWeek($userId) {
-        $timezone = TimeFormatter::getTZ();
-        $beginDate = Carbon::now()->subDays(7 - 1)->setTimeZone($timezone)->format('Y-m-d');
-        $endDate = Carbon::now()->setTimeZone($timezone)->format('Y-m-d');
+        $beginDate = Carbon::now()->subDays(7 - 1)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
 
         return View::select([
                         'views.viewed_at',
