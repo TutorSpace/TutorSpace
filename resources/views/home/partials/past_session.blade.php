@@ -14,7 +14,7 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             <span class="title show--sm">Date</span>
             <div>
                 <span class="content">
-                    {{ Carbon\Carbon::parse(date("m/d", strtotime($session->session_time_start)))->setTimeZone($tz) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
+                    {{ Carbon\Carbon::parse(date("m/d", strtotime($session->session_time_start)))->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
                     {{ date("D", strtotime($session->session_time_start)) }}
                 </span>
             </div>
