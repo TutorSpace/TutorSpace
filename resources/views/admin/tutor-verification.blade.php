@@ -88,7 +88,7 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
 
                 </td>
                 <td>
-                    {{ $notif->created_at->setTimeZone($tz) }}
+                    {{ Carbon\Carbon::parse($notif->created_at)->setTimeZone($tz) }}
                 </td>
                 <td>
                     @foreach (App\User::find($notif->notifiable_id)->verifiedCourses as $course)
