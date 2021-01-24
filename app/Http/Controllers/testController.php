@@ -59,7 +59,7 @@ class testController extends Controller
         $tz = TimeFormatter::getTZ();
         echo Auth::user()->participatedPosts()->get()->count();
 
-        dd(Auth::user()->participatedPosts()->get())
+        dd(Auth::user()->participatedPosts()->get());
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
