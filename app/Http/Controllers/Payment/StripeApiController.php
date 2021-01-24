@@ -789,7 +789,7 @@ class StripeApiController extends Controller
         $amount = $amount * 100;  // Convert to cent
         // Create Product and Price
         $product = \Stripe\Product::create([
-            'name' => 'Tutor Session',
+            'name' => 'Tutoring Session',
         ]);
         $price = \Stripe\Price::create([
             'product' => $product->id,

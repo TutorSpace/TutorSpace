@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    New Tutor Session Request ({{ $tutorRequest->session_time_start->format('m/d/y D') }})
+    New Tutoring Session Request ({{ $tutorRequest->session_time_start->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 

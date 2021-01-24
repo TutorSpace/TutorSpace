@@ -85,7 +85,7 @@ class SessionController extends Controller
 
         return response()->json(
             [
-                'successMsg' => 'Successfully cancelled the tutor session!'
+                'successMsg' => 'Successfully cancelled the tutoring session!'
             ]
         );
     }
@@ -139,7 +139,7 @@ class SessionController extends Controller
 
     public function scheduleSession(Request $request) {
         // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
-        // 3. should not schedule tutor session with oneself (using email, not id)
+        // 3. should not schedule tutoring session with oneself (using email, not id)
         // 4. course must be taught by tutor
         // 5. current user must be a student and the requested user must be a tutor
 
@@ -182,7 +182,7 @@ class SessionController extends Controller
                 'in:in-person,online'
             ],
         ],[
-            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time."
+            'startTime.after_or_equal' => "Tutoring session must be scheduled 2 hours ahead of start time."
         ]);
 
         // return validation error messages
@@ -224,7 +224,7 @@ class SessionController extends Controller
 
             return response()->json(
                 [
-                    'successMsg' => 'Successfully requested the tutor session!',
+                    'successMsg' => 'Successfully requested the tutoring session!',
                 ]
             );
         } else{

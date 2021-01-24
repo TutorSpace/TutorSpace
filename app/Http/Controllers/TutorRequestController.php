@@ -24,7 +24,7 @@ class TutorRequestController extends Controller
 
         if($gateResponse->allowed()){
             DB::transaction(function () use($tutorRequest,$tutorId,$studentId) {
-                //create new tutor session
+                //create new tutoring session
                 $session = new Session();
                 $session->hourly_rate = $tutorRequest->hourly_rate;
                 $session->tutor()->associate($tutorId);

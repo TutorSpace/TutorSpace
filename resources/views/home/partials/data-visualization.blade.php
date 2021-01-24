@@ -155,7 +155,7 @@
             },
             title: {
                 display: true,
-                text: 'Tutor Session Ratings',
+                text: 'Tutoring Session Ratings',
                 fontFamily: "Avenir, sans-serif",
                 fontSize: 16,
                 fontStyle: 200,

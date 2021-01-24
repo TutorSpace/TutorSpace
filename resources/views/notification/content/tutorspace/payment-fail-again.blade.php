@@ -5,7 +5,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold text-danger">
-    You have an unpaid tutor session [Action Required]
+    You have an unpaid tutoring session [Action Required]
 </div>
 <div class="notification__content__info">
 
@@ -14,7 +14,7 @@ $price = $sessionDurationInHour * $hourlyRate;
 
         <div class="container content">
             <h6 class="color-primary">
-                You have an unpaid tutor session.
+                You have an unpaid tutoring session.
             </h6>
             <p class="fs-1-6 mt-2">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni

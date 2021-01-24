@@ -89,8 +89,8 @@
                     'unRead' => $notification->unread(),
                     'time' => $notification->created_at->setTimeZone($tz),
                     'notificationType' => 'tutorspace',
-                    'notificationHeader' => 'Unpaid Tutor Session',
-                    'notificationContent' => 'You have an unapid tutor session.',
+                    'notificationHeader' => 'Unpaid Tutoring Session',
+                    'notificationContent' => 'You have an unapid tutoring session.',
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\PayoutFailed')
@@ -153,7 +153,7 @@
                     'time' => $notification->created_at->setTimeZone($tz),
                     'notificationType' => 'sessions',
                     'notificationHeader' => 'New Tutor Request',
-                    'notificationContent' => 'You just received a new Tutor Session Request!',
+                    'notificationContent' => 'You just received a new Tutoring Session Request!',
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\TutorRequestAccepted')
@@ -189,7 +189,7 @@
                     'time' => $notification->created_at->setTimeZone($tz),
                     'notificationType' => 'sessions',
                     'notificationHeader' => 'Session Finished',
-                    'notificationContent' => 'You just finished a tutor session.',
+                    'notificationContent' => 'You just finished a tutoring session.',
                     'notifId' => $notification->id
             ])
         @elseif($notification->type == 'App\Notifications\UnratedTutorNotification')

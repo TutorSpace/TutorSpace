@@ -123,7 +123,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                     </button>
                     <button
                         class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">
-                        Confirm Tutor Session
+                        Confirm Tutoring Session
                     </button>
                 </div>
             </div>
