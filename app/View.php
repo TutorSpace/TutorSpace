@@ -10,6 +10,8 @@ class View extends Model
 
     protected $guarded = [];
 
+    protected $dates = ['viewed_at'];
+
     public function viewable() {
         return $this->morphTo();
     }
