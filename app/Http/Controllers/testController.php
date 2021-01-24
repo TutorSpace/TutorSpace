@@ -57,7 +57,7 @@ class testController extends Controller
 
     public function index(Request $request) {
         $test = app(StripeApiController::class)->customerHasCards();
-        dd ($test);
+        dd (session()->all());
         // event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
 
         // $ip = file_get_contents("http://ipecho.net/plain");
@@ -71,7 +71,7 @@ class testController extends Controller
         // echo $timezone;
 
          $startTime = Carbon::now()->setTimeZone($timezone);
-         echo $startTime;
+         echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
     //    echo Post::getViewCntWeek(Auth::user()->id);
     }

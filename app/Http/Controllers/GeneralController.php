@@ -75,8 +75,8 @@ class GeneralController extends Controller
             'profile-pic' => [
                 'required',
                 'file',
-                'mimes:jpeg,bmp,png',
-                'max:2000'
+                'mimes:jpeg,bmp,png,jpg',
+                // 'max:7000'
             ]
         ]);
 

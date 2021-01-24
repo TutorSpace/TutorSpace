@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isTutor' => \App\Http\Middleware\CheckIsTutor::class,
         'isAdmin' => \App\Http\Middleware\IsAdmin::class,
+        'optimizeImages' => \Spatie\LaravelImageOptimizer\Middlewares\OptimizeImages::class
     ];
 }

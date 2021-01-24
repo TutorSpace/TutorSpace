@@ -137,6 +137,10 @@ class StripeApiController extends Controller
         ]);
     }
 
+    private static function cacheCustomerHasCards($cards){
+        Cache::put(self::getCustomerHasCardsCacheKey(), count($cards) >= 1);
+    }
+
     // input: a stripe card
     // Request $request
     public function checkIfCardAlreadyExists(Request $request){
