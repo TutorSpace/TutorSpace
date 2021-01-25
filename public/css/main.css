@@ -16482,7 +16482,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .info-boxes .info-box .time {
-  width: 17ch;
+  overflow: visible;
 }
 
 .info-boxes .info-box .course,
