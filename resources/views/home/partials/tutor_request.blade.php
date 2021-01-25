@@ -13,6 +13,12 @@ $student = App\User::find($tutorRequest->student_id);
 $hourlyRate = $tutorRequest->hourly_rate;
 $sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
+
+
+
+$startDate = $tutorRequest->session_time_start->setTimeZone($tz);
+$endDate = $tutorRequest->session_time_end->setTimeZone($tz);
+$diffInDays = $endDate->diff($startDate)->days;
 @endphp
 
 <div>
@@ -29,13 +35,18 @@ $price = $sessionDurationInHour * $hourlyRate;
             </a>
         </div>
         <div class="date">
-            <span class="title">Date</span>
+            <span class="title">Start Date</span>
             <span class="content">{{$month}}/{{$day_date}}<span class="info-box__year">/{{$year}}</span>
                 {{$day}}</span>
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">{{$startTime}} - {{$endTime}}</span>
+            <span class="content">
+                {{$startTime}} - {{$endTime}}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
+            </span>
         </div>
         <div class="course">
             <span class="title">Course</span>
