@@ -33,7 +33,11 @@ $diffInDays = $endDate->diff($startDate)->days;
             <span class="content">
                 {{ $request->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ $request->session_time_end->setTimeZone($tz)->format('H:i') }} (+{{$diffInDays}} days)
+                {{ $request->session_time_end->setTimeZone($tz)->format('H:i') }}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
+
 
             </span>
         </div>
