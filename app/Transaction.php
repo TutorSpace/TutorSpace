@@ -16,6 +16,8 @@ class Transaction extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $dates = ['created_at', 'updated_at'];
+
     public function session() {
         return $this->belongsTo('App\Session');
     }

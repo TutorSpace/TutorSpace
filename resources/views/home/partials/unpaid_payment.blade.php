@@ -1,6 +1,11 @@
 @php
-$session_time_start = explode(' ',$transaction->session->session_time_start);
-$session_time_end = explode(' ',$transaction->session->session_time_end);
+// convert timezone
+$tz = App\CustomClass\TimeFormatter::getTZ();
+$startDateTime = $transaction->session->session_time_start->setTimeZone($tz);
+$endDateTime = $transaction->session->session_time_end->setTimeZone($tz);
+
+$session_time_start = explode(' ',$startDateTime);
+$session_time_end = explode(' ',$endDateTime);
 $date = $session_time_start[0];
 $month = Carbon\Carbon::parse($date)->format('m');
 $day_date = Carbon\Carbon::parse($date)->format('d');
@@ -11,6 +16,11 @@ $day = Carbon\Carbon::parse($date)->format('D');
 $hourlyRate = $transaction->session->hourly_rate;
 $sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
+
+
+
+$diffInDays = $endDateTime->diff($startDateTime)->days;
+
 @endphp
 
 <div>
@@ -31,7 +41,12 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
         <div class="time">
             <span class="title">Time</span>
-            <span class="content">{{$startTime}} - {{$endTime}}</span>
+            <span class="content">
+                {{$startTime}} - {{$endTime}}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
+            </span>
         </div>
         <div class="course">
             <span class="title">Course</span>
