@@ -1,5 +1,9 @@
 @php
 $tz = App\CustomClass\TimeFormatter::getTZ();
+$startDate = $request->session_time_start->setTimeZone($tz);
+$endDate = $request->session_time_end->setTimeZone($tz);
+$diffInDays = $endDate->diff($startDate)->days;
+
 @endphp
 <div>
     <div class="info-box" data-session-id="{{ $request->id }}">
@@ -18,7 +22,7 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             @endif
         </div>
         <div class="date">
-            <span class="title">Date</span>
+            <span class="title">Start Date</span>
             <span class="content">
                 {{ $request->session_time_start->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ $request->session_time_start->setTimeZone($tz)->format('/y') }}</span>
                 {{ $request->session_time_start->setTimeZone($tz)->format('D') }}
@@ -29,7 +33,8 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
             <span class="content">
                 {{ $request->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ $request->session_time_end->setTimeZone($tz)->format('H:i') }}
+                {{ $request->session_time_end->setTimeZone($tz)->format('H:i') }} (+{{$diffInDays}} days)
+
             </span>
         </div>
         <div class="course">
