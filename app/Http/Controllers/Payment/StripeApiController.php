@@ -792,17 +792,23 @@ class StripeApiController extends Controller
 
         // Calculate application fee and session bonus
         $tutor = $session->tutor;
-        $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
-        $bonus_amount = round($amount * $bonus_rate);
         $original_application_fee_amount = round($amount * self::$APPLICATION_FEE_PERCENT);
-        if ($original_application_fee_amount >= $bonus_amount) {
-            $application_fee_amount = $original_application_fee_amount - $bonus_amount;
-            $extra_bonus_amount = 0;
+        if ($tutor->is_tutor_verified) {
+            $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
+            $bonus_amount = round($amount * $bonus_rate);
+            if ($original_application_fee_amount >= $bonus_amount) {
+                $application_fee_amount = $original_application_fee_amount - $bonus_amount;
+                $extra_bonus_amount = 0;
+            } else {
+                $application_fee_amount = 0;
+                $extra_bonus_amount = $bonus_amount - $original_application_fee_amount;
+            }
         } else {
-            $application_fee_amount = 0;
-            $extra_bonus_amount = $bonus_amount - $original_application_fee_amount;
+            $application_fee_amount = $original_application_fee_amount;
+            $bonus_amount = 0;
+            $extra_bonus_amount = 0;
         }
-
+        
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([
             'customer' => $customer_id,
