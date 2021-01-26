@@ -1,9 +1,8 @@
 @php
     $date = $session->session_time_start->format('m/d/y D');
-
+    $sessionDurationInHour = $session->getDurationInHour();
+    $price = $session->calculateSessionFee();
     $hourlyRate = $session->hourly_rate;
-    $sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
-    $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="container modal-session">
@@ -20,7 +19,7 @@
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Time:</p>
-            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('H:i') }} - {{ $session->session_time_end->setTimeZone($tz)->format('H:i') }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Course:</p>
