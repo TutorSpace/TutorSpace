@@ -1,9 +1,13 @@
 @php
-    $date = $session->session_time_start->format('m/d/y D');
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    $date = $session->session_time_start->setTimeZone($tz)->format('m/d/y D');
+    $startDateTime = $session->session_time_start->setTimeZone($tz);
+    $endDateTime = $session->session_time_end->setTimeZone($tz);
+    // not accounting for actual day difference
+    $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
+    $sessionDurationInHour = $session->getDurationInHour();
+    $price = $session->calculateSessionFee();
 
-    $hourlyRate = $session->hourly_rate;
-    $sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
-    $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="container modal-session">
@@ -35,8 +39,6 @@
             <p class="fs-1-5 fw-500">${{ $price }}</p>
         </div> --}}
     </div>
-
-    <div id="calendar-view-session" class="mb-4 mt-3 calendar"></div>
 
     <div class="mb-2 fc-black-2 d-flex flex-row justify-content-between">Session Fee (per hour)<span class="fc-theme-color">$ {{ $session->hourly_rate }}</span></div>
     <div class="fc-black-2 d-flex flex-row justify-content-between">Hours<span class="fc-theme-color">x {{ $sessionDurationInHour }}</span></div>

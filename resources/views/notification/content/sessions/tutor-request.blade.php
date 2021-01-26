@@ -5,7 +5,7 @@ $endDateTime = $tutorRequest->session_time_end->setTimeZone($tz);
 // not accounting for actual day difference
 $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 $sessionDurationInHour = $tutorRequest->getDurationInHour();
-$price = $tutorRequest->calculateSessionFee();;
+$price = $tutorRequest->calculateSessionFee();
 @endphp
 
 <div class="notification__content__header font-weight-bold">
