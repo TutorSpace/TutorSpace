@@ -29,7 +29,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
             </svg>
             <ul class="action-toggle__content">
                 <li class="d-flex align-items-center justify-content-center">
-                    <svg>
+                    <svg style="fill: grey">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-blocked')}}"></use>
                     </svg>
                     <button class="btn px-0 py-0 fs-1-6 btn-cancel-session" type="button">Cancel</button>
