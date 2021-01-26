@@ -90,22 +90,6 @@ class SessionController extends Controller
         );
     }
 
-    public function viewDetails(Request $request, Session $session) {
-        if($session->student->id != Auth::id() && $session->tutor->id != Auth::id()) {
-            return abort(403);
-        }
-
-        return response()->json([
-            'view' => view('session.view-session-overview', [
-                'session' => $session
-            ])->render(),
-            // need to ensure the time is between 8 - 24
-            'minTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_start, -2),
-            'maxTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_end, 2),
-            'date' => $session->session_time_start->format('Y-m-d')
-        ]);
-    }
-
     public function review(Request $request, Session $session) {
         Gate::authorize('review-session', $session);
 

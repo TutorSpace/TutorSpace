@@ -26,25 +26,4 @@ class TimeFormatter {
         $timezone = $userLocation['timezone'];
         return $timezone;
     }
-
-    // todo: modify this, as the session can have muiltiple days!
-    // important: make sure the time is already parsed as a carbon object
-    public static function getTimeForCalendarWithHours($time, $hours) {
-        $substr = ':' . explode(':', $time)[1];
-
-        $hourInt = (int)($time->format('H'));
-
-        if($hourInt == 0) $hourInt = 24;
-
-        $hourInt += $hours;
-
-        $hourInt = max(8, $hourInt);
-        $hourInt = min(24, $hourInt);
-
-        if($hourInt < 10) $result = '0' . $hourInt . $substr;
-        else $result = '' . $hourInt . $substr;
-
-        return $result;
-    }
-
 }

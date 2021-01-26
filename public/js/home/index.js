@@ -158,8 +158,6 @@ $('.btn-view-request').click(function () {
   $('#btn-decline-tutor-session').attr('data-tutorRequest-id', $(this).closest('.info-box').attr("data-tutorRequest-id"));
   $('.home__tutor-request-modal').toggle();
   var options = JSON.parse(JSON.stringify(calendarPopUpOptions));
-  options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
-  options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
   var sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
   var sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
   options.events.push({
@@ -171,12 +169,13 @@ $('.btn-view-request').click(function () {
     type: "tutor-request"
   });
   options.height = 250;
-  options.displayEventTime = false; // for the calendar in tutor request
+  options.displayEventTime = false;
+  options.scrollTime = $(this).closest('.info-box').attr('data-goto-time'); // for the calendar in tutor request
 
   var calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
   calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
   calendarPopUp.render();
-  calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-date'));
+  calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-goto-date'));
 });
 $('.tutor-request-modal__close').click(function () {
   $('.home__tutor-request-modal').toggle();
@@ -279,7 +278,7 @@ $('.side-bar__notification > *').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/home/index.js */"./resources/js/home/index.js");
 
 
 /***/ })

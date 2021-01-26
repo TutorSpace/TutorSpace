@@ -78,9 +78,6 @@ $('.btn-view-request').click(function() {
 
     let options = JSON.parse(JSON.stringify(calendarPopUpOptions));
 
-    options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
-    options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
-
     let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
     let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
 
@@ -96,14 +93,14 @@ $('.btn-view-request').click(function() {
     options.height = 250;
 
     options.displayEventTime = false;
+    options.scrollTime = $(this).closest('.info-box').attr('data-goto-time');
 
     // for the calendar in tutor request
     let calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
 
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
-
     calendarPopUp.render();
-    calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-date'));
+    calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-goto-date'));
 })
 
 $('.tutor-request-modal__close').click(function() {
