@@ -84,8 +84,8 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: moment.utc('{{$upcomingSession->session_time_start}}').format(),
-            end:  moment.utc('{{$upcomingSession->session_time_emd}}').format(),
+            start: moment.utc('{{$upcomingSession->session_time_start}}').format('YYYY-MM-DD'),
+            end:  moment.utc('{{$upcomingSession->session_time_emd}}').format('YYYY-MM-DD'),
             description: "",
         },
         @endforeach
