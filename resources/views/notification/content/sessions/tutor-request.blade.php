@@ -58,8 +58,6 @@ $price = $sessionDurationInHour * $hourlyRate;
                 </div>
             </div>
 
-            <div id="calendar" class="my-4 calendar"></div>
-
             <p class="fc-black-2 fs-1-6"><span class="font-weight-bold">Cancelation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -77,87 +75,3 @@ $price = $sessionDurationInHour * $hourlyRate;
         </div>
     </div>
 </div>
-
-
-@include('home.partials.calendar-tutor')
-<script>
-    let options = JSON.parse(JSON.stringify(calendarOptions));
-    options.selectAllow = false;
-    options.eventClick = null;
-    options.headerToolbar = null;
-    options.height = 200;
-    options.displayEventTime = false;
-
-    options.slotMinTime = "{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}";
-    options.slotMaxTime = "{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}";
-
-    options.events.push({
-        title: 'Current Tutor Request',
-        classNames: ['tutor-request'],
-        start: "{{ $tutorRequest->session_time_start->setTimeZone($tz) }}",
-        end: "{{ $tutorRequest->session_time_end->setTimeZone($tz) }}",
-        description: "",
-        type: "tutor-request",
-    });
-
-    let e = new FullCalendar.Calendar($('#calendar')[0], options);
-
-
-    $('#calendar').hide();
-
-    e.render();
-    setTimeout(() => {
-        $('#calendar').show();
-        e.destroy();
-        e.render();
-        e.gotoDate("{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start->setTimeZone($tz)) }}");
-    }, 500);
-
-    $('#btn-accept').click(function() {
-        JsLoadingOverlay.show(jsLoadingOverlayOptions);
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('tutor-request.accept', $tutorRequest) }}",
-            success: function success(data) {
-                let { successMsg, errorMsg } = data;
-                if(successMsg) {
-                    toastr.success(successMsg);
-                    $('.button-container').html('<button class="btn btn-primary disabled">Accepted</button>');
-                }
-                else if(errorMsg) toastr.error(errorMsg);
-            },
-            error: (error) => {
-                console.log(error);
-                toastr.error("Something went wrong when accepting the tutor request.");
-            },
-            complete: () => {
-                JsLoadingOverlay.hide();
-            }
-        });
-    });
-
-    $('#btn-decline').click(function() {
-        JsLoadingOverlay.show(jsLoadingOverlayOptions);
-        $.ajax({
-            type: 'DELETE',
-            url: "{{ route('tutor-request.decline', $tutorRequest) }}",
-            success: function success(data) {
-                let { successMsg, errorMsg } = data;
-                if(successMsg) {
-                    toastr.success(successMsg);
-                    $('.button-container').html('<button class="btn btn-outline-primary disabled">Declined</button>');
-                }
-                else if(errorMsg) toastr.error(errorMsg);
-            },
-            error: (error) => {
-                console.log(error);
-                toastr.error("Something went wrong when declining the tutor request.");
-            },
-            complete: () => {
-                JsLoadingOverlay.hide();
-            }
-        });
-    });
-
-
-</script>
