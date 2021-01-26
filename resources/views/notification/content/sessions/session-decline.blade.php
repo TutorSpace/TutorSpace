@@ -4,13 +4,12 @@ $startDateTime = $tutorRequest->session_time_start->setTimeZone($tz);
 $endDateTime = $tutorRequest->session_time_end->setTimeZone($tz);
 // not accounting for actual day difference
 $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
-$hourlyRate = $tutorRequest->hourly_rate;
-$sessionDurationInHour = round(abs($tutorRequest->session_time_start->diffInSeconds($tutorRequest->session_time_end)) / 3600, 2);
-$price = $sessionDurationInHour * $hourlyRate;
+$sessionDurationInHour = $tutorRequest->getDurationInHour();
+$price = $tutorRequest->calculateSessionFee();;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Your tutor tequest has been declined ({{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }})
+    Your tutor request has been declined ({{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 
