@@ -14,8 +14,6 @@ $hourlyRate = $tutorRequest->hourly_rate;
 $sessionDurationInHour = $tutorRequest->getDurationInHour();
 $price = $tutorRequest->calculateSessionFee();
 
-
-
 $startDate = $tutorRequest->session_time_start->setTimeZone($tz);
 $endDate = $tutorRequest->session_time_end->setTimeZone($tz);
 $diffInDays = $endDate->diff($startDate)->days;
