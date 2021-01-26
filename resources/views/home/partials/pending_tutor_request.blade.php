@@ -1,9 +1,9 @@
 @php
 $tz = App\CustomClass\TimeFormatter::getTZ();
-$startDate = $request->session_time_start->setTimeZone($tz);
-$endDate = $request->session_time_end->setTimeZone($tz);
+$startDateTime = $request->session_time_start->setTimeZone($tz);
+$endDateTime = $request->session_time_end->setTimeZone($tz);
 // not accounting for actual day difference
-$diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 
 @endphp
 <div>
