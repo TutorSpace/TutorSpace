@@ -15,7 +15,7 @@ $price = $tutorRequest->calculateSessionFee();
 
 $startDate = $tutorRequest->session_time_start->setTimeZone($tz);
 $endDate = $tutorRequest->session_time_end->setTimeZone($tz);
-$diffInDays = $endDate->diff($startDate)->days;
+$diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
 @endphp
 
 <div>

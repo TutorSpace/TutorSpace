@@ -5,7 +5,8 @@ $endDateTime = $session->session_time_end->setTimeZone($tz);
 $diffInDays = $endDateTime->diff($startDateTime)->days;
 $sessionDurationInHour = $session->getDurationInHour();
 $price = $session->calculateSessionFee();
-
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 
 @endphp
 

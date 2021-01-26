@@ -5,8 +5,8 @@ $endDateTime = $session->session_time_end->setTimeZone($tz);
 $sessionDurationInHour = $session->getDurationInHour();
 $price = $session->calculateSessionFee();
 
-$diffInDays = $endDateTime->diff($startDateTime)->days;
-
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 @endphp
 
 <div class="notification__content__header font-weight-bold">
