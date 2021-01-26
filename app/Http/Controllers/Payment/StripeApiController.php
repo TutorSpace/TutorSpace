@@ -669,7 +669,6 @@ class StripeApiController extends Controller
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
 
-        // TODO: send email to user
         $student = $transaction->session->student;
         $student->notify(new InvoicePaid($transaction->session));
     }
@@ -808,7 +807,7 @@ class StripeApiController extends Controller
             $bonus_amount = 0;
             $extra_bonus_amount = 0;
         }
-        
+
         // Create InvoiceItem and Invoice
         $invoice_item = \Stripe\InvoiceItem::create([
             'customer' => $customer_id,

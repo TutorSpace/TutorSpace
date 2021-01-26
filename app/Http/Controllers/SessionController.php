@@ -129,7 +129,7 @@ class SessionController extends Controller
         $review->save();
 
         // TUTOR EXPERIENCE += 5 * RATING
-        event(new SessionReviewPosted($session, $request->input('review')));
+        event(new SessionReviewPosted($session, (int)($request->input('review'))));
 
         return response()->json([
             'successMsg' => 'Successfully posted the review!'
