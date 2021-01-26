@@ -1,11 +1,16 @@
 @php
+$tz = App\CustomClass\TimeFormatter::getTZ();
+$startDateTime = $tutorRequest->session_time_start->setTimeZone($tz);
+$endDateTime = $tutorRequest->session_time_end->setTimeZone($tz);
+$diffInDays = $endDateTime->diff($startDateTime)->days;
+
 $hourlyRate = $tutorRequest->hourly_rate;
 $sessionDurationInHour = round(abs($tutorRequest->session_time_start->diffInSeconds($tutorRequest->session_time_end)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Your tutor tequest has been declined ({{ $tutorRequest->session_time_start->format('m/d/y D') }})
+    Your tutor tequest has been declined ({{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 
@@ -22,11 +27,18 @@ $price = $sessionDurationInHour * $hourlyRate;
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Date:</div>
-                    <p class="fc-black-2 fs-1-5 fw-500">{{ $tutorRequest->session_time_start->format('m/d/y D') }}</p>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Time:</div>
-                    <p class="fc-black-2 fs-1-5 fw-500">{{ $tutorRequest->session_time_start->format('H:i') }} - {{ $tutorRequest->session_time_end->format('H:i') }}</p>
+                    <p class="fc-black-2 fs-1-5 fw-500">
+                        {{ $tutorRequest->session_time_start->setTimeZone($tz)->format('H:i') }}
+                        -
+                        {{ $tutorRequest->session_time_end->setTimeZone($tz)->format('H:i') }}
+                        @if ($diffInDays != 0)
+                            (+{{$diffInDays}} day)
+                        @endif
+                    </p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Course:</div>
