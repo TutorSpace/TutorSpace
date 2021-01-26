@@ -61,9 +61,12 @@ class testController extends Controller
 
         // dd(Auth::user()->participatedPosts()->get());
 
-        echo "here";
+        // echo "here";
 
-        dd(Auth::user()->participatedPosts()->orderBy('posts.created_at', 'DESC')->get());
+
+        // dd(Auth::user()->participatedPosts()->orderBy('posts.created_at', 'DESC')->get());
+        $session = Session::find("ea0010df-08b4-43c0-8437-109c78db0fdb");
+        echo $session->session_time_start->setTimeZone($tz)->format('m/d/y D');
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
