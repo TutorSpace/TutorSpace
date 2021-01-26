@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="d-flex flex-column mt-3">
-            <div class="fc-grey fs-1-4">Time: ({{ $tz }} Time Zone)</div>
+            <div class="fc-grey fs-1-4">Time:</div>
             <div class="fc-black-2 fs-1-6" id="session-time">
                 {{-- 3:30pm - 5:00pm --}}
             </div>
