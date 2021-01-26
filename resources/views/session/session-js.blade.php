@@ -24,27 +24,6 @@
                         },
                     }
                 });
-
-                @if(Auth::user()->is_tutor)
-                let options = JSON.parse(JSON.stringify(calendarOptions));
-                options.selectAllow = false;
-                options.eventClick = null;
-                options.headerToolbar = null;
-                options.height = 250;
-                options.displayEventTime = false;
-
-                options.slotMinTime = minTime;
-                options.slotMaxTime = maxTime;
-
-                let e = new FullCalendar.Calendar($('#calendar-view-session')[0], options);
-                e.render();
-                setTimeout(() => {
-                    e.destroy();
-                    e.render();
-                    // e.gotoDate('2020-10-25');
-                    e.gotoDate(date);
-                }, 500);
-                @endif
             },
             error: (error) => {
                 console.log(error);
