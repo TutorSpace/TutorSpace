@@ -1,3 +1,6 @@
+$("#search-timezone").val(moment.tz.guess());
+
+
 var picker = new Pikaday({
     field: $('#start-date')[0],
     minDate: moment().toDate(),
