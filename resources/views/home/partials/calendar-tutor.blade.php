@@ -61,8 +61,8 @@ let calendarOptions = {
         @foreach(Auth::user()->availableTimes as $time)
         {
             textColor: 'transparent',
-            start: moment.utc('{{$time->available_time_start}}').format('YYYY-MM-DD'),
-            end: moment.utc('{{$time->available_time_end}}').format('YYYY-MM-DD'),
+            start: moment.utc('{{$time->available_time_start}}').format(),
+            end: moment.utc('{{$time->available_time_end}}').format(),
             description: "",
             id: "{{ $time->id }}",
             type: "available-time",
@@ -84,8 +84,8 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: moment.utc('{{$upcomingSession->session_time_start}}').format('YYYY-MM-DD'),
-            end:  moment.utc('{{$upcomingSession->session_time_emd}}').format('YYYY-MM-DD'),
+            start: moment.utc('{{$upcomingSession->session_time_start}}').format(),
+            end:  moment.utc('{{$upcomingSession->session_time_end}}').format(),
             description: "",
         },
         @endforeach
