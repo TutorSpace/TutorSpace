@@ -163,7 +163,7 @@ bg-student
                         console.log(err);
                     }
                 });
-                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:s'));
+                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:ss'));
                 scrollToBottom();
                 $('#msg-to-send').val('');
             }

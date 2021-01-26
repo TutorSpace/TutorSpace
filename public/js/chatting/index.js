@@ -104,7 +104,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/chatting/index.js */"./resources/js/chatting/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/chatting/index.js */"./resources/js/chatting/index.js");
 
 
 /***/ })

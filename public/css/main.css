@@ -23103,6 +23103,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 1rem;
   max-width: 50%;
   font-size: 1.5rem;
+  line-break: anywhere;
 }
 
 .chatting__content__messages .message .time-container {

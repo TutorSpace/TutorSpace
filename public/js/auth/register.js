@@ -277,7 +277,7 @@ $("input[type=file]").change(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/auth/register.js */"./resources/js/auth/register.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/auth/register.js */"./resources/js/auth/register.js");
 
 
 /***/ })

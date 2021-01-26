@@ -198,7 +198,7 @@ $('.btn-filter').click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/forum/forum.js */"./resources/js/forum/forum.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/forum.js */"./resources/js/forum/forum.js");
 
 
 /***/ })
