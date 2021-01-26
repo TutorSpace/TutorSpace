@@ -94,8 +94,8 @@ $price = $sessionDurationInHour * $hourlyRate;
     options.events.push({
         title: 'Current Tutor Request',
         classNames: ['tutor-request'],
-        start: "{{ $tutorRequest->session_time_start }}",
-        end: "{{ $tutorRequest->session_time_end }}",
+        start: "{{ $tutorRequest->session_time_start->setTimeZone($tz) }}",
+        end: "{{ $tutorRequest->session_time_end->setTimeZone($tz) }}",
         description: "",
         type: "tutor-request",
     });
@@ -110,8 +110,7 @@ $price = $sessionDurationInHour * $hourlyRate;
         $('#calendar').show();
         e.destroy();
         e.render();
-        e.gotoDate("{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start) }}");
-
+        e.gotoDate("{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start->setTimeZone($tz)) }}");
     }, 500);
 
     $('#btn-accept').click(function() {
