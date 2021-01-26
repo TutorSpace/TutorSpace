@@ -61,8 +61,8 @@ let calendarOptions = {
         @foreach(Auth::user()->availableTimes as $time)
         {
             textColor: 'transparent',
-            start: moment.utc('{{$time->available_time_start}}').format(),
-            end: moment.utc('{{$time->available_time_end}}').format(),
+            start: moment.utc('{{$time->available_time_start}}').format('YYYY-MM-DD'),
+            end: moment.utc('{{$time->available_time_end}}').format('YYYY-MM-DD'),
             description: "",
             id: "{{ $time->id }}",
             type: "available-time",
