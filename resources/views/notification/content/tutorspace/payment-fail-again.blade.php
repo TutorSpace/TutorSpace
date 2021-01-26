@@ -1,7 +1,6 @@
 @php
-$hourlyRate = $session->hourly_rate;
-$sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
-$price = $sessionDurationInHour * $hourlyRate;
+$sessionDurationInHour = $session->getDurationInHour();
+$price = $session->calculateSessionFee();
 $tz = App\CustomClass\TimeFormatter::getTZ();
 $diffInDays = $session->session_time_end->setTimeZone($tz)->diff($session->session_time_start->setTimeZone($tz))->days;
 @endphp
