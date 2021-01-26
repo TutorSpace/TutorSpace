@@ -2,7 +2,7 @@
 $tz = App\CustomClass\TimeFormatter::getTZ();
 $startDate = $request->session_time_start->setTimeZone($tz);
 $endDate = $request->session_time_end->setTimeZone($tz);
-$diffInDays = $endDate->diffInDays($startDate)->days;
+$diffInDays = $endDate->diffInDays($startDate);
 
 @endphp
 <div>
