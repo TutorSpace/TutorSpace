@@ -30,7 +30,7 @@ $hourlyRate = $session->hourly_rate;
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="fc-grey fs-1-4">Time:</div>
+                    <div class="fc-grey fs-1-4">Time: ({{ $tz }} Time Zone)</div>
                     <p class="fc-black-2 fs-1-5 fw-500">
                         {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                         -
