@@ -31,6 +31,19 @@ class TutorRequest extends Model
         return $this->belongsTo('App\User', 'student_id');
     }
 
+    // Calculate the duration in hour (with two decimal places)
+    public function getDurationInHour() {
+        $startTimeInTime = strtotime($this->session_time_start);
+        $endTimeInTime = strtotime($this->session_time_end);
+        return round(abs($endTimeInTime - $startTimeInTime) / 3600, 2);
+    }
+
+    public function calculateSessionFee() {
+        $hourlyRate = $this->hourly_rate;
+        $sessionFee = $this->getDurationInHour() * $hourlyRate;
+        return $sessionFee;
+    }
+
     // IMPORTANT: must run scheduler in prod env
     public static function changeTutorRequestStatusOnTimeout() {
         $tutorRequests = TutorRequest::where('status', 'pending')->get();
