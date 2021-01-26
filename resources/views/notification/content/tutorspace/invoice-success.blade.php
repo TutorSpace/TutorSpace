@@ -3,6 +3,7 @@ $sessionDurationInHour = $session->getDurationInHour();
 $price = $session->calculateSessionFee();
 $tz = App\CustomClass\TimeFormatter::getTZ();
 $diffInDays = $session->session_time_end->setTimeZone($tz)->diff($session->session_time_start->setTimeZone($tz))->days;
+$hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
