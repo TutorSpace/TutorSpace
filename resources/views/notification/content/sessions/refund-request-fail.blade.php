@@ -6,8 +6,8 @@ $hourlyRate = $session->hourly_rate;
 $sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
 
-$diffInDays = $endDateTime->diff($startDateTime)->days;
-
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 @endphp
 
 <div class="notification__content__header font-weight-bold">

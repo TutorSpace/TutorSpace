@@ -2,8 +2,8 @@
 $tz = App\CustomClass\TimeFormatter::getTZ();
 $startDateTime = $tutorRequest->session_time_start->setTimeZone($tz);
 $endDateTime = $tutorRequest->session_time_end->setTimeZone($tz);
-$diffInDays = $endDateTime->diff($startDateTime)->days;
-
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 $hourlyRate = $tutorRequest->hourly_rate;
 $sessionDurationInHour = round(abs($tutorRequest->session_time_start->diffInSeconds($tutorRequest->session_time_end)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;

@@ -14,7 +14,8 @@ $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($session->student_id);
 
-$diffInDays = $endDateTime->diff($startDateTime)->days;
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 @endphp
 
 <div class="info-card @if(isset($hidden) && $hidden) hidden-2 @endif" data-session-id="{{ $session->id }}">
