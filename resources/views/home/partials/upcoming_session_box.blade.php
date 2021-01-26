@@ -21,16 +21,16 @@
         <div class="date">
             <span class="title">Date</span>
             <span class="content">
-                {{ Carbon\Carbon::parse($session->session_time_start)->format('m/d')->setTimeZone($tz) }}<span class="info-box__year">{{ Carbon\Carbon::parse($session->session_time_start)->format('/y')->setTimeZone($tz) }}</span>
-                {{ Carbon\Carbon::parse($session->session_time_start)->format('D')->setTimeZone($tz) }}
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('/y') }}</span>
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('D') }}
             </span>
         </div>
         <div class="time">
             <span class="title">Time</span>
             <span class="content">
-                {{ Carbon\Carbon::parse($session->session_time_start)->format('H:i')->setTimeZone($tz) }}
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ Carbon\Carbon::parse($session->session_time_end)->format('H:i')->setTimeZone($tz) }}
+                {{ Carbon\Carbon::parse($session->session_time_end)->setTimeZone($tz)->format('H:i') }}
                 @if ($diffInDays != 0)
                     (+{{$diffInDays}} day)
                 @endif

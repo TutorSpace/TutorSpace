@@ -90,6 +90,21 @@ class SessionController extends Controller
         );
     }
 
+    public function viewDetails(Request $request, Session $session) {
+        if($session->student->id != Auth::id() && $session->tutor->id != Auth::id()) {
+            return abort(403);
+        }
+        $tz = TimeFormatter::getTZ();
+        return response()->json([
+            'view' => view('session.view-session-overview', [
+                'tz' => $tz,
+                'session' => $session
+            ])->render(),
+            'time' => $session->session_time_start->setTimeZone($tz)->format('H:i:s'),
+            'date' => $session->session_time_start->setTimeZone($tz)->format('Y-m-d')
+        ]);
+    }
+
     public function review(Request $request, Session $session) {
         Gate::authorize('review-session', $session);
 

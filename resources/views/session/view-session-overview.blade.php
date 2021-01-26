@@ -1,13 +1,8 @@
 @php
-    $tz = App\CustomClass\TimeFormatter::getTZ();
-    $date = $session->session_time_start->setTimeZone($tz)->format('m/d/y D');
-    $startDateTime = $session->session_time_start->setTimeZone($tz);
-    $endDateTime = $session->session_time_end->setTimeZone($tz);
-    // not accounting for actual day difference
-    $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
+    $date = $session->session_time_start->format('m/d/y D');
     $sessionDurationInHour = $session->getDurationInHour();
     $price = $session->calculateSessionFee();
-
+    $hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="container modal-session">
@@ -24,7 +19,7 @@
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Time:</p>
-            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
+            <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('H:i') }} - {{ $session->session_time_end->setTimeZone($tz)->format('H:i') }}</p>
         </div>
         <div class="d-flex flex-column">
             <p class="fc-grey fs-1-4 mb-0">Course:</p>

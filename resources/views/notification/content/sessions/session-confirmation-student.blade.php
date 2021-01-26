@@ -6,10 +6,11 @@ $endDateTime = $session->session_time_end->setTimeZone($tz);
 $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 $sessionDurationInHour = $session->getDurationInHour();
 $price = $session->calculateSessionFee();
+$hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Confirmation [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
+    Session Confirmation  [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
