@@ -1,5 +1,6 @@
 @php
     $tz = App\CustomClass\TimeFormatter::getTZ();
+    $diffInDays = $session->session_time_end->setTimeZone($tz)->diff($session->session_time_start->setTimeZone($tz))->days;
 @endphp
 <div>
     <div class="info-box" data-session-id="{{ $session->id }}">
@@ -30,6 +31,9 @@
                 {{ Carbon\Carbon::parse($session->session_time_start)->format('H:i')->setTimeZone($tz) }}
                 -
                 {{ Carbon\Carbon::parse($session->session_time_end)->format('H:i')->setTimeZone($tz) }}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
             </span>
         </div>
         <div class="course">

@@ -3,6 +3,7 @@ $hourlyRate = $session->hourly_rate;
 $sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
 $price = $sessionDurationInHour * $hourlyRate;
 $tz = App\CustomClass\TimeFormatter::getTZ();
+$diffInDays = $session->session_time_end->setTimeZone($tz)->diff($session->session_time_start->setTimeZone($tz))->days;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
@@ -28,6 +29,10 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Time:</div>
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('H:i') }} - {{ $session->session_time_end->setTimeZone($tz)->format('H:i') }}</p>
+
+                    @if ($diffInDays != 0)
+                        (+{{$diffInDays}} day)
+                    @endif
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Course:</div>
