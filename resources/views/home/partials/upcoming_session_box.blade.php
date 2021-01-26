@@ -45,6 +45,5 @@
             <button class="btn btn-lg btn-animation-y-sm btn-cancel-session">Cancel</button>
             <button class="btn btn-lg btn-animation-y-sm btn-view-session">View</button>
         </div>
-
     </div>
 </div>
