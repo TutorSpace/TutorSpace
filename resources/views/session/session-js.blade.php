@@ -246,7 +246,7 @@ $('#tutor-profile-request-session').on('click',function() {
             let minutesDiff = endTime.diff(startTime, "minutes");
             let hoursDiff = minutesDiff / 60;
             let sessionFee = hoursDiff * otherUserHourlyRate;
-            $('#session-fee').html(sessionFee);
+            $('#session-fee').html('$ ' + sessionFee);
             $('#hours').html(hoursDiff);
             $('#hourly-rate').html(otherUserHourlyRate);
         }
