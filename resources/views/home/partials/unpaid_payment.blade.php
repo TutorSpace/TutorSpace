@@ -13,9 +13,8 @@ $year = Carbon\Carbon::parse($date)->format('y');
 $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
-$hourlyRate = $transaction->session->hourly_rate;
-$sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
-$price = $sessionDurationInHour * $hourlyRate;
+$sessionDurationInHour = $transaction->session->getDurationInHour();
+$price = $transaction->session->calculateSessionFee();
 
 
 

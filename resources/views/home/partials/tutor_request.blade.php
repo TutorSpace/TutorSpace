@@ -10,7 +10,6 @@ $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
-$hourlyRate = $tutorRequest->hourly_rate;
 $sessionDurationInHour = $tutorRequest->getDurationInHour();
 $price = $tutorRequest->calculateSessionFee();
 
