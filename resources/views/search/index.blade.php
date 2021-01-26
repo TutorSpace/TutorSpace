@@ -50,6 +50,7 @@ bg-student
                     <button class="btn btn-link btn-hide" type="button">show</button>
                 </span>
 
+
                 <div class="flex__content">
                     <hr>
                     <div class="filter__available-time">
@@ -239,6 +240,7 @@ bg-student
                 </div>
 
                 <input type="hidden" name="nav-search-content" id="search-content">
+                <input type="hidden" name="search-timezone" id="search-timezone">
             </form>
 
         </div>
