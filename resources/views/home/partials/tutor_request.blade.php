@@ -32,7 +32,7 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
             </a>
         </div>
         <div class="date">
-            <span class="title">Start Date</span>
+            <span class="title">Date</span>
             <span class="content">{{$month}}/{{$day_date}}<span class="info-box__year">/{{$year}}</span>
                 {{$day}}</span>
         </div>

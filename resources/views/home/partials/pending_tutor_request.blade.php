@@ -23,7 +23,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
             @endif
         </div>
         <div class="date">
-            <span class="title">Start Date</span>
+            <span class="title">Date</span>
             <span class="content">
                 {{ $request->session_time_start->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ $request->session_time_start->setTimeZone($tz)->format('/y') }}</span>
                 {{ $request->session_time_start->setTimeZone($tz)->format('D') }}
@@ -38,8 +38,6 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
                 @if ($diffInDays != 0)
                     (+{{$diffInDays}} day)
                 @endif
-
-
             </span>
         </div>
         <div class="course">

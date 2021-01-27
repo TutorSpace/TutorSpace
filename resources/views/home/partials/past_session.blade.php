@@ -18,7 +18,7 @@ $tz = App\CustomClass\TimeFormatter::getTZ();
                     {{ $session->session_time_start->setTimeZone($tz)->format('D') }}
                 </span>
             </div>
-            <span class="title mt-2 show--sm">Time</span>
+            <span class="title mt-2 show--sm">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
                 {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
