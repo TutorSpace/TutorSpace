@@ -95,7 +95,7 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
                             <span class="content"></span>
                         </div>
                         <div class="time">
-                            <span class="title">Time</span>
+                            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
                             <span class="content"></span>
                         </div>
                         <div class="flex-100"></div>
