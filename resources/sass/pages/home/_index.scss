@@ -356,13 +356,10 @@
                 border-radius: 1rem;
                 box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
-                .heading {
+                .calendar-heading {
                     display: flex;
                     justify-content: space-between;
-
-                    .hourly-rate {
-
-                    }
+                    align-items: center;
                 }
 
                 #calendar {

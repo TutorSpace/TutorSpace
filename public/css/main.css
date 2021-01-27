@@ -21845,10 +21845,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-.home__content .col-layout-2 #calendar-container .heading,
-.home__content .col-layout-3 #calendar-container .heading {
+.home__content .col-layout-2 #calendar-container .calendar-heading,
+.home__content .col-layout-3 #calendar-container .calendar-heading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .home__content .col-layout-2 #calendar-container #calendar,

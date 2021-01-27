@@ -80,7 +80,10 @@ bg-student
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
                 <div class="" id="calendar-container">
-                    <h5 class="w-100 calendar-heading">Calendar</h5>
+                    <div class="w-100 calendar-heading">
+                        <h5 class="mb-0">Calendar</h5>
+                        <span class="fs-1-4 fc-grey">Drag to select your available time</span>
+                    </div>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
                         <span class="available-time">Available Time</span>
