@@ -39,6 +39,15 @@
                 'notificationContent' => 'Welcome to TutorSpace!',
                 'notifId' => $notification->id
             ])
+        @elseif($notification->type == 'App\Notifications\ReferralRegisterSuccessNotification')
+            @include('notification.side-bar-notification-msg', [
+                    'unRead' => $notification->unread(),
+                    'time' => $notification->created_at->setTimeZone($tz),
+                    'notificationType' => 'tutorspace',
+                    'notificationHeader' => 'Referral Bonus Claimed',
+                    'notificationContent' => 'You have successfully claimed your referral bonus.',
+                    'notifId' => $notification->id
+            ])
         @elseif($notification->type == 'App\Notifications\TutorVerificationInitiatedNotification')
             @include('notification.side-bar-notification-msg', [
                     'unRead' => $notification->unread(),

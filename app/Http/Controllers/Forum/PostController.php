@@ -176,6 +176,11 @@ class PostController extends Controller
             $postDraft->delete();
         }
 
+        if(PostType::where('id', $request['post-type'])->first()->post_type == 'Class Review' && str_word_count($request->input('post-content')) >= 80) {
+            // this function will check whether the user can claim the bonus or not
+            Auth::user()->claimReferralBonus();
+        }
+
         return redirect()->route('posts.index')->with([
             'successMsg' => 'You successfully created a new post!'
         ]);

@@ -12,18 +12,18 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
 {
     use Queueable;
 
-    private $userInvitedBy;
     private $forNewUser;
+    private $sendToUsers;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $userInvitedBy, $forNewUser)
+    public function __construct($forNewUser, $sendToUsers)
     {
-        $this->userInvitedBy = $userInvitedBy;
         $this->forNewUser = $forNewUser;
+        $this->sendToUsers = $sendToUsers;
     }
 
     /**
@@ -45,14 +45,22 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
      */
     public function toMail($notifiable)
     {
-        if($this->forNewUser) {
+        if(!$this->sendToUsers) {
+            return (new MailMessage)
+            ->line('A user claimed the rewards successfully. You should send him/her bonus via Venmo.');
+        }
+        else if($this->forNewUser) {
             return (new MailMessage)
             ->greeting('Dear ' . $notifiable->first_name)
-            ->line('You have successfully claimed the referral bonus. Your bonus will be sent to your account within 3 days.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->line('You have successfully claimed the referral bonus. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
+            ->action('Visit TutorSpace', url('/'))
+            ->line('Thank you for using our platform!');
         } else {
-
+            return (new MailMessage)
+            ->greeting('Dear ' . $notifiable->first_name)
+            ->line('Your referral code is successfully activated by a student you invited. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
+            ->action('Visit TutorSpace', url('/'))
+            ->line('Thank you for using our platform!');
         }
 
     }
@@ -66,7 +74,7 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
     public function toArray($notifiable)
     {
         return [
-            //
+            'forNewUser' => $this->forNewUser
         ];
     }
 }

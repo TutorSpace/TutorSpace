@@ -13,6 +13,7 @@ use Carbon\Carbon;
 use App\InviteUser;
 use App\TutorLevel;
 use Illuminate\Support\Str;
+use App\ReferralClaimedUser;
 use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
@@ -590,12 +592,21 @@ class User extends Authenticatable
     }
 
     public function claimReferralBonus() {
-        // check is the user is using an invite code
-        $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_user', true)->orderBy('created_at', 'desc')->first();
-        if($inviteUser) {
-            $this->notify(new ReferralRegisterSuccessNotification($inviteUser->user_id, true));
+        // important: we use the updated_at property to determine which invite code the user is attempting to use
+        $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_use', true)->orderBy('updated_at', 'desc')->first();
 
-            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification($inviteUser->user_id, false));
+        // check if the user has an invite code and does not claimed the bonus yet
+        if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
+            $this->notify(new ReferralRegisterSuccessNotification(true, true));
+
+            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification(false, true));
+
+            Notification::route('mail', "tutorspacehelp@gmail.com")
+            ->notify(new ReferralRegisterSuccessNotification(false, false));
+
+            ReferralClaimedUser::create([
+                'email' => $this->email
+            ]);
         }
     }
 
