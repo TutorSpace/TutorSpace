@@ -4,14 +4,16 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Review;
 
+use App\Review;
 use App\Message;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\InviteUser;
 use App\TutorLevel;
 use Illuminate\Support\Str;
+use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
@@ -23,8 +25,8 @@ use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ReferralRegisterSuccessNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-use App\CustomClass\TimeFormatter;
 
 class User extends Authenticatable
 {
@@ -585,6 +587,16 @@ class User extends Authenticatable
     // edge cases : return 0 if <= 0, return 1 if >= highest level
     public function getLevelProgressPercentage(){
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
+    }
+
+    public function claimReferralBonus() {
+        // check is the user is using an invite code
+        $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_user', true)->orderBy('created_at', 'desc')->first();
+        if($inviteUser) {
+            $this->notify(new ReferralRegisterSuccessNotification($inviteUser->user_id, true));
+
+            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification($inviteUser->user_id, false));
+        }
     }
 
 }

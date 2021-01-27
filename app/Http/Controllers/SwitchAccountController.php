@@ -107,18 +107,10 @@ class SwitchAccountController extends Controller
 
             $currUser->notify(new WelcomeMessageNotification());
 
-            // check is the user is using an invite code
-            $inviteUser = InviteUser::where('invited_user_email', $currUser->email)->where('attempt_to_user', true)->orderBy('created_at', 'desc')->first();
-            if($inviteUser) {
-                
-            }
-
             return redirect()->route('home.profile')->with('successMsg', 'You successfully created a tutor account!');
         }
 
         return redirect()->back();
-
-
     }
 
 }
