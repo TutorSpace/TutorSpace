@@ -86,7 +86,7 @@ bg-student
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: All time shown are based on {{ App\CustomClass\TimeFormatter::getTZShortHand(App\CustomClass\TimeFormatter::getTZ()) }} Time Zone.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand(App\CustomClass\TimeFormatter::getTZ()) }})</span>
                     </div>
                 </div>
                 <div class="info-cards col-layout-3--hidden" id="upcoming-sessions-container">

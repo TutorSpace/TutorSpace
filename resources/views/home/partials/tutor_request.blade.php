@@ -117,7 +117,7 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
                 <div class="tutor-request-modal__content__calendar">
                     <div class="calendar"></div>
                     <div class="calendar-note">
-                        <span class="note">Note: All time shown are based on {{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time Zone.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">
