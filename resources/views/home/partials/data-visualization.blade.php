@@ -109,6 +109,7 @@
         '#8B73EB',
         '#6749DF',
     ];
+
     var labels =  [
         'One-Star',
         'Two-Star',
