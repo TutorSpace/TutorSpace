@@ -65,7 +65,7 @@ bg-student
                         </span>
                 </div>
                 <div id="calendar"></div>
-                <div class="calendar-note">
+                <div class="calendar-note mt-3">
                     <span class="available-time">Available Time</span>
                     <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                 </div>
