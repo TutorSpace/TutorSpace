@@ -597,12 +597,14 @@ class User extends Authenticatable
 
         // check if the user has an invite code and does not claimed the bonus yet
         if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
-            $this->notify(new ReferralRegisterSuccessNotification(true, true));
+            $userInvitedBy = User::where('id', $inviteUser->user_id)->firstOrFail();
 
-            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification(false, true));
+            $this->notify(new ReferralRegisterSuccessNotification($userInvitedBy, true, true));
+
+            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification($userInvitedBy, false, true));
 
             Notification::route('mail', "tutorspacehelp@gmail.com")
-            ->notify(new ReferralRegisterSuccessNotification(false, false));
+            ->notify(new ReferralRegisterSuccessNotification($userInvitedBy, false, false));
 
             ReferralClaimedUser::create([
                 'email' => $this->email

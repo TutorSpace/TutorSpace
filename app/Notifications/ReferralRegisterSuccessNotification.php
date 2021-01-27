@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\User;
+use App\InviteUser;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,18 +13,62 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
 {
     use Queueable;
 
+    private $userInvitedBy;
     private $forNewUser;
     private $sendToUsers;
+    private $bonus; // in dollars
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($forNewUser, $sendToUsers)
+    public function __construct(User $userInvitedBy, $forNewUser, $sendToUsers)
     {
+        $this->userInvitedBy = $userInvitedBy;
         $this->forNewUser = $forNewUser;
         $this->sendToUsers = $sendToUsers;
+
+        // calculate the referral bonus
+        $cnt = InviteUser::join('referral_claimed_users', 'referral_claimed_users.email', '=', 'invite_user.invited_user_email')
+        ->where('invite_user.user_id', $userInvitedBy->id)->count();
+
+        $arr = collect();
+        if($cnt < 2) {
+            for($i = 0; $i < 7; $i++) $arr->push(5); // (4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // (3, 4]
+        } else if($cnt < 4) {
+            for($i = 0; $i < 5; $i++) $arr->push(5); // (4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // (3, 4]
+            for($i = 0; $i < 2; $i++) $arr->push(3); // (2, 3]
+        } else if($cnt < 6) {
+            for($i = 0; $i < 2; $i++) $arr->push(5); // (4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // (3, 4]
+            for($i = 0; $i < 3; $i++) $arr->push(3); // (2, 3]
+            for($i = 0; $i < 2; $i++) $arr->push(2); // (1, 2]
+        } else if($cnt < 8) {
+            for($i = 0; $i < 3; $i++) $arr->push(4); // (3, 4]
+            for($i = 0; $i < 3; $i++) $arr->push(3); // (2, 3]
+            for($i = 0; $i < 2; $i++) $arr->push(2); // (1, 2]
+            for($i = 0; $i < 2; $i++) $arr->push(1); // (0, 1]
+        } else {
+            for($i = 0; $i < 5; $i++) $arr->push(2); // (1, 2]
+            for($i = 0; $i < 5; $i++) $arr->push(1); // (0, 1]
+        }
+
+        $max = $arr->random();
+
+        if($max == 5) {
+
+        } else if($max == 4) {
+
+        } else if($max == 3) {
+
+        } else if($max == 2) {
+
+        } else if($max == 1) {
+
+        }
     }
 
     /**
