@@ -37,7 +37,7 @@ bg-student
 
 @endsection
 
-@section('js-2')
+@section('js')
 <script>
 
     $(document).on('click', '#btn-rate-tutor', function() {

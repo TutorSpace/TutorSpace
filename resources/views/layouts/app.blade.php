@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
 
-    @guest
     {{-- google services --}}
     <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-    @endguest
 
     <link rel = "icon" href =
     "{{ asset('assets/images/tutorspace_logo.png') }}"
@@ -259,7 +257,6 @@
 
     </script>
     @yield('js')
-    @yield('js-2')
 
 </body>
 </html>

@@ -81,7 +81,7 @@
             </div>
 
             <div class="button-container">
-                <button class="btn btn-primary">Create a Tutor Account</button>
+                <a class="btn btn-primary" href="{{ route('invite-to-be-tutor.attempt-claim-bonus', $inviteCode) }}">Create a Tutor Account</a>
             </div>
         </div>
     </div>
