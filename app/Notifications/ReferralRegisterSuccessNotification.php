@@ -81,18 +81,18 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
     {
         if(!$this->sendToUsers) {
             return (new MailMessage)
-            ->line('A user claimed the rewards successfully. You should send him/her bonus via Venmo.');
+            ->line('A user claimed the rewards successfully. You should send him/her bonus via Venmo with a bonus of $' . $this->bonus . '.');
         }
         else if($this->forNewUser) {
             return (new MailMessage)
             ->greeting('Dear ' . $notifiable->first_name)
-            ->line('You have successfully claimed the referral bonus. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
+            ->line('You have successfully claimed a referral bonus of $' . $this->bonus . '. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
             ->action('Visit TutorSpace', url('/'))
             ->line('Thank you for using our platform!');
         } else {
             return (new MailMessage)
             ->greeting('Dear ' . $notifiable->first_name)
-            ->line('Your referral code is successfully activated by a student you invited. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
+            ->line('Your referral code is successfully activated by a student you invited. You will receive a referral bonus of $' . $this->bonus . '. One of our staff member will shortly send you an email to ask for your Venmo account, and your bonus will be sent to you via Venmo within 3 days.')
             ->action('Visit TutorSpace', url('/'))
             ->line('Thank you for using our platform!');
         }
