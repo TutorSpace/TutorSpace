@@ -32,7 +32,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="fc-grey fs-1-4">Time: ({{ $tz }} Time Zone)</div>
+                    <div class="fc-grey fs-1-4">Time: ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</div>
                     <p class="fc-black-2 fs-1-5 fw-500">
                         {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                         -
