@@ -118,7 +118,7 @@ bg-student
     //     $(el).html(moment(timeUTC).tz(moment.tz.guess()).format('YYYY-MM-DD H:mm:s'));
     // });
 
-    @if(isset($showNotif))
+    @if(isset($showNotif) && $showNotif)
     $('.msgs .msg[data-notif-id={{ $showNotif }}]').click();
     @endif
 

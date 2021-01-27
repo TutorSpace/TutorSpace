@@ -16,8 +16,9 @@ class NotificationController extends Controller
 {
     public function index(Request $request) {
 
+        $notif = Auth::user()->notifications()->orderBy('created_at', 'desc')->first();
         return view('notification.index', [
-            'showNotif' => $request->input('show-notif') ?? Auth::user()->notifications()->orderBy('created_at', 'desc')->first()
+            'showNotif' => $request->input('show-notif') ?? ($notif ? $notif->id : null)
         ]);
     }
 

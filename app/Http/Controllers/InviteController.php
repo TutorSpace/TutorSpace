@@ -81,13 +81,12 @@ class InviteController extends Controller
             Auth::login(User::where('email', $request->input('email'))->where('is_tutor', false)->first());
 
             return redirect()->route('home')->with([
-                'errorMsg' => 'You already have a student account. Please use the switch account functionality in the toggle down menu by clicking your profile image.',
-                'toSwitchAccount',
+                'errorMsg' => 'You already have a student account. To claim the rewards, please use the switch account functionality in the toggle down menu by clicking your profile image.',
                 'toSwitchAccount' => true
             ]);
         } else {
             return redirect()->route('register.index.tutor.1')->with([
-                'successMsg' => 'You have successfully acclaimed your bonus. Please register now to claim your rewards!'
+                'successMsg' => 'You have successfully activated the invite code. Please register now to claim your rewards!'
             ]);
         }
 
