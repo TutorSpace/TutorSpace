@@ -4,7 +4,7 @@
         <path d="M38.3333 18.3333C37.4133 18.3333 36.6667 19.08 36.6667 20C36.6667 29.19 29.19 36.6667 20 36.6667C10.81 36.6667 3.33333 29.19 3.33333 20C3.33333 10.81 10.81 3.33333 20 3.33333C24.4742 3.33333 28.6742 5.08167 31.8275 8.25667C32.475 8.91083 33.5308 8.91417 34.1842 8.265C34.8375 7.61667 34.8408 6.56167 34.1925 5.90833C30.4092 2.09833 25.3683 0 20 0C8.97167 0 0 8.97167 0 20C0 31.0283 8.97167 40 20 40C31.0283 40 40 31.0283 40 20C40 19.08 39.2533 18.3333 38.3333 18.3333Z" fill="#6749DF"/>
     </svg>
     <h4 class="w-100 text-center mb-5">Become a Verified Tutor</h4>
-    <p class="text-dark">Please upload your USC Stars Report or transcript to complete tutor verification.</p>
+    <p class="text-dark">Please upload your USC STARS Report or transcript to complete tutor verification.</p>
 
     <h5 class="w-100 mt-5">Submit Your Verification Request</h5>
 

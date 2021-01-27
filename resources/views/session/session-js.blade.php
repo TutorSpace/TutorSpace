@@ -226,7 +226,7 @@ $('#tutor-profile-request-session').on('click',function() {
             let hoursDiff = minutesDiff / 60;
             let sessionFee = hoursDiff * otherUserHourlyRate;
             $('#session-fee').html('$ ' + sessionFee);
-            $('#hours').html(hoursDiff);
+            $('#hours').html("x " + hoursDiff);
             $('#hourly-rate').html(otherUserHourlyRate);
         }
     }

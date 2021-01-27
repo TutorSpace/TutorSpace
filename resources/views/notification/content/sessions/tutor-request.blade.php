@@ -61,7 +61,7 @@ $price = $tutorRequest->calculateSessionFee();
 
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
-            <div class="button-container">
+            <div class="button-container" data-tutor-request-id="{{ $tutorRequest->id }}">
                 @if ($tutorRequest->status == 'declined')
                 <button class="btn btn-outline-primary disabled">Declined</button>
                 @elseif($tutorRequest->status == 'accepted')

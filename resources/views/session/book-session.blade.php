@@ -14,12 +14,14 @@
         <span class="font-weight-bold ml-2 fc-black-2" id="user-name">
         </span>
     </div> --}}
-    <span class="fc-grey fs-1-4 mt-5 mb-2">Drag on the calender to select your session time. All time here are based on PST.</span><span></span>
+    <span class="fc-grey fs-1-4 mt-5 mb-2">
+        Drag on the calender to select your session time. All time shown are based on your <span class="font-weight-bold mr-0 fc-notification">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand(App\CustomClass\TimeFormatter::getTZ()) }})
+    </span>
     <div class="row mb-2">
         <div class="col-12 pl-0 fs-1-4">
             <div class="w-100 calendar" id="calendar-request-session"></div>
             <div class="calendar-note">
-                <span class="available-time">Available Time</span>
+
             </div>
         </div>
     </div>
