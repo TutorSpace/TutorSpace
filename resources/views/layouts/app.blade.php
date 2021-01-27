@@ -39,6 +39,7 @@
     </script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
+
         @if(session('errorMsg'))
             toastr.error('{{ session('errorMsg') }}');
             @php
