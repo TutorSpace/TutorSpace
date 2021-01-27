@@ -12,7 +12,7 @@
         <div class="d-flex flex-column justify-content-center align-items-center position-relative fc-grey fs-2-4 text-center" id="upload-file">
             <p id="upload-caption">Upload File</p>
             <div class="mt-3 btn btn-primary text-center" id="upload-file-button">
-                <label class="pt-1 pb-0 px-5" for="tutor-verification-file">click here</label>
+                <label class="pt-1 pb-0 px-5" for="tutor-verification-file">Click Here</label>
                 <input type="file" id="tutor-verification-file" />
             </div>
         </div>
