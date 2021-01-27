@@ -52,8 +52,7 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
             ->greeting('Dear ' . $notifiable->first_name)
             ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
             ->line('Your referral code is ' . $this->inviteCode)
-            // todo: 具体化bonus是多少
-            ->line('Register now and earn a bonus between 1 to 5 dollars!')
+            ->line('Register now and earn a bonus with up to $5!')
             ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
             ->line('Thank you for using TutorSpace!');
         } else {
@@ -61,8 +60,7 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
                     ->greeting('Dear Student')
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
                     ->line('Your referral code is ' . $this->inviteCode)
-                    // todo: 具体化bonus是多少
-                    ->line('Register now and earn a bonus between 1 to 5 dollars!')
+                    ->line('Register now and earn a bonus with up to $5!')
                     ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
                     ->line('Thank you for using TutorSpace!');
         }
