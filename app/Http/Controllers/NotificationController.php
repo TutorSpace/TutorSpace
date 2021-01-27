@@ -31,8 +31,8 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\ReferralRegisterSuccessNotification') {
             $view = view('notification.content.tutorspace.referral-bonus-claimed', [
                 'bonus' => $notif->data['bonus'],
-                'forNewUser' => $notif->Data['forNewUser']
-            ]);
+                'forNewUser' => $notif->data['forNewUser']
+            ])->render();
         } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
             $view = view(
                 'notification.content.tutorspace.tutor-verification-initiated', [])->render();

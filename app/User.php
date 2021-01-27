@@ -599,12 +599,42 @@ class User extends Authenticatable
         if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
             $userInvitedBy = User::where('id', $inviteUser->user_id)->firstOrFail();
 
-            $this->notify(new ReferralRegisterSuccessNotification($userInvitedBy, true, true));
+            // calculate the referral bonus
+            $cnt = InviteUser::join('referral_claimed_users', 'referral_claimed_users.email', '=', 'invite_user.invited_user_email')
+            ->where('invite_user.user_id', $userInvitedBy->id)->count();
 
-            User::where('id', $inviteUser->user_id)->first()->notify(new ReferralRegisterSuccessNotification($userInvitedBy, false, true));
+            $arr = collect();
+            if($cnt < 2) {
+                for($i = 0; $i < 7; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            } else if($cnt < 4) {
+                for($i = 0; $i < 5; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 2; $i++) $arr->push(3); // [2, 3]
+            } else if($cnt < 6) {
+                for($i = 0; $i < 2; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+            } else if($cnt < 8) {
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 2; $i++) $arr->push(1); // [0, 1]
+            } else {
+                for($i = 0; $i < 5; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 5; $i++) $arr->push(1); // [0, 1]
+            }
+
+            $max = $arr->random();
+            $bonus = rand(($max - 1) * 10, $max * 10) / 10;
+
+            $this->notify(new ReferralRegisterSuccessNotification($bonus, true, true));
+
+            $userInvitedBy->notify(new ReferralRegisterSuccessNotification($bonus, false, true));
 
             Notification::route('mail', "tutorspacehelp@gmail.com")
-            ->notify(new ReferralRegisterSuccessNotification($userInvitedBy, false, false));
+            ->notify(new ReferralRegisterSuccessNotification($bonus, false, false));
 
             ReferralClaimedUser::create([
                 'email' => $this->email

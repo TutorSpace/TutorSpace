@@ -23214,6 +23214,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 0.75rem;
 }
 
+.notification__content .color-primary {
+  line-height: 1.6;
+}
+
 .notification__content__info {
   padding: 3rem;
   flex: 1;

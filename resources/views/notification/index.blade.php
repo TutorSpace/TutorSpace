@@ -98,6 +98,7 @@ bg-student
             url: '{{ url('/notifications') }}' + '/' + notifId,
             success: (data) => {
                 let { view } = data;
+                console.log(view);
 
                 $('#notification__content').html(view);
 
