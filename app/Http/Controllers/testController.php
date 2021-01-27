@@ -15,11 +15,12 @@ use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\InviteUser;
 use App\TutorLevel;
 use App\Transaction;
 use App\TutorRequest;
-use Facades\App\Post;
 
+use Facades\App\Post;
 use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
@@ -30,12 +31,12 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Notifications\PayoutPaid;
 use App\CustomClass\TimeFormatter;
-use App\Notifications\InvoicePaid;
 
+use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\DB;
 use App\Events\SessionReviewPosted;
-use App\Notifications\PayoutFailed;
 
+use App\Notifications\PayoutFailed;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EmailVerification;
@@ -56,7 +57,34 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
+        $cnt = InviteUser::join('referral_claimed_users', 'referral_claimed_users.email', '=', 'invite_user.invited_user_email')
+        ->where('invite_user.user_id', '20328b5f-3e02-4d7c-86e7-bef3e5a9314c')->count();
 
+        $arr = collect();
+        if($cnt < 2) {
+            for($i = 0; $i < 7; $i++) $arr->push(5); // [4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+        } else if($cnt < 4) {
+            for($i = 0; $i < 5; $i++) $arr->push(5); // [4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            for($i = 0; $i < 2; $i++) $arr->push(3); // [2, 3]
+        } else if($cnt < 6) {
+            for($i = 0; $i < 2; $i++) $arr->push(5); // [4, 5]
+            for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+            for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+        } else if($cnt < 8) {
+            for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+            for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+            for($i = 0; $i < 2; $i++) $arr->push(1); // [0, 1]
+        } else {
+            for($i = 0; $i < 5; $i++) $arr->push(2); // [1, 2]
+            for($i = 0; $i < 5; $i++) $arr->push(1); // [0, 1]
+        }
+
+        $max = $arr->random();
+        dd(rand(($max - 1) * 10, $max * 10) / 10);
     }
 
     public function test(Request $request) {
