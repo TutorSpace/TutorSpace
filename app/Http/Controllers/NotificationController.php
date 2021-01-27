@@ -30,6 +30,8 @@ class NotificationController extends Controller
                 Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [])->render();
         } else if($notif->type == 'App\Notifications\ReferralRegisterSuccessNotification') {
             $view = view('notification.content.tutorspace.referral-bonus-claimed', [
+                'bonus' => $notif->data['bonus'],
+                'forNewUser' => $notif->Data['forNewUser']
             ]);
         } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
             $view = view(

@@ -108,7 +108,8 @@ class ReferralRegisterSuccessNotification extends Notification implements Should
     public function toArray($notifiable)
     {
         return [
-            'forNewUser' => $this->forNewUser
+            'forNewUser' => $this->forNewUser,
+            'bonus' => $this->bonus
         ];
     }
 }
