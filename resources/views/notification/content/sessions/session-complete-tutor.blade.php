@@ -20,9 +20,7 @@ $price = $session->calculateSessionFee();
         <div class="container content">
             <h6 class="color-primary">You would receive your payment in 7 days</h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Thanks for your time and effort! Please allow 5-7 days for the tutoring fee to arrive in your bank account. You will receive another notification once the payment succeeds. If the payment is late or you have any other concerns, please contact us at tutorspacehelp@gmail.com.
             </p>
 
             <div class="mt-5 color-primary d-flex align-items-center">

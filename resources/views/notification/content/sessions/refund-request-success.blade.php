@@ -9,7 +9,7 @@ $price = $session->calculateSessionFee();
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Refund Success [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
+    Refund Approved [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
@@ -17,11 +17,12 @@ $price = $session->calculateSessionFee();
         <div class="notification__content__info__header bg-primary"></div>
 
         <div class="container content">
-            <h6 class="color-primary">Your refund request has been approved.</h6>
+            <h6 class="color-primary">
+                Your refund request for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has been approved.
+            </h6>
+            {{-- todo: add link here --}}
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                According to TutorSpace Refund Policy, we will offer you a full refund for the tutoring session. Please allow 5-7 days for the refund to arrive in your bank card. We sincerely apologize for the inconvenience.
             </p>
 
             <div class="d-flex justify-content-between mt-2">

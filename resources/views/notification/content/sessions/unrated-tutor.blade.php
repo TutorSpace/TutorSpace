@@ -24,7 +24,7 @@ $price = $session->calculateSessionFee();
 
             <h6 class="color-primary">Rate Your Tutor</h6>
 
-            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate your tutor.</p>
+            <p class="mt-2 fs-1-6">You have not yet rated {{ $session->tutor->first_name . ' ' . $session->tutor->last_name }}. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate and comment how you like this session/tutor anonymously.</p>
 
             <h6 class="mt-5 color-primary">Session Details</h6>
 
@@ -34,7 +34,7 @@ $price = $session->calculateSessionFee();
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="fc-grey fs-1-4">Time: ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</div>
+                    <div class="fc-grey fs-1-4">Time: ({{ $tz }})</div>
                     <p class="fc-black-2 fs-1-5 fw-500">
                         {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
                         -
