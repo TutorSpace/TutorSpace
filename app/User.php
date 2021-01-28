@@ -591,6 +591,7 @@ class User extends Authenticatable
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
     }
 
+    // important: should only be called by invited users
     public function claimReferralBonus() {
         // important: we use the updated_at property to determine which invite code the user is attempting to use
         $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_use', true)->orderBy('updated_at', 'desc')->first();
