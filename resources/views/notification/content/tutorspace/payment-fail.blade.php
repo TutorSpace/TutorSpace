@@ -7,7 +7,7 @@ $hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="notification__content__header font-weight-bold text-danger">
-    Payment Failure [Action Required]
+    Payment Failed [Action Required]
 </div>
 <div class="notification__content__info">
 
@@ -16,12 +16,10 @@ $hourlyRate = $session->hourly_rate;
 
         <div class="container content">
             <h6 class="color-primary">
-                Oops. Your auto-payment failed. Please use the link below to make the payment.
+                Oops. Your auto-payment for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has failed.
             </h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                We noticed that the auto-charge process of your last tutoring session was not completed successfully. Please use the link below to complete your payment manually as soon as possible. We will really appreciate your understanding.
             </p>
 
             <div class="button-container">
@@ -74,9 +72,9 @@ $hourlyRate = $session->hourly_rate;
                 <span class="color-primary">$ {{ $price }}</span>
             </p>
 
-            <h6 class="color-primary">Having Trouble with this session?</h6>
-
-            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
+            <h6 class="color-primary">Having Trouble With This Session?</h6>
+            {{-- todo: add link here --}}
+            <p class="mt-2 fs-1-6">If you have any concerns regarding your experience in using TutorSpace, our staff are here to help. Please check Help Center first and see if you can find any immediate answer to your questions. If not, please contact us at tutorspacehelp@gmail.com, and we will get back to you in 48 hours.</p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>

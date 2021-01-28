@@ -8,12 +8,10 @@
 
         <div class="container content">
             <h6 class="color-primary">
-                We have received your request to be a verified tutor.
+                Your request to be a verified tutor has been received.
             </h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Hi {{ Auth::user()->first_name }}, thank you for your interest in being a verified tutor. We want to let you know that your uploaded materials are currently under screening by our staff. Your privacy is always our top priority, and TutorSpace guarantees that we will never share your personal information to any outside party. You will get a response from TutorSpace about the result within three days, and thanks for your patience.
             </p>
 
             <div class="button-container">

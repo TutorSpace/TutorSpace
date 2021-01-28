@@ -10,10 +10,9 @@
             <h6 class="color-primary">
                 We have successfully processed your tutor verification request!
             </h6>
+            {{-- todo: link to the policy here --}}
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Hi {{ Auth::user()->first_name }}, thank you for sending your materials and requesting for tutor verification. Based on your past academic records, we are glad to approve your request. You will see a special badge in your profile if you have listed at least one verified course as the courses you want to teach. For information regarding the benefits of becoming a verified tutor, please check TutorSpace’s both Tutor Growth Plan Policy and Tutor Verification Policy. If you have any further questions, please contact us immediately.
             </p>
 
             <div class="button-container">

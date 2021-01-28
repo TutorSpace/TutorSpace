@@ -7,7 +7,7 @@ $hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Completed ({{ $session->session_time_start->format('m/d/y D') }})
+    Session Completed [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
@@ -66,11 +66,11 @@ $hourlyRate = $session->hourly_rate;
 
             <h6 class="color-primary">Rate Your Tutor</h6>
 
-            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate your tutor.</p>
+            <p class="mt-2 fs-1-6">Tutors benefit from your valuable feedback. Click <button class="btn btn-primary fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</button> to rate and comment how you like this session/tutor anonymously.</p>
 
-            <h6 class="color-primary">Having Trouble with this session?</h6>
-
-            <p class="mt-2 fs-1-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque in repudiandae iste fuga illo consectetur facere quidem dolorum. Laborum molestiae ipsam fuga assumenda totam corrupti aut culpa accusamus ut velit.</p>
+            <h6 class="color-primary">Having Trouble With This Session?</h6>
+            {{-- todo: add link here --}}
+            <p class="mt-2 fs-1-6">If you have any concerns regarding your experience in using TutorSpace, our staff are here to help. Please check Help Center first and see if you can find any immediate answer to your questions. If not, please contact us at tutorspacehelp@gmail.com, and we will get back to you in 48 hours.</p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>
