@@ -27,6 +27,7 @@ $('#start-time').timepicker({
     'minTime': '0:00am',
 	'maxTime': '11:30pm',
 });
+
 $('#end-time').timepicker({
     'scrollDefault': 'now',
     'setp' : 15,
