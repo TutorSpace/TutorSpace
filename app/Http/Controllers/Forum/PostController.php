@@ -170,7 +170,6 @@ class PostController extends Controller
             }
         });
 
-
         $postDraft = PostDraft::where('user_id', Auth::user()->id)->first();
         if($postDraft) {
             $postDraft->delete();

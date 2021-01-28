@@ -15,10 +15,12 @@ use App\Http\Controllers\Payment\StripeApiController;
 class NotificationController extends Controller
 {
     public function index(Request $request) {
-
         $notif = Auth::user()->notifications()->orderBy('created_at', 'desc')->first();
         return view('notification.index', [
-            'showNotif' => $request->input('show-notif') ?? ($notif ? $notif->id : null)
+            'showNotif' => $request->input('show-notif') ?? ($notif ? $notif->id : null),
+            'showSessions' => $request->input('showSessions'),
+            'showForum' => $request->input('showForum'),
+            'showTutorSpace' => $request->input('showTutorSpace'),
         ]);
     }
 
