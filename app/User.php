@@ -461,7 +461,7 @@ class User extends Authenticatable
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
         ->join("verified_courses", function($join){
             $join->on("verified_courses.course_id","=","course_user.course_id")
-        ->on("verified_courses.user_id","=","course_user.user_id");
+            ->on("verified_courses.user_id","=","course_user.user_id");
         })
         ->distinct();
 

@@ -50,6 +50,9 @@ use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
 class testController extends Controller
 {
     public function __construct() {
@@ -57,16 +60,6 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        $tz = TimeFormatter::getTZ();
-        $timestamp = '2014-02-06 16:34:00';
-        $date = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, $tz);
-        echo $tz;
-        echo $date;
-        $date->setTimezone('UTC');
-        //  $startTime = Carbon::now()->setTimeZone($timezone);
-        //  echo $timezone;
-        // $endTime = Carbon::now()->format('Y-m-d');
-    //    echo Post::getViewCntWeek(Auth::user()->id);
     }
 
     public function test(Request $request) {
