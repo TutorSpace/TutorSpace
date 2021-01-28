@@ -22,8 +22,6 @@ class SearchController extends Controller
     private static $RESULTS_PER_PAGE = 5;
 
     public function index(Request $request) {
-        dump($request->input('search-timezone'));
-
         $validator = Validator::make($request->all(), [
             // validate time
             'available-start-date' => [
@@ -154,19 +152,22 @@ class SearchController extends Controller
             });
         }
 
-
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
                 // change time zone in frontend
                 $availableTimeRange = $request->input('available-time-range');
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
-                    $startTimes = ["8:00:00"];
+
+
+                    // Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, 'Europe/Stockholm');
+
+                    $startTimes = ["00:00:00"];
                     $endTimes = ["23:59:59"];
                 }
                 else if(count($availableTimeRange) == 1) {
                     if(in_array('morning', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["00:00:00"];
                         $endTimes = ["11:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange)) {
@@ -180,11 +181,11 @@ class SearchController extends Controller
                 }
                 else if(count($availableTimeRange) == 2) {
                     if(in_array('morning', $availableTimeRange) && in_array('afternoon', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["00:00:00"];
                         $endTimes = ["16:59:59"];
                     }
                     else if(in_array('morning', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
-                        $startTimes = ["8:00:00", "17:00:00"];
+                        $startTimes = ["00:00:00", "17:00:00"];
                         $endTimes = ["11:59:59", "23:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
@@ -199,6 +200,12 @@ class SearchController extends Controller
 
                 $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
+
+            $tz = $request->input('search-timezone');
+
+            // $UTCStartTime = Carbon::parse($startTimes)->setTimeZone();
+            // $UTCEndTime = Carbon::parse($endTimes)->setTimeZone();
+
 
             $numDays = Carbon::parse($request->input('available-start-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-end-date') . " " . $endTimes[0]));
 

@@ -57,16 +57,11 @@ class testController extends Controller
 
     public function index(Request $request) {
         $tz = TimeFormatter::getTZ();
-        // echo Auth::user()->participatedPosts()->get()->count();
-
-        // dd(Auth::user()->participatedPosts()->get());
-
-        // echo "here";
-
-
-        // dd(Auth::user()->participatedPosts()->orderBy('posts.created_at', 'DESC')->get());
-        $session = Session::find("ea0010df-08b4-43c0-8437-109c78db0fdb");
-        echo $session->session_time_start->setTimeZone($tz)->format('m/d/y D');
+        $timestamp = '2014-02-06 16:34:00';
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, $tz);
+        echo $tz;
+        echo $date;
+        $date->setTimezone('UTC');
         //  $startTime = Carbon::now()->setTimeZone($timezone);
         //  echo $timezone;
         // $endTime = Carbon::now()->format('Y-m-d');
