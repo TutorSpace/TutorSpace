@@ -52,7 +52,12 @@ class AdminController extends Controller
     }
 
     public function referralBonusSent(Request $request, ReferralClaimedUser $referralClaimedUser) {
-        
+        $referralClaimedUser->money_sent = true;
+        $referralClaimedUser->save();
+
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully updated the status'
+        ]);
     }
 
 }
