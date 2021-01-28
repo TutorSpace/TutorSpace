@@ -597,11 +597,11 @@ class User extends Authenticatable
 
         // check if the user has an invite code and does not claimed the bonus yet
         if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
+            // $userInvitedBy is the user that is inviting the current user
             $userInvitedBy = User::where('id', $inviteUser->user_id)->firstOrFail();
 
             // calculate the referral bonus
-            $cnt = InviteUser::join('referral_claimed_users', 'referral_claimed_users.email', '=', 'invite_user.invited_user_email')
-            ->where('invite_user.user_id', $userInvitedBy->id)->count();
+            $cnt = ReferralClaimedUser::where('is_invited_by_user_id', $userInvitedBy->id)->count();
 
             $arr = collect();
             if($cnt < 2) {
@@ -637,7 +637,15 @@ class User extends Authenticatable
             ->notify(new ReferralRegisterSuccessNotification($bonus, false, false));
 
             ReferralClaimedUser::create([
-                'email' => $this->email
+                'email' => $this->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_invited_by_user_id' => $userInvitedBy->id
+            ]);
+
+            ReferralClaimedUser::create([
+                'email' => $userInvitedBy->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_inviting_user_email' => $this->email
             ]);
         }
     }

@@ -63,6 +63,9 @@
                     <a class="nav__item" href="{{ route('admin.extra-bonus.index') }}">
                         Extra Bonus
                     </a>
+                    <a class="nav__item" href="{{ route('admin.referral-bonus.index') }}">
+                        Referral Bonus
+                    </a>
                 </div>
                 @endif
             </div>

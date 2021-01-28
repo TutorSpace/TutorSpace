@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferralClaimedUsersTable extends Migration
+class AddBonusAmountDollarToReferralClaimedUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateReferralClaimedUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('referral_claimed_users', function (Blueprint $table) {
-            $table->id();
-            $table->string('email');
-            $table->boolean('money_sent')->default(false);
-            $table->timestamps();
+        Schema::table('referral_claimed_users', function (Blueprint $table) {
+            $table->decimal('bonus_amount_dollar');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateReferralClaimedUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referral_claimed_users');
+        Schema::table('referral_claimed_users', function (Blueprint $table) {
+            //
+        });
     }
 }
