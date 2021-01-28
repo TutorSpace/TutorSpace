@@ -78,13 +78,16 @@ bg-student
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8" id="calendar-container">
-                    <h5 class="w-100 calendar-heading">Calendar</h5>
+                    <div class="w-100 calendar-heading">
+                        <h5 class="mb-0">Calendar</h5>
+                        <span class="fs-1-4 fc-grey">Drag to select your available time</span>
+                    </div>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: Note: All time shown are based on your local timezone.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">

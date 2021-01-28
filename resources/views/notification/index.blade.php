@@ -37,7 +37,7 @@ bg-student
 
 @endsection
 
-@section('js-2')
+@section('js')
 <script>
 
     $(document).on('click', '#btn-rate-tutor', function() {
@@ -118,8 +118,60 @@ bg-student
     //     $(el).html(moment(timeUTC).tz(moment.tz.guess()).format('YYYY-MM-DD H:mm:s'));
     // });
 
-    @if(isset($showNotif))
+    @if(isset($showNotif) && $showNotif)
     $('.msgs .msg[data-notif-id={{ $showNotif }}]').click();
     @endif
+
+    $(document).on('click', '#btn-accept', function() {
+        let tutorRequestId = $(this).closest('.button-container').attr('data-tutor-request-id');
+
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('/tutor-request/accept/') }}" + `/${tutorRequestId}`,
+            success: function success(data) {
+                let { successMsg, errorMsg } = data;
+                if(successMsg) {
+                    toastr.success(successMsg);
+                    $('.button-container').html('<button class="btn btn-primary disabled">Accepted</button>');
+                }
+                else if(errorMsg) toastr.error(errorMsg);
+            },
+            error: (error) => {
+                console.log(error);
+                toastr.error("Something went wrong when accepting the tutor request.");
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
+
+    $(document).on('click', '#btn-decline', function() {
+        let tutorRequestId = $(this).closest('.button-container').attr('data-tutor-request-id');
+
+        alert("{{ url('/tutor-request/decline/') }}" + `/${tutorRequestId}`);
+
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'DELETE',
+            url: "{{ url('/tutor-request/decline/') }}" + `/${tutorRequestId}`,
+            success: function success(data) {
+                let { successMsg, errorMsg } = data;
+                if(successMsg) {
+                    toastr.success(successMsg);
+                    $('.button-container').html('<button class="btn btn-outline-primary disabled">Declined</button>');
+                }
+                else if(errorMsg) toastr.error(errorMsg);
+            },
+            error: (error) => {
+                console.log(error);
+                toastr.error("Something went wrong when declining the tutor request.");
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    });
 </script>
 @endsection

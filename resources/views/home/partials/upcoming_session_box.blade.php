@@ -26,7 +26,7 @@
             </span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
                 {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('H:i') }}
                 -

@@ -4,27 +4,31 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Review;
 
+use App\Review;
 use App\Message;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\InviteUser;
 use App\TutorLevel;
 use Illuminate\Support\Str;
+use App\ReferralClaimedUser;
+use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ReferralRegisterSuccessNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-use App\CustomClass\TimeFormatter;
 
 class User extends Authenticatable
 {
@@ -585,6 +589,65 @@ class User extends Authenticatable
     // edge cases : return 0 if <= 0, return 1 if >= highest level
     public function getLevelProgressPercentage(){
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
+    }
+
+    public function claimReferralBonus() {
+        // important: we use the updated_at property to determine which invite code the user is attempting to use
+        $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_use', true)->orderBy('updated_at', 'desc')->first();
+
+        // check if the user has an invite code and does not claimed the bonus yet
+        if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
+            // $userInvitedBy is the user that is inviting the current user
+            $userInvitedBy = User::where('id', $inviteUser->user_id)->firstOrFail();
+
+            // calculate the referral bonus
+            $cnt = ReferralClaimedUser::where('is_invited_by_user_id', $userInvitedBy->id)->count();
+
+            $arr = collect();
+            if($cnt < 2) {
+                for($i = 0; $i < 7; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            } else if($cnt < 4) {
+                for($i = 0; $i < 5; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 2; $i++) $arr->push(3); // [2, 3]
+            } else if($cnt < 6) {
+                for($i = 0; $i < 2; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+            } else if($cnt < 8) {
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 2; $i++) $arr->push(1); // [0, 1]
+            } else {
+                for($i = 0; $i < 5; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 5; $i++) $arr->push(1); // [0, 1]
+            }
+
+            $max = $arr->random();
+            $bonus = rand(($max - 1) * 10, $max * 10) / 10;
+
+            $this->notify(new ReferralRegisterSuccessNotification($bonus, true, true));
+
+            $userInvitedBy->notify(new ReferralRegisterSuccessNotification($bonus, false, true));
+
+            Notification::route('mail', "tutorspacehelp@gmail.com")
+            ->notify(new ReferralRegisterSuccessNotification($bonus, false, false));
+
+            ReferralClaimedUser::create([
+                'email' => $this->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_invited_by_user_id' => $userInvitedBy->id
+            ]);
+
+            ReferralClaimedUser::create([
+                'email' => $userInvitedBy->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_inviting_user_email' => $this->email
+            ]);
+        }
     }
 
 }

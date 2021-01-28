@@ -249,10 +249,28 @@
 
                 .course {
                     text-align: center;
-                    font-size: 1.4rem;
+                    font-size: 1.2rem;
                     padding: .3rem .5rem;
                     align-self: center;
-                    max-width: 10rem;
+                    max-width: 12rem;
+                    position: relative;
+
+                    svg {
+                        position: absolute;
+                        top: 50%;
+                        left: .4rem;
+                        transform: translateY(-50%);
+                        width: .9rem;
+                        height: .9rem;
+                    }
+
+                    @include respond(extra-sm) {
+                        svg {
+                            width: 1.25rem;
+                            height: 1.25rem;
+                            left: .5rem;
+                        }
+                    }
                 }
             }
 

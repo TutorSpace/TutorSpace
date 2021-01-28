@@ -22,6 +22,11 @@ class SearchController extends Controller
     private static $RESULTS_PER_PAGE = 5;
 
     public function index(Request $request) {
+<<<<<<< HEAD
+=======
+        // dump($request->input('search-timezone'));
+
+>>>>>>> 9e202d967e73c581e7cb385ca0d825ab98a89d41
         $validator = Validator::make($request->all(), [
             // validate time
             'available-start-date' => [

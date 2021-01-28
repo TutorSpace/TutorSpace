@@ -19,10 +19,6 @@
                 sequi! Molestiae?
             </p>
 
-            <h6 class="color-primary fw-500">
-                Your Referral Code is {{ $inviteCode }}
-            </h6>
-
             <div class="display-cards">
                 <div class="display-card">
                     <svg width="140" height="109" viewBox="0 0 140 109" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +81,7 @@
             </div>
 
             <div class="button-container">
-                <button class="btn btn-primary">Create a Tutor Account</button>
+                <a class="btn btn-primary" href="{{ route('invite-to-be-tutor.attempt-claim-bonus', $inviteCode) }}">Create a Tutor Account</a>
             </div>
         </div>
     </div>

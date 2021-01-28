@@ -32,12 +32,12 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
             </a>
         </div>
         <div class="date">
-            <span class="title">Start Date</span>
+            <span class="title">Date</span>
             <span class="content">{{$month}}/{{$day_date}}<span class="info-box__year">/{{$year}}</span>
                 {{$day}}</span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
                 {{$startTime}} - {{$endTime}}
                 @if ($diffInDays != 0)
@@ -95,7 +95,7 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
                             <span class="content"></span>
                         </div>
                         <div class="time">
-                            <span class="title">Time</span>
+                            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
                             <span class="content"></span>
                         </div>
                         <div class="flex-100"></div>
@@ -117,7 +117,7 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
                 <div class="tutor-request-modal__content__calendar">
                     <div class="calendar"></div>
                     <div class="calendar-note">
-                        <span class="note">Note: All time shown are based on your local timezone.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">

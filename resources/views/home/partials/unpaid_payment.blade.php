@@ -16,8 +16,6 @@ $day = Carbon\Carbon::parse($date)->format('D');
 $sessionDurationInHour = $transaction->session->getDurationInHour();
 $price = $transaction->session->calculateSessionFee();
 
-
-
 // not accounting for actual day difference
 $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 @endphp
@@ -39,7 +37,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
                 {{$day}}</span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
                 {{$startTime}} - {{$endTime}}
                 @if ($diffInDays != 0)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\InviteUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -110,8 +111,6 @@ class SwitchAccountController extends Controller
         }
 
         return redirect()->back();
-
-
     }
 
 }

@@ -15369,8 +15369,8 @@ h6 {
 }
 
 #modal-book-session .calendar-note {
-  font-size: 1.2rem !important;
-  margin-top: 1rem !important;
+  font-size: 1.4rem !important;
+  margin-top: 0rem !important;
 }
 
 #modal-book-session .calendar-note .available-time {
@@ -21320,10 +21320,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search .search-results .search-result .user-courses .course {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0.3rem 0.5rem;
   align-self: center;
-  max-width: 10rem;
+  max-width: 12rem;
+  position: relative;
+}
+
+.search .search-results .search-result .user-courses .course svg {
+  position: absolute;
+  top: 50%;
+  left: 0.4rem;
+  transform: translateY(-50%);
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+@media only screen and (max-width: 35.99em) {
+  .search .search-results .search-result .user-courses .course svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    left: 0.5rem;
+  }
 }
 
 .search .search-results .search-result .user-rating {
@@ -21827,10 +21845,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-.home__content .col-layout-2 #calendar-container .heading,
-.home__content .col-layout-3 #calendar-container .heading {
+.home__content .col-layout-2 #calendar-container .calendar-heading,
+.home__content .col-layout-3 #calendar-container .calendar-heading {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .home__content .col-layout-2 #calendar-container #calendar,
@@ -23193,6 +23212,10 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .notification .notification-type-info .type-container svg {
   margin-right: 0.75rem;
+}
+
+.notification__content .color-primary {
+  line-height: 1.6;
 }
 
 .notification__content__info {

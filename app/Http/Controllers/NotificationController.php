@@ -16,8 +16,9 @@ class NotificationController extends Controller
 {
     public function index(Request $request) {
 
+        $notif = Auth::user()->notifications()->orderBy('created_at', 'desc')->first();
         return view('notification.index', [
-            'showNotif' => $request->input('show-notif')
+            'showNotif' => $request->input('show-notif') ?? ($notif ? $notif->id : null)
         ]);
     }
 
@@ -27,6 +28,11 @@ class NotificationController extends Controller
         if($notif->type == 'App\Notifications\WelcomeMessageNotification') {
             $view = view(
                 Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [])->render();
+        } else if($notif->type == 'App\Notifications\ReferralRegisterSuccessNotification') {
+            $view = view('notification.content.tutorspace.referral-bonus-claimed', [
+                'bonus' => $notif->data['bonus'],
+                'forNewUser' => $notif->data['forNewUser']
+            ])->render();
         } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
             $view = view(
                 'notification.content.tutorspace.tutor-verification-initiated', [])->render();

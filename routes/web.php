@@ -240,6 +240,8 @@ Route::group([
     Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
     Route::get('/extra-bonus', 'AdminController@extraBonusIndex')->name('admin.extra-bonus.index');
     Route::post('/extra-bonus/{transaction}', 'AdminController@extraBonusSent')->name('admin.extra-bonus-sent');
+    Route::get('/referral-bonus', 'AdminController@referralBonusIndex')->name('admin.referral-bonus.index');
+    Route::post('/referral-bonus/{referralClaimedUser}', 'AdminController@referralBonusSent')->name('admin.referral-bonus-sent');
 });
 
 // sessions

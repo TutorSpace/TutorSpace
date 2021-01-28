@@ -49,7 +49,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
     </div>
     <div class="info-card__row">
         <div class="row-left">
-            <small class="title">Time</small>
+            <small class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</small>
             <span class="content">
                 {{$startTime}} - {{$endTime}}
                 @if ($diffInDays != 0)

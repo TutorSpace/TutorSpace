@@ -26,4 +26,9 @@ class TimeFormatter {
         $timezone = $userLocation['timezone'];
         return $timezone;
     }
+
+    public static function getTZShortHand($tz) {
+        $time = explode('/', $tz);
+        return $time[count($time) - 1];
+    }
 }

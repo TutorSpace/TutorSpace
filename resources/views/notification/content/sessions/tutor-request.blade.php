@@ -29,7 +29,7 @@ $price = $tutorRequest->calculateSessionFee();
                     <p class="fc-black-2 fs-1-5 fw-500">{{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="fc-grey fs-1-4">Time: ({{ $tz }} Time Zone)</div>
+                    <div class="fc-grey fs-1-4">Time: ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</div>
                     <p class="fc-black-2 fs-1-5 fw-500">
                         {{ $tutorRequest->session_time_start->setTimeZone($tz)->format('H:i') }}
                         -
@@ -61,7 +61,7 @@ $price = $tutorRequest->calculateSessionFee();
 
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
 
-            <div class="button-container">
+            <div class="button-container" data-tutor-request-id="{{ $tutorRequest->id }}">
                 @if ($tutorRequest->status == 'declined')
                 <button class="btn btn-outline-primary disabled">Declined</button>
                 @elseif($tutorRequest->status == 'accepted')
