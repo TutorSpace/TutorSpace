@@ -60,11 +60,22 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        Schema::create('referral_claimed_users', function (Blueprint $table) {
-            $table->id();
-            $table->string('email');
-            $table->boolean('money_sent')->default(false);
-            $table->timestamps();
+        // Schema::create('referral_claimed_users', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('email');
+        //     $table->boolean('money_sent')->default(false);
+        //     $table->timestamps();
+        // });
+
+        Schema::table('referral_claimed_users', function (Blueprint $table) {
+            $table->decimal('bonus_amount_dollar');
+        });
+
+        Schema::table('referral_claimed_users', function (Blueprint $table) {
+            $table->uuid('is_invited_by_user_id')->nullable();
+            $table->string('is_inviting_user_email')->nullable();
+
+            $table->foreign('is_invited_by_user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
