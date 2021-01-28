@@ -7,7 +7,7 @@ $hourlyRate = $session->hourly_rate;
 @endphp
 
 <div class="notification__content__header font-weight-bold text-danger">
-    You have an unpaid tutoring session [Action Required]
+    You Have an Unpaid Tutoring Session [Action Required]
 </div>
 <div class="notification__content__info">
 
@@ -19,9 +19,7 @@ $hourlyRate = $session->hourly_rate;
                 You have an unpaid tutoring session.
             </h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                We notice that your payment for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has not been completed yet. Please use the one-time payment link below to finish your payment. If you have any questions or concerns regarding your payment, please contact us at tutorspacehelp@gmail.com. Individuals still failing to pay are liable for any resulting consequences.
             </p>
 
             <div class="button-container">

@@ -21,9 +21,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
         <div class="container content">
             <h6 class="color-primary">We have received your refund request.</h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Thank you for submitting the refund request. We might need to ask a few more questions before we can make a refund decision. Please allow up to 2 days for us to process your refund request.
             </p>
 
             <div class="d-flex justify-content-between mt-2">
