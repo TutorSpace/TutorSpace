@@ -39,7 +39,7 @@ bg-student
             <div class="heading-container mb-5">
                 <p class="heading">Tutoring Sessions</p>
                 <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                    Manage your past and upcoming sessions, and create your own tutoring schedule.
                 </span>
             </div>
             @include('home.partials.header')

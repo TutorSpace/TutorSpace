@@ -121,8 +121,10 @@ $diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">
-                    <p><span class="font-weight-bold">Cancellation Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    {{-- todo: add link here --}}
+                    <p><span class="font-weight-bold">Cancellation Policy:</span> Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details about the cancellation policy, please click here.</p>
+                    {{-- todo: add link here --}}
+                    <p><span class="font-weight-bold">Refund Policy:</span> TutorSpace will provide a full refund if your tutor does not show up. To know more details about the refund policy, please click here.</p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
                     <button

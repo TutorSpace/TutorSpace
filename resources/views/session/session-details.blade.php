@@ -30,5 +30,7 @@
         <textarea class="form-control form-control-lg" rows="3"></textarea>
     </div> --}}
 
-    <p class="fc-black-2 mt-4"><span class="font-weight-bold">USC Integrity Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    {{-- todo: add link here --}}
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">USC Integrity Policy:</span> Students’ and tutors’ behavior should always align with the USC Integrity Policy. To know more details about the USC Integrity Policy, please click here.
+    </p>
 </div>

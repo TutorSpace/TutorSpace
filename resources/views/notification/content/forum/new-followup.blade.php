@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    {{ $userName }} replied to you in the post "{{ $post->title }}"
+    {{ $userName }} Replied to you in the post "{{ $post->title }}"
 </div>
 <div class="notification__content__info">
 

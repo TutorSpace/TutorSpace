@@ -52,7 +52,10 @@
     <hr class="bc-primary"/>
     <div class="font-weight-bold fc-black-2 d-flex flex-row justify-content-between">Total <span class="fc-theme-color">$ {{ $price }}</span></div>
 
-    <p class="fc-black-2 mt-4 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
-    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
-    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">USC Integrity Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,  dolore magna aliqua. </p>
+    {{-- todo: add link here --}}
+    <p class="fc-black-2 mt-4 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details about the cancellation policy, please click here. </p>
+    {{-- todo: add link here --}}
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details about the refund policy, please click here.</p>
+    {{-- todo: add link here --}}
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">USC Integrity Policy: </span>Students’ and tutors’ behavior should always align with the USC Integrity Policy. To know more details about the USC Integrity Policy, please click here.</p>
 </div>
