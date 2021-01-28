@@ -115,14 +115,14 @@ var picker = new Pikaday({
 $('#start-time').timepicker({
   'scrollDefault': 'now',
   'setp': 15,
-  'minTime': '6:00am',
-  'maxTime': '12:00am'
+  'minTime': '0:00am',
+  'maxTime': '11:30pm'
 });
 $('#end-time').timepicker({
   'scrollDefault': 'now',
   'setp': 15,
-  'minTime': '6:00am',
-  'maxTime': '12:00am'
+  'minTime': '0:00am',
+  'maxTime': '11:30am'
 });
 $('#checkbox-specify-detail-time').change(function () {
   if ($(this).is(':checked')) {
