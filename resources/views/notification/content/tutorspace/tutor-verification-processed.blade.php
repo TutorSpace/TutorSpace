@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Congrats! Your tutor verification request is successfully processed.
+    Congrats! Your Tutor Verification Request Is Successfully Processed.
 </div>
 <div class="notification__content__info">
 

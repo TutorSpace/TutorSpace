@@ -1,8 +1,8 @@
 <div class="notification__content__header font-weight-bold">
     @if ($forFollowers)
-    A Reply has been Marked as Best Reply
+    A Reply Has Been Marked as Best Reply
     @else
-    Your Reply has been Marked as Best Reply
+    Your Reply Has Been Marked as Best Reply
     @endif
 </div>
 <div class="notification__content__info">
@@ -13,9 +13,9 @@
         <div class="container content">
             <h6 class=" text-center">
                 @if ($forFollowers)
-                A Reply has been Marked as Best Reply.
+                A reply has been marked as best reply.
                 @else
-                Your Reply has been Marked as Best Reply.
+                Your reply has been marked as best reply.
                 @endif
             </h6>
 

@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor
+    {{ $user->first_name . ' ' . $user->last_name}} Invited You to Be a Tutor
 </div>
 <div class="notification__content__info">
 

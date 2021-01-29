@@ -9,7 +9,7 @@ $price = $tutorRequest->calculateSessionFee();
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Your tutor request has been declined ({{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }})
+    Tutor Request Declined ({{ $tutorRequest->session_time_start->setTimeZone($tz)->format('m/d/y D') }})
 </div>
 <div class="notification__content__info">
 
