@@ -117,16 +117,16 @@
         <details class="my-4">
             <summary>Do I have to add a bank card before scheduling a tutoring session?
             </summary>
-            <p class="fc-black-2">Yes, you will need to have at least one card in your account to schedule a tutoring session.
+            <p class="fc-black-2">Yes, you will need to have added at least one bank card to schedule a tutoring session.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>How do I set a card as default payment method?
+            <summary>Yes, you will need to have added at least one bank card to schedule a tutoring session.
             </summary>
-            <p class="fc-black-2">In profile settings, scroll to the bottom section “Payment Method”. Then you can set a card as your default payment method by hovering over it and clicking “set card as default”.
+            <p class="fc-black-2">In profile settings, scroll to the bottom section “Payment Methods”. Then you can set a card as your default payment method by hovering over it and clicking “set card as default”.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -135,7 +135,7 @@
         <details class="my-4">
             <summary>How do I delete a saved bank card?
             </summary>
-            <p class="fc-black-2">In profile settings, scroll to the bottom section “Payment Method”. Then you can delete a non-default bank card by hovering over it and clicking “delete”. Keep in mind that you need at least one payment method in your account.
+            <p class="fc-black-2">In profile settings, scroll to the bottom section “Payment Methods”. Then you can delete a non-default bank card by hovering on it and clicking “delete”. Keep in mind that you need at least one payment method in your account.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -144,16 +144,34 @@
         <details class="my-4">
             <summary>How do I add a bank card for my account?
             </summary>
-            <p class="fc-black-2">Under profile settings, scroll to the bottom section “Payment Method”. Then click “Add New Payment”. The newly added bank card will be your default payment method.
+            <p class="fc-black-2">In profile settings, scroll to the bottom section “Payment Methods”. Then click “Add New Payment”. The newly added bank card will be your default payment method.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>When will I be charged after a tutoring session?
+            <summary>When will I be charged for a tutoring session?
             </summary>
-            <p class="fc-black-2">We will charge your account using your default payment method right after your tutoring session ends. There may be half an hour delay in the charging process. We will notify you after collecting the payment, and we would ask you to authenticate or pay your tutoring session manually through email if we failed to make a charge.
+            <p class="fc-black-2">We will charge your account using your default payment method within half an hour after your tutoring session ends. We will notify you with any updates about your payment status. We might ask you to authenticate or make the payment manually if anything goes wrong.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>If I’m unhappy with a tutoring session, is it possible to refund?
+            </summary>
+            <p class="fc-black-2">Yes. In tutoring sessions, choose the session you are unhappy with to send a refund request.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>How do I receive my commission fee?
+            </summary>
+            <p class="fc-black-2">The initial step is to set up your Stripe account in profile settings. After each of your sessions ends and we receive the student’s payment, the commission fee will appear in your Stripe account balance (click “View your Stripe account” in profile settings). Any commission fee will be transferred to your bank account one week after the session ends.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -204,20 +222,6 @@
         <p class="section-description fc-black-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
         </p>
-        <details class="my-4">
-            <summary>I finished my session one hour ago. When can I have my payment?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibh in nunc pretium. Semper platea scelerisque volutpat iaculis pellentesque dapibus in id. Tortor malesuada non lacinia nibh. Risus justo, amet sit nisl in egestas donec. Congue vestibulum, vulputate et nisi, faucibus. Tristique iaculis magna vitae at convallis sed. Turpis netus ac varius commodo quisque ac, suspendisse nulla vitae. Magna mauris, vehicula feugiat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
-        <details class="my-4">
-            <summary>How can I blahblahblah?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
     </div>
 </div>
 
@@ -227,20 +231,6 @@
         <p class="section-description fc-black-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
         </p>
-        <details class="my-4">
-            <summary>I finished my session one hour ago. When can I have my payment?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibh in nunc pretium. Semper platea scelerisque volutpat iaculis pellentesque dapibus in id. Tortor malesuada non lacinia nibh. Risus justo, amet sit nisl in egestas donec. Congue vestibulum, vulputate et nisi, faucibus. Tristique iaculis magna vitae at convallis sed. Turpis netus ac varius commodo quisque ac, suspendisse nulla vitae. Magna mauris, vehicula feugiat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
-        <details class="my-4">
-            <summary>How can I blahblahblah?</summary>
-            <p class="fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse id nibat pretium rutrum. Fermentum, in nisl rhoncus, pellentesque.</p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
     </div>
 </div>
 
@@ -251,23 +241,13 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
         </p>
         <details class="my-4">
-            <summary>Will there be background checks on tutors?
+            <summary>How to report a tutoring session?
             </summary>
             <p class="fc-black-2">
-                No. TutorSpace currently is only operating within the University of Southern California, so only individuals with an official USC email address will be able to register accounts. TutorSpace only asks for basic and necessary information from users and does not perform background checks. However, if you and your tutor are meeting in person, we still strongly encourage you to interview all potential tutors by phone and meet in a public place for the first time as a safety measure.
-            </p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
-        <details class="my-4">
-            <summary>How to report a tutor/tutoring session?
-            </summary>
-            <p class="fc-black-2">
-                Please go directly to the Help Center at the top bar and click on the “Report” section button. Type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. TutorSpace’s staff will contact you within 24 hours.
+                Please go directly to the Help Center at the top bar and click on the “Report” section button. Type in all the necessary information to help us know thoroughly about your situation and TutorSpace’s staff will contact you within 24 hours.
             </p>
             <p class="fc-black-2">
-                Note: completing the report process does not mean you will not be charged your tutoring fee, but we will arrange a full refund for you after we have a full understanding of your situation.
+                Note: Completing the report process does not mean you will be refunded, but we will arrange a full refund for you after we have a full understanding of your situation.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
