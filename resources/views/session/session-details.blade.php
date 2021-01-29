@@ -10,7 +10,7 @@
     </svg>
 
     <h6 class="w-100 text-center mb-5">Book your Tutoring Session</h6>
-    <p class="fc-black-2 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-4">Fill in the details of your requested session. </p>
 
     <p class="font-weight-bold fc-black-2 mt-4">Choose the course you would like to be tutored in </p>
     <div class="mb-3">

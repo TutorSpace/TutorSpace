@@ -38,7 +38,7 @@
         </span>
     </p>
 
-    <p class="fc-black-2 mt-4"><span class="font-weight-bold">How to make your payment: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">How to make your payment: </span>Please set up a payment method in profile settings. We will charge automatically once the session ends. </p>
 
     {{-- todo: add link here --}}
     <p class="fc-black-2 mt-4"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details about the cancellation policy, please click here.</p>

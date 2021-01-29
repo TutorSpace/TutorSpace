@@ -15,7 +15,8 @@
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
-            <p class="fc-grey fs-1-6">To view the post, click on the link below <br />
+            <p class="fc-grey fs-1-6">To view the post, click on the link below <br /> 
+            <!-- TODO: change the link -->
                 <a class="color-primary" href="{{ route('index') }}">https://tutorspace.joinme.us</a>
             </p>
             <div class="button-container">
