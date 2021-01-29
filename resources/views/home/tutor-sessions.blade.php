@@ -143,16 +143,16 @@ bg-student
         </div>
         @else
         <div class="container col-layout-2">
-            <div class="row mt-5">
-                @php
-                    $upcomingSessions = Auth::user()
-                        ->upcomingSessions()
-                        ->with([
-                            Auth::user()->is_tutor ? 'student' : 'tutor',
-                            'course'
-                        ])
-                        ->get();
-                @endphp
+            @php
+                $upcomingSessions = Auth::user()
+                    ->upcomingSessions()
+                    ->with([
+                        Auth::user()->is_tutor ? 'student' : 'tutor',
+                        'course'
+                    ])
+                    ->get();
+            @endphp
+            <div class="row mt-5 @if($upcomingSessions->count() == 0) no-sessions @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Upcoming Sessions</h5>
                 </div>
@@ -177,30 +177,30 @@ bg-student
 
 
         <div class="container col-layout-2">
-            <div class="row mt-5">
+            @if(Auth::user()->is_tutor)
+                @php
+                    $sessions = Auth::user()
+                        ->pastSessions()
+                        ->with([
+                            'student',
+                            'course'
+                        ])
+                        ->get();
+                @endphp
+            @else
+                @php
+                    $sessions = Auth::user()
+                        ->pastSessions()
+                        ->with([
+                            'tutor',
+                            'course'
+                        ])
+                        ->get();
+                @endphp
+            @endif
+            <div class="row mt-5 @if($upcomingSessions->count() == 0) no-sessions @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Past Sessions</h5>
-                    @if(Auth::user()->is_tutor)
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'student',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
-                    @else
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'tutor',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
-                    @endif
                     @if ($sessions->count() > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                     @endif

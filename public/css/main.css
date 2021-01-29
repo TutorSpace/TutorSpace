@@ -22625,6 +22625,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
 }
 
+.home .tutor-sessions .no-sessions {
+  background-color: #F9F9F9;
+  padding: 0rem 3rem 5rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
 .home .past-sessions {
   -ms-overflow-style: none;
   scrollbar-width: none;
