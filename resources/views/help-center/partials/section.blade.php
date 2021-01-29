@@ -94,7 +94,15 @@
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
-
+        <details class="my-4">
+            <summary>Do you perform background checks on tutors?
+            </summary>
+            <p class="fc-black-2">We only ask for basic and necessary information from users and do not perform background checks. However, only individuals with an USC email address will be able to register. If you and your tutor are meeting in person, we strongly encourage you to meet your tutor via phone before making the tutor request and meet in a public place for the first time as a safety measure.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
 
 
     </div>
@@ -161,31 +169,27 @@
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil libero sunt ullam aliquid possimus facilis inventore consequuntur deleniti, quidem quaerat voluptatem saepe est aut quod ad repellendus illum consequatur minus!
         </p>
         <details class="my-4">
-            <summary>
-                Do I need to upload a profile photo?
+            <summary>Do I need a profile photo?
             </summary>
-            <p class="fc-black-2">
-                No, you do not. However, we strongly recommend adding one since it would dramatically increase your possibility of being contacted by students.
+            <p class="fc-black-2">No. However, if you are a tutor, we strongly recommend you to add one since it would increase your possibility of being chosen by students for tutoring.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>I already have a student account. Can I register as a tutor?
+            <summary>Can I still register as a tutor if I already have a student account?
             </summary>
-            <p class="fc-black-2">Yes, you can. Click on your profile photo and you will find a “Switch Account” button. If you have not registered a tutor account before, you will be asked to provide additional information to complete the registration process. If you have registered a tutor account before, you will be switched to a tutor profile automatically by clicking on the “Switch Account” button.
+            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have not yet registered a tutor account before, you will be asked to provide additional information to complete the registration process, such as your major and gpa. If you have already registered as a tutor, you will be switched to tutor identity automatically by clicking on the “Switch Account” button.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>I already have a tutor account. Can I register as a student?
+            <summary>Can I still register as a student if I already have a tutor account?
             </summary>
-            <p class="fc-black-2">
-                Yes, you can. Click on your profile photo and you will find a “Switch Account” button. If you have not registered a student account before, you will be asked to provide additional information to complete the registration process. If you have registered a student account before, you will be switched to a student profile automatically by clicking on the “Switch Account” button.
-
+            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have registered as a student before, you will be switched to student identity automatically by clicking on the “Switch Account” button.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
