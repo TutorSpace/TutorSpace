@@ -209,7 +209,7 @@ bg-student
                 <h5 class="no-data">No Past Sessions yet.</h5>
                 @else
                 <div class="info-boxes info-boxes">
-                    <div class="info-box info-box--explanation ">
+                    <div class="info-box info-box--explanation">
                         <div class="user-info">
                             TUTORED WITH
                         </div>
