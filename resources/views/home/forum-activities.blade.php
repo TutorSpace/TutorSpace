@@ -32,7 +32,7 @@ bg-student
             <div class="heading-container">
                 <p class="heading">Forum Activities</p>
                 <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                    View your statistics and track your participation in the TutorSpace forum.
                 </span>
             </div>
         </div>

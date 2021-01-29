@@ -9,24 +9,30 @@
                 How to schedule a tutoring session?
             </summary>
             <p class="fc-black-2">
-                There are two ways to schedule a tutoring session. First, you can click on the “Find a Tutor” button at the top bar and, meanwhile, filter your results. Second, you can also schedule a session by going to the profile page of active tutors in the forum.
+                You have two ways to schedule a tutoring session. First, you can click on the “Find a Tutor” button at the top bar, and then filter your results. Second, you can schedule a session by going to the profile page of active tutors in the forum.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>I have submitted a tutor request; how long will it take me to receive a response?</summary>
-            <p class="fc-black-2">Tutors will be notified immediately once you submit a tutoring session request successfully. However, we can not guarantee the response time since each tutor varies. We encourage you to send multiple requests for the same time period each time to increase the possibility of a successful-booked session.
+            <summary>I have requested a tutoring session; how long will it take for me to receive a response?</summary>
+            <p class="fc-black-2">
+                We will notify the tutor immediately once you request a tutoring session. However, we cannot guarantee the response time from the tutor. We encourage you to send multiple requests for the same time period each time to increase the possibility of a successful-booked session.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
         <details class="my-4">
-            <summary>Can I change the session time after I book a session?
+            <summary>Can I adjust my session time after I schedule a session?
             </summary>
-            <p class="fc-black-2">Unfortunately, based on our current functionality, No. If you still feel unlikely to take a particular session, you can cancel the session within a reasonable period and book another one.
+            {{-- todo: add link here --}}
+            <p class="fc-black-2">
+                Unfortunately, you cannot adjust your session time after you have booked a session. However, you can cancel your session and book a new one.
+            </p>
+            <p class="fc-black-2">
+                Note: There will be a penalty charge of $5 if you cancel the session within 24 hours (for students) or 12 hours (for tutors) before session start time. Our [cancellation policy]
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -34,7 +40,7 @@
         </details>
         <details class="my-4">
             <summary>I have an emergency and cannot attend the tutoring session. Can I ask for a refund?</summary>
-            <p class="fc-black-2">This depends on a lot of factors and needs investigation, and you also need to notify your tutor about your situation so that they will not waste their time waiting for you.   According to our Cancellation Policy, student users can usually be allowed to cancel their sessions at least 12 hours away from their tutoring sessions. You will not be granted a full refund if you cancel your session when there are less than 12 hours to your session.
+            <p class="fc-black-2">We understand life can be difficult at times. According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -42,10 +48,11 @@
         </details>
         <details class="my-4">
             <summary>My tutor/student didn't show up for the session.</summary>
-            <p class="fc-black-2">TutorSpace takes the attendance of our registered tutors very seriously. If your tutor is late for more than 15 minutes for your session, we would define it as a “Tutor Not Show-Up” session. In this case, please go directly to the Help Center at the top bar and click on the “Report” section button. Please type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. TutorSpace’s staff will contact you within 24 hours.
+            <p class="fc-black-2">
+                TutorSpace takes the attendance of our registered tutors very seriously. If your tutor is late for more than 15 minutes, you can request a full refund. Please go directly to the Help Center at the top bar and click on the “Report” section button. Please type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. Our customer service representative will contact you within 24 hours.
             </p>
             <p class="fc-black-2">
-                Note: you may still be auto-charged for the Tutor Not Show-Up session, but we will arrange a full refund for you after we have a full understanding of your situation.
+                Note: You may still be auto-charged for the session, but we will arrange a full refund for you after we have a full understanding of your situation.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -54,7 +61,7 @@
         <details class="my-4">
             <summary>My tutor/student showed up late.
             </summary>
-            <p class="fc-black-2">TutorSpace defines your session as Tutor Show-Up Late when your tutor is late for no more than 15 minutes. Try to negotiate with your tutor first to see if he or she can make up the missing time after the original session. If the tutor cannot or refuses to make up the time, it is your right to comment and give negative ratings to him or her.
+            <p class="fc-black-2">If your tutor is late for no more than 15 minutes. Try to negotiate with your tutor first to see if he/she can make up the missing time after the original session. If the tutor cannot or refuses to make up the time, it is your right to comment and give negative ratings to him/her.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -63,7 +70,7 @@
         <details class="my-4">
             <summary>Why do I still get charged after I report a tutor/tutoring session?
             </summary>
-            <p class="fc-black-2">Our payment system will auto-charge the students upon the end of each session no matter what. However, you can make a refund request under the 'tutoring sessions' section in your home page.
+            <p class="fc-black-2">Your session fee is automatically collected at the end of the session. However, we will arrange a refund for you after we have a full understanding of your situation.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -72,7 +79,7 @@
         <details class="my-4">
             <summary>Where are tutoring sessions held?
             </summary>
-            <p class="fc-black-2">Most tutoring sessions are held online during this period, allowing you the flexibility to receive instruction anywhere. Tutors may also meet in person depending on your negotiation, at a place that is convenient for you both.
+            <p class="fc-black-2">Most tutoring sessions are held online during this period, giving you the flexibility to receive tutor services regardless of locations. Tutoring sessions can also be held in person at a place that is convenient for you both.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -81,30 +88,15 @@
         <details class="my-4">
             <summary>What if I don’t like the tutor?
             </summary>
-            <p class="fc-black-2">If you didn't get any value out of the tutoring session, you can use negative ratings to reflect your experience and provide reasonable feedback to the tutor through comments. We also encourage you to determine if a tutor is a good fit by interviewing the tutor through online chatting or on the phone before sending a request.
+            <p class="fc-black-2">If you didn't get any value out of the session, you can reflect your experience with ratings/comments for the tutoring session. We encourage you to check if the tutor is a good fit by talking with him/her before sending a request.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
         </details>
-        <details class="my-4">
-            <summary>Can a tutoring session have multiple students？
-            </summary>
-            <p class="fc-black-2">This is up to the tutor. We think a tutoring session with multiple students would be beneficial for both tutors and students. For students, they can split the bill to save some money. For tutors, it increases the chance of being invited as a tutor since each student pays less.
-            </p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
-        <details class="my-4">
-            <summary>How long does it take to be contacted?
-            </summary>
-            <p class="fc-black-2">It varies a lot. Some tutors get numerous contacts within a week, and some never get a single one. To market your profile, we strongly recommend you to be active in our forum by telling people your past class experience, sharing class notes, and answering other students’ questions so that more people will notice you.
-            </p>
-            <p class="fc-theme-color">
-                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
-            </p>
-        </details>
+
+
+
     </div>
 </div>
 

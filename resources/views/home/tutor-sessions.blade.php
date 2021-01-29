@@ -39,7 +39,11 @@ bg-student
             <div class="heading-container mb-5">
                 <p class="heading">Tutoring Sessions</p>
                 <span>
-                    Manage your past and upcoming sessions, and create your own tutoring schedule.
+                    @if (Auth::user()->is_tutor)
+                    Manage your past/upcoming sessions, and set up your own tutoring schedule.
+                    @else
+                    Manage your tutor requests and past/upcoming sessions.
+                    @endif
                 </span>
             </div>
             @include('home.partials.header')
