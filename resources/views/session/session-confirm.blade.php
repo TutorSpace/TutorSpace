@@ -47,7 +47,7 @@
     <p class="fc-black-2 mt-4"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details about the refund policy, please click here.</p>
 
     <p class="d-flex align-items-center">
-        <input type="checkbox" id="book-session-agreement" class="book-session-agreement-input" name="agreement">
+        <input type="checkbox" id="book-session-agreement" name="agreement">
         {{-- todo: add link here --}}
         <label for="book-session-agreement" class="my-3 ml-2 fs-1-6 font-italic fw-500">
             By checking this box, I agree to TutorSpace's <a href="#" class="color-primary" target="_blank">Cancellation Policy</a>, <a href="#" class="color-primary" target="_blank">Refund Policy</a>, and <a href="#" class="color-primary" target="_blank">USC Integrity Policy</a>.

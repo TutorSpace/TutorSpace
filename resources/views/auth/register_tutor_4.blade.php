@@ -80,10 +80,18 @@ bg-grey-light body-signup select2-bg-tutor
                 * You NEED to choose at least one course.
             </p>
 
+            <p class="d-flex align-items-center">
+                <input type="checkbox" id="register-agreement" name="agreement">
+                {{-- todo: add link here --}}
+                <label for="register-agreement" class="mt-3 ml-3 fs-1-6 font-italic fw-500 fc-black-2">
+                    By checking this box, I agree to TutorSpace's <a href="#" class="fc-purple-primary" target="_blank">Cancellation Policy</a>, <a href="#" class="fc-purple-primary" target="_blank">Refund Policy</a>, and <a href="#" class="fc-purple-primary" target="_blank">USC Integrity Policy</a>.
+                </label>
+            </p>
+
             <div class="signup-container-bottom mt-5 p-relative">
                 <button class="btn btn-link btn-link-tutor select-clear" id="btn-skip" type="button">Clear</button>
                 {{-- btn-next --}}
-                <button class="btn btn-next bg-grey ml-auto">
+                <button class="btn btn-next bg-grey ml-auto" id="btn-for-register-agreement">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />

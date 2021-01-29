@@ -184,7 +184,7 @@ $('#tutor-profile-request-session').on('click',function() {
                         className: 'btn btn-primary px-4 fs-1-8',
                         callback: function() {
                             if(!$('#book-session-agreement').is(":checked")) {
-                                toastr.error('Please click on the check box to agree our policies.')
+                                toastr.error('Please click on the check box to agree our policies before you can schedule a tutoring session.');
                                 return false;
                             }
                             JsLoadingOverlay.show(jsLoadingOverlayOptions);
