@@ -436,7 +436,7 @@ class RegisterController extends Controller
             'profile-pic' => [
                 'file',
                 'mimes:jpeg,bmp,png',
-                'max:2000'
+                'max:10000'
             ]
         ]);
 
