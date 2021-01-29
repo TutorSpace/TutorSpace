@@ -76,7 +76,7 @@ class GeneralController extends Controller
                 'required',
                 'file',
                 'mimes:jpeg,bmp,png,jpg',
-                // 'max:7000'
+                'max:10000'
             ]
         ]);
 
