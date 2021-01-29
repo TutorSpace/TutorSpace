@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Post;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class GainExperienceSubscriber
@@ -21,7 +22,20 @@ class GainExperienceSubscriber
         Log::info('handleTutoringHourEnded triggered.');
         $tutor = $event->tutor;
         $session = $event->session;
-        $total_exp = round(self::$RATE_HOUR_EXP * $session->getDurationInHour());
+        
+        // Check whether course is verified
+        if (DB::table('course_user')->select("course_user.user_id")
+                ->join("verified_courses", function($join){
+                    $join->on("verified_courses.course_id","=","course_user.course_id")
+                        ->on("verified_courses.user_id","=","course_user.user_id");
+                })->where('course_user.user_id', $tutor->id)
+                ->where('course_user.course_id', $session->course_id)->exists()) {
+            $factor = 1.5;
+        } else {
+            $factor = 1;
+        }
+
+        $total_exp = round($factor * self::$RATE_HOUR_EXP * $session->getDurationInHour());
         $tutor->addExperience($total_exp);
     }
 
