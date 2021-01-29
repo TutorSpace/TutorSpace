@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    We have received your request to be a verified tutor.
+    We Have Received Your Request to Be a Verified Tutor.
 </div>
 <div class="notification__content__info">
 
