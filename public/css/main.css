@@ -23423,12 +23423,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   outline: none !important;
   font-weight: bolder;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .help-center__section .content details p {
   font-size: 1.6rem;
   font-weight: 500;
+  margin-left: 2.1rem;
 }
 
 .help-center__section a {

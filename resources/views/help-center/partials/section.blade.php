@@ -27,10 +27,10 @@
         <details class="my-4">
             <summary>Can I adjust my session time after I schedule a session?
             </summary>
-            {{-- todo: add link here --}}
             <p class="fc-black-2">
                 Unfortunately, you cannot adjust your session time after you have booked a session. However, you can cancel your session and book a new one.
             </p>
+            {{-- todo: add link here --}}
             <p class="fc-black-2">
                 Note: There will be a penalty charge of $5 if you cancel the session within 24 hours (for students) or 12 hours (for tutors) before session start time. Our [cancellation policy]
             </p>
