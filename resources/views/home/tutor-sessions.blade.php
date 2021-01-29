@@ -198,7 +198,7 @@ bg-student
                         ->get();
                 @endphp
             @endif
-            <div class="row mt-5 @if($upcomingSessions->count() == 0) no-sessions @endif">
+            <div class="row mt-5 @if($sessions->count() == 0) no-sessions @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Past Sessions</h5>
                     @if ($sessions->count() > 2 + 1)
