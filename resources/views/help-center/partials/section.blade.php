@@ -2,7 +2,7 @@
     <h4 class="header fc-black-2">Sessions</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure error eos quidem! Laborum iste ut, pariatur laudantium nemo placeat odio, necessitatibus quod praesentium veniam quidem quos voluptatem ex? Magnam, harum.
+            Requests, Schedules, Cancellations
         </p>
         <details class="my-4">
             <summary>
@@ -112,7 +112,7 @@
     <h4 class="header fc-black-2">Payment</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
+            Bank Cards, Charges, Refunds
         </p>
         <details class="my-4">
             <summary>Do I have to add a bank card before scheduling a tutoring session?
@@ -166,7 +166,7 @@
     <h4 class="header fc-black-2">User Accounts</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil libero sunt ullam aliquid possimus facilis inventore consequuntur deleniti, quidem quaerat voluptatem saepe est aut quod ad repellendus illum consequatur minus!
+            Profiles, Switching Accounts
         </p>
         <details class="my-4">
             <summary>Do I need a profile photo?
@@ -202,7 +202,7 @@
     <h4 class="header fc-black-2">Forum</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
+            Posts, Replies, Tags
         </p>
         <details class="my-4">
             <summary>I finished my session one hour ago. When can I have my payment?</summary>
@@ -225,7 +225,7 @@
     <h4 class="header fc-black-2">Tutor Verification</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
+            Extra bonuses, Unique Icons
         </p>
         <details class="my-4">
             <summary>I finished my session one hour ago. When can I have my payment?</summary>
@@ -248,7 +248,7 @@
     <h4 class="header fc-black-2">Report</h4>
     <div class="content">
         <p class="section-description fc-black-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Blandit ultricies cras ligula ac sed in. Mauris nibh turpis magna ultrices nibh faucibus dolor. Id dolor tincidunt nullam pretium volutpat tellus sed enim. Est id sed magna duis ut sed fames massa.
+            Unhappiness, Abusive Behaviors
         </p>
         <details class="my-4">
             <summary>Will there be background checks on tutors?
