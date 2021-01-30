@@ -171,7 +171,7 @@ bg-student
                                 @if (Auth::user()->is_tutor)
                                 Courses you would like to tutor in
                                 @else
-                                Courses you would like to be tutored in
+                                Courses you are taking this semester
                                 @endif
                             </label>
                             <input type="text"
