@@ -90,6 +90,11 @@ bg-student
     </div>
 </div>
 
+<div style="height: 10rem">
+
+</div>
+@include('partials.footer')
+
 
 @section('js')
 @include('partials.nav-auth-js')
