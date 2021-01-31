@@ -94,7 +94,8 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\RefundDeclinedNotification') {
             $view = view(
                 'notification.content.sessions.refund-request-fail', [
-                    'session' => Session::find($notif->data['session']['id'])
+                    'session' => Session::find($notif->data['session']['id']),
+                    'declineReason' => $notif->data['declineReason'],
                 ])->render();
         } else if($notif->type == 'App\Notifications\NewTutorRequest') {
             $view = view(

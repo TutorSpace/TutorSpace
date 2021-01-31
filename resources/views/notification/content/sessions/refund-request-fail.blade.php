@@ -22,11 +22,8 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
                 We are sorry to inform you that your refund request of for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has been declined, for the following reason:
             </h6>
 
-            {{-- todo: add the reason here --}}
             <p class="fs-1-6 mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                {{ $declineReason }}
             </p>
 
             <div class="d-flex justify-content-between mt-2">
