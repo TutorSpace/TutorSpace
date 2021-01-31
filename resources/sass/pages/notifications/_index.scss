@@ -87,8 +87,7 @@
                 }
 
                 .user-image.placeholder-img {
-                    position: relative;
-                    background-color: $color-blue-primary;
+                    background-color: $color-yellow-primary;
 
                     span {
                         @include absCenter;

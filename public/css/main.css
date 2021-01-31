@@ -15900,7 +15900,7 @@ h6 {
 
 .user-card .user-image.placeholder-img {
   position: relative;
-  background-color: #1F7AFF;
+  background-color: #FFBC00;
 }
 
 .user-card .user-image.placeholder-img span {
@@ -19322,6 +19322,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .post__heading-2 {
   font-size: 1.4rem;
   margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 .post__heading-2 .poster-img {
@@ -19331,6 +19333,23 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 0.8rem;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.post__heading-2 .poster-img.placeholder-img {
+  position: relative;
+  display: block;
+  background-color: #FFBC00;
+}
+
+.post__heading-2 .poster-img.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .post__content,
@@ -23285,8 +23304,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notification__content .notification__content__info__header .user-image.placeholder-img {
-  position: relative;
-  background-color: #1F7AFF;
+  background-color: #FFBC00;
 }
 
 .notification__content .notification__content__info__header .user-image.placeholder-img span {
