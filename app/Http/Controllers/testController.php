@@ -37,21 +37,22 @@ use Illuminate\Support\Facades\DB;
 use App\Events\SessionReviewPosted;
 
 use App\Notifications\PayoutFailed;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\EmailVerification;
+use Illuminate\Database\Schema\Blueprint;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\TutorVerificationNotification;
 use App\Http\Controllers\Payment\StripeApiController;
+
 use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
-
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 
 class testController extends Controller
 {
@@ -60,7 +61,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        Auth::user()->addExperience(100);
+        Log::debug('test telescope');
     }
 
     public function test(Request $request) {
