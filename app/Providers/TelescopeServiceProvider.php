@@ -31,7 +31,9 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->hasMonitoredTag() ||
                    // below are customized code to listen to when in production environment
                    $entry->type == EntryType::LOG ||
-                   $entry->type == EntryType::MAIL;
+                   $entry->type == EntryType::MAIL ||
+                   $entry->type == EntryType::EVENT ||
+                   $entry->type == EntryType::NOTIFICATION;
         });
     }
 
