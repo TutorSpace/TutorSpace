@@ -18194,6 +18194,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
+._nav .nav-right__profile-img.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+._nav .nav-right__profile-img.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
 ._nav .nav-right .profile-img-container {
   position: relative;
 }
@@ -19651,6 +19667,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
     width: 4rem;
     height: 4rem;
   }
+}
+
+.chatting__side-bar--left .msgs .msg .box .img-container img.placeholder-img,
+.chatting__side-bar--left .msgs .msg .box .img-container div.placeholder-img,
+.notification__side-bar--left .msgs .msg .box .img-container img.placeholder-img,
+.notification__side-bar--left .msgs .msg .box .img-container div.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.chatting__side-bar--left .msgs .msg .box .img-container img.placeholder-img span,
+.chatting__side-bar--left .msgs .msg .box .img-container div.placeholder-img span,
+.notification__side-bar--left .msgs .msg .box .img-container img.placeholder-img span,
+.notification__side-bar--left .msgs .msg .box .img-container div.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .chatting__side-bar--left .msgs .msg .box .content-container,
@@ -23224,12 +23262,28 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin-right: 2rem;
 }
 
-.chatting__content__messages .message .img-container img {
+.chatting__content__messages .message .img-container .user-img {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.chatting__content__messages .message .img-container .user-img.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.chatting__content__messages .message .img-container .user-img.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .chatting__content__messages .message .message-content-container {

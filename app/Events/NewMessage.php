@@ -57,17 +57,19 @@ class NewMessage implements ShouldBroadcastNow
     public function broadcastWith()
     {
         $tz = TimeFormatter::getTZ();
+        $user = User::find($this->message->from);
         return [
             'from' => $this->message->from,
             'to' => $this->message->to,
             'message' => $this->message->message,
             'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz))),
-            'imgUrl' => Storage::url(User::find($this->message->from)->profile_pic_url),
+            'imgUrl' => Storage::url($user->profile_pic_url),
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
-                'user' => User::find($this->message->from),
+                'user' => $user,
                 'message' => $this->message->message,
                 'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz)))
             ])->render(),
+            'imgPlaceholder' => strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]),
         ];
     }
 }

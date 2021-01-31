@@ -89,14 +89,14 @@ bg-student
 
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
-            let {from, to, message, created_at, chatroomView, imgUrl} = data;
+            let {from, to, message, created_at, chatroomView, imgUrl, imgPlaceholder} = data;
             let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
 
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
-                    appendOtherMessage(message, created_at, imgUrl);
+                    appendOtherMessage(message, created_at, imgUrl, imgPlaceholder);
                     scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
                     // appendMyMessage(message, created_at);
@@ -186,12 +186,19 @@ bg-student
         $('.chatting__content__messages').append(el);
     }
 
-    function appendOtherMessage(message, time, imgUrl) {
+    function appendOtherMessage(message, time, imgUrl, imgPlaceholder) {
+        if(imgUrl.includes('placeholder')) {
+            var imgEl = `<div class="user-img placeholder-img">
+                <span>${imgPlaceholder}</span>
+            </div>`;
+        } else {
+            var imgEl = `<img src="${imgUrl}" alt="user img" class="user-img">`;
+        }
         // append other's message
         let el =
         `<div class="message message--other">
             <div class="img-container">
-                <img src="${imgUrl}" alt="user img">
+                ${imgEl}
             </div>
             <div class="message-content-container">
                 <span class="content">
