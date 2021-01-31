@@ -59,7 +59,7 @@ class AuthServiceProvider extends ServiceProvider
             } else if($tutorRequest->status != 'pending') {
                 return Response::deny('You are not authorized to accept this tutor request.');
             } else if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(60)) {
-                return Response::deny('You can only accept tutor requests that are at least two hours before the current time.');
+                return Response::deny('You can only accept tutor requests that are at least one hour before the current time.');
             } else if(!Auth::user()->tutorHasStripeAccount()) {
                 return Response::deny('Payment Missing');
             } else {
