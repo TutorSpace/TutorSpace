@@ -161,7 +161,7 @@ bg-student
                 @endauth
 
 
-                @foreach ($post->replies as $reply)
+                @foreach ($post->replies()->orderBy('created_at', 'asc')->get() as $reply)
                     <div class="post-reply
                     @if ($post->bestReply && $reply->id == $post->bestReply->id)
                     best-reply
@@ -259,7 +259,7 @@ bg-student
                     @endauth
 
                     {{-- for followups --}}
-                    @foreach ($reply->replies as $followup)
+                    @foreach ($reply->replies()->orderBy('created_at', 'asc')->get() as $followup)
                         <div
                             class="followup-container hidden"
                             data-followup-for="{{ $reply->id }}"

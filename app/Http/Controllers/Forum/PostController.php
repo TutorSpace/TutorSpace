@@ -256,7 +256,7 @@ class PostController extends Controller
                         ])
                         ->load([
                             'replies' => function($query) {
-                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'asc');
+                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc');
                             },
                             'replies.replies' => function($query) {
                                 $query->withCount('usersUpvoted');
