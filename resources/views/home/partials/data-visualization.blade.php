@@ -101,13 +101,13 @@
     const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
     const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
-    var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+    var data = [fiveStar, fourStar, threeStar, twoStar, oneStar];
     var backgroundColor = [
-        '#D9D2F4',
-        '#BDB0F1',
-        '#A28FF0',
-        '#8B73EB',
         '#6749DF',
+        '#8B73EB',
+        '#A28FF0',
+        '#BDB0F1',
+        '#D9D2F4',
     ];
 
     var labels =  [
