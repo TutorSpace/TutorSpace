@@ -302,7 +302,6 @@ index
 @endsection
 
 
-
 @section('js')
 <script>
     $('#btn-start').click(function() {
