@@ -41,11 +41,15 @@
         }
     }
 
-    .no-sessions {
+    .no-sessions, .no-reviews {
         background-color: $color-white-dark-5;
         padding: 0rem 3rem 5rem 3rem;
         border-radius: 1rem;
         box-shadow: 0px 2px 1px 0px rgba(0,0,0,0.1);
+    }
+
+    .no-reviews {
+        padding-top: 3rem;
     }
 }
 

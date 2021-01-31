@@ -264,14 +264,13 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
+        @php
+        $reviewCount = Auth::user()->aboutReviews()->count();
+        @endphp
         <div class="container col-layout-2">
-            <div class="row">
+            <div class="row @if($reviewCount == 0) no-reviews @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    @php
-                    $reviewCount = Auth::user()->aboutReviews()->count();
-                    @endphp
                     <h5>Reviews ({{ $reviewCount }})</h5>
-
                     @if($reviewCount > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                     @endif

@@ -19,6 +19,11 @@ class InviteController extends Controller
 
     public function inviteToBeTutorWithEmail(Request $request) {
         $email = $request->input('email');
+        if(explode("@", $email)[1] !== 'usc.edu') {
+            return redirect()->back()->with([
+                'errorMsg' => 'Please enter a USC email, as TutorSpace only allows usc students to be our tutors.'
+            ]);
+        }
         return $this->inviteHelper($email, false);
     }
 
