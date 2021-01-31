@@ -270,7 +270,8 @@ if(isTutor) {
         placement: 'right-end',
         // interactiveDebounce: 75,
         allowHTML: true,
-        theme: 'help-content'
+        theme: 'help-content',
+        offset: [5, 15],
     });
 } else {
     tippy($('#help-user-info')[0], {
@@ -281,7 +282,8 @@ if(isTutor) {
         placement: 'right-end',
         // interactiveDebounce: 75,
         allowHTML: true,
-        theme: 'help-content'
+        theme: 'help-content',
+        offset: [10, 30],
     });
 }
 
@@ -293,5 +295,5 @@ tippy($('#help-forum')[0], {
     placement: 'right-end',
     // interactiveDebounce: 75,
     allowHTML: true,
-    theme: 'help-content'
+    theme: 'help-content',
 });

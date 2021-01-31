@@ -22714,6 +22714,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #F9F9F9;
 }
 
+.profile #svg-help-user-info {
+  position: relative;
+  bottom: 0.7rem;
+}
+
 .home .tutor-sessions #calendar-container {
   margin-right: 3rem;
   flex: 0 0 calc(66.6666666667% - 3rem);

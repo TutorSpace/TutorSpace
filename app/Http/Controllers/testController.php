@@ -60,6 +60,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
+        Auth::user()->addExperience(100);
     }
 
     public function test(Request $request) {

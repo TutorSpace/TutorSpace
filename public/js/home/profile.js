@@ -5763,7 +5763,8 @@ if (isTutor) {
     placement: 'right-end',
     // interactiveDebounce: 75,
     allowHTML: true,
-    theme: 'help-content'
+    theme: 'help-content',
+    offset: [5, 15]
   });
 } else {
   Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
@@ -5774,7 +5775,8 @@ if (isTutor) {
     placement: 'right-end',
     // interactiveDebounce: 75,
     allowHTML: true,
-    theme: 'help-content'
+    theme: 'help-content',
+    offset: [10, 30]
   });
 }
 
