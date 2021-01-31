@@ -103,19 +103,19 @@
 
     var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
     var backgroundColor = [
+        '#6749DF',
         '#D9D2F4',
         '#BDB0F1',
         '#A28FF0',
         '#8B73EB',
-        '#6749DF',
     ];
 
     var labels =  [
-        'One-Star',
-        'Two-Star',
-        'Three-Star',
-        'Four-Star',
         'Five-Star',
+        'Four-Star',
+        'Three-Star',
+        'Two-Star',
+        'One-Star',
     ];
 
     var legendPosition = "right";
