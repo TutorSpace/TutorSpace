@@ -256,10 +256,10 @@ class PostController extends Controller
                         ])
                         ->load([
                             'replies' => function($query) {
-                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc');
+                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc')->orderBy('created_at', 'asc');
                             },
                             'replies.replies' => function($query) {
-                                $query->withCount('usersUpvoted');
+                                $query->orderBy('created_at', 'asc')->withCount('usersUpvoted');
                             },
                             'replies.usersUpvoted' => function($query) {
                                 if(Auth::check())
