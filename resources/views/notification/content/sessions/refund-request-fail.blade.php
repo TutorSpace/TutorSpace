@@ -19,11 +19,11 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
 
         <div class="container content">
             <h6 class="color-primary">
-                We are sorry to inform you that your refund request of for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has been declined, for the following reason:
+                We are sorry to inform you that your refund request of for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has been declined.
             </h6>
 
             <p class="fs-1-6 mt-3">
-                {{ $declineReason }}
+                Declined Reason: {{ $declineReason }}
             </p>
 
             <div class="d-flex justify-content-between mt-2">
