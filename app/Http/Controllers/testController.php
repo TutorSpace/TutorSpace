@@ -61,7 +61,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        Auth::login(User::find('4e76bc66-f836-464d-8b83-e32e8c76e5c2'));
+        // Auth::login(User::find('4e76bc66-f836-464d-8b83-e32e8c76e5c2'));
     }
 
     public function test(Request $request) {

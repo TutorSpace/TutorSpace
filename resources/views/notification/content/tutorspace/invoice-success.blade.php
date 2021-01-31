@@ -72,7 +72,7 @@ $hourlyRate = $session->hourly_rate;
 
             <h6 class="color-primary">Rate Your Tutor</h6>
 
-            <p class="mt-2 fs-1-6">Tutors benefit from your valuable feedback. Click <a href="#" class="btn btn-link fs-1-6" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</a> to rate and comment how you like this session/tutor anonymously.</p>
+            <p class="mt-2 fs-1-6">Tutors benefit from your valuable feedback. Click <a href="#" class="btn btn-link fs-1-6 px-0" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</a> to rate and comment how you like this session/tutor anonymously.</p>
 
             <h6 class="color-primary">Having Trouble With This Session?</h6>
             {{-- todo: add link here --}}
