@@ -273,7 +273,7 @@ bg-student
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
                                 @else
-                                @ Me
+                                <span class="followup-to fc-primary">@ Me</span>
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
