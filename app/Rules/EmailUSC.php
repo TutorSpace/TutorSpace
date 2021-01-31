@@ -25,9 +25,6 @@ class EmailUSC implements Rule
      */
     public function passes($attribute, $value)
     {
-        // todo: remove the following line in production
-        return true;
-
         if(explode("@", $value)[1] !== 'usc.edu') return false;
         return true;
     }
