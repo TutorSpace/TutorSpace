@@ -116,6 +116,17 @@
             Bank Cards, Charges, Refunds
         </p>
         <details class="my-4">
+            <summary>
+                What is the Service Fee?
+            </summary>
+            <p class="fc-black-2">
+                Tutors will be charged a service fee only after they complete their tutoring sessions. The purpose of setting a 10% service is purely for covering the transaction cost charged by the payment service provider as well as the maintenance cost of running the platform, such as the server fee.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
             <summary>Do I have to add a bank card before scheduling a tutoring session?
             </summary>
             <p class="fc-black-2">Yes, you will need to have added at least one bank card to schedule a tutoring session.
@@ -170,9 +181,9 @@
             </p>
         </details>
         <details class="my-4">
-            <summary>How do I receive my commission fee?
+            <summary>How do I receive my tutoring session fee?
             </summary>
-            <p class="fc-black-2">The initial step is to set up your Stripe account in profile settings. After each of your sessions ends and we receive the student’s payment, the commission fee will appear in your Stripe account balance (click “View your Stripe account” in profile settings). Any commission fee will be transferred to your bank account one week after the session ends.
+            <p class="fc-black-2">The initial step is to set up your Stripe account in profile settings. After each of your sessions ends and we receive the student’s payment, the tutoring session fee will appear in your Stripe account balance (click “View your Stripe account” in profile settings). Any tutoring session fee will be transferred to your bank account one week after the session ends.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -309,10 +320,58 @@
         </p>
         <details class="my-4">
             <summary>
-
+                What is Tutor Verification?
             </summary>
             <p class="fc-black-2">
+                Our Tutor Verification System aims to verify tutors' capability of tutoring specific courses and the authenticity of their academic information. The core reason for setting this verification process is purely to guarantee the quality of our tutoring services. Since TutorSpace requires all tutors on the platform to receive an A or A- for the courses they would like to tutor, the tutor verification process helps us determine which tutors are truly qualified for their positions.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
 
+        <details class="my-4">
+            <summary>
+                How many courses are needed to be verified in order to become a verified tutor?
+            </summary>
+            <p class="fc-black-2">
+                Tutors are considered as verified when at least one course they want to be tutor gets successfully verified. A unique badge will appear next to the user's name when they become a verified tutor.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+
+        <details class="my-4">
+            <summary>
+                Does verified tutors mean that all the courses they teach are verified?
+            </summary>
+            <p class="fc-black-2">
+                The answer is NO. Verified tutors and verified courses are two different concepts. Tutors are labeled as verified when at least one course they want to tutor is verified (must have an A-/A in that course). It is possible that some other courses they teach are not verified by TutorSpace. Verified courses are distinguished by the yellow badge near the course name.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+
+        <details class="my-4">
+            <summary>
+                How long does it take for the materials to be reviewed for tutor verification?
+            </summary>
+            <p class="fc-black-2">
+                Turos will get a notification when we confirm to receive their tutor verification requests, which will probably take place in 24 hours since the submission of materials. Please allow another 48 hours to get the final result, whether the information is successfully verified or not.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+
+        <details class="my-4">
+            <summary>
+                Do tutors have to re-verify their academic information if they add/remove any courses they want to tutor?
+            </summary>
+            <p class="fc-black-2">
+                No, there is no need for tutors to re-submit their materials for another verification. Tutors’ academic information will be stored safely in our database, and our system will automatically verify their course lists if some changes are made.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
