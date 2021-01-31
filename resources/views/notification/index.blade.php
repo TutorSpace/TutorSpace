@@ -105,7 +105,7 @@ bg-student
             },
             error: function(error) {
                 console.log(error);
-                toastr.error(error);
+                toastr.error('The post has been deleted by the creator. You are not allowed to view this post any more.');
             },
             complete: () => {
                 JsLoadingOverlay.hide();

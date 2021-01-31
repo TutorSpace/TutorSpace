@@ -266,7 +266,6 @@ class PostController extends Controller
                                     $query->where('user_id', Auth::user()->id);
                             },
                             'replies.user.firstMajor',
-
                             'replies.replies.reply.user',
                             'replies.replies.user',
                             'replies.replies.usersUpvoted' => function($query) {
