@@ -5764,7 +5764,8 @@ if (isTutor) {
     // interactiveDebounce: 75,
     allowHTML: true,
     theme: 'help-content',
-    offset: [5, 15]
+    offset: [5, 15],
+    triggerTarget: $('#help-user-info-trigger')[0]
   });
 } else {
   Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
@@ -5776,7 +5777,8 @@ if (isTutor) {
     // interactiveDebounce: 75,
     allowHTML: true,
     theme: 'help-content',
-    offset: [10, 30]
+    offset: [5, 15],
+    triggerTarget: $('#help-user-info-trigger')[0]
   });
 }
 
@@ -5788,7 +5790,8 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-forum')[0], {
   placement: 'right-end',
   // interactiveDebounce: 75,
   allowHTML: true,
-  theme: 'help-content'
+  theme: 'help-content',
+  triggerTarget: $('#help-forum-trigger')[0]
 });
 
 /***/ }),

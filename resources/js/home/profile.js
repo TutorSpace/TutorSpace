@@ -272,6 +272,7 @@ if(isTutor) {
         allowHTML: true,
         theme: 'help-content',
         offset: [5, 15],
+        triggerTarget: $('#help-user-info-trigger')[0],
     });
 } else {
     tippy($('#help-user-info')[0], {
@@ -283,7 +284,8 @@ if(isTutor) {
         // interactiveDebounce: 75,
         allowHTML: true,
         theme: 'help-content',
-        offset: [10, 30],
+        offset: [5, 15],
+        triggerTarget: $('#help-user-info-trigger')[0],
     });
 }
 
@@ -296,4 +298,5 @@ tippy($('#help-forum')[0], {
     // interactiveDebounce: 75,
     allowHTML: true,
     theme: 'help-content',
+    triggerTarget: $('#help-forum-trigger')[0],
 });
