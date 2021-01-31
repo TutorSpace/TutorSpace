@@ -15,12 +15,12 @@ $price = $tutorRequest->calculateSessionFee();
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
-            @if (Illuminate\Support\Str::of($session->tutor->profile_pic_url)->contains('placeholder'))
+            @if (Illuminate\Support\Str::of($tutorRequest->tutor->profile_pic_url)->contains('placeholder'))
             <div class="user-image placeholder-img">
-                <span>{{ strtoupper($session->tutor->first_name[0]) . ' ' . strtoupper($session->tutor->last_name[0]) }}</span>
+                <span>{{ strtoupper($tutorRequest->tutor->first_name[0]) . ' ' . strtoupper($tutorRequest->tutor->last_name[0]) }}</span>
             </div>
             @else
-            <img src="{{ Storage::url($session->tutor->profile_pic_url) }}" alt="user photo" class="user-image">
+            <img src="{{ Storage::url($tutorRequest->tutor->profile_pic_url) }}" alt="user photo" class="user-image">
             @endif
         </div>
 
