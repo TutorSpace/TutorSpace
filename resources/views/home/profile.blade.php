@@ -229,8 +229,8 @@ bg-student
                 </div>
 
                 <div class="profile__text-container--white">
-                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot" id="help-forum-trigger">
-                        Forum Settings
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                        <span id="help-forum-trigger">Forum Settings</span>
                         @if (Auth::user()->tags()->doesntExist())
                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
