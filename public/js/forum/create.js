@@ -5503,7 +5503,7 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-question')[0], 
 Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-note')[0], {
   animateFill: false,
   plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
-  content: 'If you believe your class notes will help students who are currently taking or will take a particular course in the future, you are welcomed to share them and let more people benefit. However, please note that any sharing should comply with the USC Integrity Policy.',
+  content: 'Share your class notes that you think will help other students taking the same courses. Note that any sharing should comply with the USC Integrity Policy.',
   interactive: true,
   placement: 'top',
   // interactiveDebounce: 75,
