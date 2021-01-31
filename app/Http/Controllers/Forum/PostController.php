@@ -22,10 +22,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
-
-
 use Illuminate\Support\Facades\Log;
-
 
 class PostController extends Controller
 {
@@ -259,7 +256,7 @@ class PostController extends Controller
                         ])
                         ->load([
                             'replies' => function($query) {
-                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc');
+                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'asc');
                             },
                             'replies.replies' => function($query) {
                                 $query->withCount('usersUpvoted');
