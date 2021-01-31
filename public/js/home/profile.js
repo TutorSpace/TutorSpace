@@ -5758,7 +5758,7 @@ if (isTutor) {
   Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
     animateFill: false,
     plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
-    content: 'To let your potential clients know what courses you are adept at, please add all courses you would like to tutor so that students can see them when they are viewing your profile page. Selected courses must be those you received an A or A- before. Also, notice that students are only allowed to request tutoring sessions for the courses you add to your course list.',
+    content: 'Add all courses you would like to tutor so that students can know what courses you are adept at. Selected courses must be those you received an A or A- before.',
     interactive: true,
     placement: 'right-end',
     // interactiveDebounce: 75,
