@@ -64,7 +64,7 @@ $hourlyRate = $session->hourly_rate;
                 </div>
             </div>
 
-            <h6 class="color-primary">Price Summary</h6>
+            <h6 class="color-primary">Order Summary</h6>
             <p class="fc-black-2 d-flex flex-row justify-content-between fs-1-6 mt-3">Session Fee (per hour)
                 <span class="color-primary">$ {{ $hourlyRate }}</span>
             </p>

@@ -11,7 +11,7 @@
 
     <h6 class="w-100 text-center mb-5">Book your Tutoring Session</h6>
 
-    <p class="font-weight-bold">Price Summary</p>
+    <p class="font-weight-bold">Order Summary</p>
     <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">
         Session Fee (per hour)
         <span class="fc-theme-color">&nbsp;&nbsp;$
