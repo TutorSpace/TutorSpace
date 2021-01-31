@@ -7,7 +7,7 @@
         <use xlink:href="{{asset('assets/sprite.svg#icon-magnifying-glass')}}"></use>
     </svg>
 </form> --}}
-<ul class="msgs">
+<ul class="msgs mb-0">
     {{-- todo: debug this when there are two inactive chatrooms --}}
     @foreach (Auth::user()->getChatrooms() as $chatroom)
         @php

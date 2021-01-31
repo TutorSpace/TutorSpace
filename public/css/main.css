@@ -23231,7 +23231,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .chatting__side-bar--left .msgs {
-  height: calc(100% - 12.5rem + 12.5rem);
+  height: calc(100% - 2rem - 3rem);
 }
 
 .chatting__content__header {
