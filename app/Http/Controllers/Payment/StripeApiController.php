@@ -509,7 +509,7 @@ class StripeApiController extends Controller
         $transaction->refund_status = 'canceled';
         $transaction->save();
 
-        $session->student->notify(new RefundDeclinedNotification($session));
+        $session->student->notify(new RefundDeclinedNotification($session, $request->input('refund-decline-reason')));
 
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Successfully declined the refund request.']);
     }

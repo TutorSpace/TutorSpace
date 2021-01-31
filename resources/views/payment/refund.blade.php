@@ -67,6 +67,7 @@ bg-student
             <th scope="col">Refund Status</th>
             <th scope="col" colspan="2">Student</th>
             <th scope="col">Refund Requested Time</th>
+            <th scope="col">Refund Reason</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -84,15 +85,19 @@ bg-student
                 <td>
                     {{ $transaction->refund_requested_time }}
                 </td>
+                <td>
+                    <input type="text" class="form-control form-control-lg">
+                </td>
                 <td class="d-flex actions">
                     @if ($transaction->refund_status == 'user_initiated')
                     <form action="{{ route('payment.stripe.approve_refund', $transaction->session) }}" method="POST">
                         @csrf
                         <button class="btn btn-primary btn-lg">Approve</button>
                     </form>
-                    <form action="{{ route('payment.stripe.decline_refund', $transaction->session) }}" method="POST">
+                    <form action="{{ route('payment.stripe.decline_refund', $transaction->session) }}" method="POST" class="form-decline">
                         @csrf
                         <button class="btn btn-danger btn-lg mt-2">Decline</button>
+                        <input type="hidden" name="refund-decline-reason">
                     </form>
                     @endif
                 </td>
@@ -108,7 +113,11 @@ bg-student
 
 @section('js')
 <script>
-
+$('.form-decline').submit(function() {
+    let reason = $(this).parent().prev().find(input);
+    $(this).find('input').val(reason);
+    return true;
+});
 </script>
 @endsection
 
