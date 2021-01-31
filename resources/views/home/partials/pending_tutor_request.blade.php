@@ -30,7 +30,7 @@ $diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
             </span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
                 {{ $request->session_time_start->setTimeZone($tz)->format('H:i') }}
                 -
