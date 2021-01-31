@@ -17902,7 +17902,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .tippy-box[data-theme~=help-content] {
-  background-color: #A5BE0D;
+  background-color: #F59300;
   color: #FFFFFF;
   padding: 0.5rem 0.8rem;
   font-size: 1.6rem;
@@ -21798,11 +21798,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header .content .content-info .tutor-level-progress .progress {
   height: 1rem;
-  background-color: #502ED9;
+  background-color: #FFFFFF;
 }
 
 .home__header .content .content-info .tutor-level-progress .progress .progress-bar {
-  background-color: #FFFFFF;
+  background-color: #FFBC00;
 }
 
 .home__header .content .content-info .tutor-level-progress .tutor-level {
