@@ -97,7 +97,7 @@ bg-student
                     <form action="{{ route('payment.stripe.decline_refund', $transaction->session) }}" method="POST" class="form-decline">
                         @csrf
                         <button class="btn btn-danger btn-lg mt-2">Decline</button>
-                        <input type="hidden" name="refund-decline-reason">
+                        <input type="hidden" name="refund-decline-reason" class="refund-decline-reason">
                     </form>
                     @endif
                 </td>
@@ -115,8 +115,7 @@ bg-student
 <script>
 $('.form-decline').submit(function() {
     let reason = $(this).parent().prev().find('input').val();
-    alert(reason);
-    $(this).find('input').val(reason);
+    $(this).find('.refund-decline-reason').val(reason);
     return true;
 });
 </script>
