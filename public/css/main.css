@@ -15898,6 +15898,22 @@ h6 {
      object-fit: cover;
 }
 
+.user-card .user-image.placeholder-img {
+  position: relative;
+  background-color: #1F7AFF;
+}
+
+.user-card .user-image.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
 .user-card .svg-bookmark {
   position: absolute;
   top: 1rem;

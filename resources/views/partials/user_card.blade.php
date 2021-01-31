@@ -11,7 +11,13 @@
     </svg>
     @endcan
 
+    @if (Illuminate\Support\Str::of($user->profile_pic_url)->contains('placeholder'))
+    <div class="user-image placeholder-img">
+        <span>{{ strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]) }}</span>
+    </div>
+    @else
     <img class="user-image" src="{{ Storage::url($user->profile_pic_url) }}" alt="user image">
+    @endif
 
     <a class="user-name" href="{{ route('view.profile', $user->id) }}">
         {{ $user->first_name }} {{ $user->last_name }}
