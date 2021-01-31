@@ -294,7 +294,7 @@ tippy($('#help-forum')[0], {
     plugins: [animateFill],
     content: ' TutorSpace will recommend posts based on your pre-set preferences. Please add all tags, such as courses and subjects you are interested in, to help us find the content you feel useful.',
     interactive: true,
-    placement: 'right-end',
+    placement: 'right',
     // interactiveDebounce: 75,
     allowHTML: true,
     theme: 'help-content',
