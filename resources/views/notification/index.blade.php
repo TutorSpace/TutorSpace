@@ -150,12 +150,10 @@ bg-student
     $(document).on('click', '#btn-decline', function() {
         let tutorRequestId = $(this).closest('.button-container').attr('data-tutor-request-id');
 
-        alert("{{ url('/tutor-request/decline/') }}" + `/${tutorRequestId}`);
-
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type: 'DELETE',
-            url: "{{ url('/tutor-request/decline/') }}" + `/${tutorRequestId}`,
+            url: "{{ url('/tutor-request/') }}" + `/${tutorRequestId}`,
             success: function success(data) {
                 let { successMsg, errorMsg } = data;
                 if(successMsg) {
