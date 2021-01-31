@@ -40,7 +40,8 @@
         </details>
         <details class="my-4">
             <summary>I have an emergency and cannot attend the tutoring session. Can I ask for a refund?</summary>
-            <p class="fc-black-2">We understand life can be difficult at times. According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
+            {{-- todo: add link --}}
+            <p class="fc-black-2">According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -187,9 +188,41 @@
             Profiles, Switching Accounts
         </p>
         <details class="my-4">
-            <summary>Do I need a profile photo?
+            <summary>What is Tutor Growth Plan?
             </summary>
-            <p class="fc-black-2">No. However, if you are a tutor, we strongly recommend you to add one since it would increase your possibility of being chosen by students for tutoring.
+            {{-- todo: add link --}}
+            <p class="fc-black-2">Tutor Growth Plan is a motivational program designed for our tutors. Users can raise their tutor levels by earning experience points on the platform. Tutors with a higher tutor level indicate that they are more likely to be experienced, more knowledgeable, and more trustworthy. Users can earn experience points in many ways, such as holding tutoring sessions, getting likes from their posts, and replying to other posts. Our [Tutor Growth Plan]
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>Why is there an upper limit in my hourly rate?
+            </summary>
+            <p class="fc-black-2">
+                The hourly rate limit is the highest amount of tutoring fee tutors are allowed to charge for a single hour, which guarantees the platform's sustainability and the quality of its service. It varies in accordance with different tutor levels. As tutors move up to higher tutor levels, which indicates they become more experienced in tutoring and their academic field, they will be able to set a higher hourly rate.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>What is Cash Bonus?
+            </summary>
+            <p class="fc-black-2">
+                Cash bonuses are extra rewards for tutors in addition to the regular tutoring fee. They are usually given to tutors after they complete tutoring sessions. The cash bonus rate varies according to their tutor levels.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>Who is eligible for the Cash Bonus?
+            </summary>
+            {{-- todo: add link --}}
+            <p class="fc-black-2">
+                TutorSpace will give extra cash bonuses to only verified tutors. If you have any question on what a verified tutor is and how to become a verified tutor, please see our Tutor Verification Policy.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -198,7 +231,7 @@
         <details class="my-4">
             <summary>Can I still register as a tutor if I already have a student account?
             </summary>
-            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have not yet registered a tutor account before, you will be asked to provide additional information to complete the registration process, such as your major and gpa. If you have already registered as a tutor, you will be switched to tutor identity automatically by clicking on the “Switch Account” button.
+            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have not yet registered a tutor account before, you will be asked to provide additional information to complete the registration process, such as your major and gpa. If you have already registered as a tutor, you will be switched to tutor identity automatically by clicking on the “Switch Account” button. However, please note that much of the data you have will not be synced to the new account, such as chat messages, posts, replies, etc.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -207,7 +240,16 @@
         <details class="my-4">
             <summary>Can I still register as a student if I already have a tutor account?
             </summary>
-            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have registered as a student before, you will be switched to student identity automatically by clicking on the “Switch Account” button.
+            <p class="fc-black-2">Yes. Click on your profile photo on the nav bar and you will find a “Switch Account” button. If you have registered as a student before, you will be switched to student identity automatically by clicking on the “Switch Account” button. However, please note that much of the data you have will not be synced to the new account, such as chat messages, posts, replies, etc.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>Is a profile photo required?
+            </summary>
+            <p class="fc-black-2">No. However, if you are a tutor, we strongly recommend you to add one since it would increase your possibility of being chosen by students for tutoring.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -222,6 +264,40 @@
         <p class="section-description fc-black-2">
             Posts, Replies, Tags
         </p>
+        <details class="my-4">
+            <summary>
+                What is a Class Review post?
+            </summary>
+            <p class="fc-black-2">
+                You can share your thoughts on what is the primary content of the course, how you like your professor compared to professors in other sections, how you think this course may contribute to the completion of your degree and your career aspiration, what kind of students you think should take this course, any tips for students to ace this course, etc.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            {{-- todo: add link --}}
+            <summary>
+                What is a Class Note post?
+            </summary>
+            <p class="fc-black-2">
+                If you believe your class notes will help students who are currently taking or are going to take a particular course in the future, then you are welcomed to share them and let more people benefit. However, please note that any sharing should comply with the USC Integrity Policy.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+        <details class="my-4">
+            <summary>
+                I have both tutor and student accounts. Will the posts I created sync to the other account?
+            </summary>
+            <p class="fc-black-2">
+                No, please think of your tutor and student accounts as two separate accounts. Contents including your posts, inbox messages, and chat messages in your tutor account will not be shared with your student account, and vice versa.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
     </div>
 </div>
 
@@ -231,6 +307,17 @@
         <p class="section-description fc-black-2">
             Extra bonuses, Unique Icons
         </p>
+        <details class="my-4">
+            <summary>
+
+            </summary>
+            <p class="fc-black-2">
+
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
     </div>
 </div>
 
