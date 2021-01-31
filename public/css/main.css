@@ -14517,11 +14517,11 @@ h6 {
 }
 
 .bg-student .color-primary {
-  color: #1F7AFF;
+  color: #1F7AFF !important;
 }
 
 .bg-tutor .color-primary {
-  color: #6749DF;
+  color: #6749DF !important;
 }
 
 .fill-color-blue-secondary {

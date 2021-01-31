@@ -67,8 +67,8 @@
 .bg-color-notification--tutore-requests { background-color: $color-calendar-tutor-request; }
 
 // ======================= color ====================
-.bg-student .color-primary { color: $color-blue-primary; }
-.bg-tutor .color-primary { color: $color-purple-primary; }
+.bg-student .color-primary { color: $color-blue-primary !important; }
+.bg-tutor .color-primary { color: $color-purple-primary !important; }
 
 
 // ===================== svg =================
