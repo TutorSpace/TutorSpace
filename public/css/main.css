@@ -17902,7 +17902,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .tippy-box[data-theme~=help-content] {
-  background-color: rgba(165, 190, 13, 0.8);
+  background-color: #A5BE0D;
   color: #FFFFFF;
   padding: 0.5rem 0.8rem;
   font-size: 1.6rem;
