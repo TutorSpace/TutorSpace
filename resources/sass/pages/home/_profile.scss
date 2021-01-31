@@ -12,12 +12,12 @@
 
     .home__panel__text {
         width: 60%;
-        color: white;
+        color: $color-white-dark-5;
 
     }
     .home__panel__button {
-        max-width: 40%;
-        background-color: white;
+        max-width: 50%;
+        background-color: $color-white-dark-5;
         border-radius: 30px;
         display: flex;
         flex-direction: row;
@@ -26,13 +26,21 @@
         padding: 1rem 3rem;
         cursor: pointer;
         box-shadow: 2px 2px 2px rgb(0,0,0,0.25);
+
         .home__panel__button__label {
             margin: 0;
             font-size: 2rem;
             color: $color-purple-primary;
+            white-space: nowrap;
         }
+
         &:hover {
             box-shadow: 2px 2px 2px rgb(0,0,0,0.5);
+        }
+
+        &.submitted {
+            cursor: not-allowed;
+            background-color: rgba($color-white-dark-5, .9);
         }
     }
 }
@@ -292,7 +300,6 @@
 
     #help-user-info {
         position: relative;
-
         bottom: .7rem;
     }
 }

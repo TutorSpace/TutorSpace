@@ -22447,12 +22447,12 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__panel .home__panel__text {
   width: 60%;
-  color: white;
+  color: #F9F9F9;
 }
 
 .home__panel .home__panel__button {
-  max-width: 40%;
-  background-color: white;
+  max-width: 50%;
+  background-color: #F9F9F9;
   border-radius: 30px;
   display: flex;
   flex-direction: row;
@@ -22467,10 +22467,16 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   margin: 0;
   font-size: 2rem;
   color: #6749DF;
+  white-space: nowrap;
 }
 
 .home__panel .home__panel__button:hover {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.home__panel .home__panel__button.submitted {
+  cursor: not-allowed;
+  background-color: rgba(249, 249, 249, 0.9);
 }
 
 .profile {

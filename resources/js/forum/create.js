@@ -44,7 +44,7 @@ tippy($('#btn-class-note')[0], {
 tippy($('#btn-class-review')[0], {
     animateFill: false,
     plugins: [animateFill],
-    content: 'You can share your thoughts on what is the primary content of the course, how do you like your professor compared to professors in other sections, how do you think this course may contribute to the completion of your degree and your career aspiration, what kinds of students do you think should take this course, any tips for students to ace this course, etc.',
+    content: 'Share what the primary content of the course is, how you like your professor, how you think this course may contribute to your career aspiration, what kind of students you think should take this course, any tips for students to ace this course, etc.',
     interactive: true,
     placement: 'top',
     // interactiveDebounce: 75,

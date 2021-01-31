@@ -26,22 +26,21 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        @if (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
                 <p class="heading">Want to earn experience points more quickly? </p>
             </div>
+            @if (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
             <div class="home__panel__button">
                 <p class="home__panel__button__label">Become a Verified Tutor</p>
             </div>
-        </div>
-        @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
-        <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
-            <div class="home__panel__text heading-container">
-                <p class="heading">Tutor Verification Submitted</p>
+            @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
+            <div class="home__panel__button submitted">
+                <p class="home__panel__button__label">Verification Request Submitted</p>
             </div>
+            @endif
         </div>
-        @endif
+
 
         <form class="container col-layout-2 profile" autocomplete="off"
             action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }} @else {{ route('home.profile.update') }} @endif"
@@ -777,7 +776,7 @@ bg-student
 
 <script>
     $('.home__panel__button').on('click', function () {
-        if ($('.modal-verify-tutor')[0]) return;
+        if ($('.modal-verify-tutor')[0] || $(this).hasClass('submitted')) return;
 
         bootbox.dialog({
             message: `@include('home.partials.tutorVerification')`,
