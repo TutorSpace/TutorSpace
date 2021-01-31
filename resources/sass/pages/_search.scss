@@ -172,6 +172,19 @@
                 border-radius: 50%;
                 display: block;
                 object-fit: cover;
+
+                &.placeholder-img {
+                    position: relative;
+                    background-color: $color-yellow-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
+                }
             }
 
             .user-name {

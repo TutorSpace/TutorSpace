@@ -1,7 +1,14 @@
 @forelse (isset($users) ? $users : [] as $user)
 <div class="search-result bg-white-dark-5">
     <div class="d-flex align-items-center mb-3">
+        @if (Illuminate\Support\Str::of($user->profile_pic_url)->contains('placeholder'))
+        <div class="user-photo mr-3 placeholder-img">
+            <span>{{ strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]) }}</span>
+        </div>
+        @else
         <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-photo mr-3">
+        @endif
+
         <a class="user-name mr-3" href="{{ route('view.profile', $user) }}">{{ $user->first_name }} {{ $user->last_name }}</a>
         @if ($user->is_tutor_verified)
         @include('partials.svg-tutor-verified')

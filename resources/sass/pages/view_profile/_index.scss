@@ -68,6 +68,19 @@
                 border-radius: 50%;
                 object-fit: cover;
 
+                &.placeholder-img {
+                    position: relative;
+                    background-color: $color-yellow-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
+                }
+
                 @include respond(md) {
                     width: 8rem;
                     height: 8rem;

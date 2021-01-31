@@ -88,6 +88,19 @@
                     transition: all .1s;
                 }
 
+                .placeholder-img {
+                    position: relative;
+                    background-color: $color-yellow-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
+                }
+
                 .caption {
                     position: absolute;
                     top: 50%;

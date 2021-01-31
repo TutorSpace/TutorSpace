@@ -21281,6 +21281,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
      object-fit: cover;
 }
 
+.search .search-results .search-result .user-photo.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.search .search-results .search-result .user-photo.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
 .search .search-results .search-result .user-name {
   font-size: 2.2rem;
   color: #3F3F3F;
@@ -21597,6 +21613,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   -o-object-fit: cover;
      object-fit: cover;
   transition: all 0.1s;
+}
+
+.home__header .content-img .placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.home__header .content-img .placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .home__header .content-img .caption {
@@ -22797,6 +22829,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.view-profile .view-profile--left .view-profile__user-info .user-img.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.view-profile .view-profile--left .view-profile__user-info .user-img.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 61.99em) {
