@@ -32,7 +32,7 @@ class ReplyController extends Controller
 
         // notify all people who are following this post
         foreach($post->usersFollowing as $user) {
-            if($user->id != Auth::id) {
+            if($user->id != Auth::id()) {
                 $user->notify(new NewReplyAddedNotification($post, $request->input('content'), true));
             }
         }

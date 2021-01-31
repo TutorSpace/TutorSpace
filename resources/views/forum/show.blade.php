@@ -272,6 +272,8 @@ bg-student
                                 <a class="followup-to" href="{{ route('view.profile', $followup->reply->user) }}">
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
+                                @else
+                                @ Me
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
