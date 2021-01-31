@@ -21606,7 +21606,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   }
 }
 
-.home__header .content-img img {
+.home__header .content-img img,
+.home__header .content-img .placeholder-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -21654,7 +21655,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(calc(-50%), calc(-50%));
 }
 
-.home__header .content-img:hover img {
+.home__header .content-img:hover img,
+.home__header .content-img:hover .placeholder-img {
   -webkit-filter: blur(1.5px) brightness(70%);
           filter: blur(1.5px) brightness(70%);
 }
