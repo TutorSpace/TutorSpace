@@ -23392,11 +23392,13 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notification .notification-type-info .type-container:not(:last-child) {
-  margin-right: 2rem;
+  margin-right: 1.7rem;
 }
 
 .notification .notification-type-info .type-container svg {
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .notification__content .color-primary {
