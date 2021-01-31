@@ -5493,7 +5493,7 @@ $('#create-tags').select2({
 Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-question')[0], {
   animateFill: false,
   plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
-  content: 'Any questions you have regarding course content and professors, school majors, puzzles in your homework, and anything else you may find confused in your school life.',
+  content: 'Any questions you have regarding course content and professors, school majors, puzzles in your homework, and anything else you find confusing in your school life.',
   interactive: true,
   placement: 'top',
   // interactiveDebounce: 75,
@@ -5513,7 +5513,7 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-note')[0]
 Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-review')[0], {
   animateFill: false,
   plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
-  content: 'Share what the primary content of the course is, how you like your professor, how you think this course may contribute to your career aspiration, what kind of students you think should take this course, any tips for students to ace this course, etc.',
+  content: 'Share what the primary content of the course is, how you like the professor, how you think this course contributes to your career aspiration, what kind of students you think should take it, any tips for students to ace this course, etc.',
   interactive: true,
   placement: 'top',
   // interactiveDebounce: 75,
