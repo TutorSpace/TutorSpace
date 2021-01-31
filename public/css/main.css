@@ -22236,13 +22236,29 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   display: flex;
 }
 
-.home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user img {
+.home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user .user-img {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
   width: 5.5rem;
   height: 5.5rem;
   margin-right: 2rem;
+}
+
+.home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user .user-img.placeholder-img {
+  position: relative;
+  background-color: #FFBC00;
+}
+
+.home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user .user-img.placeholder-img span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  white-space: nowrap;
 }
 
 .home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user__content {

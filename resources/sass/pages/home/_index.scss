@@ -657,12 +657,25 @@
             .bookmarked-user {
                 display: flex;
 
-                img {
+                .user-img {
                     border-radius: 50%;
                     object-fit: cover;
                     width: 5.5rem;
                     height: 5.5rem;
                     margin-right: 2rem;
+
+                    &.placeholder-img {
+                        position: relative;
+                        background-color: $color-yellow-primary;
+
+                        span {
+                            @include absCenter;
+                            font-size: 1.6rem;
+                            font-weight: 500;
+                            color: $color-white;
+                            white-space: nowrap;
+                        }
+                    }
                 }
 
                 &__content {
