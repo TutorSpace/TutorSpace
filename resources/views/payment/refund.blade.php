@@ -115,6 +115,7 @@ bg-student
 <script>
 $('.form-decline').submit(function() {
     let reason = $(this).parent().prev().find('input').val();
+    alert(reason);
     $(this).find('input').val(reason);
     return true;
 });
