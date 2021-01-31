@@ -54,3 +54,8 @@ html,body
 img {
     border: 1px solid transparentize($color: $color-grey, $amount: .5);
 }
+
+.svg-help {
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+}

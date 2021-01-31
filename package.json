@@ -36,6 +36,7 @@
         "pikaday": "^1.8.0",
         "select2": "^4.0.13",
         "timepicker": "^1.13.11",
+        "tippy.js": "^6.2.7",
         "toastr": "^2.1.4"
     }
 }
