@@ -23,7 +23,7 @@ $hourlyRate = $session->hourly_rate;
             </p>
 
             <div class="button-container">
-                <a class="btn btn-primary" href="{{ $paymentUrl }}">One-time Payment Link</a>
+                <a class="btn btn-primary" href="{{ $paymentUrl }}" target="_blank">One-time Payment Link</a>
             </div>
 
             <h6 class="mt-5 color-primary">Session Details</h6>
