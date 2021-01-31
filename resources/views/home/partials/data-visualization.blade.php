@@ -121,7 +121,7 @@
     var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
         data = [1];
-        backgroundColor = ['#c2c0b8'];
+        backgroundColor = ['#D9D2F4'];
         labels = ["No Available Ratings"];
         legendPosition = "bottom";
     }
