@@ -26,6 +26,7 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
+        @if(Auth::user()->is_tutor)
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
                 <p class="heading">Want to earn experience points more quickly? </p>
@@ -40,6 +41,7 @@ bg-student
             </div>
             @endif
         </div>
+        @endif
 
 
         <form class="container col-layout-2 profile" autocomplete="off"
