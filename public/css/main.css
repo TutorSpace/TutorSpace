@@ -23757,7 +23757,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .invite__footer {
   position: absolute;
-  bottom: 12rem;
+  bottom: 8rem;
   left: 50%;
   transform: translateX(-50%);
 }
