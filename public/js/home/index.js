@@ -111,11 +111,12 @@ $("#input-profile-pic").change(function () {
     processData: false,
     success: function success(data) {
       toastr.success('Successfully uploaded the image!');
-      $('#profile-image').attr('src', storageUrl + data.imgUrl);
-      $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
     },
     error: function error(_error) {
-      toastr.error('The file you uploaded is either too large (should be smaller than 2MB) or not supported by our platform. Please try uploading another image again.');
+      toastr.error('The file you uploaded is either too large (should be smaller than 10MB) or not supported by our platform. Please try uploading another image again.');
       console.log(_error);
     },
     complete: function complete() {
