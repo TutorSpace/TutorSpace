@@ -268,9 +268,9 @@ bg-student
                             @endif
                         >
                             <div class="followup__content">
-                                @if (!Auth::check())
+                                @if (!Auth::check() || Auth::user()->id != $followup->reply->user->id)
                                 <a class="followup-to" href="{{ route('view.profile', $followup->reply->user) }}">
-                                    {{ '@' . Auth::user()->id != $followup->reply->user->id ? $followup->reply->user->first_name : 'Me' }}
+                                    {{ '@' . $followup->reply->user->first_name }}
                                 </a>
                                 @endif
                                 {{ $followup->reply_content }}
