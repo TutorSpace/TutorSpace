@@ -85,6 +85,19 @@
                     height: 7.5rem;
                     border-radius: 50%;
                 }
+
+                .user-image.placeholder-img {
+                    position: relative;
+                    background-color: $color-blue-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
+                }
             }
 
             .content {

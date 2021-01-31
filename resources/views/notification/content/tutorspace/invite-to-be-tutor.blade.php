@@ -5,7 +5,13 @@
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
+            @if (Illuminate\Support\Str::of($user->profile_pic_url)->contains('placeholder'))
+            <div class="user-image placeholder-img">
+                <span>{{ strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]) }}</span>
+            </div>
+            @else
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-image">
+            @endif
         </div>
 
         <div class="container content">

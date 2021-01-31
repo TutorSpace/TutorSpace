@@ -15,7 +15,13 @@ $price = $session->calculateSessionFee();
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
+            @if (Illuminate\Support\Str::of($session->student->profile_pic_url)->contains('placeholder'))
+            <div class="user-image placeholder-img">
+                <span>{{ strtoupper($session->student->first_name[0]) . ' ' . strtoupper($session->student->last_name[0]) }}</span>
+            </div>
+            @else
             <img src="{{ Storage::url($session->student->profile_pic_url) }}" alt="user photo" class="user-image">
+            @endif
         </div>
 
         <div class="container content">
