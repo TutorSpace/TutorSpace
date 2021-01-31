@@ -85,14 +85,10 @@ bg-student
             <p class="fc-grey fs-1-4 mb-5">We are here to help. Send us an email and we will reply within 24 hours.</p>
             <a class="btn text-white fs-1-8 help-center__footer__button btn-primary btn-animation-y" href="mailto:tutorspacehelp@gmail.com">Contact Us</a>
         </div>
-
-
     </div>
 </div>
 
-<div style="height: 10rem">
-
-</div>
+<div style="height: 10rem"></div>
 @include('partials.footer')
 
 
