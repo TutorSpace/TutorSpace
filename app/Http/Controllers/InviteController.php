@@ -14,6 +14,11 @@ class InviteController extends Controller
 {
 
     public function inviteToBeTutor(User $user) {
+        if($user->email == Auth::user()->email) {
+            return response()->json([
+                'errorMsg' => 'You are not authorized to invite yourself.'
+            ]);
+        }
         return $this->inviteHelper($user->email, true);
     }
 
@@ -22,6 +27,10 @@ class InviteController extends Controller
         if(explode("@", $email)[1] !== 'usc.edu') {
             return redirect()->back()->with([
                 'errorMsg' => 'Please enter a USC email, as TutorSpace only allows usc students to be our tutors.'
+            ]);
+        } else if($email == Auth::user()->email) {
+            return redirect()->back()->with([
+                'errorMsg' => 'You are not authorized to invite yourself.'
             ]);
         }
         return $this->inviteHelper($email, false);

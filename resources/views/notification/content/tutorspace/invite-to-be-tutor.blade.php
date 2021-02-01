@@ -80,7 +80,7 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Teaching can be rewarding!</h6>
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in Tutor Growth Plan and Tutor Verification programs. An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
                         </p>
                     </div>
                 </div>
