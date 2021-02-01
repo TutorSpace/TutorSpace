@@ -43,7 +43,31 @@ class GeneralController extends Controller
 
     // private policy
     public function showPrivatePolicy() {
-        return view('policy.index');
+        return view('policy.private-policy');
+    }
+
+    public function showCancellationPolicy() {
+        return view('policy.private-policy');
+    }
+
+    public function showTGPPolicy() {
+        return view('policy.private-policy');
+    }
+
+    public function showTutorVerificationPolicy() {
+        return view('policy.private-policy');
+    }
+
+    public function showRefundPolicy() {
+        return view('policy.private-policy');
+    }
+
+    public function showReferralPolicy() {
+        return view('policy.private-policy');
+    }
+
+    public function showUSCIntegrityPolicy() {
+        return view('policy.private-policy');
     }
 
     // report forum

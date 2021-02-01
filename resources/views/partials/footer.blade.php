@@ -23,7 +23,7 @@
                 <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
             </li>
             <li class="footer__item">
-                <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>
+                <a href="{{ route('private-policy.show') }}" target="_blank">Private Policy</a>
             </li>
         </ul>
     </div>
@@ -98,7 +98,7 @@
             <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
         </li>
         <li class="footer-sm__item">
-            <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>
+            <a href="{{ route('private-policy.show') }}" target="_blank">Private Policy</a>
         </li>
     </ul>
 

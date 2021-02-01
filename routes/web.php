@@ -66,8 +66,18 @@ Route::group([
 // recommended tutors
 Route::get('/recommended-tutors', 'GeneralController@getRecommendedTutors')->middleware('auth')->name('recommended-tutors');
 
-// private policy
-Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
+// policy
+Route::group([
+    'prefix' => 'policy'
+], function() {
+    Route::get('/private-policy', 'GeneralController@showPrivatePolicy')->name('private-policy.show');
+    Route::get('/cancellation-policy', 'GeneralController@showCancellationPolicy')->name('cancellation-policy.show');
+    Route::get('/tgp-policy', 'GeneralController@showTGPPolicy')->name('tgp-policy.show');
+    Route::get('/tutor-verification-policy', 'GeneralController@showTutorVerificationPolicy')->name('tutor-verification-policy.show');
+    Route::get('/refund-policy', 'GeneralController@showRefundPolicy')->name('refund-policy.show');
+    Route::get('/referral-policy', 'GeneralController@showReferralPolicy')->name('referral-policy.show');
+    Route::get('/usc-integrity-policy', 'GeneralController@showUSCIntegrityPolicy')->name('usc-integrity-policy.show');
+});
 
 // ============================  auth  ========================
 Route::group([
