@@ -70,8 +70,13 @@
                         <h6 class="color-primary">Teaching can be rewarding!</h6>
                         {{-- todo: add link here --}}
                         <p class="display-card__content">
-                            At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in Tutor Growth Plan and Tutor Verification programs. An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
+                            At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in
+                            <a href="{{route('tgp-policy.show')}}" class="color-primary" target="_blank">Tutor Growth Plan</a>
+                            and
+                            <a href="{{route('tutor-verification-policy.show')}}" class="color-primary" target="_blank">Tutor Verification programs</a>.
+                            An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
                         </p>
+
                         <a class="btn btn-primary" href="{{ route('home') }}" target="_blank">Set Up Available Time</a>
                     </div>
                 </div>

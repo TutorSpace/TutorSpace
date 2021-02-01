@@ -111,7 +111,7 @@ $(".help-center__card").click(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/help-center/index.js */"./resources/js/help-center/index.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/help-center/index.js */"./resources/js/help-center/index.js");
 
 
 /***/ })

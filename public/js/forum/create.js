@@ -5471,7 +5471,7 @@ tippy.setDefaultProps({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tippy_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tippy.js */ "./node_modules/tippy.js/dist/tippy.esm.js");
+/* harmony import */ var tippy_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tippy.js */ "./node_modules/tippy.js/dist/tippy.esm.js");
 
 $('.btn-post-type').click(function () {
   $('.btn-selected').removeClass('btn-selected');
@@ -5490,9 +5490,9 @@ $('#create-tags').select2({
     }
   }
 });
-Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-question')[0], {
+Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#btn-question')[0], {
   animateFill: false,
-  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
+  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
   content: 'Any questions you have regarding course content and professors, school majors, puzzles in your homework, and anything else you find confusing in your school life.',
   interactive: true,
   placement: 'top',
@@ -5500,9 +5500,9 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-question')[0], 
   allowHTML: true,
   theme: 'help-content'
 });
-Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-note')[0], {
+Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#btn-class-note')[0], {
   animateFill: false,
-  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
+  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
   content: 'Share your class notes that you think will help other students taking the same courses. Note that any sharing should comply with the USC Integrity Policy.',
   interactive: true,
   placement: 'top',
@@ -5510,9 +5510,9 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-note')[0]
   allowHTML: true,
   theme: 'help-content'
 });
-Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-review')[0], {
+Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#btn-class-review')[0], {
   animateFill: false,
-  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
+  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
   content: 'Share what the primary content of the course is, how you like the professor, how you think this course contributes to your career aspiration, what kind of students you think should take it, any tips for students to ace this course, etc.',
   interactive: true,
   placement: 'top',
@@ -5530,7 +5530,7 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#btn-class-review')[
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/forum/create.js */"./resources/js/forum/create.js");
+module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/forum/create.js */"./resources/js/forum/create.js");
 
 
 /***/ })

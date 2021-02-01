@@ -46,6 +46,12 @@ class GeneralController extends Controller
         return view('policy.private-policy');
     }
 
+    // TODO: change content
+    // service agreement
+    public function showServiceAgreement() {
+        return view('policy.private-policy');
+    }
+
     public function showCancellationPolicy() {
         return view('policy.private-policy');
     }

@@ -84,7 +84,7 @@ bg-grey-light body-signup select2-bg-tutor
                 <input type="checkbox" id="register-agreement" name="agreement">
                 {{-- todo: add link here --}}
                 <label for="register-agreement" class="mt-3 ml-3 fs-1-6 font-italic fw-500 fc-black-2">
-                    By checking this box, I agree to TutorSpace's <a href="#" class="fc-purple-primary" target="_blank">Cancellation Policy</a>, <a href="#" class="fc-purple-primary" target="_blank">Refund Policy</a>, and <a href="#" class="fc-purple-primary" target="_blank">USC Integrity Policy</a>.
+                    By checking this box, I agree to TutorSpace's <a href="{{route('cancellation-policy.show')}}" class="fc-purple-primary" target="_blank">Cancellation Policy</a>, <a href="{{route('refund-policy.show')}}" class="fc-purple-primary" target="_blank">Refund Policy</a>, and <a href="{{route('usc-integrity-policy.show')}}" class="fc-purple-primary" target="_blank">USC Integrity Policy</a>.
                 </label>
             </p>
 

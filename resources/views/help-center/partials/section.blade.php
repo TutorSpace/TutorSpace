@@ -32,8 +32,10 @@
             </p>
             {{-- todo: add link here --}}
             <p class="fc-black-2">
-                Note: There will be a penalty charge of $5 if you cancel the session within 24 hours (for students) or 12 hours (for tutors) before session start time. Our [cancellation policy]
+                Note: There will be a penalty charge of $5 if you cancel the session within 24 hours (for students) or 12 hours (for tutors) before session start time. <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">[Cancellation Policy]</a>
             </p>
+
+
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
             </p>
@@ -42,7 +44,7 @@
             <summary>I have an emergency and cannot attend the tutoring session. Can I ask for a refund?</summary>
             {{-- todo: add link --}}
             <p class="fc-black-2">
-                According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. Tutoring session fee will not be charged if a session is canceled. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
+                According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. Tutoring session fee will not be charged if a session is canceled.  <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">[Cancellation Policy]</a>
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -206,7 +208,7 @@
             </summary>
             {{-- todo: add link --}}
             <p class="fc-black-2">
-                Tutor Growth Plan is a motivation program designed for our tutors. Users can raise their tutor levels by earning experience points on the platform. Tutors with a higher tutor level usually indicate that they are  more experienced, knowledgeable, and trustworthy. Users can earn experience points in many ways, such as holding tutoring sessions, getting likes from their posts, and replying to other posts. Our [Tutor Growth Plan]
+                Tutor Growth Plan is a motivation program designed for our tutors. Users can raise their tutor levels by earning experience points on the platform. Tutors with a higher tutor level usually indicate that they are more experienced, knowledgeable, and trustworthy. Users can earn experience points in many ways, such as holding tutoring sessions, getting likes from their posts, and replying to other posts. <a href="{{route('tgp-policy.show')}}" class="color-primary" target="_blank">[Tutor Growth Plan]</a>
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -237,7 +239,7 @@
             </summary>
             {{-- todo: add link --}}
             <p class="fc-black-2">
-                TutorSpace will give extra cash bonuses to only verified tutors. If you have any question on what a verified tutor is and how to become a verified tutor, please see our Tutor Verification Policy.
+                TutorSpace will give extra cash bonuses to only verified tutors. If you have any question on what a verified tutor is and how to become a verified tutor, please see our <a href="{{route('tutor-verification-policy.show')}}" class="color-primary" target="_blank">Tutor Verification Policy</a>.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -296,7 +298,7 @@
                 What is a Class Note post?
             </summary>
             <p class="fc-black-2">
-                If you believe your class notes will help students who are currently taking or are going to take a particular course in the future, then you are welcomed to share them and let more people benefit. However, please note that any sharing should comply with the USC Integrity Policy.
+                If you believe your class notes will help students who are currently taking or are going to take a particular course in the future, then you are welcomed to share them and let more people benefit. However, please note that any sharing should comply with the <a href="{{route('usc-integrity-policy.show')}}" class="color-primary" target="_blank">USC Integrity Policy</a>.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
