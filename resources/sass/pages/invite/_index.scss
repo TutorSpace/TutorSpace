@@ -12,7 +12,7 @@
     }
 
     .invite-content {
-        padding-top: 22rem;
+        padding-top: 23vh;
         display: flex;
         color: $color-white;
         padding-left: 12vw;
@@ -20,7 +20,7 @@
         .content-container {
             max-width: 50vw;
             margin-right: 5rem;
-            margin-top: -4rem;
+            margin-top: 2rem;
 
             @include respond(md) {
                 max-width: calc(100vw - 12vw - 30px);
@@ -71,7 +71,7 @@
         }
 
         .svg-container {
-            transform: translateY(-10rem);
+            transform: translateY(-4rem);
 
             @include respond(md) {
                 display: none;

@@ -23690,7 +23690,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .invite .invite-content {
-  padding-top: 22rem;
+  padding-top: 23vh;
   display: flex;
   color: #FFFFFF;
   padding-left: 12vw;
@@ -23699,7 +23699,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .invite .invite-content .content-container {
   max-width: 50vw;
   margin-right: 5rem;
-  margin-top: -4rem;
+  margin-top: 2rem;
 }
 
 @media only screen and (max-width: 61.99em) {
@@ -23755,7 +23755,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .invite .invite-content .svg-container {
-  transform: translateY(-10rem);
+  transform: translateY(-4rem);
 }
 
 @media only screen and (max-width: 61.99em) {
