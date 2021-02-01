@@ -41,7 +41,8 @@
         <details class="my-4">
             <summary>I have an emergency and cannot attend the tutoring session. Can I ask for a refund?</summary>
             {{-- todo: add link --}}
-            <p class="fc-black-2">According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
+            <p class="fc-black-2">
+                According to our Cancellation Policy, users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty charge. Tutoring session fee will not be charged if a session is canceled. For more information, please reach out to tutorspacehelp@gmail.com for assistance.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -50,7 +51,7 @@
         <details class="my-4">
             <summary>My tutor/student didn't show up for the session.</summary>
             <p class="fc-black-2">
-                TutorSpace takes the attendance of our registered tutors very seriously. If your tutor is late for more than 15 minutes, you can request a full refund. Please go directly to the Help Center at the top bar and click on the “Report” section button. Please type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. Our customer service representative will contact you within 24 hours.
+                TutorSpace takes the attendance of our registered tutors very seriously. If your tutor is late for more than 15 minutes, you can request a full refund. Please go directly to the Tutoring Sessions in the left menu and click on the “Report” section button. Please type in all the necessary information to help us know thoroughly about your situation and then click on the submit button. Our customer service representative will contact you within 24 hours.
             </p>
             <p class="fc-black-2">
                 Note: You may still be auto-charged for the session, but we will arrange a full refund for you after we have a full understanding of your situation.
@@ -62,7 +63,8 @@
         <details class="my-4">
             <summary>My tutor/student showed up late.
             </summary>
-            <p class="fc-black-2">If your tutor is late for no more than 15 minutes. Try to negotiate with your tutor first to see if he/she can make up the missing time after the original session. If the tutor cannot or refuses to make up the time, it is your right to comment and give negative ratings to him/her.
+            <p class="fc-black-2">
+                If your tutor is late for no more than 15 minutes, try to negotiate with your tutor first to see if he/she can make up the missing time after the original session. If the tutor cannot or refuses to make up the time, please reach out to tutorspacehelp@gmail.com for assistance.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -183,7 +185,8 @@
         <details class="my-4">
             <summary>How do I receive my tutoring session fee?
             </summary>
-            <p class="fc-black-2">The initial step is to set up your Stripe account in profile settings. After each of your sessions ends and we receive the student’s payment, the tutoring session fee will appear in your Stripe account balance (click “View your Stripe account” in profile settings). Any tutoring session fee will be transferred to your bank account one week after the session ends.
+            <p class="fc-black-2">
+                The initial step is to set up your Stripe account in profile settings. After each of your sessions ends and we receive the student’s payment, the commission fee will appear in your Stripe account balance (click “View your Stripe account” in profile settings). Any commission fee will be transferred to your bank account within one week after the session ends.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -202,7 +205,8 @@
             <summary>What is Tutor Growth Plan?
             </summary>
             {{-- todo: add link --}}
-            <p class="fc-black-2">Tutor Growth Plan is a motivational program designed for our tutors. Users can raise their tutor levels by earning experience points on the platform. Tutors with a higher tutor level indicate that they are more likely to be experienced, more knowledgeable, and more trustworthy. Users can earn experience points in many ways, such as holding tutoring sessions, getting likes from their posts, and replying to other posts. Our [Tutor Growth Plan]
+            <p class="fc-black-2">
+                Tutor Growth Plan is a motivation program designed for our tutors. Users can raise their tutor levels by earning experience points on the platform. Tutors with a higher tutor level usually indicate that they are  more experienced, knowledgeable, and trustworthy. Users can earn experience points in many ways, such as holding tutoring sessions, getting likes from their posts, and replying to other posts. Our [Tutor Growth Plan]
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
@@ -390,10 +394,22 @@
             <summary>How to report a tutoring session?
             </summary>
             <p class="fc-black-2">
-                Please go directly to the Help Center at the top bar and click on the “Report” section button. Type in all the necessary information to help us know thoroughly about your situation and TutorSpace’s staff will contact you within 24 hours.
+                Please send us an email about your session details and our customer service representative will contact you through email.
             </p>
             <p class="fc-black-2">
-                Note: Completing the report process does not mean you will be refunded, but we will arrange a full refund for you after we have a full understanding of your situation.
+                Note: Reporting a tutoring session does not mean the session fee will be refunded.
+            </p>
+            <p class="fc-theme-color">
+                <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
+            </p>
+        </details>
+
+        <details class="my-4">
+            <summary>
+                How to report a post/reply in the Forum?
+            </summary>
+            <p class="fc-black-2">
+                You can find a "Report" button right near the post/reply.
             </p>
             <p class="fc-theme-color">
                 <a href="mailto:tutorspacehelp@gmail.com">Still having trouble? Send us an email!</a>
