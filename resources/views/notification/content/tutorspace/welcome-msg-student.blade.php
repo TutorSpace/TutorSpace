@@ -11,9 +11,7 @@
                 Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
             </h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Thank you for signing up for this student account. Please feel free to browse all the featured content you like in the forum and find someone to help you with your courseworks. If you have any questions while using this platform, please contact us immediately. TutorSpace is a student-run startup at its very early stage, so your feedback is extremely important to us. We want to know what we are getting right and what we can improve.
             </p>
 
             <div class="display-cards">
@@ -62,7 +60,7 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Study can be easy!</h6>
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            TutorSpace provides course-based tutoring services by connecting students with peer tutors who have already taken the course before. With 10,000 + courses stored in our database, you can find a perfect tutor for GEs, major courses, or even electives, and <strong>ZERO</strong> service fee will be charged!
                         </p>
                         <a class="btn btn-primary" href="{{ route('home.profile') }}" target="_blank">Complete Your Profile</a>
                     </div>
@@ -128,14 +126,13 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Connections can be opportunities!</h6>
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            TutorSpace allows users to establish connections with peers by sharing their knowledge and past class experiences in the forum. We use tags to categorize all the forum information, such as course names, subjects, etc., making it super easy for users to find useful content when they need it. Remember to add some tags to the forum setting in your profile page so that TutorSpace can recommend the particular content you are interested in.
                         </p>
                         <a class="btn btn-primary" href="{{ route('posts.index') }}" target="_blank">Explore Forum</a>
                     </div>
                 </div>
             </div>
 
-            <p class="fs-1-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus debitis id perferendis, dolorem corporis maiores amet fugiat sapiente nesciunt quisquam architecto. Voluptatibus unde veniam, esse temporibus ipsam ratione? Quas, at!</p>
         </div>
     </div>
 </div>

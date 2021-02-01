@@ -11,9 +11,7 @@
                 Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
             </h6>
             <p class="fs-1-6 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Thank you for signing up for this tutor account. You are now capable of scheduling your available time so that students can easily request a tutoring session, and you are also welcomed to share your knowledge or answer others' questions on the forum. If you have any questions while using this platform, please contact us immediately. TutorSpace is a student-run startup at its very early stage, so your feedback is extremely important to us. We want to know what we are getting right and what we can improve.
             </p>
 
             <div class="display-cards">
@@ -70,10 +68,11 @@
                     </svg>
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Teaching can be rewarding!</h6>
+                        {{-- todo: add link here --}}
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in Tutor Growth Plan and Tutor Verification programs. An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
                         </p>
-                        <a class="btn btn-primary" href="{{ route('home.profile') }}" target="_blank">Complete Your Profile</a>
+                        <a class="btn btn-primary" href="{{ route('home.index') }}" target="_blank">Set Up Available Time</a>
                     </div>
                 </div>
 
