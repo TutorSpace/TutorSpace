@@ -60,7 +60,7 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Study can be easy!</h6>
                         <p class="display-card__content">
-                            TutorSpace provides course-based tutoring services by connecting students with peer tutors who have already taken the course before. With 10,000 + courses stored in our database, you can find a perfect tutor for GEs, major courses, or even electives, and <strong>ZERO</strong> service fee will be charged!
+                            TutorSpace provides course-based tutoring services by connecting students with peer tutors who have already taken the course before. With 10,000 + courses stored in our database, you can find a perfect tutor for GEs, major courses, or even electives, and <strong class="text-success">ZERO</strong> service fee will be charged!
                         </p>
                         <a class="btn btn-primary" href="{{ route('home.profile') }}" target="_blank">Complete Your Profile</a>
                     </div>

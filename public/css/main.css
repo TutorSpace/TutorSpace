@@ -23498,16 +23498,18 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   background-color: #ffffff;
   padding: 3rem 3rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   border-radius: 1rem;
 }
 
 .notification__content .notification__content__info .content .display-cards .display-card svg {
-  width: 35rem;
+  width: 30%;
 }
 
 .notification__content .notification__content__info .content .display-cards .display-card__content-container {
   margin-left: 5rem;
+  width: calc(70% - 5rem);
 }
 
 .notification__content .notification__content__info .content .display-cards .display-card__content-container .display-card__content {

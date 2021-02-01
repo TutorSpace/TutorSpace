@@ -130,15 +130,17 @@
                         background-color: #ffffff;
                         padding: 3rem 3rem;
                         display: flex;
+                        flex-wrap: wrap;
                         align-items: center;
                         border-radius: 1rem;
 
                         svg {
-                            width: 35rem;
+                            width: 30%;
                         }
 
                         &__content-container {
                             margin-left: 5rem;
+                            width: calc(70% - 5rem);
 
                             .display-card__content {
                                 font-size: 1.6rem;

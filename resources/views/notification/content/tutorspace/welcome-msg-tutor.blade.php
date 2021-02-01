@@ -72,7 +72,7 @@
                         <p class="display-card__content">
                             At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in Tutor Growth Plan and Tutor Verification programs. An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
                         </p>
-                        <a class="btn btn-primary" href="{{ route('home.index') }}" target="_blank">Set Up Available Time</a>
+                        <a class="btn btn-primary" href="{{ route('home') }}" target="_blank">Set Up Available Time</a>
                     </div>
                 </div>
 
@@ -136,7 +136,7 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Connections can be opportunities!</h6>
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            TutorSpace allows users to establish connections with peers by sharing their knowledge and past class experiences in the forum. We use tags to categorize all the forum information, such as course names, subjects, etc., making it super easy for users to find useful content when they need it. Remember to add some tags to the forum setting in your profile page so that TutorSpace can recommend the particular content you are interested in.
                         </p>
                         <a class="btn btn-primary" href="{{ route('posts.index') }}" target="_blank">Explore Forum</a>
                     </div>
