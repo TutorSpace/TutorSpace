@@ -70,6 +70,10 @@ class GeneralController extends Controller
         return view('policy.private-policy');
     }
 
+    public function showTermsOfUsePolicy() {
+        return view('policy.private-policy');
+    }
+
     // report forum
     public function storeReport(Request $request) {
         $request->validate([
