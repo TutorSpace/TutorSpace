@@ -30,9 +30,9 @@ index
 
 <main role="main" id="main">
     <section class="index__story container">
-        <h3 class="index__story__heading text-center">Our Story</h3>
+        <h3 class="index__story__heading text-center">Our Mission</h3>
         <p class="index__story__content">
-            TutorSpace was founded in May 2020, a historic period that is hard and challenging for humanity. When physical classrooms are shut down, when students got distracted due to poor internet connection, and when everybody locked themselves inside their homes, we realized people in college were losing opportunities to interact with the outside both personally and academically. That, therefore, let our group come up with the idea to create an interactive platform allowing students to share their stories, class experiences, puzzles met in homework and communicate those with their peers, just like what we had been doing before the pandemic. To push this platform further into a more practical standpoint, our group also built an online tutor matching service into this website to provide outside-classroom assistance for students. In the end, we particularly want to thank all individuals and student organizations for their help along the way in the past eight months.
+            TutorSpace is a multifunctional online platform allowing students to share class experiences from their perspectives and providing tutor matching services categorized by courses. We are committed to letting every student have a more effortless study experience. To prepare all kinds of information and resources that students need, TutorSpace builds an innovative one-of-a-kind forum filled with featured content. Also, to foster college students' deeper connection with each other, we encourage students to share their knowledge through a well-designed peer-to-peer tutor matching functionality.
         </p>
     </section>
 
@@ -40,7 +40,7 @@ index
         <div class="index__mission-container">
             <h3 class="index__mission__heading text-center">Our Mission</h3>
             <p class="index__mission__content">
-                TutorSpace is a multifunctional online platform allowing students to share class experiences from their perspectives and providing tutor matching services categorized by courses. We are committed to letting every student have a more effortless study experience. To prepare all kinds of information and resources that students need, TutorSpace builds an innovative one-of-a-kind forum filled with featured content. Also, to foster college students' deeper connection with each other, we encourage students to share their knowledge through a well-designed peer-to-peer tutor matching functionality.
+                TutorSpace was founded in May 2020, a historic period that is hard and challenging for humanity. When physical classrooms are shut down, when students got distracted due to poor internet connection, and when everybody locked themselves inside their homes, we realized people in college were losing opportunities to interact with the outside both personally and academically. That, therefore, let our group come up with the idea to create an interactive platform allowing students to share their stories, class experiences, puzzles met in homework and communicate those with their peers, just like what we had been doing before the pandemic. To push this platform further into a more practical standpoint, our group also built an online tutor matching service into this website to provide outside-classroom assistance for students. In the end, we particularly want to thank all individuals and student organizations for their help along the way in the past eight months.
             </p>
         </div>
     </section>
