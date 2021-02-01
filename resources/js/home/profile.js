@@ -274,6 +274,19 @@ if(isTutor) {
         offset: [5, 15],
         triggerTarget: $('#help-user-info-trigger')[0],
     });
+
+    tippy($('#help-tutor-verification')[0], {
+        animateFill: false,
+        plugins: [animateFill],
+        content: 'Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course.',
+        interactive: true,
+        placement: 'right-start',
+        // interactiveDebounce: 75,
+        allowHTML: true,
+        theme: 'help-content',
+        // offset: [5, 15],
+        triggerTarget: $('#help-tutor-verification-trigger')[0],
+    });
 } else {
     tippy($('#help-user-info')[0], {
         animateFill: false,

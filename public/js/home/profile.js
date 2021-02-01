@@ -5767,6 +5767,18 @@ if (isTutor) {
     offset: [5, 15],
     triggerTarget: $('#help-user-info-trigger')[0]
   });
+  Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-tutor-verification')[0], {
+    animateFill: false,
+    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
+    content: 'Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course.',
+    interactive: true,
+    placement: 'right-start',
+    // interactiveDebounce: 75,
+    allowHTML: true,
+    theme: 'help-content',
+    // offset: [5, 15],
+    triggerTarget: $('#help-tutor-verification-trigger')[0]
+  });
 } else {
   Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
     animateFill: false,
