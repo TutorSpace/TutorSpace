@@ -142,8 +142,6 @@
                     </div>
                 </div>
             </div>
-
-            <p class="fs-1-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus debitis id perferendis, dolorem corporis maiores amet fugiat sapiente nesciunt quisquam architecto. Voluptatibus unde veniam, esse temporibus ipsam ratione? Quas, at!</p>
         </div>
     </div>
 </div>

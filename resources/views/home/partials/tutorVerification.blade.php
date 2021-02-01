@@ -20,7 +20,7 @@
 
     <p class="text-dark">
         {{-- todo: add link here --}}
-        Note: Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course. [Tutor Verification Policy]
+        Note: Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course. <a href="#" class="color-primary">[Tutor Verification Policy]</a>
     </p>
 
     <span class="text-dark">
