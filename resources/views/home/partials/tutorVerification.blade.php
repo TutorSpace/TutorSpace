@@ -8,7 +8,7 @@
 
     <h5 class="w-100 mt-4">Submit Your Verification Request</h5>
 
-    <div class="my-3">
+    <div class="my-4">
         <div class="d-flex flex-column justify-content-center align-items-center position-relative fc-grey fs-2-4 text-center" id="upload-file">
             <p id="upload-caption">Upload File</p>
             <div class="mt-3 btn btn-primary text-center" id="upload-file-button">
@@ -17,6 +17,11 @@
             </div>
         </div>
     </div>
+
+    <p class="text-dark">
+        {{-- todo: add link here --}}
+        Note: Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course. [Tutor Verification Policy]
+    </p>
 
     <span class="text-dark">
         Questions? Email us at <a class="text-dark" href="mailto:tutorspacehelp@gmail.com">tutorspacehelp@gmail.com</a>
