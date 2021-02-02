@@ -61,7 +61,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        dd(\Facades\App\Post::getYouMayHelpWith());
+        \Facades\App\Post::getYouMayHelpWith();
     }
 
     public function test(Request $request) {
