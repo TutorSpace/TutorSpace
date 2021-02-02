@@ -33,6 +33,30 @@
 
 
 
+    function cancelSession(sessionId, cancelReasonId){
+        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+        $.ajax({
+            type: 'POST',
+            url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
+            data: {
+                cancelReasonId: cancelReasonId
+            },
+            success: function success(data) {
+                var successMsg = data.successMsg;
+                toastr.success(successMsg);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000);
+            },
+            error: function error(error) {
+                toastr.error("Something went wrong when canceling the session. Please contact tutorspacehelp@gmail.com for more details.");
+            },
+            complete: () => {
+                JsLoadingOverlay.hide();
+            }
+        });
+    }
+
     $('.btn-cancel-session').on('click',function() {
         let sessionId = $(this).closest('.info-card').attr('data-session-id') ? $(this).closest('.info-card').attr('data-session-id') : $(this).closest('.info-box').attr('data-session-id');
         let name = $(this).closest('.info-card').find('.user-name').html();
@@ -47,19 +71,33 @@
                     className: 'btn btn-primary px-4 fs-1-8',
                     callback: function(e) {
                         let cancelReasonId = $($('#cancel-reason option:selected')).val();
-                        JsLoadingOverlay.show(jsLoadingOverlayOptions);
+                        // check if there's a penalty
                         $.ajax({
                             type: 'POST',
-                            url: "{{ URL::to('/') }}" + `/session/cancel/${sessionId}`,
-                            data: {
-                                cancelReasonId: cancelReasonId
-                            },
+                            url: "{{ URL::to('/') }}" + `/session/cancel/checkShouldPenalize/${sessionId}`,
                             success: function success(data) {
-                                var successMsg = data.successMsg;
-                                toastr.success(successMsg);
-                                setTimeout(function() {
-                                    window.location.reload();
-                                }, 1000);
+                                var hasPenalty = data.hasPenalty;
+                                // has penalty
+                                if (hasPenalty === 'true'){
+                                    // confirm popup
+                                    bootbox.dialog({
+                                        message: `@include('session.session-cancel-confirm')`,
+                                        size: 'large',
+                                        centerVertical: true,
+                                        buttons: {
+                                            Cancel: {
+                                                label: 'Confirm',
+                                                className: 'btn btn-primary px-4 fs-1-8',
+                                                callback: function(e) {
+                                                    cancelSession(sessionId, cancelReasonId);
+                                                }
+                                            },
+                                        }
+                                    });
+                                // no penalty
+                                }else{
+                                    cancelSession(sessionId, cancelReasonId);
+                                }
                             },
                             error: function error(error) {
                                 toastr.error("Something went wrong when canceling the session. Please contact tutorspacehelp@gmail.com for more details.");

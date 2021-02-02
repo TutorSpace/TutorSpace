@@ -94,6 +94,25 @@ class Session extends Model
         return $sessionFee;
     }
 
+    // return boolean:
+    public function hasCancelSessionPenalty($isTutor){
+        // tutor
+        if($isTutor) {
+            // penalty: less than 24 hours
+            if (Carbon::now()->addHours(24) > $this->session_time_start){
+                return true;
+            }
+        }
+        // student
+        else{
+            // penalty: less than 12 hours
+            if (Carbon::now()->addHours(12) >$this->session_time_start){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     // // todo: should not bother user too often
     // public static function requestReviewForTutor() {
