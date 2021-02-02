@@ -239,7 +239,7 @@ class Post extends Model
         }
     }
 
-    private function queryYouMayHelpWith() {
+    public function queryYouMayHelpWith() {
         return Post::withCount([
                     'replies',
                     'usersUpvoted'
