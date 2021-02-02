@@ -11,7 +11,6 @@ toastr.options.preventDuplicates = true;
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
 window.moment = require('moment-timezone');
-// window.moment.tz.setDefault("UTC");
 
 window.Pikaday = require('pikaday');
 require('timepicker');

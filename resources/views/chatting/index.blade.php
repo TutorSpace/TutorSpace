@@ -92,7 +92,7 @@ bg-student
         channel.bind('NewMessage', function(data) {
             let {from, to, message, created_at, chatroomView, imgUrl, imgPlaceholder} = data;
 
-            created_at = moment().format('YYYY-MM-DD H:mm:ss');
+            created_at = moment().format('YYYY-MM-DD HH:mm:ss');
 
             let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
@@ -168,7 +168,7 @@ bg-student
                         console.log(err);
                     }
                 });
-                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:ss'));
+                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD HH:mm:ss'));
                 scrollToBottom();
                 $('#msg-to-send').val('');
             }
