@@ -44,6 +44,9 @@ bg-student
                     Post a Class Review on a course you took at USC on TutorSpace Forum (no fewer than 80 words)
                 </p>
             </div>
+            <p class="fs-1-6 mt-1">
+                Note: For more details, please visit our <a href="{{ route('referral-policy.show') }}" class="fc-white" target="_blank">Referral Policy</a>.
+            </p>
             <form id="invite-form" class="input-container" method="POST" action="{{ route('invite-to-be-tutor--email') }}">
                 @csrf
                 <input type="email" placeholder="Add your friend's email" name="email" required>
