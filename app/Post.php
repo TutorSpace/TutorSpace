@@ -223,7 +223,10 @@ class Post extends Model
                     ->get();
 
         echo "posts";
-        dd($this->queryYouMayHelpWith());
+        dd($this->queryYouMayHelpWith()->join('tags', 'tags.id', '=', 'post_tag.tag_id')->whereIn('tags.id', $interestedTagIDs)
+        ->where('posts.user_id', '!=', $user->id)
+        ->groupBy(['posts.id'])
+        ->take(15)->get());
 
         if($posts->count() < 5) {
             $posts = $posts->merge(
