@@ -31,7 +31,7 @@ class AutoCompleteController extends Controller
     }
 
     public function getSchoolYears(Request $request) {
-        return response()->json(SchoolYear::select('id', 'school_year AS text')->where('school_year', 'like', "%{$request->input('q')}%")->get());
+        return response()->json(SchoolYear::select('id', 'school_year AS text')->where('school_year', 'like', "%{$request->input('q')}%")->orderBy('id')->get());
     }
 
     public function getCourses(Request $request) {
