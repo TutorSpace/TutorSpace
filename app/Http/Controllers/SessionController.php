@@ -154,6 +154,8 @@ class SessionController extends Controller
 
         // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
+        // duration cannot be greater than 8 hours
+        $validEndTime = Carbon::parse($request->input('startTime'))->addHours(8);
 
         $validator = Validator::make($request->all(), [
             'tutorId' => [
@@ -171,6 +173,7 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after:startTime',
+                'before_or_equal:'. $validEndTime,
             ],
             'course' => [
                 'required',
@@ -181,7 +184,8 @@ class SessionController extends Controller
                 'in:in-person,online'
             ],
         ],[
-            'startTime.after_or_equal' => "Tutoring session must be scheduled 2 hours ahead of start time."
+            'startTime.after_or_equal' => "Tutoring session must be scheduled 2 hours ahead of start time.",
+            'endTime.before_or_equal' => "Tutoring session duration cannot be greater than 8 hours."
         ]);
 
         // return validation error messages
