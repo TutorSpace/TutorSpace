@@ -23526,8 +23526,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   font-size: 1.6rem;
 }
 
-.notification__content .notification__content__info .content .display-cards .display-card__content-container a,
-.notification__content .notification__content__info .content .display-cards .display-card__content-container button {
+.notification__content .notification__content__info .content .display-cards .display-card__content-container .btn {
   font-size: 1.4rem;
   padding: 0.6rem 2rem;
   border-radius: 1.5rem;
