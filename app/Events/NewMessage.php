@@ -22,6 +22,7 @@ class NewMessage implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+
     /**
      * Create a new event instance.
      *
@@ -56,19 +57,17 @@ class NewMessage implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
-        $tz = TimeFormatter::getTZ();
         $user = User::find($this->message->from);
         return [
             'from' => $this->message->from,
             'to' => $this->message->to,
-            // 'message' => $this->message->message,
-            'message' => $tz,
-            'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz))),
+            'message' => $this->message->message,
+            'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at)),
             'imgUrl' => Storage::url($user->profile_pic_url),
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
                 'user' => $user,
                 'message' => $this->message->message,
-                'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz)))
+                'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at))
             ])->render(),
             'imgPlaceholder' => strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]),
         ];

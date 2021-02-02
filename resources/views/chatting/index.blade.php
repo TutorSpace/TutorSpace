@@ -55,6 +55,7 @@ bg-student
 
 <script>
     let currentUserId = "{{ Auth::id() }}";
+
     var pusher = new Pusher('d8a4fc3115898457a40f', {
         cluster: 'us3',
         authEndpoint: '/broadcasting/auth',
@@ -90,12 +91,16 @@ bg-student
         var channel = pusher.subscribe(channelName);
         channel.bind('NewMessage', function(data) {
             let {from, to, message, created_at, chatroomView, imgUrl, imgPlaceholder} = data;
+
+            created_at = moment().format('YYYY-MM-DD HH:mm:ss');
+
             let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
 
             if(currentViewing) {
                 if(from == currentlyViewingId && to == currentUserId) {
+
                     appendOtherMessage(message, created_at, imgUrl, imgPlaceholder);
                     scrollToBottom();
                 } else if(from == currentUserId && to == currentlyViewingId) {
@@ -163,7 +168,7 @@ bg-student
                         console.log(err);
                     }
                 });
-                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD H:mm:ss'));
+                appendMyMessage($('#msg-to-send').val(), moment().format('YYYY-MM-DD HH:mm:ss'));
                 scrollToBottom();
                 $('#msg-to-send').val('');
             }

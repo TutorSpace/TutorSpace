@@ -43,8 +43,7 @@ class GeneralController extends Controller
 
     // private policy
     public function showPrivatePolicy() {
-        echo ('<h1>Private Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.private-policy');
     }
 
     // TODO: change content
