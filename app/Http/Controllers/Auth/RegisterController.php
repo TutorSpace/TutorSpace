@@ -57,7 +57,18 @@ class RegisterController extends Controller
 
     // first page of student register
     public function indexStudent1(Request $request) {
-        return view('auth.register_student_1');
+        // todo: change this to true when we allow students to register
+        $studentCanRegister = false;
+
+        if($studentCanRegister) {
+            return view('auth.register_student_1');
+        } else {
+            return redirect()->back()->with([
+                'errorMsg' => 'We are sorry that TutorSpace is only accepting tutor registrations for now. Please contact tutorspacehelp@gmail.com for more details.'
+            ]);
+        }
+
+
     }
 
     // first page of tutor register

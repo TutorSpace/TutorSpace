@@ -196,24 +196,28 @@
                 type: 'POST',
                 url: "{{ route('switch-account.register') }}",
                 success: (data) => {
-                    bootbox.dialog({
-                        message: data.successMsg,
-                        backdrop: true,
-                        centerVertical: true,
-                        buttons: {
-                            Decline: {
-                                label: "Cancel",
-                                className: 'btn btn-outline-primary mr-3 py-2 px-4',
-                            },
-                            Submit: {
-                                label: 'Switch Account Now',
-                                className: 'btn btn-primary py-2 px-4',
-                                callback: function(){
-                                    window.location.href = "{{ route('home') }}";
-                                }
-                            },
-                        }
-                    });
+                    if(data.errorMsg) {
+                        toastr.error(data.errorMsg);
+                    } else {
+                        bootbox.dialog({
+                            message: data.successMsg,
+                            backdrop: true,
+                            centerVertical: true,
+                            buttons: {
+                                Decline: {
+                                    label: "Cancel",
+                                    className: 'btn btn-outline-primary mr-3 py-2 px-4',
+                                },
+                                Submit: {
+                                    label: 'Switch Account Now',
+                                    className: 'btn btn-primary py-2 px-4',
+                                    callback: function(){
+                                        window.location.href = "{{ route('home') }}";
+                                    }
+                                },
+                            }
+                        });
+                    }
                 },
                 error: function(error) {
                     toastr.error('Something went wrong. Please try again.');

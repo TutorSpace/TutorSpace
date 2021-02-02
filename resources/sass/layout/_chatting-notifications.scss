@@ -204,13 +204,13 @@
 
                             &.placeholder-img {
                                 position: relative;
-                                background-color: $color-yellow-primary;
+                                background-color: $color-user-image-placeholder;
 
                                 span {
                                     @include absCenter;
                                     font-size: 1.4rem;
                                     font-weight: 500;
-                                    color: $color-white;
+                                    color: $color-user-image-placeholder-text;
                                     white-space: nowrap;
                                 }
                             }

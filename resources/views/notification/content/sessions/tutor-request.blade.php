@@ -67,10 +67,6 @@ $price = $tutorRequest->calculateSessionFee();
                 <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
             </p>
 
-            <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
-                <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
-            </p>
-
             <div class="button-container" data-tutor-request-id="{{ $tutorRequest->id }}">
                 @if ($tutorRequest->status == 'declined')
                 <button class="btn btn-outline-primary disabled">Declined</button>

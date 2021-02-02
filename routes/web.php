@@ -77,7 +77,6 @@ Route::group([
     Route::get('/refund-policy', 'GeneralController@showRefundPolicy')->name('refund-policy.show');
     Route::get('/referral-policy', 'GeneralController@showReferralPolicy')->name('referral-policy.show');
     Route::get('/usc-integrity-policy', 'GeneralController@showUSCIntegrityPolicy')->name('usc-integrity-policy.show');
-    Route::get('/terms-of-use-policy', 'GeneralController@showTermsOfUsePolicy')->name('terms-of-use.show');
     Route::get('/service-agreement', 'GeneralController@showServiceAgreement')->name('service-agreement.show');
 });
 

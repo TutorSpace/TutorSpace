@@ -38,7 +38,7 @@ index
 
     <section class="index__mission d-flex justify-content-end">
         <div class="index__mission-container">
-            <h3 class="index__mission__heading text-center">Our Mission</h3>
+            <h3 class="index__mission__heading text-center">Our Story</h3>
             <p class="index__mission__content">
                 TutorSpace was founded in May 2020, a period that is hard and challenging for humanity. When physical classrooms were closed, we realized college students were losing opportunities to interact with the outside both personally and academically. Therefore, our team came up with the idea to create an interactive platform for students to share their stories, class experiences, puzzles met in homework and initiate discussions with peers. To push this platform further into a more practical standpoint, we also built an online tutor matching service into this website to provide students with outside-classroom assistance.
             </p>
