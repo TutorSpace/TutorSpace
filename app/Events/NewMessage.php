@@ -22,14 +22,17 @@ class NewMessage implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $message;
+    public $tz;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Message $message)
+    public function __construct(Message $message, $tz)
     {
         $this->message = $message;
+        $this->tz = $tz;
     }
 
     /**
@@ -56,7 +59,7 @@ class NewMessage implements ShouldBroadcastNow
      */
     public function broadcastWith()
     {
-        $tz = TimeFormatter::getTZ();
+        $tz = $this->tz;
         $user = User::find($this->message->from);
         return [
             'from' => $this->message->from,

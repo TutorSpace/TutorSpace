@@ -55,6 +55,9 @@ bg-student
 
 <script>
     let currentUserId = "{{ Auth::id() }}";
+
+    $('#tz').val(moment.tz.guess());
+
     var pusher = new Pusher('d8a4fc3115898457a40f', {
         cluster: 'us3',
         authEndpoint: '/broadcasting/auth',

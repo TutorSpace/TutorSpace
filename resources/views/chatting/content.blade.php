@@ -39,5 +39,6 @@
         <input type="text" class="search-bar form-control form-control-lg" placeholder="Type here..." id="msg-to-send" name="msg-to-send">
         <input type="hidden" value="{{ $user->id }}" name="other-user-id">
         <button class="btn btn-lg btn-primary btn-send" type="submit">Send</button>
+        <input type="hidden" name="tz" value="" id="tz">
     </form>
 </div>
