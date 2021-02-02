@@ -262,6 +262,7 @@ Route::group([
     'middleware' => 'auth'
 ], function() {
     Route::post('/cancel/{session}', 'SessionController@cancelSession')->name('session.cancel');
+    Route::post('/cancel/checkShouldPenalize/{session}', 'SessionController@checkShouldPenalizeSessionCancel')->name('session.cancel.check-penalty');
     Route::post('/schedule', 'SessionController@scheduleSession')->name('session.create');
     Route::get('/view/{session}', 'SessionController@viewDetails')->name('session.view-details');
     Route::post('/review/{session}', 'SessionController@review')->name('session.review');

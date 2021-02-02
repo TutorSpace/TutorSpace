@@ -239,4 +239,20 @@ class SessionController extends Controller
             );
         }
     }
+
+    // check if cancel session has penalty
+    public function checkShouldPenalizeSessionCancel(Request $request, Session $session){
+        if ($session->hasCancelSessionPenalty(Auth::user()->is_tutor)){
+            return response()->json(
+                [
+                    'hasPenalty' => 'true',
+                ]
+                );
+        }
+        return response()->json(
+            [
+                'hasPenalty' => 'false',
+            ]
+        );
+    }
 }
