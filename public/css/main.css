@@ -19332,14 +19332,6 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.1);
 }
 
-.forum-heading-img--top {
-  background-image: url(/images/forum-heading-1.png?a3b605d3248a6fad757ff9bf544d3cb6);
-}
-
-.forum-heading-img--right {
-  background-image: url(/images/forum-heading-2.png?cc2e1e42636a0b7dc9eb362fa0e7ec5b);
-}
-
 .post__heading {
   font-size: 2.2rem;
 }
@@ -19430,6 +19422,22 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .post-detail .post__content img {
   border: unset !important;
+}
+
+.bg-student .forum-heading-img--top {
+  background-image: url(/images/forum-heading-1-student.png?9b69ab6fb58028d38de7c46980220ab6);
+}
+
+.bg-student .forum-heading-img--right {
+  background-image: url(/images/forum-heading-2-student.png?cc2e1e42636a0b7dc9eb362fa0e7ec5b);
+}
+
+.bg-tutor .forum-heading-img--top {
+  background-image: url(/images/forum-heading-1-tutor.png?c8f8f7adec2d624c673f1896db5123a9);
+}
+
+.bg-tutor .forum-heading-img--right {
+  background-image: url(/images/forum-heading-2-tutor.png?02dafd3f96487b25dab08b751ac4d592);
 }
 
 .chatting,
