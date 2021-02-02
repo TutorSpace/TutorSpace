@@ -400,7 +400,7 @@ class RegisterController extends Controller
                 'required',
                 'numeric',
                 'min:10',
-                'max:50'
+                'max:' . TutorLevel::where('tutor_level', 'Beginner')->first()->hourly_rate_upper_bound
             ],
             'courses' => [
                 'required',
