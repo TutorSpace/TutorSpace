@@ -63,11 +63,10 @@ $price = $tutorRequest->calculateSessionFee();
                 </div>
             </div>
 
-            {{-- todo: add link here --}}
             <p class="fc-black-2 fs-1-6"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details, check our
                 <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
             </p>
-            {{-- todo: add link here --}}
+
             <p class="fc-black-2 fs-1-6 mt-2"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
                 <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
             </p>

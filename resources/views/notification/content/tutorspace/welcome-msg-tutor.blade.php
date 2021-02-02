@@ -68,7 +68,7 @@
                     </svg>
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Teaching can be rewarding!</h6>
-                        {{-- todo: add link here --}}
+
                         <p class="display-card__content">
                             At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in
                             <a href="{{route('tgp-policy.show')}}" class="color-primary" target="_blank">Tutor Growth Plan</a>

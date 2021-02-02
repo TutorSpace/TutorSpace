@@ -41,7 +41,6 @@
                 Congratulations! You have gained enough experience points for moving up to the next tutor level. Thank you for keeping using TutorSpace and sharing your knowledge and experience with other users. We hope you have a great experience in the next phase of the journey.
             </p>
 
-            {{-- todo: add link here --}}
             <p class="fs-1-6">
                 According to the Tutor Growth Plan, if you are a verified tutor, your cash bonus rate will be raised by 15%, and you will also be allowed a higher hourly rate. For more details, please refer to the Tutor Growth Plan Policy. However, if you are not a verified tutor yet, we strongly recommend you to do so. To check out the benefits of becoming a verified tutor, please check our
                 <a href="{{route('tgp-policy.show')}}" class="color-primary" target="_blank">Tutor Growth Plan</a>.

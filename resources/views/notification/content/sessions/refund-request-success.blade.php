@@ -20,7 +20,6 @@ $price = $session->calculateSessionFee();
             <h6 class="color-primary">
                 Your refund request for Session [{{ Illuminate\Support\Str::substr($session->id, 8) }}] has been approved.
             </h6>
-            {{-- todo: add link here --}}
             <p class="fs-1-6 mt-2">
                 According to TutorSpace Refund Policy, we will offer you a full refund for the tutoring session. Please allow 5-7 days for the refund to arrive in your bank card. We sincerely apologize for the inconvenience.
                 <a href="{{route('refund-policy.show')}}" class="color-primary">[Refund Policy]</a>
