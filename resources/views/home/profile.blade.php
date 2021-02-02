@@ -296,7 +296,7 @@ bg-student
                         </button>
                         <div class="flex-100"></div>
                         <p class="fs-1-4 font-italic fw-500 mt-4 flex-100">
-                            Note: By registering your account, you agree to <a href="#" class="color-primary" target="_blank">TutorSpace Services Agreement</a> and the <a href="https://stripe.com/connect-account/legal" class="color-primary" target="_blank">Stripe Connected Account Agreement</a>.
+                            Note: By registering your account, you agree to <a href="{{route("service-agreement.show")}}" class="color-primary" target="_blank">TutorSpace Services Agreement</a> and the <a href="https://stripe.com/connect-account/legal" class="color-primary" target="_blank">Stripe Connected Account Agreement</a>.
                         </p>
                         @if (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
                         <p class="fs-1-4 font-italic fw-500 mt-1 flex-100">
