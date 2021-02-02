@@ -207,7 +207,7 @@ bg-student
     <section class="home__side-bar">
         <div class="home__board">
             @if (Auth::user()->is_tutor)
-            <h4>Want to earn bonus more quickly?</h4>
+            <h4>Want to earn extra cash?</h4>
             <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
             @else
             <h4>Want to become a tutor?</h4>
