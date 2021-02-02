@@ -164,7 +164,7 @@ bg-student
 
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">Data Visualization</h5>
+                <h5 class="mb-2 w-100">User Statistics</h5>
                 <div class="home__data-visualizations">
                     <div class="graph-1 graph-1{{Auth::user()->is_tutor == 1 ? "--tutor":""}}">
                         <div id="scatter-chart"></div>
@@ -207,7 +207,7 @@ bg-student
     <section class="home__side-bar">
         <div class="home__board">
             @if (Auth::user()->is_tutor)
-            <h4>Want to earn bonus more quickly?</h4>
+            <h4>Want to earn extra cash?</h4>
             <a class="btn" href="{{ route('home.profile') }}">Become a Verified Tutor</a>
             @else
             <h4>Want to become a tutor?</h4>

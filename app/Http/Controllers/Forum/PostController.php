@@ -154,6 +154,7 @@ class PostController extends Controller
             }
 
             $post->post_type()->associate(PostType::find($request->input('post-type')));
+
             $post->user()->associate(Auth::user());
 
             $post->save();
