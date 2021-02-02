@@ -51,6 +51,25 @@ class StripeApiController extends Controller
         }
     }
 
+    // get endpoint secrets
+    private static function getStripeAccountEndPointSecret(){
+        if (env('APP_ENV') == 'local'){
+            return env("STRIPE_TEST_ENDPOINT_SECRET_ACCOUNT");
+        }
+        else if (env('APP_ENV') == 'production'){
+            return env('STRIPE_LIVE_ENDPOINT_SECRET_ACCOUNT');
+        }
+    }
+
+    private static function getStripeConnectEndPointSecret(){
+        if (env('APP_ENV') == 'local'){
+            return env("STRIPE_TEST_ENDPOINT_SECRET_CONNECT");
+        }
+        else if (env('APP_ENV') == 'production'){
+            return env('STRIPE_LIVE_ENDPOINT_SECRET_CONNECT');
+        }
+    }
+
     public static function getStripeInstance(){
         if (env('APP_ENV') == 'local'){
             return new \Stripe\StripeClient(
@@ -116,6 +135,10 @@ class StripeApiController extends Controller
         return response()->json([
             'clientSecret' => $setup_intent->client_secret
         ]);
+    }
+
+    private static function cacheCustomerHasCards($cards){
+        Cache::put(self::getCustomerHasCardsCacheKey(), count($cards) >= 1);
     }
 
     // input: a stripe card
@@ -192,18 +215,6 @@ class StripeApiController extends Controller
         ]);
     }
 
-    private static function cacheCustomerHasCards($cards){
-        // forget keys
-        Cache::forget(self::getCustomerHasCardsCacheKey());
-        // cache value
-        Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () use($cards) {
-            if (count($cards) >= 1){
-                return true;
-            }else{
-                return false;
-            }
-        });
-    }
     // helper function to get all cards
     private static function retrieveAllCards(){
         $cards = \Stripe\PaymentMethod::all([
@@ -233,17 +244,15 @@ class StripeApiController extends Controller
         return self::CUSTOMER_HAS_CARDS_CACHE_KEY . "-" . Auth::user()->id;
     }
 
-    // todo: 优化代码
     public static function customerHasCards(){
-        $hasCard = Cache::get(self::getCustomerHasCardsCacheKey());
-        if ($hasCard){
-            return $hasCard;
-        }
-        $cards = self::retrieveAllCards();
-
-        self::cacheCustomerHasCards($cards);
-
-        return $hasCard;
+        return Cache::remember(self::getCustomerHasCardsCacheKey(), 3600, function () {
+            $cards = self::retrieveAllCards();
+            if (count($cards) >= 1){
+                return true;
+            }else{
+                return false;
+            }
+        });
     }
 
     private function getCustomerDefaultPaymentId(){
@@ -322,7 +331,7 @@ class StripeApiController extends Controller
 
         // Send email if extra bonus exists
         if ($transaction->extra_bonus_amount > 0) {
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new ExtraSessionBonus($transaction->session, $transaction->extra_bonus_amount));
         }
     }
@@ -430,7 +439,7 @@ class StripeApiController extends Controller
             $transaction->save();
 
             Auth::user()->notify(new UserRequestedRefundNotification(Auth::user(), $session, true));
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
             ->notify(new UserRequestedRefundNotification(Auth::user(), $session, false));
 
             $msg = "Successfully requested the refund. Please wait for several days for the request to be processed.";
@@ -439,11 +448,11 @@ class StripeApiController extends Controller
         } else if($transaction->refund_status == 'pending') {
             $msg = "You already made the request. Please wait it to be processed.";
         } else if($transaction->refund_status == 'canceled') {
-            $msg = "Your refund request is declined. Please contact tutorspaceusc@gmail.com for more details.";
+            $msg = "Your refund request is declined. Please contact tutorspacehelp@gmail.com for more details.";
         } else if($transaction->refund_status == 'succeeded') {
             $msg = "Your refund request is successful. You cannot make another refund request for the same session.";
         } else if($transaction->refund_status == 'failed') {
-            $msg = "Your refund request failed. Please contact tutorspaceusc@gmail.com for more details.";
+            $msg = "Your refund request failed. Please contact tutorspacehelp@gmail.com for more details.";
         }
 
         return response()->json([
@@ -500,7 +509,7 @@ class StripeApiController extends Controller
         $transaction->refund_status = 'canceled';
         $transaction->save();
 
-        $session->student->notify(new RefundDeclinedNotification($session));
+        $session->student->notify(new RefundDeclinedNotification($session, $request->input('refund-decline-reason')));
 
         return redirect()->route('payment.stripe.refund.index')->with(['successMsg' => 'Successfully declined the refund request.']);
     }
@@ -542,7 +551,7 @@ class StripeApiController extends Controller
         $payload = $request->getContent();  // Get raw content
 
         // Check signature
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_ACCOUNT');
+        $endpoint_secret = self::getStripeAccountEndPointSecret();
         $sig_header = $request->header('stripe-signature');
 
         try {
@@ -602,7 +611,7 @@ class StripeApiController extends Controller
         $payload = $request->getContent();  // Get raw content
 
         // Check signature
-        $endpoint_secret = env('STRIPE_ENDPOINT_SECRET_CONNECT');
+        $endpoint_secret = self::getStripeConnectEndPointSecret();
         $sig_header = $request->header('stripe-signature');
 
         try {
@@ -660,7 +669,6 @@ class StripeApiController extends Controller
         $transaction->invoice_status = $invoice->status;
         $transaction->save();
 
-        // TODO: send email to user
         $student = $transaction->session->student;
         $student->notify(new InvoicePaid($transaction->session));
     }
@@ -671,7 +679,7 @@ class StripeApiController extends Controller
         // Is a cancellation penalty
         if ($invoice->metadata->is_cancellation_penalty == 'true') {
             $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $invoice->id);
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $invoice->id));
             return;
         }
@@ -703,7 +711,7 @@ class StripeApiController extends Controller
         // Is a cancellation penalty
         if ($charge->metadata->is_cancellation_penalty == 'true') {
             $cancellation_penalty = CancellationPenalty::firstWhere('stripe_object_id', $charge->id);
-            Notification::route('mail', 'tutorspaceusc@gmail.com')
+            Notification::route('mail', 'tutorspacehelp@gmail.com')
                 ->notify(new CancellationPenaltyFailed($cancellation_penalty->user_id, $charge->id));
         }
     }
@@ -732,7 +740,7 @@ class StripeApiController extends Controller
         $student = $transaction->session->student;
         $student->notify(new ChargeRefundUpdated($transaction->session, true, $failure_reason));
 
-        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        Notification::route('mail', 'tutorspacehelp@gmail.com')
         ->notify(new ChargeRefundUpdated($transaction->session, false, $failure_reason));
     }
 
@@ -757,7 +765,7 @@ class StripeApiController extends Controller
         // send email to 'user' and us. Payout failed. They should update bank info
         $user->notify(new PayoutFailed(true, $payout->failure_code));
 
-        Notification::route('mail', 'tutorspaceusc@gmail.com')
+        Notification::route('mail', 'tutorspacehelp@gmail.com')
         ->notify(new PayoutFailed(false, $payout->failure_code, $stripe_account_id));
     }
 
@@ -770,7 +778,7 @@ class StripeApiController extends Controller
         $amount = $amount * 100;  // Convert to cent
         // Create Product and Price
         $product = \Stripe\Product::create([
-            'name' => 'Tutor Session',
+            'name' => 'Tutoring Session',
         ]);
         $price = \Stripe\Price::create([
             'product' => $product->id,
@@ -783,15 +791,21 @@ class StripeApiController extends Controller
 
         // Calculate application fee and session bonus
         $tutor = $session->tutor;
-        $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
-        $bonus_amount = round($amount * $bonus_rate);
         $original_application_fee_amount = round($amount * self::$APPLICATION_FEE_PERCENT);
-        if ($original_application_fee_amount >= $bonus_amount) {
-            $application_fee_amount = $original_application_fee_amount - $bonus_amount;
-            $extra_bonus_amount = 0;
+        if ($tutor->is_tutor_verified) {
+            $bonus_rate = $tutor->getUserBonusRate();  // TODO: check bonus rate before session ends
+            $bonus_amount = round($amount * $bonus_rate);
+            if ($original_application_fee_amount >= $bonus_amount) {
+                $application_fee_amount = $original_application_fee_amount - $bonus_amount;
+                $extra_bonus_amount = 0;
+            } else {
+                $application_fee_amount = 0;
+                $extra_bonus_amount = $bonus_amount - $original_application_fee_amount;
+            }
         } else {
-            $application_fee_amount = 0;
-            $extra_bonus_amount = $bonus_amount - $original_application_fee_amount;
+            $application_fee_amount = $original_application_fee_amount;
+            $bonus_amount = 0;
+            $extra_bonus_amount = 0;
         }
 
         // Create InvoiceItem and Invoice
@@ -845,7 +859,7 @@ class StripeApiController extends Controller
             $user = User::find($transaction->user_id);
 
             $user->notify(new UnpaidInvoiceReminder($transaction->session, true));
-            Notification::route('mail', "tutorspaceusc@gmail.com")
+            Notification::route('mail', "tutorspacehelp@gmail.com")
             ->notify(new UnpaidInvoiceReminder($transaction->session, false));
 
             echo "Succesfully send unpaid invoices to customer\n";

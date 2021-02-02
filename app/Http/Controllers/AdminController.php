@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Course;
 use App\Transaction;
+use App\ReferralClaimedUser;
 use Illuminate\Http\Request;
 use App\Notifications\TutorVerificationCompleted;
 
@@ -46,5 +47,17 @@ class AdminController extends Controller
         ]);
     }
 
+    public function referralBonusIndex(Request $request) {
+        return view('admin.referral-bonus');
+    }
+
+    public function referralBonusSent(Request $request, ReferralClaimedUser $referralClaimedUser) {
+        $referralClaimedUser->money_sent = true;
+        $referralClaimedUser->save();
+
+        return redirect()->back()->with([
+            'successMsg' => 'Successfully updated the status'
+        ]);
+    }
 
 }

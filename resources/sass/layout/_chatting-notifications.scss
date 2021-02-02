@@ -201,6 +201,19 @@
                                 width: 4rem;
                                 height: 4rem;
                             }
+
+                            &.placeholder-img {
+                                position: relative;
+                                background-color: $color-yellow-primary;
+
+                                span {
+                                    @include absCenter;
+                                    font-size: 1.4rem;
+                                    font-weight: 500;
+                                    color: $color-white;
+                                    white-space: nowrap;
+                                }
+                            }
                         }
                     }
 

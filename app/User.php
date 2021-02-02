@@ -4,27 +4,31 @@ namespace App;
 
 use DB;
 use App\Post;
-use App\Review;
 
+use App\Review;
 use App\Message;
 use App\Session;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\InviteUser;
 use App\TutorLevel;
 use Illuminate\Support\Str;
+use App\ReferralClaimedUser;
+use App\CustomClass\TimeFormatter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\TutorLevelUpNotification;
 use App\Notifications\CustomResetPasswordNotification;
 use Illuminate\Support\Facades\Session as UserSession;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ReferralRegisterSuccessNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-
 
 class User extends Authenticatable
 {
@@ -36,6 +40,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [];
+
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -70,9 +76,9 @@ class User extends Authenticatable
             $secondMajor = $this->secondMajor;
             $secondMajorString = $secondMajor ? " and {$secondMajor->major}" : "";
 
-            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. I promise to provide the best tutoring services with a good price. Please feel free to request a tutor session with me or ask me anything.";
+            return $this->introduction ?? "Hi, I am {$this->first_name} {$this->last_name}, a {$this->schoolYear->school_year} studying {$this->firstMajor->major}{$secondMajorString}. Please feel free to request a tutoring session with me or connect with me.";
         } else {
-            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutor sessions on this platform.";
+            return "Hi, I am {$this->first_name} {$this->last_name}. I am looking forward to having tutoring sessions on this platform.";
         }
 
     }
@@ -122,12 +128,15 @@ class User extends Authenticatable
 
     // return the profile' daily view count in the past week
     public function viewCntWeek() {
+        $beginDate = Carbon::now()->subDays(7 - 1)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
+
         return $this->views()
                     ->select(['viewed_at', DB::raw('COUNT("viewed_at") as view_count')])
                     ->whereBetween('viewed_at', [
                         // a week is 7 -1 + 1 days including today
-                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
-                        Carbon::now()->format('Y-m-d')
+                        $beginDate,
+                        $endDate
                     ])
                     ->groupBy('viewed_at');
     }
@@ -236,21 +245,29 @@ class User extends Authenticatable
         );
     }
 
-    private function recommendedTutors() {
+    public function recommendedTutors() {
         if(!$this->is_tutor) {
             $courseIds = $this->courses()->pluck('id');
-            $recommendedTutors = User::where('users.is_tutor', true)
+            $recommendedTutors = User::select("users.*")
+                                ->where('users.is_tutor', true)
+                                ->where('users.is_invalid', false)
                                 ->join('course_user', 'course_user.user_id', '=', 'users.id')
                                 ->join('courses', 'courses.id', 'course_user.course_id')
                                 ->whereIn('courses.id', $courseIds)
                                 ->where('users.email', '!=', $this->email)
+                                 ->inRandomOrder()
+                                ->distinct()
                                 ->get();
+
+
             $recommendedTutors = $recommendedTutors
                                     ->random(min(3, $recommendedTutors->count()));
 
             if($recommendedTutors->count() < 3) {
                 $tutorIds = $recommendedTutors->pluck('id');
-                $tutors = User::where('users.is_tutor', true)
+                $tutors = User::select("users.*")
+                            ->where('users.is_tutor', true)
+                            ->where('users.is_invalid', false)
                             ->where(function($query) {
                                 // if is null, then assign -1 to it so that null != null
                                 $query->where('users.first_major_id', $this->first_major_id ?? -1)
@@ -260,6 +277,8 @@ class User extends Authenticatable
                             })
                             ->whereNotIn('id', $tutorIds)
                             ->where('users.email', '!=', $this->email)
+                            ->inRandomOrder()
+                            ->distinct()
                             ->get();
                 // I want to get a total of (3 - $recommendedTutors->count()) tutors here
                 $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
@@ -269,12 +288,17 @@ class User extends Authenticatable
                 // if there are still < 3 tutors, then randomly pick from the tutors
                 if($recommendedTutors->count() < 3) {
                     $tutorIds = $recommendedTutors->pluck('id');
-                    $tutors = User::where('users.is_tutor', true)
+                    $tutors = User::select("users.*")
+                                    ->where('users.is_tutor', true)
+                                    ->where('users.is_invalid', false)
                                     ->whereNotIn('id', $tutorIds)
                                     ->where('users.email', '!=', $this->email)
+                                    ->inRandomOrder()
+                                    ->distinct()
                                     ->get();
                     // I want to get a total of (3 - $recommendedTutors->count()) tutors here
                     $tutors= $tutors->random(min(3 - $recommendedTutors->count(), $tutors->count()));
+
                     $recommendedTutors = $recommendedTutors->merge($tutors);
                 }
             }
@@ -416,13 +440,14 @@ class User extends Authenticatable
     // get all distinct participated posts
     // participated: my own posts, I followed, I reply directly
     public function participatedPosts(){
-        return Post::leftJoin('post_user', 'post_user.post_id','=','posts.id')
+        return Post::select('posts.*')
+            ->leftJoin('post_user', 'post_user.post_id','=','posts.id')
             ->leftJoin('replies','replies.post_id','=','posts.id')
             ->where('posts.user_id',$this->id)
             ->orWhere('post_user.user_id',$this->id)
             ->orWhere(function ($query) {
                 $query->where('replies.is_direct_reply', '=', 1)
-                      ->Where('replies.user_id', '=', $this->id);
+                      ->where('replies.user_id', '=', $this->id);
             })
             ->distinct();
     }
@@ -436,7 +461,7 @@ class User extends Authenticatable
         $verifiedUsersQuery = DB::table('course_user')->select("course_user.user_id")
         ->join("verified_courses", function($join){
             $join->on("verified_courses.course_id","=","course_user.course_id")
-        ->on("verified_courses.user_id","=","course_user.user_id");
+            ->on("verified_courses.user_id","=","course_user.user_id");
         })
         ->distinct();
 
@@ -509,6 +534,7 @@ class User extends Authenticatable
         return Session::select('sessions.*')
                 ->leftJoin('reviews', 'sessions.id', '=', 'reviews.session_id')
                 ->where('sessions.is_upcoming', false)
+                ->where('sessions.student_id', Auth::id())
                 ->where('reviews.session_id', null)
                 ->get();
     }
@@ -563,6 +589,66 @@ class User extends Authenticatable
     // edge cases : return 0 if <= 0, return 1 if >= highest level
     public function getLevelProgressPercentage(){
         return TutorLevel::getCurrentPercentageToNextLevel($this->experience_points);
+    }
+
+    // important: should only be called by invited users
+    public function claimReferralBonus() {
+        // important: we use the updated_at property to determine which invite code the user is attempting to use
+        $inviteUser = InviteUser::where('invited_user_email', $this->email)->where('attempt_to_use', true)->orderBy('updated_at', 'desc')->first();
+
+        // check if the user has an invite code and does not claimed the bonus yet
+        if($inviteUser && ReferralClaimedUser::where('email', $this->email)->doesntExist()) {
+            // $userInvitedBy is the user that is inviting the current user
+            $userInvitedBy = User::where('id', $inviteUser->user_id)->firstOrFail();
+
+            // calculate the referral bonus
+            $cnt = ReferralClaimedUser::where('is_invited_by_user_id', $userInvitedBy->id)->count();
+
+            $arr = collect();
+            if($cnt < 2) {
+                for($i = 0; $i < 7; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+            } else if($cnt < 4) {
+                for($i = 0; $i < 5; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 2; $i++) $arr->push(3); // [2, 3]
+            } else if($cnt < 6) {
+                for($i = 0; $i < 2; $i++) $arr->push(5); // [4, 5]
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+            } else if($cnt < 8) {
+                for($i = 0; $i < 3; $i++) $arr->push(4); // [3, 4]
+                for($i = 0; $i < 3; $i++) $arr->push(3); // [2, 3]
+                for($i = 0; $i < 2; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 2; $i++) $arr->push(1); // [0, 1]
+            } else {
+                for($i = 0; $i < 5; $i++) $arr->push(2); // [1, 2]
+                for($i = 0; $i < 5; $i++) $arr->push(1); // [0, 1]
+            }
+
+            $max = $arr->random();
+            $bonus = rand(($max - 1) * 10, $max * 10) / 10;
+
+            $this->notify(new ReferralRegisterSuccessNotification($bonus, true, true));
+
+            $userInvitedBy->notify(new ReferralRegisterSuccessNotification($bonus, false, true));
+
+            Notification::route('mail', "tutorspacehelp@gmail.com")
+            ->notify(new ReferralRegisterSuccessNotification($bonus, false, false));
+
+            ReferralClaimedUser::create([
+                'email' => $this->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_invited_by_user_id' => $userInvitedBy->id
+            ]);
+
+            ReferralClaimedUser::create([
+                'email' => $userInvitedBy->email,
+                'bonus_amount_dollar' => $bonus,
+                'is_inviting_user_email' => $this->email
+            ]);
+        }
     }
 
 }

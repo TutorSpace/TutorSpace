@@ -1,6 +1,7 @@
 @php
-$session_time_start = explode(' ',$tutorRequest->session_time_start);
-$session_time_end = explode(' ',$tutorRequest->session_time_end);
+$tz = App\CustomClass\TimeFormatter::getTZ();
+$session_time_start = explode(' ',$tutorRequest->session_time_start->setTimeZone($tz));
+$session_time_end = explode(' ',$tutorRequest->session_time_end->setTimeZone($tz));
 $date = $session_time_start[0];
 $month = Carbon\Carbon::parse($date)->format('m');
 $day_date = Carbon\Carbon::parse($date)->format('d');
@@ -9,13 +10,16 @@ $startTime = Carbon\Carbon::parse($session_time_start[1])->format('H:i');
 $endTime = Carbon\Carbon::parse($session_time_end[1])->format('H:i');
 $day = Carbon\Carbon::parse($date)->format('D');
 $student = App\User::find($tutorRequest->student_id);
-$hourlyRate = $tutorRequest->hourly_rate;
-$sessionDurationInHour = round(abs(strtotime($endTime) - strtotime($startTime)) / 3600, 2);
-$price = $sessionDurationInHour * $hourlyRate;
+$sessionDurationInHour = $tutorRequest->getDurationInHour();
+$price = $tutorRequest->calculateSessionFee();
+
+$startDate = $tutorRequest->session_time_start->setTimeZone($tz);
+$endDate = $tutorRequest->session_time_end->setTimeZone($tz);
+$diffInDays = $endDate->format('M/d/Y') != $startDate->format('M/d/Y');
 @endphp
 
 <div>
-    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-min-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_start, -2) }}" data-max-time="{{ App\CustomClass\TimeFormatter::getTimeForCalendarWithHours($tutorRequest->session_time_end, 2) }}" data-session-time-start="{{ $tutorRequest->session_time_start }}" data-session-time-end="{{ $tutorRequest->session_time_end }}" data-date="{{ App\CustomClass\TimeFormatter::getDate($tutorRequest->session_time_start) }}">
+    <div class="info-box" data-tutorRequest-id="{{$tutorRequest->id}}" data-goto-date="{{$tutorRequest->session_time_start->setTimeZone($tz)->format('Y-m-d')}}" data-goto-time="{{$tutorRequest->session_time_start->setTimeZone($tz)->format('H:i:s')}}" data-session-time-start="{{ $tutorRequest->session_time_start->setTimeZone($tz) }}" data-session-time-end="{{ $tutorRequest->session_time_end->setTimeZone($tz) }}">
         @if(isset($isNotification) && $isNotification)
         <svg class="notification-indicator" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
@@ -33,8 +37,13 @@ $price = $sessionDurationInHour * $hourlyRate;
                 {{$day}}</span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
-            <span class="content">{{$startTime}} - {{$endTime}}</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
+            <span class="content">
+                {{$startTime}} - {{$endTime}}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
+            </span>
         </div>
         <div class="course">
             <span class="title">Course</span>
@@ -86,7 +95,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                             <span class="content"></span>
                         </div>
                         <div class="time">
-                            <span class="title">Time</span>
+                            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
                             <span class="content"></span>
                         </div>
                         <div class="flex-100"></div>
@@ -108,12 +117,16 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="tutor-request-modal__content__calendar">
                     <div class="calendar"></div>
                     <div class="calendar-note">
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                     </div>
                 </div>
                 <div class="tutor-request-modal__content__policy">
-                    <p><span class="font-weight-bold">Cancellation Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <p><span class="font-weight-bold">Refund Policy:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p><span class="font-weight-bold">Cancellation Policy:</span> Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details, please check our
+                        <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
+                    </p>
+                    <p><span class="font-weight-bold">Refund Policy:</span> TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
+                        <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
+                    </p>
                 </div>
                 <div class="tutor-request-modal__content__confirm">
                     <button
@@ -123,7 +136,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                     </button>
                     <button
                         class="btn btn-primary tutor-request-modal__content__confirm--confirm btn-animation-y-sm" id="btn-confirm-tutor-session">
-                        Confirm Tutor Session
+                        Confirm Tutoring Session
                     </button>
                 </div>
             </div>

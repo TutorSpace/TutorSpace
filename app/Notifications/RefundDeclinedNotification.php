@@ -13,15 +13,17 @@ class RefundDeclinedNotification extends Notification implements ShouldQueue
     use Queueable;
 
     private $session;
+    private $declineReason;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Session $session)
+    public function __construct(Session $session, $declineReason)
     {
         $this->session = $session;
+        $this->declineReason = $declineReason;
     }
 
     /**
@@ -45,7 +47,7 @@ class RefundDeclinedNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your refund request with session ' . $this->session->id . ' has been declined.')
+                    ->line('Your refund request with session ' . $this->session->id . ' has been declined for the following reason: ' . $this->declineReason)
                     ->action('Visit TutorSpace', url('/'))
                     ->line('Thank you for using our platform!');
     }
@@ -59,7 +61,8 @@ class RefundDeclinedNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'session' => $this->session
+            'session' => $this->session,
+            'declineReason' => $this->declineReason
         ];
     }
 }

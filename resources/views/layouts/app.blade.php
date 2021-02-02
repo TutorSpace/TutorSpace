@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>@yield('title')</title>
 
-    @guest
     {{-- google services --}}
     <meta name="google-signin-client_id" content="{{ env('GOOGLE_CLIENT_ID') }}">
-    @endguest
 
     <link rel = "icon" href =
     "{{ asset('assets/images/tutorspace_logo.png') }}"
@@ -21,6 +19,10 @@
     @yield('links-in-head')
 </head>
 <body class="@yield('body-class')">
+    @if (Route::current()->getName() != 'index')
+    @include('partials.report-box')
+    @endif
+
     @yield('content')
 
 
@@ -37,6 +39,7 @@
     </script>
     <script src="{{asset('js/app.js')}}"></script>
     <script>
+
         @if(session('errorMsg'))
             toastr.error('{{ session('errorMsg') }}');
             @php
@@ -104,10 +107,22 @@
                 type:requestType,
                 url: `/bookmark/${userId}`,
                 success: (data) => {
-
+                    @if(isset($useBookmarkSidebar) && $useBookmarkSidebar)
+                    $.ajax({
+                        type: 'GET',
+                        url: "{{ route('home.get.bookmark.sidebar') }}",
+                        success: (data) => {
+                            $('.home__side-bar__bookmarked-users').html(data.view);
+                        },
+                        error: function(error) {
+                            toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
+                            console.log(error);
+                        }
+                    });
+                    @endif
                 },
                 error: function(error) {
-                    toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
+                    toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.');
                     console.log(error);
                 },
                 complete: () => {
@@ -237,10 +252,12 @@
         }
         @endauth
 
+        @if (session()->get('toSwitchAccount') || (isset($toSwitchAccount) && $toSwitchAccount))
+            $('.nav__item__svg--switch-account').click();
+        @endif
 
     </script>
     @yield('js')
-    @yield('js-2')
 
 </body>
 </html>

@@ -14,9 +14,10 @@
                 <!--Stripe.js injects the Card Element-->
             </div>
             <div class="add-card-agreement">
-                <input type="checkbox" id="add-card-agreement" class="add-card-agreement-input" name="agreement"
-                       >
-                <label for="add-card-agreement">By checking this box, I agree to ...</label>
+                <input type="checkbox" id="add-card-agreement" class="add-card-agreement-input" name="agreement">
+                <label for="add-card-agreement" class="my-3 fs-1-4 font-italic fw-500">
+                    By checking this box, I agree to <a href="{{route("service-agreement.show")}}" class="color-primary" target="_blank">TutorSpace Services Agreement</a> and <a href="https://stripe.com/legal" class="color-primary" target="_blank">Stripe Services Agreement</a>.
+                </label>
             </div>
             <button id="btn-add-payment-submit">
                 <div class="spinner hidden" id="spinner"></div>
@@ -30,6 +31,5 @@
                 </pre>
             </div>
         </div>
-        {{-- TODO: nate add policy --}}
     </form>
 </div>

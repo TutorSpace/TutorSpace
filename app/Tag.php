@@ -49,6 +49,7 @@ class Tag extends Model
                                 $query->withCount('replies');
                             }
                         ])
+                        ->having('posts_count', '>', 1)
                         ->orderBy('posts_count', 'desc')
                         ->get();
 

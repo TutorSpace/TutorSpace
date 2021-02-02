@@ -1,17 +1,27 @@
 @php
-$hourlyRate = $session->hourly_rate;
-$sessionDurationInHour = round(abs($session->session_time_start->diffInSeconds($session->session_time_end)) / 3600, 2);
-$price = $sessionDurationInHour * $hourlyRate;
+$tz = App\CustomClass\TimeFormatter::getTZ();
+$startDateTime = $session->session_time_start->setTimeZone($tz);
+$endDateTime = $session->session_time_end->setTimeZone($tz);
+// not accounting for actual day difference
+$diffInDays = $endDateTime->format('M/d/Y') != $startDateTime->format('M/d/Y');
+$sessionDurationInHour = $session->getDurationInHour();
+$price = $session->calculateSessionFee();
 @endphp
 
 <div class="notification__content__header font-weight-bold">
-    Session Cancelled ({{ $session->session_time_start->format('m/d/y D') }})
+    Session Cancelled [{{ Illuminate\Support\Str::substr($session->id, 8) }}]
 </div>
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
+            @if (Illuminate\Support\Str::of($session->student->profile_pic_url)->contains('placeholder'))
+            <div class="user-image placeholder-img">
+                <span>{{ strtoupper($session->student->first_name[0]) . ' ' . strtoupper($session->student->last_name[0]) }}</span>
+            </div>
+            @else
             <img src="{{ Storage::url($session->student->profile_pic_url) }}" alt="user photo" class="user-image">
+            @endif
         </div>
 
         <div class="container content">
@@ -28,11 +38,18 @@ $price = $sessionDurationInHour * $hourlyRate;
             <div class="d-flex justify-content-between mt-2">
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Date:</div>
-                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('m/d/y D') }}</p>
+                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->setTimeZone($tz)->format('m/d/y D') }}</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <div class="fc-grey fs-1-4">Time:</div>
-                    <p class="fc-black-2 fs-1-5 fw-500">{{ $session->session_time_start->format('H:i') }} - {{ $session->session_time_end->format('H:i') }}</p>
+                    <div class="fc-grey fs-1-4">Time: ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</div>
+                    <p class="fc-black-2 fs-1-5 fw-500">
+                        {{ $session->session_time_start->setTimeZone($tz)->format('H:i') }}
+                        -
+                        {{ $session->session_time_end->setTimeZone($tz)->format('H:i') }}
+                        @if ($diffInDays != 0)
+                            (+{{$diffInDays}} day)
+                        @endif
+                    </p>
                 </div>
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Course:</div>
@@ -47,7 +64,7 @@ $price = $sessionDurationInHour * $hourlyRate;
                 <div class="d-flex flex-column">
                     <div class="fc-grey fs-1-4">Price:</div>
                     <p class="color-primary fs-1-5 fw-500">
-                        {{ $price }}
+                       $ {{ $price }}
                     </p>
                 </div>
             </div>

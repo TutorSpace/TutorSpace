@@ -80,12 +80,25 @@
                     margin-right: 3rem;
                 }
 
-                img {
+                img, .placeholder-img {
                     width: 100%;
                     height: 100%;
                     border-radius: 50%;
                     object-fit: cover;
                     transition: all .1s;
+                }
+
+                .placeholder-img {
+                    position: relative;
+                    background-color: $color-yellow-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 3rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
                 }
 
                 .caption {
@@ -109,7 +122,7 @@
                     transform: translate(calc(-50%), calc(-50%));
                 }
 
-                &:hover img {
+                &:hover img, &:hover .placeholder-img {
                     filter: blur(1.5px) brightness(70%);
                 }
             }
@@ -196,10 +209,10 @@
 
                     .progress {
                         height: 1rem;
-                        background-color: $color-purple-primary-2;
+                        background-color: $color-white;
 
                         .progress-bar {
-                            background-color: $color-white;
+                            background-color: $color-yellow-primary;
                         }
                     }
 
@@ -356,13 +369,10 @@
                 border-radius: 1rem;
                 box-shadow: 0px 3px 2px 0px rgba(0,0,0,0.1);
 
-                .heading {
+                .calendar-heading {
                     display: flex;
                     justify-content: space-between;
-
-                    .hourly-rate {
-
-                    }
+                    align-items: center;
                 }
 
                 #calendar {
@@ -618,6 +628,7 @@
             margin-top: 6rem;
             background-color: $color-white-dark-5;
             border-radius: 1rem;
+            padding-bottom: 1rem;
             box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.1);
 
             > :first-child {
@@ -646,12 +657,25 @@
             .bookmarked-user {
                 display: flex;
 
-                img {
+                .user-img {
                     border-radius: 50%;
                     object-fit: cover;
                     width: 5.5rem;
                     height: 5.5rem;
                     margin-right: 2rem;
+
+                    &.placeholder-img {
+                        position: relative;
+                        background-color: $color-yellow-primary;
+
+                        span {
+                            @include absCenter;
+                            font-size: 1.6rem;
+                            font-weight: 500;
+                            color: $color-white;
+                            white-space: nowrap;
+                        }
+                    }
                 }
 
                 &__content {

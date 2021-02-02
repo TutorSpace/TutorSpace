@@ -26,22 +26,28 @@ bg-student
 <div class="container-fluid home p-relative">
     @include('home.partials.menu_bar')
     <main class="home__content">
-        @if (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
+        @if(Auth::user()->is_tutor)
         <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
             <div class="home__panel__text heading-container">
-                <p class="heading">Want to earn experience points more quickly? </p>
+                <p class="heading" id="help-tutor-verification-trigger">Want to earn experience points more quickly?
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle svg-help" viewBox="0 0 16 16" id="help-tutor-verification" style="margin-bottom: 2rem">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                </svg>
+                </p>
             </div>
+            @if (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
             <div class="home__panel__button">
                 <p class="home__panel__button__label">Become a Verified Tutor</p>
             </div>
-        </div>
-        @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
-        <div class="container col-layout-2 home__panel home__header-container bg-color-purple-primary">
-            <div class="home__panel__text heading-container">
-                <p class="heading">Tutor Verification Submitted</p>
+            @elseif (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "submitted")
+            <div class="home__panel__button submitted">
+                <p class="home__panel__button__label">Verification Request Submitted</p>
             </div>
+            @endif
         </div>
         @endif
+
 
         <form class="container col-layout-2 profile" autocomplete="off"
             action="@if (isset($registerToBeTutor2) && $registerToBeTutor2) {{ route('switch-account.register-to-be-tutor-2') }} @else {{ route('home.profile.update') }} @endif"
@@ -167,24 +173,28 @@ bg-student
                     </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
-                            <label for="course" class="profile__label">
+                            <label for="course" class="profile__label p-relative" id="help-user-info-trigger">
                                 @if (Auth::user()->is_tutor)
-                                Courses you would like to tutor in
+                                Courses you would like to tutor
                                 @else
-                                Courses you would like to be tutored in
+                                Courses you are taking this semester
                                 @endif
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle svg-help" viewBox="0 0 16 16" id="help-user-info">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                  </svg>
                             </label>
                             <input type="text"
                                 class="profile__input profile__input__courses form-control form-control-lg" id="course">
                         </div>
                         @if (Auth::user()->is_tutor)
                         <div class="hourly-rate autocomplete">
-                            <label for="hourly-rate" class="profile__label">Hourly Rate</label>
+                            <label for="hourly-rate" class="profile__label">Hourly Rate (Upper Limit: ${{ Auth::user()->tutorLevel->hourly_rate_upper_bound }})</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
                                 <input type="number" class="profile__input form-control form-control-lg"
                                     value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate"
-                                    min="10" max="50">
+                                    min="10" max="{{ Auth::user()->tutorLevel->hourly_rate_upper_bound }}">
                             </div>
                         </div>
                         @endif
@@ -225,12 +235,22 @@ bg-student
 
                 <div class="profile__text-container--white">
                     <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
-                        Forum Settings
+                        <span id="help-forum-trigger">Forum Settings</span>
                         @if (Auth::user()->tags()->doesntExist())
                         <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="7.5" cy="7.5" r="7.5" fill="#FFBC00"/>
                         </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle svg-help ml-4" viewBox="0 0 16 16" id="help-forum">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                          </svg>
+                        @else
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle svg-help ml-2" viewBox="0 0 16 16" id="help-forum">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                          </svg>
                         @endif
+
                     </h5>
                     <div class="profile__form-row flex-wrap">
                         <div class="autocomplete mb-3">
@@ -258,7 +278,7 @@ bg-student
                 <div class="profile__text-container--white p-relative">
                     <div class="stripe-svg-container">
                     </div>
-                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot">
+                    <h5 class="w-100 font-weight-bold mb-4 has-notification-dot" id="payment-method-section">
                         Payment Methods
                         @if (
                         (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
@@ -270,8 +290,19 @@ bg-student
                     </h5>
                     <div class="profile__form-row flex-wrap payment">
                         @if (Auth::user()->is_tutor)
-                    <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment px-5 py-3 ws-no-wrap" type="button">{{Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
-                        Methods"}}</button>
+                        <button id="btn-setup-payment" class="btn btn-primary btn-setup-payment px-5 py-3 ws-no-wrap" type="button">
+                            {{ Auth::user()->tutorHasStripeAccount()? "View Your Stripe Payment Account":"Set Up Payment
+                            Methods" }}
+                        </button>
+                        <div class="flex-100"></div>
+                        <p class="fs-1-4 font-italic fw-500 mt-4 flex-100">
+                            Note: By registering your account, you agree to <a href="{{route("service-agreement.show")}}" class="color-primary" target="_blank">TutorSpace Services Agreement</a> and the <a href="https://stripe.com/connect-account/legal" class="color-primary" target="_blank">Stripe Connected Account Agreement</a>.
+                        </p>
+                        @if (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())
+                        <p class="fs-1-4 font-italic fw-500 mt-1 flex-100">
+                            <span class="text-danger">IMPORTANT:</span> Please note that you will be asked to provide your business name and your website address, but feel free to enter a random one if you don't have one.
+                        </p>
+                        @endif
                         @else
                         <div class="payment-cards">
                             <div id="btn-add-payment" class="btn-add-payment bg-add-card m-3">
@@ -690,7 +721,7 @@ bg-student
             if (response.stripe_url) {
                 window.location = response.stripe_url;
             } else {
-                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.')
+                toastr.error('Something went wrong. Please contact tutorspacehelp@gmail.com for more details.')
             }
 
         })
@@ -721,6 +752,10 @@ bg-student
 {{-- autocomplete --}}
 <script>
     $('#hourly-rate').on("change paste keyup", function () {
+        if(Number($(this).val()) < 10 || Number($(this).val()) > {{ Auth::user()->tutorLevel->hourly_rate_upper_bound }} ) {
+            return
+        }
+
         updateHourlyRate();
     });
 
@@ -752,7 +787,7 @@ bg-student
 
 <script>
     $('.home__panel__button').on('click', function () {
-        if ($('.modal-verify-tutor')[0]) return;
+        if ($('.modal-verify-tutor')[0] || $(this).hasClass('submitted')) return;
 
         bootbox.dialog({
             message: `@include('home.partials.tutorVerification')`,
@@ -901,6 +936,13 @@ bg-student
 
 <script>
     let isTutor = {{ Auth::user()->is_tutor }};
+
+    const isPaymentRedirect = getUrlParameter('payment-section-redirect');
+    if (isPaymentRedirect){
+        $('html, body').animate({
+            scrollTop: $('#payment-method-section').offset().top - 100
+        }   , 700);
+    }
 </script>
 <script src="{{ asset('js/home/profile.js') }}"></script>
 

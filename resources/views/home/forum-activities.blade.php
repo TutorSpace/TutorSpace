@@ -32,7 +32,7 @@ bg-student
             <div class="heading-container">
                 <p class="heading">Forum Activities</p>
                 <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                    View your statistics and track your participation in the TutorSpace forum.
                 </span>
             </div>
         </div>
@@ -82,7 +82,7 @@ bg-student
                     </div>
                     <div class="forum-data">
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->count() }}</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->get()->count() }}</a>
                     </div>
                     <div class="forum-data" id="forum-data-my-follows">
                         <span class="title">Followed</span>

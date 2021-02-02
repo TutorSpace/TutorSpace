@@ -8,11 +8,11 @@ toastr.options.preventDuplicates = true;
 // toastr.options.timeOut = 0;
 // toastr.options.extendedTimeOut = 0;
 
-
-
 window.bootbox = require('bootbox');
 window.Chart = require('chart.js');
-window.moment = require('moment');
+window.moment = require('moment-timezone');
+// window.moment.tz.setDefault("UTC");
+
 window.Pikaday = require('pikaday');
 require('timepicker');
 
@@ -29,7 +29,21 @@ window.jsLoadingOverlayOptions = {
     'spinnerIDName': 'spinner',
 };
 
+// get url parameter
+window.getUrlParameter = function(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
 
 $(document).ready(function(){
     $.ajaxSetup({
@@ -87,6 +101,7 @@ $(document).ready(function(){
     if($('.message-welcome').length) {
         setTimeout(function() {
             $('.message-welcome').hide();
+            $('.message-welcome').removeClass('message-welcome--animated');
             $('.nav-right__svg-container').addClass('nav-fade-in-animation');
             $('.nav-right__profile-img').addClass('nav-fade-in-animation');
             $('.nav-right__svg-container').show();
@@ -168,4 +183,30 @@ $(document).ready(function(){
         window.location.href = href;
     });
 
+    // report box
+    $('.report-box .heading').click(function() {
+        $('.report-box').toggleClass('report-box--animated');
+    });
+
+    $('.report-box .star-rating svg').click(function() {
+        $(this).prevAll().each(function(idx, el) {
+            $(el).find('path').addClass('fill-color-yellow-primary');
+        })
+        $(this).find('path').addClass('fill-color-yellow-primary');
+
+        $(this).nextAll().each(function(idx, el) {
+            $(el).find('path').removeClass('fill-color-yellow-primary');
+        })
+    });
+
+    $('#report-box-form').submit(function(event) {
+        let rating = $('.report-box .star-rating path.fill-color-yellow-primary').length;
+        $(this).find('input[name=star-rating]').val(rating);
+
+        return true;
+    });
+
+
+
 })
+

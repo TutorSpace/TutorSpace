@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'America/Los_Angeles',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
 
         // only needed to put it here the first time using telescope
         // Laravel\Telescope\TelescopeServiceProvider::class,
@@ -236,6 +237,8 @@ return [
 
         // added socialite
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
     ],
 
 ];

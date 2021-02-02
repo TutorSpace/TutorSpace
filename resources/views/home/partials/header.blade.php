@@ -7,7 +7,15 @@
         @endif
         <div class="content d-flex p-relative">
             <figure class="content-img">
+
+                @if (Illuminate\Support\Str::of(Auth::user()->profile_pic_url)->contains('placeholder'))
+                <div class="placeholder-img" id="profile-image">
+                    <span>{{ strtoupper(Auth::user()->first_name[0]) . ' ' . strtoupper(Auth::user()->last_name[0]) }}</span>
+                </div>
+                @else
                 <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile-img" id="profile-image">
+                @endif
+
                 <figcaption class="caption" id="upload-profile-pic">Upload Photo</figcaption>
                 <form id="profile-pic-form" action="{{ route('upload-profile-pic') }}" enctype="multipart/form-data" class="hidden">
                     <input type="file" class="hidden" name="profile-pic" id="input-profile-pic" accept="image/*">

@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 <section class="col-3 forum-right">
     <a class="btn btn-lg btn-add-post btn-animation-y" href="#">
         <svg class="mr-2" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +48,7 @@
         </table>
 
         <p class="fs-1-2 bottom-0 right-0 fc-grey my-0 text-right">
-            Last Updated at {{ cache('TAGS.TRENDING-TAGS-UPDATE-TIME') }}
+            Last Updated at {{ cache('TAGS.TRENDING-TAGS-UPDATE-TIME')->setTimeZone($tz) }}
         </p>
     </section>
 
@@ -65,9 +69,9 @@
             @endforeach
             <p class="fs-1-2 bottom-0 right-0 fc-grey mb-0 mt-4 text-right">
                 @auth
-                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME.' . Str::upper(Auth::user()->email)) }}
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME.' . Str::upper(Auth::user()->email))->setTimeZone($tz) }}
                 @else
-                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME') }}
+                Last Updated at {{ cache('POSTS.YOU-MAY-HELP-WITH-UPDATE-TIME')->setTimeZone($tz) }}
                 @endauth
             </p>
         </div>

@@ -44,7 +44,7 @@ class UpcomingSessionNotification extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('This is just a friendly reminder that you have an upcoming session from ' . $this->session->session_time_start . ' to ' . $this->session->session_time_end . '.')
+                ->line('This is just a friendly reminder that you have an upcoming session from ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' to ' . $this->session->session_time_end->setTimezone('America/Los_Angeles') . ' (PST Time Zone).')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }

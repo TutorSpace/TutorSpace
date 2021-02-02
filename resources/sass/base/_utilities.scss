@@ -64,10 +64,11 @@
 .bg-color-notification--forum { background-color: #FBB752 !important; }
 .bg-student .bg-color-notification--tutorspace { background-color: $color-blue-primary !important; }
 .bg-tutor .bg-color-notification--tutorspace { background-color: $color-purple-primary !important; }
+.bg-color-notification--tutore-requests { background-color: $color-calendar-tutor-request; }
 
 // ======================= color ====================
-.bg-student .color-primary { color: $color-blue-primary; }
-.bg-tutor .color-primary { color: $color-purple-primary; }
+.bg-student .color-primary { color: $color-blue-primary !important; }
+.bg-tutor .color-primary { color: $color-purple-primary !important; }
 
 
 // ===================== svg =================

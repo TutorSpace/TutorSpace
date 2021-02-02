@@ -44,7 +44,7 @@ class InvoicePaid extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . '.')
+                ->line('We have received your payment for your tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' (PST Time Zone).')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }

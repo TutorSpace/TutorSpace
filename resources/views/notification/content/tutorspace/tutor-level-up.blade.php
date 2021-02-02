@@ -1,5 +1,5 @@
 <div class="notification__content__header font-weight-bold">
-    Congratulations! You reached the next tutor level!
+    Congratulations! You've Reached the Next Tutor Level!
 </div>
 <div class="notification__content__info">
 
@@ -38,19 +38,16 @@
             </div>
 
             <p class="fs-1-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                Congratulations! You have gained enough experience points for moving up to the next tutor level. Thank you for keeping using TutorSpace and sharing your knowledge and experience with other users. We hope you have a great experience in the next phase of the journey.
             </p>
 
             <p class="fs-1-6">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis illo vero itaque, culpa magni
-                dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
-                sequi! Molestiae?
+                According to the Tutor Growth Plan, if you are a verified tutor, your cash bonus rate will be raised by 15%, and you will also be allowed a higher hourly rate. For more details, please refer to the Tutor Growth Plan Policy. However, if you are not a verified tutor yet, we strongly recommend you to do so. To check out the benefits of becoming a verified tutor, please check our
+                <a href="{{route('tgp-policy.show')}}" class="color-primary" target="_blank">Tutor Growth Plan</a>.
             </p>
 
             {{-- todo: change the link here --}}
-            <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about tutor growth plan? <a href="{{ route('index') }}" class="color-primary" target="_blank">Click here</a>.
+            <p class="fc-grey text-center mt-5 fs-1-6">Want to know more about Tutor Growth Plan? <a href="{{ route('index') }}" class="color-primary" target="_blank">Click here</a>.
             </p>
         </div>
     </div>

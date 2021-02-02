@@ -1,6 +1,10 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
-@section('title', 'Dashboard - Tutor Sessions')
+@section('title', 'Dashboard - Tutoring Sessions')
 
 @section('body-class')
 bg-white-dark-4
@@ -33,9 +37,13 @@ bg-student
     <main class="home__content tutor-sessions">
         <div class="container col-layout-2 home__header-container">
             <div class="heading-container mb-5">
-                <p class="heading">Tutor Sessions</p>
+                <p class="heading">Tutoring Sessions</p>
                 <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim blanditiis ipsam nesciunt quia culpa eaque eligendi
+                    @if (Auth::user()->is_tutor)
+                    Manage your past/upcoming sessions, and set up your own tutoring schedule.
+                    @else
+                    Manage your tutor requests and past/upcoming sessions.
+                    @endif
                 </span>
             </div>
             @include('home.partials.header')
@@ -74,13 +82,16 @@ bg-student
         <div class="container col-layout-2">
             <div class="row home__row-columns-2">
                 <div class="col-lg-8" id="calendar-container">
-                    <h5 class="w-100 calendar-heading">Calendar</h5>
+                    <div class="w-100 calendar-heading">
+                        <h5 class="mb-0">Calendar</h5>
+                        <span class="fs-1-4 fc-grey">Drag to select your available time</span>
+                    </div>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                     </div>
                 </div>
                 <div class="col-lg-4 info-cards">
@@ -102,6 +113,10 @@ bg-student
                                 'hidden' => $i > 2
                             ])
                         @endfor
+                        @else
+                        <div class="white-large-board">
+                            <span>No Upcoming Sessions.</span>
+                        </div>
                         @endif
                     @else
                         @php
@@ -128,16 +143,16 @@ bg-student
         </div>
         @else
         <div class="container col-layout-2">
-            <div class="row mt-5">
-                @php
-                    $upcomingSessions = Auth::user()
-                        ->upcomingSessions()
-                        ->with([
-                            Auth::user()->is_tutor ? 'student' : 'tutor',
-                            'course'
-                        ])
-                        ->get();
-                @endphp
+            @php
+                $upcomingSessions = Auth::user()
+                    ->upcomingSessions()
+                    ->with([
+                        Auth::user()->is_tutor ? 'student' : 'tutor',
+                        'course'
+                    ])
+                    ->get();
+            @endphp
+            <div class="row mt-5 @if($upcomingSessions->count() == 0) no-sessions @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Upcoming Sessions</h5>
                 </div>
@@ -162,30 +177,30 @@ bg-student
 
 
         <div class="container col-layout-2">
-            <div class="row mt-5">
+            @if(Auth::user()->is_tutor)
+                @php
+                    $sessions = Auth::user()
+                        ->pastSessions()
+                        ->with([
+                            'student',
+                            'course'
+                        ])
+                        ->get();
+                @endphp
+            @else
+                @php
+                    $sessions = Auth::user()
+                        ->pastSessions()
+                        ->with([
+                            'tutor',
+                            'course'
+                        ])
+                        ->get();
+                @endphp
+            @endif
+            <div class="row mt-5 @if($sessions->count() == 0) no-sessions @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2 mt-5">
                     <h5>Past Sessions</h5>
-                    @if(Auth::user()->is_tutor)
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'student',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
-                    @else
-                        @php
-                            $sessions = Auth::user()
-                                ->pastSessions()
-                                ->with([
-                                    'tutor',
-                                    'course'
-                                ])
-                                ->get();
-                        @endphp
-                    @endif
                     @if ($sessions->count() > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                     @endif
@@ -194,7 +209,7 @@ bg-student
                 <h5 class="no-data">No Past Sessions yet.</h5>
                 @else
                 <div class="info-boxes info-boxes">
-                    <div class="info-box info-box--explanation ">
+                    <div class="info-box info-box--explanation">
                         <div class="user-info">
                             TUTORED WITH
                         </div>
@@ -249,14 +264,13 @@ bg-student
         </div>
 
         @if (Auth::user()->is_tutor)
+        @php
+        $reviewCount = Auth::user()->aboutReviews()->count();
+        @endphp
         <div class="container col-layout-2">
-            <div class="row">
+            <div class="row @if($reviewCount == 0) no-reviews @endif">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-2">
-                    @php
-                    $reviewCount = Auth::user()->aboutReviews()->count();
-                    @endphp
                     <h5>Reviews ({{ $reviewCount }})</h5>
-
                     @if($reviewCount > 2 + 1)
                     <button class="btn btn-link fs-1-4 fc-grey btn-view-all-info-boxes">View All</button>
                     @endif
@@ -265,12 +279,12 @@ bg-student
                 <div class="info-boxes">
                     @php
                     $reviews = Auth::user()->aboutReviews()->orderBy('created_at', 'desc')->get();
-                    $today = \Carbon\Carbon::today();
+                    $today = \Carbon\Carbon::today($tz);
                     @endphp
                     @for ($i = 0; $i < $reviewCount; $i++)
                         @include('home.partials.review', [
                             'review' => $reviews->get($i),
-                            'dateCreated' => $reviews->get($i)->created_at ?? $today,
+                            'dateCreated' => $reviews->get($i)->created_at->setTimeZone($tz) ?? $today,
                             'hidden' => $i > 2
                         ])
                     @endfor
@@ -311,7 +325,7 @@ $('.btn-cancel-request').click(function() {
             }, 1000);
         },
         error: (error) => {
-            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspaceusc@gmail.com for more details.')
+            toastr.error('Something went wrong when canceling the tutor request. Please contact tutorspacehelp@gmail.com for more details.')
             console.log(error);
         },
         complete: () => {

@@ -15,9 +15,12 @@ use App\Http\Controllers\Payment\StripeApiController;
 class NotificationController extends Controller
 {
     public function index(Request $request) {
-
+        $notif = Auth::user()->notifications()->orderBy('created_at', 'desc')->first();
         return view('notification.index', [
-            'showNotif' => $request->input('show-notif')
+            'showNotif' => $request->input('show-notif') ?? ($notif ? $notif->id : null),
+            'showSessions' => $request->input('showSessions'),
+            'showForum' => $request->input('showForum'),
+            'showTutorSpace' => $request->input('showTutorSpace'),
         ]);
     }
 
@@ -27,6 +30,11 @@ class NotificationController extends Controller
         if($notif->type == 'App\Notifications\WelcomeMessageNotification') {
             $view = view(
                 Auth::user()->is_tutor ? 'notification.content.tutorspace.welcome-msg-tutor' : 'notification.content.tutorspace.welcome-msg-student', [])->render();
+        } else if($notif->type == 'App\Notifications\ReferralRegisterSuccessNotification') {
+            $view = view('notification.content.tutorspace.referral-bonus-claimed', [
+                'bonus' => $notif->data['bonus'],
+                'forNewUser' => $notif->data['forNewUser']
+            ])->render();
         } else if($notif->type == 'App\Notifications\TutorVerificationInitiatedNotification') {
             $view = view(
                 'notification.content.tutorspace.tutor-verification-initiated', [])->render();
@@ -86,7 +94,8 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\RefundDeclinedNotification') {
             $view = view(
                 'notification.content.sessions.refund-request-fail', [
-                    'session' => Session::find($notif->data['session']['id'])
+                    'session' => Session::find($notif->data['session']['id']),
+                    'declineReason' => $notif->data['declineReason'],
                 ])->render();
         } else if($notif->type == 'App\Notifications\NewTutorRequest') {
             $view = view(
@@ -96,7 +105,7 @@ class NotificationController extends Controller
         } else if($notif->type == 'App\Notifications\TutorRequestAccepted') {
             $view = view(
                 'notification.content.sessions.session-confirmation-student', [
-                    'tutorRequest' => TutorRequest::find($notif->data['tutorRequest']['id'])
+                    'session' => Session::find($notif->data['session']['id'])
                 ])->render();
         } else if($notif->type == 'App\Notifications\TutorRequestDeclined') {
             $view = view(
@@ -132,7 +141,7 @@ class NotificationController extends Controller
                 ])->render();
         } else if($notif->type == 'App\Notifications\UnratedTutorNotification') {
             $view = view(
-                'notification.content.sessions.unrate-tutor', [
+                'notification.content.sessions.unrated-tutor', [
                     'session' => Session::find($notif->data['session']['id']),
                 ])->render();
         } else if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification') {

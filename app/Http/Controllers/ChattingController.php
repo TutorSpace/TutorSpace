@@ -19,7 +19,7 @@ class ChattingController extends Controller
             ]);
         }
 
-        $otherUser = User::find($request->input('toViewOtherUserId'));
+        $otherUser = User::findOrFail($request->input('toViewOtherUserId'));
         $user_id_1 = strcmp(Auth::id(), $otherUser->id) < 0 ? Auth::id() : $otherUser->id;
         $user_id_2 = strcmp(Auth::id(), $otherUser->id) < 0 ? $otherUser->id : Auth::id();
         $chatroom = Chatroom::where('user_id_1', $user_id_1)->where('user_id_2', $user_id_2)->first();

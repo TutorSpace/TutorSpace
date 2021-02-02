@@ -48,7 +48,7 @@ class InvoicePaymentFailed extends Notification implements ShouldQueue
         $payment_url = app(StripeApiController::class)->getPaymentUrl($this->session);
         return (new MailMessage)
                     ->greeting('Dear ' . $notifiable->first_name)
-                    ->line('Your payment for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start . ' has failed.')
+                    ->line('Your payment for tutoring session with ' . $this->session->tutor->first_name . ' on ' . $this->session->session_time_start->setTimezone('America/Los_Angeles') . ' (PST Time Zone) has failed.')
                     ->line('Payment URL: ' . $payment_url)
                     ->action('Pay', $payment_url)
                     ->line('Thank you for using our platform!');

@@ -80,13 +80,16 @@ bg-student
         <div class="container col-layout-3">
             <div class="row home__row-columns-2">
                 <div class="" id="calendar-container">
-                    <h5 class="w-100 calendar-heading">Calendar</h5>
+                    <div class="w-100 calendar-heading">
+                        <h5 class="mb-0">Calendar</h5>
+                        <span class="fs-1-4 fc-grey">Drag to select your available time</span>
+                    </div>
                     <div id="calendar" class="w-100"></div>
                     <div class="calendar-note">
                         <span class="available-time">Available Time</span>
                         <span class="online">Online</span>
                         <span class="in-person">In Person</span>
-                        <span class="note">Note: All time in the calender are based on PST.</span>
+                        <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand(App\CustomClass\TimeFormatter::getTZ()) }})</span>
                     </div>
                 </div>
                 <div class="info-cards col-layout-3--hidden" id="upcoming-sessions-container">
@@ -133,7 +136,7 @@ bg-student
         @if (Auth::user()->unratedSessions()->count() > 0)
         <div class="container col-layout-3">
             <div class="row">
-                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutor Session(s).</h5>
+                <h5 class="mb-2 w-100">You Have {{ Auth::user()->unratedSessions()->count() }} Unrated Tutoring Session(s).</h5>
                 <div class="info-boxes info-boxes--sm-card">
                     @foreach (Auth::user()->unratedSessions() as $session)
                         @include('home.partials.unrated-session', [
@@ -189,7 +192,7 @@ bg-student
                     <div class="forum-data">
                         {{-- PARTICIPATED POSTS 是我follow的post, 我自己的post，加上我directly reply过的post，注意不能重复count！) --}}
                         <span class="title">Participated</span>
-                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->count() }}</a>
+                        <a class="number" href="{{ route('posts.my-participated') }}">{{ Auth::user()->participatedPosts()->get()->count() }}</a>
                     </div>
                     <div class="forum-data">
                         <span class="title">Followed</span>
@@ -300,6 +303,7 @@ bg-student
 @endif
 
 <script>
+const redirectMissingPaymentUrl = '{{route("home.profile")}}'+ "?payment-section-redirect=true";
 let storageUrl = "{{ Storage::url('') }}";
 @if(!Auth::user()->is_tutor)
     function getRecommendedTutors() {
@@ -324,20 +328,6 @@ let storageUrl = "{{ Storage::url('') }}";
         getRecommendedTutors();
     });
 
-    // this will be called after the bookmark behavior (in app.blade.php)
-    $(document).on('click', '.svg-bookmark', function() {
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('home.get.bookmark.sidebar') }}",
-            success: (data) => {
-                $('.home__side-bar__bookmarked-users').html(data.view);
-            },
-            error: function(error) {
-                toastr.error('Something went wrong. Please contact tutorspaceusc@gmail.com for more details.');
-                console.log(error);
-            }
-        });
-    });
 @endif
 </script>
 

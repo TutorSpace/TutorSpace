@@ -1,6 +1,6 @@
 <script>
 let calendarOptions = {
-    // timeZone: 'PST',
+    timeZone: 'local',
     themeSystem: 'bootstrap',
     initialView: 'timeGridDay',
     headerToolbar: {
@@ -14,7 +14,7 @@ let calendarOptions = {
     selectable: true,
     selectMirror: true,
     nowIndicator: true,
-    slotMinTime: "08:00:00",
+    slotMinTime: "00:00:00",
     slotMaxTime: "24:00:00",
     allDaySlot: false,
     selectOverlap: false,
@@ -31,9 +31,6 @@ let calendarOptions = {
             duration: { days: 5 },
             buttonText: '5 days'
         }
-    },
-    now: function () {
-        return "{{ Carbon\Carbon::now()->toDateTimeString() }}";
     },
     selectAllow: function(selectionInfo) {
         let startTime = moment(selectionInfo.start);
@@ -64,8 +61,8 @@ let calendarOptions = {
         @foreach(Auth::user()->availableTimes as $time)
         {
             textColor: 'transparent',
-            start: '{{$time->available_time_start}}',
-            end: '{{$time->available_time_end}}',
+            start: moment.utc('{{$time->available_time_start}}').format(),
+            end: moment.utc('{{$time->available_time_end}}').format(),
             description: "",
             id: "{{ $time->id }}",
             type: "available-time",
@@ -87,8 +84,8 @@ let calendarOptions = {
             },
             classNames: ['online-session'],
             @endif
-            start: '{{ $upcomingSession->session_time_start }}',
-            end: '{{ $upcomingSession->session_time_end }}',
+            start: moment.utc('{{$upcomingSession->session_time_start}}').format(),
+            end:  moment.utc('{{$upcomingSession->session_time_end}}').format(),
             description: "",
         },
         @endforeach

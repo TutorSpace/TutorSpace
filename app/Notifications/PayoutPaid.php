@@ -20,7 +20,7 @@ class PayoutPaid extends Notification implements ShouldQueue
      */
     public function __construct($amount)
     {
-        $this->amount = $amount;
+        $this->amount = $amount / 100; // the amount is in cents
     }
 
     /**

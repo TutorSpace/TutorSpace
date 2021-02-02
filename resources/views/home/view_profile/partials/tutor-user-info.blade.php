@@ -11,7 +11,14 @@
     </svg>
     @endcan
 
+    @if (Illuminate\Support\Str::of($user->profile_pic_url)->contains('placeholder'))
+    <div class="user-img placeholder-img" id="profile-image">
+        <span>{{ strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]) }}</span>
+    </div>
+    @else
     <img src="{{ Storage::url($user->profile_pic_url) }}" alt="profile-img" id="profile-image" class="user-img">
+    @endif
+
 
     <h6 class="name">
         {{ $user->first_name }} {{ $user->last_name }}
@@ -80,7 +87,7 @@
     </div>
 
     <section class="section tutor-sessions">
-        <a href="{{ route('view.profile', $user) }}" class="@if(!$displayForumActivities) active @else inactive @endif">Tutor Sessions</a>
+        <a href="{{ route('view.profile', $user) }}" class="@if(!$displayForumActivities) active @else inactive @endif">Tutoring Sessions</a>
         @if(!$displayForumActivities)
         <div class="tutor-sesssions__content">
             <p class="heading">Courses He/She Teaches</p>

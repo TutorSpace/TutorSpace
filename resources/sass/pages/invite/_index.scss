@@ -12,7 +12,7 @@
     }
 
     .invite-content {
-        padding-top: 25rem;
+        padding-top: 23vh;
         display: flex;
         color: $color-white;
         padding-left: 12vw;
@@ -20,19 +20,29 @@
         .content-container {
             max-width: 50vw;
             margin-right: 5rem;
+            margin-top: 0rem;
 
             @include respond(md) {
                 max-width: calc(100vw - 12vw - 30px);
             }
 
             .content {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
                 margin-top: 2rem;
+            }
+
+            .qualification {
+                font-size: 1.6rem;
+                display: flex;
+                align-items: center;
+                svg {
+                    margin-right: 1rem;
+                }
             }
 
             .input-container {
                 font-size: 1.8rem;
-                margin-top: 1rem;
+                margin-top: 1.5rem;
 
                 > * {
                     padding: 1.2rem 2rem;
@@ -61,7 +71,7 @@
         }
 
         .svg-container {
-            transform: translateY(-10rem);
+            transform: translateY(-4rem);
 
             @include respond(md) {
                 display: none;
@@ -77,7 +87,7 @@
 
     &__footer {
         position: absolute;
-        bottom: 12rem;
+        bottom: 8rem;
         left: 50%;
         transform: translateX(-50%);
 

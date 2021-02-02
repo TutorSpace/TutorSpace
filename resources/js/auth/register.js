@@ -213,4 +213,9 @@ $("input[type=file]").change(function() {
 })();
 
 
-
+$('#btn-for-register-agreement').click(function() {
+    if(!$('#register-agreement').is(':checked')) {
+        toastr.error('Please click on the check box to agree our policies before you can go to the next step.');
+        return false;
+    }
+});

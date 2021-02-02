@@ -15,35 +15,41 @@ use App\Subject;
 use App\Bookmark;
 use App\Chatroom;
 use Carbon\Carbon;
+use App\InviteUser;
 use App\TutorLevel;
 use App\Transaction;
 use App\TutorRequest;
-use Facades\App\Post;
 
+use Facades\App\Post;
 use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
 use App\CourseVerification;
 use App\Events\NewChatroom;
+use App\Session as Session;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Session as Session;
 use App\Notifications\PayoutPaid;
+use App\CustomClass\TimeFormatter;
+
 use App\Notifications\InvoicePaid;
 use Illuminate\Support\Facades\DB;
 use App\Events\SessionReviewPosted;
 
 use App\Notifications\PayoutFailed;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
-
 use App\Notifications\EmailVerification;
+use Illuminate\Database\Schema\Blueprint;
 use App\Notifications\InvoicePaymentFailed;
 use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\TutorVerificationNotification;
 use App\Http\Controllers\Payment\StripeApiController;
+
 use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
@@ -55,12 +61,49 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        event(new SessionReviewPosted(Session::find('7baa7861-040e-40c5-8d4b-846b96d79689'), 5));
-
-        // return view('test');
+        // Auth::login(User::find('4e76bc66-f836-464d-8b83-e32e8c76e5c2'));
     }
 
     public function test(Request $request) {
+        $trendingTags = Tag::withCount([
+            'posts'
+        ])
+        ->with([
+            'posts' => function($query) {
+                $query->withCount('replies');
+            }
+        ])
+        ->orderBy('posts_count', 'desc')
+        ->get();
+
+        //Stores the current day
+        $current = Carbon::now();
+        foreach($trendingTags as $trendingTag) {
+            //Stores the number of days since the latest post for a particular tag was created
+            $trendingTag->created_at_score =
+                $trendingTag->posts()
+                ->select('created_at')
+                ->orderBy('created_at', 'DESC')
+                ->first()
+                ->created_at
+                ->diffInDays($current) + 1;
+            //Stores the number of replies for each tag
+            $trendingTag->replies_count =
+                $trendingTag->posts->reduce(
+                    function ($count, $post) {
+                        return $count + $post->replies_count;
+                    }, 0
+                );
+        }
+        echo $trendingTags
+                ->sortByDesc(
+                    function($value, $key) {
+                        /* Since the created_at value is inversely proportional to the ranking i.e the lesser the value of
+                        created_at the more weightage should be applied to the corresponding tag's trend */
+                        return $value["posts_count"] * 2 + $value["replies_count"] * 1.3 / $value['created_at_score'];
+                    })
+                ->take(5);
+
 
         // Auth::user()->tutorHasStripeAccount();
         // echo Auth::user()->firstMajor->id;

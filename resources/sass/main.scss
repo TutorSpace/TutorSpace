@@ -1,11 +1,10 @@
-// For some reason, these two should be used together
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
 @import '~bootstrap/scss/bootstrap';
 @import "~select2/dist/css/select2.min.css";
 @import "~toastr/toastr.scss";
 @import "~pikaday/scss/pikaday.scss";
+@import "~tippy.js/dist/tippy.css";
+@import "~tippy.js/dist/backdrop.css";
+@import "~tippy.js/animations/shift-away.css";
 @import "~bootstrap-slider/dist/css/bootstrap-slider.min.css";
 @import "~metrics-graphics/dist/metricsgraphics.css";
 @import '../../public/fullcalendar/main.scss';
@@ -26,6 +25,7 @@
 @import "components/review";
 @import "components/forum/post_preview";
 @import "components/tag";
+@import "components/report-box";
 @import "components/forum/post_reply";
 @import "components/user_card";
 @import "components/pagination";
@@ -46,6 +46,8 @@
 @import "components/home/notifications--sidebar";
 @import "components/home/tutor-request-modal";
 @import "components/home/bank-card";
+@import "components/tippy";
+
 
 @import "layout/navbar";
 @import "layout/footer";

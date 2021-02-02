@@ -50,6 +50,7 @@ class HomeController extends Controller
 
         return view('home.index', [
             'posts' => $posts,
+            'useBookmarkSidebar' => true,
 
             // always get the past 7 days' forum notifications
             'forumNotifs' => Auth::user()->notifications()
@@ -143,7 +144,7 @@ class HomeController extends Controller
                 'required',
                 'numeric',
                 'min:10',
-                'max:50'
+                'max:' . Auth::user()->tutorLevel->hourly_rate_upper_bound
             ]
         ]);
 

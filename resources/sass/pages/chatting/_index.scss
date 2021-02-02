@@ -7,7 +7,7 @@
         }
 
         .msgs {
-            height: calc(100% - 12.5rem + 12.5rem);
+            height: calc(100% - 2rem - 3rem);
         }
     }
 
@@ -59,11 +59,24 @@
                 .img-container {
                     margin-right: 2rem;
 
-                    img {
+                    .user-img {
                         width: 5rem;
                         height: 5rem;
                         border-radius: 50%;
                         object-fit: cover;
+
+                        &.placeholder-img {
+                            position: relative;
+                            background-color: $color-yellow-primary;
+
+                            span {
+                                @include absCenter;
+                                font-size: 1.4rem;
+                                font-weight: 500;
+                                color: $color-white;
+                                white-space: nowrap;
+                            }
+                        }
                     }
                 }
 
@@ -72,6 +85,7 @@
                     border-radius: 1rem;
                     max-width: 50%;
                     font-size: 1.5rem;
+                    line-break: anywhere;
                 }
 
                 .time-container {

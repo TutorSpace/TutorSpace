@@ -45,7 +45,7 @@ class NewTutorRequest extends Notification implements ShouldQueue
     {
         return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('You just received a New Tutor Request from ' . $this->tutorRequest->student->first_name . '!')
+                ->line('You just received a New Tutor Request from ' . $this->tutorRequest->student->first_name . '! The session is from ' . $this->tutorRequest->session_time_start->setTimezone('America/Los_Angeles') . ' to ' . $this->tutorRequest->session_time_end->setTimezone('America/Los_Angeles') . ' (PST Time Zone)')
                 ->action('Visit TutorSpace', url('/'))
                 ->line('Thank you for using our platform!');
     }

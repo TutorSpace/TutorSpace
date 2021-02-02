@@ -56,13 +56,13 @@ class UnpaidInvoiceReminder extends Notification implements ShouldQueue
 
             return (new MailMessage)
                 ->greeting('Dear ' . $notifiable->first_name)
-                ->line('You have an unpaid tutor session. Please pay your invoice on stripe as soon as possible.')
+                ->line('You have an unpaid tutoring session. Please pay your invoice on stripe as soon as possible.')
                 ->line('Payment URL: ' . $payment_url)
                 ->action('Pay', $payment_url)
                 ->line('Thank you for using our platform!');
         } else {
             return (new MailMessage)
-                ->line('Session (' . $this->session->id . ') has an unpaid tutor session.');
+                ->line('Session (' . $this->session->id . ') has an unpaid tutoring session.');
         }
 
 

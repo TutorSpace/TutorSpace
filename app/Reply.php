@@ -14,6 +14,7 @@ class Reply extends Model
     public $incrementing = false;
     protected $guarded = [];
 
+    protected $dates = ['created_at', 'updated_at'];
     // get all the followups with this reply as their base reply (contain the followups of the followups...)
     public function replies() {
         return $this->hasMany('App\Reply', 'base_reply_id');

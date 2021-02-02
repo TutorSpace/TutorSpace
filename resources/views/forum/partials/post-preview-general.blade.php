@@ -1,7 +1,14 @@
 @forelse ($posts as $post)
 <div class="post-preview @if(Auth::check() && $post->user->id == Auth::user()->id) post-preview--mypost @endif">
-    <p class="post__heading-2">
+    <div class="post__heading-2">
+        @if (Illuminate\Support\Str::of($post->user->profile_pic_url)->contains('placeholder'))
+        <div class="poster-img placeholder-img">
+            <span>{{ strtoupper($post->user->first_name[0]) . ' ' . strtoupper($post->user->last_name[0]) }}</span>
+        </div>
+        @else
         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
+        @endif
+
         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
         <a href="{{ route('view.profile', $post->user->id) }}" class="poster-name mr-2">
             {{ "{$post->user->first_name} {$post->user->last_name}" }}
@@ -13,7 +20,7 @@
         @endif
         <span class="mr-2 fw-900">&middot;</span>
         <span>{{ $post->getTimeAgo() }}</span>
-    </p>
+    </div>
 
     <div class="post-preview__content-container">
         <div class="post-preview__left">

@@ -10,7 +10,12 @@
         </select>
     </div>
 
-    <p class="fc-black-2 mt-5 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
-    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. </p>
+    <p class="fc-black-2 mt-5 fs-1-4"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details, please check our
+        <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
+    </p>
+
+    <p class="fc-black-2 mt-3 fs-1-4"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
+        <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
+    </p>
 
 </div>

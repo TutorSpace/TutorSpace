@@ -1,8 +1,8 @@
 <div class="notification__content__header font-weight-bold">
     @if ($forFollowers)
-    There is a new reply in a post you followed
+    New Reply in a Post You Followed
     @else
-    There is a new reply in your post
+    New Reply in Your Post
     @endif
 </div>
 <div class="notification__content__info">
@@ -37,5 +37,5 @@
         </div>
     </div>
 
-    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspaceusc@gmail.com">tutorspaceusc@gmail.com</a></p> --}}
+    {{-- <p class="fc-grey text-center mt-5 fs-1-6">TutorSpace Team <br /> Email: <a class="color-primary" href="mailto:tutorspacehelp@gmail.com">tutorspacehelp@gmail.com</a></p> --}}
 </div>

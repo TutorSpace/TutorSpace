@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+use App\Notifications\ReportBoxNotification;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\InviteToBeTutorNotification;
 
 class GeneralController extends Controller
@@ -30,9 +32,61 @@ class GeneralController extends Controller
         return view('index');
     }
 
+    public function report(Request $request) {
+        Notification::route('mail', "tutorspacehelp@gmail.com")
+            ->notify(new ReportBoxNotification($request->input('star-rating'), $request->input('report-content')));
+
+        return redirect()->back()->with([
+            'successMsg' => 'We have successfully received your feedback. Thank you letting us know your thoughts!'
+        ]);
+    }
+
     // private policy
     public function showPrivatePolicy() {
-        return view('policy.index');
+        echo ('<h1>Private Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    // TODO: change content
+    // service agreement
+    public function showServiceAgreement() {
+        echo ('<h1>Service Agreement</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showCancellationPolicy() {
+        echo ('<h1>Cancellation Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showTGPPolicy() {
+        echo ('<h1>TGP Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showTutorVerificationPolicy() {
+        echo ('<h1>Tutor Verification Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showRefundPolicy() {
+        echo ('<h1>Refund Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showReferralPolicy() {
+        echo ('<h1>Referral Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showUSCIntegrityPolicy() {
+        echo ('<h1>USC Integrity Policy</h1>');
+        // return view('policy.private-policy');
+    }
+
+    public function showTermsOfUsePolicy() {
+        echo ('<h1>Terms of Use Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     // report forum
@@ -64,8 +118,8 @@ class GeneralController extends Controller
             'profile-pic' => [
                 'required',
                 'file',
-                'mimes:jpeg,bmp,png',
-                'max:2000'
+                'mimes:jpeg,bmp,png,jpg',
+                'max:10000'
             ]
         ]);
 

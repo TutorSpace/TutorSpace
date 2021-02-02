@@ -31,7 +31,9 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
                    $entry->hasMonitoredTag() ||
                    // below are customized code to listen to when in production environment
                    $entry->type == EntryType::LOG ||
-                   $entry->type == EntryType::MAIL;
+                   $entry->type == EntryType::MAIL ||
+                   $entry->type == EntryType::EVENT ||
+                   $entry->type == EntryType::NOTIFICATION;
         });
     }
 
@@ -66,6 +68,9 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
     {
         Gate::define('viewTelescope', function ($user) {
             return in_array($user->email, [
+                'shuaiqin@usc.edu',
+                'lihanzhu@usc.edu',
+                'huan773@usc.edu'
             ]);
         });
     }

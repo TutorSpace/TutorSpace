@@ -96,7 +96,7 @@ class SearchController extends Controller
 
 
         if ($validator->fails()) {
-            $request->session()->flash('filterErrors', $validator->errors()->first());
+            $request->session()->flash('filterErrors', $validator->errors());
 
             return view('search.index');
         }
@@ -118,10 +118,9 @@ class SearchController extends Controller
                     ->where(function ($query) use($request) {
                         $numbers = preg_replace('/[^0-9]/', '', $request->input('nav-search-content'));
                         $letters = preg_replace('/[^a-zA-Z]/', '', $request->input('nav-search-content'));
-                        $courseNumber = $letters . " " . $numbers;
+                        $courseNumber = trim(trim($letters) . " " . trim($numbers));
                         $query
-                            ->where('users.first_name', 'like', "%{$request->input('nav-search-content')}%")
-                            ->orWhere('users.last_name', 'like', "%{$request->input('nav-search-content')}%")
+                            ->whereRaw("CONCAT(`first_name`, ' ', `last_name`) LIKE ?", ['%'. $request->input('nav-search-content') .'%'])
                             ->orWhere('courses.course', 'like', "%{$courseNumber}%");
                     });
 
@@ -153,19 +152,18 @@ class SearchController extends Controller
             });
         }
 
-
-        // TODO: change this part about the available time
         // if the user does not search for any available time, do not consider time
         if($request->input('available-start-date') && $request->input('available-end-date')) {
             if(!in_array('specify-time', $request->input('available-time-range'))) {
                 $availableTimeRange = $request->input('available-time-range');
+
                 if(in_array('anytime', $availableTimeRange) || count($availableTimeRange) == 3) {
-                    $startTimes = ["8:00:00"];
+                    $startTimes = ["00:00:00"];
                     $endTimes = ["23:59:59"];
                 }
                 else if(count($availableTimeRange) == 1) {
                     if(in_array('morning', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["00:00:00"];
                         $endTimes = ["11:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange)) {
@@ -179,11 +177,11 @@ class SearchController extends Controller
                 }
                 else if(count($availableTimeRange) == 2) {
                     if(in_array('morning', $availableTimeRange) && in_array('afternoon', $availableTimeRange)) {
-                        $startTimes = ["8:00:00"];
+                        $startTimes = ["00:00:00"];
                         $endTimes = ["16:59:59"];
                     }
                     else if(in_array('morning', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
-                        $startTimes = ["8:00:00", "17:00:00"];
+                        $startTimes = ["00:00:00", "17:00:00"];
                         $endTimes = ["11:59:59", "23:59:59"];
                     }
                     else if(in_array('afternoon', $availableTimeRange) && in_array('evening', $availableTimeRange)) {
@@ -199,15 +197,23 @@ class SearchController extends Controller
                 $endTimes = [date("H:i:s", strtotime($request->input('available-end-time')))];
             }
 
+            $tz = $request->input('search-timezone');
+
             $numDays = Carbon::parse($request->input('available-start-date') . " " . $startTimes[0])->diffInDays(Carbon::parse($request->input('available-end-date') . " " . $endTimes[0]));
 
             $times = collect([]);
             for($i = 0; $i <= $numDays; $i++) {
                 for($j = 0; $j < count($startTimes); $j++) {
-                    $times->push([
-                        Carbon::parse($request->input('available-start-date') . " " . $startTimes[$j])->addDays($i)->format('Y-m-d H:i:s'),
-                        Carbon::parse($request->input('available-start-date') . " " . $endTimes[$j])->addDays($i)->format('Y-m-d H:i:s')
-                    ]);
+
+                    $convertedStartTime = Carbon::parse($request->input('available-start-date') . " " . $startTimes[$j])->addDays($i)->format('Y-m-d H:i:s');
+                    $convertedStartTime = Carbon::createFromFormat('Y-m-d H:i:s', $convertedStartTime, $tz);
+                    $convertedStartTime->setTimeZone('UTC');
+
+                    $convertedEndTime = Carbon::parse($request->input('available-start-date') . " " . $endTimes[$j])->addDays($i)->format('Y-m-d H:i:s');
+                    $convertedEndTime = Carbon::createFromFormat('Y-m-d H:i:s', $convertedEndTime, $tz);
+                    $convertedEndTime->setTimeZone('UTC');
+
+                    $times->push([$convertedStartTime, $convertedEndTime]);
                 }
             }
 

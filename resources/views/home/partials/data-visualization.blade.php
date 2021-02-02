@@ -1,4 +1,7 @@
 <script>
+    @php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    @endphp
     function drawGraph() {
         let height = 350;
 
@@ -9,11 +12,10 @@
         scatterGraphLayout.height = height;
         Plotly.newPlot('scatter-chart', scatterData, scatterGraphLayout, options);
     }
-
     var postViewCntData = {
         x: [
             @foreach(App\Post::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
@@ -30,7 +32,7 @@
     var profileViewCntData = {
         x: [
             @foreach(App\User::getViewCntWeek(Auth::id()) as $view)
-            "{{ $view->viewed_at }}",
+            "{{ $view->viewed_at->setTimeZone($tz) }}",
             @endforeach
         ],
         y: [
@@ -99,26 +101,27 @@
     const fourStar = {{Auth::user()->getStarReviewCounts(4)}};
     const fiveStar = {{Auth::user()->getStarReviewCounts(5)}};
 
-    var data = [oneStar,twoStar,threeStar,fourStar,fiveStar];
+    var data = [fiveStar, fourStar, threeStar, twoStar, oneStar];
     var backgroundColor = [
-                '#6749DF',
-                '#8B73EB',
-                '#A28FF0',
-                '#BDB0F1',
-                '#D9D2F4',
-            ];
+        '#6749DF',
+        '#8B73EB',
+        '#A28FF0',
+        '#BDB0F1',
+        '#D9D2F4',
+    ];
+
     var labels =  [
-        'One-Star',
-        'Two-Star',
-        'Three-Star',
-        'Four-Star',
         'Five-Star',
+        'Four-Star',
+        'Three-Star',
+        'Two-Star',
+        'One-Star',
     ];
 
     var legendPosition = "right";
     if (!oneStar && !twoStar && !threeStar && !fiveStar && !fourStar){
         data = [1];
-        backgroundColor = ['#c2c0b8'];
+        backgroundColor = ['#D9D2F4'];
         labels = ["No Available Ratings"];
         legendPosition = "bottom";
     }
@@ -152,7 +155,7 @@
             },
             title: {
                 display: true,
-                text: 'Tutor Session Ratings',
+                text: 'Tutoring Session Ratings',
                 fontFamily: "Avenir, sans-serif",
                 fontSize: 16,
                 fontStyle: 200,

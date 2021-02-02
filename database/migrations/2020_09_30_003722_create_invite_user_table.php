@@ -17,9 +17,9 @@ class CreateInviteUserTable extends Migration
             $table->uuid('user_id');
             $table->string('invited_user_email');
             $table->primary(array('user_id', 'invited_user_email'));
-            $table->string('invite_code');
-            $table->timestamps();
+            $table->string('invite_code')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

@@ -35,7 +35,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </svg>
                     <select class="custom-select register-select2" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
-                        @for ($i = 10; $i <= 50; $i += 1)
+                        @for ($i = 10; $i <= App\TutorLevel::where('tutor_level', 'Beginner')->first()->hourly_rate_upper_bound; $i += 1)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>
@@ -80,10 +80,17 @@ bg-grey-light body-signup select2-bg-tutor
                 * You NEED to choose at least one course.
             </p>
 
+            <p class="d-flex align-items-center">
+                <input type="checkbox" id="register-agreement" name="agreement">
+                <label for="register-agreement" class="mt-3 ml-3 fs-1-6 font-italic fw-500 fc-black-2">
+                    By checking this box, I agree to TutorSpace's <a href="{{route('cancellation-policy.show')}}" class="fc-purple-primary" target="_blank">Cancellation Policy</a>, <a href="{{route('refund-policy.show')}}" class="fc-purple-primary" target="_blank">Refund Policy</a>, and <a href="{{route('usc-integrity-policy.show')}}" class="fc-purple-primary" target="_blank">USC Integrity Policy</a>.
+                </label>
+            </p>
+
             <div class="signup-container-bottom mt-5 p-relative">
                 <button class="btn btn-link btn-link-tutor select-clear" id="btn-skip" type="button">Clear</button>
                 {{-- btn-next --}}
-                <button class="btn btn-next bg-grey ml-auto">
+                <button class="btn btn-next bg-grey ml-auto" id="btn-for-register-agreement">
                     <svg class="btn-next__arrow" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink">
                         <rect width="37" height="37" fill="url(#pattern0)" />

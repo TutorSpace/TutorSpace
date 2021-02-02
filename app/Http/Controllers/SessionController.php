@@ -85,7 +85,7 @@ class SessionController extends Controller
 
         return response()->json(
             [
-                'successMsg' => 'Successfully cancelled the tutor session!'
+                'successMsg' => 'Successfully cancelled the tutoring session!'
             ]
         );
     }
@@ -94,15 +94,14 @@ class SessionController extends Controller
         if($session->student->id != Auth::id() && $session->tutor->id != Auth::id()) {
             return abort(403);
         }
-
+        $tz = TimeFormatter::getTZ();
         return response()->json([
             'view' => view('session.view-session-overview', [
+                'tz' => $tz,
                 'session' => $session
             ])->render(),
-            // need to ensure the time is between 8 - 24
-            'minTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_start, -2),
-            'maxTime' => TimeFormatter::getTimeForCalendarWithHours($session->session_time_end, 2),
-            'date' => $session->session_time_start->format('Y-m-d')
+            'time' => $session->session_time_start->setTimeZone($tz)->format('H:i:s'),
+            'date' => $session->session_time_start->setTimeZone($tz)->format('Y-m-d')
         ]);
     }
 
@@ -130,7 +129,7 @@ class SessionController extends Controller
         $review->save();
 
         // TUTOR EXPERIENCE += 5 * RATING
-        event(new SessionReviewPosted($session, $request->input('review')));
+        event(new SessionReviewPosted($session, (int)($request->input('review'))));
 
         return response()->json([
             'successMsg' => 'Successfully posted the review!'
@@ -139,7 +138,7 @@ class SessionController extends Controller
 
     public function scheduleSession(Request $request) {
         // 1. the upcoming session time validation (must be at least 2 hours after current time, same day, end time must be after start time, and no conflicting sessions with both the student and tutor's upcoming sessions)
-        // 3. should not schedule tutor session with oneself (using email, not id)
+        // 3. should not schedule tutoring session with oneself (using email, not id)
         // 4. course must be taught by tutor
         // 5. current user must be a student and the requested user must be a tutor
 
@@ -151,8 +150,13 @@ class SessionController extends Controller
             return abort(401);
         }
 
+        // important: the input time must all be in utc timezone
+
         // rule 1, 2, 3
         $validStartTime = Carbon::now()->addMinutes(120);
+        // duration cannot be greater than 8 hours
+        $validEndTime = Carbon::parse($request->input('startTime'))->addHours(8);
+
         $validator = Validator::make($request->all(), [
             'tutorId' => [
                 'required',
@@ -163,13 +167,13 @@ class SessionController extends Controller
                 'required',
                 'date',
                 'after_or_equal:'.$validStartTime,
-                new SameDay($request['endTime']),
                 new SessionOverlap($request['tutorId'], Auth::user()->id, $request['startTime'], $request['endTime']),
             ],
             'endTime' => [
                 'required',
                 'date',
                 'after:startTime',
+                'before_or_equal:'. $validEndTime,
             ],
             'course' => [
                 'required',
@@ -180,7 +184,8 @@ class SessionController extends Controller
                 'in:in-person,online'
             ],
         ],[
-            'startTime.after_or_equal' => "Tutor session must be scheduled 2 hours ahead of start time. (after " . $validStartTime . ")"
+            'startTime.after_or_equal' => "Tutoring session must be scheduled 2 hours ahead of start time.",
+            'endTime.before_or_equal' => "Tutoring session duration cannot be greater than 8 hours."
         ]);
 
         // return validation error messages
@@ -222,18 +227,16 @@ class SessionController extends Controller
 
             return response()->json(
                 [
-                    'successMsg' => 'Successfully scheduled the tutor session!',
+                    'successMsg' => 'Successfully requested the tutoring session!',
                 ]
             );
         } else{
             // no cards => redirect to add payment page AND tell the user that they need to set up the payment method before making a tutor request
             return response()->json(
                 [
-                    'redirectMsg' => route('home.profile'),
+                    'redirectMsg' => route('home.profile') .'?payment-section-redirect=true',
                 ]
             );
         }
     }
-
-
 }

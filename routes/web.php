@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 // for testing
 Route::get('/test', 'testController@index');
 
+Route::post('/report', 'GeneralController@report')->name('report');
+
 // autocomplete
 Route::group([
     'prefix' => 'autocomplete',
@@ -36,10 +38,11 @@ Route::group([
     Route::get('/', 'InviteController@index')->name('invite.index');
     Route::post('/{user}', 'InviteController@inviteToBeTutor')->middleware('auth')->name('invite-to-be-tutor');
     Route::post('/', 'InviteController@inviteToBeTutorWithEmail')->middleware('auth')->name('invite-to-be-tutor--email');
+    Route::get('/{inviteUser}', 'InviteController@attemptClaimBonus')->name('invite-to-be-tutor.attempt-claim-bonus');
 });
 
 // upload photo
-Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware('auth')->name('upload-profile-pic');
+Route::post('/upload-profile-pic', 'GeneralController@uploadProfilePic')->middleware(['auth', 'optimizeImages'])->name('upload-profile-pic');
 
 // calendar
 Route::group([
@@ -63,8 +66,20 @@ Route::group([
 // recommended tutors
 Route::get('/recommended-tutors', 'GeneralController@getRecommendedTutors')->middleware('auth')->name('recommended-tutors');
 
-// private policy
-Route::get('/policy', 'GeneralController@showPrivatePolicy')->name('policy.show');
+// policy
+Route::group([
+    'prefix' => 'policy'
+], function() {
+    Route::get('/private-policy', 'GeneralController@showPrivatePolicy')->name('private-policy.show');
+    Route::get('/cancellation-policy', 'GeneralController@showCancellationPolicy')->name('cancellation-policy.show');
+    Route::get('/tgp-policy', 'GeneralController@showTGPPolicy')->name('tgp-policy.show');
+    Route::get('/tutor-verification-policy', 'GeneralController@showTutorVerificationPolicy')->name('tutor-verification-policy.show');
+    Route::get('/refund-policy', 'GeneralController@showRefundPolicy')->name('refund-policy.show');
+    Route::get('/referral-policy', 'GeneralController@showReferralPolicy')->name('referral-policy.show');
+    Route::get('/usc-integrity-policy', 'GeneralController@showUSCIntegrityPolicy')->name('usc-integrity-policy.show');
+    Route::get('/terms-of-use-policy', 'GeneralController@showTermsOfUsePolicy')->name('terms-of-use.show');
+    Route::get('/service-agreement', 'GeneralController@showServiceAgreement')->name('service-agreement.show');
+});
 
 // ============================  auth  ========================
 Route::group([
@@ -104,7 +119,7 @@ Route::group([
     Route::get('/register/tutor/4', 'Auth\RegisterController@indexTutor4')->name('register.index.tutor.4');
     Route::post('/register/tutor/4', 'Auth\RegisterController@storeTutor4')->name('register.store.tutor.4');
     Route::get('/register/tutor/5', 'Auth\RegisterController@indexTutor5')->name('register.index.tutor.5');
-    Route::post('/register/tutor/5', 'Auth\RegisterController@storeTutor5')->name('register.store.tutor.5');
+    Route::post('/register/tutor/5', 'Auth\RegisterController@storeTutor5')->middleware('optimizeImages')->name('register.store.tutor.5');
 
     // =============== login student ===============
     Route::get('/login/student', 'Auth\LoginController@indexStudent')->name('login.index.student');
@@ -176,7 +191,7 @@ Route::group([
     'prefix' => 'view-profile',
 ], function() {
     // optional parameter orderByOption
-    Route::get('/{user}/{orderByOption?}', 'ViewProfileController@index')->name('view.profile');
+    Route::get('/{user}', 'ViewProfileController@index')->name('view.profile');
 });
 
 // chatting
@@ -225,7 +240,7 @@ Route::group([
 });
 
 // tutor verification
-Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware('isTutor');
+Route::post('/tutor-verification', 'TutorProfileVerificationController@sendVerificationEmails')->name('tutor-profile-verification')->middleware(['isTutor', 'optimizeImages']);
 
 // admin routes
 Route::group([
@@ -237,6 +252,8 @@ Route::group([
     Route::post('/send-tutor-verification-completed/{user}', 'AdminController@sendTutorVerificationCompleted')->name('admin.tutor-verification.completed');
     Route::get('/extra-bonus', 'AdminController@extraBonusIndex')->name('admin.extra-bonus.index');
     Route::post('/extra-bonus/{transaction}', 'AdminController@extraBonusSent')->name('admin.extra-bonus-sent');
+    Route::get('/referral-bonus', 'AdminController@referralBonusIndex')->name('admin.referral-bonus.index');
+    Route::post('/referral-bonus/{referralClaimedUser}', 'AdminController@referralBonusSent')->name('admin.referral-bonus-sent');
 });
 
 // sessions

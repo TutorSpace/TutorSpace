@@ -63,6 +63,9 @@
                     <a class="nav__item" href="{{ route('admin.extra-bonus.index') }}">
                         Extra Bonus
                     </a>
+                    <a class="nav__item" href="{{ route('admin.referral-bonus.index') }}">
+                        Referral Bonus
+                    </a>
                 </div>
                 @endif
             </div>
@@ -141,7 +144,7 @@
             @auth
                 @if(session()->has('showWelcome')
                 && Route::current()->getName() != 'home')
-                <span class="message-welcome">
+                <span class="message-welcome message-welcome--animated">
                     Hello, {{ Auth::user()->first_name }}!
                 </span>
                 @endif
@@ -167,7 +170,14 @@
                 </div>
 
                 <div class="profile-img-container">
+                    @if (Illuminate\Support\Str::of(Auth::user()->profile_pic_url)->contains('placeholder'))
+                    <div class="nav-right__profile-img placeholder-img">
+                        <span>{{ strtoupper(Auth::user()->first_name[0]) . ' ' . strtoupper(Auth::user()->last_name[0]) }}</span>
+                    </div>
+                    @else
                     <img src="{{ Storage::url(Auth::user()->profile_pic_url) }}" alt="profile img" class="nav-right__profile-img">
+                    @endif
+
                     @if(
                     (Auth::user()->is_tutor && Auth::user()->tutor_verification_status == "unsubmitted")
                     || (Auth::user()->is_tutor && !Auth::user()->tutorHasStripeAccount())

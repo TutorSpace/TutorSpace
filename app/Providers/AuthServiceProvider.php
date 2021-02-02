@@ -36,6 +36,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // todo: check this overlap
         Gate::define('add-available-time', function ($user, $startTime, $endTime) {
             $isAvailable = true;
             foreach($user->availableTimes as $availableTime) {
@@ -48,7 +49,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         // must be at least 1 hour prior to the session start time
-        // must not conflicts with any tutor sessions
+        // must not conflicts with any tutoring sessions
         // must have already set up the payment method
         // must be in pending status
         // must be the tutor of this tutor request
@@ -58,9 +59,9 @@ class AuthServiceProvider extends ServiceProvider
             } else if($tutorRequest->status != 'pending') {
                 return Response::deny('You are not authorized to accept this tutor request.');
             } else if($tutorRequest->session_time_start <= Carbon::now()->addMinutes(60)) {
-                return Response::deny('You can only accept tutor requests that are at least two hours before the current time.');
+                return Response::deny('You can only accept tutor requests that are at least one hour before the current time.');
             } else if(!Auth::user()->tutorHasStripeAccount()) {
-                return Response::deny('You must first set up your payment method in the profile page before accepting any tutor request.');
+                return Response::deny('Payment Missing');
             } else {
                 $isAvailable = true;
                 foreach($user->upcomingSessions as $session) {

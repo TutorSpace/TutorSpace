@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use App\CustomClass\TimeFormatter;
 
 class Post extends Model
 {
@@ -61,6 +62,11 @@ class Post extends Model
 
     public function getTime() {
         return $this->created_at->format('M d Y');
+    }
+
+    // return time in local (user's local time)
+    public function getTimeInTimeZone($timeZone) {
+        return $this->created_at->setTimeZone($timeZone)->format('M d Y');
     }
 
     // get all the direct replies for the post
@@ -138,6 +144,9 @@ class Post extends Model
     }
 
     public static function getViewCntWeek($userId) {
+        $beginDate = Carbon::now()->subDays(7 - 1)->format('Y-m-d');
+        $endDate = Carbon::now()->format('Y-m-d');
+
         return View::select([
                         'views.viewed_at',
                         DB::raw('COUNT("views.viewed_at") as view_count')
@@ -147,8 +156,8 @@ class Post extends Model
                     ->where('views.viewable_type', 'App\Post')
                     ->whereBetween('views.viewed_at', [
                         // a week is 7 -1 + 1 days including today
-                        Carbon::now()->subDays(7 - 1)->format('Y-m-d'),
-                        Carbon::now()->format('Y-m-d')
+                        $beginDate,
+                        $endDate
                     ])
                     ->groupBy('views.viewed_at')
                     ->orderBy('views.viewed_at')

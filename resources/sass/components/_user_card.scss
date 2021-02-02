@@ -19,7 +19,19 @@
         height: 8.5rem;
         border-radius: 50%;
         object-fit: cover;
-        // border: 1px solid transparentize($color: $color-grey, $amount: .5);
+
+        &.placeholder-img {
+            position: relative;
+            background-color: $color-yellow-primary;
+
+            span {
+                @include absCenter;
+                font-size: 2rem;
+                font-weight: 500;
+                color: $color-white;
+                white-space: nowrap;
+            }
+        }
     }
 
     .svg-bookmark {

@@ -170,7 +170,8 @@
         }
 
         .time {
-            width: 12ch;
+            overflow:visible;
+            width: 18ch;
         }
 
         .course, .status {
@@ -178,7 +179,7 @@
         }
 
         .session-type {
-            width: 8ch;
+            width: 10ch;
         }
 
         .price {
@@ -323,7 +324,7 @@
             background-color: transparent;
             box-shadow: none;
 
-            font-weight: 800;
+            font-weight: 700;
             font-size: 1.4rem;
 
             * {

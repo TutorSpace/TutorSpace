@@ -9,9 +9,9 @@
         <path d="M24.1667 31.6667H5.83333C5.37333 31.6667 5 31.2933 5 30.8333C5 30.3733 5.37333 30 5.83333 30H24.1667C24.6267 30 25 30.3733 25 30.8333C25 31.2933 24.6267 31.6667 24.1667 31.6667Z" fill="#1F7AFF"/>
     </svg>
 
-    <h6 class="w-100 text-center mb-5">Book your Tutor Session</h6>
+    <h6 class="w-100 text-center mb-5">Book your Tutoring Session</h6>
 
-    <p class="font-weight-bold">Price Summary</p>
+    <p class="font-weight-bold">Order Summary</p>
     <p class="mt-3 fc-black-2 d-flex flex-row justify-content-between">
         Session Fee (per hour)
         <span class="fc-theme-color">&nbsp;&nbsp;$
@@ -38,10 +38,20 @@
         </span>
     </p>
 
-    <p class="fc-black-2 mt-4"><span class="font-weight-bold">How to make your payment: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">How to make your payment: </span>Please set up a payment method in profile settings. We will charge automatically once the session ends. </p>
 
-    <p class="fc-black-2 mt-4"><span class="font-weight-bold">Cancellation Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details, please check our
+        <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
+    </p>
 
-    <p class="fc-black-2 mt-4"><span class="font-weight-bold">Refund Policy: </span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+    <p class="fc-black-2 mt-4"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
+        <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
+    </p>
 
+    <p class="d-flex align-items-center">
+        <input type="checkbox" id="book-session-agreement" name="agreement">
+        <label for="book-session-agreement" class="my-3 ml-2 fs-1-6 font-italic fw-500">
+            By checking this box, I agree to TutorSpace's <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>, <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>, and <a href="{{route('usc-integrity-policy.show')}}" class="color-primary" target="_blank">USC Integrity Policy</a>.
+        </label>
+    </p>
 </div>

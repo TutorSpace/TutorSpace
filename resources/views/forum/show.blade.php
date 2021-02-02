@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Forum')
@@ -21,6 +25,7 @@ bg-student
 @include ('forum.partials.forum-helper-btn')
 
 @include('forum.partials.report-modal')
+
 @include('forum.partials.delete-post-modal')
 
 <div class="container forum">
@@ -46,9 +51,15 @@ bg-student
                     <h4 class="post__heading fc-black-post-2">
                         {{ $post->title }}
                     </h4>
-                    <p class="post__heading-2 mb-4 mt-3">
+                    <div class="post__heading-2 mb-4 mt-3">
                         <span class="mr-3 fc-black-post">Posted By</span>
+                        @if (Illuminate\Support\Str::of($post->user->profile_pic_url)->contains('placeholder'))
+                        <div class="poster-img placeholder-img">
+                            <span>{{ strtoupper($post->user->first_name[0]) . ' ' . strtoupper($post->user->last_name[0]) }}</span>
+                        </div>
+                        @else
                         <img src="{{ Storage::url($post->user->profile_pic_url) }}" alt="user photo" class="poster-img">
+                        @endif
                         @if (!Auth::check() || (Auth::check() && $post->user->id != Auth::user()->id))
                         <a href="{{ route('view.profile', $post->user) }}" class="poster-name mr-4">
                             {{ "{$post->user->first_name} {$post->user->last_name}" }}
@@ -58,14 +69,14 @@ bg-student
                             Me
                         </span>
                         @endif
-                        <span class="mr-4">{{ $post->getTime() }}</span>
+                        <span class="mr-4">{{ $post->getTimeInTimeZone($tz) }}</span>
                         <svg class="mr-6px mb-1px">
                             <use xlink:href="{{asset('assets/sprite.svg#icon-eye')}}"></use>
                         </svg>
                         <span>
                             {{ App\CustomClass\NumberFormatter::thousandsFormat($post->view_count) }}
                         </span>
-                    </p>
+                    </div>
                     <div class="post__content fs-1-6 mb-3">
                         {!! $post->content !!}
                     </div>
@@ -204,7 +215,7 @@ bg-student
                                 {{ $reply->reply_content }}
                             </div>
                             <div class="post-reply__actions" data-reply-id="{{ $reply->id }}">
-                                <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at }}</span>
+                                <span class="mr-auto fs-1-2 fc-grey">{{ $reply->created_at->setTimeZone($tz) }}</span>
                                 @if ($reply->replies_count > 0)
                                     <button class="btn btn-link btn-toggle-follow-up" type="button">
                                         <span class="keyword">Display</span>
@@ -261,12 +272,14 @@ bg-student
                                 <a class="followup-to" href="{{ route('view.profile', $followup->reply->user) }}">
                                     {{ '@' . $followup->reply->user->first_name }}
                                 </a>
+                                @else
+                                <span class="followup-to color-primary">@Me</span>
                                 @endif
                                 {{ $followup->reply_content }}
                             </div>
                             <div class="followup__info" data-reply-id="{{ $followup->id }}">
                                 <div class="followup__info__left">
-                                    <span class="mr-1">{{ $followup->created_at }}</span>
+                                    <span class="mr-1">{{ $followup->created_at->setTimeZone($tz) }}</span>
                                     <span class="mr-1">by</span>
                                     @if (!Auth::check() || Auth::user()->id != $followup->user->id)
                                     <a href="{{ route('view.profile', $followup->user) }}" class="followup__user">

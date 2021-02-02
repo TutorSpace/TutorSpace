@@ -7,7 +7,6 @@
             @if($notif->type == 'App\Notifications\Forum\MarkedAsBestReplyNotification')
             Your reply to <span class="font-weight-bold font-italic">{{ $notif }}</span> has been marked as best reply.
             @endif
-            <span class="info-box__time-stamp">xxx days ago</span>
         </div>
         <div class="action">
             <button class="btn btn-lg btn-animation-y-sm btn-view">View</button>

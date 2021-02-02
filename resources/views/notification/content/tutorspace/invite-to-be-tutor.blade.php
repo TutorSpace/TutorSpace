@@ -1,11 +1,17 @@
 <div class="notification__content__header font-weight-bold">
-    {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor
+    {{ $user->first_name . ' ' . $user->last_name}} Invited You to Be a Tutor
 </div>
 <div class="notification__content__info">
 
     <div class="notification__content__info__wrapper">
         <div class="notification__content__info__header bg-primary">
+            @if (Illuminate\Support\Str::of($user->profile_pic_url)->contains('placeholder'))
+            <div class="user-image placeholder-img">
+                <span>{{ strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]) }}</span>
+            </div>
+            @else
             <img src="{{ Storage::url($user->profile_pic_url) }}" alt="user photo" class="user-image">
+            @endif
         </div>
 
         <div class="container content">
@@ -18,10 +24,6 @@
                 dolorum optio. Adipisci soluta doloremque, omnis magnam amet velit sed ducimus nobis dolores! Tempora,
                 sequi! Molestiae?
             </p>
-
-            <h6 class="color-primary fw-500">
-                Your Referral Code is {{ $inviteCode }}
-            </h6>
 
             <div class="display-cards">
                 <div class="display-card">
@@ -78,14 +80,14 @@
                     <div class="display-card__content-container">
                         <h6 class="color-primary">Teaching can be rewarding!</h6>
                         <p class="display-card__content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat facilis debitis necessitatibus quidem ea repellendus vero, dolores minus temporibus. Aut quas consectetur id ipsam delectus fugit tempore facilis, tempora debitis?
+                            At TutorSpace, tutors will not only receive compensation from regular tutoring session fees paid by their students, but they can also earn extra cash bonuses and experience points by actively engaging in Tutor Growth Plan and Tutor Verification programs. An industry-low 10% service fee will be charged, which is purely used to cover the basic online transaction and maintenance cost.
                         </p>
                     </div>
                 </div>
             </div>
 
             <div class="button-container">
-                <button class="btn btn-primary">Create a Tutor Account</button>
+                <a class="btn btn-primary" href="{{ route('invite-to-be-tutor.attempt-claim-bonus', $inviteCode) }}">Create a Tutor Account</a>
             </div>
         </div>
     </div>

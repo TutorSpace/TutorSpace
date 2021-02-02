@@ -18,11 +18,12 @@ $("#input-profile-pic").change(function() {
         processData: false,
         success: (data) => {
             toastr.success('Successfully uploaded the image!');
-            $('#profile-image').attr('src', storageUrl + data.imgUrl);
-            $('.nav-right__profile-img').attr('src', storageUrl + data.imgUrl);
+            setTimeout(function() {
+                window.location.reload();
+            }, 1000);
         },
         error: function(error) {
-            toastr.error('The file you uploaded is either too large (should be smaller than 2MB) or not supported by our platform. Please try uploading another image again.');
+            toastr.error('The file you uploaded is either too large (should be smaller than 10MB) or not supported by our platform. Please try uploading another image again.');
             console.log(error);
         },
         complete: () => {
@@ -34,12 +35,11 @@ $("#input-profile-pic").change(function() {
 
 // calendar
 window.showAvailableTimeForm = (startTime, endTime) => {
-    $('#availableTimeConfirmationModal input[name="start-time"]').val(moment(startTime).format("YYYY-MM-DD HH:mm:00"));
-    $('#availableTimeConfirmationModal input[name="end-time"]').val(moment(endTime).format("YYYY-MM-DD HH:mm:00"));
+    $('#availableTimeConfirmationModal input[name="start-time"]').val(moment.utc(startTime).format());
+    $('#availableTimeConfirmationModal input[name="end-time"]').val(moment.utc(endTime).format());
 
     startTime = moment(startTime).format("HH:mm on MM/DD/YYYY dddd");
     endTime = moment(endTime).format("HH:mm on MM/DD/YYYY dddd");
-
 
     $('#availableTimeConfirmationModal .start-time').html(startTime);
     $('#availableTimeConfirmationModal .end-time').html(endTime);
@@ -79,9 +79,6 @@ $('.btn-view-request').click(function() {
 
     let options = JSON.parse(JSON.stringify(calendarPopUpOptions));
 
-    options.slotMinTime = $(this).closest('.info-box').attr('data-min-time');
-    options.slotMaxTime = $(this).closest('.info-box').attr('data-max-time');
-
     let sessionTimeStart = $(this).closest('.info-box').attr('data-session-time-start');
     let sessionTimeEnd = $(this).closest('.info-box').attr('data-session-time-end');
 
@@ -97,14 +94,14 @@ $('.btn-view-request').click(function() {
     options.height = 250;
 
     options.displayEventTime = false;
+    options.scrollTime = $(this).closest('.info-box').attr('data-goto-time');
 
     // for the calendar in tutor request
     let calendarElPopUp = $('.tutor-request-modal__content__calendar .calendar')[0];
 
     calendarPopUp = new FullCalendar.Calendar(calendarElPopUp, options);
-
     calendarPopUp.render();
-    calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-date'));
+    calendarPopUp.gotoDate($(this).closest('.info-box').attr('data-goto-date'));
 })
 
 $('.tutor-request-modal__close').click(function() {
@@ -123,7 +120,7 @@ $('.btn-view-all-notifications').click(function() {
     }
 });
 
-$('.btn-view-all-bookmarked-users').click(function() {
+$(document).on('click', '.btn-view-all-bookmarked-users', function() {
     $('.home__side-bar__bookmarked-users').find('.bookmarked-users [data-to-hide="true"]').toggleClass("hidden");
     if($(this).html().includes('View')) {
         $(this).html('Hide')
@@ -149,7 +146,19 @@ $('#btn-confirm-tutor-session').click(function() {
                     window.location.reload();
                 }, 1000);
             }
-            else if(errorMsg) toastr.error(errorMsg);
+            else if(errorMsg) {
+                console.log("here");
+                if (errorMsg == "Payment Missing"){
+                    toastr.error("You must first set up your payment method in the profile page before accepting any tutor request.");
+                    setTimeout(function() {
+                        window.location.href = redirectMissingPaymentUrl;
+                    }, 1000);
+                }else{
+                    toastr.error(errorMsg);
+                }
+
+                // redirect to payment: todo: nate
+            }
         },
         error: (error) => {
             console.log(error);

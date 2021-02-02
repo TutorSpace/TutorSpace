@@ -20,6 +20,15 @@
         z-index: 101 !important;
     }
 
+    .tutor-request--view-profile {
+        width: 100%;
+        background-color: rgba(#A5BE0D, 1) !important;
+        border-color: rgba(#A5BE0D, 1) !important;
+        color: $color-white-dark-5 !important;
+        opacity: .8;
+        z-index: 101 !important;
+    }
+
     .online-session {
         width: 100%;
         background-color: $color-calendar-online !important;
@@ -146,6 +155,7 @@
     margin-right: 0;
     margin-left: 0;
 }
+
 
 
 // change background color of today

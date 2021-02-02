@@ -42,8 +42,8 @@ class SessionOverlap implements Rule
         // return true if count == 0, else false
         // if (StartA <= EndB)  and  (EndA >= StartB), then overlap exists
         // https://stackoverflow.com/questions/325933/determine-whether-two-date-ranges-overlap
-        return Session::where('session_time_start', '<=',$this->endTime)
-            ->where('session_time_end','>=', $this->startTime)
+        return Session::where('session_time_start', '<',$this->endTime)
+            ->where('session_time_end','>', $this->startTime)
             // either student or tutor
             ->where(function ($query) {
                 $query->where('tutor_id', '=', $this->tutorId)

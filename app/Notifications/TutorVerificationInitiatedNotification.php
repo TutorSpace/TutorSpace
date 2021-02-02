@@ -57,9 +57,8 @@ class TutorVerificationInitiatedNotification extends Notification implements Sho
         }
         else{
             $url = Storage::url($this->fileUrl);
-            $user = Auth::user();
             return (new MailMessage)
-                    ->line("User ".$user->first_name." ".$user->last_name." requested a tutor verification.")
+                    ->line('A user requested a tutor verification.')
                     ->line($url)
                     ->action('Verify', url('/'))
                     ->line('Thank you for using our application!');

@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+    $diffInDays = $session->session_time_end->setTimeZone($tz)->diff($session->session_time_start->setTimeZone($tz))->days;
+@endphp
 <div>
     <div class="info-box" data-session-id="{{ $session->id }}">
         <div class="user-info">
@@ -17,16 +21,19 @@
         <div class="date">
             <span class="title">Date</span>
             <span class="content">
-                {{ date("m/d", strtotime($session->session_time_start)) }}<span class="info-box__year">{{ date("/y", strtotime($session->session_time_start)) }}</span>
-                {{ date("D", strtotime($session->session_time_start)) }}
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('m/d') }}<span class="info-box__year">{{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('/y') }}</span>
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('D') }}
             </span>
         </div>
         <div class="time">
-            <span class="title">Time</span>
+            <span class="title">Time ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }} Time)</span>
             <span class="content">
-                {{ date("H:i", strtotime($session->session_time_start)) }}
+                {{ Carbon\Carbon::parse($session->session_time_start)->setTimeZone($tz)->format('H:i') }}
                 -
-                {{ date("H:i", strtotime($session->session_time_end)) }}
+                {{ Carbon\Carbon::parse($session->session_time_end)->setTimeZone($tz)->format('H:i') }}
+                @if ($diffInDays != 0)
+                    (+{{$diffInDays}} day)
+                @endif
             </span>
         </div>
         <div class="course">
@@ -42,6 +49,5 @@
             <button class="btn btn-lg btn-animation-y-sm btn-cancel-session">Cancel</button>
             <button class="btn btn-lg btn-animation-y-sm btn-view-session">View</button>
         </div>
-
     </div>
 </div>

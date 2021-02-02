@@ -12,4 +12,8 @@ class InviteUser extends Model
     protected $table = "invite_user";
     protected $primaryKey = ['user_id', 'invited_user_email'];
     public $incrementing = false;
+
+    public function getRouteKeyName() {
+        return 'invite_code';
+    }
 }

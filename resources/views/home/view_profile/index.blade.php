@@ -1,3 +1,7 @@
+@php
+    $tz = App\CustomClass\TimeFormatter::getTZ();
+@endphp
+
 @extends('layouts.app')
 
 @section('title', "$user->first_name's Profile")
@@ -51,7 +55,7 @@ bg-student
             @else
             <div class="calendar-container">
                 <div class="heading">
-                    <span class="fs-1-8 fc-grey">Book a Tutor Session</span>
+                    <span class="fs-1-8 fc-grey">Book a Tutoring Session</span>
                     <span class="hourly-rate">
                         <span class="color-primary fs-2">
                             $ {{ $user->hourly_rate }}</span>
@@ -61,9 +65,9 @@ bg-student
                         </span>
                 </div>
                 <div id="calendar"></div>
-                <div class="calendar-note">
+                <div class="calendar-note mt-3">
                     <span class="available-time">Available Time</span>
-                    <span class="note">Note: All time in the calender are based on PST.</span>
+                    <span class="note">Note: All time shown are based on your <span class="font-weight-bold mr-0">LOCAL</span> Time Zone ({{ App\CustomClass\TimeFormatter::getTZShortHand($tz) }})</span>
                 </div>
             </div>
 
@@ -77,12 +81,12 @@ bg-student
                 <div class="info-boxes">
                     @php
                     $reviews = $user->aboutReviews;
-                    $today = \Carbon\Carbon::today();
+                    $today = \Carbon\Carbon::today($tz);
                     @endphp
                     @foreach($reviews as $review)
                         @include('home.view_profile.partials.review', [
                             'review' => $review,
-                            'dateCreated' => $review->created_at ?? $today
+                            'dateCreated' => $review->created_at->setTimeZone($tz) ?? $today
                     ])
                     @endforeach
                 </div>
@@ -168,6 +172,7 @@ $('#btn-invite, #tutor-profile-request-session, #btn-chat').click(function() {
 @if($request)
 $('#tutor-profile-request-session').click();
 @endif
+
 </script>
 
 @include('partials.nav-auth-js')

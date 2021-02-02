@@ -30,11 +30,13 @@
             font-size: 1.4rem;
 
             &:not(:last-child) {
-                margin-right: 2rem;
+                margin-right: 1.7rem;
             }
 
             svg {
-                margin-right: .75rem;
+                margin-right: .5rem;
+                width: 1.3rem;
+                height: 1.3rem;
             }
         }
     }
@@ -44,6 +46,10 @@
         $padding: 3rem;
         &__header {
 
+        }
+
+        .color-primary {
+            line-height: 1.6;
         }
 
         &__info {
@@ -81,6 +87,18 @@
                     height: 7.5rem;
                     border-radius: 50%;
                 }
+
+                .user-image.placeholder-img {
+                    background-color: $color-yellow-primary;
+
+                    span {
+                        @include absCenter;
+                        font-size: 2rem;
+                        font-weight: 500;
+                        color: $color-white;
+                        white-space: nowrap;
+                    }
+                }
             }
 
             .content {
@@ -112,15 +130,17 @@
                         background-color: #ffffff;
                         padding: 3rem 3rem;
                         display: flex;
+                        flex-wrap: wrap;
                         align-items: center;
                         border-radius: 1rem;
 
                         svg {
-                            width: 35rem;
+                            width: 30%;
                         }
 
                         &__content-container {
                             margin-left: 5rem;
+                            width: calc(70% - 5rem);
 
                             .display-card__content {
                                 font-size: 1.6rem;

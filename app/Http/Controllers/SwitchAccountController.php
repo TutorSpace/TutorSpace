@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\InviteUser;
+use App\TutorLevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +77,7 @@ class SwitchAccountController extends Controller
                 'required',
                 'numeric',
                 'min:10',
-                'max:50'
+                'max:' . Auth::user()->tutorLevel->hourly_rate_upper_bound
             ]
         ]);
 
@@ -110,8 +112,6 @@ class SwitchAccountController extends Controller
         }
 
         return redirect()->back();
-
-
     }
 
 }

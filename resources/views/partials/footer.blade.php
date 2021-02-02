@@ -23,7 +23,7 @@
                 <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
             </li>
             <li class="footer__item">
-                <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>
+                <a href="{{ route('private-policy.show') }}" target="_blank">Private Policy</a>
             </li>
         </ul>
     </div>
@@ -50,11 +50,11 @@
                 <span>CONTACT US</span>
             </li>
             <li class="footer__item">
-                <a href="mailto:tutorspaceusc@gmail.com" class="contact-email">
+                <a href="mailto:tutorspacehelp@gmail.com" class="contact-email">
                     <svg class="footer__list__icon">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                     </svg>
-                    <span>tutorspaceusc@gmail.com</span>
+                    <span>tutorspacehelp@gmail.com</span>
                 </a>
             </li>
         </ul>
@@ -98,7 +98,7 @@
             <a href="{{ route('help-center.index') }}" target="_blank">FAQ</a>
         </li>
         <li class="footer-sm__item">
-            <a href="{{ route('policy.show') }}" target="_blank">Private Policy</a>
+            <a href="{{ route('private-policy.show') }}" target="_blank">Private Policy</a>
         </li>
     </ul>
 
@@ -123,11 +123,11 @@
             <span>CONTACT US</span>
         </li>
         <li class="footer-sm__item">
-            <a href="mailto:tutorspaceusc@gmail.com" class="contact-email">
+            <a href="mailto:tutorspacehelp@gmail.com" class="contact-email">
                 <svg class="footer-sm__list__icon">
                     <use xlink:href="{{asset('assets/sprite.svg#icon-mail')}}"></use>
                 </svg>
-                tutorspaceusc@gmail.com
+                tutorspacehelp@gmail.com
             </a>
         </li>
     </ul>

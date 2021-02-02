@@ -1,3 +1,5 @@
+import tippy, {animateFill} from 'tippy.js';
+
 // ===================== autocomplete ==========================
 window.autocomplete = function(inp, arr, clickCallBackFunc) {
     /*the autocomplete function takes two arguments,
@@ -100,8 +102,6 @@ window.autocomplete = function(inp, arr, clickCallBackFunc) {
     });
 }
 
-
-
 $.ajax({
     type:'GET',
     url: '/autocomplete/data-source',
@@ -121,8 +121,6 @@ $.ajax({
         autocomplete(document.getElementById("gpa"), gpa);
         autocomplete(document.getElementById("course"), courses, profile_add_course);
         autocomplete(document.getElementById("tag"), tags, profile_add_tag);
-
-        // if(hourlyRateInp = document.getElementById("hourly-rate")) autocomplete(hourlyRateInp, hourlyRate, updateHourlyRate);
     }
 });
 
@@ -261,3 +259,57 @@ function ajaxAddRemoveTag(tagInfo) {
         }
     });
 }
+
+
+if(isTutor) {
+    tippy($('#help-user-info')[0], {
+        animateFill: false,
+        plugins: [animateFill],
+        content: 'Add all courses you would like to tutor so that students can know what courses you are adept at. Selected courses must be those you received an A or A- before.',
+        interactive: true,
+        placement: 'right-end',
+        // interactiveDebounce: 75,
+        allowHTML: true,
+        theme: 'help-content',
+        offset: [5, 15],
+        triggerTarget: $('#help-user-info-trigger')[0],
+    });
+
+    tippy($('#help-tutor-verification')[0], {
+        animateFill: false,
+        plugins: [animateFill],
+        content: 'Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course.',
+        interactive: true,
+        placement: 'right-start',
+        // interactiveDebounce: 75,
+        allowHTML: true,
+        theme: 'help-content',
+        // offset: [5, 15],
+        triggerTarget: $('#help-tutor-verification-trigger')[0],
+    });
+} else {
+    tippy($('#help-user-info')[0], {
+        animateFill: false,
+        plugins: [animateFill],
+        content: 'TutorSpace will recommend tutors based on your profile. Please add all courses you are taking in the current semester to help us find the right tutors for you.',
+        interactive: true,
+        placement: 'right-end',
+        // interactiveDebounce: 75,
+        allowHTML: true,
+        theme: 'help-content',
+        offset: [5, 15],
+        triggerTarget: $('#help-user-info-trigger')[0],
+    });
+}
+
+tippy($('#help-forum')[0], {
+    animateFill: false,
+    plugins: [animateFill],
+    content: ' TutorSpace will recommend posts based on your pre-set preferences. Please add all tags, such as courses and subjects you are interested in, to help us find the content you feel useful.',
+    interactive: true,
+    placement: 'right',
+    // interactiveDebounce: 75,
+    allowHTML: true,
+    theme: 'help-content',
+    triggerTarget: $('#help-forum-trigger')[0],
+});

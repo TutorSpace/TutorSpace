@@ -8,5 +8,5 @@
     </svg>
 
     <h4 class="font-weight-bold text-center my-5 fc-black-2">We Received Your Request!</h4>
-    <p class="text-dark text-center mt-5 fc-black-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius tellus ac fringilla enim ac etiam amet. Facilisi amet sit egestas id sit. Ac eget dui non ipsum gravida malesuada imperdiet feugiat in. Vulputate libero non elit luctus ipsum netus eget.</p>
+    <p class="text-dark text-center mt-5 fc-black-2">We will process your request as soon as possible. You will be notified once we are done.</p>
 </div>

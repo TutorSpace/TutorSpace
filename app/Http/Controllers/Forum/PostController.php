@@ -22,10 +22,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Storage;
-
-
 use Illuminate\Support\Facades\Log;
-
 
 class PostController extends Controller
 {
@@ -170,10 +167,14 @@ class PostController extends Controller
             }
         });
 
-
         $postDraft = PostDraft::where('user_id', Auth::user()->id)->first();
         if($postDraft) {
             $postDraft->delete();
+        }
+
+        if(PostType::where('id', $request['post-type'])->first()->post_type == 'Class Review' && str_word_count($request->input('post-content')) >= 80) {
+            // this function will check whether the user can claim the bonus or not
+            Auth::user()->claimReferralBonus();
         }
 
         return redirect()->route('posts.index')->with([
@@ -255,17 +256,16 @@ class PostController extends Controller
                         ])
                         ->load([
                             'replies' => function($query) {
-                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc');
+                                $query->withCount(['usersUpvoted', 'replies'])->orderBy('is_best_reply', 'desc')->orderBy('created_at', 'asc');
                             },
                             'replies.replies' => function($query) {
-                                $query->withCount('usersUpvoted');
+                                $query->orderBy('created_at', 'asc')->withCount('usersUpvoted');
                             },
                             'replies.usersUpvoted' => function($query) {
                                 if(Auth::check())
                                     $query->where('user_id', Auth::user()->id);
                             },
                             'replies.user.firstMajor',
-
                             'replies.replies.reply.user',
                             'replies.replies.user',
                             'replies.replies.usersUpvoted' => function($query) {
