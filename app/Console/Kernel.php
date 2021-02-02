@@ -35,55 +35,55 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Tag::updateTrendingTags();
             Log::debug("Successfully updated trending tags at: " . now() . "\n");
-        // })->everyThirtyMinutes();
-        })->everyMinute();
+        })->everyThirtyMinutes();
+        // })->everyMinute();
 
         $schedule->call(function () {
             User::clearTutorAvailableTime();
             Log::debug("Successfully removed stale available time of tutors at: " . now() . "\n");
-        // })->daily();
-        })->everyMinute();
+        })->daily();
+        // })->everyMinute();
 
         $schedule->call(function () {
             TutorRequest::changeTutorRequestStatusOnTimeout();
             Log::debug("Successfully changed stale tutor request to expired: " . now() . "\n");
-        // })->everyThirtyMinutes();
-        })->everyMinute();
+        })->everyThirtyMinutes();
+        // })->everyMinute();
 
         $schedule->call(function () {
             Session::changeSessionStatusOnExpiry();
             Log::debug("Successfully changed stale tutoring sessions to expired: " . now() . "\n");
-        // })->everyThirtyMinutes();
-        })->everyMinute();
+        })->everyThirtyMinutes();
+        // })->everyMinute();
 
         $schedule->call(function () {
             User::updateVerifyStatus();
             Log::debug("Successfully update is_tutor_verified: " . now() . "\n");
-        // })->everyThirtyMinutes();
-        })->everyMinute();
+        })->everyThirtyMinutes();
+        // })->everyMinute();
 
         // finalize means invoice_status from draft => open, may not be paid yet
         $schedule->call(function () {
             // input: minutes after session to finalize
             Transaction::finalizeInvoice(0);
             Log::debug("Successfully finalize invoices: " . now() . "\n");
-        // })->everyThirtyMinutes();
-        })->everyMinute();
+        })->everyThirtyMinutes();
+        // })->everyMinute();
 
         // ask users to pay their bills!!!
         $schedule->call(function () {
             // send one invoice after 24 hours since last_updated on database transaction table
             Transaction::sendUnpaidInvoices(24);
             Log::debug("Successfully send emails to users that haven't paid their invoices: " . now() . "\n");
-        // })->twiceDaily(9, 20);
-        })->everyMinute();
+        })->twiceDaily(1, 12);
+        // })->everyMinute();
 
         // notify the users that they have an upcoming session
         $schedule->call(function () {
             Session::notifyUpcomingSessions();
             Log::debug("Successfully notify the users about their upcoming sessions: " . now() . "\n");
-        // })->hourly();
-        })->everyMinute();
+        })->hourly();
+        // })->everyMinute();
 
     }
 

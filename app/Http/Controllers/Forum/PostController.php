@@ -154,6 +154,10 @@ class PostController extends Controller
             }
 
             $post->post_type()->associate(PostType::find($request->input('post-type')));
+            // if ($request->input('post-type') == 'Class Review'){
+            //     Auth::user()->addExperience(10);
+            // }
+
             $post->user()->associate(Auth::user());
 
             $post->save();
