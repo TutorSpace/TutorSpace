@@ -20,7 +20,7 @@ use App\TutorLevel;
 use App\Transaction;
 use App\TutorRequest;
 
-use Facades\App\Post;
+use App\Post;
 use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
