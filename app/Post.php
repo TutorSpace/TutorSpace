@@ -222,8 +222,6 @@ class Post extends Model
                     ->take(15)
                     ->get();
 
-
-
         if($posts->count() < 5) {
             $posts = $posts->merge(
                     $this->queryYouMayHelpWith()

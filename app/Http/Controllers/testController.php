@@ -61,7 +61,17 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        \Facades\App\Post::getYouMayHelpWith();
+        $post = new Post();
+        $post->queryYouMayHelpWith()
+                    ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
+                    ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
+                    ->whereIn('tags.id', $interestedTagIDs)
+                    ->where('posts.user_id', '!=', $user->id)
+                    ->groupBy(['posts.id'])
+                    ->take(15)
+                    ->get();
+
+        dd($post);
     }
 
     public function test(Request $request) {
