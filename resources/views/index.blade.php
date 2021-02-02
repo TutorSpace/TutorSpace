@@ -32,7 +32,7 @@ index
     <section class="index__story container">
         <h3 class="index__story__heading text-center">Our Mission</h3>
         <p class="index__story__content">
-            TutorSpace is a multifunctional online platform allowing students to share class experiences from their perspectives and providing tutor matching services categorized by courses. We are committed to letting every student have a more effortless study experience. To prepare all kinds of information and resources that students need, TutorSpace builds an innovative one-of-a-kind forum filled with featured content. Also, to foster college students' deeper connection with each other, we encourage students to share their knowledge through a well-designed peer-to-peer tutor matching functionality.
+            TutorSpace is a multifunctional online platform that provides tutor matching services categorized by specific classes and allows users to share and discuss class experiences. We are committed to providing every student with a smoother learning experience.
         </p>
     </section>
 
@@ -40,7 +40,7 @@ index
         <div class="index__mission-container">
             <h3 class="index__mission__heading text-center">Our Mission</h3>
             <p class="index__mission__content">
-                TutorSpace was founded in May 2020, a historic period that is hard and challenging for humanity. When physical classrooms are shut down, when students got distracted due to poor internet connection, and when everybody locked themselves inside their homes, we realized people in college were losing opportunities to interact with the outside both personally and academically. That, therefore, let our group come up with the idea to create an interactive platform allowing students to share their stories, class experiences, puzzles met in homework and communicate those with their peers, just like what we had been doing before the pandemic. To push this platform further into a more practical standpoint, our group also built an online tutor matching service into this website to provide outside-classroom assistance for students. In the end, we particularly want to thank all individuals and student organizations for their help along the way in the past eight months.
+                TutorSpace was founded in May 2020, a period that is hard and challenging for humanity. When physical classrooms were closed, we realized college students were losing opportunities to interact with the outside both personally and academically. Therefore, our team came up with the idea to create an interactive platform for students to share their stories, class experiences, puzzles met in homework and initiate discussions with peers. To push this platform further into a more practical standpoint, we also built an online tutor matching service into this website to provide students with outside-classroom assistance.
             </p>
         </div>
     </section>
@@ -68,13 +68,13 @@ index
                 <div class="index__feature__content">
                     <ul>
                         <li>
-                            Find a tutor of any one of more than 100 majors at USC
+                            Find a tutor for 10,000+ USC courses, including GEs, core requirements and electives.
                         </li>
                         <li>
-                            Student users pay zero commission fee for tutoring sessions
+                            Student users pay <strong class="text-warning">ZERO</strong> service fee for tutoring sessions
                         </li>
                         <li>
-                            No communication barriers with tutors through direct chatting on our platform
+                            Enjoy one-stop tutor matching services from scheduling to payment.
                         </li>
                     </ul>
                 </div>
@@ -104,13 +104,13 @@ index
                 <div class="index__feature__content">
                     <ul>
                         <li>
+                            Everybody can be a tutor; teach what you are good at
+                        </li>
+                        <li>
                             Set your own hourly rate
                         </li>
                         <li>
-                            Earn extra bonus by tutoring more
-                        </li>
-                        <li>
-                            Everybody can be a tutor; teach what you are good at
+                            Our <a href="{{ route('tgp-policy.show') }}" target="_blank" class="color-primary">Tutor Growth Plan</a> allows you to receive extra bonus for each tutoring session
                         </li>
                     </ul>
                 </div>
@@ -156,13 +156,16 @@ index
                 <div class="index__feature__content">
                     <ul>
                         <li>
-                            Tell us how you like an upper-level class
+                            Share experience with people of the same interests through our <a href="{{ route('posts.index') }}" class="color-primary" target="_blank">Forum</a>
                         </li>
                         <li>
                             Build your connections through our one-of-a-kind online community
                         </li>
                         <li>
-                            Share experience with people of the same interests
+                            Share notes and other study materials with those taking the same courses
+                        </li>
+                        <li>
+                            See what other users are posting and find a perfect tutor
                         </li>
                     </ul>
                 </div>
