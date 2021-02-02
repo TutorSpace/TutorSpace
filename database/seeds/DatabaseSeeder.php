@@ -67,8 +67,6 @@ class DatabaseSeeder extends Seeder
 
         // only run the following seeder in local mode
         if(env('APP_ENV') == 'local') {
-
-
             $this->call([
                 UserSeeder::class,
                 AvailableTimeSeeder::class,
