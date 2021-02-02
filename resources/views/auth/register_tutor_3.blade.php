@@ -76,7 +76,6 @@ bg-grey-light body-signup select2-bg-tutor
                 <div class="input-group select-container p-relative @error('gpa') invalid @enderror">
                     <select class="custom-select register-select2" name="gpa" required>
                         <option selected disabled class="fc-grey" value="">GPA</option>
-                        <option value="0">N/A</option>
                         @for ($i = 4.00; $i >= 1.00; $i -= 0.01)
                             <option value="{{ number_format($i, 2) }}">{{ number_format($i, 2) }}</option>
                         @endfor
