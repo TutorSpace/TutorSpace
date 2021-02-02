@@ -5779,6 +5779,18 @@ if (isTutor) {
     // offset: [5, 15],
     triggerTarget: $('#help-tutor-verification-trigger')[0]
   });
+  Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-hourly-rate')[0], {
+    animateFill: false,
+    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
+    content: 'According to Tutor Growth Plan, there is an upper limit in the hourly rate you can set. Yet if you have any concern about this policy, please contact us at tutorspacehelp@gmail.com.',
+    interactive: true,
+    placement: 'right-end',
+    // interactiveDebounce: 75,
+    allowHTML: true,
+    theme: 'help-content',
+    // offset: [5, 15],
+    triggerTarget: $('#help-hourly-rate-trigger')[0]
+  });
 } else {
   Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
     animateFill: false,

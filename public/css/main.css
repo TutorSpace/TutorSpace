@@ -22729,7 +22729,8 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   color: #F9F9F9;
 }
 
-.profile #help-user-info {
+.profile #help-user-info,
+.profile #help-hourly-rate {
   position: relative;
   bottom: 0.7rem;
 }
