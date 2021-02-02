@@ -61,7 +61,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        $post = new Post();
+        $post = Post::all()[0];
         $user = Auth::user();
 
         // get all the tags the user is interested in
