@@ -245,7 +245,7 @@ class Post extends Model
                     'usersUpvoted'
                 ])
                 ->join('post_types', 'post_types.id', 'posts.post_type_id')
-                ->where('post_types.post_type', 'Question')
+                ->where('post_types.post_type', 'Question');
                 // ->having('replies_count', '<=', 2)
                 //Order the posts by the time they were created and then apply the tags of the user to them
                 // ->orderBy('created_at', 'DESC');
