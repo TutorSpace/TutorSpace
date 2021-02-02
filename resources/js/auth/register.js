@@ -1,3 +1,5 @@
+import tippy, {animateFill} from 'tippy.js';
+
 //  ========================= for all register page ===========================
 $('input').on('input', function () {
     if ($(this).val()) {
@@ -219,3 +221,16 @@ $('#btn-for-register-agreement').click(function() {
         return false;
     }
 });
+
+if(toShowTippyForHourlyRate) {
+    tippy($('#help-hourly-rate')[0], {
+        animateFill: false,
+        plugins: [animateFill],
+        content: 'New tutors cannot have an hourly rate higher than $15. Yet if you have any concern about this policy, please contact us at tutorspacehelp@gmail.com.',
+        interactive: true,
+        placement: 'top-start',
+        // interactiveDebounce: 75,
+        allowHTML: true,
+        theme: 'help-content',
+    });
+}

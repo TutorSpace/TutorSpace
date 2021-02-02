@@ -46,41 +46,33 @@ class GeneralController extends Controller
         return view('policy.private-policy');
     }
 
-    // TODO: change content
     // service agreement
     public function showServiceAgreement() {
-        echo ('<h1>Service Agreement</h1>');
-        // return view('policy.private-policy');
+        return view('policy.service-agreement');
     }
 
     public function showCancellationPolicy() {
-        echo ('<h1>Cancellation Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.cancellation-policy');
     }
 
     public function showTGPPolicy() {
-        echo ('<h1>TGP Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.tgp-policy');
     }
 
     public function showTutorVerificationPolicy() {
-        echo ('<h1>Tutor Verification Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.tutor-verification-policy');
     }
 
     public function showRefundPolicy() {
-        echo ('<h1>Refund Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.refund-policy');
     }
 
     public function showReferralPolicy() {
-        echo ('<h1>Referral Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.referral-policy');
     }
 
     public function showUSCIntegrityPolicy() {
-        echo ('<h1>USC Integrity Policy</h1>');
-        // return view('policy.private-policy');
+        return view('policy.private-policy');
     }
 
     // report forum

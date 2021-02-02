@@ -28,7 +28,7 @@ bg-grey-light body-signup select2-bg-tutor
                 No Worries! You can edit your hourly rate and course preference later in your profile.
             </p>
 
-            <div class="p-relative">
+            <div class="p-relative" id="help-hourly-rate">
                 <div class="input-group select-container p-relative select-container-icon @error('hourly-rate') invalid @enderror">
                     <svg class="select-container__icon fill-color-purple-primary">
                         <use xlink:href="{{asset('assets/sprite.svg#icon-dollar')}}"></use>
@@ -122,8 +122,7 @@ bg-grey-light body-signup select2-bg-tutor
 @section('js')
 <script>
     let isStudent = false;
-
-
+    let toShowTippyForHourlyRate = true;
 </script>
 <script src="{{ asset('js/auth/register.js') }}"></script>
 @endsection
