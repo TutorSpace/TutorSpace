@@ -61,7 +61,23 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        $post = Post::all()[0];
+        $post = new Post();
+        $posts = $this->queryYouMayHelpWith()
+                                ->take(15)
+                                ->get();
+
+        if($posts->count() >= 1) {
+            echo "here 1";
+            dd($posts->random(min(5, $posts->count())));
+        }
+        else {
+            echo "here 2";
+            dd($posts);
+        }
+
+
+        return;
+
         $user = Auth::user();
 
         // get all the tags the user is interested in
