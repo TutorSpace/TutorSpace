@@ -628,13 +628,13 @@
         &.placeholder-img {
             position: relative;
             display: block;
-            background-color: $color-yellow-primary;
+            background-color: $color-user-image-placeholder;
 
             span {
                 @include absCenter;
                 font-size: 1.3rem;
                 font-weight: 500;
-                color: $color-white;
+                color: $color-user-image-placeholder-text;
                 white-space: nowrap;
             }
         }

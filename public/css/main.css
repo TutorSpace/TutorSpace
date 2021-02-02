@@ -15905,7 +15905,7 @@ h6 {
 
 .user-card .user-image.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .user-card .user-image.placeholder-img span {
@@ -15915,7 +15915,7 @@ h6 {
   transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -17902,10 +17902,11 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .tippy-box[data-theme~=help-content] {
-  background-color: #F59300;
+  background-color: #FFB118;
   color: #FFFFFF;
   padding: 0.5rem 0.8rem;
   font-size: 1.6rem;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 ._nav {
@@ -18208,7 +18209,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 ._nav .nav-right__profile-img.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 ._nav .nav-right__profile-img.placeholder-img span {
@@ -18218,7 +18219,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.4rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -19366,7 +19367,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .post__heading-2 .poster-img.placeholder-img {
   position: relative;
   display: block;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .post__heading-2 .poster-img.placeholder-img span {
@@ -19376,7 +19377,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.3rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -19686,7 +19687,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 .notification__side-bar--left .msgs .msg .box .img-container img.placeholder-img,
 .notification__side-bar--left .msgs .msg .box .img-container div.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .chatting__side-bar--left .msgs .msg .box .img-container img.placeholder-img span,
@@ -19699,7 +19700,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.4rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -21333,7 +21334,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .search .search-results .search-result .user-photo.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .search .search-results .search-result .user-photo.placeholder-img span {
@@ -21343,7 +21344,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.6rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -21668,7 +21669,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__header .content-img .placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .home__header .content-img .placeholder-img span {
@@ -21678,7 +21679,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 3rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -22297,7 +22298,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user .user-img.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .home__side-bar .home__side-bar__bookmarked-users .bookmarked-users .bookmarked-user .user-img.placeholder-img span {
@@ -22307,7 +22308,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.6rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -22917,7 +22918,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .view-profile .view-profile--left .view-profile__user-info .user-img.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .view-profile .view-profile--left .view-profile__user-info .user-img.placeholder-img span {
@@ -22927,7 +22928,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -23300,7 +23301,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 
 .chatting__content__messages .message .img-container .user-img.placeholder-img {
   position: relative;
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .chatting__content__messages .message .img-container .user-img.placeholder-img span {
@@ -23310,7 +23311,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 1.4rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
@@ -23454,7 +23455,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
 }
 
 .notification__content .notification__content__info__header .user-image.placeholder-img {
-  background-color: #FFBC00;
+  background-color: #E7E7E7;
 }
 
 .notification__content .notification__content__info__header .user-image.placeholder-img span {
@@ -23464,7 +23465,7 @@ li.ui-timepicker-selected .ui-timepicker-duration,
   transform: translate(-50%, -50%);
   font-size: 2rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: #969595;
   white-space: nowrap;
 }
 
