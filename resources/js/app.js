@@ -126,7 +126,7 @@ $(document).ready(function(){
 
     // ==================== auth overlay =================
     $('._nav .btn-sign-in').click(function() {
-        $('.overlay-student').show();
+        $('.overlay-tutor').show();
     });
 
     $('.overlay .btn-close').click(function() {

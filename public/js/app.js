@@ -86935,7 +86935,7 @@ $(document).ready(function () {
   }); // ==================== auth overlay =================
 
   $('._nav .btn-sign-in').click(function () {
-    $('.overlay-student').show();
+    $('.overlay-tutor').show();
   });
   $('.overlay .btn-close').click(function () {
     $('.overlay').hide();
@@ -87068,8 +87068,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
+__webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })
