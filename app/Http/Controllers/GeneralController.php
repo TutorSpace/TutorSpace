@@ -84,10 +84,6 @@ class GeneralController extends Controller
         // return view('policy.private-policy');
     }
 
-    public function showServiceAgreement() {
-        ecoh ('<h1>Service Agreement</h1>');
-    }
-
     // report forum
     public function storeReport(Request $request) {
         $request->validate([
