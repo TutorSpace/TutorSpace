@@ -84,9 +84,8 @@ class GeneralController extends Controller
         // return view('policy.private-policy');
     }
 
-    public function showTermsOfUsePolicy() {
-        echo ('<h1>Terms of Use Policy</h1>');
-        // return view('policy.private-policy');
+    public function showServiceAgreement() {
+        ecoh ('<h1>Service Agreement</h1>');
     }
 
     // report forum

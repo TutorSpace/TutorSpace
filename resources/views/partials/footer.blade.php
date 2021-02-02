@@ -100,6 +100,21 @@
         <li class="footer-sm__item">
             <a href="{{ route('private-policy.show') }}" target="_blank">Private Policy</a>
         </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('cancellation-policy.show') }}" target="_blank">Cancellation Policy</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('tgp.show') }}" target="_blank">Tutor Growth Plan</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('tutor-verification-policy.show') }}" target="_blank">Tutor Verification Policy</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('refund-policy.show') }}" target="_blank">Refund Policy</a>
+        </li>
+        <li class="footer-sm__item">
+            <a href="{{ route('service-agreement.show') }}" target="_blank">Service Agreement</a>
+        </li>
     </ul>
 
     <ul class="footer-sm__list">

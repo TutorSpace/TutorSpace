@@ -66,7 +66,8 @@ class NewMessage implements ShouldBroadcastNow
             'imgUrl' => Storage::url($user->profile_pic_url),
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
                 'user' => $user,
-                'message' => $this->message->message,
+                // 'message' => $this->message->message,
+                'message' => $tz,
                 'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz)))
             ])->render(),
             'imgPlaceholder' => strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]),
