@@ -76,8 +76,8 @@ Route::group([
     Route::get('/tutor-verification-policy', 'GeneralController@showTutorVerificationPolicy')->name('tutor-verification-policy.show');
     Route::get('/refund-policy', 'GeneralController@showRefundPolicy')->name('refund-policy.show');
     Route::get('/referral-policy', 'GeneralController@showReferralPolicy')->name('referral-policy.show');
-    Route::get('/usc-integrity-policy', 'GeneralController@showUSCIntegrityPolicy')->name('usc-integrity-policy.show');
     Route::get('/service-agreement', 'GeneralController@showServiceAgreement')->name('service-agreement.show');
+    Route::get('/usc-integrity-policy', 'GeneralController@showUSCIntegrityPolicy')->name('usc-integrity-policy.show');
 });
 
 // ============================  auth  ========================
