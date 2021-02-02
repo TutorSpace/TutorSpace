@@ -63,7 +63,7 @@ class testController extends Controller
     public function index(Request $request) {
         $post = new Post();
         $posts = $post->queryYouMayHelpWith()
-                                ->take(15)
+                                // ->take(15)
                                 ->get();
 
         if($posts->count() >= 1) {
