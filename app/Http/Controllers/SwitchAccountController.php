@@ -15,6 +15,15 @@ class SwitchAccountController extends Controller
 {
     // for student
     public function register(Request $request) {
+        // todo: change this to true when we allow students to register
+        $studentCanRegister = false;
+
+        if(!$studentCanRegister) {
+            return response()->json([
+                'errorMsg' => 'We are sorry that TutorSpace is only accepting tutor registrations for now. Please contact tutorspacehelp@gmail.com for more details.'
+            ]);
+        }
+
         $currUser = Auth::user();
 
         // if the user does not have a VALID student account
