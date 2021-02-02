@@ -104,7 +104,7 @@
             <a href="{{ route('cancellation-policy.show') }}" target="_blank">Cancellation Policy</a>
         </li>
         <li class="footer-sm__item">
-            <a href="{{ route('tgp.show') }}" target="_blank">Tutor Growth Plan</a>
+            <a href="{{ route('tgp-policy.show') }}" target="_blank">Tutor Growth Plan</a>
         </li>
         <li class="footer-sm__item">
             <a href="{{ route('tutor-verification-policy.show') }}" target="_blank">Tutor Verification Policy</a>
