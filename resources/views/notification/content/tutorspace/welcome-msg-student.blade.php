@@ -11,7 +11,7 @@
                 Hey, {{ Auth::user()->first_name }}! Welcome to TutorSpace!
             </h6>
             <p class="fs-1-6 mt-2">
-                Thank you for signing up for this student account. Please feel free to browse all the featured content you like in the forum and find someone to help you with your courseworks. If you have any questions while using this platform, please contact us immediately. TutorSpace is a student-run startup at its very early stage, so your feedback is extremely important to us. We want to know what we are getting right and what we can improve.
+                Thank you for signing up for this student account. Please feel free to browse all the featured content you like in the forum and find someone to help you with your courseworks. If you have any questions while using this platform, please contact us immediately.
             </p>
 
             <div class="display-cards">
