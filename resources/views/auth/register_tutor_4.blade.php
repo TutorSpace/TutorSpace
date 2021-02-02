@@ -35,7 +35,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </svg>
                     <select class="custom-select register-select2" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
-                        @for ($i = 10; $i <= 50; $i += 1)
+                        @for ($i = 10; $i <= App\TutorLevel::where('tutor_level', 'Beginner')->first()->hourly_rate_upper_bound; $i += 1)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>

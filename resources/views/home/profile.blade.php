@@ -189,12 +189,12 @@ bg-student
                         </div>
                         @if (Auth::user()->is_tutor)
                         <div class="hourly-rate autocomplete">
-                            <label for="hourly-rate" class="profile__label">Hourly Rate</label>
+                            <label for="hourly-rate" class="profile__label">Hourly Rate (Upper Limit: ${{ Auth::user()->tutorLevel->hourly_rate_upper_bound }})</label>
                             <div class="hourly-rate-input-container">
                                 <span class="symbol">$</span>
                                 <input type="number" class="profile__input form-control form-control-lg"
                                     value="{{ Auth::user()->hourly_rate }}" name="hourly-rate" id="hourly-rate"
-                                    min="10" max="50">
+                                    min="10" max="{{ Auth::user()->tutorLevel->hourly_rate_upper_bound }}">
                             </div>
                         </div>
                         @endif
@@ -752,6 +752,10 @@ bg-student
 {{-- autocomplete --}}
 <script>
     $('#hourly-rate').on("change paste keyup", function () {
+        if(Number($(this).val()) < 10 || Number($(this).val()) > {{ Auth::user()->tutorLevel->hourly_rate_upper_bound }} ) {
+            return
+        }
+
         updateHourlyRate();
     });
 
