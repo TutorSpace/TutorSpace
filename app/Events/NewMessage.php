@@ -61,13 +61,13 @@ class NewMessage implements ShouldBroadcastNow
         return [
             'from' => $this->message->from,
             'to' => $this->message->to,
-            'message' => $this->message->message,
+            // 'message' => $this->message->message,
+            'message' => $tz,
             'created_at' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz))),
             'imgUrl' => Storage::url($user->profile_pic_url),
             'chatroomView' => view('chatting.side-bar-chatting-msg', [
                 'user' => $user,
-                // 'message' => $this->message->message,
-                'message' => $tz,
+                'message' => $this->message->message,
                 'time' => date('Y-m-d H:i:s', strtotime($this->message->created_at->setTimeZone($tz)))
             ])->render(),
             'imgPlaceholder' => strtoupper($user->first_name[0]) . ' ' . strtoupper($user->last_name[0]),
