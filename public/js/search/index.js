@@ -225,7 +225,7 @@ if ($('#checkbox-specify-detail-time').prop('checked')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/search/index.js */"./resources/js/search/index.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/search/index.js */"./resources/js/search/index.js");
 
 
 /***/ })

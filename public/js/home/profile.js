@@ -5471,7 +5471,7 @@ tippy.setDefaultProps({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var tippy_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tippy.js */ "./node_modules/tippy.js/dist/tippy.esm.js");
+/* harmony import */ var tippy_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tippy.js */ "./node_modules/tippy.js/dist/tippy.esm.js");
  // ===================== autocomplete ==========================
 
 window.autocomplete = function (inp, arr, clickCallBackFunc) {
@@ -5755,9 +5755,9 @@ function ajaxAddRemoveTag(tagInfo) {
 }
 
 if (isTutor) {
-  Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#help-user-info')[0], {
+  Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
     animateFill: false,
-    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
+    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
     content: 'Add all courses you would like to tutor so that students can know what courses you are adept at. Selected courses must be those you received an A or A- before.',
     interactive: true,
     placement: 'right-end',
@@ -5767,9 +5767,9 @@ if (isTutor) {
     offset: [5, 15],
     triggerTarget: $('#help-user-info-trigger')[0]
   });
-  Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#help-tutor-verification')[0], {
+  Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-tutor-verification')[0], {
     animateFill: false,
-    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
+    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
     content: 'Verified tutors will receive extra cash bonuses from every completed tutoring session and also 50% more experience points by tutoring a verified course.',
     interactive: true,
     placement: 'right-start',
@@ -5780,9 +5780,9 @@ if (isTutor) {
     triggerTarget: $('#help-tutor-verification-trigger')[0]
   });
 } else {
-  Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#help-user-info')[0], {
+  Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-user-info')[0], {
     animateFill: false,
-    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
+    plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
     content: 'TutorSpace will recommend tutors based on your profile. Please add all courses you are taking in the current semester to help us find the right tutors for you.',
     interactive: true,
     placement: 'right-end',
@@ -5794,9 +5794,9 @@ if (isTutor) {
   });
 }
 
-Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#help-forum')[0], {
+Object(tippy_js__WEBPACK_IMPORTED_MODULE_0__["default"])($('#help-forum')[0], {
   animateFill: false,
-  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_1__["animateFill"]],
+  plugins: [tippy_js__WEBPACK_IMPORTED_MODULE_0__["animateFill"]],
   content: ' TutorSpace will recommend posts based on your pre-set preferences. Please add all tags, such as courses and subjects you are interested in, to help us find the content you feel useful.',
   interactive: true,
   placement: 'right',
@@ -5815,7 +5815,7 @@ Object(tippy_js__WEBPACK_IMPORTED_MODULE_1__["default"])($('#help-forum')[0], {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/natehuang/Desktop/TutorSpace/resources/js/home/profile.js */"./resources/js/home/profile.js");
+module.exports = __webpack_require__(/*! /Users/luoshuaiqing/Desktop/TutorSpace/resources/js/home/profile.js */"./resources/js/home/profile.js");
 
 
 /***/ })

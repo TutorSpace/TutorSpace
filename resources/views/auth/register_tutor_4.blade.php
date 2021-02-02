@@ -35,7 +35,7 @@ bg-grey-light body-signup select2-bg-tutor
                     </svg>
                     <select class="custom-select register-select2" name="hourly-rate" required>
                         <option selected disabled class="fc-grey" value="">Hourly Rate</option>
-                        @for ($i = 10; $i <= 50; $i += 1)
+                        @for ($i = 10; $i <= App\TutorLevel::where('tutor_level', 'Beginner')->first()->hourly_rate_upper_bound; $i += 1)
                             <option value="{{ number_format($i, 1) }}">{{ number_format($i, 1) }}</option>
                         @endfor
                     </select>
@@ -82,7 +82,6 @@ bg-grey-light body-signup select2-bg-tutor
 
             <p class="d-flex align-items-center">
                 <input type="checkbox" id="register-agreement" name="agreement">
-                {{-- todo: add link here --}}
                 <label for="register-agreement" class="mt-3 ml-3 fs-1-6 font-italic fw-500 fc-black-2">
                     By checking this box, I agree to TutorSpace's <a href="{{route('cancellation-policy.show')}}" class="fc-purple-primary" target="_blank">Cancellation Policy</a>, <a href="{{route('refund-policy.show')}}" class="fc-purple-primary" target="_blank">Refund Policy</a>, and <a href="{{route('usc-integrity-policy.show')}}" class="fc-purple-primary" target="_blank">USC Integrity Policy</a>.
                 </label>

@@ -40,21 +40,16 @@
 
     <p class="fc-black-2 mt-4"><span class="font-weight-bold">How to make your payment: </span>Please set up a payment method in profile settings. We will charge automatically once the session ends. </p>
 
-    {{-- todo: add link here --}}
     <p class="fc-black-2 mt-4"><span class="font-weight-bold">Cancellation Policy: </span>Users can cancel a session at least 24 hours (for students) or 12 hours (for tutors) before the session starts without a penalty. To know more details, please check our
         <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>.
     </p>
 
-
-    {{-- todo: add link here --}}
     <p class="fc-black-2 mt-4"><span class="font-weight-bold">Refund Policy: </span>TutorSpace will provide a full refund if your tutor does not show up. To know more details, please check our
         <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>.
     </p>
 
-
     <p class="d-flex align-items-center">
         <input type="checkbox" id="book-session-agreement" name="agreement">
-        {{-- todo: add link here --}}
         <label for="book-session-agreement" class="my-3 ml-2 fs-1-6 font-italic fw-500">
             By checking this box, I agree to TutorSpace's <a href="{{route('cancellation-policy.show')}}" class="color-primary" target="_blank">Cancellation Policy</a>, <a href="{{route('refund-policy.show')}}" class="color-primary" target="_blank">Refund Policy</a>, and <a href="{{route('usc-integrity-policy.show')}}" class="color-primary" target="_blank">USC Integrity Policy</a>.
         </label>

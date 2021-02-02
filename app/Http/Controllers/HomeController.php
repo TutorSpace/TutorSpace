@@ -144,7 +144,7 @@ class HomeController extends Controller
                 'required',
                 'numeric',
                 'min:10',
-                'max:50'
+                'max:' . Auth::user()->tutorLevel->hourly_rate_upper_bound
             ]
         ]);
 

@@ -65,7 +65,6 @@ class TutorRequestController extends Controller
         }
     }
 
-    // todo: add validation here
     public function declineTutorRequest(Request $request, TutorRequest $tutorRequest) {
         if($tutorRequest->tutor->id != Auth::id()) return abort(401);
 

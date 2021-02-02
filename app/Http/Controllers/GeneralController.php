@@ -43,41 +43,50 @@ class GeneralController extends Controller
 
     // private policy
     public function showPrivatePolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Private Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     // TODO: change content
     // service agreement
     public function showServiceAgreement() {
-        return view('policy.private-policy');
+        echo ('<h1>Service Agreement</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showCancellationPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Cancellation Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showTGPPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>TGP Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showTutorVerificationPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Tutor Verification Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showRefundPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Refund Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showReferralPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Referral Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showUSCIntegrityPolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>USC Integrity Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     public function showTermsOfUsePolicy() {
-        return view('policy.private-policy');
+        echo ('<h1>Terms of Use Policy</h1>');
+        // return view('policy.private-policy');
     }
 
     // report forum

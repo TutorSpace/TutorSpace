@@ -75,8 +75,8 @@ $hourlyRate = $session->hourly_rate;
             <p class="mt-2 fs-1-6">Tutors benefit from your valuable feedback. Click <a href="#" class="btn btn-link fs-1-6 px-0" id="btn-rate-tutor" data-route-url="{{ route('session.review', $session) }}">here</a> to rate and comment how you like this session/tutor anonymously.</p>
 
             <h6 class="color-primary">Having Trouble With This Session?</h6>
-            {{-- todo: add link here --}}
-            <p class="mt-2 fs-1-6">If you have any concerns regarding your experience in using TutorSpace, our staff are here to help. Please check <a href="{{route('help-center.index')}}" class="color-primary">Help Center</a> first and see if you can find any immediate answer to your questions. If not, please contact us at tutorspacehelp@gmail.com, and we will get back to you in 48 hours.</p>
+
+            <p class="mt-2 fs-1-6">If you have any concerns regarding your experience in using TutorSpace, our staff are here to help. Please check <a href="{{route('help-center.index')}}" class="color-primary" target="_blank">Help Center</a> first and see if you can find any immediate answer to your questions. If not, please contact us at tutorspacehelp@gmail.com, and we will get back to you in 48 hours.</p>
 
             <div class="button-container">
                 <a class="btn btn-primary" href="mailto:tutorspacehelp@gmail.com" target="_blank">Contact TutorSpace</a>
