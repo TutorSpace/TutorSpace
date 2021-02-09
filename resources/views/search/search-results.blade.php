@@ -58,7 +58,7 @@
         @foreach ($user->courses as $course)
         <span class="course" style="background-color: {{ $course->color }}; color: white;">
             @if (App\VerifiedCourse::where('course_id', $course->id)->where('user_id',
-            Auth::id())->exists())
+            $user->id->exists()))
             <svg class="p-absolute verify" width="1em" height="1em" viewBox="0 0 512 512"
                 fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
