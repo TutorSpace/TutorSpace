@@ -20,7 +20,7 @@
                 {{ $user->first_name . ' ' . $user->last_name}} invited you to be a tutor.
             </h6>
             <p class="fs-1-6 mt-2">
-                Register to be a tutor now so that {{ $user->first_name }} and you can earn a referral bonus of up to $5! Please check out our Referral Policy <a href="{{ route('referral-policy.show') }}" class="color-primary" target="_blank">here</a>.
+                Register to be a tutor now so that {{ $user->first_name }} and you can earn a referral bonus of $5! Please check out our Referral Policy <a href="{{ route('referral-policy.show') }}" class="color-primary" target="_blank">here</a>.
             </p>
 
             <div class="display-cards">

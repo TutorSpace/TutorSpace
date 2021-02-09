@@ -24,8 +24,8 @@ bg-student
 
     <div class="p-relative invite-content">
         <div class="content-container">
-            <h2 class="heading">Earn up to $5 for EACH TUTOR you invite.</h2>
-            <p class="content">Invite a friend to become a tutor at TutorSpace. You both get up to $5 bonus. Qualifications:</p>
+            <h2 class="heading">Earn $5 for EACH TUTOR you invite.</h2>
+            <p class="content">Invite a friend to become a tutor at TutorSpace. You both get $5 bonus. Qualifications:</p>
             <div class="qualifications">
                 <p class="qualification">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

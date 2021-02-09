@@ -51,14 +51,14 @@ class InviteToBeTutorNotification extends Notification implements ShouldQueue
             return (new MailMessage)
             ->greeting('Dear ' . $notifiable->first_name)
             ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
-            ->line('Register now and earn a bonus with up to $5!')
+            ->line('Register now and earn a bonus of $5!')
             ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
             ->line('Thank you for using TutorSpace!');
         } else {
             return (new MailMessage)
                     ->greeting('Dear Student')
                     ->line($this->user->first_name . ' ' . $this->user->last_name . ' invited you to be a tutor.')
-                    ->line('Register now and earn a bonus with up to $5!')
+                    ->line('Register now and earn a bonus of $5!')
                     ->action('Register Now', route('invite-to-be-tutor.attempt-claim-bonus', $this->inviteCode))
                     ->line('Thank you for using TutorSpace!');
         }
