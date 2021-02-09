@@ -630,6 +630,10 @@ class User extends Authenticatable
             $max = $arr->random();
             $bonus = rand(($max - 1) * 10, $max * 10) / 10;
 
+
+            // the referral policy changed so that every one gets $5
+            $bonus = 5;
+
             $this->notify(new ReferralRegisterSuccessNotification($bonus, true, true));
 
             $userInvitedBy->notify(new ReferralRegisterSuccessNotification($bonus, false, true));
