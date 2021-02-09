@@ -271,10 +271,10 @@
                     svg {
                         position: absolute;
                         top: 50%;
-                        left: .4rem;
+                        left: .6rem;
                         transform: translateY(-50%);
-                        width: .9rem;
-                        height: .9rem;
+                        width: 1rem;
+                        height: 1rem;
                     }
 
                     @include respond(extra-sm) {
