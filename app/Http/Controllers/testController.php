@@ -62,12 +62,12 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        dd(Auth::user()->unnotifiedOnboardingUsers()->exists());
-
-        foreach(User::all() as $user) {
-            UnnotifiedOnboardingUsers::create([
-                'user_id' => $user->id
-            ]);
+        if(Auth::user()->isAdmin()) {
+            foreach(User::all() as $user) {
+                UnnotifiedOnboardingUsers::create([
+                    'user_id' => $user->id
+                ]);
+            }
         }
     }
 
