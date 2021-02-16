@@ -126,13 +126,17 @@
                         height: 2.5rem;
                         transform: translateX(.2rem);
 
-                        &:hover {
-                            animation: scale-animation-1-5 1.5s infinite;
-                        }
-
                         @include respond(sm) {
                             width: 2rem;
                             height: 2rem;
+                        }
+                    }
+                }
+
+                .btn-finished {
+                    &:hover {
+                        .btn-next__arrow {
+                            animation: scale-animation-1-5 1.5s infinite;
                         }
                     }
                 }

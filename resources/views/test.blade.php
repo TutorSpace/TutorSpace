@@ -28,7 +28,7 @@ bg-student
 
 <script>
 
-    getOnboarding(6);
+    getOnboarding(1);
 
     function getOnboarding(num) {
         @if(Auth::user()->is_tutor)

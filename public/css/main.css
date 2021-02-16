@@ -15251,16 +15251,16 @@ h6 {
   transform: translateX(0.2rem);
 }
 
-.modal-onboarding-container .modal-onboarding .button-container .btn-next__arrow:hover {
-  -webkit-animation: scale-animation-1-5 1.5s infinite;
-          animation: scale-animation-1-5 1.5s infinite;
-}
-
 @media only screen and (max-width: 47.99em) {
   .modal-onboarding-container .modal-onboarding .button-container .btn-next__arrow {
     width: 2rem;
     height: 2rem;
   }
+}
+
+.modal-onboarding-container .modal-onboarding .button-container .btn-finished:hover .btn-next__arrow {
+  -webkit-animation: scale-animation-1-5 1.5s infinite;
+          animation: scale-animation-1-5 1.5s infinite;
 }
 
 .modal-switch-account .svg--top {
