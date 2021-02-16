@@ -15,8 +15,7 @@ class SwitchAccountController extends Controller
 {
     // for student
     public function register(Request $request) {
-        // todo: change this to true when we allow students to register
-        $studentCanRegister = false;
+        $studentCanRegister = true;
 
         if(!$studentCanRegister) {
             return response()->json([

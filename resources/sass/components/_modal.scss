@@ -62,6 +62,85 @@
         background-color: $color-danger;
     }
 
+    &-onboarding-container {
+
+        .modal-content {
+            background-color: $color-white-dark-5;
+        }
+
+        .modal-onboarding {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+
+            .header-svg {
+                height: 30rem;
+                margin-top: 2rem;
+            }
+
+            .title {
+                font-size: 3.2rem;
+                white-space: nowrap;
+            }
+
+            .dots-container {
+                display: flex;
+                justify-content: center;
+
+                > svg:not(:last-child) {
+
+                }
+
+                svg {
+                    color: #C4C4C4;
+                    transform: scale(2.5);
+                }
+
+                svg.current {
+                    color: $color-yellow-primary;
+                }
+            }
+
+            .button-container {
+                align-self: flex-end;
+
+                .btn-next-animation {
+                    animation: anchor-animation-pulsate-tutor 3s infinite;
+                }
+
+                .btn-next {
+                    position: relative;
+                    right: -2.5rem;
+                    width: 5.5rem;
+                    height: 5.5rem;
+
+                    @include respond(extra-sm) {
+                        width: 4.5rem;
+                        height: 4.5rem;
+                    }
+
+                    &__arrow {
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        transform: translateX(.2rem);
+
+                        @include respond(sm) {
+                            width: 2rem;
+                            height: 2rem;
+                        }
+
+                        // @include respond(extra-sm) {
+                        //     width: 2.5rem;
+                        //     height: 2.5rem;
+                        // }
+                    }
+                }
+            }
+        }
+    }
+
     // switch account
     &-switch-account {
         .svg--top {

@@ -24,6 +24,9 @@ Route::group([
 // index page
 Route::get('/', 'GeneralController@index')->name('index');
 
+// onboarding
+Route::get('/onboarding', 'GeneralController@showOnboarding')->name('onboarding')->middleware('auth');
+
 // search for tutors in nav bar
 Route::get('/search', 'SearchController@index')->name('search.index');
 

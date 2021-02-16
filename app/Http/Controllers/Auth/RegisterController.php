@@ -57,8 +57,7 @@ class RegisterController extends Controller
 
     // first page of student register
     public function indexStudent1(Request $request) {
-        // todo: change this to true when we allow students to register
-        $studentCanRegister = false;
+        $studentCanRegister = true;
 
         if($studentCanRegister) {
             return view('auth.register_student_1');

@@ -61,54 +61,7 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        $post = new Post();
-        $posts = $post->queryYouMayHelpWith()
-                                // ->take(15)
-                                ->get();
-
-        if($posts->count() >= 1) {
-            echo "here 1";
-            dd($posts->random(min(5, $posts->count())));
-        }
-        else {
-            echo "here 2";
-            dd($posts);
-        }
-
-
-        return;
-
-        $user = Auth::user();
-
-        // get all the tags the user is interested in
-        $interestedTagIDs = $user->tags()->pluck('id');
-
-        $posts = $post->queryYouMayHelpWith()
-                    ->join('post_tag', 'posts.id', '=', 'post_tag.post_id')
-                    ->join('tags', 'tags.id', '=', 'post_tag.tag_id')
-                    ->whereIn('tags.id', $interestedTagIDs)
-                    ->where('posts.user_id', '!=', $user->id)
-                    ->groupBy(['posts.id'])
-                    ->take(15)
-                    ->get();
-
-        if($posts->count() < 5) {
-            $posts = $posts->merge(
-                    $post->queryYouMayHelpWith()
-                    ->where('posts.user_id', '!=', $user->id)
-                    ->take(5 - $posts->count())
-                    ->get()
-            );
-        }
-
-        if($posts->count() >= 1) {
-            echo "here 1";
-            dd($posts->random(min(5, $posts->count())));
-        }
-        else {
-            echo "here 2";
-            dd($posts);
-        }
+        return view('test');
     }
 
     public function test(Request $request) {

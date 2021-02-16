@@ -127,7 +127,14 @@ class GeneralController extends Controller
             'successMsg' => 'Successfully updated the profile photo.',
             'imgUrl' => $profile_pic_url
         ]);
+    }
 
+    public function showOnboarding() {
+        $view = view('onboarding-tutor')->render();
+
+        return response()->json([
+            'view' => $view
+        ]);
     }
 
     public function getRecommendedTutors() {
