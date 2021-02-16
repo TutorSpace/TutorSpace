@@ -39,8 +39,10 @@ class SwitchAccountController extends Controller
 
             $successMsg = view('switch-account.partials.switch-account-register-success', compact('currUser'))->render();
 
+            session()->flash('onboarding', true);
+
             return response()->json([
-                'successMsg' => $successMsg
+                'successMsg' => $successMsg,
             ]);
         }
 
@@ -116,7 +118,10 @@ class SwitchAccountController extends Controller
 
             $currUser->notify(new WelcomeMessageNotification());
 
-            return redirect()->route('home.profile')->with('successMsg', 'You successfully created a tutor account!');
+            return redirect()->route('home.profile')->with([
+                'successMsg' => 'You successfully created a tutor account!',
+                'onboarding' => true
+            ]);
         }
 
         return redirect()->back();

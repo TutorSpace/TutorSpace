@@ -350,7 +350,8 @@ class RegisterController extends Controller
 
         return redirect()->route('home')->with([
             'registerSuccess' => true,
-            'showWelcome' => true
+            'showWelcome' => true,
+            'onboarding' => true
         ]);
     }
 
@@ -504,7 +505,8 @@ class RegisterController extends Controller
 
         return redirect()->route('home')->with([
             'registerSuccess' => true,
-            'showWelcome' => true
+            'showWelcome' => true,
+            'onboarding' => true
         ]);
     }
 

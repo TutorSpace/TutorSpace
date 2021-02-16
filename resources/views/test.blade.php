@@ -30,39 +30,6 @@ bg-student
 
     getOnboarding(1);
 
-    function getOnboarding(num) {
-        @if(Auth::user()->is_tutor)
-        if(num == 7) dialog.modal('hide');
-        @else
-        if(num == 5) dialog.modal('hide');
-        @endif
-
-        JsLoadingOverlay.show(jsLoadingOverlayOptions);
-        $.ajax({
-            type: 'GET',
-            url: "{{ url('/onboarding') }}" + `/${num}`,
-            complete: () => {
-                JsLoadingOverlay.hide();
-            },
-            success: (data) => {
-                let dialog = bootbox.dialog({
-                    message: data.view,
-                    centerVertical: true,
-                    closeButton: false,
-                    className: 'modal-onboarding-container',
-                });
-                $('.btn-next').click(function() {
-                    dialog.modal('hide');
-                    getOnboarding(num + 1);
-                })
-            },
-            error: (error) => {
-                console.log(error);
-            }
-        });
-    };
-
-
 </script>
 
 @endsection

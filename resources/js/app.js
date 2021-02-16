@@ -51,7 +51,7 @@ $(document).ready(function(){
         }
     });
 
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
 
     $('select').each(function(idx, ele) {
         if($(this).find('option:selected').prop('disabled')){
