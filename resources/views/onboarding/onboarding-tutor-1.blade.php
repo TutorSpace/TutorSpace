@@ -22,9 +22,11 @@
     </svg>
 
     <h3 class="title fc-purple-primary mt-5 mb-3">Welcome to TutorSpace!</h3>
-    <p class="fs-1-6 fc-grey">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nobis, officia cumque sed non dolorem in corporis consectetur velit expedita mollitia laboriosam obcaecati dolore consequuntur tempore iste sapiente, atque sequi?
-    </p>
+
+    <ul class="fs-1-8 fc-grey mb-5">
+        <li>Share your past class experiences</li>
+        <li>Help other students with their schoolwork puzzles</li>
+    </ul>
 
     <div class="dots-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot current" viewBox="0 0 16 16">
