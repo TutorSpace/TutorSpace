@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Rules\NotExistStudent;
 
 use Illuminate\Validation\Rule;
+use App\UnnotifiedOnboardingUsers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Notifications\EmailVerification;
@@ -348,10 +349,13 @@ class RegisterController extends Controller
 
         $user->notify(new WelcomeMessageNotification());
 
+        UnnotifiedOnboardingUsers::create([
+            'user_id' => $user->id
+        ]);
+
         return redirect()->route('home')->with([
             'registerSuccess' => true,
-            'showWelcome' => true,
-            'onboarding' => true
+            'showWelcome' => true
         ]);
     }
 
@@ -503,10 +507,13 @@ class RegisterController extends Controller
 
         $user->notify(new WelcomeMessageNotification());
 
+        UnnotifiedOnboardingUsers::create([
+            'user_id' => $user->id
+        ]);
+
         return redirect()->route('home')->with([
             'registerSuccess' => true,
             'showWelcome' => true,
-            'onboarding' => true
         ]);
     }
 

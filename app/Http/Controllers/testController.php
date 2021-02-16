@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Tag;
+use App\Post;
 use App\Test;
 use App\User;
 use App\View;
@@ -18,9 +19,8 @@ use Carbon\Carbon;
 use App\InviteUser;
 use App\TutorLevel;
 use App\Transaction;
-use App\TutorRequest;
 
-use App\Post;
+use App\TutorRequest;
 use App\PaymentMethod;
 use App\Characteristic;
 use App\Events\NewMessage;
@@ -33,9 +33,10 @@ use App\Notifications\PayoutPaid;
 use App\CustomClass\TimeFormatter;
 
 use App\Notifications\InvoicePaid;
+use App\UnnotifiedOnboardingUsers;
 use Illuminate\Support\Facades\DB;
-use App\Events\SessionReviewPosted;
 
+use App\Events\SessionReviewPosted;
 use App\Notifications\PayoutFailed;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
@@ -48,8 +49,8 @@ use App\Notifications\UnpaidInvoiceReminder;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\RefundDeclinedNotification;
 use App\Notifications\TutorVerificationNotification;
-use App\Http\Controllers\Payment\StripeApiController;
 
+use App\Http\Controllers\Payment\StripeApiController;
 use App\Notifications\UserRequestedRefundNotification;
 use App\Notifications\RefundRequestApprovedNotification;
 use App\Notifications\Forum\MarkedAsBestReplyNotification;
@@ -61,7 +62,11 @@ class testController extends Controller
     }
 
     public function index(Request $request) {
-        return view('test');
+        foreach(User::all() as $user) {
+            UnnotifiedOnboardingUsers::create([
+                'user_id' => $user->id
+            ]);
+        }
     }
 
     public function test(Request $request) {

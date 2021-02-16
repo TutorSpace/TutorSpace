@@ -27,7 +27,7 @@
         </svg>
 
 
-    <h3 class="title fc-purple-primary mt-5 mb-3">Book a Session</h3>
+    <h3 class="title fc-purple-primary mt-5 mb-3">Mark Your Availability</h3>
     <p class="fs-1-6 fc-grey">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nobis, officia cumque sed non dolorem in corporis consectetur velit expedita mollitia laboriosam obcaecati dolore consequuntur tempore iste sapiente, atque sequi?
     </p>

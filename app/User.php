@@ -486,6 +486,10 @@ class User extends Authenticatable
         return $this->hasOne('App\PaymentMethod')->withDefault();
     }
 
+    public function unnotifiedOnboardingUsers() {
+        return $this->hasOne('App\UnnotifiedOnboardingUsers');
+    }
+
     // check if tutor has stripe account already
     // return: boolean
     // has account: true, no account or not a tutor: false

@@ -295,7 +295,7 @@
         };
         @endauth
 
-        @if(session('onboarding'))
+        @if(Auth::check() && Auth::user()->unnotifiedOnboardingUsers()->exists())
         getOnboarding(1);
         @endif
     </script>

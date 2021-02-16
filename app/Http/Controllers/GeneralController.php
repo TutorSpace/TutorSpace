@@ -14,6 +14,7 @@ use App\TutorRequest;
 use App\Dashboard_post;
 use App\VerifiedCourse;
 use Illuminate\Http\Request;
+use App\UnnotifiedOnboardingUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
@@ -170,6 +171,8 @@ class GeneralController extends Controller
             $view = view('onboarding.onboarding-tutor-4')->render();
         } else {
             $view = view('onboarding.onboarding-student-4')->render();
+
+            UnnotifiedOnboardingUsers::where('user_id', Auth::id())->delete();
         }
 
         return response()->json([
@@ -192,6 +195,8 @@ class GeneralController extends Controller
     public function showOnboarding6() {
         if(Auth::user()->is_tutor) {
             $view = view('onboarding.onboarding-tutor-6')->render();
+
+            UnnotifiedOnboardingUsers::where('user_id', Auth::id())->delete();
         } else {
 
         }

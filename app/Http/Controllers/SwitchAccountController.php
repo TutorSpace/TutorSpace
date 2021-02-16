@@ -6,6 +6,7 @@ use App\User;
 use App\InviteUser;
 use App\TutorLevel;
 use Illuminate\Http\Request;
+use App\UnnotifiedOnboardingUsers;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -35,11 +36,13 @@ class SwitchAccountController extends Controller
                 Auth::login($newUser);
 
                 $newUser->notify(new WelcomeMessageNotification());
+
+                UnnotifiedOnboardingUsers::create([
+                    'user_id' => $newUser->id
+                ]);
             }
 
             $successMsg = view('switch-account.partials.switch-account-register-success', compact('currUser'))->render();
-
-            session()->flash('onboarding', true);
 
             return response()->json([
                 'successMsg' => $successMsg,
@@ -118,9 +121,12 @@ class SwitchAccountController extends Controller
 
             $currUser->notify(new WelcomeMessageNotification());
 
+            UnnotifiedOnboardingUsers::create([
+                'user_id' => $currUser->id
+            ]);
+
             return redirect()->route('home.profile')->with([
-                'successMsg' => 'You successfully created a tutor account!',
-                'onboarding' => true
+                'successMsg' => 'You successfully created a tutor account!'
             ]);
         }
 
