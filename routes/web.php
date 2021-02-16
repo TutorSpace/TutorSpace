@@ -25,7 +25,16 @@ Route::group([
 Route::get('/', 'GeneralController@index')->name('index');
 
 // onboarding
-Route::get('/onboarding', 'GeneralController@showOnboarding')->name('onboarding')->middleware('auth');
+Route::group([
+    'middleware' => 'auth',
+], function() {
+    Route::get('/onboarding/1', 'GeneralController@showOnboarding1')->name('onboarding.1');
+    Route::get('/onboarding/2', 'GeneralController@showOnboarding2')->name('onboarding.2');
+    Route::get('/onboarding/3', 'GeneralController@showOnboarding3')->name('onboarding.3');
+    Route::get('/onboarding/4', 'GeneralController@showOnboarding4')->name('onboarding.4');
+    Route::get('/onboarding/5', 'GeneralController@showOnboarding5')->name('onboarding.5');
+    Route::get('/onboarding/6', 'GeneralController@showOnboarding6')->name('onboarding.6');
+});
 
 // search for tutors in nav bar
 Route::get('/search', 'SearchController@index')->name('search.index');

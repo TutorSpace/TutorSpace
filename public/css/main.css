@@ -14014,6 +14014,34 @@ img {
   }
 }
 
+@-webkit-keyframes scale-animation-1-5 {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-animation-1-5 {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @-webkit-keyframes fade-in-animation {
   from {
     opacity: 0;
@@ -15221,6 +15249,11 @@ h6 {
   width: 2.5rem;
   height: 2.5rem;
   transform: translateX(0.2rem);
+}
+
+.modal-onboarding-container .modal-onboarding .button-container .btn-next__arrow:hover {
+  -webkit-animation: scale-animation-1-5 1.5s infinite;
+          animation: scale-animation-1-5 1.5s infinite;
 }
 
 @media only screen and (max-width: 47.99em) {

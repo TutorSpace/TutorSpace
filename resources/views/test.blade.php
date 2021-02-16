@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Test')
 
 @section('body-class')
 bg-white-dark-4
@@ -27,26 +27,42 @@ bg-student
 @section('js')
 
 <script>
+
+    getOnboarding(6);
+
+    function getOnboarding(num) {
+        @if(Auth::user()->is_tutor)
+        if(num == 7) dialog.modal('hide');
+        @else
+        if(num == 5) dialog.modal('hide');
+        @endif
+
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
             type: 'GET',
-            url: "{{ route('onboarding') }}",
+            url: "{{ url('/onboarding') }}" + `/${num}`,
             complete: () => {
                 JsLoadingOverlay.hide();
             },
             success: (data) => {
-                bootbox.dialog({
+                let dialog = bootbox.dialog({
                     message: data.view,
                     centerVertical: true,
                     closeButton: false,
                     className: 'modal-onboarding-container',
                 });
-                $('.modal-content').addClass('bg-white-dark-5');
+                $('.btn-next').click(function() {
+                    dialog.modal('hide');
+                    getOnboarding(num + 1);
+                })
             },
             error: (error) => {
                 console.log(error);
             }
         });
+    };
+
+
 </script>
 
 @endsection

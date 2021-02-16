@@ -129,8 +129,72 @@ class GeneralController extends Controller
         ]);
     }
 
-    public function showOnboarding() {
-        $view = view('onboarding-tutor')->render();
+    public function showOnboarding1() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-1')->render();
+        } else {
+            $view = view('onboarding.onboarding-student-1')->render();
+        }
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
+    public function showOnboarding2() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-2')->render();
+        } else {
+            $view = view('onboarding.onboarding-student-2')->render();
+        }
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
+    public function showOnboarding3() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-3')->render();
+        } else {
+            $view = view('onboarding.onboarding-student-3')->render();
+        }
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
+    public function showOnboarding4() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-4')->render();
+        } else {
+            $view = view('onboarding.onboarding-student-4')->render();
+        }
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
+    public function showOnboarding5() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-5')->render();
+        } else {
+
+        }
+
+        return response()->json([
+            'view' => $view
+        ]);
+    }
+
+    public function showOnboarding6() {
+        if(Auth::user()->is_tutor) {
+            $view = view('onboarding.onboarding-tutor-6')->render();
+        } else {
+
+        }
 
         return response()->json([
             'view' => $view
