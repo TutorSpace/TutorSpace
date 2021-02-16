@@ -27,9 +27,10 @@
     </svg>
 
     <h3 class="title fc-blue-primary mt-5 mb-3">Book a Session</h3>
-    <p class="fs-1-6 fc-grey">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nobis, officia cumque sed non dolorem in corporis consectetur velit expedita mollitia laboriosam obcaecati dolore consequuntur tempore iste sapiente, atque sequi?
-    </p>
+
+    <ul class="fs-1-8 fc-grey mb-5">
+        <li>Drag on a tutor’s calendar to request a tutoring session</li>
+    </ul>
 
     <div class="dots-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">

@@ -13,9 +13,21 @@
 
 
     <h3 class="title fc-blue-primary mt-5 mb-3">Build Your Profile</h3>
-    <p class="fs-1-6 fc-grey">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nobis, officia cumque sed non dolorem in corporis consectetur velit expedita mollitia laboriosam obcaecati dolore consequuntur tempore iste sapiente, atque sequi?
-    </p>
+
+    <ul class="fs-1-8 fc-grey mb-5">
+        <li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+            Profile Settings
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+            Student Information
+        </li>
+        <li>Add all courses you would like a tutor to help you with</li>
+        <li>Add courses you are currently taking</li>
+    </ul>
 
     <div class="dots-container">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">

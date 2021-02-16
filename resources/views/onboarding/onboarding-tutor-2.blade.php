@@ -31,7 +31,7 @@
     <h3 class="title fc-purple-primary mt-5 mb-3">Mark Your Availability</h3>
 
     <ul class="fs-1-8 fc-grey mb-5">
-        <li>Drag your calendar to mark out your available time for tutoring sessions</li>
+        <li>Drag on your calendar to mark out your available time for tutoring sessions</li>
     </ul>
 
     <div class="dots-container">
