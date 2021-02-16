@@ -14508,6 +14508,10 @@ h6 {
   background-color: #F9F9F9 !important;
 }
 
+.bg-clicked-grey {
+  background-color: rgba(215, 215, 215, 0.9) !important;
+}
+
 .bg-color-blue-primary {
   background-color: #1F7AFF !important;
 }

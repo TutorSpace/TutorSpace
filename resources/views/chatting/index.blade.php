@@ -94,7 +94,7 @@ bg-student
 
             created_at = moment().format('YYYY-MM-DD HH:mm:ss');
 
-            let currentlyViewingId = $('.msg .box.bg-grey-light').closest('.msg').attr('data-user-id');
+            let currentlyViewingId = $('.msg .box.bg-clicked-grey').closest('.msg').attr('data-user-id');
 
             let currentViewing = currentlyViewingId == from || currentlyViewingId == to;
 
@@ -120,10 +120,10 @@ bg-student
     }
 
     $('.msgs').on('click', '.msg', function () {
-        $('.msg .box').removeClass('bg-grey-light');
-        $('.msg').removeClass('bg-grey-light');
-        $(this).find('.box').addClass('bg-grey-light');
-        $(this).addClass('bg-grey-light');
+        $('.msg .box').removeClass('bg-clicked-grey');
+        $('.msg').removeClass('bg-clicked-grey');
+        $(this).find('.box').addClass('bg-clicked-grey');
+        $(this).addClass('bg-clicked-grey');
         let otherUserId = $(this).attr('data-user-id');
         JsLoadingOverlay.show(jsLoadingOverlayOptions);
         $.ajax({
