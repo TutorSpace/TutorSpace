@@ -207,6 +207,10 @@ class RegisterController extends Controller
     }
 
     public function storeStudent2(Request $request) {
+        if(!$request->session()->has('verificationCodeStudent')) {
+            return redirect()->route('register.index.student.1');
+        }
+
         $verificationCode = $request->session()->get('verificationCodeStudent');
         // validate the information
         $request->validate([
@@ -243,6 +247,10 @@ class RegisterController extends Controller
     }
 
     public function storeTutor2(Request $request) {
+        if(!$request->session()->has('verificationCodeTutor')) {
+            return redirect()->route('register.index.tutor.1');
+        }
+
         $verificationCode = $request->session()->get('verificationCodeTutor');
         // validate the information
         $request->validate([
