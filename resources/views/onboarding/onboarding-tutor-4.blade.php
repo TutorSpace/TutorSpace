@@ -22,8 +22,9 @@
             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
           </svg> Become a Verified Tutor
         </li>
-        <li>Submit your STARS report to verify your background information</li>
+        <li>Verify your background information by submitting your STARS report</li>
         <li>Get a special stamp for each verified course</li>
+        <li>Receive extra bonus for each tutoring session</li>
     </ul>
 
     <div class="dots-container">

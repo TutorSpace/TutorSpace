@@ -13,7 +13,7 @@
 
     <ul class="fs-1-8 fc-grey mb-5">
         <li>Get points by holding tutoring sessions and initiating discussions on the forum</li>
-        <li>Raise your tutor level and gain extra bonuses (as verified tutors)</li>
+        <li>Raise your tutor level and gain extra bonuses</li>
     </ul>
 
     <div class="dots-container">
