@@ -466,7 +466,7 @@ $('.user-card .btn-invite').click(function() {
     });
 });
 @else
-$('.user-card button').click(function() {
+$('.user-card button, .user-card a').click(function() {
     $('.overlay-student').show();
 });
 
