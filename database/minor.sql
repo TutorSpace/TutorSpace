@@ -231,3 +231,4 @@ INSERT INTO tutorspace.minors (`id`,`minor`) VALUES (224,'Video Game Design and 
 INSERT INTO tutorspace.minors (`id`,`minor`) VALUES (225,'Video Game Programming');
 INSERT INTO tutorspace.minors (`id`,`minor`) VALUES (226,'Visual Culture');
 INSERT INTO tutorspace.minors (`id`,`minor`) VALUES (227,'Web Technologies and Applications');
+
