@@ -17,7 +17,6 @@ def read_from_csv(file_name):
             res_list.append(row[1])
         return res_list
 
-
 if __name__ == '__main__':
     load_dotenv()
     DB_HOST = os.getenv("DB_HOST")
