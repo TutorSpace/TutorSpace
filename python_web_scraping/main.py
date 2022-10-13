@@ -4,7 +4,6 @@ import mysql.connector
 import os
 from dotenv import load_dotenv
 
-
 def read_from_csv(file_name):
     with open(file_name) as csv_file:
         res_list = []
