@@ -11,6 +11,8 @@ class ReviewSeeder extends Seeder
      */
     public function run()
     {
+        // TODO: (sylvia) Add the review seeder back.
+        
         // $userIds = DatabaseSeeder::$userIds;
         // $pastSessionIds = DatabaseSeeder::$pastSessionIds;
 
