@@ -1,15 +1,41 @@
 # TutorSpace
 
-## Website: https://tutorspace.joinme.us/
+## Website: https://tutorspace.joinme.us/ (Not Maintained any more)
 
-## Promotion Page: https://www.tutorspace.info
+## Promotion Page: https://www.tutorspace.info (Not Maintained any more)
 
 ## Instagram: https://www.instagram.com/tutorspaceusc/
 
 <!-- ## Prototype project: https://tutor.joinme.us
 ### This prototype project is created by Shuaiqing Luo in Spring 2020 and is already fully functional. Wishing to build the largest tutor matching service platform in California that provides best user experience, he decided to revamp all the frontend design and backend functionalities, which then turned into the current product of TutorSpace. 
 
-### TutorSpace has gathered a group of professional and passionate developers, designers, and marketing specialists. If you are interested in joining TutorSpace, please contact us at tutorspacehelp@gmail.com -->
+### TutorSpace has gathered a group of professional and passionate developers, designers, data analysts, and marketing specialists. If you are interested in joining TutorSpace, please contact us at tutorspacehelp@gmail.com -->
+
+## Sample Screenshots:
+
+- Login Page
+
+<img src="https://user-images.githubusercontent.com/114358351/195580743-6b5d0408-9674-4d78-b8ee-bc86d57fe9bf.png" width=700>
+
+- Sign Up Page
+
+<img src="https://user-images.githubusercontent.com/114358351/195580837-d7525d62-b001-41b8-b170-bb207f17768d.png" width=700>
+
+- Home Page (Student)
+
+<img src="https://user-images.githubusercontent.com/114358351/195580688-f2658ebb-f2d3-42bf-9dbc-6a36a702576f.png" width=700>
+
+- Home Page (Tutor)
+
+<img src="https://user-images.githubusercontent.com/114358351/195580704-42571bd5-4bff-4e26-bc91-f26e8721d9ec.png" width=700>
+
+- Search Page
+
+<img src="https://user-images.githubusercontent.com/114358351/195580782-91800c6f-e4cb-4e25-8c7e-46dd8f6afb5b.png" width=700>
+
+- Create New Posts
+
+<img src="https://user-images.githubusercontent.com/114358351/195580466-9504f48a-3d60-43fa-8b21-554a7d2ae748.png" width=700>
 
 ## Sample Tutor Account:
 ```
